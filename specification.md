@@ -1,276 +1,20 @@
 The Brain Imaging Data Structure (BIDS) Specification
-===============
+=====================================================
 
-version 1.1.1 (working copy)  
+version 1.1.1 (working copy)
 Available under the CC-BY 4.0 International license.
 
-Browse example datasets:  
+Browse example datasets:
 [https://github.com/INCF/BIDS-examples](https://github.com/INCF/BIDS-examples)
 
-Download example datasets:  
+Download example datasets:
 [https://openneuro.org/public/datasets](https://openneuro.org/public/datasets)
 
- 1 Changelog <a id="h.17phlwhk50et"></a>
-===============
-
-1.1.1
-
--   Improved the MEG landmark coordinates description.
--   Replaced ManufacturersCapModelName in meg.json with CapManufacturer
-    and CapManufacturersModelName.
--   Remove EEGSamplingFrequency and ManufacturersAmplifierModelName
-    from the meg.json.
--   Improved the behavioural data description.
-
-1.1.0
-
--   Added support for MEG data (merged BEP008)
--   Added SequenceName field.
--   Added support for describing events with Hierarchical Event Descriptors [[8.5 Task events](#heading=h.daip42kp5ndz)].
--   Added VolumeTiming and AcquisitionDuration fields [[8.4 Task (including resting state) imaging data](#heading=h.r8mrcau3kkcq)].
--   Added DwellTime field.
-
-1.0.2
-
--   Added support for high resolution (anatomical) T2star images [[8.3 Anatomy imaging data](#heading=h.fm6ipijipc08)].
--   Added support for multiple defacing masks [[8.3 Anatomy imaging data](#heading=h.fm6ipijipc08)].
--   Added optional key and metadata field for contrast enhanced structural scans [[8.3 Anatomy imaging data](#heading=h.fm6ipijipc08)].
--   Added DelayTime field [[8.4 Task (including resting state) imaging data](#heading=h.r8mrcau3kkcq)].
--   Added support for multi echo BOLD data [[8.4 Task (including resting state) imaging data](#heading=h.r8mrcau3kkcq)].
-
-1.0.1
-
--   Added InstitutionName field [[8.4 Task (including resting state) imaging data](#heading=h.r8mrcau3kkcq)].
--   Added InstitutionAddress field [[8.4 Task (including resting state) imaging data](#heading=h.r8mrcau3kkcq)].
--   Added DeviceSerialNumber field [[8.4 Task (including resting state) imaging data](#heading=h.r8mrcau3kkcq)].
--   Added NumberOfVolumesDiscardedByUser and
-    NumberOfVolumesDiscardedByScanner field [[8.4 Task (including
-    resting state) imaging data](#heading=h.r8mrcau3kkcq)].
--   Added TotalReadoutTime to functional images metadata list
-     [[8.4 Task (including resting state) imaging
-    data](#heading=h.r8mrcau3kkcq)].
-
-1.0.1-rc1
-
--   Added T1 Rho maps [[8.3 Anatomy imaging
-    data](#heading=h.fm6ipijipc08)].
--   Added support for phenotypic information split into multiple files
-    [[8.11 Participant key file](#heading=h.pi5iigxxt8vy)].
--   Added recommendations for multi site datasets
--   Added SoftwareVersions
--   Added run-&lt;run_index&gt; to the phase encoding
-    maps. Improved the description.
--   Added InversionTime metadata key.
--   Clarification on the source vs raw language.
--   Added trial_type column to the event files.
--   Added missing sub-&lt;participant_label&gt; in
-    behavioural data file names
--   Added ability to store stimuli files.
--   Clarified the language describing allowed subject labels.
--   Added quantitative proton density maps.
-
-1.0.0
-
--   Added ability to specify fieldmaps acquired with multiple parameter
-    sets.
--   Added ability to have multiple runs of the same fieldmap.
--   Added FLASH anatomical images.
-
-1.0.0-rc4
-
--   Replaced links to neurolex with explicit DICOM Tags.
--   Added sourcedata.
--   Added data dictionaries.
--   Be more explicit about contents of JSON files for structural
-    (anatomical) scans.
-
-1.0.0-rc3
-
--   Renamed PhaseEncodingDirection values from “x”, “y”,
-    “z” to “i”, “j”, “k” to avoid confusion with FSL parameters
--   Renamed SliceEncodingDirection values from “x”, “y”,
-    “z” to “i”, “j”, “k”
-
-1.0.0-rc2
-
--   Removed the requirement that TSV files cannot include more than two
-    consecutive spaces.
--   Refactor of the definitions sections (copied from the
-    manuscript)
--   Make support for uncompressed .nii files more explicit.
--   Added BIDSVersion to dataset.json
--   Remove the statement that SliceEncodingDirection is
-    necessary for slice time correction
--   Change dicom converter recommendation from dcmstack to dcm2nii and
-    dicm2nii following interactions with the community (see
-    [https://github.com/moloney/dcmstack/issues/39](https://github.com/moloney/dcmstack/issues/39) and
-    [https://github.com/neurolabusc/dcm2niix/issues/4](https://github.com/neurolabusc/dcm2niix/issues/4)).
--   Added section on behavioral experiments with no accompanying MRI
-    acquisition
--   Add \_magnitude.nii[.gz] image for GE type
-    fieldmaps.
--   Replaced EchoTimeDifference with
-    EchoTime1 and EchoTime2 (SPM toolbox
-    requires this input).
--   Added support for single band reference image for DWI.
--   Added DatasetDOI field in the dataset
-    description.
--   Added description of more metadata fields relevant to DWI fieldmap
-    correction.
--   PhaseEncodingDirection is now expressed in “x”, “y” etc.
-    instead of “PA” “RL” for DWI scans (so it’s the same as BOLD
-    scans)
--   Added rec-&lt;label&gt; flag to BOLD files to
-    distinguish between different reconstruction algorithms (analogous
-    to anatomical scans).
--   Added recommendation to use \_physio suffix for continuous recordings of motion parameters obtained by the scanner side reconstruction algorithms.
-
-1.0.0-rc1
-
--   Initial release
-
-2 Table of contents
-=======================
-
-[1 Changelog](#heading=h.17phlwhk50et)
-
-[2 Table of contents](#heading=h.zeylawffkwh9)
-
-[3 Introduction](#heading=h.ehs58l1sp5l0)  
-> [3.1 Motivation](#heading=h.nn0wr5qmclie)  
-> [3.2 Definitions](#heading=h.ld293tqw9us4)  
-> [3.3 Compulsory, optional, and additional data and
-metadata](#heading=h.yic0v7leqtf3)  
-> [3.4 Source vs. raw vs. derived data](#heading=h.juzchuxblakl)  
-> [3.5 The Inheritance Principle](#heading=h.l5zwpkcouhem)  
-> [3.6 Extensions](#heading=h.18rh5sozhnxy)  
-> [3.7 Citing BIDS](#heading=h.bw5qroscmvib)  
-
-[4 File Format specification](#heading=h.nx8ar720y0tv)  
-> [4.1 Imaging files](#heading=h.y0f2axq397vt)  
-> [4.2 Tabular files](#heading=h.r85srnfs3y24)  
->> [4.2.1 Example:](#heading=h.fpjccp3z8lxv)  
->> [4.2.2 Example:](#heading=h.o9t9l483hwh7)  
-
-> [4.3 Key/value files (dictionaries)](#heading=h.c75m812a750g)  
->> [4.3.1 Example:](#heading=h.str6bi80689r)
-
-[5 Participant names and other labels](#heading=h.8mzv4iyo50ug)
-
-[6 Units](#heading=h.ltev6sakv13v)
-
-[7 Directory structure](#heading=h.1vzzcnz6wczd)  
-> [7.1 Single session example](#heading=h.6hp4sl1q6arb)
-
-[8 Detailed file descriptions](#heading=h.v9uqdvt04vsf)  
-> [8.1 Dataset description](#heading=h.ie43v2mfgaeq)  
->> [8.1.1 dataset_description.json](#heading=h.qza727avafid)  
->> [8.1.2 README](#heading=h.yizt58dn4hby)  
->> [8.1.3 CHANGES](#heading=h.732zmmqh1yq7)  
-
-> [8.2 Code](#heading=h.csdrm1qizwq9)  
-> [8.3 Magnetic Resonance Imaging data](#heading=h.5k5g55vj6iy6)  
->> [8.3.1 Common metadata fields](#heading=h.5u721tt1h9pe)  
->> [8.3.2 Anatomy imaging data](#heading=h.fm6ipijipc08)  
->> [8.3.3 Task (including resting state) imaging
-data](#heading=h.r8mrcau3kkcq)  
->>> [8.3.3.1 Example:](#heading=h.1q8p210od2f)  
-
->> [8.3.4 Diffusion imaging data](#heading=h.xfuiufnb319)  
->>> [8.3.4.1 bvec example:](#heading=h.r9czn8f0t58k)  
->>> [8.3.4.2 bval example:](#heading=h.e948atq2ku1n)  
->>> [8.3.4.3 JSON example:](#heading=h.hxcaki8xqrp6)
-
->> [8.3.5 Fieldmap data](#heading=h.fcegd01wpsf8)  
->>> [8.3.5.1 Case 1: Phase difference image and at least one magnitude
-image](#heading=h.fexn37cr2yum)  
->>> [8.3.5.2 Case 2: Two phase images and two magnitude
-images](#heading=h.dytrqt3rfo2y)  
->>> [8.3.5.3 Case 3: A single, real fieldmap image (showing the field
-inhomogeneity in each voxel)](#heading=h.9wqqfa1lqctc)  
->>> [8.3.5.4 Case 4: Multiple phase encoded directions
-(“pepolar”)](#heading=h.6gef31kvsx0l)
-
->[8.4 Magnetoencephalography (MEG)](#heading=h.y1yw5l9a04g2)
->> [8.4.1 MEG recording data](#heading=h.ln9qkltewtqa)
->>>[8.4.1.1 Sidecar JSON document
-(\*\_meg.json)](#heading=h.wmua3ist46l2)
-
->> [8.4.2 Channels description table
-(\*\_channels.tsv)](#heading=h.2ng8e4h6db4p)  
->> [8.4.3 Coordinate System JSON document
-(\*\_coordsystem.json)](#heading=h.vz4gpcbftsuu)  
->> [8.4.4 Photos of the anatomical landmarks and/or head localization
-coils  (\*\_photo.jpg)](#heading=h.li6xt1s6zgjs)  
->> [8.4.5 3-D head point /electrode locations file
-(\*\_headshape.<manufacturer_specific_format>)](#heading=h.jrc7wyqvlzpp)  
->> [8.4.6 Empty-room files (sub-emptyroom)](#heading=h.i7qifoac3vgf)
-
-> [8.5 Task events](#heading=h.daip42kp5ndz)  
->> [8.5.1 Example:](#heading=h.akoyjl6f4i1e)  
->> [8.5.2 Example:](#heading=h.gsp1xuuo09tb)  
->> [8.5.3 Example:](#heading=h.8leve31f2d03)  
-
-> [8.6 Physiological and other continuous
-recordings](#heading=h.usbya6fhiy5v)
->> [8.6.1 Example:](#heading=h.mtd2764i6ii1)
-
-> [8.7 Behavioral experiments (with no
-MRI)](#heading=h.cpt8jqa5g0y7)
-
-> [8.8 Scans file](#heading=h.rw11qtsldsuw)
->> [8.8.1 Example:](#heading=h.xtaf7kerpvji)
-
-> [8.9 Participant file](#heading=h.pi5iigxxt8vy)
->> [8.9.1 participants.tsv example:](#heading=h.rsax9zcpo17t)
-
-[9 Longitudinal studies with multiple sessions
-(visits)](#heading=h.5c3b4lpzj5cn)
-> [9.1 Sessions file](#heading=h.yba5gfw0vmht)
->> [9.1.1 Multiple sessions example:](#heading=h.ia2iiqnuitj)
-
-[10 Multi-site or multi-center studies](#heading=h.29tn5cduh4ci)
-> [10.1 Option 1: Treat each site/center as a separate
-dataset.](#heading=h.totu2lw0gxlj)  
-> [10.2 Option 2: Combining sites/centers into one
-dataset](#heading=h.1t5ygwr3qrpq)
-
-[11 Appendix I: Contributors](#heading=h.hds2i7ii7hjo)
-
-[12 Appendix II: Licenses](#heading=h.8bxgvc9yrtig)
-
-[13 Appendix III: Hierarchical Event Descriptor (HED)
-Tags](#heading=h.5sn36nhoj1fw)
-> [13.1 Example:](#heading=h.rqz45nlfb5rx)  
-> [13.2 Example:](#heading=h.b382e7m2jzvb)
-
-[14 Appendix IV: Entity table](#heading=h.hj3w5z9pw4n7)
-
-[15 Appendix V: Units](#heading=h.h112sr17n2m2)
-
-[16 Appendix  VI: MEG file formats](#heading=h.l5rpo9atl5qp)
-> [16.1 CTF](#heading=h.kzx3m7s518x2)  
-> [16.2 Elekta/Neuromag](#heading=h.a7ggx48p7aaf)  
-> [16.3 4D neuroimaging/BTi](#heading=h.gy0kbzisg1f1)  
-> [16.4 KIT/Yokogawa](#heading=h.2gmmxawyna7r)  
-> [16.5 KRISS](#heading=h.ts11elruq7kt)  
-> [16.6 ITAB](#heading=h.sgxhj770nor)  
-> [16.7 Aalto/MEG–MRI](#heading=h.moujhgczbkr9)  
-
-[17 Appendix VII: preferred names of MEG
-systems](#heading=h.bp5mugaep86u)
-
-[18 Appendix VIII: preferred names of Coordinate
-systems](#heading=h.snhwsmgj62e1)
-> [18.1 MEG specific Coordinate Systems](#heading=h.kfm2qyo3x0mo)  
-> [18.2 EEG specific Coordinate Systems](#heading=h.z9g5132tdpry)  
-> [18.2 Template based Coordinate Systems](#heading=h.qrh9iqfvccq5)
-
 3 Introduction
-==================
+==============
 
 3.1 Motivation
-------------------
+--------------
 
 Neuroimaging experiments result in complicated data that can be arranged in many different ways. So far there is no consensus how to organize and share data obtained in neuroimaging experiments. Even two researchers working in the same lab can opt to arrange their data in a different way. Lack of consensus (or a standard) leads to misunderstandings and time wasted on rearranging data or rewriting scripts expecting certain structure. Here we describe a simple and easy-to-adopt way of organising neuroimaging and behavioural data. By using this standard you will benefit in the following ways:
 
@@ -282,7 +26,7 @@ Neuroimaging experiments result in complicated data that can be arranged in many
 BIDS is heavily inspired by the format used internally by OpenfMRI.org and has been supported by the International Neuroinformatics Coordinating Facility and the Neuroimaging Data Sharing Task Force. While working on BIDS we consulted many neuroscientists to make sure it covers most common experiments, but at the same time is intuitive and easy to adopt. The specification is intentionally based on simple file formats and folder structures to reflect current lab practices and make it accessible to a wide range of scientists coming from different backgrounds.
 
 3.2 Definitions
--------------------
+---------------
 
 The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in
@@ -300,73 +44,79 @@ Throughout this protocol we use a list of terms. To avoid misunderstanding we cl
 8.  Run - an uninterrupted repetition of data acquisition that has the same acquisition parameters and task (however events can change from run to run due to different subject response or randomized nature of the stimuli). Run is a synonym of a data acquisition.
 
 3.3 Compulsory, optional, and additional data and metadata
-----------------------------------------------------------------------
+----------------------------------------------------------
 
 The following standard describes a way of arranging data and writing down metadata for a subset of neuroimaging experiments. Some aspects of the standard are compulsory. For example a particular file name format is required when storing structural scans. Some aspects are regulated but optional. For example a T2 volume does not need to be included, but when it is available it should be saved under a particular file name specified in the standard.
 This standard aspires to describe a majority of datasets, but acknowledges that there will be cases that do not fit. In such cases one can include additional files and subfolders to the existing folder structure following common sense. For example one may want to include eye tracking data in a vendor specific format that is not covered by this standard. The most sensible place to put it is next to the continuous recording file with the same naming scheme but different extensions. The solutions will change from case to case and publicly available datasets will be reviewed to include common data types in the future releases of the BIDS spec.
 
 3.4 Source vs. raw vs. derived data
------------------------------------------------
+-----------------------------------
 
 BIDS in its current form is designed to harmonize and describe raw (unprocessed or minimally processed due to file format conversion) data. During analysis such data will be transformed and partial as well as final results will be saved. Derivatives of the raw data (other than products of DICOM to NIfTI conversion) MUST be kept separate from the raw data. This way one can protect the raw data from accidental changes by file permissions. In addition it is easy to distinguish partial results from the raw data and share the latter. Similar rules apply to source data which is defined as data before harmonization and/or file format conversion (for example E-Prime event logs or DICOM files).
 
 This specification currently does not go into details of recommending a particular naming scheme for including different types of source data (raw event logs, parameter files, etc. before conversion to BIDS) and data derivatives (correlation maps, brain masks, contrasts maps, etc.). However, in the case that these data are to be included:
 
-1.  These data MUST be kept in separate “sourcedata” and “derivatives”
-    folders each with a similar folder structure as presented below for the BIDS-managed data. For example:  
-    derivatives/fmriprep/sub-01/ses-pre/sub-01_ses-pre_mask.nii.gz or sourcedata/sub-01/ses-pre/func/sub-01_ses-pre_task-rest_bold.dicom.tgz or sourcedata/sub-01/ses-pre/func/MyEvent.sce.
-2.  A README file SHOULD be found at the root of the “sourcedata” or the
-    “derivatives” folder (or both). This file should describe the nature of the raw data or the derived data. In the case of the existence of a “derivatives” folder, we RECOMMEND including details about the software stack and settings used to generate the results. Inclusion of non-imaging objects that improve reproducibility are encouraged (scripts, settings files, etc.).
+1.  These data MUST be kept in separate `sourcedata` and `derivatives`
+    folders each with a similar folder structure as presented below for the BIDS-managed data. For example:
+    `derivatives/fmriprep/sub-01/ses-pre/sub-01_ses-pre_mask.nii.gz` or `sourcedata/sub-01/ses-pre/func/sub-01_ses-pre_task-rest_bold.dicom.tgz` or `sourcedata/sub-01/ses-pre/func/MyEvent.sce`.
+2.  A README file SHOULD be found at the root of the `sourcedata` or the
+    `derivatives` folder (or both). This file should describe the nature of the raw data or the derived data. In the case of the existence of a `derivatives` folder, we RECOMMEND including details about the software stack and settings used to generate the results. Inclusion of non-imaging objects that improve reproducibility are encouraged (scripts, settings files, etc.).
 3.  We RECOMMEND including the PDF print-out with the actual sequence
-    parameters generated by the scanner in the  “sourcedata” folder.
+    parameters generated by the scanner in the  `sourcedata` folder.
 
 3.5 The Inheritance Principle
----------------------------------
+-----------------------------
 
-Any metadata file (.json, .bvec, .tsv, etc.) may be defined at any directory level, but no more than one applicable file may be defined at a given level (Example 1).  The values from the top level are inherited by all lower levels unless they are overridden by a file at the lower level. For example, sub-\*\_task-rest\_bold.json may be specified at the participant level, setting TR to a specific value. If one of the runs has a different TR than the one specified in that file, another sub*\_task-rest\_bold.json file can be placed within that specific series directory specifying the TR for that specific run.  
-There is no notion of “unsetting” a key/value pair. For example if there is a JSON file corresponding to particular participant/run defining a key/value and there is a JSON file on the root level of the dataset that does not define this key/value it will not be “unset” for all subjects/runs.  
-Files for a particular participant can exist only at participant level directory, i.e  
-/dataset/sub-\*[/ses-\*]/sub-\*\_T1w.json. Similarly, any  file that is not specific to a participant is to be declared only at top level of dataset for eg: task-sist\_bold.json must be placed under /dataset/task-sist\_bold.json
+Any metadata file (`.json`, `.bvec`, `.tsv`, etc.) may be defined at any directory level, but no more than one applicable file may be defined at a given level (Example 1).  The values from the top level are inherited by all lower levels unless they are overridden by a file at the lower level. For example, `sub-*_task-rest_bold.json` may be specified at the participant level, setting TR to a specific value. If one of the runs has a different TR than the one specified in that file, another `sub-*_task-rest_bold.json` file can be placed within that specific series directory specifying the TR for that specific run.
+There is no notion of "unsetting" a key/value pair. For example if there is a JSON file corresponding to particular participant/run defining a key/value and there is a JSON file on the root level of the dataset that does not define this key/value it will not be "unset" for all subjects/runs.
+Files for a particular participant can exist only at participant level directory, i.e
+`/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any  file that is not specific to a participant is to be declared only at top level of dataset for eg: `task-sist_bold.json` must be placed under `/dataset/task-sist_bold.json`
 
 Example 1: Two JSON files at same level that are applicable for NIfTI
 file.
 
+```
 sub-01/
-> ses-test/
->> sub-test\_task-overtverbgeneration\_bold.json  
->> sub-test\_task-overtverbgeneration\_run-2\_bold.json   
->> anat/  
->>> sub-01\_ses-test\_T1w.nii.gz   
-
->> func/
->>> sub-01\_ses-test\_task-overtverbgeneration\_run-1\_bold.nii.gz  
->>>sub-01\_ses-test\_task-overtverbgeneration\_run-2\_bold.nii.gz
+    ses-test/
+		    sub-test_task-overtverbgeneration_bold.json
+        sub-test_task-overtverbgeneration_run-2_bold.json
+		    anat/
+            sub-01_ses-test_T1w.nii.gz
+        func/
+            sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz
+            sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz
+```
 
 In the above example, two JSON files are listed under
-sub-01/ses-test/, which are each applicable to sub-01\_ses-test\_task-overtverbgeneration\_run-2\_bold.nii.gz, violating the constraint that no more than one file may be defined at a given level of the directory structure. Instead task-overtverbgeneration\_run-2\_bold.json should have been under sub-01/ses-test/func/.
+`sub-01/ses-test/`, which are each applicable to `sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz`, violating the constraint that no more than one file may be defined at a given level of the directory structure. Instead `task-overtverbgeneration_run-2_bold.json` should have been under `sub-01/ses-test/func/`.
 
 Example 2:  Multiple run and rec with same acquisition (acq) parameters acq-test1
 
-> sub-01/  
->> anat/  
->> func/        
->>> sub-01\_task-xyz\_acq-test1\_run-1\_bold.nii.gz  
->>> sub-01\_task-xyz\_acq-test1\_run-2\_bold.nii.gz  
->>> sub-01\_task-xyz\_acq-test1\_rec-recon1\_bold.nii.gz  
->>> sub-01\_task-xyz\_acq-test1\_rec-recon2\_bold.nii.gz  
->>> sub-01\_task-xyz\_acq-test1\_bold.json
+```
+sub-01/
+    anat/
+    func/
+        sub-01_task-xyz_acq-test1_run-1_bold.nii.gz
+        sub-01_task-xyz_acq-test1_run-2_bold.nii.gz
+        sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz
+        sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz
+        sub-01_task-xyz_acq-test1_bold.json
+```
 
-For the above example, all NIfTI files are acquired with same scanning parameters (acq-test1). Hence a JSON file describing the acq parameters will apply to different runs and rec files.  Also if the JSON file (task-xyz_acq-test1_bold.json) is defined at dataset top level  directory, it  will be applicable to all task runs with test1 acquisition parameter.   
-Case 2:  Multiple json files at different levels for same task and acquisition parameters  
-> sub-01/  
->> sub-01\_task-xyz\_acq-test1\_bold.json  
->> anat/  
->> func/  
->>> sub-01\_task-xyz\_acq-test1\_run-1\_bold.nii.gz  
->>> sub-01\_task-xyz\_acq-test1\_rec-recon1\_bold.nii.gz  
->>> sub-01\_task-xyz\_acq-test1\_rec-recon2\_bold.nii.gz  
+For the above example, all NIfTI files are acquired with same scanning parameters (`acq-test1`). Hence a JSON file describing the acq parameters will apply to different runs and rec files. Also if the JSON file (`task-xyz_acq-test1_bold.json`) is defined at dataset top level  directory, it  will be applicable to all task runs with `test1` acquisition parameter.
 
-In the above example, the fields from task-xyz\_acq-test1\_bold.json file will apply to all bold runs. However, if there is a key with different value in sub-01/func/sub-01\_task-xyz\_acq-test1\_run-1\_bold.json,
+Case 2:  Multiple json files at different levels for same task and acquisition parameters
+```
+sub-01/
+   sub-01_task-xyz_acq-test1_bold.json
+         anat/
+         func/
+             sub-01_task-xyz_acq-test1_run-1_bold.nii.gz
+             sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz
+             sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz
+```
+
+In the above example, the fields from `task-xyz_acq-test1_bold.json` file will apply to all bold runs. However, if there is a key with different value in `sub-01/func/sub-01_task-xyz_acq-test1_run-1_bold.json`,
 the new value will be applicable for that particular run/task NIfTI
 file/s.
 
@@ -476,12 +226,12 @@ The BIDS specification can be extended in a backwards compatible way  and will e
       <td><p><a href="https://docs.google.com/document/d/1PmcVs7vg7Th-cGC-UrX8rAhKUHIzOI-uIOh69_mvdlw">BEP021</a></p></td>
       <td><p><a href="https://docs.google.com/document/d/1PmcVs7vg7Th-cGC-UrX8rAhKUHIzOI-uIOh69_mvdlw">Common Electrophysiological Derivatives</a></p></td>
       <td>Stefan Appelhoff, Cyril Pernet, Robert Oostenveld, Teon Brooks</td>
-    </tr>      
+    </tr>
   </tbody>
 </table>
 
 When an extension reaches maturity it is merged into the main body of the specification. If you would like to contribute to BIDS please consult the [BIDS Contributor
-Guide](https://docs.google.com/document/d/1pWmEEY-1-WuwBPNy5tDAxVJYQ9Een4hZJM06tQZg8X4/edit?usp%3Dsharing&sa=D&ust=1537468908724000)  
+Guide](https://docs.google.com/document/d/1pWmEEY-1-WuwBPNy5tDAxVJYQ9Een4hZJM06tQZg8X4/edit?usp%3Dsharing&sa=D&ust=1537468908724000)
 All of the ideas that are not backwards compatible and thus will have to wait for BIDS 2.0 are listed [here](https://docs.google.com/document/d/1LEgsMiisGDe1Gv-hBp1EcLmoz7AlKj6VYULUgDD3Zdw)
 
 3.7 Citing BIDS
@@ -538,7 +288,7 @@ Tabular data MUST be saved as tab delimited values (.tsv) files, i.e. csv files 
       <td>n/a</td>
       <td>n/a</td>
       <td>n/a</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
@@ -565,28 +315,28 @@ Tabular files MAY be optionally accompanied by a simple data dictionary in a JSO
     <tr>
       <td>TermURL</td>
       <td>URL pointing to a formal definition of this type of data in an ontology available on the web.</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
 ### 4.2.2 Example:
 
-{  
-&nbsp;"education": {  
-   "LongName": "Education level",  
-    "Description": "Education level, self-rated by participant",  
-&nbsp;&nbsp; "Levels": {  
-&nbsp;&nbsp;&nbsp; "1": "Finished primary school",  
-&nbsp;&nbsp;&nbsp; "2": "Finished secondary school",  
-&nbsp;&nbsp;&nbsp; "3": "Student at university",  
-&nbsp;&nbsp;&nbsp; "4": "Has degree from university"  
-&nbsp;&nbsp; }  
-&nbsp;},  
-&nbsp;"bmi": {  
-&nbsp;&nbsp; "LongName": "Body mass index",  
-&nbsp;&nbsp; "Units": "kilograms per squared meters",  
-&nbsp;&nbsp; "TermURL": "http://purl.bioontology.org/ontology/SNOMEDCT/60621009"  
-&nbsp;}  
+{
+&nbsp;"education": {
+   "LongName": "Education level",
+    "Description": "Education level, self-rated by participant",
+&nbsp;&nbsp; "Levels": {
+&nbsp;&nbsp;&nbsp; "1": "Finished primary school",
+&nbsp;&nbsp;&nbsp; "2": "Finished secondary school",
+&nbsp;&nbsp;&nbsp; "3": "Student at university",
+&nbsp;&nbsp;&nbsp; "4": "Has degree from university"
+&nbsp;&nbsp; }
+&nbsp;},
+&nbsp;"bmi": {
+&nbsp;&nbsp; "LongName": "Body mass index",
+&nbsp;&nbsp; "Units": "kilograms per squared meters",
+&nbsp;&nbsp; "TermURL": "http://purl.bioontology.org/ontology/SNOMEDCT/60621009"
+&nbsp;}
 }
 
 4.3 Key/value files (dictionaries)
@@ -597,21 +347,21 @@ files MUST be in UTF-8 encoding.
 
 ### 4.3.1 Example:
 
-{  
-&nbsp;&nbsp; "RepetitionTime": 3.0,  
-&nbsp;&nbsp; "Instruction": "Lie still and keep your eyes open"  
+{
+&nbsp;&nbsp; "RepetitionTime": 3.0,
+&nbsp;&nbsp; "Instruction": "Lie still and keep your eyes open"
 }
 
 5 Participant names and other labels
 ========================================
 
-BIDS uses custom user-defined labels in several situations (naming of participants, sessions, acquisition schemes, etc.) Labels are strings and MUST only consist of letters (lower or upper case) and/or numbers. If numbers are used we RECOMMEND  zero padding (e.g., “01” instead of “1” if you have more than nine subjects) to make alphabetical sorting more intuitive. Please note that the sub- prefix is not part of the subject label, but must be included in file names (similarly to other key names).  
+BIDS uses custom user-defined labels in several situations (naming of participants, sessions, acquisition schemes, etc.) Labels are strings and MUST only consist of letters (lower or upper case) and/or numbers. If numbers are used we RECOMMEND  zero padding (e.g., “01” instead of “1” if you have more than nine subjects) to make alphabetical sorting more intuitive. Please note that the sub- prefix is not part of the subject label, but must be included in file names (similarly to other key names).
 In contrast to other labels, run and echo labels MUST be integers. Those labels MAY include zero padding, but this is NOT RECOMMENDED to maintain their uniqueness.
 
 6 Units
 ===============
 
-All units SHOULD be specified as per International System of Units (abbreviated as SI, from the French Système international (d'unités)) and can be SI units or SI derived units. In case there are valid reasons to deviate from  SI units or SI derived units, the units MUST be specified in the sidecar JSON file. In case data is expressed in SI units or SI derived units,  the units MAY be specified in the sidecar JSON file.  In case prefixes are added to SI or non-SI units (e.g. mm), the prefixed units MUST be specified in the JSON file (see Appendix V: Units).  In particular:  
+All units SHOULD be specified as per International System of Units (abbreviated as SI, from the French Système international (d'unités)) and can be SI units or SI derived units. In case there are valid reasons to deviate from  SI units or SI derived units, the units MUST be specified in the sidecar JSON file. In case data is expressed in SI units or SI derived units,  the units MAY be specified in the sidecar JSON file.  In case prefixes are added to SI or non-SI units (e.g. mm), the prefixed units MUST be specified in the JSON file (see Appendix V: Units).  In particular:
 
 -   Elapsed time SHOULD be expressed in seconds. Please note that some DICOM parameters have been traditionally expressed in milliseconds. Those need to be converted to seconds.
 -   Frequency SHOULD be expressed in Hertz.
@@ -643,37 +393,37 @@ This is an example of the folder and file structure. Because there is only one s
 format. For details on individual files see descriptions in the next
 section:
 
--   sub-control01  
-    -   anat  
-        - sub-control01\_T1w.nii.gz  
-        - sub-control01\_T1w.json  
-        - sub-control01\_T2w.nii.gz  
-        - sub-control01\_T2w.json  
-    -   func  
-        - sub-control01\_task-nback\_bold.nii.gz  
-        - sub-control01\_task-nback\_bold.json  
-        - sub-control01\_task-nback\_events.tsv  
-        - sub-control01\_task-nback\_physio.tsv.gz  
-        - sub-control01\_task-nback\_physio.json  
-        - sub-control01\_task-nback\_sbref.nii.gz  
-    -   dwi  
-        - sub-control01\_dwi.nii.gz  
-        - sub-control01\_dwi.bval    
-        - sub-control01\_dwi.bvec  
-    -   fmap  
-        - sub-control01\_phasediff.nii.gz  
-        - sub-control01\_phasediff.json  
-        - sub-control01\_magnitude1.nii.gz  
-    -   sub-control01\_scans.tsv  
-    -   Additional files and folders containing raw data may be added as needed for special cases.  They should be named using all lowercase with a name that reflects the nature of the scan (e.g., “calibration”).  Naming of files within the directory should follow the same scheme as above (e.g., “sub-control01_calibration_Xcalibration.nii.gz”)  
--   code  
-    -   deface.py  
--   derivatives  
-    -   README  
--   participants.tsv  
--   dataset\_description.json  
--   README  
--   CHANGES  
+-   sub-control01
+    -   anat
+        - sub-control01\_T1w.nii.gz
+        - sub-control01\_T1w.json
+        - sub-control01\_T2w.nii.gz
+        - sub-control01\_T2w.json
+    -   func
+        - sub-control01\_task-nback\_bold.nii.gz
+        - sub-control01\_task-nback\_bold.json
+        - sub-control01\_task-nback\_events.tsv
+        - sub-control01\_task-nback\_physio.tsv.gz
+        - sub-control01\_task-nback\_physio.json
+        - sub-control01\_task-nback\_sbref.nii.gz
+    -   dwi
+        - sub-control01\_dwi.nii.gz
+        - sub-control01\_dwi.bval
+        - sub-control01\_dwi.bvec
+    -   fmap
+        - sub-control01\_phasediff.nii.gz
+        - sub-control01\_phasediff.json
+        - sub-control01\_magnitude1.nii.gz
+    -   sub-control01\_scans.tsv
+    -   Additional files and folders containing raw data may be added as needed for special cases.  They should be named using all lowercase with a name that reflects the nature of the scan (e.g., “calibration”).  Naming of files within the directory should follow the same scheme as above (e.g., “sub-control01_calibration_Xcalibration.nii.gz”)
+-   code
+    -   deface.py
+-   derivatives
+    -   README
+-   participants.tsv
+-   dataset\_description.json
+-   README
+-   CHANGES
 
 8 Detailed file descriptions
 ================================
@@ -708,11 +458,11 @@ The file dataset\_description.json is a JSON file describing the dataset. Every 
     <tr>
       <td>Acknowledgements</td>
       <td>OPTIONAL. Text acknowledging contributions of individuals or institutions  beyond those listed in Authors or Funding.</td>
-    </tr>  
+    </tr>
     <tr>
       <td>HowToAcknowledge</td>
       <td>OPTIONAL. Instructions how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset.</td>
-    </tr>     
+    </tr>
     <tr>
       <td>Funding</td>
       <td>OPTIONAL. List of sources of funding (grant numbers)</td>
@@ -724,21 +474,21 @@ The file dataset\_description.json is a JSON file describing the dataset. Every 
     <tr>
       <td>DatasetDOI</td>
       <td>OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
-Example:  
-{  
-&nbsp;&nbsp; "Name": "The mother of all experiments",  
-&nbsp;&nbsp; "BIDSVersion":  "1.0.1",  
-&nbsp;&nbsp; "License": "CC0",  
-&nbsp;&nbsp; "Authors": ["Paul Broca", "Carl Wernicke"],  
-&nbsp;&nbsp; "Acknowledgements": "Special thanks to Korbinian Brodmann for help in formatting this dataset in BIDS. We thank Alan Lloyd Hodgkin and Andrew Huxley for helpful comments and discussions about the experiment and manuscript; Hermann Ludwig Helmholtz for administrative support; and Claudius Galenus for providing data for the medial-to-lateral index analysis.",  
-&nbsp;&nbsp; "HowToAcknowledge": "Please cite this paper: https://www.ncbi.nlm.nih.gov/pubmed/001012092119281",  
-&nbsp;&nbsp; "Funding": ["National Institute of Neuroscience Grant F378236MFH1", "National Institute of Neuroscience Grant 5RMZ0023106"],  
-&nbsp;&nbsp; "ReferencesAndLinks": ["https://www.ncbi.nlm.nih.gov/pubmed/001012092119281", "Alzheimer A., & Kraepelin, E. (2015). Neural correlates of presenile dementia in humans. Journal of Neuroscientific Data, 2, 234001. http://doi.org/1920.8/jndata.2015.7"],  
-&nbsp;&nbsp; "DatasetDOI": "10.0.2.3/dfjj.10"  
+Example:
+{
+&nbsp;&nbsp; "Name": "The mother of all experiments",
+&nbsp;&nbsp; "BIDSVersion":  "1.0.1",
+&nbsp;&nbsp; "License": "CC0",
+&nbsp;&nbsp; "Authors": ["Paul Broca", "Carl Wernicke"],
+&nbsp;&nbsp; "Acknowledgements": "Special thanks to Korbinian Brodmann for help in formatting this dataset in BIDS. We thank Alan Lloyd Hodgkin and Andrew Huxley for helpful comments and discussions about the experiment and manuscript; Hermann Ludwig Helmholtz for administrative support; and Claudius Galenus for providing data for the medial-to-lateral index analysis.",
+&nbsp;&nbsp; "HowToAcknowledge": "Please cite this paper: https://www.ncbi.nlm.nih.gov/pubmed/001012092119281",
+&nbsp;&nbsp; "Funding": ["National Institute of Neuroscience Grant F378236MFH1", "National Institute of Neuroscience Grant 5RMZ0023106"],
+&nbsp;&nbsp; "ReferencesAndLinks": ["https://www.ncbi.nlm.nih.gov/pubmed/001012092119281", "Alzheimer A., & Kraepelin, E. (2015). Neural correlates of presenile dementia in humans. Journal of Neuroscientific Data, 2, 234001. http://doi.org/1920.8/jndata.2015.7"],
+&nbsp;&nbsp; "DatasetDOI": "10.0.2.3/dfjj.10"
 }
 
 ### 8.1.2 README
@@ -751,16 +501,16 @@ Version history of the dataset (describing changes, updates and corrections) MAY
 
 Example:
 
-1.0.1 2015-08-27  
- - Fixed slice timing information.  
+1.0.1 2015-08-27
+ - Fixed slice timing information.
 
-1.0.0 2015-08-17  
+1.0.0 2015-08-17
  - Initial release.
 
 8.2 Code
 ------------
 
-Template:  
+Template:
 code/*
 
 Source code of scripts that were used to prepare the dataset (for example if it was anonymized or defaced) MAY be stored here. Extra care should be taken to avoid including original IDs or any identifiable information with the source code. There are no limitations or recommendations on the language and/or code organization of these scripts at the moment.
@@ -772,7 +522,7 @@ Source code of scripts that were used to prepare the dataset (for example if it 
 
 MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fields (stored in sidecar JSON files). MRI acquisition parameters are divided into several categories based on ["A checklist for fMRI acquisition methods reporting in the literature”](https://thewinnower.com/papers/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature) by Ben Inglis:
 
--   Scanner Hardware  
+-   Scanner Hardware
 
 <table>
   <tbody>
@@ -827,7 +577,7 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
     <tr>
       <td>CoilCombinationMethod</td>
       <td>RECOMMENDED. Almost all fMRI studies using phased-array coils use root-sum-of-squares (rSOS) combination, but other methods exist. The image reconstruction is changed by the coil combination method (as for the matrix coil mode above), so anything non-standard should be reported</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
@@ -862,7 +612,7 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
     <tr>
       <td>NonlinearGradientCorrection</td>
       <td>RECOMMENDED. Boolean stating if the image saved  has been corrected for gradient nonlinearities by the scanner sequence.</td>
-    </tr>    
+    </tr>
   </tbody>
 </table>
 
@@ -901,11 +651,11 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
     <tr>
       <td>TotalReadoutTime</td>
       <td>RECOMMENDED. This is actually the “effective” total readout time , defined as the readout duration, specified in seconds, that would have generated data with the given level of distortion.  It is NOT the actual, physical duration of the readout train.  If EffectiveEchoSpacing has been properly computed, it is just EffectiveEchoSpacing * (ReconMatrixPE - 1). . This parameter is REQUIRED if corresponding “field/distortion” maps acquired with opposing phase encoding directions are present  (see 8.9.4).</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
--   Timing Parameters  
+-   Timing Parameters
 
 <table>
   <tbody>
@@ -928,11 +678,11 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
     <tr>
       <td>DwellTime</td>
       <td>RECOMMENDED. Actual dwell time (in seconds) of the receiver per point in the readout direction, including any oversampling.  For Siemens, this corresponds to DICOM field (0019,1018) (in ns). This value is necessary for the (optional) readout distortion correction of anatomicals in the HCP Pipelines.  It also usefully provides a handle on the readout bandwidth, which isn’t captured in the other metadata tags.  Not to be confused with “EffectiveEchoSpacing”, and the frequent mislabeling of echo spacing (which is spacing in the phase encoding direction) as “dwell time” (which is spacing in the readout direction).</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
--   RF & Contrast  
+-   RF & Contrast
 
 <table>
   <tbody>
@@ -991,11 +741,11 @@ version of [DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashb
 
 Template:
 
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
-> anat/  
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
+> anat/
 >> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_ce-&lt;label&gt;][\_rec-&lt;label&gt;][\_run-&lt;index&gt;\]\_&lt;modality\_label&gt;.nii[.gz]
 
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
 > anat/
 >> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_ce-&lt;label&gt;][\_rec-&lt;label&gt;][\_run-&lt;index&gt;][\_mod-&lt;label&gt;]\_defacemask.nii[.gz]
 
@@ -1021,8 +771,8 @@ Anatomical (structural) data acquired for that participant. Currently supported 
     <tr>
       <td>T1 Rho map</td>
       <td>T1rho</td>
-      <td>Quantitative T1rho brain imaging  
-       http://www.ncbi.nlm.nih.gov/pubmed/24474423  
+      <td>Quantitative T1rho brain imaging
+       http://www.ncbi.nlm.nih.gov/pubmed/24474423
        http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/</td>
     </tr>
     <tr>
@@ -1079,13 +829,13 @@ Anatomical (structural) data acquired for that participant. Currently supported 
       <td>Angiography</td>
       <td>angio</td>
       <td></td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
 If several scans of the same modality are  acquired they MUST be indexed with a key-value pair: \_run-1, \_run-2, \_run-3 etc. (only integers are allowed as run labels). When there is only one scan of a given type the run key MAY be omitted. Please note that diffusion imaging data is stored elsewhere (see below).
 
-The OPTIONAL “acq-&lt;label&gt;” key/value pair corresponds to a custom label the user MAY use to distinguish a different set of parameters used for acquiring the same modality. For example this should be used when a study includes two T1w images - one full brain low resolution and and one restricted field of view but high resolution. In such case two files could have the following names: sub-01\_acq-highres\_T1w.nii.gz and sub-01\_acq-lowres\_T1w.nii.gz, however the user is free to choose any other label than “highres” and “lowres” as long as they are consistent across subjects and sessions. In case different sequences are used to record the same modality (e.g. RARE and FLASH for T1w) this field can also be used to make that distinction. At what level of detail to make the distinction (e.g. just between RARE and FLASH, or between RARE, FLASH, and FLASHsubsampled) remains at the discretion of the researcher.  
+The OPTIONAL “acq-&lt;label&gt;” key/value pair corresponds to a custom label the user MAY use to distinguish a different set of parameters used for acquiring the same modality. For example this should be used when a study includes two T1w images - one full brain low resolution and and one restricted field of view but high resolution. In such case two files could have the following names: sub-01\_acq-highres\_T1w.nii.gz and sub-01\_acq-lowres\_T1w.nii.gz, however the user is free to choose any other label than “highres” and “lowres” as long as they are consistent across subjects and sessions. In case different sequences are used to record the same modality (e.g. RARE and FLASH for T1w) this field can also be used to make that distinction. At what level of detail to make the distinction (e.g. just between RARE and FLASH, or between RARE, FLASH, and FLASHsubsampled) remains at the discretion of the researcher.
 Similarly the OPTIONAL “ce-&lt;label&gt;” key/value can be used to distinguish sequences using different contrast enhanced images. The label is the name of the contrast agent. The key “ContrastBolusIngredient” MAY be also be added in the JSON file, with the same label.
 
 Similarly the OPTIONAL “rec-&lt;label&gt;” key/value can be
@@ -1106,28 +856,28 @@ Some meta information about the acquisition MAY be provided in an additional JSO
 
 ### 8.3.3 Task (including resting state) imaging data
 
-Template:  
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
+Template:
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
 > func/
 >> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;]\_task-&lt;task\_label&gt;[\_acq-&lt;label&gt;][\_rec-&lt;label&gt;][\_run-&lt;index&gt;][\_echo-&lt;index&gt;]\_bold.nii[.gz]
 
 Imaging data acquired during BOLD imaging. This includes but is not limited to task based fMRI as well as resting state fMRI (i.e. rest is treated as another task). For task based fMRI a corresponding task events file (see below) MUST be provided (please note that this file is not necessary for resting state scans).  For multiband acquisitions, one MAY also save the single-band reference image as type “sbref” (e.g. sub-control01\_task-nback\_sbref.nii.gz).
 
-Each task has a unique label MUST only include of letters and/or numbers (other characters including spaces and underscores are not allowed). Those labels MUST be consistent across subjects and sessions.  
+Each task has a unique label MUST only include of letters and/or numbers (other characters including spaces and underscores are not allowed). Those labels MUST be consistent across subjects and sessions.
 If more than one run of the same task has been acquired a key/value pair: \_run-1, \_run-2, \_run-3 etc. MUST be used. If only one run was acquired the “run-&lt;index&gt;” can be omitted. In the context of functional imaging a run is defined as the same task, but in some cases it can mean different set of stimuli (for example randomized order) and participant responses.
 
-The OPTIONAL “acq-&lt;label&gt;” key/value pair corresponds to a custom label one may use to distinguish different set of parameters used for acquiring the same task. For example this should be used when a study includes two resting state images - one single band and one multiband. In such case two files could have the following names: sub-01\_task-rest\_acq-singleband\_bold.nii.gz and sub-01\_task-rest\_acq-multiband\_bold.nii.gz, however the user is MAY choose any other label than “singleband” and “multiband” as long as they are consistent across subjects and sessions and consist only of the legal label characters.  
+The OPTIONAL “acq-&lt;label&gt;” key/value pair corresponds to a custom label one may use to distinguish different set of parameters used for acquiring the same task. For example this should be used when a study includes two resting state images - one single band and one multiband. In such case two files could have the following names: sub-01\_task-rest\_acq-singleband\_bold.nii.gz and sub-01\_task-rest\_acq-multiband\_bold.nii.gz, however the user is MAY choose any other label than “singleband” and “multiband” as long as they are consistent across subjects and sessions and consist only of the legal label characters.
 Similarly the optional “rec-&lt;label&gt;” key/value can be used to distinguish different reconstruction algorithms (for example ones using motion correction).
 
-Multi echo data MUST  be split into one file per echo. Each file shares the same name with the exception of the \_echo-&lt;index&gt; key/value. For example:  
-sub-01/  
-> func/  
->> sub-01\_task-cuedSGT\_run-1\_echo-1\_bold.nii.gz  
->> sub-01\_task-cuedSGT\_run-1\_echo-1\_bold.json  
->> sub-01\_task-cuedSGT\_run-1\_echo-2\_bold.nii.gz  
->> sub-01\_task-cuedSGT\_run-1\_echo-2\_bold.json  
->> sub-01\_task-cuedSGT\_run-1\_echo-3\_bold.nii.gz  
->> sub-01\_task-cuedSGT\_run-1\_echo-3\_bold.json  
+Multi echo data MUST  be split into one file per echo. Each file shares the same name with the exception of the \_echo-&lt;index&gt; key/value. For example:
+sub-01/
+> func/
+>> sub-01\_task-cuedSGT\_run-1\_echo-1\_bold.nii.gz
+>> sub-01\_task-cuedSGT\_run-1\_echo-1\_bold.json
+>> sub-01\_task-cuedSGT\_run-1\_echo-2\_bold.nii.gz
+>> sub-01\_task-cuedSGT\_run-1\_echo-2\_bold.json
+>> sub-01\_task-cuedSGT\_run-1\_echo-3\_bold.nii.gz
+>> sub-01\_task-cuedSGT\_run-1\_echo-3\_bold.json
 
 Please note that the &lt;index&gt; denotes the number/index (in a form of an integer) of the echo not the echo time value which needs to be stored in the field EchoTime of the separate JSON file.
 
@@ -1154,7 +904,7 @@ Required fields:
 
 For the fields described above and in the following section, the term “Volume” refers to a reconstruction of the object being imaged (e.g., brain or part of a brain). In case of multiple channels in a coil, the term “Volume” refers to a combined image rather than an image from each coil.
 
-Other RECOMMENDED metadata  
+Other RECOMMENDED metadata
 
 -   Timing Parameters:
 
@@ -1179,7 +929,7 @@ Other RECOMMENDED metadata
     <tr>
       <td>DelayAfterTrigger</td>
       <td>RECOMMENDED. Duration (in seconds) from trigger delivery to scan onset. This delay is commonly caused by adjustments and loading times. This specification is entirely independent of  NumberOfVolumesDiscardedByScanner or NumberOfVolumesDiscardedByUser, as the delay precedes the acquisition.</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
@@ -1208,47 +958,47 @@ Other RECOMMENDED metadata
 
 See [8.3.1. Common MR metadata fields](#heading=h.5u721tt1h9pe) for a list of additional terms and their definitions.
 
-#### 8.3.3.1 Example:  
-sub-control01/  
-> func/  
+#### 8.3.3.1 Example:
+sub-control01/
+> func/
 >> sub-control01\_task-nback\_bold.json
 
-{  
-&nbsp;&nbsp; "TaskName": "N Back",  
-&nbsp;&nbsp; "RepetitionTime": 0.8,  
-&nbsp;&nbsp; "EchoTime": 0.03,  
-&nbsp;&nbsp; "FlipAngle": 78,  
-&nbsp;&nbsp; "SliceTiming": [0.0, 0.2, 0.4, 0.6, 0.0, 0.2, 0.4, 0.6, 0.0, 0.2, 0.4, 0.6, 0.0, 0.2, 0.4, 0.6],  
-&nbsp;&nbsp; "MultibandAccelerationFactor": 4,  
-&nbsp;&nbsp; "ParallelReductionFactorInPlane": 2,  
-&nbsp;&nbsp; "PhaseEncodingDirection": "j",  
-&nbsp;&nbsp; "InstitutionName": "Stanford University",  
-&nbsp;&nbsp; "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",  
-&nbsp;&nbsp; "DeviceSerialNumber": "11035"  
+{
+&nbsp;&nbsp; "TaskName": "N Back",
+&nbsp;&nbsp; "RepetitionTime": 0.8,
+&nbsp;&nbsp; "EchoTime": 0.03,
+&nbsp;&nbsp; "FlipAngle": 78,
+&nbsp;&nbsp; "SliceTiming": [0.0, 0.2, 0.4, 0.6, 0.0, 0.2, 0.4, 0.6, 0.0, 0.2, 0.4, 0.6, 0.0, 0.2, 0.4, 0.6],
+&nbsp;&nbsp; "MultibandAccelerationFactor": 4,
+&nbsp;&nbsp; "ParallelReductionFactorInPlane": 2,
+&nbsp;&nbsp; "PhaseEncodingDirection": "j",
+&nbsp;&nbsp; "InstitutionName": "Stanford University",
+&nbsp;&nbsp; "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
+&nbsp;&nbsp; "DeviceSerialNumber": "11035"
 }
 
 If this information is the same for all participants, sessions and runs it can be provided in task-&lt;task\_label&gt;\_bold.json (in the root directory of the dataset). However, if the information differs between subjects/runs it can be specified in the sub-&lt;participant\_label&gt;/func/sub-&lt;participant\_label&gt;\_task-&lt;task\_label&gt;[\_acq-&lt;label&gt;][\_run-&lt;index&gt;]\_bold.json file. If both files are specified fields from the file corresponding to a particular participant, task and run takes precedence.
 
-### 8.3.4 Diffusion imaging data  
-Template:  
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
-> dwi/  
->> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;index&gt;]\_dwi.nii[.gz]  
->> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;index&gt;]\_dwi.bval  
->> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;index&gt;]\_dwi.bvec  
->> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;index&gt;]\_dwi.json  
+### 8.3.4 Diffusion imaging data
+Template:
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
+> dwi/
+>> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;index&gt;]\_dwi.nii[.gz]
+>> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;index&gt;]\_dwi.bval
+>> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;index&gt;]\_dwi.bvec
+>> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;index&gt;]\_dwi.json
 
-Diffusion-weighted imaging data acquired for that participant. The optional “acq-&lt;label&gt;” key/value pair corresponds to a custom label the user may use to distinguish different set of parameters. For example this should be used when a study includes two diffusion images - one single band and one multiband. In such case two files could have the following names: sub-01\_acq-singleband_dwi.nii.gz and sub-01\_acq-multiband_dwi.nii.gz, however the user is free to choose any other label than “singleband” and “multiband” as long as they are consistent across subjects and sessions.  
-For multiband acquisitions, one can also save the single-band reference image as type “sbref” (e.g. dwi/sub-control01\_sbref.nii[.gz])  
+Diffusion-weighted imaging data acquired for that participant. The optional “acq-&lt;label&gt;” key/value pair corresponds to a custom label the user may use to distinguish different set of parameters. For example this should be used when a study includes two diffusion images - one single band and one multiband. In such case two files could have the following names: sub-01\_acq-singleband_dwi.nii.gz and sub-01\_acq-multiband_dwi.nii.gz, however the user is free to choose any other label than “singleband” and “multiband” as long as they are consistent across subjects and sessions.
+For multiband acquisitions, one can also save the single-band reference image as type “sbref” (e.g. dwi/sub-control01\_sbref.nii[.gz])
 The bvec and bval files are in the FSL format: The bvec files contain 3 rows with n space-delimited floating-point numbers (corresponding to the n volumes in the relevant NIfTI file). The first row contains the x elements, the second row contains the y elements and third row contains the z elements of a unit vector in the direction of the applied diffusion gradient, where the i-th elements in each row correspond together to the i-th volume with [0,0,0] for non-diffusion-weighted volumes.  Inherent to the FSL format for bvec specification is the fact that the coordinate system of the bvecs is with respect to the participant (i.e., defined by the axes of the corresponding dwi.nii file) and not  the magnet’s coordinate system, which means that any rotations applied to dwi.nii also need to be applied to the corresponding bvec file.
 
 #### 8.3.4.1 bvec example:
 
-0 0 0.021828 -0.015425 -0.70918 -0.2465  
-0 0 0.80242 0.22098 -0.00063106 0.1043  
+0 0 0.021828 -0.015425 -0.70918 -0.2465
+0 0 0.80242 0.22098 -0.00063106 0.1043
 0 0 -0.59636 0.97516 -0.70503 -0.96351
 
-The bval file contains the b-values (in s/mm<sup>2</sup>) corresponding to the volumes in the relevant NIfTI file), with 0 designating non-diffusion-weighted volumes, space-delimited.  
+The bval file contains the b-values (in s/mm<sup>2</sup>) corresponding to the volumes in the relevant NIfTI file), with 0 designating non-diffusion-weighted volumes, space-delimited.
 
 #### 8.3.4.2 bval example:
 
@@ -1260,97 +1010,97 @@ See Common MR metadata fields for a list of additional terms that can be include
 
 Example JSON file:
 
-#### 8.3.4.3 JSON example:  
-{  
-&nbsp;&nbsp; "PhaseEncodingDirection": "j-",  
-&nbsp;&nbsp; "TotalReadoutTime": 0.095  
+#### 8.3.4.3 JSON example:
+{
+&nbsp;&nbsp; "PhaseEncodingDirection": "j-",
+&nbsp;&nbsp; "TotalReadoutTime": 0.095
 }
 
 ### 8.3.5 Fieldmap data
 
-Data acquired to correct for B0 inhomogeneities can come in different forms. The current version of this standard considers four different scenarios. Please note that in all cases fieldmap data can be linked to a specific scan(s) it was acquired for by filling the IntendedFor field in the corresponding JSON file. For example:  
-{  
-&nbsp;&nbsp; "IntendedFor": "func/sub-01\_task-motor\_bold.nii.gz"  
+Data acquired to correct for B0 inhomogeneities can come in different forms. The current version of this standard considers four different scenarios. Please note that in all cases fieldmap data can be linked to a specific scan(s) it was acquired for by filling the IntendedFor field in the corresponding JSON file. For example:
+{
+&nbsp;&nbsp; "IntendedFor": "func/sub-01\_task-motor\_bold.nii.gz"
 }
 
-The IntendedFor field may contain one or more filenames with paths relative to the subject subfolder. The path needs to use forward slashes instead of backward slashes.  Here’s an example with multiple target scans:  
-{  
-&nbsp;&nbsp; "IntendedFor": ["ses-pre/func/sub-01\_task-motor\_run-1\_bold.nii.gz",  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ses-post/func/sub-01\_task-motor\_run-1\_bold.nii.gz"\]  
+The IntendedFor field may contain one or more filenames with paths relative to the subject subfolder. The path needs to use forward slashes instead of backward slashes.  Here’s an example with multiple target scans:
+{
+&nbsp;&nbsp; "IntendedFor": ["ses-pre/func/sub-01\_task-motor\_run-1\_bold.nii.gz",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ses-post/func/sub-01\_task-motor\_run-1\_bold.nii.gz"\]
 }
 
 The IntendedFor field is optional and in case the fieldmaps do not correspond to any particular scans it does not have to be filled.
 
 Multiple fieldmaps can be stored. In such case the “\_run-1”, “\_run-2” should be used. The optional “acq-&lt;label&gt;” key/value pair corresponds to a custom label the user may use to distinguish different set of parameters.
 
-#### 8.3.5.1 Case 1: Phase difference image and at least one magnitude image  
-Template:  
+#### 8.3.5.1 Case 1: Phase difference image and at least one magnitude image
+Template:
 sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
-> fmap/  
->> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_phasediff.nii[.gz]  
->> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_phasediff.json  
->> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_magnitude1.nii[.gz]  
+> fmap/
+>> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_phasediff.nii[.gz]
+>> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_phasediff.json
+>> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_magnitude1.nii[.gz]
 
-(optional)  
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
-> fmap/  
+(optional)
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
+> fmap/
 >> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_magnitude2.nii[.gz]
 
 This is a common output for build in fieldmap sequence on Siemens scanners. In this particular case the sidecar JSON file has to define the Echo Times of the two phase images used to create the difference image. EchoTime1 corresponds to the shorter echo time and EchoTime2 to the longer echo time. Similarly \_magnitude1 image corresponds to the shorter echo time and the OPTIONAL \_magnitude2 image to the longer echo time. For example:
 
-{  
-&nbsp;&nbsp; "EchoTime1": 0.00600,  
-&nbsp;&nbsp; "EchoTime2": 0.00746,  
-&nbsp;&nbsp; "IntendedFor": "func/sub-01\_task-motor\_bold.nii.gz"  
+{
+&nbsp;&nbsp; "EchoTime1": 0.00600,
+&nbsp;&nbsp; "EchoTime2": 0.00746,
+&nbsp;&nbsp; "IntendedFor": "func/sub-01\_task-motor\_bold.nii.gz"
 }
 
-#### 8.3.5.2 Case 2: Two phase images and two magnitude images  
-Template:  
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
-> fmap/  
->> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_phase1.nii[.gz]  
->> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_phase1.json  
->> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_phase2.nii[.gz]  
->> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_phase2.json  
->> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_magnitude1.nii[.gz]  
->> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_magnitude2.nii[.gz]  
+#### 8.3.5.2 Case 2: Two phase images and two magnitude images
+Template:
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
+> fmap/
+>> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_phase1.nii[.gz]
+>> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_phase1.json
+>> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_phase2.nii[.gz]
+>> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_phase2.json
+>> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_magnitude1.nii[.gz]
+>> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_magnitude2.nii[.gz]
 
 Similar to the case above, but instead of a precomputed phase difference map two separate phase images are presented. The two sidecar JSON file need to specify corresponding EchoTime values. For example:
 
-{  
-&nbsp;&nbsp; "EchoTime": 0.00746,  
-&nbsp;&nbsp; "IntendedFor": "func/sub-01\_task-motor\_bold.nii.gz"  
+{
+&nbsp;&nbsp; "EchoTime": 0.00746,
+&nbsp;&nbsp; "IntendedFor": "func/sub-01\_task-motor\_bold.nii.gz"
 }
 
-#### 8.3.5.3 Case 3: A single, real fieldmap image (showing the field inhomogeneity in each voxel)  
-Template:  
+#### 8.3.5.3 Case 3: A single, real fieldmap image (showing the field inhomogeneity in each voxel)
+Template:
 sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
 > fmap/
->> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_magnitude.nii[.gz]  
->> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_fieldmap.nii[.gz]  
->> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_fieldmap.json  
+>> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_magnitude.nii[.gz]
+>> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_fieldmap.nii[.gz]
+>> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;][\_run-&lt;run\_index&gt;]\_fieldmap.json
 
 In some cases (for example GE) the scanner software will output a precomputed fieldmap denoting the B0 inhomogeneities along with a magnitude image used for coregistration. In this case the sidecar JSON file needs to include the units of the fieldmap. The possible options are: “Hz”, “rad/s”, or “Tesla”. For example:
 
-{  
-&nbsp;&nbsp; "Units": "rad/s",  
-&nbsp;&nbsp; "IntendedFor": "func/sub-01\_task-motor\_bold.nii.gz"  
+{
+&nbsp;&nbsp; "Units": "rad/s",
+&nbsp;&nbsp; "IntendedFor": "func/sub-01\_task-motor\_bold.nii.gz"
 }
 
-#### 8.3.5.4 Case 4: Multiple phase encoded directions (“pepolar”)  
-Template  
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
-> fmap/  
->> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;]\_dir-&lt;dir\_label&gt;[\_run-&lt;run\_index&gt;]\_epi.nii[.gz]  
->> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;]\_dir-&lt;dir\_label&gt;[\_run-&lt;run\_index&gt;]\_epi.json  
+#### 8.3.5.4 Case 4: Multiple phase encoded directions (“pepolar”)
+Template
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
+> fmap/
+>> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;]\_dir-&lt;dir\_label&gt;[\_run-&lt;run\_index&gt;]\_epi.nii[.gz]
+>> sub-&lt;label&gt;[\_ses-&lt;session\_label&gt;][\_acq-&lt;label&gt;]\_dir-&lt;dir\_label&gt;[\_run-&lt;run\_index&gt;]\_epi.json
 
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo EPI scans with different phase encoding directions to estimate the underlying inhomogeneity/deformation map. Examples of tools using this kind of images are FSL TOPUP, AFNI 3dqwarp and SPM. In such a case, the phase encoding direction is specified in the corresponding JSON file as one of: “i”, “j”, “k”, “i-”, “j-, “k-”. For these differentially phase encoded sequences, one also needs to specify the Total Readout Time defined as the time (in seconds) from the center of the first echo to the center of the last echo (aka “FSL definition” - see [here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup/Faq#How_do_I_know_what_phase-encode_vectors_to_put_into_my_--datain_text_file.3F) and [here](https://lcni.uoregon.edu/kb-articles/kb-0003) how to calculate it). For example
 
-{  
-&nbsp;&nbsp; "PhaseEncodingDirection": "j-",  
-&nbsp;&nbsp; "TotalReadoutTime": 0.095,  
-&nbsp;&nbsp; "IntendedFor": "func/sub-01\_task-motor\_bold.nii.gz"  
-}  
+{
+&nbsp;&nbsp; "PhaseEncodingDirection": "j-",
+&nbsp;&nbsp; "TotalReadoutTime": 0.095,
+&nbsp;&nbsp; "IntendedFor": "func/sub-01\_task-motor\_bold.nii.gz"
+}
 
 dir\_label value can be set to arbitrary alphanumeric label ([a-zA-Z0-9]+ for example “LR” or “AP”) that can help users to distinguish between different files, but should not be used to infer any scanning parameters (such as phase encoding directions) of the corresponding sequence. Please rely only on the JSON file to obtain scanning parameters. \_epi files can be a 3D or 4D - in the latter case all timepoints share the same scanning parameters.  To indicate which run is intended to be used with which functional or diffusion scan the IntendedFor field in the JSON file should be used.
 
@@ -1361,13 +1111,13 @@ Support for MEG was developed as a BIDS Extension Proposal. Please cite the foll
 
 Niso Galan, J.G., Gorgolewski, K.J., Bock, E., Brooks, T.L., Flandin, G., Gramfort, A., Henson, R.N., Jas, M., Litvak, V., Moreau, J., Oostenveld, R., Schoffelen, J.-M., Tadel, F., Wexler, J., Baillet, S., 2018. [MEG-BIDS, the brain imaging data structure extended to magnetoencephalography](https://www.nature.com/articles/sdata2018110). Scientific Data volume 5, Article number: 180110 (2018)
 
-### 8.4.1 MEG recording data  
-Template:  
+### 8.4.1 MEG recording data
+Template:
 sub-&lt;participant\_label&gt;/
-> [ses-&lt;label&gt;]/  
+> [ses-&lt;label&gt;]/
 >&nbsp;&nbsp; meg/
->> sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_task-&lt;task\_label&gt;[\_acq-&lt;label&gt;][\_run-&lt;index&gt;][\_proc-&lt;label&gt;]\_meg.&lt;manufacturer\_specific\_extension&gt;  
->> [sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_task-&lt;task\_label&gt;[\_acq-&lt;label&gt;][\_run-&lt;index&gt;][\_proc-&lt;label&gt;]\_meg.json]  
+>> sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_task-&lt;task\_label&gt;[\_acq-&lt;label&gt;][\_run-&lt;index&gt;][\_proc-&lt;label&gt;]\_meg.&lt;manufacturer\_specific\_extension&gt;
+>> [sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_task-&lt;task\_label&gt;[\_acq-&lt;label&gt;][\_run-&lt;index&gt;][\_proc-&lt;label&gt;]\_meg.json]
 
 Unprocessed MEG data MUST be stored in the native file format of the MEG instrument with which the data was collected. With MEG-BIDS, we wish to promote the adoption of good practices in the management of scientific data. Hence, the emphasis of MEG-BIDS is not to impose a new, generic data format for the  modality, but rather to standardize the way data is stored in repositories. Further, there is currently no widely accepted standard file format for MEG, but major software applications, including free and open-source solutions for MEG data analysis provide readers of such raw files.
 
@@ -1379,7 +1129,7 @@ The “proc” label is analogous to “rec” for MR and denotes a variant of a
 
 #### 8.4.1.1 Sidecar JSON document (\*\_meg.json)
 
-Generic  fields  
+Generic  fields
 MUST be present:
 
 <table>
@@ -1387,12 +1137,12 @@ MUST be present:
     <tr>
       <td>TaskName</td>
       <td>REQUIRED. Name of the task (for resting state use the “rest” prefix). Different Tasks SHOULD NOT have the same name. The Task label is derived from this field by removing all non alphanumeric ([a-zA-Z0-9]) characters.</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
-SHOULD be present:  
-For consistency between studies and institutions, we encourage users to extract the  values of these fields from the actual raw data. Whenever possible, please avoid using ad-hoc wording.   
+SHOULD be present:
+For consistency between studies and institutions, we encourage users to extract the  values of these fields from the actual raw data. Whenever possible, please avoid using ad-hoc wording.
 
 <table>
   <tbody>
@@ -1443,11 +1193,11 @@ For consistency between studies and institutions, we encourage users to extract 
     <tr>
       <td>DeviceSerialNumber</td>
       <td>RECOMMENDED. The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.</td>
-    </tr>   
+    </tr>
   </tbody>
 </table>
 
-Specific MEG fields  
+Specific MEG fields
 MUST be present:
 
 <table>
@@ -1558,7 +1308,7 @@ SHOULD be present
   </tbody>
 </table>
 
-Specific EEG fields (if recorded with MEG)  
+Specific EEG fields (if recorded with MEG)
 SHOULD be present:
 
 <table>
@@ -1582,49 +1332,49 @@ SHOULD be present:
     <tr>
       <td>EEGReference</td>
       <td>OPTIONAL. Description of the type of EEG reference used (e.g., "M1” for left mastoid, "average", or "longitudinal bipolar").</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
 By construct, EEG when recorded simultaneously with the same MEG system , should have the same SamplingFrequency as MEG. Note that if EEG is recorded with a separate amplifier, it should be stored separately under a new /eeg data type (see BEP006).
 
-Example:  
-{  
-&nbsp;&nbsp; "InstitutionName": "Stanford University",  
-&nbsp;&nbsp; "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",  
-&nbsp;&nbsp; "Manufacturer": "CTF",  
-&nbsp;&nbsp; "ManufacturersModelName": "CTF-275",  
-&nbsp;&nbsp; "DeviceSerialNumber": "11035",  
-&nbsp;&nbsp; "SoftwareVersions": "Acq 5.4.2-linux-20070507",  
-&nbsp;&nbsp; "PowerLineFrequency": 60,  
-&nbsp;&nbsp; "SamplingFrequency": 2400,  
-&nbsp;&nbsp; "MEGChannelCount": 270,  
-&nbsp;&nbsp; "MEGREFChannelCount": 26,  
-&nbsp;&nbsp; "EEGChannelCount": 0,  
-&nbsp;&nbsp; "EOGChannelCount": 2,  
-&nbsp;&nbsp; "ECGChannelCount": 1,  
-&nbsp;&nbsp; "EMGChannelCount": 0,  
-&nbsp;&nbsp;&nbsp;&nbsp; "DewarPosition": "upright",  
-&nbsp;&nbsp; "SoftwareFilters": {  
-&nbsp;&nbsp;&nbsp;&nbsp; "SpatialCompensation": {"GradientOrder": "3rd"}  
-&nbsp;&nbsp; },  
-&nbsp;&nbsp; "RecordingDuration": 600,  
-&nbsp;&nbsp; "RecordingType": "continuous",  
-&nbsp;&nbsp; "EpochLength": 0,  
-&nbsp;&nbsp; "TaskName": "rest",  
-&nbsp;&nbsp; "ContinuousHeadLocalization": true,  
-&nbsp;&nbsp; "HeadCoilFrequency": [1470,1530,1590],  
-&nbsp;&nbsp; "DigitizedLandmarks": true,  
-&nbsp;&nbsp; "DigitizedHeadPoints": true  
+Example:
+{
+&nbsp;&nbsp; "InstitutionName": "Stanford University",
+&nbsp;&nbsp; "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
+&nbsp;&nbsp; "Manufacturer": "CTF",
+&nbsp;&nbsp; "ManufacturersModelName": "CTF-275",
+&nbsp;&nbsp; "DeviceSerialNumber": "11035",
+&nbsp;&nbsp; "SoftwareVersions": "Acq 5.4.2-linux-20070507",
+&nbsp;&nbsp; "PowerLineFrequency": 60,
+&nbsp;&nbsp; "SamplingFrequency": 2400,
+&nbsp;&nbsp; "MEGChannelCount": 270,
+&nbsp;&nbsp; "MEGREFChannelCount": 26,
+&nbsp;&nbsp; "EEGChannelCount": 0,
+&nbsp;&nbsp; "EOGChannelCount": 2,
+&nbsp;&nbsp; "ECGChannelCount": 1,
+&nbsp;&nbsp; "EMGChannelCount": 0,
+&nbsp;&nbsp;&nbsp;&nbsp; "DewarPosition": "upright",
+&nbsp;&nbsp; "SoftwareFilters": {
+&nbsp;&nbsp;&nbsp;&nbsp; "SpatialCompensation": {"GradientOrder": "3rd"}
+&nbsp;&nbsp; },
+&nbsp;&nbsp; "RecordingDuration": 600,
+&nbsp;&nbsp; "RecordingType": "continuous",
+&nbsp;&nbsp; "EpochLength": 0,
+&nbsp;&nbsp; "TaskName": "rest",
+&nbsp;&nbsp; "ContinuousHeadLocalization": true,
+&nbsp;&nbsp; "HeadCoilFrequency": [1470,1530,1590],
+&nbsp;&nbsp; "DigitizedLandmarks": true,
+&nbsp;&nbsp; "DigitizedHeadPoints": true
 }
 
 Note that the date and time information SHOULD be stored in the Study key file (scans.tsv), see section 8.8. Scans.tsv. As it is indicated there, date time information MUST be expressed in the following format YYYY-MM-DDThh:mm:ss ([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending on local REB/IRB ethics board policy.
 
 ### 8.4.2 Channels description table (\*\_channels.tsv)
-Template:  
+Template:
 sub-&lt;participant\_label&gt;/
-> [ses-&lt;label&gt;]/  
-> &nbsp;&nbsp; meg/  
+> [ses-&lt;label&gt;]/
+> &nbsp;&nbsp; meg/
 >> [sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_task-&lt;task\_label&gt;[\_acq-&lt;label&gt;][\_run-&lt;index&gt;][\_proc-&lt;label&gt;]\_channels.tsv]
 
 This file is RECOMMENDED as it provides easily searchable information across MEG-BIDS datasets for e.g., general curation, response to queries or batch analysis. To avoid confusion, the channels SHOULD be listed in the order they appear in the MEG data file. Missing values MUST be indicated with  “n/a”.
@@ -1685,7 +1435,7 @@ SHOULD be present:
     <tr>
       <td>status_description</td>
       <td>OPTIONAL. Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in [status].</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
@@ -1751,34 +1501,34 @@ Example:
 
 Restricted keyword list for field **type**
 
--   MEGMAG:               MEG magnetometer  
--   MEGGRADAXIAL:         MEG axial gradiometer  
--   MEGGRADPLANAR:        MEG planar gradiometer  
--   MEGREFMAG:            MEG reference magnetometer  
--   MEGREFGRADAXIAL:               MEG reference axial  gradiometer  
--   MEGREFGRADPLANAR:               MEG reference planar gradiometer  
--   MEGOTHER:             Any other type of MEG sensor  
--   EEG:                  Electrode channel : electroencephalogram  
--   ECOG:                 Electrode channel : electrocorticogram (intracranial)  
--   SEEG:                 Electrode channel : stereo-electroencephalogram (intracranial)  
--   DBS:                  Electrode channel : deep brain stimulation (intracranial)  
--   VEOG:                 Vertical EOG (electrooculogram)  
--   HEOG:                 Horizontal EOG  
--   EOG:                  Generic EOG channel, if HEOG or VEOG information not available  
--   ECG:                  ElectroCardioGram (heart)  
--   EMG:                  ElectroMyoGram (muscle)  
--   TRIG:                 System Triggers  
--   AUDIO:                Audio signal  
--   PD:                   Photodiode  
--   EYEGAZE:              Eye Tracker gaze  
--   PUPIL:                Eye Tracker pupil diameter  
--   MISC:                 Miscellaneous  
--   SYSCLOCK:             System time showing elapsed time since trial started  
--   ADC:                  Analog to Digital input  
--   DAC:                  Digital to Analog output  
--   HLU:                  Measured position of head and head coils  
--   FITERR:               Fit error signal from each head localization coil  
--   OTHER:                Any other type of channel  
+-   MEGMAG:               MEG magnetometer
+-   MEGGRADAXIAL:         MEG axial gradiometer
+-   MEGGRADPLANAR:        MEG planar gradiometer
+-   MEGREFMAG:            MEG reference magnetometer
+-   MEGREFGRADAXIAL:               MEG reference axial  gradiometer
+-   MEGREFGRADPLANAR:               MEG reference planar gradiometer
+-   MEGOTHER:             Any other type of MEG sensor
+-   EEG:                  Electrode channel : electroencephalogram
+-   ECOG:                 Electrode channel : electrocorticogram (intracranial)
+-   SEEG:                 Electrode channel : stereo-electroencephalogram (intracranial)
+-   DBS:                  Electrode channel : deep brain stimulation (intracranial)
+-   VEOG:                 Vertical EOG (electrooculogram)
+-   HEOG:                 Horizontal EOG
+-   EOG:                  Generic EOG channel, if HEOG or VEOG information not available
+-   ECG:                  ElectroCardioGram (heart)
+-   EMG:                  ElectroMyoGram (muscle)
+-   TRIG:                 System Triggers
+-   AUDIO:                Audio signal
+-   PD:                   Photodiode
+-   EYEGAZE:              Eye Tracker gaze
+-   PUPIL:                Eye Tracker pupil diameter
+-   MISC:                 Miscellaneous
+-   SYSCLOCK:             System time showing elapsed time since trial started
+-   ADC:                  Analog to Digital input
+-   DAC:                  Digital to Analog output
+-   HLU:                  Measured position of head and head coils
+-   FITERR:               Fit error signal from each head localization coil
+-   OTHER:                Any other type of channel
 
 Example of free text for field description
 
@@ -1817,15 +1567,15 @@ Example:
       <td>AUDIO</td>
       <td>V</td>
       <td>envelope of audio signal presented to participant</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
-### 8.4.3 Coordinate System JSON document (\*\_coordsystem.json)  
-Template:  
+### 8.4.3 Coordinate System JSON document (\*\_coordsystem.json)
+Template:
 sub-&lt;participant\_label&gt;/
-> [ses-&lt;label&gt;]/  
-> &nbsp;&nbsp; meg/  
+> [ses-&lt;label&gt;]/
+> &nbsp;&nbsp; meg/
 >> [sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;][\_acq-&lt;label&gt;]\_coordsystem.json]
 
 OPTIONAL. A JSON document specifying the coordinate system(s) used for the MEG, EEG, head localization coils, and anatomical landmarks.
@@ -1857,7 +1607,7 @@ MEG and EEG sensors:
     <tr>
       <td>EEGCoordinateSystemDescription</td>
       <td>OPTIONAL. Freeform text description or link to document describing the EEG coordinate system system in detail.</td>
-    </tr>    
+    </tr>
   </tbody>
 </table>
 
@@ -1937,11 +1687,11 @@ Digitized head points:
     <tr>
       <td>AnatomicalLandmarkCoordinateSystemDescription</td>
       <td>OPTIONAL. Freeform text description or link to document describing the Head Coil coordinate system system in detail.</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
-It is also RECOMMENDED that the MRI voxel coordinates of the actual anatomical landmarks for co-registration of MEG with structural MRI are stored in the AnatomicalLandmarkCoordinates field in the JSON sidecar of the corresponding T1w MRI anatomical data of the subject seen in the MEG session (see section 8.3) -  for example:  
+It is also RECOMMENDED that the MRI voxel coordinates of the actual anatomical landmarks for co-registration of MEG with structural MRI are stored in the AnatomicalLandmarkCoordinates field in the JSON sidecar of the corresponding T1w MRI anatomical data of the subject seen in the MEG session (see section 8.3) -  for example:
 sub-01/ses-mri/anat/sub-01\_ses-mri\_acq-mprage\_T1w.json
 
 In principle, these locations are those of  absolute anatomical markers. However, the marking of NAS, LPA and RPA is more ambiguous than that of e.g., AC and PC. This may result in some variability in their 3-D digitization from session to session, even for the same participant. The solution would be to use only one T1w file and populate the AnatomicalLandmarkCoordinates field with session-specific labels e.g., "NAS-session1": [127,213,139],"NAS-session2": [123,220,142], etc.
@@ -1957,69 +1707,69 @@ Fiducials information:
   </tbody>
 </table>
 
-For more information on the definition of anatomical landmarks, please visit:  
+For more information on the definition of anatomical landmarks, please visit:
 &nbsp;&nbsp; [http://www.fieldtriptoolbox.org/faq/how\_are\_the\_lpa\_and\_rpa\_points\_define](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
 
 For more information on typical coordinate systems for MEG-MRI
-coregistration:  
-&nbsp;&nbsp; [http://www.fieldtriptoolbox.org/faq/how\_are\_the\_different\_head\_and\_mri\_coordinate\_systems\_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined), or:  
+coregistration:
+&nbsp;&nbsp; [http://www.fieldtriptoolbox.org/faq/how\_are\_the\_different\_head\_and\_mri\_coordinate\_systems\_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined), or:
 &nbsp;&nbsp; [http://neuroimage.usc.edu/brainstorm/CoordinateSystems](http://neuroimage.usc.edu/brainstorm/CoordinateSystems)
 
-### 8.4.4 Photos of the anatomical landmarks and/or head localization coils (\*\_photo.jpg)  
-Template:  
+### 8.4.4 Photos of the anatomical landmarks and/or head localization coils (\*\_photo.jpg)
+Template:
 sub-&lt;participant\_label&gt;/
-> [ses-&lt;label&gt;]/  
-> &nbsp;&nbsp; meg/  
+> [ses-&lt;label&gt;]/
+> &nbsp;&nbsp; meg/
 >> [sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;][\_acq-&lt;label&gt;]\_photo.jpg]
 
 Photos of the anatomical landmarks and/or head localization coils on the subject’s head are RECOMMENDED. If the coils are not placed at the location of actual anatomical landmarks, these latter may be marked with a piece of felt-tip taped to the skin. Please note that the photos may need to be cropped or blurred to conceal identifying features prior to sharing, depending on the terms of the consent form signed by the participant.
 
-Example of the NAS fiducial placed between the eyebrows, rather than at the actual anatomical nasion:  
+Example of the NAS fiducial placed between the eyebrows, rather than at the actual anatomical nasion:
 &nbsp;&nbsp; sub-0001\_ses-001\_acq-NAS\_photo.jpg
 
-### 8.4.5 3-D head point /electrode locations file (\*\_headshape.&lt;manufacturer\_specific\_format&gt;)  
-Template:  
-sub-&lt;participant\_label&gt;/  
-> [ses-&lt;label&gt;]/  
-> &nbsp;&nbsp; meg/  
+### 8.4.5 3-D head point /electrode locations file (\*\_headshape.&lt;manufacturer\_specific\_format&gt;)
+Template:
+sub-&lt;participant\_label&gt;/
+> [ses-&lt;label&gt;]/
+> &nbsp;&nbsp; meg/
 >> [sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;][\_acq-&lt;label&gt;]\_headshape.&lt;manufacturer_specific_extension&gt;]
 
 This file is RECOMMENDED.
 
 The 3-D locations of head points and/or EEG electrode locations can be digitized and stored in separate files. The \*\_acq-&lt;label&gt; can be used when more than one type of digitization in done for a session, for example when the head points are in a separate file from the EEG locations. These files are stored in the specific format of the 3-D digitizer’s manufacturer (see Appendix VI).
 
-Example:  
-sub-control01  
-&nbsp; ses-01  
-&nbsp;&nbsp; sub-control01\_ses-01\_acq-HEAD\_headshape.pos  
+Example:
+sub-control01
+&nbsp; ses-01
+&nbsp;&nbsp; sub-control01\_ses-01\_acq-HEAD\_headshape.pos
 &nbsp;&nbsp; sub-control01\_ses-01\_acq-ECG\_headshape.pos
 
 Note that the \*\_headshape file(s) is shared by all the runs and tasks in a session. If the subject needs to be taken out of the scanner and the head-shape has to be updated, then for MEG it could
 be considered to be a new session.
 
-### 8.4.6 Empty-room files (sub-emptyroom)  
+### 8.4.6 Empty-room files (sub-emptyroom)
 Empty-room MEG files capture the environment and system noise. Their collection is RECOMMENDED, before/during/after each session. This data is stored inside a subject folder named sub-emptyroom. The session label SHOULD be that of the date of the empty-room recording (e.g. ses-YYYYMMDD). The scans.tsv file containing the date/time of the acquisition SHOULD also be included. Hence, users will be able to retrieve the empty-room recording that best matches a particular session with a participant, based on date/time of recording.
 
-Example:  
-sub-control01/  
-sub-control02/  
-sub-emptyroom/  
-&nbsp; ses-20170801/  
-&nbsp;&nbsp; sub-emptyroom\_ses-20170801\_scans.tsv  
-&nbsp;&nbsp; meg/  
-&nbsp;&nbsp;&nbsp;&nbsp; sub-emptyroom\_ses-20170801\_task-noise\_meg.ds  
-&nbsp;&nbsp;&nbsp;&nbsp; sub-emptyroom\_ses-20170801\_task-noise\_meg.json  
+Example:
+sub-control01/
+sub-control02/
+sub-emptyroom/
+&nbsp; ses-20170801/
+&nbsp;&nbsp; sub-emptyroom\_ses-20170801\_scans.tsv
+&nbsp;&nbsp; meg/
+&nbsp;&nbsp;&nbsp;&nbsp; sub-emptyroom\_ses-20170801\_task-noise\_meg.ds
+&nbsp;&nbsp;&nbsp;&nbsp; sub-emptyroom\_ses-20170801\_task-noise\_meg.json
 
 TaskName in the \*\_meg.json file should be set to “noise”.
 
 8.5 Task events
 -------------------
 
-Template:  
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;]  
-> func/  
->> &lt;matches&gt;\_events.tsv  
->> &lt;matches&gt;\_events.json  
+Template:
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;]
+> func/
+>> &lt;matches&gt;\_events.tsv
+>> &lt;matches&gt;\_events.json
 
 Where &lt;matches&gt; corresponds to task file name. For example: sub-control01\_task-nback. It is also possible to have a single \_events.tsv file describing events for all participants and runs (see section “4.2 Inheritance rule”). As with all other tabular data, \_events.files may be accompanied by a JSON file describing the columns in detail (see Section 4.2).
 
@@ -2054,17 +1804,17 @@ The purpose of this file is to describe timing and other properties of events re
     <tr>
       <td>HED</td>
       <td>OPTIONAL. Hierarchical Event Descriptor (HED) Tag. See Appendix III for details.</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
 An arbitrary number of additional columns can be added. Those allow describing other properties of events that could be later referred in modelling and hypothesis extensions of BIDS.
 
-In case of multi-echo task run, a single \_events.tsv file will suffice for all echoes.  
+In case of multi-echo task run, a single \_events.tsv file will suffice for all echoes.
 
-### 8.5.1 Example:  
-sub-control01/  
-> func/  
+### 8.5.1 Example:
+sub-control01/
+> func/
 >> sub-control01\_task-stopsignal\_events.tsv
 
 <table>
@@ -2089,15 +1839,15 @@ sub-control01/
       <td>stop</td>
       <td>1.739</td>
       <td>images/blue_square.jpg</td>
-    </tr>   
+    </tr>
   </tbody>
 </table>
 
 References to existing databases can also be encoded using additional columns. Example 2 includes references to the Karolinska Directed Emotional Faces (KDEF) database:
 
-### 8.5.2 Example:  
-sub-control01/  
-> func/  
+### 8.5.2 Example:
+sub-control01/
+> func/
 >> sub-control01\_task-emoface\_events.tsv
 
 <table>
@@ -2125,7 +1875,7 @@ sub-control01/
       <td>AM01AFAN</td>
       <td>kdef</td>
       <td>1.739</td>
-    </tr>  
+    </tr>
     <tr>
       <td>5.6</td>
       <td>0.6</td>
@@ -2139,24 +1889,24 @@ sub-control01/
 
 For multi-echo files events.tsv file is applicable to all echos of particular run.
 
-### 8.5.3 Example:  
-> sub-01\_task-cuedSGT\_run-1\_events.tsv  
-> sub-01\_task-cuedSGT\_run-1\_echo-1\_bold.nii.gz  
-> sub-01\_task-cuedSGT\_run-1\_echo-2\_bold.nii.gz  
-> sub-01\_task-cuedSGT\_run-1\_echo-3\_bold.nii.gz  
+### 8.5.3 Example:
+> sub-01\_task-cuedSGT\_run-1\_events.tsv
+> sub-01\_task-cuedSGT\_run-1\_echo-1\_bold.nii.gz
+> sub-01\_task-cuedSGT\_run-1\_echo-2\_bold.nii.gz
+> sub-01\_task-cuedSGT\_run-1\_echo-3\_bold.nii.gz
 
 8.6 Physiological and other continuous recordings
 -----------------------------------------------------
 
-Template:  
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
-> func/  
->> &lt;matches&gt;[\_recording-&lt;label&gt;]\_physio.tsv.gz  
+Template:
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
+> func/
+>> &lt;matches&gt;[\_recording-&lt;label&gt;]\_physio.tsv.gz
 
 and
 
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
-> func/  
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
+> func/
 >> &lt;matches&gt;[\_recording-&lt;label&gt;]\_physio.json
 
 sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
@@ -2198,18 +1948,18 @@ Physiological recordings (including eye tracking) should use the \_physio suffix
 
 More than one continuous recording file can be included (with different sampling frequencies). In such case use different labels. For example: \_recording-contrast, \_recording-saturation. The full file name could then look like this: sub-control01\_task-nback\_run-2\_recording-movie\_stim.tsv.gz
 
-For multi-echo data, physio.tsv file is applicable to all echos of particular run.  
-For eg:  
-> sub-01\_task-cuedSGT\_run-1\_physio.tsv.gz  
-> sub-01\_task-cuedSGT\_run-1\_echo-1\_bold.nii.gz  
-> sub-01\_task-cuedSGT\_run-1\_echo-2\_bold.nii.gz  
-> sub-01\_task-cuedSGT\_run-1\_echo-3\_bold.nii.gz  
+For multi-echo data, physio.tsv file is applicable to all echos of particular run.
+For eg:
+> sub-01\_task-cuedSGT\_run-1\_physio.tsv.gz
+> sub-01\_task-cuedSGT\_run-1\_echo-1\_bold.nii.gz
+> sub-01\_task-cuedSGT\_run-1\_echo-2\_bold.nii.gz
+> sub-01\_task-cuedSGT\_run-1\_echo-3\_bold.nii.gz
 
-### 8.6.1 Example:  
-sub-control01/  
-> func/  
+### 8.6.1 Example:
+sub-control01/
+> func/
 >> sub-control01\_task-nback\_physio.tsv.gz (after
-decompression)  
+decompression)
 
 <table>
   <tbody>
@@ -2231,49 +1981,49 @@ decompression)
   </tbody>
 </table>
 
-sub-control01/  
-> func/  
->> sub-control01\_task-nback\_physio.json  
+sub-control01/
+> func/
+>> sub-control01\_task-nback\_physio.json
 
-{  
-&nbsp;&nbsp; "SamplingFrequency": 100.0,  
-&nbsp;&nbsp; "StartTime": -22.345,  
-&nbsp;&nbsp; "Columns": ["cardiac", "respiratory", "trigger"]  
+{
+&nbsp;&nbsp; "SamplingFrequency": 100.0,
+&nbsp;&nbsp; "StartTime": -22.345,
+&nbsp;&nbsp; "Columns": ["cardiac", "respiratory", "trigger"]
 }
 
 8.7 Behavioral experiments (with no MRI)
 ------------------------------------------------
-Template:  
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
-> beh/  
->> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;]\_task-&lt;task\_name&gt;\_events.tsv  
+Template:
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
+> beh/
+>> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;]\_task-&lt;task\_name&gt;\_events.tsv
 
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
-> beh/  
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
+> beh/
 >> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;]\_task-&lt;task\_name&gt;\_events.json
 
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
-> beh/  
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
+> beh/
 >> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;]\_task-&lt;task\_name&gt;\_beh.tsv
 
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
-> beh/  
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
+> beh/
 >> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;]\_task-&lt;task\_name&gt;\_beh.json
 
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
-> beh/  
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
+> beh/
 >> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;]\_task-&lt;task\_name&gt;\_physio.tsv.gz
 
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
-> beh/  
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
+> beh/
 >> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;]\_task-&lt;task\_name&gt;\_physio.json
 
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
-> beh/  
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
+> beh/
 >> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;]\_task-&lt;task\_name&gt;\_stim.tsv.gz
 
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
-> beh/  
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
+> beh/
 >> sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;]\_task-&lt;task\_name&gt;\_stim.json
 
 In addition to logs from behavioral experiments performed along imaging data acquisitions one can also include data from experiments performed outside of the scanner. The results of those experiments can be stored in the beh folder using the same formats for event timing (\_events.tsv), metadata (\_events.json), physiological (\_physio.tsv.gz, \_physio.json) and other continuous recordings (\_stim.tsv.gz, \_stim.json) as for tasks performed during MRI acquisitions. Additionally, events files that do not include the mandatory ‘onset’ and ‘duration’ columns can still be included, but should be labelled \_beh.tsv rather than \_events.tsv.
@@ -2281,14 +2031,14 @@ In addition to logs from behavioral experiments performed along imaging data acq
 8.8 Scans file
 ------------------
 
-Template:  
-sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]  
+Template:
+sub-&lt;participant\_label&gt;/[ses-&lt;session\_label&gt;/]
 > sub-&lt;participant\_label&gt;[\_ses-&lt;session\_label&gt;]\_scans.tsv
 
 Optional: Yes
 
-The purpose of this file is to describe timing and other properties of each imaging acquisition sequence (each run .nii[.gz] file) within one session. Each .nii[.gz] file should be described by at most one row. Relative paths to files should be used under a compulsory “filename” header.  
-If acquisition time is included it should be under “acq\_time” header. Datetime should be expressed in the following format 2009-06-15T13:45:30 (year, month, day, hour (24h), minute, second; this is equivalent to the RFC3339 “date-time” format, time zone is always assumed as local time). For anonymization purposes all dates within one subject should be shifted by a randomly chosen (but common across all runs etc.) number of days. This way relative timing would be preserved, but chances of identifying a person based on the date and time of their scan would be decreased. Dates that are shifted for anonymization purposes should be set to a year 1900 or earlier to clearly distinguish them from unmodified data. Shifting dates is recommended, but not required.  
+The purpose of this file is to describe timing and other properties of each imaging acquisition sequence (each run .nii[.gz] file) within one session. Each .nii[.gz] file should be described by at most one row. Relative paths to files should be used under a compulsory “filename” header.
+If acquisition time is included it should be under “acq\_time” header. Datetime should be expressed in the following format 2009-06-15T13:45:30 (year, month, day, hour (24h), minute, second; this is equivalent to the RFC3339 “date-time” format, time zone is always assumed as local time). For anonymization purposes all dates within one subject should be shifted by a randomly chosen (but common across all runs etc.) number of days. This way relative timing would be preserved, but chances of identifying a person based on the date and time of their scan would be decreased. Dates that are shifted for anonymization purposes should be set to a year 1900 or earlier to clearly distinguish them from unmodified data. Shifting dates is recommended, but not required.
 Additional fields can include external behavioural measures relevant to the scan. For example vigilance questionnaire score administered after a resting state scan.
 
 ### 8.8.1 Example:
@@ -2306,18 +2056,18 @@ Additional fields can include external behavioural measures relevant to the scan
     <tr>
       <td>func/sub-control01_task-motor_bold.nii.gz</td>
       <td>1877-06-15T13:55:33</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
 8.9 Participant file
 ------------------------
 
-Template:  
-(single session case)  
-participants.tsv  
-participants.json  
-phenotype/&lt;measurement\_tool\_name&gt;.tsv  
+Template:
+(single session case)
+participants.tsv
+participants.json
+phenotype/&lt;measurement\_tool\_name&gt;.tsv
 phenotype/&lt;measurement\_tool\_name&gt;.json
 
 Optional: Yes
@@ -2355,27 +2105,27 @@ The purpose of this file is to describe properties of participants such as age, 
   </tbody>
 </table>
 
-If the dataset includes multiple sets of participant level measurements (for example responses from multiple questionnaires) they can be split into individual files separate from participants.tsv. Those measurements should be kept in phenotype/ folder and end with the .tsv extension. They can include arbitrary set of columns, but one of them has to be participant\_id with matching sub-&lt;participant\_label&gt;.  
-As with all other tabular data, those additional phenotypic information files can be accompanied by a JSON file describing the columns in detail (see Section 4.2). In addition to the column description, a section describing the measurement tool (as a whole) can be added under the name "MeasurementToolMetadata". This section consists of two keys: "Description" - a free text description of the tool, and "TermURL" a link to an entity in an ontology corresponding to this tool. For example (content of phenotype/acds\_adult.json):  
-{  
-    &nbsp;&nbsp; "MeasurementToolMetadata": {  
-        &nbsp;&nbsp;&nbsp; "Description": "Adult ADHD Clinical Diagnostic Scale V1.2",  
-        &nbsp;&nbsp;&nbsp; "TermURL": "http://www.cognitiveatlas.org/task/id/trm_5586ff878155d"  
-    &nbsp;&nbsp; },  
-    &nbsp;&nbsp; "adhd\_b": {  
-        &nbsp;&nbsp;&nbsp; "Description": "B. CHILDHOOD ONSET OF ADHD (PRIOR TO AGE 7)",  
-        &nbsp;&nbsp;&nbsp; "Levels": {  
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "1": "YES",  
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "2": "NO"  
-        &nbsp;&nbsp;&nbsp; }  
-     &nbsp;&nbsp; },  
-     &nbsp;&nbsp; "adhd\_c\_dx": {  
-        &nbsp;&nbsp;&nbsp; "Description": "As child met A, B, C, D, E and F diagnostic criteria",  
-        &nbsp;&nbsp;&nbsp; "Levels": {  
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "1": "YES",  
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "2": "NO"  
-        &nbsp;&nbsp;&nbsp; }  
-     &nbsp;&nbsp; },  
+If the dataset includes multiple sets of participant level measurements (for example responses from multiple questionnaires) they can be split into individual files separate from participants.tsv. Those measurements should be kept in phenotype/ folder and end with the .tsv extension. They can include arbitrary set of columns, but one of them has to be participant\_id with matching sub-&lt;participant\_label&gt;.
+As with all other tabular data, those additional phenotypic information files can be accompanied by a JSON file describing the columns in detail (see Section 4.2). In addition to the column description, a section describing the measurement tool (as a whole) can be added under the name "MeasurementToolMetadata". This section consists of two keys: "Description" - a free text description of the tool, and "TermURL" a link to an entity in an ontology corresponding to this tool. For example (content of phenotype/acds\_adult.json):
+{
+    &nbsp;&nbsp; "MeasurementToolMetadata": {
+        &nbsp;&nbsp;&nbsp; "Description": "Adult ADHD Clinical Diagnostic Scale V1.2",
+        &nbsp;&nbsp;&nbsp; "TermURL": "http://www.cognitiveatlas.org/task/id/trm_5586ff878155d"
+    &nbsp;&nbsp; },
+    &nbsp;&nbsp; "adhd\_b": {
+        &nbsp;&nbsp;&nbsp; "Description": "B. CHILDHOOD ONSET OF ADHD (PRIOR TO AGE 7)",
+        &nbsp;&nbsp;&nbsp; "Levels": {
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "1": "YES",
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "2": "NO"
+        &nbsp;&nbsp;&nbsp; }
+     &nbsp;&nbsp; },
+     &nbsp;&nbsp; "adhd\_c\_dx": {
+        &nbsp;&nbsp;&nbsp; "Description": "As child met A, B, C, D, E and F diagnostic criteria",
+        &nbsp;&nbsp;&nbsp; "Levels": {
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "1": "YES",
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "2": "NO"
+        &nbsp;&nbsp;&nbsp; }
+     &nbsp;&nbsp; },
 }
 
 Please note that in this example "MeasurementToolMetadata" includes
@@ -2391,54 +2141,54 @@ Multiple sessions (visits) are encoded by adding an extra layer of directories a
 
 The extra session layer (at least one /ses-&lt;session_label&gt; subfolder) should be added for all subjects if at least one subject in the dataset has more than one session. Skipping the session layer for only some subjects in the dataset is not allowed. If a /ses-&lt;session_label&gt; subfolder is included as part of the directory hierarchy, then the same “ses-&lt;session_label&gt;” tag must also be included as part of the file names themselves.
 
--   sub-control01  
-    -  ses-predrug  
-        - anat  
-            - sub-control01\_ses-predrug\_T1w.nii.gz  
-            - sub-control01\_ses\-predrug\_T1w.json  
-            - sub-control01\_ses\-predrug\_T2w.nii.gz  
-            - sub-control01\_ses\-predrug\_T2w.json  
-        - func  
-            - sub-control01\_ses\-predrug\_task\-nback\_bold.nii.gz  
-            - sub-control01\_ses\-predrug\_task\-nback\_bold.json  
-            - sub-control01\_ses\-predrug\_task\-nback\_events.tsv  
-            - sub-control01\_ses\-predrug\_task\-nback\_cont\-physio.tsv.gz  
-            - sub-control01\_ses\-predrug\_task\-nback\_cont\-physio.json  
-            - sub-control01\_ses-predrug\_task-nback\_sbref.nii.gz  
-        - dwi  
-            - sub-control01\_ses-predrug\_dwi.nii.gz  
-            - sub-control01\_ses-predrug\_dwi.bval  
-            - sub-control01\_ses-predrug\_dwi.bvec  
-        - fmap  
-            - sub-control01\_ses-predrug\_phasediff.nii.gz  
-            - sub-control01\_ses-predrug\_phasediff.json  
-            - sub-control01\_ses-predrug\_magnitude1.nii.gz  
-        - sub-control01\_ses-predrug\_scans.tsv  
-    - ses-postdrug  
-        - func  
-            - sub-control01\_ses-postdrug\_task-nback\_bold.nii.gz  
-            - sub-control01\_ses-postdrug\_task-nback\_bold.json  
-            - sub-control01\_ses-postdrug\_task-nback\_events.tsv  
-            - sub-control01\_ses-postdrug\_task-nback\_cont-physio.tsv.gz  
-            - sub-control01\_ses-postdrug\_task-nback\_cont-physio.json  
-            - sub-control01\_ses-postdrug\_task-nback\_sbref.nii.gz  
-        - fmap  
-            - sub-control01\_ses-postdrug\_phasediff.nii.gz  
-            - sub-control01\_ses-postdrug\_phasediff.json  
-            - sub-control01\_ses-postdrug\_magnitude1.nii.gz  
-        - sub-control01\_ses-postdrug\_scans.tsv  
-    - sub-control01\_sessions.tsv  
-- participants.tsv  
-- dataset\_description.json  
-- README  
-- CHANGES  
+-   sub-control01
+    -  ses-predrug
+        - anat
+            - sub-control01\_ses-predrug\_T1w.nii.gz
+            - sub-control01\_ses\-predrug\_T1w.json
+            - sub-control01\_ses\-predrug\_T2w.nii.gz
+            - sub-control01\_ses\-predrug\_T2w.json
+        - func
+            - sub-control01\_ses\-predrug\_task\-nback\_bold.nii.gz
+            - sub-control01\_ses\-predrug\_task\-nback\_bold.json
+            - sub-control01\_ses\-predrug\_task\-nback\_events.tsv
+            - sub-control01\_ses\-predrug\_task\-nback\_cont\-physio.tsv.gz
+            - sub-control01\_ses\-predrug\_task\-nback\_cont\-physio.json
+            - sub-control01\_ses-predrug\_task-nback\_sbref.nii.gz
+        - dwi
+            - sub-control01\_ses-predrug\_dwi.nii.gz
+            - sub-control01\_ses-predrug\_dwi.bval
+            - sub-control01\_ses-predrug\_dwi.bvec
+        - fmap
+            - sub-control01\_ses-predrug\_phasediff.nii.gz
+            - sub-control01\_ses-predrug\_phasediff.json
+            - sub-control01\_ses-predrug\_magnitude1.nii.gz
+        - sub-control01\_ses-predrug\_scans.tsv
+    - ses-postdrug
+        - func
+            - sub-control01\_ses-postdrug\_task-nback\_bold.nii.gz
+            - sub-control01\_ses-postdrug\_task-nback\_bold.json
+            - sub-control01\_ses-postdrug\_task-nback\_events.tsv
+            - sub-control01\_ses-postdrug\_task-nback\_cont-physio.tsv.gz
+            - sub-control01\_ses-postdrug\_task-nback\_cont-physio.json
+            - sub-control01\_ses-postdrug\_task-nback\_sbref.nii.gz
+        - fmap
+            - sub-control01\_ses-postdrug\_phasediff.nii.gz
+            - sub-control01\_ses-postdrug\_phasediff.json
+            - sub-control01\_ses-postdrug\_magnitude1.nii.gz
+        - sub-control01\_ses-postdrug\_scans.tsv
+    - sub-control01\_sessions.tsv
+- participants.tsv
+- dataset\_description.json
+- README
+- CHANGES
 
 9.1 Sessions file
 -------------------------
 
-Template:  
-sub-&lt;participant\_label&gt;/  
-> sub-&lt;participant\_label&gt;\_sessions.tsv  
+Template:
+sub-&lt;participant\_label&gt;/
+> sub-&lt;participant\_label&gt;\_sessions.tsv
 
 Optional: Yes
 
@@ -2576,85 +2326,85 @@ Legend (source: [https://github.com/kentcdodds/all-contributors](https://github.
     <tr>
       <td>📹 </td>
       <td>Videos</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
-The following individuals have contributed to the Brain Imaging Data Structure ecosystem (in alphabetical order).  
+The following individuals have contributed to the Brain Imaging Data Structure ecosystem (in alphabetical order).
 If you contributed to the BIDS ecosystem and your name is not listed,
-please add it.  
-Stefan Appelhoff 📖💬🤔🐛💡💻  
-Tibor Auer 💬📖💡🔧📢  
-Sylvain Baillet 📖🔍  
-Elizabeth Bock 📖💡  
-Eric Bridgeford 📖🔧  
-Teon L. Brooks 📖💻⚠️💬👀🤔  
-Suyash Bhogawar 📖💡⚠️🔧💬  
-Vince D. Calhoun 📖  
-Alexander L. Cohen 🐛💻📖💬  
-R. Cameron Craddock 📖📢  
-Samir Das 📖  
-Alejandro de la Vega 🐛💻⚠️  
-Eugene P. Duff 📖  
-Elizabeth DuPre 📖💡  
-Eric A. Earl 🤔  
-Anders Eklund 📖📢💻  
-Franklin W. Feingold 📋📝✅  
-Guillaume Flandin 📖💻  
-Satrajit S. Ghosh 📖💻  
-Tristan Glatard 📖💻  
-Mathias Goncalves 💻🔧📢  
-Krzysztof J. Gorgolewski 📖💻💬🤔🔍📢📝💡🔍🔌  
-Alexandre Gramfort 📖💡  
-Yaroslav O. Halchenko 📖📢🔧💬🐛  
-Daniel A. Handwerker 📖  
-Michael Hanke 📖🤔🔧🐛📢  
-Michael P. Harms 📖⚠️🔧  
-Richard N. Henson 📖  
-Dora Hermes 📖💻✅  
-Katja Heuer 🔧  
-Chris Holdgraf 📖  
-International Neuroinformatics Coordinating Facility 💵📋  
-Mainak Jas 📖💻  
-David Keator 📖  
-James Kent 💬💻  
-Gregory Kiar 📖💻🎨🔧  
-Pamela LaMontagne 📖💡  
-Kevin Larcher 💬  
-Laura and John Arnold Foundation 💵  
-Xiangrui Li 📖💻  
-Vladimir Litvak 📖  
-Dan Lurie 🤔📖🔧🔌💻💬  
-Camille Maumet 📖  
-Christopher J. Markiewicz 💬📖💻  
-Jeremy Moreau 📖💡  
-Zachary Michael 📖  
-Michael P. Milham 💡🔍  
-Henk Mutsaerts 📖  
-National Institute of Mental Health 💵  
-B. Nolan Nichols 📖  
-Thomas E. Nichols 📖  
-Dylan Nielson 📖💻🔧  
-Guiomar Niso 📖💡📢  
-Robert Oostenveld 📖🔧📢💡  
-Dianne Patterson 📖  
-John Pellman 📖  
-Cyril Pernet 💬📖💡📋  
-Dmitry Petrov 📖💻  
-Russell A. Poldrack 📖🔍📢  
-Jean-Baptiste Poline 📖📢🤔🎨  
-Vasudev Raguram 💻🎨📖🔧  
-Ariel Rokem 📖  
-Gunnar Schaefer 📖  
-Jan-Mathijs Schoffelen 📖  
-Vanessa Sochat 📖  
-Francois Tadel 📖🔌💡  
-Roberto Toro 🔧  
-William Triplett 📖  
-Jessica A. Turner 📖  
-Joseph Wexler 📖💡  
-Gaël Varoquaux 📖  
-Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨  
+please add it.
+Stefan Appelhoff 📖💬🤔🐛💡💻
+Tibor Auer 💬📖💡🔧📢
+Sylvain Baillet 📖🔍
+Elizabeth Bock 📖💡
+Eric Bridgeford 📖🔧
+Teon L. Brooks 📖💻⚠️💬👀🤔
+Suyash Bhogawar 📖💡⚠️🔧💬
+Vince D. Calhoun 📖
+Alexander L. Cohen 🐛💻📖💬
+R. Cameron Craddock 📖📢
+Samir Das 📖
+Alejandro de la Vega 🐛💻⚠️
+Eugene P. Duff 📖
+Elizabeth DuPre 📖💡
+Eric A. Earl 🤔
+Anders Eklund 📖📢💻
+Franklin W. Feingold 📋📝✅
+Guillaume Flandin 📖💻
+Satrajit S. Ghosh 📖💻
+Tristan Glatard 📖💻
+Mathias Goncalves 💻🔧📢
+Krzysztof J. Gorgolewski 📖💻💬🤔🔍📢📝💡🔍🔌
+Alexandre Gramfort 📖💡
+Yaroslav O. Halchenko 📖📢🔧💬🐛
+Daniel A. Handwerker 📖
+Michael Hanke 📖🤔🔧🐛📢
+Michael P. Harms 📖⚠️🔧
+Richard N. Henson 📖
+Dora Hermes 📖💻✅
+Katja Heuer 🔧
+Chris Holdgraf 📖
+International Neuroinformatics Coordinating Facility 💵📋
+Mainak Jas 📖💻
+David Keator 📖
+James Kent 💬💻
+Gregory Kiar 📖💻🎨🔧
+Pamela LaMontagne 📖💡
+Kevin Larcher 💬
+Laura and John Arnold Foundation 💵
+Xiangrui Li 📖💻
+Vladimir Litvak 📖
+Dan Lurie 🤔📖🔧🔌💻💬
+Camille Maumet 📖
+Christopher J. Markiewicz 💬📖💻
+Jeremy Moreau 📖💡
+Zachary Michael 📖
+Michael P. Milham 💡🔍
+Henk Mutsaerts 📖
+National Institute of Mental Health 💵
+B. Nolan Nichols 📖
+Thomas E. Nichols 📖
+Dylan Nielson 📖💻🔧
+Guiomar Niso 📖💡📢
+Robert Oostenveld 📖🔧📢💡
+Dianne Patterson 📖
+John Pellman 📖
+Cyril Pernet 💬📖💡📋
+Dmitry Petrov 📖💻
+Russell A. Poldrack 📖🔍📢
+Jean-Baptiste Poline 📖📢🤔🎨
+Vasudev Raguram 💻🎨📖🔧
+Ariel Rokem 📖
+Gunnar Schaefer 📖
+Jan-Mathijs Schoffelen 📖
+Vanessa Sochat 📖
+Francois Tadel 📖🔌💡
+Roberto Toro 🔧
+William Triplett 📖
+Jessica A. Turner 📖
+Joseph Wexler 📖💡
+Gaël Varoquaux 📖
+Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
 
 12 Appendix II: Licenses
 ============================
@@ -2685,7 +2435,7 @@ specifications
 13 Appendix III: Hierarchical Event Descriptor (HED) Tags
 =============================================================
 
-Each event can be assigned one or more Hierarchical Event Descriptor (HED) Tag (see [https://github.com/BigEEGConsortium/HED/wiki/HED-Schema](https://github.com/BigEEGConsortium/HED-schema/wiki/HED-Schema) for more details) under the optional HED column.  
+Each event can be assigned one or more Hierarchical Event Descriptor (HED) Tag (see [https://github.com/BigEEGConsortium/HED/wiki/HED-Schema](https://github.com/BigEEGConsortium/HED-schema/wiki/HED-Schema) for more details) under the optional HED column.
 HED is a controlled vocabulary of terms describing events in a behavioural paradigm. It was originally developed with EEG in mind, but is applicable to all behavioural experiments. Each level of the hierarchical tags are delimited with a forward slash (“/”). Multiple tags are delimited with a comma. Parentheses (brackets) group tags and enable specification of multiple items and their attributes in a single HED string (see section 2.4 in HED Tagging Strategy Guide - [http://www.hedtags.org/downloads/HED%20Tagging%20Strategy%20Guide.pdf](http://www.hedtags.org/downloads/HED%20Tagging%20Strategy%20Guide.pdf)). For more information about HED and tools available to validate and match HED strings, please visit [www.hedtags.org](http://www.hedtags.org).
 
 Since dedicated fields already exist for the overall task classification (CogAtlasID and CogPOID) in the sidecar JSON files HED
@@ -2733,14 +2483,14 @@ Alternatively if the same HED tags apply to a group of events with the same tria
 13.2 Example:
 ---------------------
 
-{  
-    &nbsp;&nbsp; "trial\_type": {  
-    &nbsp;&nbsp;&nbsp; "HED": {  
-    &nbsp;&nbsp;&nbsp;&nbsp; "fixationCross": "Event/Category/Experimental stimulus, Event/Label/CrossFix, Event/Description/A cross appears at screen center to serve as a fixation point, Sensory presentation/Visual, Item/Object/2D Shape/Cross, Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, Attribute/Location/Screen/Center",  
-    &nbsp;&nbsp;&nbsp;&nbsp; "target": "Event/Label/Target image, Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed., Event/Category/Experimental stimulus, (Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, Sensory presentation/Visual/Rendering type/Screen/2D), (Item/Natural scene/Arial/Satellite, Sensory presentation/Visual/Rendering type/Screen/2D)",  
-    &nbsp;&nbsp;&nbsp;&nbsp; "nontarget": "Event/Label/Non-target image, Event/Description/A non-target image is displayed for about 8 milliseconds, Event/Category/Experimental stimulus, (Item/Natural scene/Arial/Satellite, Participant/Effect/Cognitive/Expected/Non-target, Sensory presentation/Visual/Rendering type/Screen/2D), Attribute/Onset"  
-    &nbsp;&nbsp;&nbsp; }  
-    &nbsp;&nbsp; }  
+{
+    &nbsp;&nbsp; "trial\_type": {
+    &nbsp;&nbsp;&nbsp; "HED": {
+    &nbsp;&nbsp;&nbsp;&nbsp; "fixationCross": "Event/Category/Experimental stimulus, Event/Label/CrossFix, Event/Description/A cross appears at screen center to serve as a fixation point, Sensory presentation/Visual, Item/Object/2D Shape/Cross, Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, Attribute/Location/Screen/Center",
+    &nbsp;&nbsp;&nbsp;&nbsp; "target": "Event/Label/Target image, Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed., Event/Category/Experimental stimulus, (Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, Sensory presentation/Visual/Rendering type/Screen/2D), (Item/Natural scene/Arial/Satellite, Sensory presentation/Visual/Rendering type/Screen/2D)",
+    &nbsp;&nbsp;&nbsp;&nbsp; "nontarget": "Event/Label/Non-target image, Event/Description/A non-target image is displayed for about 8 milliseconds, Event/Category/Experimental stimulus, (Item/Natural scene/Arial/Satellite, Participant/Effect/Cognitive/Expected/Non-target, Sensory presentation/Visual/Rendering type/Screen/2D), Attribute/Onset"
+    &nbsp;&nbsp;&nbsp; }
+    &nbsp;&nbsp; }
 }
 
 14 Appendix IV: Entity table
@@ -3092,11 +2842,11 @@ Following the International System of Units (SI, abbreviated from the French Sys
       <td>katal</td>
       <td>kat</td>
       <td>catalytic activity</td>
-    </tr>    
+    </tr>
   </tbody>
 </table>
 
-Prefixes  
+Prefixes
 
 Multiples
 
@@ -3156,11 +2906,11 @@ Multiples
       <td><p><a href="https://www.wikiwand.com/en/Yotta-">yotta</a></p></td>
       <td>Y</td>
       <td>10<sup>24</sup></td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
-Submultiples  
+Submultiples
 
 <table>
   <tbody>
@@ -3218,16 +2968,16 @@ Submultiples
       <td><p><a href="https://www.wikiwand.com/en/Yocto-">yocto</a></p></td>
       <td>y</td>
       <td>10<sup>-24</sup></td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
-16 Appendix  VI: MEG file formats  
+16 Appendix  VI: MEG file formats
 ====================================
 
-Each MEG system brand has specific file organization and data formats.  
-RECOMMENDED values for [manufacturer\_specific\_extensions]:  
--   ctf = CTF (folder with .ds extension)  
+Each MEG system brand has specific file organization and data formats.
+RECOMMENDED values for [manufacturer\_specific\_extensions]:
+-   ctf = CTF (folder with .ds extension)
 -   fif = Neuromag / Elekta / MEGIN  and BabyMEG (file with extension .fif)
 -   4d = BTi / 4D Neuroimaging (folder containing multiple files without extensions)
 -   kit = KIT / Yokogawa / Ricoh (file with extension .sqd, .con, .raw, .ave or .mrk)
@@ -3241,21 +2991,21 @@ Below are specifications for each system brand.
 
 Each experimental run with a CTF system yields a folder with a .ds extension, containing several files. The (optional) digitized positions of the head points are usually stored in a separate .pos file, not necessarily within the .ds folder.
 
--   [sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_headshape.pos]  
+-   [sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_headshape.pos]
 -   sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_task-&lt;task\_label&gt;[\_run-&lt;index&gt;]\_meg.ds&gt;
 
 CTF’s data storage is therefore via directories containing multiple files. The files contained within a .ds directory are named such that they match the parent directory, but conserve the original file extension (e.g., .meg4, .res4, etc.). The renaming of CTF datasets SHOULD be done using the CTF newDs command-line application.
 
 Example:
 sub-control01/
-> ses-001/  
->> sub-control01\_ses-001\_scans.tsv  
->> meg/  
->>> sub-control01\_ses-001\_coordsystem.json  
->>> sub-control01\_ses-001\_headshape.pos  
->>> sub-control01\_ses-001\_task-rest\_run-01\_meg.ds  
->>> sub-control01\_ses-001\_task-rest\_run-01\_meg.json  
->>> sub-control01\_ses-001\_task-rest\_run-01\_channels.tsv  
+> ses-001/
+>> sub-control01\_ses-001\_scans.tsv
+>> meg/
+>>> sub-control01\_ses-001\_coordsystem.json
+>>> sub-control01\_ses-001\_headshape.pos
+>>> sub-control01\_ses-001\_task-rest\_run-01\_meg.ds
+>>> sub-control01\_ses-001\_task-rest\_run-01\_meg.json
+>>> sub-control01\_ses-001\_task-rest\_run-01\_channels.tsv
 
 To learn more about  CTF’s data organization: [http://www.fieldtriptoolbox.org/getting\_started/ctf](http://www.fieldtriptoolbox.org/getting_started/ctf)
 
@@ -3268,35 +3018,35 @@ Neuromag/Elekta/MEGIN data and Tristan Technologies BabyMEG data is stored with 
 
 Note that we do not provide specific specifications for cross-talk and fine-calibration matrix files in the present MEG-BIDS version.
 
-Example:  
-sub-control01/  
-> ses-001/  
->> sub-control01\_ses-001\_scans.tsv  
->> meg/  
->>> sub-control01\_ses-001\_coordsystem.json  
->>> sub-control01\_ses-001\_task-rest\_run-01\_meg.fif  
->>> sub-control01\_ses-001\_task-rest\_run-01\_meg.json  
->>> sub-control01\_ses-001\_task-rest\_run-01\_channels.tsv  
+Example:
+sub-control01/
+> ses-001/
+>> sub-control01\_ses-001\_scans.tsv
+>> meg/
+>>> sub-control01\_ses-001\_coordsystem.json
+>>> sub-control01\_ses-001\_task-rest\_run-01\_meg.fif
+>>> sub-control01\_ses-001\_task-rest\_run-01\_meg.json
+>>> sub-control01\_ses-001\_task-rest\_run-01\_channels.tsv
 
 After applying the MaxFilter pre-processing tool, files should be renamed with the corresponding label (e.g. proc-sss) and placed into a “derivatives” subfolder.
 
-Example:  
-> sub-control01\_ses-001\_task-rest\_run-01\_proc-sss\_meg.fif  
+Example:
+> sub-control01\_ses-001\_task-rest\_run-01\_proc-sss\_meg.fif
 > sub-control01\_ses-001\_task-rest\_run-01\_proc-sss\_meg.json
 
-In the case of data runs exceeding 2Gb, the data is stored in two separate files:  
-> sub-control01\_ses-001\_task-rest\_run-01\_meg.fif  
+In the case of data runs exceeding 2Gb, the data is stored in two separate files:
+> sub-control01\_ses-001\_task-rest\_run-01\_meg.fif
 > sub-control01\_ses-001\_task-rest\_run-01\_meg-1.fif
 
 Each of these two files has a pointer to the next file. In some software applications, like MNE, one can simply specify the name of the first file, and data will be read in both files via this pointer. For this reason, it is RECOMMENDED to rename and write back the file once read, to avoid the persistence of a pointer associated with the old file name.
 
-Naming convention:  
-> sub-control01\_ses-001\_task-rest\_run-01\_part-01\_meg.fif  
+Naming convention:
+> sub-control01\_ses-001\_task-rest\_run-01\_part-01\_meg.fif
 > sub-control01\_ses-001\_task-rest\_run-01\_part-02\_meg.fif
 
-More about the Neuromag/Elekta/MEGIN data organization at:  
-[http://www.fieldtriptoolbox.org/getting\_started/neuromag](http://www.fieldtriptoolbox.org/getting_started/neuromag)  
-And BabyMEG :  
+More about the Neuromag/Elekta/MEGIN data organization at:
+[http://www.fieldtriptoolbox.org/getting\_started/neuromag](http://www.fieldtriptoolbox.org/getting_started/neuromag)
+And BabyMEG :
 [http://www.fieldtriptoolbox.org/getting\_started/babysquid](http://www.fieldtriptoolbox.org/getting_started/babysquid)
 
 16.3 BTi/4D neuroimaging
@@ -3304,27 +3054,27 @@ And BabyMEG :
 
 Each experimental run on a 4D neuroimaging//BTi system results in a folder containing multiple files without extensions.
 
--   [sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_headshape.pos]  
+-   [sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_headshape.pos]
 -   sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_task-&lt;task\_label&gt;[\_run-&lt;index&gt;]\_meg&gt;
 
 One SHOULD rename/create a father run specific directory and keep the original files for each run inside (e.g. "c,rfhp0.1Hz", "config" and "hs\_file").
 
-Example:  
-sub-control01/  
-> ses-001/  
->> sub-control01\_ses-001\_scans.tsv  
->> meg/  
->>> sub-control01\_ses-001\_coordsystem.json  
->>> sub-control01\_ses-001\_headshape.pos  
->>> sub-control01\_ses-001\_task-rest\_run-01\_meg  
->>> sub-control01\_ses-001\_task-rest\_run-01\_meg.json  
->>> sub-control01\_ses-001\_task-rest\_run-01\_channels.tsv  
+Example:
+sub-control01/
+> ses-001/
+>> sub-control01\_ses-001\_scans.tsv
+>> meg/
+>>> sub-control01\_ses-001\_coordsystem.json
+>>> sub-control01\_ses-001\_headshape.pos
+>>> sub-control01\_ses-001\_task-rest\_run-01\_meg
+>>> sub-control01\_ses-001\_task-rest\_run-01\_meg.json
+>>> sub-control01\_ses-001\_task-rest\_run-01\_channels.tsv
 
-Where:  
-> sub-control01\_ses-001\_task-rest\_run-01\_meg/  
->> config  
->> hs\_file  
->> e,rfhp1.0Hz.COH  
+Where:
+> sub-control01\_ses-001\_task-rest\_run-01\_meg/
+>> config
+>> hs\_file
+>> e,rfhp1.0Hz.COH
 >> c,rfDC
 
 More about the 4D neuroimaging/BTi data organization at: [http://www.fieldtriptoolbox.org/getting\_started/bti](http://www.fieldtriptoolbox.org/getting_started/bti)
@@ -3334,20 +3084,20 @@ More about the 4D neuroimaging/BTi data organization at: [http://www.fieldtripto
 
 Each experimental run on a KIT/Yokogawa/Ricoh system yields a raw (\*.sqd, \*.con) file with its associated marker coil file (\*.mrk), which contains coil positions in the acquisition system’s native space. Head points and marker points in head space are acquired using third-party hardware. One SHOULD rename/create a father run specific directory and keep the original files for each run inside.
 
-Example:  
-sub-control01/  
-> ses-001/  
->> sub-control01\_ses-001\_scans.tsv  
->> meg/  
->>> sub-control01\_ses-001\_coordsystem.json  
->>> sub-control01\_ses-001\_headshape.txt  
->>> sub-control01\_ses-001\_task-rest\_run-01\_meg  
->>> sub-control01\_ses-001\_task-rest\_run-01\_meg.json  
+Example:
+sub-control01/
+> ses-001/
+>> sub-control01\_ses-001\_scans.tsv
+>> meg/
+>>> sub-control01\_ses-001\_coordsystem.json
+>>> sub-control01\_ses-001\_headshape.txt
+>>> sub-control01\_ses-001\_task-rest\_run-01\_meg
+>>> sub-control01\_ses-001\_task-rest\_run-01\_meg.json
 >>> sub-control01\_ses-001\_task-rest\_run-01\_channels.tsv
 
-Where:  
-> sub-control01\_ses-001\_task-rest\_run-01\_meg/  
->> sub-control01\_ses-001\_task-rest\_run-01\_markers.&lt;mrk,sqd&gt;  
+Where:
+> sub-control01\_ses-001\_task-rest\_run-01\_meg/
+>> sub-control01\_ses-001\_task-rest\_run-01\_markers.&lt;mrk,sqd&gt;
 >> sub-control01\_ses-001\_task-rest\_run-01\_meg.&lt;con,sqd&gt;
 
 More about the KIT/Yokogawa/Ricoh data organization at: [http://www.fieldtriptoolbox.org/getting\_started/yokogawa](http://www.fieldtriptoolbox.org/getting_started/yokogawa)
@@ -3355,27 +3105,27 @@ More about the KIT/Yokogawa/Ricoh data organization at: [http://www.fieldtriptoo
 16.5 KRISS
 --------------------------
 
-Each experimental run on the KRISS system produces a file with extension .kdf. Additional files can be available in the same folder: the digitized positions of the head points (\_digitizer.txt), the position of the center of the MEG coils (.chn) and the event markers (.trg).  
--   [sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_headshape.txt]  
--   sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_task-&lt;task\_label&gt;[\_run-&lt;index&gt;]\_meg.kdf  
--   sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_task-&lt;task\_label&gt;[\_run-&lt;index&gt;]\_meg.chn  
+Each experimental run on the KRISS system produces a file with extension .kdf. Additional files can be available in the same folder: the digitized positions of the head points (\_digitizer.txt), the position of the center of the MEG coils (.chn) and the event markers (.trg).
+-   [sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_headshape.txt]
+-   sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_task-&lt;task\_label&gt;[\_run-&lt;index&gt;]\_meg.kdf
+-   sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_task-&lt;task\_label&gt;[\_run-&lt;index&gt;]\_meg.chn
 -   sub-&lt;participant\_label&gt;[\_ses-&lt;label&gt;]\_task-&lt;task\_label&gt;[\_run-&lt;index&gt;]\_meg.trg
 
-Example:  
-sub-control01/  
-> ses-001/  
->> sub-control01\_ses-001\_scans.tsv  
->> meg/  
->>> sub-control01\_ses-001\_coordsystem.json  
->>> sub-control01\_ses-001\_headshape.txt  
->>> sub-control01\_ses-001\_task-rest\_run-01\_meg  
->>> sub-control01\_ses-001\_task-rest\_run-01\_meg.json  
+Example:
+sub-control01/
+> ses-001/
+>> sub-control01\_ses-001\_scans.tsv
+>> meg/
+>>> sub-control01\_ses-001\_coordsystem.json
+>>> sub-control01\_ses-001\_headshape.txt
+>>> sub-control01\_ses-001\_task-rest\_run-01\_meg
+>>> sub-control01\_ses-001\_task-rest\_run-01\_meg.json
 >>> sub-control01\_ses-001\_task-rest\_run-01\_channels.tsv
 
-Where:  
-> sub-control01\_ses-001\_task-rest\_run-01\_meg/    
->> sub-control01\_ses-001\_task-rest\_run-01\_meg.chn  
->> sub-control01\_ses-001\_task-rest\_run-01\_meg.kdf  
+Where:
+> sub-control01\_ses-001\_task-rest\_run-01\_meg/
+>> sub-control01\_ses-001\_task-rest\_run-01\_meg.chn
+>> sub-control01\_ses-001\_task-rest\_run-01\_meg.kdf
 >> sub-control01\_ses-001\_task-rest\_run-01\_meg.trg
 
 16.6 ITAB
@@ -3383,19 +3133,19 @@ Where:
 
 Each experimental run on a ITAB-ARGOS153 system yields a raw (\*.raw) data file plus an associated binary header file (\*.mhd). The raw data file has an ASCII header that contains detailed information about the data acquisition system, followed by binary data. The associated binary header file contains part of the information from the ASCII header, specifically the one needed to process data, plus other information on offline preprocessing performed after data acquisition (e.g., sensor position relative to subject’s head, head markers, stimulus information). One should rename/create a father run specific directory and keep the original files for each run inside.
 
-Example:  
-sub-control01/  
-> ses-001/  
->> sub-control01\_ses-001\_coordsystem.json  
->> sub-control01\_ses-001\_headshape.txt  
->> sub-control01\_ses-001\_task-rest\_run-01\_meg  
->> sub-control01\_ses-001\_task-rest\_run-01\_meg.json  
+Example:
+sub-control01/
+> ses-001/
+>> sub-control01\_ses-001\_coordsystem.json
+>> sub-control01\_ses-001\_headshape.txt
+>> sub-control01\_ses-001\_task-rest\_run-01\_meg
+>> sub-control01\_ses-001\_task-rest\_run-01\_meg.json
 >> sub-control01\_ses-001\_task-rest\_run-01\_channels.tsv
 
-Where:  
-> sub-control01\_ses-001\_task-rest\_run-01\_meg/  
->> sub-control01\_ses-001\_task-rest\_run-01\_meg.raw  
->> sub-control01\_ses-001\_task-rest\_run-01\_meg.raw.mhd  
+Where:
+> sub-control01\_ses-001\_task-rest\_run-01\_meg/
+>> sub-control01\_ses-001\_task-rest\_run-01\_meg.raw
+>> sub-control01\_ses-001\_task-rest\_run-01\_meg.raw.mhd
 
 16.7 Aalto MEG–MRI
 ------------------------------------
@@ -3407,14 +3157,14 @@ For stand-alone MEG data, the Aalto hybrid device uses the standard .fif data fo
 
 Restricted keywords for Manufacturer field in the \*meg.json file:
 
--   CTF  
--   [Elekta/Neuromag](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.a7ggx48p7aaf)  
--   [4D/BTi](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.gy0kbzisg1f1)  
--   [KIT/Yokogawa/Ricoh](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.2gmmxawyna7r)  
--   KRISS  
--   [ITAB](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.58whib3oq56y)  
--   Aalto/MEG–MRI  
--   Other  
+-   CTF
+-   [Elekta/Neuromag](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.a7ggx48p7aaf)
+-   [4D/BTi](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.gy0kbzisg1f1)
+-   [KIT/Yokogawa/Ricoh](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.2gmmxawyna7r)
+-   KRISS
+-   [ITAB](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.58whib3oq56y)
+-   Aalto/MEG–MRI
+-   Other
 
 Restricted keywords for ManufacturersModelName field in the \*meg.json file:
 
@@ -3489,7 +3239,7 @@ Restricted keywords for ManufacturersModelName field in the \*meg.json file:
       <td>Aalto-MEG-MRI-YYYY/MM</td>
       <td>Aalto/MEG–MRI</td>
       <td>YYYY-MM (year, month; or major version)</td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 
@@ -3500,8 +3250,8 @@ To interpret a coordinate (x, y, z), it is required that you know relative to wh
 
 These letters help describe the coordinate system definition:
 
-A/P means anterior/posterior  
-L/R means left/right  
+A/P means anterior/posterior
+L/R means left/right
 S/I means superior/inferior
 
 For example: RAS means that the first dimension (X) points towards the right hand side of the head, the second dimension (Y) points towards the Anterior aspect of the head, and the third dimension (Z) points towards the top of the head.
@@ -3517,14 +3267,14 @@ The first two pieces of information (origin, orientation) are specified in XXXCo
 
 Restricted keywords for the XXXCoordinateSystem field in the coordinatesystem.json file for MEG datasets:
 
--   CTF:                        ALS orientation and the origin between the ears  
--   ElektaNeuromag:        RAS orientation and the origin between the ears  
--   4DBti:                ALS orientation and the origin between the ears  
--   KitYokogawa:        ALS orientation and the origin between the ears  
--   ChietiItab:                RAS orientation and the origin between the ears  
--   Other:                Use this for other coordinate systems and specify further details in the XXXCoordinateSystemDescription field  
+-   CTF:                        ALS orientation and the origin between the ears
+-   ElektaNeuromag:        RAS orientation and the origin between the ears
+-   4DBti:                ALS orientation and the origin between the ears
+-   KitYokogawa:        ALS orientation and the origin between the ears
+-   ChietiItab:                RAS orientation and the origin between the ears
+-   Other:                Use this for other coordinate systems and specify further details in the XXXCoordinateSystemDescription field
 
-Note that the short descriptions above do not capture all details,  there are detailed  descriptions of these  coordinate systems on the FieldTrip toolbox web page:  
+Note that the short descriptions above do not capture all details,  there are detailed  descriptions of these  coordinate systems on the FieldTrip toolbox web page:
 [http://www.fieldtriptoolbox.org/faq/how\_are\_the\_different\_head\_and\_mri\_coordinate\_systems\_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
 
 EEG specific Coordinate Systems
@@ -3537,8 +3287,8 @@ Restricted keywords for the XXXCoordinateSystem field in the coordsystem.json fi
 -   BESA:         Although natively this is a spherical coordinate system, the electrode positions should be expressed in Cartesian coordinates, with a RAS orientation. The X axis is the T8-T7 line, positive at T8. The Y axis is the Oz-Fpz line, positive at Fpz. The origin of the sphere fitted to the electrodes is approximately 4 cm above the point between the ears.
 -   Captrak:        RAS orientation and the origin between the ears
 
-Note that the short descriptions above do not capture all details, There are detailed extensive descriptions of these EEG coordinate systems on the FieldTrip toolbox web page and on the BESA wiki:  
-[http://www.fieldtriptoolbox.org/faq/how\_are\_the\_different\_head\_and\_mri\_coordinate\_systems\_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)  
+Note that the short descriptions above do not capture all details, There are detailed extensive descriptions of these EEG coordinate systems on the FieldTrip toolbox web page and on the BESA wiki:
+[http://www.fieldtriptoolbox.org/faq/how\_are\_the\_different\_head\_and\_mri\_coordinate\_systems\_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
 [http://wiki.besa.de/index.php?title=Electrodes\_and\_Surface\_Locations\#Coordinate\_systems](http://wiki.besa.de/index.php?title=Electrodes_and_Surface_Locations#Coordinate_systems
 )
 
