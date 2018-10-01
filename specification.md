@@ -153,31 +153,31 @@ Guide](https://docs.google.com/document/d/1pWmEEY-1-WuwBPNy5tDAxVJYQ9Een4hZJM06t
 All of the ideas that are not backwards compatible and thus will have to wait for BIDS 2.0 are listed [here](https://docs.google.com/document/d/1LEgsMiisGDe1Gv-hBp1EcLmoz7AlKj6VYULUgDD3Zdw)
 
 3.7 Citing BIDS
--------------------
+---------------
 
 When referring to BIDS in context of academic literature please
 cite:
 
-Gorgolewski, K.J., Auer, T., Calhoun, V.D., Craddock, R.C., Das, S., Duff, E.P., Flandin, G., Ghosh, S.S., Glatard, T., Halchenko, Y.O., Handwerker, D.A., Hanke, M., Keator, D., Li, X., Michael, Z., Maumet, C., Nichols, B.N., Nichols, T.E., Pellman, J., Poline, J.-B., Rokem, A., Schaefer, G., Sochat, V., Triplett, W., Turner, J.A., Varoquaux, G., Poldrack, R.A., 2016. [The brain imaging data structure, a
-format for organizing and describing outputs of neuroimaging
-experiments](https://www.nature.com/articles/sdata201644). Sci Data 3, 160044.
+> Gorgolewski, K.J., Auer, T., Calhoun, V.D., Craddock, R.C., Das, S., Duff, E.P., Flandin, G., Ghosh, S.S., Glatard, T., Halchenko, Y.O., Handwerker, D.A., Hanke, M., Keator, D., Li, X., Michael, Z., Maumet, C., Nichols, B.N., Nichols, T.E., Pellman, J., Poline, J.-B., Rokem, A., Schaefer, G., Sochat, V., Triplett, W., Turner, J.A., Varoquaux, G., Poldrack, R.A., 2016. [The brain imaging data structure, a
+> format for organizing and describing outputs of neuroimaging
+> experiments](https://www.nature.com/articles/sdata201644). Sci Data 3, 160044.
 
 as well as other papers describing specific BIDS extensions (see below).
 
 BIDS has also a [Research Resource Identifier
-(RRID)](https://www.force11.org/group/resource-identification-initiative) -  RRID:SCR\_016124 - which you can also include in your manuscript in addition to citing the paper.
+(RRID)](https://www.force11.org/group/resource-identification-initiative) - `RRID:SCR_016124` - which you can also include in your manuscript in addition to citing the paper.
 
 4 File Format specification
-===============================
+===========================
 
-All parts of a BIDS filename are considered case-sensitive. Thus task-xyz\_acq-test1\_run-1\_bold.json and task-xyz\_acq-Test1\_run-2\_bold.json will
+All parts of a BIDS filename are considered case-sensitive. Thus `task-xyz_acq-test1_run-1_bold.json` and `task-xyz_acq-Test1_run-2_bold.json` will
 be treated as having different acquisition labels by a BIDS validator or
 should be treated as different by bids-aware libraries.
 
 4.1 Imaging files
----------------------
+-----------------
 
-All imaging data MUST be stored using the NIfTI file format. We RECOMMEND using compressed NIfTI files (.nii.gz), either version 1.0 or 2.0. Imaging data SHOULD be converted to the NIfTI format using a tool that provides as much of the NIfTI header information (such as orientation and slice timing information) as possible. Since the NIfTI standard offers limited support for the various image acquisition parameters available in DICOM files, we RECOMMEND that users provide additional meta information extracted from DICOM files in a sidecar JSON file (with the same filename as the .nii[.gz] file, but with a .json extension). Extraction of BIDS
+All imaging data MUST be stored using the NIfTI file format. We RECOMMEND using compressed NIfTI files (.nii.gz), either version 1.0 or 2.0. Imaging data SHOULD be converted to the NIfTI format using a tool that provides as much of the NIfTI header information (such as orientation and slice timing information) as possible. Since the NIfTI standard offers limited support for the various image acquisition parameters available in DICOM files, we RECOMMEND that users provide additional meta information extracted from DICOM files in a sidecar JSON file (with the same filename as the `.nii[.gz]` file, but with a `.json` extension). Extraction of BIDS
 compatible metadata can be performed using dcm2nii [https://www.nitrc.org/projects/dcm2nii/](https://www.nitrc.org/projects/dcm2nii/) and dicm2nii [http://www.mathworks.com/matlabcentral/fileexchange/42997-dicom-to-nifti-converter/content/dicm2nii.m](http://www.mathworks.com/matlabcentral/fileexchange/42997-dicom-to-nifti-converter/content/dicm2nii.m) DICOM to NIfTI converters. A provided validator[https://github.com/INCF/bids-validator](https://github.com/INCF/bids-validator) will
 check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
