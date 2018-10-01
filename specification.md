@@ -608,26 +608,31 @@ For the fields described above and in the following section, the term “Volume�
 
 See [8.3.1. Common MR metadata fields](#heading=h.5u721tt1h9pe) for a list of additional terms and their definitions.
 
-#### 8.3.3.1 Example:
+
+Example:
+```
 sub-control01/
-> func/
->> sub-control01_task-nback_bold.json
+    func/
+        sub-control01_task-nback_bold.json
+```
 
+```JSON
 {
-&nbsp;&nbsp; "TaskName": "N Back",
-&nbsp;&nbsp; "RepetitionTime": 0.8,
-&nbsp;&nbsp; "EchoTime": 0.03,
-&nbsp;&nbsp; "FlipAngle": 78,
-&nbsp;&nbsp; "SliceTiming": [0.0, 0.2, 0.4, 0.6, 0.0, 0.2, 0.4, 0.6, 0.0, 0.2, 0.4, 0.6, 0.0, 0.2, 0.4, 0.6],
-&nbsp;&nbsp; "MultibandAccelerationFactor": 4,
-&nbsp;&nbsp; "ParallelReductionFactorInPlane": 2,
-&nbsp;&nbsp; "PhaseEncodingDirection": "j",
-&nbsp;&nbsp; "InstitutionName": "Stanford University",
-&nbsp;&nbsp; "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
-&nbsp;&nbsp; "DeviceSerialNumber": "11035"
+   "TaskName": "N Back",
+   "RepetitionTime": 0.8,
+   "EchoTime": 0.03,
+   "FlipAngle": 78,
+   "SliceTiming": [0.0, 0.2, 0.4, 0.6, 0.0, 0.2, 0.4, 0.6, 0.0, 0.2, 0.4, 0.6, 0.0, 0.2, 0.4, 0.6],
+   "MultibandAccelerationFactor": 4,
+   "ParallelReductionFactorInPlane": 2,
+   "PhaseEncodingDirection": "j",
+   "InstitutionName": "Stanford University",
+   "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
+   "DeviceSerialNumber": "11035"
 }
+```
 
-If this information is the same for all participants, sessions and runs it can be provided in task-<task_label>_bold.json (in the root directory of the dataset). However, if the information differs between subjects/runs it can be specified in the sub-<participant_label>/func/sub-<participant_label>_task-<task_label>[_acq-<label>][_run-<index>]_bold.json file. If both files are specified fields from the file corresponding to a particular participant, task and run takes precedence.
+If this information is the same for all participants, sessions and runs it can be provided in `task-<task_label>_bold.json` (in the root directory of the dataset). However, if the information differs between subjects/runs it can be specified in the `sub-<participant_label>/func/sub-<participant_label>_task-<task_label>[_acq-<label>][_run-<index>]_bold.json` file. If both files are specified fields from the file corresponding to a particular participant, task and run takes precedence.
 
 ### 8.3.4 Diffusion imaging data
 Template:
@@ -662,21 +667,21 @@ Example JSON file:
 
 #### 8.3.4.3 JSON example:
 {
-&nbsp;&nbsp; "PhaseEncodingDirection": "j-",
-&nbsp;&nbsp; "TotalReadoutTime": 0.095
+   "PhaseEncodingDirection": "j-",
+   "TotalReadoutTime": 0.095
 }
 
 ### 8.3.5 Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The current version of this standard considers four different scenarios. Please note that in all cases fieldmap data can be linked to a specific scan(s) it was acquired for by filling the IntendedFor field in the corresponding JSON file. For example:
 {
-&nbsp;&nbsp; "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
+   "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
 }
 
 The IntendedFor field may contain one or more filenames with paths relative to the subject subfolder. The path needs to use forward slashes instead of backward slashes.  Here’s an example with multiple target scans:
 {
-&nbsp;&nbsp; "IntendedFor": ["ses-pre/func/sub-01_task-motor_run-1_bold.nii.gz",
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ses-post/func/sub-01_task-motor_run-1_bold.nii.gz"\]
+   "IntendedFor": ["ses-pre/func/sub-01_task-motor_run-1_bold.nii.gz",
+                            "ses-post/func/sub-01_task-motor_run-1_bold.nii.gz"\]
 }
 
 The IntendedFor field is optional and in case the fieldmaps do not correspond to any particular scans it does not have to be filled.
@@ -699,9 +704,9 @@ sub-<participant_label>/[ses-<session_label>/]
 This is a common output for build in fieldmap sequence on Siemens scanners. In this particular case the sidecar JSON file has to define the Echo Times of the two phase images used to create the difference image. EchoTime1 corresponds to the shorter echo time and EchoTime2 to the longer echo time. Similarly _magnitude1 image corresponds to the shorter echo time and the OPTIONAL _magnitude2 image to the longer echo time. For example:
 
 {
-&nbsp;&nbsp; "EchoTime1": 0.00600,
-&nbsp;&nbsp; "EchoTime2": 0.00746,
-&nbsp;&nbsp; "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
+   "EchoTime1": 0.00600,
+   "EchoTime2": 0.00746,
+   "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
 }
 
 #### 8.3.5.2 Case 2: Two phase images and two magnitude images
@@ -718,8 +723,8 @@ sub-<participant_label>/[ses-<session_label>/]
 Similar to the case above, but instead of a precomputed phase difference map two separate phase images are presented. The two sidecar JSON file need to specify corresponding EchoTime values. For example:
 
 {
-&nbsp;&nbsp; "EchoTime": 0.00746,
-&nbsp;&nbsp; "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
+   "EchoTime": 0.00746,
+   "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
 }
 
 #### 8.3.5.3 Case 3: A single, real fieldmap image (showing the field inhomogeneity in each voxel)
@@ -733,8 +738,8 @@ sub-<participant_label>/[ses-<session_label>/]
 In some cases (for example GE) the scanner software will output a precomputed fieldmap denoting the B0 inhomogeneities along with a magnitude image used for coregistration. In this case the sidecar JSON file needs to include the units of the fieldmap. The possible options are: “Hz”, “rad/s”, or “Tesla”. For example:
 
 {
-&nbsp;&nbsp; "Units": "rad/s",
-&nbsp;&nbsp; "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
+   "Units": "rad/s",
+   "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
 }
 
 #### 8.3.5.4 Case 4: Multiple phase encoded directions (“pepolar”)
@@ -747,9 +752,9 @@ sub-<participant_label>/[ses-<session_label>/]
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo EPI scans with different phase encoding directions to estimate the underlying inhomogeneity/deformation map. Examples of tools using this kind of images are FSL TOPUP, AFNI 3dqwarp and SPM. In such a case, the phase encoding direction is specified in the corresponding JSON file as one of: “i”, “j”, “k”, “i-”, “j-, “k-”. For these differentially phase encoded sequences, one also needs to specify the Total Readout Time defined as the time (in seconds) from the center of the first echo to the center of the last echo (aka “FSL definition” - see [here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup/Faq#How_do_I_know_what_phase-encode_vectors_to_put_into_my_--datain_text_file.3F) and [here](https://lcni.uoregon.edu/kb-articles/kb-0003) how to calculate it). For example
 
 {
-&nbsp;&nbsp; "PhaseEncodingDirection": "j-",
-&nbsp;&nbsp; "TotalReadoutTime": 0.095,
-&nbsp;&nbsp; "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
+   "PhaseEncodingDirection": "j-",
+   "TotalReadoutTime": 0.095,
+   "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
 }
 
 dir_label value can be set to arbitrary alphanumeric label ([a-zA-Z0-9]+ for example “LR” or “AP”) that can help users to distinguish between different files, but should not be used to infer any scanning parameters (such as phase encoding directions) of the corresponding sequence. Please rely only on the JSON file to obtain scanning parameters. _epi files can be a 3D or 4D - in the latter case all timepoints share the same scanning parameters.  To indicate which run is intended to be used with which functional or diffusion scan the IntendedFor field in the JSON file should be used.
@@ -765,7 +770,7 @@ Niso Galan, J.G., Gorgolewski, K.J., Bock, E., Brooks, T.L., Flandin, G., Gramfo
 Template:
 sub-<participant_label>/
 > [ses-<label>]/
->&nbsp;&nbsp; meg/
+>   meg/
 >> sub-<participant_label>[_ses-<label>]_task-<task_label>[_acq-<label>][_run-<index>][_proc-<label>]_meg.<manufacturer_specific_extension>
 >> [sub-<participant_label>[_ses-<label>]_task-<task_label>[_acq-<label>][_run-<index>][_proc-<label>]_meg.json]
 
@@ -990,32 +995,32 @@ By construct, EEG when recorded simultaneously with the same MEG system , should
 
 Example:
 {
-&nbsp;&nbsp; "InstitutionName": "Stanford University",
-&nbsp;&nbsp; "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
-&nbsp;&nbsp; "Manufacturer": "CTF",
-&nbsp;&nbsp; "ManufacturersModelName": "CTF-275",
-&nbsp;&nbsp; "DeviceSerialNumber": "11035",
-&nbsp;&nbsp; "SoftwareVersions": "Acq 5.4.2-linux-20070507",
-&nbsp;&nbsp; "PowerLineFrequency": 60,
-&nbsp;&nbsp; "SamplingFrequency": 2400,
-&nbsp;&nbsp; "MEGChannelCount": 270,
-&nbsp;&nbsp; "MEGREFChannelCount": 26,
-&nbsp;&nbsp; "EEGChannelCount": 0,
-&nbsp;&nbsp; "EOGChannelCount": 2,
-&nbsp;&nbsp; "ECGChannelCount": 1,
-&nbsp;&nbsp; "EMGChannelCount": 0,
-&nbsp;&nbsp;&nbsp;&nbsp; "DewarPosition": "upright",
-&nbsp;&nbsp; "SoftwareFilters": {
-&nbsp;&nbsp;&nbsp;&nbsp; "SpatialCompensation": {"GradientOrder": "3rd"}
-&nbsp;&nbsp; },
-&nbsp;&nbsp; "RecordingDuration": 600,
-&nbsp;&nbsp; "RecordingType": "continuous",
-&nbsp;&nbsp; "EpochLength": 0,
-&nbsp;&nbsp; "TaskName": "rest",
-&nbsp;&nbsp; "ContinuousHeadLocalization": true,
-&nbsp;&nbsp; "HeadCoilFrequency": [1470,1530,1590],
-&nbsp;&nbsp; "DigitizedLandmarks": true,
-&nbsp;&nbsp; "DigitizedHeadPoints": true
+   "InstitutionName": "Stanford University",
+   "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
+   "Manufacturer": "CTF",
+   "ManufacturersModelName": "CTF-275",
+   "DeviceSerialNumber": "11035",
+   "SoftwareVersions": "Acq 5.4.2-linux-20070507",
+   "PowerLineFrequency": 60,
+   "SamplingFrequency": 2400,
+   "MEGChannelCount": 270,
+   "MEGREFChannelCount": 26,
+   "EEGChannelCount": 0,
+   "EOGChannelCount": 2,
+   "ECGChannelCount": 1,
+   "EMGChannelCount": 0,
+     "DewarPosition": "upright",
+   "SoftwareFilters": {
+     "SpatialCompensation": {"GradientOrder": "3rd"}
+   },
+   "RecordingDuration": 600,
+   "RecordingType": "continuous",
+   "EpochLength": 0,
+   "TaskName": "rest",
+   "ContinuousHeadLocalization": true,
+   "HeadCoilFrequency": [1470,1530,1590],
+   "DigitizedLandmarks": true,
+   "DigitizedHeadPoints": true
 }
 
 Note that the date and time information SHOULD be stored in the Study key file (scans.tsv), see section 8.8. Scans.tsv. As it is indicated there, date time information MUST be expressed in the following format YYYY-MM-DDThh:mm:ss ([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending on local REB/IRB ethics board policy.
@@ -1024,7 +1029,7 @@ Note that the date and time information SHOULD be stored in the Study key file (
 Template:
 sub-<participant_label>/
 > [ses-<label>]/
-> &nbsp;&nbsp; meg/
+>    meg/
 >> [sub-<participant_label>[_ses-<label>]_task-<task_label>[_acq-<label>][_run-<index>][_proc-<label>]_channels.tsv]
 
 This file is RECOMMENDED as it provides easily searchable information across MEG-BIDS datasets for e.g., general curation, response to queries or batch analysis. To avoid confusion, the channels SHOULD be listed in the order they appear in the MEG data file. Missing values MUST be indicated with  “n/a”.
@@ -1225,7 +1230,7 @@ Example:
 Template:
 sub-<participant_label>/
 > [ses-<label>]/
-> &nbsp;&nbsp; meg/
+>    meg/
 >> [sub-<participant_label>[_ses-<label>][_acq-<label>]_coordsystem.json]
 
 OPTIONAL. A JSON document specifying the coordinate system(s) used for the MEG, EEG, head localization coils, and anatomical landmarks.
@@ -1358,30 +1363,30 @@ Fiducials information:
 </table>
 
 For more information on the definition of anatomical landmarks, please visit:
-&nbsp;&nbsp; [http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_define](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
+   [http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_define](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
 
 For more information on typical coordinate systems for MEG-MRI
 coregistration:
-&nbsp;&nbsp; [http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined), or:
-&nbsp;&nbsp; [http://neuroimage.usc.edu/brainstorm/CoordinateSystems](http://neuroimage.usc.edu/brainstorm/CoordinateSystems)
+   [http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined), or:
+   [http://neuroimage.usc.edu/brainstorm/CoordinateSystems](http://neuroimage.usc.edu/brainstorm/CoordinateSystems)
 
 ### 8.4.4 Photos of the anatomical landmarks and/or head localization coils (\*_photo.jpg)
 Template:
 sub-<participant_label>/
 > [ses-<label>]/
-> &nbsp;&nbsp; meg/
+>    meg/
 >> [sub-<participant_label>[_ses-<label>][_acq-<label>]_photo.jpg]
 
 Photos of the anatomical landmarks and/or head localization coils on the subject’s head are RECOMMENDED. If the coils are not placed at the location of actual anatomical landmarks, these latter may be marked with a piece of felt-tip taped to the skin. Please note that the photos may need to be cropped or blurred to conceal identifying features prior to sharing, depending on the terms of the consent form signed by the participant.
 
 Example of the NAS fiducial placed between the eyebrows, rather than at the actual anatomical nasion:
-&nbsp;&nbsp; sub-0001_ses-001_acq-NAS_photo.jpg
+   sub-0001_ses-001_acq-NAS_photo.jpg
 
 ### 8.4.5 3-D head point /electrode locations file (\*_headshape.<manufacturer_specific_format>)
 Template:
 sub-<participant_label>/
 > [ses-<label>]/
-> &nbsp;&nbsp; meg/
+>    meg/
 >> [sub-<participant_label>[_ses-<label>][_acq-<label>]_headshape.<manufacturer_specific_extension>]
 
 This file is RECOMMENDED.
@@ -1390,9 +1395,9 @@ The 3-D locations of head points and/or EEG electrode locations can be digitize
 
 Example:
 sub-control01
-&nbsp; ses-01
-&nbsp;&nbsp; sub-control01_ses-01_acq-HEAD_headshape.pos
-&nbsp;&nbsp; sub-control01_ses-01_acq-ECG_headshape.pos
+  ses-01
+   sub-control01_ses-01_acq-HEAD_headshape.pos
+   sub-control01_ses-01_acq-ECG_headshape.pos
 
 Note that the \*_headshape file(s) is shared by all the runs and tasks in a session. If the subject needs to be taken out of the scanner and the head-shape has to be updated, then for MEG it could
 be considered to be a new session.
@@ -1404,11 +1409,11 @@ Example:
 sub-control01/
 sub-control02/
 sub-emptyroom/
-&nbsp; ses-20170801/
-&nbsp;&nbsp; sub-emptyroom_ses-20170801_scans.tsv
-&nbsp;&nbsp; meg/
-&nbsp;&nbsp;&nbsp;&nbsp; sub-emptyroom_ses-20170801_task-noise_meg.ds
-&nbsp;&nbsp;&nbsp;&nbsp; sub-emptyroom_ses-20170801_task-noise_meg.json
+  ses-20170801/
+   sub-emptyroom_ses-20170801_scans.tsv
+   meg/
+     sub-emptyroom_ses-20170801_task-noise_meg.ds
+     sub-emptyroom_ses-20170801_task-noise_meg.json
 
 TaskName in the \*_meg.json file should be set to “noise”.
 
@@ -1636,9 +1641,9 @@ sub-control01/
 >> sub-control01_task-nback_physio.json
 
 {
-&nbsp;&nbsp; "SamplingFrequency": 100.0,
-&nbsp;&nbsp; "StartTime": -22.345,
-&nbsp;&nbsp; "Columns": ["cardiac", "respiratory", "trigger"]
+   "SamplingFrequency": 100.0,
+   "StartTime": -22.345,
+   "Columns": ["cardiac", "respiratory", "trigger"]
 }
 
 8.7 Behavioral experiments (with no MRI)
@@ -1758,24 +1763,24 @@ The purpose of this file is to describe properties of participants such as age, 
 If the dataset includes multiple sets of participant level measurements (for example responses from multiple questionnaires) they can be split into individual files separate from participants.tsv. Those measurements should be kept in phenotype/ folder and end with the .tsv extension. They can include arbitrary set of columns, but one of them has to be participant_id with matching sub-<participant_label>.
 As with all other tabular data, those additional phenotypic information files can be accompanied by a JSON file describing the columns in detail (see Section 4.2). In addition to the column description, a section describing the measurement tool (as a whole) can be added under the name "MeasurementToolMetadata". This section consists of two keys: "Description" - a free text description of the tool, and "TermURL" a link to an entity in an ontology corresponding to this tool. For example (content of phenotype/acds_adult.json):
 {
-    &nbsp;&nbsp; "MeasurementToolMetadata": {
-        &nbsp;&nbsp;&nbsp; "Description": "Adult ADHD Clinical Diagnostic Scale V1.2",
-        &nbsp;&nbsp;&nbsp; "TermURL": "http://www.cognitiveatlas.org/task/id/trm_5586ff878155d"
-    &nbsp;&nbsp; },
-    &nbsp;&nbsp; "adhd_b": {
-        &nbsp;&nbsp;&nbsp; "Description": "B. CHILDHOOD ONSET OF ADHD (PRIOR TO AGE 7)",
-        &nbsp;&nbsp;&nbsp; "Levels": {
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "1": "YES",
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "2": "NO"
-        &nbsp;&nbsp;&nbsp; }
-     &nbsp;&nbsp; },
-     &nbsp;&nbsp; "adhd_c_dx": {
-        &nbsp;&nbsp;&nbsp; "Description": "As child met A, B, C, D, E and F diagnostic criteria",
-        &nbsp;&nbsp;&nbsp; "Levels": {
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "1": "YES",
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "2": "NO"
-        &nbsp;&nbsp;&nbsp; }
-     &nbsp;&nbsp; },
+       "MeasurementToolMetadata": {
+            "Description": "Adult ADHD Clinical Diagnostic Scale V1.2",
+            "TermURL": "http://www.cognitiveatlas.org/task/id/trm_5586ff878155d"
+       },
+       "adhd_b": {
+            "Description": "B. CHILDHOOD ONSET OF ADHD (PRIOR TO AGE 7)",
+            "Levels": {
+                  "1": "YES",
+                  "2": "NO"
+            }
+        },
+        "adhd_c_dx": {
+            "Description": "As child met A, B, C, D, E and F diagnostic criteria",
+            "Levels": {
+                  "1": "YES",
+                  "2": "NO"
+            }
+        },
 }
 
 Please note that in this example "MeasurementToolMetadata" includes
@@ -2134,13 +2139,13 @@ Alternatively if the same HED tags apply to a group of events with the same tria
 ---------------------
 
 {
-    &nbsp;&nbsp; "trial_type": {
-    &nbsp;&nbsp;&nbsp; "HED": {
-    &nbsp;&nbsp;&nbsp;&nbsp; "fixationCross": "Event/Category/Experimental stimulus, Event/Label/CrossFix, Event/Description/A cross appears at screen center to serve as a fixation point, Sensory presentation/Visual, Item/Object/2D Shape/Cross, Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, Attribute/Location/Screen/Center",
-    &nbsp;&nbsp;&nbsp;&nbsp; "target": "Event/Label/Target image, Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed., Event/Category/Experimental stimulus, (Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, Sensory presentation/Visual/Rendering type/Screen/2D), (Item/Natural scene/Arial/Satellite, Sensory presentation/Visual/Rendering type/Screen/2D)",
-    &nbsp;&nbsp;&nbsp;&nbsp; "nontarget": "Event/Label/Non-target image, Event/Description/A non-target image is displayed for about 8 milliseconds, Event/Category/Experimental stimulus, (Item/Natural scene/Arial/Satellite, Participant/Effect/Cognitive/Expected/Non-target, Sensory presentation/Visual/Rendering type/Screen/2D), Attribute/Onset"
-    &nbsp;&nbsp;&nbsp; }
-    &nbsp;&nbsp; }
+       "trial_type": {
+        "HED": {
+         "fixationCross": "Event/Category/Experimental stimulus, Event/Label/CrossFix, Event/Description/A cross appears at screen center to serve as a fixation point, Sensory presentation/Visual, Item/Object/2D Shape/Cross, Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, Attribute/Location/Screen/Center",
+         "target": "Event/Label/Target image, Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed., Event/Category/Experimental stimulus, (Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, Sensory presentation/Visual/Rendering type/Screen/2D), (Item/Natural scene/Arial/Satellite, Sensory presentation/Visual/Rendering type/Screen/2D)",
+         "nontarget": "Event/Label/Non-target image, Event/Description/A non-target image is displayed for about 8 milliseconds, Event/Category/Experimental stimulus, (Item/Natural scene/Arial/Satellite, Participant/Effect/Cognitive/Expected/Non-target, Sensory presentation/Visual/Rendering type/Screen/2D), Attribute/Onset"
+        }
+       }
 }
 
 14 Appendix IV: Entity table
