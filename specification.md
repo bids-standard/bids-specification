@@ -860,7 +860,7 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
     </tr>
     <tr>
       <td>ScanningSequence</td>
-      <td>RECOMMENDED. Description of the type of data acquired. Corresponds to DICOM Tag 0018, 0020 “Sequence Sequence”.</td>
+      <td>RECOMMENDED. Description of the type of data acquired. Corresponds to DICOM Tag 0018, 0020 “Scanning Sequence”.</td>
     </tr>
     <tr>
       <td>SequenceVariant</td>
