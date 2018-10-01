@@ -541,104 +541,70 @@ Some meta information about the acquisition MAY be provided in an additional JSO
 ### 8.3.3 Task (including resting state) imaging data
 
 Template:
+```
 sub-<participant_label>/[ses-<session_label>/]
-> func/
->> sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_rec-<label>][_run-<index>][_echo-<index>]_bold.nii[.gz]
+    func/
+        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_rec-<label>][_run-<index>][_echo-<index>]_bold.nii[.gz]
+        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
+```
 
-Imaging data acquired during BOLD imaging. This includes but is not limited to task based fMRI as well as resting state fMRI (i.e. rest is treated as another task). For task based fMRI a corresponding task events file (see below) MUST be provided (please note that this file is not necessary for resting state scans).  For multiband acquisitions, one MAY also save the single-band reference image as type “sbref” (e.g. sub-control01_task-nback_sbref.nii.gz).
+Imaging data acquired during BOLD imaging. This includes but is not limited to task based fMRI as well as resting state fMRI (i.e. rest is treated as another task). For task based fMRI a corresponding task events file (see below) MUST be provided (please note that this file is not necessary for resting state scans).  For multiband acquisitions, one MAY also save the single-band reference image as type `sbref` (e.g. `sub-control01_task-nback_sbref.nii.gz`).
 
 Each task has a unique label MUST only include of letters and/or numbers (other characters including spaces and underscores are not allowed). Those labels MUST be consistent across subjects and sessions.
-If more than one run of the same task has been acquired a key/value pair: _run-1, _run-2, _run-3 etc. MUST be used. If only one run was acquired the “run-<index>” can be omitted. In the context of functional imaging a run is defined as the same task, but in some cases it can mean different set of stimuli (for example randomized order) and participant responses.
 
-The OPTIONAL “acq-<label>” key/value pair corresponds to a custom label one may use to distinguish different set of parameters used for acquiring the same task. For example this should be used when a study includes two resting state images - one single band and one multiband. In such case two files could have the following names: sub-01_task-rest_acq-singleband_bold.nii.gz and sub-01_task-rest_acq-multiband_bold.nii.gz, however the user is MAY choose any other label than “singleband” and “multiband” as long as they are consistent across subjects and sessions and consist only of the legal label characters.
-Similarly the optional “rec-<label>” key/value can be used to distinguish different reconstruction algorithms (for example ones using motion correction).
+If more than one run of the same task has been acquired a key/value pair: `_run-1`, `_run-2`, `_run-3` etc. MUST be used. If only one run was acquired the `run-<index>` can be omitted. In the context of functional imaging a run is defined as the same task, but in some cases it can mean different set of stimuli (for example randomized order) and participant responses.
 
-Multi echo data MUST  be split into one file per echo. Each file shares the same name with the exception of the _echo-<index> key/value. For example:
+The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label one may use to distinguish different set of parameters used for acquiring the same task. For example this should be used when a study includes two resting state images - one single band and one multiband. In such case two files could have the following names: `sub-01_task-rest_acq-singleband_bold.nii.gz` and `sub-01_task-rest_acq-multiband_bold.nii.gz`, however the user is MAY choose any other label than `singleband` and `multiband` as long as they are consistent across subjects and sessions and consist only of the legal label characters.
+
+Similarly the optional `rec-<label>` key/value can be used to distinguish different reconstruction algorithms (for example ones using motion correction).
+
+Multi echo data MUST  be split into one file per echo. Each file shares the same name with the exception of the `_echo-<index>` key/value. For example:
+```
 sub-01/
-> func/
->> sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
->> sub-01_task-cuedSGT_run-1_echo-1_bold.json
->> sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
->> sub-01_task-cuedSGT_run-1_echo-2_bold.json
->> sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
->> sub-01_task-cuedSGT_run-1_echo-3_bold.json
+   func/
+      sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
+      sub-01_task-cuedSGT_run-1_echo-1_bold.json
+      sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
+      sub-01_task-cuedSGT_run-1_echo-2_bold.json
+      sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
+      sub-01_task-cuedSGT_run-1_echo-3_bold.json
+```
 
-Please note that the <index> denotes the number/index (in a form of an integer) of the echo not the echo time value which needs to be stored in the field EchoTime of the separate JSON file.
+Please note that the `<index>` denotes the number/index (in a form of an integer) of the echo not the echo time value which needs to be stored in the field EchoTime of the separate JSON file.
 
 Some meta information about the acquisition MUST be provided in an additional JSON file.
 
-Required fields:
+#### Required fields
 
-<table>
-  <tbody>
-    <tr>
-      <td>RepetitionTime</td>
-      <td>REQUIRED. The time in seconds between the beginning of an acquisition of one volume and the beginning of acquisition of the volume following it (TR). Please note that this definition includes time between scans (when no data has been acquired) in case of sparse acquisition schemes. This value needs to be consistent with the ‘pixdim[4]’ field (after accounting for units stored in ‘xyzt_units’ field) in the NIfTI header. This field is mutually exclusive with VolumeTiming and is derived from DICOM Tag 0018, 0080 and converted to seconds.</td>
-    </tr>
-    <tr>
-      <td>VolumeTiming</td>
-      <td>REQUIRED. The time at which each volume was acquired during the acquisition. It is described using a list of times (in JSON format) referring to the onset of each volume in the BOLD series. The list must have the same length as the BOLD series, and the values must be non-negative and monotonically increasing. This field is mutually exclusive with RepetitionTime and DelayTime. If defined, this requires acquisition time (TA) be defined via either SliceTiming or AcquisitionDuration be defined.</td>
-    </tr>
-    <tr>
-      <td>TaskName</td>
-      <td>REQUIRED. Name of the task. No two tasks should have the same name. Task label (“task-<task_label>”)  included in the file name is derived from this field by removing all non alphanumeric ([a-zA-Z0-9]) characters. For example task name “faces n-back” will corresponds to task label “facesnback”.  An optional but recommended convention is to name resting state task using labels beginning with "rest".</td>
-    </tr>
-  </tbody>
-</table>
+| Field name     | Definition                                                  |
+|:---------------|:------------------------------------------------------------|
+| RepetitionTime | REQUIRED. The time in seconds between the beginning of an acquisition of one volume and the beginning of acquisition of the volume following it (TR). Please note that this definition includes time between scans (when no data has been acquired) in case of sparse acquisition schemes. This value needs to be consistent with the `pixdim[4]` field (after accounting for units stored in `xyzt_units` field) in the NIfTI header. This field is mutually exclusive with `VolumeTiming` and is derived from DICOM Tag 0018, 0080 and converted to seconds. |
+| VolumeTiming   | REQUIRED. The time at which each volume was acquired during the acquisition. It is described using a list of times (in JSON format) referring to the onset of each volume in the BOLD series. The list must have the same length as the BOLD series, and the values must be non-negative and monotonically increasing. This field is mutually exclusive with RepetitionTime and `DelayTime`. If defined, this requires acquisition time (TA) be defined via either SliceTiming or AcquisitionDuration be defined. |
+| TaskName       | REQUIRED. Name of the task. No two tasks should have the same name. Task label (`task-`)  included in the file name is derived from this field by removing all non alphanumeric (``[a-zA-Z0-9]``) characters. For example task name `faces n-back` will corresponds to task label `facesnback`.  An optional but RECOMMENDED convention is to name resting state task using labels beginning with `rest`. |
+
 
 For the fields described above and in the following section, the term “Volume” refers to a reconstruction of the object being imaged (e.g., brain or part of a brain). In case of multiple channels in a coil, the term “Volume” refers to a combined image rather than an image from each coil.
 
-Other RECOMMENDED metadata
+#### Other RECOMMENDED metadata
 
--   Timing Parameters:
+##### Timing Parameters
 
-<table>
-  <tbody>
-    <tr>
-      <td>NumberOfVolumesDiscardedByScanner</td>
-      <td>RECOMMENDED. Number of volumes ("dummy scans") discarded by the scanner (as opposed to those discarded by the user post hoc) before saving the imaging file. For example, a sequence that automatically discards the first 4 volumes before saving would have this field as 4. A sequence that doesn't discard dummy scans would have this set to 0. Please note that the onsets recorded in the _event.tsv file should always refer to the beginning of the acquisition of the first volume in the corresponding imaging file - independent of the value of NumberOfVolumesDiscardedByScanner field.</td>
-    </tr>
-    <tr>
-      <td>NumberOfVolumesDiscardedByUser</td>
-      <td>RECOMMENDED. Number of volumes ("dummy scans") discarded by the user before including the file in the dataset. If possible, including all of the volumes is strongly recommended. Please note that the onsets recorded in the _event.tsv file should always refer to the beginning of the acquisition of the first volume in the corresponding imaging file - independent of the value of NumberOfVolumesDiscardedByUser field.</td>
-    </tr>
-    <tr>
-      <td>DelayTime</td>
-      <td>RECOMMENDED. User specified time (in seconds) to delay the acquisition of data for the following volume. If the field is not present it is assumed to be set to zero. Corresponds to Siemens CSA header field lDelayTimeInTR. This field is REQUIRED for sparse sequences using the RepetitionTime field that do not have the SliceTiming field set to allowed for accurate calculation of  "acquisition time". This field is mutually exclusive with VolumeTiming.</td>
-    </tr>
-    <tr>
-      <td>AcquisitionDuration</td>
-      <td>RECOMMENDED. Duration (in seconds) of volume acquisition. Corresponds to DICOM Tag 0018,9073 “Acquisition Duration”. This field is REQUIRED for sequences that are described with the VolumeTiming field and that not have the SliceTiming field set to allowed for accurate calculation of  "acquisition time". This field is mutually exclusive with RepetitionTime.</td>
-    </tr>
-    <tr>
-      <td>DelayAfterTrigger</td>
-      <td>RECOMMENDED. Duration (in seconds) from trigger delivery to scan onset. This delay is commonly caused by adjustments and loading times. This specification is entirely independent of  NumberOfVolumesDiscardedByScanner or NumberOfVolumesDiscardedByUser, as the delay precedes the acquisition.</td>
-    </tr>
-  </tbody>
-</table>
+| Field name                        | Definition                               |
+|:----------------------------------|:-----------------------------------------|
+| NumberOfVolumesDiscardedByScanner | RECOMMENDED. Number of volumes ("dummy scans") discarded by the scanner (as opposed to those discarded by the user post hoc) before saving the imaging file. For example, a sequence that automatically discards the first 4 volumes before saving would have this field as 4. A sequence that doesn't discard dummy scans would have this set to 0. Please note that the onsets recorded in the _event.tsv file should always refer to the beginning of the acquisition of the first volume in the corresponding imaging file - independent of the value of `NumberOfVolumesDiscardedByScanner` field. |
+| NumberOfVolumesDiscardedByUser    | RECOMMENDED. Number of volumes ("dummy scans") discarded by the user before including the file in the dataset. If possible, including all of the volumes is strongly recommended. Please note that the onsets recorded in the _event.tsv file should always refer to the beginning of the acquisition of the first volume in the corresponding imaging file - independent of the value of `NumberOfVolumesDiscardedByUser` field. |
+| DelayTime                         | RECOMMENDED. User specified time (in seconds) to delay the acquisition of data for the following volume. If the field is not present it is assumed to be set to zero. Corresponds to Siemens CSA header field `lDelayTimeInTR`. This field is REQUIRED for sparse sequences using the RepetitionTime field that do not have the SliceTiming field set to allowed for accurate calculation of  "acquisition time". This field is mutually exclusive with `VolumeTiming`. |
+| AcquisitionDuration               | RECOMMENDED. Duration (in seconds) of volume acquisition. Corresponds to DICOM Tag 0018,9073 `Acquisition Duration`. This field is REQUIRED for sequences that are described with the `VolumeTiming` field and that not have the `SliceTiming` field set to allowed for accurate calculation of  "acquisition time". This field is mutually exclusive with `RepetitionTime`. |
+| DelayAfterTrigger                 | RECOMMENDED. Duration (in seconds) from trigger delivery to scan onset. This delay is commonly caused by adjustments and loading times. This specification is entirely independent of  `NumberOfVolumesDiscardedByScanner` or `NumberOfVolumesDiscardedByUser`, as the delay precedes the acquisition. |
 
--   fMRI task information
+##### fMRI task information
 
-<table>
-  <tbody>
-    <tr>
-      <td>Instructions</td>
-      <td>RECOMMENDED. Text of the instructions given to participants before the scan. This is especially important in context of resting state fMRI and distinguishing between eyes open and eyes closed paradigms.</td>
-    </tr>
-    <tr>
-      <td>TaskDescription</td>
-      <td>RECOMMENDED. Longer description of the task.</td>
-    </tr>
-    <tr>
-      <td>CogAtlasID</td>
-      <td>RECOMMENDED. URL of the corresponding <p><a href="http://www.cognitiveatlas.org/">Cognitive Atlas</a></p>Task term.</td>
-    </tr>
-    <tr>
-      <td>CogPOID</td>
-      <td>RECOMMENDED. URL of the corresponding <p><a href="http://www.cogpo.org/">CogPO</a></p>term.</td>
-    </tr>
-  </tbody>
-</table>
+| Field name      | Definition                                                 |
+|:----------------|:-----------------------------------------------------------|
+| Instructions    | RECOMMENDED. Text of the instructions given to participants before the scan. This is especially important in context of resting state fMRI and distinguishing between eyes open and eyes closed paradigms. |
+| TaskDescription | RECOMMENDED. Longer description of the task.               |
+| CogAtlasID      | RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) Task term. |
+| CogPOID         | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term. |
 
 See [8.3.1. Common MR metadata fields](#heading=h.5u721tt1h9pe) for a list of additional terms and their definitions.
 
