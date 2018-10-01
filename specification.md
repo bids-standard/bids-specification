@@ -78,9 +78,9 @@ file.
 ```
 sub-01/
     ses-test/
-		    sub-test_task-overtverbgeneration_bold.json
+        sub-test_task-overtverbgeneration_bold.json
         sub-test_task-overtverbgeneration_run-2_bold.json
-		    anat/
+        anat/
             sub-01_ses-test_T1w.nii.gz
         func/
             sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz
@@ -496,7 +496,7 @@ Template:
 ```
 sub-<participant_label>/[ses-<session_label>/]
     anat/
-        sub-<participant_label>[_ses-<session_label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>\]_<modality_label>.nii[.gz]
+        sub-<participant_label>[_ses-<session_label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>]_<modality_label>.nii[.gz]
         sub-<participant_label>[_ses-<session_label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
 ```
 
@@ -674,8 +674,8 @@ See Common MR metadata fields for a list of additional terms that can be include
 #### 8.3.4.3 JSON example:
 ```JSON
 {
-   "PhaseEncodingDirection": "j-",
-   "TotalReadoutTime": 0.095
+  "PhaseEncodingDirection": "j-",
+  "TotalReadoutTime": 0.095
 }
 ```
 
