@@ -682,90 +682,114 @@ See Common MR metadata fields for a list of additional terms that can be include
 ### 8.3.5 Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The current version of this standard considers four different scenarios. Please note that in all cases fieldmap data can be linked to a specific scan(s) it was acquired for by filling the IntendedFor field in the corresponding JSON file. For example:
+
+```JSON
 {
    "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
 }
+```
 
 The IntendedFor field may contain one or more filenames with paths relative to the subject subfolder. The path needs to use forward slashes instead of backward slashes.  Here’s an example with multiple target scans:
+
+```JSON
 {
    "IntendedFor": ["ses-pre/func/sub-01_task-motor_run-1_bold.nii.gz",
-                            "ses-post/func/sub-01_task-motor_run-1_bold.nii.gz"\]
+                   "ses-post/func/sub-01_task-motor_run-1_bold.nii.gz"]
 }
+```
 
 The IntendedFor field is optional and in case the fieldmaps do not correspond to any particular scans it does not have to be filled.
 
-Multiple fieldmaps can be stored. In such case the “_run-1”, “_run-2” should be used. The optional “acq-<label>” key/value pair corresponds to a custom label the user may use to distinguish different set of parameters.
+Multiple fieldmaps can be stored. In such case the `_run-1`, `_run-2` should be used. The optional `acq-<label>` key/value pair corresponds to a custom label the user may use to distinguish different set of parameters.
 
 #### 8.3.5.1 Case 1: Phase difference image and at least one magnitude image
 Template:
+```
 sub-<participant_label>/[ses-<session_label>/]
-> fmap/
->> sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phasediff.nii[.gz]
->> sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phasediff.json
->> sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude1.nii[.gz]
+    fmap/
+        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phasediff.nii[.gz]
+        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phasediff.json
+        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude1.nii[.gz]
+```
 
 (optional)
+```
 sub-<participant_label>/[ses-<session_label>/]
-> fmap/
->> sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude2.nii[.gz]
+    fmap/
+        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude2.nii[.gz]
+```
 
-This is a common output for build in fieldmap sequence on Siemens scanners. In this particular case the sidecar JSON file has to define the Echo Times of the two phase images used to create the difference image. EchoTime1 corresponds to the shorter echo time and EchoTime2 to the longer echo time. Similarly _magnitude1 image corresponds to the shorter echo time and the OPTIONAL _magnitude2 image to the longer echo time. For example:
+This is a common output for build in fieldmap sequence on Siemens scanners. In this particular case the sidecar JSON file has to define the Echo Times of the two phase images used to create the difference image. `EchoTime1` corresponds to the shorter echo time and `EchoTime2` to the longer echo time. Similarly `_magnitude1` image corresponds to the shorter echo time and the OPTIONAL `_magnitude2` image to the longer echo time. For example:
 
+```JSON
 {
    "EchoTime1": 0.00600,
    "EchoTime2": 0.00746,
    "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
 }
+```
 
 #### 8.3.5.2 Case 2: Two phase images and two magnitude images
 Template:
+```
 sub-<participant_label>/[ses-<session_label>/]
-> fmap/
->> sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase1.nii[.gz]
->> sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase1.json
->> sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase2.nii[.gz]
->> sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase2.json
->> sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude1.nii[.gz]
->> sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude2.nii[.gz]
+    fmap/
+        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase1.nii[.gz]
+        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase1.json
+        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase2.nii[.gz]
+        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase2.json
+        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude1.nii[.gz]
+        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude2.nii[.gz]
+```
 
-Similar to the case above, but instead of a precomputed phase difference map two separate phase images are presented. The two sidecar JSON file need to specify corresponding EchoTime values. For example:
+Similar to the case above, but instead of a precomputed phase difference map two separate phase images are presented. The two sidecar JSON file need to specify corresponding `EchoTime` values. For example:
 
+```JSON
 {
    "EchoTime": 0.00746,
    "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
 }
+```
 
 #### 8.3.5.3 Case 3: A single, real fieldmap image (showing the field inhomogeneity in each voxel)
 Template:
+```
 sub-<participant_label>/[ses-<session_label>/]
-> fmap/
->> sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude.nii[.gz]
->> sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_fieldmap.nii[.gz]
->> sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_fieldmap.json
+    fmap/
+       sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude.nii[.gz]
+       sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_fieldmap.nii[.gz]
+       sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_fieldmap.json
+```
 
-In some cases (for example GE) the scanner software will output a precomputed fieldmap denoting the B0 inhomogeneities along with a magnitude image used for coregistration. In this case the sidecar JSON file needs to include the units of the fieldmap. The possible options are: “Hz”, “rad/s”, or “Tesla”. For example:
+In some cases (for example GE) the scanner software will output a precomputed fieldmap denoting the B0 inhomogeneities along with a magnitude image used for coregistration. In this case the sidecar JSON file needs to include the units of the fieldmap. The possible options are: `Hz`, `rad/s`, or `Tesla`. For example:
 
+```JSON
 {
    "Units": "rad/s",
    "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
 }
+```
 
 #### 8.3.5.4 Case 4: Multiple phase encoded directions (“pepolar”)
-Template
+Template:
+```
 sub-<participant_label>/[ses-<session_label>/]
-> fmap/
->> sub-<label>[_ses-<session_label>][_acq-<label>]_dir-<dir_label>[_run-<run_index>]_epi.nii[.gz]
->> sub-<label>[_ses-<session_label>][_acq-<label>]_dir-<dir_label>[_run-<run_index>]_epi.json
+    fmap/
+        sub-<label>[_ses-<session_label>][_acq-<label>]_dir-<dir_label>[_run-<run_index>]_epi.nii[.gz]
+        sub-<label>[_ses-<session_label>][_acq-<label>]_dir-<dir_label>[_run-<run_index>]_epi.json
+```
 
-The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo EPI scans with different phase encoding directions to estimate the underlying inhomogeneity/deformation map. Examples of tools using this kind of images are FSL TOPUP, AFNI 3dqwarp and SPM. In such a case, the phase encoding direction is specified in the corresponding JSON file as one of: “i”, “j”, “k”, “i-”, “j-, “k-”. For these differentially phase encoded sequences, one also needs to specify the Total Readout Time defined as the time (in seconds) from the center of the first echo to the center of the last echo (aka “FSL definition” - see [here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup/Faq#How_do_I_know_what_phase-encode_vectors_to_put_into_my_--datain_text_file.3F) and [here](https://lcni.uoregon.edu/kb-articles/kb-0003) how to calculate it). For example
+The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo EPI scans with different phase encoding directions to estimate the underlying inhomogeneity/deformation map. Examples of tools using this kind of images are FSL TOPUP, AFNI 3dqwarp and SPM. In such a case, the phase encoding direction is specified in the corresponding JSON file as one of: `i`, `j`, `k`, `i-`, `j-`, `k-`. For these differentially phase encoded sequences, one also needs to specify the Total Readout Time defined as the time (in seconds) from the center of the first echo to the center of the last echo (aka “FSL definition” - see [here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup/Faq#How_do_I_know_what_phase-encode_vectors_to_put_into_my_--datain_text_file.3F) and [here](https://lcni.uoregon.edu/kb-articles/kb-0003) how to calculate it). For example
 
+```JSON
 {
    "PhaseEncodingDirection": "j-",
    "TotalReadoutTime": 0.095,
    "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
 }
+```
 
-dir_label value can be set to arbitrary alphanumeric label ([a-zA-Z0-9]+ for example “LR” or “AP”) that can help users to distinguish between different files, but should not be used to infer any scanning parameters (such as phase encoding directions) of the corresponding sequence. Please rely only on the JSON file to obtain scanning parameters. _epi files can be a 3D or 4D - in the latter case all timepoints share the same scanning parameters.  To indicate which run is intended to be used with which functional or diffusion scan the IntendedFor field in the JSON file should be used.
+`dir_label` value can be set to arbitrary alphanumeric label (``[a-zA-Z0-9]+`` for example `LR` or `AP`) that can help users to distinguish between different files, but should not be used to infer any scanning parameters (such as phase encoding directions) of the corresponding sequence. Please rely only on the JSON file to obtain scanning parameters. _epi files can be a 3D or 4D - in the latter case all timepoints share the same scanning parameters.  To indicate which run is intended to be used with which functional or diffusion scan the IntendedFor field in the JSON file should be used.
 
 8.4 Magnetoencephalography (MEG)
 ----------------------------------------
