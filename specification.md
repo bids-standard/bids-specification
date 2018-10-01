@@ -1421,6 +1421,8 @@ sub-<participant_label>/
 >    meg/
 >> [sub-<participant_label>[_ses-<label>][_acq-<label>]_headshape.<manufacturer_specific_extension>]
 
+
+![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
 This file is RECOMMENDED.
 
 The 3-D locations of head points and/or EEG electrode locations can be digitized and stored in separate files. The \*_acq-<label> can be used when more than one type of digitization in done for a session, for example when the head points are in a separate file from the EEG locations. These files are stored in the specific format of the 3-D digitizer’s manufacturer (see Appendix VI).
