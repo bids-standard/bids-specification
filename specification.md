@@ -506,7 +506,7 @@ Anatomical (structural) data acquired for that participant. Currently supported 
 |:-------------------|:---------------|:---------------------------------------|
 | T1 weighted        | T1w            |                                        |
 | T2 weighted        | T2w            |                                        |
-| T1 Rho map         | T1rho          | Quantitative T1rho brain imaging<br>http://www.ncbi.nlm.nih.gov/pubmed/24474423<br> http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/ |
+| T1 Rho map         | T1rho          | Quantitative T1rho brain imaging<br>[http://www.ncbi.nlm.nih.gov/pubmed/24474423](http://www.ncbi.nlm.nih.gov/pubmed/24474423) <br>  [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/](http://www.ncbi.nlm.nih.gov/pubmed/24474423) |
 | T1 map             | T1map          | quantitative T1 map                    |
 | T2 map             | T2map          | quantitative T2 map                    |
 | T2*                | T2star         | High resolution T2* image              |
@@ -636,40 +636,48 @@ If this information is the same for all participants, sessions and runs it can b
 
 ### 8.3.4 Diffusion imaging data
 Template:
+```
 sub-<participant_label>/[ses-<session_label>/]
-> dwi/
->> sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_dwi.nii[.gz]
->> sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_dwi.bval
->> sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_dwi.bvec
->> sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_dwi.json
+    dwi/
+       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_dwi.nii[.gz]
+       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_dwi.bval
+       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_dwi.bvec
+       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_dwi.json
+       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_sbref.nii[.gz]
+       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_sbref.json
+```
 
-Diffusion-weighted imaging data acquired for that participant. The optional “acq-<label>” key/value pair corresponds to a custom label the user may use to distinguish different set of parameters. For example this should be used when a study includes two diffusion images - one single band and one multiband. In such case two files could have the following names: sub-01_acq-singleband_dwi.nii.gz and sub-01_acq-multiband_dwi.nii.gz, however the user is free to choose any other label than “singleband” and “multiband” as long as they are consistent across subjects and sessions.
-For multiband acquisitions, one can also save the single-band reference image as type “sbref” (e.g. dwi/sub-control01_sbref.nii[.gz])
-The bvec and bval files are in the FSL format: The bvec files contain 3 rows with n space-delimited floating-point numbers (corresponding to the n volumes in the relevant NIfTI file). The first row contains the x elements, the second row contains the y elements and third row contains the z elements of a unit vector in the direction of the applied diffusion gradient, where the i-th elements in each row correspond together to the i-th volume with [0,0,0] for non-diffusion-weighted volumes.  Inherent to the FSL format for bvec specification is the fact that the coordinate system of the bvecs is with respect to the participant (i.e., defined by the axes of the corresponding dwi.nii file) and not  the magnet’s coordinate system, which means that any rotations applied to dwi.nii also need to be applied to the corresponding bvec file.
+Diffusion-weighted imaging data acquired for that participant. The optional `acq-<label>` key/value pair corresponds to a custom label the user may use to distinguish different set of parameters. For example this should be used when a study includes two diffusion images - one single band and one multiband. In such case two files could have the following names: `sub-01_acq-singleband_dwi.nii.gz` and `sub-01_acq-multiband_dwi.nii.gz`, however the user is free to choose any other label than `singleband` and `multiband` as long as they are consistent across subjects and sessions.
+For multiband acquisitions, one can also save the single-band reference image as type `sbref` (e.g. `dwi/sub-control01_sbref.nii[.gz]`)
+The bvec and bval files are in the FSL format: The bvec files contain 3 rows with n space-delimited floating-point numbers (corresponding to the n volumes in the relevant NIfTI file). The first row contains the x elements, the second row contains the y elements and third row contains the z elements of a unit vector in the direction of the applied diffusion gradient, where the i-th elements in each row correspond together to the i-th volume with `[0,0,0]` for non-diffusion-weighted volumes.  Inherent to the FSL format for bvec specification is the fact that the coordinate system of the bvecs is with respect to the participant (i.e., defined by the axes of the corresponding dwi.nii file) and not  the magnet’s coordinate system, which means that any rotations applied to dwi.nii also need to be applied to the corresponding bvec file.
 
 #### 8.3.4.1 bvec example:
 
+```
 0 0 0.021828 -0.015425 -0.70918 -0.2465
 0 0 0.80242 0.22098 -0.00063106 0.1043
 0 0 -0.59636 0.97516 -0.70503 -0.96351
+```
 
 The bval file contains the b-values (in s/mm<sup>2</sup>) corresponding to the volumes in the relevant NIfTI file), with 0 designating non-diffusion-weighted volumes, space-delimited.
 
 #### 8.3.4.2 bval example:
 
+```
 0 0 2000 2000 1000 1000
+```
 
-.bval and .bvec files can be saved on any level of the directory structure and thus define those values for all sessions and/or subjects in one place (see Inheritance principle).
+`.bval` and `.bvec` files can be saved on any level of the directory structure and thus define those values for all sessions and/or subjects in one place (see Inheritance principle).
 
 See Common MR metadata fields for a list of additional terms that can be included in the corresponding JSON file.
 
-Example JSON file:
-
 #### 8.3.4.3 JSON example:
+```JSON
 {
    "PhaseEncodingDirection": "j-",
    "TotalReadoutTime": 0.095
 }
+```
 
 ### 8.3.5 Fieldmap data
 
