@@ -205,7 +205,7 @@ Tabular files MAY be optionally accompanied by a simple data dictionary in a JSO
 
 ### 4.2.2 Example:
 
-```
+```JSON
 {
   "test": {
     "LongName": "Education level",
@@ -232,7 +232,7 @@ JavaScript Object Notation (JSON) files MUST be used for storing key/value pairs
 files MUST be in UTF-8 encoding.
 
 ### 4.3.1 Example:
-```
+```JSON
 {
   "RepetitionTime": 3,
   "Instruction": "Lie still and keep your eyes open"
@@ -265,52 +265,59 @@ Describing dates and timestamps:
 
 Overall directories hierarchy is
 
--   sub-&lt;participant\_label&gt;\[/ses-&lt;session\_label&gt;\]/&lt;data\_type&gt;/
--   [code/]
--   [derivatives/]
--   [stimuli/]
--   [sourcedata/]
+```
+sub-<participant_label>/
+    [/ses-<session_label>]/
+        <data_type>/
+[code/]
+[derivatives/]
+[stimuli/]
+[sourcedata/]
+```
 
-where square brackets [] depicts OPTIONAL content (the same nomenclature is used throughout the spec). Session level is OPTIONAL, first we detail single session example. See below (section 9) for an example with multiple sessions.
+where square brackets `[]` depicts OPTIONAL content (the same nomenclature is used throughout the spec). Session level is OPTIONAL, first we detail single session example. See below (section 9) for an example with multiple sessions.
 
 7.1 Single session example
-------------------------------
+--------------------------
 
 This is an example of the folder and file structure. Because there is only one session, the session level is not required by the
 format. For details on individual files see descriptions in the next
 section:
 
--   sub-control01
-    -   anat
-        - sub-control01\_T1w.nii.gz
-        - sub-control01\_T1w.json
-        - sub-control01\_T2w.nii.gz
-        - sub-control01\_T2w.json
-    -   func
-        - sub-control01\_task-nback\_bold.nii.gz
-        - sub-control01\_task-nback\_bold.json
-        - sub-control01\_task-nback\_events.tsv
-        - sub-control01\_task-nback\_physio.tsv.gz
-        - sub-control01\_task-nback\_physio.json
-        - sub-control01\_task-nback\_sbref.nii.gz
-    -   dwi
-        - sub-control01\_dwi.nii.gz
-        - sub-control01\_dwi.bval
-        - sub-control01\_dwi.bvec
-    -   fmap
-        - sub-control01\_phasediff.nii.gz
-        - sub-control01\_phasediff.json
-        - sub-control01\_magnitude1.nii.gz
-    -   sub-control01\_scans.tsv
-    -   Additional files and folders containing raw data may be added as needed for special cases.  They should be named using all lowercase with a name that reflects the nature of the scan (e.g., “calibration”).  Naming of files within the directory should follow the same scheme as above (e.g., “sub-control01_calibration_Xcalibration.nii.gz”)
--   code
-    -   deface.py
--   derivatives
-    -   README
--   participants.tsv
--   dataset\_description.json
--   README
--   CHANGES
+```
+sub-control01/
+    anat/
+        sub-control01_T1w.nii.gz
+        sub-control01_T1w.json
+        sub-control01_T2w.nii.gz
+        sub-control01_T2w.json
+    func/
+        sub-control01_task-nback_bold.nii.gz
+        sub-control01_task-nback_bold.json
+        sub-control01_task-nback_events.tsv
+        sub-control01_task-nback_physio.tsv.gz
+        sub-control01_task-nback_physio.json
+        sub-control01_task-nback_sbref.nii.gz
+    dwi/
+        sub-control01_dwi.nii.gz
+        sub-control01_dwi.bval
+        sub-control01_dwi.bvec
+    fmap/
+        sub-control01_phasediff.nii.gz
+        sub-control01_phasediff.json
+        sub-control01_magnitude1.nii.gz
+        sub-control01_scans.tsv
+
+    code/
+        deface.py
+    derivatives/
+    README
+    participants.tsv
+    dataset_description.json
+    CHANGES
+```
+
+Additional files and folders containing raw data may be added as needed for special cases.  They should be named using all lowercase with a name that reflects the nature of the scan (e.g., `calibration`).  Naming of files within the directory should follow the same scheme as above (e.g., `sub-control01_calibration_Xcalibration.nii.gz`)
 
 8 Detailed file descriptions
 ================================
@@ -318,81 +325,66 @@ section:
 8.1 Dataset description
 ---------------------------
 
-Template: dataset\_description.json, README, and CHANGES
+Template: `dataset_description.json` `README` `CHANGES`
 
-### 8.1.1 dataset\_description.json
+### 8.1.1 `dataset_description.json`
 
 The file dataset\_description.json is a JSON file describing the dataset. Every dataset MUST include this file with the following fields:
 
-<table>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>REQUIRED. Name of the dataset.</td>
-    </tr>
-    <tr>
-      <td>BIDSVersion</td>
-      <td>REQUIRED. The version of the BIDS standard that was used.</td>
-    </tr>
-    <tr>
-      <td>License</td>
-      <td>RECOMMENDED. What license is this dataset distributed under? The use of license name abbreviations is suggested for specifying a license. A list of common licenses with suggested abbreviations can be found in Appendix II.</td>
-    </tr>
-    <tr>
-      <td>Authors</td>
-      <td>OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.</td>
-    </tr>
-    <tr>
-      <td>Acknowledgements</td>
-      <td>OPTIONAL. Text acknowledging contributions of individuals or institutions  beyond those listed in Authors or Funding.</td>
-    </tr>
-    <tr>
-      <td>HowToAcknowledge</td>
-      <td>OPTIONAL. Instructions how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset.</td>
-    </tr>
-    <tr>
-      <td>Funding</td>
-      <td>OPTIONAL. List of sources of funding (grant numbers)</td>
-    </tr>
-    <tr>
-      <td>ReferencesAndLinks</td>
-      <td>OPTIONAL. List of references to publication that contain information on the dataset, or links.</td>
-    </tr>
-    <tr>
-      <td>DatasetDOI</td>
-      <td>OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).</td>
-    </tr>
-  </tbody>
-</table>
+| Field name | Definition |
+|--- |--- |
+|Name|REQUIRED. Name of the dataset.|
+|BIDSVersion|REQUIRED. The version of the BIDS standard that was used.|
+|License|RECOMMENDED. What license is this dataset distributed under? The use of license name abbreviations is suggested for specifying a license. A list of common licenses with suggested abbreviations can be found in Appendix II.|
+|Authors|OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.|
+|Acknowledgements|OPTIONAL. Text acknowledging contributions of individuals or institutions  beyond those listed in Authors or Funding.|
+|HowToAcknowledge|OPTIONAL. Instructions how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset.|
+|Funding|OPTIONAL. List of sources of funding (grant numbers)|
+|ReferencesAndLinks|OPTIONAL. List of references to publication that contain information on the dataset, or links.|
+|DatasetDOI|OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).|
 
 Example:
+
+```JSON
 {
-&nbsp;&nbsp; "Name": "The mother of all experiments",
-&nbsp;&nbsp; "BIDSVersion":  "1.0.1",
-&nbsp;&nbsp; "License": "CC0",
-&nbsp;&nbsp; "Authors": ["Paul Broca", "Carl Wernicke"],
-&nbsp;&nbsp; "Acknowledgements": "Special thanks to Korbinian Brodmann for help in formatting this dataset in BIDS. We thank Alan Lloyd Hodgkin and Andrew Huxley for helpful comments and discussions about the experiment and manuscript; Hermann Ludwig Helmholtz for administrative support; and Claudius Galenus for providing data for the medial-to-lateral index analysis.",
-&nbsp;&nbsp; "HowToAcknowledge": "Please cite this paper: https://www.ncbi.nlm.nih.gov/pubmed/001012092119281",
-&nbsp;&nbsp; "Funding": ["National Institute of Neuroscience Grant F378236MFH1", "National Institute of Neuroscience Grant 5RMZ0023106"],
-&nbsp;&nbsp; "ReferencesAndLinks": ["https://www.ncbi.nlm.nih.gov/pubmed/001012092119281", "Alzheimer A., & Kraepelin, E. (2015). Neural correlates of presenile dementia in humans. Journal of Neuroscientific Data, 2, 234001. http://doi.org/1920.8/jndata.2015.7"],
-&nbsp;&nbsp; "DatasetDOI": "10.0.2.3/dfjj.10"
+  "Name": "The mother of all experiments",
+  "BIDSVersion": "1.0.1",
+  "License": "CC0",
+  "Authors": [
+    "Paul Broca",
+    "Carl Wernicke"
+  ],
+  "Acknowledgements": "Special thanks to Korbinian Brodmann for help in formatting this dataset in BIDS. We thank Alan Lloyd Hodgkin and Andrew Huxley for helpful comments and discussions about the experiment and manuscript; Hermann Ludwig Helmholtz for administrative support; and Claudius Galenus for providing data for the medial-to-lateral index analysis.",
+  "HowToAcknowledge": "Please cite this paper: https://www.ncbi.nlm.nih.gov/pubmed/001012092119281",
+  "Funding": [
+    "National Institute of Neuroscience Grant F378236MFH1",
+    "National Institute of Neuroscience Grant 5RMZ0023106"
+  ],
+  "ReferencesAndLinks": [
+    "https://www.ncbi.nlm.nih.gov/pubmed/001012092119281",
+    "Alzheimer A., & Kraepelin, E. (2015). Neural correlates of presenile dementia in humans. Journal of Neuroscientific Data, 2, 234001. http://doi.org/1920.8/jndata.2015.7"
+  ],
+  "DatasetDOI": "10.0.2.3/dfjj.10"
 }
+```
 
-### 8.1.2 README
+### 8.1.2 `README`
 
-In addition a free form text file (README) describing the dataset in more details SHOULD be provided.
+In addition a free form text file (`README`) describing the dataset in more details SHOULD be provided.
 
-### 8.1.3 CHANGES
+### 8.1.3 `CHANGES`
 
-Version history of the dataset (describing changes, updates and corrections) MAY be provided in the form of a CHANGES text file. This file MUST follow the CPAN Changelog convention: [http://search.cpan.org/~haarg/CPAN-Changes-0.400002/lib/CPAN/Changes/Spec.pod](https://metacpan.org/pod/release/HAARG/CPAN-Changes-0.400002/lib/CPAN/Changes/Spec.pod). README and CHANGES files MUST be either in ASCII or UTF-8 encoding.
+Version history of the dataset (describing changes, updates and corrections) MAY be provided in the form of a `CHANGES` text file. This file MUST follow the CPAN Changelog convention: [http://search.cpan.org/~haarg/CPAN-Changes-0.400002/lib/CPAN/Changes/Spec.pod](https://metacpan.org/pod/release/HAARG/CPAN-Changes-0.400002/lib/CPAN/Changes/Spec.pod). `README` and `CHANGES` files MUST be either in ASCII or UTF-8 encoding.
 
 Example:
 
+```
 1.0.1 2015-08-27
  - Fixed slice timing information.
 
 1.0.0 2015-08-17
  - Initial release.
+```
 
 8.2 Code
 ------------
