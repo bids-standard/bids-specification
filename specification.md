@@ -1977,6 +1977,8 @@ Photos of the anatomical landmarks and/or head localization coils on the subject
 Example of the NAS fiducial placed between the eyebrows, rather than at the actual anatomical nasion:  
 &nbsp;&nbsp; sub-0001\_ses-001\_acq-NAS\_photo.jpg
 
+![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
+
 ### 8.4.5 3-D head point /electrode locations file (\*\_headshape.&lt;manufacturer\_specific\_format&gt;)  
 Template:  
 sub-&lt;participant\_label&gt;/  
