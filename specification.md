@@ -39,7 +39,7 @@ Throughout this protocol we use a list of terms. To avoid misunderstanding we cl
 3.  Session - a logical grouping of neuroimaging and behavioural data consistent across subjects. Session can (but doesn't have to) be synonymous to a visit in a longitudinal study. In general, subjects will stay in the scanner during one session. However, for example, if a subject has to leave the scanner room and then be re-positioned on the scanner bed, the set of MRI acquisitions will still be considered as a session and match sessions acquired in other subjects. Similarly, in situations where different data types are obtained over several visits (for example fMRI on one day followed by DWI the day after) those can be grouped in one session. Defining multiple sessions is appropriate when several identical or similar data acquisitions are planned and performed on all -or most- subjects, often in the case of some intervention between sessions (e.g., training).
 4.  Data acquisition - a continuous uninterrupted block of time during which a brain scanning instrument was acquiring data according to particular scanning sequence/protocol.
 5.  Data type - a functional group of different types of  data. In BIDS we define five data types: func (task based and resting state functional MRI), dwi (diffusion weighted imaging), fmap (field inhomogeneity mapping data such as field maps), anat (structural imaging such as T1, T2, etc.), meg (magnetoencephalography).
-6.  Task - a set of structured activities performed by the participant. Tasks are usually accompanied by stimuli and responses, and can greatly vary in complexity. For the purpose of this protocol we consider the so-called “resting state” a task. In the context of brain scanning, a task is always tied to one data acquisition. Therefore, even if during one acquisition the subject performed multiple conceptually different behaviours (with different sets of instructions) they will be considered one (combined) task.
+6.  Task - a set of structured activities performed by the participant. Tasks are usually accompanied by stimuli and responses, and can greatly vary in complexity. For the purpose of this protocol we consider the so-called "resting state" a task. In the context of brain scanning, a task is always tied to one data acquisition. Therefore, even if during one acquisition the subject performed multiple conceptually different behaviours (with different sets of instructions) they will be considered one (combined) task.
 7.  Event - a stimulus or subject response recorded during a task. Each event has an onset time and duration. Note that not all tasks will have recorded events (e.g., resting state).
 8.  Run - an uninterrupted repetition of data acquisition that has the same acquisition parameters and task (however events can change from run to run due to different subject response or randomized nature of the stimuli). Run is a synonym of a data acquisition.
 
@@ -399,7 +399,7 @@ Source code of scripts that were used to prepare the dataset (for example if it 
 
 ### 8.3.1 Common metadata fields
 
-MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fields (stored in sidecar JSON files). MRI acquisition parameters are divided into several categories based on ["A checklist for fMRI acquisition methods reporting in the literature”](https://thewinnower.com/papers/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature) by Ben Inglis:
+MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fields (stored in sidecar JSON files). MRI acquisition parameters are divided into several categories based on ["A checklist for fMRI acquisition methods reporting in the literature"](https://thewinnower.com/papers/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature) by Ben Inglis:
 
 #### Scanner Hardware
 
@@ -413,7 +413,7 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
 | HardcopyDeviceSoftwareVersion | (Deprecated) Manufacturer’s designation of the software of the device that created this Hardcopy Image (the printer). Corresponds to DICOM Tag 0018, 101A `Hardcopy Device Software Version` |
 | MagneticFieldStrength         | RECOMMENDED. Nominal field strength of MR magnet in Tesla. Corresponds to DICOM Tag 0018,0087 `Magnetic Field Strength` |
 | ReceiveCoilName               | RECOMMENDED. Information describing the receiver coil. Corresponds to DICOM Tag 0018, 1250 `Receive Coil Name`, although not all vendors populate that DICOM Tag, in which case this field can be derived from an appropriate private DICOM field |
-| ReceiveCoilActiveElements     | RECOMMENDED. Information describing the active/selected elements of the receiver coil.  This doesn’t correspond to a tag in the DICOM ontology. The vendor-defined terminology for active coil elements can go in this field. As an example, for Siemens, coil channels are typically not activated/selected individually, but rather  in pre-defined selectable “groups” of individual channels, and the list of the  “groups” of elements that are active/selected in any given scan populates  the `Coil String` entry in Siemen’s private DICOM fields (e.g., `HEA;HEP` for the Siemens standard 32 ch coil when both the anterior and posterior groups are activated). This is a flexible field that can be used as most appropriate for a given vendor and coil to define the “active” coil elements. Since individual scans can sometimes not have the intended coil elements selected, it is preferable for this field to be populated directly from the DICOM for each individual scan, so that it can be used as a mechanism for checking that a given scan was collected with the intended coil elements selected |
+| ReceiveCoilActiveElements     | RECOMMENDED. Information describing the active/selected elements of the receiver coil.  This doesn’t correspond to a tag in the DICOM ontology. The vendor-defined terminology for active coil elements can go in this field. As an example, for Siemens, coil channels are typically not activated/selected individually, but rather  in pre-defined selectable "groups" of individual channels, and the list of the  "groups" of elements that are active/selected in any given scan populates  the `Coil String` entry in Siemen’s private DICOM fields (e.g., `HEA;HEP` for the Siemens standard 32 ch coil when both the anterior and posterior groups are activated). This is a flexible field that can be used as most appropriate for a given vendor and coil to define the "active" coil elements. Since individual scans can sometimes not have the intended coil elements selected, it is preferable for this field to be populated directly from the DICOM for each individual scan, so that it can be used as a mechanism for checking that a given scan was collected with the intended coil elements selected |
 | GradientSetType               | RECOMMENDED. It should be possible to infer the gradient coil from the scanner model. If not, e.g. because of a custom upgrade or use of a gradient insert set, then the specifications of the actual gradient coil should be reported independently |
 | MRTransmitCoilSequence        | RECOMMENDED. This is a relevant field if a non-standard transmit coil is used. Corresponds to DICOM Tag 0018, 9049 `MR Transmit Coil Sequence` |
 | MatrixCoilMode                | RECOMMENDED. (If used) A method for reducing the number of independent channels by combining in analog the signals from multiple coil elements. There are typically different default modes when using un-accelerated or accelerated (e.g. GRAPPA, SENSE) imaging |
@@ -428,7 +428,7 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
 | SequenceVariant             | RECOMMENDED. Variant of the ScanningSequence. Corresponds to DICOM Tag 0018, 0021 `Sequence Variant`. |
 | ScanOptions                 | RECOMMENDED. Parameters of ScanningSequence. Corresponds to DICOM Tag 0018, 0022 `Scan Options`. |
 | SequenceName                | RECOMMENDED. Manufacturer’s designation of the sequence name. Corresponds to DICOM Tag 0018, 0024 `Sequence Name`. |
-| PulseSequenceDetails        | RECOMMENDED. Information beyond pulse sequence type that identifies the specific pulse sequence used (i.e. "Standard Siemens Sequence distributed with the VB17 software,” “Siemens WIP ### version #.##,” or “Sequence written by X using a version compiled on MM/DD/YYYY”). |
+| PulseSequenceDetails        | RECOMMENDED. Information beyond pulse sequence type that identifies the specific pulse sequence used (i.e. "Standard Siemens Sequence distributed with the VB17 software," "Siemens WIP ### version #.##," or "Sequence written by X using a version compiled on MM/DD/YYYY"). |
 | NonlinearGradientCorrection | RECOMMENDED. Boolean stating if the image saved  has been corrected for gradient nonlinearities by the scanner sequence. |
 
 
@@ -442,8 +442,8 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
 | PartialFourier                 | RECOMMENDED. The fraction of partial Fourier information collected. Corresponds to DICOM Tag 0018, 9081 `Partial Fourier`. |
 | PartialFourierDirection        | RECOMMENDED. The direction where only partial Fourier information was collected. Corresponds to DICOM Tag 0018, 9036 `Partial Fourier Direction`. |
 | PhaseEncodingDirection         | RECOMMENDED. Possible values: `i`, `j`, `k`, `i-`, `j-`, `k-`. The letters `i`, `j`, `k` correspond to the first, second and third axis of the data in the NIFTI file. The polarity of the phase encoding is assumed to go from zero index to maximum index unless `-` sign is present (then the order is reversed - starting from the highest index instead of zero). `PhaseEncodingDirection` is defined as the direction along which phase is was modulated which may result in visible distortions. Note that this is not the same as the DICOM term `InPlanePhaseEncodingDirection` which can have `ROW` or `COL` values. This parameter is REQUIRED if corresponding fieldmap data is present or when using multiple runs with different phase encoding directions (which can be later used for field inhomogeneity correction). |
-| EffectiveEchoSpacing           | RECOMMENDED. The “effective” sampling interval, specified in seconds, between lines in the phase-encoding direction, defined based on the size of the reconstructed image in the phase direction.  It is frequently, but incorrectly, referred to as  “dwell time” (see DwellTime parameter below for actual dwell time).  It is  required for unwarping distortions using field maps. Note that beyond just in-plane acceleration, a variety of other manipulations to the phase encoding need to be accounted for properly, including partial fourier, phase oversampling, phase resolution, phase field-of-view and interpolation. This parameter is REQUIRED if corresponding fieldmap data is present. |
-| TotalReadoutTime               | RECOMMENDED. This is actually the “effective” total readout time , defined as the readout duration, specified in seconds, that would have generated data with the given level of distortion.  It is NOT the actual, physical duration of the readout train.  If `EffectiveEchoSpacing` has been properly computed, it is just `EffectiveEchoSpacing * (ReconMatrixPE - 1)`. . This parameter is REQUIRED if corresponding “field/distortion” maps acquired with opposing phase encoding directions are present  (see 8.9.4). |
+| EffectiveEchoSpacing           | RECOMMENDED. The "effective" sampling interval, specified in seconds, between lines in the phase-encoding direction, defined based on the size of the reconstructed image in the phase direction.  It is frequently, but incorrectly, referred to as  "dwell time" (see DwellTime parameter below for actual dwell time).  It is  required for unwarping distortions using field maps. Note that beyond just in-plane acceleration, a variety of other manipulations to the phase encoding need to be accounted for properly, including partial fourier, phase oversampling, phase resolution, phase field-of-view and interpolation. This parameter is REQUIRED if corresponding fieldmap data is present. |
+| TotalReadoutTime               | RECOMMENDED. This is actually the "effective" total readout time , defined as the readout duration, specified in seconds, that would have generated data with the given level of distortion.  It is NOT the actual, physical duration of the readout train.  If `EffectiveEchoSpacing` has been properly computed, it is just `EffectiveEchoSpacing * (ReconMatrixPE - 1)`. . This parameter is REQUIRED if corresponding "field/distortion" maps acquired with opposing phase encoding directions are present  (see 8.9.4). |
 
 
 #### Timing Parameters
@@ -454,7 +454,7 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
 | InversionTime          | RECOMMENDED. The inversion time (TI) for the acquisition, specified in seconds. Inversion time is the time after the middle of inverting RF pulse to middle of excitation pulse to detect the amount of longitudinal magnetization. Corresponds to DICOM Tag 0018, 0082 `Inversion Time`  (please note that the DICOM term is in milliseconds not seconds). |
 | SliceTiming            | RECOMMENDED. The time at which each slice was acquired within each volume (frame) of  the acquisition.  Slice timing is not slice order -- rather, it  is a list of times (in JSON format) containing the time (in seconds) of each slice acquisition in relation to the beginning of volume acquisition.  The list goes through the slices along the slice axis in the slice encoding dimension (see below). Note that to ensure the proper interpretation of the `SliceTiming` field, it is important to check if the (optional) `SliceEncodingDirection` exists. In particular,  if `SliceEncodingDirection` is negative, the entries in `SliceTiming` are defined in reverse order with respect to the slice axis (i.e., the final entry in the `SliceTiming` list is the time of acquisition of slice 0). This parameter is REQUIRED for sparse sequences that do not have the `DelayTime` field set. In addition without this parameter slice time correction will not be possible. |
 | SliceEncodingDirection | RECOMMENDED. Possible values: `i`, `j`, `k`, `i-`, `j-`, `k-` (the axis of the NIfTI data along which slices were acquired, and the direction in which SliceTiming is  defined with respect to). `i`, `j`, `k` identifiers correspond to the first, second and third axis of the data in the NIfTI file. A `-` sign indicates that the contents of SliceTiming are defined in reverse order - that is, the first entry corresponds to the slice with the largest index, and the final entry corresponds to slice index zero. When present ,the axis defined by SliceEncodingDirection  needs to be consistent with the ‘slice_dim’ field in the NIfTI header. When absent, the entries in SliceTiming must be in the order of increasing slice index as defined by the NIfTI header. |
-| DwellTime              | RECOMMENDED. Actual dwell time (in seconds) of the receiver per point in the readout direction, including any oversampling.  For Siemens, this corresponds to DICOM field (0019,1018) (in ns). This value is necessary for the (optional) readout distortion correction of anatomicals in the HCP Pipelines.  It also usefully provides a handle on the readout bandwidth, which isn’t captured in the other metadata tags.  Not to be confused with `EffectiveEchoSpacing`, and the frequent mislabeling of echo spacing (which is spacing in the phase encoding direction) as “dwell time” (which is spacing in the readout direction). |
+| DwellTime              | RECOMMENDED. Actual dwell time (in seconds) of the receiver per point in the readout direction, including any oversampling.  For Siemens, this corresponds to DICOM field (0019,1018) (in ns). This value is necessary for the (optional) readout distortion correction of anatomicals in the HCP Pipelines.  It also usefully provides a handle on the readout bandwidth, which isn’t captured in the other metadata tags.  Not to be confused with `EffectiveEchoSpacing`, and the frequent mislabeling of echo spacing (which is spacing in the phase encoding direction) as "dwell time" (which is spacing in the readout direction). |
 
 
 #### RF & Contrast
@@ -466,8 +466,8 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
 
 #### Slice Acceleration
 
-| Field name                    | Definition                                   |
-|:------------------------------|:---------------------------------------------|
+| Field name                  | Definition                                     |
+|:----------------------------|:-----------------------------------------------|
 | MultibandAccelerationFactor | RECOMMENDED. The multiband factor, for multiband acquisitions. |
 
 #### Anatomical landmarks (useful for multimodal co-registration with MEG, (S)EEG, TMS, etc.)
@@ -534,8 +534,8 @@ If the structural images included in the dataset were defaced (to protect identi
 Some meta information about the acquisition MAY be provided in an additional JSON file. See Common MR metadata fields for a list of terms and their definitions. There are also some OPTIONAL JSON fields specific to anatomical scans:
 
 
-| Field name                    | Definition                                   |
-|:------------------------------|:---------------------------------------------|
+| Field name              | Definition                                         |
+|:------------------------|:---------------------------------------------------|
 | ContrastBolusIngredient | OPTIONAL. Active ingredient of agent.  Values MUST be one of: IODINE, GADOLINIUM, CARBON DIOXIDE, BARIUM, XENON Corresponds to DICOM Tag 0018,1048. |
 
 ### 8.3.3 Task (including resting state) imaging data
@@ -583,7 +583,7 @@ Some meta information about the acquisition MUST be provided in an additional 
 | TaskName       | REQUIRED. Name of the task. No two tasks should have the same name. Task label (`task-`)  included in the file name is derived from this field by removing all non alphanumeric (``[a-zA-Z0-9]``) characters. For example task name `faces n-back` will corresponds to task label `facesnback`.  An optional but RECOMMENDED convention is to name resting state task using labels beginning with `rest`. |
 
 
-For the fields described above and in the following section, the term “Volume” refers to a reconstruction of the object being imaged (e.g., brain or part of a brain). In case of multiple channels in a coil, the term “Volume” refers to a combined image rather than an image from each coil.
+For the fields described above and in the following section, the term "Volume" refers to a reconstruction of the object being imaged (e.g., brain or part of a brain). In case of multiple channels in a coil, the term "Volume" refers to a combined image rather than an image from each coil.
 
 #### Other RECOMMENDED metadata
 
@@ -770,7 +770,7 @@ In some cases (for example GE) the scanner software will output a precomputed fi
 }
 ```
 
-#### 8.3.5.4 Case 4: Multiple phase encoded directions (“pepolar”)
+#### 8.3.5.4 Case 4: Multiple phase encoded directions ("pepolar")
 Template:
 ```
 sub-<participant_label>/[ses-<session_label>/]
@@ -779,7 +779,7 @@ sub-<participant_label>/[ses-<session_label>/]
         sub-<label>[_ses-<session_label>][_acq-<label>]_dir-<dir_label>[_run-<run_index>]_epi.json
 ```
 
-The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo EPI scans with different phase encoding directions to estimate the underlying inhomogeneity/deformation map. Examples of tools using this kind of images are FSL TOPUP, AFNI 3dqwarp and SPM. In such a case, the phase encoding direction is specified in the corresponding JSON file as one of: `i`, `j`, `k`, `i-`, `j-`, `k-`. For these differentially phase encoded sequences, one also needs to specify the Total Readout Time defined as the time (in seconds) from the center of the first echo to the center of the last echo (aka “FSL definition” - see [here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup/Faq#How_do_I_know_what_phase-encode_vectors_to_put_into_my_--datain_text_file.3F) and [here](https://lcni.uoregon.edu/kb-articles/kb-0003) how to calculate it). For example
+The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo EPI scans with different phase encoding directions to estimate the underlying inhomogeneity/deformation map. Examples of tools using this kind of images are FSL TOPUP, AFNI 3dqwarp and SPM. In such a case, the phase encoding direction is specified in the corresponding JSON file as one of: `i`, `j`, `k`, `i-`, `j-`, `k-`. For these differentially phase encoded sequences, one also needs to specify the Total Readout Time defined as the time (in seconds) from the center of the first echo to the center of the last echo (aka "FSL definition" - see [here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup/Faq#How_do_I_know_what_phase-encode_vectors_to_put_into_my_--datain_text_file.3F) and [here](https://lcni.uoregon.edu/kb-articles/kb-0003) how to calculate it). For example
 
 ```JSON
 {
@@ -824,76 +824,76 @@ The `proc` label is analogous to `rec` for MR and denotes a variant of a file th
 Generic  fields
 MUST be present:
 
-|Field name|Definition|
-|:--------------- |:---------- |
-|TaskName|REQUIRED. Name of the task (for resting state use the `rest` prefix). Different Tasks SHOULD NOT have the same name. The Task label is derived from this field by removing all non alphanumeric (``[a-zA-Z0-9]``) characters.|
+| Field name | Definition                                                      |
+|:-----------|:----------------------------------------------------------------|
+| TaskName   | REQUIRED. Name of the task (for resting state use the `rest` prefix). Different Tasks SHOULD NOT have the same name. The Task label is derived from this field by removing all non alphanumeric (``[a-zA-Z0-9]``) characters. |
 
 SHOULD be present:
 For consistency between studies and institutions, we encourage users to extract the  values of these fields from the actual raw data. Whenever possible, please avoid using ad-hoc wording.
 
-|Field name|Definition|
-|:--- |:--- |
-|InstitutionName|RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.|
-|InstitutionAddress|RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.|
-|Manufacturer|RECOMMENDED. Manufacturer of the MEG system (`CTF`, `Elekta/Neuromag`, `4D/BTi`, `KIT/Yokogawa`, `ITAB`, `KRISS`, `Other`). See Appendix VII with preferred names|
-|ManufacturersModelName|RECOMMENDED. Manufacturer’s designation of the MEG scanner model (e.g. `CTF-275`). See Appendix VII with preferred names|
-|SoftwareVersions|RECOMMENDED. Manufacturer’s designation of the acquisition software.|
-|ManufacturersModelName|RECOMMENDED. Manufacturer’s designation of the MEG scanner model (e.g. `CTF-275`). See Appendix VII with preferred names|
-|SoftwareVersions|RECOMMENDED. Manufacturer’s designation of the acquisition software.|
-|TaskDescription|RECOMMENDED. Description of the task.|
-|Instructions|RECOMMENDED. Text of the instructions given to participants before the scan. This is not only important for behavioural or cognitive tasks but also in resting state paradigms (e.g. to distinguish between eyes open and eyes closed).|
-|CogAtlasID|RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) term that describes the task (e.g. Resting State with eyes closed "[http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b](http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b)")|
-|CogPOID|RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task  (e.g. Rest “[http://wiki.cogpo.org/index.php?title=Rest](http://wiki.cogpo.org/index.php?title=Rest)”)|
-|DeviceSerialNumber|RECOMMENDED. The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.|
+| Field name             | Definition                                          |
+|:-----------------------|:----------------------------------------------------|
+| InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances. |
+| InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances. |
+| Manufacturer           | RECOMMENDED. Manufacturer of the MEG system (`CTF`, `Elekta/Neuromag`, `4D/BTi`, `KIT/Yokogawa`, `ITAB`, `KRISS`, `Other`). See Appendix VII with preferred names |
+| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the MEG scanner model (e.g. `CTF-275`). See Appendix VII with preferred names |
+| SoftwareVersions       | RECOMMENDED. Manufacturer’s designation of the acquisition software. |
+| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the MEG scanner model (e.g. `CTF-275`). See Appendix VII with preferred names |
+| SoftwareVersions       | RECOMMENDED. Manufacturer’s designation of the acquisition software. |
+| TaskDescription        | RECOMMENDED. Description of the task.               |
+| Instructions           | RECOMMENDED. Text of the instructions given to participants before the scan. This is not only important for behavioural or cognitive tasks but also in resting state paradigms (e.g. to distinguish between eyes open and eyes closed). |
+| CogAtlasID             | RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) term that describes the task (e.g. Resting State with eyes closed "[http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b](http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b)") |
+| CogPOID                | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task  (e.g. Rest "[http://wiki.cogpo.org/index.php?title=Rest](http://wiki.cogpo.org/index.php?title=Rest)") |
+| DeviceSerialNumber     | RECOMMENDED. The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset. |
 
 
 Specific MEG fields
 MUST be present:
 
-|Field name|Definition|
-|:--- |:--- |
-|SamplingFrequency|REQUIRED. Sampling frequency (in Hz) of all the data in the recording, regardless of their type  (e.g., 2400)|
-|PowerLineFrequency|REQUIRED. Frequency (in Hz) of the power grid at the geographical location of the MEG instrument (i.e. 50 or 60)|
-|DewarPosition|REQUIRED. Position of the dewar during the MEG scan: `upright`, `supine` or `degrees` of angle from vertical: for example on CTF systems, upright=15°, supine = 90°.|
-|SoftwareFilters|REQUIRED. List of temporal and/or spatial software filters applied, or ideally  key:value pairs of pre-applied software filters and their parameter values: e.g., {"SSS": {"frame": "head", "badlimit": 7}}, {"SpatialCompensation": {"GradientOrder": Order of the gradient compensation}}. Write `n/a` if no software filters applied.|
-|DigitizedLandmarks|REQUIRED. Boolean (“true” or “false”) value indicating whether anatomical landmark  points (i.e. fiducials) are contained within this recording.|
-|DigitizedHeadPoints|REQUIRED. Boolean (`true` or `false`) value indicating whether head points outlining the scalp/face surface are contained within this recording.|
+| Field name          | Definition                                             |
+|:--------------------|:-------------------------------------------------------|
+| SamplingFrequency   | REQUIRED. Sampling frequency (in Hz) of all the data in the recording, regardless of their type  (e.g., 2400) |
+| PowerLineFrequency  | REQUIRED. Frequency (in Hz) of the power grid at the geographical location of the MEG instrument (i.e. 50 or 60) |
+| DewarPosition       | REQUIRED. Position of the dewar during the MEG scan: `upright`, `supine` or `degrees` of angle from vertical: for example on CTF systems, upright=15°, supine = 90°. |
+| SoftwareFilters     | REQUIRED. List of temporal and/or spatial software filters applied, or ideally  key:value pairs of pre-applied software filters and their parameter values: e.g., {"SSS": {"frame": "head", "badlimit": 7}}, {"SpatialCompensation": {"GradientOrder": Order of the gradient compensation}}. Write `n/a` if no software filters applied. |
+| DigitizedLandmarks  | REQUIRED. Boolean ("true" or "false") value indicating whether anatomical landmark  points (i.e. fiducials) are contained within this recording. |
+| DigitizedHeadPoints | REQUIRED. Boolean (`true` or `false`) value indicating whether head points outlining the scalp/face surface are contained within this recording. |
 
 
 SHOULD be present
 
-|Field name|Definition|
-|:--- |:--- |
-|MEGChannelCount|RECOMMENDED. Number of MEG channels (e.g. 275)|
-|MEGREFChannelCount|RECOMMENDED. Number of MEG reference channels (e.g. 23). For systems without such channels (e.g. Neuromag Vectorview), `MEGREFChannelCount`=0|
-|EEGChannelCount|RECOMMENDED. Number of EEG channels recorded simultaneously (e.g. 21)|
-|ECOGChannelCount|RECOMMENDED. Number of ECoG channels|
-|SEEGChannelCount|RECOMMENDED. Number of SEEG channels|
-|EOGChannelCount|RECOMMENDED. Number of EOG channels|
-|ECGChannelCount|RECOMMENDED. Number of ECG channels|
-|EMGChannelCount|RECOMMENDED. Number of EMG channels|
-|MiscChannelCount|RECOMMENDED. Number of miscellaneous analog channels for auxiliary  signals|
-|TriggerChannelCount|RECOMMENDED. Number of channels for digital (TTL bit level) triggers|
-|RecordingDuration|RECOMMENDED. Length of the recording in seconds (e.g. 3600)|
-|RecordingType|RECOMMENDED. Defines whether the recording is  `continuous` or  `epoched`; this latter limited to time windows about events of interest (e.g., stimulus presentations, subject responses etc.)|
-|EpochLength|RECOMMENDED. Duration of individual epochs in seconds (e.g. 1) in case of epoched data|
-|ContinuousHeadLocalization|RECOMMENDED. Boolean (`true` or `false`) value indicating whether continuous head localisation was performed.|
-|HeadCoilFrequency|RECOMMENDED. List of frequencies (in Hz) used by the head localisation coils (‘HLC’ in CTF systems, ‘HPI’ in Elekta, ‘COH’ in 4D/BTi) that track the subject’s head position in the MEG helmet (e.g. ``[293, 307, 314, 321]``)|
-|MaxMovement|RECOMMENDED. Maximum head movement (in mm) detected during the recording, as measured by the head localisation coils (e.g., 4.8)|
-|SubjectArtefactDescription|RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g. "Vagus Nerve Stimulator", “non-removable implant”). If this field is set to `n/a`, it will be interpreted as absence of major source of artifacts except cardiac and blinks.|
-|AssociatedEmptyRoom|RECOMMENDED. Relative path in BIDS folder structure to empty-room file associated with the subject’s MEG recording. The path needs to use forward slashes instead of backward slashes (e.g. `sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds`).|
+| Field name                 | Definition                                      |
+|:---------------------------|:------------------------------------------------|
+| MEGChannelCount            | RECOMMENDED. Number of MEG channels (e.g. 275)  |
+| MEGREFChannelCount         | RECOMMENDED. Number of MEG reference channels (e.g. 23). For systems without such channels (e.g. Neuromag Vectorview), `MEGREFChannelCount`=0 |
+| EEGChannelCount            | RECOMMENDED. Number of EEG channels recorded simultaneously (e.g. 21) |
+| ECOGChannelCount           | RECOMMENDED. Number of ECoG channels            |
+| SEEGChannelCount           | RECOMMENDED. Number of SEEG channels            |
+| EOGChannelCount            | RECOMMENDED. Number of EOG channels             |
+| ECGChannelCount            | RECOMMENDED. Number of ECG channels             |
+| EMGChannelCount            | RECOMMENDED. Number of EMG channels             |
+| MiscChannelCount           | RECOMMENDED. Number of miscellaneous analog channels for auxiliary  signals |
+| TriggerChannelCount        | RECOMMENDED. Number of channels for digital (TTL bit level) triggers |
+| RecordingDuration          | RECOMMENDED. Length of the recording in seconds (e.g. 3600) |
+| RecordingType              | RECOMMENDED. Defines whether the recording is  `continuous` or  `epoched`; this latter limited to time windows about events of interest (e.g., stimulus presentations, subject responses etc.) |
+| EpochLength                | RECOMMENDED. Duration of individual epochs in seconds (e.g. 1) in case of epoched data |
+| ContinuousHeadLocalization | RECOMMENDED. Boolean (`true` or `false`) value indicating whether continuous head localisation was performed. |
+| HeadCoilFrequency          | RECOMMENDED. List of frequencies (in Hz) used by the head localisation coils (‘HLC’ in CTF systems, ‘HPI’ in Elekta, ‘COH’ in 4D/BTi) that track the subject’s head position in the MEG helmet (e.g. ``[293, 307, 314, 321]``) |
+| MaxMovement                | RECOMMENDED. Maximum head movement (in mm) detected during the recording, as measured by the head localisation coils (e.g., 4.8) |
+| SubjectArtefactDescription | RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g. "Vagus Nerve Stimulator", "non-removable implant"). If this field is set to `n/a`, it will be interpreted as absence of major source of artifacts except cardiac and blinks. |
+| AssociatedEmptyRoom        | RECOMMENDED. Relative path in BIDS folder structure to empty-room file associated with the subject’s MEG recording. The path needs to use forward slashes instead of backward slashes (e.g. `sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds`). |
 
 
 Specific EEG fields (if recorded with MEG)
 SHOULD be present:
 
-|Field name|Definition|
-|:--- |:--- |
-|EEGPlacementScheme|OPTIONAL. Placement scheme of EEG electrodes. Either the name of a standardised placement system (e.g., "10-20") or a list of standardised electrode names (e.g. ``["Cz", "Pz"]``).|
-|ManufacturersAmplifierModelName|OPTIONAL. Manufacturer’s designation of the EEG amplifier model (e.g., `Biosemi-ActiveTwo`).|
-|CapManufacturer|OPTIONAL. Manufacturer of the EEG cap (e.g. `EasyCap`)|
-|CapManufacturersModelName|OPTIONAL. Manufacturer’s designation of the EEG cap model (e.g., `M10`)|
-|EEGReference|OPTIONAL. Description of the type of EEG reference used (e.g., `M1` for left mastoid, `average`, or `longitudinal bipolar`).|
+| Field name                      | Definition                                 |
+|:--------------------------------|:-------------------------------------------|
+| EEGPlacementScheme              | OPTIONAL. Placement scheme of EEG electrodes. Either the name of a standardised placement system (e.g., "10-20") or a list of standardised electrode names (e.g. ``["Cz", "Pz"]``). |
+| ManufacturersAmplifierModelName | OPTIONAL. Manufacturer’s designation of the EEG amplifier model (e.g., `Biosemi-ActiveTwo`). |
+| CapManufacturer                 | OPTIONAL. Manufacturer of the EEG cap (e.g. `EasyCap`) |
+| CapManufacturersModelName       | OPTIONAL. Manufacturer’s designation of the EEG cap model (e.g., `M10`) |
+| EEGReference                    | OPTIONAL. Description of the type of EEG reference used (e.g., `M1` for left mastoid, `average`, or `longitudinal bipolar`). |
 
 
 By construct, EEG when recorded simultaneously with the same MEG system , should have the same `SamplingFrequency` as MEG. Note that if EEG is recorded with a separate amplifier, it should be stored separately under a new /eeg data type (see BEP006).
@@ -948,24 +948,24 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
-|Field name|Definition|
-|:--- |:--- |
-|name|REQUIRED. Channel name (e.g., MRT012, MEG023)|
-|type|REQUIRED. Type of channel; MUST use the channel types listed below.|
-|units|REQUIRED. Physical unit of the data values recorded by this channel in SI (see Appendix V: Units for allowed symbols).|
+| Field name | Definition                                                      |
+|:-----------|:----------------------------------------------------------------|
+| name       | REQUIRED. Channel name (e.g., MRT012, MEG023)                   |
+| type       | REQUIRED. Type of channel; MUST use the channel types listed below. |
+| units      | REQUIRED. Physical unit of the data values recorded by this channel in SI (see Appendix V: Units for allowed symbols). |
 
 SHOULD be present:
 
-|Field name|Definition|
-|:--- |:--- |
-|description|OPTIONAL. Brief free-text description of the channel, or other information of interest. See examples below.|
-|sampling_frequency|OPTIONAL. Sampling rate of the channel in Hz.|
-|low_cutoff|OPTIONAL. Frequencies used for the high-pass filter applied to the channel in Hz. If no high-pass filter applied, use `n/a`.|
-|high_cutoff|OPTIONAL. Frequencies used for the low-pass filter applied to the channel in Hz. If no low-pass filter applied, use `n/a`. Note that hardware anti-aliasing in A/D conversion of all MEG/EEG electronics applies a low-pass filter; specify its frequency here if applicable.|
-|notch|OPTIONAL. Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use `n/a`.|
-|software_filters|OPTIONAL. List of temporal and/or spatial software filters applied (e.g. "SSS", ``"SpatialCompensation"``). Note that parameters should be defined in the general MEG sidecar .json file. Indicate `n/a` in the absence of software filters applied.|
-|status|OPTIONAL. Data quality observed on the channel ``(good/bad)``. A channel is considered `bad` if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in ``[status_description]``.|
-|status_description|OPTIONAL. Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in ``[status]``.|
+| Field name         | Definition                                              |
+|:-------------------|:--------------------------------------------------------|
+| description        | OPTIONAL. Brief free-text description of the channel, or other information of interest. See examples below. |
+| sampling_frequency | OPTIONAL. Sampling rate of the channel in Hz.           |
+| low_cutoff         | OPTIONAL. Frequencies used for the high-pass filter applied to the channel in Hz. If no high-pass filter applied, use `n/a`. |
+| high_cutoff        | OPTIONAL. Frequencies used for the low-pass filter applied to the channel in Hz. If no low-pass filter applied, use `n/a`. Note that hardware anti-aliasing in A/D conversion of all MEG/EEG electronics applies a low-pass filter; specify its frequency here if applicable. |
+| notch              | OPTIONAL. Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use `n/a`. |
+| software_filters   | OPTIONAL. List of temporal and/or spatial software filters applied (e.g. "SSS", ``"SpatialCompensation"``). Note that parameters should be defined in the general MEG sidecar .json file. Indicate `n/a` in the absence of software filters applied. |
+| status             | OPTIONAL. Data quality observed on the channel ``(good/bad)``. A channel is considered `bad` if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in ``[status_description]``. |
+| status_description | OPTIONAL. Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in ``[status]``. |
 
 
 Example:
@@ -1042,51 +1042,51 @@ OPTIONAL. A JSON document specifying the coordinate system(s) used for the MEG, 
 
 MEG and EEG sensors:
 
-|Field name|Description|
-|:--- |:--- |
-|MEGCoordinateSystem|REQUIRED. Defines the coordinate system for the MEG sensors. See Appendix VIII: preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in  ``[MEGCoordinateSystemDescription]``.|
-|MEGCoordinateUnits|REQUIRED. Units of the coordinates of   `MEGCoordinateSystem`.  MUST be `m`, `cm`, or `mm`.|
-|MEGCoordinateSystemDescription|OPTIONAL. Freeform text description or link to document describing the MEG coordinate system system in detail.|
-|EEGCoordinateSystem|OPTIONAL. Describes how the coordinates of the EEG sensors are to be interpreted.|
-|EEGCoordinateUnits|OPTIONAL. Units of the coordinates of `EEGCoordinateSystem`.  MUST be `m`, `cm`, or `mm`.|
-|EEGCoordinateSystemDescription|OPTIONAL. Freeform text description or link to document describing the EEG coordinate system system in detail.|
+| Field name                     | Description                                 |
+|:-------------------------------|:--------------------------------------------|
+| MEGCoordinateSystem            | REQUIRED. Defines the coordinate system for the MEG sensors. See Appendix VIII: preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in  ``[MEGCoordinateSystemDescription]``. |
+| MEGCoordinateUnits             | REQUIRED. Units of the coordinates of   `MEGCoordinateSystem`.  MUST be `m`, `cm`, or `mm`. |
+| MEGCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the MEG coordinate system system in detail. |
+| EEGCoordinateSystem            | OPTIONAL. Describes how the coordinates of the EEG sensors are to be interpreted. |
+| EEGCoordinateUnits             | OPTIONAL. Units of the coordinates of `EEGCoordinateSystem`.  MUST be `m`, `cm`, or `mm`. |
+| EEGCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the EEG coordinate system system in detail. |
 
 
 Head localization coils:
 
-|Field name|Description|
-|:--- |:--- |
-|HeadCoilCoordinates|OPTIONAL. Key:value pairs describing head localization coil labels and their coordinates, interpreted following the `HeadCoilCoordinateSystem`,  e.g., {`NAS`: ``[12.7,21.3,13.9]``, `LPA`: ``[5.2,11.3,9.6]``, `RPA`: ``[20.2,11.3,9.1]``}. Note that coils are not always placed at locations that have a known anatomical name (e.g. for Elekta, Yokogawa systems); in that case generic labels can be  used (e.g. {`coil1`: ``[12.2,21.3,12.3]``, `coil2`: ``[6.7,12.3,8.6]``, `coil3`: ``[21.9,11.0,8.1]``} ).|
-|HeadCoilCoordinateSystem|OPTIONAL. Defines the coordinate system for the coils. See Appendix VIII: preferred names of Coordinate systems. If "Other", provide definition of the coordinate system in  `HeadCoilCoordinateSystemDescription`.|
-|HeadCoilCoordinateUnits|OPTIONAL. Units of the coordinates of `HeadCoilCoordinateSystem`. MUST be `m`, `cm`, or `mm`.|
-|HeadCoilCoordinateSystemDescription|OPTIONAL. Freeform text description or link to document describing the Head Coil coordinate system system in detail.|
+| Field name                          | Description                            |
+|:------------------------------------|:---------------------------------------|
+| HeadCoilCoordinates                 | OPTIONAL. Key:value pairs describing head localization coil labels and their coordinates, interpreted following the `HeadCoilCoordinateSystem`,  e.g., {`NAS`: ``[12.7,21.3,13.9]``, `LPA`: ``[5.2,11.3,9.6]``, `RPA`: ``[20.2,11.3,9.1]``}. Note that coils are not always placed at locations that have a known anatomical name (e.g. for Elekta, Yokogawa systems); in that case generic labels can be  used (e.g. {`coil1`: ``[12.2,21.3,12.3]``, `coil2`: ``[6.7,12.3,8.6]``, `coil3`: ``[21.9,11.0,8.1]``} ). |
+| HeadCoilCoordinateSystem            | OPTIONAL. Defines the coordinate system for the coils. See Appendix VIII: preferred names of Coordinate systems. If "Other", provide definition of the coordinate system in  `HeadCoilCoordinateSystemDescription`. |
+| HeadCoilCoordinateUnits             | OPTIONAL. Units of the coordinates of `HeadCoilCoordinateSystem`. MUST be `m`, `cm`, or `mm`. |
+| HeadCoilCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the Head Coil coordinate system system in detail. |
 
 
 Digitized head points:
 
-|Field name|Description|
-|:--- |:--- |
-|DigitizedHeadPoints|OPTIONAL. Relative path to the file containing the locations of digitized head points collected during the session (e.g., `sub-01_headshape.pos`). RECOMMENDED for all MEG systems, especially for CTF and 4D/BTi. For Elekta/Neuromag the head points will be stored in the fif file.|
-|DigitizedHeadPointsCoordinateSystem|OPTIONAL. Defines the coordinate system for the digitized head points. See Appendix VIII: preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in  `DigitizedHeadPointsCoordinateSystemDescription`.|
-|DigitizedHeadPointsCoordinateUnits|OPTIONAL. Units of the coordinates of `DigitizedHeadPointsCoordinateSystem`.  MUST be `m`, `cm`, or `mm`.|
-|DigitizedHeadPointsCoordinateSystemDescription|OPTIONAL. Freeform text description or link to document describing the Digitized head Points coordinate system system in detail.|
+| Field name                                     | Description                 |
+|:-----------------------------------------------|:----------------------------|
+| DigitizedHeadPoints                            | OPTIONAL. Relative path to the file containing the locations of digitized head points collected during the session (e.g., `sub-01_headshape.pos`). RECOMMENDED for all MEG systems, especially for CTF and 4D/BTi. For Elekta/Neuromag the head points will be stored in the fif file. |
+| DigitizedHeadPointsCoordinateSystem            | OPTIONAL. Defines the coordinate system for the digitized head points. See Appendix VIII: preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in  `DigitizedHeadPointsCoordinateSystemDescription`. |
+| DigitizedHeadPointsCoordinateUnits             | OPTIONAL. Units of the coordinates of `DigitizedHeadPointsCoordinateSystem`.  MUST be `m`, `cm`, or `mm`. |
+| DigitizedHeadPointsCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the Digitized head Points coordinate system system in detail. |
 
 
 Anatomical MRI:
 
-|Field name|Description|
-|:--- |:--- |
-|IntendedFor|OPTIONAL. Path or list of path relative to the subject subfolder pointing to the structural  MRI, possibly of different types if a list is specified,  to be used with the MEG recording. The path(s) need(s) to use forward slashes instead of backward slashes (e.g. `ses-/anat/sub-01_T1w.nii.gz`).|
+| Field name  | Description                                                    |
+|:------------|:---------------------------------------------------------------|
+| IntendedFor | OPTIONAL. Path or list of path relative to the subject subfolder pointing to the structural  MRI, possibly of different types if a list is specified,  to be used with the MEG recording. The path(s) need(s) to use forward slashes instead of backward slashes (e.g. `ses-/anat/sub-01_T1w.nii.gz`). |
 
 
 Anatomical landmarks:
 
-|Field name|Description|
-|:--- |:--- |
-|AnatomicalLandmarkCoordinates|OPTIONAL. Key:value pairs of the labels and  3-D digitized locations of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem`,  e.g., {"NAS": ``[12.7,21.3,13.9]``, "LPA": ``[5.2,11.3,9.6]``, "RPA": ``[20.2,11.3,9.1]``}.|
-|AnatomicalLandmarkCoordinateSystem|OPTIONAL. Defines the coordinate system for the anatomical landmarks. See Appendix VIII: preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in  `AnatomicalLandmarkCoordinateSystemDescription`.|
-|AnatomicalLandmarkCoordinateUnits|OPTIONAL. Units of the coordinates of `AnatomicalLandmarkCoordinateSystem`.  MUST be `m`, `cm`, or  `mm`.|
-|AnatomicalLandmarkCoordinateSystemDescription|OPTIONAL. Freeform text description or link to document describing the Head Coil coordinate system system in detail.|
+| Field name                                    | Description                  |
+|:----------------------------------------------|:-----------------------------|
+| AnatomicalLandmarkCoordinates                 | OPTIONAL. Key:value pairs of the labels and  3-D digitized locations of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem`,  e.g., {"NAS": ``[12.7,21.3,13.9]``, "LPA": ``[5.2,11.3,9.6]``, "RPA": ``[20.2,11.3,9.1]``}. |
+| AnatomicalLandmarkCoordinateSystem            | OPTIONAL. Defines the coordinate system for the anatomical landmarks. See Appendix VIII: preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in  `AnatomicalLandmarkCoordinateSystemDescription`. |
+| AnatomicalLandmarkCoordinateUnits             | OPTIONAL. Units of the coordinates of `AnatomicalLandmarkCoordinateSystem`.  MUST be `m`, `cm`, or  `mm`. |
+| AnatomicalLandmarkCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the Head Coil coordinate system system in detail. |
 
 
 It is also RECOMMENDED that the MRI voxel coordinates of the actual anatomical landmarks for co-registration of MEG with structural MRI are stored in the `AnatomicalLandmarkCoordinates` field in the JSON sidecar of the corresponding T1w MRI anatomical data of the subject seen in the MEG session (see section 8.3) -  for example:
@@ -1096,9 +1096,9 @@ In principle, these locations are those of  absolute anatomical markers. However
 
 Fiducials information:
 
-|Field name|Description|
-|:--- |:--- |
-|FiducialsDescription|OPTIONAL. A freeform text field documenting the anatomical landmarks that were used and how the head localization coils were placed relative to these. This field can describe, for instance, whether the true anatomical locations of the left and right pre-auricular points were used and digitized, or rather whether  they were defined as the intersection between the tragus and the helix (the entry of the ear canal), or any other anatomical description of selected points in the vicinity of  the ears.|
+| Field name           | Description                                           |
+|:---------------------|:------------------------------------------------------|
+| FiducialsDescription | OPTIONAL. A freeform text field documenting the anatomical landmarks that were used and how the head localization coils were placed relative to these. This field can describe, for instance, whether the true anatomical locations of the left and right pre-auricular points were used and digitized, or rather whether  they were defined as the intersection between the tragus and the helix (the entry of the ear canal), or any other anatomical description of selected points in the vicinity of  the ears. |
 
 
 For more information on the definition of anatomical landmarks, please visit:
@@ -1166,187 +1166,95 @@ sub-emptyroom/
             sub-emptyroom_ses-20170801_task-noise_meg.json
 ```
 
-`TaskName` in the `*_meg.json` file should be set to “noise”.
+`TaskName` in the `*_meg.json` file should be set to "noise".
 
 8.5 Task events
--------------------
+---------------
 
 Template:
+```
 sub-<participant_label>/[ses-<session_label>]
-> func/
->> <matches>_events.tsv
->> <matches>_events.json
+    func/
+        <matches>_events.tsv
+        <matches>_events.json
+```
 
-Where <matches> corresponds to task file name. For example: sub-control01_task-nback. It is also possible to have a single _events.tsv file describing events for all participants and runs (see section “4.2 Inheritance rule”). As with all other tabular data, _events.files may be accompanied by a JSON file describing the columns in detail (see Section 4.2).
+Where `<matches>` corresponds to task file name. For example: `sub-control01_task-nback`. It is also possible to have a single _events.tsv file describing events for all participants and runs (see section "4.2 Inheritance rule"). As with all other tabular data, `_events` files may be accompanied by a JSON file describing the columns in detail (see Section 4.2).
 
-The purpose of this file is to describe timing and other properties of events recorded during the scan. Events MAY be either stimuli presented to the participant or participant responses. A single event file MAY include any combination of stimuli and response events. Events MAY overlap in time. Please mind that this does not imply that only so called “event related” study designs are supported (in contract to “block” designs) - each “block of events” can be represented by an individual row in the _events.tsv file (with a long duration). Each task events file REQUIRES a corresponding task imaging data file (but a single events file MAY be shared by multiple imaging data files - see Inheritance rule). The tabular files consists of one row per event and a set of REQUIRED and OPTIONAL columns:
+The purpose of this file is to describe timing and other properties of events recorded during the scan. Events MAY be either stimuli presented to the participant or participant responses. A single event file MAY include any combination of stimuli and response events. Events MAY overlap in time. Please mind that this does not imply that only so called "event related" study designs are supported (in contract to "block" designs) - each "block of events" can be represented by an individual row in the _events.tsv file (with a long duration). Each task events file REQUIRES a corresponding task imaging data file (but a single events file MAY be shared by multiple imaging data files - see Inheritance rule). The tabular files consists of one row per event and a set of REQUIRED and OPTIONAL columns:
 
-<table>
-  <tbody>
-    <tr>
-      <th>Column name</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td>onset</td>
-      <td>REQUIRED.  Onset (in seconds) of the event  measured from the beginning of the acquisition of the first volume in the corresponding task imaging data file.  If any acquired scans have been discarded before forming the imaging data file, ensure that a time of 0 corresponds to the first image stored. In other words negative numbers in “onset” are allowed.</td>
-    </tr>
-    <tr>
-      <td>duration</td>
-      <td>REQUIRED. Duration of the event (measured  from onset) in seconds.  Must always be either zero or positive. A "duration" value of zero implies that the delta function or event is so short as to be effectively modeled as an impulse.</td>
-    </tr>
-    <tr>
-      <td>trial_type</td>
-      <td>OPTIONAL. Primary categorisation of each trial to identify them as instances of the experimental conditions. For example: for a response inhibition task, it could take on values "go" and "no-go" to refer to response initiation and response inhibition experimental conditions.</td>
-    </tr>
-    <tr>
-      <td>response_time</td>
-      <td>OPTIONAL. Response time measured in seconds. A negative response time can be used to represent preemptive responses and “n/a” denotes a missed response.</td>
-    </tr>
-    <tr>
-      <td>stim_file</td>
-      <td>OPTIONAL. Represents the location of the stimulus file (image, video, sound etc.) presented at the given onset time. There are no restrictions on the file formats of the stimuli files, but they should be stored in the /stimuli folder (under the root folder of the dataset; with optional subfolders). The values under the stim_file column correspond to a path relative to “/stimuli”. For example “images/cat03.jpg” will be translated to “/stimuli/images/cat03.jpg”.</td>
-    </tr>
-    <tr>
-      <td>HED</td>
-      <td>OPTIONAL. Hierarchical Event Descriptor (HED) Tag. See Appendix III for details.</td>
-    </tr>
-  </tbody>
-</table>
+| Column name   | Description                                                  |
+|:--------------|:-------------------------------------------------------------|
+| onset         | REQUIRED. Onset (in seconds) of the event measured from the beginning of the acquisition of the first volume in the corresponding task imaging data file. If any acquired scans have been discarded before forming the imaging data file, ensure that a time of 0 corresponds to the first image stored. In other words negative numbers in "onset" are allowed. |
+| duration      | REQUIRED. Duration of the event (measured from onset) in seconds. Must always be either zero or positive. A "duration" value of zero implies that the delta function or event is so short as to be effectively modeled as an impulse. |
+| trial_type    | OPTIONAL. Primary categorisation of each trial to identify them as instances of the experimental conditions. For example: for a response inhibition task, it could take on values "go" and "no-go" to refer to response initiation and response inhibition experimental conditions. |
+| response_time | OPTIONAL. Response time measured in seconds. A negative response time can be used to represent preemptive responses and "n/a" denotes a missed response. |
+| stim_file     | OPTIONAL. Represents the location of the stimulus file (image, video, sound etc.) presented at the given onset time. There are no restrictions on the file formats of the stimuli files, but they should be stored in the /stimuli folder (under the root folder of the dataset; with optional subfolders). The values under the stim_file column correspond to a path relative to "/stimuli". For example "images/cat03.jpg" will be translated to "/stimuli/images/cat03.jpg". |
+| HED           | OPTIONAL. Hierarchical Event Descriptor (HED) Tag. See Appendix III for details. |
 
 An arbitrary number of additional columns can be added. Those allow describing other properties of events that could be later referred in modelling and hypothesis extensions of BIDS.
 
-In case of multi-echo task run, a single _events.tsv file will suffice for all echoes.
+In case of multi-echo task run, a single `_events.tsv` file will suffice for all echoes.
 
-### 8.5.1 Example:
+Example:
+```
 sub-control01/
-> func/
->> sub-control01_task-stopsignal_events.tsv
-
-<table>
-  <tbody>
-    <tr>
-      <th>onset</th>
-      <th>duration</th>
-      <th>trial_type</th>
-      <th>response_time</th>
-      <th>stim_file</th>
-    </tr>
-    <tr>
-      <td>1.2</td>
-      <td>0.6</td>
-      <td>go</td>
-      <td>1.435</td>
-      <td>images/red_square.jpg</td>
-    </tr>
-    <tr>
-      <td>5.6</td>
-      <td>0.6</td>
-      <td>stop</td>
-      <td>1.739</td>
-      <td>images/blue_square.jpg</td>
-    </tr>
-  </tbody>
-</table>
+    func/
+        sub-control01_task-stopsignal_events.tsv
+```
+```
+onset duration  trial_type  response_time stim_file
+1.2 0.6 go  1.435 images/red_square.jpg
+5.6 0.6 stop  1.739 images/blue_square.jpg
+```
 
 References to existing databases can also be encoded using additional columns. Example 2 includes references to the Karolinska Directed Emotional Faces (KDEF) database:
 
-### 8.5.2 Example:
+Example:
+```
 sub-control01/
-> func/
->> sub-control01_task-emoface_events.tsv
+    func/
+        sub-control01_task-emoface_events.tsv
+```
+```
+onset duration  trial_type  identifier  database  response_time
+1.2 0.6 afraid  AF01AFAF  kdef  1.435
+5.6 0.6 angry AM01AFAN  kdef  1.739
+5.6 0.6 sad AF01ANSA  kdef  1.739
+```
 
-<table>
-  <tbody>
-    <tr>
-      <th>onset</th>
-      <th>duration</th>
-      <th>trial_type</th>
-      <th>identifier</th>
-      <th>database</th>
-      <th>response_time</th>
-    </tr>
-    <tr>
-      <td>1.2</td>
-      <td>0.6</td>
-      <td>afraid</td>
-      <td>AF01AFAF</td>
-      <td>kdef</td>
-      <td>1.435</td>
-    </tr>
-    <tr>
-      <td>5.6</td>
-      <td>0.6</td>
-      <td>angry</td>
-      <td>AM01AFAN</td>
-      <td>kdef</td>
-      <td>1.739</td>
-    </tr>
-    <tr>
-      <td>5.6</td>
-      <td>0.6</td>
-      <td>sad</td>
-      <td>AF01ANSA</td>
-      <td>kdef</td>
-      <td>1.739</td>
-    </tr>
-  </tbody>
-</table>
-
-For multi-echo files events.tsv file is applicable to all echos of particular run.
-
-### 8.5.3 Example:
-> sub-01_task-cuedSGT_run-1_events.tsv
-> sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-> sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-> sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
+For multi-echo files events.tsv file is applicable to all echos of particular run:
+```
+sub-01_task-cuedSGT_run-1_events.tsv
+sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
+sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
+sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
+```
 
 8.6 Physiological and other continuous recordings
------------------------------------------------------
+-------------------------------------------------
 
 Template:
+```
 sub-<participant_label>/[ses-<session_label>/]
-> func/
->> <matches>[_recording-<label>]_physio.tsv.gz
-
-and
-
-sub-<participant_label>/[ses-<session_label>/]
-> func/
->> <matches>[_recording-<label>]_physio.json
-
-sub-<participant_label>/[ses-<session_label>/]
-> func/
->> <matches>[_recording-<label>]_stim.tsv.gz
-
-and
-
-sub-<participant_label>/[ses-<session_label>/
-> func/
->> <matches>[_recording-<label>]_stim.json
+    func/
+        <matches>[_recording-<label>]_physio.tsv.gz
+        <matches>[_recording-<label>]_physio.json
+        <matches>[_recording-<label>]_stim.tsv.gz
+        <matches>[_recording-<label>]_stim.json
+```
 
 Optional: Yes
 
-Where <matches> corresponds to task file name without the _bold.nii[.gz] suffix. For example: sub-control01_task-nback_run-1. If the same continuous recording has been used for all subjects (for example in the case where they all watched the same movie) one file can be used and placed in the root directory. For example: task-movie_stim.tsv.gz
+Where ``<matches>`` corresponds to task file name without the `_bold.nii[.gz]`` suffix. For example: `sub-control01_task-nback_run-1`. If the same continuous recording has been used for all subjects (for example in the case where they all watched the same movie) one file can be used and placed in the root directory. For example: `task-movie_stim.tsv.gz`
 
 Physiological recordings such as cardiac and respiratory signals and other continuous measures (such as parameters of a film or audio stimuli) can be specified using two files: a gzip compressed TSV file with data (without header line) and a JSON for storing start time, sampling frequency, and name of the columns from the TSV. Please note that in contrast to other TSV files this one does not include a header line. Instead the name of columns are specified in the JSON file. This is to improve compatibility with existing software (FSL PNM) as well as make support for other file formats possible in the future.  Start time should be expressed in seconds in relation to the time of start of acquisition of the first volume in the corresponding imaging file (negative values are allowed). Sampling frequency should be expressed in Hz. Recordings with different sampling frequencies and/or starting times should be stored in separate files. The following naming conventions should be used for column names:
 
-<table>
-  <tbody>
-    <tr>
-      <td>cardiac</td>
-      <td>continuous pulse measurement</td>
-    </tr>
-    <tr>
-      <td>respiratory</td>
-      <td>continuous breathing measurement</td>
-    </tr>
-    <tr>
-      <td>trigger</td>
-      <td>continuous measurement of the scanner trigger signal</td>
-    </tr>
-  </tbody>
-</table>
+| Column name | Definition                                           |
+|:------------|:-----------------------------------------------------|
+| cardiac     | continuous pulse measurement                         |
+| respiratory | continuous breathing measurement                     |
+| trigger     | continuous measurement of the scanner trigger signal |
 
 Any combination of those three can be included as well as any other stimuli related continuous variables (such as low level image properties in a video watching paradigm).
 
@@ -1356,1207 +1264,677 @@ More than one continuous recording file can be included (with different sampling
 
 For multi-echo data, physio.tsv file is applicable to all echos of particular run.
 For eg:
-> sub-01_task-cuedSGT_run-1_physio.tsv.gz
-> sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-> sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-> sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
+```
+sub-01_task-cuedSGT_run-1_physio.tsv.gz
+sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
+sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
+sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
+```
 
-### 8.6.1 Example:
+Example:
+```
 sub-control01/
-> func/
->> sub-control01_task-nback_physio.tsv.gz (after
-decompression)
-
-<table>
-  <tbody>
-    <tr>
-      <td>34</td>
-      <td>110</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>44</td>
-      <td>112</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>23</td>
-      <td>100</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-
+    func/
+        sub-control01_task-nback_physio.tsv.gz
+```
+(after decompression)
+```
+34  110 0
+44  112 0
+23  100 1
+```
+```
 sub-control01/
-> func/
->> sub-control01_task-nback_physio.json
-
+    func/
+        sub-control01_task-nback_physio.json
+```
+```JSON
 {
    "SamplingFrequency": 100.0,
    "StartTime": -22.345,
    "Columns": ["cardiac", "respiratory", "trigger"]
 }
+```
 
 8.7 Behavioral experiments (with no MRI)
-------------------------------------------------
+----------------------------------------
 Template:
+```
 sub-<participant_label>/[ses-<session_label>/]
-> beh/
->> sub-<participant_label>[_ses-<session_label>]_task-<task_name>_events.tsv
+    beh/
+        sub-<participant_label>[_ses-<session_label>]_task-<task_name>_events.tsv
+        sub-<participant_label>[_ses-<session_label>]_task-<task_name>_events.json
+        sub-<participant_label>[_ses-<session_label>]_task-<task_name>_beh.tsv
+        sub-<participant_label>[_ses-<session_label>]_task-<task_name>_beh.json
+        sub-<participant_label>[_ses-<session_label>]_task-<task_name>_physio.tsv.gz
+        sub-<participant_label>[_ses-<session_label>]_task-<task_name>_physio.json
+        sub-<participant_label>[_ses-<session_label>]_task-<task_name>_stim.tsv.gz
+        sub-<participant_label>[_ses-<session_label>]_task-<task_name>_stim.json
+```
 
-sub-<participant_label>/[ses-<session_label>/]
-> beh/
->> sub-<participant_label>[_ses-<session_label>]_task-<task_name>_events.json
-
-sub-<participant_label>/[ses-<session_label>/]
-> beh/
->> sub-<participant_label>[_ses-<session_label>]_task-<task_name>_beh.tsv
-
-sub-<participant_label>/[ses-<session_label>/]
-> beh/
->> sub-<participant_label>[_ses-<session_label>]_task-<task_name>_beh.json
-
-sub-<participant_label>/[ses-<session_label>/]
-> beh/
->> sub-<participant_label>[_ses-<session_label>]_task-<task_name>_physio.tsv.gz
-
-sub-<participant_label>/[ses-<session_label>/]
-> beh/
->> sub-<participant_label>[_ses-<session_label>]_task-<task_name>_physio.json
-
-sub-<participant_label>/[ses-<session_label>/]
-> beh/
->> sub-<participant_label>[_ses-<session_label>]_task-<task_name>_stim.tsv.gz
-
-sub-<participant_label>/[ses-<session_label>/]
-> beh/
->> sub-<participant_label>[_ses-<session_label>]_task-<task_name>_stim.json
-
-In addition to logs from behavioral experiments performed along imaging data acquisitions one can also include data from experiments performed outside of the scanner. The results of those experiments can be stored in the beh folder using the same formats for event timing (_events.tsv), metadata (_events.json), physiological (_physio.tsv.gz, _physio.json) and other continuous recordings (_stim.tsv.gz, _stim.json) as for tasks performed during MRI acquisitions. Additionally, events files that do not include the mandatory ‘onset’ and ‘duration’ columns can still be included, but should be labelled _beh.tsv rather than _events.tsv.
+In addition to logs from behavioral experiments performed along imaging data acquisitions one can also include data from experiments performed outside of the scanner. The results of those experiments can be stored in the beh folder using the same formats for event timing (`_events.tsv`), metadata (`_events.json`), physiological (`_physio.tsv.gz`, `_physio.json`) and other continuous recordings (`_stim.tsv.gz`, `_stim.json`) as for tasks performed during MRI acquisitions. Additionally, events files that do not include the mandatory `onset` and `duration` columns can still be included, but should be labelled `_beh.tsv` rather than `_events.tsv`.
 
 8.8 Scans file
-------------------
+--------------
 
 Template:
+```
 sub-<participant_label>/[ses-<session_label>/]
-> sub-<participant_label>[_ses-<session_label>]_scans.tsv
+    sub-<participant_label>[_ses-<session_label>]_scans.tsv
+```
 
 Optional: Yes
 
-The purpose of this file is to describe timing and other properties of each imaging acquisition sequence (each run .nii[.gz] file) within one session. Each .nii[.gz] file should be described by at most one row. Relative paths to files should be used under a compulsory “filename” header.
-If acquisition time is included it should be under “acq_time” header. Datetime should be expressed in the following format 2009-06-15T13:45:30 (year, month, day, hour (24h), minute, second; this is equivalent to the RFC3339 “date-time” format, time zone is always assumed as local time). For anonymization purposes all dates within one subject should be shifted by a randomly chosen (but common across all runs etc.) number of days. This way relative timing would be preserved, but chances of identifying a person based on the date and time of their scan would be decreased. Dates that are shifted for anonymization purposes should be set to a year 1900 or earlier to clearly distinguish them from unmodified data. Shifting dates is recommended, but not required.
+The purpose of this file is to describe timing and other properties of each imaging acquisition sequence (each run `.nii[.gz]` file) within one session. Each `.nii[.gz]` file should be described by at most one row. Relative paths to files should be used under a compulsory `filename` header.
+If acquisition time is included it should be under `acq_time` header. Datetime should be expressed in the following format `2009-06-15T13:45:30` (year, month, day, hour (24h), minute, second; this is equivalent to the RFC3339 "date-time" format, time zone is always assumed as local time). For anonymization purposes all dates within one subject should be shifted by a randomly chosen (but common across all runs etc.) number of days. This way relative timing would be preserved, but chances of identifying a person based on the date and time of their scan would be decreased. Dates that are shifted for anonymization purposes should be set to a year 1900 or earlier to clearly distinguish them from unmodified data. Shifting dates is recommended, but not required.
+
 Additional fields can include external behavioural measures relevant to the scan. For example vigilance questionnaire score administered after a resting state scan.
 
-### 8.8.1 Example:
-
-<table>
-  <tbody>
-    <tr>
-      <td>filename</td>
-      <td>acq_time</td>
-    </tr>
-    <tr>
-      <td>func/sub-control01_task-nback_bold.nii.gz</td>
-      <td>1877-06-15T13:45:30</td>
-    </tr>
-    <tr>
-      <td>func/sub-control01_task-motor_bold.nii.gz</td>
-      <td>1877-06-15T13:55:33</td>
-    </tr>
-  </tbody>
-</table>
+Example:
+```
+filename  acq_time
+func/sub-control01_task-nback_bold.nii.gz 1877-06-15T13:45:30
+func/sub-control01_task-motor_bold.nii.gz 1877-06-15T13:55:33
+```
 
 8.9 Participant file
-------------------------
+--------------------
 
 Template:
-(single session case)
+```
 participants.tsv
 participants.json
 phenotype/<measurement_tool_name>.tsv
 phenotype/<measurement_tool_name>.json
+```
 
 Optional: Yes
 
-The purpose of this file is to describe properties of participants such as age, handedness, sex, etc. In case of single session studies this file has one compulsory column participant_id that consists of sub-<participant_label>, followed by a list of optional columns describing participants. Each participant needs to be described by one and only one row.
+The purpose of this file is to describe properties of participants such as age, handedness, sex, etc. In case of single session studies this file has one compulsory column `participant_id` that consists of `sub-<participant_label>`, followed by a list of optional columns describing participants. Each participant needs to be described by one and only one row.
 
-### 8.9.1 participants.tsv example:
+`participants.tsv` example:
+```
+participant_id  age sex group
+sub-control01 34  M control
+sub-control02 12  F control
+sub-patient01 33  F patient
+```
 
-<table>
-  <tbody>
-    <tr>
-      <td>participant_id</td>
-      <td>age</td>
-      <td>sex</td>
-      <td>group</td>
-    </tr>
-    <tr>
-      <td>sub-control01</td>
-      <td>34</td>
-      <td>M</td>
-      <td>control</td>
-    </tr>
-    <tr>
-      <td>sub-control02</td>
-      <td>12</td>
-      <td>F</td>
-      <td>control</td>
-    </tr>
-    <tr>
-      <td>sub-patient01</td>
-      <td>33</td>
-      <td>F</td>
-      <td>patient</td>
-    </tr>
-  </tbody>
-</table>
-
-If the dataset includes multiple sets of participant level measurements (for example responses from multiple questionnaires) they can be split into individual files separate from participants.tsv. Those measurements should be kept in phenotype/ folder and end with the .tsv extension. They can include arbitrary set of columns, but one of them has to be participant_id with matching sub-<participant_label>.
-As with all other tabular data, those additional phenotypic information files can be accompanied by a JSON file describing the columns in detail (see Section 4.2). In addition to the column description, a section describing the measurement tool (as a whole) can be added under the name "MeasurementToolMetadata". This section consists of two keys: "Description" - a free text description of the tool, and "TermURL" a link to an entity in an ontology corresponding to this tool. For example (content of phenotype/acds_adult.json):
+If the dataset includes multiple sets of participant level measurements (for example responses from multiple questionnaires) they can be split into individual files separate from `participants.tsv`. Those measurements should be kept in phenotype/ folder and end with the `.tsv` extension. They can include arbitrary set of columns, but one of them has to be participant_id with matching `sub-<participant_label>`.
+As with all other tabular data, those additional phenotypic information files can be accompanied by a JSON file describing the columns in detail (see Section 4.2). In addition to the column description, a section describing the measurement tool (as a whole) can be added under the name `MeasurementToolMetadata`. This section consists of two keys: `Description` - a free text description of the tool, and `TermURL` a link to an entity in an ontology corresponding to this tool. For example (content of phenotype/acds_adult.json):
+```JSON
 {
-       "MeasurementToolMetadata": {
-            "Description": "Adult ADHD Clinical Diagnostic Scale V1.2",
-            "TermURL": "http://www.cognitiveatlas.org/task/id/trm_5586ff878155d"
-       },
-       "adhd_b": {
-            "Description": "B. CHILDHOOD ONSET OF ADHD (PRIOR TO AGE 7)",
-            "Levels": {
-                  "1": "YES",
-                  "2": "NO"
-            }
-        },
-        "adhd_c_dx": {
-            "Description": "As child met A, B, C, D, E and F diagnostic criteria",
-            "Levels": {
-                  "1": "YES",
-                  "2": "NO"
-            }
-        },
+  "MeasurementToolMetadata": {
+    "Description": "Adult ADHD Clinical Diagnostic Scale V1.2",
+    "TermURL": "http://www.cognitiveatlas.org/task/id/trm_5586ff878155d"
+  },
+  "adhd_b": {
+    "Description": "B. CHILDHOOD ONSET OF ADHD (PRIOR TO AGE 7)",
+    "Levels": {
+      "1": "YES",
+      "2": "NO"
+    }
+  },
+  "adhd_c_dx": {
+    "Description": "As child met A, B, C, D, E and F diagnostic criteria",
+    "Levels": {
+      "1": "YES",
+      "2": "NO"
+    }
+  }
 }
+```
 
-Please note that in this example "MeasurementToolMetadata" includes
-information about the questionnaire and "adhd_b" and "adhd_c_dx"
+Please note that in this example `MeasurementToolMetadata` includes
+information about the questionnaire and `adhd_b` and `adhd_c_dx`
 correspond to individual columns.
 
-In addition to the keys available to describe columns in all tabular files (LongName, Description, Levels, Units, and TermURL) the participants.json file as well as phenotypic files can also include column descriptions with Derivative field that, when set to true, indicates that values in the corresponding column is a transformation of values from other columns (for example a summary score based on a subset of items in a questionnaire).
+In addition to the keys available to describe columns in all tabular files (`LongName`, `Description`, `Levels`, `Units`, and `TermURL`) the `participants.json` file as well as phenotypic files can also include column descriptions with `Derivative` field that, when set to true, indicates that values in the corresponding column is a transformation of values from other columns (for example a summary score based on a subset of items in a questionnaire).
 
 9 Longitudinal studies with multiple sessions (visits)
-==========================================================
+======================================================
 
-Multiple sessions (visits) are encoded by adding an extra layer of directories and file names in the form of ses-<session_label>. Session label can consist only of alphanumeric characters [a-zA-Z0-9] and should be consistent across subjects. If numbers are used in session labels we recommend using zero padding (for example ses-01, ses-11 instead of ses-1, ses-11). This makes results of alphabetical sorting more intuitive. Acquisition time of session can be defined in the sessions file (see below for details).
+Multiple sessions (visits) are encoded by adding an extra layer of directories and file names in the form of `ses-<session_label>`. Session label can consist only of alphanumeric characters `[a-zA-Z0-9]` and should be consistent across subjects. If numbers are used in session labels we recommend using zero padding (for example `ses-01`, `ses-11` instead of `ses-1`, `ses-11`). This makes results of alphabetical sorting more intuitive. Acquisition time of session can be defined in the sessions file (see below for details).
 
-The extra session layer (at least one /ses-<session_label> subfolder) should be added for all subjects if at least one subject in the dataset has more than one session. Skipping the session layer for only some subjects in the dataset is not allowed. If a /ses-<session_label> subfolder is included as part of the directory hierarchy, then the same “ses-<session_label>” tag must also be included as part of the file names themselves.
+The extra session layer (at least one `/ses-<session_label>` subfolder) should be added for all subjects if at least one subject in the dataset has more than one session. Skipping the session layer for only some subjects in the dataset is not allowed. If a `/ses-<session_label>` subfolder is included as part of the directory hierarchy, then the same `ses-<session_label>` tag must also be included as part of the file names themselves.
 
--   sub-control01
-    -  ses-predrug
-        - anat
-            - sub-control01_ses-predrug_T1w.nii.gz
-            - sub-control01_ses\-predrug_T1w.json
-            - sub-control01_ses\-predrug_T2w.nii.gz
-            - sub-control01_ses\-predrug_T2w.json
-        - func
-            - sub-control01_ses\-predrug_task\-nback_bold.nii.gz
-            - sub-control01_ses\-predrug_task\-nback_bold.json
-            - sub-control01_ses\-predrug_task\-nback_events.tsv
-            - sub-control01_ses\-predrug_task\-nback_cont\-physio.tsv.gz
-            - sub-control01_ses\-predrug_task\-nback_cont\-physio.json
-            - sub-control01_ses-predrug_task-nback_sbref.nii.gz
-        - dwi
-            - sub-control01_ses-predrug_dwi.nii.gz
-            - sub-control01_ses-predrug_dwi.bval
-            - sub-control01_ses-predrug_dwi.bvec
-        - fmap
-            - sub-control01_ses-predrug_phasediff.nii.gz
-            - sub-control01_ses-predrug_phasediff.json
-            - sub-control01_ses-predrug_magnitude1.nii.gz
-        - sub-control01_ses-predrug_scans.tsv
-    - ses-postdrug
-        - func
-            - sub-control01_ses-postdrug_task-nback_bold.nii.gz
-            - sub-control01_ses-postdrug_task-nback_bold.json
-            - sub-control01_ses-postdrug_task-nback_events.tsv
-            - sub-control01_ses-postdrug_task-nback_cont-physio.tsv.gz
-            - sub-control01_ses-postdrug_task-nback_cont-physio.json
-            - sub-control01_ses-postdrug_task-nback_sbref.nii.gz
-        - fmap
-            - sub-control01_ses-postdrug_phasediff.nii.gz
-            - sub-control01_ses-postdrug_phasediff.json
-            - sub-control01_ses-postdrug_magnitude1.nii.gz
-        - sub-control01_ses-postdrug_scans.tsv
-    - sub-control01_sessions.tsv
-- participants.tsv
-- dataset_description.json
-- README
-- CHANGES
+```
+sub-control01/
+    ses-predrug/
+        anat/
+            sub-control01_ses-predrug_T1w.nii.gz
+            sub-control01_ses-predrug_T1w.json
+            sub-control01_ses-predrug_T2w.nii.gz
+            sub-control01_ses-predrug_T2w.json
+        func/
+            sub-control01_ses-predrug_task-nback_bold.nii.gz
+            sub-control01_ses-predrug_task-nback_bold.json
+            sub-control01_ses-predrug_task-nback_events.tsv
+            sub-control01_ses-predrug_task-nback_cont-physio.tsv.gz
+            sub-control01_ses-predrug_task-nback_cont-physio.json
+            sub-control01_ses-predrug_task-nback_sbref.nii.gz
+        dwi/
+            sub-control01_ses-predrug_dwi.nii.gz
+            sub-control01_ses-predrug_dwi.bval
+            sub-control01_ses-predrug_dwi.bvec
+        fmap/
+            sub-control01_ses-predrug_phasediff.nii.gz
+            sub-control01_ses-predrug_phasediff.json
+            sub-control01_ses-predrug_magnitude1.nii.gz
+        sub-control01_ses-predrug_scans.tsv
+    ses-postdrug/
+        func/
+            sub-control01_ses-postdrug_task-nback_bold.nii.gz
+            sub-control01_ses-postdrug_task-nback_bold.json
+            sub-control01_ses-postdrug_task-nback_events.tsv
+            sub-control01_ses-postdrug_task-nback_cont-physio.tsv.gz
+            sub-control01_ses-postdrug_task-nback_cont-physio.json
+            sub-control01_ses-postdrug_task-nback_sbref.nii.gz
+        fmap/
+            sub-control01_ses-postdrug_phasediff.nii.gz
+            sub-control01_ses-postdrug_phasediff.json
+            sub-control01_ses-postdrug_magnitude1.nii.gz
+        sub-control01_ses-postdrug_scans.tsv
+    sub-control01_sessions.tsv
+participants.tsv
+dataset_description.json
+README
+CHANGES
+```
 
 9.1 Sessions file
--------------------------
+-----------------
 
 Template:
+```
 sub-<participant_label>/
-> sub-<participant_label>_sessions.tsv
+    sub-<participant_label>_sessions.tsv
+```
 
 Optional: Yes
 
-In case of multiple sessions there is an option of adding an additional participant key files describing variables changing between sessions. In such case one file per participant should be added. These files need to include compulsory “session_id” column and describe each session by one and only one row. Column names in per participant key files have to be different from group level participant key column names.
+In case of multiple sessions there is an option of adding an additional participant key files describing variables changing between sessions. In such case one file per participant should be added. These files need to include compulsory `session_id` column and describe each session by one and only one row. Column names in per participant key files have to be different from group level participant key column names.
 
-### 9.1.1 Multiple sessions example:
-
-<table>
-  <tbody>
-    <tr>
-      <td>session_id</td>
-      <td>acq_time</td>
-      <td>systolic_blood_pressure</td>
-    </tr>
-    <tr>
-      <td>ses-predrug</td>
-      <td>2009-06-15T13:45:30</td>
-      <td>120</td>
-    </tr>
-    <tr>
-      <td>ses-postdrug</td>
-      <td>2009-06-16T13:45:30</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <td>ses-followup</td>
-      <td>2009-06-17T13:45:30</td>
-      <td>110</td>
-    </tr>
-  </tbody>
-</table>
-
+`_sessions.tsv` example:
+```
+session_id  acq_time  systolic_blood_pressure
+ses-predrug 2009-06-15T13:45:30 120
+ses-postdrug  2009-06-16T13:45:30 100
+ses-followup  2009-06-17T13:45:30 110
+```
 10 Multi-site or multi-center studies
-=========================================
+=====================================
 
 This version of the BIDS specification does not explicitly cover studies with data coming from multiple sites or multiple centers (such extension is planned in BIDS 2.0.0).  There are however ways to model your data without any loss in terms of metadata.
 
-10.1 Option 1: Treat each site/center as a separate dataset.
-----------------------------------------------------------------
+10.1 Option 1: Treat each site/center as a separate dataset
+-----------------------------------------------------------
 
 The simplest way of dealing with multiple sites is to treat data from each site as a separate and independent BIDS dataset with a separate participants.tsv and other metadata files. This way you can feed each dataset individually to BIDS Apps and everything should just work.
 
 10.2 Option 2: Combining sites/centers into one dataset
------------------------------------------------------------
+-------------------------------------------------------
 
-Alternatively you can combine data from all sites into one dataset. To identify which site each subjects comes from you can add a "site" column in the participants.tsv file indicating the source site. This solution allows you to analyze all of the subjects together in one dataset. One caveat is that subjects from all sites will have to have unique labels. To enforce that and improve readability you can use a subject label prefix identifying the site. For example sub-NUY001, sub-MIT002, sub-MPG002 etc. Remember that hyphens and underscores are not allowed in subject labels.
+Alternatively you can combine data from all sites into one dataset. To identify which site each subjects comes from you can add a `site` column in the `participants.tsv` file indicating the source site. This solution allows you to analyze all of the subjects together in one dataset. One caveat is that subjects from all sites will have to have unique labels. To enforce that and improve readability you can use a subject label prefix identifying the site. For example `sub-NUY001`, `sub-MIT002`, ``sub-MPG002`` etc. Remember that hyphens and underscores are not allowed in subject labels.
 
-11 Appendix I: Contributors
-=============================================
+Appendix I: Contributors
+========================
 
 Legend (source: [https://github.com/kentcdodds/all-contributors](https://github.com/kentcdodds/all-contributors))
 
-<table>
-  <tbody>
-    <tr>
-      <th>Emoji</th>
-      <th>Represents</th>
-    </tr>
-    <tr>
-      <td>💬</td>
-      <td>Answering Questions (on the mailing list, NeuroStars, GitHub, or in person)</td>
-    </tr>
-    <tr>
-      <td>🐛</td>
-      <td>Bug reports</td>
-    </tr>
-    <tr>
-      <td>📝</td>
-      <td>Blogposts</td>
-    </tr>
-    <tr>
-      <td>💻 </td>
-      <td>Code</td>
-    </tr>
-    <tr>
-      <td>📖</td>
-      <td>Documentation and specification</td>
-    </tr>
-    <tr>
-      <td>🎨</td>
-      <td>Design</td>
-    </tr>
-    <tr>
-      <td>💡</td>
-      <td>Examples</td>
-    </tr>
-    <tr>
-      <td>📋</td>
-      <td>Event Organizers</td>
-    </tr>
-    <tr>
-      <td>💵 </td>
-      <td>Financial Support</td>
-    </tr>
-    <tr>
-      <td>🔍</td>
-      <td>Funding/Grant Finders</td>
-    </tr>
-    <tr>
-      <td>🤔</td>
-      <td>Ideas & Planning</td>
-    </tr>
-    <tr>
-      <td>🚇</td>
-      <td>Infrastructure (Hosting, Build-Tools, etc)</td>
-    </tr>
-    <tr>
-      <td>🔌</td>
-      <td>Plugin/utility libraries</td>
-    </tr>
-    <tr>
-      <td>👀 </td>
-      <td>Reviewed Pull Requests</td>
-    </tr>
-    <tr>
-      <td>🔧 </td>
-      <td>Tools</td>
-    </tr>
-    <tr>
-      <td>🌍</td>
-      <td>Translation</td>
-    </tr>
-    <tr>
-      <td>⚠️</td>
-      <td>Tests</td>
-    </tr>
-    <tr>
-      <td>✅ </td>
-      <td>Tutorials</td>
-    </tr>
-    <tr>
-      <td>📢 </td>
-      <td>Talks</td>
-    </tr>
-    <tr>
-      <td>📹 </td>
-      <td>Videos</td>
-    </tr>
-  </tbody>
-</table>
+| Emoji | Represents                                                           |
+|:------|:---------------------------------------------------------------------|
+| 💬    | Answering Questions (on the mailing list, NeuroStars, GitHub, or in person) |
+| 🐛    | Bug reports                                                          |
+| 📝    | Blogposts                                                            |
+| 💻    | Code                                                                 |
+| 📖    | Documentation and specification                                      |
+| 🎨    | Design                                                               |
+| 💡    | Examples                                                             |
+| 📋    | Event Organizers                                                     |
+| 💵    | Financial Support                                                    |
+| 🔍    | Funding/Grant Finders                                                |
+| 🤔    | Ideas & Planning                                                     |
+| 🚇    | Infrastructure (Hosting, Build-Tools, etc)                           |
+| 🔌    | Plugin/utility libraries                                             |
+| 👀    | Reviewed Pull Requests                                               |
+| 🔧    | Tools                                                                |
+| 🌍    | Translation                                                          |
+| ⚠️     | Tests                                                                |
+| ✅     | Tutorials                                                            |
+| 📢    | Talks                                                                |
+| 📹    | Videos                                                               |
+
 
 The following individuals have contributed to the Brain Imaging Data Structure ecosystem (in alphabetical order).
 If you contributed to the BIDS ecosystem and your name is not listed,
 please add it.
-Stefan Appelhoff 📖💬🤔🐛💡💻
-Tibor Auer 💬📖💡🔧📢
-Sylvain Baillet 📖🔍
-Elizabeth Bock 📖💡
-Eric Bridgeford 📖🔧
-Teon L. Brooks 📖💻⚠️💬👀🤔
-Suyash Bhogawar 📖💡⚠️🔧💬
-Vince D. Calhoun 📖
-Alexander L. Cohen 🐛💻📖💬
-R. Cameron Craddock 📖📢
-Samir Das 📖
-Alejandro de la Vega 🐛💻⚠️
-Eugene P. Duff 📖
-Elizabeth DuPre 📖💡
-Eric A. Earl 🤔
-Anders Eklund 📖📢💻
-Franklin W. Feingold 📋📝✅
-Guillaume Flandin 📖💻
-Satrajit S. Ghosh 📖💻
-Tristan Glatard 📖💻
-Mathias Goncalves 💻🔧📢
-Krzysztof J. Gorgolewski 📖💻💬🤔🔍📢📝💡🔍🔌
-Alexandre Gramfort 📖💡
-Yaroslav O. Halchenko 📖📢🔧💬🐛
-Daniel A. Handwerker 📖
-Michael Hanke 📖🤔🔧🐛📢
-Michael P. Harms 📖⚠️🔧
-Richard N. Henson 📖
-Dora Hermes 📖💻✅
-Katja Heuer 🔧
-Chris Holdgraf 📖
-International Neuroinformatics Coordinating Facility 💵📋
-Mainak Jas 📖💻
-David Keator 📖
-James Kent 💬💻
-Gregory Kiar 📖💻🎨🔧
-Pamela LaMontagne 📖💡
-Kevin Larcher 💬
-Laura and John Arnold Foundation 💵
-Xiangrui Li 📖💻
-Vladimir Litvak 📖
-Dan Lurie 🤔📖🔧🔌💻💬
-Camille Maumet 📖
-Christopher J. Markiewicz 💬📖💻
-Jeremy Moreau 📖💡
-Zachary Michael 📖
-Michael P. Milham 💡🔍
-Henk Mutsaerts 📖
-National Institute of Mental Health 💵
-B. Nolan Nichols 📖
-Thomas E. Nichols 📖
-Dylan Nielson 📖💻🔧
-Guiomar Niso 📖💡📢
-Robert Oostenveld 📖🔧📢💡
-Dianne Patterson 📖
-John Pellman 📖
-Cyril Pernet 💬📖💡📋
-Dmitry Petrov 📖💻
-Russell A. Poldrack 📖🔍📢
-Jean-Baptiste Poline 📖📢🤔🎨
-Vasudev Raguram 💻🎨📖🔧
-Ariel Rokem 📖
-Gunnar Schaefer 📖
-Jan-Mathijs Schoffelen 📖
-Vanessa Sochat 📖
-Francois Tadel 📖🔌💡
-Roberto Toro 🔧
-William Triplett 📖
-Jessica A. Turner 📖
-Joseph Wexler 📖💡
-Gaël Varoquaux 📖
-Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
+-   Stefan Appelhoff 📖💬🤔🐛💡💻
+-   Tibor Auer 💬📖💡🔧📢
+-   Sylvain Baillet 📖🔍
+-   Elizabeth Bock 📖💡
+-   Eric Bridgeford 📖🔧
+-   Teon L. Brooks 📖💻⚠️💬👀🤔
+-   Suyash Bhogawar 📖💡⚠️🔧💬
+-   Vince D. Calhoun 📖
+-   Alexander L. Cohen 🐛💻📖💬
+-   R. Cameron Craddock 📖📢
+-   Samir Das 📖
+-   Alejandro de la Vega 🐛💻⚠️
+-   Eugene P. Duff 📖
+-   Elizabeth DuPre 📖💡
+-   Eric A. Earl 🤔
+-   Anders Eklund 📖📢💻
+-   Franklin W. Feingold 📋📝✅
+-   Guillaume Flandin 📖💻
+-   Satrajit S. Ghosh 📖💻
+-   Tristan Glatard 📖💻
+-   Mathias Goncalves 💻🔧📢
+-   Krzysztof J. Gorgolewski 📖💻💬🤔🔍📢📝💡🔍🔌
+-   Alexandre Gramfort 📖💡
+-   Yaroslav O. Halchenko 📖📢🔧💬🐛
+-   Daniel A. Handwerker 📖
+-   Michael Hanke 📖🤔🔧🐛📢
+-   Michael P. Harms 📖⚠️🔧
+-   Richard N. Henson 📖
+-   Dora Hermes 📖💻✅
+-   Katja Heuer 🔧
+-   Chris Holdgraf 📖
+-   International Neuroinformatics Coordinating Facility 💵📋
+-   Mainak Jas 📖💻
+-   David Keator 📖
+-   James Kent 💬💻
+-   Gregory Kiar 📖💻🎨🔧
+-   Pamela LaMontagne 📖💡
+-   Kevin Larcher 💬
+-   Laura and John Arnold Foundation 💵
+-   Xiangrui Li 📖💻
+-   Vladimir Litvak 📖
+-   Dan Lurie 🤔📖🔧🔌💻💬
+-   Camille Maumet 📖
+-   Christopher J. Markiewicz 💬📖💻
+-   Jeremy Moreau 📖💡
+-   Zachary Michael 📖
+-   Michael P. Milham 💡🔍
+-   Henk Mutsaerts 📖
+-   National Institute of Mental Health 💵
+-   B. Nolan Nichols 📖
+-   Thomas E. Nichols 📖
+-   Dylan Nielson 📖💻🔧
+-   Guiomar Niso 📖💡📢
+-   Robert Oostenveld 📖🔧📢💡
+-   Dianne Patterson 📖
+-   John Pellman 📖
+-   Cyril Pernet 💬📖💡📋
+-   Dmitry Petrov 📖💻
+-   Russell A. Poldrack 📖🔍📢
+-   Jean-Baptiste Poline 📖📢🤔🎨
+-   Vasudev Raguram 💻🎨📖🔧
+-   Ariel Rokem 📖
+-   Gunnar Schaefer 📖
+-   Jan-Mathijs Schoffelen 📖
+-   Vanessa Sochat 📖
+-   Francois Tadel 📖🔌💡
+-   Roberto Toro 🔧
+-   William Triplett 📖
+-   Jessica A. Turner 📖
+-   Joseph Wexler 📖💡
+-   Gaël Varoquaux 📖
+-   Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
 
-12 Appendix II: Licenses
-============================
+Appendix II: Licenses
+=====================
 
 This section lists a number of common licenses for datasets and defines suggested abbreviations for use in the dataset metadata
 specifications
 
-<table>
-  <tbody>
-    <tr>
-      <td>PD</td>
-      <td>Public Domain</td>
-      <td>No license required for any purpose; the work is not subject to copyright in any jurisdiction.</td>
-    </tr>
-    <tr>
-      <td>PDDL</td>
-      <td>Open Data Commons Public Domain Dedication and License</td>
-      <td>License to assign public domain like permissions without giving up the copyright: http://opendatacommons.org/licenses/pddl/</td>
-    </tr>
-    <tr>
-      <td>CC0</td>
-      <td>Creative Commons Zero 1.0 Universal.</td>
-      <td>Use this if you are a holder of copyright or database rights, and you wish to waive all your interests in your work worldwide: https://creativecommons.org/about/cc0</td>
-    </tr>
-  </tbody>
-</table>
+| Identifier | License name                                           | Description |
+|:-----------|:-------------------------------------------------------|:-------|
+| PD         | Public Domain                                          | No license required for any purpose; the work is not subject to copyright in any jurisdiction. |
+| PDDL       | Open Data Commons Public Domain Dedication and License | License to assign public domain like permissions without giving up the copyright: [http://opendatacommons.org/licenses/pddl/](http://opendatacommons.org/licenses/pddl/) |
+| CC0        | Creative Commons Zero 1.0 Universal.                   | Use this if you are a holder of copyright or database rights, and you wish to waive all your interests in your work worldwide: [http://opendatacommons.org/licenses/pddl/](https://creativecommons.org/about/cc0) |
 
-13 Appendix III: Hierarchical Event Descriptor (HED) Tags
-=============================================================
+Appendix III: Hierarchical Event Descriptor (HED) Tags
+======================================================
 
-Each event can be assigned one or more Hierarchical Event Descriptor (HED) Tag (see [https://github.com/BigEEGConsortium/HED/wiki/HED-Schema](https://github.com/BigEEGConsortium/HED-schema/wiki/HED-Schema) for more details) under the optional HED column.
-HED is a controlled vocabulary of terms describing events in a behavioural paradigm. It was originally developed with EEG in mind, but is applicable to all behavioural experiments. Each level of the hierarchical tags are delimited with a forward slash (“/”). Multiple tags are delimited with a comma. Parentheses (brackets) group tags and enable specification of multiple items and their attributes in a single HED string (see section 2.4 in HED Tagging Strategy Guide - [http://www.hedtags.org/downloads/HED%20Tagging%20Strategy%20Guide.pdf](http://www.hedtags.org/downloads/HED%20Tagging%20Strategy%20Guide.pdf)). For more information about HED and tools available to validate and match HED strings, please visit [www.hedtags.org](http://www.hedtags.org).
+Each event can be assigned one or more Hierarchical Event Descriptor (HED) Tag (see [https://github.com/BigEEGConsortium/HED/wiki/HED-Schema](https://github.com/BigEEGConsortium/HED-schema/wiki/HED-Schema) for more details) under the optional `HED` column.
+HED is a controlled vocabulary of terms describing events in a behavioural paradigm. It was originally developed with EEG in mind, but is applicable to all behavioural experiments. Each level of the hierarchical tags are delimited with a forward slash ("/"). Multiple tags are delimited with a comma. Parentheses (brackets) group tags and enable specification of multiple items and their attributes in a single HED string (see section 2.4 in HED Tagging Strategy Guide - [http://www.hedtags.org/downloads/HED%20Tagging%20Strategy%20Guide.pdf](http://www.hedtags.org/downloads/HED%20Tagging%20Strategy%20Guide.pdf)). For more information about HED and tools available to validate and match HED strings, please visit [www.hedtags.org](http://www.hedtags.org).
 
-Since dedicated fields already exist for the overall task classification (CogAtlasID and CogPOID) in the sidecar JSON files HED
+Since dedicated fields already exist for the overall task classification (`CogAtlasID` and `CogPOID`) in the sidecar JSON files HED
 tags from the Paradigm subcategory should not be used to annotate
 events.
 
-13.1 Example:
----------------------
-
+Example:
+```
 sub-control01/
-> func/
->> sub-control01_task-emoface_events.tsv
+    func/
+        sub-control01_task-emoface_events.tsv
+```
+```
+onset duration  trial_type  HED
+1.2 0.6 fixationCross Event/Category/Experimental stimulus, Event/Label/CrossFix, Event/Description/A cross appears at screen center to serve as a fixation point, Sensory presentation/Visual, Item/Object/2D Shape/Cross, Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, Attribute/Location/Screen/Center
+5.6 0.008 target  Event/Label/Target image, Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed., Event/Category/Experimental stimulus, (Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, Sensory presentation/Visual/Rendering type/Screen/2D), (Item/Natural scene/Arial/Satellite, Sensory presentation/Visual/Rendering type/Screen/2D)
+500 0.008 nontarget Event/Label/Non-target image, Event/Description/A non-target image is displayed for about 8 milliseconds, Event/Category/Experimental stimulus, (Item/Natural scene/Arial/Satellite, Participant/Effect/Cognitive/Expected/Non-target, Sensory presentation/Visual/Rendering type/Screen/2D), Attribute/Onset
+```
 
-<table>
-  <tbody>
-    <tr>
-      <td>onset</td>
-      <td>duration</td>
-      <td>trial_type</td>
-      <td>HED</td>
-    </tr>
-    <tr>
-      <td>1.2</td>
-      <td>0.6</td>
-      <td>fixationCross</td>
-      <td>Event/Category/Experimental stimulus, Event/Label/CrossFix, Event/Description/A cross appears at screen center to serve as a fixation point, Sensory presentation/Visual, Item/Object/2D Shape/Cross, Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, Attribute/Location/Screen/Center</td>
-    </tr>
-    <tr>
-      <td>5.6</td>
-      <td>0.008</td>
-      <td>target</td>
-      <td>Event/Label/Target image, Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed., Event/Category/Experimental stimulus, (Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, Sensory presentation/Visual/Rendering type/Screen/2D), (Item/Natural scene/Arial/Satellite, Sensory presentation/Visual/Rendering type/Screen/2D)</td>
-    </tr>
-    <tr>
-      <td>500</td>
-      <td>0.008</td>
-      <td>nontarget</td>
-      <td>Event/Label/Non-target image, Event/Description/A non-target image is displayed for about 8 milliseconds, Event/Category/Experimental stimulus, (Item/Natural scene/Arial/Satellite, Participant/Effect/Cognitive/Expected/Non-target, Sensory presentation/Visual/Rendering type/Screen/2D), Attribute/Onset</td>
-    </tr>
-  </tbody>
-</table>
+Alternatively if the same HED tags apply to a group of events with the same `trial_type` they can be specified in the corresponding data dictionary (`_events.json` file) using the following syntax:
 
-Alternatively if the same HED tags apply to a group of events with the same trial_type they can be specified in the corresponding data dictionary (_events.json file) using the following syntax:
-
-13.2 Example:
----------------------
-
+Example:
+```JSON
 {
-       "trial_type": {
-        "HED": {
-         "fixationCross": "Event/Category/Experimental stimulus, Event/Label/CrossFix, Event/Description/A cross appears at screen center to serve as a fixation point, Sensory presentation/Visual, Item/Object/2D Shape/Cross, Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, Attribute/Location/Screen/Center",
-         "target": "Event/Label/Target image, Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed., Event/Category/Experimental stimulus, (Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, Sensory presentation/Visual/Rendering type/Screen/2D), (Item/Natural scene/Arial/Satellite, Sensory presentation/Visual/Rendering type/Screen/2D)",
-         "nontarget": "Event/Label/Non-target image, Event/Description/A non-target image is displayed for about 8 milliseconds, Event/Category/Experimental stimulus, (Item/Natural scene/Arial/Satellite, Participant/Effect/Cognitive/Expected/Non-target, Sensory presentation/Visual/Rendering type/Screen/2D), Attribute/Onset"
-        }
-       }
+  "trial_type": {
+    "HED": {
+      "fixationCross": "Event/Category/Experimental stimulus, Event/Label/CrossFix, Event/Description/A cross appears at screen center to serve as a fixation point, Sensory presentation/Visual, Item/Object/2D Shape/Cross, Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, Attribute/Location/Screen/Center",
+      "target": "Event/Label/Target image, Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed., Event/Category/Experimental stimulus, (Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, Sensory presentation/Visual/Rendering type/Screen/2D), (Item/Natural scene/Arial/Satellite, Sensory presentation/Visual/Rendering type/Screen/2D)",
+      "nontarget": "Event/Label/Non-target image, Event/Description/A non-target image is displayed for about 8 milliseconds, Event/Category/Experimental stimulus, (Item/Natural scene/Arial/Satellite, Participant/Effect/Cognitive/Expected/Non-target, Sensory presentation/Visual/Rendering type/Screen/2D), Attribute/Onset"
+    }
+  }
 }
+```
 
-14 Appendix IV: Entity table
-====================================
+Appendix IV: Entity table
+=========================
 
-This section compiles the entities (key-value pairs) described throughout this specification, and establishes a common order within a filename. For example, if a file has an acquisition and reconstruction label, the acquisition entity must precede the reconstruction entity. Required and optional entities for a given file type are denoted. Entity formats indicate whether the value is alphanumeric (“<label>”) or numeric (“<index>”).
+This section compiles the entities (key-value pairs) described throughout this specification, and establishes a common order within a filename. For example, if a file has an acquisition and reconstruction label, the acquisition entity must precede the reconstruction entity. Required and optional entities for a given file type are denoted. Entity formats indicate whether the value is alphanumeric (`<label>`) or numeric (`<index>`).
 
-<table>
-  <tbody>
-    <tr>
-      <td>Entity</td>
-      <td>Format</td>
-      <td>anat (T1w T2w T1rho T1map T2map T2star FLAIR FLASH PD PDmap PDT2 inplaneT1 inplaneT2 angio)</td>
-      <td>anat (defacemask)</td>
-      <td>func (bold sbref events)</td>
-      <td>func (physio stim)</td>
-      <td>dwi (dwi bvec bval)</td>
-      <td>fmap (phasediff phase1 phase2 magnitude1 magnitude2 magnitude fieldmap)</td>
-      <td>fmap (epi)</td>
-      <td>beh (events stim physio)</td>
-      <td>meg (meg channels)</td>
-      <td>meg (photo coordsystem headshape)</td>
-    </tr>
-    <tr>
-      <td>Subject</td>
-      <td>sub-<label></td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-    </tr>
-    <tr>
-    <tr>
-      <td>Session</td>
-      <td>ses-<label></td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-    </tr>
-    <tr>
-      <td>Task</td>
-      <td>task-<label></td>
-      <td></td>
-      <td></td>
-      <td>Required</td>
-      <td>Required</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-    </tr>
-    <tr>
-      <td>Acquisition</td>
-      <td>acq-<label></td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td></td>
-      <td>Optional</td>
-      <td>Optional</td>
-    </tr>
-    <tr>
-      <td>Contrast Enhancing Agent</td>
-      <td>ce-<label></td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Reconstruction</td>
-      <td>rec-<label></td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Phase-Encoding Direction</td>
-      <td>dir-<label></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Required</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Run</td>
-      <td>run-<index></td>
-      <td></td>
-      <td></td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td></td>
-      <td>Optional</td>
-      <td>Optional</td>
-    </tr>
-    <tr>
-      <td>Corresponding modality</td>
-      <td>mod-<label></td>
-      <td></td>
-      <td>Optional</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Echo</td>
-      <td>echo-<index></td>
-      <td></td>
-      <td></td>
-      <td>Optional</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Recording</td>
-      <td>recording-<label></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Optional</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Processed (on device)</td>
-      <td>proc-<label></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Optional</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Optional</td>
-      <td>Optional</td>
-    </tr>
-  </tbody>
-</table>
+| Entity                   | Format              | anat<br>(T1w T2w T1rho T1map T2map T2star FLAIR FLASH PD PDmap PDT2 inplaneT1 inplaneT2 angio) | anat<br>(defacemask) | func<br>(bold sbref events) | func<br>(physio stim) | dwi<br>(dwi bvec bval) | fmap<br>(phasediff phase1 phase2 magnitude1 magnitude2 magnitude fieldmap) | fmap<br>(epi) | beh<br>(events stim physio) | meg<br>(meg channels) | meg<br>(photo coordsystem headshape) |
+|:-------------------------|:--------------------|:-----------------------------------------------------------------------------------------------|:---------------------|:----------------------------|:----------------------|:-----------------------|:---------------------------------------------------------------------------|:--------------|:----------------------------|:----------------------|:--|
+| Subject                  | `sub-<label>`       | Required                                                                                       | Required             | Required                    | Required              | Required               | Required                                                                   | Required      | Required                    | Required              | Required |
+| Session                  | `ses-<label>`       | Optional                                                                                       | Optional             | Optional                    | Optional              | Optional               | Optional                                                                   | Optional      | Optional                    | Optional              | Optional |
+| Task                     | `task-<label>`      |                                                                                                |                      | Required                    | Required              |                        |                                                                            |               | Required                    | Required              | Required |
+| Acquisition              | `acq-<label>`       | Optional                                                                                       | Optional             | Optional                    | Optional              | Optional               | Optional                                                                   | Optional      |                             | Optional              | Optional |
+| Contrast Enhancing Agent | `ce-<label>`        | Optional                                                                                       | Optional             |                             |                       |                        |                                                                            |               |                             |                       |   |
+| Reconstruction           | `rec-<label>`       | Optional                                                                                       | Optional             | Optional                    | Optional              |                        |                                                                            |               |                             |                       |   |
+| Phase-Encoding Direction | `dir-<label>`       |                                                                                                |                      |                             |                       |                        |                                                                            | Required      |                             |                       |   |
+| Run                      | `run-<index>`       |                                                                                                |                      | Optional                    | Optional              | Optional               | Optional                                                                   | Optional      |                             | Optional              | Optional |
+| Corresponding modality   | `mod-<label>`       |                                                                                                | Optional             |                             |                       |                        |                                                                            |               |                             |                       |   |
+| Echo                     | `echo-<index>`      |                                                                                                |                      | Optional                    |                       |                        |                                                                            |               |                             |                       |   |
+| Recording                | `recording-<label>` |                                                                                                |                      |                             | Optional              |                        |                                                                            |               |                             |                       |   |
+| Processed (on device)    | `proc-<label>`      |                                                                                                |                      |                             | Optional              |                        |                                                                            |               |                             | Optional              | Optional |
 
-15 Appendix V: Units
-======================================
+Appendix V: Units
+=================
 
 Following the International System of Units (SI, abbreviated from the French Système international (d'unités))
 
-<table>
-  <tbody>
-    <tr>
-      <th>Unit name</th>
-      <th>Unit symbol</th>
-      <th>Quantity name</th>
-    </tr>
-    <tr>
-      <td>metre</td>
-      <td>m</td>
-      <td>length</td>
-    </tr>
-    <tr>
-      <td>kilogram</td>
-      <td>kg</td>
-      <td>mass</td>
-    </tr>
-    <tr>
-      <td>second</td>
-      <td>s</td>
-      <td>time</td>
-    </tr>
-    <tr>
-      <td>ampere</td>
-      <td>A</td>
-      <td>electric current</td>
-    </tr>
-    <tr>
-      <td>kelvin</td>
-      <td>K</td>
-      <td>thermodynamic temperature</td>
-    </tr>
-    <tr>
-      <td>mole</td>
-      <td>mol</td>
-      <td>amount of substance</td>
-    </tr>
-    <tr>
-      <td>candela</td>
-      <td>cd</td>
-      <td>luminous intensity</td>
-    </tr>
-    <tr>
-      <td>radian</td>
-      <td>rad</td>
-      <td>angle</td>
-    </tr>
-    <tr>
-      <td>steradian</td>
-      <td>sr</td>
-      <td>solid angle</td>
-    </tr>
-    <tr>
-      <td>hertz</td>
-      <td>Hz</td>
-      <td>frequency</td>
-    </tr>
-    <tr>
-      <td>newton</td>
-      <td>N</td>
-      <td>force, weight</td>
-    </tr>
-    <tr>
-      <td>pascal</td>
-      <td>Pa</td>
-      <td>pressure, stress</td>
-    </tr>
-    <tr>
-      <td>joule</td>
-      <td>J</td>
-      <td>energy, work, heat</td>
-    </tr>
-    <tr>
-      <td>watt</td>
-      <td>W</td>
-      <td>power, radiant flux</td>
-    </tr>
-    <tr>
-      <td>coulomb</td>
-      <td>C</td>
-      <td>electric charge or quantity of electricity</td>
-    </tr>
-    <tr>
-      <td>volt</td>
-      <td>V</td>
-      <td>voltage (electrical potential), emf</td>
-    </tr>
-    <tr>
-      <td>farad</td>
-      <td>F</td>
-      <td>capacitance</td>
-    </tr>
-    <tr>
-      <td>ohm</td>
-      <td>Ω</td>
-      <td>resistance, impedance, reactance</td>
-    </tr>
-    <tr>
-      <td>siemens</td>
-      <td>S</td>
-      <td>electrical conductance</td>
-    </tr>
-    <tr>
-      <td>weber</td>
-      <td>Wb</td>
-      <td>magnetic flux</td>
-    </tr>
-    <tr>
-      <td>tesla</td>
-      <td>T</td>
-      <td>magnetic flux density</td>
-    </tr>
-    <tr>
-      <td>henry</td>
-      <td>H</td>
-      <td>inductance</td>
-    </tr>
-    <tr>
-      <td>degree Celsius</td>
-      <td>°C</td>
-      <td>temperature relative to 273.15 K</td>
-    </tr>
-    <tr>
-      <td>lumen</td>
-      <td>lm</td>
-      <td>luminous flux</td>
-    </tr>
-    <tr>
-      <td>lux</td>
-      <td>lx</td>
-      <td>illuminance</td>
-    </tr>
-    <tr>
-      <td>becquerel</td>
-      <td>Bq</td>
-      <td>radioactivity (decays per unit time)</td>
-    </tr>
-    <tr>
-      <td>gray</td>
-      <td>Gy</td>
-      <td>absorbed dose (of ionizing radiation)</td>
-    </tr>
-    <tr>
-      <td>sievert</td>
-      <td>Sv</td>
-      <td>equivalent dose (of ionizing radiation)</td>
-    </tr>
-    <tr>
-      <td>katal</td>
-      <td>kat</td>
-      <td>catalytic activity</td>
-    </tr>
-  </tbody>
-</table>
+| Unit name      | Unit symbol | Quantity name                              |
+|:---------------|:------------|:-------------------------------------------|
+| metre          | m           | length                                     |
+| kilogram       | kg          | mass                                       |
+| second         | s           | time                                       |
+| ampere         | A           | electric current                           |
+| kelvin         | K           | thermodynamic temperature                  |
+| mole           | mol         | amount of substance                        |
+| candela        | cd          | luminous intensity                         |
+| radian         | rad         | angle                                      |
+| steradian      | sr          | solid angle                                |
+| hertz          | Hz          | frequency                                  |
+| newton         | N           | force, weight                              |
+| pascal         | Pa          | pressure, stress                           |
+| joule          | J           | energy, work, heat                         |
+| watt           | W           | power, radiant flux                        |
+| coulomb        | C           | electric charge or quantity of electricity |
+| volt           | V           | voltage (electrical potential), emf        |
+| farad          | F           | capacitance                                |
+| ohm            | Ω           | resistance, impedance, reactance           |
+| siemens        | S           | electrical conductance                     |
+| weber          | Wb          | magnetic flux                              |
+| tesla          | T           | magnetic flux density                      |
+| henry          | H           | inductance                                 |
+| degree Celsius | °C          | temperature relative to 273.15 K           |
+| lumen          | lm          | luminous flux                              |
+| lux            | lx          | illuminance                                |
+| becquerel      | Bq          | radioactivity (decays per unit time)       |
+| gray           | Gy          | absorbed dose (of ionizing radiation)      |
+| sievert        | Sv          | equivalent dose (of ionizing radiation)    |
+| katal          | kat         | catalytic activity                         |
 
 Prefixes
 
 Multiples
 
-<table>
-  <tbody>
-    <tr>
-      <th>Prefix name</th>
-      <th>Prefix symbol</th>
-      <th>Factor</th>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Deca-">deca</a></p></td>
-      <td>da</td>
-      <td>10<sup>1</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Hecto-">hecto</a></p></td>
-      <td>h</td>
-      <td>10<sup>2</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Kilo-">kilo</a></p></td>
-      <td>k</td>
-      <td>10<sup>3</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Mega-">mega</a></p></td>
-      <td>M</td>
-      <td>10<sup>6</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Giga-">giga</a></p></td>
-      <td>G</td>
-      <td>10<sup>9</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Tera-">tera</a></p></td>
-      <td>T</td>
-      <td>10<sup>12</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Peta-">peta</a></p></td>
-      <td>P</td>
-      <td>10<sup>15</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Exa-">exa</a></p></td>
-      <td>E</td>
-      <td>10<sup>18</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Zetta-">zetta</a></p></td>
-      <td>Z</td>
-      <td>10<sup>21</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Yotta-">yotta</a></p></td>
-      <td>Y</td>
-      <td>10<sup>24</sup></td>
-    </tr>
-  </tbody>
-</table>
+| Prefix name                                 | Prefix symbol | Factor          |
+|:--------------------------------------------|:--------------|:----------------|
+| [deca](https://www.wikiwand.com/en/Deca-)   | da            | 10<sup>1</sup>  |
+| [hecto](https://www.wikiwand.com/en/Hecto-) | h             | 10<sup>2</sup>  |
+| [kilo](https://www.wikiwand.com/en/Kilo-)   | k             | 10<sup>3</sup>  |
+| [mega](https://www.wikiwand.com/en/Mega-)   | M             | 10<sup>6</sup>  |
+| [giga](https://www.wikiwand.com/en/Giga-)   | G             | 10<sup>9</sup>  |
+| [tera](https://www.wikiwand.com/en/Tera-)   | T             | 10<sup>12</sup> |
+| [peta](https://www.wikiwand.com/en/Peta-)   | P             | 10<sup>15</sup> |
+| [exa](https://www.wikiwand.com/en/Exa-)     | E             | 10<sup>18</sup> |
+| [zetta](https://www.wikiwand.com/en/Zetta-) | Z             | 10<sup>21</sup> |
+| [yotta](https://www.wikiwand.com/en/Yotta-) | Y             | 10<sup>24</sup> |
+
 
 Submultiples
 
-<table>
-  <tbody>
-    <tr>
-      <th>Prefix name</th>
-      <th>Prefix symbol</th>
-      <th>Factor</th>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Deci-">deci</a></p></td>
-      <td>d</td>
-      <td>10<sup>-1</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Centi-">centi</a></p></td>
-      <td>c</td>
-      <td>10<sup>-2</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Milli-">milli</a></p></td>
-      <td>m</td>
-      <td>10<sup>-3</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Micro-">micro</a></p></td>
-      <td>μ</td>
-      <td>10<sup>-6</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Nano-">nano</a></p></td>
-      <td>n</td>
-      <td>10<sup>-9</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Pico-">pico</a></p></td>
-      <td>p</td>
-      <td>10<sup>-12</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Femto-">femto</a></p></td>
-      <td>f</td>
-      <td>10<sup>-15</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Atto-">atto</a></p></td>
-      <td>a</td>
-      <td>10<sup>-18</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Zepto-">zepto</a></p></td>
-      <td>z</td>
-      <td>10<sup>-21</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Yocto-">yocto</a></p></td>
-      <td>y</td>
-      <td>10<sup>-24</sup></td>
-    </tr>
-  </tbody>
-</table>
+| Prefix name                                 | Prefix symbol | Factor           |
+|:--------------------------------------------|:--------------|:-----------------|
+| [deci](https://www.wikiwand.com/en/Deci-)   | d             | 10<sup>-1</sup>  |
+| [centi](https://www.wikiwand.com/en/Centi-) | c             | 10<sup>-2</sup>  |
+| [milli](https://www.wikiwand.com/en/Milli-) | m             | 10<sup>-3</sup>  |
+| [micro](https://www.wikiwand.com/en/Micro-) | μ             | 10<sup>-6</sup>  |
+| [nano](https://www.wikiwand.com/en/Nano-)   | n             | 10<sup>-9</sup>  |
+| [pico](https://www.wikiwand.com/en/Pico-)   | p             | 10<sup>-12</sup> |
+| [femto](https://www.wikiwand.com/en/Femto-) | f             | 10<sup>-15</sup> |
+| [atto](https://www.wikiwand.com/en/Atto-)   | a             | 10<sup>-18</sup> |
+| [zepto](https://www.wikiwand.com/en/Zepto-) | z             | 10<sup>-21</sup> |
+| [yocto](https://www.wikiwand.com/en/Yocto-) | y             | 10<sup>-24</sup> |
 
-16 Appendix  VI: MEG file formats
-====================================
+Appendix  VI: MEG file formats
+==============================
 
 Each MEG system brand has specific file organization and data formats.
-RECOMMENDED values for [manufacturer_specific_extensions]:
--   ctf = CTF (folder with .ds extension)
--   fif = Neuromag / Elekta / MEGIN  and BabyMEG (file with extension .fif)
--   4d = BTi / 4D Neuroimaging (folder containing multiple files without extensions)
--   kit = KIT / Yokogawa / Ricoh (file with extension .sqd, .con, .raw, .ave or .mrk)
--   kdf = KRISS (file with extension .kdf)
--   itab = Chieti system (file with extension .raw and .mhd)
+RECOMMENDED values for `manufacturer_specific_extensions`:
+-   `ctf` = CTF (folder with `.ds` extension)
+-   `fif` = Neuromag / Elekta / MEGIN  and BabyMEG (file with extension `.fif`)
+-   `4d` = BTi / 4D Neuroimaging (folder containing multiple files without extensions)
+-   `kit`= KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`)
+-   `kdf` = KRISS (file with extension `.kdf`)
+-   `itab` = Chieti system (file with extension `.raw` and `.mhd`)
 
 Below are specifications for each system brand.
 
-16.1 CTF
---------------------------
+CTF
+---
 
-Each experimental run with a CTF system yields a folder with a .ds extension, containing several files. The (optional) digitized positions of the head points are usually stored in a separate .pos file, not necessarily within the .ds folder.
+Each experimental run with a CTF system yields a folder with a `.ds` extension, containing several files. The (optional) digitized positions of the head points are usually stored in a separate `.pos` file, not necessarily within the `.ds` folder.
 
--   [sub-<participant_label>[_ses-<label>]_headshape.pos]
--   sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.ds>
+```
+[sub-<participant_label>[_ses-<label>]_headshape.pos]
+sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.ds>
+```
 
-CTF’s data storage is therefore via directories containing multiple files. The files contained within a .ds directory are named such that they match the parent directory, but conserve the original file extension (e.g., .meg4, .res4, etc.). The renaming of CTF datasets SHOULD be done using the CTF newDs command-line application.
+CTF’s data storage is therefore via directories containing multiple files. The files contained within a .ds directory are named such that they match the parent directory, but conserve the original file extension (e.g., `.meg4`, `.res4`, etc.). The renaming of CTF datasets SHOULD be done using the CTF newDs command-line application.
 
 Example:
+```
 sub-control01/
-> ses-001/
->> sub-control01_ses-001_scans.tsv
->> meg/
->>> sub-control01_ses-001_coordsystem.json
->>> sub-control01_ses-001_headshape.pos
->>> sub-control01_ses-001_task-rest_run-01_meg.ds
->>> sub-control01_ses-001_task-rest_run-01_meg.json
->>> sub-control01_ses-001_task-rest_run-01_channels.tsv
+    ses-001/
+        sub-control01_ses-001_scans.tsv
+        meg/
+            sub-control01_ses-001_coordsystem.json
+            sub-control01_ses-001_headshape.pos
+            sub-control01_ses-001_task-rest_run-01_meg.ds
+            sub-control01_ses-001_task-rest_run-01_meg.json
+            sub-control01_ses-001_task-rest_run-01_channels.tsv
+```
 
 To learn more about  CTF’s data organization: [http://www.fieldtriptoolbox.org/getting_started/ctf](http://www.fieldtriptoolbox.org/getting_started/ctf)
 
-16.2 Neuromag/Elekta/MEGIN
-------------------------------------------------------------
+Neuromag/Elekta/MEGIN
+---------------------
 
-Neuromag/Elekta/MEGIN data and Tristan Technologies BabyMEG data is stored with file extension .fif. The digitized positions of the head points are saved inside the fif file along with the MEG data, with typically no \*_headshape file.
+Neuromag/Elekta/MEGIN data and Tristan Technologies BabyMEG data is stored with file extension `.fif`. The digitized positions of the head points are saved inside the fif file along with the MEG data, with typically no `_headshape` file.
 
--   sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.fif
+```
+sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.fif
+```
 
 Note that we do not provide specific specifications for cross-talk and fine-calibration matrix files in the present MEG-BIDS version.
 
 Example:
+```
 sub-control01/
-> ses-001/
->> sub-control01_ses-001_scans.tsv
->> meg/
->>> sub-control01_ses-001_coordsystem.json
->>> sub-control01_ses-001_task-rest_run-01_meg.fif
->>> sub-control01_ses-001_task-rest_run-01_meg.json
->>> sub-control01_ses-001_task-rest_run-01_channels.tsv
+    ses-001/
+        sub-control01_ses-001_scans.tsv
+        meg/
+            sub-control01_ses-001_coordsystem.json
+            sub-control01_ses-001_task-rest_run-01_meg.fif
+            sub-control01_ses-001_task-rest_run-01_meg.json
+            sub-control01_ses-001_task-rest_run-01_channels.tsv
+```
 
-After applying the MaxFilter pre-processing tool, files should be renamed with the corresponding label (e.g. proc-sss) and placed into a “derivatives” subfolder.
+After applying the MaxFilter pre-processing tool, files should be renamed with the corresponding label (e.g. `proc-sss`) and placed into a `derivatives` subfolder.
 
 Example:
-> sub-control01_ses-001_task-rest_run-01_proc-sss_meg.fif
-> sub-control01_ses-001_task-rest_run-01_proc-sss_meg.json
+```
+sub-control01_ses-001_task-rest_run-01_proc-sss_meg.fif
+sub-control01_ses-001_task-rest_run-01_proc-sss_meg.json
+```
 
 In the case of data runs exceeding 2Gb, the data is stored in two separate files:
-> sub-control01_ses-001_task-rest_run-01_meg.fif
-> sub-control01_ses-001_task-rest_run-01_meg-1.fif
+```
+sub-control01_ses-001_task-rest_run-01_meg.fif
+sub-control01_ses-001_task-rest_run-01_meg-1.fif
+```
 
 Each of these two files has a pointer to the next file. In some software applications, like MNE, one can simply specify the name of the first file, and data will be read in both files via this pointer. For this reason, it is RECOMMENDED to rename and write back the file once read, to avoid the persistence of a pointer associated with the old file name.
 
 Naming convention:
-> sub-control01_ses-001_task-rest_run-01_part-01_meg.fif
-> sub-control01_ses-001_task-rest_run-01_part-02_meg.fif
+```
+sub-control01_ses-001_task-rest_run-01_part-01_meg.fif
+sub-control01_ses-001_task-rest_run-01_part-02_meg.fif
+```
 
 More about the Neuromag/Elekta/MEGIN data organization at:
 [http://www.fieldtriptoolbox.org/getting_started/neuromag](http://www.fieldtriptoolbox.org/getting_started/neuromag)
 And BabyMEG :
 [http://www.fieldtriptoolbox.org/getting_started/babysquid](http://www.fieldtriptoolbox.org/getting_started/babysquid)
 
-16.3 BTi/4D neuroimaging
-------------------------------------------
+BTi/4D neuroimaging
+-------------------
 
-Each experimental run on a 4D neuroimaging//BTi system results in a folder containing multiple files without extensions.
+Each experimental run on a 4D neuroimaging/BTi system results in a folder containing multiple files without extensions.
 
--   [sub-<participant_label>[_ses-<label>]_headshape.pos]
--   sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg>
+```
+[sub-<participant_label>[_ses-<label>]_headshape.pos]
+sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg>
+```
 
 One SHOULD rename/create a father run specific directory and keep the original files for each run inside (e.g. "c,rfhp0.1Hz", "config" and "hs_file").
 
 Example:
+```
 sub-control01/
-> ses-001/
->> sub-control01_ses-001_scans.tsv
->> meg/
->>> sub-control01_ses-001_coordsystem.json
->>> sub-control01_ses-001_headshape.pos
->>> sub-control01_ses-001_task-rest_run-01_meg
->>> sub-control01_ses-001_task-rest_run-01_meg.json
->>> sub-control01_ses-001_task-rest_run-01_channels.tsv
+    ses-001/
+        sub-control01_ses-001_scans.tsv
+        meg/
+            sub-control01_ses-001_coordsystem.json
+            sub-control01_ses-001_headshape.pos
+            sub-control01_ses-001_task-rest_run-01_meg
+            sub-control01_ses-001_task-rest_run-01_meg.json
+            sub-control01_ses-001_task-rest_run-01_channels.tsv
+```
 
 Where:
-> sub-control01_ses-001_task-rest_run-01_meg/
->> config
->> hs_file
->> e,rfhp1.0Hz.COH
->> c,rfDC
+```
+sub-control01_ses-001_task-rest_run-01_meg/
+    config
+    hs_file
+    e,rfhp1.0Hz.COH
+    c,rfDC
+```
 
 More about the 4D neuroimaging/BTi data organization at: [http://www.fieldtriptoolbox.org/getting_started/bti](http://www.fieldtriptoolbox.org/getting_started/bti)
 
-16.4 KIT/Yokogawa/Ricoh
----------------------------------------------------------
+KIT/Yokogawa/Ricoh
+------------------
 
-Each experimental run on a KIT/Yokogawa/Ricoh system yields a raw (\*.sqd, \*.con) file with its associated marker coil file (\*.mrk), which contains coil positions in the acquisition system’s native space. Head points and marker points in head space are acquired using third-party hardware. One SHOULD rename/create a father run specific directory and keep the original files for each run inside.
+Each experimental run on a KIT/Yokogawa/Ricoh system yields a raw (`.sqd`, `.con`) file with its associated marker coil file (`.mrk`), which contains coil positions in the acquisition system’s native space. Head points and marker points in head space are acquired using third-party hardware. One SHOULD rename/create a father run specific directory and keep the original files for each run inside.
 
 Example:
+```
 sub-control01/
-> ses-001/
->> sub-control01_ses-001_scans.tsv
->> meg/
->>> sub-control01_ses-001_coordsystem.json
->>> sub-control01_ses-001_headshape.txt
->>> sub-control01_ses-001_task-rest_run-01_meg
->>> sub-control01_ses-001_task-rest_run-01_meg.json
->>> sub-control01_ses-001_task-rest_run-01_channels.tsv
+    ses-001/
+        sub-control01_ses-001_scans.tsv
+        meg/
+            sub-control01_ses-001_coordsystem.json
+            sub-control01_ses-001_headshape.txt
+            sub-control01_ses-001_task-rest_run-01_meg
+            sub-control01_ses-001_task-rest_run-01_meg.json
+            sub-control01_ses-001_task-rest_run-01_channels.tsv
+```
 
 Where:
-> sub-control01_ses-001_task-rest_run-01_meg/
->> sub-control01_ses-001_task-rest_run-01_markers.<mrk,sqd>
->> sub-control01_ses-001_task-rest_run-01_meg.<con,sqd>
+```
+sub-control01_ses-001_task-rest_run-01_meg/
+    sub-control01_ses-001_task-rest_run-01_markers.<mrk,sqd>
+    sub-control01_ses-001_task-rest_run-01_meg.<con,sqd>
+```
 
 More about the KIT/Yokogawa/Ricoh data organization at: [http://www.fieldtriptoolbox.org/getting_started/yokogawa](http://www.fieldtriptoolbox.org/getting_started/yokogawa)
 
-16.5 KRISS
---------------------------
+KRISS
+-----
 
 Each experimental run on the KRISS system produces a file with extension .kdf. Additional files can be available in the same folder: the digitized positions of the head points (_digitizer.txt), the position of the center of the MEG coils (.chn) and the event markers (.trg).
--   [sub-<participant_label>[_ses-<label>]_headshape.txt]
--   sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.kdf
--   sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.chn
--   sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.trg
+```
+[sub-<participant_label>[_ses-<label>]_headshape.txt]
+sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.kdf
+sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.chn
+sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.trg
+```
 
 Example:
+```
 sub-control01/
-> ses-001/
->> sub-control01_ses-001_scans.tsv
->> meg/
->>> sub-control01_ses-001_coordsystem.json
->>> sub-control01_ses-001_headshape.txt
->>> sub-control01_ses-001_task-rest_run-01_meg
->>> sub-control01_ses-001_task-rest_run-01_meg.json
->>> sub-control01_ses-001_task-rest_run-01_channels.tsv
+    ses-001/
+        sub-control01_ses-001_scans.tsv
+        meg/
+            sub-control01_ses-001_coordsystem.json
+            sub-control01_ses-001_headshape.txt
+            sub-control01_ses-001_task-rest_run-01_meg
+            sub-control01_ses-001_task-rest_run-01_meg.json
+            sub-control01_ses-001_task-rest_run-01_channels.tsv
+```
 
 Where:
-> sub-control01_ses-001_task-rest_run-01_meg/
->> sub-control01_ses-001_task-rest_run-01_meg.chn
->> sub-control01_ses-001_task-rest_run-01_meg.kdf
->> sub-control01_ses-001_task-rest_run-01_meg.trg
+```
+sub-control01_ses-001_task-rest_run-01_meg/
+    sub-control01_ses-001_task-rest_run-01_meg.chn
+    sub-control01_ses-001_task-rest_run-01_meg.kdf
+    sub-control01_ses-001_task-rest_run-01_meg.trg
+```
 
-16.6 ITAB
------------------
+ITAB
+----
 
-Each experimental run on a ITAB-ARGOS153 system yields a raw (\*.raw) data file plus an associated binary header file (\*.mhd). The raw data file has an ASCII header that contains detailed information about the data acquisition system, followed by binary data. The associated binary header file contains part of the information from the ASCII header, specifically the one needed to process data, plus other information on offline preprocessing performed after data acquisition (e.g., sensor position relative to subject’s head, head markers, stimulus information). One should rename/create a father run specific directory and keep the original files for each run inside.
+Each experimental run on a ITAB-ARGOS153 system yields a raw (`.raw`) data file plus an associated binary header file (`.mhd`). The raw data file has an ASCII header that contains detailed information about the data acquisition system, followed by binary data. The associated binary header file contains part of the information from the ASCII header, specifically the one needed to process data, plus other information on offline preprocessing performed after data acquisition (e.g., sensor position relative to subject’s head, head markers, stimulus information). One should rename/create a father run specific directory and keep the original files for each run inside.
 
 Example:
+```
 sub-control01/
-> ses-001/
->> sub-control01_ses-001_coordsystem.json
->> sub-control01_ses-001_headshape.txt
->> sub-control01_ses-001_task-rest_run-01_meg
->> sub-control01_ses-001_task-rest_run-01_meg.json
->> sub-control01_ses-001_task-rest_run-01_channels.tsv
+    ses-001/
+        sub-control01_ses-001_coordsystem.json
+        sub-control01_ses-001_headshape.txt
+        sub-control01_ses-001_task-rest_run-01_meg
+        sub-control01_ses-001_task-rest_run-01_meg.json
+        sub-control01_ses-001_task-rest_run-01_channels.tsv
+```
 
 Where:
-> sub-control01_ses-001_task-rest_run-01_meg/
->> sub-control01_ses-001_task-rest_run-01_meg.raw
->> sub-control01_ses-001_task-rest_run-01_meg.raw.mhd
+```
+sub-control01_ses-001_task-rest_run-01_meg/
+    sub-control01_ses-001_task-rest_run-01_meg.raw
+    sub-control01_ses-001_task-rest_run-01_meg.raw.mhd
+```
 
-16.7 Aalto MEG–MRI
-------------------------------------
+Aalto MEG–MRI
+-------------
 
-For stand-alone MEG data, the Aalto hybrid device uses the standard .fif data format and follows the conventions of Elekta/Neuromag as described above in section 5.2. The .fif files may contain unreconstructed MRI data. The inclusion of MRI data and information for accurate reconstruction will be fully standardized at a later stage.
+For stand-alone MEG data, the Aalto hybrid device uses the standard `.fif` data format and follows the conventions of Elekta/Neuromag as described above in section 5.2. The `.fif` files may contain unreconstructed MRI data. The inclusion of MRI data and information for accurate reconstruction will be fully standardized at a later stage.
 
 17 Appendix VII: preferred names of MEG systems
 ==================================================================
@@ -2796,13 +2174,13 @@ not be available anymore).]{.c35 .c44 .c30}
 
 <div>
 
-<a name="footnote3">3</a> Conveniently, for Siemens’ data, this value is easily obtained as 1/[BWPPPE * ReconMatrixPE], where BWPPPE is the “BandwidthPerPixelPhaseEncode in DICOM tag (0019,1028) and  ReconMatrixPE is the size of the actual reconstructed data in the phase direction (which is NOT reflected in a single DICOM tag for all possible aforementioned scan manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and [here](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime)
+<a name="footnote3">3</a> Conveniently, for Siemens’ data, this value is easily obtained as 1/[BWPPPE * ReconMatrixPE], where BWPPPE is the "BandwidthPerPixelPhaseEncode in DICOM tag (0019,1028) and  ReconMatrixPE is the size of the actual reconstructed data in the phase direction (which is NOT reflected in a single DICOM tag for all possible aforementioned scan manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and [here](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime)
 
 </div>
 
 <div>
 
-<a name="footnote4">4</a> We use the “FSL definition”, i.e, the time between the center of the first “effective” echo and the center of the last “effective” echo.
+<a name="footnote4">4</a> We use the "FSL definition", i.e, the time between the center of the first "effective" echo and the center of the last "effective" echo.
 
 </div>
 
