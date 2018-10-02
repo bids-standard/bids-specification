@@ -392,7 +392,12 @@ Example:
 Template:
 `code/*`
 
-Source code of scripts that were used to prepare the dataset (for example if it was anonymized or defaced) MAY be stored here. Extra care should be taken to avoid including original IDs or any identifiable information with the source code. There are no limitations or recommendations on the language and/or code organization of these scripts at the moment.
+Source code of scripts that were used to prepare the dataset (for example if it was anonymized or defaced) MAY be stored here.<sup>1</sup> Extra care should be taken to avoid including original IDs or any identifiable information with the source code. There are no limitations or recommendations on the language and/or code organization of these scripts at the moment.
+
+<sup>1</sup>Storing actual source files with the data
+is preferred over links to external source repositories to maximize long
+term preservation (which would suffer if an external repository would
+not be available anymore).
 
 8.3 Magnetic Resonance Imaging data
 -----------------------------------
@@ -442,8 +447,12 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
 | PartialFourier                 | RECOMMENDED. The fraction of partial Fourier information collected. Corresponds to DICOM Tag 0018, 9081 `Partial Fourier`. |
 | PartialFourierDirection        | RECOMMENDED. The direction where only partial Fourier information was collected. Corresponds to DICOM Tag 0018, 9036 `Partial Fourier Direction`. |
 | PhaseEncodingDirection         | RECOMMENDED. Possible values: `i`, `j`, `k`, `i-`, `j-`, `k-`. The letters `i`, `j`, `k` correspond to the first, second and third axis of the data in the NIFTI file. The polarity of the phase encoding is assumed to go from zero index to maximum index unless `-` sign is present (then the order is reversed - starting from the highest index instead of zero). `PhaseEncodingDirection` is defined as the direction along which phase is was modulated which may result in visible distortions. Note that this is not the same as the DICOM term `InPlanePhaseEncodingDirection` which can have `ROW` or `COL` values. This parameter is REQUIRED if corresponding fieldmap data is present or when using multiple runs with different phase encoding directions (which can be later used for field inhomogeneity correction). |
-| EffectiveEchoSpacing           | RECOMMENDED. The "effective" sampling interval, specified in seconds, between lines in the phase-encoding direction, defined based on the size of the reconstructed image in the phase direction.  It is frequently, but incorrectly, referred to as  "dwell time" (see DwellTime parameter below for actual dwell time).  It is  required for unwarping distortions using field maps. Note that beyond just in-plane acceleration, a variety of other manipulations to the phase encoding need to be accounted for properly, including partial fourier, phase oversampling, phase resolution, phase field-of-view and interpolation. This parameter is REQUIRED if corresponding fieldmap data is present. |
-| TotalReadoutTime               | RECOMMENDED. This is actually the "effective" total readout time , defined as the readout duration, specified in seconds, that would have generated data with the given level of distortion.  It is NOT the actual, physical duration of the readout train.  If `EffectiveEchoSpacing` has been properly computed, it is just `EffectiveEchoSpacing * (ReconMatrixPE - 1)`. . This parameter is REQUIRED if corresponding "field/distortion" maps acquired with opposing phase encoding directions are present  (see 8.9.4). |
+| EffectiveEchoSpacing           | RECOMMENDED. The "effective" sampling interval, specified in seconds, between lines in the phase-encoding direction, defined based on the size of the reconstructed image in the phase direction.  It is frequently, but incorrectly, referred to as  "dwell time" (see DwellTime parameter below for actual dwell time).  It is  required for unwarping distortions using field maps. Note that beyond just in-plane acceleration, a variety of other manipulations to the phase encoding need to be accounted for properly, including partial fourier, phase oversampling, phase resolution, phase field-of-view and interpolation.<sup>2</sup> This parameter is REQUIRED if corresponding fieldmap data is present. |
+| TotalReadoutTime               | RECOMMENDED. This is actually the "effective" total readout time , defined as the readout duration, specified in seconds, that would have generated data with the given level of distortion.  It is NOT the actual, physical duration of the readout train.  If `EffectiveEchoSpacing` has been properly computed, it is just `EffectiveEchoSpacing * (ReconMatrixPE - 1)`.<sup>3</sup> . This parameter is REQUIRED if corresponding "field/distortion" maps acquired with opposing phase encoding directions are present  (see 8.9.4). |
+
+<sup>2</sup>Conveniently, for Siemens’ data, this value is easily obtained as 1/\[`BWPPPE` * `ReconMatrixPE`\], where BWPPPE is the "`BandwidthPerPixelPhaseEncode` in DICOM tag (0019,1028) and  ReconMatrixPE is the size of the actual reconstructed data in the phase direction (which is NOT reflected in a single DICOM tag for all possible aforementioned scan manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and [here](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime)
+
+<sup>3</sup>We use the "FSL definition", i.e, the time between the center of the first "effective" echo and the center of the last "effective" echo.
 
 
 #### Timing Parameters
@@ -649,7 +658,10 @@ sub-<participant_label>/[ses-<session_label>/]
 
 Diffusion-weighted imaging data acquired for that participant. The optional `acq-<label>` key/value pair corresponds to a custom label the user may use to distinguish different set of parameters. For example this should be used when a study includes two diffusion images - one single band and one multiband. In such case two files could have the following names: `sub-01_acq-singleband_dwi.nii.gz` and `sub-01_acq-multiband_dwi.nii.gz`, however the user is free to choose any other label than `singleband` and `multiband` as long as they are consistent across subjects and sessions.
 For multiband acquisitions, one can also save the single-band reference image as type `sbref` (e.g. `dwi/sub-control01_sbref.nii[.gz]`)
-The bvec and bval files are in the FSL format: The bvec files contain 3 rows with n space-delimited floating-point numbers (corresponding to the n volumes in the relevant NIfTI file). The first row contains the x elements, the second row contains the y elements and third row contains the z elements of a unit vector in the direction of the applied diffusion gradient, where the i-th elements in each row correspond together to the i-th volume with `[0,0,0]` for non-diffusion-weighted volumes.  Inherent to the FSL format for bvec specification is the fact that the coordinate system of the bvecs is with respect to the participant (i.e., defined by the axes of the corresponding dwi.nii file) and not  the magnet’s coordinate system, which means that any rotations applied to dwi.nii also need to be applied to the corresponding bvec file.
+The bvec and bval files are in the FSL format<sup>4</sup>: The bvec files contain 3 rows with n space-delimited floating-point numbers (corresponding to the n volumes in the relevant NIfTI file). The first row contains the x elements, the second row contains the y elements and third row contains the z elements of a unit vector in the direction of the applied diffusion gradient, where the i-th elements in each row correspond together to the i-th volume with `[0,0,0]` for non-diffusion-weighted volumes.  Inherent to the FSL format for bvec specification is the fact that the coordinate system of the bvecs is with respect to the participant (i.e., defined by the axes of the corresponding dwi.nii file) and not  the magnet’s coordinate system, which means that any rotations applied to dwi.nii also need to be applied to the corresponding bvec file.
+
+<sup>4</sup>[http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html](hhttp://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html)
+
 
 #### 8.3.4.1 bvec example:
 
@@ -1185,12 +1197,15 @@ The purpose of this file is to describe timing and other properties of events re
 
 | Column name   | Description                                                  |
 |:--------------|:-------------------------------------------------------------|
-| onset         | REQUIRED. Onset (in seconds) of the event measured from the beginning of the acquisition of the first volume in the corresponding task imaging data file. If any acquired scans have been discarded before forming the imaging data file, ensure that a time of 0 corresponds to the first image stored. In other words negative numbers in "onset" are allowed. |
+| onset         | REQUIRED. Onset (in seconds) of the event measured from the beginning of the acquisition of the first volume in the corresponding task imaging data file. If any acquired scans have been discarded before forming the imaging data file, ensure that a time of 0 corresponds to the first image stored. In other words negative numbers in "onset" are allowed<sup>5</sup>. |
 | duration      | REQUIRED. Duration of the event (measured from onset) in seconds. Must always be either zero or positive. A "duration" value of zero implies that the delta function or event is so short as to be effectively modeled as an impulse. |
 | trial_type    | OPTIONAL. Primary categorisation of each trial to identify them as instances of the experimental conditions. For example: for a response inhibition task, it could take on values "go" and "no-go" to refer to response initiation and response inhibition experimental conditions. |
 | response_time | OPTIONAL. Response time measured in seconds. A negative response time can be used to represent preemptive responses and "n/a" denotes a missed response. |
 | stim_file     | OPTIONAL. Represents the location of the stimulus file (image, video, sound etc.) presented at the given onset time. There are no restrictions on the file formats of the stimuli files, but they should be stored in the /stimuli folder (under the root folder of the dataset; with optional subfolders). The values under the stim_file column correspond to a path relative to "/stimuli". For example "images/cat03.jpg" will be translated to "/stimuli/images/cat03.jpg". |
 | HED           | OPTIONAL. Hierarchical Event Descriptor (HED) Tag. See Appendix III for details. |
+
+<sup>5</sup> For example in case there is an in scanner training phase that begins before the scanning sequence has started events from this sequence should have negative onset time counting down to the beginning of the acquisition of the first volume.
+
 
 An arbitrary number of additional columns can be added. Those allow describing other properties of events that could be later referred in modelling and hypothesis extensions of BIDS.
 
@@ -1208,7 +1223,9 @@ onset duration  trial_type  response_time stim_file
 5.6 0.6 stop  1.739 images/blue_square.jpg
 ```
 
-References to existing databases can also be encoded using additional columns. Example 2 includes references to the Karolinska Directed Emotional Faces (KDEF) database:
+References to existing databases can also be encoded using additional columns. Example 2 includes references to the Karolinska Directed Emotional Faces (KDEF) database<sup>6</sup>:
+
+<sup>6</sup>[http://www.emotionlab.se/resources/kdef](http://www.emotionlab.se/resources/kdef)
 
 Example:
 ```
@@ -2045,48 +2062,3 @@ The transformation of the real world geometry to an artificial frame of referenc
 
 
 ------------------------------------------------------------------------
-
-<div>
-
-<a name="footnote1">1</a> Note that to make the display clearer, the second row does contain two successive tabs, which should not happen in an actual BIDS tsv file.
-
-</div>
-
-<div>
-
-<a name="footnote2">2</a> Storing actual source files with the data
-is preferred over links to external source repositories to maximize long
-term preservation (which would suffer if an external repository would
-not be available anymore).
-
-</div>
-
-<div>
-
-<a name="footnote3">3</a> Conveniently, for Siemens’ data, this value is easily obtained as 1/(BWPPPE * ReconMatrixPE), where BWPPPE is the "BandwidthPerPixelPhaseEncode in DICOM tag (0019,1028) and  ReconMatrixPE is the size of the actual reconstructed data in the phase direction (which is NOT reflected in a single DICOM tag for all possible aforementioned scan manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and [here](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime)
-
-</div>
-
-<div>
-
-<a name="footnote4">4</a> We use the "FSL definition", i.e, the time between the center of the first "effective" echo and the center of the last "effective" echo.
-
-</div>
-
-<div>
-
-<a name="footnote5">5</a> [http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html](hhttp://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html)
-
-</div>
-
-<div>
-
-<a name="footnote6">6</a> For example in case there is an in scanner training phase that begins before the scanning sequence has started events from this sequence should have negative onset time counting down to the beginning of the acquisition of the first volume.
-
-</div>
-
-<div>
-
-<a name="footnote7">7</a> [http://www.emotionlab.se/resources/kdef](http://www.emotionlab.se/resources/kdef)
-
-</div>
