@@ -1232,51 +1232,29 @@ sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
 ```
 
 8.6 Physiological and other continuous recordings
------------------------------------------------------
+-------------------------------------------------
 
 Template:
+```
 sub-<participant_label>/[ses-<session_label>/]
-> func/
->> <matches>[_recording-<label>]_physio.tsv.gz
-
-and
-
-sub-<participant_label>/[ses-<session_label>/]
-> func/
->> <matches>[_recording-<label>]_physio.json
-
-sub-<participant_label>/[ses-<session_label>/]
-> func/
->> <matches>[_recording-<label>]_stim.tsv.gz
-
-and
-
-sub-<participant_label>/[ses-<session_label>/
-> func/
->> <matches>[_recording-<label>]_stim.json
+    func/
+        <matches>[_recording-<label>]_physio.tsv.gz
+        <matches>[_recording-<label>]_physio.json
+        <matches>[_recording-<label>]_stim.tsv.gz
+        <matches>[_recording-<label>]_stim.json
+```
 
 Optional: Yes
 
-Where <matches> corresponds to task file name without the _bold.nii[.gz] suffix. For example: sub-control01_task-nback_run-1. If the same continuous recording has been used for all subjects (for example in the case where they all watched the same movie) one file can be used and placed in the root directory. For example: task-movie_stim.tsv.gz
+Where ``<matches>`` corresponds to task file name without the `_bold.nii[.gz]`` suffix. For example: `sub-control01_task-nback_run-1`. If the same continuous recording has been used for all subjects (for example in the case where they all watched the same movie) one file can be used and placed in the root directory. For example: `task-movie_stim.tsv.gz`
 
 Physiological recordings such as cardiac and respiratory signals and other continuous measures (such as parameters of a film or audio stimuli) can be specified using two files: a gzip compressed TSV file with data (without header line) and a JSON for storing start time, sampling frequency, and name of the columns from the TSV. Please note that in contrast to other TSV files this one does not include a header line. Instead the name of columns are specified in the JSON file. This is to improve compatibility with existing software (FSL PNM) as well as make support for other file formats possible in the future.  Start time should be expressed in seconds in relation to the time of start of acquisition of the first volume in the corresponding imaging file (negative values are allowed). Sampling frequency should be expressed in Hz. Recordings with different sampling frequencies and/or starting times should be stored in separate files. The following naming conventions should be used for column names:
 
-<table>
-  <tbody>
-    <tr>
-      <td>cardiac</td>
-      <td>continuous pulse measurement</td>
-    </tr>
-    <tr>
-      <td>respiratory</td>
-      <td>continuous breathing measurement</td>
-    </tr>
-    <tr>
-      <td>trigger</td>
-      <td>continuous measurement of the scanner trigger signal</td>
-    </tr>
-  </tbody>
-</table>
+| Column name | Definition                                           |
+|:------------|:-----------------------------------------------------|
+| cardiac     | continuous pulse measurement                         |
+| respiratory | continuous breathing measurement                     |
+| trigger     | continuous measurement of the scanner trigger signal |
 
 Any combination of those three can be included as well as any other stimuli related continuous variables (such as low level image properties in a video watching paradigm).
 
@@ -1286,46 +1264,37 @@ More than one continuous recording file can be included (with different sampling
 
 For multi-echo data, physio.tsv file is applicable to all echos of particular run.
 For eg:
-> sub-01_task-cuedSGT_run-1_physio.tsv.gz
-> sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-> sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-> sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
+```
+sub-01_task-cuedSGT_run-1_physio.tsv.gz
+sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
+sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
+sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
+```
 
-### 8.6.1 Example:
+Example:
+```
 sub-control01/
-> func/
->> sub-control01_task-nback_physio.tsv.gz (after
-decompression)
-
-<table>
-  <tbody>
-    <tr>
-      <td>34</td>
-      <td>110</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>44</td>
-      <td>112</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>23</td>
-      <td>100</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-
+    func/
+        sub-control01_task-nback_physio.tsv.gz
+```
+(after decompression)
+```
+34  110 0
+44  112 0
+23  100 1
+```
+```
 sub-control01/
-> func/
->> sub-control01_task-nback_physio.json
-
+    func/
+        sub-control01_task-nback_physio.json
+```
+```JSON
 {
    "SamplingFrequency": 100.0,
    "StartTime": -22.345,
    "Columns": ["cardiac", "respiratory", "trigger"]
 }
+```
 
 8.7 Behavioral experiments (with no MRI)
 ------------------------------------------------
