@@ -39,7 +39,7 @@ Throughout this protocol we use a list of terms. To avoid misunderstanding we cl
 3.  Session - a logical grouping of neuroimaging and behavioural data consistent across subjects. Session can (but doesn't have to) be synonymous to a visit in a longitudinal study. In general, subjects will stay in the scanner during one session. However, for example, if a subject has to leave the scanner room and then be re-positioned on the scanner bed, the set of MRI acquisitions will still be considered as a session and match sessions acquired in other subjects. Similarly, in situations where different data types are obtained over several visits (for example fMRI on one day followed by DWI the day after) those can be grouped in one session. Defining multiple sessions is appropriate when several identical or similar data acquisitions are planned and performed on all -or most- subjects, often in the case of some intervention between sessions (e.g., training).
 4.  Data acquisition - a continuous uninterrupted block of time during which a brain scanning instrument was acquiring data according to particular scanning sequence/protocol.
 5.  Data type - a functional group of different types of  data. In BIDS we define five data types: func (task based and resting state functional MRI), dwi (diffusion weighted imaging), fmap (field inhomogeneity mapping data such as field maps), anat (structural imaging such as T1, T2, etc.), meg (magnetoencephalography).
-6.  Task - a set of structured activities performed by the participant. Tasks are usually accompanied by stimuli and responses, and can greatly vary in complexity. For the purpose of this protocol we consider the so-called “resting state” a task. In the context of brain scanning, a task is always tied to one data acquisition. Therefore, even if during one acquisition the subject performed multiple conceptually different behaviours (with different sets of instructions) they will be considered one (combined) task.
+6.  Task - a set of structured activities performed by the participant. Tasks are usually accompanied by stimuli and responses, and can greatly vary in complexity. For the purpose of this protocol we consider the so-called "resting state" a task. In the context of brain scanning, a task is always tied to one data acquisition. Therefore, even if during one acquisition the subject performed multiple conceptually different behaviours (with different sets of instructions) they will be considered one (combined) task.
 7.  Event - a stimulus or subject response recorded during a task. Each event has an onset time and duration. Note that not all tasks will have recorded events (e.g., resting state).
 8.  Run - an uninterrupted repetition of data acquisition that has the same acquisition parameters and task (however events can change from run to run due to different subject response or randomized nature of the stimuli). Run is a synonym of a data acquisition.
 
@@ -399,7 +399,7 @@ Source code of scripts that were used to prepare the dataset (for example if it 
 
 ### 8.3.1 Common metadata fields
 
-MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fields (stored in sidecar JSON files). MRI acquisition parameters are divided into several categories based on ["A checklist for fMRI acquisition methods reporting in the literature”](https://thewinnower.com/papers/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature) by Ben Inglis:
+MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fields (stored in sidecar JSON files). MRI acquisition parameters are divided into several categories based on ["A checklist for fMRI acquisition methods reporting in the literature"](https://thewinnower.com/papers/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature) by Ben Inglis:
 
 #### Scanner Hardware
 
@@ -413,7 +413,7 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
 | HardcopyDeviceSoftwareVersion | (Deprecated) Manufacturer’s designation of the software of the device that created this Hardcopy Image (the printer). Corresponds to DICOM Tag 0018, 101A `Hardcopy Device Software Version` |
 | MagneticFieldStrength         | RECOMMENDED. Nominal field strength of MR magnet in Tesla. Corresponds to DICOM Tag 0018,0087 `Magnetic Field Strength` |
 | ReceiveCoilName               | RECOMMENDED. Information describing the receiver coil. Corresponds to DICOM Tag 0018, 1250 `Receive Coil Name`, although not all vendors populate that DICOM Tag, in which case this field can be derived from an appropriate private DICOM field |
-| ReceiveCoilActiveElements     | RECOMMENDED. Information describing the active/selected elements of the receiver coil.  This doesn’t correspond to a tag in the DICOM ontology. The vendor-defined terminology for active coil elements can go in this field. As an example, for Siemens, coil channels are typically not activated/selected individually, but rather  in pre-defined selectable “groups” of individual channels, and the list of the  “groups” of elements that are active/selected in any given scan populates  the `Coil String` entry in Siemen’s private DICOM fields (e.g., `HEA;HEP` for the Siemens standard 32 ch coil when both the anterior and posterior groups are activated). This is a flexible field that can be used as most appropriate for a given vendor and coil to define the “active” coil elements. Since individual scans can sometimes not have the intended coil elements selected, it is preferable for this field to be populated directly from the DICOM for each individual scan, so that it can be used as a mechanism for checking that a given scan was collected with the intended coil elements selected |
+| ReceiveCoilActiveElements     | RECOMMENDED. Information describing the active/selected elements of the receiver coil.  This doesn’t correspond to a tag in the DICOM ontology. The vendor-defined terminology for active coil elements can go in this field. As an example, for Siemens, coil channels are typically not activated/selected individually, but rather  in pre-defined selectable "groups" of individual channels, and the list of the  "groups" of elements that are active/selected in any given scan populates  the `Coil String` entry in Siemen’s private DICOM fields (e.g., `HEA;HEP` for the Siemens standard 32 ch coil when both the anterior and posterior groups are activated). This is a flexible field that can be used as most appropriate for a given vendor and coil to define the "active" coil elements. Since individual scans can sometimes not have the intended coil elements selected, it is preferable for this field to be populated directly from the DICOM for each individual scan, so that it can be used as a mechanism for checking that a given scan was collected with the intended coil elements selected |
 | GradientSetType               | RECOMMENDED. It should be possible to infer the gradient coil from the scanner model. If not, e.g. because of a custom upgrade or use of a gradient insert set, then the specifications of the actual gradient coil should be reported independently |
 | MRTransmitCoilSequence        | RECOMMENDED. This is a relevant field if a non-standard transmit coil is used. Corresponds to DICOM Tag 0018, 9049 `MR Transmit Coil Sequence` |
 | MatrixCoilMode                | RECOMMENDED. (If used) A method for reducing the number of independent channels by combining in analog the signals from multiple coil elements. There are typically different default modes when using un-accelerated or accelerated (e.g. GRAPPA, SENSE) imaging |
@@ -428,7 +428,7 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
 | SequenceVariant             | RECOMMENDED. Variant of the ScanningSequence. Corresponds to DICOM Tag 0018, 0021 `Sequence Variant`. |
 | ScanOptions                 | RECOMMENDED. Parameters of ScanningSequence. Corresponds to DICOM Tag 0018, 0022 `Scan Options`. |
 | SequenceName                | RECOMMENDED. Manufacturer’s designation of the sequence name. Corresponds to DICOM Tag 0018, 0024 `Sequence Name`. |
-| PulseSequenceDetails        | RECOMMENDED. Information beyond pulse sequence type that identifies the specific pulse sequence used (i.e. "Standard Siemens Sequence distributed with the VB17 software,” “Siemens WIP ### version #.##,” or “Sequence written by X using a version compiled on MM/DD/YYYY”). |
+| PulseSequenceDetails        | RECOMMENDED. Information beyond pulse sequence type that identifies the specific pulse sequence used (i.e. "Standard Siemens Sequence distributed with the VB17 software," "Siemens WIP ### version #.##," or "Sequence written by X using a version compiled on MM/DD/YYYY"). |
 | NonlinearGradientCorrection | RECOMMENDED. Boolean stating if the image saved  has been corrected for gradient nonlinearities by the scanner sequence. |
 
 
@@ -442,8 +442,8 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
 | PartialFourier                 | RECOMMENDED. The fraction of partial Fourier information collected. Corresponds to DICOM Tag 0018, 9081 `Partial Fourier`. |
 | PartialFourierDirection        | RECOMMENDED. The direction where only partial Fourier information was collected. Corresponds to DICOM Tag 0018, 9036 `Partial Fourier Direction`. |
 | PhaseEncodingDirection         | RECOMMENDED. Possible values: `i`, `j`, `k`, `i-`, `j-`, `k-`. The letters `i`, `j`, `k` correspond to the first, second and third axis of the data in the NIFTI file. The polarity of the phase encoding is assumed to go from zero index to maximum index unless `-` sign is present (then the order is reversed - starting from the highest index instead of zero). `PhaseEncodingDirection` is defined as the direction along which phase is was modulated which may result in visible distortions. Note that this is not the same as the DICOM term `InPlanePhaseEncodingDirection` which can have `ROW` or `COL` values. This parameter is REQUIRED if corresponding fieldmap data is present or when using multiple runs with different phase encoding directions (which can be later used for field inhomogeneity correction). |
-| EffectiveEchoSpacing           | RECOMMENDED. The “effective” sampling interval, specified in seconds, between lines in the phase-encoding direction, defined based on the size of the reconstructed image in the phase direction.  It is frequently, but incorrectly, referred to as  “dwell time” (see DwellTime parameter below for actual dwell time).  It is  required for unwarping distortions using field maps. Note that beyond just in-plane acceleration, a variety of other manipulations to the phase encoding need to be accounted for properly, including partial fourier, phase oversampling, phase resolution, phase field-of-view and interpolation. This parameter is REQUIRED if corresponding fieldmap data is present. |
-| TotalReadoutTime               | RECOMMENDED. This is actually the “effective” total readout time , defined as the readout duration, specified in seconds, that would have generated data with the given level of distortion.  It is NOT the actual, physical duration of the readout train.  If `EffectiveEchoSpacing` has been properly computed, it is just `EffectiveEchoSpacing * (ReconMatrixPE - 1)`. . This parameter is REQUIRED if corresponding “field/distortion” maps acquired with opposing phase encoding directions are present  (see 8.9.4). |
+| EffectiveEchoSpacing           | RECOMMENDED. The "effective" sampling interval, specified in seconds, between lines in the phase-encoding direction, defined based on the size of the reconstructed image in the phase direction.  It is frequently, but incorrectly, referred to as  "dwell time" (see DwellTime parameter below for actual dwell time).  It is  required for unwarping distortions using field maps. Note that beyond just in-plane acceleration, a variety of other manipulations to the phase encoding need to be accounted for properly, including partial fourier, phase oversampling, phase resolution, phase field-of-view and interpolation. This parameter is REQUIRED if corresponding fieldmap data is present. |
+| TotalReadoutTime               | RECOMMENDED. This is actually the "effective" total readout time , defined as the readout duration, specified in seconds, that would have generated data with the given level of distortion.  It is NOT the actual, physical duration of the readout train.  If `EffectiveEchoSpacing` has been properly computed, it is just `EffectiveEchoSpacing * (ReconMatrixPE - 1)`. . This parameter is REQUIRED if corresponding "field/distortion" maps acquired with opposing phase encoding directions are present  (see 8.9.4). |
 
 
 #### Timing Parameters
@@ -454,7 +454,7 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
 | InversionTime          | RECOMMENDED. The inversion time (TI) for the acquisition, specified in seconds. Inversion time is the time after the middle of inverting RF pulse to middle of excitation pulse to detect the amount of longitudinal magnetization. Corresponds to DICOM Tag 0018, 0082 `Inversion Time`  (please note that the DICOM term is in milliseconds not seconds). |
 | SliceTiming            | RECOMMENDED. The time at which each slice was acquired within each volume (frame) of  the acquisition.  Slice timing is not slice order -- rather, it  is a list of times (in JSON format) containing the time (in seconds) of each slice acquisition in relation to the beginning of volume acquisition.  The list goes through the slices along the slice axis in the slice encoding dimension (see below). Note that to ensure the proper interpretation of the `SliceTiming` field, it is important to check if the (optional) `SliceEncodingDirection` exists. In particular,  if `SliceEncodingDirection` is negative, the entries in `SliceTiming` are defined in reverse order with respect to the slice axis (i.e., the final entry in the `SliceTiming` list is the time of acquisition of slice 0). This parameter is REQUIRED for sparse sequences that do not have the `DelayTime` field set. In addition without this parameter slice time correction will not be possible. |
 | SliceEncodingDirection | RECOMMENDED. Possible values: `i`, `j`, `k`, `i-`, `j-`, `k-` (the axis of the NIfTI data along which slices were acquired, and the direction in which SliceTiming is  defined with respect to). `i`, `j`, `k` identifiers correspond to the first, second and third axis of the data in the NIfTI file. A `-` sign indicates that the contents of SliceTiming are defined in reverse order - that is, the first entry corresponds to the slice with the largest index, and the final entry corresponds to slice index zero. When present ,the axis defined by SliceEncodingDirection  needs to be consistent with the ‘slice_dim’ field in the NIfTI header. When absent, the entries in SliceTiming must be in the order of increasing slice index as defined by the NIfTI header. |
-| DwellTime              | RECOMMENDED. Actual dwell time (in seconds) of the receiver per point in the readout direction, including any oversampling.  For Siemens, this corresponds to DICOM field (0019,1018) (in ns). This value is necessary for the (optional) readout distortion correction of anatomicals in the HCP Pipelines.  It also usefully provides a handle on the readout bandwidth, which isn’t captured in the other metadata tags.  Not to be confused with `EffectiveEchoSpacing`, and the frequent mislabeling of echo spacing (which is spacing in the phase encoding direction) as “dwell time” (which is spacing in the readout direction). |
+| DwellTime              | RECOMMENDED. Actual dwell time (in seconds) of the receiver per point in the readout direction, including any oversampling.  For Siemens, this corresponds to DICOM field (0019,1018) (in ns). This value is necessary for the (optional) readout distortion correction of anatomicals in the HCP Pipelines.  It also usefully provides a handle on the readout bandwidth, which isn’t captured in the other metadata tags.  Not to be confused with `EffectiveEchoSpacing`, and the frequent mislabeling of echo spacing (which is spacing in the phase encoding direction) as "dwell time" (which is spacing in the readout direction). |
 
 
 #### RF & Contrast
@@ -583,7 +583,7 @@ Some meta information about the acquisition MUST be provided in an additional 
 | TaskName       | REQUIRED. Name of the task. No two tasks should have the same name. Task label (`task-`)  included in the file name is derived from this field by removing all non alphanumeric (``[a-zA-Z0-9]``) characters. For example task name `faces n-back` will corresponds to task label `facesnback`.  An optional but RECOMMENDED convention is to name resting state task using labels beginning with `rest`. |
 
 
-For the fields described above and in the following section, the term “Volume” refers to a reconstruction of the object being imaged (e.g., brain or part of a brain). In case of multiple channels in a coil, the term “Volume” refers to a combined image rather than an image from each coil.
+For the fields described above and in the following section, the term "Volume" refers to a reconstruction of the object being imaged (e.g., brain or part of a brain). In case of multiple channels in a coil, the term "Volume" refers to a combined image rather than an image from each coil.
 
 #### Other RECOMMENDED metadata
 
@@ -770,7 +770,7 @@ In some cases (for example GE) the scanner software will output a precomputed fi
 }
 ```
 
-#### 8.3.5.4 Case 4: Multiple phase encoded directions (“pepolar”)
+#### 8.3.5.4 Case 4: Multiple phase encoded directions ("pepolar")
 Template:
 ```
 sub-<participant_label>/[ses-<session_label>/]
@@ -779,7 +779,7 @@ sub-<participant_label>/[ses-<session_label>/]
         sub-<label>[_ses-<session_label>][_acq-<label>]_dir-<dir_label>[_run-<run_index>]_epi.json
 ```
 
-The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo EPI scans with different phase encoding directions to estimate the underlying inhomogeneity/deformation map. Examples of tools using this kind of images are FSL TOPUP, AFNI 3dqwarp and SPM. In such a case, the phase encoding direction is specified in the corresponding JSON file as one of: `i`, `j`, `k`, `i-`, `j-`, `k-`. For these differentially phase encoded sequences, one also needs to specify the Total Readout Time defined as the time (in seconds) from the center of the first echo to the center of the last echo (aka “FSL definition” - see [here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup/Faq#How_do_I_know_what_phase-encode_vectors_to_put_into_my_--datain_text_file.3F) and [here](https://lcni.uoregon.edu/kb-articles/kb-0003) how to calculate it). For example
+The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo EPI scans with different phase encoding directions to estimate the underlying inhomogeneity/deformation map. Examples of tools using this kind of images are FSL TOPUP, AFNI 3dqwarp and SPM. In such a case, the phase encoding direction is specified in the corresponding JSON file as one of: `i`, `j`, `k`, `i-`, `j-`, `k-`. For these differentially phase encoded sequences, one also needs to specify the Total Readout Time defined as the time (in seconds) from the center of the first echo to the center of the last echo (aka "FSL definition" - see [here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup/Faq#How_do_I_know_what_phase-encode_vectors_to_put_into_my_--datain_text_file.3F) and [here](https://lcni.uoregon.edu/kb-articles/kb-0003) how to calculate it). For example
 
 ```JSON
 {
@@ -843,7 +843,7 @@ For consistency between studies and institutions, we encourage users to extract 
 |TaskDescription|RECOMMENDED. Description of the task.|
 |Instructions|RECOMMENDED. Text of the instructions given to participants before the scan. This is not only important for behavioural or cognitive tasks but also in resting state paradigms (e.g. to distinguish between eyes open and eyes closed).|
 |CogAtlasID|RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) term that describes the task (e.g. Resting State with eyes closed "[http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b](http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b)")|
-|CogPOID|RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task  (e.g. Rest “[http://wiki.cogpo.org/index.php?title=Rest](http://wiki.cogpo.org/index.php?title=Rest)”)|
+|CogPOID|RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task  (e.g. Rest "[http://wiki.cogpo.org/index.php?title=Rest](http://wiki.cogpo.org/index.php?title=Rest)")|
 |DeviceSerialNumber|RECOMMENDED. The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.|
 
 
@@ -856,7 +856,7 @@ MUST be present:
 |PowerLineFrequency|REQUIRED. Frequency (in Hz) of the power grid at the geographical location of the MEG instrument (i.e. 50 or 60)|
 |DewarPosition|REQUIRED. Position of the dewar during the MEG scan: `upright`, `supine` or `degrees` of angle from vertical: for example on CTF systems, upright=15°, supine = 90°.|
 |SoftwareFilters|REQUIRED. List of temporal and/or spatial software filters applied, or ideally  key:value pairs of pre-applied software filters and their parameter values: e.g., {"SSS": {"frame": "head", "badlimit": 7}}, {"SpatialCompensation": {"GradientOrder": Order of the gradient compensation}}. Write `n/a` if no software filters applied.|
-|DigitizedLandmarks|REQUIRED. Boolean (“true” or “false”) value indicating whether anatomical landmark  points (i.e. fiducials) are contained within this recording.|
+|DigitizedLandmarks|REQUIRED. Boolean ("true" or "false") value indicating whether anatomical landmark  points (i.e. fiducials) are contained within this recording.|
 |DigitizedHeadPoints|REQUIRED. Boolean (`true` or `false`) value indicating whether head points outlining the scalp/face surface are contained within this recording.|
 
 
@@ -880,7 +880,7 @@ SHOULD be present
 |ContinuousHeadLocalization|RECOMMENDED. Boolean (`true` or `false`) value indicating whether continuous head localisation was performed.|
 |HeadCoilFrequency|RECOMMENDED. List of frequencies (in Hz) used by the head localisation coils (‘HLC’ in CTF systems, ‘HPI’ in Elekta, ‘COH’ in 4D/BTi) that track the subject’s head position in the MEG helmet (e.g. ``[293, 307, 314, 321]``)|
 |MaxMovement|RECOMMENDED. Maximum head movement (in mm) detected during the recording, as measured by the head localisation coils (e.g., 4.8)|
-|SubjectArtefactDescription|RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g. "Vagus Nerve Stimulator", “non-removable implant”). If this field is set to `n/a`, it will be interpreted as absence of major source of artifacts except cardiac and blinks.|
+|SubjectArtefactDescription|RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g. "Vagus Nerve Stimulator", "non-removable implant"). If this field is set to `n/a`, it will be interpreted as absence of major source of artifacts except cardiac and blinks.|
 |AssociatedEmptyRoom|RECOMMENDED. Relative path in BIDS folder structure to empty-room file associated with the subject’s MEG recording. The path needs to use forward slashes instead of backward slashes (e.g. `sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds`).|
 
 
@@ -1166,140 +1166,70 @@ sub-emptyroom/
             sub-emptyroom_ses-20170801_task-noise_meg.json
 ```
 
-`TaskName` in the `*_meg.json` file should be set to “noise”.
+`TaskName` in the `*_meg.json` file should be set to "noise".
 
 8.5 Task events
--------------------
+---------------
 
 Template:
+```
 sub-<participant_label>/[ses-<session_label>]
-> func/
->> <matches>_events.tsv
->> <matches>_events.json
+    func/
+        <matches>_events.tsv
+        <matches>_events.json
+```
 
-Where <matches> corresponds to task file name. For example: sub-control01_task-nback. It is also possible to have a single _events.tsv file describing events for all participants and runs (see section “4.2 Inheritance rule”). As with all other tabular data, _events.files may be accompanied by a JSON file describing the columns in detail (see Section 4.2).
+Where `<matches>` corresponds to task file name. For example: `sub-control01_task-nback`. It is also possible to have a single _events.tsv file describing events for all participants and runs (see section "4.2 Inheritance rule"). As with all other tabular data, `_events` files may be accompanied by a JSON file describing the columns in detail (see Section 4.2).
 
-The purpose of this file is to describe timing and other properties of events recorded during the scan. Events MAY be either stimuli presented to the participant or participant responses. A single event file MAY include any combination of stimuli and response events. Events MAY overlap in time. Please mind that this does not imply that only so called “event related” study designs are supported (in contract to “block” designs) - each “block of events” can be represented by an individual row in the _events.tsv file (with a long duration). Each task events file REQUIRES a corresponding task imaging data file (but a single events file MAY be shared by multiple imaging data files - see Inheritance rule). The tabular files consists of one row per event and a set of REQUIRED and OPTIONAL columns:
+The purpose of this file is to describe timing and other properties of events recorded during the scan. Events MAY be either stimuli presented to the participant or participant responses. A single event file MAY include any combination of stimuli and response events. Events MAY overlap in time. Please mind that this does not imply that only so called "event related" study designs are supported (in contract to "block" designs) - each "block of events" can be represented by an individual row in the _events.tsv file (with a long duration). Each task events file REQUIRES a corresponding task imaging data file (but a single events file MAY be shared by multiple imaging data files - see Inheritance rule). The tabular files consists of one row per event and a set of REQUIRED and OPTIONAL columns:
 
-<table>
-  <tbody>
-    <tr>
-      <th>Column name</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td>onset</td>
-      <td>REQUIRED.  Onset (in seconds) of the event  measured from the beginning of the acquisition of the first volume in the corresponding task imaging data file.  If any acquired scans have been discarded before forming the imaging data file, ensure that a time of 0 corresponds to the first image stored. In other words negative numbers in “onset” are allowed.</td>
-    </tr>
-    <tr>
-      <td>duration</td>
-      <td>REQUIRED. Duration of the event (measured  from onset) in seconds.  Must always be either zero or positive. A "duration" value of zero implies that the delta function or event is so short as to be effectively modeled as an impulse.</td>
-    </tr>
-    <tr>
-      <td>trial_type</td>
-      <td>OPTIONAL. Primary categorisation of each trial to identify them as instances of the experimental conditions. For example: for a response inhibition task, it could take on values "go" and "no-go" to refer to response initiation and response inhibition experimental conditions.</td>
-    </tr>
-    <tr>
-      <td>response_time</td>
-      <td>OPTIONAL. Response time measured in seconds. A negative response time can be used to represent preemptive responses and “n/a” denotes a missed response.</td>
-    </tr>
-    <tr>
-      <td>stim_file</td>
-      <td>OPTIONAL. Represents the location of the stimulus file (image, video, sound etc.) presented at the given onset time. There are no restrictions on the file formats of the stimuli files, but they should be stored in the /stimuli folder (under the root folder of the dataset; with optional subfolders). The values under the stim_file column correspond to a path relative to “/stimuli”. For example “images/cat03.jpg” will be translated to “/stimuli/images/cat03.jpg”.</td>
-    </tr>
-    <tr>
-      <td>HED</td>
-      <td>OPTIONAL. Hierarchical Event Descriptor (HED) Tag. See Appendix III for details.</td>
-    </tr>
-  </tbody>
-</table>
+| Column name   | Description                                                  |
+|:--------------|:-------------------------------------------------------------|
+| onset         | REQUIRED. Onset (in seconds) of the event measured from the beginning of the acquisition of the first volume in the corresponding task imaging data file. If any acquired scans have been discarded before forming the imaging data file, ensure that a time of 0 corresponds to the first image stored. In other words negative numbers in "onset" are allowed. |
+| duration      | REQUIRED. Duration of the event (measured from onset) in seconds. Must always be either zero or positive. A "duration" value of zero implies that the delta function or event is so short as to be effectively modeled as an impulse. |
+| trial_type    | OPTIONAL. Primary categorisation of each trial to identify them as instances of the experimental conditions. For example: for a response inhibition task, it could take on values "go" and "no-go" to refer to response initiation and response inhibition experimental conditions. |
+| response_time | OPTIONAL. Response time measured in seconds. A negative response time can be used to represent preemptive responses and "n/a" denotes a missed response. |
+| stim_file     | OPTIONAL. Represents the location of the stimulus file (image, video, sound etc.) presented at the given onset time. There are no restrictions on the file formats of the stimuli files, but they should be stored in the /stimuli folder (under the root folder of the dataset; with optional subfolders). The values under the stim_file column correspond to a path relative to "/stimuli". For example "images/cat03.jpg" will be translated to "/stimuli/images/cat03.jpg". |
+| HED           | OPTIONAL. Hierarchical Event Descriptor (HED) Tag. See Appendix III for details. |
 
 An arbitrary number of additional columns can be added. Those allow describing other properties of events that could be later referred in modelling and hypothesis extensions of BIDS.
 
-In case of multi-echo task run, a single _events.tsv file will suffice for all echoes.
+In case of multi-echo task run, a single `_events.tsv` file will suffice for all echoes.
 
-### 8.5.1 Example:
+Example:
+```
 sub-control01/
-> func/
->> sub-control01_task-stopsignal_events.tsv
-
-<table>
-  <tbody>
-    <tr>
-      <th>onset</th>
-      <th>duration</th>
-      <th>trial_type</th>
-      <th>response_time</th>
-      <th>stim_file</th>
-    </tr>
-    <tr>
-      <td>1.2</td>
-      <td>0.6</td>
-      <td>go</td>
-      <td>1.435</td>
-      <td>images/red_square.jpg</td>
-    </tr>
-    <tr>
-      <td>5.6</td>
-      <td>0.6</td>
-      <td>stop</td>
-      <td>1.739</td>
-      <td>images/blue_square.jpg</td>
-    </tr>
-  </tbody>
-</table>
+    func/
+        sub-control01_task-stopsignal_events.tsv
+```
+```
+onset duration  trial_type  response_time stim_file
+1.2 0.6 go  1.435 images/red_square.jpg
+5.6 0.6 stop  1.739 images/blue_square.jpg
+```
 
 References to existing databases can also be encoded using additional columns. Example 2 includes references to the Karolinska Directed Emotional Faces (KDEF) database:
 
-### 8.5.2 Example:
+Example:
+```
 sub-control01/
-> func/
->> sub-control01_task-emoface_events.tsv
+    func/
+        sub-control01_task-emoface_events.tsv
+```
+```
+onset duration  trial_type  identifier  database  response_time
+1.2 0.6 afraid  AF01AFAF  kdef  1.435
+5.6 0.6 angry AM01AFAN  kdef  1.739
+5.6 0.6 sad AF01ANSA  kdef  1.739
+```
 
-<table>
-  <tbody>
-    <tr>
-      <th>onset</th>
-      <th>duration</th>
-      <th>trial_type</th>
-      <th>identifier</th>
-      <th>database</th>
-      <th>response_time</th>
-    </tr>
-    <tr>
-      <td>1.2</td>
-      <td>0.6</td>
-      <td>afraid</td>
-      <td>AF01AFAF</td>
-      <td>kdef</td>
-      <td>1.435</td>
-    </tr>
-    <tr>
-      <td>5.6</td>
-      <td>0.6</td>
-      <td>angry</td>
-      <td>AM01AFAN</td>
-      <td>kdef</td>
-      <td>1.739</td>
-    </tr>
-    <tr>
-      <td>5.6</td>
-      <td>0.6</td>
-      <td>sad</td>
-      <td>AF01ANSA</td>
-      <td>kdef</td>
-      <td>1.739</td>
-    </tr>
-  </tbody>
-</table>
-
-For multi-echo files events.tsv file is applicable to all echos of particular run.
-
-### 8.5.3 Example:
-> sub-01_task-cuedSGT_run-1_events.tsv
-> sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-> sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-> sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
+For multi-echo files events.tsv file is applicable to all echos of particular run:
+```
+sub-01_task-cuedSGT_run-1_events.tsv
+sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
+sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
+sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
+```
 
 8.6 Physiological and other continuous recordings
 -----------------------------------------------------
@@ -1443,8 +1373,8 @@ sub-<participant_label>/[ses-<session_label>/]
 
 Optional: Yes
 
-The purpose of this file is to describe timing and other properties of each imaging acquisition sequence (each run .nii[.gz] file) within one session. Each .nii[.gz] file should be described by at most one row. Relative paths to files should be used under a compulsory “filename” header.
-If acquisition time is included it should be under “acq_time” header. Datetime should be expressed in the following format 2009-06-15T13:45:30 (year, month, day, hour (24h), minute, second; this is equivalent to the RFC3339 “date-time” format, time zone is always assumed as local time). For anonymization purposes all dates within one subject should be shifted by a randomly chosen (but common across all runs etc.) number of days. This way relative timing would be preserved, but chances of identifying a person based on the date and time of their scan would be decreased. Dates that are shifted for anonymization purposes should be set to a year 1900 or earlier to clearly distinguish them from unmodified data. Shifting dates is recommended, but not required.
+The purpose of this file is to describe timing and other properties of each imaging acquisition sequence (each run .nii[.gz] file) within one session. Each .nii[.gz] file should be described by at most one row. Relative paths to files should be used under a compulsory "filename" header.
+If acquisition time is included it should be under "acq_time" header. Datetime should be expressed in the following format 2009-06-15T13:45:30 (year, month, day, hour (24h), minute, second; this is equivalent to the RFC3339 "date-time" format, time zone is always assumed as local time). For anonymization purposes all dates within one subject should be shifted by a randomly chosen (but common across all runs etc.) number of days. This way relative timing would be preserved, but chances of identifying a person based on the date and time of their scan would be decreased. Dates that are shifted for anonymization purposes should be set to a year 1900 or earlier to clearly distinguish them from unmodified data. Shifting dates is recommended, but not required.
 Additional fields can include external behavioural measures relevant to the scan. For example vigilance questionnaire score administered after a resting state scan.
 
 ### 8.8.1 Example:
@@ -1545,7 +1475,7 @@ In addition to the keys available to describe columns in all tabular files (Long
 
 Multiple sessions (visits) are encoded by adding an extra layer of directories and file names in the form of ses-<session_label>. Session label can consist only of alphanumeric characters [a-zA-Z0-9] and should be consistent across subjects. If numbers are used in session labels we recommend using zero padding (for example ses-01, ses-11 instead of ses-1, ses-11). This makes results of alphabetical sorting more intuitive. Acquisition time of session can be defined in the sessions file (see below for details).
 
-The extra session layer (at least one /ses-<session_label> subfolder) should be added for all subjects if at least one subject in the dataset has more than one session. Skipping the session layer for only some subjects in the dataset is not allowed. If a /ses-<session_label> subfolder is included as part of the directory hierarchy, then the same “ses-<session_label>” tag must also be included as part of the file names themselves.
+The extra session layer (at least one /ses-<session_label> subfolder) should be added for all subjects if at least one subject in the dataset has more than one session. Skipping the session layer for only some subjects in the dataset is not allowed. If a /ses-<session_label> subfolder is included as part of the directory hierarchy, then the same "ses-<session_label>" tag must also be included as part of the file names themselves.
 
 -   sub-control01
     -  ses-predrug
@@ -1598,7 +1528,7 @@ sub-<participant_label>/
 
 Optional: Yes
 
-In case of multiple sessions there is an option of adding an additional participant key files describing variables changing between sessions. In such case one file per participant should be added. These files need to include compulsory “session_id” column and describe each session by one and only one row. Column names in per participant key files have to be different from group level participant key column names.
+In case of multiple sessions there is an option of adding an additional participant key files describing variables changing between sessions. In such case one file per participant should be added. These files need to include compulsory "session_id" column and describe each session by one and only one row. Column names in per participant key files have to be different from group level participant key column names.
 
 ### 9.1.1 Multiple sessions example:
 
@@ -1842,7 +1772,7 @@ specifications
 =============================================================
 
 Each event can be assigned one or more Hierarchical Event Descriptor (HED) Tag (see [https://github.com/BigEEGConsortium/HED/wiki/HED-Schema](https://github.com/BigEEGConsortium/HED-schema/wiki/HED-Schema) for more details) under the optional HED column.
-HED is a controlled vocabulary of terms describing events in a behavioural paradigm. It was originally developed with EEG in mind, but is applicable to all behavioural experiments. Each level of the hierarchical tags are delimited with a forward slash (“/”). Multiple tags are delimited with a comma. Parentheses (brackets) group tags and enable specification of multiple items and their attributes in a single HED string (see section 2.4 in HED Tagging Strategy Guide - [http://www.hedtags.org/downloads/HED%20Tagging%20Strategy%20Guide.pdf](http://www.hedtags.org/downloads/HED%20Tagging%20Strategy%20Guide.pdf)). For more information about HED and tools available to validate and match HED strings, please visit [www.hedtags.org](http://www.hedtags.org).
+HED is a controlled vocabulary of terms describing events in a behavioural paradigm. It was originally developed with EEG in mind, but is applicable to all behavioural experiments. Each level of the hierarchical tags are delimited with a forward slash ("/"). Multiple tags are delimited with a comma. Parentheses (brackets) group tags and enable specification of multiple items and their attributes in a single HED string (see section 2.4 in HED Tagging Strategy Guide - [http://www.hedtags.org/downloads/HED%20Tagging%20Strategy%20Guide.pdf](http://www.hedtags.org/downloads/HED%20Tagging%20Strategy%20Guide.pdf)). For more information about HED and tools available to validate and match HED strings, please visit [www.hedtags.org](http://www.hedtags.org).
 
 Since dedicated fields already exist for the overall task classification (CogAtlasID and CogPOID) in the sidecar JSON files HED
 tags from the Paradigm subcategory should not be used to annotate
@@ -1902,7 +1832,7 @@ Alternatively if the same HED tags apply to a group of events with the same tria
 14 Appendix IV: Entity table
 ====================================
 
-This section compiles the entities (key-value pairs) described throughout this specification, and establishes a common order within a filename. For example, if a file has an acquisition and reconstruction label, the acquisition entity must precede the reconstruction entity. Required and optional entities for a given file type are denoted. Entity formats indicate whether the value is alphanumeric (“<label>”) or numeric (“<index>”).
+This section compiles the entities (key-value pairs) described throughout this specification, and establishes a common order within a filename. For example, if a file has an acquisition and reconstruction label, the acquisition entity must precede the reconstruction entity. Required and optional entities for a given file type are denoted. Entity formats indicate whether the value is alphanumeric ("<label>") or numeric ("<index>").
 
 <table>
   <tbody>
@@ -2434,7 +2364,7 @@ sub-control01/
 >>> sub-control01_ses-001_task-rest_run-01_meg.json
 >>> sub-control01_ses-001_task-rest_run-01_channels.tsv
 
-After applying the MaxFilter pre-processing tool, files should be renamed with the corresponding label (e.g. proc-sss) and placed into a “derivatives” subfolder.
+After applying the MaxFilter pre-processing tool, files should be renamed with the corresponding label (e.g. proc-sss) and placed into a "derivatives" subfolder.
 
 Example:
 > sub-control01_ses-001_task-rest_run-01_proc-sss_meg.fif
@@ -2796,13 +2726,13 @@ not be available anymore).]{.c35 .c44 .c30}
 
 <div>
 
-<a name="footnote3">3</a> Conveniently, for Siemens’ data, this value is easily obtained as 1/[BWPPPE * ReconMatrixPE], where BWPPPE is the “BandwidthPerPixelPhaseEncode in DICOM tag (0019,1028) and  ReconMatrixPE is the size of the actual reconstructed data in the phase direction (which is NOT reflected in a single DICOM tag for all possible aforementioned scan manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and [here](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime)
+<a name="footnote3">3</a> Conveniently, for Siemens’ data, this value is easily obtained as 1/[BWPPPE * ReconMatrixPE], where BWPPPE is the "BandwidthPerPixelPhaseEncode in DICOM tag (0019,1028) and  ReconMatrixPE is the size of the actual reconstructed data in the phase direction (which is NOT reflected in a single DICOM tag for all possible aforementioned scan manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and [here](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime)
 
 </div>
 
 <div>
 
-<a name="footnote4">4</a> We use the “FSL definition”, i.e, the time between the center of the first “effective” echo and the center of the last “effective” echo.
+<a name="footnote4">4</a> We use the "FSL definition", i.e, the time between the center of the first "effective" echo and the center of the last "effective" echo.
 
 </div>
 
