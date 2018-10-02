@@ -1632,198 +1632,25 @@ Example:
 }
 ```
 
-14 Appendix IV: Entity table
-====================================
+Appendix IV: Entity table
+=========================
 
-This section compiles the entities (key-value pairs) described throughout this specification, and establishes a common order within a filename. For example, if a file has an acquisition and reconstruction label, the acquisition entity must precede the reconstruction entity. Required and optional entities for a given file type are denoted. Entity formats indicate whether the value is alphanumeric ("<label>") or numeric ("<index>").
+This section compiles the entities (key-value pairs) described throughout this specification, and establishes a common order within a filename. For example, if a file has an acquisition and reconstruction label, the acquisition entity must precede the reconstruction entity. Required and optional entities for a given file type are denoted. Entity formats indicate whether the value is alphanumeric (`<label>`) or numeric (`<index>`).
 
-<table>
-  <tbody>
-    <tr>
-      <td>Entity</td>
-      <td>Format</td>
-      <td>anat (T1w T2w T1rho T1map T2map T2star FLAIR FLASH PD PDmap PDT2 inplaneT1 inplaneT2 angio)</td>
-      <td>anat (defacemask)</td>
-      <td>func (bold sbref events)</td>
-      <td>func (physio stim)</td>
-      <td>dwi (dwi bvec bval)</td>
-      <td>fmap (phasediff phase1 phase2 magnitude1 magnitude2 magnitude fieldmap)</td>
-      <td>fmap (epi)</td>
-      <td>beh (events stim physio)</td>
-      <td>meg (meg channels)</td>
-      <td>meg (photo coordsystem headshape)</td>
-    </tr>
-    <tr>
-      <td>Subject</td>
-      <td>sub-<label></td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-    </tr>
-    <tr>
-    <tr>
-      <td>Session</td>
-      <td>ses-<label></td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-    </tr>
-    <tr>
-      <td>Task</td>
-      <td>task-<label></td>
-      <td></td>
-      <td></td>
-      <td>Required</td>
-      <td>Required</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Required</td>
-      <td>Required</td>
-      <td>Required</td>
-    </tr>
-    <tr>
-      <td>Acquisition</td>
-      <td>acq-<label></td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td></td>
-      <td>Optional</td>
-      <td>Optional</td>
-    </tr>
-    <tr>
-      <td>Contrast Enhancing Agent</td>
-      <td>ce-<label></td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Reconstruction</td>
-      <td>rec-<label></td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Phase-Encoding Direction</td>
-      <td>dir-<label></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Required</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Run</td>
-      <td>run-<index></td>
-      <td></td>
-      <td></td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td>Optional</td>
-      <td></td>
-      <td>Optional</td>
-      <td>Optional</td>
-    </tr>
-    <tr>
-      <td>Corresponding modality</td>
-      <td>mod-<label></td>
-      <td></td>
-      <td>Optional</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Echo</td>
-      <td>echo-<index></td>
-      <td></td>
-      <td></td>
-      <td>Optional</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Recording</td>
-      <td>recording-<label></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Optional</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Processed (on device)</td>
-      <td>proc-<label></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Optional</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Optional</td>
-      <td>Optional</td>
-    </tr>
-  </tbody>
-</table>
+| Entity                   | Format              | anat<br>(T1w T2w T1rho T1map T2map T2star FLAIR FLASH PD PDmap PDT2 inplaneT1 inplaneT2 angio) | anat<br>(defacemask) | func<br>(bold sbref events) | func<br>(physio stim) | dwi<br>(dwi bvec bval) | fmap<br>(phasediff phase1 phase2 magnitude1 magnitude2 magnitude fieldmap) | fmap<br>(epi) | beh<br>(events stim physio) | meg<br>(meg channels) | meg<br>(photo coordsystem headshape) |
+|:-------------------------|:--------------------|:--------------------------------------------------------------------------------------------|:------------------|:-------------------------|:-------------------|:--------------------|:------------------------------------------------------------------------|:-----------|:-------------------------|:-------------------|:--|
+| Subject                  | `sub-<label>`       | Required                                                                                    | Required          | Required                 | Required           | Required            | Required                                                                | Required   | Required                 | Required           | Required |
+| Session                  | `ses-<label>`       | Optional                                                                                    | Optional          | Optional                 | Optional           | Optional            | Optional                                                                | Optional   | Optional                 | Optional           | Optional |
+| Task                     | `task-<label>`      |                                                                                             |                   | Required                 | Required           |                     |                                                                         |            | Required                 | Required           | Required |
+| Acquisition              | `acq-<label>`       | Optional                                                                                    | Optional          | Optional                 | Optional           | Optional            | Optional                                                                | Optional   |                          | Optional           | Optional |
+| Contrast Enhancing Agent | `ce-<label>`        | Optional                                                                                    | Optional          |                          |                    |                     |                                                                         |            |                          |                    |   |
+| Reconstruction           | `rec-<label>`       | Optional                                                                                    | Optional          | Optional                 | Optional           |                     |                                                                         |            |                          |                    |   |
+| Phase-Encoding Direction | `dir-<label>`       |                                                                                             |                   |                          |                    |                     |                                                                         | Required   |                          |                    |   |
+| Run                      | `run-<index>`       |                                                                                             |                   | Optional                 | Optional           | Optional            | Optional                                                                | Optional   |                          | Optional           | Optional |
+| Corresponding modality   | `mod-<label>`       |                                                                                             | Optional          |                          |                    |                     |                                                                         |            |                          |                    |   |
+| Echo                     | `echo-<index>`      |                                                                                             |                   | Optional                 |                    |                     |                                                                         |            |                          |                    |   |
+| Recording                | `recording-<label>` |                                                                                             |                   |                          | Optional           |                     |                                                                         |            |                          |                    |   |
+| Processed (on device)    | `proc-<label>`      |                                                                                             |                   |                          | Optional           |                     |                                                                         |            |                          | Optional           | Optional |
 
 15 Appendix V: Units
 ======================================
