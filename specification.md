@@ -1939,93 +1939,34 @@ For stand-alone MEG data, the Aalto hybrid device uses the standard `.fif` data 
 17 Appendix VII: preferred names of MEG systems
 ==================================================================
 
-Restricted keywords for Manufacturer field in the \*meg.json file:
+Restricted keywords for Manufacturer field in the `*meg.json` file:
 
--   CTF
--   [Elekta/Neuromag](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.a7ggx48p7aaf)
--   [4D/BTi](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.gy0kbzisg1f1)
--   [KIT/Yokogawa/Ricoh](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.2gmmxawyna7r)
--   KRISS
--   [ITAB](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.58whib3oq56y)
--   Aalto/MEG–MRI
--   Other
+-   `CTF`
+-   [`Elekta/Neuromag`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.a7ggx48p7aaf)
+-   [`4D/BTi`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.gy0kbzisg1f1)
+-   [`KIT/Yokogawa/Ricoh`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.2gmmxawyna7r)
+-   `KRISS`
+-   [`ITAB`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.58whib3oq56y)
+-   `Aalto/MEG–MRI`
+-   `Other`
 
-Restricted keywords for ManufacturersModelName field in the \*meg.json file:
+Restricted keywords for ManufacturersModelName field in the `*meg.json` file:
 
-<table>
-  <tbody>
-    <tr>
-      <th>System Model Name</th>
-      <th>Manufacturer</th>
-      <th>Details</th>
-    </tr>
-    <tr>
-      <td>CTF-64</td>
-      <td>CTF</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>CTF-151</td>
-      <td>CTF</td>
-      <td>https://www.ctf.com/products</td>
-    </tr>
-    <tr>
-      <td>CTF-275</td>
-      <td>CTF</td>
-      <td>CTF-275: OMEGA 2000</td>
-    </tr>
-    <tr>
-      <td>Neuromag-122</td>
-      <td>Elekta/Neuromag</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>ElektaVectorview</td>
-      <td>Elekta/Neuromag</td>
-      <td>102 magnetometers + 204 planar gradiometers</td>
-    </tr>
-    <tr>
-      <td>ElektaTRIUX</td>
-      <td>Elekta/Neuromag</td>
-      <td>https://www.elekta.com/diagnostic-solutions/</td>
-    </tr>
-    <tr>
-      <td>4D-Magnes-WH2500</td>
-      <td>4D/BTi</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>4D-Magnes-WH3600</td>
-      <td>4D/BTi</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>KIT-157</td>
-      <td>KIT/Yokogawa</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>KIT-160</td>
-      <td>KIT/Yokogawa</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>KIT-208</td>
-      <td>KIT/Yokogawa</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>ITAB-ARGOS153</td>
-      <td>ITAB</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Aalto-MEG-MRI-YYYY/MM</td>
-      <td>Aalto/MEG–MRI</td>
-      <td>YYYY-MM (year, month; or major version)</td>
-    </tr>
-  </tbody>
-</table>
+|System Model Name|Manufacturer|Details|
+|--- |--- |--- |
+|CTF-64|CTF||
+|CTF-151|CTF|[https://www.ctf.com/products](https://www.ctf.com/products)|
+|CTF-275|CTF|CTF-275: OMEGA 2000|
+|Neuromag-122|Elekta/Neuromag||
+|ElektaVectorview|Elekta/Neuromag|102 magnetometers + 204 planar gradiometers|
+|ElektaTRIUX|Elekta/Neuromag|[https://www.elekta.com/diagnostic-solutions/](https://www.elekta.com/diagnostic-solutions/)|
+|4D-Magnes-WH2500|4D/BTi||
+|4D-Magnes-WH3600|4D/BTi||
+|KIT-157|KIT/Yokogawa||
+|KIT-160|KIT/Yokogawa||
+|KIT-208|KIT/Yokogawa||
+|ITAB-ARGOS153|ITAB||
+|Aalto-MEG-MRI-YYYY/MM|Aalto/MEG–MRI|YYYY-MM (year, month; or major version)|
 
 18 Appendix VIII: preferred names of Coordinate systems
 ==========================================================================
@@ -2038,7 +1979,7 @@ A/P means anterior/posterior
 L/R means left/right
 S/I means superior/inferior
 
-For example: RAS means that the first dimension (X) points towards the right hand side of the head, the second dimension (Y) points towards the Anterior aspect of the head, and the third dimension (Z) points towards the top of the head.
+For example: `RAS` means that the first dimension (X) points towards the right hand side of the head, the second dimension (Y) points towards the Anterior aspect of the head, and the third dimension (Z) points towards the top of the head.
 
 Besides coordinate systems, defined by their origin and direction of the axes, BIDS defines "spaces" as an artificial frame of reference, created to describe different anatomies in a unifying manner (see e.g. [https://doi.org/10.1016/j.neuroimage.2012.01.024](https://www.sciencedirect.com/science/article/pii/S1053811912000419?via%3Dihub)). The "space" and all coordinates expressed in this space are by design a transformation of the real world geometry, and nearly always different from the individual subject space that it stems from. An example is the Talairach-Tournoux space, which is constructed by piecewise linear scaling of an individual's brain to that of the Talairach-Tournoux 1988 atlas. In the Talairach-Tournoux space, the origin of the coordinate system is at the AC and units are expressed in mm.
 
@@ -2047,16 +1988,16 @@ The coordinate systems below all relate to neuroscience and therefore to the hea
 MEG specific Coordinate Systems
 ---------------------------------------
 
-The first two pieces of information (origin, orientation) are specified in XXXCoordinateSystem, the units are specified in XXXCoordinateSystemUnits.
+The first two pieces of information (origin, orientation) are specified in `XXXCoordinateSystem`, the units are specified in `XXXCoordinateSystemUnits`.
 
-Restricted keywords for the XXXCoordinateSystem field in the coordinatesystem.json file for MEG datasets:
+Restricted keywords for the XXXCoordinateSystem field in the `coordinatesystem.json` file for MEG datasets:
 
 -   CTF:                        ALS orientation and the origin between the ears
 -   ElektaNeuromag:        RAS orientation and the origin between the ears
 -   4DBti:                ALS orientation and the origin between the ears
 -   KitYokogawa:        ALS orientation and the origin between the ears
 -   ChietiItab:                RAS orientation and the origin between the ears
--   Other:                Use this for other coordinate systems and specify further details in the XXXCoordinateSystemDescription field
+-   Other:                Use this for other coordinate systems and specify further details in the `XXXCoordinateSystemDescription` field
 
 Note that the short descriptions above do not capture all details,  there are detailed  descriptions of these  coordinate systems on the FieldTrip toolbox web page:
 [http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
@@ -2064,12 +2005,12 @@ Note that the short descriptions above do not capture all details,  there are de
 EEG specific Coordinate Systems
 ---------------------------------------
 
-The first two pieces of information (origin, orientation) are specified in XXXCoordinateSystem, the units are specified in XXXCoordinateSystemUnits.
+The first two pieces of information (origin, orientation) are specified in `XXXCoordinateSystem`, the units are specified in `XXXCoordinateSystemUnits`.
 
-Restricted keywords for the XXXCoordinateSystem field in the coordsystem.json file for EEG  datasets:
+Restricted keywords for the `XXXCoordinateSystem` field in the `coordsystem.json` file for EEG  datasets:
 
--   BESA:         Although natively this is a spherical coordinate system, the electrode positions should be expressed in Cartesian coordinates, with a RAS orientation. The X axis is the T8-T7 line, positive at T8. The Y axis is the Oz-Fpz line, positive at Fpz. The origin of the sphere fitted to the electrodes is approximately 4 cm above the point between the ears.
--   Captrak:        RAS orientation and the origin between the ears
+-   `BESA`:         Although natively this is a spherical coordinate system, the electrode positions should be expressed in Cartesian coordinates, with a RAS orientation. The X axis is the T8-T7 line, positive at T8. The Y axis is the Oz-Fpz line, positive at Fpz. The origin of the sphere fitted to the electrodes is approximately 4 cm above the point between the ears.
+-   `Captrak`:        RAS orientation and the origin between the ears
 
 Note that the short descriptions above do not capture all details, There are detailed extensive descriptions of these EEG coordinate systems on the FieldTrip toolbox web page and on the BESA wiki:
 [http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
@@ -2083,77 +2024,25 @@ iEEG specific Coordinate Systems
 Template based Coordinate System Spaces
 -----------------------------------------------
 
-The transformation of the real world geometry to an artificial frame of reference is described in XXXCoordinateSystem. Unless otherwise specified below, the origin is at the AC and the orientation of the axes is RAS. Unless specified explicitly in the sidecar file in the XXCoordinateSystemUnits field, the units are assumed to be mm.
+The transformation of the real world geometry to an artificial frame of reference is described in `XXXCoordinateSystem`. Unless otherwise specified below, the origin is at the AC and the orientation of the axes is RAS. Unless specified explicitly in the sidecar file in the `XXCoordinateSystemUnits` field, the units are assumed to be mm.
 
-<table>
-  <tbody>
-    <tr>
-      <td>MNI152Lin</td>
-      <td>Also known as ICBM (version with linear coregistration)
-      http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152Lin</td>
-    </tr>
-    <tr>
-      <td>MNI152NLin6[Sym|Asym]</td>
-      <td>Also known as ICBM 6th generation (non-linear coregistration). Used by SPM99 - SPM8 and FSL (MNI152NLin6Sym).
-      http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin6</td>
-    </tr>
-    <tr>
-      <td>MNI152NLin2009[a-c][Sym|Asym]</td>
-      <td>Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009). It comes in either three different flavours each in symmetric or asymmetric version.
-      http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009</td>
-    </tr>
-    <tr>
-      <td>MNIColin27</td>
-      <td>Average of 27 T1 scans of a single subject
-      http://www.bic.mni.mcgill.ca/ServicesAtlases/Colin27Highres</td>
-    </tr>
-    <tr>
-      <td>MNI305</td>
-      <td>Also known as avg305.</td>
-    </tr>
-    <tr>
-     <td>NIHPD</td>
-     <td>Pediatric templates generated from the NIHPD sample.
-     Available for different age groups (4.5–18.5 y.o., 4.5–8.5 y.o., 7–11 y.o., 7.5–13.5 y.o., 10–14 y.o., 13–18.5 y.o. This template also comes in either -symmetric or -asymmetric flavor.
-     http://www.bic.mni.mcgill.ca/ServicesAtlases/NIHPD-obj1</td>
-   </tr>
-   <tr>
-     <td>Talairach</td>
-     <td>Piecewise linear scaling of the brain is implemented as described in TT88. http://www.talairach.org/</td>
-   </tr>
-   <tr>
-     <td>OASIS30AntsOASISAnts</td>
-     <td>https://figshare.com/articles/ANTs_ANTsR_Brain_Templates/915436</td>
-   </tr>
-   <tr>
-     <td>OASIS30Atropos</td>
-     <td>http://www.mindboggle.info/data.html</td>
-   </tr>
-   <tr>
-     <td>ICBM452AirSpace</td>
-     <td>Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" with "linear transforms of the subjects into the atlas space using a 12-parameter affine transformation"
-     http://www.loni.usc.edu/ICBM/Downloads/Downloads_452T1.shtml</td>
-   </tr>
-   <tr>
-     <td>ICBM452Warp5Space</td>
-     <td>Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" "based on a 5th order polynomial transformation into the atlas space"
-     http://www.loni.usc.edu/ICBM/Downloads/Downloads_452T1.shtml</td>
-   </tr>
-   <tr>
-     <td>IXI549Space</td>
-     <td>Reference space defined by the average of the "549 [...] subjects from the IXI dataset" linearly transformed to ICBM MNI 452.Used by SPM12.
-     http://www.brain-development.org/</td>
-   </tr>
-   <tr>
-     <td>fsaverage[3|4|5|6|sym]</td>
-     <td>Images were sampled to the FreeSurfer surface reconstructed from the subject’s T1w image, and registered to an fsaverage template</td>
-   </tr>
-   <tr>
-     <td>UNCInfant[0|1|2]V[21|22|23]</td>
-     <td>Infant Brain Atlases from Neonates to 1- and 2-year-olds. https://www.nitrc.org/projects/pediatricatlas</td>
-   </tr>
-  </tbody>
-</table>
+|Coordinate System|Description|
+|--- |--- |
+|MNI152Lin|Also known as ICBM (version with linear coregistration) [http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152Lin](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152Lin)|
+|MNI152NLin6\[Sym&#124;Asym\]|Also known as ICBM 6th generation (non-linear coregistration). Used by SPM99 - SPM8 and FSL (MNI152NLin6Sym). [http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin6](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin6)|
+|MNI152NLin2009\[a-c\]\[Sym&#124;Asym\]|Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009). It comes in either three different flavours each in symmetric or asymmetric version. [http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009)|
+|MNIColin27|Average of 27 T1 scans of a single subject [http://www.bic.mni.mcgill.ca/ServicesAtlases/Colin27Highres](http://www.bic.mni.mcgill.ca/ServicesAtlases/Colin27Highres)|
+|MNI305|Also known as avg305.|
+|NIHPD|Pediatric templates generated from the NIHPD sample. Available for different age groups (4.5–18.5 y.o., 4.5–8.5 y.o., 7–11 y.o., 7.5–13.5 y.o., 10–14 y.o., 13–18.5 y.o. This template also comes in either -symmetric or -asymmetric flavor. [http://www.bic.mni.mcgill.ca/ServicesAtlases/NIHPD-obj1](http://www.bic.mni.mcgill.ca/ServicesAtlases/NIHPD-obj1)|
+|Talairach|Piecewise linear scaling of the brain is implemented as described in TT88. [http://www.talairach.org/](http://www.talairach.org/)|
+|OASIS30AntsOASISAnts|[https://figshare.com/articles/ANTs_ANTsR_Brain_Templates/915436](https://figshare.com/articles/ANTs_ANTsR_Brain_Templates/915436)|
+|OASIS30Atropos|[http://www.mindboggle.info/data.html](http://www.mindboggle.info/data.html)|
+|ICBM452AirSpace|Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" with "linear transforms of the subjects into the atlas space using a 12-parameter affine transformation" [http://www.loni.usc.edu/ICBM/Downloads/Downloads_452T1.shtml](http://www.loni.usc.edu/ICBM/Downloads/Downloads_452T1.shtml)|
+|ICBM452Warp5Space|Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" "based on a 5th order polynomial transformation into the atlas space" [http://www.loni.usc.edu/ICBM/Downloads/Downloads_452T1.shtml](http://www.loni.usc.edu/ICBM/Downloads/Downloads_452T1.shtml)|
+|IXI549Space|Reference space defined by the average of the "549 (...) subjects from the IXI dataset" linearly transformed to ICBM MNI 452.Used by SPM12. [http://www.brain-development.org/](http://www.brain-development.org/)|
+|fsaverage\[3&#124;4&#124;5&#124;6&#124;sym\]|Images were sampled to the FreeSurfer surface reconstructed from the subject’s T1w image, and registered to an fsaverage template|
+|UNCInfant\[0&#124;1&#124;2\]V\[21&#124;22&#124;23\]|Infant Brain Atlases from Neonates to 1- and 2-year-olds. [https://www.nitrc.org/projects/pediatricatlas](https://www.nitrc.org/projects/pediatricatlas)|
+
 
 ------------------------------------------------------------------------
 
@@ -2168,13 +2057,13 @@ The transformation of the real world geometry to an artificial frame of referenc
 <a name="footnote2">2</a> Storing actual source files with the data
 is preferred over links to external source repositories to maximize long
 term preservation (which would suffer if an external repository would
-not be available anymore).]{.c35 .c44 .c30}
+not be available anymore).
 
 </div>
 
 <div>
 
-<a name="footnote3">3</a> Conveniently, for Siemens’ data, this value is easily obtained as 1/[BWPPPE * ReconMatrixPE], where BWPPPE is the "BandwidthPerPixelPhaseEncode in DICOM tag (0019,1028) and  ReconMatrixPE is the size of the actual reconstructed data in the phase direction (which is NOT reflected in a single DICOM tag for all possible aforementioned scan manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and [here](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime)
+<a name="footnote3">3</a> Conveniently, for Siemens’ data, this value is easily obtained as 1/(BWPPPE * ReconMatrixPE), where BWPPPE is the "BandwidthPerPixelPhaseEncode in DICOM tag (0019,1028) and  ReconMatrixPE is the size of the actual reconstructed data in the phase direction (which is NOT reflected in a single DICOM tag for all possible aforementioned scan manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and [here](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime)
 
 </div>
 
