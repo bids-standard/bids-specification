@@ -1477,175 +1477,110 @@ The simplest way of dealing with multiple sites is to treat data from each site 
 
 Alternatively you can combine data from all sites into one dataset. To identify which site each subjects comes from you can add a `site` column in the `participants.tsv` file indicating the source site. This solution allows you to analyze all of the subjects together in one dataset. One caveat is that subjects from all sites will have to have unique labels. To enforce that and improve readability you can use a subject label prefix identifying the site. For example `sub-NUY001`, `sub-MIT002`, ``sub-MPG002`` etc. Remember that hyphens and underscores are not allowed in subject labels.
 
-11 Appendix I: Contributors
-=============================================
+Appendix I: Contributors
+========================
 
 Legend (source: [https://github.com/kentcdodds/all-contributors](https://github.com/kentcdodds/all-contributors))
 
-<table>
-  <tbody>
-    <tr>
-      <th>Emoji</th>
-      <th>Represents</th>
-    </tr>
-    <tr>
-      <td>💬</td>
-      <td>Answering Questions (on the mailing list, NeuroStars, GitHub, or in person)</td>
-    </tr>
-    <tr>
-      <td>🐛</td>
-      <td>Bug reports</td>
-    </tr>
-    <tr>
-      <td>📝</td>
-      <td>Blogposts</td>
-    </tr>
-    <tr>
-      <td>💻 </td>
-      <td>Code</td>
-    </tr>
-    <tr>
-      <td>📖</td>
-      <td>Documentation and specification</td>
-    </tr>
-    <tr>
-      <td>🎨</td>
-      <td>Design</td>
-    </tr>
-    <tr>
-      <td>💡</td>
-      <td>Examples</td>
-    </tr>
-    <tr>
-      <td>📋</td>
-      <td>Event Organizers</td>
-    </tr>
-    <tr>
-      <td>💵 </td>
-      <td>Financial Support</td>
-    </tr>
-    <tr>
-      <td>🔍</td>
-      <td>Funding/Grant Finders</td>
-    </tr>
-    <tr>
-      <td>🤔</td>
-      <td>Ideas & Planning</td>
-    </tr>
-    <tr>
-      <td>🚇</td>
-      <td>Infrastructure (Hosting, Build-Tools, etc)</td>
-    </tr>
-    <tr>
-      <td>🔌</td>
-      <td>Plugin/utility libraries</td>
-    </tr>
-    <tr>
-      <td>👀 </td>
-      <td>Reviewed Pull Requests</td>
-    </tr>
-    <tr>
-      <td>🔧 </td>
-      <td>Tools</td>
-    </tr>
-    <tr>
-      <td>🌍</td>
-      <td>Translation</td>
-    </tr>
-    <tr>
-      <td>⚠️</td>
-      <td>Tests</td>
-    </tr>
-    <tr>
-      <td>✅ </td>
-      <td>Tutorials</td>
-    </tr>
-    <tr>
-      <td>📢 </td>
-      <td>Talks</td>
-    </tr>
-    <tr>
-      <td>📹 </td>
-      <td>Videos</td>
-    </tr>
-  </tbody>
-</table>
+| Emoji | Represents                                                           |
+|:------|:---------------------------------------------------------------------|
+| 💬    | Answering Questions (on the mailing list, NeuroStars, GitHub, or in person) |
+| 🐛    | Bug reports                                                          |
+| 📝    | Blogposts                                                            |
+| 💻    | Code                                                                 |
+| 📖    | Documentation and specification                                      |
+| 🎨    | Design                                                               |
+| 💡    | Examples                                                             |
+| 📋    | Event Organizers                                                     |
+| 💵    | Financial Support                                                    |
+| 🔍    | Funding/Grant Finders                                                |
+| 🤔    | Ideas & Planning                                                     |
+| 🚇    | Infrastructure (Hosting, Build-Tools, etc)                           |
+| 🔌    | Plugin/utility libraries                                             |
+| 👀    | Reviewed Pull Requests                                               |
+| 🔧    | Tools                                                                |
+| 🌍    | Translation                                                          |
+| ⚠️     | Tests                                                                |
+| ✅     | Tutorials                                                            |
+| 📢    | Talks                                                                |
+| 📹    | Videos                                                               |
+
 
 The following individuals have contributed to the Brain Imaging Data Structure ecosystem (in alphabetical order).
 If you contributed to the BIDS ecosystem and your name is not listed,
 please add it.
-Stefan Appelhoff 📖💬🤔🐛💡💻
-Tibor Auer 💬📖💡🔧📢
-Sylvain Baillet 📖🔍
-Elizabeth Bock 📖💡
-Eric Bridgeford 📖🔧
-Teon L. Brooks 📖💻⚠️💬👀🤔
-Suyash Bhogawar 📖💡⚠️🔧💬
-Vince D. Calhoun 📖
-Alexander L. Cohen 🐛💻📖💬
-R. Cameron Craddock 📖📢
-Samir Das 📖
-Alejandro de la Vega 🐛💻⚠️
-Eugene P. Duff 📖
-Elizabeth DuPre 📖💡
-Eric A. Earl 🤔
-Anders Eklund 📖📢💻
-Franklin W. Feingold 📋📝✅
-Guillaume Flandin 📖💻
-Satrajit S. Ghosh 📖💻
-Tristan Glatard 📖💻
-Mathias Goncalves 💻🔧📢
-Krzysztof J. Gorgolewski 📖💻💬🤔🔍📢📝💡🔍🔌
-Alexandre Gramfort 📖💡
-Yaroslav O. Halchenko 📖📢🔧💬🐛
-Daniel A. Handwerker 📖
-Michael Hanke 📖🤔🔧🐛📢
-Michael P. Harms 📖⚠️🔧
-Richard N. Henson 📖
-Dora Hermes 📖💻✅
-Katja Heuer 🔧
-Chris Holdgraf 📖
-International Neuroinformatics Coordinating Facility 💵📋
-Mainak Jas 📖💻
-David Keator 📖
-James Kent 💬💻
-Gregory Kiar 📖💻🎨🔧
-Pamela LaMontagne 📖💡
-Kevin Larcher 💬
-Laura and John Arnold Foundation 💵
-Xiangrui Li 📖💻
-Vladimir Litvak 📖
-Dan Lurie 🤔📖🔧🔌💻💬
-Camille Maumet 📖
-Christopher J. Markiewicz 💬📖💻
-Jeremy Moreau 📖💡
-Zachary Michael 📖
-Michael P. Milham 💡🔍
-Henk Mutsaerts 📖
-National Institute of Mental Health 💵
-B. Nolan Nichols 📖
-Thomas E. Nichols 📖
-Dylan Nielson 📖💻🔧
-Guiomar Niso 📖💡📢
-Robert Oostenveld 📖🔧📢💡
-Dianne Patterson 📖
-John Pellman 📖
-Cyril Pernet 💬📖💡📋
-Dmitry Petrov 📖💻
-Russell A. Poldrack 📖🔍📢
-Jean-Baptiste Poline 📖📢🤔🎨
-Vasudev Raguram 💻🎨📖🔧
-Ariel Rokem 📖
-Gunnar Schaefer 📖
-Jan-Mathijs Schoffelen 📖
-Vanessa Sochat 📖
-Francois Tadel 📖🔌💡
-Roberto Toro 🔧
-William Triplett 📖
-Jessica A. Turner 📖
-Joseph Wexler 📖💡
-Gaël Varoquaux 📖
-Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
+-   Stefan Appelhoff 📖💬🤔🐛💡💻
+-   Tibor Auer 💬📖💡🔧📢
+-   Sylvain Baillet 📖🔍
+-   Elizabeth Bock 📖💡
+-   Eric Bridgeford 📖🔧
+-   Teon L. Brooks 📖💻⚠️💬👀🤔
+-   Suyash Bhogawar 📖💡⚠️🔧💬
+-   Vince D. Calhoun 📖
+-   Alexander L. Cohen 🐛💻📖💬
+-   R. Cameron Craddock 📖📢
+-   Samir Das 📖
+-   Alejandro de la Vega 🐛💻⚠️
+-   Eugene P. Duff 📖
+-   Elizabeth DuPre 📖💡
+-   Eric A. Earl 🤔
+-   Anders Eklund 📖📢💻
+-   Franklin W. Feingold 📋📝✅
+-   Guillaume Flandin 📖💻
+-   Satrajit S. Ghosh 📖💻
+-   Tristan Glatard 📖💻
+-   Mathias Goncalves 💻🔧📢
+-   Krzysztof J. Gorgolewski 📖💻💬🤔🔍📢📝💡🔍🔌
+-   Alexandre Gramfort 📖💡
+-   Yaroslav O. Halchenko 📖📢🔧💬🐛
+-   Daniel A. Handwerker 📖
+-   Michael Hanke 📖🤔🔧🐛📢
+-   Michael P. Harms 📖⚠️🔧
+-   Richard N. Henson 📖
+-   Dora Hermes 📖💻✅
+-   Katja Heuer 🔧
+-   Chris Holdgraf 📖
+-   International Neuroinformatics Coordinating Facility 💵📋
+-   Mainak Jas 📖💻
+-   David Keator 📖
+-   James Kent 💬💻
+-   Gregory Kiar 📖💻🎨🔧
+-   Pamela LaMontagne 📖💡
+-   Kevin Larcher 💬
+-   Laura and John Arnold Foundation 💵
+-   Xiangrui Li 📖💻
+-   Vladimir Litvak 📖
+-   Dan Lurie 🤔📖🔧🔌💻💬
+-   Camille Maumet 📖
+-   Christopher J. Markiewicz 💬📖💻
+-   Jeremy Moreau 📖💡
+-   Zachary Michael 📖
+-   Michael P. Milham 💡🔍
+-   Henk Mutsaerts 📖
+-   National Institute of Mental Health 💵
+-   B. Nolan Nichols 📖
+-   Thomas E. Nichols 📖
+-   Dylan Nielson 📖💻🔧
+-   Guiomar Niso 📖💡📢
+-   Robert Oostenveld 📖🔧📢💡
+-   Dianne Patterson 📖
+-   John Pellman 📖
+-   Cyril Pernet 💬📖💡📋
+-   Dmitry Petrov 📖💻
+-   Russell A. Poldrack 📖🔍📢
+-   Jean-Baptiste Poline 📖📢🤔🎨
+-   Vasudev Raguram 💻🎨📖🔧
+-   Ariel Rokem 📖
+-   Gunnar Schaefer 📖
+-   Jan-Mathijs Schoffelen 📖
+-   Vanessa Sochat 📖
+-   Francois Tadel 📖🔌💡
+-   Roberto Toro 🔧
+-   William Triplett 📖
+-   Jessica A. Turner 📖
+-   Joseph Wexler 📖💡
+-   Gaël Varoquaux 📖
+-   Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
 
 12 Appendix II: Licenses
 ============================
