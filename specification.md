@@ -1594,66 +1594,43 @@ specifications
 | PDDL       | Open Data Commons Public Domain Dedication and License | License to assign public domain like permissions without giving up the copyright: [http://opendatacommons.org/licenses/pddl/](http://opendatacommons.org/licenses/pddl/) |
 | CC0        | Creative Commons Zero 1.0 Universal.                   | Use this if you are a holder of copyright or database rights, and you wish to waive all your interests in your work worldwide: [http://opendatacommons.org/licenses/pddl/](https://creativecommons.org/about/cc0) |
 
-13 Appendix III: Hierarchical Event Descriptor (HED) Tags
-=============================================================
+Appendix III: Hierarchical Event Descriptor (HED) Tags
+======================================================
 
-Each event can be assigned one or more Hierarchical Event Descriptor (HED) Tag (see [https://github.com/BigEEGConsortium/HED/wiki/HED-Schema](https://github.com/BigEEGConsortium/HED-schema/wiki/HED-Schema) for more details) under the optional HED column.
+Each event can be assigned one or more Hierarchical Event Descriptor (HED) Tag (see [https://github.com/BigEEGConsortium/HED/wiki/HED-Schema](https://github.com/BigEEGConsortium/HED-schema/wiki/HED-Schema) for more details) under the optional `HED` column.
 HED is a controlled vocabulary of terms describing events in a behavioural paradigm. It was originally developed with EEG in mind, but is applicable to all behavioural experiments. Each level of the hierarchical tags are delimited with a forward slash ("/"). Multiple tags are delimited with a comma. Parentheses (brackets) group tags and enable specification of multiple items and their attributes in a single HED string (see section 2.4 in HED Tagging Strategy Guide - [http://www.hedtags.org/downloads/HED%20Tagging%20Strategy%20Guide.pdf](http://www.hedtags.org/downloads/HED%20Tagging%20Strategy%20Guide.pdf)). For more information about HED and tools available to validate and match HED strings, please visit [www.hedtags.org](http://www.hedtags.org).
 
-Since dedicated fields already exist for the overall task classification (CogAtlasID and CogPOID) in the sidecar JSON files HED
+Since dedicated fields already exist for the overall task classification (`CogAtlasID` and `CogPOID`) in the sidecar JSON files HED
 tags from the Paradigm subcategory should not be used to annotate
 events.
 
-13.1 Example:
----------------------
-
+Example:
+```
 sub-control01/
-> func/
->> sub-control01_task-emoface_events.tsv
+    func/
+        sub-control01_task-emoface_events.tsv
+```
+```
+onset duration  trial_type  HED
+1.2 0.6 fixationCross Event/Category/Experimental stimulus, Event/Label/CrossFix, Event/Description/A cross appears at screen center to serve as a fixation point, Sensory presentation/Visual, Item/Object/2D Shape/Cross, Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, Attribute/Location/Screen/Center
+5.6 0.008 target  Event/Label/Target image, Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed., Event/Category/Experimental stimulus, (Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, Sensory presentation/Visual/Rendering type/Screen/2D), (Item/Natural scene/Arial/Satellite, Sensory presentation/Visual/Rendering type/Screen/2D)
+500 0.008 nontarget Event/Label/Non-target image, Event/Description/A non-target image is displayed for about 8 milliseconds, Event/Category/Experimental stimulus, (Item/Natural scene/Arial/Satellite, Participant/Effect/Cognitive/Expected/Non-target, Sensory presentation/Visual/Rendering type/Screen/2D), Attribute/Onset
+```
 
-<table>
-  <tbody>
-    <tr>
-      <td>onset</td>
-      <td>duration</td>
-      <td>trial_type</td>
-      <td>HED</td>
-    </tr>
-    <tr>
-      <td>1.2</td>
-      <td>0.6</td>
-      <td>fixationCross</td>
-      <td>Event/Category/Experimental stimulus, Event/Label/CrossFix, Event/Description/A cross appears at screen center to serve as a fixation point, Sensory presentation/Visual, Item/Object/2D Shape/Cross, Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, Attribute/Location/Screen/Center</td>
-    </tr>
-    <tr>
-      <td>5.6</td>
-      <td>0.008</td>
-      <td>target</td>
-      <td>Event/Label/Target image, Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed., Event/Category/Experimental stimulus, (Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, Sensory presentation/Visual/Rendering type/Screen/2D), (Item/Natural scene/Arial/Satellite, Sensory presentation/Visual/Rendering type/Screen/2D)</td>
-    </tr>
-    <tr>
-      <td>500</td>
-      <td>0.008</td>
-      <td>nontarget</td>
-      <td>Event/Label/Non-target image, Event/Description/A non-target image is displayed for about 8 milliseconds, Event/Category/Experimental stimulus, (Item/Natural scene/Arial/Satellite, Participant/Effect/Cognitive/Expected/Non-target, Sensory presentation/Visual/Rendering type/Screen/2D), Attribute/Onset</td>
-    </tr>
-  </tbody>
-</table>
+Alternatively if the same HED tags apply to a group of events with the same `trial_type` they can be specified in the corresponding data dictionary (`_events.json` file) using the following syntax:
 
-Alternatively if the same HED tags apply to a group of events with the same trial_type they can be specified in the corresponding data dictionary (_events.json file) using the following syntax:
-
-13.2 Example:
----------------------
-
+Example:
+```JSON
 {
-       "trial_type": {
-        "HED": {
-         "fixationCross": "Event/Category/Experimental stimulus, Event/Label/CrossFix, Event/Description/A cross appears at screen center to serve as a fixation point, Sensory presentation/Visual, Item/Object/2D Shape/Cross, Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, Attribute/Location/Screen/Center",
-         "target": "Event/Label/Target image, Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed., Event/Category/Experimental stimulus, (Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, Sensory presentation/Visual/Rendering type/Screen/2D), (Item/Natural scene/Arial/Satellite, Sensory presentation/Visual/Rendering type/Screen/2D)",
-         "nontarget": "Event/Label/Non-target image, Event/Description/A non-target image is displayed for about 8 milliseconds, Event/Category/Experimental stimulus, (Item/Natural scene/Arial/Satellite, Participant/Effect/Cognitive/Expected/Non-target, Sensory presentation/Visual/Rendering type/Screen/2D), Attribute/Onset"
-        }
-       }
+  "trial_type": {
+    "HED": {
+      "fixationCross": "Event/Category/Experimental stimulus, Event/Label/CrossFix, Event/Description/A cross appears at screen center to serve as a fixation point, Sensory presentation/Visual, Item/Object/2D Shape/Cross, Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, Attribute/Location/Screen/Center",
+      "target": "Event/Label/Target image, Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed., Event/Category/Experimental stimulus, (Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, Sensory presentation/Visual/Rendering type/Screen/2D), (Item/Natural scene/Arial/Satellite, Sensory presentation/Visual/Rendering type/Screen/2D)",
+      "nontarget": "Event/Label/Non-target image, Event/Description/A non-target image is displayed for about 8 milliseconds, Event/Category/Experimental stimulus, (Item/Natural scene/Arial/Satellite, Participant/Effect/Cognitive/Expected/Non-target, Sensory presentation/Visual/Rendering type/Screen/2D), Attribute/Onset"
+    }
+  }
 }
+```
 
 14 Appendix IV: Entity table
 ====================================
