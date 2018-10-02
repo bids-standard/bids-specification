@@ -1638,305 +1638,89 @@ Appendix IV: Entity table
 This section compiles the entities (key-value pairs) described throughout this specification, and establishes a common order within a filename. For example, if a file has an acquisition and reconstruction label, the acquisition entity must precede the reconstruction entity. Required and optional entities for a given file type are denoted. Entity formats indicate whether the value is alphanumeric (`<label>`) or numeric (`<index>`).
 
 | Entity                   | Format              | anat<br>(T1w T2w T1rho T1map T2map T2star FLAIR FLASH PD PDmap PDT2 inplaneT1 inplaneT2 angio) | anat<br>(defacemask) | func<br>(bold sbref events) | func<br>(physio stim) | dwi<br>(dwi bvec bval) | fmap<br>(phasediff phase1 phase2 magnitude1 magnitude2 magnitude fieldmap) | fmap<br>(epi) | beh<br>(events stim physio) | meg<br>(meg channels) | meg<br>(photo coordsystem headshape) |
-|:-------------------------|:--------------------|:--------------------------------------------------------------------------------------------|:------------------|:-------------------------|:-------------------|:--------------------|:------------------------------------------------------------------------|:-----------|:-------------------------|:-------------------|:--|
-| Subject                  | `sub-<label>`       | Required                                                                                    | Required          | Required                 | Required           | Required            | Required                                                                | Required   | Required                 | Required           | Required |
-| Session                  | `ses-<label>`       | Optional                                                                                    | Optional          | Optional                 | Optional           | Optional            | Optional                                                                | Optional   | Optional                 | Optional           | Optional |
-| Task                     | `task-<label>`      |                                                                                             |                   | Required                 | Required           |                     |                                                                         |            | Required                 | Required           | Required |
-| Acquisition              | `acq-<label>`       | Optional                                                                                    | Optional          | Optional                 | Optional           | Optional            | Optional                                                                | Optional   |                          | Optional           | Optional |
-| Contrast Enhancing Agent | `ce-<label>`        | Optional                                                                                    | Optional          |                          |                    |                     |                                                                         |            |                          |                    |   |
-| Reconstruction           | `rec-<label>`       | Optional                                                                                    | Optional          | Optional                 | Optional           |                     |                                                                         |            |                          |                    |   |
-| Phase-Encoding Direction | `dir-<label>`       |                                                                                             |                   |                          |                    |                     |                                                                         | Required   |                          |                    |   |
-| Run                      | `run-<index>`       |                                                                                             |                   | Optional                 | Optional           | Optional            | Optional                                                                | Optional   |                          | Optional           | Optional |
-| Corresponding modality   | `mod-<label>`       |                                                                                             | Optional          |                          |                    |                     |                                                                         |            |                          |                    |   |
-| Echo                     | `echo-<index>`      |                                                                                             |                   | Optional                 |                    |                     |                                                                         |            |                          |                    |   |
-| Recording                | `recording-<label>` |                                                                                             |                   |                          | Optional           |                     |                                                                         |            |                          |                    |   |
-| Processed (on device)    | `proc-<label>`      |                                                                                             |                   |                          | Optional           |                     |                                                                         |            |                          | Optional           | Optional |
+|:-------------------------|:--------------------|:-----------------------------------------------------------------------------------------------|:---------------------|:----------------------------|:----------------------|:-----------------------|:---------------------------------------------------------------------------|:--------------|:----------------------------|:----------------------|:--|
+| Subject                  | `sub-<label>`       | Required                                                                                       | Required             | Required                    | Required              | Required               | Required                                                                   | Required      | Required                    | Required              | Required |
+| Session                  | `ses-<label>`       | Optional                                                                                       | Optional             | Optional                    | Optional              | Optional               | Optional                                                                   | Optional      | Optional                    | Optional              | Optional |
+| Task                     | `task-<label>`      |                                                                                                |                      | Required                    | Required              |                        |                                                                            |               | Required                    | Required              | Required |
+| Acquisition              | `acq-<label>`       | Optional                                                                                       | Optional             | Optional                    | Optional              | Optional               | Optional                                                                   | Optional      |                             | Optional              | Optional |
+| Contrast Enhancing Agent | `ce-<label>`        | Optional                                                                                       | Optional             |                             |                       |                        |                                                                            |               |                             |                       |   |
+| Reconstruction           | `rec-<label>`       | Optional                                                                                       | Optional             | Optional                    | Optional              |                        |                                                                            |               |                             |                       |   |
+| Phase-Encoding Direction | `dir-<label>`       |                                                                                                |                      |                             |                       |                        |                                                                            | Required      |                             |                       |   |
+| Run                      | `run-<index>`       |                                                                                                |                      | Optional                    | Optional              | Optional               | Optional                                                                   | Optional      |                             | Optional              | Optional |
+| Corresponding modality   | `mod-<label>`       |                                                                                                | Optional             |                             |                       |                        |                                                                            |               |                             |                       |   |
+| Echo                     | `echo-<index>`      |                                                                                                |                      | Optional                    |                       |                        |                                                                            |               |                             |                       |   |
+| Recording                | `recording-<label>` |                                                                                                |                      |                             | Optional              |                        |                                                                            |               |                             |                       |   |
+| Processed (on device)    | `proc-<label>`      |                                                                                                |                      |                             | Optional              |                        |                                                                            |               |                             | Optional              | Optional |
 
-15 Appendix V: Units
-======================================
+Appendix V: Units
+=================
 
 Following the International System of Units (SI, abbreviated from the French Système international (d'unités))
 
-<table>
-  <tbody>
-    <tr>
-      <th>Unit name</th>
-      <th>Unit symbol</th>
-      <th>Quantity name</th>
-    </tr>
-    <tr>
-      <td>metre</td>
-      <td>m</td>
-      <td>length</td>
-    </tr>
-    <tr>
-      <td>kilogram</td>
-      <td>kg</td>
-      <td>mass</td>
-    </tr>
-    <tr>
-      <td>second</td>
-      <td>s</td>
-      <td>time</td>
-    </tr>
-    <tr>
-      <td>ampere</td>
-      <td>A</td>
-      <td>electric current</td>
-    </tr>
-    <tr>
-      <td>kelvin</td>
-      <td>K</td>
-      <td>thermodynamic temperature</td>
-    </tr>
-    <tr>
-      <td>mole</td>
-      <td>mol</td>
-      <td>amount of substance</td>
-    </tr>
-    <tr>
-      <td>candela</td>
-      <td>cd</td>
-      <td>luminous intensity</td>
-    </tr>
-    <tr>
-      <td>radian</td>
-      <td>rad</td>
-      <td>angle</td>
-    </tr>
-    <tr>
-      <td>steradian</td>
-      <td>sr</td>
-      <td>solid angle</td>
-    </tr>
-    <tr>
-      <td>hertz</td>
-      <td>Hz</td>
-      <td>frequency</td>
-    </tr>
-    <tr>
-      <td>newton</td>
-      <td>N</td>
-      <td>force, weight</td>
-    </tr>
-    <tr>
-      <td>pascal</td>
-      <td>Pa</td>
-      <td>pressure, stress</td>
-    </tr>
-    <tr>
-      <td>joule</td>
-      <td>J</td>
-      <td>energy, work, heat</td>
-    </tr>
-    <tr>
-      <td>watt</td>
-      <td>W</td>
-      <td>power, radiant flux</td>
-    </tr>
-    <tr>
-      <td>coulomb</td>
-      <td>C</td>
-      <td>electric charge or quantity of electricity</td>
-    </tr>
-    <tr>
-      <td>volt</td>
-      <td>V</td>
-      <td>voltage (electrical potential), emf</td>
-    </tr>
-    <tr>
-      <td>farad</td>
-      <td>F</td>
-      <td>capacitance</td>
-    </tr>
-    <tr>
-      <td>ohm</td>
-      <td>Ω</td>
-      <td>resistance, impedance, reactance</td>
-    </tr>
-    <tr>
-      <td>siemens</td>
-      <td>S</td>
-      <td>electrical conductance</td>
-    </tr>
-    <tr>
-      <td>weber</td>
-      <td>Wb</td>
-      <td>magnetic flux</td>
-    </tr>
-    <tr>
-      <td>tesla</td>
-      <td>T</td>
-      <td>magnetic flux density</td>
-    </tr>
-    <tr>
-      <td>henry</td>
-      <td>H</td>
-      <td>inductance</td>
-    </tr>
-    <tr>
-      <td>degree Celsius</td>
-      <td>°C</td>
-      <td>temperature relative to 273.15 K</td>
-    </tr>
-    <tr>
-      <td>lumen</td>
-      <td>lm</td>
-      <td>luminous flux</td>
-    </tr>
-    <tr>
-      <td>lux</td>
-      <td>lx</td>
-      <td>illuminance</td>
-    </tr>
-    <tr>
-      <td>becquerel</td>
-      <td>Bq</td>
-      <td>radioactivity (decays per unit time)</td>
-    </tr>
-    <tr>
-      <td>gray</td>
-      <td>Gy</td>
-      <td>absorbed dose (of ionizing radiation)</td>
-    </tr>
-    <tr>
-      <td>sievert</td>
-      <td>Sv</td>
-      <td>equivalent dose (of ionizing radiation)</td>
-    </tr>
-    <tr>
-      <td>katal</td>
-      <td>kat</td>
-      <td>catalytic activity</td>
-    </tr>
-  </tbody>
-</table>
+| Unit name      | Unit symbol | Quantity name                              |
+|:---------------|:------------|:-------------------------------------------|
+| metre          | m           | length                                     |
+| kilogram       | kg          | mass                                       |
+| second         | s           | time                                       |
+| ampere         | A           | electric current                           |
+| kelvin         | K           | thermodynamic temperature                  |
+| mole           | mol         | amount of substance                        |
+| candela        | cd          | luminous intensity                         |
+| radian         | rad         | angle                                      |
+| steradian      | sr          | solid angle                                |
+| hertz          | Hz          | frequency                                  |
+| newton         | N           | force, weight                              |
+| pascal         | Pa          | pressure, stress                           |
+| joule          | J           | energy, work, heat                         |
+| watt           | W           | power, radiant flux                        |
+| coulomb        | C           | electric charge or quantity of electricity |
+| volt           | V           | voltage (electrical potential), emf        |
+| farad          | F           | capacitance                                |
+| ohm            | Ω           | resistance, impedance, reactance           |
+| siemens        | S           | electrical conductance                     |
+| weber          | Wb          | magnetic flux                              |
+| tesla          | T           | magnetic flux density                      |
+| henry          | H           | inductance                                 |
+| degree Celsius | °C          | temperature relative to 273.15 K           |
+| lumen          | lm          | luminous flux                              |
+| lux            | lx          | illuminance                                |
+| becquerel      | Bq          | radioactivity (decays per unit time)       |
+| gray           | Gy          | absorbed dose (of ionizing radiation)      |
+| sievert        | Sv          | equivalent dose (of ionizing radiation)    |
+| katal          | kat         | catalytic activity                         |
 
 Prefixes
 
 Multiples
 
-<table>
-  <tbody>
-    <tr>
-      <th>Prefix name</th>
-      <th>Prefix symbol</th>
-      <th>Factor</th>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Deca-">deca</a></p></td>
-      <td>da</td>
-      <td>10<sup>1</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Hecto-">hecto</a></p></td>
-      <td>h</td>
-      <td>10<sup>2</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Kilo-">kilo</a></p></td>
-      <td>k</td>
-      <td>10<sup>3</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Mega-">mega</a></p></td>
-      <td>M</td>
-      <td>10<sup>6</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Giga-">giga</a></p></td>
-      <td>G</td>
-      <td>10<sup>9</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Tera-">tera</a></p></td>
-      <td>T</td>
-      <td>10<sup>12</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Peta-">peta</a></p></td>
-      <td>P</td>
-      <td>10<sup>15</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Exa-">exa</a></p></td>
-      <td>E</td>
-      <td>10<sup>18</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Zetta-">zetta</a></p></td>
-      <td>Z</td>
-      <td>10<sup>21</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Yotta-">yotta</a></p></td>
-      <td>Y</td>
-      <td>10<sup>24</sup></td>
-    </tr>
-  </tbody>
-</table>
+| Prefix name                                 | Prefix symbol | Factor          |
+|:--------------------------------------------|:--------------|:----------------|
+| [deca](https://www.wikiwand.com/en/Deca-)   | da            | 10<sup>1</sup>  |
+| [hecto](https://www.wikiwand.com/en/Hecto-) | h             | 10<sup>2</sup>  |
+| [kilo](https://www.wikiwand.com/en/Kilo-)   | k             | 10<sup>3</sup>  |
+| [mega](https://www.wikiwand.com/en/Mega-)   | M             | 10<sup>6</sup>  |
+| [giga](https://www.wikiwand.com/en/Giga-)   | G             | 10<sup>9</sup>  |
+| [tera](https://www.wikiwand.com/en/Tera-)   | T             | 10<sup>12</sup> |
+| [peta](https://www.wikiwand.com/en/Peta-)   | P             | 10<sup>15</sup> |
+| [exa](https://www.wikiwand.com/en/Exa-)     | E             | 10<sup>18</sup> |
+| [zetta](https://www.wikiwand.com/en/Zetta-) | Z             | 10<sup>21</sup> |
+| [yotta](https://www.wikiwand.com/en/Yotta-) | Y             | 10<sup>24</sup> |
+
 
 Submultiples
 
-<table>
-  <tbody>
-    <tr>
-      <th>Prefix name</th>
-      <th>Prefix symbol</th>
-      <th>Factor</th>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Deci-">deci</a></p></td>
-      <td>d</td>
-      <td>10<sup>-1</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Centi-">centi</a></p></td>
-      <td>c</td>
-      <td>10<sup>-2</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Milli-">milli</a></p></td>
-      <td>m</td>
-      <td>10<sup>-3</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Micro-">micro</a></p></td>
-      <td>μ</td>
-      <td>10<sup>-6</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Nano-">nano</a></p></td>
-      <td>n</td>
-      <td>10<sup>-9</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Pico-">pico</a></p></td>
-      <td>p</td>
-      <td>10<sup>-12</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Femto-">femto</a></p></td>
-      <td>f</td>
-      <td>10<sup>-15</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Atto-">atto</a></p></td>
-      <td>a</td>
-      <td>10<sup>-18</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Zepto-">zepto</a></p></td>
-      <td>z</td>
-      <td>10<sup>-21</sup></td>
-    </tr>
-    <tr>
-      <td><p><a href="https://www.wikiwand.com/en/Yocto-">yocto</a></p></td>
-      <td>y</td>
-      <td>10<sup>-24</sup></td>
-    </tr>
-  </tbody>
-</table>
+| Prefix name                                 | Prefix symbol | Factor           |
+|:--------------------------------------------|:--------------|:-----------------|
+| [deci](https://www.wikiwand.com/en/Deci-)   | d             | 10<sup>-1</sup>  |
+| [centi](https://www.wikiwand.com/en/Centi-) | c             | 10<sup>-2</sup>  |
+| [milli](https://www.wikiwand.com/en/Milli-) | m             | 10<sup>-3</sup>  |
+| [micro](https://www.wikiwand.com/en/Micro-) | μ             | 10<sup>-6</sup>  |
+| [nano](https://www.wikiwand.com/en/Nano-)   | n             | 10<sup>-9</sup>  |
+| [pico](https://www.wikiwand.com/en/Pico-)   | p             | 10<sup>-12</sup> |
+| [femto](https://www.wikiwand.com/en/Femto-) | f             | 10<sup>-15</sup> |
+| [atto](https://www.wikiwand.com/en/Atto-)   | a             | 10<sup>-18</sup> |
+| [zepto](https://www.wikiwand.com/en/Zepto-) | z             | 10<sup>-21</sup> |
+| [yocto](https://www.wikiwand.com/en/Yocto-) | y             | 10<sup>-24</sup> |
 
 16 Appendix  VI: MEG file formats
 ====================================
