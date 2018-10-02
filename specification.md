@@ -1582,31 +1582,17 @@ please add it.
 -   Gaël Varoquaux 📖
 -   Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
 
-12 Appendix II: Licenses
-============================
+Appendix II: Licenses
+=====================
 
 This section lists a number of common licenses for datasets and defines suggested abbreviations for use in the dataset metadata
 specifications
 
-<table>
-  <tbody>
-    <tr>
-      <td>PD</td>
-      <td>Public Domain</td>
-      <td>No license required for any purpose; the work is not subject to copyright in any jurisdiction.</td>
-    </tr>
-    <tr>
-      <td>PDDL</td>
-      <td>Open Data Commons Public Domain Dedication and License</td>
-      <td>License to assign public domain like permissions without giving up the copyright: http://opendatacommons.org/licenses/pddl/</td>
-    </tr>
-    <tr>
-      <td>CC0</td>
-      <td>Creative Commons Zero 1.0 Universal.</td>
-      <td>Use this if you are a holder of copyright or database rights, and you wish to waive all your interests in your work worldwide: https://creativecommons.org/about/cc0</td>
-    </tr>
-  </tbody>
-</table>
+| Identifier | License name                                           | Description |
+|:-----------|:-------------------------------------------------------|:-------|
+| PD         | Public Domain                                          | No license required for any purpose; the work is not subject to copyright in any jurisdiction. |
+| PDDL       | Open Data Commons Public Domain Dedication and License | License to assign public domain like permissions without giving up the copyright: [http://opendatacommons.org/licenses/pddl/](http://opendatacommons.org/licenses/pddl/) |
+| CC0        | Creative Commons Zero 1.0 Universal.                   | Use this if you are a holder of copyright or database rights, and you wish to waive all your interests in your work worldwide: [http://opendatacommons.org/licenses/pddl/](https://creativecommons.org/about/cc0) |
 
 13 Appendix III: Hierarchical Event Descriptor (HED) Tags
 =============================================================
