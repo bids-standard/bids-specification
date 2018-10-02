@@ -1315,36 +1315,27 @@ sub-<participant_label>/[ses-<session_label>/]
 In addition to logs from behavioral experiments performed along imaging data acquisitions one can also include data from experiments performed outside of the scanner. The results of those experiments can be stored in the beh folder using the same formats for event timing (`_events.tsv`), metadata (`_events.json`), physiological (`_physio.tsv.gz`, `_physio.json`) and other continuous recordings (`_stim.tsv.gz`, `_stim.json`) as for tasks performed during MRI acquisitions. Additionally, events files that do not include the mandatory `onset` and `duration` columns can still be included, but should be labelled `_beh.tsv` rather than `_events.tsv`.
 
 8.8 Scans file
-------------------
+--------------
 
 Template:
+```
 sub-<participant_label>/[ses-<session_label>/]
-> sub-<participant_label>[_ses-<session_label>]_scans.tsv
+    sub-<participant_label>[_ses-<session_label>]_scans.tsv
+```
 
 Optional: Yes
 
-The purpose of this file is to describe timing and other properties of each imaging acquisition sequence (each run .nii[.gz] file) within one session. Each .nii[.gz] file should be described by at most one row. Relative paths to files should be used under a compulsory "filename" header.
-If acquisition time is included it should be under "acq_time" header. Datetime should be expressed in the following format 2009-06-15T13:45:30 (year, month, day, hour (24h), minute, second; this is equivalent to the RFC3339 "date-time" format, time zone is always assumed as local time). For anonymization purposes all dates within one subject should be shifted by a randomly chosen (but common across all runs etc.) number of days. This way relative timing would be preserved, but chances of identifying a person based on the date and time of their scan would be decreased. Dates that are shifted for anonymization purposes should be set to a year 1900 or earlier to clearly distinguish them from unmodified data. Shifting dates is recommended, but not required.
+The purpose of this file is to describe timing and other properties of each imaging acquisition sequence (each run `.nii[.gz]` file) within one session. Each `.nii[.gz]` file should be described by at most one row. Relative paths to files should be used under a compulsory `filename` header.
+If acquisition time is included it should be under `acq_time` header. Datetime should be expressed in the following format `2009-06-15T13:45:30` (year, month, day, hour (24h), minute, second; this is equivalent to the RFC3339 "date-time" format, time zone is always assumed as local time). For anonymization purposes all dates within one subject should be shifted by a randomly chosen (but common across all runs etc.) number of days. This way relative timing would be preserved, but chances of identifying a person based on the date and time of their scan would be decreased. Dates that are shifted for anonymization purposes should be set to a year 1900 or earlier to clearly distinguish them from unmodified data. Shifting dates is recommended, but not required.
+
 Additional fields can include external behavioural measures relevant to the scan. For example vigilance questionnaire score administered after a resting state scan.
 
-### 8.8.1 Example:
-
-<table>
-  <tbody>
-    <tr>
-      <td>filename</td>
-      <td>acq_time</td>
-    </tr>
-    <tr>
-      <td>func/sub-control01_task-nback_bold.nii.gz</td>
-      <td>1877-06-15T13:45:30</td>
-    </tr>
-    <tr>
-      <td>func/sub-control01_task-motor_bold.nii.gz</td>
-      <td>1877-06-15T13:55:33</td>
-    </tr>
-  </tbody>
-</table>
+Example:
+```
+filename  acq_time
+func/sub-control01_task-nback_bold.nii.gz 1877-06-15T13:45:30
+func/sub-control01_task-motor_bold.nii.gz 1877-06-15T13:55:33
+```
 
 8.9 Participant file
 ------------------------
