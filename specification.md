@@ -466,8 +466,8 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
 
 #### Slice Acceleration
 
-| Field name                    | Definition                                   |
-|:------------------------------|:---------------------------------------------|
+| Field name                  | Definition                                     |
+|:----------------------------|:-----------------------------------------------|
 | MultibandAccelerationFactor | RECOMMENDED. The multiband factor, for multiband acquisitions. |
 
 #### Anatomical landmarks (useful for multimodal co-registration with MEG, (S)EEG, TMS, etc.)
@@ -534,8 +534,8 @@ If the structural images included in the dataset were defaced (to protect identi
 Some meta information about the acquisition MAY be provided in an additional JSON file. See Common MR metadata fields for a list of terms and their definitions. There are also some OPTIONAL JSON fields specific to anatomical scans:
 
 
-| Field name                    | Definition                                   |
-|:------------------------------|:---------------------------------------------|
+| Field name              | Definition                                         |
+|:------------------------|:---------------------------------------------------|
 | ContrastBolusIngredient | OPTIONAL. Active ingredient of agent.  Values MUST be one of: IODINE, GADOLINIUM, CARBON DIOXIDE, BARIUM, XENON Corresponds to DICOM Tag 0018,1048. |
 
 ### 8.3.3 Task (including resting state) imaging data
@@ -824,76 +824,76 @@ The `proc` label is analogous to `rec` for MR and denotes a variant of a file th
 Generic  fields
 MUST be present:
 
-|Field name|Definition|
-|:--------------- |:---------- |
-|TaskName|REQUIRED. Name of the task (for resting state use the `rest` prefix). Different Tasks SHOULD NOT have the same name. The Task label is derived from this field by removing all non alphanumeric (``[a-zA-Z0-9]``) characters.|
+| Field name | Definition                                                      |
+|:-----------|:----------------------------------------------------------------|
+| TaskName   | REQUIRED. Name of the task (for resting state use the `rest` prefix). Different Tasks SHOULD NOT have the same name. The Task label is derived from this field by removing all non alphanumeric (``[a-zA-Z0-9]``) characters. |
 
 SHOULD be present:
 For consistency between studies and institutions, we encourage users to extract the  values of these fields from the actual raw data. Whenever possible, please avoid using ad-hoc wording.
 
-|Field name|Definition|
-|:--- |:--- |
-|InstitutionName|RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.|
-|InstitutionAddress|RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.|
-|Manufacturer|RECOMMENDED. Manufacturer of the MEG system (`CTF`, `Elekta/Neuromag`, `4D/BTi`, `KIT/Yokogawa`, `ITAB`, `KRISS`, `Other`). See Appendix VII with preferred names|
-|ManufacturersModelName|RECOMMENDED. Manufacturer’s designation of the MEG scanner model (e.g. `CTF-275`). See Appendix VII with preferred names|
-|SoftwareVersions|RECOMMENDED. Manufacturer’s designation of the acquisition software.|
-|ManufacturersModelName|RECOMMENDED. Manufacturer’s designation of the MEG scanner model (e.g. `CTF-275`). See Appendix VII with preferred names|
-|SoftwareVersions|RECOMMENDED. Manufacturer’s designation of the acquisition software.|
-|TaskDescription|RECOMMENDED. Description of the task.|
-|Instructions|RECOMMENDED. Text of the instructions given to participants before the scan. This is not only important for behavioural or cognitive tasks but also in resting state paradigms (e.g. to distinguish between eyes open and eyes closed).|
-|CogAtlasID|RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) term that describes the task (e.g. Resting State with eyes closed "[http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b](http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b)")|
-|CogPOID|RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task  (e.g. Rest "[http://wiki.cogpo.org/index.php?title=Rest](http://wiki.cogpo.org/index.php?title=Rest)")|
-|DeviceSerialNumber|RECOMMENDED. The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.|
+| Field name             | Definition                                          |
+|:-----------------------|:----------------------------------------------------|
+| InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances. |
+| InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances. |
+| Manufacturer           | RECOMMENDED. Manufacturer of the MEG system (`CTF`, `Elekta/Neuromag`, `4D/BTi`, `KIT/Yokogawa`, `ITAB`, `KRISS`, `Other`). See Appendix VII with preferred names |
+| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the MEG scanner model (e.g. `CTF-275`). See Appendix VII with preferred names |
+| SoftwareVersions       | RECOMMENDED. Manufacturer’s designation of the acquisition software. |
+| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the MEG scanner model (e.g. `CTF-275`). See Appendix VII with preferred names |
+| SoftwareVersions       | RECOMMENDED. Manufacturer’s designation of the acquisition software. |
+| TaskDescription        | RECOMMENDED. Description of the task.               |
+| Instructions           | RECOMMENDED. Text of the instructions given to participants before the scan. This is not only important for behavioural or cognitive tasks but also in resting state paradigms (e.g. to distinguish between eyes open and eyes closed). |
+| CogAtlasID             | RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) term that describes the task (e.g. Resting State with eyes closed "[http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b](http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b)") |
+| CogPOID                | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task  (e.g. Rest "[http://wiki.cogpo.org/index.php?title=Rest](http://wiki.cogpo.org/index.php?title=Rest)") |
+| DeviceSerialNumber     | RECOMMENDED. The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset. |
 
 
 Specific MEG fields
 MUST be present:
 
-|Field name|Definition|
-|:--- |:--- |
-|SamplingFrequency|REQUIRED. Sampling frequency (in Hz) of all the data in the recording, regardless of their type  (e.g., 2400)|
-|PowerLineFrequency|REQUIRED. Frequency (in Hz) of the power grid at the geographical location of the MEG instrument (i.e. 50 or 60)|
-|DewarPosition|REQUIRED. Position of the dewar during the MEG scan: `upright`, `supine` or `degrees` of angle from vertical: for example on CTF systems, upright=15°, supine = 90°.|
-|SoftwareFilters|REQUIRED. List of temporal and/or spatial software filters applied, or ideally  key:value pairs of pre-applied software filters and their parameter values: e.g., {"SSS": {"frame": "head", "badlimit": 7}}, {"SpatialCompensation": {"GradientOrder": Order of the gradient compensation}}. Write `n/a` if no software filters applied.|
-|DigitizedLandmarks|REQUIRED. Boolean ("true" or "false") value indicating whether anatomical landmark  points (i.e. fiducials) are contained within this recording.|
-|DigitizedHeadPoints|REQUIRED. Boolean (`true` or `false`) value indicating whether head points outlining the scalp/face surface are contained within this recording.|
+| Field name          | Definition                                             |
+|:--------------------|:-------------------------------------------------------|
+| SamplingFrequency   | REQUIRED. Sampling frequency (in Hz) of all the data in the recording, regardless of their type  (e.g., 2400) |
+| PowerLineFrequency  | REQUIRED. Frequency (in Hz) of the power grid at the geographical location of the MEG instrument (i.e. 50 or 60) |
+| DewarPosition       | REQUIRED. Position of the dewar during the MEG scan: `upright`, `supine` or `degrees` of angle from vertical: for example on CTF systems, upright=15°, supine = 90°. |
+| SoftwareFilters     | REQUIRED. List of temporal and/or spatial software filters applied, or ideally  key:value pairs of pre-applied software filters and their parameter values: e.g., {"SSS": {"frame": "head", "badlimit": 7}}, {"SpatialCompensation": {"GradientOrder": Order of the gradient compensation}}. Write `n/a` if no software filters applied. |
+| DigitizedLandmarks  | REQUIRED. Boolean ("true" or "false") value indicating whether anatomical landmark  points (i.e. fiducials) are contained within this recording. |
+| DigitizedHeadPoints | REQUIRED. Boolean (`true` or `false`) value indicating whether head points outlining the scalp/face surface are contained within this recording. |
 
 
 SHOULD be present
 
-|Field name|Definition|
-|:--- |:--- |
-|MEGChannelCount|RECOMMENDED. Number of MEG channels (e.g. 275)|
-|MEGREFChannelCount|RECOMMENDED. Number of MEG reference channels (e.g. 23). For systems without such channels (e.g. Neuromag Vectorview), `MEGREFChannelCount`=0|
-|EEGChannelCount|RECOMMENDED. Number of EEG channels recorded simultaneously (e.g. 21)|
-|ECOGChannelCount|RECOMMENDED. Number of ECoG channels|
-|SEEGChannelCount|RECOMMENDED. Number of SEEG channels|
-|EOGChannelCount|RECOMMENDED. Number of EOG channels|
-|ECGChannelCount|RECOMMENDED. Number of ECG channels|
-|EMGChannelCount|RECOMMENDED. Number of EMG channels|
-|MiscChannelCount|RECOMMENDED. Number of miscellaneous analog channels for auxiliary  signals|
-|TriggerChannelCount|RECOMMENDED. Number of channels for digital (TTL bit level) triggers|
-|RecordingDuration|RECOMMENDED. Length of the recording in seconds (e.g. 3600)|
-|RecordingType|RECOMMENDED. Defines whether the recording is  `continuous` or  `epoched`; this latter limited to time windows about events of interest (e.g., stimulus presentations, subject responses etc.)|
-|EpochLength|RECOMMENDED. Duration of individual epochs in seconds (e.g. 1) in case of epoched data|
-|ContinuousHeadLocalization|RECOMMENDED. Boolean (`true` or `false`) value indicating whether continuous head localisation was performed.|
-|HeadCoilFrequency|RECOMMENDED. List of frequencies (in Hz) used by the head localisation coils (‘HLC’ in CTF systems, ‘HPI’ in Elekta, ‘COH’ in 4D/BTi) that track the subject’s head position in the MEG helmet (e.g. ``[293, 307, 314, 321]``)|
-|MaxMovement|RECOMMENDED. Maximum head movement (in mm) detected during the recording, as measured by the head localisation coils (e.g., 4.8)|
-|SubjectArtefactDescription|RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g. "Vagus Nerve Stimulator", "non-removable implant"). If this field is set to `n/a`, it will be interpreted as absence of major source of artifacts except cardiac and blinks.|
-|AssociatedEmptyRoom|RECOMMENDED. Relative path in BIDS folder structure to empty-room file associated with the subject’s MEG recording. The path needs to use forward slashes instead of backward slashes (e.g. `sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds`).|
+| Field name                 | Definition                                      |
+|:---------------------------|:------------------------------------------------|
+| MEGChannelCount            | RECOMMENDED. Number of MEG channels (e.g. 275)  |
+| MEGREFChannelCount         | RECOMMENDED. Number of MEG reference channels (e.g. 23). For systems without such channels (e.g. Neuromag Vectorview), `MEGREFChannelCount`=0 |
+| EEGChannelCount            | RECOMMENDED. Number of EEG channels recorded simultaneously (e.g. 21) |
+| ECOGChannelCount           | RECOMMENDED. Number of ECoG channels            |
+| SEEGChannelCount           | RECOMMENDED. Number of SEEG channels            |
+| EOGChannelCount            | RECOMMENDED. Number of EOG channels             |
+| ECGChannelCount            | RECOMMENDED. Number of ECG channels             |
+| EMGChannelCount            | RECOMMENDED. Number of EMG channels             |
+| MiscChannelCount           | RECOMMENDED. Number of miscellaneous analog channels for auxiliary  signals |
+| TriggerChannelCount        | RECOMMENDED. Number of channels for digital (TTL bit level) triggers |
+| RecordingDuration          | RECOMMENDED. Length of the recording in seconds (e.g. 3600) |
+| RecordingType              | RECOMMENDED. Defines whether the recording is  `continuous` or  `epoched`; this latter limited to time windows about events of interest (e.g., stimulus presentations, subject responses etc.) |
+| EpochLength                | RECOMMENDED. Duration of individual epochs in seconds (e.g. 1) in case of epoched data |
+| ContinuousHeadLocalization | RECOMMENDED. Boolean (`true` or `false`) value indicating whether continuous head localisation was performed. |
+| HeadCoilFrequency          | RECOMMENDED. List of frequencies (in Hz) used by the head localisation coils (‘HLC’ in CTF systems, ‘HPI’ in Elekta, ‘COH’ in 4D/BTi) that track the subject’s head position in the MEG helmet (e.g. ``[293, 307, 314, 321]``) |
+| MaxMovement                | RECOMMENDED. Maximum head movement (in mm) detected during the recording, as measured by the head localisation coils (e.g., 4.8) |
+| SubjectArtefactDescription | RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g. "Vagus Nerve Stimulator", "non-removable implant"). If this field is set to `n/a`, it will be interpreted as absence of major source of artifacts except cardiac and blinks. |
+| AssociatedEmptyRoom        | RECOMMENDED. Relative path in BIDS folder structure to empty-room file associated with the subject’s MEG recording. The path needs to use forward slashes instead of backward slashes (e.g. `sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds`). |
 
 
 Specific EEG fields (if recorded with MEG)
 SHOULD be present:
 
-|Field name|Definition|
-|:--- |:--- |
-|EEGPlacementScheme|OPTIONAL. Placement scheme of EEG electrodes. Either the name of a standardised placement system (e.g., "10-20") or a list of standardised electrode names (e.g. ``["Cz", "Pz"]``).|
-|ManufacturersAmplifierModelName|OPTIONAL. Manufacturer’s designation of the EEG amplifier model (e.g., `Biosemi-ActiveTwo`).|
-|CapManufacturer|OPTIONAL. Manufacturer of the EEG cap (e.g. `EasyCap`)|
-|CapManufacturersModelName|OPTIONAL. Manufacturer’s designation of the EEG cap model (e.g., `M10`)|
-|EEGReference|OPTIONAL. Description of the type of EEG reference used (e.g., `M1` for left mastoid, `average`, or `longitudinal bipolar`).|
+| Field name                      | Definition                                 |
+|:--------------------------------|:-------------------------------------------|
+| EEGPlacementScheme              | OPTIONAL. Placement scheme of EEG electrodes. Either the name of a standardised placement system (e.g., "10-20") or a list of standardised electrode names (e.g. ``["Cz", "Pz"]``). |
+| ManufacturersAmplifierModelName | OPTIONAL. Manufacturer’s designation of the EEG amplifier model (e.g., `Biosemi-ActiveTwo`). |
+| CapManufacturer                 | OPTIONAL. Manufacturer of the EEG cap (e.g. `EasyCap`) |
+| CapManufacturersModelName       | OPTIONAL. Manufacturer’s designation of the EEG cap model (e.g., `M10`) |
+| EEGReference                    | OPTIONAL. Description of the type of EEG reference used (e.g., `M1` for left mastoid, `average`, or `longitudinal bipolar`). |
 
 
 By construct, EEG when recorded simultaneously with the same MEG system , should have the same `SamplingFrequency` as MEG. Note that if EEG is recorded with a separate amplifier, it should be stored separately under a new /eeg data type (see BEP006).
@@ -948,24 +948,24 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
-|Field name|Definition|
-|:--- |:--- |
-|name|REQUIRED. Channel name (e.g., MRT012, MEG023)|
-|type|REQUIRED. Type of channel; MUST use the channel types listed below.|
-|units|REQUIRED. Physical unit of the data values recorded by this channel in SI (see Appendix V: Units for allowed symbols).|
+| Field name | Definition                                                      |
+|:-----------|:----------------------------------------------------------------|
+| name       | REQUIRED. Channel name (e.g., MRT012, MEG023)                   |
+| type       | REQUIRED. Type of channel; MUST use the channel types listed below. |
+| units      | REQUIRED. Physical unit of the data values recorded by this channel in SI (see Appendix V: Units for allowed symbols). |
 
 SHOULD be present:
 
-|Field name|Definition|
-|:--- |:--- |
-|description|OPTIONAL. Brief free-text description of the channel, or other information of interest. See examples below.|
-|sampling_frequency|OPTIONAL. Sampling rate of the channel in Hz.|
-|low_cutoff|OPTIONAL. Frequencies used for the high-pass filter applied to the channel in Hz. If no high-pass filter applied, use `n/a`.|
-|high_cutoff|OPTIONAL. Frequencies used for the low-pass filter applied to the channel in Hz. If no low-pass filter applied, use `n/a`. Note that hardware anti-aliasing in A/D conversion of all MEG/EEG electronics applies a low-pass filter; specify its frequency here if applicable.|
-|notch|OPTIONAL. Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use `n/a`.|
-|software_filters|OPTIONAL. List of temporal and/or spatial software filters applied (e.g. "SSS", ``"SpatialCompensation"``). Note that parameters should be defined in the general MEG sidecar .json file. Indicate `n/a` in the absence of software filters applied.|
-|status|OPTIONAL. Data quality observed on the channel ``(good/bad)``. A channel is considered `bad` if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in ``[status_description]``.|
-|status_description|OPTIONAL. Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in ``[status]``.|
+| Field name         | Definition                                              |
+|:-------------------|:--------------------------------------------------------|
+| description        | OPTIONAL. Brief free-text description of the channel, or other information of interest. See examples below. |
+| sampling_frequency | OPTIONAL. Sampling rate of the channel in Hz.           |
+| low_cutoff         | OPTIONAL. Frequencies used for the high-pass filter applied to the channel in Hz. If no high-pass filter applied, use `n/a`. |
+| high_cutoff        | OPTIONAL. Frequencies used for the low-pass filter applied to the channel in Hz. If no low-pass filter applied, use `n/a`. Note that hardware anti-aliasing in A/D conversion of all MEG/EEG electronics applies a low-pass filter; specify its frequency here if applicable. |
+| notch              | OPTIONAL. Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use `n/a`. |
+| software_filters   | OPTIONAL. List of temporal and/or spatial software filters applied (e.g. "SSS", ``"SpatialCompensation"``). Note that parameters should be defined in the general MEG sidecar .json file. Indicate `n/a` in the absence of software filters applied. |
+| status             | OPTIONAL. Data quality observed on the channel ``(good/bad)``. A channel is considered `bad` if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in ``[status_description]``. |
+| status_description | OPTIONAL. Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in ``[status]``. |
 
 
 Example:
@@ -1042,51 +1042,51 @@ OPTIONAL. A JSON document specifying the coordinate system(s) used for the MEG, 
 
 MEG and EEG sensors:
 
-|Field name|Description|
-|:--- |:--- |
-|MEGCoordinateSystem|REQUIRED. Defines the coordinate system for the MEG sensors. See Appendix VIII: preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in  ``[MEGCoordinateSystemDescription]``.|
-|MEGCoordinateUnits|REQUIRED. Units of the coordinates of   `MEGCoordinateSystem`.  MUST be `m`, `cm`, or `mm`.|
-|MEGCoordinateSystemDescription|OPTIONAL. Freeform text description or link to document describing the MEG coordinate system system in detail.|
-|EEGCoordinateSystem|OPTIONAL. Describes how the coordinates of the EEG sensors are to be interpreted.|
-|EEGCoordinateUnits|OPTIONAL. Units of the coordinates of `EEGCoordinateSystem`.  MUST be `m`, `cm`, or `mm`.|
-|EEGCoordinateSystemDescription|OPTIONAL. Freeform text description or link to document describing the EEG coordinate system system in detail.|
+| Field name                     | Description                                 |
+|:-------------------------------|:--------------------------------------------|
+| MEGCoordinateSystem            | REQUIRED. Defines the coordinate system for the MEG sensors. See Appendix VIII: preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in  ``[MEGCoordinateSystemDescription]``. |
+| MEGCoordinateUnits             | REQUIRED. Units of the coordinates of   `MEGCoordinateSystem`.  MUST be `m`, `cm`, or `mm`. |
+| MEGCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the MEG coordinate system system in detail. |
+| EEGCoordinateSystem            | OPTIONAL. Describes how the coordinates of the EEG sensors are to be interpreted. |
+| EEGCoordinateUnits             | OPTIONAL. Units of the coordinates of `EEGCoordinateSystem`.  MUST be `m`, `cm`, or `mm`. |
+| EEGCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the EEG coordinate system system in detail. |
 
 
 Head localization coils:
 
-|Field name|Description|
-|:--- |:--- |
-|HeadCoilCoordinates|OPTIONAL. Key:value pairs describing head localization coil labels and their coordinates, interpreted following the `HeadCoilCoordinateSystem`,  e.g., {`NAS`: ``[12.7,21.3,13.9]``, `LPA`: ``[5.2,11.3,9.6]``, `RPA`: ``[20.2,11.3,9.1]``}. Note that coils are not always placed at locations that have a known anatomical name (e.g. for Elekta, Yokogawa systems); in that case generic labels can be  used (e.g. {`coil1`: ``[12.2,21.3,12.3]``, `coil2`: ``[6.7,12.3,8.6]``, `coil3`: ``[21.9,11.0,8.1]``} ).|
-|HeadCoilCoordinateSystem|OPTIONAL. Defines the coordinate system for the coils. See Appendix VIII: preferred names of Coordinate systems. If "Other", provide definition of the coordinate system in  `HeadCoilCoordinateSystemDescription`.|
-|HeadCoilCoordinateUnits|OPTIONAL. Units of the coordinates of `HeadCoilCoordinateSystem`. MUST be `m`, `cm`, or `mm`.|
-|HeadCoilCoordinateSystemDescription|OPTIONAL. Freeform text description or link to document describing the Head Coil coordinate system system in detail.|
+| Field name                          | Description                            |
+|:------------------------------------|:---------------------------------------|
+| HeadCoilCoordinates                 | OPTIONAL. Key:value pairs describing head localization coil labels and their coordinates, interpreted following the `HeadCoilCoordinateSystem`,  e.g., {`NAS`: ``[12.7,21.3,13.9]``, `LPA`: ``[5.2,11.3,9.6]``, `RPA`: ``[20.2,11.3,9.1]``}. Note that coils are not always placed at locations that have a known anatomical name (e.g. for Elekta, Yokogawa systems); in that case generic labels can be  used (e.g. {`coil1`: ``[12.2,21.3,12.3]``, `coil2`: ``[6.7,12.3,8.6]``, `coil3`: ``[21.9,11.0,8.1]``} ). |
+| HeadCoilCoordinateSystem            | OPTIONAL. Defines the coordinate system for the coils. See Appendix VIII: preferred names of Coordinate systems. If "Other", provide definition of the coordinate system in  `HeadCoilCoordinateSystemDescription`. |
+| HeadCoilCoordinateUnits             | OPTIONAL. Units of the coordinates of `HeadCoilCoordinateSystem`. MUST be `m`, `cm`, or `mm`. |
+| HeadCoilCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the Head Coil coordinate system system in detail. |
 
 
 Digitized head points:
 
-|Field name|Description|
-|:--- |:--- |
-|DigitizedHeadPoints|OPTIONAL. Relative path to the file containing the locations of digitized head points collected during the session (e.g., `sub-01_headshape.pos`). RECOMMENDED for all MEG systems, especially for CTF and 4D/BTi. For Elekta/Neuromag the head points will be stored in the fif file.|
-|DigitizedHeadPointsCoordinateSystem|OPTIONAL. Defines the coordinate system for the digitized head points. See Appendix VIII: preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in  `DigitizedHeadPointsCoordinateSystemDescription`.|
-|DigitizedHeadPointsCoordinateUnits|OPTIONAL. Units of the coordinates of `DigitizedHeadPointsCoordinateSystem`.  MUST be `m`, `cm`, or `mm`.|
-|DigitizedHeadPointsCoordinateSystemDescription|OPTIONAL. Freeform text description or link to document describing the Digitized head Points coordinate system system in detail.|
+| Field name                                     | Description                 |
+|:-----------------------------------------------|:----------------------------|
+| DigitizedHeadPoints                            | OPTIONAL. Relative path to the file containing the locations of digitized head points collected during the session (e.g., `sub-01_headshape.pos`). RECOMMENDED for all MEG systems, especially for CTF and 4D/BTi. For Elekta/Neuromag the head points will be stored in the fif file. |
+| DigitizedHeadPointsCoordinateSystem            | OPTIONAL. Defines the coordinate system for the digitized head points. See Appendix VIII: preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in  `DigitizedHeadPointsCoordinateSystemDescription`. |
+| DigitizedHeadPointsCoordinateUnits             | OPTIONAL. Units of the coordinates of `DigitizedHeadPointsCoordinateSystem`.  MUST be `m`, `cm`, or `mm`. |
+| DigitizedHeadPointsCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the Digitized head Points coordinate system system in detail. |
 
 
 Anatomical MRI:
 
-|Field name|Description|
-|:--- |:--- |
-|IntendedFor|OPTIONAL. Path or list of path relative to the subject subfolder pointing to the structural  MRI, possibly of different types if a list is specified,  to be used with the MEG recording. The path(s) need(s) to use forward slashes instead of backward slashes (e.g. `ses-/anat/sub-01_T1w.nii.gz`).|
+| Field name  | Description                                                    |
+|:------------|:---------------------------------------------------------------|
+| IntendedFor | OPTIONAL. Path or list of path relative to the subject subfolder pointing to the structural  MRI, possibly of different types if a list is specified,  to be used with the MEG recording. The path(s) need(s) to use forward slashes instead of backward slashes (e.g. `ses-/anat/sub-01_T1w.nii.gz`). |
 
 
 Anatomical landmarks:
 
-|Field name|Description|
-|:--- |:--- |
-|AnatomicalLandmarkCoordinates|OPTIONAL. Key:value pairs of the labels and  3-D digitized locations of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem`,  e.g., {"NAS": ``[12.7,21.3,13.9]``, "LPA": ``[5.2,11.3,9.6]``, "RPA": ``[20.2,11.3,9.1]``}.|
-|AnatomicalLandmarkCoordinateSystem|OPTIONAL. Defines the coordinate system for the anatomical landmarks. See Appendix VIII: preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in  `AnatomicalLandmarkCoordinateSystemDescription`.|
-|AnatomicalLandmarkCoordinateUnits|OPTIONAL. Units of the coordinates of `AnatomicalLandmarkCoordinateSystem`.  MUST be `m`, `cm`, or  `mm`.|
-|AnatomicalLandmarkCoordinateSystemDescription|OPTIONAL. Freeform text description or link to document describing the Head Coil coordinate system system in detail.|
+| Field name                                    | Description                  |
+|:----------------------------------------------|:-----------------------------|
+| AnatomicalLandmarkCoordinates                 | OPTIONAL. Key:value pairs of the labels and  3-D digitized locations of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem`,  e.g., {"NAS": ``[12.7,21.3,13.9]``, "LPA": ``[5.2,11.3,9.6]``, "RPA": ``[20.2,11.3,9.1]``}. |
+| AnatomicalLandmarkCoordinateSystem            | OPTIONAL. Defines the coordinate system for the anatomical landmarks. See Appendix VIII: preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in  `AnatomicalLandmarkCoordinateSystemDescription`. |
+| AnatomicalLandmarkCoordinateUnits             | OPTIONAL. Units of the coordinates of `AnatomicalLandmarkCoordinateSystem`.  MUST be `m`, `cm`, or  `mm`. |
+| AnatomicalLandmarkCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the Head Coil coordinate system system in detail. |
 
 
 It is also RECOMMENDED that the MRI voxel coordinates of the actual anatomical landmarks for co-registration of MEG with structural MRI are stored in the `AnatomicalLandmarkCoordinates` field in the JSON sidecar of the corresponding T1w MRI anatomical data of the subject seen in the MEG session (see section 8.3) -  for example:
@@ -1096,9 +1096,9 @@ In principle, these locations are those of  absolute anatomical markers. However
 
 Fiducials information:
 
-|Field name|Description|
-|:--- |:--- |
-|FiducialsDescription|OPTIONAL. A freeform text field documenting the anatomical landmarks that were used and how the head localization coils were placed relative to these. This field can describe, for instance, whether the true anatomical locations of the left and right pre-auricular points were used and digitized, or rather whether  they were defined as the intersection between the tragus and the helix (the entry of the ear canal), or any other anatomical description of selected points in the vicinity of  the ears.|
+| Field name           | Description                                           |
+|:---------------------|:------------------------------------------------------|
+| FiducialsDescription | OPTIONAL. A freeform text field documenting the anatomical landmarks that were used and how the head localization coils were placed relative to these. This field can describe, for instance, whether the true anatomical locations of the left and right pre-auricular points were used and digitized, or rather whether  they were defined as the intersection between the tragus and the helix (the entry of the ear canal), or any other anatomical description of selected points in the vicinity of  the ears. |
 
 
 For more information on the definition of anatomical landmarks, please visit:
@@ -1443,57 +1443,39 @@ CHANGES
 ```
 
 9.1 Sessions file
--------------------------
+-----------------
 
 Template:
+```
 sub-<participant_label>/
-> sub-<participant_label>_sessions.tsv
+    sub-<participant_label>_sessions.tsv
+```
 
 Optional: Yes
 
-In case of multiple sessions there is an option of adding an additional participant key files describing variables changing between sessions. In such case one file per participant should be added. These files need to include compulsory "session_id" column and describe each session by one and only one row. Column names in per participant key files have to be different from group level participant key column names.
+In case of multiple sessions there is an option of adding an additional participant key files describing variables changing between sessions. In such case one file per participant should be added. These files need to include compulsory `session_id` column and describe each session by one and only one row. Column names in per participant key files have to be different from group level participant key column names.
 
-### 9.1.1 Multiple sessions example:
-
-<table>
-  <tbody>
-    <tr>
-      <td>session_id</td>
-      <td>acq_time</td>
-      <td>systolic_blood_pressure</td>
-    </tr>
-    <tr>
-      <td>ses-predrug</td>
-      <td>2009-06-15T13:45:30</td>
-      <td>120</td>
-    </tr>
-    <tr>
-      <td>ses-postdrug</td>
-      <td>2009-06-16T13:45:30</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <td>ses-followup</td>
-      <td>2009-06-17T13:45:30</td>
-      <td>110</td>
-    </tr>
-  </tbody>
-</table>
-
+`_sessions.tsv` example:
+```
+session_id  acq_time  systolic_blood_pressure
+ses-predrug 2009-06-15T13:45:30 120
+ses-postdrug  2009-06-16T13:45:30 100
+ses-followup  2009-06-17T13:45:30 110
+```
 10 Multi-site or multi-center studies
-=========================================
+=====================================
 
 This version of the BIDS specification does not explicitly cover studies with data coming from multiple sites or multiple centers (such extension is planned in BIDS 2.0.0).  There are however ways to model your data without any loss in terms of metadata.
 
-10.1 Option 1: Treat each site/center as a separate dataset.
-----------------------------------------------------------------
+10.1 Option 1: Treat each site/center as a separate dataset
+-----------------------------------------------------------
 
 The simplest way of dealing with multiple sites is to treat data from each site as a separate and independent BIDS dataset with a separate participants.tsv and other metadata files. This way you can feed each dataset individually to BIDS Apps and everything should just work.
 
 10.2 Option 2: Combining sites/centers into one dataset
------------------------------------------------------------
+-------------------------------------------------------
 
-Alternatively you can combine data from all sites into one dataset. To identify which site each subjects comes from you can add a "site" column in the participants.tsv file indicating the source site. This solution allows you to analyze all of the subjects together in one dataset. One caveat is that subjects from all sites will have to have unique labels. To enforce that and improve readability you can use a subject label prefix identifying the site. For example sub-NUY001, sub-MIT002, sub-MPG002 etc. Remember that hyphens and underscores are not allowed in subject labels.
+Alternatively you can combine data from all sites into one dataset. To identify which site each subjects comes from you can add a `site` column in the `participants.tsv` file indicating the source site. This solution allows you to analyze all of the subjects together in one dataset. One caveat is that subjects from all sites will have to have unique labels. To enforce that and improve readability you can use a subject label prefix identifying the site. For example `sub-NUY001`, `sub-MIT002`, ``sub-MPG002`` etc. Remember that hyphens and underscores are not allowed in subject labels.
 
 11 Appendix I: Contributors
 =============================================
