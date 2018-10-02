@@ -1338,78 +1338,58 @@ func/sub-control01_task-motor_bold.nii.gz 1877-06-15T13:55:33
 ```
 
 8.9 Participant file
-------------------------
+--------------------
 
 Template:
-(single session case)
+```
 participants.tsv
 participants.json
 phenotype/<measurement_tool_name>.tsv
 phenotype/<measurement_tool_name>.json
+```
 
 Optional: Yes
 
-The purpose of this file is to describe properties of participants such as age, handedness, sex, etc. In case of single session studies this file has one compulsory column participant_id that consists of sub-<participant_label>, followed by a list of optional columns describing participants. Each participant needs to be described by one and only one row.
+The purpose of this file is to describe properties of participants such as age, handedness, sex, etc. In case of single session studies this file has one compulsory column `participant_id` that consists of `sub-<participant_label>`, followed by a list of optional columns describing participants. Each participant needs to be described by one and only one row.
 
-### 8.9.1 participants.tsv example:
+`participants.tsv` example:
+```
+participant_id  age sex group
+sub-control01 34  M control
+sub-control02 12  F control
+sub-patient01 33  F patient
+```
 
-<table>
-  <tbody>
-    <tr>
-      <td>participant_id</td>
-      <td>age</td>
-      <td>sex</td>
-      <td>group</td>
-    </tr>
-    <tr>
-      <td>sub-control01</td>
-      <td>34</td>
-      <td>M</td>
-      <td>control</td>
-    </tr>
-    <tr>
-      <td>sub-control02</td>
-      <td>12</td>
-      <td>F</td>
-      <td>control</td>
-    </tr>
-    <tr>
-      <td>sub-patient01</td>
-      <td>33</td>
-      <td>F</td>
-      <td>patient</td>
-    </tr>
-  </tbody>
-</table>
-
-If the dataset includes multiple sets of participant level measurements (for example responses from multiple questionnaires) they can be split into individual files separate from participants.tsv. Those measurements should be kept in phenotype/ folder and end with the .tsv extension. They can include arbitrary set of columns, but one of them has to be participant_id with matching sub-<participant_label>.
-As with all other tabular data, those additional phenotypic information files can be accompanied by a JSON file describing the columns in detail (see Section 4.2). In addition to the column description, a section describing the measurement tool (as a whole) can be added under the name "MeasurementToolMetadata". This section consists of two keys: "Description" - a free text description of the tool, and "TermURL" a link to an entity in an ontology corresponding to this tool. For example (content of phenotype/acds_adult.json):
+If the dataset includes multiple sets of participant level measurements (for example responses from multiple questionnaires) they can be split into individual files separate from `participants.tsv`. Those measurements should be kept in phenotype/ folder and end with the `.tsv` extension. They can include arbitrary set of columns, but one of them has to be participant_id with matching `sub-<participant_label>`.
+As with all other tabular data, those additional phenotypic information files can be accompanied by a JSON file describing the columns in detail (see Section 4.2). In addition to the column description, a section describing the measurement tool (as a whole) can be added under the name `MeasurementToolMetadata`. This section consists of two keys: `Description` - a free text description of the tool, and `TermURL` a link to an entity in an ontology corresponding to this tool. For example (content of phenotype/acds_adult.json):
+```JSON
 {
-       "MeasurementToolMetadata": {
-            "Description": "Adult ADHD Clinical Diagnostic Scale V1.2",
-            "TermURL": "http://www.cognitiveatlas.org/task/id/trm_5586ff878155d"
-       },
-       "adhd_b": {
-            "Description": "B. CHILDHOOD ONSET OF ADHD (PRIOR TO AGE 7)",
-            "Levels": {
-                  "1": "YES",
-                  "2": "NO"
-            }
-        },
-        "adhd_c_dx": {
-            "Description": "As child met A, B, C, D, E and F diagnostic criteria",
-            "Levels": {
-                  "1": "YES",
-                  "2": "NO"
-            }
-        },
+  "MeasurementToolMetadata": {
+    "Description": "Adult ADHD Clinical Diagnostic Scale V1.2",
+    "TermURL": "http://www.cognitiveatlas.org/task/id/trm_5586ff878155d"
+  },
+  "adhd_b": {
+    "Description": "B. CHILDHOOD ONSET OF ADHD (PRIOR TO AGE 7)",
+    "Levels": {
+      "1": "YES",
+      "2": "NO"
+    }
+  },
+  "adhd_c_dx": {
+    "Description": "As child met A, B, C, D, E and F diagnostic criteria",
+    "Levels": {
+      "1": "YES",
+      "2": "NO"
+    }
+  }
 }
+```
 
-Please note that in this example "MeasurementToolMetadata" includes
-information about the questionnaire and "adhd_b" and "adhd_c_dx"
+Please note that in this example `MeasurementToolMetadata` includes
+information about the questionnaire and `adhd_b` and `adhd_c_dx`
 correspond to individual columns.
 
-In addition to the keys available to describe columns in all tabular files (LongName, Description, Levels, Units, and TermURL) the participants.json file as well as phenotypic files can also include column descriptions with Derivative field that, when set to true, indicates that values in the corresponding column is a transformation of values from other columns (for example a summary score based on a subset of items in a questionnaire).
+In addition to the keys available to describe columns in all tabular files (`LongName`, `Description`, `Levels`, `Units`, and `TermURL`) the `participants.json` file as well as phenotypic files can also include column descriptions with `Derivative` field that, when set to true, indicates that values in the corresponding column is a transformation of values from other columns (for example a summary score based on a subset of items in a questionnaire).
 
 9 Longitudinal studies with multiple sessions (visits)
 ==========================================================
