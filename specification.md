@@ -1392,53 +1392,55 @@ correspond to individual columns.
 In addition to the keys available to describe columns in all tabular files (`LongName`, `Description`, `Levels`, `Units`, and `TermURL`) the `participants.json` file as well as phenotypic files can also include column descriptions with `Derivative` field that, when set to true, indicates that values in the corresponding column is a transformation of values from other columns (for example a summary score based on a subset of items in a questionnaire).
 
 9 Longitudinal studies with multiple sessions (visits)
-==========================================================
+======================================================
 
-Multiple sessions (visits) are encoded by adding an extra layer of directories and file names in the form of ses-<session_label>. Session label can consist only of alphanumeric characters [a-zA-Z0-9] and should be consistent across subjects. If numbers are used in session labels we recommend using zero padding (for example ses-01, ses-11 instead of ses-1, ses-11). This makes results of alphabetical sorting more intuitive. Acquisition time of session can be defined in the sessions file (see below for details).
+Multiple sessions (visits) are encoded by adding an extra layer of directories and file names in the form of `ses-<session_label>`. Session label can consist only of alphanumeric characters `[a-zA-Z0-9]` and should be consistent across subjects. If numbers are used in session labels we recommend using zero padding (for example `ses-01`, `ses-11` instead of `ses-1`, `ses-11`). This makes results of alphabetical sorting more intuitive. Acquisition time of session can be defined in the sessions file (see below for details).
 
-The extra session layer (at least one /ses-<session_label> subfolder) should be added for all subjects if at least one subject in the dataset has more than one session. Skipping the session layer for only some subjects in the dataset is not allowed. If a /ses-<session_label> subfolder is included as part of the directory hierarchy, then the same "ses-<session_label>" tag must also be included as part of the file names themselves.
+The extra session layer (at least one `/ses-<session_label>` subfolder) should be added for all subjects if at least one subject in the dataset has more than one session. Skipping the session layer for only some subjects in the dataset is not allowed. If a `/ses-<session_label>` subfolder is included as part of the directory hierarchy, then the same `ses-<session_label>` tag must also be included as part of the file names themselves.
 
--   sub-control01
-    -  ses-predrug
-        - anat
-            - sub-control01_ses-predrug_T1w.nii.gz
-            - sub-control01_ses\-predrug_T1w.json
-            - sub-control01_ses\-predrug_T2w.nii.gz
-            - sub-control01_ses\-predrug_T2w.json
-        - func
-            - sub-control01_ses\-predrug_task\-nback_bold.nii.gz
-            - sub-control01_ses\-predrug_task\-nback_bold.json
-            - sub-control01_ses\-predrug_task\-nback_events.tsv
-            - sub-control01_ses\-predrug_task\-nback_cont\-physio.tsv.gz
-            - sub-control01_ses\-predrug_task\-nback_cont\-physio.json
-            - sub-control01_ses-predrug_task-nback_sbref.nii.gz
-        - dwi
-            - sub-control01_ses-predrug_dwi.nii.gz
-            - sub-control01_ses-predrug_dwi.bval
-            - sub-control01_ses-predrug_dwi.bvec
-        - fmap
-            - sub-control01_ses-predrug_phasediff.nii.gz
-            - sub-control01_ses-predrug_phasediff.json
-            - sub-control01_ses-predrug_magnitude1.nii.gz
-        - sub-control01_ses-predrug_scans.tsv
-    - ses-postdrug
-        - func
-            - sub-control01_ses-postdrug_task-nback_bold.nii.gz
-            - sub-control01_ses-postdrug_task-nback_bold.json
-            - sub-control01_ses-postdrug_task-nback_events.tsv
-            - sub-control01_ses-postdrug_task-nback_cont-physio.tsv.gz
-            - sub-control01_ses-postdrug_task-nback_cont-physio.json
-            - sub-control01_ses-postdrug_task-nback_sbref.nii.gz
-        - fmap
-            - sub-control01_ses-postdrug_phasediff.nii.gz
-            - sub-control01_ses-postdrug_phasediff.json
-            - sub-control01_ses-postdrug_magnitude1.nii.gz
-        - sub-control01_ses-postdrug_scans.tsv
-    - sub-control01_sessions.tsv
-- participants.tsv
-- dataset_description.json
-- README
-- CHANGES
+```
+sub-control01/
+    ses-predrug/
+        anat/
+            sub-control01_ses-predrug_T1w.nii.gz
+            sub-control01_ses-predrug_T1w.json
+            sub-control01_ses-predrug_T2w.nii.gz
+            sub-control01_ses-predrug_T2w.json
+        func/
+            sub-control01_ses-predrug_task-nback_bold.nii.gz
+            sub-control01_ses-predrug_task-nback_bold.json
+            sub-control01_ses-predrug_task-nback_events.tsv
+            sub-control01_ses-predrug_task-nback_cont-physio.tsv.gz
+            sub-control01_ses-predrug_task-nback_cont-physio.json
+            sub-control01_ses-predrug_task-nback_sbref.nii.gz
+        dwi/
+            sub-control01_ses-predrug_dwi.nii.gz
+            sub-control01_ses-predrug_dwi.bval
+            sub-control01_ses-predrug_dwi.bvec
+        fmap/
+            sub-control01_ses-predrug_phasediff.nii.gz
+            sub-control01_ses-predrug_phasediff.json
+            sub-control01_ses-predrug_magnitude1.nii.gz
+        sub-control01_ses-predrug_scans.tsv
+    ses-postdrug/
+        func/
+            sub-control01_ses-postdrug_task-nback_bold.nii.gz
+            sub-control01_ses-postdrug_task-nback_bold.json
+            sub-control01_ses-postdrug_task-nback_events.tsv
+            sub-control01_ses-postdrug_task-nback_cont-physio.tsv.gz
+            sub-control01_ses-postdrug_task-nback_cont-physio.json
+            sub-control01_ses-postdrug_task-nback_sbref.nii.gz
+        fmap/
+            sub-control01_ses-postdrug_phasediff.nii.gz
+            sub-control01_ses-postdrug_phasediff.json
+            sub-control01_ses-postdrug_magnitude1.nii.gz
+        sub-control01_ses-postdrug_scans.tsv
+    sub-control01_sessions.tsv
+participants.tsv
+dataset_description.json
+README
+CHANGES
+```
 
 9.1 Sessions file
 -------------------------
