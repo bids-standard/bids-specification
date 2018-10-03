@@ -1548,7 +1548,7 @@ please add it.
 -   Satrajit S. Ghosh 📖💻
 -   Tristan Glatard 📖💻
 -   Mathias Goncalves 💻🔧📢
--   Krzysztof J. Gorgolewski 📖💻💬🤔🔍📢📝💡🔍🔌
+-   Krzysztof J. Gorgolewski 📖💻💬🤔🔍📢📝💡🔌
 -   Alexandre Gramfort 📖💡
 -   Yaroslav O. Halchenko 📖📢🔧💬🐛
 -   Daniel A. Handwerker 📖
