@@ -155,12 +155,7 @@ More about the 4D neuroimaging/BTi data organization at:
 
 ## KIT/Yokogawa/Ricoh
 
-Each experimental run on a KIT/Yokogawa/Ricoh system yields a raw (`.sqd`,
-`.con`) file with its associated marker coil file (`.mrk`), which contains coil
-positions in the acquisition system’s native space. Head points and marker
-points in head space are acquired using third-party hardware. One SHOULD
-rename/create a father run specific directory and keep the original files for
-each run inside.
+Each experimental run on a KIT/Yokogawa/Ricoh system yields a raw (`.sqd`, `.con`) file with its associated marker coil file (`.mrk`), which contains coil positions in the acquisition system’s native space. Head points and marker points in head space are acquired using third-party hardware.
 
 Example:
 
@@ -174,14 +169,8 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_meg
             sub-control01_ses-001_task-rest_run-01_meg.json
             sub-control01_ses-001_task-rest_run-01_channels.tsv
-```
-
-Where:
-
-```Text
-sub-control01_ses-001_task-rest_run-01_meg/
-    sub-control01_ses-001_task-rest_run-01_markers.<mrk,sqd>
-    sub-control01_ses-001_task-rest_run-01_meg.<con,sqd>
+            sub-control01_ses-001_task-rest_run-01_markers.<mrk,sqd>
+            sub-control01_ses-001_task-rest_run-01_meg.<con,sqd>
 ```
 
 More about the KIT/Yokogawa/Ricoh data organization at:
@@ -213,28 +202,14 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_meg
             sub-control01_ses-001_task-rest_run-01_meg.json
             sub-control01_ses-001_task-rest_run-01_channels.tsv
-```
-
-Where:
-
-```Text
-sub-control01_ses-001_task-rest_run-01_meg/
-    sub-control01_ses-001_task-rest_run-01_meg.chn
-    sub-control01_ses-001_task-rest_run-01_meg.kdf
-    sub-control01_ses-001_task-rest_run-01_meg.trg
+            sub-control01_ses-001_task-rest_run-01_meg.chn
+            sub-control01_ses-001_task-rest_run-01_meg.kdf
+            sub-control01_ses-001_task-rest_run-01_meg.trg
 ```
 
 ## ITAB
 
-Each experimental run on a ITAB-ARGOS153 system yields a raw (`.raw`) data file
-plus an associated binary header file (`.mhd`). The raw data file has an ASCII
-header that contains detailed information about the data acquisition system,
-followed by binary data. The associated binary header file contains part of the
-information from the ASCII header, specifically the one needed to process data,
-plus other information on offline preprocessing performed after data acquisition
-(e.g., sensor position relative to subject’s head, head markers, stimulus
-information). One should rename/create a father run specific directory and keep
-the original files for each run inside.
+Each experimental run on a ITAB-ARGOS153 system yields a raw (`.raw`) data file plus an associated binary header file (`.mhd`). The raw data file has an ASCII header that contains detailed information about the data acquisition system, followed by binary data. The associated binary header file contains part of the information from the ASCII header, specifically the one needed to process data, plus other information on offline preprocessing performed after data acquisition (e.g., sensor position relative to subject’s head, head markers, stimulus information).
 
 Example:
 
@@ -246,14 +221,8 @@ sub-control01/
         sub-control01_ses-001_task-rest_run-01_meg
         sub-control01_ses-001_task-rest_run-01_meg.json
         sub-control01_ses-001_task-rest_run-01_channels.tsv
-```
-
-Where:
-
-```Text
-sub-control01_ses-001_task-rest_run-01_meg/
-    sub-control01_ses-001_task-rest_run-01_meg.raw
-    sub-control01_ses-001_task-rest_run-01_meg.raw.mhd
+        sub-control01_ses-001_task-rest_run-01_meg.raw
+        sub-control01_ses-001_task-rest_run-01_meg.raw.mhd
 ```
 
 ## Aalto MEG–MRI
