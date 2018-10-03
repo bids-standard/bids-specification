@@ -1,12 +1,11 @@
-Magnetoencephalography (MEG)
-----------------------------
+# Magnetoencephalography (MEG)
 
 Support for MEG was developed as a BIDS Extension Proposal. Please cite the following paper when referring to this part of the standard in context of the academic literature:
 
 > Niso Galan, J.G., Gorgolewski, K.J., Bock, E., Brooks, T.L., Flandin, G., Gramfort, A., Henson, R.N., Jas, M., Litvak, V., Moreau, J., Oostenveld, R., Schoffelen, J.-M., Tadel, F., Wexler, J., Baillet, S., 2018. [MEG-BIDS, the brain imaging data structure extended to
 > magnetoencephalography](https://www.nature.com/articles/sdata2018110). Scientific Data volume 5, Article number: 180110 (2018)
 
-### MEG recording data
+## MEG recording data
 
 Template:
 
@@ -27,7 +26,7 @@ This template is for MEG data of any kind, including but not limited to task-bas
 
 The `proc` label is analogous to `rec` for MR and denotes a variant of a file that was a result of particular processing performed on the device. This is useful for files produced in particular by Elekta’s MaxFilter (e.g. sss, tsss, trans, quat, mc, etc.), which some installations impose to be run on raw data because of active shielding software corrections before the MEG data can actually be exploited.
 
-#### Sidecar JSON document (`*_meg.json`)
+### Sidecar JSON document (`*_meg.json`)
 
 Generic fields
 MUST be present:
@@ -141,7 +140,7 @@ Example:
 
 Note that the date and time information SHOULD be stored in the Study key file (`scans.tsv`), see section 8.8. Scans.tsv. As it is indicated there, date time information MUST be expressed in the following format `YYYY-MM-DDThh:mm:ss` ([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending on local REB/IRB ethics board policy.
 
-### Channels description table (`*_channels.tsv`)
+## Channels description table (`*_channels.tsv`)
 Template:
 ```
 sub-<participant_label>/
@@ -179,15 +178,9 @@ SHOULD be present:
 Example:
 
 ```
-name type units description sampling_frequency ...
-UDIO001 TRIG V analogue trigger 1200
-MLC11 MEGGRADAXIAL T sensor 1st-order grad 1200
-```
-
-```
-... low_cutoff high_cutoff notch software_filters status
-0.1 300 0 n/a good
-0 n/a 50 SSS bad
+name type units description sampling_frequency  low_cutoff  high_cutoff notch software_filters status
+UDIO001 TRIG V analogue trigger 1200  0.1 300 0 n/a good
+MLC11 MEGGRADAXIAL T sensor 1st-order grad 1200 0 n/a 50 SSS bad
 ```
 
 
@@ -236,7 +229,7 @@ UDIO001 TRIG V analog trigger signal
 UADC001 AUDIO V envelope of audio signal presented to participant
 ```
 
-### Coordinate System JSON document (`*_coordsystem.json`)
+## Coordinate System JSON document (`*_coordsystem.json`)
 Template:
 
 ```

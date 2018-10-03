@@ -1,5 +1,4 @@
-Appendix I: Contributors
-------------------------
+# Appendix I: Contributors
 
 Legend (source: [https://github.com/kentcdodds/all-contributors](https://github.com/kentcdodds/all-contributors))
 
