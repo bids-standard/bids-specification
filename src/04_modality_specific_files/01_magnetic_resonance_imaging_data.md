@@ -1,9 +1,96 @@
-8.3 Magnetic Resonance Imaging data
------------------------------------
+Magnetic Resonance Imaging data
+-------------------------------
 
-### 8.3.1 Common metadata fields
+### Common metadata fields
 
 MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fields (stored in sidecar JSON files). MRI acquisition parameters are divided into several categories based on ["A checklist for fMRI acquisition methods reporting in the literature"](https://thewinnower.com/papers/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature) by Ben Inglis:
+
+### Anatomy imaging data
+
+Template:
+
+```
+sub-<participant_label>/[ses-<session_label>/]
+    anat/
+        sub-<participant_label>[_ses-<session_label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>]_<modality_label>.nii[.gz]
+        sub-<participant_label>[_ses-<session_label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
+```
+
+Anatomical (structural) data acquired for that participant. Currently supported modalities include:
+
+| Name               | modality_label | Description                            |
+|:-------------------|:---------------|:---------------------------------------|
+| T1 weighted        | T1w            |                                        |
+| T2 weighted        | T2w            |                                        |
+| T1 Rho map         | T1rho          | Quantitative T1rho brain imaging<br>[http://www.ncbi.nlm.nih.gov/pubmed/24474423](http://www.ncbi.nlm.nih.gov/pubmed/24474423) <br>  [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/](http://www.ncbi.nlm.nih.gov/pubmed/24474423) |
+| T1 map             | T1map          | quantitative T1 map                    |
+| T2 map             | T2map          | quantitative T2 map                    |
+| T2*                | T2star         | High resolution T2* image              |
+| FLAIR              | FLAIR          |                                        |
+| FLASH              | FLASH          |                                        |
+| Proton density     | PD             |                                        |
+| Proton density map | PDmap          |                                        |
+| Combined PD/T2     | PDT2           |                                        |
+| Inplane T1         | inplaneT1      | T1-weighted anatomical image matched to functional acquisition |
+| Inplane T2         | inplaneT2      | T2-weighted anatomical image matched to functional acquisition |
+| Angiography        | angio          |                                        |
+
+
+If several scans of the same modality are  acquired they MUST be indexed with a key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only integers are allowed as run labels). When there is only one scan of a given type the run key MAY be omitted. Please note that diffusion imaging data is stored elsewhere (see below).
+
+The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label the user MAY use to distinguish a different set of parameters used for acquiring the same modality. For example this should be used when a study includes two T1w images - one full brain low resolution and and one restricted field of view but high resolution. In such case two files could have the following names: `sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however the user is free to choose any other label than `highres` and `lowres` as long as they are consistent across subjects and sessions. In case different sequences are used to record the same modality (e.g. RARE and FLASH for T1w) this field can also be used to make that distinction. At what level of detail to make the distinction (e.g. just between RARE and FLASH, or between RARE, FLASH, and FLASHsubsampled) remains at the discretion of the researcher.
+
+Similarly the OPTIONAL `ce-<label>` key/value can be used to distinguish sequences using different contrast enhanced images. The label is the name of the contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the JSON file, with the same label.
+
+Similarly the OPTIONAL `rec-<label>` key/value can be
+used to distinguish different reconstruction algorithms (for example ones using motion correction).
+
+If the structural images included in the dataset were defaced (to protect identity of participants) one CAN provide the binary mask that was used to remove facial features in the form of `_defacemask` files. In such cases the OPTIONAL `mod-<label>` key/value pair corresponds to modality label for eg: T1w, inplaneT1, referenced by a defacemask image. E.g., `sub-01_mod-T1w_defacemask.nii.gz`.
+
+Some meta information about the acquisition MAY be provided in an additional JSON file. See Common MR metadata fields for a list of terms and their definitions. There are also some OPTIONAL JSON fields specific to anatomical scans:
+
+
+| Field name              | Definition                                         |
+|:------------------------|:---------------------------------------------------|
+| ContrastBolusIngredient | OPTIONAL. Active ingredient of agent.  Values MUST be one of: IODINE, GADOLINIUM, CARBON DIOXIDE, BARIUM, XENON Corresponds to DICOM Tag 0018,1048. |
+
+### Task (including resting state) imaging data
+
+Template:
+```
+sub-<participant_label>/[ses-<session_label>/]
+    func/
+        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_rec-<label>][_run-<index>][_echo-<index>]_bold.nii[.gz]
+        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
+```
+
+Imaging data acquired during BOLD imaging. This includes but is not limited to task based fMRI as well as resting state fMRI (i.e. rest is treated as another task). For task based fMRI a corresponding task events file (see below) MUST be provided (please note that this file is not necessary for resting state scans).  For multiband acquisitions, one MAY also save the single-band reference image as type `sbref` (e.g. `sub-control01_task-nback_sbref.nii.gz`).
+
+Each task has a unique label MUST only include of letters and/or numbers (other characters including spaces and underscores are not allowed). Those labels MUST be consistent across subjects and sessions.
+
+If more than one run of the same task has been acquired a key/value pair: `_run-1`, `_run-2`, `_run-3` etc. MUST be used. If only one run was acquired the `run-<index>` can be omitted. In the context of functional imaging a run is defined as the same task, but in some cases it can mean different set of stimuli (for example randomized order) and participant responses.
+
+The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label one may use to distinguish different set of parameters used for acquiring the same task. For example this should be used when a study includes two resting state images - one single band and one multiband. In such case two files could have the following names: `sub-01_task-rest_acq-singleband_bold.nii.gz` and `sub-01_task-rest_acq-multiband_bold.nii.gz`, however the user is MAY choose any other label than `singleband` and `multiband` as long as they are consistent across subjects and sessions and consist only of the legal label characters.
+
+Similarly the optional `rec-<label>` key/value can be used to distinguish different reconstruction algorithms (for example ones using motion correction).
+
+Multi echo data MUST  be split into one file per echo. Each file shares the same name with the exception of the `_echo-<index>` key/value. For example:
+```
+sub-01/
+   func/
+      sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
+      sub-01_task-cuedSGT_run-1_echo-1_bold.json
+      sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
+      sub-01_task-cuedSGT_run-1_echo-2_bold.json
+      sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
+      sub-01_task-cuedSGT_run-1_echo-3_bold.json
+```
+
+Please note that the `<index>` denotes the number/index (in a form of an integer) of the echo not the echo time value which needs to be stored in the field EchoTime of the separate JSON file.
+
+Some meta information about the acquisition MUST be provided in an additional JSON file.
+
+
 
 #### Scanner Hardware
 
@@ -97,90 +184,7 @@ MR Data described in  sections 8.3.x share the following RECOMMENDED metadata fi
 When adding additional metadata please use the camelcase
 version of [DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard) whenever possible.
 
-### 8.3.2 Anatomy imaging data
 
-Template:
-
-```
-sub-<participant_label>/[ses-<session_label>/]
-    anat/
-        sub-<participant_label>[_ses-<session_label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>]_<modality_label>.nii[.gz]
-        sub-<participant_label>[_ses-<session_label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
-```
-
-Anatomical (structural) data acquired for that participant. Currently supported modalities include:
-
-| Name               | modality_label | Description                            |
-|:-------------------|:---------------|:---------------------------------------|
-| T1 weighted        | T1w            |                                        |
-| T2 weighted        | T2w            |                                        |
-| T1 Rho map         | T1rho          | Quantitative T1rho brain imaging<br>[http://www.ncbi.nlm.nih.gov/pubmed/24474423](http://www.ncbi.nlm.nih.gov/pubmed/24474423) <br>  [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/](http://www.ncbi.nlm.nih.gov/pubmed/24474423) |
-| T1 map             | T1map          | quantitative T1 map                    |
-| T2 map             | T2map          | quantitative T2 map                    |
-| T2*                | T2star         | High resolution T2* image              |
-| FLAIR              | FLAIR          |                                        |
-| FLASH              | FLASH          |                                        |
-| Proton density     | PD             |                                        |
-| Proton density map | PDmap          |                                        |
-| Combined PD/T2     | PDT2           |                                        |
-| Inplane T1         | inplaneT1      | T1-weighted anatomical image matched to functional acquisition |
-| Inplane T2         | inplaneT2      | T2-weighted anatomical image matched to functional acquisition |
-| Angiography        | angio          |                                        |
-
-
-If several scans of the same modality are  acquired they MUST be indexed with a key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only integers are allowed as run labels). When there is only one scan of a given type the run key MAY be omitted. Please note that diffusion imaging data is stored elsewhere (see below).
-
-The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label the user MAY use to distinguish a different set of parameters used for acquiring the same modality. For example this should be used when a study includes two T1w images - one full brain low resolution and and one restricted field of view but high resolution. In such case two files could have the following names: `sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however the user is free to choose any other label than `highres` and `lowres` as long as they are consistent across subjects and sessions. In case different sequences are used to record the same modality (e.g. RARE and FLASH for T1w) this field can also be used to make that distinction. At what level of detail to make the distinction (e.g. just between RARE and FLASH, or between RARE, FLASH, and FLASHsubsampled) remains at the discretion of the researcher.
-
-Similarly the OPTIONAL `ce-<label>` key/value can be used to distinguish sequences using different contrast enhanced images. The label is the name of the contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the JSON file, with the same label.
-
-Similarly the OPTIONAL `rec-<label>` key/value can be
-used to distinguish different reconstruction algorithms (for example ones using motion correction).
-
-If the structural images included in the dataset were defaced (to protect identity of participants) one CAN provide the binary mask that was used to remove facial features in the form of `_defacemask` files. In such cases the OPTIONAL `mod-<label>` key/value pair corresponds to modality label for eg: T1w, inplaneT1, referenced by a defacemask image. E.g., `sub-01_mod-T1w_defacemask.nii.gz`.
-
-Some meta information about the acquisition MAY be provided in an additional JSON file. See Common MR metadata fields for a list of terms and their definitions. There are also some OPTIONAL JSON fields specific to anatomical scans:
-
-
-| Field name              | Definition                                         |
-|:------------------------|:---------------------------------------------------|
-| ContrastBolusIngredient | OPTIONAL. Active ingredient of agent.  Values MUST be one of: IODINE, GADOLINIUM, CARBON DIOXIDE, BARIUM, XENON Corresponds to DICOM Tag 0018,1048. |
-
-### 8.3.3 Task (including resting state) imaging data
-
-Template:
-```
-sub-<participant_label>/[ses-<session_label>/]
-    func/
-        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_rec-<label>][_run-<index>][_echo-<index>]_bold.nii[.gz]
-        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
-```
-
-Imaging data acquired during BOLD imaging. This includes but is not limited to task based fMRI as well as resting state fMRI (i.e. rest is treated as another task). For task based fMRI a corresponding task events file (see below) MUST be provided (please note that this file is not necessary for resting state scans).  For multiband acquisitions, one MAY also save the single-band reference image as type `sbref` (e.g. `sub-control01_task-nback_sbref.nii.gz`).
-
-Each task has a unique label MUST only include of letters and/or numbers (other characters including spaces and underscores are not allowed). Those labels MUST be consistent across subjects and sessions.
-
-If more than one run of the same task has been acquired a key/value pair: `_run-1`, `_run-2`, `_run-3` etc. MUST be used. If only one run was acquired the `run-<index>` can be omitted. In the context of functional imaging a run is defined as the same task, but in some cases it can mean different set of stimuli (for example randomized order) and participant responses.
-
-The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label one may use to distinguish different set of parameters used for acquiring the same task. For example this should be used when a study includes two resting state images - one single band and one multiband. In such case two files could have the following names: `sub-01_task-rest_acq-singleband_bold.nii.gz` and `sub-01_task-rest_acq-multiband_bold.nii.gz`, however the user is MAY choose any other label than `singleband` and `multiband` as long as they are consistent across subjects and sessions and consist only of the legal label characters.
-
-Similarly the optional `rec-<label>` key/value can be used to distinguish different reconstruction algorithms (for example ones using motion correction).
-
-Multi echo data MUST  be split into one file per echo. Each file shares the same name with the exception of the `_echo-<index>` key/value. For example:
-```
-sub-01/
-   func/
-      sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-      sub-01_task-cuedSGT_run-1_echo-1_bold.json
-      sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-      sub-01_task-cuedSGT_run-1_echo-2_bold.json
-      sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
-      sub-01_task-cuedSGT_run-1_echo-3_bold.json
-```
-
-Please note that the `<index>` denotes the number/index (in a form of an integer) of the echo not the echo time value which needs to be stored in the field EchoTime of the separate JSON file.
-
-Some meta information about the acquisition MUST be provided in an additional JSON file.
 
 #### Required fields
 
@@ -242,7 +246,7 @@ sub-control01/
 
 If this information is the same for all participants, sessions and runs it can be provided in `task-<task_label>_bold.json` (in the root directory of the dataset). However, if the information differs between subjects/runs it can be specified in the `sub-<participant_label>/func/sub-<participant_label>_task-<task_label>[_acq-<label>][_run-<index>]_bold.json` file. If both files are specified fields from the file corresponding to a particular participant, task and run takes precedence.
 
-### 8.3.4 Diffusion imaging data
+### Diffusion imaging data
 Template:
 ```
 sub-<participant_label>/[ses-<session_label>/]
@@ -262,7 +266,7 @@ The bvec and bval files are in the FSL format<sup>4</sup>: The bvec files contai
 <sup>4</sup>[http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html](hhttp://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html)
 
 
-#### 8.3.4.1 bvec example:
+#### bvec example:
 
 ```
 0 0 0.021828 -0.015425 -0.70918 -0.2465
@@ -272,7 +276,7 @@ The bvec and bval files are in the FSL format<sup>4</sup>: The bvec files contai
 
 The bval file contains the b-values (in s/mm<sup>2</sup>) corresponding to the volumes in the relevant NIfTI file), with 0 designating non-diffusion-weighted volumes, space-delimited.
 
-#### 8.3.4.2 bval example:
+#### bval example:
 
 ```
 0 0 2000 2000 1000 1000
@@ -282,7 +286,7 @@ The bval file contains the b-values (in s/mm<sup>2</sup>) corresponding to the v
 
 See Common MR metadata fields for a list of additional terms that can be included in the corresponding JSON file.
 
-#### 8.3.4.3 JSON example:
+#### JSON example:
 ```JSON
 {
   "PhaseEncodingDirection": "j-",
@@ -290,7 +294,7 @@ See Common MR metadata fields for a list of additional terms that can be include
 }
 ```
 
-### 8.3.5 Fieldmap data
+### Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The current version of this standard considers four different scenarios. Please note that in all cases fieldmap data can be linked to a specific scan(s) it was acquired for by filling the IntendedFor field in the corresponding JSON file. For example:
 
@@ -313,7 +317,7 @@ The IntendedFor field is optional and in case the fieldmaps do not correspond to
 
 Multiple fieldmaps can be stored. In such case the `_run-1`, `_run-2` should be used. The optional `acq-<label>` key/value pair corresponds to a custom label the user may use to distinguish different set of parameters.
 
-#### 8.3.5.1 Case 1: Phase difference image and at least one magnitude image
+#### Case 1: Phase difference image and at least one magnitude image
 Template:
 ```
 sub-<participant_label>/[ses-<session_label>/]
@@ -340,7 +344,7 @@ This is a common output for build in fieldmap sequence on Siemens scanners. In t
 }
 ```
 
-#### 8.3.5.2 Case 2: Two phase images and two magnitude images
+#### Case 2: Two phase images and two magnitude images
 Template:
 ```
 sub-<participant_label>/[ses-<session_label>/]
@@ -362,7 +366,7 @@ Similar to the case above, but instead of a precomputed phase difference map two
 }
 ```
 
-#### 8.3.5.3 Case 3: A single, real fieldmap image (showing the field inhomogeneity in each voxel)
+#### Case 3: A single, real fieldmap image (showing the field inhomogeneity in each voxel)
 Template:
 ```
 sub-<participant_label>/[ses-<session_label>/]
@@ -381,7 +385,7 @@ In some cases (for example GE) the scanner software will output a precomputed fi
 }
 ```
 
-#### 8.3.5.4 Case 4: Multiple phase encoded directions ("pepolar")
+#### Case 4: Multiple phase encoded directions ("pepolar")
 Template:
 ```
 sub-<participant_label>/[ses-<session_label>/]
