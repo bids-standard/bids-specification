@@ -71,7 +71,7 @@ NIfTI header.
 
 Tabular data MUST be saved as tab delimited values (`.tsv`) files, i.e. csv files where commas are replaced by tabs. Tabs MUST  be true tab characters and MUST NOT be a series of space characters. Each TSV file MUST start with a header line listing the names of all columns (with the exception of physiological and other continuous acquisition data - see below for details). Names MUST be separated with tabs. String values containing tabs MUST be escaped using double quotes. Missing and non-applicable values MUST be coded as `n/a`.
 
-#### 1 Example:
+#### Example:
 ```
 onset duration  response_time correct stop_trial  go_trial
 200 200 0 n/a n/a n/a
@@ -87,7 +87,7 @@ Tabular files MAY be optionally accompanied by a simple data dictionary in a JSO
 | Units       | Measurement units.  `[<prefix symbol>] <unit symbol>` format following the SI standard is RECOMMENDED (see Appendix V). |
 | TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web. |
 
-#### 2 Example:
+#### Example:
 
 ```JSON
 {
@@ -115,7 +115,7 @@ Key/value files (dictionaries)
 JavaScript Object Notation (JSON) files MUST be used for storing key/value pairs. Extensive documentation of the format can be found here: [http://json.org/](http://json.org/).  Several editors have built-in support for JSON syntax highlighting that aids manual creation of such files. An online editor for JSON with built-in validation is available at: [http://jsoneditoronline.org](http://jsoneditoronline.org). JSON
 files MUST be in UTF-8 encoding.
 
-### 4.3.1 Example:
+### Example:
 ```JSON
 {
   "RepetitionTime": 3,
@@ -147,7 +147,7 @@ Describing dates and timestamps:
 Directory structure
 -------------------
 
-### 1 Single session example
+### Single session example
 
 This is an example of the folder and file structure. Because there is only one session, the session level is not required by the
 format. For details on individual files see descriptions in the next
@@ -188,7 +188,7 @@ sub-control01/
 
 Additional files and folders containing raw data may be added as needed for special cases.  They should be named using all lowercase with a name that reflects the nature of the scan (e.g., `calibration`).  Naming of files within the directory should follow the same scheme as above (e.g., `sub-control01_calibration_Xcalibration.nii.gz`)
 
-### 2 Code
+### Code
 
 Template:
 `code/*`
