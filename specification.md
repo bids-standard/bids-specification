@@ -1539,24 +1539,25 @@ please add it.
 -   Samir Das 📖
 -   Alejandro de la Vega 🐛💻⚠️
 -   Eugene P. Duff 📖
--   Elizabeth DuPre 📖💡
+-   Elizabeth DuPre 📖💡🔍🤔
 -   Eric A. Earl 🤔
 -   Anders Eklund 📖📢💻
 -   Franklin W. Feingold 📋📝✅
 -   Guillaume Flandin 📖💻
+-   Remi Gau 📖💻
 -   Satrajit S. Ghosh 📖💻
 -   Tristan Glatard 📖💻
 -   Mathias Goncalves 💻🔧📢
--   Krzysztof J. Gorgolewski 📖💻💬🤔🔍📢📝💡🔍🔌
+-   Krzysztof J. Gorgolewski 📖💻💬🤔🔍📢📝💡🔌
 -   Alexandre Gramfort 📖💡
 -   Yaroslav O. Halchenko 📖📢🔧💬🐛
 -   Daniel A. Handwerker 📖
 -   Michael Hanke 📖🤔🔧🐛📢
 -   Michael P. Harms 📖⚠️🔧
 -   Richard N. Henson 📖
--   Dora Hermes 📖💻✅
+-   Dora Hermes 📖💻✅🔍🤔
 -   Katja Heuer 🔧
--   Chris Holdgraf 📖
+-   Chris Holdgraf 📖🤔
 -   International Neuroinformatics Coordinating Facility 💵📋
 -   Mainak Jas 📖💻
 -   David Keator 📖
@@ -1580,6 +1581,7 @@ please add it.
 -   Dylan Nielson 📖💻🔧
 -   Guiomar Niso 📖💡📢
 -   Robert Oostenveld 📖🔧📢💡
+-   Patrick Park 📖💡💬
 -   Dianne Patterson 📖
 -   John Pellman 📖
 -   Cyril Pernet 💬📖💡📋
@@ -1596,6 +1598,7 @@ please add it.
 -   William Triplett 📖
 -   Jessica A. Turner 📖
 -   Joseph Wexler 📖💡
+-   Kirstie Whitaker 📖💡🔍🤔📢💬
 -   Gaël Varoquaux 📖
 -   Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
 
