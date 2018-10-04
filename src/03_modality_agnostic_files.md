@@ -1,8 +1,6 @@
-Modality-agnostic files
-=======================
+# Modality-agnostic files
 
-Dataset description
--------------------
+## Dataset description
 
 Template: `dataset_description.json` `README` `CHANGES`
 
@@ -65,8 +63,7 @@ Example:
  - Initial release.
 ```
 
-Participants file
------------------
+## Participants file
 
 Template:
 ```
@@ -119,8 +116,7 @@ correspond to individual columns.
 
 In addition to the keys available to describe columns in all tabular files (`LongName`, `Description`, `Levels`, `Units`, and `TermURL`) the `participants.json` file as well as phenotypic files can also include column descriptions with `Derivative` field that, when set to true, indicates that values in the corresponding column is a transformation of values from other columns (for example a summary score based on a subset of items in a questionnaire).
 
-Scans file
-----------
+## Scans file
 
 Template:
 ```
@@ -141,3 +137,15 @@ filename  acq_time
 func/sub-control01_task-nback_bold.nii.gz 1877-06-15T13:45:30
 func/sub-control01_task-motor_bold.nii.gz 1877-06-15T13:55:33
 ```
+
+## Code
+
+Template:
+`code/*`
+
+Source code of scripts that were used to prepare the dataset (for example if it was anonymized or defaced) MAY be stored here.<sup>1</sup> Extra care should be taken to avoid including original IDs or any identifiable information with the source code. There are no limitations or recommendations on the language and/or code organization of these scripts at the moment.
+
+<sup>1</sup>Storing actual source files with the data
+is preferred over links to external source repositories to maximize long
+term preservation (which would suffer if an external repository would
+not be available anymore).

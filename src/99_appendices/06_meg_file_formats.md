@@ -1,5 +1,4 @@
-Appendix  VI: MEG file formats
-------------------------------
+# Appendix VI: MEG file formats
 
 Each MEG system brand has specific file organization and data formats.
 RECOMMENDED values for `manufacturer_specific_extensions`:
@@ -12,7 +11,7 @@ RECOMMENDED values for `manufacturer_specific_extensions`:
 
 Below are specifications for each system brand.
 
-### CTF
+## CTF
 
 Each experimental run with a CTF system yields a folder with a `.ds` extension, containing several files. The (optional) digitized positions of the head points are usually stored in a separate `.pos` file, not necessarily within the `.ds` folder.
 
@@ -38,7 +37,7 @@ sub-control01/
 
 To learn more about  CTF’s data organization: [http://www.fieldtriptoolbox.org/getting_started/ctf](http://www.fieldtriptoolbox.org/getting_started/ctf)
 
-### Neuromag/Elekta/MEGIN
+## Neuromag/Elekta/MEGIN
 
 Neuromag/Elekta/MEGIN data and Tristan Technologies BabyMEG data is stored with file extension `.fif`. The digitized positions of the head points are saved inside the fif file along with the MEG data, with typically no `_headshape` file.
 
@@ -87,7 +86,7 @@ More about the Neuromag/Elekta/MEGIN data organization at:
 And BabyMEG :
 [http://www.fieldtriptoolbox.org/getting_started/babysquid](http://www.fieldtriptoolbox.org/getting_started/babysquid)
 
-### BTi/4D neuroimaging
+## BTi/4D neuroimaging
 
 Each experimental run on a 4D neuroimaging/BTi system results in a folder containing multiple files without extensions.
 
@@ -122,7 +121,7 @@ sub-control01_ses-001_task-rest_run-01_meg/
 
 More about the 4D neuroimaging/BTi data organization at: [http://www.fieldtriptoolbox.org/getting_started/bti](http://www.fieldtriptoolbox.org/getting_started/bti)
 
-### KIT/Yokogawa/Ricoh
+## KIT/Yokogawa/Ricoh
 
 Each experimental run on a KIT/Yokogawa/Ricoh system yields a raw (`.sqd`, `.con`) file with its associated marker coil file (`.mrk`), which contains coil positions in the acquisition system’s native space. Head points and marker points in head space are acquired using third-party hardware. One SHOULD rename/create a father run specific directory and keep the original files for each run inside.
 
@@ -148,7 +147,7 @@ sub-control01_ses-001_task-rest_run-01_meg/
 
 More about the KIT/Yokogawa/Ricoh data organization at: [http://www.fieldtriptoolbox.org/getting_started/yokogawa](http://www.fieldtriptoolbox.org/getting_started/yokogawa)
 
-### KRISS
+## KRISS
 
 Each experimental run on the KRISS system produces a file with extension .kdf. Additional files can be available in the same folder: the digitized positions of the head points (_digitizer.txt), the position of the center of the MEG coils (.chn) and the event markers (.trg).
 ```
@@ -179,7 +178,7 @@ sub-control01_ses-001_task-rest_run-01_meg/
     sub-control01_ses-001_task-rest_run-01_meg.trg
 ```
 
-### ITAB
+## ITAB
 
 Each experimental run on a ITAB-ARGOS153 system yields a raw (`.raw`) data file plus an associated binary header file (`.mhd`). The raw data file has an ASCII header that contains detailed information about the data acquisition system, followed by binary data. The associated binary header file contains part of the information from the ASCII header, specifically the one needed to process data, plus other information on offline preprocessing performed after data acquisition (e.g., sensor position relative to subject’s head, head markers, stimulus information). One should rename/create a father run specific directory and keep the original files for each run inside.
 
@@ -201,6 +200,6 @@ sub-control01_ses-001_task-rest_run-01_meg/
     sub-control01_ses-001_task-rest_run-01_meg.raw.mhd
 ```
 
-### Aalto MEG–MRI
+## Aalto MEG–MRI
 
 For stand-alone MEG data, the Aalto hybrid device uses the standard `.fif` data format and follows the conventions of Elekta/Neuromag as described above in section 5.2. The `.fif` files may contain unreconstructed MRI data. The inclusion of MRI data and information for accurate reconstruction will be fully standardized at a later stage.

@@ -1,12 +1,11 @@
-Magnetoencephalography (MEG)
-----------------------------
+# Magnetoencephalography (MEG)
 
 Support for MEG was developed as a BIDS Extension Proposal. Please cite the following paper when referring to this part of the standard in context of the academic literature:
 
 > Niso Galan, J.G., Gorgolewski, K.J., Bock, E., Brooks, T.L., Flandin, G., Gramfort, A., Henson, R.N., Jas, M., Litvak, V., Moreau, J., Oostenveld, R., Schoffelen, J.-M., Tadel, F., Wexler, J., Baillet, S., 2018. [MEG-BIDS, the brain imaging data structure extended to
 > magnetoencephalography](https://www.nature.com/articles/sdata2018110). Scientific Data volume 5, Article number: 180110 (2018)
 
-### MEG recording data
+## MEG recording data
 
 Template:
 
@@ -27,7 +26,7 @@ This template is for MEG data of any kind, including but not limited to task-bas
 
 The `proc` label is analogous to `rec` for MR and denotes a variant of a file that was a result of particular processing performed on the device. This is useful for files produced in particular by Elekta’s MaxFilter (e.g. sss, tsss, trans, quat, mc, etc.), which some installations impose to be run on raw data because of active shielding software corrections before the MEG data can actually be exploited.
 
-#### Sidecar JSON document (`*_meg.json`)
+### Sidecar JSON document (`*_meg.json`)
 
 Generic fields
 MUST be present:
@@ -141,7 +140,7 @@ Example:
 
 Note that the date and time information SHOULD be stored in the Study key file (`scans.tsv`), see section 8.8. Scans.tsv. As it is indicated there, date time information MUST be expressed in the following format `YYYY-MM-DDThh:mm:ss` ([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending on local REB/IRB ethics board policy.
 
-### Channels description table (`*_channels.tsv`)
+## Channels description table (`*_channels.tsv`)
 Template:
 ```
 sub-<participant_label>/
@@ -179,15 +178,9 @@ SHOULD be present:
 Example:
 
 ```
-name type units description sampling_frequency ...
-UDIO001 TRIG V analogue trigger 1200
-MLC11 MEGGRADAXIAL T sensor 1st-order grad 1200
-```
-
-```
-... low_cutoff high_cutoff notch software_filters status
-0.1 300 0 n/a good
-0 n/a 50 SSS bad
+name type units description sampling_frequency  low_cutoff  high_cutoff notch software_filters status
+UDIO001 TRIG V analogue trigger 1200  0.1 300 0 n/a good
+MLC11 MEGGRADAXIAL T sensor 1st-order grad 1200 0 n/a 50 SSS bad
 ```
 
 
@@ -236,7 +229,7 @@ UDIO001 TRIG V analog trigger signal
 UADC001 AUDIO V envelope of audio signal presented to participant
 ```
 
-### Coordinate System JSON document (`*_coordsystem.json`)
+## Coordinate System JSON document (`*_coordsystem.json`)
 Template:
 
 ```
@@ -317,61 +310,62 @@ coregistration:
    [http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined), or:
    [http://neuroimage.usc.edu/brainstorm/CoordinateSystems](http://neuroimage.usc.edu/brainstorm/CoordinateSystems)
 
-   ### Photos of the anatomical landmarks and/or head localization coils (`*_photo.jpg`)
-   Template:
+### Photos of the anatomical landmarks and/or head localization coils (`*_photo.jpg`)
+Template:
 
-   ```
-   sub-<participant_label>/
-       [ses-<label>]/
-         meg/
-           [sub-<participant_label>[_ses-<label>][_acq-<label>]_photo.jpg]
-   ```
+```
+sub-<participant_label>/
+    [ses-<label>]/
+      meg/
+        [sub-<participant_label>[_ses-<label>][_acq-<label>]_photo.jpg]
+```
 
-   Photos of the anatomical landmarks and/or head localization coils on the subject’s head are RECOMMENDED. If the coils are not placed at the location of actual anatomical landmarks, these latter may be marked with a piece of felt-tip taped to the skin. Please note that the photos may need to be cropped or blurred to conceal identifying features prior to sharing, depending on the terms of the consent form signed by the participant.
+Photos of the anatomical landmarks and/or head localization coils on the subject’s head are RECOMMENDED. If the coils are not placed at the location of actual anatomical landmarks, these latter may be marked with a piece of felt-tip taped to the skin. Please note that the photos may need to be cropped or blurred to conceal identifying features prior to sharing, depending on the terms of the consent form signed by the participant.
 
-   Example of the NAS fiducial placed between the eyebrows, rather than at the actual anatomical nasion:
-      `sub-0001_ses-001_acq-NAS_photo.jpg`
+Example of the NAS fiducial placed between the eyebrows, rather than at the actual anatomical nasion:
+  `sub-0001_ses-001_acq-NAS_photo.jpg`
 
-      ### 3-D head point /electrode locations file (`*_headshape.<manufacturer_specific_format>`)
-      Template:
+![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
 
-      ```
-      sub-<participant_label>/
-          [ses-<label>]/
-            meg/
-              [sub-<participant_label>[_ses-<label>][_acq-<label>]_headshape.<manufacturer_specific_extension>]
-      ```
+### 3-D head point /electrode locations file (`*_headshape.<manufacturer_specific_format>`)
+Template:
 
-      ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
-      This file is RECOMMENDED.
+```
+sub-<participant_label>/
+    [ses-<label>]/
+      meg/
+        [sub-<participant_label>[_ses-<label>][_acq-<label>]_headshape.<manufacturer_specific_extension>]
+```
 
-      The 3-D locations of head points and/or EEG electrode locations can be digitized and stored in separate files. The `*_acq-<label>` can be used when more than one type of digitization in done for a session, for example when the head points are in a separate file from the EEG locations. These files are stored in the specific format of the 3-D digitizer’s manufacturer (see Appendix VI).
+This file is RECOMMENDED.
 
-      Example:
+The 3-D locations of head points and/or EEG electrode locations can be digitized and stored in separate files. The `*_acq-<label>` can be used when more than one type of digitization in done for a session, for example when the head points are in a separate file from the EEG locations. These files are stored in the specific format of the 3-D digitizer’s manufacturer (see Appendix VI).
 
-      ```
-      sub-control01
-          ses-01
-              sub-control01_ses-01_acq-HEAD_headshape.pos
-              sub-control01_ses-01_acq-ECG_headshape.pos
-      ```
+Example:
 
-      Note that the `*_headshape` file(s) is shared by all the runs and tasks in a session. If the subject needs to be taken out of the scanner and the head-shape has to be updated, then for MEG it could be considered to be a new session.
+```
+sub-control01
+    ses-01
+        sub-control01_ses-01_acq-HEAD_headshape.pos
+        sub-control01_ses-01_acq-ECG_headshape.pos
+```
 
-      ### Empty-room files (`sub-emptyroom`)
-      Empty-room MEG files capture the environment and system noise. Their collection is RECOMMENDED, before/during/after each session. This data is stored inside a subject folder named `sub-emptyroom`. The `session label` SHOULD be that of the date of the empty-room recording (e.g. `ses-YYYYMMDD`). The `scans.tsv` file containing the date/time of the acquisition SHOULD also be included. Hence, users will be able to retrieve the empty-room recording that best matches a particular session with a participant, based on date/time of recording.
+Note that the `*_headshape` file(s) is shared by all the runs and tasks in a session. If the subject needs to be taken out of the scanner and the head-shape has to be updated, then for MEG it could be considered to be a new session.
 
-      Example:
+### Empty-room files (`sub-emptyroom`)
+Empty-room MEG files capture the environment and system noise. Their collection is RECOMMENDED, before/during/after each session. This data is stored inside a subject folder named `sub-emptyroom`. The `session label` SHOULD be that of the date of the empty-room recording (e.g. `ses-YYYYMMDD`). The `scans.tsv` file containing the date/time of the acquisition SHOULD also be included. Hence, users will be able to retrieve the empty-room recording that best matches a particular session with a participant, based on date/time of recording.
 
-      ```
-      sub-control01/
-      sub-control02/
-      sub-emptyroom/
-          ses-20170801/
-              sub-emptyroom_ses-20170801_scans.tsv
-              meg/
-                  sub-emptyroom_ses-20170801_task-noise_meg.ds
-                  sub-emptyroom_ses-20170801_task-noise_meg.json
-      ```
+Example:
 
-      `TaskName` in the `*_meg.json` file should be set to "noise".
+```
+sub-control01/
+sub-control02/
+sub-emptyroom/
+    ses-20170801/
+        sub-emptyroom_ses-20170801_scans.tsv
+        meg/
+            sub-emptyroom_ses-20170801_task-noise_meg.ds
+            sub-emptyroom_ses-20170801_task-noise_meg.json
+```
+
+`TaskName` in the `*_meg.json` file should be set to "noise".

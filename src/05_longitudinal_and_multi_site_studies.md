@@ -1,5 +1,4 @@
-Longitudinal studies with multiple sessions (visits)
-====================================================
+# Longitudinal studies with multiple sessions (visits)
 
 Multiple sessions (visits) are encoded by adding an extra layer of directories and file names in the form of `ses-<session_label>`. Session label can consist only of alphanumeric characters `[a-zA-Z0-9]` and should be consistent across subjects. If numbers are used in session labels we recommend using zero padding (for example `ses-01`, `ses-11` instead of `ses-1`, `ses-11`). This makes results of alphabetical sorting more intuitive. Acquisition time of session can be defined in the sessions file (see below for details).
 
@@ -48,8 +47,7 @@ dataset_description.json
 README
 CHANGES
 ```
-Sessions file
--------------
+## Sessions file
 
 Template:
 ```
@@ -68,8 +66,7 @@ ses-predrug 2009-06-15T13:45:30 120
 ses-postdrug  2009-06-16T13:45:30 100
 ses-followup  2009-06-17T13:45:30 110
 ```
-Multi-site or multi-center studies
-----------------------------------
+## Multi-site or multi-center studies
 
 This version of the BIDS specification does not explicitly cover studies with data coming from multiple sites or multiple centers (such extension is planned in BIDS 2.0.0).  There are however ways to model your data without any loss in terms of metadata.
 

@@ -1,5 +1,4 @@
-Appendix VIII: preferred names of Coordinate systems
-----------------------------------------------------
+# Appendix VIII: preferred names of Coordinate systems
 
 To interpret a coordinate (x, y, z), it is required that you know relative to which origin the coordinates are expressed, you have to know the interpretation of the three axes, and you have to know the units in which the numbers are expressed. This information is sometimes called the coordinate system.
 
@@ -15,7 +14,7 @@ Besides coordinate systems, defined by their origin and direction of the axes, B
 
 The coordinate systems below all relate to neuroscience and therefore to the head or brain coordinates. Please be aware that all data acquisition starts with "device coordinates" (scanner), which does not have to be identical to the initial "file format coordinates" (DICOM), which are again different from the "head" coordinates (e.g. NIFTI). Not only do device coordinate vary between hardware manufacturers, but also the head coordinates differ, mostly due to different conventions used in specific software packages developed by different (commercial or academic) groups.
 
-### MEG specific Coordinate Systems
+## MEG specific Coordinate Systems
 
 The first two pieces of information (origin, orientation) are specified in `XXXCoordinateSystem`, the units are specified in `XXXCoordinateSystemUnits`.
 
@@ -31,7 +30,7 @@ Restricted keywords for the XXXCoordinateSystem field in the `coordinatesystem.j
 Note that the short descriptions above do not capture all details,  there are detailed  descriptions of these  coordinate systems on the FieldTrip toolbox web page:
 [http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
 
-### EEG specific Coordinate Systems
+## EEG specific Coordinate Systems
 
 The first two pieces of information (origin, orientation) are specified in `XXXCoordinateSystem`, the units are specified in `XXXCoordinateSystemUnits`.
 
@@ -45,10 +44,7 @@ Note that the short descriptions above do not capture all details, There are det
 [http://wiki.besa.de/index.php?title=Electrodes_and_Surface_Locations\#Coordinate_systems](http://wiki.besa.de/index.php?title=Electrodes_and_Surface_Locations#Coordinate_systems
 )
 
-### iEEG specific Coordinate Systems
-
-
-### Template based Coordinate Systems
+## Template based Coordinate Systems
 
 The transformation of the real world geometry to an artificial frame of reference is described in `XXXCoordinateSystem`. Unless otherwise specified below, the origin is at the AC and the orientation of the axes is RAS. Unless specified explicitly in the sidecar file in the `XXCoordinateSystemUnits` field, the units are assumed to be mm.
 

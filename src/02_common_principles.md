@@ -1,8 +1,6 @@
-Common principles
-=================
+# Common principles
 
-The Inheritance Principle
--------------------------
+## The Inheritance Principle
 
 Any metadata file (`.json`, `.bvec`, `.tsv`, etc.) may be defined at any directory level, but no more than one applicable file may be defined at a given level (Example 1).  The values from the top level are inherited by all lower levels unless they are overridden by a file at the lower level. For example, `sub-*_task-rest_bold.json` may be specified at the participant level, setting TR to a specific value. If one of the runs has a different TR than the one specified in that file, another `sub-*_task-rest_bold.json` file can be placed within that specific series directory specifying the TR for that specific run.
 There is no notion of "unsetting" a key/value pair. For example if there is a JSON file corresponding to particular participant/run defining a key/value and there is a JSON file on the root level of the dataset that does not define this key/value it will not be "unset" for all subjects/runs.
@@ -57,8 +55,7 @@ In the above example, the fields from `task-xyz_acq-test1_bold.json` file will a
 the new value will be applicable for that particular run/task NIfTI
 file/s.
 
-File Formation specification
-----------------------------
+## File Formation specification
 
 ### Imaging files
 
@@ -71,7 +68,7 @@ NIfTI header.
 
 Tabular data MUST be saved as tab delimited values (`.tsv`) files, i.e. csv files where commas are replaced by tabs. Tabs MUST  be true tab characters and MUST NOT be a series of space characters. Each TSV file MUST start with a header line listing the names of all columns (with the exception of physiological and other continuous acquisition data - see below for details). Names MUST be separated with tabs. String values containing tabs MUST be escaped using double quotes. Missing and non-applicable values MUST be coded as `n/a`.
 
-#### Example:
+Example:
 ```
 onset duration  response_time correct stop_trial  go_trial
 200 200 0 n/a n/a n/a
@@ -87,7 +84,7 @@ Tabular files MAY be optionally accompanied by a simple data dictionary in a JSO
 | Units       | Measurement units.  `[<prefix symbol>] <unit symbol>` format following the SI standard is RECOMMENDED (see Appendix V). |
 | TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web. |
 
-#### Example:
+Example:
 
 ```JSON
 {
@@ -109,13 +106,12 @@ Tabular files MAY be optionally accompanied by a simple data dictionary in a JSO
 }
 ```
 
-Key/value files (dictionaries)
-------------------------------
+## Key/value files (dictionaries)
 
 JavaScript Object Notation (JSON) files MUST be used for storing key/value pairs. Extensive documentation of the format can be found here: [http://json.org/](http://json.org/).  Several editors have built-in support for JSON syntax highlighting that aids manual creation of such files. An online editor for JSON with built-in validation is available at: [http://jsoneditoronline.org](http://jsoneditoronline.org). JSON
 files MUST be in UTF-8 encoding.
 
-### Example:
+Example:
 ```JSON
 {
   "RepetitionTime": 3,
@@ -187,15 +183,3 @@ sub-control01/
 ```
 
 Additional files and folders containing raw data may be added as needed for special cases.  They should be named using all lowercase with a name that reflects the nature of the scan (e.g., `calibration`).  Naming of files within the directory should follow the same scheme as above (e.g., `sub-control01_calibration_Xcalibration.nii.gz`)
-
-### Code
-
-Template:
-`code/*`
-
-Source code of scripts that were used to prepare the dataset (for example if it was anonymized or defaced) MAY be stored here.<sup>1</sup> Extra care should be taken to avoid including original IDs or any identifiable information with the source code. There are no limitations or recommendations on the language and/or code organization of these scripts at the moment.
-
-<sup>1</sup>Storing actual source files with the data
-is preferred over links to external source repositories to maximize long
-term preservation (which would suffer if an external repository would
-not be available anymore).
