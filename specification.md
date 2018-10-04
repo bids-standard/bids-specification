@@ -1651,6 +1651,7 @@ Example:
   }
 }
 ```
+When both the trial_type column and the HED column are included, the HED tags from both columns are used to annotate the event instance. This usage allows convenient specification of common event properties while also allowing specification of event instance details in a convenient manner.
 
 Appendix IV: Entity table
 =========================
