@@ -34,3 +34,4 @@ Example:
   }
 }
 ```
+Both the trial_type column and the HED column may be included for each event (i.e., as columns in "_events.tsv"). In this case, an individual event is described by the union of the tags in the HED column of events.tsv and the tags associated with the dictionary entry for the trial_type specified in data dictionary "_events.json". The tags in the HED column are often specific to the event instances, while the common properties associated with the trial_type are encapsulated in the trial_type dictionary. Downstream tools should not distinguish between tags specified using the different mechanisms.
