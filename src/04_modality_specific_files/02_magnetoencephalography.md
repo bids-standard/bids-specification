@@ -310,61 +310,62 @@ coregistration:
    [http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined), or:
    [http://neuroimage.usc.edu/brainstorm/CoordinateSystems](http://neuroimage.usc.edu/brainstorm/CoordinateSystems)
 
-   ### Photos of the anatomical landmarks and/or head localization coils (`*_photo.jpg`)
-   Template:
+### Photos of the anatomical landmarks and/or head localization coils (`*_photo.jpg`)
+Template:
 
-   ```
-   sub-<participant_label>/
-       [ses-<label>]/
-         meg/
-           [sub-<participant_label>[_ses-<label>][_acq-<label>]_photo.jpg]
-   ```
+```
+sub-<participant_label>/
+    [ses-<label>]/
+      meg/
+        [sub-<participant_label>[_ses-<label>][_acq-<label>]_photo.jpg]
+```
 
-   Photos of the anatomical landmarks and/or head localization coils on the subject’s head are RECOMMENDED. If the coils are not placed at the location of actual anatomical landmarks, these latter may be marked with a piece of felt-tip taped to the skin. Please note that the photos may need to be cropped or blurred to conceal identifying features prior to sharing, depending on the terms of the consent form signed by the participant.
+Photos of the anatomical landmarks and/or head localization coils on the subject’s head are RECOMMENDED. If the coils are not placed at the location of actual anatomical landmarks, these latter may be marked with a piece of felt-tip taped to the skin. Please note that the photos may need to be cropped or blurred to conceal identifying features prior to sharing, depending on the terms of the consent form signed by the participant.
 
-   Example of the NAS fiducial placed between the eyebrows, rather than at the actual anatomical nasion:
-      `sub-0001_ses-001_acq-NAS_photo.jpg`
+Example of the NAS fiducial placed between the eyebrows, rather than at the actual anatomical nasion:
+  `sub-0001_ses-001_acq-NAS_photo.jpg`
 
-      ### 3-D head point /electrode locations file (`*_headshape.<manufacturer_specific_format>`)
-      Template:
+![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
 
-      ```
-      sub-<participant_label>/
-          [ses-<label>]/
-            meg/
-              [sub-<participant_label>[_ses-<label>][_acq-<label>]_headshape.<manufacturer_specific_extension>]
-      ```
+### 3-D head point /electrode locations file (`*_headshape.<manufacturer_specific_format>`)
+Template:
 
-      ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
-      This file is RECOMMENDED.
+```
+sub-<participant_label>/
+    [ses-<label>]/
+      meg/
+        [sub-<participant_label>[_ses-<label>][_acq-<label>]_headshape.<manufacturer_specific_extension>]
+```
 
-      The 3-D locations of head points and/or EEG electrode locations can be digitized and stored in separate files. The `*_acq-<label>` can be used when more than one type of digitization in done for a session, for example when the head points are in a separate file from the EEG locations. These files are stored in the specific format of the 3-D digitizer’s manufacturer (see Appendix VI).
+This file is RECOMMENDED.
 
-      Example:
+The 3-D locations of head points and/or EEG electrode locations can be digitized and stored in separate files. The `*_acq-<label>` can be used when more than one type of digitization in done for a session, for example when the head points are in a separate file from the EEG locations. These files are stored in the specific format of the 3-D digitizer’s manufacturer (see Appendix VI).
 
-      ```
-      sub-control01
-          ses-01
-              sub-control01_ses-01_acq-HEAD_headshape.pos
-              sub-control01_ses-01_acq-ECG_headshape.pos
-      ```
+Example:
 
-      Note that the `*_headshape` file(s) is shared by all the runs and tasks in a session. If the subject needs to be taken out of the scanner and the head-shape has to be updated, then for MEG it could be considered to be a new session.
+```
+sub-control01
+    ses-01
+        sub-control01_ses-01_acq-HEAD_headshape.pos
+        sub-control01_ses-01_acq-ECG_headshape.pos
+```
 
-      ### Empty-room files (`sub-emptyroom`)
-      Empty-room MEG files capture the environment and system noise. Their collection is RECOMMENDED, before/during/after each session. This data is stored inside a subject folder named `sub-emptyroom`. The `session label` SHOULD be that of the date of the empty-room recording (e.g. `ses-YYYYMMDD`). The `scans.tsv` file containing the date/time of the acquisition SHOULD also be included. Hence, users will be able to retrieve the empty-room recording that best matches a particular session with a participant, based on date/time of recording.
+Note that the `*_headshape` file(s) is shared by all the runs and tasks in a session. If the subject needs to be taken out of the scanner and the head-shape has to be updated, then for MEG it could be considered to be a new session.
 
-      Example:
+### Empty-room files (`sub-emptyroom`)
+Empty-room MEG files capture the environment and system noise. Their collection is RECOMMENDED, before/during/after each session. This data is stored inside a subject folder named `sub-emptyroom`. The `session label` SHOULD be that of the date of the empty-room recording (e.g. `ses-YYYYMMDD`). The `scans.tsv` file containing the date/time of the acquisition SHOULD also be included. Hence, users will be able to retrieve the empty-room recording that best matches a particular session with a participant, based on date/time of recording.
 
-      ```
-      sub-control01/
-      sub-control02/
-      sub-emptyroom/
-          ses-20170801/
-              sub-emptyroom_ses-20170801_scans.tsv
-              meg/
-                  sub-emptyroom_ses-20170801_task-noise_meg.ds
-                  sub-emptyroom_ses-20170801_task-noise_meg.json
-      ```
+Example:
 
-      `TaskName` in the `*_meg.json` file should be set to "noise".
+```
+sub-control01/
+sub-control02/
+sub-emptyroom/
+    ses-20170801/
+        sub-emptyroom_ses-20170801_scans.tsv
+        meg/
+            sub-emptyroom_ses-20170801_task-noise_meg.ds
+            sub-emptyroom_ses-20170801_task-noise_meg.json
+```
+
+`TaskName` in the `*_meg.json` file should be set to "noise".
