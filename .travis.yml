@@ -2,6 +2,6 @@ language: node_js
 node_js:
   - "10"
 before_script:
-  - npm install -g remark-cli@5.0.0 remark-lint@6.0.2 remark-preset-lint-recommended@3.0.2
+  - npm install -g remark-cli@5.0.0 remark-lint@6.0.2 remark-preset-lint-recommended@3.0.2 remark-preset-lint-markdown-style-guide@2.1.2
 script:
-  - remark src/*.md src/*/*.md --use preset-lint-markdown-style-recommended
+  - remark src/*.md src/*/*.md
