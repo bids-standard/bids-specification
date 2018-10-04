@@ -1,4 +1,4 @@
-# Appendix  VI: MEG file formats
+# Appendix VI: MEG file formats
 
 Each MEG system brand has specific file organization and data formats.
 RECOMMENDED values for `manufacturer_specific_extensions`:
