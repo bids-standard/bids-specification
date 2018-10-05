@@ -172,7 +172,7 @@ specific to a participant is to be declared only at top level of dataset for eg:
 
 Example 1: Two JSON files at same level that are applicable for NIfTI file.
 
-```Shell
+```Text
 sub-01/
     ses-test/
         sub-test_task-overtverbgeneration_bold.json
@@ -193,7 +193,7 @@ have been under `sub-01/ses-test/func/`.
 
 Example 2: Multiple run and rec with same acquisition (acq) parameters acq-test1
 
-```Shell
+```Text
 sub-01/
     anat/
     func/
@@ -213,7 +213,7 @@ will be applicable to all task runs with `test1` acquisition parameter.
 Case 2: Multiple json files at different levels for same task and acquisition
 parameters
 
-```Shell
+```Text
 sub-01/
    sub-01_task-xyz_acq-test1_bold.json
          anat/
