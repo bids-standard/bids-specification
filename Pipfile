@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 mkdocs = "==1.0.4"
 mkdocs-material = "==3.0.4"
-mkdocs-combine = {git = "https://github.com/o2r-project/mkdocs-combine.git"}
 
 [dev-packages]
 
