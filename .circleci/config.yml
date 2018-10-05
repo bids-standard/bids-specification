@@ -15,7 +15,7 @@ jobs:
             pipenv install
       - run: pipenv run pip install git+https://github.com/o2r-project/mkdocs-combine.git#egg=mkdocs-combine
       - run:
-          command: sudo apt-get install -y pandoc
+          command: sudo apt-get install -y pandoc texlive-full
       - save_cache:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
           paths:
