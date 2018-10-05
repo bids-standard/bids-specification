@@ -1,5 +1,5 @@
 {
   "plugins": [
-    "preset-lint-recommended"
+    "preset-lint-markdown-style-guide"
   ]
 }
