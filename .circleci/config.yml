@@ -13,7 +13,7 @@ jobs:
           command: |
             sudo pip install pipenv
             pipenv install
-      - run: pipenv install git+https://github.com/o2r-project/mkdocs-combine.git#egg=mkdocs-combine
+      - run: pipenv run pip install git+https://github.com/o2r-project/mkdocs-combine.git#egg=mkdocs-combine
       - run:
           command: sudo apt-get install -y pandoc
       - save_cache:
