@@ -14,7 +14,7 @@ jobs:
             sudo pip install pipenv
             pipenv install
       - run:
-          command: apt-get install -y pandoc
+          command: sudo apt-get install -y pandoc
       - save_cache:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
           paths:
