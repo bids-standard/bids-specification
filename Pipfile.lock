@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "580a32c021d6bda5d1823a0bfb462bfbb5dfaa567bcef30b058c3af80cb67896"
+            "sha256": "8d9bb744b26707f99ea5c2f36b74be398d9d208d03c203a8ca8b22e7df0eda39"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -60,6 +60,10 @@
             ],
             "index": "pypi",
             "version": "==1.0.4"
+        },
+        "mkdocs-combine": {
+            "git": "https://github.com/o2r-project/mkdocs-combine.git",
+            "ref": "4c1fa94c81a08c51ac65bf150fbf704c1de01c0e"
         },
         "mkdocs-material": {
             "hashes": [
