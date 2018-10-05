@@ -2,8 +2,10 @@ site_name: Brain Imaging Data Structure
 theme: material
 plugins:
     - search
+    - pdf-export:
+        verbose: true
 docs_dir: 'src'
-use_directory_urls: false 
+use_directory_urls: false
 nav:
     - About: index.md
     - Specification:
