@@ -1,0 +1,8 @@
+[book]
+authors = ["Chris Gorgolewski"]
+multilingual = false
+src = "src"
+title = "Brain Imaging Data Structure"
+
+[output.html]
+no-section-label = true

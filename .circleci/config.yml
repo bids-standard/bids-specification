@@ -1,0 +1,20 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/rust:1.29
+    steps:
+      - checkout
+      - restore_cache:  # ensure this step occurs *before* installing dependencies
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+      - run:
+          command: cargo install mdbook --vers "^0.2.1"
+      - save_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          paths:
+            - ".cargo"
+      - run:
+          name: generate docs
+          command: mdbook build
+      - store_artifacts:
+          path: book
