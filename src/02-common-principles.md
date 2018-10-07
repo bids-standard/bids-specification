@@ -1,5 +1,114 @@
 # Common principles
 
+## Definitions
+
+The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
+interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
+
+Throughout this protocol we use a list of terms. To avoid misunderstanding we
+clarify them here.
+
+1.  Dataset - a set of neuroimaging and behavioural data acquired for a purpose
+    of a particular study. A dataset consists of data acquired from one or more
+    subjects, possibly from multiple sessions.
+
+1.  Subject - a person or animal participating in the study.
+
+1.  Session - a logical grouping of neuroimaging and behavioural data consistent
+    across subjects. Session can (but doesn't have to) be synonymous to a visit
+    in a longitudinal study. In general, subjects will stay in the scanner
+    during one session. However, for example, if a subject has to leave the
+    scanner room and then be re-positioned on the scanner bed, the set of MRI
+    acquisitions will still be considered as a session and match sessions
+    acquired in other subjects. Similarly, in situations where different data
+    types are obtained over several visits (for example fMRI on one day followed
+    by DWI the day after) those can be grouped in one session. Defining multiple
+    sessions is appropriate when several identical or similar data acquisitions
+    are planned and performed on all -or most- subjects, often in the case of
+    some intervention between sessions (e.g., training).
+
+1.  Data acquisition - a continuous uninterrupted block of time during which a
+    brain scanning instrument was acquiring data according to particular
+    scanning sequence/protocol.
+
+1.  Data type - a functional group of different types of data. In BIDS we define
+    five data types: func (task based and resting state functional MRI), dwi
+    (diffusion weighted imaging), fmap (field inhomogeneity mapping data such as
+    field maps), anat (structural imaging such as T1, T2, etc.), meg
+    (magnetoencephalography).
+
+1.  Task - a set of structured activities performed by the participant. Tasks
+    are usually accompanied by stimuli and responses, and can greatly vary in
+    complexity. For the purpose of this protocol we consider the so-called
+    “resting state” a task. In the context of brain scanning, a task is always
+    tied to one data acquisition. Therefore, even if during one acquisition the
+    subject performed multiple conceptually different behaviours (with different
+    sets of instructions) they will be considered one (combined) task.
+
+1.  Event - a stimulus or subject response recorded during a task. Each event
+    has an onset time and duration. Note that not all tasks will have recorded
+    events (e.g., resting state).
+
+1.  Run - an uninterrupted repetition of data acquisition that has the same
+    acquisition parameters and task (however events can change from run to run
+    due to different subject response or randomized nature of the stimuli). Run
+    is a synonym of a data acquisition.
+
+## Compulsory, optional, and additional data and metadata
+
+The following standard describes a way of arranging data and writing down
+metadata for a subset of neuroimaging experiments. Some aspects of the standard
+are compulsory. For example a particular file name format is required when
+storing structural scans. Some aspects are regulated but optional. For example a
+T2 volume does not need to be included, but when it is available it should be
+saved under a particular file name specified in the standard. This standard
+aspires to describe a majority of datasets, but acknowledges that there will be
+cases that do not fit. In such cases one can include additional files and
+subfolders to the existing folder structure following common sense. For example
+one may want to include eye tracking data in a vendor specific format that is
+not covered by this standard. The most sensible place to put it is next to the
+continuous recording file with the same naming scheme but different extensions.
+The solutions will change from case to case and publicly available datasets will
+be reviewed to include common data types in the future releases of the BIDS
+spec.
+
+## Source vs. raw vs. derived data
+
+BIDS in its current form is designed to harmonize and describe raw (unprocessed
+or minimally processed due to file format conversion) data. During analysis such
+data will be transformed and partial as well as final results will be saved.
+Derivatives of the raw data (other than products of DICOM to NIfTI conversion)
+MUST be kept separate from the raw data. This way one can protect the raw data
+from accidental changes by file permissions. In addition it is easy to
+distinguish partial results from the raw data and share the latter. Similar
+rules apply to source data which is defined as data before harmonization and/or
+file format conversion (for example E-Prime event logs or DICOM files).
+
+This specification currently does not go into details of recommending a
+particular naming scheme for including different types of source data (raw event
+logs, parameter files, etc. before conversion to BIDS) and data derivatives
+(correlation maps, brain masks, contrasts maps, etc.). However, in the case that
+these data are to be included:
+
+1.  These data MUST be kept in separate `sourcedata` and `derivatives` folders
+    each with a similar folder structure as presented below for the BIDS-managed
+    data. For example:
+    `derivatives/fmriprep/sub-01/ses-pre/sub-01_ses-pre_mask.nii.gz` or
+    `sourcedata/sub-01/ses-pre/func/sub-01_ses-pre_task-rest_bold.dicom.tgz` or
+    `sourcedata/sub-01/ses-pre/func/MyEvent.sce`.
+
+1.  A README file SHOULD be found at the root of the `sourcedata` or the
+    `derivatives` folder (or both). This file should describe the nature of the
+    raw data or the derived data. In the case of the existence of a
+    `derivatives` folder, we RECOMMEND including details about the software
+    stack and settings used to generate the results. Inclusion of non-imaging
+    objects that improve reproducibility are encouraged (scripts, settings
+    files, etc.).
+
+1.  We RECOMMEND including the PDF print-out with the actual sequence parameters
+    generated by the scanner in the `sourcedata` folder.
+
 ## The Inheritance Principle
 
 Any metadata file (`.json`, `.bvec`, `.tsv`, etc.) may be defined at any
