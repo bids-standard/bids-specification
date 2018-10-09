@@ -6,14 +6,14 @@
 [2 Table of contents](#heading=h.zeylawffkwh9)
 
 [3 Introduction](#heading=h.ehs58l1sp5l0)
-> [3.1 Motivation](#heading=h.nn0wr5qmclie)
-> [3.2 Definitions](#heading=h.ld293tqw9us4)
+> [3.1 Motivation](#heading=h.nn0wr5qmclie)  
+> [3.2 Definitions](#heading=h.ld293tqw9us4)  
 > [3.3 Compulsory, optional, and additional data and
-metadata](#heading=h.yic0v7leqtf3)
-> [3.4 Source vs. raw vs. derived data](#heading=h.juzchuxblakl)
-> [3.5 The Inheritance Principle](#heading=h.l5zwpkcouhem)
-> [3.6 Extensions](#heading=h.18rh5sozhnxy)
-> [3.7 Citing BIDS](#heading=h.bw5qroscmvib)
+metadata](#heading=h.yic0v7leqtf3)  
+> [3.4 Source vs. raw vs. derived data](#heading=h.juzchuxblakl)  
+> [3.5 The Inheritance Principle](#heading=h.l5zwpkcouhem)  
+> [3.6 Extensions](#heading=h.18rh5sozhnxy)  
+> [3.7 Citing BIDS](#heading=h.bw5qroscmvib)  
 
 [4 File Format specification](#heading=h.nx8ar720y0tv)
 > [4.1 Imaging files](#heading=h.y0f2axq397vt)
@@ -52,13 +52,13 @@ data](#heading=h.r8mrcau3kkcq)
 
 >> [8.3.5 Fieldmap data](#heading=h.fcegd01wpsf8)
 >>> [8.3.5.1 Case 1: Phase difference image and at least one magnitude
-image](#heading=h.fexn37cr2yum)
+image](#heading=h.fexn37cr2yum)  
 >>> [8.3.5.2 Case 2: Two phase images and two magnitude
-images](#heading=h.dytrqt3rfo2y)
+images](#heading=h.dytrqt3rfo2y)  
 >>> [8.3.5.3 Case 3: A single, real fieldmap image (showing the field
-inhomogeneity in each voxel)](#heading=h.9wqqfa1lqctc)
+inhomogeneity in each voxel)](#heading=h.9wqqfa1lqctc)  
 >>> [8.3.5.4 Case 4: Multiple phase encoded directions
-(“pepolar”)](#heading=h.6gef31kvsx0l)
+(“pepolar”)](#heading=h.6gef31kvsx0l)  
 
 >[8.4 Magnetoencephalography (MEG)](#heading=h.y1yw5l9a04g2)
 >> [8.4.1 MEG recording data](#heading=h.ln9qkltewtqa)
@@ -66,13 +66,13 @@ inhomogeneity in each voxel)](#heading=h.9wqqfa1lqctc)
 (\*\_meg.json)](#heading=h.wmua3ist46l2)
 
 >> [8.4.2 Channels description table
-(\*\_channels.tsv)](#heading=h.2ng8e4h6db4p)
+(\*\_channels.tsv)](#heading=h.2ng8e4h6db4p)  
 >> [8.4.3 Coordinate System JSON document
-(\*\_coordsystem.json)](#heading=h.vz4gpcbftsuu)
+(\*\_coordsystem.json)](#heading=h.vz4gpcbftsuu)  
 >> [8.4.4 Photos of the anatomical landmarks and/or head localization
-coils  (\*\_photo.jpg)](#heading=h.li6xt1s6zgjs)
+coils  (\*\_photo.jpg)](#heading=h.li6xt1s6zgjs)  
 >> [8.4.5 3-D head point /electrode locations file
-(\*\_headshape.<manufacturer_specific_format>)](#heading=h.jrc7wyqvlzpp)
+(\*\_headshape.<manufacturer_specific_format>)](#heading=h.jrc7wyqvlzpp)  
 >> [8.4.6 Empty-room files (sub-emptyroom)](#heading=h.i7qifoac3vgf)
 
 > [8.5 Task events](#heading=h.daip42kp5ndz)
