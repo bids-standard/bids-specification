@@ -1,4 +1,3 @@
-# Contributors guide
 
 # Contributing to the BIDS Specification
 
@@ -26,7 +25,7 @@ BIDS - the [Brain Imaging Data Structure][bids] - is a growing community of neur
 
 We therefore require that all contributions **adhere to our [Code of Conduct](CODE_OF_CONDUCT.md)**.
 
-How do you know that you're a member of the BIDS community? You're here! You know that BIDS exists! You're officially a member of the community. It's THAT easy! Welcome! :joy::raised_hands:
+How do you know that you're a member of the BIDS community? You're here! You know that BIDS exists! You're officially a member of the community. It's THAT easy! Welcome!
 
 ## Get in touch
 
@@ -34,7 +33,7 @@ How do you know that you're a member of the BIDS community? You're here! You kno
 
 [git][git] is a really useful tool for version control. [GitHub][github] sits on top of git and supports collaborative and distributed working.
 
-We know that it can be daunting to start using git and GitHub if you haven't worked with them in the past, but the BIDS Specification maintainers are here to help you figure out any of the jargon or confusing instructions you encounter! :heart:
+We know that it can be daunting to start using git and GitHub if you haven't worked with them in the past, but the BIDS Specification maintainers are here to help you figure out any of the jargon or confusing instructions you encounter!
 
 In order to contribute via GitHub you'll need to set up a free account and sign in. Here are some [instructions](https://help.github.com/articles/signing-up-for-a-new-github-account/) to help you get going. Remember that you can ask us any questions you need to along the way.
 
@@ -80,7 +79,7 @@ A [review][github-review] will probably consist of a few questions to help clari
 
 You can update your [fork][github-fork] of the BIDS Specification and the pull request will automatically update with those changes. You don't need to submit a new pull request when you make a change in response to a review.
 
-GitHub has a [nice introduction][github-flow] to the pull request workflow, but please [get in touch](#get-in-touch) if you have any questions :balloon:.
+GitHub has a [nice introduction][github-flow] to the pull request workflow, but please [get in touch](#get-in-touch) if you have any questions.
 
 ## Example pull request
 <img align="right" src="https://i.imgur.com/s8yELfK.png" alt="Example-Contribution"/>
