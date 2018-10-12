@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "10"
+cache:
+  directories:
+  - node_modules # NPM packages
+before_script:
+  - npm install remark-cli@5.0.0 remark-lint@6.0.2 remark-preset-lint-recommended@3.0.2 remark-preset-lint-markdown-style-guide@2.1.2
+script:
+  - remark src/*.md src/*/*.md --frail
