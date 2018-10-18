@@ -11,7 +11,7 @@ jobs:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
       - run:
           command: |
-            sudo pip install pipenv=2018.7.1
+            sudo pip install pipenv==2018.7.1
             pipenv install
       - run: pipenv run pip install git+https://github.com/o2r-project/mkdocs-combine.git#egg=mkdocs-combine
       - run:
