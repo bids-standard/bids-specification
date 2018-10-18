@@ -13,9 +13,6 @@ jobs:
           command: |
             sudo pip install pipenv==2018.7.1
             pipenv install
-      - run: pipenv run pip install git+https://github.com/o2r-project/mkdocs-combine.git#egg=mkdocs-combine
-      - run:
-          command: sudo apt-get install -y pandoc texlive-full
       - save_cache:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
           paths:
@@ -25,9 +22,5 @@ jobs:
       - run:
           name: generate docs
           command: pipenv run mkdocs build --clean --strict --verbose
-      - run:
-          command: pipenv run mkdocscombine --no-titles -o mydocs.pd
-      - run:
-          command: pandoc --toc -f markdown+grid_tables+table_captions -o site/specification.pdf mydocs.pd
       - store_artifacts:
           path: site
