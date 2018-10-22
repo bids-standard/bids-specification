@@ -11,6 +11,8 @@ We hope that these guidelines are designed to make it as easy as possible to get
 
 Been here before? Already know what you're looking for in this guide? Jump to the following sections:
 
+
+=======
 * [Joining the BIDS community](#joining-the-community)
 * [Get in touch](#get-in-touch)
 * [Contributing through GitHub](#contributing-through-github)
@@ -31,6 +33,8 @@ How do you know that you're a member of the BIDS community? You're here! You kno
 
 ## Contributing through GitHub
 
+
+=======
 [git][git] is a really useful tool for version control. [GitHub][github] sits on top of git and supports collaborative and distributed working.
 
 We know that it can be daunting to start using git and GitHub if you haven't worked with them in the past, but the BIDS Specification maintainers are here to help you figure out any of the jargon or confusing instructions you encounter!
@@ -39,6 +43,7 @@ In order to contribute via GitHub you'll need to set up a free account and sign 
 
 ## Writing in markdown
 
+=======
 The specification documents follow the
 [Markdown Style Guide](http://www.cirosantilli.com/markdown-style-guide/). You
 can validate your changes against the guide using
@@ -54,6 +59,8 @@ GitHub has a helpful page on [getting started with writing and formatting on Git
 
 ## Making a change with a pull request
 
+
+=======
 We appreciate all contributions to the BIDS Specification. **THANK YOU** for helping us build this useful resource. 
 
 #### 1. Comment on an existing issue or open a new issue referencing your addition
@@ -61,6 +68,8 @@ We appreciate all contributions to the BIDS Specification. **THANK YOU** for hel
 This allows other members of the BIDS Specification team to confirm that you aren't overlapping with work that's currently underway and that everyone is on the same page with the goal of the work you're going to carry out.
 
 
+
+=======
 #### 2. [Fork][github-fork] the [BIDS Starter Kit repository][bids-starterkit-repo] to your profile
 
 This is now your own unique copy of the BIDS Starter Kit. Changes here won't affect anyone else's work, so it's a safe space to explore edits to the code!
@@ -90,6 +99,8 @@ GitHub has a [nice introduction][github-flow] to the pull request workflow, but 
 
 ## Recognizing contributions
 
+
+=======
 BIDS follows the [all-contributors][all-contributors] specification, so we welcome and recognize all contributions from documentation to testing to code development. You can see a list of current contributors in the [BIDS specification][bids-specification].
 
 ## Thank you!
