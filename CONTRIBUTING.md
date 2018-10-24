@@ -60,7 +60,7 @@ To begin please follow [this link](https://www.mkdocs.org/#installation) to inst
 
 #### 2. Download the BIDS specification [repository](https://github.com/bids-standard/bids-specification/tree/master) onto your computer
 
-This can be done by clicking the green button the right titled "Clone or download"
+This can be done by clicking the green button on the right titled "Clone or download"
 
 #### 3. Install our theme
 
@@ -68,7 +68,7 @@ Please go [here](https://squidfunk.github.io/mkdocs-material/) and install our t
 
 #### 4. In the terminal (command line) navigate to your local version of the specification
 
-This location will have the same files you see on our [main specification page](https://github.com/bids-standard/bids-specification)
+This location will have the same files you see on our [main specification page](https://github.com/bids-standard/bids-specification). Note: A finder window may not show the hidden files (those that start with a period i.e. .remarkrc)
 
 #### 5. Ready to build!
 
