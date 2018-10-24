@@ -64,7 +64,7 @@ This can be done by clicking the green button on the right titled "Clone or down
 
 #### 3. Install our theme
 
-Please go [here](https://squidfunk.github.io/mkdocs-material/) and install our theme - material. The command is `pip install mkdocs-material`
+Please go [here](https://squidfunk.github.io/mkdocs-material/) and install our theme - material. The terminal command is `pip install mkdocs-material`
 
 #### 4. In the terminal (command line) navigate to your local version of the specification
 
