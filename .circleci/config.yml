@@ -11,6 +11,7 @@ jobs:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
       - run:
           command: |
+            sudo pip install pip==18.0
             sudo pip install pipenv==2018.7.1
             pipenv install
       - save_cache:
