@@ -185,8 +185,8 @@ Template:
 ```Text
 sub-<participant_label>/[ses-<session_label>/]
     func/
-        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_rec-<label>][_run-<index>][_echo-<index>]_bold.nii[.gz]
-        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
+        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>]_bold.nii[.gz]
+        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
 ```
 
 Imaging data acquired during BOLD imaging. This includes but is not limited to
@@ -214,6 +214,11 @@ following names: `sub-01_task-rest_acq-singleband_bold.nii.gz` and
 `sub-01_task-rest_acq-multiband_bold.nii.gz`, however the user is MAY choose any
 other label than `singleband` and `multiband` as long as they are consistent
 across subjects and sessions and consist only of the legal label characters.
+
+Similarly the OPTIONAL `ce-<label>` key/value can be used to distinguish
+sequences using different contrast enhanced images. The label is the name of the
+contrast agent. The key ContrastBolusIngredient MAY be also be added in the JSON
+file, with the same label.
 
 Similarly the optional `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
@@ -506,8 +511,8 @@ Template:
 ```Text
 sub-<participant_label>/[ses-<session_label>/]
     fmap/
-        sub-<label>[_ses-<session_label>][_acq-<label>]_dir-<dir_label>[_run-<run_index>]_epi.nii[.gz]
-        sub-<label>[_ses-<session_label>][_acq-<label>]_dir-<dir_label>[_run-<run_index>]_epi.json
+        sub-<label>[_ses-<session_label>][_acq-<label>][_ce-<label>]_dir-<dir_label>[_run-<run_index>]_epi.nii[.gz]
+        sub-<label>[_ses-<session_label>][_acq-<label>][_ce-<label>]_dir-<dir_label>[_run-<run_index>]_epi.json
 ```
 
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
