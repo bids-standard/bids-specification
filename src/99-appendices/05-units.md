@@ -22,7 +22,7 @@ Système international (d'unités))
 | coulomb        | C           | electric charge or quantity of electricity |
 | volt           | V           | voltage (electrical potential), emf        |
 | farad          | F           | capacitance                                |
-| ohm            | Ω           | resistance, impedance, reactance           |
+| ohm            | Ω           | resistance, impedance, reactance           |
 | siemens        | S           | electrical conductance                     |
 | weber          | Wb          | magnetic flux                              |
 | tesla          | T           | magnetic flux density                      |
@@ -59,7 +59,7 @@ Système international (d'unités))
 | [deci](https://www.wikiwand.com/en/Deci-)   | d             | 10<sup>-1</sup>  |
 | [centi](https://www.wikiwand.com/en/Centi-) | c             | 10<sup>-2</sup>  |
 | [milli](https://www.wikiwand.com/en/Milli-) | m             | 10<sup>-3</sup>  |
-| [micro](https://www.wikiwand.com/en/Micro-) | μ             | 10<sup>-6</sup>  |
+| [micro](https://www.wikiwand.com/en/Micro-) | µ             | 10<sup>-6</sup>  |
 | [nano](https://www.wikiwand.com/en/Nano-)   | n             | 10<sup>-9</sup>  |
 | [pico](https://www.wikiwand.com/en/Pico-)   | p             | 10<sup>-12</sup> |
 | [femto](https://www.wikiwand.com/en/Femto-) | f             | 10<sup>-15</sup> |
