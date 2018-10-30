@@ -16,46 +16,46 @@ from the meg.json.
 
 - Added support for MEG data (merged BEP008)
 - Added SequenceName field.
-- Added support for describing events with Hierarchical Event Descriptors [[4.3 Task events](04-modality-specific-files/03-task-events.md)].
-- Added VolumeTiming and AcquisitionDuration fields [[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+- Added support for describing events with Hierarchical Event Descriptors [[4.3 Task events](src/04-modality-specific-files/03-task-events.md)].
+- Added VolumeTiming and AcquisitionDuration fields [[4.1 Task (including resting state) imaging data](src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 - Added DwellTime field.
 
 1.0.2
 
--   Added support for high resolution (anatomical) T2star images [[4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)].
+-   Added support for high resolution (anatomical) T2star images [[4.1 Anatomy imaging data](src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)].
 
--   Added support for multiple defacing masks [[4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)].
+-   Added support for multiple defacing masks [[4.1 Anatomy imaging data](src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)].
 
 -   Added optional key and metadata field for contrast enhanced structural scans
-[[4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)]
+[[4.1 Anatomy imaging data](src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)]
 
--   Added DelayTime field [[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+-   Added DelayTime field [[4.1 Task (including resting state) imaging data](src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 
--   Added support for multi echo BOLD data [[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+-   Added support for multi echo BOLD data [[4.1 Task (including resting state) imaging data](src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 
 1.0.1
 
--   Added InstitutionName field [[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+-   Added InstitutionName field [[4.1 Task (including resting state) imaging data](src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 
--   Added InstitutionAddress field [[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+-   Added InstitutionAddress field [[4.1 Task (including resting state) imaging data](src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 
--   Added DeviceSerialNumber field [[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+-   Added DeviceSerialNumber field [[4.1 Task (including resting state) imaging data](src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 
 -   Added NumberOfVolumesDiscardedByUser and
    NumberOfVolumesDiscardedByScanner field [[4.1 Task (including
-   resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+   resting state) imaging data](src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 
 -   Added TotalReadoutTime to functional images metadata list
     [[4.1 Task (including resting state) imaging
-   data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+   data](src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 
 1.0.1-rc1
 
 -   Added T1 Rho maps [[4.1 Anatomy imaging
-   data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)].
+   data](src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)].
 
 -   Added support for phenotypic information split into multiple files
-   [[3.2 Participant key file](03-modality-agnostic-files.md#participants-file)].
+   [[3.2 Participant key file](src/03-modality-agnostic-files.md#participants-file)].
 
 -   Added recommendations for multi site datasets
 
