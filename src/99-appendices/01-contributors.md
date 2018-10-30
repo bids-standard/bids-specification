@@ -89,6 +89,7 @@ your name is not listed, please add it.
 - Dianne Patterson 📖
 - John Pellman 📖
 - Cyril Pernet 💬📖💡📋
+- Franco Pestilli 📖
 - Dmitry Petrov 📖💻
 - Russell A. Poldrack 📖🔍📢
 - Jean-Baptiste Poline 📖📢🤔🎨
