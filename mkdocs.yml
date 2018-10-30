@@ -16,4 +16,13 @@ nav:
         - Physiological and other continous recordings: 04-modality-specific-files/04-physiological-and-other-continous-recordings.md
         - Behavioral experiments (with no MRI): 04-modality-specific-files/05-behavioural-experiments.md
       - Longitudinal and multi-site studies: 05-longitudinal-and-multi-site-studies.md
+      - Appendix:
+        - Contributors: 99-appendices/01-contributors.md
+        - Licenses: 99-appendices/02-licenses.md
+        - HED: 99-appendices/03-hed.md
+        - Entity-table: 99-appendices/04-entity-table.md
+        - Units: 99-appendices/05-units.md
+        - MEG file formats: 99-appendices/06-meg-file-formats.md
+        - MEG systems: 99-appendices/07-meg-systems.md
+        - Coordinate-systems: 99-appendices/08-coordinate-systems.md
     - The BIDS Starter Kit: https://github.com/bids-standard/bids-starter-kit
