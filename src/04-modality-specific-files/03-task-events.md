@@ -11,9 +11,9 @@ sub-<participant_label>/[ses-<session_label>]
 
 Where `<matches>` corresponds to task file name. For example:
 `sub-control01_task-nback`. It is also possible to have a single \_events.tsv
-file describing events for all participants and runs (see section "4.2
-Inheritance rule"). As with all other tabular data, `_events` files may be
-accompanied by a JSON file describing the columns in detail (see Section 4.2).
+file describing events for all participants and runs (see ["Inheritance rule"](https://bids-specification.readthedocs.io/en/latest/02-common-principles.html#the-inheritance-principle)). 
+As with all other tabular data, `_events` files may be
+accompanied by a JSON file describing the columns in detail (see [here](https://bids-specification.readthedocs.io/en/latest/02-common-principles.html#tabular-files)).
 
 The purpose of this file is to describe timing and other properties of events
 recorded during the scan. Events MAY be either stimuli presented to the

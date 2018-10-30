@@ -43,7 +43,7 @@ task-based, resting-state, and noise recordings. If multiple Tasks were
 performed within a single Run, the task description can be set to
 `task-multitask`. The \_meg.json SHOULD contain details on the Tasks. Some
 manufacturers data storage conventions use folders which contain data files of
-various nature: e.g., CTF’s .ds format, or 4D/BTi. Please refer to Appendix VI
+various nature: e.g., CTF’s .ds format, or 4D/BTi. Please refer to [Appendix VI](https://bids-specification.readthedocs.io/en/latest/99-appendices/06-meg-file-formats.html)
 for examples from a selection of MEG manufacturers.
 
 The `proc` label is analogous to `rec` for MR and denotes a variant of a file
@@ -69,10 +69,10 @@ Whenever possible, please avoid using ad-hoc wording.
 | :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                      |
 | InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                   |
-| Manufacturer           | RECOMMENDED. Manufacturer of the MEG system (`CTF`, `Elekta/Neuromag`, `4D/BTi`, `KIT/Yokogawa`, `ITAB`, `KRISS`, `Other`). See Appendix VII with preferred names                                                                                                               |
-| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the MEG scanner model (e.g. `CTF-275`). See Appendix VII with preferred names                                                                                                                                                        |
+| Manufacturer           | RECOMMENDED. Manufacturer of the MEG system (`CTF`, `Elekta/Neuromag`, `4D/BTi`, `KIT/Yokogawa`, `ITAB`, `KRISS`, `Other`). See [Appendix VII](https://bids-specification.readthedocs.io/en/latest/99-appendices/07-meg-systems.html) with preferred names                      |
+| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the MEG scanner model (e.g. `CTF-275`). See [Appendix VII](https://bids-specification.readthedocs.io/en/latest/99-appendices/07-meg-systems.html) with preferred names                                                               |
 | SoftwareVersions       | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                            |
-| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the MEG scanner model (e.g. `CTF-275`). See Appendix VII with preferred names                                                                                                                                                        |
+| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the MEG scanner model (e.g. `CTF-275`). See [Appendix VII](https://bids-specification.readthedocs.io/en/latest/99-appendices/07-meg-systems.html) with preferred names                                                               |
 | SoftwareVersions       | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                            |
 | TaskDescription        | RECOMMENDED. Description of the task.                                                                                                                                                                                                                                           |
 | Instructions           | RECOMMENDED. Text of the instructions given to participants before the scan. This is not only important for behavioural or cognitive tasks but also in resting state paradigms (e.g. to distinguish between eyes open and eyes closed).                                         |
@@ -127,7 +127,7 @@ Specific EEG fields (if recorded with MEG) SHOULD be present:
 By construct, EEG when recorded simultaneously with the same MEG system , should
 have the same `SamplingFrequency` as MEG. Note that if EEG is recorded with a
 separate amplifier, it should be stored separately under a new /eeg data type
-(see BEP006).
+(see [BEP006](https://docs.google.com/document/d/1ArMZ9Y_quTKXC-jNXZksnedK2VHHoKP3HCeO5HPcgLE/edit#heading=h.4k1noo90gelw)).
 
 Example:
 
@@ -163,7 +163,8 @@ Example:
 ```
 
 Note that the date and time information SHOULD be stored in the Study key file
-(`scans.tsv`), see section 8.8. Scans.tsv. As it is indicated there, date time
+(`scans.tsv`), see [Scans.tsv](https://bids-specification.readthedocs.io/en/latest/03-modality-agnostic-files.html#scans-file).
+As it is indicated there, date time
 information MUST be expressed in the following format `YYYY-MM-DDThh:mm:ss`
 ([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For
 example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
@@ -294,7 +295,7 @@ Head localization coils:
 | Field name                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | :---------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | HeadCoilCoordinates                 | OPTIONAL. Key:value pairs describing head localization coil labels and their coordinates, interpreted following the `HeadCoilCoordinateSystem`, e.g., {`NAS`: `[12.7,21.3,13.9]`, `LPA`: `[5.2,11.3,9.6]`, `RPA`: `[20.2,11.3,9.1]`}. Note that coils are not always placed at locations that have a known anatomical name (e.g. for Elekta, Yokogawa systems); in that case generic labels can be used (e.g. {`coil1`: `[12.2,21.3,12.3]`, `coil2`: `[6.7,12.3,8.6]`, `coil3`: `[21.9,11.0,8.1]`} ). |
-| HeadCoilCoordinateSystem            | OPTIONAL. Defines the coordinate system for the coils. See Appendix VIII: preferred names of Coordinate systems. If "Other", provide definition of the coordinate system in `HeadCoilCoordinateSystemDescription`.                                                                                                                                                                                                                                                                                    |
+| HeadCoilCoordinateSystem            | OPTIONAL. Defines the coordinate system for the coils. See [Appendix VIII](https://bids-specification.readthedocs.io/en/latest/99-appendices/08-coordinate-systems.html): preferred names of Coordinate systems. If "Other", provide definition of the coordinate system in `HeadCoilCoordinateSystemDescription`.                                                                                                                                                                                    |
 | HeadCoilCoordinateUnits             | OPTIONAL. Units of the coordinates of `HeadCoilCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                                                                                                                                                                                                                                         |
 | HeadCoilCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the Head Coil coordinate system system in detail.                                                                                                                                                                                                                                                                                                                                                                                  |
 
@@ -325,8 +326,8 @@ Anatomical landmarks:
 It is also RECOMMENDED that the MRI voxel coordinates of the actual anatomical
 landmarks for co-registration of MEG with structural MRI are stored in the
 `AnatomicalLandmarkCoordinates` field in the JSON sidecar of the corresponding
-T1w MRI anatomical data of the subject seen in the MEG session (see section
-8.3) - for example: `sub-01/ses-mri/anat/sub-01_ses-mri_acq-mprage_T1w.json`
+T1w MRI anatomical data of the subject seen in the MEG session (see [here](https://bids-specification.readthedocs.io/en/latest/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#anatomy-imaging-data)
+) - for example: `sub-01/ses-mri/anat/sub-01_ses-mri_acq-mprage_T1w.json`
 
 In principle, these locations are those of absolute anatomical markers. However,
 the marking of NAS, LPA and RPA is more ambiguous than that of e.g., AC and PC.
@@ -392,7 +393,7 @@ The 3-D locations of head points and/or EEG electrode locations can be digitize
 and stored in separate files. The `*_acq-<label>` can be used when more than one
 type of digitization in done for a session, for example when the head points are
 in a separate file from the EEG locations. These files are stored in the
-specific format of the 3-D digitizer’s manufacturer (see Appendix VI).
+specific format of the 3-D digitizer’s manufacturer (see [Appendix VI](https://bids-specification.readthedocs.io/en/latest/99-appendices/06-meg-file-formats.html)).
 
 Example:
 
