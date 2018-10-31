@@ -24,7 +24,11 @@ jobs:
           name: generate docs
           command: pipenv run mkdocs build --clean --strict --verbose
       - run:
-          name: check URLs
+          name: quick check URLs
           command: pipenv run linkchecker site/
+      # TODO: ATM 38 errors (and locally got also 43 internal errors)
+      #- run:
+      #    name: thorough check of external URLs
+      #    command: pipenv run linkchecker --check-extern site/
       - store_artifacts:
           path: site
