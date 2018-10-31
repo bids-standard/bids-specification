@@ -81,7 +81,7 @@ your name is not listed, please add it.
 - Henk Mutsaerts 📖
 - National Institute of Mental Health 💵
 - B. Nolan Nichols 📖
-- Thomas E. Nichols 📖
+- Thomas E. Nichols 📖📢🔧
 - Dylan Nielson 📖💻🔧
 - Guiomar Niso 📖💡📢
 - Robert Oostenveld 📖🔧📢💡
