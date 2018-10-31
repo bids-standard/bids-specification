@@ -62,6 +62,7 @@ your name is not listed, please add it.
 - Dora Hermes 📖💻✅🔍🤔
 - Katja Heuer 🔧
 - Chris Holdgraf 📖🤔
+- Jean-Christophe Houde 📖
 - International Neuroinformatics Coordinating Facility 💵📋
 - Mainak Jas 📖💻
 - David Keator 📖
@@ -81,7 +82,7 @@ your name is not listed, please add it.
 - Henk Mutsaerts 📖
 - National Institute of Mental Health 💵
 - B. Nolan Nichols 📖
-- Thomas E. Nichols 📖
+- Thomas E. Nichols 📖📢🔧
 - Dylan Nielson 📖💻🔧
 - Guiomar Niso 📖💡📢
 - Robert Oostenveld 📖🔧📢💡
