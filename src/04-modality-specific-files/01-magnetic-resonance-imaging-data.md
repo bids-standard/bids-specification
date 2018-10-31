@@ -360,7 +360,7 @@ dwi.nii file) and not the magnet’s coordinate system, which means that any
 rotations applied to dwi.nii also need to be applied to the corresponding bvec
 file.
 
-<sup>4</sup>[http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html](hhttp://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html)
+<sup>4</sup>[http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html](http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html)
 
 bvec example:
 
