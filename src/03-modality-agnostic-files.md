@@ -104,7 +104,8 @@ kept in phenotype/ folder and end with the `.tsv` extension. They can include
 arbitrary set of columns, but one of them has to be participant_id with matching
 `sub-<participant_label>`. As with all other tabular data, those additional
 phenotypic information files can be accompanied by a JSON file describing the
-columns in detail (see Section 4.2). In addition to the column description, a
+columns in detail (see [here](02-common-principles.md#tabular-files)).
+In addition to the column description, a
 section describing the measurement tool (as a whole) can be added under the name
 `MeasurementToolMetadata`. This section consists of two keys: `Description` - a
 free text description of the tool, and `TermURL` a link to an entity in an
