@@ -192,11 +192,11 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
-| Field name | Definition                                                                                                             |
-| :--------- | :--------------------------------------------------------------------------------------------------------------------- |
-| name       | REQUIRED. Channel name (e.g., MRT012, MEG023)                                                                          |
-| type       | REQUIRED. Type of channel; MUST use the channel types listed below.                                                    |
-| units      | REQUIRED. Physical unit of the data values recorded by this channel in SI (see Appendix V: Units for allowed symbols). |
+| Field name | Definition                                                                                                                                             |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name       | REQUIRED. Channel name (e.g., MRT012, MEG023)                                                                                                          |
+| type       | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                    |
+| units      | REQUIRED. Physical unit of the data values recorded by this channel in SI (see [Appendix V](../99-appendices/05-units.md): Units for allowed symbols). |
 
 SHOULD be present:
 
@@ -255,7 +255,7 @@ Restricted keyword list for field `type`
 Example of free text for field `description`
 
 - stimulus, response, vertical EOG, horizontal EOG, skin conductance, sats,
-  intracranial, eyetracker
+    intracranial, eyetracker
 
 Example:
 
@@ -283,14 +283,14 @@ EEG, head localization coils, and anatomical landmarks.
 
 MEG and EEG sensors:
 
-| Field name                     | Description                                                                                                                                                                                                           |
-| :----------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| MEGCoordinateSystem            | REQUIRED. Defines the coordinate system for the MEG sensors. See Appendix VIII: preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in `[MEGCoordinateSystemDescription]`. |
-| MEGCoordinateUnits             | REQUIRED. Units of the coordinates of `MEGCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                              |
-| MEGCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the MEG coordinate system system in detail.                                                                                                        |
-| EEGCoordinateSystem            | OPTIONAL. Describes how the coordinates of the EEG sensors are to be interpreted.                                                                                                                                     |
-| EEGCoordinateUnits             | OPTIONAL. Units of the coordinates of `EEGCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                              |
-| EEGCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the EEG coordinate system system in detail.                                                                                                        |
+| Field name                     | Description                                                                                                                                                                                                                                                        |
+| :----------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| MEGCoordinateSystem            | REQUIRED. Defines the coordinate system for the MEG sensors. See [Appendix VIII](../99-appendices/08-coordinate-systems.md): preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in `[MEGCoordinateSystemDescription]`. |
+| MEGCoordinateUnits             | REQUIRED. Units of the coordinates of `MEGCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                           |
+| MEGCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the MEG coordinate system system in detail.                                                                                                                                                     |
+| EEGCoordinateSystem            | OPTIONAL. Describes how the coordinates of the EEG sensors are to be interpreted.                                                                                                                                                                                  |
+| EEGCoordinateUnits             | OPTIONAL. Units of the coordinates of `EEGCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                           |
+| EEGCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the EEG coordinate system system in detail.                                                                                                                                                     |
 
 Head localization coils:
 
@@ -303,12 +303,12 @@ Head localization coils:
 
 Digitized head points:
 
-| Field name                                     | Description                                                                                                                                                                                                                                                                            |
-| :--------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| DigitizedHeadPoints                            | OPTIONAL. Relative path to the file containing the locations of digitized head points collected during the session (e.g., `sub-01_headshape.pos`). RECOMMENDED for all MEG systems, especially for CTF and 4D/BTi. For Elekta/Neuromag the head points will be stored in the fif file. |
-| DigitizedHeadPointsCoordinateSystem            | OPTIONAL. Defines the coordinate system for the digitized head points. See Appendix VIII: preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in `DigitizedHeadPointsCoordinateSystemDescription`.                                          |
-| DigitizedHeadPointsCoordinateUnits             | OPTIONAL. Units of the coordinates of `DigitizedHeadPointsCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                               |
-| DigitizedHeadPointsCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the Digitized head Points coordinate system system in detail.                                                                                                                                                       |
+| Field name                                     | Description                                                                                                                                                                                                                                                                                |
+| :--------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DigitizedHeadPoints                            | OPTIONAL. Relative path to the file containing the locations of digitized head points collected during the session (e.g., `sub-01_headshape.pos`). RECOMMENDED for all MEG systems, especially for CTF and 4D/BTi. For Elekta/Neuromag the head points will be stored in the fif file.     |
+| DigitizedHeadPointsCoordinateSystem            | OPTIONAL. Defines the coordinate system for the digitized head points. See [Appendix VIII](../99-appendices/08-coordinate-systems.md): preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in `DigitizedHeadPointsCoordinateSystemDescription`. |
+| DigitizedHeadPointsCoordinateUnits             | OPTIONAL. Units of the coordinates of `DigitizedHeadPointsCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                   |
+| DigitizedHeadPointsCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the Digitized head Points coordinate system system in detail.                                                                                                                                                           |
 
 Anatomical MRI:
 
@@ -318,12 +318,12 @@ Anatomical MRI:
 
 Anatomical landmarks:
 
-| Field name                                    | Description                                                                                                                                                                                                                                        |
-| :-------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| AnatomicalLandmarkCoordinates                 | OPTIONAL. Key:value pairs of the labels and 3-D digitized locations of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem`, e.g., {"NAS": `[12.7,21.3,13.9]`, "LPA": `[5.2,11.3,9.6]`, "RPA": `[20.2,11.3,9.1]`}. |
-| AnatomicalLandmarkCoordinateSystem            | OPTIONAL. Defines the coordinate system for the anatomical landmarks. See Appendix VIII: preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in `AnatomicalLandmarkCoordinateSystemDescription`.        |
-| AnatomicalLandmarkCoordinateUnits             | OPTIONAL. Units of the coordinates of `AnatomicalLandmarkCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                            |
-| AnatomicalLandmarkCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the Head Coil coordinate system system in detail.                                                                                                                               |
+| Field name                                    | Description                                                                                                                                                                                                                                                                              |
+| :-------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AnatomicalLandmarkCoordinates                 | OPTIONAL. Key:value pairs of the labels and 3-D digitized locations of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem`, e.g., {"NAS": `[12.7,21.3,13.9]`, "LPA": `[5.2,11.3,9.6]`, "RPA": `[20.2,11.3,9.1]`}.                                       |
+| AnatomicalLandmarkCoordinateSystem            | OPTIONAL. Defines the coordinate system for the anatomical landmarks. See [Appendix VIII](../99-appendices/08-coordinate-systems.md): preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in `AnatomicalLandmarkCoordinateSystemDescription`. |
+| AnatomicalLandmarkCoordinateUnits             | OPTIONAL. Units of the coordinates of `AnatomicalLandmarkCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                  |
+| AnatomicalLandmarkCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the Head Coil coordinate system system in detail.                                                                                                                                                                     |
 
 It is also RECOMMENDED that the MRI voxel coordinates of the actual anatomical
 landmarks for co-registration of MEG with structural MRI are stored in the
