@@ -43,9 +43,9 @@ task-based, resting-state, and noise recordings. If multiple Tasks were
 performed within a single Run, the task description can be set to
 `task-multitask`. The \_meg.json SHOULD contain details on the Tasks. Some
 manufacturers data storage conventions use folders which contain data files of
-various nature: e.g., CTF’s .ds format, or 4D/BTi. Please refer to [Appendix VI](../99-appendices/06-meg-file-formats.md)
-for examples from a selection of MEG manufacturers.
-
+various nature: e.g., CTF’s .ds format, or 4D/BTi. Please refer to
+[Appendix VI](../99-appendices/06-meg-file-formats.md) for examples from a
+selection of MEG manufacturers.
 
 The `proc` label is analogous to `rec` for MR and denotes a variant of a file
 that was a result of particular processing performed on the device. This is
