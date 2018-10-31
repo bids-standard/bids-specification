@@ -62,6 +62,7 @@ your name is not listed, please add it.
 - Dora Hermes 📖💻✅🔍🤔
 - Katja Heuer 🔧
 - Chris Holdgraf 📖🤔
+- Jean-Christophe Houde 📖
 - International Neuroinformatics Coordinating Facility 💵📋
 - Mainak Jas 📖💻
 - David Keator 📖
