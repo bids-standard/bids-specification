@@ -74,10 +74,11 @@ first "effective" echo and the center of the last "effective" echo.
 
 #### RF & Contrast
 
-| Field name                  | Definition                                                                                                            |
-| :-------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
-| FlipAngle                   | RECOMMENDED. Flip angle for the acquisition, specified in degrees. Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`. |
-| MultibandAccelerationFactor | RECOMMENDED. The multiband factor, for multiband acquisitions.                                                        |
+| Field name                  | Definition                                                                                                                                                                                                                                                                                                                                     |
+| :-------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FlipAngle                   | RECOMMENDED. Flip angle for the acquisition, specified in degrees. Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.                                                                                                                                                                                                                          |
+| MultibandAccelerationFactor | RECOMMENDED. The multiband factor, for multiband acquisitions.                                                                                                                                                                                                                                                                                 |
+| NegativeContrast            | OPTIONAL. Boolean (`true` or `false`) value specifying whether increasing voxel intensity (within sample voxels) denotes a decreased value with respect to the contrast suffix. This is commonly the case when Cerebral Blood Volume is estimated via usage of a contrast agent in conjunction with a T2\* weighted acquisition protocol.      |
 
 #### Slice Acceleration
 
@@ -180,20 +181,28 @@ scans:
 
 ### Task (including resting state) imaging data
 
+Currently supported image contrasts include:
+
+| Name               | contrast_label | Description                                                                                                             |
+| :----------------- | :------------- | :-----------------------------------------------------------------------------------------------------------------------|
+| BOLD               | bold           | Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)                                                      |
+| CBV                | cbv            | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images)                    |
+
 Template:
 
 ```Text
 sub-<participant_label>/[ses-<session_label>/]
     func/
-        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>]_bold.nii[.gz]
+        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>]_<contrast_label>.nii[.gz]
         sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
 ```
 
-Imaging data acquired during BOLD imaging. This includes but is not limited to
-task based fMRI as well as resting state fMRI (i.e. rest is treated as another
-task). For task based fMRI a corresponding task events file (see below) MUST be
-provided (please note that this file is not necessary for resting state scans).
-For multiband acquisitions, one MAY also save the single-band reference image as
+Imaging data acquired during functional imaging (i.e. imaging which supports
+rapid temporal repetition). This includes but is not limited to task based fMRI
+as well as resting state fMRI (i.e. rest is treated as another task). For task
+based fMRI a corresponding task events file (see below) MUST be provided
+(please note that this file is not necessary for resting state scans). For
+multiband acquisitions, one MAY also save the single-band reference image as
 type `sbref` (e.g. `sub-control01_task-nback_sbref.nii.gz`).
 
 Each task has a unique label MUST only include of letters and/or numbers (other
