@@ -544,7 +544,7 @@ example
 }
 ```
 
-`dir_label` value can be set to arbitrary alphanumeric label (`[a-zA-Z0-9]+` for
+`label` value of `_dir-` can be set to arbitrary alphanumeric label (`[a-zA-Z0-9]+` for
 example `LR` or `AP`) that can help users to distinguish between different
 files, but should not be used to infer any scanning parameters (such as phase
 encoding directions) of the corresponding sequence. Please rely only on the JSON
