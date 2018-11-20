@@ -110,10 +110,10 @@ whenever possible.
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<participant_label>/[ses-<label>/]
     anat/
-        sub-<participant_label>[_ses-<session_label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>]_<modality_label>.nii[.gz]
-        sub-<participant_label>[_ses-<session_label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
+        sub-<participant_label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>]_<modality_label>.nii[.gz]
+        sub-<participant_label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
 ```
 
 Anatomical (structural) data acquired for that participant. Currently supported
@@ -191,10 +191,10 @@ Currently supported image contrasts include:
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<participant_label>/[ses-<label>/]
     func/
-        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>]_<contrast_label>.nii[.gz]
-        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
+        sub-<participant_label>[_ses-<label>]_task-<task_label>[_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>]_<contrast_label>.nii[.gz]
+        sub-<participant_label>[_ses-<label>]_task-<task_label>[_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
 ```
 
 Imaging data acquired during functional imaging (i.e. imaging which supports
@@ -327,14 +327,14 @@ participant, task and run takes precedence.
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<participant_label>/[ses-<label>/]
     dwi/
-       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_dwi.nii[.gz]
-       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_dwi.bval
-       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_dwi.bvec
-       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_dwi.json
-       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_sbref.nii[.gz]
-       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_run-<index>]_sbref.json
+       sub-<participant_label>[_ses-<label>][_acq-<label>][_run-<index>]_dwi.nii[.gz]
+       sub-<participant_label>[_ses-<label>][_acq-<label>][_run-<index>]_dwi.bval
+       sub-<participant_label>[_ses-<label>][_acq-<label>][_run-<index>]_dwi.bvec
+       sub-<participant_label>[_ses-<label>][_acq-<label>][_run-<index>]_dwi.json
+       sub-<participant_label>[_ses-<label>][_acq-<label>][_run-<index>]_sbref.nii[.gz]
+       sub-<participant_label>[_ses-<label>][_acq-<label>][_run-<index>]_sbref.json
 ```
 
 Diffusion-weighted imaging data acquired for that participant. The optional
@@ -433,19 +433,19 @@ the user may use to distinguish different set of parameters.
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<participant_label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phasediff.nii[.gz]
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phasediff.json
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude1.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_phasediff.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_phasediff.json
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_magnitude1.nii[.gz]
 ```
 
 (optional)
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<participant_label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude2.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_magnitude2.nii[.gz]
 ```
 
 This is a common output for build in fieldmap sequence on Siemens scanners. In
@@ -468,14 +468,14 @@ the shorter echo time and `EchoTime2` to the longer echo time. Similarly
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<participant_label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase1.nii[.gz]
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase1.json
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase2.nii[.gz]
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase2.json
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude1.nii[.gz]
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude2.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_phase1.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_phase1.json
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_phase2.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_phase2.json
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_magnitude1.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_magnitude2.nii[.gz]
 ```
 
 Similar to the case above, but instead of a precomputed phase difference map two
@@ -494,11 +494,11 @@ corresponding `EchoTime` values. For example:
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<participant_label>/[ses-<label>/]
     fmap/
-       sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude.nii[.gz]
-       sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_fieldmap.nii[.gz]
-       sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_fieldmap.json
+       sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_magnitude.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_fieldmap.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_fieldmap.json
 ```
 
 In some cases (for example GE) the scanner software will output a precomputed
@@ -518,10 +518,10 @@ the fieldmap. The possible options are: `Hz`, `rad/s`, or `Tesla`. For example:
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<participant_label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<session_label>][_acq-<label>][_ce-<label>]_dir-<dir_label>[_run-<run_index>]_epi.nii[.gz]
-        sub-<label>[_ses-<session_label>][_acq-<label>][_ce-<label>]_dir-<dir_label>[_run-<run_index>]_epi.json
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<dir_label>[_run-<run_index>]_epi.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<dir_label>[_run-<run_index>]_epi.json
 ```
 
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo

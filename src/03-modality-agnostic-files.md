@@ -152,8 +152,8 @@ questionnaire).
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
-    sub-<participant_label>[_ses-<session_label>]_scans.tsv
+sub-<participant_label>/[ses-<label>/]
+    sub-<participant_label>[_ses-<label>]_scans.tsv
 ```
 
 Optional: Yes
