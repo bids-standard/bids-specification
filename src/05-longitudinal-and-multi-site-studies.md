@@ -64,8 +64,8 @@ CHANGES
 Template:
 
 ```Text
-sub-<participant_label>/
-    sub-<participant_label>_sessions.tsv
+sub-<label>/
+    sub-<label>_sessions.tsv
 ```
 
 Optional: Yes
