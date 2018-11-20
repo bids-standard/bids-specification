@@ -435,9 +435,9 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_phasediff.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_phasediff.json
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_magnitude1.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.json
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude1.nii[.gz]
 ```
 
 (optional)
@@ -445,7 +445,7 @@ sub-<label>/[ses-<label>/]
 ```Text
 sub-<label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_magnitude2.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude2.nii[.gz]
 ```
 
 This is a common output for build in fieldmap sequence on Siemens scanners. In
@@ -470,12 +470,12 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_phase1.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_phase1.json
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_phase2.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_phase2.json
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_magnitude1.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_magnitude2.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase1.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase1.json
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude1.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude2.nii[.gz]
 ```
 
 Similar to the case above, but instead of a precomputed phase difference map two
@@ -496,9 +496,9 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     fmap/
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_magnitude.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_fieldmap.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<run_index>]_fieldmap.json
+       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_fieldmap.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_fieldmap.json
 ```
 
 In some cases (for example GE) the scanner software will output a precomputed
@@ -520,8 +520,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<dir_label>[_run-<run_index>]_epi.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<dir_label>[_run-<run_index>]_epi.json
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<dir_label>[_run-<index>]_epi.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<dir_label>[_run-<index>]_epi.json
 ```
 
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
