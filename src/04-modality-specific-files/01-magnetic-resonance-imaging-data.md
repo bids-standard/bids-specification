@@ -193,8 +193,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     func/
-        sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>]_<contrast_label>.nii[.gz]
-        sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>]_<contrast_label>.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
 ```
 
 Imaging data acquired during functional imaging (i.e. imaging which supports
@@ -315,10 +315,10 @@ sub-control01/
 ```
 
 If this information is the same for all participants, sessions and runs it can
-be provided in `task-<task_label>_bold.json` (in the root directory of the
+be provided in `task-<label>_bold.json` (in the root directory of the
 dataset). However, if the information differs between subjects/runs it can be
 specified in the
-`sub-<label>/func/sub-<label>_task-<task_label>[_acq-<label>][_run-<index>]_bold.json` file.
+`sub-<label>/func/sub-<label>_task-<label>[_acq-<label>][_run-<index>]_bold.json` file.
 If both files are specified fields from the file corresponding to a particular
 participant, task and run takes precedence.
 
