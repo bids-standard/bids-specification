@@ -6,7 +6,8 @@ name = "pypi"
 [packages]
 mkdocs = "==1.0.4"
 mkdocs-material = "==3.0.4"
-linkchecker = "*"
+# Custom version with the fix for anchors
+linkchecker = "git+https://github.com/yarikoptic/linkchecker@9.4.0.anchorfix1"
 
 [dev-packages]
 
