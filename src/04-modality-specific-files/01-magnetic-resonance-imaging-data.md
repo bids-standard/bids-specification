@@ -171,7 +171,7 @@ inplaneT1, referenced by a defacemask image. E.g.,
 `sub-01_mod-T1w_defacemask.nii.gz`.
 
 Some meta information about the acquisition MAY be provided in an additional
-JSON file. See Common MR metadata fields for a list of terms and their
+JSON file. See [Common metadata fields](#common-metadata-fields) for a list of terms and their
 definitions. There are also some OPTIONAL JSON fields specific to anatomical
 scans:
 
@@ -287,7 +287,7 @@ combined image rather than an image from each coil.
 | CogAtlasID      | RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) Task term.                                                                                                         |
 | CogPOID         | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                 |
 
-See [8.3.1. Common MR metadata fields](#heading=h.5u721tt1h9pe) for a list of
+See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms and their definitions.
 
 Example:
@@ -384,7 +384,7 @@ bval example:
 and thus define those values for all sessions and/or subjects in one place (see
 Inheritance principle).
 
-See Common MR metadata fields for a list of additional terms that can be
+See [Common metadata fields](#common-metadata-fields) for a list of additional terms that can be
 included in the corresponding JSON file.
 
 JSON example:
