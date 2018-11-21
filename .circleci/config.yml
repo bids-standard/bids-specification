@@ -25,7 +25,9 @@ jobs:
           command: pipenv run mkdocs build --clean --strict --verbose
       - run:
           name: quick check URLs
-          command: pipenv run linkchecker site/
+          command: |
+            mkdir -p ~/.linkchecker/ && echo '[AnchorCheck]' >| ~/.linkchecker/linkcheckerrc
+            pipenv run linkchecker site/
       # TODO: ATM 38 errors (and locally got also 43 internal errors)
       #- run:
       #    name: thorough check of external URLs
