@@ -18,4 +18,5 @@ dnspython = "*"
 
 
 [requires]
-python_version = "3.6"
+# linkchecker doesn't support python3 yet
+# python_version = "3.6"
