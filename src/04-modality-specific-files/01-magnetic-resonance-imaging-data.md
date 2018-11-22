@@ -171,9 +171,9 @@ inplaneT1, referenced by a defacemask image. E.g.,
 `sub-01_mod-T1w_defacemask.nii.gz`.
 
 Some meta information about the acquisition MAY be provided in an additional
-JSON file. See [Common metadata fields](#common-metadata-fields) for a list of terms and their
-definitions. There are also some OPTIONAL JSON fields specific to anatomical
-scans:
+JSON file. See [Common metadata fields](#common-metadata-fields) for a
+list of terms and their definitions. There are also some OPTIONAL JSON
+fields specific to anatomical scans:
 
 | Field name              | Definition                                                                                                                                         |
 | :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -384,8 +384,8 @@ bval example:
 and thus define those values for all sessions and/or subjects in one place (see
 Inheritance principle).
 
-See [Common metadata fields](#common-metadata-fields) for a list of additional terms that can be
-included in the corresponding JSON file.
+See [Common metadata fields](#common-metadata-fields) for a list of
+additional terms that can be included in the corresponding JSON file.
 
 JSON example:
 
