@@ -7,7 +7,7 @@ different ways. So far there is no consensus how to organize and share data
 obtained in neuroimaging experiments. Even two researchers working in the same
 lab can opt to arrange their data in a different way. Lack of consensus (or a
 standard) leads to misunderstandings and time wasted on rearranging data or
-rewriting scripts expecting certain structure. Here we describe a simple and
+rewriting scripts expecting certain structure. Here we describe a simple and
 easy-to-adopt way of organising neuroimaging and behavioural data. By using this
 standard you will benefit in the following ways:
 
@@ -18,9 +18,9 @@ standard you will benefit in the following ways:
     time. By using BIDS you will save time trying to understand and reuse data
     acquired by a graduate student or postdoc that has already left the lab.
 
--   There are a growing number of data analysis software packages that can
+-   There are a growing number of data analysis software packages that can
     understand data organised according to BIDS (see
-    [http://bids.neuroimaging.io](http://bids.neuroimaging.io) for the most up
+    [http://bids.neuroimaging.io](http://bids.neuroimaging.io) for the most up
     to date list).
 
 -   Databases such as OpenNeuro.org accept datasets organised according to BIDS.
@@ -68,7 +68,7 @@ evolve over time. A number of extensions are currently being worked on:
 | [BEP019](https://docs.google.com/document/d/1FqJI791ycXr0bfRg2qyLqAf0RpVttJ2cInOgMWrKsNU) | [DICOM Metadata](https://docs.google.com/document/d/1FqJI791ycXr0bfRg2qyLqAf0RpVttJ2cInOgMWrKsNU)                                                                                             | Satrajit Ghosh                                                 |
 | [BEP020](https://docs.google.com/document/d/1eggzTCzSHG3AEKhtnEDbcdk-2avXN6I94X8aUPEBVsw) | [Eye Tracking including Gaze Position and Pupil Size(ET)](https://docs.google.com/document/d/1eggzTCzSHG3AEKhtnEDbcdk-2avXN6I94X8aUPEBVsw)                                                    | Benjamin Gagl and Dejan Draschkow                              |
 | [BEP021](https://docs.google.com/document/d/1PmcVs7vg7Th-cGC-UrX8rAhKUHIzOI-uIOh69_mvdlw) | [Common Electrophysiological Derivatives](https://docs.google.com/document/d/1PmcVs7vg7Th-cGC-UrX8rAhKUHIzOI-uIOh69_mvdlw)                                                                    | Stefan Appelhoff, Cyril Pernet, Robert Oostenveld, Teon Brooks |
-| [BEP022](https://docs.google.com/document/d/1pWCb02YNv5W-UZZja24fZrdXLm4X7knXMiZI7E2z7mY) | [Magnetic Resonance Spectroscopy (MRS)](https://docs.google.com/document/d/1pWCb02YNv5W-UZZja24fZrdXLm4X7knXMiZI7E2z7mY)                                                                    | Stefan Appelhoff, Cyril Pernet, Robert Oostenveld, Teon Brooks |
+| [BEP022](https://docs.google.com/document/d/1pWCb02YNv5W-UZZja24fZrdXLm4X7knXMiZI7E2z7mY) | [Magnetic Resonance Spectroscopy (MRS)](https://docs.google.com/document/d/1pWCb02YNv5W-UZZja24fZrdXLm4X7knXMiZI7E2z7mY)                                                                      | Stefan Appelhoff, Cyril Pernet, Robert Oostenveld, Teon Brooks |
 | [BEP023](https://docs.google.com/document/d/1yzsd1J9GT-aA0DWhdlgNr5LCu6_gvbjLyfvYq2FuxlY) | [PET Preprocessing derivatives](https://docs.google.com/document/d/1yzsd1J9GT-aA0DWhdlgNr5LCu6_gvbjLyfvYq2FuxlY)                                                                              | Martin Noergaard, Graham Searle, Melanie Ganz                  |
 | [BEP024](https://docs.google.com/document/d/1fqnJZ18x5LJC8jiJ8yvPHUGFzNBZ6gW2kywYrUKWtuo) | [Computed Tomography scan (CT)](https://docs.google.com/document/d/1fqnJZ18x5LJC8jiJ8yvPHUGFzNBZ6gW2kywYrUKWtuo)                                                                              | Hugo Boniface                                                  |
 
@@ -95,5 +95,5 @@ as well as other papers describing specific BIDS extensions (see below).
 
 BIDS has also a
 [Research Resource Identifier (RRID)](https://www.force11.org/group/resource-identification-initiative)
-- `RRID:SCR_016124` - which you can also include in your manuscript in addition
+- `RRID:SCR_016124` - which you can also include in your manuscript in addition
 to citing the paper.
