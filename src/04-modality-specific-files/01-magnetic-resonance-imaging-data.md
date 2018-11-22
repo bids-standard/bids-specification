@@ -273,12 +273,12 @@ The following table recapitulates the different ways that specific fields have t
 
 |                   | RepetitionTime | SliceTiming | AcquisitionDuration | DelayTime | VolumeTiming |
 |-------------------|:--------------:|:-----------:|:-------------------:|:---------:|:------------:|
-| option 1          |       \[X]      |             |         \[ ]         |           |      \[ ]     |
-| option 2          |       \[ ]      |     \[X]     |                     |    \[ ]    |      \[X]     |
-| option 3          |       \[ ]      |             |         \[X]         |    \[ ]    |      \[X]     |
-| sparse sequence 1 |       \[X]      |     \[X]     |         \[ ]         |           |      \[ ]     |
-| sparse sequence 1 |       \[X]      |     \[X]     |         \[ ]         |    \[X]    |      \[ ]     |
-| sparse sequence 1 |       \[X]      |             |         \[ ]         |    \[X]    |      \[ ]     |
+| option 1          |       \[X]      |            |         \[ ]        |           |      \[ ]    |
+| option 2          |       \[ ]      |     \[X]   |                     |    \[ ]   |      \[X]    |
+| option 3          |       \[ ]      |            |         \[X]        |    \[ ]   |      \[X]    |
+| sparse sequence 1 |       \[X]      |     \[X]   |         \[ ]        |           |      \[ ]    |
+| sparse sequence 1 |       \[X]      |     \[X]   |         \[ ]        |    \[X]   |      \[ ]    |
+| sparse sequence 1 |       \[X]      |            |         \[ ]        |    \[X]   |      \[ ]    |
 
 **Legend**
 \[X] --> has to be filled
