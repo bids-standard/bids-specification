@@ -13,7 +13,7 @@ jobs:
           command: |
             sudo pip install pip==18.0
             sudo pip install pipenv==2018.7.1
-            pipenv install
+            pipenv install -d
       - save_cache:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
           paths:
