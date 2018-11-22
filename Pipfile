@@ -6,10 +6,16 @@ name = "pypi"
 [packages]
 mkdocs = "==1.0.4"
 mkdocs-material = "==3.0.4"
-# Custom version with the fix for anchors
-linkchecker = {file = "https://github.com/yarikoptic/linkchecker/archive/9.4.0.anchorfix1.zip"}
 
 [dev-packages]
+# Custom version with the fix for anchors
+linkchecker = {file = "https://github.com/yarikoptic/linkchecker/archive/9.4.0.anchorfix1.zip"}
+# Installing from a file seems to not pull in all the dependencies linkchecker needs,
+# so installing them manually here
+requests = "*"
+pyxdg = "*"
+dnspython = "*"
+
 
 [requires]
 python_version = "3.6"
