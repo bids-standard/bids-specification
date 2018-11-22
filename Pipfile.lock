@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "76afab1f513aea9efdeb66bcbf3749404b3fbd3058b76117144cc7da03e7ab0b"
+            "sha256": "00275565e97c44d3a7b79b6433889579abcad5a87d0648d3be01288e2be7edee"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -29,6 +29,9 @@
                 "sha256:f84be1bb0040caca4cea721fcbbbbd61f9be9464ca236387158b0feea01914a4"
             ],
             "version": "==2.10"
+        },
+        "linkchecker": {
+            "file": "https://github.com/yarikoptic/linkchecker/archive/9.4.0.anchorfix1.zip"
         },
         "livereload": {
             "hashes": [
