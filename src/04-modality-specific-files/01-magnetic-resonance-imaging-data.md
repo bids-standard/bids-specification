@@ -269,7 +269,7 @@ combined image rather than an image from each coil.
 | AcquisitionDuration               | RECOMMENDED. Duration (in seconds) of volume acquisition. Corresponds to DICOM Tag 0018,9073 `Acquisition Duration`. This field is REQUIRED for sequences that are described with the `VolumeTiming` field and that not have the `SliceTiming` field set to allowed for accurate calculation of "acquisition time". This field is mutually exclusive with `RepetitionTime`.                                                                                                                                                                                                                              |
 | DelayAfterTrigger                 | RECOMMENDED. Duration (in seconds) from trigger delivery to scan onset. This delay is commonly caused by adjustments and loading times. This specification is entirely independent of `NumberOfVolumesDiscardedByScanner` or `NumberOfVolumesDiscardedByUser`, as the delay precedes the acquisition.                                                                                                                                                                                                                                                                                                    |
 
-The following table recapitulates the different ways that specific fields have 
+The following table recapitulates the different ways that specific fields have
 to be populated for functional sequences.
 
 |                   | RepetitionTime | SliceTiming | AcquisitionDuration | DelayTime | VolumeTiming |
@@ -282,9 +282,9 @@ to be populated for functional sequences.
 | sparse sequence 1 |       \[X]     |             |         \[ ]        |    \[X]   |      \[ ]    |
 
 **Legend**
-\[X] --> has to be filled
-\[ ] --> has to be left empty
-empty cell --> can be specified but not required
+- \[X] --> has to be filled
+- \[ ] --> has to be left empty
+- empty cell --> can be specified but not required
 
 ##### fMRI task information
 
