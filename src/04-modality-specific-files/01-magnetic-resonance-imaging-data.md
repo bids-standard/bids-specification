@@ -279,10 +279,10 @@ to be populated for functional sequences.
 | option 3          |       \[ ]     |             |         \[X]        |    \[ ]   |      \[X]    |
 | sparse sequence 1 |       \[X]     |     \[X]    |         \[ ]        |           |      \[ ]    |
 | sparse sequence 1 |       \[X]     |     \[X]    |         \[ ]        |    \[X]   |      \[ ]    |
-| sparse sequence 1 |       \[X]     |             |         \[ ]        |    \[X]   |      \[ ]    |
+| sparse sequence 1 |       \[X]     |      s       |         \[ ]        |    \[X]   |      \[ ]    |
 
 **Legend**
-- \[X\] --> has to be filled
+- \[X \] --> has to be filled
 - \[  \] --> has to be left empty
 - empty cell --> can be specified but not required
 
