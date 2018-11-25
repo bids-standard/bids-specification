@@ -282,7 +282,7 @@ to be populated for functional sequences.
 | sparse sequence 1 |       \[X]     |             |         \[ ]        |    \[X]   |      \[ ]    |
 
 **Legend**
-- \[X] --> has to be filled
+- \[X\] --> has to be filled
 - \[  \] --> has to be left empty
 - empty cell --> can be specified but not required
 
