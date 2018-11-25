@@ -274,16 +274,16 @@ to be populated for functional sequences.
 
 |                   | RepetitionTime | SliceTiming | AcquisitionDuration | DelayTime | VolumeTiming |
 |-------------------|:--------------:|:-----------:|:-------------------:|:---------:|:------------:|
-| option 1          |       \[X]     |             |         \[ ]        |           |      \[ ]    |
-| option 2          |       \[ ]     |     \[X]    |                     |    \[ ]   |      \[X]    |
-| option 3          |       \[ ]     |             |         \[X]        |    \[ ]   |      \[X]    |
-| sparse sequence 1 |       \[X]     |     \[X]    |         \[ ]        |           |      \[ ]    |
-| sparse sequence 1 |       \[X]     |     \[X]    |         \[ ]        |    \[X]   |      \[ ]    |
-| sparse sequence 1 |       \[X]     |      s       |         \[ ]        |    \[X]   |      \[ ]    |
+| option 1          |       \[ X ]     |             |         \[ ]        |           |      \[ ]    |
+| option 2          |       \[ ]     |     \[ X ]    |                     |    \[ ]   |      \[ X ]    |
+| option 3          |       \[ ]     |             |         \[ X ]        |    \[ ]   |      \[ X ]    |
+| sparse sequence 1 |       \[ X ]     |     \[ X ]    |         \[ ]        |           |      \[ ]    |
+| sparse sequence 2 |       \[ X ]     |     \[ X ]    |         \[ ]        |    \[ X ]   |      \[ ]    |
+| sparse sequence 3 |       \[ X ]     |      s       |         \[ ]        |    \[ X ]   |      \[ ]    |
 
 **Legend**
-- \[X \] --> has to be filled
-- \[  \] --> has to be left empty
+- \[ X \] --> has to be filled
+- \[   \] --> has to be left empty
 - empty cell --> can be specified but not required
 
 ##### fMRI task information
