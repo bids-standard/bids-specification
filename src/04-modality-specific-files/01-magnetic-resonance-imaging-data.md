@@ -171,9 +171,9 @@ inplaneT1, referenced by a defacemask image. E.g.,
 `sub-01_mod-T1w_defacemask.nii.gz`.
 
 Some meta information about the acquisition MAY be provided in an additional
-JSON file. See Common MR metadata fields for a list of terms and their
-definitions. There are also some OPTIONAL JSON fields specific to anatomical
-scans:
+JSON file. See [Common metadata fields](#common-metadata-fields) for a
+list of terms and their definitions. There are also some OPTIONAL JSON
+fields specific to anatomical scans:
 
 | Field name              | Definition                                                                                                                                         |
 | :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -293,7 +293,7 @@ combined image rather than an image from each coil.
 | CogAtlasID      | RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) Task term.                                                                                                         |
 | CogPOID         | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                 |
 
-See [8.3.1. Common MR metadata fields](#heading=h.5u721tt1h9pe) for a list of
+See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms and their definitions.
 
 Example:
@@ -366,7 +366,7 @@ dwi.nii file) and not the magnet’s coordinate system, which means that any
 rotations applied to dwi.nii also need to be applied to the corresponding bvec
 file.
 
-<sup>4</sup>[http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html](hhttp://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html)
+<sup>4</sup>[http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html](http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html)
 
 bvec example:
 
@@ -390,8 +390,8 @@ bval example:
 and thus define those values for all sessions and/or subjects in one place (see
 Inheritance principle).
 
-See Common MR metadata fields for a list of additional terms that can be
-included in the corresponding JSON file.
+See [Common metadata fields](#common-metadata-fields) for a list of
+additional terms that can be included in the corresponding JSON file.
 
 JSON example:
 
