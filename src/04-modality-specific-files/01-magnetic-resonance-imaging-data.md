@@ -193,8 +193,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     func/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>]_<contrast_label>.nii[.gz]
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_<contrast_label>.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
 ```
 
 Imaging data acquired during functional imaging (i.e. imaging which supports
@@ -231,6 +231,12 @@ file, with the same label.
 
 Similarly the optional `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
+
+Similarly the optional `dir-<label>` and `rec-<label>` key/values
+can be used to distinguish different phase-encoding directions and
+reconstruction algorithms (for example ones using motion correction).
+See [`fmap` Case 4](01-magnetic-resonance-imaging-data.md#case-4-multiple-phase-encoded-directions-pepolar)
+for more information on `dir` field specification.
 
 Multi echo data MUST  be split into one file per echo. Each file shares the same
 name with the exception of the `_echo-<index>` key/value. For example:
@@ -329,12 +335,12 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     dwi/
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_dwi.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_dwi.bval
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_dwi.bvec
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_dwi.json
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_sbref.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_sbref.json
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.bval
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.bvec
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.json
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_sbref.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_sbref.json
 ```
 
 Diffusion-weighted imaging data acquired for that participant. The optional
