@@ -270,16 +270,17 @@ combined image rather than an image from each coil.
 | DelayAfterTrigger                 | RECOMMENDED. Duration (in seconds) from trigger delivery to scan onset. This delay is commonly caused by adjustments and loading times. This specification is entirely independent of `NumberOfVolumesDiscardedByScanner` or `NumberOfVolumesDiscardedByUser`, as the delay precedes the acquisition.                                                                                                                                                                                                                                                                                                    |
 
 The following table recapitulates the different ways that specific fields have
-to be populated for functional sequences.
+to be populated for functional sequences. Note that all those options can used
+for non sparse sequences but that only options B, D and E are valid for sparse
+sequences.
 
-|                   | RepetitionTime  | SliceTiming  | AcquisitionDuration | DelayTime | VolumeTiming |
-|-------------------|:---------------:|:------------:|:-------------------:|:---------:|:------------:|
-| option 1          |       \[ X ]    |              |         \[ ]        |           |      \[ ]    |
-| option 2          |       \[ ]      |     \[ X ]   |                     |    \[ ]   |      \[ X ]  |
-| option 3          |       \[ ]      |              |         \[ X ]      |    \[ ]   |      \[ X ]  |
-| sparse sequence 1 |       \[ X ]    |     \[ X ]   |         \[ ]        |           |      \[ ]    |
-| sparse sequence 2 |       \[ X ]    |     \[ X ]   |         \[ ]        |    \[ X ] |      \[ ]    |
-| sparse sequence 3 |       \[ X ]    |              |         \[ ]        |    \[ X ] |      \[ ]    |
+|          | RepetitionTime  | SliceTiming  | AcquisitionDuration | DelayTime | VolumeTiming |
+|----------|:---------------:|:------------:|:-------------------:|:---------:|:------------:|
+| option A |       \[ X ]    |              |         \[ ]        |           |      \[ ]    |
+| option B |       \[ ]      |     \[ X ]   |                     |    \[ ]   |      \[ X ]  |
+| option C |       \[ ]      |              |         \[ X ]      |    \[ ]   |      \[ X ]  |
+| option D |       \[ X ]    |     \[ X ]   |         \[ ]        |           |      \[ ]    |
+| option E |       \[ X ]    |              |         \[ ]        |    \[ X ] |      \[ ]    |
 
 **Legend**
 - \[ X ] --> has to be filled
