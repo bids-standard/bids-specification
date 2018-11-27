@@ -142,7 +142,7 @@ run labels). When there is only one scan of a given type the run key MAY be
 omitted. Please note that diffusion imaging data is stored elsewhere (see
 below).
 
-The optional `acq-<label>` key/value pair corresponds to a custom label the user
+The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label the user
 MAY use to distinguish a different set of parameters used for acquiring the same
 modality. For example this should be used when a study includes two T1w images -
 one full brain low resolution and and one restricted field of view but high
@@ -155,12 +155,12 @@ can also be used to make that distinction. At what level of detail to make the
 distinction (e.g. just between RARE and FLASH, or between RARE, FLASH, and
 FLASHsubsampled) remains at the discretion of the researcher.
 
-Similarly the optional `ce-<label>` key/value can be used to distinguish
+Similarly the OPTIONAL `ce-<label>` key/value can be used to distinguish
 sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the
 JSON file, with the same label.
 
-Similarly the optional `rec-<label>` key/value can be used to distinguish
+Similarly the OPTIONAL `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
 
 If the structural images included in the dataset were defaced (to protect
@@ -215,7 +215,7 @@ If more than one run of the same task has been acquired a key/value pair:
 defined as the same task, but in some cases it can mean different set of stimuli
 (for example randomized order) and participant responses.
 
-The optional `acq-<label>` key/value pair corresponds to a custom label one may
+The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label one may
 use to distinguish different set of parameters used for acquiring the same task.
 For example this should be used when a study includes two resting state images -
 one single band and one multiband. In such case two files could have the
@@ -224,7 +224,7 @@ following names: `sub-01_task-rest_acq-singleband_bold.nii.gz` and
 other label than `singleband` and `multiband` as long as they are consistent
 across subjects and sessions and consist only of the legal label characters.
 
-Similarly the optional `ce-<label>` key/value can be used to distinguish
+Similarly the OPTIONAL `ce-<label>` key/value can be used to distinguish
 sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key ContrastBolusIngredient MAY be also be added in the JSON
 file, with the same label.
@@ -458,7 +458,7 @@ This is a common output for build in fieldmap sequence on Siemens scanners. In
 this particular case the sidecar JSON file has to define the Echo Times of the
 two phase images used to create the difference image. `EchoTime1` corresponds to
 the shorter echo time and `EchoTime2` to the longer echo time. Similarly
-`_magnitude1` image corresponds to the shorter echo time and the optional
+`_magnitude1` image corresponds to the shorter echo time and the OPTIONAL
 `_magnitude2` image to the longer echo time. For example:
 
 ```JSON
