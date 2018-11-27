@@ -17,7 +17,7 @@ Below are specifications for each system brand.
 ## CTF
 
 Each experimental run with a CTF system yields a folder with a `.ds` extension,
-containing several files. The (optional) digitized positions of the head points
+containing several files. The OPTIONAL digitized positions of the head points
 are usually stored in a separate `.pos` file, not necessarily within the `.ds`
 folder.
 
