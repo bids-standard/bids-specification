@@ -168,7 +168,7 @@ apply to different runs and rec files. Also if the JSON file
 (`task-xyz_acq-test1_bold.json`) is defined at dataset top level directory, it
 will be applicable to all task runs with `test1` acquisition parameter.
 
-Case 2: Multiple json files at different levels for same task and acquisition
+Example 3: Multiple json files at different levels for same task and acquisition
 parameters
 
 ```Text
