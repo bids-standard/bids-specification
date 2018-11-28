@@ -16,6 +16,7 @@ nav:
         - Physiological and other continous recordings: 04-modality-specific-files/04-physiological-and-other-continous-recordings.md
         - Behavioral experiments (with no MRI): 04-modality-specific-files/05-behavioural-experiments.md
       - Longitudinal and multi-site studies: 05-longitudinal-and-multi-site-studies.md
+      - Extending the BIDS specification: 06-extensions.md
       - Appendix:
         - Contributors: 99-appendices/01-contributors.md
         - Licenses: 99-appendices/02-licenses.md
