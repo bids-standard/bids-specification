@@ -33,10 +33,10 @@ clarify them here.
     scanning sequence/protocol.
 
 1.  Data type - a functional group of different types of data. In BIDS we define
-    five data types: func (task based and resting state functional MRI), dwi
+    six data types: func (task based and resting state functional MRI), dwi
     (diffusion weighted imaging), fmap (field inhomogeneity mapping data such as
     field maps), anat (structural imaging such as T1, T2, etc.), meg
-    (magnetoencephalography).
+    (magnetoencephalography), beh (behavioural).
 
 1.  Task - a set of structured activities performed by the participant. Tasks
     are usually accompanied by stimuli and responses, and can greatly vary in
