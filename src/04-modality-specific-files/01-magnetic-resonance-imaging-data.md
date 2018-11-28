@@ -68,9 +68,9 @@ first "effective" echo and the center of the last "effective" echo.
 | :--------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | EchoTime               | RECOMMENDED. The echo time (TE) for the acquisition, specified in seconds. This parameter is REQUIRED if corresponding fieldmap data is present or the data comes from a multi echo sequence. Corresponds to DICOM Tag 0018, 0081 `Echo Time` (please note that the DICOM term is in milliseconds not seconds).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | InversionTime          | RECOMMENDED. The inversion time (TI) for the acquisition, specified in seconds. Inversion time is the time after the middle of inverting RF pulse to middle of excitation pulse to detect the amount of longitudinal magnetization. Corresponds to DICOM Tag 0018, 0082 `Inversion Time` (please note that the DICOM term is in milliseconds not seconds).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| SliceTiming            | RECOMMENDED. The time at which each slice was acquired within each volume (frame) of the acquisition. Slice timing is not slice order -- rather, it is a list of times (in JSON format) containing the time (in seconds) of each slice acquisition in relation to the beginning of volume acquisition. The list goes through the slices along the slice axis in the slice encoding dimension (see below). Note that to ensure the proper interpretation of the `SliceTiming` field, it is important to check if the (optional) `SliceEncodingDirection` exists. In particular, if `SliceEncodingDirection` is negative, the entries in `SliceTiming` are defined in reverse order with respect to the slice axis (i.e., the final entry in the `SliceTiming` list is the time of acquisition of slice 0). This parameter is REQUIRED for sparse sequences that do not have the `DelayTime` field set. In addition without this parameter slice time correction will not be possible. |
+| SliceTiming            | RECOMMENDED. The time at which each slice was acquired within each volume (frame) of the acquisition. Slice timing is not slice order -- rather, it is a list of times (in JSON format) containing the time (in seconds) of each slice acquisition in relation to the beginning of volume acquisition. The list goes through the slices along the slice axis in the slice encoding dimension (see below). Note that to ensure the proper interpretation of the `SliceTiming` field, it is important to check if the OPTIONAL `SliceEncodingDirection` exists. In particular, if `SliceEncodingDirection` is negative, the entries in `SliceTiming` are defined in reverse order with respect to the slice axis (i.e., the final entry in the `SliceTiming` list is the time of acquisition of slice 0). This parameter is REQUIRED for sparse sequences that do not have the `DelayTime` field set. In addition without this parameter slice time correction will not be possible.   |
 | SliceEncodingDirection | RECOMMENDED. Possible values: `i`, `j`, `k`, `i-`, `j-`, `k-` (the axis of the NIfTI data along which slices were acquired, and the direction in which `SliceTiming` is defined with respect to). `i`, `j`, `k` identifiers correspond to the first, second and third axis of the data in the NIfTI file. A `-` sign indicates that the contents of `SliceTiming` are defined in reverse order - that is, the first entry corresponds to the slice with the largest index, and the final entry corresponds to slice index zero. When present, the axis defined by `SliceEncodingDirection` needs to be consistent with the ‘slice_dim’ field in the NIfTI header. When absent, the entries in `SliceTiming` must be in the order of increasing slice index as defined by the NIfTI header.                                                                                                                                                                                           |
-| DwellTime              | RECOMMENDED. Actual dwell time (in seconds) of the receiver per point in the readout direction, including any oversampling. For Siemens, this corresponds to DICOM field (0019,1018) (in ns). This value is necessary for the (optional) readout distortion correction of anatomicals in the HCP Pipelines. It also usefully provides a handle on the readout bandwidth, which isn’t captured in the other metadata tags. Not to be confused with `EffectiveEchoSpacing`, and the frequent mislabeling of echo spacing (which is spacing in the phase encoding direction) as "dwell time" (which is spacing in the readout direction).                                                                                                                                                                                                                                                                                                                                               |
+| DwellTime              | RECOMMENDED. Actual dwell time (in seconds) of the receiver per point in the readout direction, including any oversampling. For Siemens, this corresponds to DICOM field (0019,1018) (in ns). This value is necessary for the optional readout distortion correction of anatomicals in the HCP Pipelines. It also usefully provides a handle on the readout bandwidth, which isn’t captured in the other metadata tags. Not to be confused with `EffectiveEchoSpacing`, and the frequent mislabeling of echo spacing (which is spacing in the phase encoding direction) as "dwell time" (which is spacing in the readout direction).                                                                                                                                                                                                                                                                                                                                                 |
 
 #### RF & Contrast
 
@@ -110,10 +110,10 @@ whenever possible.
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<label>/[ses-<label>/]
     anat/
-        sub-<participant_label>[_ses-<session_label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>]_<modality_label>.nii[.gz]
-        sub-<participant_label>[_ses-<session_label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>]_<modality_label>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
 ```
 
 Anatomical (structural) data acquired for that participant. Currently supported
@@ -191,10 +191,10 @@ Currently supported image contrasts include:
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<label>/[ses-<label>/]
     func/
-        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_ce-<label>][_dir-<dir_label>][_rec-<label>][_run-<index>][_echo-<index>]_<contrast_label>.nii[.gz]
-        sub-<participant_label>[_ses-<session_label>]_task-<task_label>[_acq-<label>][_ce-<label>][_dir-<dir_label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_<contrast_label>.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
 ```
 
 Imaging data acquired during functional imaging (i.e. imaging which supports
@@ -229,10 +229,10 @@ sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key ContrastBolusIngredient MAY be also be added in the JSON
 file, with the same label.
 
-Similarly the optional `rec-<label>` key/value can be used to distinguish
+Similarly the OPTIONAL `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
 
-Similarly the optional `dir-<dir_label>` and `rec-<label>` key/values
+Similarly the OPTIONAL `dir-<label>` and `rec-<label>` key/values
 can be used to distinguish different phase-encoding directions and
 reconstruction algorithms (for example ones using motion correction).
 See [`fmap` Case 4](01-magnetic-resonance-imaging-data.md#case-4-multiple-phase-encoded-directions-pepolar)
@@ -265,7 +265,7 @@ JSON file.
 | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | RepetitionTime | REQUIRED. The time in seconds between the beginning of an acquisition of one volume and the beginning of acquisition of the volume following it (TR). Please note that this definition includes time between scans (when no data has been acquired) in case of sparse acquisition schemes. This value needs to be consistent with the `pixdim[4]` field (after accounting for units stored in `xyzt_units` field) in the NIfTI header. This field is mutually exclusive with `VolumeTiming` and is derived from DICOM Tag 0018, 0080 and converted to seconds. |
 | VolumeTiming   | REQUIRED. The time at which each volume was acquired during the acquisition. It is described using a list of times (in JSON format) referring to the onset of each volume in the BOLD series. The list must have the same length as the BOLD series, and the values must be non-negative and monotonically increasing. This field is mutually exclusive with `RepetitionTime` and `DelayTime`. If defined, this requires acquisition time (TA) be defined via either `SliceTiming` or `AcquisitionDuration` be defined.                                        |
-| TaskName       | REQUIRED. Name of the task. No two tasks should have the same name. Task label (`task-`) included in the file name is derived from this field by removing all non alphanumeric (`[a-zA-Z0-9]`) characters. For example task name `faces n-back` will corresponds to task label `facesnback`. An optional but RECOMMENDED convention is to name resting state task using labels beginning with `rest`.                                                                                                                                                          |
+| TaskName       | REQUIRED. Name of the task. No two tasks should have the same name. Task label (`task-`) included in the file name is derived from this field by removing all non alphanumeric (`[a-zA-Z0-9]`) characters. For example task name `faces n-back` will corresponds to task label `facesnback`. A RECOMMENDED convention is to name resting state task using labels beginning with `rest`.                                                                                                                                                                        |
 
 For the fields described above and in the following section, the term "Volume"
 refers to a reconstruction of the object being imaged (e.g., brain or part of a
@@ -339,10 +339,10 @@ sub-control01/
 ```
 
 If this information is the same for all participants, sessions and runs it can
-be provided in `task-<task_label>_bold.json` (in the root directory of the
+be provided in `task-<label>_bold.json` (in the root directory of the
 dataset). However, if the information differs between subjects/runs it can be
 specified in the
-`sub-<participant_label>/func/sub-<participant_label>_task-<task_label>[_acq-<label>][_run-<index>]_bold.json` file.
+`sub-<label>/func/sub-<label>_task-<label>[_acq-<label>][_run-<index>]_bold.json` file.
 If both files are specified fields from the file corresponding to a particular
 participant, task and run takes precedence.
 
@@ -351,17 +351,17 @@ participant, task and run takes precedence.
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<label>/[ses-<label>/]
     dwi/
-       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_dir-<dir_label>][_run-<index>]_dwi.nii[.gz]
-       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_dir-<dir_label>][_run-<index>]_dwi.bval
-       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_dir-<dir_label>][_run-<index>]_dwi.bvec
-       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_dir-<dir_label>][_run-<index>]_dwi.json
-       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_dir-<dir_label>][_run-<index>]_sbref.nii[.gz]
-       sub-<participant_label>[_ses-<session_label>][_acq-<label>][_dir-<dir_label>][_run-<index>]_sbref.json
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.bval
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.bvec
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.json
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_sbref.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_sbref.json
 ```
 
-Diffusion-weighted imaging data acquired for that participant. The optional
+Diffusion-weighted imaging data acquired for that participant. The OPTIONAL
 `acq-<label>` key/value pair corresponds to a custom label the user may use to
 distinguish different set of parameters. For example this should be used when a
 study includes two diffusion images - one single band and one multiband. In such
@@ -445,11 +445,11 @@ slashes. Here’s an example with multiple target scans:
 }
 ```
 
-The IntendedFor field is optional and in case the fieldmaps do not correspond to
+The IntendedFor field is OPTIONAL and in case the fieldmaps do not correspond to
 any particular scans it does not have to be filled.
 
 Multiple fieldmaps can be stored. In such case the `_run-1`, `_run-2` should be
-used. The optional `acq-<label>` key/value pair corresponds to a custom label
+used. The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label
 the user may use to distinguish different set of parameters.
 
 #### Phase difference image and at least one magnitude image
@@ -457,19 +457,19 @@ the user may use to distinguish different set of parameters.
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phasediff.nii[.gz]
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phasediff.json
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude1.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.json
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude1.nii[.gz]
 ```
 
-(optional)
+OPTIONAL
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude2.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude2.nii[.gz]
 ```
 
 This is a common output for build in fieldmap sequence on Siemens scanners. In
@@ -492,14 +492,14 @@ the shorter echo time and `EchoTime2` to the longer echo time. Similarly
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase1.nii[.gz]
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase1.json
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase2.nii[.gz]
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_phase2.json
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude1.nii[.gz]
-        sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude2.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase1.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase1.json
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude1.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude2.nii[.gz]
 ```
 
 Similar to the case above, but instead of a precomputed phase difference map two
@@ -518,11 +518,11 @@ corresponding `EchoTime` values. For example:
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<label>/[ses-<label>/]
     fmap/
-       sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_magnitude.nii[.gz]
-       sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_fieldmap.nii[.gz]
-       sub-<label>[_ses-<session_label>][_acq-<label>][_run-<run_index>]_fieldmap.json
+       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_fieldmap.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_fieldmap.json
 ```
 
 In some cases (for example GE) the scanner software will output a precomputed
@@ -542,10 +542,10 @@ the fieldmap. The possible options are: `Hz`, `rad/s`, or `Tesla`. For example:
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
+sub-<label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<session_label>][_acq-<label>][_ce-<label>]_dir-<dir_label>[_run-<run_index>]_epi.nii[.gz]
-        sub-<label>[_ses-<session_label>][_acq-<label>][_ce-<label>]_dir-<dir_label>[_run-<run_index>]_epi.json
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_epi.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_epi.json
 ```
 
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
@@ -568,7 +568,7 @@ example
 }
 ```
 
-`dir_label` value can be set to arbitrary alphanumeric label (`[a-zA-Z0-9]+` for
+`label` value of `_dir-` can be set to arbitrary alphanumeric label (`[a-zA-Z0-9]+` for
 example `LR` or `AP`) that can help users to distinguish between different
 files, but should not be used to infer any scanning parameters (such as phase
 encoding directions) of the corresponding sequence. Please rely only on the JSON

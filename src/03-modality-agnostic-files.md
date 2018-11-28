@@ -84,7 +84,7 @@ Optional: Yes
 
 The purpose of this file is to describe properties of participants such as age,
 handedness, sex, etc. In case of single session studies this file has one
-compulsory column `participant_id` that consists of `sub-<participant_label>`,
+compulsory column `participant_id` that consists of `sub-<label>`,
 followed by a list of optional columns describing participants. Each participant
 needs to be described by one and only one row.
 
@@ -102,7 +102,7 @@ example responses from multiple questionnaires) they can be split into
 individual files separate from `participants.tsv`. Those measurements should be
 kept in phenotype/ folder and end with the `.tsv` extension. They can include
 arbitrary set of columns, but one of them has to be participant_id with matching
-`sub-<participant_label>`. As with all other tabular data, those additional
+`sub-<label>`. As with all other tabular data, those additional
 phenotypic information files can be accompanied by a JSON file describing the
 columns in detail (see [here](02-common-principles.md#tabular-files)).
 In addition to the column description, a
@@ -152,8 +152,8 @@ questionnaire).
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>/]
-    sub-<participant_label>[_ses-<session_label>]_scans.tsv
+sub-<label>/[ses-<label>/]
+    sub-<label>[_ses-<label>]_scans.tsv
 ```
 
 Optional: Yes

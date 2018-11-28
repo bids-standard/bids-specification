@@ -17,13 +17,13 @@ Below are specifications for each system brand.
 ## CTF
 
 Each experimental run with a CTF system yields a folder with a `.ds` extension,
-containing several files. The (optional) digitized positions of the head points
+containing several files. The OPTIONAL digitized positions of the head points
 are usually stored in a separate `.pos` file, not necessarily within the `.ds`
 folder.
 
 ```Text
-[sub-<participant_label>[_ses-<label>]_headshape.pos]
-sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.ds>
+[sub-<label>[_ses-<label>]_headshape.pos]
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.ds>
 ```
 
 CTF’s data storage is therefore via directories containing multiple files. The
@@ -57,7 +57,7 @@ inside the fif file along with the MEG data, with typically no `_headshape`
 file.
 
 ```Text
-sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.fif
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.fif
 ```
 
 Note that we do not provide specific specifications for cross-talk and
@@ -119,8 +119,8 @@ Each experimental run on a 4D neuroimaging/BTi system results in a folder
 containing multiple files without extensions.
 
 ```Text
-[sub-<participant_label>[_ses-<label>]_headshape.pos]
-sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg>
+[sub-<label>[_ses-<label>]_headshape.pos]
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg>
 ```
 
 One SHOULD rename/create a father run specific directory and keep the original
@@ -195,10 +195,10 @@ the head points (\_digitizer.txt), the position of the center of the MEG coils
 (.chn) and the event markers (.trg).
 
 ```Text
-[sub-<participant_label>[_ses-<label>]_headshape.txt]
-sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.kdf
-sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.chn
-sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.trg
+[sub-<label>[_ses-<label>]_headshape.txt]
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.kdf
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.chn
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.trg
 ```
 
 Example:
