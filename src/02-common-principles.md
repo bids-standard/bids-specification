@@ -128,7 +128,7 @@ participant can exist only at participant level directory, i.e
 specific to a participant is to be declared only at top level of dataset for eg:
 `task-sist_bold.json` must be placed under `/dataset/task-sist_bold.json`
 
-Example 1: Two JSON files at same level that are applicable for NIfTI file.
+Example 1: Two JSON files that are erroneously at the same level.
 
 ```Text
 sub-01/
