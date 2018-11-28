@@ -22,7 +22,7 @@ Legend (source:
 | 🔧    | Tools                                                                       |
 | 🌍    | Translation                                                                 |
 | ⚠️    | Tests                                                                       |
-| ✅     | Tutorials                                                                   |
+| ✅    | Tutorials                                                                   |
 | 📢    | Talks                                                                       |
 | 📹    | Videos                                                                      |
 
@@ -85,7 +85,7 @@ your name is not listed, please add it.
 - Thomas E. Nichols 📖📢🔧
 - Dylan Nielson 📖💻🔧
 - Guiomar Niso 📖💡📢
-- Robert Oostenveld 📖🔧📢💡
+- Robert Oostenveld 📖🔧📢💡✅⚠️🤔
 - Patrick Park 📖💡💬
 - Dianne Patterson 📖
 - John Pellman 📖
