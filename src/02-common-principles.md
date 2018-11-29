@@ -9,13 +9,13 @@ interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 Throughout this protocol we use a list of terms. To avoid misunderstanding we
 clarify them here.
 
-1.  Dataset - a set of neuroimaging and behavioural data acquired for a purpose
+1.  Dataset - a set of neuroimaging and behavioral data acquired for a purpose
     of a particular study. A dataset consists of data acquired from one or more
     subjects, possibly from multiple sessions.
 
 1.  Subject - a person or animal participating in the study.
 
-1.  Session - a logical grouping of neuroimaging and behavioural data consistent
+1.  Session - a logical grouping of neuroimaging and behavioral data consistent
     across subjects. Session can (but doesn't have to) be synonymous to a visit
     in a longitudinal study. In general, subjects will stay in the scanner
     during one session. However, for example, if a subject has to leave the
@@ -36,14 +36,14 @@ clarify them here.
     six data types: func (task based and resting state functional MRI), dwi
     (diffusion weighted imaging), fmap (field inhomogeneity mapping data such as
     field maps), anat (structural imaging such as T1, T2, etc.), meg
-    (magnetoencephalography), beh (behavioural).
+    (magnetoencephalography), beh (behavioral).
 
 1.  Task - a set of structured activities performed by the participant. Tasks
     are usually accompanied by stimuli and responses, and can greatly vary in
     complexity. For the purpose of this protocol we consider the so-called
     “resting state” a task. In the context of brain scanning, a task is always
     tied to one data acquisition. Therefore, even if during one acquisition the
-    subject performed multiple conceptually different behaviours (with different
+    subject performed multiple conceptually different behaviors (with different
     sets of instructions) they will be considered one (combined) task.
 
 1.  Event - a stimulus or subject response recorded during a task. Each event

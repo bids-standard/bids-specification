@@ -10,7 +10,7 @@ CapManufacturersModelName.
 -   Remove EEGSamplingFrequency and ManufacturersAmplifierModelName
 from the meg.json.
 
--   Improved the behavioural data description.
+-   Improved the behavioral data description.
 
 1.1.0
 
@@ -71,7 +71,7 @@ from the meg.json.
 -   Added trial_type column to the event files.
 
 -   Added missing sub-&lt;participant_label&gt; in
-   behavioural data file names
+   behavioral data file names
 
 -   Added ability to store stimuli files.
 
