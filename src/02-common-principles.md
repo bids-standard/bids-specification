@@ -133,8 +133,8 @@ Example 1: Two JSON files that are erroneously at the same level.
 ```Text
 sub-01/
     ses-test/
-        sub-test_task-overtverbgeneration_bold.json
-        sub-test_task-overtverbgeneration_run-2_bold.json
+        sub-01_ses-test_task-overtverbgeneration_bold.json
+        sub-01_ses-test_task-overtverbgeneration_run-2_bold.json
         anat/
             sub-01_ses-test_T1w.nii.gz
         func/
@@ -146,8 +146,8 @@ In the above example, two JSON files are listed under `sub-01/ses-test/`, which
 are each applicable to
 `sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz`, violating the
 constraint that no more than one file may be defined at a given level of the
-directory structure. Instead `task-overtverbgeneration_run-2_bold.json` should
-have been under `sub-01/ses-test/func/`.
+directory structure. Instead `sub-01_ses-test_task-overtverbgeneration_run-2_bold.json`
+should have been under `sub-01/ses-test/func/`.
 
 Example 2: Multiple run and rec with same acquisition (acq) parameters acq-test1
 
