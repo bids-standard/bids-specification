@@ -1,18 +1,18 @@
 # Longitudinal studies with multiple sessions (visits)
 
 Multiple sessions (visits) are encoded by adding an extra layer of directories
-and file names in the form of `ses-<session_label>`. Session label can consist
+and file names in the form of `ses-<label>`. Session label can consist
 only of alphanumeric characters `[a-zA-Z0-9]` and should be consistent across
 subjects. If numbers are used in session labels we recommend using zero padding
 (for example `ses-01`, `ses-11` instead of `ses-1`, `ses-11`). This makes
 results of alphabetical sorting more intuitive. Acquisition time of session can
 be defined in the sessions file (see below for details).
 
-The extra session layer (at least one `/ses-<session_label>` subfolder) should
+The extra session layer (at least one `/ses-<label>` subfolder) should
 be added for all subjects if at least one subject in the dataset has more than
 one session. Skipping the session layer for only some subjects in the dataset is
-not allowed. If a `/ses-<session_label>` subfolder is included as part of the
-directory hierarchy, then the same `ses-<session_label>` tag must also be
+not allowed. If a `/ses-<label>` subfolder is included as part of the
+directory hierarchy, then the same `ses-<label>` tag must also be
 included as part of the file names themselves.
 
 ```Text
@@ -64,8 +64,8 @@ CHANGES
 Template:
 
 ```Text
-sub-<participant_label>/
-    sub-<participant_label>_sessions.tsv
+sub-<label>/
+    sub-<label>_sessions.tsv
 ```
 
 Optional: Yes
