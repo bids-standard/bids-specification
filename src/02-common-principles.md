@@ -186,6 +186,14 @@ apply to all bold runs. However, if there is a key with different value in
 `sub-01/func/sub-01_task-xyz_acq-test1_run-1_bold.json`, the new value will be
 applicable for that particular run/task NIfTI file/s.
 
+### Good practice recommendations
+
+**Try to avoid excessive amount of overrides.**  Do not specify a field
+value in the upper levels if lower levels have more or less even
+distribution of multiple possible values. E.g., if a field `X` has one
+value for all `ses-01/` and another for all `ses-02/` it better not to be
+defined at all in the `.json` at the upper level.
+
 ## File Formation specification
 
 ### Imaging files
