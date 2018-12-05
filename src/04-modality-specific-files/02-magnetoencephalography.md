@@ -254,7 +254,7 @@ Restricted keyword list for field `type`
 
 Example of free text for field `description`
 
-- stimulus, response, vertical EOG, horizontal EOG, skin conductance, sats,
+-   stimulus, response, vertical EOG, horizontal EOG, skin conductance, sats,
     intracranial, eyetracker
 
 Example:
