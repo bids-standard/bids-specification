@@ -35,7 +35,7 @@ your name is not listed, please add it.
 - Sylvain Baillet 📖🔍
 - Elizabeth Bock 📖💡
 - Eric Bridgeford 📖🔧
-- Teon L. Brooks 📖💻⚠️💬👀🤔🔧
+- Teon L. Brooks 📖💻⚠️💬👀🤔🔧🐛📢
 - Suyash Bhogawar 📖💡⚠️🔧💬
 - Vince D. Calhoun 📖
 - Alexander L. Cohen 🐛💻📖💬
@@ -54,6 +54,7 @@ your name is not listed, please add it.
 - Mathias Goncalves 💻🔧📢
 - Krzysztof J. Gorgolewski 📖💻💬🤔🔍📢📝💡🔌
 - Alexandre Gramfort 📖💡
+- Jeffrey S. Grethe 💬🐛✅📢 
 - Yaroslav O. Halchenko 📖📢🔧💬🐛
 - Daniel A. Handwerker 📖
 - Michael Hanke 📖🤔🔧🐛📢
