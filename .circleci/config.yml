@@ -43,7 +43,7 @@ jobs:
              if git log -1 --pretty=%b | grep release ; then
              echo "New release, do nothing"
              else
-             github_changelog_generator --user franklin-feingold --project bids-specification-test2 --output ~/build/CHANGES.md --base ~/build/src/pregh-changes.md --header-label Changelog --no-issues --no-issues-wo-labels --no-filter-by-milestone --no-compare-link --pr-label ""
+             github_changelog_generator --user bids-standard --project bids-specification --token ${CHANGE_TOKEN} --output ~/build/CHANGES.md --base ~/build/src/pregh-changes.md --header-label Changelog --no-issues --no-issues-wo-labels --no-filter-by-milestone --no-compare-link --pr-label ""
              cat ~/build/CHANGES.md
              mv ~/build/CHANGES.md ~/build/src/CHANGES.md
              fi
@@ -57,10 +57,10 @@ jobs:
 # Clear remark test
   remark:
     working_directory: ~
-    docker: # run the steps with Docker
-      - image: node:latest # ...with this image as the primary container; this is where all `steps` will run
-    steps: # a collection of executable commands
-      - checkout # special step to check out source code to working directory, dir is project
+    docker: 
+      - image: node:latest 
+    steps: 
+      - checkout 
       - attach_workspace:
           at: ~/build
       - run:
@@ -68,12 +68,12 @@ jobs:
           command: |
            cd ~
            npm install npm@latest
-      - run: # run tests
+      - run: 
           name: get remark
           command: |
            cd ~
            npm install remark remark-cli
-      - run: # run tests
+      - run: 
           name: get remark styles
           command: |
            cd ~
@@ -128,7 +128,7 @@ jobs:
              git config user.name "franklin-feingold"
              git add ~/build/src/CHANGES.md
              git commit -m "autobuild CHANGES.md"
-             git push https://${CHANGE_TOKEN}@github.com/franklin-feingold/bids-specification-test2.git master
+             git push https://${CHANGE_TOKEN}@github.com/bids-standard/bids-specification.git master
              fi
              else
              echo "Not a PR merge commit"
