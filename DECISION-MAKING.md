@@ -8,7 +8,7 @@ decision-making rules with the intention to:
 - Minimize the administrative burden.
 - Provide a path for when consensus cannot be made.
 - Grow the community.
-- Minimize the [bus factor](https://en.wikipedia.org/wiki/Bus_factor) of the 
+- Maximize the [bus factor](https://en.wikipedia.org/wiki/Bus_factor) of the 
   project.
 
 The rules outlined below are inspired by the [lazy consensus system used in the Apache Foundation](https://www.apache.org/foundation/voting.html) 
