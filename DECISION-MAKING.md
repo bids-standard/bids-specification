@@ -41,7 +41,7 @@ to evolve independently of the Decision-making rules.
 1. Any Contributor can Review a PR and Request changes. If a Contributor 
    Request changes they need to provide an explanation what changes 
    should be added and justification of their importance. Reviews requesting 
-   changes can also we used to request more time to review a PR.
+   changes can also be used to request more time to review a PR.
 1. A Contributor that Requested changes can Dismiss their own review or Approve 
    changes added by the Contributor who opened the PR.
 1. If the author of a PR and Contributor who provided Review that Requests 
