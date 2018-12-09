@@ -110,6 +110,10 @@ GitHub has a [nice introduction](https://help.github.com/articles/github-flow/) 
 
 <br>
 
+## How the decision to merge a pull request is made?
+
+The decision-making rules are outlined [here](DECISION-MAKING.md).
+
 ## Recognizing contributions
 
 BIDS follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification, so we welcome and recognize all contributions from documentation to testing to code development. You can see a list of current contributors in the [BIDS specification](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md).
