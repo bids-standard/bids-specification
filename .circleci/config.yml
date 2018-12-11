@@ -57,10 +57,10 @@ jobs:
 # Clear remark test
   remark:
     working_directory: ~
-    docker: 
-      - image: node:latest 
-    steps: 
-      - checkout 
+    docker:
+      - image: node:latest
+    steps:
+      - checkout
       - attach_workspace:
           at: ~/build
       - run:
@@ -68,12 +68,12 @@ jobs:
           command: |
            cd ~
            npm install npm@latest
-      - run: 
+      - run:
           name: get remark
           command: |
            cd ~
            npm install remark remark-cli
-      - run: 
+      - run:
           name: get remark styles
           command: |
            cd ~
@@ -104,7 +104,7 @@ jobs:
              paths: tmp
 
 # Push built changelog to repo
-  push:
+  Changelog-bot:
     working_directory: ~/build
     docker:
       - image: circleci/openjdk:8-jdk
@@ -123,11 +123,13 @@ jobs:
              echo "New release, do nothing"
              else
              mv ~/build/tmp/CHANGES.md ~/build/src/CHANGES.md
+             merge_messsge=$(git log -1 | grep Merge | grep "pull")
+             PR_number=$(echo $merge_messsge | cut -d ' ' -f 4)
              git config credential.helper 'cache --timeout=120'
              git config user.email "franklin.feingold@gmail.com"
              git config user.name "franklin-feingold"
              git add ~/build/src/CHANGES.md
-             git commit -m "autobuild CHANGES.md"
+             git commit -m "[DOC] Auto-generate changelog entry for PR ${PR_number}"
              git push https://${CHANGE_TOKEN}@github.com/bids-standard/bids-specification.git master
              fi
              else
@@ -139,10 +141,19 @@ workflows:
   search_build:
     jobs:
       - build
-      - github-changelog-generator
+      - github-changelog-generator:
+          filters:
+               branches:
+                   only: master
       - remark:
           requires:
                - github-changelog-generator
-      - push:
+          filters:
+               branches:
+                   only: master
+      - Changelog-bot:
           requires:
                - remark
+          filters:
+               branches:
+                   only: master
