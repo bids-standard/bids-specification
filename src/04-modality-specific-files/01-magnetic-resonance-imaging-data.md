@@ -163,6 +163,10 @@ JSON file, with the same label.
 Similarly the OPTIONAL `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
 
+Similarly the OPTIONAL `proc-<label>` key/value can be used to distinguish
+between original and processed on the scanner data, e.g. `_proc-norm`
+could be used for ["Normalized Pixel" field-bias corrected](https://github.com/nipy/heudiconv/issues/266#issuecomment-432662723) data.
+
 If the structural images included in the dataset were defaced (to protect
 identity of participants) one CAN provide the binary mask that was used to
 remove facial features in the form of `_defacemask` files. In such cases the
@@ -255,10 +259,6 @@ sub-01/
 Please note that the `<index>` denotes the number/index (in a form of an
 integer) of the echo not the echo time value which needs to be stored in the
 field EchoTime of the separate JSON file.
-
-The OPTIONAL `proc-<label>` key/value can be used to distinguish
-between original and processed on the scanner data, e.g. `_proc-norm`
-could be used for ["Normalized Pixel" field-bias corrected](https://github.com/nipy/heudiconv/issues/266#issuecomment-432662723) data.
 
 Some meta information about the acquisition MUST be provided in an additional
 JSON file.
