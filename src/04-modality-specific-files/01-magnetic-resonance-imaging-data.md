@@ -112,8 +112,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>]_<modality_label>.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_proc-<label>]_<modality_label>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>][_proc-<label>]_defacemask.nii[.gz]
 ```
 
 Anatomical (structural) data acquired for that participant. Currently supported
@@ -193,8 +193,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     func/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_<contrast_label>.nii[.gz]
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_proc-<label>]_<contrast_label>.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_proc-<label>]_sbref.nii[.gz]
 ```
 
 Imaging data acquired during functional imaging (i.e. imaging which supports
@@ -255,6 +255,10 @@ sub-01/
 Please note that the `<index>` denotes the number/index (in a form of an
 integer) of the echo not the echo time value which needs to be stored in the
 field EchoTime of the separate JSON file.
+
+The OPTIONAL `proc-<label>` key/value can be used to distinguish
+between original and processed on the scanner data, e.g. `_proc-norm`
+could be used for ["Normalized Pixel" field-bias corrected](https://github.com/nipy/heudiconv/issues/266#issuecomment-432662723) data.
 
 Some meta information about the acquisition MUST be provided in an additional
 JSON file.
@@ -342,7 +346,7 @@ If this information is the same for all participants, sessions and runs it can
 be provided in `task-<label>_bold.json` (in the root directory of the
 dataset). However, if the information differs between subjects/runs it can be
 specified in the
-`sub-<label>/func/sub-<label>_task-<label>[_acq-<label>][_run-<index>]_bold.json` file.
+`sub-<label>/func/sub-<label>_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_bold.json` file.
 If both files are specified fields from the file corresponding to a particular
 participant, task and run takes precedence.
 
@@ -353,12 +357,12 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     dwi/
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.bval
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.bvec
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.json
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_sbref.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_sbref.json
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_proc-<label>]_dwi.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_proc-<label>]_dwi.bval
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_proc-<label>]_dwi.bvec
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_proc-<label>]_dwi.json
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_proc-<label>]_sbref.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_proc-<label>]_sbref.json
 ```
 
 Diffusion-weighted imaging data acquired for that participant. The OPTIONAL
@@ -459,9 +463,9 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.json
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude1.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>][_proc-<label>]_phasediff.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>][_proc-<label>]_phasediff.json
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>][_proc-<label>]_magnitude1.nii[.gz]
 ```
 
 OPTIONAL
@@ -469,7 +473,7 @@ OPTIONAL
 ```Text
 sub-<label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude2.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>][_proc-<label>]_magnitude2.nii[.gz]
 ```
 
 This is a common output for build in fieldmap sequence on Siemens scanners. In
@@ -494,12 +498,12 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase1.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase1.json
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude1.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude2.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>][_proc-<label>]_phase1.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>][_proc-<label>]_phase1.json
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>][_proc-<label>]_phase2.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>][_proc-<label>]_phase2.json
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>][_proc-<label>]_magnitude1.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>][_proc-<label>]_magnitude2.nii[.gz]
 ```
 
 Similar to the case above, but instead of a precomputed phase difference map two
@@ -520,9 +524,9 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     fmap/
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_fieldmap.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_fieldmap.json
+       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>][_proc-<label>]_magnitude.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>][_proc-<label>]_fieldmap.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>][_proc-<label>]_fieldmap.json
 ```
 
 In some cases (for example GE) the scanner software will output a precomputed
@@ -544,8 +548,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_epi.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_epi.json
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>][_proc-<label>]_epi.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>][_proc-<label>]_epi.json
 ```
 
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
