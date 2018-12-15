@@ -72,8 +72,8 @@ to evolve independently of the Decision-making rules.
    add your Github name next to the file you want to subscribe to in the 
    [CODEOWNERS](CODEOWNERS). This way you will be ask to review each relevant
    PR. Please mind that lack of your review will not prevent the PR from being
-   merged so if you think the PR needs you attention review it promptly or
-   request more time via Request changes.
+   merged so if you think the PR needs your attention, please review it 
+   promptly or request more time via Request changes.
 1. Releases are triggered the same way as any other change - via a PR.
 
 
