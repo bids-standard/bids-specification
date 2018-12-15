@@ -1,5 +1,7 @@
 # Decision-making rules
+
 ## Introduction
+
 The Brain Imaging Data Structure (BIDS) community set out the following 
 decision-making rules with the intention to:
 
@@ -15,13 +17,16 @@ The rules outlined below are inspired by the [lazy consensus system used in the 
 and heavily depends on [GitHub Pull Request Review system](https://help.github.com/articles/about-pull-requests/).
 
 ## Definitions
+
 **Repository** - [https://github.com/bids-standard/bids-specification](https://github.com/bids-standard/bids-specification)
+
 **Contributor** - a person listed in the Appendix I: Contributors. The 
 community decides on the content of this file using the same process as any 
 other change to the Repository (see below) allowing the meaning of "Contributor"
 to evolve independently of the Decision-making rules.
 
 ## Rules
+
 1. Every modification of the specification (including a correction of a typo, 
    adding a new Contributor, an extension adding support for a new data type, or
    others) or proposal to release a new version needs to be done via a Pull 
