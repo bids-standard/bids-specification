@@ -61,7 +61,7 @@ regressor, then the data should be stored in a 4D NIfTI file.
 
 Tabular regressor files MUST be accompanied by a data dictionary in JSON format,
 consistent with the format described in
-[Common princioples](../02common-principles.md).
+[Common princioples](../02-common-principles.md).
 
 Volumetric regressor files MAY be accompanied by a data dictionary in JSON
 format, with OPTIONAL `LongName`, `Description`, `Levels`, `Units`, and
