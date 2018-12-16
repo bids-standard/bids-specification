@@ -1,5 +1,49 @@
 # Appendix VIII: preferred names of Coordinate systems
 
+## Definitions
+
+### Coordinate System
+
+A coordinate system specifies the information necessary to interpret the
+coordinates associated with the data. A coordinate system can be described by
+its topology (cartesian, spherical, polar, etc.,.), dimensionality, and units of
+measurement along each dimension. Every device that makes spatial measurements
+or has sensors described in a space has a coordinate system (e.g., an MR
+scanner, an MEG scanner, an EEG cap, Polhemus digitizer). The data output by
+most of these devices describe the number of dimensions, the units along each
+dimension, and in some cases the details of origin (for example, time).
+
+### Space, atlas and map
+
+A space|atlas|map is embedded in a coordinate system to ascribe meaning to the
+coordinates. For instance, Scanner, Talairach88, MNI, FS are different
+coordinate systems, while the Talairach atlas, MNI152, and fsaverage ascribe
+meaning to the coordinates in terms of brain anatomy. As an example to
+distinguish coordinate systems and spaces/atlas/maps, a 4D fMRI timeseries
+acquired without motion correction has individual time points all in the same
+coordinate system, but the atlas/map is different (due to motion) in different
+time points.
+
+### Landmarks
+
+Landmarks are properties of the object being measured and can exist in any
+coordinate system in which the object is placed/measured. They can be relevant
+points of the imaged object's structure (i.e. anatomical landmarks) such as the
+anterior commissure in a brain. They can also be devices that generate a
+localizable signal that are placed in the intended position before scanning
+(i.e. markers). Positions of landmarks are identified via manual or automated
+algorithms that detect these landmarks in (e.g., MR) or from (e.g., MEG) the
+acquired data or via explicit encoding of position (e.g., EEG sensors,
+headshape/coil digitization).
+
+These landmarks can be coordinates in a file or voxel/pixel intensity relations
+in image files.This information (coordinates or intensity relations)
+representing landmarks of the same or similar object (e.g., a template brain) in
+different coordinate systems can be used to transform the object between
+coordinate systems.
+
+## Introduction
+
 To interpret a coordinate (x, y, z), it is required that you know relative to
 which origin the coordinates are expressed, you have to know the interpretation
 of the three axes, and you have to know the units in which the numbers are
@@ -54,7 +98,7 @@ Restricted keywords for the XXXCoordinateSystem field in the
 -   ChietiItab: RAS orientation and the origin between the ears
 
 -   Other: Use this for other coordinate systems and specify further details in
-  the `XXXCoordinateSystemDescription` field
+    the `XXXCoordinateSystemDescription` field
 
 Note that the short descriptions above do not capture all details, there are
 detailed descriptions of these coordinate systems on the FieldTrip toolbox web
@@ -92,9 +136,10 @@ specified explicitly in the sidecar file in the `XXCoordinateSystemUnits` field,
 the units are assumed to be mm.
 
 | Coordinate System                                   | Description                                                                                                                                                                                                                                                                                                                                                      |
-| ---------------------------------------------------   | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------   |
+| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FS305                                               | FreeSurfer variant of the MNI305 space                                                                                                                                                                                                                                                                                                                           |
 | MNI152Lin                                           | Also known as ICBM (version with linear coregistration) [http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152Lin](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152Lin)                                                                                                                                                                                       |
-| MNI152NLin6\[Sym&#124;Asym\]                        | Also known as ICBM 6th generation (non-linear coregistration). Used by SPM99 -   SPM8 and FSL (MNI152NLin6Sym). [http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin6](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin6)                                                                                                                           |
+| MNI152NLin6\[Sym&#124;Asym\]                        | Also known as ICBM 6th generation (non-linear coregistration). Used by SPM99 - SPM8 and FSL (MNI152NLin6Sym). [http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin6](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin6)                                                                                                                             |
 | MNI152NLin2009\[a-c\]\[Sym&#124;Asym\]              | Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009). It comes in either three different flavours each in symmetric or asymmetric version. [http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009)                                                           |
 | MNIColin27                                          | Average of 27 T1 scans of a single subject [http://www.bic.mni.mcgill.ca/ServicesAtlases/Colin27Highres](http://www.bic.mni.mcgill.ca/ServicesAtlases/Colin27Highres)                                                                                                                                                                                            |
 | MNI305                                              | Also known as avg305.                                                                                                                                                                                                                                                                                                                                            |
@@ -105,7 +150,9 @@ the units are assumed to be mm.
 | ICBM452AirSpace                                     | Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" with "linear transforms of the subjects into the atlas space using a 12-parameter affine transformation" [http://www.loni.usc.edu/ICBM/Downloads/Downloads_452T1.shtml](http://www.loni.usc.edu/ICBM/Downloads/Downloads_452T1.shtml)                              |
 | ICBM452Warp5Space                                   | Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" "based on a 5th order polynomial transformation into the atlas space" [http://www.loni.usc.edu/ICBM/Downloads/Downloads_452T1.shtml](http://www.loni.usc.edu/ICBM/Downloads/Downloads_452T1.shtml)                                                                 |
 | IXI549Space                                         | Reference space defined by the average of the "549 (...) subjects from the IXI dataset" linearly transformed to ICBM MNI 452.Used by SPM12. [http://www.brain-development.org/](http://www.brain-development.org/)                                                                                                                                               |
+| fsnative                                            | Images were sampled to the FreeSurfer surface reconstructed from the subject’s T1w image                                                                                                                                                                                                                                                                         |
 | fsaverage\[3&#124;4&#124;5&#124;6&#124;sym\]        | Images were sampled to the FreeSurfer surface reconstructed from the subject’s T1w image, and registered to an fsaverage template                                                                                                                                                                                                                                |
-| UNCInfant\[0&#124;1&#124;2\]V\[21&#124;22&#124;23\] | Infant Brain Atlases from Neonates to 1-   and 2-year-olds. [https://www.nitrc.org/projects/pediatricatlas](https://www.nitrc.org/projects/pediatricatlas)                                                                                                                                                                                                       |
+| fsLR[164k                                           | 32k]                                                                                                                                                                                                                                                                                                                                                             | Images were sampled to the 164k or 32k fsaverage_LR surface reconstructed from the T1w image (high resolution space of the HCPPipelines) |
+| UNCInfant\[0&#124;1&#124;2\]V\[21&#124;22&#124;23\] | Infant Brain Atlases from Neonates to 1- and 2-year-olds. [https://www.nitrc.org/projects/pediatricatlas](https://www.nitrc.org/projects/pediatricatlas)                                                                                                                                                                                                         |
 
 ---
