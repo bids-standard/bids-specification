@@ -1,4 +1,14 @@
+<<<<<<< aff9babe9675d92d251c5dc922930e2bca902667:src/pregh-changes.md
 ## 1.1.1
+=======
+1 Changelog
+
+1.2.0
+
+- Added support for EEG data (merged BEP006)
+
+1.1.1
+>>>>>>> edit changes for BEP006 merge:CHANGES.md
 
 -   Improved the MEG landmark coordinates description.
 
