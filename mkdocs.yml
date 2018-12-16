@@ -22,7 +22,7 @@ nav:
         - Functional derivatives: 05-derivatives/04-functional-derivatives.md
         - Diffusion derivatives: 05-derivatives/05-diffusion-derivatives.md
       - Longitudinal and multi-site studies: 06-longitudinal-and-multi-site-studies.md
-      - Extending the BIDS specification: 06-extensions.md
+      - Extending the BIDS specification: 07-extensions.md
       - Appendix:
         - Contributors: 99-appendices/01-contributors.md
         - Licenses: 99-appendices/02-licenses.md
