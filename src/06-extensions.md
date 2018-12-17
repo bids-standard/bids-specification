@@ -53,6 +53,7 @@ Below is a table of currently-active BEPs.
 | [BEP022](https://docs.google.com/document/d/1pWCb02YNv5W-UZZja24fZrdXLm4X7knXMiZI7E2z7mY) | [Magnetic Resonance Spectroscopy (MRS)](https://docs.google.com/document/d/1pWCb02YNv5W-UZZja24fZrdXLm4X7knXMiZI7E2z7mY)                                                                      | Dickson Wong                                                   |
 | [BEP023](https://docs.google.com/document/d/1yzsd1J9GT-aA0DWhdlgNr5LCu6_gvbjLyfvYq2FuxlY) | [PET Preprocessing derivatives](https://docs.google.com/document/d/1yzsd1J9GT-aA0DWhdlgNr5LCu6_gvbjLyfvYq2FuxlY)                                                                              | Martin Noergaard, Graham Searle, Melanie Ganz                  |
 | [BEP024](https://docs.google.com/document/d/1fqnJZ18x5LJC8jiJ8yvPHUGFzNBZ6gW2kywYrUKWtuo) | [Computed Tomography scan (CT)](https://docs.google.com/document/d/1fqnJZ18x5LJC8jiJ8yvPHUGFzNBZ6gW2kywYrUKWtuo)                                                                              | Hugo Boniface                                                  |
+| [BEP025](https://docs.google.com/document/d/1chZv7vAPE-ebPDxMktfI9i1OkLNR2FELIfpVYsaZPr4) | [Medical Population Imaging Data structure (MIDS)](https://docs.google.com/document/d/1chZv7vAPE-ebPDxMktfI9i1OkLNR2FELIfpVYsaZPr4)                                                           | Jose Manuel Saborit Torres                                     |
 
 When an extension reaches maturity it is merged into the main body of the
 specification.
