@@ -2,6 +2,8 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   repair links [#106](https://github.com/bids-standard/bids-specification/pull/106) ([sappelhoff](https://github.com/sappelhoff))
+-   Autogenerate CHANGES.md [#103](https://github.com/bids-standard/bids-specification/pull/103) ([franklin-feingold](https://github.com/franklin-feingold))
 -   Added contributor information [#100](https://github.com/bids-standard/bids-specification/pull/100) ([jgrethe](https://github.com/jgrethe))
 -   ENH: First(?) good practice recommendation. No excessive overrides in Inheritance principle [#99](https://github.com/bids-standard/bids-specification/pull/99) ([yarikoptic](https://github.com/yarikoptic))
 -   adding extensions page [#97](https://github.com/bids-standard/bids-specification/pull/97) ([choldgraf](https://github.com/choldgraf))
