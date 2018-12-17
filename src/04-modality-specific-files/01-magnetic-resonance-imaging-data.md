@@ -298,9 +298,9 @@ sequences.
 | option E |       \[ X ]    |              |         \[ ]        |    \[ X ] |      \[ ]    |
 
 **Legend**
-- \[ X ] --> has to be filled
-- \[   \] --> has to be left empty
-- empty cell --> can be specified but not required
+-   \[ X ] --> has to be filled
+-   \[   \] --> has to be left empty
+-   empty cell --> can be specified but not required
 
 ##### fMRI task information
 
