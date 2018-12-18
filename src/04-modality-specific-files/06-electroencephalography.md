@@ -49,15 +49,17 @@ differential amplifier and analog-to-digital converter that result in a
 potential (voltage) difference that is stored in the EEG dataset. We employ
 the following short definitions:
 
-- Electrode = A single point of contact between the acquisition system and the
-  recording site (e.g., scalp, neural tissue, ...). Multiple electrodes can be
-  organized as caps (for EEG), arrays, grids, leads, strips, probes, shafts,
-  etc.
-- Channel = A single analogue-digital-converter in the recording system that
-  regularly samples the value of a transducer, which results in a signal being
-  represented as a time series in the data. This can be connected to two
-  electrodes (to measure the potential difference between them), a magnetic
-  field or magnetic gradient sensor,  temperature sensor, accelerometer, etc.
+-   Electrode = A single point of contact between the acquisition system and
+    the recording site (e.g., scalp, neural tissue, ...). Multiple electrodes
+    can be organized as caps (for EEG), arrays, grids, leads, strips, probes,
+    shafts, etc.
+
+-   Channel = A single analogue-digital-converter in the recording system that
+    regularly samples the value of a transducer, which results in a signal
+    being represented as a time series in the data. This can be connected to
+    two electrodes (to measure the potential difference between them), a
+    magnetic field or magnetic gradient sensor,  temperature sensor,
+    accelerometer, etc.
 
 Although the "reference" and "ground" are often referred to as channels, they
 are in most common EEG systems not amplified and recorded by themselves, and
@@ -82,8 +84,8 @@ Whenever possible, please avoid using ad-hoc wording.
 | InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                      |
 | InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                   |
 | Manufacturer           | RECOMMENDED. Manufacturer of the EEG system (e.g., `Biosemi`, `Brain Products`, `Other`).                                                                                                                                                                                       |
-| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the EEG system model (e.g. `BrainAmp DC`).       |
-| SoftwareVersions       | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                            |                                                                                      |
+| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the EEG system model (e.g. `BrainAmp DC`).                                                                                                                                                                                           |
+| SoftwareVersions       | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                            |
 | TaskDescription        | RECOMMENDED. Description of the task.                                                                                                                                                                                                                                           |
 | Instructions           | RECOMMENDED. Text of the instructions given to participants before the scan. This is not only important for behavioural or cognitive tasks but also in resting state paradigms (e.g. to distinguish between eyes open and eyes closed).                                         |
 | CogAtlasID             | RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) term that describes the task (e.g. Resting State with eyes closed "[http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b](http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b)") |
@@ -96,9 +98,8 @@ Specific EEG fields MUST be present:
 | :------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | SamplingFrequency   | REQUIRED. Sampling frequency (in Hz) of all the data in the recording, regardless of their type (e.g., 2400)                                                                                                                                                                                                                            |
 | PowerLineFrequency  | REQUIRED. Frequency (in Hz) of the power grid at the geographical location of the EEG instrument (i.e. 50 or 60)                                                                                                                                                                                                                        |
-| EEGChannelCount     | REQUIRED. Number of EEG channels included in the recording (e.g. 128).                                                                                                                                                                                                                                                                   |
-| SoftwareFilters     | REQUIRED. List of temporal software filters applied. Ideally key:value pairs of pre-applied software filters and their parameter values: e.g., `{"Anti-aliasing filter": {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`. Write `n/a` if no software filters applied. |
-
+| EEGChannelCount     | REQUIRED. Number of EEG channels included in the recording (e.g. 128).                                                                                                                                                                                                                                                                  |
+| SoftwareFilters     | REQUIRED. List of temporal software filters applied. Ideally key:value pairs of pre-applied software filters and their parameter values: e.g., `{"Anti-aliasing filter": {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`. Write `n/a` if no software filters applied.                                                   |
 
 SHOULD be present:
 
@@ -119,7 +120,6 @@ SHOULD be present:
 | EEGGround                  | RECOMMENDED. Description of the location of the ground electrode (e.g., "placed on right mastoid (M2)")                                                                                                                                                                                                        |
 | HardwareFilters            | RECOMMENDED. List of temporal hardware filters applied. Ideally key:value pairs of pre-applied hardware filters and their parameter values: e.g., `{"HardwareFilters": {"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dB/Octave"}}}`. Write `n/a` if no hardware filters applied. |
 | SubjectArtefactDescription | RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g. "Vagus Nerve Stimulator", "non-removable implant"). If this field is set to `n/a`, it will be interpreted as absence of major source of artifacts except cardiac and blinks.                                   |
-
 
 Example:
 
