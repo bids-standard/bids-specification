@@ -63,4 +63,102 @@ Although the "reference" and "ground" are often referred to as channels, they
 are in most common EEG systems not amplified and recorded by themselves, and
 therefore should not be represented as channels but as electrodes. The type of
 referencing and optionally the location of the reference electrode and the
-location of the ground electrode MAY be specified.  
+location of the ground electrode MAY be specified.
+
+### Sidecar JSON document (`*_eeg.json`)
+
+Generic fields MUST be present:
+
+| Field name | Definition                                                                                                                                                                                                                  |
+| :--------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| TaskName   | REQUIRED. Name of the task (for resting state use the `rest` prefix). Different Tasks SHOULD NOT have the same name. The Task label is derived from this field by removing all non alphanumeric (`[a-zA-Z0-9]`) characters. |
+
+SHOULD be present: For consistency between studies and institutions, we
+encourage users to extract the values of these fields from the actual raw data.
+Whenever possible, please avoid using ad-hoc wording.
+
+| Field name             | Definition                                                                                                                                                                                                                                                                      |
+| :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                      |
+| InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                   |
+| Manufacturer           | RECOMMENDED. Manufacturer of the EEG system (e.g., `Biosemi`, `Brain Products`, `Other`).                                                                                                                                                                                       |
+| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the EEG system model (e.g. `BrainAmp DC`).       |
+| SoftwareVersions       | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                            |                                                                                      |
+| TaskDescription        | RECOMMENDED. Description of the task.                                                                                                                                                                                                                                           |
+| Instructions           | RECOMMENDED. Text of the instructions given to participants before the scan. This is not only important for behavioural or cognitive tasks but also in resting state paradigms (e.g. to distinguish between eyes open and eyes closed).                                         |
+| CogAtlasID             | RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) term that describes the task (e.g. Resting State with eyes closed "[http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b](http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b)") |
+| CogPOID                | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task (e.g. Rest "[http://wiki.cogpo.org/index.php?title=Rest](http://wiki.cogpo.org/index.php?title=Rest)")                                                                        |
+| DeviceSerialNumber     | RECOMMENDED. The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.                                                   |
+
+Specific EEG fields MUST be present:
+
+| Field name          | Definition                                                                                                                                                                                                                                                                                                                              |
+| :------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SamplingFrequency   | REQUIRED. Sampling frequency (in Hz) of all the data in the recording, regardless of their type (e.g., 2400)                                                                                                                                                                                                                            |
+| PowerLineFrequency  | REQUIRED. Frequency (in Hz) of the power grid at the geographical location of the EEG instrument (i.e. 50 or 60)                                                                                                                                                                                                                        |
+| EEGChannelCount     | REQUIRED. Number of EEG channels included in the recording (e.g. 128).                                                                                                                                                                                                                                                                   |
+| SoftwareFilters     | REQUIRED. List of temporal software filters applied. Ideally key:value pairs of pre-applied software filters and their parameter values: e.g., `{"Anti-aliasing filter": {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`. Write `n/a` if no software filters applied. |
+
+
+SHOULD be present:
+
+| Field name                 | Definition                                                                                                                                                                                                                                                                                                     |
+|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CapManufacturer            | RECOMMENDED. Name of the cap manufacturer (e.g., "EasyCap")                                                                                                                                                                                                                                                    |
+| CapManufacturersModelName  | RECOMMENDED. Manufacturer's designation of the EEG cap model (e.g., "actiCAP 64 Ch Standard-2")                                                                                                                                                                                                                |
+| ECGChannelCount            | RECOMMENDED. Number of ECG channels                                                                                                                                                                                                                                                                            |
+| EMGChannelCount            | RECOMMENDED. Number of EMG channels                                                                                                                                                                                                                                                                            |
+| EOGChannelCount            | RECOMMENDED. Number of EOG channels                                                                                                                                                                                                                                                                            |
+| MiscChannelCount           | RECOMMENDED. Number of miscellaneous analog channels for auxiliary signals                                                                                                                                                                                                                                     |
+| TriggerChannelCount        | RECOMMENDED. Number of channels for digital (TTL bit level) trigger                                                                                                                                                                                                                                            |
+| RecordingDuration          | RECOMMENDED. Length of the recording in seconds (e.g., 3600)                                                                                                                                                                                                                                                   |
+| RecordingType              | RECOMMENDED. Defines whether the recording is `continuous` or `epoched`                                                                                                                                                                                                                                        |
+| EpochLength                | RECOMMENDED. Duration of individual epochs in seconds (e.g., 1) in case of epoched data                                                                                                                                                                                                                        |
+| HeadCircumference          | RECOMMENDED. Circumference of the participants head, expressed in cm (e.g., 58)                                                                                                                                                                                                                                |
+| EEGPlacementScheme         | Placement scheme of EEG electrodes. Either the name of a standardised placement system (e.g., "10-20") or a list of standardised electrode names (e.g. `["Cz", "Pz"]`)                                                                                                                                         |
+| EEGGround                  | RECOMMENDED. Description of the location of the ground electrode (e.g., "placed on right mastoid (M2)")                                                                                                                                                                                                        |
+| HardwareFilters            | RECOMMENDED. List of temporal hardware filters applied. Ideally key:value pairs of pre-applied hardware filters and their parameter values: e.g., `{"HardwareFilters": {"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dB/Octave"}}}`. Write `n/a` if no hardware filters applied. |
+| SubjectArtefactDescription | RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g. "Vagus Nerve Stimulator", "non-removable implant"). If this field is set to `n/a`, it will be interpreted as absence of major source of artifacts except cardiac and blinks.                                   |
+
+
+Example:
+
+```JSON
+{
+  "TaskName":"Seeing stuff",
+  "TaskDescription":"Subjects see various images for which phase, amplitude spectrum, and color vary continuously",
+  "Instructions":"Your task is to detect images when they appear for the 2nd time, only then press the response button with your right/left hand (counterbalanced across subjects)",
+  "InstitutionName":"The world best university, 10 beachfront avenue, Papeete",
+  "SamplingFrequency":2400,
+  "Manufacturer":"Brain Products",
+  "ManufacturersModelName":"BrainAmp DC",
+  "CapManufacturer":"EasyCap",
+  "CapManufacturersModelName":"M1-ext",
+  "EEGChannelCount":87,
+  "EOGChannelCount":2,
+  "ECGChannelCount":1,
+  "EMGChannelCount":0,
+  "MiscChannelCount":0,
+  "TriggerChannelCount":1,
+  "PowerLineFrequency":50,
+  "EEGPlacementScheme":"10 percent system",
+  "EEGReference":"single electrode placed on FCz",
+  "EEGGround":"placed on AFz",
+  "HardwareFilters":{
+    "ADC's decimation filter (hardware bandwidth limit)":{
+      "-3dB cutoff point (Hz)":480,
+      "Filter order sinc response":5
+    }
+  },
+  "RecordingDuration":600,
+  "RecordingType":"continuous"
+}
+```
+
+Note that the date and time information SHOULD be stored in the Study key file
+(`scans.tsv`), see [Scans.tsv](../03-modality-agnostic-files.md#scans-file). As
+it is indicated there, date time information MUST be expressed in the following
+format `YYYY-MM-DDThh:mm:ss`
+([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For
+example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
+on local REB/IRB ethics board policy.
