@@ -8,7 +8,6 @@
 - Added support for EEG data (merged BEP006)
 
 1.1.1
->>>>>>> edit changes for BEP006 merge:CHANGES.md
 
 -   Improved the MEG landmark coordinates description.
 
