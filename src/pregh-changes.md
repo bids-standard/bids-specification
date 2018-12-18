@@ -1,12 +1,4 @@
 ## 1.1.1
-=======
-1 Changelog
-
-1.2.0
-
--   Added support for EEG data (merged BEP006)
-
-1.1.1
 
 -   Improved the MEG landmark coordinates description.
 
