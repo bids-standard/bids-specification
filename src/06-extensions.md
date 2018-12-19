@@ -9,17 +9,17 @@ There are many ways to get involved with the BIDS community!
 ### The BIDS Starter Kit
 If you're new
 to the BIDS community and you'd like to learn a bit more, we recommend checking
-out the [BIDS Starter Kit]
-(https://github.com/bids-standard/bids-starter-kit/blob/master/README.md).
-This has introductory information about the BIDS specification, tools in
-the BIDS ecosystem, and how you can get involved.
+out the [BIDS Starter Kit](https://github.com/bids-standard/bids-starter-kit/blob/master/README.md).
+This has introductory information about the BIDS specification, tools in the
+BIDS ecosystem, and how you can get involved.
 
 ### The BIDS Contributor guide
 
 If you'd like to get involved more heavily in helping extend the BIDS
-specification or develop tools for it, see the [BIDS Contributor Guide]
-(https://docs.google.com/document/d/1pWmEEY-1-WuwBPNy5tDAxVJYQ9Een4hZJM06tQZg8X4/edit?usp%3Dsharing&sa=D&ust=1537468908724000). It contains more in-depth information for getting
-involved with the BIDS community.
+specification or develop tools for it, see the
+[BIDS Contributor Guide](https://docs.google.com/document/d/1pWmEEY-1-WuwBPNy5tDAxVJYQ9Een4hZJM06tQZg8X4/edit?usp%3Dsharing&sa=D&ust=1537468908724000).
+It contains more in-depth information for getting involved with the BIDS
+community.
 
 ## BIDS Extension Proposals
 
@@ -53,6 +53,7 @@ Below is a table of currently-active BEPs.
 | [BEP022](https://docs.google.com/document/d/1pWCb02YNv5W-UZZja24fZrdXLm4X7knXMiZI7E2z7mY) | [Magnetic Resonance Spectroscopy (MRS)](https://docs.google.com/document/d/1pWCb02YNv5W-UZZja24fZrdXLm4X7knXMiZI7E2z7mY)                                                                      | Dickson Wong                                                   |
 | [BEP023](https://docs.google.com/document/d/1yzsd1J9GT-aA0DWhdlgNr5LCu6_gvbjLyfvYq2FuxlY) | [PET Preprocessing derivatives](https://docs.google.com/document/d/1yzsd1J9GT-aA0DWhdlgNr5LCu6_gvbjLyfvYq2FuxlY)                                                                              | Martin Noergaard, Graham Searle, Melanie Ganz                  |
 | [BEP024](https://docs.google.com/document/d/1fqnJZ18x5LJC8jiJ8yvPHUGFzNBZ6gW2kywYrUKWtuo) | [Computed Tomography scan (CT)](https://docs.google.com/document/d/1fqnJZ18x5LJC8jiJ8yvPHUGFzNBZ6gW2kywYrUKWtuo)                                                                              | Hugo Boniface                                                  |
+| [BEP025](https://docs.google.com/document/d/1chZv7vAPE-ebPDxMktfI9i1OkLNR2FELIfpVYsaZPr4) | [Medical Population Imaging Data structure (MIDS)](https://docs.google.com/document/d/1chZv7vAPE-ebPDxMktfI9i1OkLNR2FELIfpVYsaZPr4)                                                           | Jose Manuel Saborit Torres                                     |
 
 When an extension reaches maturity it is merged into the main body of the
 specification.
