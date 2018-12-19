@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   Remove duplicate entries in MEG table [#113](https://github.com/bids-standard/bids-specification/pull/113) ([franklin-feingold](https://github.com/franklin-feingold))
 -   Propose BEP025 MIDS [#110](https://github.com/bids-standard/bids-specification/pull/110) ([josator2](https://github.com/josator2))
 -   repair links [#106](https://github.com/bids-standard/bids-specification/pull/106) ([sappelhoff](https://github.com/sappelhoff))
 -   Autogenerate CHANGES.md [#103](https://github.com/bids-standard/bids-specification/pull/103) ([franklin-feingold](https://github.com/franklin-feingold))
