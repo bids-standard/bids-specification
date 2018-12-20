@@ -93,6 +93,14 @@ Useful for multimodal co-registration with MEG, (S)EEG, TMS, etc.
 | :---------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | AnatomicalLandmarkCoordinates | RECOMMENDED. Key:value pairs of any number of additional anatomical landmarks and their coordinates in voxel units (where first voxel has index 0,0,0) relative to the associated anatomical MRI, (e.g. `{"AC": [127,119,149], "PC": [128,93,141], "IH": [131,114,206]}, or {"NAS": [127,213,139], "LPA": [52,113,96], "RPA": [202,113,91]}`). |
 
+#### Acquisition Area
+Useful when the acquisition area does not encompass the (whole) brain.
+
+| Field name                    | Definition                                                                                                                                                                                                                                                                                                                                     |
+| :---------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AcquisitionArea | RECOMMENDED. General tag to describe the area of acquisition (e.g. `"Brain"`, `"Spinal Cord"`, `"Other"`).
+| AcquisitionAreaDescription | OPTIONAL. More detailed description of the area captured (e.g. `"Pons to somatosensory cortex with slices parallel to AC-PC"`, or `"vertebral level C3 to C6 with slices perpendicular to spinal cord"`). |
+
 #### Institution information
 
 | Field name                  | Definition                                                                                                                                                                            |
