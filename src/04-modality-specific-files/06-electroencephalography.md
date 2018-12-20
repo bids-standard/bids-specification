@@ -19,10 +19,6 @@ sub-<label>/
       eeg/
         sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_eeg.<manufacturer_specific_extension>
         sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_eeg.json
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_channels.tsv
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_electrodes.tsv
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_coordsystem.json
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_photo.jpg
 
 ```
 
@@ -79,27 +75,27 @@ SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad-hoc wording.
 
-| Field name             | Definition                                                                                                                                                                                                                                                                      |
-| :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                      |
-| InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                   |
-| Manufacturer           | RECOMMENDED. Manufacturer of the EEG system (e.g., `Biosemi`, `Brain Products`, `Other`).                                                                                                                                                                                       |
-| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the EEG system model (e.g. `BrainAmp DC`).                                                                                                                                                                                           |
-| SoftwareVersions       | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                            |
-| TaskDescription        | RECOMMENDED. Description of the task.                                                                                                                                                                                                                                           |
-| Instructions           | RECOMMENDED. Text of the instructions given to participants before the scan. This is not only important for behavioural or cognitive tasks but also in resting state paradigms (e.g. to distinguish between eyes open and eyes closed).                                         |
-| CogAtlasID             | RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) term that describes the task (e.g. Resting State with eyes closed "[http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b](http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b)") |
-| CogPOID                | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task (e.g. Rest "[http://wiki.cogpo.org/index.php?title=Rest](http://wiki.cogpo.org/index.php?title=Rest)")                                                                        |
-| DeviceSerialNumber     | RECOMMENDED. The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.                                                   |
+| Field name             | Definition                                                                                                                                                                                                                                                                       |
+| :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                       |
+| InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                    |
+| Manufacturer           | RECOMMENDED. Manufacturer of the EEG system (e.g., `Biosemi`, `Brain Products`, `Other`).                                                                                                                                                                                        |
+| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the EEG system model (e.g., `BrainAmp DC`).                                                                                                                                                                                           |
+| SoftwareVersions       | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                             |
+| TaskDescription        | RECOMMENDED. Description of the task.                                                                                                                                                                                                                                            |
+| Instructions           | RECOMMENDED. Text of the instructions given to participants before the scan. This is not only important for behavioral or cognitive tasks but also in resting state paradigms (e.g., to distinguish between eyes open and eyes closed).                                          |
+| CogAtlasID             | RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) term that describes the task (e.g., Resting State with eyes closed "[http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b](http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b)") |
+| CogPOID                | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task (e.g., Rest "[http://wiki.cogpo.org/index.php?title=Rest](http://wiki.cogpo.org/index.php?title=Rest)")                                                                        |
+| DeviceSerialNumber     | RECOMMENDED. The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.                                                    |
 
 Specific EEG fields MUST be present:
 
-| Field name          | Definition                                                                                                                                                                                                                                                                                                                              |
-| :------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SamplingFrequency   | REQUIRED. Sampling frequency (in Hz) of all the data in the recording, regardless of their type (e.g., 2400)                                                                                                                                                                                                                            |
-| PowerLineFrequency  | REQUIRED. Frequency (in Hz) of the power grid at the geographical location of the EEG instrument (i.e. 50 or 60)                                                                                                                                                                                                                        |
-| EEGChannelCount     | REQUIRED. Number of EEG channels included in the recording (e.g. 128).                                                                                                                                                                                                                                                                  |
-| SoftwareFilters     | REQUIRED. List of temporal software filters applied. Ideally key:value pairs of pre-applied software filters and their parameter values: e.g., `{"Anti-aliasing filter": {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`. Write `n/a` if no software filters applied.                                                   |
+| Field name          | Definition                                                                                                                                                                                                                                                                            |
+| :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| SamplingFrequency   | REQUIRED. Sampling frequency (in Hz) of all the data in the recording, regardless of their type (e.g., 2400)                                                                                                                                                                          |
+| PowerLineFrequency  | REQUIRED. Frequency (in Hz) of the power grid at the geographical location of the EEG instrument (i.e., 50 or 60)                                                                                                                                                                     |
+| EEGChannelCount     | REQUIRED. Number of EEG channels included in the recording (e.g., 128).                                                                                                                                                                                                               |
+| SoftwareFilters     | REQUIRED. List of temporal software filters applied. Ideally key:value pairs of pre-applied software filters and their parameter values: e.g., `{"Anti-aliasing filter": {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`. Write `n/a` if no software filters applied. |
 
 SHOULD be present:
 
@@ -162,3 +158,82 @@ format `YYYY-MM-DDThh:mm:ss`
 ([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For
 example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
 on local REB/IRB ethics board policy.
+
+## Channels description table (`*_channels.tsv`)
+
+Template:
+
+```Text
+sub-<label>/
+    [ses-<label>]/
+      eeg/
+        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_channels.tsv]
+```
+
+Although this information can often be extracted from the EEG recording,
+listing it in a simple .tsv document makes it easy to browse or search. The
+required columns are channel `name`, `type` and `units`. Channels should appear
+in the table in the same order they do in the EEG data file. Any number of
+additional columns may be provided to provide additional information about the
+channels. Note that electrode positions should not be added to this file, but
+to `*_electrodes.tsv`.
+
+
+The columns of the Channels description table stored in `*_channels.tsv` are:
+
+MUST be present:
+
+| Field name | Definition                                                                                                                                             |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name       | REQUIRED. Channel name (e.g., FC1, Cz)                                                                                                                 |
+| type       | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                    |
+| units      | REQUIRED. Physical unit of the data values recorded by this channel in SI (see [Appendix V](../99-appendices/05-units.md): Units for allowed symbols). |
+
+SHOULD be present:
+
+| Field name         | Definition                                                                                                                                                                                                                                                                    |
+| :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| description        | OPTIONAL. Brief free-text description of the channel, or other information of interest. See examples below.                                                                                                                                                                   |
+| sampling_frequency | OPTIONAL. Sampling rate of the channel in Hz.                                                                                                                                                                                                                                 |
+| reference          | OPTIONAL. Name of the reference electrode(s) (not needed when it is common to all channels, in that case it can be specified in `eeg.json` as `EEGReference`).                                                                                                                |
+| low_cutoff         | OPTIONAL. Frequencies used for the high-pass filter applied to the channel in Hz. If no high-pass filter applied, use `n/a`.                                                                                                                                                  |
+| high_cutoff        | OPTIONAL. Frequencies used for the low-pass filter applied to the channel in Hz. If no low-pass filter applied, use `n/a`. Note that hardware anti-aliasing in A/D conversion of all EEG electronics applies a low-pass filter; specify its frequency here if applicable.     |
+| notch              | OPTIONAL. Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use `n/a`.                                                                                                                                                         |
+| status             | OPTIONAL. Data quality observed on the channel `(good/bad)`. A channel is considered `bad` if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in `[status_description]`.                                                     |
+| status_description | OPTIONAL. Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `[status]`.                                       
+
+Restricted keyword list for field `type` in alphabetic order (shared with the
+MEG modality; however, MEG specific types are not listed here):
+
+| Keyword  | Description                                                  |
+|----------|--------------------------------------------------------------|
+| AUDIO    | Audio signal                                                 |
+| EEG      |  Electroencephalogram channel                                |
+| EOG      | Generic electrooculogram (eye), different from HEOG and VEOG |
+| ECG      | Electrocardiogram (heart)                                    |
+| EMG      |  Electromyogram (muscle)                                     |
+| EYEGAZE  | Eye tracker gaze                                             |
+| GSR      | Galvanic skin resistance                                     |
+| HEOG     |  Horizontal EOG (eye)                                        |
+| MISC     | Miscellaneous                                                |
+| PUPIL    | Eye tracker pupil diameter                                   |
+| REF      | Reference channel                                            |
+| RESP     | Respiration                                                  |
+| SYSCLOCK | System time showing elapsed time since trial started         |
+| TEMP     | Temperature                                                  |
+| TRIG     |  System triggers                                             |
+| VEOG     |  Vertical EOG (eye)                                          |
+
+Example of free text for field `description`
+
+-   n/a, stimulus, response, skin conductance, battery status
+
+Example:
+
+```Text
+name	type	units	description	status	status_description
+VEOG	VEOG	microV	n/a	good	n/a
+FDI	EMG	microV	left first dorsal interosseous	good	n/a
+Cz	EEG	microV	n/a	bad	high frequency noise
+UADC001	MISC	n/a	enevelope of audio signal	good	n/a
+```
