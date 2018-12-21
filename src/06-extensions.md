@@ -55,6 +55,7 @@ Below is a table of currently-active BEPs.
 | [BEP024](https://docs.google.com/document/d/1fqnJZ18x5LJC8jiJ8yvPHUGFzNBZ6gW2kywYrUKWtuo) | [Computed Tomography scan (CT)](https://docs.google.com/document/d/1fqnJZ18x5LJC8jiJ8yvPHUGFzNBZ6gW2kywYrUKWtuo)                                                                              | Hugo Boniface                                                  |
 | [BEP025](https://docs.google.com/document/d/1chZv7vAPE-ebPDxMktfI9i1OkLNR2FELIfpVYsaZPr4) | [Medical Population Imaging Data structure (MIDS)](https://docs.google.com/document/d/1chZv7vAPE-ebPDxMktfI9i1OkLNR2FELIfpVYsaZPr4)                                                           | Jose Manuel Saborit Torres                                     |
 | [BEP026](https://docs.google.com/document/d/14KC1d5-Lx-7ZSMtwS7pVAAvz-2WR_uoo5FvsNirzqJw) | [Microelectrode Recordings (MER)](https://docs.google.com/document/d/14KC1d5-Lx-7ZSMtwS7pVAAvz-2WR_uoo5FvsNirzqJw)                                                                      | Greydon Gilmore                                               |
+
 When an extension reaches maturity it is merged into the main body of the
 specification.
 
