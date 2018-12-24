@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   Global fields in data dictionaries [#117](https://github.com/bids-standard/bids-specification/pull/117) ([chrisfilo](https://github.com/chrisfilo))
 -   Propose BEP026 MER [#116](https://github.com/bids-standard/bids-specification/pull/116) ([greydongilmore](https://github.com/greydongilmore))
 -   Remove duplicate entries in MEG table [#113](https://github.com/bids-standard/bids-specification/pull/113) ([franklin-feingold](https://github.com/franklin-feingold))
 -   Propose BEP025 MIDS [#110](https://github.com/bids-standard/bids-specification/pull/110) ([josator2](https://github.com/josator2))
