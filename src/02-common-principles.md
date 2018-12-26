@@ -303,6 +303,30 @@ sub- prefix is not part of the subject label, but must be included in file names
 MUST be integers. Those labels MAY include zero padding, but this is NOT
 RECOMMENDED to maintain their uniqueness.
 
+## The contrast suffix
+
+In addition to the `*<label_identifier>-<custom_label>*` pairs (e.g. `sub-001`),
+it is RECOMMENDED that file names contain a suffix of the form `*_<suffix>.`,
+which directly precedes the file format delimiter. The string values of this
+suffix indicate  the contrast of the file in question.
+
+This specification is often needed, as the NIfTI header does not allow us to
+specify what unit or contrast the voxel values correspond to. The decision of
+BIDS to track this information in the file name rather than in the JSON sidecar
+file, is based on (a) the high relevance of this field for rapid file selection
+(b) the low number but large scope of brain imaging contrasts. For non-NIfTI
+files, this suffix provides more user-friendly recognition of the feature
+documented by the file. A file ending in `_events.tsv` is more unambiguously
+understood as documenting the events than if this information had to be inferred
+purely from the `.tsv` format.
+
+It is particularly noteworthy that there can only be one contrast suffix per file,
+as the voxel values can only correspond to one contrast. This field is not
+designed to track historical information, and the suffix `_cbv_tstat.*` is
+nonsensical. If multiple contrasts (e.g. `_cbv.*` and `_bold.*`) are acquired in
+one session, the corresponding files MUST be differentiated by other labels
+(e.g. `*run-<label>`).
+
 ## Units
 
 All units SHOULD be specified as per International System of Units (abbreviated
