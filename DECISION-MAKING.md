@@ -32,6 +32,8 @@ to evolve independently of the Decision-making rules.
    others) or proposal to release a new version needs to be done via a Pull 
    Request (PR) to the Repository.
 1. Anyone can open a PR (this action is not limited to Contributors).
+1. PRs adding new Contributors must also add their GitHub names to the 
+   [CODEOWNERS](CODEOWNERS) file.
 1. A PR is eligible to be merged if and only if these conditions are met:
    1. The last commit is at least 5 working days old to allow the community to 
       evaluate it.
