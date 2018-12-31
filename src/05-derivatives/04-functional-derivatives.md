@@ -8,8 +8,8 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func/
-            <source_keywords>[_referencemap-<referencemap>space-<space>][_desc-<label>]_<suffix>.nii[.gz]
-            <source_keywords>[_referencemap-<referencemap>space-<space>][_desc-<label>]_<suffix>.json
+            <source_keywords>[_referencemap-<referencemap>][_desc-<label>]_<suffix>.nii[.gz]
+            <source_keywords>[_referencemap-<referencemap>][_desc-<label>]_<suffix>.json
 ```
 
 for example:
@@ -75,8 +75,8 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func/
-	        <source_keywords>_[desc-<label>_]regressors.tsv
-	        <source_keywords>_[desc-<label>_]regressors.json
+	        <source_keywords>[_desc-<label>]_regressors.tsv
+	        <source_keywords>[_desc-<label>]_regressors.json
 ```
 
 for example:
@@ -127,8 +127,8 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func/
-            <source_keywords>_[atlas-<atlas_label>_][desc-<label>_]timeseries.<tsv|nii.gz>
-            <source_keywords>_[atlas-<atlas_label>_][desc-<label>_]timeseries.json
+            <source_keywords>[_atlas-<atlas_label>][_desc-<label>]_timeseries.<tsv|nii.gz>
+            <source_keywords>[_atlas-<atlas_label>][_desc-<label>]_timeseries.json
 ```
 
 for example:
@@ -233,8 +233,8 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
     func/
-        <source_keywords>_[desc-<label>_]motion.tsv
-        <source_keywords>_[desc-<label>_]motion.json
+        <source_keywords>[_desc-<label>]_motion.tsv
+        <source_keywords>[_desc-<label>]_motion.json
 ```
 
 #### Column names
@@ -268,8 +268,8 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func/
-	        <source_keywords>_[desc-<label>_]outliers.tsv
-            <source_keywords>_[desc-<label>_]outliers.json
+	        <source_keywords>[_desc-<label>]_outliers.tsv
+            <source_keywords>[_desc-<label>]_outliers.json
 ```
 
 Outlier masks are columns of zeros (0), with ones (1) indicating volumes that
@@ -316,9 +316,9 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func/
-            <source_keywords>_[desc-<label>_]<mixing|components>.tsv
-            <source_keywords>_[desc-<label>_]<mixing|components>.nii.gz
-            <source_keywords>_[desc-<label>_]decomposition.json
+            <source_keywords>[_desc-<label>]_<mixing|components>.tsv
+            <source_keywords>[_desc-<label>]_<mixing|components>.nii.gz
+            <source_keywords>[_desc-<label>]_decomposition.json
 ```
 
 for example:
