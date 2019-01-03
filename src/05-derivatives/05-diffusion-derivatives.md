@@ -20,14 +20,14 @@ The JSON sidecar file is REQUIRED (due to the REQUIRED `SkullStripped` field -
 see [Common Data Types](02-common-data-types.md)), and if present can be used to
 store information about what preprocessing options were used (for example
 whether motion compensation was performed, non-linear corrections were applied,
- whether eddy current correction was performed, denoising, or intensity
+whether eddy current correction was performed, denoising, or intensity
 normalization were applied, etc).
 
 Additional reserved JSON metadata fields:
 
 | **Key name**           | **Description**                                                                                                          |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------ |
- | MotionCorrection     | OPTONAL. Boolean. Motion correction                                                                                    |
+| MotionCorrection       | OPTONAL. Boolean. Motion correction                                                                                      |
 | EddyCurrentCorrection  | OPTONAL. Boolean. Eddy currents corrections                                                                              |
 | Denoising              | OPTIONAL. String. Denoising method                                                                                       |
 | IntensityNormalization | OPTIONAL. Boolean. Intensity normalization                                                                               |
@@ -92,19 +92,19 @@ The JSON sidecar contains the following key/value pairs common for all models:
 
     -   `DTI` :
 
-        - `FitMethod` : {`WLS`,`OLS`,`NLLS`,`RESTORE`}
-        - `RESTORE` : sigma
+        -   `FitMethod` : {`WLS`,`OLS`,`NLLS`,`RESTORE`}
+        -   `RESTORE` : sigma
 
     -   `DKI` and `WMTI`:
 
-        - `FitMethod` : {`WLS`,`OLS`,`NLLS`}
+        -   `FitMethod` : {`WLS`,`OLS`,`NLLS`}
 
     -   `CSD`:
 
-        - `SphericalHarmonicOrder` : value
-        - `ResponseFunctionOrder` : value
-        - `ResponseFunction` : \[1:response_function_order_value,b0mean\]
-        - `Basis` : {`MRtrix 0.2`,`MRtrix3`,`DESCOTEAUX`}
+        -   `SphericalHarmonicOrder` : value
+        -   `ResponseFunctionOrder` : value
+        -   `ResponseFunction` : \[1:response_function_order_value,b0mean\]
+        -   `Basis` : {`MRtrix 0.2`,`MRtrix3`,`DESCOTEAUX`}
 
     -   `CSDM`:
 
@@ -120,65 +120,65 @@ The JSON sidecar contains the following key/value pairs common for all models:
 
     -   `NODDI`:
 
-        - `DPar` : value
-        - `DIso` : value
-        - `Lambda1` : value
-        - `Lambda2` : value
+        -   `DPar` : value
+        -   `DIso` : value
+        -   `Lambda1` : value
+        -   `Lambda2` : value
 
     -   `DSI` :
 
-        - `GridSize` : value
-        - `RStart` : value
-        - `RStep` : value
-        - `REnd` : value
-        - `FilterWidth` : value
+        -   `GridSize` : value
+        -   `RStart` : value
+        -   `RStep` : value
+        -   `REnd` : value
+        -   `FilterWidth` : value
 
     -   `CSA` :
 
-        - `SphericalHarmonicOrder` : value
-        - `Smoothing` : value
-        - `Basis` : value
+        -   `SphericalHarmonicOrder` : value
+        -   `Smoothing` : value
+        -   `Basis` : value
 
     -   `SHORE` :
 
-        - `RadialOrder` : value
-        - `Zeta` : value
-        - `LambdaN` : value
-        - `LambdaL` : value
-        - `Tau` : value
-        - `ConstrainE0` : value
-        - `PositiveConstraint` : value
-        - `PosGrid` : value
-        - `PosRadius` : value
+        -   `RadialOrder` : value
+        -   `Zeta` : value
+        -   `LambdaN` : value
+        -   `LambdaL` : value
+        -   `Tau` : value
+        -   `ConstrainE0` : value
+        -   `PositiveConstraint` : value
+        -   `PosGrid` : value
+        -   `PosRadius` : value
 
     -   `MAPMRI` :
 
-        - `RadialOrder` : value
-        - `LaplacianRegularization` : bool
-        - `LaplacianWeighting` : value
-        - `PositivityConstraint` : bool
-        - `Tau` : value
-        - `ConstrainE0` : value
-        - `PositiveConstraint` : value
-        - `PosGrid` : value
-        - `PosRadius` : value
-        - `AnisotropicScaling` : bool
-        - `EigenvalueThreshold` : value
-        - `PosGrid` : value
-        - `BvalThreshold` : value
-        - `DTIScaleEstimation` : bool
-        - `StaticDiffusivity` : value
+        -   `RadialOrder` : value
+        -   `LaplacianRegularization` : bool
+        -   `LaplacianWeighting` : value
+        -   `PositivityConstraint` : bool
+        -   `Tau` : value
+        -   `ConstrainE0` : value
+        -   `PositiveConstraint` : value
+        -   `PosGrid` : value
+        -   `PosRadius` : value
+        -   `AnisotropicScaling` : bool
+        -   `EigenvalueThreshold` : value
+        -   `PosGrid` : value
+        -   `BvalThreshold` : value
+        -   `DTIScaleEstimation` : bool
+        -   `StaticDiffusivity` : value
 
     -   `FORECAST` :
 
-        - `Sphere` : value
-        - `DecAlg` : value
-        - `LambdaLb` : value
-        - `SphericalHarmonicsOrder` : value
+        -   `Sphere` : value
+        -   `DecAlg` : value
+        -   `LambdaLb` : value
+        -   `SphericalHarmonicsOrder` : value
 
     -   `fwDTI` :
 
-        - `FitMethod` : {"WLS","NLLS"}
+        -   `FitMethod` : {"WLS","NLLS"}
 
     -   `BEDPOSTX` :
 
@@ -259,7 +259,7 @@ These maps are saved 3D NIfTI files (x,y,z, 1).
 | DECFA               | Directionally-encoded color (DEC) FA                                                                                        | DTI, DKI, WMTI (D, Dh, Dr)                                                                                                   | 3 8-bit floating point numbers that encode x,y,z of the principal diffusion direction in the voxel. The norm of the vector is the FA in the voxel.Need to set the NiFTI dtype to RGB |
 | ODI                 | Orientation dispersion index                                                                                                | NODDI                                                                                                                        | Normalised to \[0,1\]                                                                                                                                                                |
 | ISOVF               | Isotropic volume fraction                                                                                                   | NODDI                                                                                                                        | microns^2/ms (for example, for free water in body temperature, this should be 3)                                                                                                     |
- | TDI                 | Track Density Imaging                                                                                                       |                                                                                                                              | Streamline visitation counts                                                                                                                                                       |
+| TDI                 | Track Density Imaging                                                                                                       |                                                                                                                              | Streamline visitation counts                                                                                                                                                         |
 | GFA                 | Generalized Fractional Anisotropy                                                                                           | CSA, CSD, SHORE, MAPMRI, Forecast (or any model that can be represented as an ODF)                                           | Proportion \[0 - 1\]                                                                                                                                                                 |
 | AFD                 | Apparent Fiber Density                                                                                                      |                                                                                                                              | positive, unitless                                                                                                                                                                   |
 | INDEX               | Scalar maps from bedpostx                                                                                                   | FSUM (sum of partial volume fractions of the sticks)F_i (volume fraction of stick i)D (diffusivity)DSTD (std of diffusivity) | FSUM \[0 - 1\]F_i \[0 - 1\]D and DSTD microns^2/ms (for example, for free water in body temperature, this should be 3)                                                               |
@@ -312,25 +312,25 @@ kept, or `subsampled50` if only 50% of the streamlines were kept.
 
 ### File formats
 
- - [.trk - Diffusion Toolkit (+TrackVis)](http://www.trackvis.org/docs/?subsect=fileformat)
-- [.tck - MRTrix](http://mrtrix.readthedocs.io/en/latest/getting_started/image_data.html#tracks-file-format-tckAssumes)
+-   [.trk - Diffusion Toolkit (+TrackVis)](https://web.archive.org/web/20190103230122/http://www.trackvis.org/docs/?subsect=fileformat)
+-   [.tck - MRTrix](https://web.archive.org/web/20190103230209/https://mrtrix.readthedocs.io/en/latest/getting_started/image_data.html)
 
 ### JSON Metadata
 
 We have two main classes of tractography algorithms: Global or Local
 tractography, each with various supported algorithms.
 
-| Class  | Algorithms | Reference                                                                                                                                                       |
-| ------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
- | LOCAL  | PROB       | Sherbondy, A.J., et al. (2008); Tournier J.D.et al. (2012); Behrens et al. (2007)                                                                                 |
- | LOCAL  | DET        | Conturo, T. et al. (1999); Mori, S. et al. (1999)                                                                                                                 |
- | LOCAL  | EUDX       | Garyfallidis et al. (2010); Mori, S. et al. (1999)                                                                                                                |
-| LOCAL  | FACT       | Jiang, H. et al. (2005)                                                                                                                                         |
-| LOCAL  | STT        | Lazar, M., et al. (2003)                                                                                                                                        |
-| GLOBAL | UKF        | Malcolm J-G., et al. (2009)                                                                                                                                     |
-| GLOBAL | SpinGlass  | Fillard P., et al. (2009)                                                                                                                                       |
-| GLOBAL | ENS        | Takemura et al. (2016)                                                                                                                                          |
- | GLOBAL | Other      | Mangin, J.F. et al. (2013); Aganj, I. et al. (2011); Neher, P.F. et al. (2012); Jbabdi, S., et al. (2007); Sherbondy, A.J., et al. (2009); Reisert, M. et al. (2011) |
+| Class  | Algorithms | Reference                                                                                                                                                            |
+| ------ | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| LOCAL  | PROB       | Sherbondy, A.J., et al. (2008); Tournier J.D.et al. (2012); Behrens et al. (2007)                                                                                    |
+| LOCAL  | DET        | Conturo, T. et al. (1999); Mori, S. et al. (1999)                                                                                                                    |
+| LOCAL  | EUDX       | Garyfallidis et al. (2010); Mori, S. et al. (1999)                                                                                                                   |
+| LOCAL  | FACT       | Jiang, H. et al. (2005)                                                                                                                                              |
+| LOCAL  | STT        | Lazar, M. et al. (2003)                                                                                                                                              |
+| GLOBAL | UKF        | Malcolm J-G. et al. (2009)                                                                                                                                           |
+| GLOBAL | SpinGlass  | Fillard P. et al. (2009)                                                                                                                                             |
+| GLOBAL | ENS        | Takemura et al. (2016)                                                                                                                                               |
+| GLOBAL | Other      | Mangin, J.F. et al. (2013); Aganj, I. et al. (2011); Neher, P.F. et al. (2012); Jbabdi, S., et al. (2007); Sherbondy, A.J., et al. (2009); Reisert, M. et al. (2011) |
 
 The JSON sidecar contains the following key/value pairs:
 
@@ -342,15 +342,15 @@ The JSON sidecar contains the following key/value pairs:
 RECOMMENDED when TractographyMethod is `probabilistic`, `deterministic`, `eudx`,
 `fact`, `stt`, `other`:
 
-| **Key name**             | **Description**                                                 |
-| ------------------------ | --------------------------------------------------------------- |
-| StepSizeUnits            | "mm","norm"                                                     |
-| StepSize                 | value                                                           |
-| AngleCurvature           | value                                                           |
-| SeedingMethod            | "seedsPerVoxel", "globalSeedNumber", "totalStreamlinesNumber"   |
-| SeedingNumberMethod      | integer for the number of seeds                                 |
-| TerminationCriterion     | "leaveMask", "reachingTissueType”                               |
-| TerminationCriterionTest | "binary","ACT","CMC"                                            |
+| **Key name**             | **Description**                                               |
+| ------------------------ | ------------------------------------------------------------- |
+| StepSizeUnits            | "mm","norm"                                                   |
+| StepSize                 | value                                                         |
+| AngleCurvature           | value                                                         |
+| SeedingMethod            | "seedsPerVoxel", "globalSeedNumber", "totalStreamlinesNumber" |
+| SeedingNumberMethod      | integer for the number of seeds                               |
+| TerminationCriterion     | "leaveMask", "reachingTissueType”                             |
+| TerminationCriterionTest | "binary","ACT","CMC"                                          |
 
 Example:
 
