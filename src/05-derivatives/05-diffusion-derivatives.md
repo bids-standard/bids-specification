@@ -27,7 +27,7 @@ Additional reserved JSON metadata fields:
 
 | **Key name**           | **Description**                                                                                                          |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| MotionCompensation     | OPTONAL. Boolean. Motion compensation                                                                                    |
+ | MotionCorrection     | OPTONAL. Boolean. Motion correction                                                                                    |
 | EddyCurrentCorrection  | OPTONAL. Boolean. Eddy currents corrections                                                                              |
 | Denoising              | OPTIONAL. String. Denoising method                                                                                       |
 | IntensityNormalization | OPTIONAL. Boolean. Intensity normalization                                                                               |
