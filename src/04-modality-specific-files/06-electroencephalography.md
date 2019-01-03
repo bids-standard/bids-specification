@@ -178,7 +178,6 @@ additional columns may be provided to provide additional information about the
 channels. Note that electrode positions should not be added to this file, but
 to `*_electrodes.tsv`.
 
-
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
@@ -200,7 +199,7 @@ SHOULD be present:
 | high_cutoff        | OPTIONAL. Frequencies used for the low-pass filter applied to the channel in Hz. If no low-pass filter applied, use `n/a`. Note that hardware anti-aliasing in A/D conversion of all EEG electronics applies a low-pass filter; specify its frequency here if applicable.     |
 | notch              | OPTIONAL. Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use `n/a`.                                                                                                                                                         |
 | status             | OPTIONAL. Data quality observed on the channel `(good/bad)`. A channel is considered `bad` if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in `[status_description]`.                                                     |
-| status_description | OPTIONAL. Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `[status]`.                                       
+| status_description | OPTIONAL. Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `[status]`.                                                                                                        |
 
 Restricted keyword list for field `type` in alphabetic order (shared with the
 MEG modality; however, MEG specific types are not listed here):
@@ -237,3 +236,50 @@ FDI	EMG	microV	left first dorsal interosseous	good	n/a
 Cz	EEG	microV	n/a	bad	high frequency noise
 UADC001	MISC	n/a	enevelope of audio signal	good	n/a
 ```
+
+## Electrodes description table (`*_electrodes.tsv`)
+
+Template:
+
+```Text
+sub-<label>/
+    [ses-<label>]/
+      eeg/
+        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_electrodes.tsv]
+```
+
+File that gives the location of EEG electrodes. Note that coordinates are
+expected in cartesian coordinates according to the `EEGCoordinateSystem` and
+`EEGCoordinateSystemUnits` fields in `_coordsystem.json`. If an
+`*_electrodes.tsv` file is specified, a [`*_coordsystem.json`](./06-electroencephalography.md#coordinate-system-json-document)
+file MUST be specified as well.
+
+MUST be present:
+
+| Field name | Definition                         |
+|------------|------------------------------------|
+| name       | Name of the electrode              |
+| x          | recorded position along the x-axis |
+| y          | recorded position along the y-axis |
+| z          | recorded position along the z-axis |
+
+SHOULD be present:
+
+| Field name | Definition                                                     |
+|------------|----------------------------------------------------------------|
+| type       | type of the electrode (e.g., cup, ring, clip-on, wire, needle) |
+| material   | material of the electrode, e.g. Tin, Ag/AgCl, Gold             |
+| impedance  | impedance of the electrode in kOhm                             |
+
+Example:
+
+```Text
+name	x	y	z	type	material
+A1	-0.0707	0.0000	-0.0707	clip-on	Ag/AgCl
+F3	-0.0567	0.0677	0.0469	cup	Ag/AgCl
+Fz	0.0000	0.0714	0.0699	cup	Ag/AgCl
+REF	-0.0742	-0.0200	-0.0100	cup	Ag/AgCl
+GND	0.0742	-0.0200	-0.0100	cup	Ag/AgCl
+```
+
+## Coordinate System JSON document (`*_coordsystem.json`)
