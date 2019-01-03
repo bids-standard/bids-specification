@@ -330,7 +330,7 @@ tractography, each with various supported algorithms.
 | GLOBAL | UKF        | Malcolm J-G., et al. (2009)                                                                                                                                     |
 | GLOBAL | SpinGlass  | Fillard P., et al. (2009)                                                                                                                                       |
 | GLOBAL | ENS        | Takemura et al. (2016)                                                                                                                                          |
-| GLOBAL | Other      | Mangin, J.F. et al. (2013).Aganj, I. et al. (2011).Neher, P.F. et al. (2012).Jbabdi, S., et al. (2007).Sherbondy, A.J., et al. (2009).Reisert, M. et al. (2011) |
+ | GLOBAL | Other      | Mangin, J.F. et al. (2013); Aganj, I. et al. (2011); Neher, P.F. et al. (2012); Jbabdi, S., et al. (2007); Sherbondy, A.J., et al. (2009); Reisert, M. et al. (2011) |
 
 The JSON sidecar contains the following key/value pairs:
 
