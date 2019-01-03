@@ -322,7 +322,7 @@ tractography, each with various supported algorithms.
 
 | Class  | Algorithms | Reference                                                                                                                                                       |
 | ------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| LOCAL  | PROB       | Sherbondy, A.J., et al. (2008).Tournier J.D.et al. (2012).Behrens et al. (2007)                                                                                 |
+ | LOCAL  | PROB       | Sherbondy, A.J., et al. (2008); Tournier J.D.et al. (2012); Behrens et al. (2007)                                                                                 |
  | LOCAL  | DET        | Conturo, T. et al. (1999); Mori, S. et al. (1999)                                                                                                                 |
  | LOCAL  | EUDX       | Garyfallidis et al. (2010); Mori, S. et al. (1999)                                                                                                                |
 | LOCAL  | FACT       | Jiang, H. et al. (2005)                                                                                                                                         |
