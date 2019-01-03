@@ -312,7 +312,7 @@ kept, or `subsampled50` if only 50% of the streamlines were kept.
 
 ### File formats
 
-- [.trk - Diffusion Toolkit (+TrackVis)](http://www.trackvis.org/docs/?subsect=fileformatEmbeds)
+ - [.trk - Diffusion Toolkit (+TrackVis)](http://www.trackvis.org/docs/?subsect=fileformat)
 - [.tck - MRTrix](http://mrtrix.readthedocs.io/en/latest/getting_started/image_data.html#tracks-file-format-tckAssumes)
 
 ### JSON Metadata
