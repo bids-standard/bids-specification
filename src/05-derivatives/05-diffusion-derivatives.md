@@ -20,7 +20,7 @@ The JSON sidecar file is REQUIRED (due to the REQUIRED `SkullStripped` field -
 see [Common Data Types](02-common-data-types.md)), and if present can be used to
 store information about what preprocessing options were used (for example
 whether motion compensation was performed, non-linear corrections were applied,
-whether Eddy current correction was performed, denoising, or intensity
+ whether eddy current correction was performed, denoising, or intensity
 normalization were applied, etc).
 
 Additional reserved JSON metadata fields:
