@@ -344,7 +344,7 @@ Fiducials information:
 | FiducialsDescription | OPTIONAL. A freeform text field documenting the anatomical landmarks that were used and how the head localization coils were placed relative to these. This field can describe, for instance, whether the true anatomical locations of the left and right pre-auricular points were used and digitized, or rather whether they were defined as the intersection between the tragus and the helix (the entry of the ear canal), or any other anatomical description of selected points in the vicinity of the ears. |
 
 For more information on the definition of anatomical landmarks, please visit:
-[http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_define](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
+[http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
 
 For more information on typical coordinate systems for MEG-MRI coregistration:
 [http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined),
