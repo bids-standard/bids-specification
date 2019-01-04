@@ -80,8 +80,8 @@ Whenever possible, please avoid using ad-hoc wording.
 | InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                       |
 | InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                    |
 | Manufacturer           | RECOMMENDED. Manufacturer of the EEG system (e.g., `Biosemi`, `Brain Products`, `Other`).                                                                                                                                                                                        |
-| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the EEG system model (e.g., `BrainAmp DC`).                                                                                                                                                                                           |
-| SoftwareVersions       | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                             |
+| ManufacturersModelName | RECOMMENDED. Manufacturer's designation of the EEG system model (e.g., `BrainAmp DC`).                                                                                                                                                                                           |
+| SoftwareVersions       | RECOMMENDED. Manufacturer's designation of the acquisition software.                                                                                                                                                                                                             |
 | TaskDescription        | RECOMMENDED. Description of the task.                                                                                                                                                                                                                                            |
 | Instructions           | RECOMMENDED. Text of the instructions given to participants before the scan. This is not only important for behavioral or cognitive tasks but also in resting state paradigms (e.g., to distinguish between eyes open and eyes closed).                                          |
 | CogAtlasID             | RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) term that describes the task (e.g., Resting State with eyes closed "[http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b](http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b)") |
@@ -283,3 +283,113 @@ GND	0.0742	-0.0200	-0.0100	cup	Ag/AgCl
 ```
 
 ## Coordinate System JSON document (`*_coordsystem.json`)
+
+Template:
+
+```Text
+sub-<label>/
+    [ses-<label>]/
+      eeg/
+        [sub-<label>[_ses-<label>][_acq-<label>]_coordsystem.json]
+```
+
+A `coordsystem.json` file is used to specify the fiducials, the location of
+anatomical landmarks, and the coordinate system and units in which the position
+of electrodes and landmarks is expressed. The `coordsystem.json` is required if
+the optional electrodes.tsv is specified. If a corresponding anatomical MRI is
+available, the locations of landmarks and fiducials according to that scan
+should also be stored in the [`*T1w.json`](./01-magnetic-resonance-imaging-data.md)
+file which goes alongside the MRI data.
+
+For disambiguation, we employ the following definitions for fiducials and
+anatomical landmarks respectively:
+
+-   Fiducials = objects with a well defined location used to facilitate the
+    localization of electrodes and co-registration with other geometric data
+    such as the participant's own T1 weighted magnetic resonance head image, a
+    T1 weighted template head image, or a spherical head model. Commonly used
+    fiducials are vitamin-E pills, which show clearly in an MRI, or reflective
+    spheres that are localized with an infrared optical tracking system.
+
+-   Anatomical landmarks = locations on a research subject such as the nasion,
+    which is the intersection of the frontal bone and two nasal bones of the
+    human skull.
+
+Fiducials are typically used in conjunction with anatomical landmarks. An
+example would be the placement of vitamin-E pills on top of anatomical
+landmarks, or the placement of LEDs on the nasion and preauricular points to
+triangulate the position of other LED-lit electrodes on a research subject's
+head.
+
+-   For more information on the definition of anatomical landmarks, please visit:
+    [http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
+
+-   For more information on coordinate systems for coregistration, please visit:
+    [http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
+
+General fields:
+
+| Keyword              | Description                                                                                                                                                                                                                                                                                                                                                                         |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| IntendedFor          | relative path to associate the electrodes and landmarks to an MRI/CT                                                                                                                                                                                                                                                                                                                |
+| FiducialsDescription | freeform description of how the fiducials such as vitamin-E capsules were placed relative to anatomical landmarks, and how the position of the fiducials were measured (e.g., both with Polhemus and with T1w MRI). If the position of fiducials is measured using the same system used to measure electrode positions, the fiducial locations can be specified in `electrodes.tsv` |
+
+EEG electrode fields:
+
+| Keyword                        | Description                                                                                                                                                     |
+|--------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| EEGCoordinateSystem            | refers to the coordinate space to which the EEG electrodes xyz positions are to be interpreted (see [Appendix VIII](../99-appendices/08-coordinate-systems.md)) |
+| EEGCoordinateUnits             | units in which the coordinates that are  listed in the field `EEGCoordinateSystem`  are represented (e.g., "mm", "cm")                                          |
+| EEGCoordinateSystemDescription | freeform description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail                 |
+
+Anatomical landmarks measured during an EEG session/run:
+
+| Keyword                                       | Description                                                                                                                                                                                                                          |
+|-----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| AnatomicalLandmarkCoordinates                 | key:value pairs of the labels and 3-D digitized locations of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem` (e.g., `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`) |
+| AnatomicalLandmarkCoordinateSystem            | refers to the coordinate space to which the landmarks positions are to be interpreted - preferably the same as the `EEGCoordinateSystem`                                                                                             |
+| AnatomicalLandmarkCoordinateUnits             | units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented (e.g.,  "mm", "cm")                                                                                                |
+| AnatomicalLandmarkCoordinateSystemDescription | freeform description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail                                                                                      |
+
+Anatomical landmarks or fiducials measured on an anatomical MRI  that match the
+landmarks or fiducials during an EEG session/run, must be stored separately in
+the corresponding `*_T1w.json` or `*_T2w.json` file and should be expressed in
+voxels (starting from `[0, 0, 0]`).
+
+Example:
+
+```JSON
+{
+  "IntendedFor":"/sub-01/ses-01/anat/sub-01_T1w.nii",
+  "EEGCoordinateSystem":"Other",
+  "EEGCoordinateUnits":"mm",
+  "EEGCoordinateSystemDescription":"RAS orientation: Origin halfway between LPA and RPA, positive x-axis towards RPA, positive y-axis orthogonal to x-axis through Nasion,  z-axis orthogonal to xy-plane, pointing in superior direction.",
+  "FiducialsDescription":"Electrodes and fiducials were digitized with Polhemus, fiducials were recorded as the centre of vitamin E capsules sticked on the left/right pre-auricular and on the nasion, these are also visible on the T1w MRI"
+}
+```
+
+## Landmark photos (`*_photo.jpg`)
+
+Photos of the anatomical landmarks and/or fiducials placed on the anatomical
+landmarks.
+
+Template:
+
+```Text
+sub-<label>/
+    [ses-<label>]/
+      eeg/
+        [sub-<label>[_ses-<label>][_acq-<label>]_photo.jpg]
+```
+
+Photos of the anatomical landmarks and/or fiducials placed on the anatomical
+landmarks are OPTIONAL. Please note that the photos may need to be cropped or
+blurred to conceal identifying features prior to sharing, depending on the
+terms of the consent form signed by the participant.
+
+Example:
+
+Picture of a NAS fiducial placed between the eyebrows, rather than at the
+actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
+
+![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
