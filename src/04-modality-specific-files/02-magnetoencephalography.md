@@ -128,7 +128,7 @@ Specific EEG fields (if recorded with MEG) SHOULD be present:
 By construct, EEG when recorded simultaneously with the same MEG system , should
 have the same `SamplingFrequency` as MEG. Note that if EEG is recorded with a
 separate amplifier, it should be stored separately under a new /eeg data type
-(see [the EEG specification](06-electroencephalography.md)).
+(see [the EEG specification](03-electroencephalography.md)).
 
 Example:
 
