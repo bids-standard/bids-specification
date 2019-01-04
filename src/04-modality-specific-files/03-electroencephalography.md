@@ -9,6 +9,15 @@ academic literature:
 > Imaging Data Structure (BIDS) Specification for electroencephalography.
 > [https://doi.org/10.31234/osf.io/63a4y](https://doi.org/10.31234/osf.io/63a4y)
 
+The following EEG datasets have been formatted using the present specification
+and can be used for practical guidance when curating a new dataset.
+
+-   Single session per subject: [`eeg_matchingpennies`](https://doi.org/10.17605/OSF.IO/CJ2DR)
+-   Multiple sessions per subject: [`eeg_rishikesh`](https://doi.org/10.5281/zenodo.1490922)
+-   Combined with fMRI: [`eeg_rest_fmri`](https://osf.io/94c5t/files/)
+
+Further datasets are available from the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
+
 ## EEG recording data
 
 Template:
@@ -170,12 +179,12 @@ sub-<label>/
 ```
 
 Although this information can often be extracted from the EEG recording,
-listing it in a simple .tsv document makes it easy to browse or search. The
+listing it in a simple `.tsv` document makes it easy to browse or search. The
 required columns are channel `name`, `type` and `units`. Channels should appear
 in the table in the same order they do in the EEG data file. Any number of
 additional columns may be provided to provide additional information about the
 channels. Note that electrode positions should not be added to this file, but
-to `*_electrodes.tsv`.
+to [`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-table).
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
