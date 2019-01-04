@@ -19,7 +19,6 @@ sub-<label>/
       eeg/
         sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_eeg.<manufacturer_specific_extension>
         sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_eeg.json
-
 ```
 
 While there are many file formats to store EEG data, there are two officially
