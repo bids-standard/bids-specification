@@ -103,7 +103,6 @@ Specific EEG fields MUST be present:
 | :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | SamplingFrequency   | REQUIRED. Sampling frequency (in Hz) of all the data in the recording, regardless of their type (e.g., 2400).                                                                                                                                                                         |
 | PowerLineFrequency  | REQUIRED. Frequency (in Hz) of the power grid at the geographical location of the EEG instrument (i.e., 50 or 60).                                                                                                                                                                    |
-| EEGChannelCount     | REQUIRED. Number of EEG channels included in the recording (e.g., 128).                                                                                                                                                                                                               |
 | SoftwareFilters     | REQUIRED. List of temporal software filters applied. Ideally key:value pairs of pre-applied software filters and their parameter values: e.g., `{"Anti-aliasing filter": {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`. Write `n/a` if no software filters applied. |
 
 SHOULD be present:
@@ -112,6 +111,7 @@ SHOULD be present:
 | :--------------------------| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | CapManufacturer            | RECOMMENDED. Name of the cap manufacturer (e.g., "EasyCap").                                                                                                                                                                                                                                                   |
 | CapManufacturersModelName  | RECOMMENDED. Manufacturer's designation of the EEG cap model (e.g., "actiCAP 64 Ch Standard-2").                                                                                                                                                                                                               |
+| EEGChannelCount            | RECOMMENDED. Number of EEG channels included in the recording (e.g., 128).                                                                                                                                                                                                                                     |
 | ECGChannelCount            | RECOMMENDED. Number of ECG channels.                                                                                                                                                                                                                                                                           |
 | EMGChannelCount            | RECOMMENDED. Number of EMG channels.                                                                                                                                                                                                                                                                           |
 | EOGChannelCount            | RECOMMENDED. Number of EOG channels.                                                                                                                                                                                                                                                                           |
@@ -221,7 +221,7 @@ MEG modality; however, MEG specific types are not listed here):
 | ECG      | Electrocardiogram (heart)                                    |
 | EMG      | Electromyogram (muscle)                                      |
 | EYEGAZE  | Eye tracker gaze                                             |
-| GSR      | Galvanic skin resistance                                     |
+| GSR      | Galvanic skin response                                       |
 | HEOG     | Horizontal EOG (eye)                                         |
 | MISC     | Miscellaneous                                                |
 | PUPIL    | Eye tracker pupil diameter                                   |
