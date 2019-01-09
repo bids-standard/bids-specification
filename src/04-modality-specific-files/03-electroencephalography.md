@@ -339,27 +339,42 @@ head.
 
 General fields:
 
-| Keyword              | Description                                                                                                                                                                                                                                                                                                                                                                                     |
-| :--------------------| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IntendedFor          | OPTIONAL. Relative path to associate the electrodes, landmarks and fiducials to an MRI/CT.                                                                                                                                                                                                                                                                                                      |
-| FiducialsDescription | OPTIONAL. Free-form description of how the fiducials such as vitamin-E capsules were placed relative to anatomical landmarks, and how the position of the fiducials were measured (e.g., both with Polhemus and with T1w MRI). If the position of fiducials is measured using the same system used to measure electrode positions, the fiducial locations can be specified in `electrodes.tsv`. |
+| Keyword              | Description                                                                                |
+| :--------------------| :----------------------------------------------------------------------------------------- |
+| IntendedFor          | OPTIONAL. Relative path to associate the electrodes, landmarks and fiducials to an MRI/CT. |
 
-EEG electrode fields:
+Fields relating to the EEG electrode positions:
 
-| Keyword                        | Description                                                                                                                                                                |
-| :------------------------------| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| EEGCoordinateSystem            | REQUIRED. Refers to the coordinate system in which the EEG electrode positions are to be interpreted (see [Appendix VIII](../99-appendices/08-coordinate-systems.md)).     |
-| EEGCoordinateUnits             | REQUIRED. Units in which the coordinates that are listed in the field `EEGCoordinateSystem` are represented (e.g., "mm", "cm").                                            |
-| EEGCoordinateSystemDescription | RECOMMENDED. Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.        |
+| Keyword                        | Description                                                                                                                                                            |
+| :------------------------------| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| EEGCoordinateSystem            | REQUIRED. Refers to the coordinate system in which the EEG electrode positions are to be interpreted (see [Appendix VIII](../99-appendices/08-coordinate-systems.md)). |
+| EEGCoordinateUnits             | REQUIRED. Units in which the coordinates that are listed in the field `EEGCoordinateSystem` are represented (e.g., "mm", "cm").                                        |
+| EEGCoordinateSystemDescription | RECOMMENDED. Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.    |
 
-Anatomical landmarks measured during an EEG session/run:
+Fields relating to the position of fiducials measured during an EEG session/run:
 
-| Keyword                                       | Description                                                                                                                                                                                                                                        |
-| :---------------------------------------------| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| AnatomicalLandmarkCoordinates                 | RECOMMENDED. Key:value pairs of the labels and 3-D digitized locations of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem` (e.g., `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). |
-| AnatomicalLandmarkCoordinateSystem            | RECOMMENDED. Refers to the coordinate space to which the landmarks positions are to be interpreted - preferably the same as the `EEGCoordinateSystem`.                                                                                             |
-| AnatomicalLandmarkCoordinateUnits             | RECOMMENDED. Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented (e.g.,  "mm", "cm").                                                                                                |
-| AnatomicalLandmarkCoordinateSystemDescription | RECOMMENDED. Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                |
+| Keyword                                       | Description                                                                                                                                                                                                                              |
+| :---------------------------------------------| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FiducialsDescription                          | OPTIONAL. Free-form text description of how the fiducials such as vitamin-E capsules were placed relative to anatomical landmarks, and how the position of the fiducials were measured (e.g., both with Polhemus and with T1w MRI).      |
+| FiducialsCoordinates                          | RECOMMENDED. Key:value pairs of the labels and 3-D digitized position of anatomical landmarks, interpreted following the `FiducialsCoordinateSystem` (e.g., `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). |
+| FiducialsCoordinateSystem                     | RECOMMENDED. Refers to the coordinate space to which the landmarks positions are to be interpreted - preferably the same as the `EEGCoordinateSystem`.                                                                                   |
+| FiducialsCoordinateUnits                      | RECOMMENDED. Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented (e.g.,  "mm", "cm").                                                                                      |
+| FiducialsCoordinateSystemDescription          | RECOMMENDED. Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                      |
+
+Fields relating to the position of anatomical landmark measured during an EEG session/run:
+
+| Keyword                                       | Description                                                                                                                                                                                                                                       |
+| :---------------------------------------------| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| AnatomicalLandmarkCoordinates                 | RECOMMENDED. Key:value pairs of the labels and 3-D digitized position of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem` (e.g., `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). |
+| AnatomicalLandmarkCoordinateSystem            | RECOMMENDED. Refers to the coordinate space to which the landmarks positions are to be interpreted - preferably the same as the `EEGCoordinateSystem`.                                                                                            |
+| AnatomicalLandmarkCoordinateUnits             | RECOMMENDED. Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented (e.g.,  "mm", "cm").                                                                                               |
+| AnatomicalLandmarkCoordinateSystemDescription | RECOMMENDED. Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                               |
+
+If the position of anatomical landmarks is measured using the same system or
+device used to measure electrode positions, and if thereby the anatomical
+landmarks are expressed in the same coordinates, the coordinates of the
+anatomical landmarks can be specified in `electrodes.tsv`. The same applies to
+the coordinates of the fiducials.
 
 Anatomical landmarks or fiducials measured on an anatomical MRI  that match the
 landmarks or fiducials during an EEG session/run, must be stored separately in
