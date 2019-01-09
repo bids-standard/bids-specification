@@ -2,70 +2,59 @@
 
 ## Citation
 
-Support for iEEG was developed as a BIDS Extension Proposal. Please cite the
-following paper when referring to this part of the standard in context of the
-academic literature:
+Support for iEEG was developed as a [BIDS Extension Proposal](../06-extensions.md#bids-extension-proposals).
+Please cite the following paper when referring to this part of the standard in
+context of the academic literature:
 
 > TODO: citation
 
-## Preliminary clarifications
-This specification extends the Brain Imaging Data Structure (BIDS) Specification for integration of intracranial electroencephalography (iEEG) data, including both surface recordings (electrocorticography, ECoG), depth recordings, such as stereo EEG (sEEG), and recordings done with deep brain stimulation (DBS) electrodes. Most core principles of the original BIDS-fMRI and BIDS-MEG specifications are inherited by the iEEG specification, though some special considerations and additional fields are noted below.
+## iEEG recording data
 
-Please refer to general BIDS specification document for context and general guidelines (definitions, units, directory structure, missing values, stimulus and event information, etc.).:
-https://docs.google.com/document/d/1HFUkAEE-pB-angVcYe6pf_-fVf4sCpOHKesUvfb8Grc
+The iEEG community uses a variety of formats for storing raw data, and there is no single standard that all researchers agree on. The allowed file formats for iEEG data in BIDS are divided into two groups: *recommended* formats that are open, well-defined standards, and *accepted* formats that are common in the community. In general, it is discouraged to use *accepted* formats over *recommended* formats, particularly because there are conversion scripts available in most analytics languages to convert data into *recommended* formats. Below are lists of each group of allowed data formats in BIDS-iEEG.
 
-The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this  document are to be interpreted as described in [RFC2119].
-
-The terminology that will be used is inherited from fMRI/MEG and includes the following. Note that these are descriptive labels, and their definition can be tailored for specific use cases (e.g., recordings not undertaken in a controlled environment like a hospital):
-
-* Dataset, subject, session, data acquisition, data type, task, event, and run are all defined as in the general [BIDS](TODO: bids spec link) specification.
-* **Electrode** - A single point of contact between the acquisition system and the recording site (e.g., scalp, neural tissue, ...). Multiple electrodes can be organized as caps (for EEG), arrays, grids, leads, strips, probes, shafts, etc.
-* **Channel** - A single analog digital converter in the recording system that regularly samples the value of a transducer, which results in a signal being represented as a time series in the data. This can be connected to two electrodes (to measure the potential difference between them), a magnetic field or magnetic gradient sensor,  temperature sensor, accelerometer, etc.  
-
-Three preliminary example BIDS-iEEG examples can be found on:
-https://github.com/bids-standard/bids-examples/tree/bep010_ieeg
-
-Examples of electrical stimulation are further discussed below.
-
-### A note on missing information
-The goal of the BIDS-iEEG specification is to explicitly and transparently describe the relevant information needed to understand a dataset and replicate results. As iEEG is often collected in a chaotic or uncontrolled environment, in some instances information that is "required" in the BIDS-iEEG specification may be missing. In this case, set the value of this information to the string: "n/a". **We strongly discourage this practice if possible**, but recognize that in some cases this information is simply not there.
-
-## iEEG-BIDS
-
-Unprocessed iEEG data must be stored in one of the supported file formats. This file only contains the raw electrophysiological data (the original data format straight from the amplifier can be stored in an optional /`sourcedata/` folder as well, see bids 1.0.2 section 3.4). All metadata needed to correctly interpret the measured data must be stored in the `.json` and `.tsv` files.  The allowed file formats for the raw data are still under discussion and feedback is appreciated (section 3.1).
-
-We encourage users to provide the meta information extracted from the manufacturer specific data files in the sidecar JSON file. This allows for easy searching and indexing of key metadata elements without needing to parse the various proprietary (typically binary) native data files. Other relevant files should be included alongside the iEEG data. For iEEG recordings, this includes for example the position of electrodes, 3D anatomical brain images, surface renderings, and operative photos.
-
-BIDS contains "required", "recommended" and "optional" fields. These are indicated throughout the document. Required/recommended fields are indicated by **(required/recommended)**. Square brackets
-`[_example.]` indicate OPTIONAL fields. The BIDS validator can take these into account.
-
-As in MRI-BIDS, the following apply:
-
-1. All specifications of paths need to use forward slashes.
-2. The inheritance principle applies: any metadata file (.json, `.tsv`, etc.) may be defined at any directory level. The values from the top level are inherited by all lower levels unless they are overridden by a file at the lower level. For details see fMRI-BIDS section 3.5:
-(TODO: link to spec)
-
-### File formats for the raw data
-
-The iEEG community uses a variety of formats for storing raw data, and there is no single standard that every researcher uses. The BIDS-iEEG specification is meant to enable open, sharable, and reproducible datasets, and unprocessed iEEG data must be stored in an **open file format** (https://en.wikipedia.org/wiki/Open_format). To determine the formats to support, the BIDS-iEEG community conducted a survey asking researchers which formats they use, and which they’d be willing to use. Formats to allow were chosen based off their pre-existing usage in the community as well as being generic, well-defined, language-agnostic, and performant. More information about the survey can be [found at this link](https://bids.berkeley.edu/news/bids-megeegieeg-data-format-survey).
-
-The allowed file formats are divided into two groups: *recommended* formats that are open, well-defined standards, and *accepted* formats that are common in the community. In general, it is discouraged to use *accepted* formats over *recommended* formats, particularly because there are conversion scripts available in most analytics languages to convert data into *recommended* formats. Below are lists of each group of allowed data formats in BIDS-iEEG.
-
-Future versions of BIDS may extend (or shrink) this list of supported file formats. File formats for future consideration MUST have open access documentation, MUST have open source implementation for both reading and writing in at least two programming languages and SHOULD be widely supported in multiple software packages. Other formats that may be considered in the future should have a clear added advantage over the existing formats and should have wide adoption in the BIDS-iEEG community.
+Future versions of BIDS may extend this list of supported file formats. File formats for future consideration MUST have open access documentation, MUST have open source implementation for both reading and writing in at least two programming languages and SHOULD be widely supported in multiple software packages. Other formats that may be considered in the future should have a clear added advantage over the existing formats and should have wide adoption in the BIDS-iEEG community.
 
 **Recommended Formats**
 * European Data Format (.edf) (https://www.edfplus.info/)
-* Brainvision (.vhdr/.eeg/.vmrk) (https://www.brainproducts.com/, see the
-  FieldTrip documentation for more information on Brainvision
-  http://www.fieldtriptoolbox.org/getting_started/brainvision)
+* Brainvision (.vhdr/.eeg/.vmrk) [BrainVision data format](https://www.brainproducts.com/productdetails.php?id=21&tab=5) by Brain Products GmbH.
 
 **Allowed Formats**
-* [Neurodata Without Borders]((https://github.com/NeurodataWithoutBorders/pynwb)) (.nwb). Included to facilitate interactions with NWB, another open data format for neuroscience data.
-* EEGlab (`.set`, `.fdt`) Included because a survey indicated that it is very
-  often used by the community.
+* [Neurodata Without Borders]((https://github.com/NeurodataWithoutBorders/pynwb)) (.nwb)
+* [EEGLAB](https://sccn.ucsd.edu/eeglab) (`.set` and `.fdt` files)
 * [MEF3](https://github.com/msel-source) (`.mef`) ([paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4956586/),
-  [specification and links](http://msel.mayo.edu/codes.html), [Python reader](https://www.google.com/url?q=https://github.com/ICRC-BME/PySigView&sa=D&ust=1540234072960000&usg=AFQjCNEBg8ua_qEc7U3OsK0lh-iXn94mWQ)).
-  Included because it can include FDA-approved encryption of patient information in video format.
+  [specification and links](http://msel.mayo.edu/codes.html), [Python reader](https://www.google.com/url?q=https://github.com/ICRC-BME/PySigView&sa=D&ust=1540234072960000&usg=AFQjCNEBg8ua_qEc7U3OsK0lh-iXn94mWQ))
+
+The original data format is especially valuable in case conversion elicits the
+loss of crucial metadata specific to manufacturers and specific iEEG systems. We
+also encourage users to provide additional meta information extracted from the
+manufacturer specific data files in the sidecar JSON file. Other relevant files
+MAY be included alongside the original EEG data in `/sourcedata`.
+
+Note that for proper documentation of iEEG recording metadata it is important to
+understand the difference between electrode and channel: An EEG electrode is
+attached to the skin, whereas a channel is the combination of the analog
+differential amplifier and analog-to-digital converter that result in a
+potential (voltage) difference that is stored in the EEG dataset. We employ
+the following short definitions:
+
+-   Electrode = A single point of contact between the acquisition system and
+    the recording site (e.g., scalp, neural tissue, ...). Multiple electrodes
+    can be organized as arrays, grids, leads, strips, probes, shafts, caps (for
+    EEG), etc.
+
+-   Channel = A single analog-to-digital converter in the recording system that
+    regularly samples the value of a transducer, which results in the signal
+    being represented as a time series in the digitized data. This can be connected to
+    two electrodes (to measure the potential difference between them), a
+    magnetic field or magnetic gradient sensor, temperature sensor,
+    accelerometer, etc.
+
+Although the *reference* and *ground* electrodes are often referred to as
+channels, they are in most common iEEG systems not recorded by
+themselves. Therefore they are not represented as channels in the data.
+The type of referencing for all channels and optionally the location of
+the reference electrode and the location of the ground electrode MAY
+be specified.
 
 ### iEEG Template
 
