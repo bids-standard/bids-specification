@@ -9,7 +9,7 @@ context of the academic literature:
 > Imaging Data Structure (BIDS) Specification for electroencephalography.
 > [https://doi.org/10.31234/osf.io/63a4y](https://doi.org/10.31234/osf.io/63a4y)
 
-The following EEG datasets have been formatted using the present specification
+The following example EEG datasets have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
 -   Single session per subject: [`eeg_matchingpennies`](https://doi.org/10.17605/OSF.IO/CJ2DR)
@@ -30,7 +30,7 @@ sub-<label>/
         sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_eeg.json
 ```
 
-While there are many file formats to store EEG data, there are two officially
+While there exist many file formats to store EEG data, there are two officially
 supported data formats in BIDS: The [European data format](https://www.edfplus.info/)
 (`.edf`), and the [BrainVision data format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
 (`.vhdr`, `.vmrk`, `.eeg`) by Brain Products GmbH. There are also two
@@ -44,7 +44,7 @@ The original data format is especially valuable in case conversion elicits the
 loss of crucial metadata specific to manufacturers and specific EEG systems. We
 also encourage users to provide additional meta information extracted from the
 manufacturer specific data files in the sidecar JSON file. Other relevant files
-MAY be included alongside the EEG data.
+MAY be included alongside the original EEG data in `/sourcedata`.
 
 Note that for proper documentation of EEG recording metadata it is important to
 understand the difference between electrode and channel: An EEG electrode is
@@ -59,17 +59,18 @@ the following short definitions:
     shafts, etc.
 
 -   Channel = A single analog-to-digital converter in the recording system that
-    regularly samples the value of a transducer, which results in a signal
-    being represented as a time series in the data. This can be connected to
+    regularly samples the value of a transducer, which results in the signal
+    being represented as a time series in the digitized data. This can be connected to
     two electrodes (to measure the potential difference between them), a
-    magnetic field or magnetic gradient sensor,  temperature sensor,
+    magnetic field or magnetic gradient sensor, temperature sensor,
     accelerometer, etc.
 
 Although the *reference* and *ground* electrodes are often referred to as
-channels, they are in most common EEG systems not amplified and recorded by
-themselves. Therefore they should not be represented as channels but as
-electrodes. The type of referencing and optionally the location of the
-reference electrode and the location of the ground electrode MAY be specified.
+channels, they are in most common EEG systems not recorded by
+themselves. Therefore they are not represented as channels in the data.
+The type of referencing for all channels and optionally the location of
+the reference electrode and the location of the ground electrode MAY
+be specified.
 
 ### Sidecar JSON document (`*_eeg.json`)
 
@@ -87,7 +88,7 @@ Whenever possible, please avoid using ad hoc wording.
 | :--------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                        |
 | InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                     |
-| Manufacturer           | RECOMMENDED. Manufacturer of the EEG system (e.g., `Biosemi`, `Brain Products`, `Other`).                                                                                                                                                                                         |
+| Manufacturer           | RECOMMENDED. Manufacturer of the EEG system (e.g., `Biosemi`, `Brain Products`, `Neuroscan`).                                                                                                                                                                                         |
 | ManufacturersModelName | RECOMMENDED. Manufacturer's designation of the EEG system model (e.g., `BrainAmp DC`).                                                                                                                                                                                            |
 | SoftwareVersions       | RECOMMENDED. Manufacturer's designation of the acquisition software.                                                                                                                                                                                                              |
 | TaskDescription        | RECOMMENDED. Description of the task.                                                                                                                                                                                                                                             |
@@ -120,10 +121,10 @@ SHOULD be present:
 | RecordingType              | RECOMMENDED. Defines whether the recording is `continuous` or `epoched`.                                                                                                                                                                                                                                       |
 | EpochLength                | RECOMMENDED. Duration of individual epochs in seconds (e.g., 1) in case of epoched data.                                                                                                                                                                                                                       |
 | HeadCircumference          | RECOMMENDED. Circumference of the participants head, expressed in cm (e.g., 58).                                                                                                                                                                                                                               |
-| EEGPlacementScheme         | RECOMMENDED. Placement scheme of EEG electrodes. Either the name of a standardised placement system (e.g., "10-20") or a list of standardised electrode names (e.g., `["Cz", "Pz"]`).                                                                                                                          |
+| EEGPlacementScheme         | RECOMMENDED. Placement scheme of EEG electrodes. Either the name of a standardized placement system (e.g., "10-20") or a list of standardized electrode names (e.g., `["Cz", "Pz"]`).                                                                                                                          |
 | EEGGround                  | RECOMMENDED. Description of the location of the ground electrode (e.g., "placed on right mastoid (M2)").                                                                                                                                                                                                       |
 | HardwareFilters            | RECOMMENDED. List of temporal hardware filters applied. Ideally key:value pairs of pre-applied hardware filters and their parameter values: e.g., `{"HardwareFilters": {"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dB/Octave"}}}`. Write `n/a` if no hardware filters applied. |
-| SubjectArtefactDescription | RECOMMENDED. Free-form description of the observed subject artefact and its possible cause (e.g., "Vagus Nerve Stimulator", "non-removable implant"). If this field is set to `n/a`, it will be interpreted as absence of major source of artifacts except cardiac and blinks.                                 |
+| SubjectArtefactDescription | RECOMMENDED. Free-form description of the observed subject artifact and its possible cause (e.g., "Vagus Nerve Stimulator", "non-removable implant"). If this field is set to `n/a`, it will be interpreted as absence of major source of artifacts except cardiac and blinks.                                 |
 
 Example:
 
@@ -132,7 +133,7 @@ Example:
   "TaskName":"Seeing stuff",
   "TaskDescription":"Subjects see various images for which phase, amplitude spectrum, and color vary continuously",
   "Instructions":"Your task is to detect images when they appear for the 2nd time, only then press the response button with your right/left hand (counterbalanced across subjects)",
-  "InstitutionName":"The world best university, 10 beachfront avenue, Papeete",
+  "InstitutionName":"The world best university, 10 Beachfront Avenue, Papeete",
   "SamplingFrequency":2400,
   "Manufacturer":"Brain Products",
   "ManufacturersModelName":"BrainAmp DC",
@@ -260,7 +261,7 @@ File that gives the location of EEG electrodes. Note that coordinates are
 expected in cartesian coordinates according to the `EEGCoordinateSystem` and
 `EEGCoordinateSystemUnits` fields in `*_coordsystem.json`. **If an
 `*_electrodes.tsv` file is specified, a [`*_coordsystem.json`](./03-electroencephalography.md#coordinate-system-json-document-coordsystem-json)
-file MUST be specified as well**. The order of the required fields in the
+file MUST be specified as well**. The order of the required columns in the
 `*_electrodes.tsv` file MUST be as listed below.
 
 MUST be present:
@@ -340,15 +341,15 @@ General fields:
 
 | Keyword              | Description                                                                                                                                                                                                                                                                                                                                                                                     |
 | :--------------------| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IntendedFor          | OPTIONAL. Relative path to associate the electrodes and landmarks to an MRI/CT.                                                                                                                                                                                                                                                                                                                 |
+| IntendedFor          | OPTIONAL. Relative path to associate the electrodes, landmarks and fiducials to an MRI/CT.                                                                                                                                                                                                                                                                                                      |
 | FiducialsDescription | OPTIONAL. Free-form description of how the fiducials such as vitamin-E capsules were placed relative to anatomical landmarks, and how the position of the fiducials were measured (e.g., both with Polhemus and with T1w MRI). If the position of fiducials is measured using the same system used to measure electrode positions, the fiducial locations can be specified in `electrodes.tsv`. |
 
 EEG electrode fields:
 
 | Keyword                        | Description                                                                                                                                                                |
 | :------------------------------| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| EEGCoordinateSystem            | REQUIRED. Refers to the coordinate space to which the EEG electrodes xyz positions are to be interpreted (see [Appendix VIII](../99-appendices/08-coordinate-systems.md)). |
-| EEGCoordinateUnits             | REQUIRED. Units in which the coordinates that are  listed in the field `EEGCoordinateSystem`  are represented (e.g., "mm", "cm").                                          |
+| EEGCoordinateSystem            | REQUIRED. Refers to the coordinate system in which the EEG electrode positions are to be interpreted (see [Appendix VIII](../99-appendices/08-coordinate-systems.md)).     |
+| EEGCoordinateUnits             | REQUIRED. Units in which the coordinates that are listed in the field `EEGCoordinateSystem` are represented (e.g., "mm", "cm").                                            |
 | EEGCoordinateSystemDescription | RECOMMENDED. Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.        |
 
 Anatomical landmarks measured during an EEG session/run:
@@ -379,8 +380,7 @@ Example:
 
 ## Landmark photos (`*_photo.jpg`)
 
-Photos of the anatomical landmarks and/or fiducials placed on the anatomical
-landmarks.
+Photos of the anatomical landmarks and/or fiducials.
 
 Template:
 
@@ -391,8 +391,8 @@ sub-<label>/
         [sub-<label>[_ses-<label>][_acq-<label>]_photo.jpg]
 ```
 
-Photos of the anatomical landmarks and/or fiducials placed on the anatomical
-landmarks are OPTIONAL. Please note that the photos may need to be cropped or
+Photos of the anatomical landmarks and/or fiducials are OPTIONAL.
+Please note that the photos may need to be cropped or
 blurred to conceal identifying features prior to sharing, depending on the
 terms of the consent form signed by the participant.
 
