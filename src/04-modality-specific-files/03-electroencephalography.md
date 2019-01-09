@@ -216,23 +216,23 @@ MEG modality; however, MEG specific types are not listed here):
 | Keyword  | Description                                                  |
 | :--------| :----------------------------------------------------------- |
 | AUDIO    | Audio signal                                                 |
-| EEG      |  Electroencephalogram channel                                |
+| EEG      | Electroencephalogram channel                                 |
 | EOG      | Generic electrooculogram (eye), different from HEOG and VEOG |
 | ECG      | Electrocardiogram (heart)                                    |
-| EMG      |  Electromyogram (muscle)                                     |
+| EMG      | Electromyogram (muscle)                                      |
 | EYEGAZE  | Eye tracker gaze                                             |
 | GSR      | Galvanic skin resistance                                     |
-| HEOG     |  Horizontal EOG (eye)                                        |
+| HEOG     | Horizontal EOG (eye)                                         |
 | MISC     | Miscellaneous                                                |
 | PUPIL    | Eye tracker pupil diameter                                   |
 | REF      | Reference channel                                            |
 | RESP     | Respiration                                                  |
 | SYSCLOCK | System time showing elapsed time since trial started         |
 | TEMP     | Temperature                                                  |
-| TRIG     |  System triggers                                             |
-| VEOG     |  Vertical EOG (eye)                                          |
+| TRIG     | System triggers                                              |
+| VEOG     | Vertical EOG (eye)                                           |
 
-Example of free-form text for field `description`
+Example of free-form text for field `description`
 
 -   n/a, stimulus, response, skin conductance, battery status
 
