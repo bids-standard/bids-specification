@@ -191,11 +191,11 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
-| Field name | Definition                                                                                                                                             |
-| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name       | REQUIRED. Channel name (e.g., FC1, Cz)                                                                                                                 |
-| type       | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                    |
-| units      | REQUIRED. Physical unit of the data values recorded by this channel in SI (see [Appendix V](../99-appendices/05-units.md): Units for allowed symbols). |
+| Field name | Definition                                                                                                                                                   |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name       | REQUIRED. Channel name (e.g., FC1, Cz)                                                                                                                       |
+| type       | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                          |
+| units      | REQUIRED. Physical unit of the data values recorded by this channel in SI units (see [Appendix V](../99-appendices/05-units.md): Units for allowed symbols). |
 
 SHOULD be present:
 
