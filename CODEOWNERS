@@ -5,5 +5,9 @@
 # Request for Review) please add your github username next to the file you want to 
 # monitor below.
 
+# Add your github name below to get notified about proposed releases
+/src/CHANGES.md @chrisfilo
+
+# Individual sections
 /src/01-common-principles.md @chrisfilo
 /src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md @chrisfilo
