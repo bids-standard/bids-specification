@@ -82,14 +82,19 @@ be specified.
 
 For consistency between studies and institutions, we encourage users to extract the values of metadata fields from the actual raw data. Whenever possible, please avoid using ad hoc wording.
 
-These general fields are also used for other modalities.
+Generic fields MUST be present:
 
-| Field name | Definition                                                                                                                                                                                                                                          |
+| Field name             | Definition                                                                                                                                                                                                                              |
 | :--------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | TaskName               | REQUIRED. Name of the task (for resting state use the “rest” prefix). No two tasks should have the same name. Task label is derived from this field by removing all non alphanumeric ([a-zA-Z0-9]) characters. Note this does not have to be a “behavioral task” that subjects perform, but can reflect some information about the conditions present when the data was acquired (e.g., “rest”, “sleep”, or "seizure").  |
 | SamplingFrequency      | REQUIRED. Sampling frequency (in Hz) of all the iEEG channels in the recording (e.g., 2400). All other channels should have frequency specified as well in the `channels.tsv` file.                                                     |
 | PowerLineFrequency     | REQUIRED. Frequency (in Hz) of the power grid where the iEEG recording was done (i.e., 50 or 60).                                                                                                                                       |
 | SoftwareFilters        | REQUIRED. List of temporal software filters applied or ideally  key:value pairs of pre-applied filters and their parameter values. (n/a if none). E.g., “{'HighPass': {'HalfAmplitudeCutOffHz': 1, 'RollOff: '6dB/Octave'}}”.   |
+
+SHOULD be present: For consistency between studies and institutions, we encourage users to extract the values of these fields from the actual raw data. Whenever possible, please avoid using ad hoc wording.
+
+| Field name             | Definition                                                                                                                                                                                                                              |
+| :--------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Manufacturer           | RECOMMENDED. Manufacturer of the amplifier system  (e.g., "TDT, Blackrock").                                                                                                                                                            |
 | ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the iEEG amplifier model.                                                                                                                                                                |
 | TaskDescription        | RECOMMENDED. Longer description of the task.                                                                                                                                                                                            |
@@ -100,11 +105,16 @@ These general fields are also used for other modalities.
 | InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                           |
 | DeviceSerialNumber     | RECOMMENDED. The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.           |
 
-The following fields are iEEG specific:
+Specific iEEG fields MUST be present:
 
 | Field name                        | Definition                                                                                                                                                                                                                                                                               |
 | :-------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | iEEGReference                     | REQUIRED. General description of the reference scheme used and (when applicable) of location of the reference electrode in the raw recordings (e.g., "left mastoid”, “bipolar”, “T01” for electrode with name T01, “intracranial electrode on top of a grid, not included with data”, “upside down electrode”). If different channels have a different reference, this field should have a general description and the channel specific reference should be defined in the _channels.tsv file. |
+
+Specific iEEG fields SHOULD be present:
+
+| Field name                        | Definition                                                                                                                                                                                                                                                                               |
+| :-------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | DCOffsetCorrection                | RECOMMENDED. A description of the method (if any) used to correct for a DC offset. If the method used was subtracting the mean value for each channel, use “mean”.                                                                                                               |
 | HardwareFilters                   | RECOMMENDED. List of hardware (amplifier) filters applied with  key:value pairs of filter parameters and their values.                                                                                                                                                                   |
 | ElectrodeManufacturer             | RECOMMENDED. can be used if all electrodes are of the same manufacturer (e.g., AD-TECH, DIXI). If electrodes of different manufacturers are used, please use the corresponding table in the _electrodes.tsv file.                                                                        |
@@ -125,6 +135,11 @@ The following fields are iEEG specific:
 | iEEGGround                        | RECOMMENDED. Description  of the location of the ground electrode (“placed on right mastoid (M2)”).                                                                                                                                                                              |
 | iEEGPlacementScheme               | RECOMMENDED. Freeform description of the placement of the iEEG electrodes. Left/right/bilateral/depth/surface (e.g., “left frontal grid and bilateral hippocampal depth” or “surface strip and STN depth” or “clinical indication bitemporal, bilateral temporal strips and left grid”). |
 | iEEGElectrodeGroups               | RECOMMENDED. Field to describe the way electrodes are grouped into strips, grids or depth probes e.g., {'grid1': "10x8 grid on left temporal pole", 'strip2': "1x8 electrode strip on xxx"}.                                                                                             |
+
+Specific iEEG fields MAY be present:
+
+| Field name                        | Definition                                                                                                                                                                                                                                                                               |
+| :-------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ElectricalStimulation             | OPTIONAL. Boolean field to specify if electrical stimulation was done during the recording (options are “true” or “false”). Parameters for event-like stimulation should be specified in the _events.tsv file (see example below).                                       |
 | ElectricalStimulationParameters   | OPTIONAL. Free form description of stimulation parameters, such as frequency, shape etc. Specific onsets can be specified in the _events.tsv file. Specific shapes can be described here in freeform text.                                                                               |
 
