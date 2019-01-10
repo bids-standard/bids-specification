@@ -22,7 +22,7 @@ Legend (source:
 | 🔧    | Tools                                                                       |
 | 🌍    | Translation                                                                 |
 | ⚠️    | Tests                                                                       |
-| ✅     | Tutorials                                                                   |
+| ✅    | Tutorials                                                                   |
 | 📢    | Talks                                                                       |
 | 📹    | Videos                                                                      |
 
@@ -54,7 +54,7 @@ your name is not listed, please add it.
 - Mathias Goncalves 💻🔧📢
 - Krzysztof J. Gorgolewski 📖💻💬🤔🔍📢📝💡🔌
 - Alexandre Gramfort 📖💡
-- Jeffrey S. Grethe 💬🐛✅📢 
+- Jeffrey S. Grethe 💬🐛✅📢
 - Yaroslav O. Halchenko 📖📢🔧💬🐛
 - Daniel A. Handwerker 📖
 - Michael Hanke 📖🤔🔧🐛📢
