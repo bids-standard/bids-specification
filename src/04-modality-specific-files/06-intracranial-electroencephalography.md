@@ -19,9 +19,14 @@ sub-<label>/
     sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>][_run-<index>][_space-<label>]_ieeg.json                    
 ```
 
-The iEEG community uses a variety of formats for storing raw data, and there is no single standard that all researchers agree on. The allowed file formats for iEEG data in BIDS are divided into two groups: *recommended* formats that are open, well-defined standards, and *accepted* formats that are common in the community. In general, it is discouraged to use *accepted* formats over *recommended* formats, particularly because there are conversion scripts available in most analytics languages to convert data into *recommended* formats. Below are lists of each group of allowed data formats in BIDS-iEEG.
-
-Future versions of BIDS may extend this list of supported file formats. File formats for future consideration MUST have open access documentation, MUST have open source implementation for both reading and writing in at least two programming languages and SHOULD be widely supported in multiple software packages. Other formats that may be considered in the future should have a clear added advantage over the existing formats and should have wide adoption in the BIDS-iEEG community.
+The iEEG community uses a variety of formats for storing raw data, and there is
+no single standard that all researchers agree on. The allowed file formats for
+iEEG data in BIDS are divided into two groups: *recommended* formats that are
+open, well-defined standards, and *accepted* formats that are common in the
+community. In general, it is discouraged to use *accepted* formats over
+*recommended* formats, particularly because there are conversion scripts
+available in most analytics languages to convert data into *recommended*
+formats. Below are lists of each group of allowed data formats in BIDS-iEEG.
 
 **Recommended Formats**
 * European Data Format (.edf) (https://www.edfplus.info/)
@@ -32,6 +37,13 @@ Future versions of BIDS may extend this list of supported file formats. File for
 * [EEGLAB](https://sccn.ucsd.edu/eeglab) (`.set` and `.fdt` files)
 * [MEF3](https://github.com/msel-source) (`.mef`) ([paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4956586/),
   [specification and links](http://msel.mayo.edu/codes.html), [Python reader](https://www.google.com/url?q=https://github.com/ICRC-BME/PySigView&sa=D&ust=1540234072960000&usg=AFQjCNEBg8ua_qEc7U3OsK0lh-iXn94mWQ))
+
+Future versions of BIDS may extend this list of supported file formats. File formats
+for future consideration MUST have open access documentation, MUST have open source
+implementation for both reading and writing in at least two programming languages and
+SHOULD be widely supported in multiple software packages. Other formats that may be
+considered in the future should have a clear added advantage over the existing formats
+and should have wide adoption in the BIDS-iEEG community.
 
 The original data format is especially valuable in case conversion elicits the
 loss of crucial metadata specific to manufacturers and specific iEEG systems. We
@@ -67,61 +79,52 @@ be specified.
 
 ### Sidecar JSON document (`*_ieeg.json`)
 
-#### Sidecar JSON document (`*_ieeg.json`)
+For consistency between studies and institutions, we encourage users to extract the values of metadata fields from the actual raw data. Whenever possible, please avoid using ad hoc wording.
 
-General fields, shared with MRI-BIDS, MEG-BIDS and EEG-BIDS:
+These general fields are also used for other modalities.
 
-MUST be present:
+| Field name | Definition                                                                                                                                                                                                                                          |
+| :--------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| TaskName               | REQUIRED. Name of the task (for resting state use the “rest” prefix). No two tasks should have the same name. Task label is derived from this field by removing all non alphanumeric ([a-zA-Z0-9]) characters. Note this does not have to be a “behavioral task” that subjects perform, but can reflect some information about the conditions present when the data was acquired (e.g., “rest”, “sleep”, or "seizure").  |
+| SamplingFrequency      | REQUIRED. Sampling frequency (in Hz) of all the iEEG channels in the recording (e.g., 2400). All other channels should have frequency specified as well in the `channels.tsv` file.                                                     |
+| PowerLineFrequency     | REQUIRED. Frequency (in Hz) of the power grid where the iEEG recording was done (i.e., 50 or 60).                                                                                                                                       |
+| SoftwareFilters        | REQUIRED. List of temporal software filters applied or ideally  key:value pairs of pre-applied filters and their parameter values. (n/a if none). E.g., “{'HighPass': {'HalfAmplitudeCutOffHz': 1, 'RollOff: '6dB/Octave'}}”.   |
+| Manufacturer           | RECOMMENDED. Manufacturer of the amplifier system  (e.g., "TDT, Blackrock").                                                                                                                                                            |
+| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the iEEG amplifier model.                                                                                                                                                                |
+| TaskDescription        | RECOMMENDED. Longer description of the task.                                                                                                                                                                                            |
+| Instructions           | RECOMMENDED. Text of the instructions given to participants before the recording. This is especially important in context of resting state and distinguishing between eyes open and eyes closed paradigms.                              |
+| CogAtlasID             | RECOMMENDED. URL of the corresponding [Cognitive Atlas Task](http://www.cognitiveatlas.org/) term.                                                                                                                                      |
+| CogPOID                | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                                              |
+| InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                              |
+| InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                           |
+| DeviceSerialNumber     | RECOMMENDED. The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.           |
 
-| Field name | Definition                                                                                                                                                                                                                                |
-| :------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| TaskName             | REQUIRED. Name of the task (for resting state use the “rest” prefix). No two tasks should have the same name. Task label is derived from this field by removing all non alphanumeric ([a-zA-Z0-9]) characters. Note this does not have to be a “behavioral task” that subjects perform, but can reflect some information about the conditions present when the data was acquired (e.g., “rest”, “sleep”, or "seizure").  |
-| SamplingFrequency    | REQUIRED. Sampling frequency (in Hz) of all the iEEG channels in the recording (e.g., 2400). All other channels should have frequency specified as well in the `channels.tsv` file.                                             |
-| PowerLineFrequency   | REQUIRED. Frequency (in Hz) of the power grid where the iEEG recording was done (i.e., 50 or 60).                                                                                                                               |
-| SoftwareFilters      | REQUIRED. List of temporal software filters applied or ideally  key:value pairs of pre-applied filters and their parameter values. (n/a if none). E.g., “{'HighPass': {'HalfAmplitudeCutOffHz': 1, 'RollOff: '6dB/Octave'}}”.   |
-
-SHOULD be present:
-For consistency between studies and institutions, we encourage users to extract the values of these fields from the actual raw data. Whenever possible, please avoid using ad hoc wording.
-
-
-| Field name                 | Definition                                                                                                                                                                                                                                          |
-| :------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| DCOffsetCorrection         | RECOMMENDED. A description of the method (if any) used to correct for a DC offset. If the method used was subtracting the mean value for each channel, use “mean”.                                                                                  |
-| HardwareFilters            | RECOMMENDED. List of hardware (amplifier) filters applied with  key:value pairs of filter parameters and their values.                                                                                                                              |
-| Manufacturer               | RECOMMENDED. Manufacturer of the amplifier system  (e.g., "TDT, Blackrock").                                                                                                                                                                        |
-| ManufacturersModelName     | RECOMMENDED. Manufacturer’s designation of the iEEG amplifier model.                                                                                                                                                                                |
-| TaskDescription            | RECOMMENDED. Longer description of the task.                                                                                                                                                                                                        |
-| Instructions               | RECOMMENDED. Text of the instructions given to participants before the recording. This is especially important in context of resting state and distinguishing between eyes open and eyes closed paradigms.                                          |
-| CogAtlasID                 | RECOMMENDED. URL of the corresponding [Cognitive Atlas Task](http://www.cognitiveatlas.org/) term.                                                                                                                                                  |
-| CogPOID                    | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                                                          |
-| InstitutionName            | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                          |
-| InstitutionAddress         | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                       |
-| DeviceSerialNumber         | RECOMMENDED. The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.                       |
-| ECOGChannelCount           | RECOMMENDED. Number of iEEG surface channels included in the recording (e.g., 120).                                                                                                                                                                 |
-| SEEGChannelCount           | RECOMMENDED. Number of iEEG depth channels included in the recording (e.g., 8).                                                                                                                                                                     |
-| EEGChannelCount            | RECOMMENDED. Number of scalp EEG channels recorded simultaneously (e.g., 21).                                                                                                                                                                       |
-| EOGChannelCount            | RECOMMENDED. Number of EOG channels.                                                                                                                                                                                                                |
-| ECGChannelCount            | RECOMMENDED. Number of ECG channels.                                                                                                                                                                                                                |
-| EMGChannelCount            | RECOMMENDED. Number of EMG channels.                                                                                                                                                                                                                |
-| MiscChannelCount           | RECOMMENDED. Number of miscellaneous analog channels for auxiliary  signals.                                                                                                                                                                        |
-| TriggerChannelCount        | RECOMMENDED. Number of channels for digital (TTL bit level) triggers.                                                                                                                                                                               |
-| RecordingDuration          | RECOMMENDED. Length of the recording in seconds (e.g., 3600).                                                                                                                                                                                       |
-| RecordingType              | RECOMMENDED. Defines whether the recording is  “continuous” or  “epoched”; this latter limited to time windows about events of interest (e.g., stimulus presentations, subject responses etc.)                                                      |
-| EpochLength                | RECOMMENDED. Duration of individual epochs in seconds (e.g., 1) in case of epoched data. If recording was continuous,  leave out the field.                                                                                                         |
-| SubjectArtefactDescription | RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g., “door open”, ”nurse walked into room at 2 min”, ”seizure at 10 min”). If this field is left empty, it will be interpreted as absence of artifacts. |
-| SoftwareVersions           | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                |
-
-**Specific iEEG fields:**
+The following fields are iEEG specific:
 
 | Field name                        | Definition                                                                                                                                                                                                                                                                               |
 | :-------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | iEEGReference                     | REQUIRED. General description of the reference scheme used and (when applicable) of location of the reference electrode in the raw recordings (e.g., "left mastoid”, “bipolar”, “T01” for electrode with name T01, “intracranial electrode on top of a grid, not included with data”, “upside down electrode”). If different channels have a different reference, this field should have a general description and the channel specific reference should be defined in the _channels.tsv file. |
+| DCOffsetCorrection                | RECOMMENDED. A description of the method (if any) used to correct for a DC offset. If the method used was subtracting the mean value for each channel, use “mean”.                                                                                                               |
+| HardwareFilters                   | RECOMMENDED. List of hardware (amplifier) filters applied with  key:value pairs of filter parameters and their values.                                                                                                                                                                   |
 | ElectrodeManufacturer             | RECOMMENDED. can be used if all electrodes are of the same manufacturer (e.g., AD-TECH, DIXI). If electrodes of different manufacturers are used, please use the corresponding table in the _electrodes.tsv file.                                                                        |
 | ElectrodeManufacturersModelName   | RECOMMENDED. If different electrode types are used, please use the corresponding table in the _electrodes.tsv file.                                                                                                                                                                      |
-| iEEGGround                        | RECOMMENDED. Description  of the location of the ground electrode (“placed on right mastoid (M2)”).                                                                                                                                                                                      |
+| ECOGChannelCount                  | RECOMMENDED. Number of iEEG surface channels included in the recording (e.g., 120).                                                                                                                                                                                                      |
+| SEEGChannelCount                  | RECOMMENDED. Number of iEEG depth channels included in the recording (e.g., 8).                                                                                                                                                                                                          |
+| EEGChannelCount                   | RECOMMENDED. Number of scalp EEG channels recorded simultaneously (e.g., 21).                                                                                                                                                                                                            |
+| EOGChannelCount                   | RECOMMENDED. Number of EOG channels.                                                                                                                                                                                                                                                     |
+| ECGChannelCount                   | RECOMMENDED. Number of ECG channels.                                                                                                                                                                                                                                                     |
+| EMGChannelCount                   | RECOMMENDED. Number of EMG channels.                                                                                                                                                                                                                                                     |
+| MiscChannelCount                  | RECOMMENDED. Number of miscellaneous analog channels for auxiliary  signals.                                                                                                                                                                                                             |
+| TriggerChannelCount               | RECOMMENDED. Number of channels for digital (TTL bit level) triggers.                                                                                                                                                                                                                    |
+| RecordingDuration                 | RECOMMENDED. Length of the recording in seconds (e.g., 3600).                                                                                                                                                                                                                            |
+| RecordingType                     | RECOMMENDED. Defines whether the recording is  “continuous” or  “epoched”; this latter limited to time windows about events of interest (e.g., stimulus presentations, subject responses etc.)                                                                           |
+| EpochLength                       | RECOMMENDED. Duration of individual epochs in seconds (e.g., 1) in case of epoched data. If recording was continuous,  leave out the field.                                                                                                                                              |
+| SubjectArtefactDescription        | RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g., “door open”, ”nurse walked into room at 2 min”, ”seizure at 10 min”). If this field is left empty, it will be interpreted as absence of artifacts.              |
+| SoftwareVersions                  | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                                 |
+| iEEGGround                        | RECOMMENDED. Description  of the location of the ground electrode (“placed on right mastoid (M2)”).                                                                                                                                                                              |
 | iEEGPlacementScheme               | RECOMMENDED. Freeform description of the placement of the iEEG electrodes. Left/right/bilateral/depth/surface (e.g., “left frontal grid and bilateral hippocampal depth” or “surface strip and STN depth” or “clinical indication bitemporal, bilateral temporal strips and left grid”). |
 | iEEGElectrodeGroups               | RECOMMENDED. Field to describe the way electrodes are grouped into strips, grids or depth probes e.g., {'grid1': "10x8 grid on left temporal pole", 'strip2': "1x8 electrode strip on xxx"}.                                                                                             |
-| [ElectricalStimulation]           | OPTIONAL. Boolean field to specify if electrical stimulation was done during the recording (options are “true” or “false”). Parameters for event-like stimulation should be specified in the _events.tsv file (see example below).                                                       |
+| [ElectricalStimulation]           | OPTIONAL. Boolean field to specify if electrical stimulation was done during the recording (options are “true” or “false”). Parameters for event-like stimulation should be specified in the _events.tsv file (see example below).                                       |
 | [ElectricalStimulationParameters] | OPTIONAL. Free form description of stimulation parameters, such as frequency, shape etc. Specific onsets can be specified in the _events.tsv file. Specific shapes can be described here in freeform text.                                                                               |
 
 Example:
@@ -167,7 +170,7 @@ on local REB/IRB ethics board policy.
 
 === FROM HERE ON FURTHER REORGANIZATION AND CLEANUP IS NEEDED ===
 
-### iEEG Template
+### Complete template including iEEG data
 
 The following section describes the structure of files, folders, and their naming conventions for the BIDS-iEEG specification.
 
