@@ -37,7 +37,7 @@ formats. Below are lists of each group of allowed data formats in BIDS-iEEG.
     [BrainVision data format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
     by Brain Products GmbH.
 
-**Allowed Formats**
+**Accepted Formats**
 
 -   [Neurodata Without Borders](<(https://github.com/NeurodataWithoutBorders/pynwb)>)
     (.nwb)
