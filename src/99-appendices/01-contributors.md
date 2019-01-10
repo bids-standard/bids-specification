@@ -42,6 +42,7 @@ your name is not listed, please add it.
 -   R. Cameron Craddock 📖📢
 -   Samir Das 📖
 -   Alejandro de la Vega 🐛💻⚠️
+-   Arnaud Delorme 📖💡
 -   Eugene P. Duff 📖
 -   Elizabeth DuPre 📖💡🔍🤔
 -   Eric A. Earl 🤔
@@ -94,6 +95,7 @@ your name is not listed, please add it.
 -   Cyril Pernet 💬📖💡📋
 -   Franco Pestilli 📖
 -   Dmitry Petrov 📖💻
+-   Christophe Philips 📖
 -   Russell A. Poldrack 📖🔍📢
 -   Jean-Baptiste Poline 📖📢🤔🎨
 -   Vasudev Raguram 💻🎨📖🔧
