@@ -58,7 +58,7 @@ BIDS-iEEG community.
 The data format in which the data was originally stored is especially valuable in case conversion elicits the
 loss of crucial metadata specific to manufacturers and specific iEEG systems. We
 also encourage users to provide additional meta information extracted from the
-manufacturer specific data files in the sidecar JSON file. Other relevant files
+manufacturer-specific data files in the sidecar JSON file. Other relevant files
 MAY be included alongside the original EEG data in the
 [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
 
