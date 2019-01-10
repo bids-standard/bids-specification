@@ -239,11 +239,11 @@ Example of free-form text for field `description`
 Example:
 
 ```Text
-name	type	units	description	status	status_description
-VEOG	VEOG	microV	n/a	good	n/a
-FDI	EMG	microV	left first dorsal interosseous	good	n/a
-Cz	EEG	microV	n/a	bad	high frequency noise
-UADC001	MISC	n/a	enevelope of audio signal	good	n/a
+name     type   units   description                     status  status_description
+VEOG     VEOG   microV  n/a                             good    n/a
+FDI      EMG    microV  left first dorsal interosseous  good    n/a
+Cz       EEG    microV  n/a                             bad     high frequency noise
+UADC001  MISC   n/a     enevelope of audio signal       good    n/a
 ```
 
 ## Electrodes description table (`*_electrodes.tsv`)
@@ -284,12 +284,12 @@ SHOULD be present:
 Example:
 
 ```Text
-name	x	y	z	type	material
-A1	-0.0707	0.0000	-0.0707	clip-on	Ag/AgCl
-F3	-0.0567	0.0677	0.0469	cup	Ag/AgCl
-Fz	0.0000	0.0714	0.0699	cup	Ag/AgCl
-REF	-0.0742	-0.0200	-0.0100	cup	Ag/AgCl
-GND	0.0742	-0.0200	-0.0100	cup	Ag/AgCl
+name  x         y        z         type      material
+A1    -0.0707   0.0000   -0.0707   clip-on   Ag/AgCl
+F3    -0.0567   0.0677   0.0469    cup       Ag/AgCl
+Fz    0.0000    0.0714   0.0699    cup       Ag/AgCl
+REF   -0.0742   -0.0200  -0.0100   cup       Ag/AgCl
+GND   0.0742    -0.0200  -0.0100   cup       Ag/AgCl
 ```
 
 ## Coordinate System JSON document (`*_coordsystem.json`)
