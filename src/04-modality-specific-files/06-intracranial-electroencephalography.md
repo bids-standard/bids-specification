@@ -59,17 +59,17 @@ The data format in which the data was originally stored is especially valuable i
 loss of crucial metadata specific to manufacturers and specific iEEG systems. We
 also encourage users to provide additional meta information extracted from the
 manufacturer-specific data files in the sidecar JSON file. Other relevant files
-MAY be included alongside the original EEG data in the
+MAY be included alongside the original iEEG data in the
 [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
 
 
 ### Terminology: Electrodes vs. Channels
 
 For proper documentation of iEEG recording metadata it is important to
-understand the difference between electrode and channel: An EEG electrode is
-attached to the skin, whereas a channel is the combination of the analog
+understand the difference between electrode and channel: An iEEG electrode
+is placed on or in the brain, whereas a channel is the combination of the analog
 differential amplifier and analog-to-digital converter that result in a
-potential (voltage) difference that is stored in the EEG dataset. We employ the
+potential (voltage) difference that is stored in the iEEG dataset. We employ the
 following short definitions:
 
 -   Electrode = A single point of contact between the acquisition system and the
@@ -255,7 +255,7 @@ ECG1  ECG   μV    10000              n/aa       0.11        60    4     ECG2   
 TR1   TRIG  n/a   1000               n/a        n/a         n/a   5     n/a       ana_trigger              good   n/a
 ```
 Restricted keyword list for field type in alphabetic order (shared with the MEG
-and EEG modality; however, only iEEG specific types are listed here):
+and EEG modality; however, only types that are common in iEEG data are listed here):
 
 | Keyword  | Description                                                       |
 | :------- | :---------------------------------------------------------------- |
