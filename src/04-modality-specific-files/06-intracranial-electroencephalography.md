@@ -184,7 +184,7 @@ example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
 on local REB/IRB ethics board policy.
 
 
-#### Channels description table (`*_channels.tsv`)
+## Channels description table (`*_channels.tsv`)
 
 Template:
 
@@ -269,6 +269,81 @@ Restricted keyword list for field type in alphabetic order (shared with the MEG 
 The free text field for the channel description can for example be specified as
 intracranial, stimulus, response, vertical EOG, horizontal EOG, skin conductance,
 eyetracker, etc.
+
+## Electrode locations (`*[_space-<label>]_electrodes.tsv`)
+
+File that gives the location, size and other properties of iEEG
+electrodes. Note that coordinates are expected in cartesian coordinates
+according to the `iEEGCoordinateSystem` and `iEEGCoordinateSystemUnits`
+fields in `*_coordsystem.json`. **If an `*_electrodes.tsv` file is
+specified, a `*_coordsystem.json` file MUST be specified as well**.
+The order of the required columns in the `*_electrodes.tsv` file
+MUST be as listed below.
+
+MUST be present:
+
+
+| Field name | Definition                                                                                                                                                                  |
+| :--------  | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name       | REQUIRED. Name of the electrode contact point.                                                                                                                              |
+| x          | REQUIRED. X position. The positions of the center of each electrode in xyz space. Units are in millimeters or pixels and are specified in _*space-<label>_electrode.json.   |
+| y          | REQUIRED. Y position.                                                                                                                                                       |
+| z          | REQUIRED. Z position. If electrodes are in 2D space this should be a column of n/a values.                                                                                  |
+| size       | REQUIRED. Surface area of the electrode, in mm^2.                                                                                                                           |
+
+SHOULD be present:
+
+| Field name   | Definition                                                                                                                                                                |
+| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| material     | OPTIONAL. Material of the electrodes.                                                                                                                                     |
+| manufacturer | OPTIONAL. Recommended field to specify the manufacturer for each electrode. Can be used if electrodes were manufactured by more than one company.                         |
+| group        | OPTIONAL. Optional field to specify the group that  the electrode is a part of. Note that any group specified here should match a group specified in `_channels.tsv`.     |
+| hemisphere   | OPTIONAL. Optional field to specify the hemisphere in which the electrode is placed, one of [‘L’ or ‘R’] (use capital).                                   |
+
+MAY be present:
+
+| Field name   | Definition                                                                                                                                                                |
+| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| type         | OPTIONAL. Optional type of the electrode, e.g., cup, ring, clip-on, wire, needle, ...                                                                                     |
+| impedance    | OPTIONAL. Impedance of the electrode in kOhm.                                                                                                                             |
+| dimension    | OPTIONAL. Size of the grid/strip/probe that this electrode belongs to. Must be of form [AxB] with the smallest dimension first (e.g. [1x8]).                              |
+
+**Examples**
+
+```Text
+name  x   y    z    type     size   material    manufacturer 
+LT01  19  -39  -16  surface  2.3    platinum    Integra 
+LT02  23  -40  -19  surface  2.3    platinum    Integra 
+H01   27  -42  -21  depth    5      platinum    AdTech 
+```
+
+### Recommended 3D coordinate systems
+
+It is preferred that electrodes are localized in a 3D coordinate
+system (with respect to a pre- and/or post-operative anatomical MRI
+or CT scans or in a standard space as specified in BIDS Appendix
+VIII: preferred names of Coordinate systems, such as ACPC).
+
+### Allowed 2D coordinate systems
+
+If electrodes are localized in 2D space (only x and y are specified
+and z is n/a), then the positions in this file must correspond to
+the locations expressed in pixels on the photo/drawing/rendering
+of the electrodes on the brain. In this case, coordinates must be
+(row,column) pairs, with (0,0) corresponding to the upper left
+pixel and (N,0) corresponding to the lower left pixel.
+
+### Multiple coordinate systems
+
+If electrode positions are known in multiple coordinate systems
+(e.g., MRI, CT and MNI), these spaces can be distinguished by the
+optional `[_space-<label>]` and `[_proc-<label>]` fields.
+
+The optional space label (`[_space-<label>]_electrodes.tsv`) indicates the way in which electrode positions are interpreted, see [TODO: link] BEP003 - Common Derivatives. Examples include:
+
+* `_space-orig` (electrodes are in the space originally extracted from the image, such as a T1 weighted MRI, CT, XRay or 2D operative photo).
+* `_space-MNI152Lin` (electrodes are coregistred and scaled to a specific MNI template)
+* `_space-Talairach` (electrodes are coregistred and scaled to Talairach space)
 
 === FROM HERE ON FURTHER REORGANIZATION AND CLEANUP IS NEEDED ===
 
@@ -372,65 +447,6 @@ A number of optional files may be included once for a given iEEG session. These 
 
 1. `*_photo.jpg`
 2. `*_scans.tsv`
-
-#### Electrode locations (`*[_space-<label>]_electrodes.tsv`)
-
-Electrodes form the single contact points with the brain tissue. The electrode positions and properties are stored in a `.tsv` file ending in `_electrodes.tsv` (amplifier information is in `channels.tsv`). This file must contain the electrode name, the electrode coordinates in 3 columns (xyz), and the size of each electrode and some optional parameters.
-
-The electrode locations can only be interpreted together with the `_coordsystem.json` [TODO link above] sidecar, which specifies the coordinate system relative to which the positions are to be interpreted.
-
-* **Recommended 3D coordinate systems**:
-
-  It is preferred that electrodes are localized in a 3D coordinate system (with respect to a pre- and/or post-operative anatomical MRI or CT scans or in a standard space as specified in BIDS Appendix VIII: preferred names of Coordinate systems, such as ACPC).
-* **Allowed 2D coordinate systems**:
-
-  If electrodes are localized in 2D space (only x and y are specified and z is n/a), then the positions in this file must correspond to the locations expressed in pixels on the photo/drawing/rendering of the electrodes on the brain. In this case, coordinates must be “(row, column)” pairs, with (0,0) corresponding to the upper left pixel and (N,0) corresponding to the lower left pixel.
-* **Multiple coordinate systems**:
-
-  If electrode positions are known in multiple coordinate systems (e.g., MRI, CT and MNI), these spaces can be distinguished by the optional `[_space-<label>]` and `[_proc-<label>]` fields.
-
-**Required fields**
-
-| Field name | Definition                                                                                                                                                                           |
-| :--------  | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name       | REQUIRED. Name of the electrode contact point.                                                                                                                                       |
-| x          | REQUIRED. X position. The positions of the center of each electrode in xyz space. Units are in millimeters or pixels and are specified in _*space-<label>_electrode.json.            |
-| y          | REQUIRED. Y position.                                                                                                                                                                |
-| z          | REQUIRED. Z position. If electrodes are in 2D space this should be a column of n/a values.                                                                                           |
-| size       | REQUIRED. Surface area of the electrode, in mm^2.                                                                                                                                    |
-
-**Recommended fields**
-
-| Field name   | Definition                                                                                                                                                                |
-| :---         | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| material     | RECOMMENDED. Material of the electrodes.                                                                                                                                  |
-| manufacturer | OPTIONAL. Recommended field to specify the manufacturer for each electrode. Can be used if electrodes were manufactured by more than one company.                         |
-| group        | OPTIONAL. Optional field to specify the group that  the electrode is a part of. Note that any group specified here should match a group specified in `_channels.tsv`.     |
-| hemisphere   | OPTIONAL. Optional field to specify the hemisphere in which the electrode is placed, one of [‘L’ or ‘R’] (use capital).                                                   |
-
-**Optional fields**
-
-| Field name | Definition |
-| :--- | :---
-| type | OPTIONAL. Optional type of the electrode, e.g., cup, ring, clip-on, wire, needle, ...
-| impedance | OPTIONAL.  Impedance of the electrode in kOhm.
-| dimension | OPTIONAL. Size of the grid/strip/probe that this electrode belongs to. Must be of form [AxB] with the smallest dimension first (e.g. [1x8]).
-
-**Examples**
-
-`sub-01_space-Talairach_electrodes.tsv`:
-
-| name  | x	| y	| z |	type |	size |	material | manufacturer |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| LT01|   19 | -39 | -16 | surface | 2.3 | platinum  |  Integra |
-| LT02|   23 | -40 | -19 |  surface | 2.3 | platinum  |  Integra |
-| H01  | 27 | -42 | -21 | depth | 5 | platinum  |  AdTech |
-
-The optional space label (`[_space-<label>]_electrodes.tsv`) indicates the way in which electrode positions are interpreted, see [TODO: link] BEP003 - Common Derivatives. Examples include:
-
-* `_space-orig` (electrodes are in the space originally extracted from the image, such as a T1 weighted MRI, CT, XRay or 2D operative photo).
-* `_space-MNI152Lin` (electrodes are coregistred and scaled to a specific MNI template)
-* `_space-Talairach` (electrodes are coregistred and scaled to Talairach space)
 
 #### Electrode coordinates JSON document (`*[_space-<label>]_coordsystem.json`)
 
