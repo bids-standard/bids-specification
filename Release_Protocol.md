@@ -11,7 +11,7 @@ Please make sure your fork is the most up to date version
 This process is figured below ![Unreleased-to-Version](release_images/Unreleased-to-Version.png "Unreleased-to-Version")
 
 ### 3. Please open a pull request on the [master branch of the BIDS-specification](https://github.com/bids-standard/bids-specification/tree/master).
-Important note: The pull request title **needs** to follow this protocol. REL: v.X.X.X (i.e. REL: v.1.1.2) There should only be one commit in the pull request (the step 2 commit)
+Important note: The pull request title **needs** to follow this protocol. REL: vX.X.X (i.e. REL: v1.1.2) There should only be one commit in the pull request (the step 2 commit)
 
 ### This will open a period of discussion for 5 business days regarding if we are ready to release. This will also freeze all pull request merging.
 
