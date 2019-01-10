@@ -381,6 +381,42 @@ Example:
 }
 ```
 
+## Photos of the electrodes and anatomical landmarks (`*_photo.jpg`)
+
+These can include photos of the electrodes on the brain surface,
+photos of anatomical landmarks (such as sulcal structure), fiducials,
+an X-ray picture, a flatbed scan of a schematic drawing made during
+surgery, or screenshots of a brain rendering with electrode positions.
+The photos may need to be cropped and/or blurred to conceal identifying
+featuresor entirely omittedprior to sharing, depending on obtained
+consent.
+
+If there are photos of the electrodes, the acquisition field should be specified with:
+
+* `*_photo.jpg` in case of an operative photo
+* `*_acq-xray#_photo.jpg` in case of an x-ray picture
+* `*_acq-drawing#_photo.jpg` in case of a drawing or sketch  of electrode placements
+* `*_acq-render#_photo.jpg` in case of a rendering
+
+The session label may be used to specify when the photo was taken.
+
+Example of the operative photo of ECoG electrodes (here an annotated example in which electrodes and vasculature are marked, taken  from Hermes et al., JNeuroMeth 2010).
+
+```
+    sub-0001_ses-01_acq-photo1_photo.jpg
+    sub-0001_ses-01_acq-photo2_photo.jpg
+```
+
+[TODO: brain picture]
+
+Below is an example of a volume rendering of the cortical surface with a superimposed subdural electrode implantation. This map is often provided by the EEG technician and provided to the epileptologists (e.g., see Burneo JG et al. 2014 http://dx.doi.org/10.1016/j.clineuro.2014.03.020).
+
+```
+    sub-0002_ses-001_acq-render_photo.jpg (for volume rendering)
+```
+
+[TODO: brain picture 2]
+
 === FROM HERE ON FURTHER REORGANIZATION AND CLEANUP IS NEEDED ===
 
 ### Complete template including iEEG data
@@ -483,35 +519,6 @@ A number of optional files may be included once for a given iEEG session. These 
 
 1. `*_photo.jpg`
 2. `*_scans.tsv`
-
-#### Photos of the electrode positions (`*_photo.jpg`)
-
-These can include photos of the electrodes on the brain surface, photos of anatomical landmarks (if using fiducials), an X-ray picture, a flatbed scan of a schematic drawing made during surgery, or screenshots of a brain rendering with electrode positions. The photos may need to be cropped and/or blurred to conceal identifying features—or entirely omitted—prior to sharing, depending on obtained consent.
-
-If there are photos of the electrode positions, the acquisition field should be specified with:
-* `*_photo.jpg` in case of an operative photo
-* `*_acq-xray#_photo.jpg` in case of an x-ray picture
-* `*_acq-drawing#_photo.jpg` in case of a drawing or sketch  of electrode placements
-* `*_acq-render#_photo.jpg` in case of a rendering
-
-The session label may be used to specify when the photo was taken.
-
-example of the operative photo of ECoG electrodes (here an annotated example in which electrodes and vasculature are marked, taken  from Hermes et al., JNeuroMeth 2010).
-
-```
-    sub-0001_ses-01_acq-photo1_photo.jpg
-    sub-0001_ses-01_acq-photo2_photo.jpg
-```
-
-[TODO: brain picture]
-
-Below is an example of a volume rendering of the cortical surface with a superimposed subdural electrode implantation. This map is often provided by the EEG technician and provided to the epileptologists (e.g., see Burneo JG et al. 2014 http://dx.doi.org/10.1016/j.clineuro.2014.03.020).
-
-```
-    sub-0002_ses-001_acq-render_photo.jpg (for volume rendering)
-```
-
-[TODO: brain picture 2]
 
 #### Multiple recordings in one session  (`scans.tsv`)
 
