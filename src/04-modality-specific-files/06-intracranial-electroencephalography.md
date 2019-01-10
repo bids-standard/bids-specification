@@ -471,7 +471,7 @@ iEEG electrodes, and the electrical stimulation has an event structure (on-off,
 onset, duration), the `_events.tsv` file can contain the electrical stimulation
 parameters in addition to other events. Note that these can be intermixed with
 other task events. Electrical stimulation parameters can be described in columns
-called electrical*stimulation*<label>, with labels chosen by the researcher and
+called `electrical*stimulation*<label>`, with labels chosen by the researcher and
 optionally defined in more detail in an accompanying `_electrodes.json` file (as
 per the main BIDS spec). Functions for complex stimulation patterns can, similar
 as when a video is presented, be stored in a folder in the `/stimuli/` folder.
