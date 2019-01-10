@@ -241,43 +241,34 @@ ECG1  ECG   μV    10000              n/aa       0.11        60    4     ECG2   
 TR1   TRIG  n/a   1000               n/a        n/a         n/a   5     n/a       ana_trigger              good   n/a       
 ```
 
-**Restricted keyword list for field type**
-See section 8.4.2 in general BIDS for an extensive list. Only bold types are suggested iEEG additions.
+Restricted keyword list for field type in alphabetic order (shared with the MEG and EEG modality; however, only iEEG specific types are listed here):
 
-* `EEG`:  	   Electrode channel from electroencephalogram
-* `ECOG`:  	   Electrode channel from electrocorticogram (intracranial)
-* `SEEG`:  	   Electrode channel from stereo-electroencephalogram (intracranial)
-* `DBS`: 		   Electrode channel from deep brain stimulation (intracranial)
-* `VEOG`: 	   Vertical EOG (electrooculogram)
-* `HEOG`: 	   Horizontal EOG
-* `EOG`: 		   Generic EOG channel if HEOG or VEOG information not available
-* `ECG`: 		   ElectroCardioGram (heart)
-* `EMG`: 		   ElectroMyoGram (muscle)
-* `TRIG`:      System Triggers
-* `AUDIO`: 	   Audio signal
-* `PD`: 		   Photodiode
-* `EYEGAZE`: 	 Eye Tracker gaze
-* `PUPIL`: 	   Eye Tracker pupil diameter
-* `MISC`: 	   Miscellaneous
-* `SYSCLOCK`:  System time showing elapsed time since trial started
-* `ADC`: 		   Analog to Digital input
-* `DAC`:   	   Digital to Analog output
-* `OTHER`:      Any other type of channel
-* **`REF`**: 		**Reference channel**
+| Keyword	 | Description 
+| :--------| :-------------------------------------------------------------------|
+| EEG      | Electrode channel from electroencephalogram                         |
+| ECOG     | Electrode channel from electrocorticogram (intracranial)            |
+| SEEG     | Electrode channel from stereo-electroencephalogram (intracranial)   |
+| DBS      | Electrode channel from deep brain stimulation (intracranial)        |
+| VEOG     | Vertical EOG (electrooculogram)                                     |
+| HEOG     | Horizontal EOG                                                      |
+| EOG      | Generic EOG channel if HEOG or VEOG information not available       |
+| ECG      | ElectroCardioGram (heart)                                           |
+| EMG      | ElectroMyoGram (muscle)                                             |
+| TRIG     | System Triggers                                                     |
+| AUDIO    | Audio signal                                                        |
+| PD       | Photodiode                                                          |
+| EYEGAZE  | Eye Tracker gaze                                                    |
+| PUPIL    | Eye Tracker pupil diameter                                          |
+| MISC     | Miscellaneous                                                       |
+| SYSCLOCK | System time showing elapsed time since trial started                |
+| ADC      | Analog to Digital input                                             |
+| DAC      | Digital to Analog output                                            |
+| REF      | Reference channel                                                   |
+| OTHER    | Any other type of channel                                           |
 
 The free text field for the channel description can for example be specified as
 intracranial, stimulus, response, vertical EOG, horizontal EOG, skin conductance,
 eyetracker, etc.
-
-Some examples of type and description fields:
-
-| name     | type | description                       |
-| :------- | :--- | :-------------------------------- |
-| VEOG     | EOG  | vertical EOG                      |
-| LO01     | SEEG | frontal surface                   |
-| FDI      | EMG  | left first dorsal interosseous    |
-| UDIO001  | TRIG | analogue trigger                  |
-| AUDIO001 | MISC | envelope of audio signal          |
 
 === FROM HERE ON FURTHER REORGANIZATION AND CLEANUP IS NEEDED ===
 
