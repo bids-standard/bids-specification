@@ -307,7 +307,7 @@ MAY be present:
 | impedance    | OPTIONAL. Impedance of the electrode in kOhm.                                                                                                                             |
 | dimension    | OPTIONAL. Size of the grid/strip/probe that this electrode belongs to. Must be of form [AxB] with the smallest dimension first (e.g. [1x8]).                              |
 
-**Examples**
+Example:
 
 ```Text
 name  x   y    z    type     size   material    manufacturer
@@ -315,6 +315,30 @@ LT01  19  -39  -16  surface  2.3    platinum    Integra
 LT02  23  -40  -19  surface  2.3    platinum    Integra
 H01   27  -42  -21  depth    5      platinum    AdTech
 ```
+
+## Coordinate System JSON document (*[_space-<label>]_coordsystem.json)
+
+This `_coordsystem.json` file contains the coordinate system in
+which electrode positions are expressed. The associated MRI, CT,
+X-Ray, or operative photo can also be specified. It may also be a
+geometric description of the anatomy/electrodes such as a surface
+description in a `.gii` file (*?*).
+
+General fields:
+
+| Field name                          | Definition                                                                                                                                                       |
+| :---------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| IntendedFor                         | RECOMMENDED. This can be an MRI/CT or a file containing the operative photo, x-ray or drawing with path relative to the project folder. If only a surface reconstruction is available, this should point to the surface reconstruction file. Note that this file should have the same coordinate system specified in `iEEGCoordinateSystem`. <br /><br /> For example, <br /><br /> **T1**: `sub-<label>/ses-<label>/anat/sub-01_T1w.nii.gz` <br /><br /> **Surface**: `/derivatives/surfaces/sub-<label>/ses-<label>/anat/sub-01_T1w_pial.R.surf.gii` <br /><br />  **Operative photo**:  `/sub-<label>/ses-<label>/ieeg/sub-0001_ses-01_acq-photo1_photo.jpg` <br /><br /> **Talairach**: `/derivatives/surfaces/sub-Talairach/ses-01/anat/sub-Talairach_T1w_pial.R.surf.gii` |
+
+Fields relating to the iEEG electrode positions:
+
+| Field name                          | Definition                                                                                                                                                       |
+| :---------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| iEEGCoordinateSystem                | REQUIRED. Defines the coordinate system for the iEEG electrodes. For example, “ACPC”. See Appendix VIII: preferred names of Coordinate systems. If "Other" (e.g., individual subject MRI), provide definition of the coordinate system in  `[iEEGCoordinateSystemDescription]`. If positions correspond to   pixel indices in a 2D image (of either a volume-rendering, surface-rendering, operative photo, or operative drawing), this must be “pixels”. See section 3.4.1: Electrode locations for more information on electrode locations. |
+| iEEGCoordinateUnits                 | REQUIRED. Units of the _electrodes.tsv, MUST be “m”, “mm”, “cm” or “pixels”.                                                     |
+| iEEGCoordinateSystemDescription     | RECOMMENDED. Freeform text description or link to document describing the iEEG coordinate system system in detail (e.g., “Coordinate system with the origin at anterior commissure (AC), negative y-axis going through the posterior commissure (PC), z-axis going to a mid-hemisperic point which lies superior to the AC-PC line, x-axis going to the right”). | 
+| iEEGCoordinateProcessingDescription | RECOMMENDED. Has any projection been done on the electrode positions (e.g., “surface_projection”,  “none”).                                      | 
+| iEEGCoordinateProcessingReference   | RECOMMENDED. A reference to a paper that defines in more detail the method used to project or localize the electrodes.                                           | 
 
 ### Recommended 3D coordinate systems
 
@@ -343,6 +367,19 @@ The optional space label (`[_space-<label>]_electrodes.tsv`) indicates the way i
 * `_space-orig` (electrodes are in the space originally extracted from the image, such as a T1 weighted MRI, CT, XRay or 2D operative photo).
 * `_space-MNI152Lin` (electrodes are coregistred and scaled to a specific MNI template)
 * `_space-Talairach` (electrodes are coregistred and scaled to Talairach space)
+
+Example:
+
+```json
+{
+  "IntendedFor":"/sub-01/ses-01/anat/sub-01_T1w.nii.gz",
+  "iEEGCoordinateSystem":"ACPC",
+  "iEEGCoordinateUnits":"mm",
+  "iEEGCoordinateSystemDescription":"Coordinate system with the origin at anterior commissure (AC), negative y-axis going through the posterior commissure (PC), z-axis going to a mid-hemisperic point which lies superior to the AC-PC line, x-axis going to the right",
+  "iEEGCoordinateProcessingDescription":"surface_projection",
+  "iEEGCoordinateProcessingReference":"Hermes et al., 2010 JNeuroMeth"
+}
+```
 
 === FROM HERE ON FURTHER REORGANIZATION AND CLEANUP IS NEEDED ===
 
@@ -446,40 +483,6 @@ A number of optional files may be included once for a given iEEG session. These 
 
 1. `*_photo.jpg`
 2. `*_scans.tsv`
-
-#### Electrode coordinates JSON document (`*[_space-<label>]_coordsystem.json`)
-
-This `_coordsystem.json` file contains the coordinate system used for the electrode coordinates. The associated image is also specified. This includes an MRI, a CT, an X-Ray, or operative photo. It may also be a geometric description of the anatomy/electrodes such as a surface description in a `.gii` file.
-
-**Required fields**
-
-| Field name | Definition |
-| :--- | :---
-| iEEGCoordinateSystem | REQUIRED. Defines the coordinate system for the iEEG electrodes. For example, “ACPC”. See Appendix VIII: preferred names of Coordinate systems. If "Other" (e.g., individual subject MRI), provide definition of the coordinate system in  `[iEEGCoordinateSystemDescription]`. If positions correspond to   pixel indices in a 2D image (of either a volume-rendering, surface-rendering, operative photo, or operative drawing), this must be “pixels”. See section 3.4.1: Electrode locations for more information on electrode locations.  
-| iEEGCoordinateUnits | REQUIRED. Units of the _electrodes.tsv, MUST be “m”, “mm”, “cm” or “pixels”.
-
-**Recommended fields**
-
-| Field name | Definition |
-| :--- | :---
-| iEEGCoordinateSystemDescription | RECOMMENDED. Freeform text description or link to document describing the iEEG coordinate system system in detail (e.g., “Coordinate system with the origin at anterior commissure (AC), negative y-axis going through the posterior commissure (PC), z-axis going to a mid-hemisperic point which lies superior to the AC-PC line, x-axis going to the right”).
-| IntendedFor | RECOMMENDED. This can be an MRI/CT or a file containing the operative photo, x-ray or drawing with path relative to the project folder. If only a surface reconstruction is available, this should point to the surface reconstruction file. Note that this file should have the same coordinate system specified in `iEEGCoordinateSystem`. <br /><br /> For example, <br /><br /> **T1**: `sub-<label>/ses-<label>/anat/sub-01_T1w.nii.gz` <br /><br /> **Surface**: `/derivatives/surfaces/sub-<label>/ses-<label>/anat/sub-01_T1w_pial.R.surf.gii` <br /><br />  **Operative photo**:  `/sub-<label>/ses-<label>/ieeg/sub-0001_ses-01_acq-photo1_photo.jpg` <br /><br /> **Talairach**: `/derivatives/surfaces/sub-Talairach/ses-01/anat/sub-Talairach_T1w_pial.R.surf.gii` |
-| iEEGCoordinateProcessingDescription | RECOMMENDED. Has any projection been done on the electrode positions (e.g., “surface_projection”,  “none”).
-| iEEGCoordinateProcessingReference | RECOMMENDED. A reference to a paper that defines in more detail the method used to project or localize the electrodes
-
-**Example**
-`sub-01_coordsystem.json`:
-
-```json
-{
-  "iEEGCoordinateSystem":"ACPC",
-  "iEEGCoordinateUnits":"mm",
-  "iEEGCoordinateSystemDescription":"Coordinate system with the origin at anterior commissure (AC), negative y-axis going through the posterior commissure (PC), z-axis going to a mid-hemisperic point which lies superior to the AC-PC line, x-axis going to the right",
-  "iEEGCoordinateProcessingDescription":"surface_projection",
-  "IntendedFor":"/sub-01/ses-01/anat/sub-01_T1w.nii.gz",
-  "iEEGCoordinateProcessingReference":"Hermes et al., 2010 JNeuroMeth"
-}
-```
 
 #### Photos of the electrode positions (`*_photo.jpg`)
 
