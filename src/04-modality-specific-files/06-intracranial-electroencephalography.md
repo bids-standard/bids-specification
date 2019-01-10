@@ -89,14 +89,14 @@ Generic fields MUST be present:
 | TaskName               | REQUIRED. Name of the task (for resting state use the “rest” prefix). No two tasks should have the same name. Task label is derived from this field by removing all non alphanumeric ([a-zA-Z0-9]) characters. Note this does not have to be a “behavioral task” that subjects perform, but can reflect some information about the conditions present when the data was acquired (e.g., “rest”, “sleep”, or "seizure").  |
 | SamplingFrequency      | REQUIRED. Sampling frequency (in Hz) of all the iEEG channels in the recording (e.g., 2400). All other channels should have frequency specified as well in the `channels.tsv` file.                                                     |
 | PowerLineFrequency     | REQUIRED. Frequency (in Hz) of the power grid where the iEEG recording was done (i.e., 50 or 60).                                                                                                                                       |
-| SoftwareFilters        | REQUIRED. List of temporal software filters applied or ideally  key:value pairs of pre-applied filters and their parameter values. (n/a if none). E.g., “{'HighPass': {'HalfAmplitudeCutOffHz': 1, 'RollOff: '6dB/Octave'}}”.   |
+| SoftwareFilters        | REQUIRED. List of temporal software filters applied or ideally  key:value pairs of pre-applied filters and their parameter values. (n/a if none). E.g., “{'HighPass': {'HalfAmplitudeCutOffHz': 1, 'RollOff: '6dB/Octave'}}”.           |
 
 SHOULD be present: For consistency between studies and institutions, we encourage users to extract the values of these fields from the actual raw data. Whenever possible, please avoid using ad hoc wording.
 
 | Field name             | Definition                                                                                                                                                                                                                              |
 | :--------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Manufacturer           | RECOMMENDED. Manufacturer of the amplifier system  (e.g., "TDT, Blackrock").                                                                                                                                                            |
-| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the iEEG amplifier model.                                                                                                                                                                |
+| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the iEEG amplifier model.                                                                                                                                                                    |
 | TaskDescription        | RECOMMENDED. Longer description of the task.                                                                                                                                                                                            |
 | Instructions           | RECOMMENDED. Text of the instructions given to participants before the recording. This is especially important in context of resting state and distinguishing between eyes open and eyes closed paradigms.                              |
 | CogAtlasID             | RECOMMENDED. URL of the corresponding [Cognitive Atlas Task](http://www.cognitiveatlas.org/) term.                                                                                                                                      |
@@ -115,7 +115,7 @@ Specific iEEG fields SHOULD be present:
 
 | Field name                        | Definition                                                                                                                                                                                                                                                                               |
 | :-------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| DCOffsetCorrection                | RECOMMENDED. A description of the method (if any) used to correct for a DC offset. If the method used was subtracting the mean value for each channel, use “mean”.                                                                                                               |
+| DCOffsetCorrection                | RECOMMENDED. A description of the method (if any) used to correct for a DC offset. If the method used was subtracting the mean value for each channel, use “mean”.                                                                                                                       |
 | HardwareFilters                   | RECOMMENDED. List of hardware (amplifier) filters applied with  key:value pairs of filter parameters and their values.                                                                                                                                                                   |
 | ElectrodeManufacturer             | RECOMMENDED. can be used if all electrodes are of the same manufacturer (e.g., AD-TECH, DIXI). If electrodes of different manufacturers are used, please use the corresponding table in the _electrodes.tsv file.                                                                        |
 | ElectrodeManufacturersModelName   | RECOMMENDED. If different electrode types are used, please use the corresponding table in the _electrodes.tsv file.                                                                                                                                                                      |
@@ -128,11 +128,11 @@ Specific iEEG fields SHOULD be present:
 | MiscChannelCount                  | RECOMMENDED. Number of miscellaneous analog channels for auxiliary  signals.                                                                                                                                                                                                             |
 | TriggerChannelCount               | RECOMMENDED. Number of channels for digital (TTL bit level) triggers.                                                                                                                                                                                                                    |
 | RecordingDuration                 | RECOMMENDED. Length of the recording in seconds (e.g., 3600).                                                                                                                                                                                                                            |
-| RecordingType                     | RECOMMENDED. Defines whether the recording is  “continuous” or  “epoched”; this latter limited to time windows about events of interest (e.g., stimulus presentations, subject responses etc.)                                                                           |
+| RecordingType                     | RECOMMENDED. Defines whether the recording is  “continuous” or  “epoched”; this latter limited to time windows about events of interest (e.g., stimulus presentations, subject responses etc.)                                                                                           |
 | EpochLength                       | RECOMMENDED. Duration of individual epochs in seconds (e.g., 1) in case of epoched data. If recording was continuous,  leave out the field.                                                                                                                                              |
-| SubjectArtefactDescription        | RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g., “door open”, ”nurse walked into room at 2 min”, ”seizure at 10 min”). If this field is left empty, it will be interpreted as absence of artifacts.              |
-| SoftwareVersions                  | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                                 |
-| iEEGGround                        | RECOMMENDED. Description  of the location of the ground electrode (“placed on right mastoid (M2)”).                                                                                                                                                                              |
+| SubjectArtefactDescription        | RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g., “door open”, ”nurse walked into room at 2 min”, ”seizure at 10 min”). If this field is left empty, it will be interpreted as absence of artifacts.                                      |
+| SoftwareVersions                  | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                                     |
+| iEEGGround                        | RECOMMENDED. Description  of the location of the ground electrode (“placed on right mastoid (M2)”).                                                                                                                                                                                      |
 | iEEGPlacementScheme               | RECOMMENDED. Freeform description of the placement of the iEEG electrodes. Left/right/bilateral/depth/surface (e.g., “left frontal grid and bilateral hippocampal depth” or “surface strip and STN depth” or “clinical indication bitemporal, bilateral temporal strips and left grid”). |
 | iEEGElectrodeGroups               | RECOMMENDED. Field to describe the way electrodes are grouped into strips, grids or depth probes e.g., {'grid1': "10x8 grid on left temporal pole", 'strip2': "1x8 electrode strip on xxx"}.                                                                                             |
 
@@ -140,7 +140,7 @@ Specific iEEG fields MAY be present:
 
 | Field name                        | Definition                                                                                                                                                                                                                                                                               |
 | :-------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ElectricalStimulation             | OPTIONAL. Boolean field to specify if electrical stimulation was done during the recording (options are “true” or “false”). Parameters for event-like stimulation should be specified in the _events.tsv file (see example below).                                       |
+| ElectricalStimulation             | OPTIONAL. Boolean field to specify if electrical stimulation was done during the recording (options are “true” or “false”). Parameters for event-like stimulation should be specified in the _events.tsv file (see example below).                                                       |
 | ElectricalStimulationParameters   | OPTIONAL. Free form description of stimulation parameters, such as frequency, shape etc. Specific onsets can be specified in the _events.tsv file. Specific shapes can be described here in freeform text.                                                                               |
 
 Example:
@@ -221,10 +221,10 @@ SHOULD be present:
 
 | Field name             | Definition                                                                                                                                                                                                             |
 | :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| reference              | OPTIONAL. Specification of the reference (e.g., ‘mastoid’, ’ElectrodeName01’, ‘intracranial’, ’CAR’, ’other’, ‘n/a’). If the channel is not an electrode channel (e.g., a microphone channel) use `n/a`. |
+| reference              | OPTIONAL. Specification of the reference (e.g., ‘mastoid’, ’ElectrodeName01’, ‘intracranial’, ’CAR’, ’other’, ‘n/a’). If the channel is not an electrode channel (e.g., a microphone channel) use `n/a`.               |
 | group                  | OPTIONAL. Which group of channels (grid/strip/seeg/depth) this channel belongs to. This is relevant because one group has one cable-bundle and noise can be shared. This can be a name or number. Note that any groups specified in `_electrodes.tsv` must match those present here. |
 | sampling_frequency     | OPTIONAL. Sampling rate of the channel in Hz.                                                                                                                                                                          |
-| description            | OPTIONAL. Brief free-text description of the channel, or other information of interest (e.g., position (e.g., “left lateral temporal surface”, etc.).                                                          |
+| description            | OPTIONAL. Brief free-text description of the channel, or other information of interest (e.g., position (e.g., “left lateral temporal surface”, etc.).                                                                  |
 | notch                  | OPTIONAL. Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use n/a.                                                                                                    |
 | status                 | OPTIONAL. Data quality observed on the channel (good/bad). A channel is considered bad if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in `[status_description]`.  |
 | status_description     | OPTIONAL. Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in [status].                                                   |
@@ -243,7 +243,7 @@ TR1   TRIG  n/a   1000               n/a        n/a         n/a   5     n/a     
 
 Restricted keyword list for field type in alphabetic order (shared with the MEG and EEG modality; however, only iEEG specific types are listed here):
 
-| Keyword	 | Description 
+| Keyword  | Description                                                         |
 | :--------| :-------------------------------------------------------------------|
 | EEG      | Electrode channel from electroencephalogram                         |
 | ECOG     | Electrode channel from electrocorticogram (intracranial)            |
@@ -282,7 +282,6 @@ MUST be as listed below.
 
 MUST be present:
 
-
 | Field name | Definition                                                                                                                                                                  |
 | :--------  | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name       | REQUIRED. Name of the electrode contact point.                                                                                                                              |
@@ -298,7 +297,7 @@ SHOULD be present:
 | material     | OPTIONAL. Material of the electrodes.                                                                                                                                     |
 | manufacturer | OPTIONAL. Recommended field to specify the manufacturer for each electrode. Can be used if electrodes were manufactured by more than one company.                         |
 | group        | OPTIONAL. Optional field to specify the group that  the electrode is a part of. Note that any group specified here should match a group specified in `_channels.tsv`.     |
-| hemisphere   | OPTIONAL. Optional field to specify the hemisphere in which the electrode is placed, one of [‘L’ or ‘R’] (use capital).                                   |
+| hemisphere   | OPTIONAL. Optional field to specify the hemisphere in which the electrode is placed, one of [‘L’ or ‘R’] (use capital).                                                   |
 
 MAY be present:
 
@@ -311,10 +310,10 @@ MAY be present:
 **Examples**
 
 ```Text
-name  x   y    z    type     size   material    manufacturer 
-LT01  19  -39  -16  surface  2.3    platinum    Integra 
-LT02  23  -40  -19  surface  2.3    platinum    Integra 
-H01   27  -42  -21  depth    5      platinum    AdTech 
+name  x   y    z    type     size   material    manufacturer
+LT01  19  -39  -16  surface  2.3    platinum    Integra
+LT02  23  -40  -19  surface  2.3    platinum    Integra
+H01   27  -42  -21  depth    5      platinum    AdTech
 ```
 
 ### Recommended 3D coordinate systems
