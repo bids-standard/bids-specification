@@ -92,17 +92,6 @@ sub-<label>[_ses-<label>][_space-<label>]_electrodes.tsv            # required
 sub-<label>[_ses-<label>][_space-<label>]_coordsystem.json          # required
 [sub-<label>[_ses-<label>][_space-<label>]_photo.jpg]               # optional
 
-# continuous physiological and stimulus recordings, per section 8.6 of
-# the general BIDS specification
-[sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>]
-  [_run-<index>][_space-<label>][_recording-<label>]_physio.tsv.gz] # optional
-[sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>]
-  [_run-<index>][_space-<label>][_recording-<label>]_physio.json]   # optional
-[sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>]
-  [_run-<index>][_space-<label>][_recording-<label>]_stim.tsv.gz]   # optional
-[sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>]
-  [_run-<index>][_space-<label>][_recording-<label>]_stim.json]     # optional
-
 # surface reconstructions for electrodes go in the "derivatives" folder.
 # A relative path has to be stored in the _coordinatesystem.json. This is
 # an example, but the derivatives are not strictly part of the BIDS-iEEG spec,
