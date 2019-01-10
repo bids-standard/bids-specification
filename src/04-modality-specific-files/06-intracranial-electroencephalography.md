@@ -28,9 +28,9 @@ The original data format is especially valuable in case conversion elicits the
 loss of crucial metadata specific to manufacturers and specific iEEG systems. We
 also encourage users to provide additional meta information extracted from the
 manufacturer specific data files in the sidecar JSON file. Other relevant files
-MAY be included alongside the original EEG data in `/sourcedata`.
+MAY be included alongside the original EEG data in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
 
-Note that for proper documentation of iEEG recording metadata it is important to
+For proper documentation of iEEG recording metadata it is important to
 understand the difference between electrode and channel: An EEG electrode is
 attached to the skin, whereas a channel is the combination of the analog
 differential amplifier and analog-to-digital converter that result in a
@@ -60,7 +60,7 @@ be specified.
 
 The following section describes the structure of files, folders, and their naming conventions for the BIDS-iEEG specification. Note that some parts of this overlap with the broader BIDS specification and are not unique to BIDS-iEEG and that for optional files only a few common examples are given.
 
-```python
+```Text
 # required: essential to be BIDS compliant (i.e., MUST as per RFC2199)
 # recommended: gives a warning if not present (i.e., SHOULD as per RFC2199)
 # [] indicates optional: no warning if missing (i.e., MAY as per RFC2199)
@@ -87,7 +87,7 @@ sub-<label>/
       [sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>]
         [_run-<index>][_space-<label>]_events.tsv]                  # optional
 
-# electrode contact metadata
+# electrode metadata
 sub-<label>[_ses-<label>][_space-<label>]_electrodes.tsv            # required
 sub-<label>[_ses-<label>][_space-<label>]_coordsystem.json          # required
 [sub-<label>[_ses-<label>][_space-<label>]_photo.jpg]               # optional
