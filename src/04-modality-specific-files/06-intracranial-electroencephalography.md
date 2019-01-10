@@ -391,7 +391,7 @@ and `[_proc-<label>]` fields.
 
 The optional space label (`[_space-<label>]_electrodes.tsv`) indicates the way
 in which electrode positions are interpreted, see [BEP003 - Common
-Derivatives. Examples include:
+Derivatives](../06-extensions). Examples include:
 
 -   `_space-orig` (electrodes are in the space originally extracted from the
     image, such as a T1 weighted MRI, CT, XRay or 2D operative photo).
