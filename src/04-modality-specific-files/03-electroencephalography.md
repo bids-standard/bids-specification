@@ -191,15 +191,15 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
-| Field name | Definition                                                                                                                                                   |
-| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name       | REQUIRED. Channel name (e.g., FC1, Cz)                                                                                                                       |
-| type       | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                          |
-| units      | REQUIRED. Physical unit of the data values recorded by this channel in SI units (see [Appendix V](../99-appendices/05-units.md): Units for allowed symbols). |
+| Column name | Definition                                                                                                                                                   |
+| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name        | REQUIRED. Channel name (e.g., FC1, Cz)                                                                                                                       |
+| type        | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                          |
+| units       | REQUIRED. Physical unit of the data values recorded by this channel in SI units (see [Appendix V](../99-appendices/05-units.md): Units for allowed symbols). |
 
 SHOULD be present:
 
-| Field name         | Definition                                                                                                                                                                                                                                                                    |
+| Column name        | Definition                                                                                                                                                                                                                                                                    |
 | :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | description        | OPTIONAL. Free-form text description of the channel, or other information of interest. See examples below.                                                                                                                                                                    |
 | sampling_frequency | OPTIONAL. Sampling rate of the channel in Hz.                                                                                                                                                                                                                                 |
@@ -266,20 +266,20 @@ file MUST be specified as well**. The order of the required columns in the
 
 MUST be present:
 
-| Field name | Definition                                   |
-| :----------| :------------------------------------------- |
-| name       | REQUIRED. Name of the electrode              |
-| x          | REQUIRED. Recorded position along the x-axis |
-| y          | REQUIRED. Recorded position along the y-axis |
-| z          | REQUIRED. Recorded position along the z-axis |
+| Column name | Definition                                   |
+| :-----------| :------------------------------------------- |
+| name        | REQUIRED. Name of the electrode              |
+| x           | REQUIRED. Recorded position along the x-axis |
+| y           | REQUIRED. Recorded position along the y-axis |
+| z           | REQUIRED. Recorded position along the z-axis |
 
 SHOULD be present:
 
-| Field name | Definition                                                                  |
-| :----------| :-------------------------------------------------------------------------- |
-| type       | RECOMMENDED. Type of the electrode (e.g., cup, ring, clip-on, wire, needle) |
-| material   | RECOMMENDED. Material of the electrode, e.g., Tin, Ag/AgCl, Gold            |
-| impedance  | RECOMMENDED. Impedance of the electrode in kOhm                             |
+| Column name | Definition                                                                  |
+| :-----------| :-------------------------------------------------------------------------- |
+| type        | RECOMMENDED. Type of the electrode (e.g., cup, ring, clip-on, wire, needle) |
+| material    | RECOMMENDED. Material of the electrode, e.g., Tin, Ag/AgCl, Gold            |
+| impedance   | RECOMMENDED. Impedance of the electrode in kOhm                             |
 
 Example:
 

@@ -189,15 +189,15 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
-| Field name | Definition                                                                                                                                             |
-| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name       | REQUIRED. Channel name (e.g., MRT012, MEG023)                                                                                                          |
-| type       | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                    |
-| units      | REQUIRED. Physical unit of the data values recorded by this channel in SI (see [Appendix V](../99-appendices/05-units.md): Units for allowed symbols). |
+| Column name | Definition                                                                                                                                             |
+| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name        | REQUIRED. Channel name (e.g., MRT012, MEG023)                                                                                                          |
+| type        | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                    |
+| units       | REQUIRED. Physical unit of the data values recorded by this channel in SI (see [Appendix V](../99-appendices/05-units.md): Units for allowed symbols). |
 
 SHOULD be present:
 
-| Field name         | Definition                                                                                                                                                                                                                                                                    |
+| Column name        | Definition                                                                                                                                                                                                                                                                    |
 | :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | description        | OPTIONAL. Brief free-text description of the channel, or other information of interest. See examples below.                                                                                                                                                                   |
 | sampling_frequency | OPTIONAL. Sampling rate of the channel in Hz.                                                                                                                                                                                                                                 |
