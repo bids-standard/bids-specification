@@ -145,7 +145,7 @@ Specific iEEG fields MAY be present:
 
 Example:
 
-```
+```JSON
 {
   "TaskName":"visual",
   "Manufacturer":"Tucker Davis Technologies",
@@ -354,9 +354,9 @@ Fields relating to the iEEG electrode positions:
 | :---------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | iEEGCoordinateSystem                | REQUIRED. Defines the coordinate system for the iEEG electrodes. For example, “ACPC”. See Appendix VIII: preferred names of Coordinate systems. If "Other" (e.g., individual subject MRI), provide definition of the coordinate system in  `[iEEGCoordinateSystemDescription]`. If positions correspond to   pixel indices in a 2D image (of either a volume-rendering, surface-rendering, operative photo, or operative drawing), this must be “pixels”. See section 3.4.1: Electrode locations for more information on electrode locations. |
 | iEEGCoordinateUnits                 | REQUIRED. Units of the _electrodes.tsv, MUST be “m”, “mm”, “cm” or “pixels”.                                                     |
-| iEEGCoordinateSystemDescription     | RECOMMENDED. Freeform text description or link to document describing the iEEG coordinate system system in detail (e.g., “Coordinate system with the origin at anterior commissure (AC), negative y-axis going through the posterior commissure (PC), z-axis going to a mid-hemisperic point which lies superior to the AC-PC line, x-axis going to the right”). | 
-| iEEGCoordinateProcessingDescription | RECOMMENDED. Has any projection been done on the electrode positions (e.g., “surface_projection”,  “none”).                                      | 
-| iEEGCoordinateProcessingReference   | RECOMMENDED. A reference to a paper that defines in more detail the method used to project or localize the electrodes.                                           | 
+| iEEGCoordinateSystemDescription     | RECOMMENDED. Freeform text description or link to document describing the iEEG coordinate system system in detail (e.g., “Coordinate system with the origin at anterior commissure (AC), negative y-axis going through the posterior commissure (PC), z-axis going to a mid-hemisperic point which lies superior to the AC-PC line, x-axis going to the right”). |
+| iEEGCoordinateProcessingDescription | RECOMMENDED. Has any projection been done on the electrode positions (e.g., “surface_projection”,  “none”).                                      |
+| iEEGCoordinateProcessingReference   | RECOMMENDED. A reference to a paper that defines in more detail the method used to project or localize the electrodes.                                           |
 
 ### Recommended 3D coordinate systems
 
@@ -444,7 +444,36 @@ Below is an example of a volume rendering of the cortical surface with a superim
 
 [TODO: brain picture 2]
 
-=== FROM HERE ON FURTHER REORGANIZATION AND CLEANUP IS NEEDED ===
+## Electrical stimulation
+
+In case of electrical stimulation of brain tissue by passing current
+through the iEEG electrodes, and the electrical stimulation has an
+event structure (on-off, onset, duration), the `_events.tsv` file
+can contain the electrical stimulation parameters in addition to
+other events. Note that these can be intermixed with other task
+events. Electrical stimulation parameters can be described in columns
+called electrical_stimulation_<label>, with labels chosen by the
+researcher and optionally defined in more detail in an accompanying
+`_electrodes.json` file (as per the main BIDS spec). Functions for
+complex stimulation patterns can, similar as when a video is
+presented, be stored in a folder in the `/stimuli/` folder. For
+example: `/stimuli/electrical_stimulation_functions/biphasic.tsv`
+
+Example:
+
+```Text
+onset duration trial_type             electrical_stimulation_type electrical_stimulation_site electrical_stimulation_current
+1.2   0.001    electrical_stimulation biphasic                    LT01-LT02                   0.005                         
+1.3   0.001    electrical_stimulation biphasic                    LT01-LT02                   0.005                         
+2.2   0.001    electrical_stimulation biphasic                    LT02-LT03                   0.005                         
+4.2   1        electrical_stimulation complex                     LT02-LT03                   n/a                           
+15.2  3        auditory_stimulus      n/a                         n/a                         n/a                           
+```
+
+========================================================================
+THE REMAINING TEXT SHOULD BE SCANNED FOR RELEVANT ITEMS THAT ARE
+STILL TO BE INCLUDED IN THE IEEG SPECIFICATION
+========================================================================
 
 ### Complete template including iEEG data
 
@@ -602,25 +631,6 @@ participants.json
 | sub-control01 | 34 | M | control
 | sub-control02 | 12 | F | control
 | sub-patient01 | 33 | F | patient
-
-### Electrical stimulation
-
-#### Event-like electrical stimulation
-
-In case of electrical stimulation of brain tissue by passing current through the iEEG electrodes, and the electrical stimulation has an event structure (on-off, onset, duration), the `_events.tsv` file can contain the electrical stimulation parameters in addition to other events. Note that these can be intermixed with other task events. Electrical stimulation parameters can be described in columns called electrical_stimulation_<label>, with labels chosen by the researcher and optionally defined in more detail in an accompanying `_electrodes.json` file (as per the main BIDS spec).
-Functions for complex stimulation patterns can, similar as when a video is presented, be stored in a folder in the `/stimuli/` folder. For example: `/stimuli/electrical_stimulation_functions/my_curve.tsv`
-
-**Example**
-
-`sub-01_events.tsv`:
-
-| onset | duration | trial_type | electrical_stimulation_type | electrical_stimulation_site | electrical_stimulation_current |
-| :---: | :---: | :---: | :---: | :---: | :---:
-| 1.2 | 0.001 | electrical_stimulation | biphasic | LT01-LT02 | 0.005 |
-| 1.3 | 0.001 | electrical_stimulation | biphasic | LT01-LT02 | 0.005 |
-| 2.2 | 0.001 | electrical_stimulation | biphasic | LT02-LT03 | 0.005 |
-| 4.2 | 1 | electrical_stimulation | complex | LT02-LT03 | n/a |
-| 15.2 | 3 | auditory_stimulus | n/a | n/a | n/a |
 
 ## Appendix I: Example iEEG cases
 
