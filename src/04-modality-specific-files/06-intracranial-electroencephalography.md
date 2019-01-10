@@ -55,7 +55,7 @@ packages. Other formats that may be considered in the future should have a clear
 added advantage over the existing formats and should have wide adoption in the
 BIDS-iEEG community.
 
-The original data format is especially valuable in case conversion elicits the
+The data format in which the data was originally stored is especially valuable in case conversion elicits the
 loss of crucial metadata specific to manufacturers and specific iEEG systems. We
 also encourage users to provide additional meta information extracted from the
 manufacturer specific data files in the sidecar JSON file. Other relevant files
