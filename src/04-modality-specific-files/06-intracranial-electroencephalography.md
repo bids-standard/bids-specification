@@ -270,7 +270,16 @@ The free text field for the channel description can for example be specified as
 intracranial, stimulus, response, vertical EOG, horizontal EOG, skin conductance,
 eyetracker, etc.
 
-## Electrode locations (`*[_space-<label>]_electrodes.tsv`)
+## Electrode description table (`*[_space-<label>]_electrodes.tsv`)
+
+Template:
+
+```Text
+sub-<label>/
+    [ses-<label>]/
+      ieeg/
+         sub-<label>[_ses-<label>][_space-<label>]_electrodes.tsv
+```
 
 File that gives the location, size and other properties of iEEG
 electrodes. Note that coordinates are expected in cartesian coordinates
@@ -317,6 +326,15 @@ H01   27  -42  -21  depth    5      platinum    AdTech
 ```
 
 ## Coordinate System JSON document (*[_space-<label>]_coordsystem.json)
+
+Template:
+
+```Text
+sub-<label>/
+    [ses-<label>]/
+      ieeg/
+         sub-<label>[_ses-<label>][_space-<label>]_coordsystem.json
+```
 
 This `_coordsystem.json` file contains the coordinate system in
 which electrode positions are expressed. The associated MRI, CT,
@@ -381,15 +399,24 @@ Example:
 }
 ```
 
-## Photos of the electrodes and anatomical landmarks (`*_photo.jpg`)
+## Photos of the electrode positions (`*_photo.jpg`)
+
+Template:
+
+```Text
+sub-<label>/
+    [ses-<label>]/
+      ieeg/
+         sub-<label>[_ses-<label>][_acq-<label]_photo.json
+```
 
 These can include photos of the electrodes on the brain surface,
-photos of anatomical landmarks (such as sulcal structure), fiducials,
-an X-ray picture, a flatbed scan of a schematic drawing made during
-surgery, or screenshots of a brain rendering with electrode positions.
-The photos may need to be cropped and/or blurred to conceal identifying
-featuresor entirely omittedprior to sharing, depending on obtained
-consent.
+photos of anatomical features or landmarks (such as sulcal structure),
+fiducials. Photos can also include an X-ray picture, a flatbed scan
+of a schematic drawing made during surgery, or screenshots of a
+brain rendering with electrode positions. The photos may need to
+be cropped and/or blurred to conceal identifying features or entirely
+omitted prior to sharing, depending on obtained consent.
 
 If there are photos of the electrodes, the acquisition field should be specified with:
 
