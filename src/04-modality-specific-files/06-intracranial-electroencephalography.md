@@ -93,26 +93,9 @@ sub-<label>[_ses-<label>][_space-<label>]_coordsystem.json          # required
 [sub-<label>[_ses-<label>][_space-<label>]_photo.jpg]               # optional
 ```
 
-The iEEG template can include iEEG data of any kind, including but not limited to task-based, resting state, sleep and CCEP [TODO: define acronym] recordings. File labelling follows the same general rules as outlined for "8.4. Task (including resting state) imaging data" of the [The Brain Imaging Data Structure (BIDS) Specification](http://bids.neuroimaging.io/bids_spec1.0.0.pdf), with the only differences being that:
+The iEEG template can include iEEG data of any kind, including but not limited to task-based, resting state, sleep and cortico-cortical evoked potentials (CCEP) recordings.
 
-1. The `rec` (reconstruction algorithm) label does not apply and is omitted.
-2. The `_bold` suffix is replaced with `_ieeg`
-3. The `.nii[.gz]` extension is replaced with an allowed  extension (see list of allowed extensions in section 3.1)
-4. Similar to the MEG-BIDS format, a `_proc` (processed) label can be added for processing on a recording device, such as e.g., real-time processing for a closed loop DBS device.
-5. A CT can be stored in the anatomy folder as:
-   ```
-   sub-<label>/
-     [ses-<label>]/
-   anat/sub-<label>[_acq-<label>][_ses-<label>]_CT.nii
-   ```
-6. Similar to the [BIDS derivatives](https://docs.google.com/document/d/1Wwc4A6Mow4ZPPszDIWfCUCRNstn7d_zzaWPcfcHmgI4/edit#heading=h.mqkmyp254xh6), the surface reconstructions are stored in the derivatives folder:
-   ```
-   /derivatives/<pipeline_name>/
-    sub-<label>/
-      [ses-<label>]/
-      	anat/sub-<label>[_ses-<label>]_T1w_hemi-R_pial.surf.gii
-   ```
-See Appendix I to see particular examples for different iEEG data formats.
+The `_proc` (processed) label can be added for processing on a recording device, such as e.g., real-time processing for a closed loop DBS device.
 
 ### RUN specific files
 
