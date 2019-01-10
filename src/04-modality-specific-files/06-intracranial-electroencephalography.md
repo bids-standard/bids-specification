@@ -91,15 +91,6 @@ sub-<label>/
 sub-<label>[_ses-<label>][_space-<label>]_electrodes.tsv            # required
 sub-<label>[_ses-<label>][_space-<label>]_coordsystem.json          # required
 [sub-<label>[_ses-<label>][_space-<label>]_photo.jpg]               # optional
-
-# surface reconstructions for electrodes go in the "derivatives" folder.
-# A relative path has to be stored in the _coordinatesystem.json. This is
-# an example, but the derivatives are not strictly part of the BIDS-iEEG spec,
-# but it is shown here as surface visualization is extremely common in the iEEG community.
-derivatives/<pipeline_name>/
-  sub-<label>/
-    [ses-<label>]/
-      anat/sub-<label>[_ses-<label>]_T1w_pial.R.surf.gii            # recommended
 ```
 
 The iEEG template can include iEEG data of any kind, including but not limited to task-based, resting state, sleep and CCEP [TODO: define acronym] recordings. File labelling follows the same general rules as outlined for "8.4. Task (including resting state) imaging data" of the [The Brain Imaging Data Structure (BIDS) Specification](http://bids.neuroimaging.io/bids_spec1.0.0.pdf), with the only differences being that:
