@@ -425,7 +425,7 @@ sub-<label>/
 ```
 
 These can include photos of the electrodes on the brain surface, photos of
-anatomical features or landmarks (such as sulcal structure), fiducials. Photos
+anatomical features or landmarks (such as sulcal structure), and fiducials. Photos
 can also include an X-ray picture, a flatbed scan of a schematic drawing made
 during surgery, or screenshots of a brain rendering with electrode positions.
 The photos may need to be cropped and/or blurred to conceal identifying features
