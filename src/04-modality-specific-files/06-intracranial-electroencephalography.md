@@ -205,25 +205,26 @@ data file. Any number of additional columns may be provided to provide additiona
 information about the channels. Note that electrode positions should not be added to this
 file but to `*_electrodes.tsv`.
 
-**Required fields**
-Differences with MEG-BIDS are **bold**.
+The columns of the Channels description table stored in *_channels.tsv are:
+
+MUST be present:
 
 | Field name   | Definition                                                                                                                                                                                                                                               |
 | :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name         | REQUIRED. Label of the channel, only contains letters and numbers. The label must correspond to _electrodes.tsv name and all ieeg type channels are required to have a position. The reference channel name MUST be provided in the reference column.    |
 | type         | REQUIRED. Type of channel, see below for adequate keywords in this field.                                                                                                                                                                                |
 | units        | REQUIRED. Physical unit of the value represented in this channel, e.g., V for Volt, specified according to the [SI unit symbol](https://en.wikipedia.org/wiki/International_System_of_Units#Base_units) and possibly prefix symbol  (e.g., mV, μV), see [TODO: bids link] the BIDS spec (section 15 Appendix V: Units) for guidelines for Units and Prefixes. |
-| low_cutoff   | **REQUIRED**. Frequencies used for the low pass filter applied to the channel in Hz. If no low pass filter was applied, use `n/a`. Note that anti-alias is a low pass filter, specify its frequencies here if applicable.                                |
-| high_cutoff  | **REQUIRED**. Frequencies used for the high pass filter applied to the channel in Hz. If no high pass filter applied, use `n/a`.                                                                                                                         |
+| low_cutoff   | REQUIRED. Frequencies used for the low pass filter applied to the channel in Hz. If no low pass filter was applied, use `n/a`. Note that anti-alias is a low pass filter, specify its frequencies here if applicable.                                    |
+| high_cutoff  | REQUIRED. Frequencies used for the high pass filter applied to the channel in Hz. If no high pass filter applied, use `n/a`.                                                                                                                             |
 
-**Recommended and optional fields**
+SHOULD be present:
 
 | Field name             | Definition                                                                                                                                                                                                             |
 | :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **reference**          | **RECOMMENDED. Specification of the reference (e.g., ‘mastoid’, ’ElectrodeName01’, ‘intracranial’, ’CAR’, ’other’, ‘n/a’). If the channel is not an electrode channel (e.g., a microphone channel) use `n/a`.**        |
-| **group**              | **RECOMMENDED. Which group of channels (grid/strip/seeg/depth) this channel belongs to. This is relevant because one group has one cable-bundle and noise can be shared. This can be a name or number. Note that any groups specified in `_electrodes.tsv` must match those present here.** |
+| reference              | OPTIONAL. Specification of the reference (e.g., ‘mastoid’, ’ElectrodeName01’, ‘intracranial’, ’CAR’, ’other’, ‘n/a’). If the channel is not an electrode channel (e.g., a microphone channel) use `n/a`. |
+| group                  | OPTIONAL. Which group of channels (grid/strip/seeg/depth) this channel belongs to. This is relevant because one group has one cable-bundle and noise can be shared. This can be a name or number. Note that any groups specified in `_electrodes.tsv` must match those present here. |
 | sampling_frequency     | OPTIONAL. Sampling rate of the channel in Hz.                                                                                                                                                                          |
-| description            | OPTIONAL. Brief free-text description of the channel, or other information of interest (e.g., position (e.g., “left lateral temporal surface”, etc.).                                                                  |
+| description            | OPTIONAL. Brief free-text description of the channel, or other information of interest (e.g., position (e.g., “left lateral temporal surface”, etc.).                                                          |
 | notch                  | OPTIONAL. Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use n/a.                                                                                                    |
 | status                 | OPTIONAL. Data quality observed on the channel (good/bad). A channel is considered bad if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in `[status_description]`.  |
 | status_description     | OPTIONAL. Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in [status].                                                   |
@@ -231,13 +232,14 @@ Differences with MEG-BIDS are **bold**.
 **Example**
 ` sub-01_channels.tsv`:
 
-| name  | type  | units | sampling_frequency | low_cutoff | high_cutoff | notch | group | reference | description              | status | status_description |
-| :---: | :---: | :---: | :----------------: | :--------: | :---------: | :---: | :---: | :-------: | :----------------------: | :----: | :----------------: |  
-| LT01  | ECOG  | μV    | 1000               | 300        | 0.1         | n/a   | LTG   | mastoid   | lateral_temporal_surface | good   | n/a                |
-| LT02  | ECOG  | μV    | 1000               | 300        | 0.1         | n/a   | LTG   | mastoid   | lateral_temporal_surface | bad    | broken             |
-| H01   | SEEG  | μV    | 1000               | 300        | 0.1         | n/a   | HST   | mastoid   | hippocampal_depth        | bad    | line noise         |
-| ECG1  | ECG   | μV    | 1000               | n/a        | 0.1         | 60    | 4     | ECG2      | ecg_channel              | good   | n/a                |
-| TR1   | TRIG  | n/a   | 1000               | n/a        | n/a         | n/a   | 5     | n/a       | ana_trigger              | good   | n/a                |
+```Text
+name  type  units sampling_frequency low_cutoff high_cutoff notch group reference description              status status_description
+LT01  ECOG  μV    10000             3000       0.11        n/a   LTG   mastoid   lateral_temporal_surface good   n/a
+LT02  ECOG  μV    10000              3000       0.11        n/a   LTG   mastod   lateral_temporal_surface bad    brokenn           
+H01   SEEG  μV    10000              3000       0.11        n/a   HST   mastoid   hippocampal_depthh       bad    line noisee       
+ECG1  ECG   μV    10000              n/aa       0.11        60    4     ECG2      ecg_channell             good   na
+TR1   TRIG  n/a   1000               n/a        n/a         n/a   5     n/a       ana_trigger              good   n/a       
+```
 
 **Restricted keyword list for field type**
 See section 8.4.2 in general BIDS for an extensive list. Only bold types are suggested iEEG additions.
@@ -263,10 +265,11 @@ See section 8.4.2 in general BIDS for an extensive list. Only bold types are sug
 * `OTHER`:      Any other type of channel
 * **`REF`**: 		**Reference channel**
 
-**Free text examples for field description**
-* intracranial, stimulus, response, vertical EOG, horizontal EOG, skin conductance, eyetracker
+The free text field for the channel description can for example be specified as
+intracranial, stimulus, response, vertical EOG, horizontal EOG, skin conductance,
+eyetracker, etc.
 
-Examples of type and description fields:
+Some examples of type and description fields:
 
 | name     | type | description                       |
 | :------- | :--- | :-------------------------------- |
