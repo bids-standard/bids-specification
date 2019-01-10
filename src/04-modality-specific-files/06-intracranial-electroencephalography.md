@@ -442,7 +442,7 @@ with:
 
 The session label may be used to specify when the photo was taken.
 
-Example of the operative photo of ECoG electrodes (here an annotated example in
+Example of the operative photo of ECoG electrodes (here is an annotated example in
 which electrodes and vasculature are marked, taken from Hermes et al.,
 JNeuroMeth 2010).
 
