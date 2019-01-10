@@ -10,6 +10,15 @@ context of the academic literature:
 
 ## iEEG recording data
 
+Template:
+
+```Text
+sub-<label>/
+  ieeg/
+    sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>][_run-<index>][_space-<label>]_ieeg.<manufacturer_specific_extension>     
+    sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>][_run-<index>][_space-<label>]_ieeg.json                    
+```
+
 The iEEG community uses a variety of formats for storing raw data, and there is no single standard that all researchers agree on. The allowed file formats for iEEG data in BIDS are divided into two groups: *recommended* formats that are open, well-defined standards, and *accepted* formats that are common in the community. In general, it is discouraged to use *accepted* formats over *recommended* formats, particularly because there are conversion scripts available in most analytics languages to convert data into *recommended* formats. Below are lists of each group of allowed data formats in BIDS-iEEG.
 
 Future versions of BIDS may extend this list of supported file formats. File formats for future consideration MUST have open access documentation, MUST have open source implementation for both reading and writing in at least two programming languages and SHOULD be widely supported in multiple software packages. Other formats that may be considered in the future should have a clear added advantage over the existing formats and should have wide adoption in the BIDS-iEEG community.
@@ -56,56 +65,7 @@ The type of referencing for all channels and optionally the location of
 the reference electrode and the location of the ground electrode MAY
 be specified.
 
-### iEEG Template
-
-The following section describes the structure of files, folders, and their naming conventions for the BIDS-iEEG specification. Note that some parts of this overlap with the broader BIDS specification and are not unique to BIDS-iEEG and that for optional files only a few common examples are given.
-
-```Text
-# required: essential to be BIDS compliant (i.e., MUST as per RFC2199)
-# recommended: gives a warning if not present (i.e., SHOULD as per RFC2199)
-# [] indicates optional: no warning if missing (i.e., MAY as per RFC2199)
-
-sub-<label>/
-  [ses-<label>]/
-    [sub-<label>_scans.tsv]                                         # optional
-    anat/
-      sub-<label>[_ses-<label>]_T1w.nii[.gz]                        # recommend
-      ...
-  [ses-<label>]/
-    [sub-<label>_scans.tsv]                                         # optional
-    anat/
-      sub-<label>[_ses-<label>]_T1w.nii[.gz]                        # recommend
-      [sub-<label>[_ses-<label>]_CT.nii[.gz]]                       # optional
-      ...
-    ieeg/
-      sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>]
-        [_run-<index>][_space-<label>]_ieeg.<allowed_extension>     # required
-      sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>]
-        [_run-<index>][_space-<label>]_ieeg.json                    # required
-      sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>]
-        [_run-<index>][_space-<label>]_channels.tsv                 # required
-      [sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>]
-        [_run-<index>][_space-<label>]_events.tsv]                  # optional
-
-# electrode metadata
-sub-<label>[_ses-<label>][_space-<label>]_electrodes.tsv            # required
-sub-<label>[_ses-<label>][_space-<label>]_coordsystem.json          # required
-[sub-<label>[_ses-<label>][_space-<label>]_photo.jpg]               # optional
-```
-
-The iEEG template can include iEEG data of any kind, including but not limited to task-based, resting state, sleep and cortico-cortical evoked potentials (CCEP) recordings.
-
-The `_proc` (processed) label can be added for processing on a recording device, such as e.g., real-time processing for a closed loop DBS device.
-
-### RUN specific files
-
-A number of files may be included alongside each iEEG recording data file (i.e., for every run of data collection). These files contain information that can often be partially extracted from the raw data files. By having this information in the json/tsv files as well, it facilitates querying large collections of iEEG datasets. These include:
-
-1. `*_ieeg.json`:  A JSON document containing metadata about the iEEG recording data file.
-2. `*_channels.tsv`: A `.tsv` file listing amplifier metadata such as channel names, types, sampling frequency, and other information. Note that this may include non-electrode channels such as trigger channels.
-3. `*_events.tsv`: A `.tsv` file listing the event latency and description.
-
-For behavioral data acquired independently or alongside the iEEG, MEG, or MRI recording, see section “8.7 Behavioral experiments (with no MRI)” of the The Brain Imaging Data Structure (BIDS) Specification.[TODO: BIDS link]
+### Sidecar JSON document (`*_ieeg.json`)
 
 #### Sidecar JSON document (`*_ieeg.json`)
 
@@ -196,7 +156,70 @@ Example:
 }
 ```
 
-Note that the date time information should be stored in the Study key file (scans.tsv), see [section 3.4.1. Scans.tsv](https://docs.google.com/document/d/1qMUkoaXzRMlJuOcfTYNr3fTsrl4SewWjffjMD5Ew6GY/edit#heading=h.1ksv4uv). As it is indicated there, date time information should be expressed in the following format YYYY-MM-DDThh:mm:ss ([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For example: `2009-06-15T13:45:30`. It does not need to be fully detailed, depending on REB/IRB policy.
+Note that the date and time information SHOULD be stored in the Study key file
+([`scans.tsv`](../03-modality-agnostic-files.md#scans-file)). As it is
+indicated there, date time information MUST be expressed in the following
+format `YYYY-MM-DDThh:mm:ss`
+([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For
+example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
+on local REB/IRB ethics board policy.
+
+
+=== FROM HERE ON FURTHER REORGANIZATION AND CLEANUP IS NEEDED ===
+
+### iEEG Template
+
+The following section describes the structure of files, folders, and their naming conventions for the BIDS-iEEG specification.
+
+```Text
+# required: essential to be BIDS compliant (i.e., MUST as per RFC2199)
+# recommended: gives a warning if not present (i.e., SHOULD as per RFC2199)
+# [] indicates optional: no warning if missing (i.e., MAY as per RFC2199)
+
+sub-<label>/
+  [ses-<label>]/
+    [sub-<label>_scans.tsv]                                         # optional
+    anat/
+      sub-<label>[_ses-<label>]_T1w.nii[.gz]                        # recommend
+      ...
+  [ses-<label>]/
+    [sub-<label>_scans.tsv]                                         # optional
+    anat/
+      sub-<label>[_ses-<label>]_T1w.nii[.gz]                        # recommend
+      [sub-<label>[_ses-<label>]_CT.nii[.gz]]                       # optional
+      ...
+    ieeg/
+      sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>]
+        [_run-<index>][_space-<label>]_ieeg.<allowed_extension>     # required
+      sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>]
+        [_run-<index>][_space-<label>]_ieeg.json                    # required
+      sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>]
+        [_run-<index>][_space-<label>]_channels.tsv                 # required
+      [sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>]
+        [_run-<index>][_space-<label>]_events.tsv]                  # optional
+
+# electrode metadata
+sub-<label>[_ses-<label>][_space-<label>]_electrodes.tsv            # required
+sub-<label>[_ses-<label>][_space-<label>]_coordsystem.json          # required
+[sub-<label>[_ses-<label>][_space-<label>]_photo.jpg]               # optional
+```
+
+The iEEG template can include iEEG data of any kind, including but not limited to task-based, resting state, sleep and cortico-cortical evoked potentials (CCEP) recordings.
+
+The `_proc` (processed) label can be added for processing on a recording device, such as e.g., real-time processing for a closed loop DBS device.
+
+### RUN specific files
+
+A number of files may be included alongside each iEEG recording data file (i.e., for every run of data collection). These files contain information that can often be partially extracted from the raw data files. By having this information in the json/tsv files as well, it facilitates querying large collections of iEEG datasets. These include:
+
+1. `*_ieeg.json`:  A JSON document containing metadata about the iEEG recording data file.
+2. `*_channels.tsv`: A `.tsv` file listing amplifier metadata such as channel names, types, sampling frequency, and other information. Note that this may include non-electrode channels such as trigger channels.
+3. `*_events.tsv`: A `.tsv` file listing the event latency and description.
+
+For behavioral data acquired independently or alongside the iEEG, MEG, or MRI recording, see section “8.7 Behavioral experiments (with no MRI)” of the The Brain Imaging Data Structure (BIDS) Specification.[TODO: BIDS link]
+
+
+
 
 #### Channels description table (`*_channels.tsv`)
 
