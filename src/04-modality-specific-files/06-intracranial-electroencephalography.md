@@ -14,9 +14,10 @@ Template:
 
 ```Text
 sub-<label>/
-  ieeg/
-    sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>][_run-<index>][_space-<label>]_ieeg.<manufacturer_specific_extension>     
-    sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>][_run-<index>][_space-<label>]_ieeg.json                    
+  [ses-<label>]/
+    ieeg/
+      sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>][_run-<index>][_space-<label>]_ieeg.<manufacturer_specific_extension>     
+      sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>][_run-<index>][_space-<label>]_ieeg.json                    
 ```
 
 The iEEG community uses a variety of formats for storing raw data, and there is
