@@ -1,7 +1,11 @@
 Changelog
 
-## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
+## [1.1.2](https://github.com/bids-standard/bids-specification/tree/1.1.2) (2019-01-10)
 
+-   Update 01-contributors.md [#120](https://github.com/bids-standard/bids-specification/pull/120) ([oesteban](https://github.com/oesteban))
+-   Global fields in data dictionaries [#117](https://github.com/bids-standard/bids-specification/pull/117) ([chrisfilo](https://github.com/chrisfilo))
+-   Propose BEP026 MER [#116](https://github.com/bids-standard/bids-specification/pull/116) ([greydongilmore](https://github.com/greydongilmore))
+-   Remove duplicate entries in MEG table [#113](https://github.com/bids-standard/bids-specification/pull/113) ([franklin-feingold](https://github.com/franklin-feingold))
 -   Propose BEP025 MIDS [#110](https://github.com/bids-standard/bids-specification/pull/110) ([josator2](https://github.com/josator2))
 -   repair links [#106](https://github.com/bids-standard/bids-specification/pull/106) ([sappelhoff](https://github.com/sappelhoff))
 -   Autogenerate CHANGES.md [#103](https://github.com/bids-standard/bids-specification/pull/103) ([franklin-feingold](https://github.com/franklin-feingold))
