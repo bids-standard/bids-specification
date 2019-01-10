@@ -80,7 +80,9 @@ be specified.
 
 ### Sidecar JSON document (`*_ieeg.json`)
 
-For consistency between studies and institutions, we encourage users to extract the values of metadata fields from the actual raw data. Whenever possible, please avoid using ad hoc wording.
+For consistency between studies and institutions, we encourage users
+to extract the values of metadata fields from the actual raw data.
+Whenever possible, please avoid using ad hoc wording.
 
 Generic fields MUST be present:
 
@@ -380,7 +382,9 @@ If electrode positions are known in multiple coordinate systems
 (e.g., MRI, CT and MNI), these spaces can be distinguished by the
 optional `[_space-<label>]` and `[_proc-<label>]` fields.
 
-The optional space label (`[_space-<label>]_electrodes.tsv`) indicates the way in which electrode positions are interpreted, see [TODO: link] BEP003 - Common Derivatives. Examples include:
+The optional space label (`[_space-<label>]_electrodes.tsv`) indicates
+the way in which electrode positions are interpreted, see [TODO:
+link] BEP003 - Common Derivatives. Examples include:
 
 * `_space-orig` (electrodes are in the space originally extracted from the image, such as a T1 weighted MRI, CT, XRay or 2D operative photo).
 * `_space-MNI152Lin` (electrodes are coregistred and scaled to a specific MNI template)
@@ -427,7 +431,9 @@ If there are photos of the electrodes, the acquisition field should be specified
 
 The session label may be used to specify when the photo was taken.
 
-Example of the operative photo of ECoG electrodes (here an annotated example in which electrodes and vasculature are marked, taken  from Hermes et al., JNeuroMeth 2010).
+Example of the operative photo of ECoG electrodes (here an annotated
+example in which electrodes and vasculature are marked, taken from
+Hermes et al., JNeuroMeth 2010).
 
 ```
     sub-0001_ses-01_acq-photo1_photo.jpg
@@ -436,7 +442,11 @@ Example of the operative photo of ECoG electrodes (here an annotated example in 
 
 [TODO: brain picture]
 
-Below is an example of a volume rendering of the cortical surface with a superimposed subdural electrode implantation. This map is often provided by the EEG technician and provided to the epileptologists (e.g., see Burneo JG et al. 2014 http://dx.doi.org/10.1016/j.clineuro.2014.03.020).
+Below is an example of a volume rendering of the cortical surface
+with a superimposed subdural electrode implantation. This map is
+often provided by the EEG technician and provided to the epileptologists
+(e.g., see Burneo JG et al. 2014
+http://dx.doi.org/10.1016/j.clineuro.2014.03.020).
 
 ```
     sub-0002_ses-001_acq-render_photo.jpg (for volume rendering)
