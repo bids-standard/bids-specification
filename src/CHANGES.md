@@ -1,6 +1,6 @@
 Changelog
 
-## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
+## [1.1.2](https://github.com/bids-standard/bids-specification/tree/1.1.2)
 
 -   Update 01-contributors.md [#120](https://github.com/bids-standard/bids-specification/pull/120) ([oesteban](https://github.com/oesteban))
 -   Global fields in data dictionaries [#117](https://github.com/bids-standard/bids-specification/pull/117) ([chrisfilo](https://github.com/chrisfilo))
