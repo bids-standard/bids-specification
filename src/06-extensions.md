@@ -10,23 +10,13 @@ There are many ways to get involved with the BIDS community!
 If you're new
 to the BIDS community and you'd like to learn a bit more, we recommend checking
 out the [BIDS Starter Kit](https://github.com/bids-standard/bids-starter-kit/blob/master/README.md).
-<<<<<<< HEAD
 This has introductory information about the BIDS specification, tools in
 the BIDS ecosystem, and how you can get involved.
-=======
-This has introductory information about the BIDS specification, tools in the
-BIDS ecosystem, and how you can get involved.
->>>>>>> 5e2b11304ecfaa98cc72ed992b87e3261e45b08f
 
 ### The BIDS Contributor guide
 
 If you'd like to get involved more heavily in helping extend the BIDS
-<<<<<<< HEAD
 specification or develop tools for it, see the [BIDS Contributor Guide](https://docs.google.com/document/d/1pWmEEY-1-WuwBPNy5tDAxVJYQ9Een4hZJM06tQZg8X4/edit?usp%3Dsharing&sa=D&ust=1537468908724000).
-=======
-specification or develop tools for it, see the
-[BIDS Contributor Guide](https://docs.google.com/document/d/1pWmEEY-1-WuwBPNy5tDAxVJYQ9Een4hZJM06tQZg8X4/edit?usp%3Dsharing&sa=D&ust=1537468908724000).
->>>>>>> 5e2b11304ecfaa98cc72ed992b87e3261e45b08f
 It contains more in-depth information for getting involved with the BIDS
 community.
 
