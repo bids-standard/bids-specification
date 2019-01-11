@@ -1,7 +1,12 @@
 Changelog
 
-## [1.1.2](https://github.com/bids-standard/bids-specification/tree/1.1.2) (2019-01-10)
+## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   Update tag naming convention [#123](https://github.com/bids-standard/bids-specification/pull/123) ([chrisfilo](https://github.com/chrisfilo))
+
+## [v.1.1.2](https://github.com/bids-standard/bids-specification/tree/v.1.1.2) (2019-01-10)
+
+-   REL: v.1.1.2 [#121](https://github.com/bids-standard/bids-specification/pull/121) ([chrisfilo](https://github.com/chrisfilo))
 -   Update 01-contributors.md [#120](https://github.com/bids-standard/bids-specification/pull/120) ([oesteban](https://github.com/oesteban))
 -   Global fields in data dictionaries [#117](https://github.com/bids-standard/bids-specification/pull/117) ([chrisfilo](https://github.com/chrisfilo))
 -   Propose BEP026 MER [#116](https://github.com/bids-standard/bids-specification/pull/116) ([greydongilmore](https://github.com/greydongilmore))
