@@ -193,8 +193,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     func/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_<contrast_label>.nii[.gz]
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_part-<mag|phase>][_run-<index>][_echo-<index>]_<contrast_label>.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_part-<mag|phase>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
 ```
 
 Imaging data acquired during functional imaging (i.e. imaging which supports
@@ -238,7 +238,10 @@ reconstruction algorithms (for example ones using motion correction).
 See [`fmap` Case 4](01-magnetic-resonance-imaging-data.md#case-4-multiple-phase-encoded-directions-pepolar)
 for more information on `dir` field specification.
 
-Multi echo data MUST  be split into one file per echo. Each file shares the same
+The OPTIONAL `part-<mag|phase>` key/value allows for storing
+magnitude and phase images. In its absence the image is assumed to be magnitude.
+
+Multi-echo data MUST be split into one file per echo. Each file shares the same
 name with the exception of the `_echo-<index>` key/value. For example:
 
 ```Text
