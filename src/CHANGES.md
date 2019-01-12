@@ -86,7 +86,7 @@ Changelog
 
 -   Added support for MEG data (merged BEP008)
 -   Added SequenceName field.
--   Added support for describing events with Hierarchical Event Descriptors \[[4.3 Task events](04-modality-specific-files/04-task-events.md)].
+-   Added support for describing events with Hierarchical Event Descriptors \[[4.3 Task events](04-modality-specific-files/03-task-events.md)].
 -   Added VolumeTiming and AcquisitionDuration fields \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 -   Added DwellTime field.
 
