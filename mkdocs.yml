@@ -13,10 +13,10 @@ nav:
         - Magnetic Resonance Imaging: 04-modality-specific-files/01-magnetic-resonance-imaging-data.md
         - Magnetoencephalography: 04-modality-specific-files/02-magnetoencephalography.md
         - Electroencephalography: 04-modality-specific-files/03-electroencephalography.md
-        - intracranial Electroencephalography: 04-modality-specific-files/06-intracranial-electroencephalography.md
-        - Task events: 04-modality-specific-files/04-task-events.md
-        - Physiological and other continous recordings: 04-modality-specific-files/05-physiological-and-other-continous-recordings.md
-        - Behavioral experiments (with no MRI): 04-modality-specific-files/06-behavioural-experiments.md
+        - intracranial Electroencephalography: 04-modality-specific-files/04-intracranial-electroencephalography.md
+        - Task events: 04-modality-specific-files/05-task-events.md
+        - Physiological and other continous recordings: 04-modality-specific-files/06-physiological-and-other-continous-recordings.md
+        - Behavioral experiments (with no MRI): 04-modality-specific-files/07-behavioural-experiments.md
       - Longitudinal and multi-site studies: 05-longitudinal-and-multi-site-studies.md
       - Extending the BIDS specification: 06-extensions.md
       - Appendix:
