@@ -98,12 +98,12 @@ please avoid using ad hoc wording.
 
 Generic fields MUST be present:
 
-| Field name         | Definition                                                                                                                                                                                                                                                                                                                                                                                                              |
-| :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| TaskName           | REQUIRED. Name of the task (for resting state use the “rest” prefix). No two tasks should have the same name. Task label is derived from this field by removing all non alphanumeric ([a-zA-Z0-9]) characters. Note this does not have to be a “behavioral task” that subjects perform, but can reflect some information about the conditions present when the data was acquired (e.g., “rest”, “sleep”, or "seizure"). |
-| SamplingFrequency  | REQUIRED. Sampling frequency (in Hz) of all the iEEG channels in the recording (e.g., 2400). All other channels should have frequency specified as well in the `channels.tsv` file.                                                                                                                                                                                                                                     |
-| PowerLineFrequency | REQUIRED. Frequency (in Hz) of the power grid where the iEEG recording was done (i.e., 50 or 60).                                                                                                                                                                                                                                                                                                                       |
-| SoftwareFilters    | REQUIRED. List of temporal software filters applied or ideally key:value pairs of pre-applied filters and their parameter values. (n/a if none). E.g., “{'HighPass': {'HalfAmplitudeCutOffHz': 1, 'RollOff: '6dB/Octave'}}”.                                                                                                                                                                                            |
+| Field name         | Definition                                                                                                                                                                                                                                                                                                                                                                                                                |
+| :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| TaskName           | REQUIRED. Name of the task (for resting state use the “rest” prefix). No two tasks should have the same name. Task label is derived from this field by removing all non alphanumeric (`[a-zA-Z0-9]`) characters. Note this does not have to be a “behavioral task” that subjects perform, but can reflect some information about the conditions present when the data was acquired (e.g., “rest”, “sleep”, or "seizure"). |
+| SamplingFrequency  | REQUIRED. Sampling frequency (in Hz) of all the iEEG channels in the recording (e.g., 2400). All other channels should have frequency specified as well in the `channels.tsv` file.                                                                                                                                                                                                                                       |
+| PowerLineFrequency | REQUIRED. Frequency (in Hz) of the power grid where the iEEG recording was done (i.e., 50 or 60).                                                                                                                                                                                                                                                                                                                         |
+| SoftwareFilters    | REQUIRED. List of temporal software filters applied or ideally key:value pairs of pre-applied filters and their parameter values. (n/a if none). E.g., “{'HighPass': {'HalfAmplitudeCutOffHz': 1, 'RollOff: '6dB/Octave'}}”.                                                                                                                                                                                              |
 
 SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
@@ -112,7 +112,7 @@ Whenever possible, please avoid using ad hoc wording.
 | Field name             | Definition                                                                                                                                                                                                                    |
 | :--------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Manufacturer           | RECOMMENDED. Manufacturer of the amplifier system (e.g., "TDT, Blackrock").                                                                                                                                                   |
-| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the iEEG amplifier model.                                                                                                                                                          |
+| ManufacturersModelName | RECOMMENDED. Manufacturer's designation of the iEEG amplifier model.                                                                                                                                                          |
 | TaskDescription        | RECOMMENDED. Longer description of the task.                                                                                                                                                                                  |
 | Instructions           | RECOMMENDED. Text of the instructions given to participants before the recording. This is especially important in context of resting state and distinguishing between eyes open and eyes closed paradigms.                    |
 | CogAtlasID             | RECOMMENDED. URL of the corresponding [Cognitive Atlas Task](http://www.cognitiveatlas.org/) term.                                                                                                                            |
@@ -147,7 +147,7 @@ Specific iEEG fields SHOULD be present:
 | RecordingType                   | RECOMMENDED. Defines whether the recording is “continuous” or “epoched”; this latter limited to time windows about events of interest (e.g., stimulus presentations, subject responses etc.)                                                                                             |
 | EpochLength                     | RECOMMENDED. Duration of individual epochs in seconds (e.g., 1) in case of epoched data. If recording was continuous, leave out the field.                                                                                                                                               |
 | SubjectArtefactDescription      | RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g., “door open”, ”nurse walked into room at 2 min”, ”seizure at 10 min”). If this field is left empty, it will be interpreted as absence of artifacts.                                      |
-| SoftwareVersions                | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                                     |
+| SoftwareVersions                | RECOMMENDED. Manufacturer's designation of the acquisition software.                                                                                                                                                                                                                     |
 | iEEGGround                      | RECOMMENDED. Description of the location of the ground electrode (“placed on right mastoid (M2)”).                                                                                                                                                                                       |
 | iEEGPlacementScheme             | RECOMMENDED. Freeform description of the placement of the iEEG electrodes. Left/right/bilateral/depth/surface (e.g., “left frontal grid and bilateral hippocampal depth” or “surface strip and STN depth” or “clinical indication bitemporal, bilateral temporal strips and left grid”). |
 | iEEGElectrodeGroups             | RECOMMENDED. Field to describe the way electrodes are grouped into strips, grids or depth probes e.g., {'grid1': "10x8 grid on left temporal pole", 'strip2': "1x8 electrode strip on xxx"}.                                                                                             |
@@ -225,25 +225,25 @@ The columns of the Channels description table stored in \*\_channels.tsv are:
 
 MUST be present:
 
-| Field name  | Definition                                                                                                                                                                                                                                                                                                                                                   |
-| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name        | REQUIRED. Label of the channel, only contains letters and numbers. The label must correspond to \_electrodes.tsv name and all ieeg type channels are required to have a position. The reference channel name MUST be provided in the reference column.                                                                                                       |
-| type        | REQUIRED. Type of channel, see below for adequate keywords in this field.                                                                                                                                                                                                                                                                                    |
-| units       | REQUIRED. Physical unit of the value represented in this channel, e.g., V for Volt, specified according to the [SI unit symbol](https://en.wikipedia.org/wiki/International_System_of_Units#Base_units) and possibly prefix symbol (e.g., mV, μV), see [TODO: bids link] the BIDS spec (section 15 Appendix V: Units) for guidelines for Units and Prefixes. |
-| low_cutoff  | REQUIRED. Frequencies used for the low pass filter applied to the channel in Hz. If no low pass filter was applied, use `n/a`. Note that anti-alias is a low pass filter, specify its frequencies here if applicable.                                                                                                                                        |
-| high_cutoff | REQUIRED. Frequencies used for the high pass filter applied to the channel in Hz. If no high pass filter applied, use `n/a`.                                                                                                                                                                                                                                 |
+| Column name  | Definition                                                                                                                                                                                                                                                                                                                               |
+| :----------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name         | REQUIRED. Label of the channel, only contains letters and numbers. The label must correspond to \_electrodes.tsv name and all ieeg type channels are required to have a position. The reference channel name MUST be provided in the reference column.                                                                                   |
+| type         | REQUIRED. Type of channel, see below for adequate keywords in this field.                                                                                                                                                                                                                                                                |
+| units        | REQUIRED. Physical unit of the value represented in this channel, e.g., V for Volt, specified according to the [SI unit symbol](https://en.wikipedia.org/wiki/International_System_of_Units#Base_units) and possibly prefix symbol (e.g., mV, μV). For guidelines for Units and Prefixes see [Appendix V](../99-appendices/05-units.md). |
+| low_cutoff   | REQUIRED. Frequencies used for the low pass filter applied to the channel in Hz. If no low pass filter was applied, use `n/a`. Note that anti-alias is a low pass filter, specify its frequencies here if applicable.                                                                                                                    |
+| high_cutoff  | REQUIRED. Frequencies used for the high pass filter applied to the channel in Hz. If no high pass filter applied, use `n/a`.                                                                                                                                                                                                             |
 
 SHOULD be present:
 
-| Field name         | Definition                                                                                                                                                                                                                                                                           |
+| Column name        | Definition                                                                                                                                                                                                                                                                           |
 | :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| reference          | OPTIONAL. Specification of the reference (e.g., ‘mastoid’, ’ElectrodeName01’, ‘intracranial’, ’CAR’, ’other’, ‘n/a’). If the channel is not an electrode channel (e.g., a microphone channel) use `n/a`.                                                                             |
+| reference          | OPTIONAL. Specification of the reference (e.g., 'mastoid', 'ElectrodeName01', 'intracranial', 'CAR', 'other', 'n/a'). If the channel is not an electrode channel (e.g., a microphone channel) use `n/a`.                                                                             |
 | group              | OPTIONAL. Which group of channels (grid/strip/seeg/depth) this channel belongs to. This is relevant because one group has one cable-bundle and noise can be shared. This can be a name or number. Note that any groups specified in `_electrodes.tsv` must match those present here. |
 | sampling_frequency | OPTIONAL. Sampling rate of the channel in Hz.                                                                                                                                                                                                                                        |
 | description        | OPTIONAL. Brief free-text description of the channel, or other information of interest (e.g., position (e.g., “left lateral temporal surface”, etc.).                                                                                                                                |
 | notch              | OPTIONAL. Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use n/a.                                                                                                                                                                  |
 | status             | OPTIONAL. Data quality observed on the channel (good/bad). A channel is considered bad if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in `[status_description]`.                                                                |
-| status_description | OPTIONAL. Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in [status].                                                                                                                 |
+| status_description | OPTIONAL. Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `[status]`.                                                                                                               |
 
 **Example** `sub-01_channels.tsv`:
 
@@ -304,30 +304,30 @@ that coordinates are expected in cartesian coordinates according to the
 columns in the `*_electrodes.tsv` file MUST be as listed below.
 
 MUST be present:
-| Field name | Definition                                                                                                                                                                   |
-| :--------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name       | REQUIRED. Name of the electrode contact point.                                                                                                                               |
-| x          | REQUIRED. X position. The positions of the center of each electrode in xyz space. Units are in millimeters or pixels and are specified in \_\*space-<label>\_electrode.json. |
-| y          | REQUIRED. Y position.                                                                                                                                                        |
-| z          | REQUIRED. Z position. If electrodes are in 2D space this should be a column of n/a values.                                                                                   |
-| size       | REQUIRED. Surface area of the electrode, in mm^2.                                                                                                                            |
+| Column name | Definition                                                                                                                                                                   |
+| :---------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name        | REQUIRED. Name of the electrode contact point.                                                                                                                               |
+| x           | REQUIRED. X position. The positions of the center of each electrode in xyz space. Units are in millimeters or pixels and are specified in \_\*space-<label>\_electrode.json. |
+| y           | REQUIRED. Y position.                                                                                                                                                        |
+| z           | REQUIRED. Z position. If electrodes are in 2D space this should be a column of n/a values.                                                                                   |
+| size        | REQUIRED. Surface area of the electrode, in mm^2.                                                                                                                            |
 
 SHOULD be present:
 
-| Field name   | Definition                                                                                                                                                           |
+| Column name  | Definition                                                                                                                                                           |
 | :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | material     | OPTIONAL. Material of the electrodes.                                                                                                                                |
 | manufacturer | OPTIONAL. Recommended field to specify the manufacturer for each electrode. Can be used if electrodes were manufactured by more than one company.                    |
 | group        | OPTIONAL. Optional field to specify the group that the electrode is a part of. Note that any group specified here should match a group specified in `_channels.tsv`. |
-| hemisphere   | OPTIONAL. Optional field to specify the hemisphere in which the electrode is placed, one of [‘L’ or ‘R’] (use capital).                                              |
+| hemisphere   | OPTIONAL. Optional field to specify the hemisphere in which the electrode is placed, one of `['L' or 'R']` (use capital).                                            |
 
 MAY be present:
 
-| Field name | Definition                                                                                                                                   |
-| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
-| type       | OPTIONAL. Optional type of the electrode, e.g., cup, ring, clip-on, wire, needle, ...                                                        |
-| impedance  | OPTIONAL. Impedance of the electrode in kOhm.                                                                                                |
-| dimension  | OPTIONAL. Size of the grid/strip/probe that this electrode belongs to. Must be of form [AxB] with the smallest dimension first (e.g. [1x8]). |
+| Column name | Definition                                                                                                                                        |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| type        | OPTIONAL. Optional type of the electrode, e.g., cup, ring, clip-on, wire, needle, ...                                                             |
+| impedance   | OPTIONAL. Impedance of the electrode in kOhm.                                                                                                     |
+| dimension   | OPTIONAL. Size of the grid/strip/probe that this electrode belongs to. Must be of form `[AxB]` with the smallest dimension first (e.g., `[1x8]`). |
 
 Example:
 
@@ -457,7 +457,7 @@ JNeuroMeth 2010).
     sub-0001_ses-01_acq-photo2_photo.jpg
 ```
 
-[TODO: brain picture]
+`[TODO: brain picture]`
 
 Below is an example of a volume rendering of the cortical surface with a
 superimposed subdural electrode implantation. This map is often provided by the
@@ -468,7 +468,7 @@ EEG technician and provided to the epileptologists (e.g., see Burneo JG et al.
     sub-0002_ses-001_acq-render_photo.jpg (for volume rendering)
 ```
 
-[TODO: brain picture 2]
+`[TODO: brain picture 2]`
 
 ## Electrical stimulation
 
