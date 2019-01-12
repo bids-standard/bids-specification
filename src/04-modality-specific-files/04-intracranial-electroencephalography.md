@@ -32,16 +32,18 @@ formats. Below are lists of each group of allowed data formats in BIDS-iEEG.
 
 **Recommended Formats**
 
--   European Data Format (.edf) (https://www.edfplus.info/)
--   Brainvision (.vhdr/.eeg/.vmrk)
-    [BrainVision data format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
-    by Brain Products GmbH.
+-   [European Data Format](https://www.edfplus.info/) (.edf)
+
+-   [BrainVision data format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)  (.vhdr/.eeg/.vmrk)
+    by Brain Products GmbH
 
 **Accepted Formats**
 
--   [Neurodata Without Borders](<(https://github.com/NeurodataWithoutBorders/pynwb)>)
+-   [Neurodata Without Borders](https://github.com/NeurodataWithoutBorders/pynwb)
     (.nwb)
+
 -   [EEGLAB](https://sccn.ucsd.edu/eeglab) (`.set` and `.fdt` files)
+
 -   [MEF3](https://github.com/msel-source) (`.mef`)
     ([paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4956586/),
     [specification and links](http://msel.mayo.edu/codes.html),
@@ -61,7 +63,6 @@ also encourage users to provide additional meta information extracted from the
 manufacturer-specific data files in the sidecar JSON file. Other relevant files
 MAY be included alongside the original iEEG data in the
 [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
-
 
 ### Terminology: Electrodes vs. Channels
 
@@ -395,8 +396,10 @@ Derivatives](../06-extensions). Examples include:
 
 -   `_space-orig` (electrodes are in the space originally extracted from the
     image, such as a T1 weighted MRI, CT, XRay or 2D operative photo).
+
 -   `_space-MNI152Lin` (electrodes are coregistred and scaled to a specific MNI
     template)
+
 -   `_space-Talairach` (electrodes are coregistred and scaled to Talairach
     space)
 
@@ -435,9 +438,12 @@ If there are photos of the electrodes, the acquisition field should be specified
 with:
 
 -   `*_photo.jpg` in case of an operative photo
+
 -   `*_acq-xray#_photo.jpg` in case of an x-ray picture
+
 -   `*_acq-drawing#_photo.jpg` in case of a drawing or sketch of electrode
     placements
+
 -   `*_acq-render#_photo.jpg` in case of a rendering
 
 The session label may be used to specify when the photo was taken.
@@ -446,7 +452,7 @@ Example of the operative photo of ECoG electrodes (here is an annotated example 
 which electrodes and vasculature are marked, taken from Hermes et al.,
 JNeuroMeth 2010).
 
-```
+```Text
     sub-0001_ses-01_acq-photo1_photo.jpg
     sub-0001_ses-01_acq-photo2_photo.jpg
 ```
@@ -456,9 +462,9 @@ JNeuroMeth 2010).
 Below is an example of a volume rendering of the cortical surface with a
 superimposed subdural electrode implantation. This map is often provided by the
 EEG technician and provided to the epileptologists (e.g., see Burneo JG et al.
-2014 http://dx.doi.org/10.1016/j.clineuro.2014.03.020).
+2014 [https://doi.org/10.1016/j.clineuro.2014.03.020](https://doi.org/10.1016/j.clineuro.2014.03.020)).
 
-```
+```Text
     sub-0002_ses-001_acq-render_photo.jpg (for volume rendering)
 ```
 
