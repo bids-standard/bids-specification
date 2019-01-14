@@ -2,7 +2,10 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   Update to Release_Protocol.md [#126](https://github.com/bids-standard/bids-specification/pull/126) ([franklin-feingold](https://github.com/franklin-feingold))
 -   Update tag naming convention [#123](https://github.com/bids-standard/bids-specification/pull/123) ([chrisfilo](https://github.com/chrisfilo))
+
+## [v1.1.2](https://github.com/bids-standard/bids-specification/tree/v1.1.2) (2019-01-10)
 
 ## [v.1.1.2](https://github.com/bids-standard/bids-specification/tree/v.1.1.2) (2019-01-10)
 
