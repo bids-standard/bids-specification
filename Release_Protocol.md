@@ -6,7 +6,7 @@ When a release pull request is ready to be opened, please follow this procedure.
 
 Please make sure your fork is the most up to date version
 
-### 2. Change 'Unreleased' to the version number and change the path 'HEAD' to the version number in the src/CHANGES.md file. One may commit this to their fork.
+### 2. Change 'Unreleased' to the version number and change the path to the versioned readthedocs rendering in the src/CHANGES.md file. One may commit this to their fork.
 
 This process is figured below ![Unreleased-to-Version](release_images/Unreleased-to-Version.png "Unreleased-to-Version")
 
