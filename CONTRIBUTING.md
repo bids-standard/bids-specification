@@ -112,7 +112,7 @@ GitHub has a [nice introduction](https://help.github.com/articles/github-flow/) 
 
 ## How the decision to merge a pull request is made?
 
-The decision-making rules are outlined [here](DECISION-MAKING.md).
+The decision-making rules are outlined in [DECISION-MAKING.md](DECISION-MAKING.md).
 
 ## Recognizing contributions
 
