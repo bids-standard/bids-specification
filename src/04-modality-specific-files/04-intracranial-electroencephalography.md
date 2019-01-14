@@ -90,7 +90,8 @@ channels, they are in most common iEEG systems not recorded by themselves.
 Therefore they are not represented as channels in the data. The type of
 referencing for all channels and optionally the location of the reference
 electrode and the location of the ground electrode MAY be specified.
-### Sidecar JSON document (`*_ieeg.json`)
+
+### Sidecar JSON (`*_ieeg.json`)
 
 For consistency between studies and institutions, we encourage users to extract
 the values of metadata fields from the actual raw data. Whenever possible,
@@ -199,7 +200,7 @@ there, date time information MUST be expressed in the following format
 example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
 on local REB/IRB ethics board policy.
 
-## Channels description table (`*_channels.tsv`)
+## Channels description (`*_channels.tsv`)
 
 Template:
 
@@ -285,7 +286,7 @@ The free text field for the channel description can for example be specified as
 intracranial, stimulus, response, vertical EOG, horizontal EOG, skin
 conductance, eyetracker, etc.
 
-## Electrode description table (`*[_space-<label>]_electrodes.tsv`)
+## Electrode description (`*[_space-<label>]_electrodes.tsv`)
 
 Template:
 
@@ -338,7 +339,7 @@ LT02  23  -40  -19  surface  2.3    platinum    Integra
 H01   27  -42  -21  depth    5      platinum    AdTech
 ```
 
-## Coordinate System JSON document (`*[_space-<label>]\_coordsystem.json`)
+## Coordinate System JSON (`*[_space-<label>]\_coordsystem.json`)
 
 Template:
 

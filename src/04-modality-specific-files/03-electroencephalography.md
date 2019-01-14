@@ -72,7 +72,7 @@ The type of referencing for all channels and optionally the location of
 the reference electrode and the location of the ground electrode MAY
 be specified.
 
-### Sidecar JSON document (`*_eeg.json`)
+### Sidecar JSON (`*_eeg.json`)
 
 Generic fields MUST be present:
 
@@ -168,7 +168,7 @@ format `YYYY-MM-DDThh:mm:ss`
 example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
 on local REB/IRB ethics board policy.
 
-## Channels description table (`*_channels.tsv`)
+## Channels description (`*_channels.tsv`)
 
 Template:
 
@@ -185,7 +185,7 @@ required columns are channel `name`, `type` and `units` in this specific order.
 Channel names should furthermore appear in the table in the same order they do
 in the EEG data file. Any number of additional columns may be provided to
 provide additional information about the channels. Note that electrode
-positions should not be added to this file, but to [`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-table-electrodes-tsv).
+positions should not be added to this file, but to [`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-electrodes-tsv).
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
@@ -246,7 +246,7 @@ Cz       EEG    microV  n/a                             bad     high frequency n
 UADC001  MISC   n/a     enevelope of audio signal       good    n/a
 ```
 
-## Electrodes description table (`*_electrodes.tsv`)
+## Electrodes description (`*_electrodes.tsv`)
 
 Template:
 
@@ -260,7 +260,7 @@ sub-<label>/
 File that gives the location of EEG electrodes. Note that coordinates are
 expected in cartesian coordinates according to the `EEGCoordinateSystem` and
 `EEGCoordinateSystemUnits` fields in `*_coordsystem.json`. **If an
-`*_electrodes.tsv` file is specified, a [`*_coordsystem.json`](./03-electroencephalography.md#coordinate-system-json-document-coordsystem-json)
+`*_electrodes.tsv` file is specified, a [`*_coordsystem.json`](./03-electroencephalography.md#coordinate-system-json-coordsystem-json)
 file MUST be specified as well**. The order of the required columns in the
 `*_electrodes.tsv` file MUST be as listed below.
 
@@ -292,7 +292,7 @@ REF   -0.0742   -0.0200  -0.0100   cup       Ag/AgCl
 GND   0.0742    -0.0200  -0.0100   cup       Ag/AgCl
 ```
 
-## Coordinate System JSON document (`*_coordsystem.json`)
+## Coordinate System JSON (`*_coordsystem.json`)
 
 Template:
 

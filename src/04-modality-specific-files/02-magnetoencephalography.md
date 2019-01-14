@@ -54,7 +54,7 @@ trans, quat, mc, etc.), which some installations impose to be run on raw data
 because of active shielding software corrections before the MEG data can
 actually be exploited.
 
-### Sidecar JSON document (`*_meg.json`)
+### Sidecar JSON (`*_meg.json`)
 
 Generic fields MUST be present:
 
@@ -169,7 +169,7 @@ format `YYYY-MM-DDThh:mm:ss`
 example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
 on local REB/IRB ethics board policy.
 
-## Channels description table (`*_channels.tsv`)
+## Channels description (`*_channels.tsv`)
 
 Template:
 
@@ -264,7 +264,7 @@ UDIO001 TRIG V analog trigger signal
 UADC001 AUDIO V envelope of audio signal presented to participant
 ```
 
-## Coordinate System JSON document (`*_coordsystem.json`)
+## Coordinate System JSON (`*_coordsystem.json`)
 
 Template:
 
@@ -377,7 +377,7 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
 
-### 3-D head point /electrode locations file
+### 3-D head point /electrode locations
 
 Template:
 
