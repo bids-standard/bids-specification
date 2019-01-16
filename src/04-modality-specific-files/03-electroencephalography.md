@@ -60,9 +60,9 @@ the following short definitions:
 
 -   Channel = A single analog-to-digital converter in the recording system that
     regularly samples the value of a transducer, which results in the signal
-    being represented as a time series in the digitized data. This can be connected to
-    two electrodes (to measure the potential difference between them), a
-    magnetic field or magnetic gradient sensor, temperature sensor,
+    being represented as a time series in the digitized data. This can be
+    connected to two electrodes (to measure the potential difference between
+    them), a magnetic field or magnetic gradient sensor, temperature sensor,
     accelerometer, etc.
 
 Although the *reference* and *ground* electrodes are often referred to as

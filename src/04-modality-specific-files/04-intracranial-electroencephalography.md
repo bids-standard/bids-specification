@@ -2,12 +2,14 @@
 
 ## Citation
 
-Support for iEEG was developed as a
-[BIDS Extension Proposal](../06-extensions.md#bids-extension-proposals). Please
-cite the following paper when referring to this part of the standard in context
-of the academic literature:
+Support for iEEG was developed as a [BIDS Extension Proposal](../06-extensions.md#bids-extension-proposals).
+Please cite the following paper when referring to this part of the standard in
+context of the academic literature:
 
-> TODO: citation
+> Holdgraf, C., Appelhoff, S., Bickel, S., Bouchard, K., D'Ambrosio, S.,
+> David, O., … Hermes, D. (2018, December 13). BIDS-iEEG: an extension to the
+> brain imaging data structure (BIDS) specification for human intracranial
+> electrophysiology. [https://doi.org/10.31234/osf.io/r7vc2](https://doi.org/10.31234/osf.io/r7vc2)
 
 ## iEEG recording data
 
@@ -32,22 +34,19 @@ formats. Below are lists of each group of allowed data formats in BIDS-iEEG.
 
 **Recommended Formats**
 
--   [European Data Format](https://www.edfplus.info/) (.edf)
+-   [European Data Format](https://www.edfplus.info/) (`.edf`)
 
--   [BrainVision data format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)  (.vhdr/.eeg/.vmrk)
+-   [BrainVision data format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)  (`.vhdr`, `.eeg`, `.vmrk`)
     by Brain Products GmbH
 
 **Accepted Formats**
 
 -   [Neurodata Without Borders](https://github.com/NeurodataWithoutBorders/pynwb)
-    (.nwb)
+    (`.nwb`)
 
--   [EEGLAB](https://sccn.ucsd.edu/eeglab) (`.set` and `.fdt` files)
+-   [EEGLAB](https://sccn.ucsd.edu/eeglab) (`.set`, `.fdt`)
 
--   [MEF3](https://github.com/msel-source) (`.mef`)
-    ([paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4956586/),
-    [specification and links](http://msel.mayo.edu/codes.html),
-    [Python reader](https://www.google.com/url?q=https://github.com/ICRC-BME/PySigView&sa=D&ust=1540234072960000&usg=AFQjCNEBg8ua_qEc7U3OsK0lh-iXn94mWQ))
+-   [MEF3](http://msel.mayo.edu/codes.html) (`.mef`)
 
 Future versions of BIDS may extend this list of supported file formats. File
 formats for future consideration MUST have open access documentation, MUST have
@@ -57,12 +56,12 @@ packages. Other formats that may be considered in the future should have a clear
 added advantage over the existing formats and should have wide adoption in the
 BIDS-iEEG community.
 
-The data format in which the data was originally stored is especially valuable in case conversion elicits the
-loss of crucial metadata specific to manufacturers and specific iEEG systems. We
-also encourage users to provide additional meta information extracted from the
-manufacturer-specific data files in the sidecar JSON file. Other relevant files
-MAY be included alongside the original iEEG data in the
-[`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
+The data format in which the data was originally stored is especially valuable
+in case conversion elicits the loss of crucial metadata specific to
+manufacturers and specific iEEG systems. We also encourage users to provide
+additional meta information extracted from the manufacturer-specific data files
+in the sidecar JSON file. Other relevant files MAY be included alongside the
+original iEEG data in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
 
 ### Terminology: Electrodes vs. Channels
 
@@ -458,7 +457,7 @@ JNeuroMeth 2010).
     sub-0001_ses-01_acq-photo2_photo.jpg
 ```
 
-`[TODO: brain picture]`
+![operative photo of ECoG electrodes](images/ieeg_electrodes1.png "operative photo of ECoG electrodes")
 
 Below is an example of a volume rendering of the cortical surface with a
 superimposed subdural electrode implantation. This map is often provided by the
@@ -469,7 +468,7 @@ EEG technician and provided to the epileptologists (e.g., see Burneo JG et al.
     sub-0002_ses-001_acq-render_photo.jpg (for volume rendering)
 ```
 
-`[TODO: brain picture 2]`
+![volume rendering of the cortical surface](images/ieeg_electrodes2.png "volume rendering of the cortical surface")
 
 ## Electrical stimulation
 
