@@ -31,7 +31,7 @@ sub-<label>/
 ```
 
 While there exist many file formats to store EEG data, there are two officially
-supported data formats in BIDS: The [European data format](https://www.edfplus.info/)
+supported EEG data formats in BIDS: The [European data format](https://www.edfplus.info/)
 (`.edf`), and the [BrainVision data format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
 (`.vhdr`, `.vmrk`, `.eeg`) by Brain Products GmbH. There are also two
 *unofficial* data formats that are currently accepted: The format used by the
@@ -99,11 +99,12 @@ Whenever possible, please avoid using ad hoc wording.
 
 Specific EEG fields MUST be present:
 
-| Field name          | Definition                                                                                                                                                                                                                                                                            |
-| :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| SamplingFrequency   | REQUIRED. Sampling frequency (in Hz) of all the data in the recording, regardless of their type (e.g., 2400).                                                                                                                                                                         |
-| PowerLineFrequency  | REQUIRED. Frequency (in Hz) of the power grid at the geographical location of the EEG instrument (i.e., 50 or 60).                                                                                                                                                                    |
-| SoftwareFilters     | REQUIRED. List of temporal software filters applied. Ideally key:value pairs of pre-applied software filters and their parameter values: e.g., `{"Anti-aliasing filter": {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`. Write `n/a` if no software filters applied. |
+| Field name         | Definition                                                                                                                                                                                                                                                                                                                                                         |
+| :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| EEGReference       | REQUIRED. General description of the reference scheme used and (when applicable) of location of the reference electrode in the raw recordings (e.g., "left mastoid”, "Cz", "CMS"). If different channels have a different reference, this field should have a general description and the channel specific reference should be defined in the \_channels.tsv file. |
+| SamplingFrequency  | REQUIRED. Sampling frequency (in Hz) of all the data in the recording, regardless of their type (e.g., 2400).                                                                                                                                                                                                                                                      |
+| PowerLineFrequency | REQUIRED. Frequency (in Hz) of the power grid at the geographical location of the EEG instrument (i.e., 50 or 60).                                                                                                                                                                                                                                                 |
+| SoftwareFilters    | REQUIRED. List of temporal software filters applied. Ideally key:value pairs of pre-applied software filters and their parameter values: e.g., `{"Anti-aliasing filter": {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`. Write `n/a` if no software filters applied.                                                                              |
 
 SHOULD be present:
 
@@ -260,7 +261,7 @@ sub-<label>/
 File that gives the location of EEG electrodes. Note that coordinates are
 expected in cartesian coordinates according to the `EEGCoordinateSystem` and
 `EEGCoordinateSystemUnits` fields in `*_coordsystem.json`. **If an
-`*_electrodes.tsv` file is specified, a [`*_coordsystem.json`](./03-electroencephalography.md#coordinate-system-json-coordsystem-json)
+`*_electrodes.tsv` file is specified, a [`*_coordsystem.json`](#coordinate-system-json-coordsystem-json)
 file MUST be specified as well**. The order of the required columns in the
 `*_electrodes.tsv` file MUST be as listed below.
 
