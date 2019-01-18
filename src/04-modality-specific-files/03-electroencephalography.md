@@ -65,7 +65,7 @@ the following short definitions:
     them), a magnetic field or magnetic gradient sensor, temperature sensor,
     accelerometer, etc.
 
-Although the _reference_ and _ground_ electrodes are often referred to as
+Although the *reference* and *ground* electrodes are often referred to as
 channels, they are in most common EEG systems not recorded by
 themselves. Therefore they are not represented as channels in the data.
 The type of referencing for all channels and optionally the location of
