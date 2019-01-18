@@ -440,8 +440,8 @@ slashes. Here’s an example with multiple target scans:
 
 ```JSON
 {
-   "IntendedFor": ["ses-pre/func/sub-01_task-motor_run-1_bold.nii.gz",
-                   "ses-post/func/sub-01_task-motor_run-1_bold.nii.gz"]
+   "IntendedFor": ["ses-pre/func/sub-01_ses-pre_task-motor_run-1_bold.nii.gz",
+                   "ses-post/func/sub-01_ses-post_task-motor_run-1_bold.nii.gz"]
 }
 ```
 
