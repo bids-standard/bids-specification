@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   BF: Example for IntendedFor was missing session indicator in the filename [#129](https://github.com/bids-standard/bids-specification/pull/129) ([yarikoptic](https://github.com/yarikoptic))
 -   Update to Release_Protocol.md [#126](https://github.com/bids-standard/bids-specification/pull/126) ([franklin-feingold](https://github.com/franklin-feingold))
 -   Update tag naming convention [#123](https://github.com/bids-standard/bids-specification/pull/123) ([chrisfilo](https://github.com/chrisfilo))
 
