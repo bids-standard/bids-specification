@@ -37,9 +37,9 @@ to evolve independently of the Decision-making rules.
 1. A PR is eligible to be merged if and only if these conditions are met:
    1. The last commit is at least 5 working days old to allow the community to 
       evaluate it.
-   1. The PR features at least one [Review that Approves](https://help.github.com/articles/about-pull-request-reviews/#about-pull-request-reviews) 
-      the PR from a Contributor that is not an author of the PR. The review 
-      needs to be made after the last commit in the PR (equivalent to 
+   1. The PR features at least two [Reviews that Approve](https://help.github.com/articles/about-pull-request-reviews/#about-pull-request-reviews) 
+      the PR from Contributors of which neither is the author of the PR. The reviews 
+      need to be made after the last commit in the PR (equivalent to 
       [Stale review dismissal](https://help.github.com/articles/enabling-required-reviews-for-pull-requests/)
       option on GitHub).
    1. Does not feature any [Reviews that Request changes](https://help.github.com/articles/about-required-reviews-for-pull-requests/).
