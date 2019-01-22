@@ -162,30 +162,32 @@ Example:
 ```JSON
 {
   "TaskName":"visual",
+  "InstitutionName":"Stanford Hospital and Clinics",
+  "InstitutionAddress":"300 Pasteur Dr, Stanford, CA 94305",
   "Manufacturer":"Tucker Davis Technologies",
   "ManufacturersModelName":"n/a",
   "TaskDescription":"visual gratings and noise patterns",
   "Instructions":"look at the dot in the center of the screen and press the button when it changes color",
-  "CogAtlasID":"n/a",
-  "CogPOID":"n/a",
-  "InstitutionName":"Stanford Hospital and Clinics",
-  "InstitutionAddress":"300 Pasteur Dr, Stanford, CA 94305",
-  "DeviceSerialNumber":"n/a",
+  "iEEGReference":"left mastoid",
+  "SamplingFrequency":1000,
+  "PowerLineFrequency":60,
+  "SoftwareFilters":"n/a",
+  "DCOffsetCorrection":0,
+  "HardwareFilters":{"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dBOctave"}},
+  "ElectrodeManufacturer":"AdTech",
+  "ECOGChannelCount":120,
+  "SEEGChannelCount":0,
   "EEGChannelCount":0,
   "EOGChannelCount":0,
   "ECGChannelCount":0,
   "EMGChannelCount":0,
   "MiscChannelCount":0,
   "TriggerChannelCount":0,
-  "PowerLineFrequency":60,
   "RecordingDuration":233.639,
   "RecordingType":"continuous",
-  "SubjectArtefactDescription":"",
-  "ECOGChannelCount":118,
-  "SEEGChannelCount":0,
+  "iEEGGround":"placed on the right mastoid",
   "iEEGPlacementScheme":"right occipital temporal surface",
-  "iEEGReference":"left mastoid",
-  "Stimulation":false
+  "ElectricalStimulation":false
 }
 ```
 
@@ -246,12 +248,12 @@ SHOULD be present:
 **Example** `sub-01_channels.tsv`:
 
 ```Text
-name  type  units sampling_frequency low_cutoff high_cutoff notch group reference description              status status_description
-LT01  ECOG  μV    10000             3000       0.11        n/a   LTG   mastoid   lateral_temporal_surface good   n/a
-LT02  ECOG  μV    10000              3000       0.11        n/a   LTG   mastod   lateral_temporal_surface bad    brokenn
-H01   SEEG  μV    10000              3000       0.11        n/a   HST   mastoid   hippocampal_depthh       bad    line noisee
-ECG1  ECG   μV    10000              n/aa       0.11        60    4     ECG2      ecg_channell             good   na
-TR1   TRIG  n/a   1000               n/a        n/a         n/a   5     n/a       ana_trigger              good   n/a
+name  type  units low_cutoff  high_cutoff status  status_description
+LT01  ECOG  μV    300         0.11        good    n/a
+LT02  ECOG  μV    300         0.11        bad     broken
+H01   SEEG  μV    300         0.11        bad     line_noise
+ECG1  ECG   μV    n/a         0.11        good    n/a
+TR1   TRIG  n/a   n/a         n/a         good    n/a
 ```
 Restricted keyword list for field type in alphabetic order (shared with the MEG
 and EEG modality; however, only types that are common in iEEG data are listed here):
@@ -301,9 +303,10 @@ that coordinates are expected in cartesian coordinates according to the
 `*_coordsystem.json` file MUST be specified as well**. The order of the required
 columns in the `*_electrodes.tsv` file MUST be as listed below.
 
-MUST be present:
-| Column name | Definition                                                                                                                                                                   |
-| :---------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+MUST be present:                                                   
+
+| Column name  | Definition                                                                                                                                                           |
+| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name        | REQUIRED. Name of the electrode contact point.                                                                                                                               |
 | x           | REQUIRED. X position. The positions of the center of each electrode in xyz space. Units are in millimeters or pixels and are specified in \_\*space-<label>\_electrode.json. |
 | y           | REQUIRED. Y position.                                                                                                                                                        |
@@ -330,10 +333,10 @@ MAY be present:
 Example:
 
 ```Text
-name  x   y    z    type     size   material    manufacturer
-LT01  19  -39  -16  surface  2.3    platinum    Integra
-LT02  23  -40  -19  surface  2.3    platinum    Integra
-H01   27  -42  -21  depth    5      platinum    AdTech
+name  x   y    z    size   manufacturer
+LT01  19  -39  -16  2.3    Integra
+LT02  23  -40  -19  2.3    Integra
+H01   27  -42  -21  5      AdTech
 ```
 
 ## Coordinate System JSON (`*[_space-<label>]\_coordsystem.json`)
@@ -351,9 +354,6 @@ This `_coordsystem.json` file contains the coordinate system in which electrode
 positions are expressed. The associated MRI, CT, X-Ray, or operative photo can
 also be specified.
 
-**FIXME see <https://github.com/bids-standard/bids-specification/pull/108#issuecomment-454815413>**
-It may also be a geometric description of the
-anatomy/electrodes such as a surface description in a `.gii` file (_?_).
 
 General fields:
 
