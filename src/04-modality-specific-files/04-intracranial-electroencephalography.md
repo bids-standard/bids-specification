@@ -305,13 +305,13 @@ columns in the `*_electrodes.tsv` file MUST be as listed below.
 
 MUST be present:                                                   
 
-| Column name  | Definition                                                                                                                                                           |
-| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name        | REQUIRED. Name of the electrode contact point.                                                                                                                               |
-| x           | REQUIRED. X position. The positions of the center of each electrode in xyz space. Units are in millimeters or pixels and are specified in \_\*space-<label>\_electrode.json. |
-| y           | REQUIRED. Y position.                                                                                                                                                        |
-| z           | REQUIRED. Z position. If electrodes are in 2D space this should be a column of n/a values.                                                                                   |
-| size        | REQUIRED. Surface area of the electrode, in mm^2.                                                                                                                            |
+| Column name  | Definition                                                                                                                                                                   |
+| :----------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name         | REQUIRED. Name of the electrode contact point.                                                                                                                               |
+| x            | REQUIRED. X position. The positions of the center of each electrode in xyz space. Units are in millimeters or pixels and are specified in \_\*space-<label>\_electrode.json. |
+| y            | REQUIRED. Y position.                                                                                                                                                        |
+| z            | REQUIRED. Z position. If electrodes are in 2D space this should be a column of n/a values.                                                                                   |
+| size         | REQUIRED. Surface area of the electrode, in mm^2.                                                                                                                            |
 
 SHOULD be present:
 
@@ -353,7 +353,6 @@ sub-<label>/
 This `_coordsystem.json` file contains the coordinate system in which electrode
 positions are expressed. The associated MRI, CT, X-Ray, or operative photo can
 also be specified.
-
 
 General fields:
 
