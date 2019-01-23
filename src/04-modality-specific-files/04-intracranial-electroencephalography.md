@@ -389,23 +389,8 @@ upper left pixel and (N,0) corresponding to the lower left pixel.
 ### Multiple coordinate systems
 
 If electrode positions are known in multiple coordinate systems (e.g., MRI, CT
-and MNI), these spaces can be distinguished by the optional `[_space-<label>]`
+and MNI), these spaces can be distinguished by the optional `[_acq-<label>]`
 and `[_proc-<label>]` fields.
-
-The optional space label (`[_space-<label>]_electrodes.tsv`) indicates the way
-in which electrode positions are interpreted, see [BEP003 - Common
-Derivatives](../06-extensions). Examples include:
-
-**FIXME there is a reference here to BEP003,but that is not part of the specification yet. I (=Robert) propose to remove the reference to the Common Derivatives BEP**
-
--   `_space-orig` (electrodes are in the space originally extracted from the
-    image, such as a T1 weighted MRI, CT, XRay or 2D operative photo).
-
--   `_space-MNI152Lin` (electrodes are coregistred and scaled to a specific MNI
-    template)
-
--   `_space-Talairach` (electrodes are coregistred and scaled to Talairach
-    space)
 
 Example:
 
