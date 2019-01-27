@@ -339,7 +339,7 @@ LT02  23  -40  -19  2.3    Integra
 H01   27  -42  -21  5      AdTech
 ```
 
-## Coordinate System JSON (`*[_space-<label>]\_coordsystem.json`)
+## Coordinate System JSON (`*[_space-<label>]_coordsystem.json`)
 
 Template:
 
@@ -387,9 +387,15 @@ upper left pixel and (N,0) corresponding to the lower left pixel.
 
 ### Multiple coordinate systems
 
-If electrode positions are known in multiple coordinate systems (e.g., MRI, CT
-and MNI), these spaces can be distinguished by the optional `[_acq-<label>]`
+If electrode positions are known in multiple coordinate systems (e.g., MRI, CT and MNI), these spaces can be distinguished by the optional `[_space-<label>]`
 and `[_proc-<label>]` fields.
+
+The optional space label (`[_space-<label>]_electrodes.tsv`) can be used to indicate the way
+in which electrode positions are interpreted. Examples include:
+
+-   `_space-orig` (electrodes are in the space originally extracted from the image, such as a T1 weighted MRI, CT, XRay or 2D operative photo).
+-   `_space-MNI152Lin` (electrodes are coregistred and scaled to a specific MNI template)
+-   `_space-Talairach` (electrodes are coregistred and scaled to Talairach space)
 
 Example:
 
