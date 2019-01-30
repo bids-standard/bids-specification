@@ -30,7 +30,7 @@ The following individuals have contributed to the Brain Imaging Data Structure
 ecosystem (in alphabetical order). If you contributed to the BIDS ecosystem and
 your name is not listed, please add it.
 
--   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️
+-   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️📢
 -   Tibor Auer 💬📖💡🔧📢
 -   Sylvain Baillet 📖🔍
 -   Elizabeth Bock 📖💡
