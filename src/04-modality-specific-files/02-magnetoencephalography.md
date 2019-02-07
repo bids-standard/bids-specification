@@ -15,11 +15,11 @@ academic literature:
 Template:
 
 ```Text
-sub-<participant_label>/
+sub-<label>/
     [ses-<label>]/
       meg/
-        sub-<participant_label>[_ses-<label>]_task-<task_label>[_acq-<label>][_run-<index>][_proc-<label>]_meg.<manufacturer_specific_extension>
-        [sub-<participant_label>[_ses-<label>]_task-<task_label>[_acq-<label>][_run-<index>][_proc-<label>]_meg.json]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_meg.<manufacturer_specific_extension>
+        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_meg.json]
 ```
 
 Unprocessed MEG data MUST be stored in the native file format of the MEG
@@ -71,8 +71,6 @@ Whenever possible, please avoid using ad-hoc wording.
 | InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                      |
 | InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                   |
 | Manufacturer           | RECOMMENDED. Manufacturer of the MEG system (`CTF`, `Elekta/Neuromag`, `4D/BTi`, `KIT/Yokogawa`, `ITAB`, `KRISS`, `Other`). See [Appendix VII](../99-appendices/07-meg-systems.md) with preferred names                                                                         |
-| ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the MEG scanner model (e.g. `CTF-275`). See [Appendix VII](../99-appendices/07-meg-systems.md) with preferred names                                                                                                                  |
-| SoftwareVersions       | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                            |
 | ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the MEG scanner model (e.g. `CTF-275`). See [Appendix VII](../99-appendices/07-meg-systems.md) with preferred names                                                                                                                  |
 | SoftwareVersions       | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                            |
 | TaskDescription        | RECOMMENDED. Description of the task.                                                                                                                                                                                                                                           |
@@ -177,10 +175,10 @@ on local REB/IRB ethics board policy.
 Template:
 
 ```Text
-sub-<participant_label>/
+sub-<label>/
     [ses-<label>]/
       meg/
-        [sub-<participant_label>[_ses-<label>]_task-<task_label>[_acq-<label>][_run-<index>][_proc-<label>]_channels.tsv]
+        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_channels.tsv]
 ```
 
 This file is RECOMMENDED as it provides easily searchable information across
@@ -254,7 +252,7 @@ Restricted keyword list for field `type`
 
 Example of free text for field `description`
 
-- stimulus, response, vertical EOG, horizontal EOG, skin conductance, sats,
+-   stimulus, response, vertical EOG, horizontal EOG, skin conductance, sats,
     intracranial, eyetracker
 
 Example:
@@ -272,10 +270,10 @@ UADC001 AUDIO V envelope of audio signal presented to participant
 Template:
 
 ```Text
-sub-<participant_label>/
+sub-<label>/
     [ses-<label>]/
       meg/
-        [sub-<participant_label>[_ses-<label>][_acq-<label>]_coordsystem.json]
+        [sub-<label>[_ses-<label>][_acq-<label>]_coordsystem.json]
 ```
 
 OPTIONAL. A JSON document specifying the coordinate system(s) used for the MEG,
@@ -362,10 +360,10 @@ Photos of the anatomical landmarks and/or head localization coils
 Template:
 
 ```Text
-sub-<participant_label>/
+sub-<label>/
     [ses-<label>]/
       meg/
-        [sub-<participant_label>[_ses-<label>][_acq-<label>]_photo.jpg]
+        [sub-<label>[_ses-<label>][_acq-<label>]_photo.jpg]
 ```
 
 Photos of the anatomical landmarks and/or head localization coils on the
@@ -385,10 +383,10 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 Template:
 
 ```Text
-sub-<participant_label>/
+sub-<label>/
     [ses-<label>]/
       meg/
-        [sub-<participant_label>[_ses-<label>][_acq-<label>]_headshape.<manufacturer_specific_extension>]
+        [sub-<label>[_ses-<label>][_acq-<label>]_headshape.<manufacturer_specific_extension>]
 ```
 
 This file is RECOMMENDED.

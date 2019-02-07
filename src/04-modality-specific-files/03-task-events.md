@@ -3,7 +3,7 @@
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>]
+sub-<label>/[ses-<label>]
     func/
         <matches>_events.tsv
         <matches>_events.json

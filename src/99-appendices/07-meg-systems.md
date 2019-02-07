@@ -2,14 +2,14 @@
 
 Restricted keywords for Manufacturer field in the `*meg.json` file:
 
-- `CTF`
-- [`Elekta/Neuromag`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.a7ggx48p7aaf)
-- [`4D/BTi`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.gy0kbzisg1f1)
-- [`KIT/Yokogawa/Ricoh`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.2gmmxawyna7r)
-- `KRISS`
-- [`ITAB`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.58whib3oq56y)
-- `Aalto/MEG–MRI`
-- `Other`
+-   `CTF`
+-   [`Elekta/Neuromag`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.a7ggx48p7aaf)
+-   [`4D/BTi`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.gy0kbzisg1f1)
+-   [`KIT/Yokogawa/Ricoh`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.2gmmxawyna7r)
+-   `KRISS`
+-   [`ITAB`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.58whib3oq56y)
+-   `Aalto/MEG–MRI`
+-   `Other`
 
 Restricted keywords for ManufacturersModelName field in the `*meg.json` file:
 
