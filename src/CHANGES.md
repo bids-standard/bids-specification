@@ -2,13 +2,14 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   Update site_name and release protocol [#137](https://github.com/bids-standard/bids-specification/pull/137) ([franklin-feingold](https://github.com/franklin-feingold))
 -   BF: Example for IntendedFor was missing session indicator in the filename [#129](https://github.com/bids-standard/bids-specification/pull/129) ([yarikoptic](https://github.com/yarikoptic))
 -   Update to Release_Protocol.md [#126](https://github.com/bids-standard/bids-specification/pull/126) ([franklin-feingold](https://github.com/franklin-feingold))
 -   Update tag naming convention [#123](https://github.com/bids-standard/bids-specification/pull/123) ([chrisfilo](https://github.com/chrisfilo))
 
-## [v1.1.2](https://github.com/bids-standard/bids-specification/tree/v1.1.2) (2019-01-10)
-
 ## [v.1.1.2](https://github.com/bids-standard/bids-specification/tree/v.1.1.2) (2019-01-10)
+
+## [v1.1.2](https://github.com/bids-standard/bids-specification/tree/v1.1.2) (2019-01-10)
 
 -   REL: v.1.1.2 [#121](https://github.com/bids-standard/bids-specification/pull/121) ([chrisfilo](https://github.com/chrisfilo))
 -   Update 01-contributors.md [#120](https://github.com/bids-standard/bids-specification/pull/120) ([oesteban](https://github.com/oesteban))
