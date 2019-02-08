@@ -30,15 +30,26 @@ sub-<label>/
         sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_eeg.json
 ```
 
-While there exist many file formats to store EEG data, there are two officially
-supported EEG data formats in BIDS: The [European data format](https://www.edfplus.info/)
-(`.edf`), and the [BrainVision data format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
-(`.vhdr`, `.vmrk`, `.eeg`) by Brain Products GmbH. There are also two
-*unofficial* data formats that are currently accepted: The format used by the
-MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab) (`.set` and `.fdt` files)
-and the [Biosemi](https://www.biosemi.com/) data format (`.bdf`). The data in
-their original format, if different from the supported formats, can be stored
-in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
+The EEG community uses a variety of formats for storing raw data, and there is
+no single standard that all researchers agree on. For BIDS, EEG data MUST be
+stored in one of the following formats:
+
+-   [European data format](https://www.edfplus.info/) (`.edf`)
+
+-   [BrainVision data format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
+    (`.vhdr`, `.vmrk`, `.eeg`) by Brain Products GmbH
+
+-   The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab)
+    (`.set` and `.fdt` files)
+
+-   [Biosemi](https://www.biosemi.com/) data format (`.bdf`)
+
+It is RECOMMENDED to use the European data format, or the BrainVision data
+format. It is furthermore discouraged to use the other accepted formats over
+these RECOMMENDED formats, particularly because there are conversion scripts
+available in most commonly used programming languages to convert data into the
+RECOMMENDED formats. The data in their original format, if different from the
+supported formats, can be stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
 
 The original data format is especially valuable in case conversion elicits the
 loss of crucial metadata specific to manufacturers and specific EEG systems. We

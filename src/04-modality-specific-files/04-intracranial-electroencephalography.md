@@ -28,29 +28,27 @@ sub-<label>/
 ```
 
 The iEEG community uses a variety of formats for storing raw data, and there is
-no single standard that all researchers agree on. The allowed file formats for
-iEEG data in BIDS are divided into two groups: _recommended_ formats that are
-open, well-defined standards, and _accepted_ formats that are common in the
-community. In general, it is discouraged to use _accepted_ formats over
-_recommended_ formats, particularly because there are conversion scripts
-available in most analytics languages to convert data into _recommended_
-formats. Below are lists of each group of allowed data formats in BIDS-iEEG.
-
-**Recommended Formats**
+no single standard that all researchers agree on. For BIDS, iEEG data MUST be
+stored in one of the following formats:
 
 -   [European Data Format](https://www.edfplus.info/) (`.edf`)
 
--   [BrainVision data format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)  (`.vhdr`, `.eeg`, `.vmrk`)
-    by Brain Products GmbH
+-   [BrainVision data format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
+    (`.vhdr`, `.eeg`, `.vmrk`) by Brain Products GmbH
 
-**Accepted Formats**
+-   The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab)
+    (`.set` and `.fdt` files)
 
 -   [Neurodata Without Borders](https://github.com/NeurodataWithoutBorders/pynwb)
     (`.nwb`)
 
--   [EEGLAB](https://sccn.ucsd.edu/eeglab) (`.set`, `.fdt`)
-
 -   [MEF3](http://msel.mayo.edu/codes.html) (`.mef`)
+
+It is RECOMMENDED to use the European data format, or the BrainVision data
+format. It is furthermore discouraged to use the other accepted formats over
+these RECOMMENDED formats, particularly because there are conversion scripts
+available in most commonly used programming languages to convert data into the
+RECOMMENDED formats.
 
 Future versions of BIDS may extend this list of supported file formats. File
 formats for future consideration MUST have open access documentation, MUST have
@@ -58,7 +56,7 @@ open source implementation for both reading and writing in at least two
 programming languages and SHOULD be widely supported in multiple software
 packages. Other formats that may be considered in the future should have a clear
 added advantage over the existing formats and should have wide adoption in the
-BIDS-iEEG community.
+BIDS community.
 
 The data format in which the data was originally stored is especially valuable
 in case conversion elicits the loss of crucial metadata specific to
