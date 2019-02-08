@@ -215,14 +215,15 @@ NIfTI header.
 
 ### Tabular files
 
-Tabular data MUST be saved as tab delimited values (`.tsv`) files, i.e. csv
+Tabular data MUST be saved as tab delimited values (`.tsv`) files, i.e., csv
 files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
 line listing the names of all columns (with the exception of physiological and
 other continuous acquisition data - see below for details). Names MUST be
 separated with tabs. String values containing tabs MUST be escaped using double
-quotes. Missing and non-applicable values MUST be coded as `n/a`. TSV files MUST
-be in UTF-8 encoding.
+quotes. Missing and non-applicable values MUST be coded as `n/a`. Numerical
+values MUST employ the dot (`.`) as decimal separator and MUST NOT be specified
+in scientific notation. TSV files MUST be in UTF-8 encoding.
 
 Example:
 
@@ -308,7 +309,7 @@ as SI, from the French Système international (d'unités)) and can be SI units o
 SI derived units. In case there are valid reasons to deviate from SI units or SI
 derived units, the units MUST be specified in the sidecar JSON file. In case
 data is expressed in SI units or SI derived units, the units MAY be specified in
-the sidecar JSON file. In case prefixes are added to SI or non-SI units (e.g.
+the sidecar JSON file. In case prefixes are added to SI or non-SI units (e.g.,
 mm), the prefixed units MUST be specified in the JSON file (see [Appendix V](99-appendices/05-units.md):
 Units). In particular:
 
