@@ -5,9 +5,15 @@ Please cite the following paper when referring to this part of the standard in
 context of the academic literature:
 
 > Holdgraf, C., Appelhoff, S., Bickel, S., Bouchard, K., D'Ambrosio, S.,
-> David, O., … Hermes, D. (2018, December 13). BIDS-iEEG: an extension to the
-> brain imaging data structure (BIDS) specification for human intracranial
-> electrophysiology. [https://doi.org/10.31234/osf.io/r7vc2](https://doi.org/10.31234/osf.io/r7vc2)
+> David, O., Devinsky, O., Dichter, B., Flinker, A., Foster, B. L.,
+> Gorgolewski, K. J., Groen, I., Groppe, D., Gunduz, A., Hamilton, L.,
+> Honey, C. J., Jas, M., Knight, R., Lauchaux, J.-P., Lau, J. C.,
+> Lundstrom, B. N., Lee-Messer, C., Miller, K. J., Ojemann, J. G.,
+> Oostenveld, R., Petridou, N., Piantoni, G., Pigorini, A., Pouratian, N.,
+> Ramsey, N. F., Stolk, A., Swann, N. C., Tadel, F., Voytek, B., Wandell, B. A.,
+> Winawer, J., Zehl, L., Hermes, D. (2018, December 13). BIDS-iEEG: an
+> extension to the brain imaging data structure (BIDS) specification for human
+> intracranial electrophysiology. [https://doi.org/10.31234/osf.io/r7vc2](https://doi.org/10.31234/osf.io/r7vc2)
 
 ## iEEG recording data
 
