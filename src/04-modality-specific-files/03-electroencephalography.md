@@ -309,7 +309,7 @@ anatomical landmarks, and the coordinate system and units in which the position
 of electrodes and landmarks is expressed. **The `*_coordsystem.json` is
 REQUIRED if the optional `*_electrodes.tsv` is specified**. If a corresponding
 anatomical MRI is available, the locations of landmarks and fiducials according
-to that scan should also be stored in the [`*T1w.json`](./01-magnetic-resonance-imaging-data.md)
+to that scan should also be stored in the [`*_T1w.json`](./01-magnetic-resonance-imaging-data.md)
 file which goes alongside the MRI data.
 
 For disambiguation, we employ the following definitions for fiducials and
