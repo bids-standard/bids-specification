@@ -187,6 +187,7 @@ Currently supported image contrasts include:
 | :----------------- | :------------- | :-----------------------------------------------------------------------------------------------------------------------|
 | BOLD               | bold           | Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)                                                      |
 | CBV                | cbv            | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images)                    |
+| Phase              | phase          | Phase information associated with magnitude information stored in BOLD contrast                                         |
 
 Template:
 
@@ -238,7 +239,7 @@ reconstruction algorithms (for example ones using motion correction).
 See [`fmap` Case 4](01-magnetic-resonance-imaging-data.md#case-4-multiple-phase-encoded-directions-pepolar)
 for more information on `dir` field specification.
 
-Multi echo data MUST  be split into one file per echo. Each file shares the same
+Multi-echo data MUST be split into one file per echo. Each file shares the same
 name with the exception of the `_echo-<index>` key/value. For example:
 
 ```Text
