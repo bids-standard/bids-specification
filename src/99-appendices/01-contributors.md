@@ -46,6 +46,7 @@ your name is not listed, please add it.
 -   Elizabeth DuPre 📖💡🔍🤔
 -   Eric A. Earl 🤔
 -   Anders Eklund 📖📢💻
+-   Oscar Esteban 📖🔧🤔💬💻
 -   Franklin W. Feingold 📋📝✅
 -   Guillaume Flandin 📖💻
 -   Remi Gau 📖💻
