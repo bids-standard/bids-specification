@@ -10,14 +10,13 @@ There are many ways to get involved with the BIDS community!
 If you're new
 to the BIDS community and you'd like to learn a bit more, we recommend checking
 out the [BIDS Starter Kit](https://github.com/bids-standard/bids-starter-kit/blob/master/README.md).
-This has introductory information about the BIDS specification, tools in the
-BIDS ecosystem, and how you can get involved.
+This has introductory information about the BIDS specification, tools in
+the BIDS ecosystem, and how you can get involved.
 
 ### The BIDS Contributor guide
 
 If you'd like to get involved more heavily in helping extend the BIDS
-specification or develop tools for it, see the
-[BIDS Contributor Guide](https://docs.google.com/document/d/1pWmEEY-1-WuwBPNy5tDAxVJYQ9Een4hZJM06tQZg8X4/edit?usp%3Dsharing&sa=D&ust=1537468908724000).
+specification or develop tools for it, see the [BIDS Contributor Guide](https://docs.google.com/document/d/1pWmEEY-1-WuwBPNy5tDAxVJYQ9Een4hZJM06tQZg8X4/edit?usp%3Dsharing&sa=D&ust=1537468908724000).
 It contains more in-depth information for getting involved with the BIDS
 community.
 
@@ -57,7 +56,12 @@ Below is a table of currently-active BEPs.
 | [BEP026](https://docs.google.com/document/d/14KC1d5-Lx-7ZSMtwS7pVAAvz-2WR_uoo5FvsNirzqJw) | [Microelectrode Recordings (MER)](https://docs.google.com/document/d/14KC1d5-Lx-7ZSMtwS7pVAAvz-2WR_uoo5FvsNirzqJw)                                                                         	  | Greydon Gilmore                                            	   |
 
 When an extension reaches maturity it is merged into the main body of the
-specification.
+specification.  Below is a table of BEPs that have been merged in the main body
+of the specification.
+
+| Extension label                                                                           | Title                                                                                                           | Moderators/leads                                        |
+| :---------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------ |
+| [BEP008](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM) | [Magnetoencephalography (MEG)](https://docs.google.com/document/d/1QwfHyBzOyFWOLO4u_kkojLpUhW0-4_M7Ubafu9Gf4Gg) | Guiomar Niso                                            |
 
 All of the extension ideas that are not backwards compatible and thus
 will have to wait for BIDS 2.0 are listed
