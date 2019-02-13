@@ -309,26 +309,28 @@ that coordinates are expected in cartesian coordinates according to the
 The optional space label (`*[_space-<label>]_electrodes.tsv`) can be used to
 indicate the way in which electrode positions are interpreted. Potential labels
 need to be taken from the list in [Appendix VIII](../99-appendices/08-coordinate-systems.md)
-wit the exception of: `orig`, which means that *electrodes are in the space
-originally extracted from the image*.
+wit the exception of: `orig`, which means that _electrodes are in the space
+originally extracted from the image_.
 
 Examples include:
 
 -   `_space-orig` (electrodes are in the space originally extracted from the
     image, such as a T1 weighted MRI, CT, XRay or 2D operative photo).
+
 -   `_space-MNI152Lin` (electrodes are coregistred and scaled to a specific MNI
     template)
+
 -   `_space-Talairach` (electrodes are coregistred and scaled to Talairach
     space)
 
-When referring to the `*_electrodes.tsv` file in a certain *space* as defined
+When referring to the `*_electrodes.tsv` file in a certain _space_ as defined
 above, the `space-<label>` of the accompanying `*_coordsystem.json` MUST
 correspond.
 
 For example:
 
-- `sub-01_space-orig_electrodes.tsv`
-- `sub-01_space-orig_coordsystem.json`
+-   `sub-01_space-orig_electrodes.tsv`
+-   `sub-01_space-orig_coordsystem.json`
 
 The order of the required columns in the `*_electrodes.tsv` file MUST be as
 listed below.
