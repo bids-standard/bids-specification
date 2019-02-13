@@ -304,8 +304,34 @@ File that gives the location, size and other properties of iEEG electrodes. Note
 that coordinates are expected in cartesian coordinates according to the
 `iEEGCoordinateSystem` and `iEEGCoordinateSystemUnits` fields in
 `*_coordsystem.json`. **If an `*_electrodes.tsv` file is specified, a
-`*_coordsystem.json` file MUST be specified as well**. The order of the required
-columns in the `*_electrodes.tsv` file MUST be as listed below.
+`*_coordsystem.json` file MUST be specified as well**.
+
+The optional space label (`*[_space-<label>]_electrodes.tsv`) can be used to
+indicate the way in which electrode positions are interpreted. Potential labels
+need to be taken from the list in [Appendix VIII](../99-appendices/08-coordinate-systems.md)
+wit the exception of: `orig`, which means that *electrodes are in the space
+originally extracted from the image*.
+
+Examples include:
+
+-   `_space-orig` (electrodes are in the space originally extracted from the
+    image, such as a T1 weighted MRI, CT, XRay or 2D operative photo).
+-   `_space-MNI152Lin` (electrodes are coregistred and scaled to a specific MNI
+    template)
+-   `_space-Talairach` (electrodes are coregistred and scaled to Talairach
+    space)
+
+When referring to the `*_electrodes.tsv` file in a certain *space* as defined
+above, the `space-<label>` of the accompanying `*_coordsystem.json` MUST
+correspond.
+
+For example:
+
+- `sub-01_space-orig_electrodes.tsv`
+- `sub-01_space-orig_coordsystem.json`
+
+The order of the required columns in the `*_electrodes.tsv` file MUST be as
+listed below.
 
 MUST be present:                                                   
 
@@ -378,8 +404,8 @@ Fields relating to the iEEG electrode positions:
 
 It is preferred that electrodes are localized in a 3D coordinate system (with
 respect to a pre- and/or post-operative anatomical MRI or CT scans or in a
-standard space as specified in BIDS Appendix VIII: preferred names of Coordinate
-systems, such as ACPC).
+standard space as specified in BIDS [Appendix VIII](../99-appendices/08-coordinate-systems.md)
+about preferred names of coordinate systems, such as ACPC).
 
 ### Allowed 2D coordinate systems
 
@@ -391,15 +417,12 @@ upper left pixel and (N,0) corresponding to the lower left pixel.
 
 ### Multiple coordinate systems
 
-If electrode positions are known in multiple coordinate systems (e.g., MRI, CT and MNI), these spaces can be distinguished by the optional `[_space-<label>]`
-and `[_proc-<label>]` fields.
-
-The optional space label (`[_space-<label>]_electrodes.tsv`) can be used to indicate the way
-in which electrode positions are interpreted. Examples include:
-
--   `_space-orig` (electrodes are in the space originally extracted from the image, such as a T1 weighted MRI, CT, XRay or 2D operative photo).
--   `_space-MNI152Lin` (electrodes are coregistred and scaled to a specific MNI template)
--   `_space-Talairach` (electrodes are coregistred and scaled to Talairach space)
+If electrode positions are known in multiple coordinate systems (e.g., MRI, CT
+and MNI), these spaces can be distinguished by the optional `[_space-<label>]`
+field, see the [`*_electrodes.tsv`-section](../04-modality-specific-files/04-intracranial-electroencephalography.md#electrode-description-space-label-electrodes-tsv)
+for more information. Note that the `[_space-<label>]` fields must correspond
+between `*_electrodes.tsv` and `*_coordsystem.json` if they refer to the same
+data.
 
 Example:
 
