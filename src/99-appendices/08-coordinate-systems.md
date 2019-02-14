@@ -57,13 +57,9 @@ Restricted keywords for the `XXXCoordinateSystem` field in the
 `coordinatesystem.json` file for MEG datasets:
 
 -   `CTF`: ALS orientation and the origin between the ears
-
 -   `ElektaNeuromag`: RAS orientation and the origin between the ears
-
 -   `4DBti`: ALS orientation and the origin between the ears
-
 -   `KitYokogawa`: ALS orientation and the origin between the ears
-
 -   `ChietiItab`: RAS orientation and the origin between the ears
 
 Note that the short descriptions above do not capture all details, There are
@@ -105,7 +101,8 @@ Restricted keywords for the `XXXCoordinateSystem` field in the
     positive z-axis is passing through a mid-hemispheric point in the superior
     direction. The anatomical landmarks are determined in the individual's
     anatomical scan and no scaling or deformations have been applied to the
-    individual's anatomical scan.
+    individual's anatomical scan. For more information, see the [ACPC site](http://www.fieldtriptoolbox.org/faq/acpc/)
+    on the FieldTrip toolbox wiki.
 
 ## Template Based Coordinate Systems
 
