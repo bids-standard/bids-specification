@@ -37,7 +37,7 @@ hardware manufacturers, but also the head coordinates differ, mostly due to
 different conventions used in specific software packages developed by different
 (commercial or academic) groups.
 
-## Specific Coordinate Systems
+## Coordinate Systems applicable to MEG, EEG, and iEEG
 
 Generally, across the MEG, EEG, and iEEG modalities, the first two pieces of
 information (origin, orientation) are specified in `XXXCoordinateSystem`, and
