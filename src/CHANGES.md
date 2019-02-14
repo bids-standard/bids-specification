@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   Update Pipfile.lock [#144](https://github.com/bids-standard/bids-specification/pull/144) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[MRG] clarify encoding of README, CHANGES, TSV, and JSON files [#140](https://github.com/bids-standard/bids-specification/pull/140) ([sappelhoff](https://github.com/sappelhoff))
 -   Update site_name and release protocol [#137](https://github.com/bids-standard/bids-specification/pull/137) ([franklin-feingold](https://github.com/franklin-feingold))
 -   BF: Example for IntendedFor was missing session indicator in the filename [#129](https://github.com/bids-standard/bids-specification/pull/129) ([yarikoptic](https://github.com/yarikoptic))
