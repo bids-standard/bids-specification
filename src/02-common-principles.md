@@ -222,7 +222,7 @@ line listing the names of all columns (with the exception of physiological and
 other continuous acquisition data - see below for details). Names MUST be
 separated with tabs. String values containing tabs MUST be escaped using double
 quotes. Missing and non-applicable values MUST be coded as `n/a`. Numerical
-values MUST employ the dot (`.`) as decimal separator and MUST NOT be specified
+values MUST employ the dot (`.`) as decimal separator and MAY be specified
 in scientific notation. TSV files MUST be in UTF-8 encoding.
 
 Example:
