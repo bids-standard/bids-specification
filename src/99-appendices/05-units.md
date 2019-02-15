@@ -1,7 +1,11 @@
 # Appendix V: Units
 
 Following the International System of Units (SI, abbreviated from the French
-Système international (d'unités))
+Système international (d'unités)). The ASCII representation is taken from 
+[here](http://people.csail.mit.edu/jaffer/MIXF/CMIXF-12), where additional units 
+may be found. The primary reason for choosing an ASCII representation, is that 
+certain characters can have multiple unicode representations that look very 
+similar.
 
 | Unit name      | Unit symbol | Quantity name                              |
 | :------------- | :---------- | :----------------------------------------- |
@@ -22,12 +26,12 @@ Système international (d'unités))
 | coulomb        | C           | electric charge or quantity of electricity |
 | volt           | V           | voltage (electrical potential), emf        |
 | farad          | F           | capacitance                                |
-| ohm            | Ω           | resistance, impedance, reactance           |
+| ohm            | Ohm           | resistance, impedance, reactance           |
 | siemens        | S           | electrical conductance                     |
 | weber          | Wb          | magnetic flux                              |
 | tesla          | T           | magnetic flux density                      |
 | henry          | H           | inductance                                 |
-| degree Celsius | °C          | temperature relative to 273.15 K           |
+| degree Celsius | oC          | temperature relative to 273.15 K           |
 | lumen          | lm          | luminous flux                              |
 | lux            | lx          | illuminance                                |
 | becquerel      | Bq          | radioactivity (decays per unit time)       |
@@ -59,7 +63,7 @@ Système international (d'unités))
 | [deci](https://www.wikiwand.com/en/Deci-)   | d             | 10<sup>-1</sup>  |
 | [centi](https://www.wikiwand.com/en/Centi-) | c             | 10<sup>-2</sup>  |
 | [milli](https://www.wikiwand.com/en/Milli-) | m             | 10<sup>-3</sup>  |
-| [micro](https://www.wikiwand.com/en/Micro-) | µ             | 10<sup>-6</sup>  |
+| [micro](https://www.wikiwand.com/en/Micro-) | u             | 10<sup>-6</sup>  |
 | [nano](https://www.wikiwand.com/en/Nano-)   | n             | 10<sup>-9</sup>  |
 | [pico](https://www.wikiwand.com/en/Pico-)   | p             | 10<sup>-12</sup> |
 | [femto](https://www.wikiwand.com/en/Femto-) | f             | 10<sup>-15</sup> |
