@@ -6,8 +6,8 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 
-Throughout this protocol we use a list of terms. To avoid misunderstanding we
-clarify them here.
+Throughout this specification we use a list of terms. To avoid
+misunderstanding we clarify them here.
 
 1.  Dataset - a set of neuroimaging and behavioral data acquired for a purpose
     of a particular study. A dataset consists of data acquired from one or more
@@ -40,7 +40,7 @@ clarify them here.
 
 1.  Task - a set of structured activities performed by the participant. Tasks
     are usually accompanied by stimuli and responses, and can greatly vary in
-    complexity. For the purpose of this protocol we consider the so-called
+    complexity. For the purpose of this specification we consider the so-called
     “resting state” a task. In the context of brain scanning, a task is always
     tied to one data acquisition. Therefore, even if during one acquisition the
     subject performed multiple conceptually different behaviors (with different
