@@ -372,13 +372,13 @@ sub-control01/
         sub-control01_magnitude1.nii.gz
         sub-control01_scans.tsv
 
-    code/
-        deface.py
-    derivatives/
-    README
-    participants.tsv
-    dataset_description.json
-    CHANGES
+code/
+    deface.py
+derivatives/
+README
+participants.tsv
+dataset_description.json
+CHANGES
 ```
 
 Additional files and folders containing raw data may be added as needed for
