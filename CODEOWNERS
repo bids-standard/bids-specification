@@ -6,7 +6,7 @@
 # monitor below.
 
 # Add your github name below to get notified about proposed releases
-/src/CHANGES.md @chrisfilo @sappelhoff
+/src/CHANGES.md @chrisfilo @sappelhoff @CPernet
 
 # Individual sections
 /src/01-common-principles.md @chrisfilo
