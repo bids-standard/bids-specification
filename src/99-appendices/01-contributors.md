@@ -22,7 +22,7 @@ Legend (source:
 | 🔧    | Tools                                                                       |
 | 🌍    | Translation                                                                 |
 | ⚠️    | Tests                                                                       |
-| ✅     | Tutorials                                                                   |
+| ✅    | Tutorials                                                                   |
 | 📢    | Talks                                                                       |
 | 📹    | Videos                                                                      |
 
