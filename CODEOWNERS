@@ -9,6 +9,6 @@
 /src/CHANGES.md @chrisfilo @sappelhoff @CPernet
 
 # Individual sections
-/src/01-common-principles.md @chrisfilo
+/src/01-common-principles.md @chrisfilo @DimitriPapadopoulos
 /src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md @chrisfilo
 /src/04-modality-specific-files/03-electroencephalography.md @sappelhoff
