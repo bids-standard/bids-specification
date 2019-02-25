@@ -9,6 +9,7 @@ Changelog
 -   Add "part" keyword for mag/phase BOLD images (based on BEP001). [#128](https://github.com/bids-standard/bids-specification/pull/128) ([tsalo](https://github.com/tsalo))
 -   Update to Release_Protocol.md [#126](https://github.com/bids-standard/bids-specification/pull/126) ([franklin-feingold](https://github.com/franklin-feingold))
 -   Update tag naming convention [#123](https://github.com/bids-standard/bids-specification/pull/123) ([chrisfilo](https://github.com/chrisfilo))
+-   \[MRG] Merge bep006 and bep010 [#108](https://github.com/bids-standard/bids-specification/pull/108) ([sappelhoff](https://github.com/sappelhoff))
 -   Adding formal decision-making rules [#104](https://github.com/bids-standard/bids-specification/pull/104) ([chrisfilo](https://github.com/chrisfilo))
 -   \[MRG] number of small corrections to the specification [#98](https://github.com/bids-standard/bids-specification/pull/98) ([robertoostenveld](https://github.com/robertoostenveld))
 
