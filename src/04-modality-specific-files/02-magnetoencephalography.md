@@ -1,8 +1,8 @@
 # Magnetoencephalography (MEG)
 
-Support for MEG was developed as a BIDS Extension Proposal. Please cite the
-following paper when referring to this part of the standard in context of the
-academic literature:
+Support for MEG was developed as a [BIDS Extension Proposal](../06-extensions.md#bids-extension-proposals).
+Please cite the following paper when referring to this part of the standard in
+context of the academic literature:
 
 > Niso Galan, J.G., Gorgolewski, K.J., Bock, E., Brooks, T.L., Flandin, G.,
 > Gramfort, A., Henson, R.N., Jas, M., Litvak, V., Moreau, J., Oostenveld, R.,
@@ -54,7 +54,7 @@ trans, quat, mc, etc.), which some installations impose to be run on raw data
 because of active shielding software corrections before the MEG data can
 actually be exploited.
 
-### Sidecar JSON document (`*_meg.json`)
+### Sidecar JSON (`*_meg.json`)
 
 Generic fields MUST be present:
 
@@ -92,26 +92,27 @@ Specific MEG fields MUST be present:
 
 SHOULD be present
 
-| Field name                 | Definition                                                                                                                                                                                                                                                                   |
-| :------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| MEGChannelCount            | RECOMMENDED. Number of MEG channels (e.g. 275)                                                                                                                                                                                                                               |
-| MEGREFChannelCount         | RECOMMENDED. Number of MEG reference channels (e.g. 23). For systems without such channels (e.g. Neuromag Vectorview), `MEGREFChannelCount`=0                                                                                                                                |
-| EEGChannelCount            | RECOMMENDED. Number of EEG channels recorded simultaneously (e.g. 21)                                                                                                                                                                                                        |
-| ECOGChannelCount           | RECOMMENDED. Number of ECoG channels                                                                                                                                                                                                                                         |
-| SEEGChannelCount           | RECOMMENDED. Number of SEEG channels                                                                                                                                                                                                                                         |
-| EOGChannelCount            | RECOMMENDED. Number of EOG channels                                                                                                                                                                                                                                          |
-| ECGChannelCount            | RECOMMENDED. Number of ECG channels                                                                                                                                                                                                                                          |
-| EMGChannelCount            | RECOMMENDED. Number of EMG channels                                                                                                                                                                                                                                          |
-| MiscChannelCount           | RECOMMENDED. Number of miscellaneous analog channels for auxiliary signals                                                                                                                                                                                                   |
-| TriggerChannelCount        | RECOMMENDED. Number of channels for digital (TTL bit level) triggers                                                                                                                                                                                                         |
-| RecordingDuration          | RECOMMENDED. Length of the recording in seconds (e.g. 3600)                                                                                                                                                                                                                  |
-| RecordingType              | RECOMMENDED. Defines whether the recording is `continuous` or `epoched`; this latter limited to time windows about events of interest (e.g., stimulus presentations, subject responses etc.)                                                                                 |
-| EpochLength                | RECOMMENDED. Duration of individual epochs in seconds (e.g. 1) in case of epoched data                                                                                                                                                                                       |
-| ContinuousHeadLocalization | RECOMMENDED. Boolean (`true` or `false`) value indicating whether continuous head localisation was performed.                                                                                                                                                                |
-| HeadCoilFrequency          | RECOMMENDED. List of frequencies (in Hz) used by the head localisation coils (‘HLC’ in CTF systems, ‘HPI’ in Elekta, ‘COH’ in 4D/BTi) that track the subject’s head position in the MEG helmet (e.g. `[293, 307, 314, 321]`)                                                 |
-| MaxMovement                | RECOMMENDED. Maximum head movement (in mm) detected during the recording, as measured by the head localisation coils (e.g., 4.8)                                                                                                                                             |
-| SubjectArtefactDescription | RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g. "Vagus Nerve Stimulator", "non-removable implant"). If this field is set to `n/a`, it will be interpreted as absence of major source of artifacts except cardiac and blinks. |
-| AssociatedEmptyRoom        | RECOMMENDED. Relative path in BIDS folder structure to empty-room file associated with the subject’s MEG recording. The path needs to use forward slashes instead of backward slashes (e.g. `sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds`).             |
+| Field name                 | Definition                                                                                                                                                                                                                                                                                                     |
+| :------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| MEGChannelCount            | RECOMMENDED. Number of MEG channels (e.g. 275)                                                                                                                                                                                                                                                                 |
+| MEGREFChannelCount         | RECOMMENDED. Number of MEG reference channels (e.g. 23). For systems without such channels (e.g. Neuromag Vectorview), `MEGREFChannelCount`=0                                                                                                                                                                  |
+| EEGChannelCount            | RECOMMENDED. Number of EEG channels recorded simultaneously (e.g. 21)                                                                                                                                                                                                                                          |
+| ECOGChannelCount           | RECOMMENDED. Number of ECoG channels                                                                                                                                                                                                                                                                           |
+| SEEGChannelCount           | RECOMMENDED. Number of SEEG channels                                                                                                                                                                                                                                                                           |
+| EOGChannelCount            | RECOMMENDED. Number of EOG channels                                                                                                                                                                                                                                                                            |
+| ECGChannelCount            | RECOMMENDED. Number of ECG channels                                                                                                                                                                                                                                                                            |
+| EMGChannelCount            | RECOMMENDED. Number of EMG channels                                                                                                                                                                                                                                                                            |
+| MiscChannelCount           | RECOMMENDED. Number of miscellaneous analog channels for auxiliary signals                                                                                                                                                                                                                                     |
+| TriggerChannelCount        | RECOMMENDED. Number of channels for digital (TTL bit level) triggers                                                                                                                                                                                                                                           |
+| RecordingDuration          | RECOMMENDED. Length of the recording in seconds (e.g. 3600)                                                                                                                                                                                                                                                    |
+| RecordingType              | RECOMMENDED. Defines whether the recording is `continuous` or `epoched`; this latter limited to time windows about events of interest (e.g., stimulus presentations, subject responses etc.)                                                                                                                   |
+| EpochLength                | RECOMMENDED. Duration of individual epochs in seconds (e.g. 1) in case of epoched data                                                                                                                                                                                                                         |
+| ContinuousHeadLocalization | RECOMMENDED. Boolean (`true` or `false`) value indicating whether continuous head localisation was performed.                                                                                                                                                                                                  |
+| HeadCoilFrequency          | RECOMMENDED. List of frequencies (in Hz) used by the head localisation coils (‘HLC’ in CTF systems, ‘HPI’ in Elekta, ‘COH’ in 4D/BTi) that track the subject’s head position in the MEG helmet (e.g. `[293, 307, 314, 321]`)                                                                                   |
+| MaxMovement                | RECOMMENDED. Maximum head movement (in mm) detected during the recording, as measured by the head localisation coils (e.g., 4.8)                                                                                                                                                                               |
+| SubjectArtefactDescription | RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g. "Vagus Nerve Stimulator", "non-removable implant"). If this field is set to `n/a`, it will be interpreted as absence of major source of artifacts except cardiac and blinks.                                   |
+| AssociatedEmptyRoom        | RECOMMENDED. Relative path in BIDS folder structure to empty-room file associated with the subject’s MEG recording. The path needs to use forward slashes instead of backward slashes (e.g. `sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds`).                                               |
+| HardwareFilters            | RECOMMENDED. List of temporal hardware filters applied. Ideally key:value pairs of pre-applied hardware filters and their parameter values: e.g., `{"HardwareFilters": {"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dB/Octave"}}}`. Write `n/a` if no hardware filters applied. |
 
 Specific EEG fields (if recorded with MEG) SHOULD be present:
 
@@ -126,8 +127,7 @@ Specific EEG fields (if recorded with MEG) SHOULD be present:
 By construct, EEG when recorded simultaneously with the same MEG system , should
 have the same `SamplingFrequency` as MEG. Note that if EEG is recorded with a
 separate amplifier, it should be stored separately under a new /eeg data type
-(see
-[BEP006](https://docs.google.com/document/d/1ArMZ9Y_quTKXC-jNXZksnedK2VHHoKP3HCeO5HPcgLE/edit#heading=h.4k1noo90gelw)).
+(see [the EEG specification](03-electroencephalography.md)).
 
 Example:
 
@@ -170,7 +170,7 @@ format `YYYY-MM-DDThh:mm:ss`
 example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
 on local REB/IRB ethics board policy.
 
-## Channels description table (`*_channels.tsv`)
+## Channels description (`*_channels.tsv`)
 
 Template:
 
@@ -190,15 +190,15 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
-| Field name | Definition                                                                                                                                             |
-| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name       | REQUIRED. Channel name (e.g., MRT012, MEG023)                                                                                                          |
-| type       | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                    |
-| units      | REQUIRED. Physical unit of the data values recorded by this channel in SI (see [Appendix V](../99-appendices/05-units.md): Units for allowed symbols). |
+| Column name | Definition                                                                                                                                             |
+| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name        | REQUIRED. Channel name (e.g., MRT012, MEG023)                                                                                                          |
+| type        | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                    |
+| units       | REQUIRED. Physical unit of the data values recorded by this channel in SI (see [Appendix V](../99-appendices/05-units.md): Units for allowed symbols). |
 
 SHOULD be present:
 
-| Field name         | Definition                                                                                                                                                                                                                                                                    |
+| Column name        | Definition                                                                                                                                                                                                                                                                    |
 | :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | description        | OPTIONAL. Brief free-text description of the channel, or other information of interest. See examples below.                                                                                                                                                                   |
 | sampling_frequency | OPTIONAL. Sampling rate of the channel in Hz.                                                                                                                                                                                                                                 |
@@ -265,7 +265,7 @@ UDIO001 TRIG V analog trigger signal
 UADC001 AUDIO V envelope of audio signal presented to participant
 ```
 
-## Coordinate System JSON document (`*_coordsystem.json`)
+## Coordinate System JSON (`*_coordsystem.json`)
 
 Template:
 
@@ -345,7 +345,7 @@ Fiducials information:
 | FiducialsDescription | OPTIONAL. A freeform text field documenting the anatomical landmarks that were used and how the head localization coils were placed relative to these. This field can describe, for instance, whether the true anatomical locations of the left and right pre-auricular points were used and digitized, or rather whether they were defined as the intersection between the tragus and the helix (the entry of the ear canal), or any other anatomical description of selected points in the vicinity of the ears. |
 
 For more information on the definition of anatomical landmarks, please visit:
-[http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_define](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
+[http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
 
 For more information on typical coordinate systems for MEG-MRI coregistration:
 [http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined),
@@ -378,7 +378,7 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
 
-### 3-D head point /electrode locations file
+### 3-D head point /electrode locations
 
 Template:
 

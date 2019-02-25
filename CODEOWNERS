@@ -1,13 +1,14 @@
-# This files DOES NOT list people responsible for maintanance of different parts of 
+# This files DOES NOT list people responsible for maintenance of different parts of
 # the specification. It merely serves the purpose of notifying interested
 # contributors when a new Pull Request that proposes changes to a particular file
 # is submitted. If you would like to subscribe to such notifications (in a form of a
-# Request for Review) please add your github username next to the file you want to 
+# Request for Review) please add your GitHub username next to the file you want to
 # monitor below.
 
 # Add your github name below to get notified about proposed releases
-/src/CHANGES.md @chrisfilo
+/src/CHANGES.md @chrisfilo @sappelhoff @CPernet
 
 # Individual sections
 /src/01-common-principles.md @chrisfilo
 /src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md @chrisfilo
+/src/04-modality-specific-files/03-electroencephalography.md @sappelhoff
