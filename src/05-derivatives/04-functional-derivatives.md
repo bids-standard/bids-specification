@@ -8,8 +8,8 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func/
-            <source_keywords>[_referencemap-<referencemap>][_desc-<label>]_<suffix>.nii[.gz]
-            <source_keywords>[_referencemap-<referencemap>][_desc-<label>]_<suffix>.json
+            <source_keywords>[_space-<space>][_desc-<label>]_<suffix>.nii[.gz]
+            <source_keywords>[_space-<space>][_desc-<label>]_<suffix>.json
 ```
 
 for example:

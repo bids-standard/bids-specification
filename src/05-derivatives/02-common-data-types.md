@@ -8,7 +8,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func|anat|dwi/
-        <source_keywords>[_referencemap-<referencemap>][_desc-<label>]_<suffix>.<ext>
+        <source_keywords>[_space-<space>][_desc-<label>]_<suffix>.<ext>
 ```
 
 Processing in this context means transformations of data that does not change
@@ -22,11 +22,11 @@ data types in the specification. Examples:
 
 -   Motion-corrected DWI files.
 
-The `referencemap` keyword denotes reference atlas or map that the File is
+The `space` keyword denotes reference atlas or map that the File is
 aligned to - see [Introduction](01-introduction.md) for allowed values. The
 `desc` keyword is a general purpose field with freeform values. To distinguish
 between multiple different versions of processing for the same input data the
-`desc` keyword should be used. Note that even though `referencemap` and `desc`
+`desc` keyword should be used. Note that even though `space` and `desc`
 are optional at least one of them needs to be defined to avoid name conflict
 with the raw file.
 
@@ -36,8 +36,8 @@ Examples:
 pipeline1/
     sub-001/
         func/
-            sub-001_task-rest_run-1_referencemap-MNI305_bold.nii.gz
-            sub-001_task-rest_run-1_referencemap-MNI305_bold.json
+            sub-001_task-rest_run-space-MNI305_bold.nii.gz
+            sub-001_task-rest_run-space-MNI305_bold.json
 ```
 
 ```Text
@@ -74,12 +74,12 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func|anat|dwi/
-        <source_keywords>[_referencemap-<referencemap>][_type-<type>][_desc-<label>]_mask.nii.gz
+        <source_keywords>[_space-<space>][_type-<type>][_desc-<label>]_mask.nii.gz
 ```
 
-A binary (1 - inside, 0 outside) mask in the space defined by `<referencemap>`.
+A binary (1 - inside, 0 outside) mask in the space defined by `<space>`.
 By default (i.e., if no transformation has taken place) the value of
-`referencemap` should be set to `orig`.
+`space` should be set to `orig`.
 
 JSON metadata fields:
 
@@ -127,7 +127,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func|anat|dwi/
-            <source_keywords>[_referencemap-<referencemap>space-<space>]_dseg.nii.gz
+            <source_keywords>[_space-<space>]_dseg.nii.gz
 ```
 
 Example:
@@ -166,7 +166,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func|anat|dwi/
-            <source_keywords>[_referencemap-<referencemap>space-<space>][_label-<label>]_probseg.nii.gz
+            <source_keywords>[space-<space>][_label-<label>]_probseg.nii.gz
 ```
 
 Example:
@@ -218,7 +218,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat/
-            <source_keywords>[_hemi-{L|R}][_referencemap-<referencemap>]_dseg.{label.gii|dlabel.nii}
+            <source_keywords>[_hemi-{L|R}][_space-<space>]_dseg.{label.gii|dlabel.nii}
 ```
 
 The REQUIRED extension for GIFTI parcellations is `.label.gii`. The hemi tag is
