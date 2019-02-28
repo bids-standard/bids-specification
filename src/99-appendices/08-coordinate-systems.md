@@ -32,7 +32,7 @@ points of the imaged object's structure (i.e. anatomical landmarks) such as the
 anterior commissure in a brain. They can also be devices that generate a
 localizable signal that are placed in the intended position before scanning
 (i.e. markers). Positions of landmarks are identified via manual or automated
-algorithms that detect these landmarks in (e.g., MR) or from (e.g., MEG) the
+algorithms that detect these fiducials in (e.g., MR) or from (e.g., MEG) the
 acquired data or via explicit encoding of position (e.g., EEG sensors,
 headshape/coil digitization).
 
