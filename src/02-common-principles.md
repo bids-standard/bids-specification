@@ -9,13 +9,13 @@ interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 Throughout this protocol we use a list of terms. To avoid misunderstanding we
 clarify them here.
 
-1.  Dataset - a set of neuroimaging and behavioural data acquired for a purpose
+1.  Dataset - a set of neuroimaging and behavioral data acquired for a purpose
     of a particular study. A dataset consists of data acquired from one or more
     subjects, possibly from multiple sessions.
 
 1.  Subject - a person or animal participating in the study.
 
-1.  Session - a logical grouping of neuroimaging and behavioural data consistent
+1.  Session - a logical grouping of neuroimaging and behavioral data consistent
     across subjects. Session can (but doesn't have to) be synonymous to a visit
     in a longitudinal study. In general, subjects will stay in the scanner
     during one session. However, for example, if a subject has to leave the
@@ -33,17 +33,17 @@ clarify them here.
     scanning sequence/protocol.
 
 1.  Data type - a functional group of different types of data. In BIDS we define
-    five data types: func (task based and resting state functional MRI), dwi
+    six data types: func (task based and resting state functional MRI), dwi
     (diffusion weighted imaging), fmap (field inhomogeneity mapping data such as
     field maps), anat (structural imaging such as T1, T2, etc.), meg
-    (magnetoencephalography).
+    (magnetoencephalography), beh (behavioral).
 
 1.  Task - a set of structured activities performed by the participant. Tasks
     are usually accompanied by stimuli and responses, and can greatly vary in
     complexity. For the purpose of this protocol we consider the so-called
     “resting state” a task. In the context of brain scanning, a task is always
     tied to one data acquisition. Therefore, even if during one acquisition the
-    subject performed multiple conceptually different behaviours (with different
+    subject performed multiple conceptually different behaviors (with different
     sets of instructions) they will be considered one (combined) task.
 
 1.  Event - a stimulus or subject response recorded during a task. Each event
@@ -128,13 +128,13 @@ participant can exist only at participant level directory, i.e
 specific to a participant is to be declared only at top level of dataset for eg:
 `task-sist_bold.json` must be placed under `/dataset/task-sist_bold.json`
 
-Example 1: Two JSON files at same level that are applicable for NIfTI file.
+Example 1: Two JSON files that are erroneously at the same level.
 
 ```Text
 sub-01/
     ses-test/
-        sub-test_task-overtverbgeneration_bold.json
-        sub-test_task-overtverbgeneration_run-2_bold.json
+        sub-01_ses-test_task-overtverbgeneration_bold.json
+        sub-01_ses-test_task-overtverbgeneration_run-2_bold.json
         anat/
             sub-01_ses-test_T1w.nii.gz
         func/
@@ -146,8 +146,8 @@ In the above example, two JSON files are listed under `sub-01/ses-test/`, which
 are each applicable to
 `sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz`, violating the
 constraint that no more than one file may be defined at a given level of the
-directory structure. Instead `task-overtverbgeneration_run-2_bold.json` should
-have been under `sub-01/ses-test/func/`.
+directory structure. Instead `sub-01_ses-test_task-overtverbgeneration_run-2_bold.json`
+should have been under `sub-01/ses-test/func/`.
 
 Example 2: Multiple run and rec with same acquisition (acq) parameters acq-test1
 
@@ -168,7 +168,7 @@ apply to different runs and rec files. Also if the JSON file
 (`task-xyz_acq-test1_bold.json`) is defined at dataset top level directory, it
 will be applicable to all task runs with `test1` acquisition parameter.
 
-Case 2: Multiple json files at different levels for same task and acquisition
+Example 3: Multiple json files at different levels for same task and acquisition
 parameters
 
 ```Text
@@ -206,12 +206,10 @@ possible. Since the NIfTI standard offers limited support for the various image
 acquisition parameters available in DICOM files, we RECOMMEND that users provide
 additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
-Extraction of BIDS compatible metadata can be performed using dcm2nii
-[https://www.nitrc.org/projects/dcm2nii/](https://www.nitrc.org/projects/dcm2nii/)
-and dicm2nii
-[http://www.mathworks.com/matlabcentral/fileexchange/42997-dicom-to-nifti-converter/content/dicm2nii.m](http://www.mathworks.com/matlabcentral/fileexchange/42997-dicom-to-nifti-converter/content/dicm2nii.m)
+Extraction of BIDS compatible metadata can be performed using [dcm2nii](https://www.nitrc.org/projects/dcm2nii/)
+and [dicm2nii](http://www.mathworks.com/matlabcentral/fileexchange/42997-dicom-to-nifti-converter/content/dicm2nii.m)
 DICOM to NIfTI converters. A provided
-validator[https://github.com/INCF/bids-validator](https://github.com/INCF/bids-validator)
+[validator](https://github.com/bids-standard/bids-validator)
 will check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
 
@@ -223,7 +221,8 @@ MUST NOT be a series of space characters. Each TSV file MUST start with a header
 line listing the names of all columns (with the exception of physiological and
 other continuous acquisition data - see below for details). Names MUST be
 separated with tabs. String values containing tabs MUST be escaped using double
-quotes. Missing and non-applicable values MUST be coded as `n/a`.
+quotes. Missing and non-applicable values MUST be coded as `n/a`. TSV files MUST
+be in UTF-8 encoding.
 
 Example:
 
@@ -234,12 +233,12 @@ onset duration  response_time correct stop_trial  go_trial
 
 Tabular files MAY be optionally accompanied by a simple data dictionary in a
 JSON format (see below). The data dictionaries MUST have the same name as their
-corresponding tabular files but with `.json` extensions. If a JSON file 
-is provided, it MAY contain one or more fields describing the columns found in 
-the TSV file (in addition to any other metadata one wishes to include that 
-describe the file as a whole). Note that if a field name included in the JSON 
-sidecar matches a column name in the TSV file, then that field MUST contain a 
-description of the corresponding column, using an object containing the following 
+corresponding tabular files but with `.json` extensions. If a JSON file
+is provided, it MAY contain one or more fields describing the columns found in
+the TSV file (in addition to any other metadata one wishes to include that
+describe the file as a whole). Note that if a field name included in the JSON
+sidecar matches a column name in the TSV file, then that field MUST contain a
+description of the corresponding column, using an object containing the following
 fields:
 
 | Field name  | Definition                                                                                                             |
@@ -275,12 +274,11 @@ Example:
 ## Key/value files (dictionaries)
 
 JavaScript Object Notation (JSON) files MUST be used for storing key/value
-pairs. Extensive documentation of the format can be found here:
-[http://json.org/](http://json.org/). Several editors have built-in support for
-JSON syntax highlighting that aids manual creation of such files. An online
-editor for JSON with built-in validation is available at:
-[http://jsoneditoronline.org](http://jsoneditoronline.org). JSON files MUST be
-in UTF-8 encoding.
+pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
+format can be found here: [http://json.org/](http://json.org/). Several editors
+have built-in support for JSON syntax highlighting that aids manual creation of
+such files. An online editor for JSON with built-in validation is available at:
+[http://jsoneditoronline.org](http://jsoneditoronline.org). 
 
 Example:
 

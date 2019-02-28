@@ -7,9 +7,10 @@ This page lists some ways that you can get involved with the BIDS community.
 There are many ways to get involved with the BIDS community!
 
 ### The BIDS Starter Kit
-If you're new
-to the BIDS community and you'd like to learn a bit more, we recommend checking
-out the [BIDS Starter Kit](https://github.com/bids-standard/bids-starter-kit/blob/master/README.md).
+
+If you're new to the BIDS community and you'd like to learn a bit more, we
+recommend checking out the
+[BIDS Starter Kit](https://github.com/bids-standard/bids-starter-kit/blob/master/README.md).
 This has introductory information about the BIDS specification, tools in the
 BIDS ecosystem, and how you can get involved.
 
@@ -35,9 +36,7 @@ Below is a table of currently-active BEPs.
 | [BEP002](https://docs.google.com/document/d/1bq5eNDHTb6Nkx3WUiOBgKvLNnaa5OMcGtD0AZ9yms2M) | [The BIDS Models Specification](https://docs.google.com/document/d/1bq5eNDHTb6Nkx3WUiOBgKvLNnaa5OMcGtD0AZ9yms2M)                                                                              | Tal Yarkoni                                                    |
 | [BEP004](https://docs.google.com/document/d/1kyw9mGgacNqeMbp4xZet3RnDhcMmf4_BmRgKaOkO2Sc) | [Susceptibility Weighted Imaging (SWI)](https://docs.google.com/document/d/1kyw9mGgacNqeMbp4xZet3RnDhcMmf4_BmRgKaOkO2Sc)                                                                      | Fidel Alfaro Almagro                                           |
 | [BEP005](https://docs.google.com/document/d/15tnn5F10KpgHypaQJNNGiNKsni9035GtDqJzWqkkP6c) | [Arterial Spin Labeling (ASL)](https://docs.google.com/document/d/15tnn5F10KpgHypaQJNNGiNKsni9035GtDqJzWqkkP6c)                                                                               | Henk-Jan Mutsaerts and Michael Chappell                        |
-| [BEP006](https://docs.google.com/document/d/1ArMZ9Y_quTKXC-jNXZksnedK2VHHoKP3HCeO5HPcgLE) | [Electroencephalography (EEG)](https://docs.google.com/document/d/1ArMZ9Y_quTKXC-jNXZksnedK2VHHoKP3HCeO5HPcgLE)                                                                               | Cyril R Pernet, Robert Oostenveld, Stefan Appelhoff            |
 | [BEP009](https://docs.google.com/document/d/1mqMLnxVdLwZjDd4ZiWFqjEAmOmfcModA_R535v3eQs0) | [Positron Emission Tomography (PET)](https://docs.google.com/document/d/1mqMLnxVdLwZjDd4ZiWFqjEAmOmfcModA_R535v3eQs0)                                                                         | Melanie Ganz                                                   |
-| [BEP010](https://docs.google.com/document/d/1qMUkoaXzRMlJuOcfTYNr3fTsrl4SewWjffjMD5Ew6GY) | [intracranial Electroencephalography (iEEG)](https://docs.google.com/document/d/1qMUkoaXzRMlJuOcfTYNr3fTsrl4SewWjffjMD5Ew6GY)                                                                 | Dora Hermes and Chris Holdgraf                                 |
 | [BEP015](https://docs.google.com/document/d/1WYOTXDB7GzlHoWqLjd45I3uGBgPxXddST-NTqBnroJE) | [Mapping file](https://docs.google.com/document/d/1WYOTXDB7GzlHoWqLjd45I3uGBgPxXddST-NTqBnroJE)                                                                                               | Eric Earl, Camille Maumet, and Vasudev Raguram                 |
 | [BEP017](https://docs.google.com/document/d/1ugBdUF6dhElXdj3u9vw0iWjE6f_Bibsro3ah7sRV0GA) | [Generic BIDS connectivity data schema](https://docs.google.com/document/d/1ugBdUF6dhElXdj3u9vw0iWjE6f_Bibsro3ah7sRV0GA)                                                                      | Eugene Duff and Paul McCarthy                                  |
 | [BEP018](https://docs.google.com/document/d/1uRkgyzESLKuGjXi98Z97Wh6vt-iLN5nOAb9TG16CjUs) | [Genetic information](https://docs.google.com/document/d/1uRkgyzESLKuGjXi98Z97Wh6vt-iLN5nOAb9TG16CjUs)                                                                                        | Cyril R Pernet, Clara Moreau, and Thomas Nichols               |
@@ -48,11 +47,20 @@ Below is a table of currently-active BEPs.
 | [BEP023](https://docs.google.com/document/d/1yzsd1J9GT-aA0DWhdlgNr5LCu6_gvbjLyfvYq2FuxlY) | [PET Preprocessing derivatives](https://docs.google.com/document/d/1yzsd1J9GT-aA0DWhdlgNr5LCu6_gvbjLyfvYq2FuxlY)                                                                              | Martin Noergaard, Graham Searle, Melanie Ganz                  |
 | [BEP024](https://docs.google.com/document/d/1fqnJZ18x5LJC8jiJ8yvPHUGFzNBZ6gW2kywYrUKWtuo) | [Computed Tomography scan (CT)](https://docs.google.com/document/d/1fqnJZ18x5LJC8jiJ8yvPHUGFzNBZ6gW2kywYrUKWtuo)                                                                              | Hugo Boniface                                                  |
 | [BEP025](https://docs.google.com/document/d/1chZv7vAPE-ebPDxMktfI9i1OkLNR2FELIfpVYsaZPr4) | [Medical Population Imaging Data structure (MIDS)](https://docs.google.com/document/d/1chZv7vAPE-ebPDxMktfI9i1OkLNR2FELIfpVYsaZPr4)                                                           | Jose Manuel Saborit Torres                                     |
-| [BEP026](https://docs.google.com/document/d/14KC1d5-Lx-7ZSMtwS7pVAAvz-2WR_uoo5FvsNirzqJw) | [Microelectrode Recordings (MER)](https://docs.google.com/document/d/14KC1d5-Lx-7ZSMtwS7pVAAvz-2WR_uoo5FvsNirzqJw)                                                                         	  | Greydon Gilmore                                            	   |
+| [BEP026](https://docs.google.com/document/d/14KC1d5-Lx-7ZSMtwS7pVAAvz-2WR_uoo5FvsNirzqJw) | [Microelectrode Recordings (MER)](https://docs.google.com/document/d/14KC1d5-Lx-7ZSMtwS7pVAAvz-2WR_uoo5FvsNirzqJw)                                                                            | Greydon Gilmore                                                |
 
 When an extension reaches maturity it is merged into the main body of the
-specification.
+specification. Below is a table of BEPs that have been merged in the main body
+of the specification.
 
-All of the extension ideas that are not backwards compatible and thus
-will have to wait for BIDS 2.0 are listed
+| Extension label                                                                           | Title                                                                                                                                   | Moderators/leads                    |
+| :---------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------- |
+| [BEP008](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM) | [Magnetoencephalography (MEG)](https://docs.google.com/document/d/1QwfHyBzOyFWOLO4u_kkojLpUhW0-4_M7Ubafu9Gf4Gg)                         | Guiomar Niso                        |
+| [BEP011](https://docs.google.com/document/d/1YG2g4UkEio4t_STIBOqYOwneLEs1emHIXbGKynx7V0Y) | [The structural preprocessing derivatives](https://docs.google.com/document/d/1YG2g4UkEio4t_STIBOqYOwneLEs1emHIXbGKynx7V0Y)             | Andrew Hoopes                       |
+| [BEP012](https://docs.google.com/document/d/16CvBwVMAs0IMhdoKmlmcm3W8254dQmNARo-7HhE-lJU) | [The functional preprocessing derivatives](https://docs.google.com/document/d/16CvBwVMAs0IMhdoKmlmcm3W8254dQmNARo-7HhE-lJU)             | Camille Maumet and Chris Markiewicz |
+| [BEP013](https://docs.google.com/document/d/1qBNQimDx6CuvHjbDvuFyBIrf2WRFUOJ-u50canWjjaw) | [The resting state fMRI derivatives](https://docs.google.com/document/d/1qBNQimDx6CuvHjbDvuFyBIrf2WRFUOJ-u50canWjjaw)                   | Steven Giavasis                     |
+| [BEP014](https://docs.google.com/document/d/11gCzXOPUbYyuQx8fErtMO9tnOKC3kTWiL9axWkkILNE) | [The affine transformations and nonlinear field warps](https://docs.google.com/document/d/11gCzXOPUbYyuQx8fErtMO9tnOKC3kTWiL9axWkkILNE) | Oscar Esteban                       |
+
+All of the extension ideas that are not backwards compatible and thus will have
+to wait for BIDS 2.0 are listed
 [here](https://docs.google.com/document/d/1LEgsMiisGDe1Gv-hBp1EcLmoz7AlKj6VYULUgDD3Zdw)

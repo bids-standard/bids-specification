@@ -2,6 +2,22 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   Update Pipfile.lock [#144](https://github.com/bids-standard/bids-specification/pull/144) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[MRG] clarify encoding of README, CHANGES, TSV, and JSON files [#140](https://github.com/bids-standard/bids-specification/pull/140) ([sappelhoff](https://github.com/sappelhoff))
+-   Update site_name and release protocol [#137](https://github.com/bids-standard/bids-specification/pull/137) ([franklin-feingold](https://github.com/franklin-feingold))
+-   BF: Example for IntendedFor was missing session indicator in the filename [#129](https://github.com/bids-standard/bids-specification/pull/129) ([yarikoptic](https://github.com/yarikoptic))
+-   Add "part" keyword for mag/phase BOLD images (based on BEP001). [#128](https://github.com/bids-standard/bids-specification/pull/128) ([tsalo](https://github.com/tsalo))
+-   Update to Release_Protocol.md [#126](https://github.com/bids-standard/bids-specification/pull/126) ([franklin-feingold](https://github.com/franklin-feingold))
+-   Update tag naming convention [#123](https://github.com/bids-standard/bids-specification/pull/123) ([chrisfilo](https://github.com/chrisfilo))
+-   \[MRG] Merge bep006 and bep010 [#108](https://github.com/bids-standard/bids-specification/pull/108) ([sappelhoff](https://github.com/sappelhoff))
+-   Adding formal decision-making rules [#104](https://github.com/bids-standard/bids-specification/pull/104) ([chrisfilo](https://github.com/chrisfilo))
+-   \[MRG] number of small corrections to the specification [#98](https://github.com/bids-standard/bids-specification/pull/98) ([robertoostenveld](https://github.com/robertoostenveld))
+
+## [v.1.1.2](https://github.com/bids-standard/bids-specification/tree/v.1.1.2) (2019-01-10)
+
+## [v1.1.2](https://github.com/bids-standard/bids-specification/tree/v1.1.2) (2019-01-10)
+
+-   REL: v.1.1.2 [#121](https://github.com/bids-standard/bids-specification/pull/121) ([chrisfilo](https://github.com/chrisfilo))
 -   Update 01-contributors.md [#120](https://github.com/bids-standard/bids-specification/pull/120) ([oesteban](https://github.com/oesteban))
 -   Global fields in data dictionaries [#117](https://github.com/bids-standard/bids-specification/pull/117) ([chrisfilo](https://github.com/chrisfilo))
 -   Propose BEP026 MER [#116](https://github.com/bids-standard/bids-specification/pull/116) ([greydongilmore](https://github.com/greydongilmore))
@@ -66,13 +82,13 @@ Changelog
 -   Remove EEGSamplingFrequency and ManufacturersAmplifierModelName
     from the meg.json.
 
--   Improved the behavioural data description.
+-   Improved the behavioral data description.
 
 ## 1.1.0
 
 -   Added support for MEG data (merged BEP008)
 -   Added SequenceName field.
--   Added support for describing events with Hierarchical Event Descriptors \[[4.3 Task events](04-modality-specific-files/03-task-events.md)].
+-   Added support for describing events with Hierarchical Event Descriptors \[[4.3 Task events](04-modality-specific-files/05-task-events.md)].
 -   Added VolumeTiming and AcquisitionDuration fields \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 -   Added DwellTime field.
 
@@ -127,7 +143,7 @@ Changelog
 -   Added trial_type column to the event files.
 
 -   Added missing sub-&lt;participant_label> in
-    behavioural data file names
+    behavioral data file names
 
 -   Added ability to store stimuli files.
 
