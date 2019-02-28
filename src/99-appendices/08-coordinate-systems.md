@@ -29,7 +29,7 @@ time points.
 Landmarks are properties of the object being measured and can exist in any
 coordinate system in which the object is placed/measured. They can be relevant
 points of the imaged object's structure (i.e. anatomical landmarks) such as the
-anterior commissure in a brain. They can also be devices that generate a
+anterior commissure in a brain. They can also be fiducials that generate a
 localizable signal that are placed in the intended position before scanning
 (i.e. markers). Positions of landmarks are identified via manual or automated
 algorithms that detect these fiducials in (e.g., MR) or from (e.g., MEG) the
