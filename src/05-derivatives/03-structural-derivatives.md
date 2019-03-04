@@ -29,7 +29,7 @@ The supported surface types (`<surftype>` suffix) are:
 | Surface type | Description                                                          |
 | ------------ | -------------------------------------------------------------------- |
 | wm           | The gray matter / white matter border for the cortex                 |
-| smoothwm     | The smoothed matter / white matter border                            |
+| smoothwm     | The smoothed gray matter / white matter border                       |
 | pial         | The gray matter / pial matter border                                 |
 | midthickness | The midpoints between wm and pial surfaces                           |
 | inflated     | An inflation of the midthickness surface (useful for visualization)  |
