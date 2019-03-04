@@ -37,7 +37,7 @@ pipeline1/
     sub-001/
         func/
             sub-001_task-rest_run-space-MNI305_bold.nii.gz
-            sub-001_task-rest_run-space-MNI305_bold.json
+            sub-001_task-rest_run-1_space-MNI305_bold.json
 ```
 
 ```Text
