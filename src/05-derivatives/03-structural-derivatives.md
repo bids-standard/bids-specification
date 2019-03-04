@@ -53,7 +53,7 @@ Template:
             <source_keywords>[_hemi-{L|R}][_space-<space>]_<suffix>.{shape.gii|dscalar.nii}
 ```
 
-The REQUIRED extension for scalar GiFTI files is `.shape.gii`. The `hemi` key is
+The REQUIRED extension for scalar GIFTI files is `.shape.gii`. The `hemi` key is
 required for GiFTI files. For example:
 
 ```Text
