@@ -1,4 +1,4 @@
-site_name: Brain Imaging Data Structure v1.1.2-dev
+site_name: Brain Imaging Data Structure v1.2.0-dev
 theme: material
 plugins:
     - search
