@@ -190,8 +190,8 @@ expressed as follows:
 -   Filenames that are permissible for a raw BIDS data type have a privileged
     status. Any modification of raw files must use a modified filename that does
     not conflict with the raw filename. Further, any files created as part of a
-    derivatived dataset must not match a permissible filename of a valid raw
-    dataset. Stated equivalently, if any filename in a derivatived dataset has a
+    derivative dataset must not match a permissible filename of a valid raw
+    dataset. Stated equivalently, if any filename in a derivative dataset has a
     name permissible for a raw BIDS data, then that file must be an identical
     copy of that raw file.
 
