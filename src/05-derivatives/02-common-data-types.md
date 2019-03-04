@@ -285,7 +285,7 @@ Example:
 
 ```Text
 pipeline/
-	dseg.tsv
+	  dseg.tsv
     sub-001/
         anat/
             sub-001_space-ACPC_dseg.nii.gz
