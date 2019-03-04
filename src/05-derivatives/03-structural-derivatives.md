@@ -54,7 +54,7 @@ Template:
 ```
 
 The REQUIRED extension for scalar GIFTI files is `.shape.gii`. The `hemi` key is
-required for GiFTI files. For example:
+required for GIFTI files. For example:
 
 ```Text
 pipeline/
