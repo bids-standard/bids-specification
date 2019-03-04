@@ -13,15 +13,17 @@ Derivatives can be stored/distributed in two ways:
 1.  Under a `derivatives/` subfolder in the root of the source BIDS dataset
     folder to make a clear distinction between raw data and results of data
     processing. Each pipeline has a dedicated directory under which it stores
-    all of its outputs. There is no restriction on the directory name; however,
-    it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where it
-    is anticipated that the same pipeline will output more than one variant
-    (e.g., `AFNI-blurring`, `AFNI-noblurring`, etc.).
+    all of its outputs. There are few restriction on the directory name; it is
+    RECOMMENDED to use the format `<pipeline>-<variant>` in cases where it is
+    anticipated that the same pipeline will output more than one variant (e.g.,
+    `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
+    subfolder name needs to be a substring of `PipelineDescription.Name` field
+    in the `dataset_description.json` (see below).
 
     For example:
 
     ```Text
-    <dataset>/derivatives/fmripreprocess_01/sub-0001
+    <dataset>/derivatives/fmripreprocess-v1/sub-0001
     <dataset>/derivatives/spm/sub-0001
     <dataset>/derivatives/vbm/sub-0001
     ```
@@ -56,14 +58,14 @@ In addition to raw BIDS datasets derived BIDS datasets includ the following
 required or recommended `dataset_description.json` keys (a dot in the Key name
 denotes a key in a subdictionary):
 
-| **Key name**                                | **Description**                                                                                                                                                       |
-| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PipelineDescription.Name                    | REQUIRED. Name of the pipeline that generated the outputs.                                                                                                            |
-| PipelineDescription.Version                 | OPTIONAL. Version of the pipeline.                                                                                                                                    |
-| PipelineDescription.CodeURL                 | OPTIONAL. URL where the code for the analysis can be found.                                                                                                           |
-| PipelineDescription.DockerHubContainerTag   | OPTIONAL. Docker Hub tag where the software container image used in this analysis can be found.                                                                       |
-| PipelineDescription.SingularityContainerURL | OPTIONAL. URL where the Singularity software container image used in this analysis can be found.                                                                      |
-| SourceDatasets                              | OPTIONAL. A list of objects specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`. |
+| **Key name**                                | **Description**                                                                                                                                                                                                                              |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PipelineDescription.Name                    | REQUIRED. Name of the pipeline that generated the outputs. In case the derived dataset is stored as a subfolder of the raw dataset this field MUST be a substring of the derived dataset folder name (a.k.a. `<pipeline_name>` - see above). |
+| PipelineDescription.Version                 | OPTIONAL. Version of the pipeline.                                                                                                                                                                                                           |
+| PipelineDescription.CodeURL                 | OPTIONAL. URL where the code for the analysis can be found.                                                                                                                                                                                  |
+| PipelineDescription.DockerHubContainerTag   | OPTIONAL. Docker Hub tag where the software container image used in this analysis can be found.                                                                                                                                              |
+| PipelineDescription.SingularityContainerURL | OPTIONAL. URL where the Singularity software container image used in this analysis can be found.                                                                                                                                             |
+| SourceDatasets                              | OPTIONAL. A list of objects specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`.                                                                        |
 
 Example:
 
@@ -97,9 +99,9 @@ share the following (non-required) ones:
 
 | **Key name**         | **Description**                                                                                                                                                                                                                                                                                                                                       |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Description          | RECOMMENDED. Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                         |
+| Description          | RECOMMENDED. Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                        |
 | Sources              | OPTIONAL. A list of paths relative to dataset root pointing to the file(s) that were directly used in the creation of this derivative. For example in a chain of A->B->C, “C” should only list “B” as Sources, and “B” should only list “A” as Sources. However in case X and Y jointly contribute to Z, then “Z” should list “X” and “Y” as Sources. |
-| RawSources           | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                               |
+| RawSources           | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                                |
 | CoordinateSystem     | REQUIRED if no implicit coordinate system. Key indicates the coordinate system associated with the File. The coordinate system can be implicit to the File, for instance when data are images stored in NIfTI format. Can be a list. See Table below for list of allowed systems.                                                                     |
 | ReferenceMap         | REQUIRED when coordinate system is Aligned. Key indicates the reference atlas or map that the File is aligned to. See table below for list of common spaces.                                                                                                                                                                                          |
 | NonstandardReference | REQUIRED when a non standard template or space is used. (e.g., a custom template in MNI305 space). A path to a file that was used as, or can be used as, a reference image for determining the coordinate space of this file. If Space is a list, Space reference must also be a list.                                                                |
@@ -127,8 +129,8 @@ In addition to values defined in
 ### Example sidecar files
 
 For a NIFTI file (Single coordinate system), one could have registered the File
-on to the standard MNI305 template. The way to write the metadata of such 
-File is:
+on to the standard MNI305 template. The way to write the metadata of such File
+is:
 
 ```JSON
 {
@@ -137,7 +139,7 @@ File is:
 }
 ```
 
-However, it could also be the case that a nonstandard derivative of MNI305 was 
+However, it could also be the case that a nonstandard derivative of MNI305 was
 used as standard space for the File. That can be written as follows:
 
 ```JSON
@@ -147,72 +149,71 @@ used as standard space for the File. That can be written as follows:
 }
 ```
 
-Some derivatives such as CIFTI Files allow for multiple coordinate systems. 
-Such possibility is enabled by using lists of spaces and references:
+Some derivatives such as CIFTI Files allow for multiple coordinate systems. Such
+possibility is enabled by using lists of spaces and references:
 
 ```JSON
 {
     "TransformFile": "/path/to/xfm",
-    "ReferenceMap": ["MNI305", "fsLR32k"] 
+    "ReferenceMap": ["MNI305", "fsLR32k"]
 }
 ```
 
-Differing references of the same spaces with respect to the above example can 
-be expressed as follows:
+Differing references of the same spaces with respect to the above example can be
+expressed as follows:
 
 ```JSON
 {
     "TransformFile": "/path/to/xfm",
-    "ReferenceMap": ["MNI152Lin", "fsLR164k"] 
+    "ReferenceMap": ["MNI152Lin", "fsLR164k"]
 }
 ```
 
 ## Metadata conventions
 
--   Unless specified otherwise, individual sidecar JSON files and all metadata 
-    fields within are optional. However, the appropriate use of these files and 
-    pertinent fields is very valuable and thus encouraged. Moreover, for some 
-    types of files, there may be one or more required metadata fields, in which 
-    case at least one metadata file containing that field must be located 
+-   Unless specified otherwise, individual sidecar JSON files and all metadata
+    fields within are optional. However, the appropriate use of these files and
+    pertinent fields is very valuable and thus encouraged. Moreover, for some
+    types of files, there may be one or more required metadata fields, in which
+    case at least one metadata file containing that field must be located
     somewhere within the file’s hierarchy (per the Inheritance Principle).
 
--   When chaining derivative pipelines, any JSON fields that were specified as 
-    mandatory in the input files should be propagated forward in the output 
-    file’s JSON provided they remain valid. Non-required JSON fields can be 
-    propagated, and are highly useful, but it is the pipeline’s responsibility 
-    to ensure that the values are still relevant and appropriate to the type of 
+-   When chaining derivative pipelines, any JSON fields that were specified as
+    mandatory in the input files should be propagated forward in the output
+    file’s JSON provided they remain valid. Non-required JSON fields can be
+    propagated, and are highly useful, but it is the pipeline’s responsibility
+    to ensure that the values are still relevant and appropriate to the type of
     output data.
 
 ## File naming conventions
 
--   Filenames that are permissible for a raw BIDS data type have a privileged 
-    status. Any modification of raw files must use a modified filename that 
-    does not conflict with the raw filename. Further, any files created as 
-    part of a derivatived dataset must not match a permissible filename of a 
-    valid raw dataset. Stated equivalently, if any filename in a derivatived 
-    dataset has a name permissible for a raw BIDS data, then that file must 
-    be an identical copy of that raw file.
+-   Filenames that are permissible for a raw BIDS data type have a privileged
+    status. Any modification of raw files must use a modified filename that does
+    not conflict with the raw filename. Further, any files created as part of a
+    derivatived dataset must not match a permissible filename of a valid raw
+    dataset. Stated equivalently, if any filename in a derivatived dataset has a
+    name permissible for a raw BIDS data, then that file must be an identical
+    copy of that raw file.
 
--   Each Derivatives filename MUST be of the form: 
+-   Each Derivatives filename MUST be of the form:
     `<source_keywords>[_keyword-<value>]_<suffix>.<ext>`
 
--   When the derivatives chain involves outputs derived from a single raw 
-    input, `source_keywords` MUST be the entire source filename, with the 
-    ommission of the source suffix and extension. One exception to this rule 
-    is filename keywords that are no longer relevant (such as `sub-` in the 
-    case of group level derivatives). Depending on the nature of the 
-    derivative file, the suffix can either be the same as the source file if 
-    that suffix is still appropriate, or a new appropriate value selected 
-    from the controlled list. 
+-   When the derivatives chain involves outputs derived from a single raw input,
+    `source_keywords` MUST be the entire source filename, with the ommission of
+    the source suffix and extension. One exception to this rule is filename
+    keywords that are no longer relevant (such as `sub-` in the case of group
+    level derivatives). Depending on the nature of the derivative file, the
+    suffix can either be the same as the source file if that suffix is still
+    appropriate, or a new appropriate value selected from the controlled list.
 
--   There is no prohibition against identical filenames in different derived 
-    datasets, although users should be aware of the potential ambiguity this 
-    can create and use the sidecar JSON files to detail the specifics of 
-    individual files.
+-   There is no prohibition against identical filenames in different derived
+    datasets, although users should be aware of the potential ambiguity this can
+    create and use the sidecar JSON files to detail the specifics of individual
+    files.
 
--   When necessary to distinguish two files, the `_desc-<value>` keyword-value 
-    should be used. This includes the cases of needing to distinguish both 
-    differing inputs and differing outputs (e.g., `_desc-T1w` and `_desc-T2w` 
-    to distinguish brain mask files derived from T1w and T2w images; or 
-    `_desc-sm4` and `_desc-sm8` to distinguish between outputs generated with 
-     two different levels of smoothing).
+-   When necessary to distinguish two files, the `_desc-<value>` keyword-value
+    should be used. This includes the cases of needing to distinguish both
+    differing inputs and differing outputs (e.g., `_desc-T1w` and `_desc-T2w` to
+    distinguish brain mask files derived from T1w and T2w images; or `_desc-sm4`
+    and `_desc-sm8` to distinguish between outputs generated with two different
+    levels of smoothing).
