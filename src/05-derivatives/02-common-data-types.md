@@ -77,7 +77,7 @@ Template:
         <source_keywords>[_space-<space>][_type-<type>][_desc-<label>]_mask.nii.gz
 ```
 
-A binary (1 - inside, 0 outside) mask in the space defined by `<space>`.
+A binary (1 - inside, 0 - outside) mask in the space defined by `<space>`.
 By default (i.e., if no transformation has taken place) the value of
 `space` should be set to `orig`.
 
