@@ -15,7 +15,7 @@ dimension, and in some cases the details of origin (for example, time).
 
 ### Space, atlas and map
 
-A space|atlas|map is embedded in a coordinate system to ascribe meaning to the
+A space/atlas/map is embedded in a coordinate system to ascribe meaning to the
 coordinates. For instance, Scanner, Talairach88, MNI, FS are different
 coordinate systems, while the Talairach atlas, MNI152, and fsaverage ascribe
 meaning to the coordinates in terms of brain anatomy. As an example to
