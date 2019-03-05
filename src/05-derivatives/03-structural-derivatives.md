@@ -26,7 +26,7 @@ pipeline/
 
 The supported surface types (`<surftype>` suffix) are:
 
-| Surface type | Description                                                          |
+| `<surftype>` | Description                                                          |
 | ------------ | -------------------------------------------------------------------- |
 | wm           | The gray matter / white matter border for the cortex                 |
 | smoothwm     | The smoothed gray matter / white matter border                       |
@@ -73,11 +73,9 @@ pipeline/
             sub-001_curv.dscalar.nii
 ```
 
-The file `<suffix>` should concisely describe the parameter that is represented
-in the overlay, and while the suffix can be individually customized, the
-following values should be reserved for their common use-cases:
+The file `<suffix>` MUST be one of the following values:
 
-| Suffix       | Description                                           |
+| `<suffix>`   | Description                                           |
 | ------------ | ----------------------------------------------------- |
 | `curv`       | Cortical surface curvature indices                    |
 | `thickness`  | Cortical thickness                                    |
