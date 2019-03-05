@@ -32,7 +32,11 @@ Derivatives can be stored/distributed in two ways:
     dataset. This way of specifying derivatives is particularly useful when the
     source dataset is provided with read-only access, and for publishing
     derivatives as independent bodies of work, or for describing derivatives
-    that were created from more than one source dataset.
+    that were created from more than one source dataset. It is consistent with 
+    BIDS principles for the `sourcedata/` subdirectory to be used to include or 
+    reference the source dataset(s) as it existed when the derivatives were 
+    generated. Likewise, any code used to generate the derivatives from the 
+    source data may be included in the `code/` subdirectory.
 
 The rest of the Derivatives specification assumes Case 1, but Case 2 applies
 after removing `/derivatives/<pipeline_name>` from template names. In both cases
