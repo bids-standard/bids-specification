@@ -11,7 +11,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat/
-            <source_keywords>_hemi-{L|R}[_space-<space]_<surftype>.surf.gii
+            <source_keywords>_hemi-{L|R}[_space-<space>]_<surftype>.surf.gii
 ```
 
 Example:
