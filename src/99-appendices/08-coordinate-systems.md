@@ -88,9 +88,9 @@ information (origin, orientation) are specified in `XXXCoordinateSystem`, and
 the units are specified in `XXXCoordinateSystemUnits`.
 
 Allowed values for the `XXXCoordinateSystem` field come from a list of
-restricted keywords, as listed in the sections below. If no value from the
-list of restricted keywords fits, there is always the option to specify the
-value as follows:
+restricted keywords, as listed in the sections below. If no value from the list
+of restricted keywords fits, there is always the option to specify the value as
+follows:
 
 -   `Other`: Use this for other coordinate systems and specify further details
     in the `XXXCoordinateSystemDescription` field
@@ -126,7 +126,8 @@ Restricted keywords for the `XXXCoordinateSystem` field in the
 Note that the short descriptions above do not capture all details, There are
 detailed extensive descriptions of these EEG coordinate systems on the
 [FieldTrip toolbox web page](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
-and on the [BESA wiki](http://wiki.besa.de/index.php?title=Electrodes_and_Surface_Locations#Coordinate_systems).
+and on the
+[BESA wiki](http://wiki.besa.de/index.php?title=Electrodes_and_Surface_Locations#Coordinate_systems).
 
 ## iEEG Specific Coordinate Systems
 
@@ -145,8 +146,9 @@ Restricted keywords for the `XXXCoordinateSystem` field in the
     positive z-axis is passing through a mid-hemispheric point in the superior
     direction. The anatomical landmarks are determined in the individual's
     anatomical scan and no scaling or deformations have been applied to the
-    individual's anatomical scan. For more information, see the [ACPC site](http://www.fieldtriptoolbox.org/faq/acpc/)
-    on the FieldTrip toolbox wiki.
+    individual's anatomical scan. For more information, see the
+    [ACPC site](http://www.fieldtriptoolbox.org/faq/acpc/) on the FieldTrip
+    toolbox wiki.
 
 ## Template Based Coordinate Systems
 
@@ -173,7 +175,7 @@ the units are assumed to be mm.
 | IXI549Space                                         | Reference space defined by the average of the "549 (...) subjects from the IXI dataset" linearly transformed to ICBM MNI 452.Used by SPM12. [http://www.brain-development.org/](http://www.brain-development.org/)                                                                                                                                               |
 | fsnative                                            | Images were sampled to the FreeSurfer surface reconstructed from the subject’s T1w image                                                                                                                                                                                                                                                                         |
 | fsaverage\[3&#124;4&#124;5&#124;6&#124;sym\]        | Images were sampled to the FreeSurfer surface reconstructed from the subject’s T1w image, and registered to an fsaverage template                                                                                                                                                                                                                                |
-| fsLR\[164k&#124;32k\]                                      | Images were sampled to the 164k or 32k fsaverage_LR surface reconstructed from the T1w image (high resolution space of the HCPPipelines) |
+| fsLR\[164k&#124;32k\]                               | Images were sampled to the 164k or 32k fsaverage_LR surface reconstructed from the T1w image (high resolution space of the HCPPipelines)                                                                                                                                                                                                                         |
 | UNCInfant\[0&#124;1&#124;2\]V\[21&#124;22&#124;23\] | Infant Brain Atlases from Neonates to 1- and 2-year-olds. [https://www.nitrc.org/projects/pediatricatlas](https://www.nitrc.org/projects/pediatricatlas)                                                                                                                                                                                                         |
 
 ---
