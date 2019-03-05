@@ -85,7 +85,7 @@ following values should be reserved for their common use-cases:
 | `dist`       | Distance from a point                                 |
 | `defects`    | Marked regions with surface defects                   |
 | `sulc`       | Sulcal depth                                          |
-| `myelinmap`  | Myelin map calculated from T1w to T2 ratio            |
+| `myelinmap`  | Myelin map calculated from T1w to T2w ratio           |
 | `distortion` | Distortion map calculated from a surface registration |
 
 ## Morphometrics
