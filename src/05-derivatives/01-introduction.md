@@ -48,10 +48,6 @@ housed within each subject’s directory; if session-specific derivatives are
 generated, they should be deposited under a session subdirectory within the
 corresponding subject directory; and so on.
 
-In addition pipelines may generate derivatives that do not strictly belong to
-any single participant. To write group-level results, the `group/` folder for
-example `<dataset>/derivatives/<pipeline_name>/group/`.
-
 ## Derived dataset and pipeline description
 
 As for any BIDS dataset a `dataset_description.json` file MUST be found at the
@@ -205,10 +201,10 @@ expressed as follows:
 -   When the derivatives chain involves outputs derived from a single raw input,
     `source_keywords` MUST be the entire source filename, with the ommission of
     the source suffix and extension. One exception to this rule is filename
-    keywords that are no longer relevant (such as `sub-` in the case of group
-    level derivatives). Depending on the nature of the derivative file, the
-    suffix can either be the same as the source file if that suffix is still
-    appropriate, or a new appropriate value selected from the controlled list.
+    keywords that are no longer relevant. Depending on the nature of the 
+    derivative file, the suffix can either be the same as the source file if 
+    that suffix is still appropriate, or a new appropriate value selected from 
+    the controlled list.
 
 -   There is no prohibition against identical filenames in different derived
     datasets, although users should be aware of the potential ambiguity this can
