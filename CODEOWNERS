@@ -12,3 +12,6 @@
 /src/01-common-principles.md @chrisfilo
 /src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md @chrisfilo
 /src/04-modality-specific-files/03-electroencephalography.md @sappelhoff
+/src/05-derivatives/03-structural-derivatives.md @edickie @ahoopes
+/src/05-derivatives/04-functional-derivatives.md @effigies
+/src/05-derivatives/05-diffusion-derivatives.md @francopestilli @oesteban
