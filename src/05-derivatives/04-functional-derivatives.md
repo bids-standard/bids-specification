@@ -72,7 +72,7 @@ non-uniform sampling, such as clustered sparse acquisition.
 
 Tabular time series files MUST be accompanied by additional metadata,
 consistent with the format described in
-[Common princioples](../02-common-principles.md#tabular-files).
+[Common principles](../02-common-principles.md#tabular-files).
 
 Volumetric time series files MAY be accompanied by a data dictionary in JSON
 format, with OPTIONAL `LongName`, `Description`, `Levels`, `Units`, and
