@@ -102,8 +102,8 @@ func_loc/
 manual_masks/
     sub-001/
         anat/
-            sub-001_T1w_label-desc_mask.nii.gz
-            sub-001_T1w_label-desc_mask.json
+            sub-001_desc-tumor_mask.nii.gz
+            sub-001_desc-tumor_mask.json
 ```
 
 ## Segmentations and parcellations
