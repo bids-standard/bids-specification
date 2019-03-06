@@ -59,24 +59,27 @@ In the case where every voxel has a time series, then the data should be stored
 in a 4D NIfTI file.
 
 All time series files MUST be accompanied by a data dictionary in JSON format,
-containing the following sampling information:
+consistent with the format described in
+[Common principles](../02-common-principles.md#tabular-files), which describes
+metadata for each column name.
+In the case of NIfTI time series files, the notion of column name does not
+apply, so column-level metadata may be applied to the entire file.
+In addition, the following fields apply to the entire file in all cases:
 
-| Field name | Definition |
-| ---------- | ---------- |
-| SamplingFrequency | REQUIRED. Sampling frequency (in Hz) of all columns in the file. Special value `"TR"` indicates one sample per volume of a corresponding BOLD series. |
-| StartTime | OPTIONAL. Time in seconds of the first sample, relative to the run start. (Default: 0s) |
+| Field name        | Definition                                                                                                                                                   |
+| :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SamplingFrequency | REQUIRED. Sampling frequency (in Hz) of all columns in the file. Special value `"TR"` indicates one sample per volume of a corresponding BOLD series.        |
+| StartTime         | OPTIONAL. Start time in seconds in relation to the start of acquisition of the first volume in the corresponding imaging file (negative values are allowed). |
 
+Note that there are several differences with these fields in
+[Physiological and other continuous recordings](
+../04-modality-specific-files/06-physiological-and-other-continuous-recordings.md).
 The `"TR"` sampling frequency serves to indicate that no resampling is needed
 to use the series as a regressor for BOLD data, including BOLD series with
 non-uniform sampling, such as clustered sparse acquisition.
-
-Tabular time series files MUST be accompanied by additional metadata,
-consistent with the format described in
-[Common principles](../02-common-principles.md#tabular-files).
-
-Volumetric time series files MAY be accompanied by a data dictionary in JSON
-format, with OPTIONAL `LongName`, `Description`, `Levels`, `Units`, and
-`TermURL` fields.
+`StartTime` is assumed to be 0 and therefore not mandatory.
+Additionally, because time series TSV files have column headers, the `Columns`
+field is omitted.
 
 ### General time series
 
