@@ -206,7 +206,7 @@ possible. Since the NIfTI standard offers limited support for the various image
 acquisition parameters available in DICOM files, we RECOMMEND that users provide
 additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
-Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://www.nitrc.org/projects/dcm2nii/)
+Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://github.com/rordenlab/dcm2niix)
 and [dicm2nii](http://www.mathworks.com/matlabcentral/fileexchange/42997-dicom-to-nifti-converter/content/dicm2nii.m)
 DICOM to NIfTI converters. A provided
 [validator](https://github.com/bids-standard/bids-validator)
