@@ -137,8 +137,8 @@ Example:
 pipeline/
     sub-001/
         anat/
-            sub-001_space-ACPC_dseg.nii.gz
-            sub-001_space-ACPC_dseg.json
+            sub-001_space-orig_dseg.nii.gz
+            sub-001_space-orig_dseg.json
 ```
 
 A segmentation could be a binary mask that functions as a discrete `label` for a
@@ -149,7 +149,7 @@ corresponding structure. For example:
 pipeline/
     sub-001/
         anat/
-            sub-001_space-ACPC_label-GM_dseg.nii.gz
+            sub-001_space-orig_label-GM_dseg.nii.gz
 ```
 
 See "Anatomical labels" for reserved key values for `label`.
@@ -176,8 +176,8 @@ Example:
 pipeline/
     sub-001/
         anat/
-            sub-001_space-ACPC_label-BG_probseg.nii.gz
-            sub-001_space-ACPC_label-WM_probseg.nii.gz
+            sub-001_space-orig_label-BG_probseg.nii.gz
+            sub-001_space-orig_label-WM_probseg.nii.gz
 ```
 
 See "Anatomical labels" for reserved key values for `label`.
@@ -189,8 +189,8 @@ tissue class, must provide a label mapping in its JSON sidecar. For example:
 pipeline/
     sub-001/
 	    anat/
-		    sub-001_space-ACPC_probseg.nii.gz
-		    sub-001_space-ACPC_probseg.json
+		    sub-001_space-orig_probseg.nii.gz
+		    sub-001_space-orig_probseg.json
 ```
 
 The JSON sidecar must include the label-map key that specifies a tissue label
@@ -275,8 +275,8 @@ Example:
 pipeline/
     sub-001/
         anat/
-            sub-001_space-ACPC_dseg.nii.gz
-            sub-001_space-ACPC_dseg.tsv
+            sub-001_space-orig_dseg.nii.gz
+            sub-001_space-orig_dseg.tsv
 ```
 
 Definitions can also be specified with a top-level dseg.tsv, which propagates to
@@ -289,7 +289,7 @@ pipeline/
     dseg.tsv
     sub-001/
         anat/
-            sub-001_space-ACPC_dseg.nii.gz
+            sub-001_space-orig_dseg.nii.gz
 ```
 
 These tsv lookup tables should contain the following columns:
