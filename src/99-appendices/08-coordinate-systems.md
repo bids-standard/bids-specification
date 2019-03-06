@@ -190,9 +190,9 @@ the units are assumed to be mm.
 
 Hybrid spaces combining surface and volume data used with CIFTI files.
 
-| Coordinate System | Description                                                                                                                                                        |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| greyordinates91k  | Combination of `MNI152NLin6AsymConte69` subcortical volumetric space and `fsLR32k` surface space resulting in 91282 data points. Used in Human Connectom Project.  |
-| greyordinates170k | Combination of `MNI152NLin6AsymConte69` subcortical volumetric space and `fsLR59k` surface space resulting in 170494 data points. Used in Human Connectom Project. |
+| Coordinate System | Description                                                                                                                                                                                                                                                                                                                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| greyord91k        | Combination of `MNI152NLin6AsymConte69` subcortical volumetric space (with 2mm grid) and `fsLR32k` surface space resulting in 91282 data points. Used in Human Connectom Project. [https://github.com/Washington-University/HCPpipelines/tree/master/global/templates/91282_Greyordinates](https://github.com/Washington-University/HCPpipelines/tree/master/global/templates/91282_Greyordinates)      |
+| greyord170k       | Combination of `MNI152NLin6AsymConte69` subcortical volumetric space (with 1.6mm grid) and `fsLR59k` surface space resulting in 170494 data points. Used in Human Connectom Project. [https://github.com/Washington-University/HCPpipelines/tree/master/global/templates/170494_Greyordinates](https://github.com/Washington-University/HCPpipelines/tree/master/global/templates/170494_Greyordinates) |
 
 ---
