@@ -117,7 +117,7 @@ applied to the original time series data:
 | `_centered`    | The time series has had its mean subtracted                                 |
 
 For example, `rot_z_shift_back_sq` means the square of the lagged version of the
-Z rotation (see Motion-related regressors).
+Z rotation (see [Motion-related regressors](#motion-related-regressors)).
 
 ### ROI-based time series extraction
 
@@ -173,8 +173,8 @@ atlases or segmentation algorithms:
 
 Column names are unique alphanumeric values that are defined in a relevant JSON
 sidecar file. A naming convention might be to concatenate the atlas, ROI index,
-summarization method (defined below) and transformations (see Time series
-transformations, above) using snake case. For example,
+summarization method (defined below) and transformations (see [Time series
+transformations](#time-series-transformations)) using snake case. For example,
 `harvard_oxford_cortical_4_PC` could indicate ROI 4 of the Harvard-Oxford
 cortical atlas, summarized by taking the first principal component.
 
@@ -247,9 +247,11 @@ following names and units:
 | `trans_x`, `trans_y`, `trans_z` | mm      | Translation parameters |
 | `rot_x`, `rot_y`, `rot_z`       | radians | Rotation parameters    |
 
-Transformations (see Transformations) of motion parameters may be included in
-the same file. For example, rot_z_shift_back_sq means square of the lagged
-version of Z rotation.
+Transformations (see [Time series
+transformations](#time-series-transformations)) of motion parameters may be
+included in the same file.
+For example, `rot_z_shift_back_sq` means square of the lagged version of Z
+rotation.
 
 The following columns indicate summarized motion, as defined in the
 corresponding references:
