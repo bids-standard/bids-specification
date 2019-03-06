@@ -22,11 +22,14 @@ data types in the specification. Examples:
 
 -   Motion-corrected DWI files.
 
-The `space` keyword is recomended to distinguish files with different underlying coordinate systems or registered to different reference maps. The `desc` keyword is a general purpose field with freeform values. To distinguish
+The `space` keyword is recomended to distinguish files with different underlying
+coordinate systems or registered to different reference maps. Its values are
+restricted to the same vocabulary as `ReferenceMap` JSON field (see below). The
+`desc` keyword is a general purpose field with freeform values. To distinguish
 between multiple different versions of processing for the same input data the
-`desc` keyword should be used. Note that even though `space` and `desc`
-are optional at least one of them needs to be defined to avoid name conflict
-with the raw file.
+`desc` keyword should be used. Note that even though `space` and `desc` are
+optional at least one of them needs to be defined to avoid name conflict with
+the raw file.
 
 Examples:
 
@@ -34,7 +37,7 @@ Examples:
 pipeline1/
     sub-001/
         func/
-            sub-001_task-rest_run-space-MNI305_bold.nii.gz
+            sub-001_task-rest_run-1_space-MNI305_bold.nii.gz
             sub-001_task-rest_run-1_space-MNI305_bold.json
 ```
 
@@ -75,9 +78,9 @@ Template:
         <source_keywords>[_space-<space>][_desc-<label>]_mask.nii.gz
 ```
 
-A binary (1 - inside, 0 - outside) mask in the space defined by `<space>`.
-By default (i.e., if no transformation has taken place) the value of
-`space` should be set to `orig`.
+A binary (1 - inside, 0 - outside) mask in the space defined by `<space>`. By
+default (i.e., if no transformation has taken place) the value of `space` should
+be set to `orig`.
 
 JSON metadata fields:
 
