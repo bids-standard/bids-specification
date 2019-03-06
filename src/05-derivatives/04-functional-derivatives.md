@@ -312,7 +312,7 @@ The following methods are defined as reserved words:
 ### Other time series and regressors
 
 Time series and regressors that are not otherwise specified should be placed in
-a `_timeseries.tsv` file (see General time series and regressors).
+a `_timeseries.tsv` file (see [General time series](#general-time-series)).
 
 #### Column names
 
