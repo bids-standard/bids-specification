@@ -102,6 +102,7 @@ your name is not listed, please add it.
 -   Ariel Rokem 📖
 -   Gunnar Schaefer 📖
 -   Jan-Mathijs Schoffelen 📖
+-   Robert E. Smith 💻📖
 -   Vanessa Sochat 📖
 -   Francois Tadel 📖🔌💡
 -   Roberto Toro 🔧
