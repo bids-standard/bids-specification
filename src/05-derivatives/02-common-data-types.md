@@ -22,9 +22,7 @@ data types in the specification. Examples:
 
 -   Motion-corrected DWI files.
 
-The `space` keyword denotes reference atlas or map that the File is
-aligned to - see [Introduction](01-introduction.md) for allowed values. The
-`desc` keyword is a general purpose field with freeform values. To distinguish
+The `space` keyword is recomended to distinguish files with different underlying coordinate systems or registered to different reference maps. The `desc` keyword is a general purpose field with freeform values. To distinguish
 between multiple different versions of processing for the same input data the
 `desc` keyword should be used. Note that even though `space` and `desc`
 are optional at least one of them needs to be defined to avoid name conflict
@@ -74,7 +72,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func|anat|dwi/
-        <source_keywords>[_space-<space>][_type-<type>][_desc-<label>]_mask.nii.gz
+        <source_keywords>[_space-<space>][_desc-<label>]_mask.nii.gz
 ```
 
 A binary (1 - inside, 0 - outside) mask in the space defined by `<space>`.
