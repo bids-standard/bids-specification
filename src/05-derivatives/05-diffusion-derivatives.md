@@ -329,8 +329,9 @@ The JSON sidecar contains the following key/value pairs:
 | TractographyClass  | REQUIRED. Allowed values: `local`, `global`                                                                          |
 | TractographyMethod | REQUIRED. Allowed values: `probabilistic`,`deterministic`,`eudx`,`fact`,`stt`,`null`,`ukf`,`spinglass`,`ens`,`other` |
 | Description        | OPTIONAL. string                                                                                                     |
+| Parameters         | OPTIONAL. A dictionary of model parameters (see below).                                                              |
 
-RECOMMENDED when TractographyMethod is `probabilistic`, `deterministic`, `eudx`,
+RECOMMENDED to appear within the "Parameters" field when TractographyMethod is `probabilistic`, `deterministic`, `eudx`,
 `fact`, `stt`, `null`:
 
 | **Key name**             | **Description**                                               |
