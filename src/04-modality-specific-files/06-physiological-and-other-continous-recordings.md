@@ -22,17 +22,21 @@ directory. For example:`task-movie_stim.tsv.gz`
 Physiological recordings such as cardiac and respiratory signals and other
 continuous measures (such as parameters of a film or audio stimuli) can be
 specified using two files: a gzip compressed TSV file with data (without header
-line) and a JSON for storing start time, sampling frequency, and name of the
-columns from the TSV. Please note that in contrast to other TSV files this one
-does not include a header line. Instead the name of columns are specified in the
-JSON file. This is to improve compatibility with existing software (FSL PNM) as
-well as make support for other file formats possible in the future. Start time
-should be expressed in seconds in relation to the time of start of acquisition
-of the first volume in the corresponding imaging file (negative values are
-allowed). Sampling frequency should be expressed in Hz. Recordings with
-different sampling frequencies and/or starting times should be stored in
-separate files. The following naming conventions should be used for column
-names:
+line) and a JSON for storing the following metadata fields:
+
+| Field name        | Definition                                                                                                                                                   |
+| :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SamplingFrequency | REQUIRED. Sampling frequency in Hz of all columns in the file.                                                                                               |
+| StartTime         | REQUIRED. Start time in seconds in relation to the start of acquisition of the first volume in the corresponding imaging file (negative values are allowed). |
+| Columns           | REQUIRED. Names of columns in file.                                                                                                                          |
+
+Please note that in contrast to other TSV files this one does not include a
+header line. Instead the name of columns are specified in the JSON file.
+This is to improve compatibility with existing software (FSL PNM) as
+well as make support for other file formats possible in the future.
+Recordings with different sampling frequencies and/or starting times should be
+stored in separate files.
+The following naming conventions should be used for column names:
 
 | Column name | Definition                                           |
 | :---------- | :--------------------------------------------------- |
