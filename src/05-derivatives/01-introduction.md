@@ -113,7 +113,7 @@ share the following (non-required) ones:
 | **Value name** | **Description**                                                                                                                         |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | Device         | The coordinate system of the device used to acquire the data.                                                                           |
-| Aligned        | The coordinate system is specified by a target space (e.g., Talairach88, MNI305, etc.,.). See the Space keyword for details of targets. |
+| Aligned        | The coordinate system is specified by a target space (e.g., Talairach88, MNI305, etc...). See the Space keyword for details of targets. |
 | Custom         | A custom coordinate system that is not in alignment (dimensions, axis orientation, unit) with any device coordinate system.             |
 
 ### ReferenceMap key allowed values

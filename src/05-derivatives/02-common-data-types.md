@@ -63,9 +63,9 @@ makes them invalid (e.g., if a source 4D image is averaged to create a single
 static volume, a SamplingFrequency property would no longer be relevant). In
 addition, all processed files include the following metadata JSON fields:
 
-| **Key name**  | **Description**                                                                        |
-| ------------- | -------------------------------------------------------------------------------------- |
-| SkullStripped | REQUIRED. Whether the volume was skull stripped (non-brain voxels set to zero) or not. |
+| **Key name**  | **Description**                                                                                 |
+| ------------- | ----------------------------------------------------------------------------------------------- |
+| SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not. |
 
 ## Masks
 
