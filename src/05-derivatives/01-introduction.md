@@ -106,7 +106,6 @@ share the following (non-required) ones:
 | ReferenceMap         | REQUIRED when coordinate system is Aligned. Key indicates the reference atlas or map that the File is aligned to. See table below for list of common spaces.                                                                                                                                                                                          |
 | NonstandardReference | REQUIRED when a non standard template or space is used. (e.g., a custom template in MNI305 space). A path to a file that was used as, or can be used as, a reference image for determining the coordinate space of this file. If Space is a list, Space reference must also be a list.                                                                |
 | ReferenceIndex       | REQUIRED when an index into a 4D (ReferenceMap or NonstandardReference) file is used. Used to index into a 4D spatial-reference file.                                                                                                                                                                                                                 |
-| TransformFile        | OPTIONAL. A path to the file used to transform the source into this file.                                                                                                                                                                                                                                                                             |
 
 ### CoordinateSystem key allowed values
 
@@ -134,7 +133,6 @@ is:
 
 ```JSON
 {
-    "TransformFile": "/path/to/xfm",
     "ReferenceMap": "MNI305"
 }
 ```
@@ -144,7 +142,6 @@ used as standard space for the File. That can be written as follows:
 
 ```JSON
 {
-    "TransformFile": "/path/to/xfm",
     "NonstandardReference": "uri or path to file"
 }
 ```
@@ -154,7 +151,6 @@ possibility is enabled by using lists of spaces and references:
 
 ```JSON
 {
-    "TransformFile": "/path/to/xfm",
     "ReferenceMap": ["MNI305", "fsLR32k"]
 }
 ```
@@ -164,7 +160,6 @@ expressed as follows:
 
 ```JSON
 {
-    "TransformFile": "/path/to/xfm",
     "ReferenceMap": ["MNI152Lin", "fsLR164k"]
 }
 ```
