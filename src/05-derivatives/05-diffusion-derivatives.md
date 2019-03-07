@@ -11,9 +11,9 @@ should be included in the pipeline documentation.
 <pipeline_name>/
     sub-<participant_label>/
         dwi/
-          <source_keywords>[_referencemap-<referencemap>][_space-<space>][_desc-<label>]_dwi.nii[.gz]
-          <source_keywords>[_referencemap-<referencemap>][_space-<space>][_desc-<label>]_dwi.bvals
-          <source_keywords>[_referencemap-<referencemap>][_space-<space>][_desc-<label>]_dwi.bvecs
+            <source_keywords>[_space-<space>][_desc-<label>]_dwi.nii[.gz]
+            <source_keywords>[_space-<space>][_desc-<label>]_dwi.bvals
+            <source_keywords>[_space-<space>][_desc-<label>]_dwi.bvecs
 ```
 
 The JSON sidecar file is REQUIRED (due to the REQUIRED `SkullStripped` field -
@@ -54,8 +54,8 @@ The following is a general example of naming convention:
 <pipeline_name>/
     sub-<participant_label>/
         dwi/
-            <source_keywords>[_referencemap-<referencemap>][_space-<space>][_desc-<label>]_model-<label>[_parameter-<parameter>]_diffmodel.nii[.gz]
-            <source_keywords>[_referencemap-<referencemap>][_space-<space>][_desc-<label>]_model-<label>_diffmodel.json
+            <source_keywords>[_space-<space>][_desc-<label>]_model-<label>[_parameter-<parameter>]_diffmodel.nii[.gz]
+            <source_keywords>[_space-<space>][_desc-<label>]_model-<label>_diffmodel.json
 ```
 
 The following models are codified and should be used in the `model-<label>`
@@ -190,14 +190,14 @@ A 4D volume with floating point numbers:
 my_diffusion_pipeline/
     sub-01/
         dwi/
-            sub-01_referenecemap-T1w_desc-WLS_model-DTI_diffmodel.nii.gz
+            sub-01_space-T1w_desc-WLS_model-DTI_diffmodel.nii.gz
 ```
 
 ```Text
 my_diffusion_pipeline/
     sub-01/
         dwi/
-            sub-01_referenecemap-T1w_desc-WLS_model-DTI_diffmodel.json
+            sub-01_space-T1w_desc-WLS_model-DTI_diffmodel.json
 ```
 
 ```JSON
@@ -222,7 +222,7 @@ fields for the maps.
 <pipeline_name>/
     sub-<participant_label>/
         dwi/
-            <source_keywords>[_referencemap-<referencemap>][_space-<space>][_desc-<label>]_model-<label>_<parameter>.nii[.gz]
+            <source_keywords>[_space-<space>][_desc-<label>]_model-<label>_<parameter>.nii[.gz]
 ```
 
 ### Scalar maps
@@ -284,7 +284,7 @@ tractography visitation maps should be saved as NIfTIs.
 <pipeline_name>/
     sub-<participant_label>/
         dwi/
-            <source_keywords>[_referencemap-<referencemap>][_desc-<label>][_subset-<label>]_tractography.[trk|tck|nii[.gz]]
+            <source_keywords>[_space-<space>][_desc-<label>][_subset-<label>]_tractography.[trk|tck|nii[.gz]]
 ```
 
 ### Filename keys

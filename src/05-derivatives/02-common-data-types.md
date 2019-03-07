@@ -22,13 +22,14 @@ data types in the specification. Examples:
 
 -   Motion-corrected DWI files.
 
-The `space` keyword denotes reference atlas or map that the File is
-aligned to - see [Introduction](01-introduction.md) for allowed values. The
+The `space` keyword is recomended to distinguish files with different underlying
+coordinate systems or registered to different reference maps. Its values are
+restricted to the same vocabulary as `ReferenceMap` JSON field (see below). The
 `desc` keyword is a general purpose field with freeform values. To distinguish
 between multiple different versions of processing for the same input data the
-`desc` keyword should be used. Note that even though `space` and `desc`
-are optional at least one of them needs to be defined to avoid name conflict
-with the raw file.
+`desc` keyword should be used. Note that even though `space` and `desc` are
+optional at least one of them needs to be defined to avoid name conflict with
+the raw file.
 
 Examples:
 
@@ -36,7 +37,7 @@ Examples:
 pipeline1/
     sub-001/
         func/
-            sub-001_task-rest_run-space-MNI305_bold.nii.gz
+            sub-001_task-rest_run-1_space-MNI305_bold.nii.gz
             sub-001_task-rest_run-1_space-MNI305_bold.json
 ```
 
@@ -62,9 +63,9 @@ makes them invalid (e.g., if a source 4D image is averaged to create a single
 static volume, a SamplingFrequency property would no longer be relevant). In
 addition, all processed files include the following metadata JSON fields:
 
-| **Key name**  | **Description**                                                                        |
-| ------------- | -------------------------------------------------------------------------------------- |
-| SkullStripped | REQUIRED. Whether the volume was skull stripped (non-brain voxels set to zero) or not. |
+| **Key name**  | **Description**                                                                                 |
+| ------------- | ----------------------------------------------------------------------------------------------- |
+| SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not. |
 
 ## Masks
 
@@ -74,12 +75,12 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func|anat|dwi/
-        <source_keywords>[_space-<space>][_type-<type>][_desc-<label>]_mask.nii.gz
+        <source_keywords>[_space-<space>][_desc-<label>]_mask.nii.gz
 ```
 
-A binary (1 - inside, 0 - outside) mask in the space defined by `<space>`.
-By default (i.e., if no transformation has taken place) the value of
-`space` should be set to `orig`.
+A binary (1 - inside, 0 - outside) mask in the space defined by `<space>`. By
+default (i.e., if no transformation has taken place) the value of `space` should
+be set to `orig`.
 
 JSON metadata fields:
 
@@ -136,8 +137,8 @@ Example:
 pipeline/
     sub-001/
         anat/
-            sub-001_space-ACPC_dseg.nii.gz
-            sub-001_space-ACPC_dseg.json
+            sub-001_space-orig_dseg.nii.gz
+            sub-001_space-orig_dseg.json
 ```
 
 A segmentation could be a binary mask that functions as a discrete `label` for a
@@ -148,7 +149,7 @@ corresponding structure. For example:
 pipeline/
     sub-001/
         anat/
-            sub-001_space-ACPC_label-GM_dseg.nii.gz
+            sub-001_space-orig_label-GM_dseg.nii.gz
 ```
 
 See "Anatomical labels" for reserved key values for `label`.
@@ -175,8 +176,8 @@ Example:
 pipeline/
     sub-001/
         anat/
-            sub-001_space-ACPC_label-BG_probseg.nii.gz
-            sub-001_space-ACPC_label-WM_probseg.nii.gz
+            sub-001_space-orig_label-BG_probseg.nii.gz
+            sub-001_space-orig_label-WM_probseg.nii.gz
 ```
 
 See "Anatomical labels" for reserved key values for `label`.
@@ -188,8 +189,8 @@ tissue class, must provide a label mapping in its JSON sidecar. For example:
 pipeline/
     sub-001/
 	    anat/
-		    sub-001_space-ACPC_probseg.nii.gz
-		    sub-001_space-ACPC_probseg.json
+		    sub-001_space-orig_probseg.nii.gz
+		    sub-001_space-orig_probseg.json
 ```
 
 The JSON sidecar must include the label-map key that specifies a tissue label
@@ -274,8 +275,8 @@ Example:
 pipeline/
     sub-001/
         anat/
-            sub-001_space-ACPC_dseg.nii.gz
-            sub-001_space-ACPC_dseg.tsv
+            sub-001_space-orig_dseg.nii.gz
+            sub-001_space-orig_dseg.tsv
 ```
 
 Definitions can also be specified with a top-level dseg.tsv, which propagates to
@@ -288,7 +289,7 @@ pipeline/
     dseg.tsv
     sub-001/
         anat/
-            sub-001_space-ACPC_dseg.nii.gz
+            sub-001_space-orig_dseg.nii.gz
 ```
 
 These tsv lookup tables should contain the following columns:
