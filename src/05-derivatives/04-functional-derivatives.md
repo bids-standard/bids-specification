@@ -49,7 +49,7 @@ The following metadata JSON fields are valid for derivative maps:
 
 ## Time series
 
-A time series is an ordered series of numeric values in chronological order.
+A time series is a chronologically ordered series of numeric values.
 Time series will generally be stored as tables, with a row of column headers
 indicating the name of the series.
 In the case where every voxel has a time series, then the data should be stored
