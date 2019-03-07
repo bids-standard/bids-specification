@@ -47,27 +47,38 @@ The following metadata JSON fields are valid for derivative maps:
 | Threshold      | String describing threshold used for determining graph edges.             | `dcb`, `dcw`, `ecb`, `ecw` |
 | Method         | String describing method used to calculate measure.                       | `dcb`, `dcw`, `ecb`, `ecw` |
 
-## Time series and regressors
+## Time series
 
-For the purposes of this section, a time series or regressor is a numeric series
-of values corresponding to volumes in a BOLD series. Time series is specifically
-used to indicate an aggregate time series within an ROI, while regressor is used
-as a more general term indicating series that may be derived from other sources,
-such as head motion estimates or physiological recordings.
+A time series is a chronologically ordered series of numeric values.
+Time series will generally be stored as tables, with a row of column headers
+indicating the name of the series.
+In the case where every voxel has a time series, then the data should be stored
+in a 4D NIfTI file.
 
-Regressors will generally be stored as tables, with a row of column headers
-indicating the name of the regressor. In the case where every voxel has a
-regressor, then the data should be stored in a 4D NIfTI file.
-
-Tabular regressor files MUST be accompanied by a data dictionary in JSON format,
+All time series files MUST be accompanied by a data dictionary in JSON format,
 consistent with the format described in
-[Common princioples](../02-common-principles.md).
+[Common principles](../02-common-principles.md#tabular-files), which describes
+metadata for each column name.
+In the case of NIfTI time series files, the notion of column name does not
+apply, so column-level metadata may be applied to the entire file.
+In addition, the following fields apply to the entire file in all cases:
 
-Volumetric regressor files MAY be accompanied by a data dictionary in JSON
-format, with OPTIONAL `LongName`, `Description`, `Levels`, `Units`, and
-`TermURL` fields.
+| Field name        | Definition                                                                                                                                                   |
+| :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SamplingFrequency | REQUIRED. Sampling frequency (in Hz) of all columns in the file. Special value `"TR"` indicates one sample per volume of a corresponding BOLD series.        |
+| StartTime         | OPTIONAL. Start time in seconds in relation to the start of acquisition of the first volume in the corresponding imaging file (negative values are allowed). |
 
-### General time series and regressors
+Note that there are several differences with these fields in
+[Physiological and other continuous recordings](
+../04-modality-specific-files/06-physiological-and-other-continuous-recordings.md).
+The `"TR"` sampling frequency serves to indicate that no resampling is needed
+to use the series as a regressor for BOLD data, including BOLD series with
+non-uniform sampling, such as clustered sparse acquisition.
+`StartTime` is assumed to be 0 and therefore not mandatory.
+Additionally, because time series TSV files have column headers, the `Columns`
+field is omitted.
+
+### General time series
 
 Template:
 
@@ -75,8 +86,8 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func/
-	        <source_keywords>[_desc-<label>]_regressors.tsv
-	        <source_keywords>[_desc-<label>]_regressors.json
+	        <source_keywords>[_desc-<label>]_timeseries.tsv
+	        <source_keywords>[_desc-<label>]_timeseries.json
 ```
 
 for example:
@@ -84,14 +95,14 @@ for example:
 ```Text
 sub-001/
     func/
-        sub-001_task-rest_run-1_desc-confounds_regressors.tsv
-        sub-001_task-rest_run-1_desc-confounds_regressors.json
+        sub-001_task-rest_run-1_desc-confounds_timeseries.tsv
+        sub-001_task-rest_run-1_desc-confounds_timeseries.json
 ```
 
-Any time series or regressor with one value per BOLD volume may be stored in a
-regressors file. If a column is specified in another sub-section, then any
-additional required metadata MUST be stored in the JSON description of the
-column.
+Any time series with common timing information may be stored in a `timeseries`
+file.
+If a time series is specified in another sub-section, then any additional
+required metadata MUST be stored in the JSON description of the column.
 
 #### Column names
 
@@ -117,7 +128,7 @@ applied to the original time series data:
 | `_centered`    | The time series has had its mean subtracted                                 |
 
 For example, `rot_z_shift_back_sq` means the square of the lagged version of the
-Z rotation (see [Motion-related regressors](#motion-related-regressors)).
+Z rotation (see [Motion-related time series](#motion-related-time-series)).
 
 ### ROI-based time series extraction
 
@@ -127,7 +138,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func/
-            <source_keywords>[_atlas-<atlas_label>][_desc-<label>]_timeseries.<tsv|nii.gz>
+            <source_keywords>[_atlas-<atlas_label>][_desc-<label>]_timeseries.<tsv|nii[.gz]>
             <source_keywords>[_atlas-<atlas_label>][_desc-<label>]_timeseries.json
 ```
 
@@ -142,10 +153,10 @@ sub-001/
         sub-001_task-rest_run-1_desc-anaticor_timeseries.json
 ```
 
-Time series will generally be stored as tables, with a row of column headers
-indicating the name of the time series. In the case where every voxel has a time
-series (i.e., voxel-wise regressors, as in ANATICOR), then the time series
-should be saved as a NIfTI file.
+ROI-based time series will generally be stored as tables, with a row of column
+headers indicating the name of the time series.
+In the case where every voxel has a time series (i.e., voxel-wise regressors,
+as in ANATICOR), then the time series should be saved as a NIfTI file.
 
 #### Column metadata special fields
 
@@ -213,6 +224,7 @@ sub-001/
 
 ```JSON
 {
+    "SamplingFrequency": "TR",
     "white_matter_mean": {
         "ROI": "WhiteMatter"
     },
@@ -225,7 +237,7 @@ sub-001/
 }
 ```
 
-### Motion-related regressors
+### Motion-related time series
 
 Template:
 
@@ -294,14 +306,14 @@ The following methods are defined as reserved words:
 | ---------------------- | -------------------------------------------------------- |
 | `non_steady_state_<x>` | Initial non-steady-state volumes. One column per volume. |
 
-### Other time series and regressors
+### Other time series
 
-Time series and regressors that are not otherwise specified should be placed in
-a regressors.tsv file (see General time series and regressors).
+Time series that are not otherwise specified MUST be placed in a
+`_timeseries.tsv` file (see [General time series](#general-time-series)).
 
 #### Column names
 
-The following regressors are defined as reserved words:
+The following time series are defined as reserved words:
 
 | Column name    | Description                                           |
 | -------------- | ----------------------------------------------------- |
