@@ -50,9 +50,6 @@ The following metadata JSON fields are valid for derivative maps:
 ## Time series
 
 A time series is an ordered series of numeric values in chronological order.
-For the purposes of this section, a "regressor" is a time series with one entry
-per volume in a BOLD series.
-
 Time series will generally be stored as tables, with a row of column headers
 indicating the name of the series.
 In the case where every voxel has a time series, then the data should be stored
@@ -131,7 +128,7 @@ applied to the original time series data:
 | `_centered`    | The time series has had its mean subtracted                                 |
 
 For example, `rot_z_shift_back_sq` means the square of the lagged version of the
-Z rotation (see [Motion-related regressors](#motion-related-regressors)).
+Z rotation (see [Motion-related time series](#motion-related-time-series)).
 
 ### ROI-based time series extraction
 
@@ -240,7 +237,7 @@ sub-001/
 }
 ```
 
-### Motion-related regressors
+### Motion-related time series
 
 Template:
 
@@ -309,14 +306,14 @@ The following methods are defined as reserved words:
 | ---------------------- | -------------------------------------------------------- |
 | `non_steady_state_<x>` | Initial non-steady-state volumes. One column per volume. |
 
-### Other time series and regressors
+### Other time series
 
-Time series and regressors that are not otherwise specified should be placed in
-a `_timeseries.tsv` file (see [General time series](#general-time-series)).
+Time series that are not otherwise specified MUST be placed in a
+`_timeseries.tsv` file (see [General time series](#general-time-series)).
 
 #### Column names
 
-The following regressors are defined as reserved words:
+The following time series are defined as reserved words:
 
 | Column name    | Description                                           |
 | -------------- | ----------------------------------------------------- |
