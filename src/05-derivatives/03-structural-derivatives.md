@@ -33,6 +33,7 @@ The supported surface types (`<surftype>` suffix) are:
 | pial         | The gray matter / pial matter border                                 |
 | midthickness | The midpoints between wm and pial surfaces                           |
 | inflated     | An inflation of the midthickness surface (useful for visualization)  |
+| vinflated    | A very-inflated midthicknesss surface (also for visualization)       |
 | sphere       | The sphere (used for registration - see transforms for nomenclature) |
 | flat         | The flattened surface (used for visualization)                       |
 
