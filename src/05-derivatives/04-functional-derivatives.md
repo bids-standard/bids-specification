@@ -69,7 +69,7 @@ In addition, the following fields apply to the entire file in all cases:
 | StartTime         | OPTIONAL. Start time in seconds in relation to the start of acquisition of the first volume in the corresponding imaging file (negative values are allowed). |
 
 Note that there are several differences with these fields in
-[Physiological and other continuous recordings](../04-modality-specific-files/06-physiological-and-other-continuous-recordings.md).
+[Physiological and other continuous recordings](../04-modality-specific-files/06-physiological-and-other-continous-recordings.md).
 The `"TR"` sampling frequency serves to indicate that no resampling is needed
 to use the series as a regressor for BOLD data, including BOLD series with
 non-uniform sampling, such as clustered sparse acquisition.
