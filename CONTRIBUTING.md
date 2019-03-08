@@ -46,7 +46,7 @@ can validate your changes against the guide using [remark](https://github.com/re
 [standalone command line tool](https://github.com/remarkjs/remark/tree/master/packages/remark-cli) as well as [a plugin for various text editors](https://github.com/remarkjs/remark-lint#editor-integrations). Remark preserves consistent markdown styling across the contributions. Please ensure before submitting a contribution that you do not have any linter errors in your text editor.
 You can also use [prettier](https://github.com/prettier/prettier) to automatically correct some of the style issuse that might be found in the proposed changes.
 
-We have deployed a continous integrator ([circle CI](https://circleci.com/)) to further allow for integrating changes continously. The CI is testing that the changes are inline with our standard styling.
+We have deployed a continuous integrator ([circle CI](https://circleci.com/)) to further allow for integrating changes continuously. The CI is testing that the changes are inline with our standard styling.
 
 GitHub has a helpful page on [getting started with writing and formatting on GitHub](https://help.github.com/articles/getting-started-with-writing-and-formatting-on-github).
 
