@@ -3,7 +3,7 @@
 ## Preprocessed diffusion weighted images
 
 Multiple different versions of preprocessing can be stored for the same source
-data. To distinguish them from each other, the `desc` fileneame keyword can be
+data. To distinguish them from each other, the `desc` filename keyword can be
 used. Details of preprocessing performed for each variation of the processing
 should be included in the pipeline documentation.
 
