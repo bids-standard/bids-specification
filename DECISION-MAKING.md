@@ -30,9 +30,9 @@ project and the community. Maintainers have additional rights (see Rules)
 helping them to resolve conflicts and increase the pace of the development 
 when necessary. Current Maintainers:
 
-| Name                           | Time commitment |
-|--------------------------------|-----------------|
-| Stefan Appelhoff (@sappelhoff) | 5h/week         |
+| Name                                                            | Time commitment |
+|-----------------------------------------------------------------|-----------------|
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff)) | 5h/week         |
 
 ## Rules
 
@@ -55,7 +55,8 @@ when necessary. Current Maintainers:
    1. Does not feature "WIP" in the title (Work in Progress).
    1. Passes all automated tests.
    1. Is not proposing a new release or has been approved by at least one 
-      Maintainer.
+      Maintainer (i.e., PRs proposing new releases need to be approved by at 
+      least one Maintainer).
 1. A Maintainer can merge any PR - even if it's not eligible to merge according
    to Rule 4.
 1. Any Contributor can Review a PR and Request changes. If a Contributor 
