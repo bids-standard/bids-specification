@@ -30,9 +30,9 @@ project and the community. Maintainers have additional rights (see Rules)
 helping them to resolve conflicts and increase the pace of the development 
 when necessary. Current Maintainers:
 
-| Name | Time commitment |
-|------|-----------------|
-| Stefan Appelhoff (@sappelhoff) | 5h/week |
+| Name                           | Time commitment |
+|--------------------------------|-----------------|
+| Stefan Appelhoff (@sappelhoff) | 5h/week         |
 
 ## Rules
 
