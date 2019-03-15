@@ -140,7 +140,7 @@ used as standard space for the File. That can be written as follows:
 
 ```JSON
 {
-    "CoordinateSystem": "MNI305"
+    "CoordinateSystem": "MNI305",
     "ReferenceMap": "uri or path to file"
 }
 ```
