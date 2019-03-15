@@ -12,6 +12,6 @@
     contributors
 - If you are opening a pull request to obtain early feedback, but the changes 
   are not ready to be merged (a.k.a. Work in Progress pull request) please 
-  use [draft pull request](https://github.blog/2019-02-14-introducing-draft-pull-requests/)
+  use a [draft pull request](https://github.blog/2019-02-14-introducing-draft-pull-requests/)
 
 --- PLEASE READ AND DELETE THE TEXT ABOVE BEFORE OPENING THE PULL REQUEST ---
