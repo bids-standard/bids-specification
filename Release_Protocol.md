@@ -19,7 +19,7 @@ Important note: The pull request title **needs** to follow this protocol. REL: v
 
 ### This will open a period of discussion for 5 business days regarding if we are ready to release. This will also freeze all pull request merging.
 
-If we determine we are ready to release, please have the PR submitter add an additional commit with the date in year-month-date format in parentheses after the version of the date of merging (not opening) (i.e. it should read v1.1.2 (2018-12-28)) and merge this PR. This will mark a new release. On the same day, please also do a github release. To do this please see below.
+If we determine we are ready to release, please have the PR submitter add an additional commit with the date in year-month-date format in parentheses after the version of the date of merging (not opening) (i.e. it should read v1.1.2 (2018-12-28)) and merge this PR. This will mark a new release. On the same day, please also do a GitHub release. To do this please see below.
 
 ![GH-release-1](release_images/GH-release_1.png "GH-release-1")
 

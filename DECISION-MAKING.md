@@ -91,9 +91,9 @@ when necessary. Current Maintainers:
    example it is perfectly fine for a PR to consist of content developed by a 
    group of experts over an extended period of time via in person meetings and 
    online collaborations using a Google Document.
-1. To facilitate triaging of incoming PR you can subscribe to 
+1. To facilitate triage of incoming PR you can subscribe to 
    notifications for new PRs proposing changes to specific files. To do this
-   add your Github name next to the file you want to subscribe to in the 
+   add your GitHub name next to the file you want to subscribe to in the 
    [CODEOWNERS](CODEOWNERS). This way you will be ask to review each relevant
    PR. Please mind that lack of your review will not prevent the PR from being
    merged so if you think the PR needs your attention, please review it 
