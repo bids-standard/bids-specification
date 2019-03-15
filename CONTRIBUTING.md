@@ -96,7 +96,7 @@ Try to keep the changes focused. If you submit a large amount of work in all in 
 #### 4. Submit a [pull request](https://help.github.com/articles/about-pull-requests/)
 
 Please keep the title of your pull request short but informative - it will 
-appear in the changelog.
+appear in the [changelog](src/CHANGES.md).
 
 Use one of the following prefixes in the title of your pull request:
   - `[ENH]` - enhancement of the specification that adds a new feature or 
