@@ -123,11 +123,14 @@ Allowed values for this field depend on the file format.
 | orig           | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
 | uri or path    | This can be used to point to a specific file.                                                                                 |
 
-### Example sidecar files
+### Examples
 
-For a NIFTI file (Single coordinate system), one could have registered the File
-on to the standard MNI305 template. The way to write the metadata of such File
-is:
+Preprocessed `bold` NIfTI file in `MNI305` coordinate space
+
+```Text
+sub-01/func/sub-01_task-rest_space-MNI305_bold.nii.gz
+sub-01/func/sub-01_task-rest_space-MNI305_bold.json
+```
 
 ```JSON
 {
@@ -135,31 +138,60 @@ is:
 }
 ```
 
-However, it could also be the case that a nonstandard derivative of MNI305 was
-used as standard space for the File. That can be written as follows:
+Preprocessed `bold` NIfTI file in `anat` coordinate space. Please mind that in
+this case `ReferenceMap` key is REQUIRED.
+
+```Text
+sub-01/func/sub-01_task-rest_space-anat_bold.nii.gz
+sub-01/func/sub-01_task-rest_space-anat_bold.json
+```
 
 ```JSON
 {
-    "CoordinateSystem": "MNI305",
-    "ReferenceMap": "uri or path to file"
+    "CoordinateSystem": "anat",
+    "ReferenceMap": "/sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
 }
 ```
 
-Some derivatives such as CIFTI Files allow for multiple coordinate systems. Such
-possibility is enabled by using lists of spaces and references:
+Participant cortical thickness GIFTI file in `fsaverage5` coordinate space.
+
+```Text
+sub-01/anat/sub-01_hemi-L_space-fsaverage5_thickness.shape.gii
+sub-01/anat/sub-01_hemi-R_space-fsaverage5_thickness.shape.gii
+sub-01/anat/sub-01_space-fsaverage5_thickness.json
+```
 
 ```JSON
 {
-    "CoordinateSystem": ["MNI305", "fsLR32k"]
+    "CoordinateSystem": "fsaverage5"
 }
 ```
 
-Differing references of the same spaces with respect to the above example can be
-expressed as follows:
+Participant cortical thickness GIFTI file in `fsnative` coordinate space. Please
+mind that in this case `ReferenceMap` key is REQUIRED.
+
+```Text
+sub-01/anat/sub-01_hemi-L_space-fsnative_thickness.shape.gii
+sub-01/anat/sub-01_hemi-L_space-fsnative_thickness.json
+```
 
 ```JSON
 {
-    "CoordinateSystem": ["MNI152Lin", "fsLR164k"]
+    "CoordinateSystem": "fsnative",
+    "ReferenceMap": "/sub-01/anat/sub-01_hemi-L_pial.surf.gii"
+}
+```
+
+Preprocessed `bold` CIFTI file in `HCPMNIfsLR32k` coordinate space
+
+```Text
+sub-01/func/sub-01_task-rest_space-HCPMNIfsLR32k_bold.nii
+sub-01/func/sub-01_task-rest_space-HCPMNIfsLR32k_bold.json
+```
+
+```JSON
+{
+    "CoordinateSystem": "HCPMNIfsLR32k"
 }
 ```
 
