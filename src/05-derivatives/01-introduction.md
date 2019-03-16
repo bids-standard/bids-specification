@@ -103,27 +103,25 @@ share the following (non-required) ones:
 | Sources              | OPTIONAL. A list of paths relative to dataset root pointing to the file(s) that were directly used in the creation of this derivative. For example in a chain of A->B->C, “C” should only list “B” as Sources, and “B” should only list “A” as Sources. However in case X and Y jointly contribute to Z, then “Z” should list “X” and “Y” as Sources. |
 | RawSources           | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                                |
 | CoordinateSystem     | REQUIRED if no implicit coordinate system. Key indicates the coordinate system associated with the File. The coordinate system can be implicit to the File, for instance when data are images stored in NIfTI format. Can be a list. See Table below for list of allowed systems.                                                                     |
-| ReferenceMap         | REQUIRED when coordinate system is Aligned. Key indicates the reference atlas or map that the File is aligned to. See table below for list of common spaces.                                                                                                                                                                                          |
-| NonstandardReference | REQUIRED when a non standard template or space is used. (e.g., a custom template in MNI305 space). A path to a file that was used as, or can be used as, a reference image for determining the coordinate space of this file. If Space is a list, Space reference must also be a list.                                                                |
+| ReferenceMap         | REQUIRED when a custom template or file is used. A path to a file that was used as, or can be used as, a reference image for determining the coordinate space of this file.                                                                                                                                                                      |
 | ReferenceIndex       | REQUIRED when an index into a 4D (ReferenceMap or NonstandardReference) file is used. Used to index into a 4D spatial-reference file.                                                                                                                                                                                                                 |
 
 ### CoordinateSystem key allowed values
 
+In addition to values defined in
+[Appendix VII Table "Template based Coordinate Systems"](../99-appendices/08-coordinate-systems.md).
+
 | **Value name** | **Description**                                                                                                                         |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| Device         | The coordinate system of the device used to acquire the data.                                                                           |
-| Aligned        | The coordinate system is specified by a target space (e.g., Talairach88, MNI305, etc...). See the Space keyword for details of targets. |
+| Unknown        | The coordinate system is unknown.                                                                                                       |
 | Custom         | A custom coordinate system that is not in alignment (dimensions, axis orientation, unit) with any device coordinate system.             |
 
 ### ReferenceMap key allowed values
 
-In addition to values defined in
-[Appendix VII Table "Template based Coordinate Systems"](../99-appendices/08-coordinate-systems.md).
-
 | **Value name** | **Description**                                                                                                                                  |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | orig           | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space.                    |
-| custom         | This can be used to point to the non-standard space of a file. This should be used only if the reference file is not in any of the other spaces. |
+| uri or path    | This can be used to point to a specific file.                                                                                                    |
 
 ### Example sidecar files
 
@@ -133,7 +131,7 @@ is:
 
 ```JSON
 {
-    "ReferenceMap": "MNI305"
+    "CoordinateSystem": "MNI305"
 }
 ```
 
@@ -142,7 +140,8 @@ used as standard space for the File. That can be written as follows:
 
 ```JSON
 {
-    "NonstandardReference": "uri or path to file"
+    "CoordinateSystem": "MNI305",
+    "ReferenceMap": "uri or path to file"
 }
 ```
 
@@ -151,7 +150,7 @@ possibility is enabled by using lists of spaces and references:
 
 ```JSON
 {
-    "ReferenceMap": ["MNI305", "fsLR32k"]
+    "CoordinateSystem": ["MNI305", "fsLR32k"]
 }
 ```
 
@@ -160,7 +159,7 @@ expressed as follows:
 
 ```JSON
 {
-    "ReferenceMap": ["MNI152Lin", "fsLR164k"]
+    "CoordinateSystem": ["MNI152Lin", "fsLR164k"]
 }
 ```
 
