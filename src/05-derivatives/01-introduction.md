@@ -103,18 +103,18 @@ share the following (non-required) ones:
 | Sources          | OPTIONAL. A list of paths relative to dataset root pointing to the file(s) that were directly used in the creation of this derivative. For example in a chain of A->B->C, “C” should only list “B” as Sources, and “B” should only list “A” as Sources. However in case X and Y jointly contribute to Z, then “Z” should list “X” and “Y” as Sources. |
 | RawSources       | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                                |
 | CoordinateSystem | REQUIRED if no implicit coordinate system. Key indicates the coordinate system associated with the File. The coordinate system can be implicit to the File, for instance when data are images stored in NIfTI format. Can be a list. See Table below for list of allowed systems.                                                                     |
-| ReferenceMap     | REQUIRED when a custom template or file is used. A path to a file that was used as, or can be used as, a reference image for determining the coordinate space of this file.                                                                                                                                                                           |
+| ReferenceMap     | REQUIRED when a custom template or file is used. A path to a file that was used as, or can be used as, a reference image for determining the coordinate space of this file. The path should start with a `/` and should be relative to the root of the dataset.                                                                                       |
 | ReferenceIndex   | REQUIRED when an index into a 4D (ReferenceMap or NonstandardReference) file is used. Used to index into a 4D spatial-reference file.                                                                                                                                                                                                                 |
 
 ### CoordinateSystem key allowed values
 
-In addition to values defined in
-[Appendix VII Table "Template based Coordinate Systems"](../99-appendices/08-coordinate-systems.md).
+Allowed values for this field depend on the file format.
 
-| **Value name** | **Description**                                                                                                             |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| Unknown        | The coordinate system is unknown.                                                                                           |
-| Custom         | A custom coordinate system that is not in alignment (dimensions, axis orientation, unit) with any device coordinate system. |
+| File format                  | Description             | Allowed `CoordinateSystem` values                                                                                                                                                           |
+| ---------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NIfTI (`.nii` and `.nii.gz`) | Volume data             | Coordinate systems listed in [Template Based Coordinate Systems: Volume](../99-appendices/08-coordinate-systems.md#volume). If `anat` is used then setting `ReferenceMap` is REQUIRED       |
+| GIFTI (`.gii`)               | Surface data            | Coordinate systems listed in [Template Based Coordinate Systems: Surface](../99-appendices/08-coordinate-systems.md#surface). If `fsnative` is used then setting `ReferenceMap` is REQUIRED |
+| CIFTI (`.nii`)               | Volume and surface data | Coordinate systems listed in [Template Based Coordinate Systems: Hybrid (Volume/Surface) aliases](../99-appendices/08-coordinate-systems.md#hybrid-volumesurface-aliases)                   |
 
 ### ReferenceMap key allowed values
 
