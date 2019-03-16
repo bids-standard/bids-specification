@@ -32,10 +32,10 @@ Derivatives can be stored/distributed in two ways:
     dataset. This way of specifying derivatives is particularly useful when the
     source dataset is provided with read-only access, and for publishing
     derivatives as independent bodies of work, or for describing derivatives
-    that were created from more than one source dataset. It is consistent with 
-    BIDS principles for the `sourcedata/` subdirectory to be used to include or 
-    reference the source dataset(s) as it existed when the derivatives were 
-    generated. Likewise, any code used to generate the derivatives from the 
+    that were created from more than one source dataset. It is consistent with
+    BIDS principles for the `sourcedata/` subdirectory to be used to include or
+    reference the source dataset(s) as it existed when the derivatives were
+    generated. Likewise, any code used to generate the derivatives from the
     source data may be included in the `code/` subdirectory.
 
 The rest of the Derivatives specification assumes Case 1, but Case 2 applies
@@ -97,31 +97,31 @@ derivative includes REQUIRED metadata fields in which case a JSON file is also
 REQUIRED. Each derivative type defines their own set of fields, but all of them
 share the following (non-required) ones:
 
-| **Key name**         | **Description**                                                                                                                                                                                                                                                                                                                                       |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Description          | RECOMMENDED. Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                        |
-| Sources              | OPTIONAL. A list of paths relative to dataset root pointing to the file(s) that were directly used in the creation of this derivative. For example in a chain of A->B->C, “C” should only list “B” as Sources, and “B” should only list “A” as Sources. However in case X and Y jointly contribute to Z, then “Z” should list “X” and “Y” as Sources. |
-| RawSources           | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                                |
-| CoordinateSystem     | REQUIRED if no implicit coordinate system. Key indicates the coordinate system associated with the File. The coordinate system can be implicit to the File, for instance when data are images stored in NIfTI format. Can be a list. See Table below for list of allowed systems.                                                                     |
-| ReferenceMap         | REQUIRED when a custom template or file is used. A path to a file that was used as, or can be used as, a reference image for determining the coordinate space of this file.                                                                                                                                                                      |
-| ReferenceIndex       | REQUIRED when an index into a 4D (ReferenceMap or NonstandardReference) file is used. Used to index into a 4D spatial-reference file.                                                                                                                                                                                                                 |
+| **Key name**     | **Description**                                                                                                                                                                                                                                                                                                                                       |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description      | RECOMMENDED. Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                        |
+| Sources          | OPTIONAL. A list of paths relative to dataset root pointing to the file(s) that were directly used in the creation of this derivative. For example in a chain of A->B->C, “C” should only list “B” as Sources, and “B” should only list “A” as Sources. However in case X and Y jointly contribute to Z, then “Z” should list “X” and “Y” as Sources. |
+| RawSources       | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                                |
+| CoordinateSystem | REQUIRED if no implicit coordinate system. Key indicates the coordinate system associated with the File. The coordinate system can be implicit to the File, for instance when data are images stored in NIfTI format. Can be a list. See Table below for list of allowed systems.                                                                     |
+| ReferenceMap     | REQUIRED when a custom template or file is used. A path to a file that was used as, or can be used as, a reference image for determining the coordinate space of this file.                                                                                                                                                                           |
+| ReferenceIndex   | REQUIRED when an index into a 4D (ReferenceMap or NonstandardReference) file is used. Used to index into a 4D spatial-reference file.                                                                                                                                                                                                                 |
 
 ### CoordinateSystem key allowed values
 
 In addition to values defined in
 [Appendix VII Table "Template based Coordinate Systems"](../99-appendices/08-coordinate-systems.md).
 
-| **Value name** | **Description**                                                                                                                         |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| Unknown        | The coordinate system is unknown.                                                                                                       |
-| Custom         | A custom coordinate system that is not in alignment (dimensions, axis orientation, unit) with any device coordinate system.             |
+| **Value name** | **Description**                                                                                                             |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Unknown        | The coordinate system is unknown.                                                                                           |
+| Custom         | A custom coordinate system that is not in alignment (dimensions, axis orientation, unit) with any device coordinate system. |
 
 ### ReferenceMap key allowed values
 
-| **Value name** | **Description**                                                                                                                                  |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| orig           | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space.                    |
-| uri or path    | This can be used to point to a specific file.                                                                                                    |
+| **Value name** | **Description**                                                                                                               |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| orig           | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
+| uri or path    | This can be used to point to a specific file.                                                                                 |
 
 ### Example sidecar files
 
@@ -195,9 +195,9 @@ expressed as follows:
 -   When the derivatives chain involves outputs derived from a single raw input,
     `source_keywords` MUST be the entire source filename, with the ommission of
     the source suffix and extension. One exception to this rule is filename
-    keywords that are no longer relevant. Depending on the nature of the 
-    derivative file, the suffix can either be the same as the source file if 
-    that suffix is still appropriate, or a new appropriate value selected from 
+    keywords that are no longer relevant. Depending on the nature of the
+    derivative file, the suffix can either be the same as the source file if
+    that suffix is still appropriate, or a new appropriate value selected from
     the controlled list.
 
 -   There is no prohibition against identical filenames in different derived
