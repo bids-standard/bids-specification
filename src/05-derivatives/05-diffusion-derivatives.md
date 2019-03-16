@@ -104,18 +104,10 @@ Parameters that may be stored within the JSON sidecar "Parameters" field depend 
 -   `CSD`:
 
     -   `Tissue` : string
-    
     -   `SphericalHarmonicDegree` : value
-    
-    -   `ResponseFunctionZSH` : values
-        (1 row per unique *b*-value as listed in "`Shells`";
-        1 column per even harmonic degree starting from zero)
-        
-    -   `ResponseFunctionTensor` : values
-        (vector of 4 values: three tensor eigenvalues, then reference b=0 intensity)
-        
+    -   `ResponseFunctionZSH` : values (1 row per unique *b*-value as listed in "`Shells`"; 1 column per even harmonic degree starting from zero)
+    -   `ResponseFunctionTensor` : values (vector of 4 values: three tensor eigenvalues, then reference b=0 intensity)
     -   `SphericalHarmonicBasis` : {`MRtrix3`,`DESCOTEAUX`}
-    
     -   `NonNegativityConstraint` : {`soft`,`hard`}
 
 -   `NODDI`:
