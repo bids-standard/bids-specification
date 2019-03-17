@@ -88,6 +88,31 @@ Example:
 }
 ```
 
+## Coordinate systems
+
+Coordinate system (a.k.a. space) a particular derivative is in should be denoted
+using a filename keyword `space` whenever such keyword is present in the
+filename template of a given derivative type. The allowed values for this
+keyword depend on the file format:
+
+| File format                  | Description             | Allowed `CoordinateSystem` values                                                                                                                                                           |
+| ---------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NIfTI (`.nii` and `.nii.gz`) | Volume data             | Coordinate systems listed in [Template Based Coordinate Systems: Volume](../99-appendices/08-coordinate-systems.md#volume). If `anat` is used then setting `ReferenceMap` is REQUIRED       |
+| GIFTI (`.gii`)               | Surface data            | Coordinate systems listed in [Template Based Coordinate Systems: Surface](../99-appendices/08-coordinate-systems.md#surface). If `fsnative` is used then setting `ReferenceMap` is REQUIRED |
+| CIFTI (`.nii`)               | Volume and surface data | Coordinate systems listed in [Template Based Coordinate Systems: Hybrid (Volume/Surface) aliases](../99-appendices/08-coordinate-systems.md#hybrid-volumesurface-aliases)                   |
+
+Examples:
+
+```Text
+sub-01/func/sub-01_task-rest_space-MNI305_bold.nii.gz
+sub-01/func/sub-01_task-rest_space-anat_bold.nii.gz
+sub-01/anat/sub-01_hemi-L_space-fsaverage5_thickness.shape.gii
+sub-01/anat/sub-01_hemi-R_space-fsaverage5_thickness.shape.gii
+sub-01/anat/sub-01_hemi-L_space-fsnative_thickness.shape.gii
+sub-01/anat/sub-01_hemi-R_space-fsnative_thickness.shape.gii
+sub-01/func/sub-01_task-rest_space-HCPMNIfsLR32k_bold.nii
+```
+
 ## Common file level metadata fields
 
 Each derivative file SHOULD be described by a JSON file provided as a sidecar or
@@ -97,24 +122,13 @@ derivative includes REQUIRED metadata fields in which case a JSON file is also
 REQUIRED. Each derivative type defines their own set of fields, but all of them
 share the following (non-required) ones:
 
-| **Key name**     | **Description**                                                                                                                                                                                                                                                                                                                                       |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Description      | RECOMMENDED. Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                        |
-| Sources          | OPTIONAL. A list of paths relative to dataset root pointing to the file(s) that were directly used in the creation of this derivative. For example in a chain of A->B->C, “C” should only list “B” as Sources, and “B” should only list “A” as Sources. However in case X and Y jointly contribute to Z, then “Z” should list “X” and “Y” as Sources. |
-| RawSources       | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                                |
-| CoordinateSystem | REQUIRED if no implicit coordinate system. Key indicates the coordinate system associated with the File. The coordinate system can be implicit to the File, for instance when data are images stored in NIfTI format. Can be a list. See Table below for list of allowed systems.                                                                     |
-| ReferenceMap     | REQUIRED when a custom template or file is used. A path to a file that was used as, or can be used as, a reference image for determining the coordinate space of this file. The path should start with a `/` and should be relative to the root of the dataset.                                                                                       |
-| ReferenceIndex   | REQUIRED when an index into a 4D (ReferenceMap or NonstandardReference) file is used. Used to index into a 4D spatial-reference file.                                                                                                                                                                                                                 |
-
-### CoordinateSystem key allowed values
-
-Allowed values for this field depend on the file format.
-
-| File format                  | Description             | Allowed `CoordinateSystem` values                                                                                                                                                           |
-| ---------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NIfTI (`.nii` and `.nii.gz`) | Volume data             | Coordinate systems listed in [Template Based Coordinate Systems: Volume](../99-appendices/08-coordinate-systems.md#volume). If `anat` is used then setting `ReferenceMap` is REQUIRED       |
-| GIFTI (`.gii`)               | Surface data            | Coordinate systems listed in [Template Based Coordinate Systems: Surface](../99-appendices/08-coordinate-systems.md#surface). If `fsnative` is used then setting `ReferenceMap` is REQUIRED |
-| CIFTI (`.nii`)               | Volume and surface data | Coordinate systems listed in [Template Based Coordinate Systems: Hybrid (Volume/Surface) aliases](../99-appendices/08-coordinate-systems.md#hybrid-volumesurface-aliases)                   |
+| **Key name**   | **Description**                                                                                                                                                                                                                                                                                                                                       |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description    | RECOMMENDED. Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                        |
+| Sources        | OPTIONAL. A list of paths relative to dataset root pointing to the file(s) that were directly used in the creation of this derivative. For example in a chain of A->B->C, “C” should only list “B” as Sources, and “B” should only list “A” as Sources. However in case X and Y jointly contribute to Z, then “Z” should list “X” and “Y” as Sources. |
+| RawSources     | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                                |  |
+| ReferenceMap   | REQUIRED when a custom template or file is used. A path to a file that was used as, or can be used as, a reference image for determining the coordinate space of this file. The path should start with a `/` and should be relative to the root of the dataset.                                                                                       |
+| ReferenceIndex | REQUIRED when an index into a 4D (ReferenceMap or NonstandardReference) file is used. Used to index into a 4D spatial-reference file.                                                                                                                                                                                                                 |
 
 ### ReferenceMap key allowed values
 
@@ -124,19 +138,6 @@ Allowed values for this field depend on the file format.
 | uri or path    | This can be used to point to a specific file.                                                                                 |
 
 ### Examples
-
-Preprocessed `bold` NIfTI file in `MNI305` coordinate space
-
-```Text
-sub-01/func/sub-01_task-rest_space-MNI305_bold.nii.gz
-sub-01/func/sub-01_task-rest_space-MNI305_bold.json
-```
-
-```JSON
-{
-    "CoordinateSystem": "MNI305"
-}
-```
 
 Preprocessed `bold` NIfTI file in `anat` coordinate space. Please mind that in
 this case `ReferenceMap` key is REQUIRED.
@@ -148,22 +149,7 @@ sub-01/func/sub-01_task-rest_space-anat_bold.json
 
 ```JSON
 {
-    "CoordinateSystem": "anat",
     "ReferenceMap": "/sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
-}
-```
-
-Participant cortical thickness GIFTI file in `fsaverage5` coordinate space.
-
-```Text
-sub-01/anat/sub-01_hemi-L_space-fsaverage5_thickness.shape.gii
-sub-01/anat/sub-01_hemi-R_space-fsaverage5_thickness.shape.gii
-sub-01/anat/sub-01_space-fsaverage5_thickness.json
-```
-
-```JSON
-{
-    "CoordinateSystem": "fsaverage5"
 }
 ```
 
@@ -179,19 +165,6 @@ sub-01/anat/sub-01_hemi-L_space-fsnative_thickness.json
 {
     "CoordinateSystem": "fsnative",
     "ReferenceMap": "/sub-01/anat/sub-01_hemi-L_pial.surf.gii"
-}
-```
-
-Preprocessed `bold` CIFTI file in `HCPMNIfsLR32k` coordinate space
-
-```Text
-sub-01/func/sub-01_task-rest_space-HCPMNIfsLR32k_bold.nii
-sub-01/func/sub-01_task-rest_space-HCPMNIfsLR32k_bold.json
-```
-
-```JSON
-{
-    "CoordinateSystem": "HCPMNIfsLR32k"
 }
 ```
 
