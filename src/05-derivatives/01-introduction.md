@@ -163,7 +163,6 @@ sub-01/anat/sub-01_hemi-L_space-fsnative_thickness.json
 
 ```JSON
 {
-    "CoordinateSystem": "fsnative",
     "ReferenceMap": "/sub-01/anat/sub-01_hemi-L_pial.surf.gii"
 }
 ```
