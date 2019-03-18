@@ -289,7 +289,7 @@ The free text field for the channel description can for example be specified as
 intracranial, stimulus, response, vertical EOG, horizontal EOG, skin
 conductance, eyetracker, etc.
 
-## Electrode description (`*[_space-<label>]_electrodes.tsv`)
+## Electrode description (`*_electrodes.tsv`)
 
 Template:
 
@@ -366,7 +366,7 @@ LT02  23  -40  -19  2.3    Integra
 H01   27  -42  -21  5      AdTech
 ```
 
-## Coordinate System JSON (`*[_space-<label>]_coordsystem.json`)
+## Coordinate System JSON (`*_coordsystem.json`)
 
 Template:
 
