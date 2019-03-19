@@ -25,6 +25,15 @@ community decides on the content of this file using the same process as any
 other change to the Repository (see below) allowing the meaning of "Contributor"
 to evolve independently of the Decision-making rules.
 
+**Maintainer** - a Contributor responsible for the long term health of the 
+project and the community. Maintainers have additional rights (see Rules) 
+helping them to resolve conflicts and increase the pace of the development 
+when necessary. Current Maintainers:
+
+| Name                                                            | Time commitment |
+|-----------------------------------------------------------------|-----------------|
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff)) | 5h/week         |
+
 ## Rules
 
 1. Every modification of the specification (including a correction of a typo, 
@@ -45,6 +54,11 @@ to evolve independently of the Decision-making rules.
    1. Does not feature any [Reviews that Request changes](https://help.github.com/articles/about-required-reviews-for-pull-requests/).
    1. Does not feature "WIP" in the title (Work in Progress).
    1. Passes all automated tests.
+   1. Is not proposing a new release or has been approved by at least one 
+      Maintainer (i.e., PRs proposing new releases need to be approved by at 
+      least one Maintainer).
+1. A Maintainer can merge any PR - even if it's not eligible to merge according
+   to Rule 4.
 1. Any Contributor can Review a PR and Request changes. If a Contributor 
    Request changes they need to provide an explanation what changes 
    should be added and justification of their importance. Reviews requesting 
@@ -54,7 +68,7 @@ to evolve independently of the Decision-making rules.
 1. If the author of a PR and Contributor who provided Review that Requests 
    changes cannot find a solution that would lead to the Contributor dismissing 
    their review or accepting the changes the Review can be Dismissed with a 
-   vote. Rules governing voting:
+   vote or by a Maintainer. Rules governing voting:
    1. A Vote can be triggered by any Contributor, but only after 5 working days 
       from the time a Review Requesting Changes has been raised and in case a 
       Vote has been triggered previously no sooner than 15 working days since 
@@ -70,6 +84,9 @@ to evolve independently of the Decision-making rules.
 
 ## Comments
 
+1. Researchers preparing academic manuscripts describing work that has been 
+   merged into this repository are strongly encouraged to invite all 
+   Maintainers as co-authors as a form of appreciation for their work.
 1. There are no restrictions on how the content of the PR is prepared. For 
    example it is perfectly fine for a PR to consist of content developed by a 
    group of experts over an extended period of time via in person meetings and 
