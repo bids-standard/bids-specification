@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] Introducing Stefan Appelhoff as the first Maintainer [#176](https://github.com/bids-standard/bids-specification/pull/176) ([chrisfilo](https://github.com/chrisfilo))
 -   \[FIX] Fixes spelling of continuous [#171](https://github.com/bids-standard/bids-specification/pull/171) ([emdupre](https://github.com/emdupre))
 -   \[FIX] changed reference of `dcm2nii` to `dcm2niix` [#166](https://github.com/bids-standard/bids-specification/pull/166) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[FIX] Removing a leftover file [#162](https://github.com/bids-standard/bids-specification/pull/162) ([chrisfilo](https://github.com/chrisfilo))

@@ -44,7 +44,7 @@ The specification documents follow the [Markdown Style Guide](http://www.cirosan
 You
 can validate your changes against the guide using [remark](https://github.com/remarkjs/remark-lint) which works as a
 [standalone command line tool](https://github.com/remarkjs/remark/tree/master/packages/remark-cli) as well as [a plugin for various text editors](https://github.com/remarkjs/remark-lint#editor-integrations). Remark preserves consistent markdown styling across the contributions. Please ensure before submitting a contribution that you do not have any linter errors in your text editor.
-You can also use [prettier](https://github.com/prettier/prettier) to automatically correct some of the style issuse that might be found in the proposed changes.
+You can also use [prettier](https://github.com/prettier/prettier) to automatically correct some of the style issues that might be found in the proposed changes.
 
 We have deployed a continuous integrator ([circle CI](https://circleci.com/)) to further allow for integrating changes continuously. The CI is testing that the changes are inline with our standard styling.
 
@@ -96,7 +96,7 @@ Try to keep the changes focused. If you submit a large amount of work in all in 
 #### 4. Submit a [pull request](https://help.github.com/articles/about-pull-requests/)
 
 Please keep the title of your pull request short but informative - it will 
-appear in the changelog.
+appear in the [changelog](src/CHANGES.md).
 
 Use one of the following prefixes in the title of your pull request:
   - `[ENH]` - enhancement of the specification that adds a new feature or 
@@ -109,11 +109,11 @@ Use one of the following prefixes in the title of your pull request:
 
 If you are opening a pull request to obtain early feedback, but the changes 
 are not ready to be merged (a.k.a. Work in Progress pull request) please 
-use [draft pull request](https://github.blog/2019-02-14-introducing-draft-pull-requests/).
+use a [draft pull request](https://github.blog/2019-02-14-introducing-draft-pull-requests/).
 
 A member of the BIDS Specification team will review your changes to confirm that they can be merged into the main codebase.
 
-A [review](https://help.github.com/articles/about-pull-request-reviews/) will probably consist of a few questions to help clarify the work you've done. Keep an eye on your github notifications and be prepared to join in that conversation.
+A [review](https://help.github.com/articles/about-pull-request-reviews/) will probably consist of a few questions to help clarify the work you've done. Keep an eye on your GitHub notifications and be prepared to join in that conversation.
 
 You can update your [fork](https://help.github.com/articles/about-forks/) of the BIDS Specification and the pull request will automatically update with those commits. You don't need to submit a new pull request when you make a change in response to a review.
 
