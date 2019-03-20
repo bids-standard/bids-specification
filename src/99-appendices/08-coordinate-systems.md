@@ -1,47 +1,5 @@
 # Appendix VIII: Preferred Names of Coordinate Systems
 
-## Definitions
-
-### Coordinate System
-
-A coordinate system specifies the information necessary to interpret the
-coordinates associated with the data. A coordinate system can be described by
-its topology (cartesian, spherical, polar, etc.,.), dimensionality, and units of
-measurement along each dimension. Every device that makes spatial measurements
-or has sensors described in a space has a coordinate system (e.g., an MR
-scanner, an MEG scanner, an EEG cap, Polhemus digitizer). The data output by
-most of these devices describe the number of dimensions, the units along each
-dimension, and in some cases the details of origin (for example, time).
-
-### Space, atlas and map
-
-A space/atlas/map is embedded in a coordinate system to ascribe meaning to the
-coordinates. For instance, Scanner, Talairach88, MNI, FS are different
-coordinate systems, while the Talairach atlas, MNI152, and fsaverage ascribe
-meaning to the coordinates in terms of brain anatomy. As an example to
-distinguish coordinate systems and spaces/atlas/maps, a 4D fMRI timeseries
-acquired without motion correction has individual time points all in the same
-coordinate system, but the atlas/map is different (due to motion) in different
-time points.
-
-### Landmarks
-
-Landmarks are properties of the object being measured and can exist in any
-coordinate system in which the object is placed/measured. They can be relevant
-points of the imaged object's structure (i.e. anatomical landmarks) such as the
-anterior commissure in a brain. They can also be fiducials that generate a
-localizable signal that are placed in the intended position before scanning
-(i.e. markers). Positions of landmarks are identified via manual or automated
-algorithms that detect these fiducials in (e.g., MR) or from (e.g., MEG) the
-acquired data or via explicit encoding of position (e.g., EEG sensors,
-headshape/coil digitization).
-
-These landmarks can be coordinates in a file or voxel/pixel intensity relations
-in image files.This information (coordinates or intensity relations)
-representing landmarks of the same or similar object (e.g., a template brain) in
-different coordinate systems can be used to transform the object between
-coordinate systems.
-
 ## Introduction
 
 To interpret a coordinate (x, y, z), it is required that you know relative to
