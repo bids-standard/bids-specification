@@ -90,6 +90,7 @@ your name is not listed, please add it.
 -   Dylan Nielson 📖💻🔧
 -   Guiomar Niso 📖💡📢
 -   Robert Oostenveld 📖🔧📢💡✅⚠️🤔
+-   Dimitri Papadopoulos Orfanos 📖💡🤔💬
 -   Patrick Park 📖💡💬
 -   Dianne Patterson 📖
 -   John Pellman 📖
