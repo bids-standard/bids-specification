@@ -1,8 +1,20 @@
 Changelog
 
-## [v1.2.0](https://bids-specification.readthedocs.io/en/v1.2.0/)
+## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] Introducing Stefan Appelhoff as the first Maintainer [#176](https://github.com/bids-standard/bids-specification/pull/176) ([chrisfilo](https://github.com/chrisfilo))
+-   \[FIX] Fixes spelling of continuous [#171](https://github.com/bids-standard/bids-specification/pull/171) ([emdupre](https://github.com/emdupre))
+-   \[FIX] changed reference of `dcm2nii` to `dcm2niix` [#166](https://github.com/bids-standard/bids-specification/pull/166) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
+-   \[FIX] Removing a leftover file [#162](https://github.com/bids-standard/bids-specification/pull/162) ([chrisfilo](https://github.com/chrisfilo))
+
+## [v1.2.0](https://github.com/bids-standard/bids-specification/tree/v1.2.0) (2019-03-04)
+
+-   REL: v1.2.0 [#161](https://github.com/bids-standard/bids-specification/pull/161) ([chrisfilo](https://github.com/chrisfilo))
+-   \[MISC] Adding Dimitri Papadopoulos Orfanos to the list of contributors [#157](https://github.com/bids-standard/bids-specification/pull/157) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
+-   RF: use "specification" not "protocol" to refer to BIDS [#156](https://github.com/bids-standard/bids-specification/pull/156) ([yarikoptic](https://github.com/yarikoptic))
+-   Fix example misalignment [#155](https://github.com/bids-standard/bids-specification/pull/155) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   Update Pipfile.lock [#144](https://github.com/bids-standard/bids-specification/pull/144) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[MRG] clarify decimal sep and numerical notation convention [#143](https://github.com/bids-standard/bids-specification/pull/143) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MRG] clarify encoding of README, CHANGES, TSV, and JSON files [#140](https://github.com/bids-standard/bids-specification/pull/140) ([sappelhoff](https://github.com/sappelhoff))
 -   Update site_name and release protocol [#137](https://github.com/bids-standard/bids-specification/pull/137) ([franklin-feingold](https://github.com/franklin-feingold))
 -   BF: Example for IntendedFor was missing session indicator in the filename [#129](https://github.com/bids-standard/bids-specification/pull/129) ([yarikoptic](https://github.com/yarikoptic))
@@ -13,9 +25,9 @@ Changelog
 -   Adding formal decision-making rules [#104](https://github.com/bids-standard/bids-specification/pull/104) ([chrisfilo](https://github.com/chrisfilo))
 -   \[MRG] number of small corrections to the specification [#98](https://github.com/bids-standard/bids-specification/pull/98) ([robertoostenveld](https://github.com/robertoostenveld))
 
-## [v.1.1.2](https://github.com/bids-standard/bids-specification/tree/v.1.1.2) (2019-01-10)
-
 ## [v1.1.2](https://github.com/bids-standard/bids-specification/tree/v1.1.2) (2019-01-10)
+
+## [v.1.1.2](https://github.com/bids-standard/bids-specification/tree/v.1.1.2) (2019-01-10)
 
 -   REL: v.1.1.2 [#121](https://github.com/bids-standard/bids-specification/pull/121) ([chrisfilo](https://github.com/chrisfilo))
 -   Update 01-contributors.md [#120](https://github.com/bids-standard/bids-specification/pull/120) ([oesteban](https://github.com/oesteban))

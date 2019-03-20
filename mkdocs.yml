@@ -15,7 +15,7 @@ nav:
         - Electroencephalography: 04-modality-specific-files/03-electroencephalography.md
         - intracranial Electroencephalography: 04-modality-specific-files/04-intracranial-electroencephalography.md
         - Task events: 04-modality-specific-files/05-task-events.md
-        - Physiological and other continous recordings: 04-modality-specific-files/06-physiological-and-other-continous-recordings.md
+        - Physiological and other continuous recordings: 04-modality-specific-files/06-physiological-and-other-continuous-recordings.md
         - Behavioral experiments (with no MRI): 04-modality-specific-files/07-behavioral-experiments.md
       - Derivatives:
         - Introduction: 05-derivatives/01-introduction.md
