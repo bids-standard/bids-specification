@@ -11,7 +11,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat/
-            <source_keywords>_hemi-{L|R}[_space-<space>]_<surftype>.surf.gii
+            <source_keywords>_hemi-{L|R}[_space-<space>][_desc-<label>]_<surftype>.surf.gii
 ```
 
 Example:
@@ -51,7 +51,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat/
-            <source_keywords>[_hemi-{L|R}][_space-<space>]_<suffix>.{shape.gii|dscalar.nii}
+            <source_keywords>[_hemi-{L|R}][_space-<space>][_desc-<label>]_<suffix>.{shape.gii|dscalar.nii}
 ```
 
 The REQUIRED extension for scalar GIFTI files is `.shape.gii`. The `hemi` key is
