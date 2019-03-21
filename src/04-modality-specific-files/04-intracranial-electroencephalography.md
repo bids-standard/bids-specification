@@ -496,7 +496,7 @@ onset, duration), the `_events.tsv` file can contain the electrical stimulation
 parameters in addition to other events. Note that these can be intermixed with
 other task events. Electrical stimulation parameters can be described in columns
 called `electrical_stimulation_<label>`, with labels chosen by the researcher and
-optionally defined in more detail in an accompanying `_electrodes.json` file (as
+optionally defined in more detail in an accompanying `_events.json` file (as
 per the main BIDS spec). Functions for complex stimulation patterns can, similar
 as when a video is presented, be stored in a folder in the `/stimuli/` folder.
 For example: `/stimuli/electrical_stimulation_functions/biphasic.tsv`
