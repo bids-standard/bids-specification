@@ -26,7 +26,8 @@ The BIDS specification can be extended in a backwards compatible way and will
 evolve over time. These are accomplished with BIDS Extension Proposals (BEPs),
 which are community-driven processes.
 
-Below is a table of currently-active BEPs.
+Below is a table of currently-active BEPs. The *Extension label* column
+provides a direct link to the documentation.
 
 | Extension label                                                                           | Title                                                                                                                                                                                         | Moderators/leads                                               |
 | :---------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------- |
@@ -57,9 +58,11 @@ When an extension reaches maturity it is merged into the main body of the
 specification.  Below is a table of BEPs that have been merged in the main body
 of the specification.
 
-| Extension label                                                                           | Title                                                                                                           | Moderators/leads                                        |
-| :---------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------ |
-| [BEP008](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM) | [Magnetoencephalography (MEG)](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM) | Guiomar Niso                                            |
+| Extension label                                                                           | Title                                      | Moderators/leads                                  |
+| :---------------------------------------------------------------------------------------- | :----------------------------------------- | :------------------------------------------------ |
+| [BEP006](https://docs.google.com/document/d/1ArMZ9Y_quTKXC-jNXZksnedK2VHHoKP3HCeO5HPcgLE) | Electroencephalograpgy (EEG)               | Cyril Pernet, Stefan Appelhoff, Robert Oostenveld |
+| [BEP008](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM) | Magnetoencephalography (MEG)               | Guiomar Niso                                      |
+| [BEP010](https://docs.google.com/document/d/1qMUkoaXzRMlJuOcfTYNr3fTsrl4SewWjffjMD5Ew6GY) | intracranial Electroencephalograpgy (iEEG) | Chris Holdgraf, Dora Hermes                              
 
 All of the extension ideas that are not backwards compatible and thus
 will have to wait for BIDS 2.0 are listed
