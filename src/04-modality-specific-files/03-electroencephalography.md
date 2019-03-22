@@ -266,7 +266,7 @@ Template:
 sub-<label>/
     [ses-<label>]/
       eeg/
-        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_electrodes.tsv]
+        [sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_electrodes.tsv]
 ```
 
 File that gives the location of EEG electrodes. Note that coordinates are
