@@ -97,7 +97,7 @@ keyword depend on the file format:
 
 | File format                  | Description             | Allowed `CoordinateSystem` values                                                                                                                                                           |
 | ---------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NIfTI (`.nii` and `.nii.gz`) | Volume data             | Coordinate systems listed in [Template Based Coordinate Systems: Volume](../99-appendices/08-coordinate-systems.md#volume). If `anat` is used then setting `ReferenceMap` is REQUIRED       |
+| NIfTI (`.nii` and `.nii.gz`) | Volume data             | Coordinate systems listed in [Template Based Coordinate Systems: Volume](../99-appendices/08-coordinate-systems.md#volume). If `native` is used then setting `ReferenceMap` is REQUIRED       |
 | GIFTI (`.gii`)               | Surface data            | Coordinate systems listed in [Template Based Coordinate Systems: Surface](../99-appendices/08-coordinate-systems.md#surface). If `fsnative` is used then setting `ReferenceMap` is REQUIRED |
 | CIFTI (`.nii`)               | Volume and surface data | Coordinate systems listed in [Template Based Coordinate Systems: Hybrid (Volume/Surface) aliases](../99-appendices/08-coordinate-systems.md#hybrid-volumesurface-aliases)                   |
 
@@ -105,7 +105,7 @@ Examples:
 
 ```Text
 sub-01/func/sub-01_task-rest_space-MNI305_bold.nii.gz
-sub-01/func/sub-01_task-rest_space-anat_bold.nii.gz
+sub-01/func/sub-01_task-rest_space-native_bold.nii.gz
 sub-01/anat/sub-01_hemi-L_space-fsaverage5_thickness.shape.gii
 sub-01/anat/sub-01_hemi-R_space-fsaverage5_thickness.shape.gii
 sub-01/anat/sub-01_hemi-L_space-fsnative_thickness.shape.gii
@@ -143,8 +143,8 @@ Preprocessed `bold` NIfTI file in `anat` coordinate space. Please mind that in
 this case `ReferenceMap` key is REQUIRED.
 
 ```Text
-sub-01/func/sub-01_task-rest_space-anat_bold.nii.gz
-sub-01/func/sub-01_task-rest_space-anat_bold.json
+sub-01/func/sub-01_task-rest_space-native_bold.nii.gz
+sub-01/func/sub-01_task-rest_space-native_bold.json
 ```
 
 ```JSON
