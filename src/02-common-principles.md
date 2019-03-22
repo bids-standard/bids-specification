@@ -120,8 +120,8 @@ my_dataset/
     ...
 ```
 
-In this example ** only `rawdata` subfolder and all subfolders of `derivatives` 
-need to be BIDS compliant** datasets. This specification does not prescribe 
+In this example **only `rawdata` subfolder and all subfolders of `derivatives`**
+**need to be BIDS compliant** datasets. This specification does not prescribe 
 anything about the contents of `sourcedata` folders in the above example - nor 
 does it prescribe the `sourcedata`, `derivatives`, or `rawdata` folder names. 
 The above example is just a convention that can be useful for organizing raw, 
@@ -134,6 +134,9 @@ field in `dataset_description.json` of each subfolder of `derivatives` to:
   "SourceDatasets": [ {"URL": "file://../../rawdata/"} ]
 }
 ```
+
+See [Derived dataset and pipeline description](05-derivatives/01-introduction.md#Derived-dataset-and-pipeline-description)
+for more information.
 
 ## The Inheritance Principle
 
