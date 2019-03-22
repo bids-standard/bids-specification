@@ -36,7 +36,7 @@ stored in one of the following formats:
 
 -   [European data format](https://www.edfplus.info/) (`.edf`)
 
--   [BrainVision Core file data format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
+-   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
     (`.vhdr`, `.vmrk`, `.eeg`) by Brain Products GmbH
 
 -   The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab)
