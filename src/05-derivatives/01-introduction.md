@@ -139,7 +139,7 @@ share the following (non-required) ones:
 
 ### Examples
 
-Preprocessed `bold` NIfTI file in `anat` coordinate space. Please mind that in
+Preprocessed `bold` NIfTI file in `native` coordinate space. Please mind that in
 this case `ReferenceMap` key is REQUIRED.
 
 ```Text
