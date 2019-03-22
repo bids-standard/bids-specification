@@ -59,7 +59,7 @@ of the specification.
 
 | Extension label                                                                           | Title                                                                                                           | Moderators/leads                                        |
 | :---------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------ |
-| [BEP008](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM) | [Magnetoencephalography (MEG)](https://docs.google.com/document/d/1QwfHyBzOyFWOLO4u_kkojLpUhW0-4_M7Ubafu9Gf4Gg) | Guiomar Niso                                            |
+| [BEP008](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM) | [Magnetoencephalography (MEG)](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM) | Guiomar Niso                                            |
 
 All of the extension ideas that are not backwards compatible and thus
 will have to wait for BIDS 2.0 are listed
