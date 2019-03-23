@@ -155,7 +155,11 @@ More about the 4D neuroimaging/BTi data organization at:
 
 ## KIT/Yokogawa/Ricoh
 
-Each experimental run on a KIT/Yokogawa/Ricoh system yields a raw (`.sqd`, `.con`) file with its associated marker coil file (`.mrk`), which contains coil positions in the acquisition system’s native space. Head points and marker points in head space are acquired using third-party hardware.
+Each experimental run on a KIT/Yokogawa/Ricoh system yields a raw
+(`.sqd`, `.con`) file with its associated marker coil file (`.mrk`), which
+contains coil positions in the acquisition system’s native space. Head
+points and marker points in head space are acquired using third-party
+hardware.
 
 Example:
 
