@@ -213,7 +213,13 @@ sub-control01/
 
 ## ITAB
 
-Each experimental run on a ITAB-ARGOS153 system yields a raw (`.raw`) data file plus an associated binary header file (`.mhd`). The raw data file has an ASCII header that contains detailed information about the data acquisition system, followed by binary data. The associated binary header file contains part of the information from the ASCII header, specifically the one needed to process data, plus other information on offline preprocessing performed after data acquisition (e.g., sensor position relative to subject’s head, head markers, stimulus information).
+Each experimental run on a ITAB-ARGOS153 system yields a raw (`.raw`) data file
+plus an associated binary header file (`.mhd`). The raw data file has an ASCII
+header that contains detailed information about the data acquisition system,
+followed by binary data. The associated binary header file contains part of the
+information from the ASCII header, specifically the one needed to process data,
+plus other information on offline preprocessing performed after data acquisition
+(e.g., sensor position relative to subject’s head, head markers, stimulus information).
 
 Example:
 
