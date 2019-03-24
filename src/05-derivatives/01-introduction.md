@@ -95,11 +95,11 @@ using a filename keyword `space` whenever such keyword is present in the
 filename template of a given derivative type. The allowed values for this
 keyword depend on the file format:
 
-| File format                  | Description             | Allowed `CoordinateSystem` values                                                                                                                                                             |
-| ---------------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NIfTI (`.nii` and `.nii.gz`) | Volume data             | Coordinate systems listed in [Template Based Coordinate Systems: Volume](../99-appendices/08-coordinate-systems.md#volume). If `individual` is used then setting `ReferenceMap` is REQUIRED   |
-| GIFTI (`.gii`)               | Surface data            | Coordinate systems listed in [Template Based Coordinate Systems: Surface](../99-appendices/08-coordinate-systems.md#surface). If `individual` is used then setting `ReferenceMap` is REQUIRED |
-| CIFTI (`.nii`)               | Volume and surface data | Coordinate systems listed in [Template Based Coordinate Systems: Hybrid (Volume/Surface) aliases](../99-appendices/08-coordinate-systems.md#hybrid-volumesurface-aliases)                     |
+| File format                  | Description             | Allowed `CoordinateSystem` values                                                                                                                                                                         |
+| ---------------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NIfTI (`.nii` and `.nii.gz`) | Volume data             | Coordinate systems listed in [Template Based Coordinate Systems: Volume](../99-appendices/08-coordinate-systems.md#volume). If `individual` or `custom` is used then setting `ReferenceMap` is REQUIRED   |
+| GIFTI (`.gii`)               | Surface data            | Coordinate systems listed in [Template Based Coordinate Systems: Surface](../99-appendices/08-coordinate-systems.md#surface). If `individual` or `custom` is used then setting `ReferenceMap` is REQUIRED |
+| CIFTI (`.nii`)               | Volume and surface data | Coordinate systems listed in [Template Based Coordinate Systems: Hybrid (Volume/Surface) aliases](../99-appendices/08-coordinate-systems.md#hybrid-volumesurface-aliases)                                 |
 
 Examples:
 
