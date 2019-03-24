@@ -38,9 +38,9 @@ The supported surface types (`<surftype>` suffix) are:
 | flat         | The flattened surface (used for visualization)                       |
 
 `space` filename keyword is restricted to
-[Surface Coordinate Spaces](../99-appendices/08-coordinate-spaces.md#Surface)
+[Surface Coordinate Spaces](../99-appendices/08-coordinate-systems.md#Surface)
 and `volspace` corresponds to the 3D coordinate space described in
-[Volume Coordinate Spaces](../99-appendices/08-coordinate-spaces.md#Volume). In
+[Volume Coordinate Spaces](../99-appendices/08-coordinate-systems.md#Volume). In
 contrast to other derivatives the sidecar metadata field `ReferenceMap` (see
 [Introduction](01-introduction.md#Common-file-level-metadata-fields)) is not
 required for any space, but is recommended when `volspace` is set to
