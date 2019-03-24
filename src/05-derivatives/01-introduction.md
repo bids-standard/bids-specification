@@ -95,21 +95,21 @@ using a filename keyword `space` whenever such keyword is present in the
 filename template of a given derivative type. The allowed values for this
 keyword depend on the file format:
 
-| File format                  | Description             | Allowed `CoordinateSystem` values                                                                                                                                                           |
-| ---------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NIfTI (`.nii` and `.nii.gz`) | Volume data             | Coordinate systems listed in [Template Based Coordinate Systems: Volume](../99-appendices/08-coordinate-systems.md#volume). If `native` is used then setting `ReferenceMap` is REQUIRED     |
-| GIFTI (`.gii`)               | Surface data            | Coordinate systems listed in [Template Based Coordinate Systems: Surface](../99-appendices/08-coordinate-systems.md#surface). If `fsnative` is used then setting `ReferenceMap` is REQUIRED |
-| CIFTI (`.nii`)               | Volume and surface data | Coordinate systems listed in [Template Based Coordinate Systems: Hybrid (Volume/Surface) aliases](../99-appendices/08-coordinate-systems.md#hybrid-volumesurface-aliases)                   |
+| File format                  | Description             | Allowed `CoordinateSystem` values                                                                                                                                                             |
+| ---------------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NIfTI (`.nii` and `.nii.gz`) | Volume data             | Coordinate systems listed in [Template Based Coordinate Systems: Volume](../99-appendices/08-coordinate-systems.md#volume). If `individual` is used then setting `ReferenceMap` is REQUIRED   |
+| GIFTI (`.gii`)               | Surface data            | Coordinate systems listed in [Template Based Coordinate Systems: Surface](../99-appendices/08-coordinate-systems.md#surface). If `individual` is used then setting `ReferenceMap` is REQUIRED |
+| CIFTI (`.nii`)               | Volume and surface data | Coordinate systems listed in [Template Based Coordinate Systems: Hybrid (Volume/Surface) aliases](../99-appendices/08-coordinate-systems.md#hybrid-volumesurface-aliases)                     |
 
 Examples:
 
 ```Text
 sub-01/func/sub-01_task-rest_space-MNI305_bold.nii.gz
-sub-01/func/sub-01_task-rest_space-native_bold.nii.gz
+sub-01/func/sub-01_task-rest_space-individual_bold.nii.gz
 sub-01/anat/sub-01_hemi-L_space-fsaverage5_thickness.shape.gii
 sub-01/anat/sub-01_hemi-R_space-fsaverage5_thickness.shape.gii
-sub-01/anat/sub-01_hemi-L_space-fsnative_thickness.shape.gii
-sub-01/anat/sub-01_hemi-R_space-fsnative_thickness.shape.gii
+sub-01/anat/sub-01_hemi-L_space-individual_thickness.shape.gii
+sub-01/anat/sub-01_hemi-R_space-individual_thickness.shape.gii
 sub-01/func/sub-01_task-rest_space-HCPMNIfsLR32k_bold.nii
 ```
 
@@ -139,12 +139,12 @@ share the following (non-required) ones:
 
 ### Examples
 
-Preprocessed `bold` NIfTI file in `native` coordinate space. Please mind that in
-this case `ReferenceMap` key is REQUIRED.
+Preprocessed `bold` NIfTI file in `individual` coordinate space. Please mind
+that in this case `ReferenceMap` key is REQUIRED.
 
 ```Text
-sub-01/func/sub-01_task-rest_space-native_bold.nii.gz
-sub-01/func/sub-01_task-rest_space-native_bold.json
+sub-01/func/sub-01_task-rest_space-individual_bold.nii.gz
+sub-01/func/sub-01_task-rest_space-individual_bold.json
 ```
 
 ```JSON
@@ -153,12 +153,12 @@ sub-01/func/sub-01_task-rest_space-native_bold.json
 }
 ```
 
-Participant cortical thickness GIFTI file in `fsnative` coordinate space. Please
-mind that in this case `ReferenceMap` key is REQUIRED.
+Participant cortical thickness GIFTI file in `individual` coordinate space.
+Please mind that in this case `ReferenceMap` key is REQUIRED.
 
 ```Text
-sub-01/anat/sub-01_hemi-L_space-fsnative_thickness.shape.gii
-sub-01/anat/sub-01_hemi-L_space-fsnative_thickness.json
+sub-01/anat/sub-01_hemi-L_space-individual_thickness.shape.gii
+sub-01/anat/sub-01_hemi-L_space-individual_thickness.json
 ```
 
 ```JSON
