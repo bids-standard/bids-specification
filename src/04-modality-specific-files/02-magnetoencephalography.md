@@ -378,7 +378,7 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
 
-## Head shape and electrode description (`*_headshape.<manufacturer_specific_extension>`)
+## Head shape and electrode description (`*_headshape.<ext>`)
 
 Template:
 
