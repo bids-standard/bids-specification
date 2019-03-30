@@ -41,7 +41,7 @@ The supported surface types (`<surftype>` suffix) are:
 [Surface Coordinate Spaces](../99-appendices/08-coordinate-systems.md#Surface)
 and `volspace` corresponds to the 3D coordinate space described in
 [Volume Coordinate Spaces](../99-appendices/08-coordinate-systems.md#Volume). In
-contrast to other derivatives the sidecar metadata field `ReferenceMap` (see
+contrast to other derivatives the sidecar metadata field `SpatialReference` (see
 [Introduction](01-introduction.md#Common-file-level-metadata-fields)) is not
 required for any space, but is recommended when `volspace` is set to
 `individual`. In such case it should point to the volume defining the 3D
