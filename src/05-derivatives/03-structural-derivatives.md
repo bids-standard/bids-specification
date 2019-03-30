@@ -11,7 +11,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat/
-            <source_keywords>_hemi-{L|R}[_space-<space>][_desc-<label>]_<surftype>.surf.gii
+            <source_keywords>_hemi-{L|R}[_space-<surfspace>][_volspace-<volspace>][_desc-<label>]_<surftype>.surf.gii
 ```
 
 Example:
@@ -37,8 +37,15 @@ The supported surface types (`<surftype>` suffix) are:
 | sphere       | The sphere (used for registration - see transforms for nomenclature) |
 | flat         | The flattened surface (used for visualization)                       |
 
-Note: reconstructed cortical surfaces are unique in that they contain both
-2-dimensional and 3-dimensional elements of "space".
+`space` filename keyword is restricted to
+[Surface Coordinate Spaces](../99-appendices/08-coordinate-systems.md#Surface)
+and `volspace` corresponds to the 3D coordinate space described in
+[Volume Coordinate Spaces](../99-appendices/08-coordinate-systems.md#Volume). In
+contrast to other derivatives the sidecar metadata field `SpatialReference` (see
+[Introduction](01-introduction.md#Common-file-level-metadata-fields)) is not
+required for any space, but is recommended when `volspace` is set to
+`individual`. In such case it should point to the volume defining the 3D
+coordinate system with witch the surface mesh is aligned with.
 
 ## Surface-Mapped Anatomical Scalar Derivatives
 

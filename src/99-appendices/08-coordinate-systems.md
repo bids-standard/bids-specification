@@ -116,6 +116,13 @@ below, the origin is at the AC and the orientation of the axes is RAS. Unless
 specified explicitly in the sidecar file in the `XXCoordinateSystemUnits` field,
 the units are assumed to be mm.
 
+### Common for Surface and Volume
+
+| Coordinate System | Description                                                                                                                                                                                                                                                           |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| individual        | Participant specific anatomical space (for example derived from T1w and/or T2w images). This coordinate system requires specifying an additional, participant-specific file to be fully defined. In context of surfaces this space has been refered to as `fsnative`. |
+| custom            | Custom space defined using a group/study-specific template. This coordinate system requires specifying an additional file to be fully defined.                                                                                                                        |
+
 ### Volume
 
 | Coordinate System                                   | Description                                                                                                                                                                                                                                                                                                                                                      |
@@ -140,7 +147,6 @@ the units are assumed to be mm.
 
 | Coordinate System                            | Description                                                                                                                                                                                                                                                                                                                 |
 | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| fsnative                                     | Images were sampled to the FreeSurfer surface reconstructed from the subject’s T1w image                                                                                                                                                                                                                                    |
 | fsaverage\[3&#124;4&#124;5&#124;6&#124;sym\] | Images were sampled to the FreeSurfer surface reconstructed from the subject’s T1w image, and registered to an fsaverage template                                                                                                                                                                                           |
 | fsLR\[164k&#124;59k&#124;32k&#124;4k\]       | Images were sampled to the 164k (used by HCP pipelines for 3T and 7T anatomical analysis), 59k (used by HCP pipelines for 7T MRI bold and DWI analysis), 32k (used by HCP pipelines for 3T MRI bold and DWI analysis), or 4k (used by HCP pipelines for MEG analysis) fsaverage_LR surface reconstructed from the T1w image |
 

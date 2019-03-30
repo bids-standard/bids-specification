@@ -88,6 +88,31 @@ Example:
 }
 ```
 
+## Coordinate systems
+
+Coordinate system (a.k.a. space) a particular derivative is in should be denoted
+using a filename keyword `space` whenever such keyword is present in the
+filename template of a given derivative type. The allowed values for this
+keyword depend on the file format:
+
+| File format                  | Description             | Allowed `CoordinateSystem` values                                                                                                                                                                             |
+| ---------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NIfTI (`.nii` and `.nii.gz`) | Volume data             | Coordinate systems listed in [Template Based Coordinate Systems: Volume](../99-appendices/08-coordinate-systems.md#volume). If `individual` or `custom` is used then setting `SpatialReference` is REQUIRED   |
+| GIFTI (`.gii`)               | Surface data            | Coordinate systems listed in [Template Based Coordinate Systems: Surface](../99-appendices/08-coordinate-systems.md#surface). If `individual` or `custom` is used then setting `SpatialReference` is REQUIRED |
+| CIFTI (`.nii`)               | Volume and surface data | Coordinate systems listed in [Template Based Coordinate Systems: Hybrid (Volume/Surface) aliases](../99-appendices/08-coordinate-systems.md#hybrid-volumesurface-aliases)                                     |
+
+Examples:
+
+```Text
+sub-01/func/sub-01_task-rest_space-MNI305_bold.nii.gz
+sub-01/func/sub-01_task-rest_space-individual_bold.nii.gz
+sub-01/anat/sub-01_hemi-L_space-fsaverage5_thickness.shape.gii
+sub-01/anat/sub-01_hemi-R_space-fsaverage5_thickness.shape.gii
+sub-01/anat/sub-01_hemi-L_space-individual_thickness.shape.gii
+sub-01/anat/sub-01_hemi-R_space-individual_thickness.shape.gii
+sub-01/func/sub-01_task-rest_space-HCPMNIfsLR32k_bold.nii
+```
+
 ## Common file level metadata fields
 
 Each derivative file SHOULD be described by a JSON file provided as a sidecar or
@@ -102,64 +127,43 @@ share the following (non-required) ones:
 | Description      | RECOMMENDED. Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                        |
 | Sources          | OPTIONAL. A list of paths relative to dataset root pointing to the file(s) that were directly used in the creation of this derivative. For example in a chain of A->B->C, “C” should only list “B” as Sources, and “B” should only list “A” as Sources. However in case X and Y jointly contribute to Z, then “Z” should list “X” and “Y” as Sources. |
 | RawSources       | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                                |
-| CoordinateSystem | REQUIRED if no implicit coordinate system. Key indicates the coordinate system associated with the File. The coordinate system can be implicit to the File, for instance when data are images stored in NIfTI format. Can be a list. See Table below for list of allowed systems.                                                                     |
-| ReferenceMap     | REQUIRED when a custom template or file is used. A path to a file that was used as, or can be used as, a reference image for determining the coordinate space of this file.                                                                                                                                                                           |
-| ReferenceIndex   | REQUIRED when an index into a 4D (ReferenceMap or NonstandardReference) file is used. Used to index into a 4D spatial-reference file.                                                                                                                                                                                                                 |
+| SpatialReference | REQUIRED when a custom template or file is used. A path to a file that was used as, or can be used as, a reference image for determining the coordinate space of this file. The path should start with a `/` and should be relative to the root of the dataset.                                                                                       |
+| ReferenceIndex   | REQUIRED when an index into a 4D (SpatialReference) file is used. Used to index into a 4D spatial-reference file.                                                                                                                                                                                                                                     |
 
-### CoordinateSystem key allowed values
-
-In addition to values defined in
-[Appendix VII Table "Template based Coordinate Systems"](../99-appendices/08-coordinate-systems.md).
-
-| **Value name** | **Description**                                                                                                             |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| Unknown        | The coordinate system is unknown.                                                                                           |
-| Custom         | A custom coordinate system that is not in alignment (dimensions, axis orientation, unit) with any device coordinate system. |
-
-### ReferenceMap key allowed values
+### SpatialReference key allowed values
 
 | **Value name** | **Description**                                                                                                               |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | orig           | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
 | uri or path    | This can be used to point to a specific file.                                                                                 |
 
-### Example sidecar files
+### Examples
 
-For a NIFTI file (Single coordinate system), one could have registered the File
-on to the standard MNI305 template. The way to write the metadata of such File
-is:
+Preprocessed `bold` NIfTI file in `individual` coordinate space. Please mind
+that in this case `SpatialReference` key is REQUIRED.
+
+```Text
+sub-01/func/sub-01_task-rest_space-individual_bold.nii.gz
+sub-01/func/sub-01_task-rest_space-individual_bold.json
+```
 
 ```JSON
 {
-    "CoordinateSystem": "MNI305"
+    "SpatialReference": "/sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
 }
 ```
 
-However, it could also be the case that a nonstandard derivative of MNI305 was
-used as standard space for the File. That can be written as follows:
+Participant cortical thickness GIFTI file in `individual` coordinate space.
+Please mind that in this case `SpatialReference` key is REQUIRED.
 
-```JSON
-{
-    "CoordinateSystem": "MNI305",
-    "ReferenceMap": "uri or path to file"
-}
+```Text
+sub-01/anat/sub-01_hemi-L_space-individual_thickness.shape.gii
+sub-01/anat/sub-01_hemi-L_space-individual_thickness.json
 ```
 
-Some derivatives such as CIFTI Files allow for multiple coordinate systems. Such
-possibility is enabled by using lists of spaces and references:
-
 ```JSON
 {
-    "CoordinateSystem": ["MNI305", "fsLR32k"]
-}
-```
-
-Differing references of the same spaces with respect to the above example can be
-expressed as follows:
-
-```JSON
-{
-    "CoordinateSystem": ["MNI152Lin", "fsLR164k"]
+    "SpatialReference": "/sub-01/anat/sub-01_hemi-L_pial.surf.gii"
 }
 ```
 
