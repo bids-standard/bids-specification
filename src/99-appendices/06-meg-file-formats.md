@@ -177,10 +177,9 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_meg.<con,sqd>
 ```
 
-Marker coil files MUST have an acquisition parameter if there is more than
-one file, and no more than two files may be associated with the one raw file.
-The acquisition parameter should make it clear how to distinguish the difference
-between the different marker coil measurements.
+If there are multiple files with marker coils, they must have the `acq-<label>`
+parameter and no more that two marker files may be associated with one raw data
+file.
 While the acquisition parameter can take any value, it is RECOMMENDED that if
 the two marker measurements occur before and after the raw data acquisition,
 `pre` and `post` are used to differentiate the two situations.
