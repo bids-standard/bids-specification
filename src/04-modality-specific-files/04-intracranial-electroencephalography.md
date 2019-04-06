@@ -23,8 +23,8 @@ Template:
 sub-<label>/
   [ses-<label>]/
     ieeg/
-      sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>][_run-<index>]_ieeg.<manufacturer_specific_extension>
-      sub-<label>[_ses-<label>]_task-<task_label>[_acq-<label>][_run-<index>]_ieeg.json
+      sub-<label>[_ses-<label>]_task-<task_label>[_run-<index>]_ieeg.<manufacturer_specific_extension>
+      sub-<label>[_ses-<label>]_task-<task_label>[_run-<index>]_ieeg.json
 ```
 
 The iEEG community uses a variety of formats for storing raw data, and there is
@@ -211,7 +211,7 @@ Template:
 sub-<label>/
     [ses-<label>]/
       ieeg/
-        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_channels.tsv]
+        [sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_channels.tsv]
 ```
 
 A channel represents one time series recorded with the recording system (for
