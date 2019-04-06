@@ -26,8 +26,8 @@ Template:
 sub-<label>/
     [ses-<label>]/
       eeg/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_eeg.<manufacturer_specific_extension>
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_eeg.json
+        sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_eeg.<manufacturer_specific_extension>
+        sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_eeg.json
 ```
 
 The EEG community uses a variety of formats for storing raw data, and there is
@@ -188,7 +188,7 @@ Template:
 sub-<label>/
     [ses-<label>]/
       eeg/
-        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_channels.tsv]
+        [sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_channels.tsv]
 ```
 
 Although this information can often be extracted from the EEG recording,
@@ -303,6 +303,10 @@ Fz    0.0000    0.0714   0.0699    cup       Ag/AgCl
 REF   -0.0742   -0.0200  -0.0100   cup       Ag/AgCl
 GND   0.0742    -0.0200  -0.0100   cup       Ag/AgCl
 ```
+
+The `acq` parameter can be used to indicate acquisition of the same data (i.e.,
+the electrode positions) with, for example, a different electrode position
+recording device.
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
@@ -419,9 +423,13 @@ sub-<label>/
 ```
 
 Photos of the anatomical landmarks and/or fiducials are OPTIONAL.
-Please note that the photos may need to be cropped or
-blurred to conceal identifying features prior to sharing, depending on the
-terms of the consent form signed by the participant.
+Please note that the photos may need to be cropped or blurred to conceal
+identifying features prior to sharing, depending on the terms of the consent
+form signed by the participant.
+
+The `acq` parameter can be used to indicate acquisition of different photos of
+the same face (or other body part in different angles to show, for example, the
+location of the nasion (NAS) as opposed to the right periauricular point (RPA).
 
 Example:
 
