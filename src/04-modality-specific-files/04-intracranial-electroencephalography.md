@@ -262,28 +262,28 @@ TR1   TRIG  n/a   n/a         n/a         good    n/a
 Restricted keyword list for field type in alphabetic order (shared with the MEG
 and EEG modality; however, only types that are common in iEEG data are listed here):
 
-| Keyword  | Description                                                       |
-| :------- | :---------------------------------------------------------------- |
-| EEG      | Electrode channel from electroencephalogram                       |
-| ECOG     | Electrode channel from electrocorticogram (intracranial)          |
-| SEEG     | Electrode channel from stereo-electroencephalogram (intracranial) |
-| DBS      | Electrode channel from deep brain stimulation (intracranial)      |
-| VEOG     | Vertical EOG (electrooculogram)                                   |
-| HEOG     | Horizontal EOG                                                    |
-| EOG      | Generic EOG channel if HEOG or VEOG information not available     |
-| ECG      | ElectroCardioGram (heart)                                         |
-| EMG      | ElectroMyoGram (muscle)                                           |
-| TRIG     | System Triggers                                                   |
-| AUDIO    | Audio signal                                                      |
-| PD       | Photodiode                                                        |
-| EYEGAZE  | Eye Tracker gaze                                                  |
-| PUPIL    | Eye Tracker pupil diameter                                        |
-| MISC     | Miscellaneous                                                     |
-| SYSCLOCK | System time showing elapsed time since trial started              |
-| ADC      | Analog to Digital input                                           |
-| DAC      | Digital to Analog output                                          |
-| REF      | Reference channel                                                 |
-| OTHER    | Any other type of channel                                         |
+| Keyword  | Description                                                            |
+| :------- | :--------------------------------------------------------------------- |
+| EEG      | Electrode channel from electroencephalogram                            |
+| ECOG     | Electrode channel from electrocorticogram (intracranial)               |
+| SEEG     | Electrode channel from stereo-electroencephalogram (intracranial)      |
+| DBS      | Electrode channel from deep brain stimulation electrode (intracranial) |
+| VEOG     | Vertical EOG (electrooculogram)                                        |
+| HEOG     | Horizontal EOG                                                         |
+| EOG      | Generic EOG channel if HEOG or VEOG information not available          |
+| ECG      | ElectroCardioGram (heart)                                              |
+| EMG      | ElectroMyoGram (muscle)                                                |
+| TRIG     | System Triggers                                                        |
+| AUDIO    | Audio signal                                                           |
+| PD       | Photodiode                                                             |
+| EYEGAZE  | Eye Tracker gaze                                                       |
+| PUPIL    | Eye Tracker pupil diameter                                             |
+| MISC     | Miscellaneous                                                          |
+| SYSCLOCK | System time showing elapsed time since trial started                   |
+| ADC      | Analog to Digital input                                                |
+| DAC      | Digital to Analog output                                               |
+| REF      | Reference channel                                                      |
+| OTHER    | Any other type of channel                                              |
 
 The free text field for the channel description can for example be specified as
 intracranial, stimulus, response, vertical EOG, horizontal EOG, skin
@@ -303,12 +303,13 @@ sub-<label>/
 File that gives the location, size and other properties of iEEG electrodes. Note
 that coordinates are expected in cartesian coordinates according to the
 `iEEGCoordinateSystem` and `iEEGCoordinateSystemUnits` fields in
-`*_coordsystem.json`. **If an `*_electrodes.tsv` file is specified, a
-`*_coordsystem.json` file MUST be specified as well**.
+`*_coordsystem.json`. If an `*_electrodes.tsv` file is specified, a
+`*_coordsystem.json` file MUST be specified as well.
 
 The optional space label (`*[_space-<label>]_electrodes.tsv`) can be used to
-indicate the way in which electrode positions are interpreted. Potential labels
-need to be taken from the list in [Appendix VIII](../99-appendices/08-coordinate-systems.md)
+indicate the way in which electrode positions are interpreted. The space label
+needs to be taken from the list in
+[Appendix VIII](../99-appendices/08-coordinate-systems.md)
 
 For examples:
 
@@ -351,11 +352,11 @@ SHOULD be present:
 
 MAY be present:
 
-| Column name | Definition                                                                                                                                        |
-| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
-| type        | OPTIONAL. Optional type of the electrode, e.g., cup, ring, clip-on, wire, needle, ...                                                             |
-| impedance   | OPTIONAL. Impedance of the electrode in kOhm.                                                                                                     |
-| dimension   | OPTIONAL. Size of the grid/strip/probe that this electrode belongs to. Must be of form `[AxB]` with the smallest dimension first (e.g., `[1x8]`). |
+| Column name | Definition                                                                                                                                                |
+| :---------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type        | OPTIONAL. Optional type of the electrode, e.g., cup, ring, clip-on, wire, needle, ...                                                                     |
+| impedance   | OPTIONAL. Impedance of the electrode in kOhm.                                                                                                             |
+| dimension   | OPTIONAL. Size of the group (grid/strip/probe) that this electrode belongs to. Must be of form `[AxB]` with the smallest dimension first (e.g., `[1x8]`). |
 
 Example:
 
@@ -483,7 +484,7 @@ EEG technician and provided to the epileptologists (e.g., see Burneo JG et al.
 2014 [https://doi.org/10.1016/j.clineuro.2014.03.020](https://doi.org/10.1016/j.clineuro.2014.03.020)).
 
 ```Text
-    sub-0002_ses-001_acq-render_photo.jpg (for volume rendering)
+    sub-0002_ses-01_acq-render_photo.jpg
 ```
 
 ![volume rendering of the cortical surface](images/ieeg_electrodes2.png "volume rendering of the cortical surface")
