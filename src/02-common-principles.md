@@ -196,13 +196,13 @@ acquisition parameters
 
 ```Text
 task-xyz_acq-test1_bold.json
-    sub-01/
-        anat/
-        func/
-            sub-01_task-xyz_acq-test1_run-1_bold.nii.gz
-            sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz
-            sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz
-            sub-01_task-xyz_acq-test1_bold.json
+sub-01/
+    anat/
+    func/
+        sub-01_task-xyz_acq-test1_run-1_bold.nii.gz
+        sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz
+        sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz
+        sub-01_task-xyz_acq-test1_bold.json
 ```
 
 In the above example, the fields from the `task-xyz_acq-test1_bold.json` file
