@@ -33,7 +33,7 @@ stored in one of the following formats:
 
 -   [European Data Format](https://www.edfplus.info/) (`.edf`)
 
--   [BrainVision data format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
+-   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
     (`.vhdr`, `.eeg`, `.vmrk`) by Brain Products GmbH
 
 -   The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab)
@@ -231,7 +231,7 @@ MUST be present:
 
 | Column name  | Definition                                                                                                                                                                                                                                                                                                                               |
 | :----------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name         | REQUIRED. Label of the channel, only contains letters and numbers. The label must correspond to \_electrodes.tsv name and all ieeg type channels are required to have a position. The reference channel name MUST be provided in the reference column.                                                                                   |
+| name         | REQUIRED. Label of the channel. The label must correspond to \_electrodes.tsv name and all ieeg type channels are required to have a position. The reference channel name MAY be provided in the reference column.                                                                                                                       |
 | type         | REQUIRED. Type of channel, see below for adequate keywords in this field.                                                                                                                                                                                                                                                                |
 | units        | REQUIRED. Physical unit of the value represented in this channel, e.g., V for Volt, specified according to the [SI unit symbol](https://en.wikipedia.org/wiki/International_System_of_Units#Base_units) and possibly prefix symbol (e.g., mV, μV). For guidelines for Units and Prefixes see [Appendix V](../99-appendices/05-units.md). |
 | low_cutoff   | REQUIRED. Frequencies used for the low pass filter applied to the channel in Hz. If no low pass filter was applied, use `n/a`. Note that anti-alias is a low pass filter, specify its frequencies here if applicable.                                                                                                                    |
@@ -262,34 +262,34 @@ TR1   TRIG  n/a   n/a         n/a         good    n/a
 Restricted keyword list for field type in alphabetic order (shared with the MEG
 and EEG modality; however, only types that are common in iEEG data are listed here):
 
-| Keyword  | Description                                                       |
-| :------- | :---------------------------------------------------------------- |
-| EEG      | Electrode channel from electroencephalogram                       |
-| ECOG     | Electrode channel from electrocorticogram (intracranial)          |
-| SEEG     | Electrode channel from stereo-electroencephalogram (intracranial) |
-| DBS      | Electrode channel from deep brain stimulation (intracranial)      |
-| VEOG     | Vertical EOG (electrooculogram)                                   |
-| HEOG     | Horizontal EOG                                                    |
-| EOG      | Generic EOG channel if HEOG or VEOG information not available     |
-| ECG      | ElectroCardioGram (heart)                                         |
-| EMG      | ElectroMyoGram (muscle)                                           |
-| TRIG     | System Triggers                                                   |
-| AUDIO    | Audio signal                                                      |
-| PD       | Photodiode                                                        |
-| EYEGAZE  | Eye Tracker gaze                                                  |
-| PUPIL    | Eye Tracker pupil diameter                                        |
-| MISC     | Miscellaneous                                                     |
-| SYSCLOCK | System time showing elapsed time since trial started              |
-| ADC      | Analog to Digital input                                           |
-| DAC      | Digital to Analog output                                          |
-| REF      | Reference channel                                                 |
-| OTHER    | Any other type of channel                                         |
+| Keyword  | Description                                                            |
+| :------- | :--------------------------------------------------------------------- |
+| EEG      | Electrode channel from electroencephalogram                            |
+| ECOG     | Electrode channel from electrocorticogram (intracranial)               |
+| SEEG     | Electrode channel from stereo-electroencephalogram (intracranial)      |
+| DBS      | Electrode channel from deep brain stimulation electrode (intracranial) |
+| VEOG     | Vertical EOG (electrooculogram)                                        |
+| HEOG     | Horizontal EOG                                                         |
+| EOG      | Generic EOG channel if HEOG or VEOG information not available          |
+| ECG      | ElectroCardioGram (heart)                                              |
+| EMG      | ElectroMyoGram (muscle)                                                |
+| TRIG     | System Triggers                                                        |
+| AUDIO    | Audio signal                                                           |
+| PD       | Photodiode                                                             |
+| EYEGAZE  | Eye Tracker gaze                                                       |
+| PUPIL    | Eye Tracker pupil diameter                                             |
+| MISC     | Miscellaneous                                                          |
+| SYSCLOCK | System time showing elapsed time since trial started                   |
+| ADC      | Analog to Digital input                                                |
+| DAC      | Digital to Analog output                                               |
+| REF      | Reference channel                                                      |
+| OTHER    | Any other type of channel                                              |
 
 The free text field for the channel description can for example be specified as
 intracranial, stimulus, response, vertical EOG, horizontal EOG, skin
 conductance, eyetracker, etc.
 
-## Electrode description (`*[_space-<label>]_electrodes.tsv`)
+## Electrode description (`*_electrodes.tsv`)
 
 Template:
 
@@ -303,12 +303,13 @@ sub-<label>/
 File that gives the location, size and other properties of iEEG electrodes. Note
 that coordinates are expected in cartesian coordinates according to the
 `iEEGCoordinateSystem` and `iEEGCoordinateSystemUnits` fields in
-`*_coordsystem.json`. **If an `*_electrodes.tsv` file is specified, a
-`*_coordsystem.json` file MUST be specified as well**.
+`*_coordsystem.json`. If an `*_electrodes.tsv` file is specified, a
+`*_coordsystem.json` file MUST be specified as well.
 
 The optional space label (`*[_space-<label>]_electrodes.tsv`) can be used to
-indicate the way in which electrode positions are interpreted. Potential labels
-need to be taken from the list in [Appendix VIII](../99-appendices/08-coordinate-systems.md)
+indicate the way in which electrode positions are interpreted. The space label
+needs to be taken from the list in
+[Appendix VIII](../99-appendices/08-coordinate-systems.md)
 
 For examples:
 
@@ -351,11 +352,11 @@ SHOULD be present:
 
 MAY be present:
 
-| Column name | Definition                                                                                                                                        |
-| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
-| type        | OPTIONAL. Optional type of the electrode, e.g., cup, ring, clip-on, wire, needle, ...                                                             |
-| impedance   | OPTIONAL. Impedance of the electrode in kOhm.                                                                                                     |
-| dimension   | OPTIONAL. Size of the grid/strip/probe that this electrode belongs to. Must be of form `[AxB]` with the smallest dimension first (e.g., `[1x8]`). |
+| Column name | Definition                                                                                                                                                |
+| :---------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type        | OPTIONAL. Optional type of the electrode, e.g., cup, ring, clip-on, wire, needle, ...                                                                     |
+| impedance   | OPTIONAL. Impedance of the electrode in kOhm.                                                                                                             |
+| dimension   | OPTIONAL. Size of the group (grid/strip/probe) that this electrode belongs to. Must be of form `[AxB]` with the smallest dimension first (e.g., `[1x8]`). |
 
 Example:
 
@@ -366,7 +367,7 @@ LT02  23  -40  -19  2.3    Integra
 H01   27  -42  -21  5      AdTech
 ```
 
-## Coordinate System JSON (`*[_space-<label>]_coordsystem.json`)
+## Coordinate System JSON (`*_coordsystem.json`)
 
 Template:
 
@@ -483,7 +484,7 @@ EEG technician and provided to the epileptologists (e.g., see Burneo JG et al.
 2014 [https://doi.org/10.1016/j.clineuro.2014.03.020](https://doi.org/10.1016/j.clineuro.2014.03.020)).
 
 ```Text
-    sub-0002_ses-001_acq-render_photo.jpg (for volume rendering)
+    sub-0002_ses-01_acq-render_photo.jpg
 ```
 
 ![volume rendering of the cortical surface](images/ieeg_electrodes2.png "volume rendering of the cortical surface")
@@ -496,7 +497,7 @@ onset, duration), the `_events.tsv` file can contain the electrical stimulation
 parameters in addition to other events. Note that these can be intermixed with
 other task events. Electrical stimulation parameters can be described in columns
 called `electrical_stimulation_<label>`, with labels chosen by the researcher and
-optionally defined in more detail in an accompanying `_electrodes.json` file (as
+optionally defined in more detail in an accompanying `_events.json` file (as
 per the main BIDS spec). Functions for complex stimulation patterns can, similar
 as when a video is presented, be stored in a folder in the `/stimuli/` folder.
 For example: `/stimuli/electrical_stimulation_functions/biphasic.tsv`

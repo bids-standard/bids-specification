@@ -352,7 +352,7 @@ For more information on typical coordinate systems for MEG-MRI coregistration:
 or:
 [http://neuroimage.usc.edu/brainstorm/CoordinateSystems](http://neuroimage.usc.edu/brainstorm/CoordinateSystems)
 
-### Landmark photos (`*_photo.jpg`)
+## Landmark photos (`*_photo.jpg`)
 
 Photos of the anatomical landmarks and/or head localization coils
 (`*_photo.jpg`)
@@ -378,7 +378,7 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
 
-### 3-D head point /electrode locations
+## Head shape and electrode description (`*_headshape.<ext>`)
 
 Template:
 
@@ -391,12 +391,12 @@ sub-<label>/
 
 This file is RECOMMENDED.
 
-The 3-D locations of head points and/or EEG electrode locations can be digitized
-and stored in separate files. The `*_acq-<label>` can be used when more than one
-type of digitization in done for a session, for example when the head points are
-in a separate file from the EEG locations. These files are stored in the
-specific format of the 3-D digitizer’s manufacturer (see
-[Appendix VI](../99-appendices/06-meg-file-formats.md)).
+The 3-D locations of points that describe the head shape and/or EEG
+electrode locations can be digitized and stored in separate files. The
+`*_acq-<label>` can be used when more than one type of digitization in done for
+a session, for example when the head points are in a separate file from the EEG
+locations. These files are stored in the specific format of the 3-D digitizer’s
+manufacturer (see [Appendix VI](../99-appendices/06-meg-file-formats.md)).
 
 Example:
 
@@ -411,15 +411,16 @@ Note that the `*_headshape` file(s) is shared by all the runs and tasks in a
 session. If the subject needs to be taken out of the scanner and the head-shape
 has to be updated, then for MEG it could be considered to be a new session.
 
-### Empty-room files (`sub-emptyroom`)
+## Empty-room MEG recordings
 
-Empty-room MEG files capture the environment and system noise. Their collection
-is RECOMMENDED, before/during/after each session. This data is stored inside a
-subject folder named `sub-emptyroom`. The `session label` SHOULD be that of the
-date of the empty-room recording (e.g. `ses-YYYYMMDD`). The `scans.tsv` file
-containing the date/time of the acquisition SHOULD also be included. Hence,
-users will be able to retrieve the empty-room recording that best matches a
-particular session with a participant, based on date/time of recording.
+Empty-room MEG recordings capture the environment and system noise. Their
+collection is RECOMMENDED, before/during/after each session. This data is stored
+inside a subject folder named `sub-emptyroom`. The `session label` SHOULD be
+that of the date of the empty-room recording (e.g. `ses-YYYYMMDD`). The
+`scans.tsv` file containing the date/time of the acquisition SHOULD also be
+included. Hence, users will be able to retrieve the empty-room recording that
+best matches a particular session with a participant, based on date/time of
+recording.
 
 Example:
 
