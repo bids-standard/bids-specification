@@ -81,6 +81,7 @@ your name is not listed, please add it.
 -   Christopher J. Markiewicz 💬📖💻
 -   Jeremy Moreau 📖💡
 -   Zachary Michael 📖
+-   Ezequiel Mikulan 📖💻
 -   Michael P. Milham 💡🔍
 -   Henk Mutsaerts 📖
 -   National Institute of Mental Health 💵
