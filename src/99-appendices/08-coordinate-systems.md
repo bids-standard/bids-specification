@@ -1,5 +1,7 @@
 # Appendix VIII: Preferred Names of Coordinate Systems
 
+## Introduction
+
 To interpret a coordinate (x, y, z), it is required that you know relative to
 which origin the coordinates are expressed, you have to know the interpretation
 of the three axes, and you have to know the units in which the numbers are
@@ -44,9 +46,9 @@ information (origin, orientation) are specified in `XXXCoordinateSystem`, and
 the units are specified in `XXXCoordinateSystemUnits`.
 
 Allowed values for the `XXXCoordinateSystem` field come from a list of
-restricted keywords, as listed in the sections below. If no value from the
-list of restricted keywords fits, there is always the option to specify the
-value as follows:
+restricted keywords, as listed in the sections below. If no value from the list
+of restricted keywords fits, there is always the option to specify the value as
+follows:
 
 -   `Other`: Use this for other coordinate systems and specify further details
     in the `XXXCoordinateSystemDescription` field
@@ -82,7 +84,8 @@ Restricted keywords for the `XXXCoordinateSystem` field in the
 Note that the short descriptions above do not capture all details, There are
 detailed extensive descriptions of these EEG coordinate systems on the
 [FieldTrip toolbox web page](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
-and on the [BESA wiki](http://wiki.besa.de/index.php?title=Electrodes_and_Surface_Locations#Coordinate_systems).
+and on the
+[BESA wiki](http://wiki.besa.de/index.php?title=Electrodes_and_Surface_Locations#Coordinate_systems).
 
 ## iEEG Specific Coordinate Systems
 
@@ -101,8 +104,9 @@ Restricted keywords for the `XXXCoordinateSystem` field in the
     positive z-axis is passing through a mid-hemispheric point in the superior
     direction. The anatomical landmarks are determined in the individual's
     anatomical scan and no scaling or deformations have been applied to the
-    individual's anatomical scan. For more information, see the [ACPC site](http://www.fieldtriptoolbox.org/faq/acpc/)
-    on the FieldTrip toolbox wiki.
+    individual's anatomical scan. For more information, see the
+    [ACPC site](http://www.fieldtriptoolbox.org/faq/acpc/) on the FieldTrip
+    toolbox wiki.
 
 ## Template Based Coordinate Systems
 
@@ -112,10 +116,21 @@ below, the origin is at the AC and the orientation of the axes is RAS. Unless
 specified explicitly in the sidecar file in the `XXCoordinateSystemUnits` field,
 the units are assumed to be mm.
 
+### Common for Surface and Volume
+
+| Coordinate System | Description                                                                                                                                                                                                                                                           |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| individual        | Participant specific anatomical space (for example derived from T1w and/or T2w images). This coordinate system requires specifying an additional, participant-specific file to be fully defined. In context of surfaces this space has been refered to as `fsnative`. |
+| custom            | Custom space defined using a group/study-specific template. This coordinate system requires specifying an additional file to be fully defined.                                                                                                                        |
+
+### Volume
+
 | Coordinate System                                   | Description                                                                                                                                                                                                                                                                                                                                                      |
-| ---------------------------------------------------   | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------   |
+| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FS305                                               | FreeSurfer variant of the MNI305 space                                                                                                                                                                                                                                                                                                                           |
 | MNI152Lin                                           | Also known as ICBM (version with linear coregistration) [http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152Lin](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152Lin)                                                                                                                                                                                       |
-| MNI152NLin6\[Sym&#124;Asym\]                        | Also known as ICBM 6th generation (non-linear coregistration). Used by SPM99 -   SPM8 and FSL (MNI152NLin6Sym). [http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin6](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin6)                                                                                                                           |
+| MNI152NLin6\[Sym&#124;Asym\]                        | Also known as ICBM 6th generation (non-linear coregistration). Used by SPM99 - SPM8 and FSL (MNI152NLin6Sym). [http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin6](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin6)                                                                                                                             |
+| MNI152NLin6AsymConte69                              | Template based on MNI152NLin6Asym using Conte69 data. Built by Human Connectome Project. [https://github.com/Washington-University/HCPpipelines/tree/master/global/templates](https://github.com/Washington-University/HCPpipelines/tree/master/global/templates)                                                                                                |
 | MNI152NLin2009\[a-c\]\[Sym&#124;Asym\]              | Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009). It comes in either three different flavours each in symmetric or asymmetric version. [http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009)                                                           |
 | MNIColin27                                          | Average of 27 T1 scans of a single subject [http://www.bic.mni.mcgill.ca/ServicesAtlases/Colin27Highres](http://www.bic.mni.mcgill.ca/ServicesAtlases/Colin27Highres)                                                                                                                                                                                            |
 | MNI305                                              | Also known as avg305.                                                                                                                                                                                                                                                                                                                                            |
@@ -126,7 +141,22 @@ the units are assumed to be mm.
 | ICBM452AirSpace                                     | Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" with "linear transforms of the subjects into the atlas space using a 12-parameter affine transformation" [http://www.loni.usc.edu/ICBM/Downloads/Downloads_452T1.shtml](http://www.loni.usc.edu/ICBM/Downloads/Downloads_452T1.shtml)                              |
 | ICBM452Warp5Space                                   | Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" "based on a 5th order polynomial transformation into the atlas space" [http://www.loni.usc.edu/ICBM/Downloads/Downloads_452T1.shtml](http://www.loni.usc.edu/ICBM/Downloads/Downloads_452T1.shtml)                                                                 |
 | IXI549Space                                         | Reference space defined by the average of the "549 (...) subjects from the IXI dataset" linearly transformed to ICBM MNI 452.Used by SPM12. [http://www.brain-development.org/](http://www.brain-development.org/)                                                                                                                                               |
-| fsaverage\[3&#124;4&#124;5&#124;6&#124;sym\]        | Images were sampled to the FreeSurfer surface reconstructed from the subject’s T1w image, and registered to an fsaverage template                                                                                                                                                                                                                                |
-| UNCInfant\[0&#124;1&#124;2\]V\[21&#124;22&#124;23\] | Infant Brain Atlases from Neonates to 1-   and 2-year-olds. [https://www.nitrc.org/projects/pediatricatlas](https://www.nitrc.org/projects/pediatricatlas)                                                                                                                                                                                                       |
+| UNCInfant\[0&#124;1&#124;2\]V\[21&#124;22&#124;23\] | Infant Brain Atlases from Neonates to 1- and 2-year-olds. [https://www.nitrc.org/projects/pediatricatlas](https://www.nitrc.org/projects/pediatricatlas)                                                                                                                                                                                                         |
+
+### Surface
+
+| Coordinate System                            | Description                                                                                                                                                                                                                                                                                                                 |
+| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| fsaverage\[3&#124;4&#124;5&#124;6&#124;sym\] | Images were sampled to the FreeSurfer surface reconstructed from the subject’s T1w image, and registered to an fsaverage template                                                                                                                                                                                           |
+| fsLR\[164k&#124;59k&#124;32k&#124;4k\]       | Images were sampled to the 164k (used by HCP pipelines for 3T and 7T anatomical analysis), 59k (used by HCP pipelines for 7T MRI bold and DWI analysis), 32k (used by HCP pipelines for 3T MRI bold and DWI analysis), or 4k (used by HCP pipelines for MEG analysis) fsaverage_LR surface reconstructed from the T1w image |
+
+### Hybrid (Volume/Surface) aliases
+
+Hybrid spaces combining surface and volume data used with CIFTI files.
+
+| Coordinate System | Description                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| HCPMNIfsLR32k     | Combination of `MNI152NLin6AsymConte69` subcortical volumetric space (with 2mm grid) and `fsLR32k` surface space resulting in 91282 data points per timepoint. Used in Human Connectom Project. [https://github.com/Washington-University/HCPpipelines/tree/master/global/templates/91282_Greyordinates](https://github.com/Washington-University/HCPpipelines/tree/master/global/templates/91282_Greyordinates)      |
+| HCPMNIfsLR59k     | Combination of `MNI152NLin6AsymConte69` subcortical volumetric space (with 1.6mm grid) and `fsLR59k` surface space resulting in 170494 data points per timepoint. Used in Human Connectom Project. [https://github.com/Washington-University/HCPpipelines/tree/master/global/templates/170494_Greyordinates](https://github.com/Washington-University/HCPpipelines/tree/master/global/templates/170494_Greyordinates) |
 
 ---

@@ -43,8 +43,9 @@ your name is not listed, please add it.
 -   Samir Das 📖
 -   Alejandro de la Vega 🐛💻⚠️
 -   Arnaud Delorme 📖💡
+-   Erin W. Dickie 📖🤔👀📢💬
 -   Eugene P. Duff 📖
--   Elizabeth DuPre 📖💡🔍🤔
+-   Elizabeth DuPre 📖💡🔍🤔💬
 -   Eric A. Earl 🤔
 -   Anders Eklund 📖📢💻
 -   Oscar Esteban 📖🔧🤔💬💻
