@@ -173,7 +173,7 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_meg
             sub-control01_ses-001_task-rest_run-01_meg.json
             sub-control01_ses-001_task-rest_run-01_channels.tsv
-            sub-control01_ses-001_task-rest_run-01[_acq-<label>]_markers.<mrk,sqd>
+            sub-control01_ses-001_task-rest[_acq-<label>]_run-01_markers.<mrk,sqd>
             sub-control01_ses-001_task-rest_run-01_meg.<con,sqd>
 ```
 
