@@ -24,11 +24,11 @@ continuous measures (such as parameters of a film or audio stimuli) can be
 specified using two files: a gzip compressed TSV file with data (without header
 line) and a JSON for storing the following metadata fields:
 
-| Field name        | Definition                                                                                                                                                   |
-| :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SamplingFrequency | REQUIRED. Sampling frequency in Hz of all columns in the file.                                                                                               |
-| StartTime         | REQUIRED. Start time in seconds in relation to the start of acquisition of the first volume in the corresponding imaging file (negative values are allowed). |
-| Columns           | REQUIRED. Names of columns in file.                                                                                                                          |
+| Field name        | Definition                                                                                                                                                          |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| SamplingFrequency | REQUIRED. Sampling frequency in Hz of all columns in the file.                                                                                                      |
+| StartTime         | REQUIRED. Start time in seconds in relation to the start of acquisition of the first data sample in the corresponding neural dataset (negative values are allowed). |
+| Columns           | REQUIRED. Names of columns in file.                                                                                                                                 |
 
 Please note that in contrast to other TSV files this one does not include a
 header line. Instead the name of columns are specified in the JSON file.
