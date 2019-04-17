@@ -174,7 +174,7 @@ decreased. Dates that are shifted for anonymization purposes should be set to a
 year 1900 or earlier to clearly distinguish them from unmodified data. Shifting
 dates is recommended, but not required.
 
-Additional fields can include external behavioural measures relevant to the
+Additional fields can include external behavioral measures relevant to the
 scan. For example vigilance questionnaire score administered after a resting
 state scan.
 

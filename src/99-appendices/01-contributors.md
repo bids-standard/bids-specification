@@ -30,7 +30,7 @@ The following individuals have contributed to the Brain Imaging Data Structure
 ecosystem (in alphabetical order). If you contributed to the BIDS ecosystem and
 your name is not listed, please add it.
 
--   Stefan Appelhoff 📖💬🤔🐛💡💻
+-   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️📢
 -   Tibor Auer 💬📖💡🔧📢
 -   Sylvain Baillet 📖🔍
 -   Elizabeth Bock 📖💡
@@ -42,6 +42,7 @@ your name is not listed, please add it.
 -   R. Cameron Craddock 📖📢
 -   Samir Das 📖
 -   Alejandro de la Vega 🐛💻⚠️
+-   Arnaud Delorme 📖💡
 -   Eugene P. Duff 📖
 -   Elizabeth DuPre 📖💡🔍🤔
 -   Eric A. Earl 🤔
@@ -80,6 +81,7 @@ your name is not listed, please add it.
 -   Christopher J. Markiewicz 💬📖💻
 -   Jeremy Moreau 📖💡
 -   Zachary Michael 📖
+-   Ezequiel Mikulan 📖💻
 -   Michael P. Milham 💡🔍
 -   Henk Mutsaerts 📖
 -   National Institute of Mental Health 💵
@@ -87,13 +89,15 @@ your name is not listed, please add it.
 -   Thomas E. Nichols 📖📢🔧
 -   Dylan Nielson 📖💻🔧
 -   Guiomar Niso 📖💡📢
--   Robert Oostenveld 📖🔧📢💡
+-   Robert Oostenveld 📖🔧📢💡✅⚠️🤔
+-   Dimitri Papadopoulos Orfanos 📖💡🤔💬
 -   Patrick Park 📖💡💬
 -   Dianne Patterson 📖
 -   John Pellman 📖
 -   Cyril Pernet 💬📖💡📋
 -   Franco Pestilli 📖
 -   Dmitry Petrov 📖💻
+-   Christophe Philips 📖
 -   Russell A. Poldrack 📖🔍📢
 -   Jean-Baptiste Poline 📖📢🤔🎨
 -   Vasudev Raguram 💻🎨📖🔧
