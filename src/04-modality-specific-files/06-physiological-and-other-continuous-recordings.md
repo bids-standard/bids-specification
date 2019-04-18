@@ -30,6 +30,9 @@ line) and a JSON for storing the following metadata fields:
 | StartTime         | REQUIRED. Start time in seconds in relation to the start of acquisition of the first data sample in the corresponding neural dataset (negative values are allowed). |
 | Columns           | REQUIRED. Names of columns in file.                                                                                                                                 |
 
+Additional metadata may be included as in
+[any TSV file](../02-common-principles.md#tabular-files) to specify, for
+example, the units of the recorded time series.
 Please note that in contrast to other TSV files this one does not include a
 header line. Instead the name of columns are specified in the JSON file.
 This is to improve compatibility with existing software (FSL PNM) as
@@ -95,5 +98,8 @@ sub-control01/
    "SamplingFrequency": 100.0,
    "StartTime": -22.345,
    "Columns": ["cardiac", "respiratory", "trigger"]
+   "cardiac": {
+       "Units": "mV"
+   }
 }
 ```
