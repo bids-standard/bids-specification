@@ -97,7 +97,7 @@ sub-control01/
 {
    "SamplingFrequency": 100.0,
    "StartTime": -22.345,
-   "Columns": ["cardiac", "respiratory", "trigger"]
+    "Columns": ["cardiac", "respiratory", "trigger"],
    "cardiac": {
        "Units": "mV"
    }
