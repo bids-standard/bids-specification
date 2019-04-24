@@ -271,9 +271,9 @@ These maps are saved 3D NIfTI files (x,y,z). Some examples of such maps are as f
 | `<parameter>` value | Description                                                        | Possible Model sources                                                             | Unit or scale                       |
 | ------------------- | ------------------------------------------------------------------ | -----------------------------------------------------------------------------------| ----------------------------------- |
 | FA                  | Fractional Anisotropy                                              | DTI, DKI, WMTI (D, Dh, Dr)                                                         | Unitless \[0-1\]                    |
-| MD                  | Mean diffusivity (also called apparent diffusion coefficient, ADC) | DTI, DKI, WMTI (D, Dh, Dr)                                                         | microns<sup>2<\sup>/ms <sup>1<\sup> |
-| AD                  | Axial Diffusivity (also called parallel diffusivity)               | DTI, DKI, WMTI (D, Dh, Dr)                                                         | microns<sup>2<\sup>/ms <sup>1<\sup> |
-| RD                  | Radial Diffusivity (also called perpendicular diffusivity)         | DTI, DKI, WMTI (D, Dh, Dr)                                                         | microns<sup>2<\sup>/ms <sup>1<\sup> |
+| MD                  | Mean diffusivity (also called apparent diffusion coefficient, ADC) | DTI, DKI, WMTI (D, Dh, Dr)                                                         | microns<sup>2</sup>/ms <sup>1</sup> |
+| AD                  | Axial Diffusivity (also called parallel diffusivity)               | DTI, DKI, WMTI (D, Dh, Dr)                                                         | microns<sup>2</sup>/ms <sup>1</sup> |
+| RD                  | Radial Diffusivity (also called perpendicular diffusivity)         | DTI, DKI, WMTI (D, Dh, Dr)                                                         | microns<sup>2</sup>/ms <sup>1</sup> |
 | MODE                | Mode of the tensor                                                 | DTI, DKI, WMTI (D, Dh, Dr)                                                         |                                     |
 | LINEARITY           | Tensor linearity (Westin 1997)                                     | DTI, DKI, WMTI (D, Dh, Dr)                                                         |                                     |
 | PLANARITY           | Tensor planarity (Westin 1997)                                     | DTI, DKI, WMTI (D, Dh, Dr)                                                         |                                     |
@@ -284,12 +284,12 @@ These maps are saved 3D NIfTI files (x,y,z). Some examples of such maps are as f
 | GFA                 | Generalized Fractional Anisotropy                                  | CSA, CSD, SHORE, MAPMRI, Forecast (or any model that can be represented as an ODF) | Proportion \[0-1\]                  |
 | FSUM                | Sum of partial volume fractions of stick components                | Ball-and-stick(s)                                                                  | Volume fraction \[0-1\]             |
 | Fi                  | Volume fraction of stick i                                         | Ball-and-stick(s)                                                                  | Volume fraction \[0-1\]             |
-| D                   | Diffusivity                                                        | Ball-and-stick(s)                                                                  | microns<sup>2<\sup>/ms <sup>1<\sup> |
-| DSTD                | Standard deviation of diffusivity                                  | Ball-and-stick(s)                                                                  | microns<sup>2<\sup>/ms              |
+| D                   | Diffusivity                                                        | Ball-and-stick(s)                                                                  | microns<sup>2</sup>/ms <sup>1</sup> |
+| DSTD                | Standard deviation of diffusivity                                  | Ball-and-stick(s)                                                                  | microns<sup>2</sup>/ms              |
 | RTPP                | Return to the plane probability                                    | MAPMRI                                                                             | Probability \[0-1\]                 |
 | RTAP                | Return to axis probability                                         | MAPMRI                                                                             | Probability \[0-1\]                 |
 
-<sup>1<\sup> For example, for free water in body temperature, the diffusivity in units of microns<sup>2<\sup>/ms should be approximately 3.0.
+<sup>1</sup> For example, for free water in body temperature, the diffusivity in units of microns<sup>2</sup>/ms should be approximately 3.0.
 
 ### Directionally-encoded colour (DEC) maps
 
