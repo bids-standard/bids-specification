@@ -304,9 +304,10 @@ REF   -0.0742   -0.0200  -0.0100   cup       Ag/AgCl
 GND   0.0742    -0.0200  -0.0100   cup       Ag/AgCl
 ```
 
-The `acq` parameter can be used to indicate acquisition of the same data (i.e.,
-the electrode positions) with, for example, a different electrode position
-recording device.
+The `acq` parameter can be used to indicate acquisition of the same data. For
+example, this could be the recording of electrode positions with a different
+electrode position recording device, or repeated digitization before and after
+the recording.
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
@@ -425,7 +426,7 @@ sub-<label>/
 Photos of the anatomical landmarks and/or fiducials are OPTIONAL.
 Please note that the photos may need to be cropped or blurred to conceal
 identifying features prior to sharing, depending on the terms of the consent
-form signed by the participant.
+given by the participant.
 
 The `acq` parameter can be used to indicate acquisition of different photos of
 the same face (or other body part in different angles to show, for example, the

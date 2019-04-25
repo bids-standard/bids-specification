@@ -371,7 +371,7 @@ subject’s head are RECOMMENDED. If the coils are not placed at the location of
 actual anatomical landmarks, these latter may be marked with a piece of felt-tip
 taped to the skin. Please note that the photos may need to be cropped or blurred
 to conceal identifying features prior to sharing, depending on the terms of the
-consent form signed by the participant.
+consent given by the participant.
 
 The `acq` parameter can be used to indicate acquisition of different photos of
 the same face (or other body part in different angles to show, for example, the
