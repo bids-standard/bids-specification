@@ -1,5 +1,8 @@
 site_name: Brain Imaging Data Structure v1.2.0-dev
 theme: material
+markdown_extensions:
+    - toc:
+        permalink: "#"
 plugins:
     - search
 docs_dir: 'src'
