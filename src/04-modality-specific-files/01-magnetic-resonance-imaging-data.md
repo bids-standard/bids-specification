@@ -119,7 +119,7 @@ sub-<label>/[ses-<label>/]
 Anatomical (structural) data acquired for that participant. Currently supported
 modalities include:
 
-| Name               | Modality label | Description                                                                                                                                                                                                                             |
+| Name               | `modality_label` | Description                                                                                                                                                                                                                             |
 | :----------------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | T1 weighted        | T1w            |                                                                                                                                                                                                                                         |
 | T2 weighted        | T2w            |                                                                                                                                                                                                                                         |
@@ -183,7 +183,7 @@ fields specific to anatomical scans:
 
 Currently supported image contrasts include:
 
-| Name               | Contrast label | Description                                                                                                             |
+| Name               | `contrast_label` | Description                                                                                                             |
 | :----------------- | :------------- | :-----------------------------------------------------------------------------------------------------------------------|
 | BOLD               | bold           | Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)                                                      |
 | CBV                | cbv            | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images)                    |
