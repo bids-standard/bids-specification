@@ -4,6 +4,7 @@ Changelog
 
 -   \[INFRA] Enable permalink urls to appear at (sub)section headings [#214](https://github.com/bids-standard/bids-specification/pull/214) ([yarikoptic](https://github.com/yarikoptic))
 -   \[INFRA] bump up mkdocs-materials version [#211](https://github.com/bids-standard/bids-specification/pull/211) ([sappelhoff](https://github.com/sappelhoff))
+-   \[ENH] Various proposed changes to diffusion derivatives [#205](https://github.com/bids-standard/bids-specification/pull/205) ([Lestropie](https://github.com/Lestropie))
 -   \[MISC] Fix github username for @chrisgorgo [#204](https://github.com/bids-standard/bids-specification/pull/204) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[FIX] clarify example 3  in common principles (inheritance) [#202](https://github.com/bids-standard/bids-specification/pull/202) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Expand entity table for MEG/EEG/iEEG specific files [#198](https://github.com/bids-standard/bids-specification/pull/198) ([sappelhoff](https://github.com/sappelhoff))
@@ -21,6 +22,7 @@ Changelog
 -   \[MISC] Introducing Stefan Appelhoff as the first Maintainer [#176](https://github.com/bids-standard/bids-specification/pull/176) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[FIX] Clarify name of "BrainVision" format [#175](https://github.com/bids-standard/bids-specification/pull/175) ([JegouA](https://github.com/JegouA))
 -   \[FIX] Fixes spelling of continuous [#171](https://github.com/bids-standard/bids-specification/pull/171) ([emdupre](https://github.com/emdupre))
+-   \[FIX] Clarify continuous recording metadata fields [#167](https://github.com/bids-standard/bids-specification/pull/167) ([effigies](https://github.com/effigies))
 -   \[FIX] changed reference of `dcm2nii` to `dcm2niix` [#166](https://github.com/bids-standard/bids-specification/pull/166) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[FIX] Removing a leftover file [#162](https://github.com/bids-standard/bids-specification/pull/162) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[ENH] Derived (processed) MR data [#109](https://github.com/bids-standard/bids-specification/pull/109) ([chrisgorgo](https://github.com/chrisgorgo))
