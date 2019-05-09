@@ -2,6 +2,8 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] use \\&lt;label> for \_desc- - not some \\&lt;value> + clarify \\&lt;value> [#224](https://github.com/bids-standard/bids-specification/pull/224) ([yarikoptic](https://github.com/yarikoptic))
+-   \[FIX] Trivial column header fix  [#220](https://github.com/bids-standard/bids-specification/pull/220) ([nicholst](https://github.com/nicholst))
 -   \[INFRA] Enable permalink urls to appear at (sub)section headings [#214](https://github.com/bids-standard/bids-specification/pull/214) ([yarikoptic](https://github.com/yarikoptic))
 -   \[INFRA] bump up mkdocs-materials version [#211](https://github.com/bids-standard/bids-specification/pull/211) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Various proposed changes to diffusion derivatives [#205](https://github.com/bids-standard/bids-specification/pull/205) ([Lestropie](https://github.com/Lestropie))
