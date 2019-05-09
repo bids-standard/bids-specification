@@ -195,6 +195,8 @@ sub-01/anat/sub-01_hemi-L_space-individual_thickness.json
 
 -   Each Derivatives filename MUST be of the form:
     `<source_keywords>[_keyword-<value>]_<suffix>.<ext>`
+    (where `<value>` could either be an `<index>` or a `<label>` depending on
+    the keyword)
 
 -   When the derivatives chain involves outputs derived from a single raw input,
     `source_keywords` MUST be the entire source filename, with the ommission of
@@ -209,7 +211,7 @@ sub-01/anat/sub-01_hemi-L_space-individual_thickness.json
     create and use the sidecar JSON files to detail the specifics of individual
     files.
 
--   When necessary to distinguish two files, the `_desc-<value>` keyword-value
+-   When necessary to distinguish two files, the `_desc-<label>` keyword-value
     should be used. This includes the cases of needing to distinguish both
     differing inputs and differing outputs (e.g., `_desc-T1w` and `_desc-T2w` to
     distinguish brain mask files derived from T1w and T2w images; or `_desc-sm4`
