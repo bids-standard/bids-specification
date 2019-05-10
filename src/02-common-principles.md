@@ -9,19 +9,19 @@ interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 Throughout this specification we use a list of terms and abbreviations. To avoid
 misunderstanding we clarify them here.
 
-1.  Dataset - a set of neuroimaging and behavioral data acquired for a purpose
-    of a particular study. A dataset consists of data acquired from one or more
-    subjects, possibly from multiple sessions.
+1.  **Dataset** - a set of neuroimaging and behavioral data acquired for a
+    purpose of a particular study. A dataset consists of data acquired from one
+    or more subjects, possibly from multiple sessions.
 
-1.  Subject - a person or animal participating in the study.  Used
-    interchangeably with term Participant.
+1.  **Subject** - a person or animal participating in the study.  Used
+    interchangeably with term **Participant**.
 
-1.  Session - a logical grouping of neuroimaging and behavioral data consistent
-    across subjects. Session can (but doesn't have to) be synonymous to a visit
-    in a longitudinal study. In general, subjects will stay in the scanner
-    during one session. However, for example, if a subject has to leave the
-    scanner room and then be re-positioned on the scanner bed, the set of MRI
-    acquisitions will still be considered as a session and match sessions
+1.  **Session** - a logical grouping of neuroimaging and behavioral data
+    consistent across subjects. Session can (but doesn't have to) be synonymous
+    to a visit in a longitudinal study. In general, subjects will stay in the
+    scanner during one session. However, for example, if a subject has to leave
+    the scanner room and then be re-positioned on the scanner bed, the set of
+    MRI acquisitions will still be considered as a session and match sessions
     acquired in other subjects. Similarly, in situations where different data
     types are obtained over several visits (for example fMRI on one day followed
     by DWI the day after) those can be grouped in one session. Defining multiple
@@ -29,48 +29,47 @@ misunderstanding we clarify them here.
     are planned and performed on all -or most- subjects, often in the case of
     some intervention between sessions (e.g., training).
 
-1.  Data acquisition - a continuous uninterrupted block of time during which a
-    brain scanning instrument was acquiring data according to particular
+1.  **Data acquisition** - a continuous uninterrupted block of time during which
+    a brain scanning instrument was acquiring data according to particular
     scanning sequence/protocol.
 
-1.  Data type - a functional group of different types of data. In BIDS we define
-    six data types: func (task based and resting state functional MRI), dwi
-    (diffusion weighted imaging), fmap (field inhomogeneity mapping data such as
-    field maps), anat (structural imaging such as T1, T2, etc.), meg
-    (magnetoencephalography), beh (behavioral).
+1.  **Data type** - a functional group of different types of data. In BIDS we
+    define six data types: `func` (task based and resting state functional MRI),
+    `dwi` (diffusion weighted imaging), `fmap` (field inhomogeneity mapping data
+    such as field maps), `anat` (structural imaging such as T1, T2, etc.), `meg`
+    (magnetoencephalography), `beh` (behavioral).
 
-1.  Task - a set of structured activities performed by the participant. Tasks
-    are usually accompanied by stimuli and responses, and can greatly vary in
-    complexity. For the purpose of this specification we consider the so-called
+1.  **Task** - a set of structured activities performed by the participant. 
+    Tasks are usually accompanied by stimuli and responses, and can greatly vary
+    in complexity. For the purpose of this specification we consider the so-called
     “resting state” a task. In the context of brain scanning, a task is always
     tied to one data acquisition. Therefore, even if during one acquisition the
     subject performed multiple conceptually different behaviors (with different
     sets of instructions) they will be considered one (combined) task.
 
-1.  Event - a stimulus or subject response recorded during a task. Each event
-    has an onset time and duration. Note that not all tasks will have recorded
-    events (e.g., resting state).
+1.  **Event** - a stimulus or subject response recorded during a task. Each
+    event has an onset time and duration. Note that not all tasks will have
+    recorded events (e.g., “resting state”).
 
-1.  Run - an uninterrupted repetition of data acquisition that has the same
+1.  **Run** - an uninterrupted repetition of data acquisition that has the same
     acquisition parameters and task (however events can change from run to run
     due to different subject response or randomized nature of the stimuli). Run
     is a synonym of a data acquisition.
 
-1. `<index>` - a numeric value, possibly prefixed with arbitrary number of 0s
-   for consistent indentation, e.g., it is `01` in `run-01` following
-   `run-<index>` specification.
+1.  **`<index>`** - a numeric value, possibly prefixed with arbitrary number of
+    0s for consistent indentation, e.g., it is `01` in `run-01` following
+    `run-<index>` specification.
 
-1. `<label>` - an alphanumeric value, possibly prefixed with arbitrary number of
-   0s for consistent indentation, e.g., it is `rest` in `task-rest` following
-   `task-<label>` specification.
+1.  **`<label>`** - an alphanumeric value, possibly prefixed with arbitrary
+    number of 0s for consistent indentation, e.g., it is `rest` in `task-rest` 
+    following `task-<label>` specification.
 
-1. `suffix` - a portion of the file name with `key-value_` pairs (thus after the
-   final `_`), right before the File extension.
+1.  **`suffix`** - a portion of the file name with `key-value_` pairs (thus after
+    the final `_`), right before the **File extension**.
 
-1.  File extension - a portion of the the file name after the left-most period
-    (`.`) preceded by any other alphanumeric (so `.gitignore` does not have a
+1.  **File extension** - a portion of the the file name after the left-most
+    period (`.`) preceded by any other alphanumeric (so `.gitignore` does not have a
     suffix)
-
 
 ## Compulsory, optional, and additional data and metadata
 
