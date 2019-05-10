@@ -6,14 +6,15 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 
-Throughout this specification we use a list of terms. To avoid
+Throughout this specification we use a list of terms and abbreviations. To avoid
 misunderstanding we clarify them here.
 
 1.  Dataset - a set of neuroimaging and behavioral data acquired for a purpose
     of a particular study. A dataset consists of data acquired from one or more
     subjects, possibly from multiple sessions.
 
-1.  Subject - a person or animal participating in the study.
+1.  Subject - a person or animal participating in the study.  Used
+    interchangeably with term Participant.
 
 1.  Session - a logical grouping of neuroimaging and behavioral data consistent
     across subjects. Session can (but doesn't have to) be synonymous to a visit
@@ -54,6 +55,22 @@ misunderstanding we clarify them here.
     acquisition parameters and task (however events can change from run to run
     due to different subject response or randomized nature of the stimuli). Run
     is a synonym of a data acquisition.
+
+1. `<index>` - a numeric value, possibly prefixed with arbitrary number of 0s
+   for consistent indentation, e.g., it is `01` in `run-01` following
+   `run-<index>` specification.
+
+1. `<label>` - an alphanumeric value, possibly prefixed with arbitrary number of
+   0s for consistent indentation, e.g., it is `rest` in `task-rest` following
+   `task-<label>` specification.
+
+1. `suffix` - a portion of the file name with `key-value_` pairs (thus after the
+   final `_`), right before the File extension.
+
+1.  File extension - a portion of the the file name after the left-most period
+    (`.`) preceded by any other alphanumeric (so `.gitignore` does not have a
+    suffix)
+
 
 ## Compulsory, optional, and additional data and metadata
 
