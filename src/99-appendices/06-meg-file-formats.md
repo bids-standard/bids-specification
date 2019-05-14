@@ -156,9 +156,9 @@ More about the 4D neuroimaging/BTi data organization at:
 ## KIT/Yokogawa/Ricoh
 
 Each experimental run on a KIT/Yokogawa/Ricoh system yields a raw
-(`.sqd`, `.con`) file with its associated marker coil file (`.mrk`), which
-contains coil positions in the acquisition system’s native space. Head
-points and marker points in head space are acquired using third-party
+(`.sqd`, `.con`) file with its associated marker coil file(s) (`.sqd`, `.mrk`),
+which contains coil positions in the acquisition system’s native space.
+Head points and marker points in head space are acquired using third-party
 hardware.
 
 Example:
@@ -173,9 +173,16 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_meg
             sub-control01_ses-001_task-rest_run-01_meg.json
             sub-control01_ses-001_task-rest_run-01_channels.tsv
-            sub-control01_ses-001_task-rest_run-01_markers.<mrk,sqd>
+            sub-control01_ses-001_task-rest[_acq-<label>]_run-01_markers.<mrk,sqd>
             sub-control01_ses-001_task-rest_run-01_meg.<con,sqd>
 ```
+
+If there are files with multiple marker coils, the marker files must have the
+`acq-<label>` parameter and no more that two marker files may be associated with
+one raw data file.
+While the acquisition parameter can take any value, it is RECOMMENDED that if
+the two marker measurements occur before and after the raw data acquisition,
+`pre` and `post` are used to differentiate the two situations.
 
 More about the KIT/Yokogawa/Ricoh data organization at:
 [http://www.fieldtriptoolbox.org/getting_started/yokogawa](http://www.fieldtriptoolbox.org/getting_started/yokogawa)
