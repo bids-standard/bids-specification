@@ -27,8 +27,17 @@ If we determine we are ready to release, please have the PR submitter add an add
 
 ![GH-release-3](release_images/GH-release_3.png "GH-release-3")
 
-### 5. Edit the mkdocs.yml file site_name to append '-dev'
-
-Please submit a PR with the title REL: site_name-dev. This should be the first merged PR in the new version. This process is illustrated below. ![stable-to-dev](release_images/site_name_3-3dev.png "stable-to-dev")
-
 However, if it is determined we are not ready to release, please simply close the pull request.
+
+### 5. Edit the mkdocs.yml file site_name to set a new development version
+
+Please submit a PR with the title `REL: <version>-dev`.
+This should be the first merged PR in the new version.
+This process is illustrated below.
+
+![stable-to-dev](release_images/site_name_3-3dev.png "stable-to-dev")
+
+Note that the development version number should be larger than the last release, with the
+version of the next *intended* release, followed by `-dev`.
+For example, after the 1.3.0 release, either `1.3.1-dev` or 1.4.0-dev` would be reasonable, based
+on the expected next version.
