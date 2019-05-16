@@ -103,6 +103,7 @@ your name is not listed, please add it.
 -   Jean-Baptiste Poline 📖📢🤔🎨
 -   Vasudev Raguram 💻🎨📖🔧
 -   Ariel Rokem 📖
+-   Matt Sanderson 📖💻
 -   Gunnar Schaefer 📖
 -   Jan-Mathijs Schoffelen 📖
 -   Robert E. Smith 💻📖

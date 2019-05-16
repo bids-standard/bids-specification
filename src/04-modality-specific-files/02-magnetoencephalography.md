@@ -18,8 +18,8 @@ Template:
 sub-<label>/
     [ses-<label>]/
       meg/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_meg.<manufacturer_specific_extension>
-        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_meg.json]
+        sub-<label>[_ses-<label>]_task-<label>[_run-<index>][_proc-<label>]_meg.<manufacturer_specific_extension>
+        [sub-<label>[_ses-<label>]_task-<label>[_run-<index>][_proc-<label>]_meg.json]
 ```
 
 Unprocessed MEG data MUST be stored in the native file format of the MEG
@@ -178,7 +178,7 @@ Template:
 sub-<label>/
     [ses-<label>]/
       meg/
-        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_channels.tsv]
+        [sub-<label>[_ses-<label>]_task-<label>[_run-<index>][_proc-<label>]_channels.tsv]
 ```
 
 This file is RECOMMENDED as it provides easily searchable information across
@@ -371,7 +371,11 @@ subject’s head are RECOMMENDED. If the coils are not placed at the location of
 actual anatomical landmarks, these latter may be marked with a piece of felt-tip
 taped to the skin. Please note that the photos may need to be cropped or blurred
 to conceal identifying features prior to sharing, depending on the terms of the
-consent form signed by the participant.
+consent given by the participant.
+
+The `acq` parameter can be used to indicate acquisition of different photos of
+the same face (or other body part in different angles to show, for example, the
+location of the nasion (NAS) as opposed to the right periauricular point (RPA)).
 
 Example of the NAS fiducial placed between the eyebrows, rather than at the
 actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`

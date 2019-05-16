@@ -120,8 +120,8 @@ my_dataset/
     ...
 ```
 
-In this example **only `rawdata` subfolder and all subfolders of `derivatives`**
-**need to be BIDS compliant** datasets. This specification does not prescribe 
+In this example **only the `rawdata` subfolder and all subfolders of `derivatives`
+need to be BIDS compliant** datasets. This specification does not prescribe 
 anything about the contents of `sourcedata` folders in the above example - nor 
 does it prescribe the `sourcedata`, `derivatives`, or `rawdata` folder names. 
 The above example is just a convention that can be useful for organizing raw, 
@@ -197,23 +197,30 @@ apply to different runs and rec files. Also if the JSON file
 (`task-xyz_acq-test1_bold.json`) is defined at dataset top level directory, it
 will be applicable to all task runs with `test1` acquisition parameter.
 
-Example 3: Multiple json files at different levels for same task and acquisition
-parameters
+Example 3: Multiple json files at different levels for same task and
+acquisition parameters
 
 ```Text
+task-xyz_acq-test1_bold.json
 sub-01/
-   sub-01_task-xyz_acq-test1_bold.json
-         anat/
-         func/
-             sub-01_task-xyz_acq-test1_run-1_bold.nii.gz
-             sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz
-             sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz
+    anat/
+    func/
+        sub-01_task-xyz_acq-test1_run-1_bold.nii.gz
+        sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz
+        sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz
+        sub-01_task-xyz_acq-test1_bold.json
 ```
 
-In the above example, the fields from `task-xyz_acq-test1_bold.json` file will
-apply to all bold runs. However, if there is a key with different value in
-`sub-01/func/sub-01_task-xyz_acq-test1_run-1_bold.json`, the new value will be
-applicable for that particular run/task NIfTI file/s.
+In the above example, the fields from the `task-xyz_acq-test1_bold.json` file
+at the top directory will apply to all bold runs. However, if there is a key
+with different value in the
+`sub-01/func/sub-01_task-xyz_acq-test1_run-1_bold.json` file defined at a
+deeper level, that value will be applicable for that particular run/task NIfTI
+file/s. In other words, the `json` file at the deeper level overrides values
+that are potentially also defined in the `.json` at a more shallow level. If the
+`.json` file at the more shallow level contains key-value-pairs that are not
+present in the `.json` file at the deeper level, these key-value-pairs are
+inherited by the `.json` file at the deeper level (but NOT vice versa!).
 
 ### Good practice recommendations
 
