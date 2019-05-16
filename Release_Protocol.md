@@ -12,7 +12,7 @@ This process is figured below ![Unreleased-to-Version](release_images/Unreleased
 
 ### 3. Edit the mkdocs.yml file site_name version to the new version
 
-This process is shown below ![dev-to-stable](release_images/site_name_2dev-3.png "dev-to-stable")
+This process is shown below ![dev-to-stable](release_images/site_name_release_1.2dev-1.2.png "dev-to-stable")
 
 ### 4. Please open a pull request on the [master branch of the BIDS-specification](https://github.com/bids-standard/bids-specification/tree/master).
 Important note: The pull request title **needs** to follow this protocol. REL: vX.X.X (i.e. REL: v1.1.2). There could be one or two commits in the pull request (the step 2 and 3 changes)
@@ -35,9 +35,9 @@ Please submit a PR with the title `REL: <version>-dev`.
 This should be the first merged PR in the new version.
 This process is illustrated below.
 
-![stable-to-dev](release_images/site_name_3-3dev.png "stable-to-dev")
+![stable-to-dev](release_images/site_name_release_1.2-1.3dev.png "stable-to-dev")
 
 Note that the development version number should be larger than the last release, with the
 version of the next *intended* release, followed by `-dev`.
-For example, after the 1.3.0 release, either `1.3.1-dev` or 1.4.0-dev` would be reasonable, based
+For example, after the 1.3.0 release, either `1.3.1-dev` or `1.4.0-dev` would be reasonable, based
 on the expected next version.
