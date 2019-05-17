@@ -1,7 +1,12 @@
 # Appendix II: Licenses
 
 This section lists a number of common licenses for datasets and defines
-suggested abbreviations for use in the dataset metadata specifications
+suggested abbreviations for use in the dataset metadata specifications.
+
+Please note that this list only serves to provide some examples for possible
+licenses.
+The terms of any license should be consistent with the informed consent
+obtained from participants and any institutional limitations on distribution.
 
 | Identifier | License name                                           | Description                                                                                                                                                                                                      |
 | :--------- | :----------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

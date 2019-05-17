@@ -1,5 +1,7 @@
-site_name: Brain Imaging Data Structure v1.2.0-dev
+site_name: Brain Imaging Data Structure v1.3.0-dev
 theme: material
+extra_javascript:
+    - js/jquery-3.4.1.min.js
 markdown_extensions:
     - toc:
         anchorlink: true
