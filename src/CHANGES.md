@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] Enable version panel for quickly finding previous versions [#232](https://github.com/bids-standard/bids-specification/pull/232) ([effigies](https://github.com/effigies))
 -   \[FIX] use \\&lt;label> for \_desc- - not some \\&lt;value> + clarify \\&lt;value> [#224](https://github.com/bids-standard/bids-specification/pull/224) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] Clarify Appendix II: The list of licenses only lists examples [#222](https://github.com/bids-standard/bids-specification/pull/222) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Trivial column header fix  [#220](https://github.com/bids-standard/bids-specification/pull/220) ([nicholst](https://github.com/nicholst))
