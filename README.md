@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/bids-standard/bids-specification.svg?branch=master)](https://travis-ci.com/bids-standard/bids-specification)
+[![CircleCI](https://circleci.com/gh/bids-standard/bids-specification.svg?style=svg)](https://circleci.com/gh/bids-standard/bids-specification)
 
 # bids-specification
 
