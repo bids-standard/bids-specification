@@ -34,9 +34,15 @@ $ git checkout -b rel/1.2.0 upstream/master
 Change the "Unreleased" heading in
 [src/CHANGES.md](https://github.com/bids-standard/bids-specification/blob/master/src/CHANGES.md)
 to `v<version>`, and link to the target ReadTheDocs URL.
-In the figure below, we use the example of version 1.1.2, which would have the URL
-https://bids-specification.readthedocs.io/en/v1.1.2/:
-![Unreleased-to-Version](release_images/Unreleased-to-Version.png "Unreleased-to-Version")
+If the target release date is known, include the date in YYYY-MM-DD in parentheses after
+the link.
+
+```Diff
+- ## Unreleased
++ ## [v1.2.0](https://bids-specification.readthedocs.io/en/v1.2.0/) (2019-03-04)
+```
+
+The date can be changed or added later, so accurate prediction is not necessary.
 
 Remove the `-dev` from the version in
 [mkdocs.yml](https://github.com/bids-standard/bids-specification/blob/master/mkdocs.yml)
@@ -67,22 +73,43 @@ For larger changes, pull requests should be made against `master`.
 
 **Merging other pull requests during this period requires agreement in this discussion.**
 
-If `master` is updated, it should be merged into the `rel/<verison>` branch.
+There are no hard-and-fast rules for what other pull requests might be merged, but the focus
+should generally be on achieving a self-consistent, backwards-compatible document.
+For example, if an inconsistency is noticed, a PR might be necessary to resolve it.
+Merging an entire BEP would likely lead to greater uncertainty about self-consistency, and should
+probably wait.
 
-### 5. Set release date and merge
+If `master` is updated, it should be merged into the `rel/<verison>` branch:
 
-On the day of release, the current date should be added to the changelog in the form YYYY-MM-DD.
+```Shell
+$ get fetch upstream
+$ git checkout rel/1.2.0
+$ git merge upstream/master
+$ git push rel/1.2.0
+```
+
+### 5. Clean the changelog
+
+Review `src/CHANGES.md` to ensure that the document produces a changelog that is useful to a
+reader of the specification.
+For example, several small PRs fixing typos might be merged into a single line-item, or less
+important changes might be moved down the list to ensure that large changes are more prominent.
+
+### 6. Set release date and merge
+
+On the day of release, the current date should be added to/updated in the changelog in the form
+YYYY-MM-DD.
 The date should be placed after the link to the versioned URL.
 For example:
 
 ```Diff
-- ## [v1.1.2](https://bids-specification.readthedocs.io/en/v1.1.2/)
-+ ## [v1.1.2](https://bids-specification.readthedocs.io/en/v1.1.2/) (2019-01-10)
+- ## [v1.2.0](https://bids-specification.readthedocs.io/en/v1.2.0/)
++ ## [v1.2.0](https://bids-specification.readthedocs.io/en/v1.2.0/) (2019-03-04)
 ```
 
 Verify that the pull request title matches "REL: vX.Y.Z" and merge the pull request.
 
-### 6. Tag the release
+### 7. Tag the release
 
 GitHub's release mechanism does not have all of the features we need, so manually tag the release
 in your local repository.
@@ -91,8 +118,8 @@ To do this, `fetch` the current state of `upstream` (see step 1), tag `upstream/
 
 ```Shell
 $ git fetch upstream
-$ git tag -a -m "v1.1.2 (2019-01-10)" v1.1.2 upstream/master
-$ git push upstream v1.1.2
+$ git tag -a -m "v1.2.0 (2019-03-04)" v1.2.0 upstream/master
+$ git push upstream v1.2.0
 ```
 
 There are four components to the tag command:
@@ -106,20 +133,25 @@ There are four components to the tag command:
 4. `upstream/master` instructs `git` to tag the most recent commit on the `master` branch of the
    `upstream` remote.
 
-### 7. Create a GitHub release
+### 8. Create a GitHub release
 
-
-This will mark a new release. On the same day, please also do a GitHub release. To do this please see below.
-
+Some GitHub processes may only trigger on a GitHub release, rather than a tag push.
+To make a GitHub release, go to the [Releases
+](https://github.com/bids-standard/bids-specification/releases) page:
 ![GH-release-1](release_images/GH-release_1.png "GH-release-1")
+
+Click [Draft a new release](https://github.com/bids-standard/bids-specification/releases/new):
 
 ![GH-release-2](release_images/GH-release_2.png "GH-release-2")
 
+Set the tag version and release title to "vX.Y.Z", and paste the current changelog as the
+description:
+
 ![GH-release-3](release_images/GH-release_3.png "GH-release-3")
 
-However, if it is determined we are not ready to release, please simply close the pull request.
+Click "Publish release".
 
-### 5. Edit the mkdocs.yml file site_name to set a new development version
+### 9. Edit the mkdocs.yml file site_name to set a new development version
 
 Please submit a PR with the title `REL: <version>-dev`.
 This should be the first merged PR in the new version.
