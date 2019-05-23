@@ -2,6 +2,8 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] remove ManufacturersAmplifierModelName (again) [#236](https://github.com/bids-standard/bids-specification/pull/236) ([robertoostenveld](https://github.com/robertoostenveld))
+-   REL: 1.3.0-dev [#234](https://github.com/bids-standard/bids-specification/pull/234) ([effigies](https://github.com/effigies))
 -   \[INFRA] Enable version panel for quickly finding previous versions [#232](https://github.com/bids-standard/bids-specification/pull/232) ([effigies](https://github.com/effigies))
 -   \[FIX] use \\&lt;label> for \_desc- - not some \\&lt;value> + clarify \\&lt;value> [#224](https://github.com/bids-standard/bids-specification/pull/224) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] Clarify Appendix II: The list of licenses only lists examples [#222](https://github.com/bids-standard/bids-specification/pull/222) ([sappelhoff](https://github.com/sappelhoff))
