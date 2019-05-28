@@ -17,8 +17,8 @@ Derivatives can be stored/distributed in two ways:
     RECOMMENDED to use the format `<pipeline>-<variant>` in cases where it is
     anticipated that the same pipeline will output more than one variant (e.g.,
     `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
-    subfolder name needs to be a substring of `PipelineDescription.Name` field
-    in the `dataset_description.json` (see below).
+    subfolder name MUST be a substring of `PipelineDescription.Name` field in
+    the `dataset_description.json` (see below).
 
     For example:
 
@@ -32,17 +32,17 @@ Derivatives can be stored/distributed in two ways:
     dataset. This way of specifying derivatives is particularly useful when the
     source dataset is provided with read-only access, and for publishing
     derivatives as independent bodies of work, or for describing derivatives
-    that were created from more than one source dataset. It is consistent with
-    BIDS principles for the `sourcedata/` subdirectory to be used to include or
-    reference the source dataset(s) as it existed when the derivatives were
-    generated. Likewise, any code used to generate the derivatives from the
-    source data may be included in the `code/` subdirectory.
+    that were created from more than one source dataset. The `sourcedata/`
+    subdirectory MAY be used to include the source dataset(s) that were used
+    to generate the derivatives.
+    Likewise, any code used to generate the derivatives from the source data
+    MAY be included in the `code/` subdirectory.
 
 The rest of the Derivatives specification assumes Case 1, but Case 2 applies
 after removing `/derivatives/<pipeline_name>` from template names. In both cases
 every derivatives dataset is considered a BIDS dataset and must include a
 `dataset_description.json` file at the root level. Consequently, files should be
-organized to comply with the BIDS to the full extent possible (i.e., unless
+organized to comply with BIDS to the full extent possible (i.e., unless
 explicitly contradicted below). Any subject-specific derivatives should be
 housed within each subject’s directory; if session-specific derivatives are
 generated, they should be deposited under a session subdirectory within the
@@ -90,9 +90,9 @@ Example:
 
 ## Coordinate systems
 
-Coordinate system (a.k.a. space) a particular derivative is in should be denoted
-using a filename keyword `space` whenever such keyword is present in the
-filename template of a given derivative type. The allowed values for this
+The coordinate system (a.k.a. space) a particular derivative is in SHOULD be
+denoted using a filename keyword `space` whenever such keyword is present in
+the filename template of a given derivative type. The allowed values for this
 keyword depend on the file format:
 
 | File format                  | Description             | Allowed `CoordinateSystem` values                                                                                                                                                                             |
@@ -116,10 +116,11 @@ sub-01/func/sub-01_task-rest_space-HCPMNIfsLR32k_bold.nii
 ## Common file level metadata fields
 
 Each derivative file SHOULD be described by a JSON file provided as a sidecar or
-higher up in the hierarchy of the derived dataset (according to Inheritance
-Principle - section 3.5 of the main specification) unless a particular
-derivative includes REQUIRED metadata fields in which case a JSON file is also
-REQUIRED. Each derivative type defines their own set of fields, but all of them
+higher up in the hierarchy of the derived dataset (according to
+[The Inheritance Principle](../02-common-principles.md#the-inheritance-principle))
+unless a particular derivative includes REQUIRED metadata fields in which case a
+JSON file is also REQUIRED.
+Each derivative type defines their own set of fields, but all of them
 share the following (non-required) ones:
 
 | **Key name**     | **Description**                                                                                                                                                                                                                                                                                                                                       |
@@ -174,7 +175,8 @@ sub-01/anat/sub-01_hemi-L_space-individual_thickness.json
     pertinent fields is very valuable and thus encouraged. Moreover, for some
     types of files, there may be one or more required metadata fields, in which
     case at least one metadata file containing that field must be located
-    somewhere within the file’s hierarchy (per the Inheritance Principle).
+    somewhere within the file’s hierarchy (per [the Inheritance
+    Principle](../02-common-principles.md#the-inheritance-principle)).
 
 -   When chaining derivative pipelines, any JSON fields that were specified as
     mandatory in the input files should be propagated forward in the output
