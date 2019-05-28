@@ -5,6 +5,7 @@ extra_javascript:
 markdown_extensions:
     - toc:
         anchorlink: true
+    - pymdownx.superfences
 plugins:
     - search
 docs_dir: 'src'

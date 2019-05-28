@@ -22,9 +22,11 @@ Derivatives can be stored/distributed in two ways:
 
     For example:
 
-        <dataset>/derivatives/fmripreprocess-v1/sub-0001
-        <dataset>/derivatives/spm/sub-0001
-        <dataset>/derivatives/vbm/sub-0001
+    ```
+    <dataset>/derivatives/fmripreprocess-v1/sub-0001
+    <dataset>/derivatives/spm/sub-0001
+    <dataset>/derivatives/vbm/sub-0001
+    ```
 
 1.  As a standalone dataset independent of the source (raw or derived) BIDS
     dataset. This way of specifying derivatives is particularly useful when the

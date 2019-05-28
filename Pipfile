@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 mkdocs = "==1.0.4"
 mkdocs-material = "==4.1.2"
+pymdown-extensions = "==6.0.0"
 
 [dev-packages]
 
