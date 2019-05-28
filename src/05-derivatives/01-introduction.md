@@ -22,7 +22,7 @@ Derivatives can be stored/distributed in two ways:
 
     For example:
 
-    ```
+    ```Plain
     <dataset>/derivatives/fmripreprocess-v1/sub-0001
     <dataset>/derivatives/spm/sub-0001
     <dataset>/derivatives/vbm/sub-0001
@@ -54,7 +54,7 @@ As for any BIDS dataset a `dataset_description.json` file MUST be found at the
 top level of the particular pipeline:
 `<dataset>/derivatives/<pipeline_name>/dataset_description.json`
 
-In addition to raw BIDS datasets derived BIDS datasets include the following
+In addition to raw BIDS datasets, derived BIDS datasets include the following
 required or recommended `dataset_description.json` keys (a dot in the Key name
 denotes a key in a subdictionary):
 
