@@ -38,7 +38,6 @@ provides a direct link to the documentation.
 | [BEP009](https://docs.google.com/document/d/1mqMLnxVdLwZjDd4ZiWFqjEAmOmfcModA_R535v3eQs0) | Positron Emission Tomography (PET)                                                                         | Melanie Ganz                                                               |
 | [BEP011](https://docs.google.com/document/d/1YG2g4UkEio4t_STIBOqYOwneLEs1emHIXbGKynx7V0Y) | The structural preprocessing derivatives                                                                   | Andrew Hoopes                                                              |
 | [BEP012](https://docs.google.com/document/d/16CvBwVMAs0IMhdoKmlmcm3W8254dQmNARo-7HhE-lJU) | The functional preprocessing derivatives                                                                   | Camille Maumet and Chris Markiewicz                                        |
-| [BEP013](https://docs.google.com/document/d/1qBNQimDx6CuvHjbDvuFyBIrf2WRFUOJ-u50canWjjaw) | The resting state fMRI derivatives                                                                         | Steven Giavasis                                                            |
 | [BEP014](https://docs.google.com/document/d/11gCzXOPUbYyuQx8fErtMO9tnOKC3kTWiL9axWkkILNE) | The affine transformations and nonlinear field warps                                                       | Oscar Esteban                                                              |
 | [BEP015](https://docs.google.com/document/d/1WYOTXDB7GzlHoWqLjd45I3uGBgPxXddST-NTqBnroJE) | Mapping file                                                                                               | Eric Earl, Camille Maumet, and Vasudev Raguram                             |
 | [BEP016](https://docs.google.com/document/d/1cQYBvToU7tUEtWMLMwXUCB_T8gebCotE1OczUpMYW60) | The diffusion weighted imaging derivatives                                                                 | Franco Pestilli and Oscar Esteban                                          |
@@ -60,8 +59,15 @@ of the specification.
 | Extension label                                                                           | Title                                      | Moderators/leads                                  |
 | :---------------------------------------------------------------------------------------- | :----------------------------------------- | :------------------------------------------------ |
 | [BEP006](https://docs.google.com/document/d/1ArMZ9Y_quTKXC-jNXZksnedK2VHHoKP3HCeO5HPcgLE) | Electroencephalograpgy (EEG)               | Cyril Pernet, Stefan Appelhoff, Robert Oostenveld |
+| [BEP007](https://docs.google.com/document/d/1gs7USIVO1OApZs3IVo6TeXw9_tfzxhjM2-m--ex4g6o) | Hierarchical Event Descriptor (HED) Tags   | Chris Gorgolewski                                 |
 | [BEP008](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM) | Magnetoencephalography (MEG)               | Guiomar Niso                                      |
 | [BEP010](https://docs.google.com/document/d/1qMUkoaXzRMlJuOcfTYNr3fTsrl4SewWjffjMD5Ew6GY) | intracranial Electroencephalograpgy (iEEG) | Chris Holdgraf, Dora Hermes                       |
+
+BEPs that have been closed down or merged into other BEPs:
+
+| Extension label                                                                           | Title                                                                                                      | What happened?                                                             |
+| :---------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------- |
+| [BEP013](https://docs.google.com/document/d/1qBNQimDx6CuvHjbDvuFyBIrf2WRFUOJ-u50canWjjaw) | The resting state fMRI derivatives                                                                         | merged into BEP012                                                         |
 
 All of the extension ideas that are not backwards compatible and thus
 will have to wait for BIDS 2.0 are listed
