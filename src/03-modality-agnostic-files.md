@@ -49,7 +49,8 @@ Example:
 ### `README`
 
 In addition a free form text file (`README`) describing the dataset in more
-details SHOULD be provided.
+details SHOULD be provided. The `README` file MUST be either in ASCII or UTF-8
+encoding.
 
 ### `CHANGES`
 
@@ -57,7 +58,7 @@ Version history of the dataset (describing changes, updates and corrections) MAY
 be provided in the form of a `CHANGES` text file. This file MUST follow the CPAN
 Changelog convention:
 [http://search.cpan.org/~haarg/CPAN-Changes-0.400002/lib/CPAN/Changes/Spec.pod](https://metacpan.org/pod/release/HAARG/CPAN-Changes-0.400002/lib/CPAN/Changes/Spec.pod).
-`README` and `CHANGES` files MUST be either in ASCII or UTF-8 encoding.
+The `CHANGES` file MUST be either in ASCII or UTF-8 encoding.
 
 Example:
 
@@ -173,7 +174,7 @@ decreased. Dates that are shifted for anonymization purposes should be set to a
 year 1900 or earlier to clearly distinguish them from unmodified data. Shifting
 dates is recommended, but not required.
 
-Additional fields can include external behavioural measures relevant to the
+Additional fields can include external behavioral measures relevant to the
 scan. For example vigilance questionnaire score administered after a resting
 state scan.
 
