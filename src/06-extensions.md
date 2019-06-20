@@ -37,11 +37,8 @@ provides a direct link to the documentation.
 | [BEP005](https://docs.google.com/document/d/15tnn5F10KpgHypaQJNNGiNKsni9035GtDqJzWqkkP6c) | Arterial Spin Labeling (ASL)                                                                               | Henk-Jan Mutsaerts and Michael Chappell                                    |
 | [BEP009](https://docs.google.com/document/d/1mqMLnxVdLwZjDd4ZiWFqjEAmOmfcModA_R535v3eQs0) | Positron Emission Tomography (PET)                                                                         | Melanie Ganz                                                               |
 | [BEP011](https://docs.google.com/document/d/1YG2g4UkEio4t_STIBOqYOwneLEs1emHIXbGKynx7V0Y) | The structural preprocessing derivatives                                                                   | Andrew Hoopes                                                              |
-| [BEP012](https://docs.google.com/document/d/16CvBwVMAs0IMhdoKmlmcm3W8254dQmNARo-7HhE-lJU) | The functional preprocessing derivatives                                                                   | Camille Maumet and Chris Markiewicz                                        |
-| [BEP013](https://docs.google.com/document/d/1qBNQimDx6CuvHjbDvuFyBIrf2WRFUOJ-u50canWjjaw) | The resting state fMRI derivatives                                                                         | Steven Giavasis                                                            |
 | [BEP014](https://docs.google.com/document/d/11gCzXOPUbYyuQx8fErtMO9tnOKC3kTWiL9axWkkILNE) | The affine transformations and nonlinear field warps                                                       | Oscar Esteban                                                              |
 | [BEP015](https://docs.google.com/document/d/1WYOTXDB7GzlHoWqLjd45I3uGBgPxXddST-NTqBnroJE) | Mapping file                                                                                               | Eric Earl, Camille Maumet, and Vasudev Raguram                             |
-| [BEP016](https://docs.google.com/document/d/1cQYBvToU7tUEtWMLMwXUCB_T8gebCotE1OczUpMYW60) | The diffusion weighted imaging derivatives                                                                 | Franco Pestilli and Oscar Esteban                                          |
 | [BEP017](https://docs.google.com/document/d/1ugBdUF6dhElXdj3u9vw0iWjE6f_Bibsro3ah7sRV0GA) | Generic BIDS connectivity data schema                                                                      | Eugene Duff and Paul McCarthy                                              |
 | [BEP018](https://docs.google.com/document/d/1uRkgyzESLKuGjXi98Z97Wh6vt-iLN5nOAb9TG16CjUs) | Genetic information                                                                                        | Cyril R Pernet, Clara Moreau, and Thomas Nichols                           |
 | [BEP019](https://docs.google.com/document/d/1FqJI791ycXr0bfRg2qyLqAf0RpVttJ2cInOgMWrKsNU) | DICOM Metadata                                                                                             | Satrajit Ghosh                                                             |
@@ -50,7 +47,7 @@ provides a direct link to the documentation.
 | [BEP022](https://docs.google.com/document/d/1pWCb02YNv5W-UZZja24fZrdXLm4X7knXMiZI7E2z7mY) | Magnetic Resonance Spectroscopy (MRS)                                                                      | Dickson Wong                                                               |
 | [BEP023](https://docs.google.com/document/d/1yzsd1J9GT-aA0DWhdlgNr5LCu6_gvbjLyfvYq2FuxlY) | PET Preprocessing derivatives                                                                              | Martin Noergaard, Graham Searle, Melanie Ganz                              |
 | [BEP024](https://docs.google.com/document/d/1fqnJZ18x5LJC8jiJ8yvPHUGFzNBZ6gW2kywYrUKWtuo) | Computed Tomography scan (CT)                                                                              | Hugo Boniface                                                              |
-| [BEP025](https://docs.google.com/document/d/1chZv7vAPE-ebPDxMktfI9i1OkLNR2FELIfpVYsaZPr4) | Medical Population Imaging Data structure (MIDS)                                                           | Jose Manuel Saborit Torres                                                 |
+| [BEP025](https://docs.google.com/document/d/1chZv7vAPE-ebPDxMktfI9i1OkLNR2FELIfpVYsaZPr4) | Medical Population Imaging Data structure (MIDS)                                                           | Jose Manuel Saborit Torres, Maria de la Iglesia Vayá                       |
 | [BEP026](https://docs.google.com/document/d/14KC1d5-Lx-7ZSMtwS7pVAAvz-2WR_uoo5FvsNirzqJw) | Microelectrode Recordings (MER)                                                                            | Greydon Gilmore                                                            |
 
 When an extension reaches maturity it is merged into the main body of the
@@ -60,8 +57,17 @@ of the specification.
 | Extension label                                                                           | Title                                      | Moderators/leads                                  |
 | :---------------------------------------------------------------------------------------- | :----------------------------------------- | :------------------------------------------------ |
 | [BEP006](https://docs.google.com/document/d/1ArMZ9Y_quTKXC-jNXZksnedK2VHHoKP3HCeO5HPcgLE) | Electroencephalograpgy (EEG)               | Cyril Pernet, Stefan Appelhoff, Robert Oostenveld |
+| [BEP007](https://docs.google.com/document/d/1gs7USIVO1OApZs3IVo6TeXw9_tfzxhjM2-m--ex4g6o) | Hierarchical Event Descriptor (HED) Tags   | Chris Gorgolewski                                 |
 | [BEP008](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM) | Magnetoencephalography (MEG)               | Guiomar Niso                                      |
 | [BEP010](https://docs.google.com/document/d/1qMUkoaXzRMlJuOcfTYNr3fTsrl4SewWjffjMD5Ew6GY) | intracranial Electroencephalograpgy (iEEG) | Chris Holdgraf, Dora Hermes                       |
+
+BEPs that have been closed down or merged into other BEPs:
+
+| Extension label                                                                           | Title                                                                                                      | What happened?                                                             |
+| :---------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------- |
+| [BEP012](https://docs.google.com/document/d/16CvBwVMAs0IMhdoKmlmcm3W8254dQmNARo-7HhE-lJU) | The functional preprocessing derivatives                                                                   | merged into BEP003                                                         |
+| [BEP013](https://docs.google.com/document/d/1qBNQimDx6CuvHjbDvuFyBIrf2WRFUOJ-u50canWjjaw) | The resting state fMRI derivatives                                                                         | merged into BEP003                                                         |
+| [BEP016](https://docs.google.com/document/d/1cQYBvToU7tUEtWMLMwXUCB_T8gebCotE1OczUpMYW60) | The diffusion weighted imaging derivatives                                                                 | merged into BEP003                                                         |
 
 All of the extension ideas that are not backwards compatible and thus
 will have to wait for BIDS 2.0 are listed

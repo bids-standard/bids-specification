@@ -119,14 +119,13 @@ Specific EEG fields (if recorded with MEG) SHOULD be present:
 | Field name                      | Definition                                                                                                                                                                        |
 | :------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | EEGPlacementScheme              | OPTIONAL. Placement scheme of EEG electrodes. Either the name of a standardised placement system (e.g., "10-20") or a list of standardised electrode names (e.g. `["Cz", "Pz"]`). |
-| ManufacturersAmplifierModelName | OPTIONAL. Manufacturer’s designation of the EEG amplifier model (e.g., `Biosemi-ActiveTwo`).                                                                                      |
 | CapManufacturer                 | OPTIONAL. Manufacturer of the EEG cap (e.g. `EasyCap`)                                                                                                                            |
 | CapManufacturersModelName       | OPTIONAL. Manufacturer’s designation of the EEG cap model (e.g., `M10`)                                                                                                           |
 | EEGReference                    | OPTIONAL. Description of the type of EEG reference used (e.g., `M1` for left mastoid, `average`, or `longitudinal bipolar`).                                                      |
 
 By construct, EEG when recorded simultaneously with the same MEG system , should
 have the same `SamplingFrequency` as MEG. Note that if EEG is recorded with a
-separate amplifier, it should be stored separately under a new /eeg data type
+separate amplifier, it should be stored separately under a new `/eeg` data type
 (see [the EEG specification](03-electroencephalography.md)).
 
 Example:
