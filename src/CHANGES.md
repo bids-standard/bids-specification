@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[ENH] Add favicon to RTD [#246](https://github.com/bids-standard/bids-specification/pull/246) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[MISC] Update Authors in BEP025 [#241](https://github.com/bids-standard/bids-specification/pull/241) ([josator2](https://github.com/josator2))
 -   \[MISC] Document BEPs that are not active anymore, but have not been merged [#240](https://github.com/bids-standard/bids-specification/pull/240) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] remove ManufacturersAmplifierModelName (again) [#236](https://github.com/bids-standard/bids-specification/pull/236) ([robertoostenveld](https://github.com/robertoostenveld))
