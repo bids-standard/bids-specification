@@ -1,17 +1,17 @@
 # Appendix VII: preferred names of MEG systems
 
-Restricted keywords for Manufacturer field in the `*meg.json` file:
+Restricted keywords for Manufacturer field in the `*_meg.json` file:
 
--   `CTF`
--   [`Elekta/Neuromag`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.a7ggx48p7aaf)
--   [`4D/BTi`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.gy0kbzisg1f1)
--   [`KIT/Yokogawa/Ricoh`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.2gmmxawyna7r)
--   `KRISS`
--   [`ITAB`](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM/edit#heading=h.58whib3oq56y)
--   `Aalto/MEG–MRI`
+-   [`CTF`](06-meg-file-formats.md#ctf)
+-   [`Elekta/Neuromag`](06-meg-file-formats.md#neuromagelektamegin)
+-   [`4D/BTi`](06-meg-file-formats.md#bti4d-neuroimaging)
+-   [`KIT/Yokogawa/Ricoh`](06-meg-file-formats.md#kityokogawaricoh)
+-   [`KRISS`](06-meg-file-formats.md#kriss)
+-   [`ITAB`](06-meg-file-formats.md#itab)
+-   [`Aalto/MEG–MRI`](06-meg-file-formats.md#aalto-megmri)
 -   `Other`
 
-Restricted keywords for ManufacturersModelName field in the `*meg.json` file:
+Restricted keywords for ManufacturersModelName field in the `*_meg.json` file:
 
 | System Model Name     | Manufacturer    | Details                                                                                      |
 | --------------------- | --------------- | -------------------------------------------------------------------------------------------- |
