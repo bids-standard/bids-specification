@@ -3,14 +3,14 @@
 Each MEG system brand has specific file organization and data formats.
 RECOMMENDED values for `manufacturer_specific_extensions`:
 
-| Value  | Definition                                                                            |
-| ------ | ------------------------------------------------------------------------------------- |
-| `ctf`  | CTF (folder with `.ds` extension)                                                     |
-| `fif`  | Neuromag / Elekta / MEGIN  and BabyMEG (file with extension `.fif`)                   |
-| `4d`   | BTi / 4D Neuroimaging (folder containing multiple files without extensions)           |
-| `kit`  | KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`) |
-| `kdf`  | KRISS (file with extension `.kdf`)                                                    |
-| `itab` | Chieti system (file with extension `.raw` and `.mhd`)                                 |
+| Value                                                 | Definition                                                                            |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| [`ctf`](06-meg-file-formats.md#ctf)                   | CTF (folder with `.ds` extension)                                                     |
+| [`fif`](06-meg-file-formats.md#neuromagelektamegin)   | Neuromag / Elekta / MEGIN  and BabyMEG (file with extension `.fif`)                   |
+| [`4d`](06-meg-file-formats.md#bti4d-neuroimaging)     | BTi / 4D Neuroimaging (folder containing multiple files without extensions)           |
+| [`kit`](06-meg-file-formats.md#kityokogawaricoh)      | KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`) |
+| [`kdf`](06-meg-file-formats.md#kriss)                 | KRISS (file with extension `.kdf`)                                                    |
+| [`itab`](06-meg-file-formats.md#itab)                 | Chieti system (file with extension `.raw` and `.mhd`)                                 |
 
 Below are specifications for each system brand.
 
@@ -27,10 +27,11 @@ sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.ds>
 ```
 
 CTF's data storage is therefore via directories containing multiple files. The
-files contained within a .ds directory are named such that they match the
+files contained within a `.ds` directory are named such that they match the
 parent directory, but preserve the original file extension (e.g., `.meg4`,
 `.res4`, etc.). The renaming of CTF datasets SHOULD be done with a specialized
-software such as the CTF newDs command-line application or [MNE-BIDS](https://github.com/mne-tools/mne-bids).
+software such as the CTF newDs command-line application or
+[MNE-BIDS](https://github.com/mne-tools/mne-bids).
 
 Example:
 
@@ -77,7 +78,7 @@ sub-control01/
 ```
 
 After applying the MaxFilter pre-processing tool, files should be renamed with
-the corresponding label (e.g. `proc-sss`) and placed into a `derivatives`
+the corresponding label (e.g., `proc-sss`) and placed into a `derivatives`
 subfolder.
 
 Example:
@@ -96,10 +97,11 @@ sub-control01_ses-001_task-rest_run-01_meg-1.fif
 ```
 
 Each of these two files has a pointer to the next file. In some software
-applications, like MNE, one can simply specify the name of the first file, and
-data will be read in both files via this pointer. For this reason, it is
-RECOMMENDED to rename and write back the file once read, to avoid the
-persistence of a pointer associated with the old file name.
+applications, like [MNE](https://www.martinos.org/mne/stable/index.html), one
+can simply specify the name of the first file, and data will be read in both
+files via this pointer. For this reason, it is RECOMMENDED to rename and write
+back the file once read, to avoid the persistence of a pointer associated with
+the old file name.
 
 Naming convention:
 
@@ -124,7 +126,7 @@ sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg>
 ```
 
 One SHOULD rename/create a father run specific directory and keep the original
-files for each run inside (e.g. "c,rfhp0.1Hz", "config" and "hs_file").
+files for each run inside (e.g., `c,rfhp0.1Hz`, `config` and `hs_file`).
 
 Example:
 
@@ -189,10 +191,10 @@ More about the KIT/Yokogawa/Ricoh data organization at:
 
 ## KRISS
 
-Each experimental run on the KRISS system produces a file with extension .kdf.
-Additional files can be available in the same folder: the digitized positions of
-the head points (\_digitizer.txt), the position of the center of the MEG coils
-(.chn) and the event markers (.trg).
+Each experimental run on the KRISS system produces a file with extension
+`.kdf`. Additional files can be available in the same folder: the digitized
+positions of the head points (`\_digitizer.txt`), the position of the center of
+the MEG coils (`.chn`) and the event markers (`.trg`).
 
 ```Text
 [sub-<label>[_ses-<label>]_headshape.txt]
@@ -226,7 +228,8 @@ header that contains detailed information about the data acquisition system,
 followed by binary data. The associated binary header file contains part of the
 information from the ASCII header, specifically the one needed to process data,
 plus other information on offline preprocessing performed after data acquisition
-(e.g., sensor position relative to subject’s head, head markers, stimulus information).
+(e.g., sensor position relative to subject’s head, head markers, stimulus
+information).
 
 Example:
 
@@ -245,7 +248,7 @@ sub-control01/
 ## Aalto MEG–MRI
 
 For stand-alone MEG data, the Aalto hybrid device uses the standard `.fif` data
-format and follows the conventions of Elekta/Neuromag as described above in
-section 5.2. The `.fif` files may contain unreconstructed MRI data. The
-inclusion of MRI data and information for accurate reconstruction will be fully
-standardized at a later stage.
+format and follows the conventions of Elekta/Neuromag as described
+[above](06-meg-file-formats.md#neuromagelektamegin). The `.fif` files may
+contain unreconstructed MRI data. The inclusion of MRI data and information for
+accurate reconstruction will be fully standardized at a later stage.
