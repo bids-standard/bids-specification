@@ -1,7 +1,6 @@
 site_name: Brain Imaging Data Structure v1.3.0-dev
 theme:
     name: material
-    favicon: BIDS logo files/favicon.ico
     custom_dir: theme_customizations/
 extra_javascript:
     - js/jquery-3.4.1.min.js
