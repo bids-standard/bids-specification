@@ -5,7 +5,6 @@ See the related discussion here: https://github.com/bids-standard/bids-specifica
 # Files
 - Standard formats
     - `BIDS_logo.jpg`
-    - `favicon.ico` - used for an icon on the [bids-specification page](https://bids-specification.readthedocs.io/en/stable/)
     - Transparent background
         - `BIDS_logo_black_transparent_background_crop.png`
         - `BIDS_logo_white_transparent_background_crop.png`
