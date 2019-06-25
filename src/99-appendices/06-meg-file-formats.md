@@ -201,6 +201,7 @@ the MEG coils (`.chn`) and the event markers (`.trg`).
 sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.kdf
 sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.chn
 sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.trg
+sub-<label>[_ses-<label>]_task-<label>[_acq-<label>]_digitizer.txt
 ```
 
 Example:
@@ -218,6 +219,7 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_meg.chn
             sub-control01_ses-001_task-rest_run-01_meg.kdf
             sub-control01_ses-001_task-rest_run-01_meg.trg
+            sub-control01_ses-001_task-rest_digitizer.txt
 ```
 
 ## ITAB
