@@ -2,6 +2,8 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] update modality references [#258](https://github.com/bids-standard/bids-specification/pull/258) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] adding logo to RTD [#256](https://github.com/bids-standard/bids-specification/pull/256) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[INFRA] add footer, replacing mkdocs/material advert with Github link [#250](https://github.com/bids-standard/bids-specification/pull/250) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] rename logo files, add a README of where they come from, fix favicon [#249](https://github.com/bids-standard/bids-specification/pull/249) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Add favicon to RTD [#246](https://github.com/bids-standard/bids-specification/pull/246) ([franklin-feingold](https://github.com/franklin-feingold))
