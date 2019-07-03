@@ -430,7 +430,6 @@ sub-control01/
         sub-control01_phasediff.json
         sub-control01_magnitude1.nii.gz
         sub-control01_scans.tsv
-
 code/
     deface.py
 derivatives/
@@ -439,9 +438,3 @@ participants.tsv
 dataset_description.json
 CHANGES
 ```
-
-Additional files and folders containing raw data may be added as needed for
-special cases. They should be named using all lowercase with a name that
-reflects the nature of the scan (e.g., `calibration`). Naming of files within
-the directory should follow the same scheme as above (e.g.,
-`sub-control01_calibration_Xcalibration.nii.gz`)
