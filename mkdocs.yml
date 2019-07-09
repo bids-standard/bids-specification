@@ -30,9 +30,6 @@ nav:
       - Derivatives:
         - Introduction: 05-derivatives/01-introduction.md
         - Common data types: 05-derivatives/02-common-data-types.md
-        - Structural derivatives: 05-derivatives/03-structural-derivatives.md
-        - Functional derivatives: 05-derivatives/04-functional-derivatives.md
-        - Diffusion derivatives: 05-derivatives/05-diffusion-derivatives.md
       - Longitudinal and multi-site studies: 06-longitudinal-and-multi-site-studies.md
       - Extending the BIDS specification: 07-extensions.md
       - Appendix:
