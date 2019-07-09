@@ -1,5 +1,9 @@
 site_name: Brain Imaging Data Structure v1.3.0-dev
-theme: material
+theme:
+    name: material
+    custom_dir: theme_customizations/
+    favicon: images/favicon.png
+    logo: images/logo.png
 extra_javascript:
     - js/jquery-3.4.1.min.js
 markdown_extensions:

@@ -8,12 +8,12 @@ context of the academic literature:
 > David, O., Devinsky, O., Dichter, B., Flinker, A., Foster, B. L.,
 > Gorgolewski, K. J., Groen, I., Groppe, D., Gunduz, A., Hamilton, L.,
 > Honey, C. J., Jas, M., Knight, R., Lauchaux, J.-P., Lau, J. C.,
-> Lundstrom, B. N., Lee-Messer, C., Miller, K. J., Ojemann, J. G.,
+> Lee-Messer, C., Lundstrom, B. N., Miller, K. J., Ojemann, J. G.,
 > Oostenveld, R., Petridou, N., Piantoni, G., Pigorini, A., Pouratian, N.,
 > Ramsey, N. F., Stolk, A., Swann, N. C., Tadel, F., Voytek, B., Wandell, B. A.,
-> Winawer, J., Zehl, L., Hermes, D. (2018, December 13). BIDS-iEEG: an
-> extension to the brain imaging data structure (BIDS) specification for human
-> intracranial electrophysiology. [https://doi.org/10.31234/osf.io/r7vc2](https://doi.org/10.31234/osf.io/r7vc2)
+> Winawer, J., Whitaker, K., Zehl, L., Hermes, D. (2019). **iEEG-BIDS,
+> extending the Brain Imaging Data Structure specification to human intracranial
+> electrophysiology**. Scientific data, 6. doi: [10.1038/s41597-019-0105-7](https://doi.org/10.1038/s41597-019-0105-7)
 
 ## iEEG recording data
 

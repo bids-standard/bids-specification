@@ -2,6 +2,18 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] Common principles: Fix filename in inheritance principle [#261](https://github.com/bids-standard/bids-specification/pull/261) ([Lestropie](https://github.com/Lestropie))
+-   \[MISC] update modality references [#258](https://github.com/bids-standard/bids-specification/pull/258) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] adding logo to RTD [#256](https://github.com/bids-standard/bids-specification/pull/256) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[INFRA] add footer, replacing mkdocs/material advert with Github link [#250](https://github.com/bids-standard/bids-specification/pull/250) ([sappelhoff](https://github.com/sappelhoff))
+-   \[MISC] rename logo files, add a README of where they come from, fix favicon [#249](https://github.com/bids-standard/bids-specification/pull/249) ([sappelhoff](https://github.com/sappelhoff))
+-   \[MISC] updating MEG doc links, manufacturer names, and adding a missing MEG example [#248](https://github.com/bids-standard/bids-specification/pull/248) ([sappelhoff](https://github.com/sappelhoff))
+-   \[ENH] Add favicon to RTD [#246](https://github.com/bids-standard/bids-specification/pull/246) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[MISC] Update Authors in BEP025 [#241](https://github.com/bids-standard/bids-specification/pull/241) ([josator2](https://github.com/josator2))
+-   \[MISC] Document BEPs that are not active anymore, but have not been merged [#240](https://github.com/bids-standard/bids-specification/pull/240) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] remove ManufacturersAmplifierModelName (again) [#236](https://github.com/bids-standard/bids-specification/pull/236) ([robertoostenveld](https://github.com/robertoostenveld))
+-   \[INFRA] Update release protocol [#235](https://github.com/bids-standard/bids-specification/pull/235) ([effigies](https://github.com/effigies))
+-   REL: 1.3.0-dev [#234](https://github.com/bids-standard/bids-specification/pull/234) ([effigies](https://github.com/effigies))
 -   \[INFRA] Enable version panel for quickly finding previous versions [#232](https://github.com/bids-standard/bids-specification/pull/232) ([effigies](https://github.com/effigies))
 -   \[FIX] use \\&lt;label> for \_desc- - not some \\&lt;value> + clarify \\&lt;value> [#224](https://github.com/bids-standard/bids-specification/pull/224) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] Clarify Appendix II: The list of licenses only lists examples [#222](https://github.com/bids-standard/bids-specification/pull/222) ([sappelhoff](https://github.com/sappelhoff))

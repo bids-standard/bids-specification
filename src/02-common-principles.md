@@ -213,7 +213,7 @@ sub-01/
 In the above example, the fields from the `task-xyz_acq-test1_bold.json` file
 at the top directory will apply to all bold runs. However, if there is a key
 with different value in the
-`sub-01/func/sub-01_task-xyz_acq-test1_run-1_bold.json` file defined at a
+`sub-01/func/sub-01_task-xyz_acq-test1_bold.json` file defined at a
 deeper level, that value will be applicable for that particular run/task NIfTI
 file/s. In other words, the `json` file at the deeper level overrides values
 that are potentially also defined in the `.json` at a more shallow level. If the

@@ -6,9 +6,9 @@ context of the academic literature:
 
 > Niso Galan, J.G., Gorgolewski, K.J., Bock, E., Brooks, T.L., Flandin, G.,
 > Gramfort, A., Henson, R.N., Jas, M., Litvak, V., Moreau, J., Oostenveld, R.,
-> Schoffelen, J.-M., Tadel, F., Wexler, J., Baillet, S., 2018.
-> [MEG-BIDS, the brain imaging data structure extended to magnetoencephalography](https://www.nature.com/articles/sdata2018110).
-> Scientific Data volume 5, Article number: 180110 (2018)
+> Schoffelen, J.-M., Tadel, F., Wexler, J., Baillet, S. (2018). **MEG-BIDS, the
+> brain imaging data structure extended to magnetoencephalography**. Scientific
+> data, 5. doi: [10.1038/sdata.2018.110](https://doi.org/10.1038/sdata.2018.110)
 
 ## MEG recording data
 
@@ -43,7 +43,7 @@ task-based, resting-state, and noise recordings. If multiple Tasks were
 performed within a single Run, the task description can be set to
 `task-multitask`. The \_meg.json SHOULD contain details on the Tasks. Some
 manufacturers data storage conventions use folders which contain data files of
-various nature: e.g., CTF’s .ds format, or 4D/BTi. Please refer to
+various nature: e.g., CTF’s .ds format, or BTi/4D. Please refer to
 [Appendix VI](../99-appendices/06-meg-file-formats.md) for examples from a
 selection of MEG manufacturers.
 
@@ -70,7 +70,7 @@ Whenever possible, please avoid using ad-hoc wording.
 | :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                      |
 | InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                   |
-| Manufacturer           | RECOMMENDED. Manufacturer of the MEG system (`CTF`, `Elekta/Neuromag`, `4D/BTi`, `KIT/Yokogawa`, `ITAB`, `KRISS`, `Other`). See [Appendix VII](../99-appendices/07-meg-systems.md) with preferred names                                                                         |
+| Manufacturer           | RECOMMENDED. Manufacturer of the MEG system (`CTF`, `Elekta/Neuromag`, `BTi/4D`, `KIT/Yokogawa`, `ITAB`, `KRISS`, `Other`). See [Appendix VII](../99-appendices/07-meg-systems.md) with preferred names                                                                         |
 | ManufacturersModelName | RECOMMENDED. Manufacturer’s designation of the MEG scanner model (e.g. `CTF-275`). See [Appendix VII](../99-appendices/07-meg-systems.md) with preferred names                                                                                                                  |
 | SoftwareVersions       | RECOMMENDED. Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                            |
 | TaskDescription        | RECOMMENDED. Description of the task.                                                                                                                                                                                                                                           |
@@ -108,7 +108,7 @@ SHOULD be present
 | RecordingType              | RECOMMENDED. Defines whether the recording is `continuous` or `epoched`; this latter limited to time windows about events of interest (e.g., stimulus presentations, subject responses etc.)                                                                                                                   |
 | EpochLength                | RECOMMENDED. Duration of individual epochs in seconds (e.g. 1) in case of epoched data                                                                                                                                                                                                                         |
 | ContinuousHeadLocalization | RECOMMENDED. Boolean (`true` or `false`) value indicating whether continuous head localisation was performed.                                                                                                                                                                                                  |
-| HeadCoilFrequency          | RECOMMENDED. List of frequencies (in Hz) used by the head localisation coils (‘HLC’ in CTF systems, ‘HPI’ in Elekta, ‘COH’ in 4D/BTi) that track the subject’s head position in the MEG helmet (e.g. `[293, 307, 314, 321]`)                                                                                   |
+| HeadCoilFrequency          | RECOMMENDED. List of frequencies (in Hz) used by the head localisation coils (‘HLC’ in CTF systems, ‘HPI’ in Elekta, ‘COH’ in BTi/4D) that track the subject’s head position in the MEG helmet (e.g. `[293, 307, 314, 321]`)                                                                                   |
 | MaxMovement                | RECOMMENDED. Maximum head movement (in mm) detected during the recording, as measured by the head localisation coils (e.g., 4.8)                                                                                                                                                                               |
 | SubjectArtefactDescription | RECOMMENDED. Freeform description of the observed subject artefact and its possible cause (e.g. "Vagus Nerve Stimulator", "non-removable implant"). If this field is set to `n/a`, it will be interpreted as absence of major source of artifacts except cardiac and blinks.                                   |
 | AssociatedEmptyRoom        | RECOMMENDED. Relative path in BIDS folder structure to empty-room file associated with the subject’s MEG recording. The path needs to use forward slashes instead of backward slashes (e.g. `sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds`).                                               |
@@ -119,14 +119,13 @@ Specific EEG fields (if recorded with MEG) SHOULD be present:
 | Field name                      | Definition                                                                                                                                                                        |
 | :------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | EEGPlacementScheme              | OPTIONAL. Placement scheme of EEG electrodes. Either the name of a standardised placement system (e.g., "10-20") or a list of standardised electrode names (e.g. `["Cz", "Pz"]`). |
-| ManufacturersAmplifierModelName | OPTIONAL. Manufacturer’s designation of the EEG amplifier model (e.g., `Biosemi-ActiveTwo`).                                                                                      |
 | CapManufacturer                 | OPTIONAL. Manufacturer of the EEG cap (e.g. `EasyCap`)                                                                                                                            |
 | CapManufacturersModelName       | OPTIONAL. Manufacturer’s designation of the EEG cap model (e.g., `M10`)                                                                                                           |
 | EEGReference                    | OPTIONAL. Description of the type of EEG reference used (e.g., `M1` for left mastoid, `average`, or `longitudinal bipolar`).                                                      |
 
 By construct, EEG when recorded simultaneously with the same MEG system , should
 have the same `SamplingFrequency` as MEG. Note that if EEG is recorded with a
-separate amplifier, it should be stored separately under a new /eeg data type
+separate amplifier, it should be stored separately under a new `/eeg` data type
 (see [the EEG specification](03-electroencephalography.md)).
 
 Example:
@@ -303,7 +302,7 @@ Digitized head points:
 
 | Field name                                     | Description                                                                                                                                                                                                                                                                                |
 | :--------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| DigitizedHeadPoints                            | OPTIONAL. Relative path to the file containing the locations of digitized head points collected during the session (e.g., `sub-01_headshape.pos`). RECOMMENDED for all MEG systems, especially for CTF and 4D/BTi. For Elekta/Neuromag the head points will be stored in the fif file.     |
+| DigitizedHeadPoints                            | OPTIONAL. Relative path to the file containing the locations of digitized head points collected during the session (e.g., `sub-01_headshape.pos`). RECOMMENDED for all MEG systems, especially for CTF and BTi/4D. For Elekta/Neuromag the head points will be stored in the fif file.     |
 | DigitizedHeadPointsCoordinateSystem            | OPTIONAL. Defines the coordinate system for the digitized head points. See [Appendix VIII](../99-appendices/08-coordinate-systems.md): preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in `DigitizedHeadPointsCoordinateSystemDescription`. |
 | DigitizedHeadPointsCoordinateUnits             | OPTIONAL. Units of the coordinates of `DigitizedHeadPointsCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                   |
 | DigitizedHeadPointsCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the Digitized head Points coordinate system system in detail.                                                                                                                                                           |

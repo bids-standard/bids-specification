@@ -4,10 +4,10 @@ Support for EEG was developed as a [BIDS Extension Proposal](../07-extensions.md
 Please cite the following paper when referring to this part of the standard in
 context of the academic literature:
 
-> Pernet, C. R., Appelhoff, S., Flandin, G., Phillips, C., Delorme, A., &
-> Oostenveld, R. (2018, December 6). BIDS-EEG: an extension to the Brain
-> Imaging Data Structure (BIDS) Specification for electroencephalography.
-> [https://doi.org/10.31234/osf.io/63a4y](https://doi.org/10.31234/osf.io/63a4y)
+> Pernet, C. R., Appelhoff, S., Gorgolewski, K.J., Flandin, G., Phillips, C.,
+> Delorme, A., Oostenveld, R. (2019). **EEG-BIDS, an extension to the brain
+> imaging data structure for electroencephalography**. Scientific data, 6.
+> doi: [10.1038/s41597-019-0104-8](https://doi.org/10.1038/s41597-019-0104-8)
 
 The following example EEG datasets have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
