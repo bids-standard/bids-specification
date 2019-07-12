@@ -380,20 +380,18 @@ however the user is free to choose any other label than `singleband` and
 `multiband` as long as they are consistent across subjects and sessions. For
 multiband acquisitions, one can also save the single-band reference image as
 type `sbref` (e.g. `dwi/sub-control01_sbref.nii[.gz]`) The bvec and bval files
-are in the FSL format<sup>4</sup>: The bvec files contain 3 rows with n
-space-delimited floating-point numbers (corresponding to the n volumes in the
-relevant NIfTI file). The first row contains the x elements, the second row
-contains the y elements and third row contains the z elements of a unit vector
-in the direction of the applied diffusion gradient, where the i-th elements in
-each row correspond together to the i-th volume with `[0,0,0]` for
-non-diffusion-weighted volumes. Inherent to the FSL format for bvec
-specification is the fact that the coordinate system of the bvecs is with
-respect to the participant (i.e., defined by the axes of the corresponding
-dwi.nii file) and not the magnet’s coordinate system, which means that any
-rotations applied to dwi.nii also need to be applied to the corresponding bvec
-file.
-
-<sup>4</sup>[http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html](http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html)
+are in the [FSL format](http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html):
+The bvec files contain 3 rows with n space-delimited floating-point numbers
+(corresponding to the n volumes in the relevant NIfTI file). The first row
+contains the x elements, the second row contains the y elements and third row
+contains the z elements of a unit vector in the direction of the applied
+diffusion gradient, where the i-th elements in each row correspond together to
+the i-th volume with `[0,0,0]` for non-diffusion-weighted volumes. Inherent to
+the FSL format for bvec specification is the fact that the coordinate system of
+the bvecs is with respect to the participant (i.e., defined by the axes of the
+corresponding dwi.nii file) and not the magnet’s coordinate system, which means
+that any rotations applied to dwi.nii also need to be applied to the
+corresponding bvec file.
 
 bvec example:
 
