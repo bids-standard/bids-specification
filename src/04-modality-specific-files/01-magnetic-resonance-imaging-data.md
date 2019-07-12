@@ -1,5 +1,7 @@
 # Magnetic Resonance Imaging data
 
+- <a href="#entity-acq">acq</a>
+
 ## Common metadata fields
 
 MR Data described in sections 8.3.x share the following RECOMMENDED metadata

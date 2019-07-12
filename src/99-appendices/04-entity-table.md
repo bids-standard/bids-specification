@@ -12,6 +12,8 @@ file type are denoted. Entity formats indicate whether the value is alphanumeric
   - <a href="#entity-ses">ses</a>
   - <a href="#entity-task">task</a>
   - <a href="#entity-acq">acq</a>
+  - - <a href="../04-modality-specific-files/01-magnetic-resonance-imaging-data#entity-acq">fixed link acq</a>
+
 
 
 
