@@ -142,7 +142,7 @@ run labels). When there is only one scan of a given type the run key MAY be
 omitted. Please note that diffusion imaging data is stored elsewhere (see
 below).
 
-The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label the user
+The OPTIONAL <a id="#entity-acq">`acq-<label>`</a> key/value pair corresponds to a custom label the user
 MAY use to distinguish a different set of parameters used for acquiring the same
 modality. For example this should be used when a study includes two T1w images -
 one full brain low resolution and and one restricted field of view but high
