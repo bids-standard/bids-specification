@@ -1,5 +1,14 @@
-site_name: Brain Imaging Data Structure v1.1.2-dev
-theme: material
+site_name: Brain Imaging Data Structure v1.3.0-dev
+theme:
+    name: material
+    custom_dir: theme_customizations/
+    favicon: images/favicon.png
+    logo: images/logo.png
+extra_javascript:
+    - js/jquery-3.4.1.min.js
+markdown_extensions:
+    - toc:
+        anchorlink: true
 plugins:
     - search
 docs_dir: 'src'
@@ -12,9 +21,11 @@ nav:
       - Modality specific files:
         - Magnetic Resonance Imaging: 04-modality-specific-files/01-magnetic-resonance-imaging-data.md
         - Magnetoencephalography: 04-modality-specific-files/02-magnetoencephalography.md
-        - Task events: 04-modality-specific-files/03-task-events.md
-        - Physiological and other continous recordings: 04-modality-specific-files/04-physiological-and-other-continous-recordings.md
-        - Behavioral experiments (with no MRI): 04-modality-specific-files/05-behavioural-experiments.md
+        - Electroencephalography: 04-modality-specific-files/03-electroencephalography.md
+        - intracranial Electroencephalography: 04-modality-specific-files/04-intracranial-electroencephalography.md
+        - Task events: 04-modality-specific-files/05-task-events.md
+        - Physiological and other continuous recordings: 04-modality-specific-files/06-physiological-and-other-continuous-recordings.md
+        - Behavioral experiments (with no MRI): 04-modality-specific-files/07-behavioral-experiments.md
       - Longitudinal and multi-site studies: 05-longitudinal-and-multi-site-studies.md
       - Extending the BIDS specification: 06-extensions.md
       - Appendix:

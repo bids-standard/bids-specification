@@ -8,7 +8,7 @@ obtained in neuroimaging experiments. Even two researchers working in the same
 lab can opt to arrange their data in a different way. Lack of consensus (or a
 standard) leads to misunderstandings and time wasted on rearranging data or
 rewriting scripts expecting certain structure. Here we describe a simple and
-easy-to-adopt way of organising neuroimaging and behavioural data. By using this
+easy-to-adopt way of organising neuroimaging and behavioral data. By using this
 standard you will benefit in the following ways:
 
 -   It will be easy for another researcher to work on your data. To understand
@@ -45,7 +45,7 @@ different backgrounds.
 ## Extensions
 
 The BIDS specification can be extended in a backwards compatible way and will
-evolve over time. This is accomplished through community-driven BIDS Extention
+evolve over time. This is accomplished through community-driven BIDS Extension
 Proposals (BEPs). For more information about the BEP process, and list of
 current BEP proposals, see
 [Extending the BIDS specification](06-extensions.md).

@@ -8,13 +8,13 @@ CapManufacturersModelName.
 -   Remove EEGSamplingFrequency and ManufacturersAmplifierModelName
 from the meg.json.
 
--   Improved the behavioural data description.
+-   Improved the behavioral data description.
 
 ## 1.1.0
 
 -   Added support for MEG data (merged BEP008)
 -   Added SequenceName field.
--   Added support for describing events with Hierarchical Event Descriptors [[4.3 Task events](04-modality-specific-files/03-task-events.md)].
+-   Added support for describing events with Hierarchical Event Descriptors [[4.3 Task events](04-modality-specific-files/05-task-events.md)].
 -   Added VolumeTiming and AcquisitionDuration fields [[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 -   Added DwellTime field.
 
@@ -69,7 +69,7 @@ from the meg.json.
 -   Added trial_type column to the event files.
 
 -   Added missing sub-&lt;participant_label&gt; in
-   behavioural data file names
+   behavioral data file names
 
 -   Added ability to store stimuli files.
 
