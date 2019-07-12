@@ -7,15 +7,10 @@ precede the reconstruction entity. REQUIRED and OPTIONAL entities for a given
 file type are denoted. Entity formats indicate whether the value is alphanumeric
 (`<label>`) or numeric (`<index>`).
 
-- linking to entities
-  - <a href="#entity-sub">sub</a>
-  - <a href="#entity-ses">ses</a>
-  - <a href="#entity-task">task</a>
-  - <a href="#entity-acq">acq</a>
-  - - <a href="../04-modality-specific-files/01-magnetic-resonance-imaging-data#entity-acq">fixed link acq</a>
-
-
-
+- [run](../04-modality-specific-files/01-magnetic-resonance-imaging-data.md#the-run-entity)
+- [acq](../04-modality-specific-files/01-magnetic-resonance-imaging-data.md#the-acq-entity)
+- [ce](../04-modality-specific-files/01-magnetic-resonance-imaging-data.md#the-ce-entity)
+- [rec](../04-modality-specific-files/01-magnetic-resonance-imaging-data.md#the-rec-entity)
 
 Entity                                                                                         | Subject       | Session       | Task           | Acquisition   | Contrast Enhancing Agent | Reconstruction | Phase-Encoding Direction | Run           | Corresponding modality | Echo           | Recording           | Processed (on device) | Space
 ---                                                                                            | ---           | ---           | ---            | ---           | ---                      | ---            | ---                      | ---           | ---                    | ---            | ---                 | ---                   | ---

@@ -1,7 +1,5 @@
 # Magnetic Resonance Imaging data
 
-- <a href="#entity-acq">acq</a>
-
 ## Common metadata fields
 
 MR Data described in sections 8.3.x share the following RECOMMENDED metadata
@@ -138,13 +136,17 @@ modalities include:
 | Inplane T2         | inplaneT2        | T2-weighted anatomical image matched to functional acquisition                                                                                                                                                                          |
 | Angiography        | angio            |                                                                                                                                                                                                                                         |
 
+###### The `run` entity
+
 If several scans of the same modality are acquired they MUST be indexed with a
 key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only integers are allowed as
 run labels). When there is only one scan of a given type the run key MAY be
 omitted. Please note that diffusion imaging data is stored elsewhere (see
 below).
 
-The OPTIONAL <a id="#entity-acq">`acq-<label>`</a> key/value pair corresponds to a custom label the user
+###### The `acq` entity
+
+The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label the user
 MAY use to distinguish a different set of parameters used for acquiring the same
 modality. For example this should be used when a study includes two T1w images -
 one full brain low resolution and and one restricted field of view but high
@@ -157,10 +159,14 @@ can also be used to make that distinction. At what level of detail to make the
 distinction (e.g. just between RARE and FLASH, or between RARE, FLASH, and
 FLASHsubsampled) remains at the discretion of the researcher.
 
+###### The `ce` entity
+
 Similarly the OPTIONAL `ce-<label>` key/value can be used to distinguish
 sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the
 JSON file, with the same label.
+
+###### The `rec` entity
 
 Similarly the OPTIONAL `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
