@@ -12,4 +12,3 @@ If you are interested in getting occasional updates on BIDS
 please consider signing up for our [mailing list](https://docs.google.com/forms/d/1ZLi5qRTuX11KGK7qIidSdZvznFoXAqr2wh6003okv-0/edit)
 
 You can also find us on Twitter! ![](http://img.shields.io/twitter/follow/bidsstandard.svg?style=social)
-
