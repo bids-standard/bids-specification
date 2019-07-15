@@ -7,7 +7,7 @@ Template:
 ```Text
 <pipeline_name>/
     sub-<participant_label>/
-        func|anat|dwi/
+        anat|func|dwi/
         <source_keywords>[_space-<space>][_desc-<label>]_<suffix>.<ext>
 ```
 
@@ -73,7 +73,7 @@ Template:
 ```Text
 <pipeline_name>/
     sub-<participant_label>/
-        func|anat|dwi/
+        anat|func|dwi/
         <source_keywords>[_space-<space>][_desc-<label>]_mask.nii.gz
 ```
 
@@ -118,7 +118,7 @@ Common JSON metadata fields:
 ### Discrete Segmentations
 
 Discrete segmentations of brain tissue represent each tissue class with a unique
-integer label in a 3D volume. See "Anatomical Labels" for interpretation how
+integer label in a 3D volume. See [Anatomical Labels](#anatomical-labels) for interpretation how
 integer values map to tissue classes.
 
 Template:
@@ -126,7 +126,7 @@ Template:
 ```Text
 <pipeline_name>/
     sub-<participant_label>/
-        func|anat|dwi/
+        anat|func|dwi/
             <source_keywords>[_space-<space>]_dseg.nii.gz
 ```
 
@@ -151,7 +151,7 @@ pipeline/
             sub-001_space-orig_label-GM_dseg.nii.gz
 ```
 
-See "Anatomical labels" for reserved key values for `label`.
+See [Anatomical Labels](#anatomical-labels) for reserved key values for `label`.
 
 ### Probabilistic Segmentations
 
@@ -179,7 +179,7 @@ pipeline/
             sub-001_space-orig_label-WM_probseg.nii.gz
 ```
 
-See "Anatomical labels" for reserved key values for `label`.
+See [Anatomical labels](#anatomical-labels) for reserved key values for `label`.
 
 A 4D probabilistic segmentation, in which each frame corresponds to a different
 tissue class, must provide a label mapping in its JSON sidecar. For example:
@@ -205,7 +205,7 @@ for each volume:
 }
 ```
 
-Values of `label` need to map to Abbreviations defined in "Anatomical Labels".
+Values of `label` need to map to Abbreviations defined in [Anatomical Labels](#anatomical-labels).
 
 ### Surface Parcellations
 
@@ -221,7 +221,7 @@ Template:
             <source_keywords>[_hemi-{L|R}][_space-<space>]_dseg.{label.gii|dlabel.nii}
 ```
 
-The REQUIRED extension for GIFTI parcellations is `.label.gii`. The hemi tag is
+The REQUIRED extension for GIFTI parcellations is `.label.gii`. The `hemi` tag is
 REQUIRED for GIFTI files. For example:
 
 ```Text
