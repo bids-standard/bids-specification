@@ -26,9 +26,11 @@ All discussions are happening in the following channels:
     [`community input needed`](https://github.com/bids-standard/bids-specification/labels/community),
     and [`opinions wanted`](https://github.com/bids-standard/bids-specification/labels/opinions%20wanted)
 - The [bids-discussion](https://groups.google.com/forum/#!forum/bids-discussion)
-  Google Forum
+  Google Group
+  - Note that this is largely deprecated, but a small amount of traffic remains.
 - The [NeuroStars](https://neurostars.org/tags/bids) Discourse Forum, under the
   `bids` tag
+  - Keep on top of new posts by setting your [topic notifications](https://meta.discourse.org/t/discourse-new-user-guide/96331#heading--topic-notifications)
 
 
 If you want to become a part of the BIDS community and contribute to the
