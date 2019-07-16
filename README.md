@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/bids-standard/bids-specification.svg?branch=master)](https://travis-ci.com/bids-standard/bids-specification)
 [![CircleCI](https://circleci.com/gh/bids-standard/bids-specification.svg?style=svg)](https://circleci.com/gh/bids-standard/bids-specification)
-![](http://img.shields.io/twitter/follow/bidsstandard.svg?style=social)
+[![@BIDSstandard](http://img.shields.io/twitter/follow/bidsstandard.svg?style=social)](https://twitter.com/BIDSstandard)
 
 ![BIDS logo](BIDS_logo/BIDS_logo_black_transparent_background_crop.png)
 

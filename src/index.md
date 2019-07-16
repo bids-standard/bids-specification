@@ -9,6 +9,5 @@ more information on how to adapt your own datasets to match the BIDS
 specification, we recommend exploring the [bids-specification starter kit](https://github.com/bids-standard/bids-starter-kit).
 
 If you are interested in getting occasional updates on BIDS 
-please consider signing up for our [mailing list](https://docs.google.com/forms/d/1ZLi5qRTuX11KGK7qIidSdZvznFoXAqr2wh6003okv-0/edit)
+For an overview of the BIDS ecosystem, visit the [BIDS homepage](bids.neuroimaging.io).
 
-You can also find us on Twitter! ![](http://img.shields.io/twitter/follow/bidsstandard.svg?style=social)
