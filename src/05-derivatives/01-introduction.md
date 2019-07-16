@@ -97,8 +97,8 @@ keyword depend on the file format:
 
 | File format                  | Description             | Allowed `CoordinateSystem` values                                                                                                                                                                             |
 | ---------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NIfTI (`.nii` and `.nii.gz`) | Volume data             | Coordinate systems listed in [Template Based Coordinate Systems: Volume](../99-appendices/08-coordinate-systems.md#volume). If `individual` or `custom` is used then setting `SpatialReference` is REQUIRED   |
-| GIFTI (`.gii`)               | Surface data            | Coordinate systems listed in [Template Based Coordinate Systems: Surface](../99-appendices/08-coordinate-systems.md#surface). If `individual` or `custom` is used then setting `SpatialReference` is REQUIRED |
+| NIfTI (`.nii` and `.nii.gz`) | Volume data             | Coordinate systems listed in [Template Based Coordinate Systems: Volume](../99-appendices/08-coordinate-systems.md#volume). If `individual` or `custom` is used then setting [`SpatialReference`](#spatialreference-key-allowed-values) is REQUIRED   |
+| GIFTI (`.gii`)               | Surface data            | Coordinate systems listed in [Template Based Coordinate Systems: Surface](../99-appendices/08-coordinate-systems.md#surface). If `individual` or `custom` is used then setting [`SpatialReference`](#spatialreference-key-allowed-values) is REQUIRED |
 | CIFTI (`.nii`)               | Volume and surface data | Coordinate systems listed in [Template Based Coordinate Systems: Hybrid (Volume/Surface) aliases](../99-appendices/08-coordinate-systems.md#hybrid-volumesurface-aliases)                                     |
 
 Examples:
@@ -201,7 +201,7 @@ sub-01/anat/sub-01_hemi-L_space-individual_thickness.json
     the keyword)
 
 -   When the derivatives chain involves outputs derived from a single raw input,
-    `source_keywords` MUST be the entire source filename, with the ommission of
+    `source_keywords` MUST be the entire source filename, with the omission of
     the source suffix and extension. One exception to this rule is filename
     keywords that are no longer relevant. Depending on the nature of the
     derivative file, the suffix can either be the same as the source file if

@@ -21,12 +21,15 @@ data types in the specification. Examples:
 -   Inhomogeneity corrected and skull stripped T1w files.
 
 -   Motion-corrected DWI files.
+- Time-domain filtered and ICA cleaned EEG data
 
 The `space` keyword is recomended to distinguish files with different underlying
 coordinate systems or registered to different reference maps. The
 `desc` keyword is a general purpose field with freeform values. To distinguish
 between multiple different versions of processing for the same input data the
-`desc` keyword should be used. Note that even though `space` and `desc` are
+`desc` keyword should be used.
+
+Note that even though `space` and `desc` are
 optional at least one of them needs to be defined to avoid name conflict with
 the raw file.
 
