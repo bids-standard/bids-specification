@@ -9,5 +9,28 @@ organisation of neuroimaging data.
 In this repository, we develop the
 [BIDS specification](https://bids-specification.readthedocs.io/en/latest/).
 
-If you want to become a part of the BIDS community and contribute to the specification, please see our
-[contributing guidelines](./CONTRIBUTING.md).
+# Contributing to BIDS
+
+BIDS is a community-driven standard and it depends on contributions from its
+users. We have ongoing discussions about a broad variety of topics, reaching
+from details about the implementation of certain key-value fields in highly
+specialized files up to broad and impactful decisions on how we want to thrive
+as a community.
+
+All discussions are happening in the following channels:
+
+- The [GitHub Issues Page](https://github.com/bids-standard/bids-specification/issues)
+  - Watch out for the pinned issues on top of the issues page. The following
+    tags help you to access the most important issues:
+    [`help wanted`](https://github.com/bids-standard/bids-specification/labels/help%20wanted),
+    [`community input needed`](https://github.com/bids-standard/bids-specification/labels/community),
+    and [`opinions wanted`](https://github.com/bids-standard/bids-specification/labels/opinions%20wanted)
+- The [bids-discussion](https://groups.google.com/forum/#!forum/bids-discussion)
+  Google Forum
+- The [NeuroStars](https://neurostars.org/tags/bids) Discourse Forum, under the
+  `bids` tag
+
+
+If you want to become a part of the BIDS community and contribute to the
+specification, please check out the aforementioned channels and see our
+[contributing guidelines](./CONTRIBUTING.md) for further information.
