@@ -15,10 +15,10 @@ Processing in this context means transformations of data that does not change
 the number of dimensions of the input and are not explicitly covered by other
 data types in the specification. Examples:
 
--  Motion-corrected, temporally denoised, and transformed to MNI space bold files.
--  Inhomogeneity corrected and skull stripped T1w files.
--  Motion-corrected DWI files.
--  Time-domain filtered and ICA cleaned EEG data
+ -  Motion-corrected, temporally denoised, and transformed to MNI space bold files.
+ -  Inhomogeneity corrected and skull stripped T1w files.
+ -  Motion-corrected DWI files.
+ -  Time-domain filtered and ICA cleaned EEG data
 
 The `space` keyword is recomended to distinguish files with different underlying
 coordinate systems or registered to different reference maps. The
