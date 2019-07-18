@@ -38,4 +38,8 @@ nav:
         - MEG systems: 99-appendices/07-meg-systems.md
         - Coordinate-systems: 99-appendices/08-coordinate-systems.md
       - Changelog: CHANGES.md
-    - The BIDS Starter Kit: https://github.com/bids-standard/bids-starter-kit
+    - The BIDS Starter Kit:
+      - GitHub repository: https://github.com/bids-standard/bids-starter-kit
+      - Tutorials: https://github.com/bids-standard/bids-starter-kit/wiki/Tutorials
+      - Forum: https://neurostars.org/tags/bids
+      - Wiki: https://github.com/bids-standard/bids-starter-kit/wiki
