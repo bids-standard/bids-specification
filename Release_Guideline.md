@@ -13,10 +13,12 @@ In both cases, edition numbers are specified as MAJOR.MINOR.PATCH, and the diffe
 
 In BIDS, we have considered a major release version (the next being 2.0.0) to indicate
 backwards-incompatible changes, while minor and patch releases must be backwards compatible.
+
 ## Guidelines
 
 Once a decision for a release has been established, the rules of [decision-making](DECISION-MAKING.md)
-govern the mechanism of doing the release, *i.e.*, waiting 5 business days to merge.
+govern the mechanism of doing the release, *i.e.*, waiting 5 business days and obtaining
+the approval of at least one maintainer before merging.
 
 ### Minor (1.X.0) releases
 
