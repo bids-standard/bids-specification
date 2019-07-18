@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] Update pipenv [#274](https://github.com/bids-standard/bids-specification/pull/274) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Common principles: Fix filename in inheritance principle [#261](https://github.com/bids-standard/bids-specification/pull/261) ([Lestropie](https://github.com/Lestropie))
 -   \[MISC] update modality references [#258](https://github.com/bids-standard/bids-specification/pull/258) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] adding logo to RTD [#256](https://github.com/bids-standard/bids-specification/pull/256) ([franklin-feingold](https://github.com/franklin-feingold))
