@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] update Code of Conduct contact [#281](https://github.com/bids-standard/bids-specification/pull/281) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[INFRA] Update pipenv [#274](https://github.com/bids-standard/bids-specification/pull/274) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Common principles: Fix filename in inheritance principle [#261](https://github.com/bids-standard/bids-specification/pull/261) ([Lestropie](https://github.com/Lestropie))
 -   \[MISC] update modality references [#258](https://github.com/bids-standard/bids-specification/pull/258) ([sappelhoff](https://github.com/sappelhoff))
