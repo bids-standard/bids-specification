@@ -10,7 +10,7 @@ organisation of neuroimaging data.
 In this repository, we develop the
 [BIDS specification](https://bids-specification.readthedocs.io/en/latest/).
 
-Want to learn more about working with BIDS? Have a question, comment, or suggestion?
+**Want to learn more about working with BIDS? Have a question, comment, or suggestion?**
 Open or comment on one of our [NeuroStars issues](https://neurostars.org/tags/bids) or check out the [BIDS Starter Kit](https://github.com/bids-standard/bids-starter-kit)!
 
 # Contributing to BIDS
