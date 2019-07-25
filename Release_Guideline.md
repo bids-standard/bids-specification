@@ -4,7 +4,7 @@ This document captures guidelines to follow when considering a new release of th
 
 ## Background
 BIDS has generally followed a semantic versioning (semver) approach.
-The canonical semver text can be found at [https://semver.org/](https://semver.org/), and an adaptation to documents can be found at [https://semverdoc.org/](https://semver.org/).
+The canonical semver text can be found at https://semver.org/, and an adaptation to documents can be found at https://semverdoc.org/.
 A specification falls somewhere between these two, as documentation does not require
 backwards compatibility, while software has notions of bugs and features which do not
 map to the reasons for updating a specification.
