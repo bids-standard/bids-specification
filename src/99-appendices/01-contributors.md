@@ -102,7 +102,7 @@ your name is not listed, please add it.
 -   Russell A. Poldrack 📖🔍📢
 -   Jean-Baptiste Poline 📖📢🤔🎨
 -   Vasudev Raguram 💻🎨📖🔧
--   Pradeep Reddy 💻🔧
+-   Pradeep Reddy Raamana 💻🔧
 -   Ariel Rokem 📖
 -   Matt Sanderson 📖💻
 -   Gunnar Schaefer 📖
