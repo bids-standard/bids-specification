@@ -65,11 +65,11 @@ If we want to name a datafile that was collected in a certain `session` from
 a certain `subject`, the name of that datafile will start with the following
 string: `sub-<label>_ses-<label>`.
 
-Note that `sub-<sub-label>` correspondes to the `subject` entity because it has
-the `sub-` "key" and`<sub-label>` "value", where `<sub-label>` would in a real
+Note that `sub-<label>` correspondes to the `subject` entity because it has
+the `sub-` "key" and`<label>` "value", where `<label>` would in a real
 datafile correspond to a unique identifier of that subject, such as `01`. The
 same  explanation holds for the `session` entity with its `ses-` key and its
-`<ses-label>` value.
+`<label>` value.
 
 Note also that entities are separated by an underscore (`_`).
 
@@ -81,7 +81,7 @@ data from subject `01`. The *suffix* `_eeg` and the *extension* `.edf` are
 depending on the imaging modality and the data format and convey further
 information regarding the file's contents.
 
-The list of all entities in BIDS and the order in which they SHOULD be
+The list of all entities in BIDS and the order in which they MUST be
 specified is available in the [entity table](./99-appendices/04-entity-table.md)
 in the appendix.
 
