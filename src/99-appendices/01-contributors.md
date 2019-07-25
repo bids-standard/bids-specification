@@ -30,6 +30,7 @@ The following individuals have contributed to the Brain Imaging Data Structure
 ecosystem (in alphabetical order). If you contributed to the BIDS ecosystem and
 your name is not listed, please add it.
 
+-   Fidel Alfaro Almagro 💬📖💡🔌
 -   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️📢
 -   Tibor Auer 💬📖💡🔧📢
 -   Sylvain Baillet 📖🔍
@@ -48,7 +49,7 @@ your name is not listed, please add it.
 -   Eric A. Earl 🤔
 -   Anders Eklund 📖📢💻
 -   Oscar Esteban 📖🔧🤔💬💻
--   Franklin W. Feingold 📋📝✅
+-   Franklin W. Feingold 📋📝✅💬🤔
 -   Guillaume Flandin 📖💻
 -   Remi Gau 📖💻
 -   Satrajit S. Ghosh 📖💻
@@ -101,6 +102,7 @@ your name is not listed, please add it.
 -   Russell A. Poldrack 📖🔍📢
 -   Jean-Baptiste Poline 📖📢🤔🎨
 -   Vasudev Raguram 💻🎨📖🔧
+-   Pradeep Reddy 💻🔧
 -   Ariel Rokem 📖
 -   Matt Sanderson 📖💻
 -   Gunnar Schaefer 📖
