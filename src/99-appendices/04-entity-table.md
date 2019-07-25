@@ -7,10 +7,8 @@ precede the reconstruction entity. REQUIRED and OPTIONAL entities for a given
 file type are denoted. Entity formats indicate whether the value is alphanumeric
 (`<label>`) or numeric (`<index>`).
 
-  - [run](../04-modality-specific-files/01-magnetic-resonance-imaging-data.md#the-run-entity)
-  - [acq](../04-modality-specific-files/01-magnetic-resonance-imaging-data.md#the-acq-entity)
-  - [ce](../04-modality-specific-files/01-magnetic-resonance-imaging-data.md#the-ce-entity)
-  - [rec](../04-modality-specific-files/01-magnetic-resonance-imaging-data.md#the-rec-entity)
+A general introduction to entities is given in the section on
+[common principles](../02-common-principles.md#file-names-consist-of-key-value-pairs-entities)
 
 | Entity                                                                                         | Subject       | Session       | Task           | Acquisition   | Contrast Enhancing Agent | Reconstruction | Phase-Encoding Direction | Run           | Corresponding modality | Echo           | Recording           | Processed (on device) | Space           |
 | :--------------------------------------------------------------------------------------------: | :-----------: | :-----------: | :------------: | :-----------: | :----------------------: | :------------: | :----------------------: | :-----------: | :--------------------: | :------------: | :-----------------: | :-------------------: | :---------------|

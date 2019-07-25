@@ -56,6 +56,39 @@ misunderstanding we clarify them here.
     due to different subject response or randomized nature of the stimuli). Run
     is a synonym of a data acquisition.
 
+## File names consist of key-value pairs (entities)
+
+We define file names with a chain of key-value pairs, each of which we call
+an *entity*. Two prominent examples are the `subject` and `session` entities.
+
+If we want to name a datafile that was collected in a certain `session` from
+a certain `subject`, the name of that datafile will start with the following
+string: `sub-<label>_ses-<label>`.
+
+Note that `sub-<sub-label>` correspondes to the `subject` entity because it has
+the `sub-` "key" and a value `<sub-label>`, where `<sub-label>` would in a real
+datafile correspond to a unique identifier of that subject, such as `01`. The
+same  explanation holds for the `session` entity with its `ses-` key and its
+`<ses-label>` value.
+
+Finally, you can notice how different entities are separated by an underscore
+(`_`).
+
+With this system we can name datafiles in a very human readable way:
+`sub-01_task-rest_eeg.edf`
+
+From the file name alone, a user can tell that the file contains resting state
+data from subject `01`. The *suffix* `_eeg` and the extension `.edf` are
+depending on the imaging modality and the data format and convey further
+information regarding the file's contents.
+
+The list of all entities in BIDS and the order in which they SHOULD be
+specified is available in the [entitiy-table](./99-appendices/04-entity-table.md)
+in the appendix.
+
+Read the relevant sections for the files you want to specify to get a better
+idea on which entities to use and how to use them.
+
 ## Compulsory, optional, and additional data and metadata
 
 The following standard describes a way of arranging data and writing down
