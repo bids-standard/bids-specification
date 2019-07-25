@@ -71,19 +71,18 @@ datafile correspond to a unique identifier of that subject, such as `01`. The
 same  explanation holds for the `session` entity with its `ses-` key and its
 `<ses-label>` value.
 
-Finally, you can notice how different entities are separated by an underscore
-(`_`).
+Note also that entities are separated by an underscore (`_`).
 
 With this system we can name datafiles in a human readable way:
 `sub-01_task-rest_eeg.edf`
 
 From the file name alone, a user can tell that the file contains resting state
-data from subject `01`. The *suffix* `_eeg` and the extension `.edf` are
+data from subject `01`. The *suffix* `_eeg` and the *extension* `.edf` are
 depending on the imaging modality and the data format and convey further
 information regarding the file's contents.
 
 The list of all entities in BIDS and the order in which they SHOULD be
-specified is available in the [entitiy-table](./99-appendices/04-entity-table.md)
+specified is available in the [entity table](./99-appendices/04-entity-table.md)
 in the appendix.
 
 Read the relevant sections for the files you want to specify to get a better
