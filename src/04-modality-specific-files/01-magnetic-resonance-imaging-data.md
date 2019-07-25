@@ -136,7 +136,7 @@ modalities include:
 | Inplane T2         | inplaneT2        | T2-weighted anatomical image matched to functional acquisition                                                                                                                                                                          |
 | Angiography        | angio            |                                                                                                                                                                                                                                         |
 
-###### The `run` entity
+#### The `run` entity
 
 If several scans of the same modality are acquired they MUST be indexed with a
 key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only integers are allowed as
@@ -144,7 +144,7 @@ run labels). When there is only one scan of a given type the run key MAY be
 omitted. Please note that diffusion imaging data is stored elsewhere (see
 below).
 
-###### The `acq` entity
+#### The `acq` entity
 
 The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label the user
 MAY use to distinguish a different set of parameters used for acquiring the same
@@ -159,14 +159,14 @@ can also be used to make that distinction. At what level of detail to make the
 distinction (e.g. just between RARE and FLASH, or between RARE, FLASH, and
 FLASHsubsampled) remains at the discretion of the researcher.
 
-###### The `ce` entity
+#### The `ce` entity
 
 Similarly the OPTIONAL `ce-<label>` key/value can be used to distinguish
 sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the
 JSON file, with the same label.
 
-###### The `rec` entity
+#### The `rec` entity
 
 Similarly the OPTIONAL `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
