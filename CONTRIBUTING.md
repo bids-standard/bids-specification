@@ -1,11 +1,11 @@
 
 # Contributing to the BIDS Specification
 
-**Welcome to the BIDS Specification repository!**
+**Welcome to the BIDS contributing guide!**
 
-*We're so excited you're here and want to contribute.*
+These guidelines are designed to make it as easy as possible to get involved. If you have any questions that aren't discussed below, please let us know by [opening an issue](#understanding-issues).
 
-We hope that these guidelines are designed to make it as easy as possible to get involved. If you have any questions that aren't discussed below, please let us know by [opening an issue](#understanding-issues).
+We look forward to your contributions!
 
 ## Table of contents
 
@@ -72,7 +72,6 @@ The current list of labels are [here](https://github.com/bids-standard/bids-spec
     In addition to the specification itself, we are dedicated to creating a healthy community.
     These issues highlight pieces of work or discussions around how we can support our members and make it easier to contribute.
 
-
 ## Writing in markdown
 
 The specification documents follow the [Markdown Style Guide](http://www.cirosantilli.com/markdown-style-guide/).
@@ -118,7 +117,6 @@ We appreciate all contributions to the BIDS Specification. **THANK YOU** for hel
 
 This allows other members of the BIDS Specification team to confirm that you aren't overlapping with work that's currently underway and that everyone is on the same page with the goal of the work you're going to carry out.
 
-
 #### 2. [Fork](https://help.github.com/articles/fork-a-repo/) [this repository](https://github.com/bids-standard/bids-specification) to your profile
 
 This is now your own unique copy of the BIDS Specification. Changes here won't affect anyone else's work, so it's a safe space to explore edits to the specification!
@@ -161,16 +159,12 @@ GitHub has a [nice introduction](https://help.github.com/articles/github-flow/) 
 <br />
 <br />
 
-
 ## How the decision to merge a pull request is made?
 
 The decision-making rules are outlined in [DECISION-MAKING.md](DECISION-MAKING.md).
-
 
 ## Recognizing contributions
 
 BIDS follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification, so we welcome and recognize all contributions from documentation to testing to code development. You can see a list of current contributors in the [BIDS specification](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md).
 
-## Thank you!
-
-You're awesome.
+### Thank you for contributing!
