@@ -31,7 +31,7 @@ ecosystem (in alphabetical order). If you contributed to the BIDS ecosystem and
 your name is not listed, please add it.
 
 -   Fidel Alfaro Almagro 💬📖💡🔌
--   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️📢
+-   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️📢✅🔧🔌📝
 -   Tibor Auer 💬📖💡🔧📢
 -   Sylvain Baillet 📖🔍
 -   Elizabeth Bock 📖💡
@@ -49,7 +49,7 @@ your name is not listed, please add it.
 -   Eric A. Earl 🤔
 -   Anders Eklund 📖📢💻
 -   Oscar Esteban 📖🔧🤔💬💻
--   Franklin W. Feingold 📋📝✅💬🤔
+-   Franklin W. Feingold 📋📝✅💬🤔🎨
 -   Guillaume Flandin 📖💻
 -   Remi Gau 📖💻
 -   Satrajit S. Ghosh 📖💻
@@ -63,6 +63,7 @@ your name is not listed, please add it.
 -   Michael Hanke 📖🤔🔧🐛📢
 -   Michael P. Harms 📖⚠️🔧
 -   Richard N. Henson 📖
+-   Peer Herholz 💬📖👀🔧✅📢
 -   Dora Hermes 📖💻✅🔍🤔
 -   Katja Heuer 🔧
 -   Chris Holdgraf 📖🤔
@@ -79,7 +80,7 @@ your name is not listed, please add it.
 -   Vladimir Litvak 📖
 -   Dan Lurie 🤔📖🔧🔌💻💬
 -   Camille Maumet 📖
--   Christopher J. Markiewicz 💬📖💻
+-   Christopher J. Markiewicz 💬🐛💻📖🎨💡🤔🔌👀🔧📢
 -   Jeremy Moreau 📖💡
 -   Zachary Michael 📖
 -   Ezequiel Mikulan 📖💻
@@ -90,6 +91,7 @@ your name is not listed, please add it.
 -   Thomas E. Nichols 📖📢🔧
 -   Dylan Nielson 📖💻🔧
 -   Guiomar Niso 📖💡📢
+-   Michael P. Notter 💬📝✅📢📖
 -   Robert Oostenveld 📖🔧📢💡✅⚠️🤔
 -   Dimitri Papadopoulos Orfanos 📖💡🤔💬
 -   Patrick Park 📖💡💬
