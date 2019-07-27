@@ -56,6 +56,24 @@ misunderstanding we clarify them here.
     due to different subject response or randomized nature of the stimuli). Run
     is a synonym of a data acquisition.
 
+## Compulsory, optional, and additional data and metadata
+
+The following standard describes a way of arranging data and writing down
+metadata for a subset of neuroimaging experiments. Some aspects of the standard
+are compulsory. For example a particular file name format is required when
+storing structural scans. Some aspects are regulated but optional. For example a
+T2 volume does not need to be included, but when it is available it should be
+saved under a particular file name specified in the standard. This standard
+aspires to describe a majority of datasets, but acknowledges that there will be
+cases that do not fit. In such cases one can include additional files and
+subfolders to the existing folder structure following common sense. For example
+one may want to include eye tracking data in a vendor specific format that is
+not covered by this standard. The most sensible place to put it is next to the
+continuous recording file with the same naming scheme but different extensions.
+The solutions will change from case to case and publicly available datasets will
+be reviewed to include common data types in the future releases of the BIDS
+specification.
+
 ## File name structure
 
 File names consist of chains of *entities*, or key-value pairs, a *suffix* and an
@@ -78,27 +96,9 @@ data from subject `01`.
 The suffix `eeg` and the extension `.edf` depend on the imaging modality and
 the data format and indicate further details of the file's contents.
 
-The list of all entities in BIDS and the order in which they MUST be
+A summary of all entities in BIDS and the order in which they MUST be
 specified is available in the [entity table](./99-appendices/04-entity-table.md)
 in the appendix.
-
-## Compulsory, optional, and additional data and metadata
-
-The following standard describes a way of arranging data and writing down
-metadata for a subset of neuroimaging experiments. Some aspects of the standard
-are compulsory. For example a particular file name format is required when
-storing structural scans. Some aspects are regulated but optional. For example a
-T2 volume does not need to be included, but when it is available it should be
-saved under a particular file name specified in the standard. This standard
-aspires to describe a majority of datasets, but acknowledges that there will be
-cases that do not fit. In such cases one can include additional files and
-subfolders to the existing folder structure following common sense. For example
-one may want to include eye tracking data in a vendor specific format that is
-not covered by this standard. The most sensible place to put it is next to the
-continuous recording file with the same naming scheme but different extensions.
-The solutions will change from case to case and publicly available datasets will
-be reviewed to include common data types in the future releases of the BIDS
-specification.
 
 ## Source vs. raw vs. derived data
 
