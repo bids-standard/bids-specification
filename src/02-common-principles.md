@@ -76,7 +76,7 @@ specification.
 
 ## File name structure
 
-File names consist of chains of *entities*, or key-value pairs, a *suffix* and an
+A file name consists of a chain of *entities*, or key-value pairs, a *suffix* and an
 *extension*.
 Two prominent examples of entities are `subject` and `session`.
 

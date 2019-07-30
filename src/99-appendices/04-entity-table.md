@@ -8,7 +8,7 @@ file type are denoted. Entity formats indicate whether the value is alphanumeric
 (`<label>`) or numeric (`<index>`).
 
 A general introduction to entities is given in the section on
-[common principles](../02-common-principles.md#file-names-consist-of-key-value-pairs-entities)
+[file name structure](../02-common-principles.md#file-name-structure)
 
 | Entity                                                                                         | Subject       | Session       | Task           | Acquisition   | Contrast Enhancing Agent | Reconstruction | Phase-Encoding Direction | Run           | Corresponding modality | Echo           | Recording           | Processed (on device) | Space           |
 | :--------------------------------------------------------------------------------------------- | :------------ | :------------ | :------------- | :------------ | :----------------------- | :------------- | :----------------------- | :------------ | :--------------------- | :------------- | :------------------ | :-------------------- | :---------------|
