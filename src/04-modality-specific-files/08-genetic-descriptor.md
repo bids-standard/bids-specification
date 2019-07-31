@@ -52,7 +52,7 @@ This file is the descriptor of the genetic information available either in the p
 `genetic_info.json` example:
 
 {
-"GeneticLevel": "Genetic",  
+"GeneticLevel": "Genetic",
 "AnalyticalApproach": "SNP Genotypes",
 SampleOrigin: "brain",
 "TissueOrigin": "gray matter",
