@@ -11,13 +11,13 @@ Two additional keys related to the genetic data can be added. The Key `GeneticDa
 `dataset_description.json` example:
 
 {
-    "Name": "xxxxx",
-    "BIDSVersion":  "xxxxx",
-    "License": "CC0",
-    "Authors": ["1st author", "2nd author"],
-    "Funding": "list your funding sources",
-    "GeneticDataBase": ["Name", "www",],
-    "GeneticDescriptor": ["data paper", "10.0.2.3/dfjj.10"]
+  "Name": "xxxxx",
+  "BIDSVersion":  "xxxxx",
+  "License": "CC0",
+  "Authors": ["1st author", "2nd author"],
+  "Funding": "list your funding sources",
+  "GeneticDataBase": ["Name", "www",],
+  "GeneticDescriptor": ["data paper", "10.0.2.3/dfjj.10"]
 }
 
 
@@ -52,10 +52,10 @@ This file is the descriptor of the genetic information available either in the p
 `genetic_info.json` example:
 
 {
-"GeneticLevel": "Genetic",
-"AnalyticalApproach": "SNP Genotypes",
-SampleOrigin: "brain",
-"TissueOrigin": "gray matter",
-CellType:  "neuron",
-"BrainLocation": "[-30 -15 10]",
+  "GeneticLevel": "Genetic",
+  "AnalyticalApproach": "SNP Genotypes",
+  "SampleOrigin": "brain",
+  "TissueOrigin": "gray matter",
+  "CellType":  "neuron",
+  "BrainLocation": "[-30 -15 10]",
 }
