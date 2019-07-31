@@ -3,34 +3,35 @@
 Each MEG system brand has specific file organization and data formats.
 RECOMMENDED values for `manufacturer_specific_extensions`:
 
-| Value  | Definition                                                                            |
-| ------ | ------------------------------------------------------------------------------------- |
-| `ctf`  | CTF (folder with `.ds` extension)                                                     |
-| `fif`  | Neuromag / Elekta / MEGIN  and BabyMEG (file with extension `.fif`)                   |
-| `4d`   | BTi / 4D Neuroimaging (folder containing multiple files without extensions)           |
-| `kit`  | KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`) |
-| `kdf`  | KRISS (file with extension `.kdf`)                                                    |
-| `itab` | Chieti system (file with extension `.raw` and `.mhd`)                                 |
+| Value                                                 | Definition                                                                            |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| [`ctf`](06-meg-file-formats.md#ctf)                   | CTF (folder with `.ds` extension)                                                     |
+| [`fif`](06-meg-file-formats.md#neuromagelektamegin)   | Neuromag / Elekta / MEGIN  and BabyMEG (file with extension `.fif`)                   |
+| [`4d`](06-meg-file-formats.md#bti4d-neuroimaging)     | BTi / 4D Neuroimaging (folder containing multiple files without extensions)           |
+| [`kit`](06-meg-file-formats.md#kityokogawaricoh)      | KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`) |
+| [`kdf`](06-meg-file-formats.md#kriss)                 | KRISS (file with extension `.kdf`)                                                    |
+| [`itab`](06-meg-file-formats.md#itab)                 | Chieti system (file with extension `.raw` and `.mhd`)                                 |
 
 Below are specifications for each system brand.
 
 ## CTF
 
 Each experimental run with a CTF system yields a folder with a `.ds` extension,
-containing several files. The (optional) digitized positions of the head points
+containing several files. The OPTIONAL digitized positions of the head points
 are usually stored in a separate `.pos` file, not necessarily within the `.ds`
 folder.
 
 ```Text
-[sub-<participant_label>[_ses-<label>]_headshape.pos]
-sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.ds>
+[sub-<label>[_ses-<label>]_headshape.pos]
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.ds>
 ```
 
-CTF’s data storage is therefore via directories containing multiple files. The
-files contained within a .ds directory are named such that they match the parent
-directory, but conserve the original file extension (e.g., `.meg4`, `.res4`,
-etc.). The renaming of CTF datasets SHOULD be done using the CTF newDs
-command-line application.
+CTF's data storage is therefore via directories containing multiple files. The
+files contained within a `.ds` directory are named such that they match the
+parent directory, but preserve the original file extension (e.g., `.meg4`,
+`.res4`, etc.). The renaming of CTF datasets SHOULD be done with a specialized
+software such as the CTF newDs command-line application or
+[MNE-BIDS](https://github.com/mne-tools/mne-bids).
 
 Example:
 
@@ -57,7 +58,7 @@ inside the fif file along with the MEG data, with typically no `_headshape`
 file.
 
 ```Text
-sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.fif
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.fif
 ```
 
 Note that we do not provide specific specifications for cross-talk and
@@ -77,7 +78,7 @@ sub-control01/
 ```
 
 After applying the MaxFilter pre-processing tool, files should be renamed with
-the corresponding label (e.g. `proc-sss`) and placed into a `derivatives`
+the corresponding label (e.g., `proc-sss`) and placed into a `derivatives`
 subfolder.
 
 Example:
@@ -96,10 +97,11 @@ sub-control01_ses-001_task-rest_run-01_meg-1.fif
 ```
 
 Each of these two files has a pointer to the next file. In some software
-applications, like MNE, one can simply specify the name of the first file, and
-data will be read in both files via this pointer. For this reason, it is
-RECOMMENDED to rename and write back the file once read, to avoid the
-persistence of a pointer associated with the old file name.
+applications, like [MNE](https://www.martinos.org/mne/stable/index.html), one
+can simply specify the name of the first file, and data will be read in both
+files via this pointer. For this reason, it is RECOMMENDED to rename and write
+back the file once read, to avoid the persistence of a pointer associated with
+the old file name.
 
 Naming convention:
 
@@ -119,12 +121,12 @@ Each experimental run on a 4D neuroimaging/BTi system results in a folder
 containing multiple files without extensions.
 
 ```Text
-[sub-<participant_label>[_ses-<label>]_headshape.pos]
-sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg>
+[sub-<label>[_ses-<label>]_headshape.pos]
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg>
 ```
 
 One SHOULD rename/create a father run specific directory and keep the original
-files for each run inside (e.g. "c,rfhp0.1Hz", "config" and "hs_file").
+files for each run inside (e.g., `c,rfhp0.1Hz`, `config` and `hs_file`).
 
 Example:
 
@@ -155,12 +157,11 @@ More about the 4D neuroimaging/BTi data organization at:
 
 ## KIT/Yokogawa/Ricoh
 
-Each experimental run on a KIT/Yokogawa/Ricoh system yields a raw (`.sqd`,
-`.con`) file with its associated marker coil file (`.mrk`), which contains coil
-positions in the acquisition system’s native space. Head points and marker
-points in head space are acquired using third-party hardware. One SHOULD
-rename/create a father run specific directory and keep the original files for
-each run inside.
+Each experimental run on a KIT/Yokogawa/Ricoh system yields a raw
+(`.sqd`, `.con`) file with its associated marker coil file(s) (`.sqd`, `.mrk`),
+which contains coil positions in the acquisition system’s native space.
+Head points and marker points in head space are acquired using third-party
+hardware.
 
 Example:
 
@@ -174,31 +175,33 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_meg
             sub-control01_ses-001_task-rest_run-01_meg.json
             sub-control01_ses-001_task-rest_run-01_channels.tsv
+            sub-control01_ses-001_task-rest[_acq-<label>]_run-01_markers.<mrk,sqd>
+            sub-control01_ses-001_task-rest_run-01_meg.<con,sqd>
 ```
 
-Where:
-
-```Text
-sub-control01_ses-001_task-rest_run-01_meg/
-    sub-control01_ses-001_task-rest_run-01_markers.<mrk,sqd>
-    sub-control01_ses-001_task-rest_run-01_meg.<con,sqd>
-```
+If there are files with multiple marker coils, the marker files must have the
+`acq-<label>` parameter and no more that two marker files may be associated with
+one raw data file.
+While the acquisition parameter can take any value, it is RECOMMENDED that if
+the two marker measurements occur before and after the raw data acquisition,
+`pre` and `post` are used to differentiate the two situations.
 
 More about the KIT/Yokogawa/Ricoh data organization at:
 [http://www.fieldtriptoolbox.org/getting_started/yokogawa](http://www.fieldtriptoolbox.org/getting_started/yokogawa)
 
 ## KRISS
 
-Each experimental run on the KRISS system produces a file with extension .kdf.
-Additional files can be available in the same folder: the digitized positions of
-the head points (\_digitizer.txt), the position of the center of the MEG coils
-(.chn) and the event markers (.trg).
+Each experimental run on the KRISS system produces a file with extension
+`.kdf`. Additional files can be available in the same folder: the digitized
+positions of the head points (`\_digitizer.txt`), the position of the center of
+the MEG coils (`.chn`) and the event markers (`.trg`).
 
 ```Text
-[sub-<participant_label>[_ses-<label>]_headshape.txt]
-sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.kdf
-sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.chn
-sub-<participant_label>[_ses-<label>]_task-<task_label>[_run-<index>]_meg.trg
+[sub-<label>[_ses-<label>]_headshape.txt]
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.kdf
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.chn
+sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.trg
+sub-<label>[_ses-<label>]_task-<label>[_acq-<label>]_digitizer.txt
 ```
 
 Example:
@@ -213,15 +216,10 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_meg
             sub-control01_ses-001_task-rest_run-01_meg.json
             sub-control01_ses-001_task-rest_run-01_channels.tsv
-```
-
-Where:
-
-```Text
-sub-control01_ses-001_task-rest_run-01_meg/
-    sub-control01_ses-001_task-rest_run-01_meg.chn
-    sub-control01_ses-001_task-rest_run-01_meg.kdf
-    sub-control01_ses-001_task-rest_run-01_meg.trg
+            sub-control01_ses-001_task-rest_run-01_meg.chn
+            sub-control01_ses-001_task-rest_run-01_meg.kdf
+            sub-control01_ses-001_task-rest_run-01_meg.trg
+            sub-control01_ses-001_task-rest_digitizer.txt
 ```
 
 ## ITAB
@@ -233,8 +231,7 @@ followed by binary data. The associated binary header file contains part of the
 information from the ASCII header, specifically the one needed to process data,
 plus other information on offline preprocessing performed after data acquisition
 (e.g., sensor position relative to subject’s head, head markers, stimulus
-information). One should rename/create a father run specific directory and keep
-the original files for each run inside.
+information).
 
 Example:
 
@@ -246,20 +243,14 @@ sub-control01/
         sub-control01_ses-001_task-rest_run-01_meg
         sub-control01_ses-001_task-rest_run-01_meg.json
         sub-control01_ses-001_task-rest_run-01_channels.tsv
-```
-
-Where:
-
-```Text
-sub-control01_ses-001_task-rest_run-01_meg/
-    sub-control01_ses-001_task-rest_run-01_meg.raw
-    sub-control01_ses-001_task-rest_run-01_meg.raw.mhd
+        sub-control01_ses-001_task-rest_run-01_meg.raw
+        sub-control01_ses-001_task-rest_run-01_meg.raw.mhd
 ```
 
 ## Aalto MEG–MRI
 
 For stand-alone MEG data, the Aalto hybrid device uses the standard `.fif` data
-format and follows the conventions of Elekta/Neuromag as described above in
-section 5.2. The `.fif` files may contain unreconstructed MRI data. The
-inclusion of MRI data and information for accurate reconstruction will be fully
-standardized at a later stage.
+format and follows the conventions of Elekta/Neuromag as described
+[above](06-meg-file-formats.md#neuromagelektamegin). The `.fif` files may
+contain unreconstructed MRI data. The inclusion of MRI data and information for
+accurate reconstruction will be fully standardized at a later stage.

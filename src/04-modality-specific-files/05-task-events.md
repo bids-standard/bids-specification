@@ -3,7 +3,7 @@
 Template:
 
 ```Text
-sub-<participant_label>/[ses-<session_label>]
+sub-<label>/[ses-<label>]
     func/
         <matches>_events.tsv
         <matches>_events.json
@@ -11,9 +11,9 @@ sub-<participant_label>/[ses-<session_label>]
 
 Where `<matches>` corresponds to task file name. For example:
 `sub-control01_task-nback`. It is also possible to have a single \_events.tsv
-file describing events for all participants and runs (see section "4.2
-Inheritance rule"). As with all other tabular data, `_events` files may be
-accompanied by a JSON file describing the columns in detail (see Section 4.2).
+file describing events for all participants and runs (see ["Inheritance rule"](../02-common-principles.md#the-inheritance-principle)).
+As with all other tabular data, `_events` files may be
+accompanied by a JSON file describing the columns in detail (see [here](../02-common-principles.md#tabular-files)).
 
 The purpose of this file is to describe timing and other properties of events
 recorded during the scan. Events MAY be either stimuli presented to the
@@ -31,10 +31,12 @@ REQUIRED and OPTIONAL columns:
 | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | onset         | REQUIRED. Onset (in seconds) of the event measured from the beginning of the acquisition of the first volume in the corresponding task imaging data file. If any acquired scans have been discarded before forming the imaging data file, ensure that a time of 0 corresponds to the first image stored. In other words negative numbers in "onset" are allowed<sup>5</sup>.                                                                                                     |
 | duration      | REQUIRED. Duration of the event (measured from onset) in seconds. Must always be either zero or positive. A "duration" value of zero implies that the delta function or event is so short as to be effectively modeled as an impulse.                                                                                                                                                                                                                                            |
+| sample        | OPTIONAL. Onset of the event according to the sampling scheme of the recorded modality (i.e., referring to the raw data file that the `events.tsv` file accompanies).                                                                                                                                                                                                                                                                                                            |
 | trial_type    | OPTIONAL. Primary categorisation of each trial to identify them as instances of the experimental conditions. For example: for a response inhibition task, it could take on values "go" and "no-go" to refer to response initiation and response inhibition experimental conditions.                                                                                                                                                                                              |
 | response_time | OPTIONAL. Response time measured in seconds. A negative response time can be used to represent preemptive responses and "n/a" denotes a missed response.                                                                                                                                                                                                                                                                                                                         |
 | stim_file     | OPTIONAL. Represents the location of the stimulus file (image, video, sound etc.) presented at the given onset time. There are no restrictions on the file formats of the stimuli files, but they should be stored in the /stimuli folder (under the root folder of the dataset; with optional subfolders). The values under the stim_file column correspond to a path relative to "/stimuli". For example "images/cat03.jpg" will be translated to "/stimuli/images/cat03.jpg". |
-| HED           | OPTIONAL. Hierarchical Event Descriptor (HED) Tag. See Appendix III for details.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| value         | OPTIONAL. Marker value associated with the event (e.g., the value of a TTL trigger that was recorded at the onset of the event).                                                                                                                                                                                                                                                                                                                                                 |
+| HED           | OPTIONAL. Hierarchical Event Descriptor (HED) Tag. See [Appendix III](../99-appendices/03-hed.md) for details.                                                                                                                                                                                                                                                                                                                                                                   |
 
 <sup>5</sup> For example in case there is an in scanner training phase that
 begins before the scanning sequence has started events from this sequence should

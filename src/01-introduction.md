@@ -8,7 +8,7 @@ obtained in neuroimaging experiments. Even two researchers working in the same
 lab can opt to arrange their data in a different way. Lack of consensus (or a
 standard) leads to misunderstandings and time wasted on rearranging data or
 rewriting scripts expecting certain structure. Here we describe a simple and
-easy-to-adopt way of organising neuroimaging and behavioural data. By using this
+easy-to-adopt way of organising neuroimaging and behavioral data. By using this
 standard you will benefit in the following ways:
 
 -   It will be easy for another researcher to work on your data. To understand
@@ -45,36 +45,10 @@ different backgrounds.
 ## Extensions
 
 The BIDS specification can be extended in a backwards compatible way and will
-evolve over time. A number of extensions are currently being worked on:
-
-| Extension label                                                                           | Title                                                                                                                                                                                         | Moderators/leads                                               |
-| :---------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------- |
-| [BEP001](https://docs.google.com/document/d/1QwfHyBzOyFWOLO4u_kkojLpUhW0-4_M7Ubafu9Gf4Gg) | [Structural acquisitions that include multiple contrasts (multi echo, flip angle, inversion time) sequences](https://docs.google.com/document/d/1QwfHyBzOyFWOLO4u_kkojLpUhW0-4_M7Ubafu9Gf4Gg) | Gilles de Hollander                                            |
-| [BEP002](https://docs.google.com/document/d/1bq5eNDHTb6Nkx3WUiOBgKvLNnaa5OMcGtD0AZ9yms2M) | [The BIDS Models Specification](https://docs.google.com/document/d/1bq5eNDHTb6Nkx3WUiOBgKvLNnaa5OMcGtD0AZ9yms2M)                                                                              | Tal Yarkoni                                                    |
-| [BEP003](https://docs.google.com/document/d/1Wwc4A6Mow4ZPPszDIWfCUCRNstn7d_zzaWPcfcHmgI4) | [Common Derivatives](https://docs.google.com/document/d/1Wwc4A6Mow4ZPPszDIWfCUCRNstn7d_zzaWPcfcHmgI4)                                                                                         | Chris Gorgolewski                                              |
-| [BEP004](https://docs.google.com/document/d/1kyw9mGgacNqeMbp4xZet3RnDhcMmf4_BmRgKaOkO2Sc) | [Susceptibility Weighted Imaging (SWI)](https://docs.google.com/document/d/1kyw9mGgacNqeMbp4xZet3RnDhcMmf4_BmRgKaOkO2Sc)                                                                      | Fidel Alfaro Almagro                                           |
-| [BEP005](https://docs.google.com/document/d/15tnn5F10KpgHypaQJNNGiNKsni9035GtDqJzWqkkP6c) | [Arterial Spin Labeling (ASL)](https://docs.google.com/document/d/15tnn5F10KpgHypaQJNNGiNKsni9035GtDqJzWqkkP6c)                                                                               | Henk-Jan Mutsaerts and Michael Chappell                        |
-| [BEP006](https://docs.google.com/document/d/1ArMZ9Y_quTKXC-jNXZksnedK2VHHoKP3HCeO5HPcgLE) | [Electroencephalography (EEG)](https://docs.google.com/document/d/1ArMZ9Y_quTKXC-jNXZksnedK2VHHoKP3HCeO5HPcgLE)                                                                               | Cyril R Pernet, Robert Oostenveld, Stefan Appelhoff            |
-| [BEP009](https://docs.google.com/document/d/1mqMLnxVdLwZjDd4ZiWFqjEAmOmfcModA_R535v3eQs0) | [Positron Emission Tomography (PET)](https://docs.google.com/document/d/1mqMLnxVdLwZjDd4ZiWFqjEAmOmfcModA_R535v3eQs0)                                                                         | Melanie Ganz                                                   |
-| [BEP010](https://docs.google.com/document/d/1qMUkoaXzRMlJuOcfTYNr3fTsrl4SewWjffjMD5Ew6GY) | [intracranial Electroencephalography (iEEG)](https://docs.google.com/document/d/1qMUkoaXzRMlJuOcfTYNr3fTsrl4SewWjffjMD5Ew6GY)                                                                 | Dora Hermes and Chris Holdgraf                                 |
-| [BEP011](https://docs.google.com/document/d/1YG2g4UkEio4t_STIBOqYOwneLEs1emHIXbGKynx7V0Y) | [The structural preprocessing derivatives](https://docs.google.com/document/d/1YG2g4UkEio4t_STIBOqYOwneLEs1emHIXbGKynx7V0Y)                                                                   | Andrew Hoopes                                                  |
-| [BEP012](https://docs.google.com/document/d/16CvBwVMAs0IMhdoKmlmcm3W8254dQmNARo-7HhE-lJU) | [The functional preprocessing derivatives](https://docs.google.com/document/d/16CvBwVMAs0IMhdoKmlmcm3W8254dQmNARo-7HhE-lJU)                                                                   | Camille Maumet and Chris Markiewicz                            |
-| [BEP013](https://docs.google.com/document/d/1qBNQimDx6CuvHjbDvuFyBIrf2WRFUOJ-u50canWjjaw) | [The resting state fMRI derivatives](https://docs.google.com/document/d/1qBNQimDx6CuvHjbDvuFyBIrf2WRFUOJ-u50canWjjaw)                                                                         | Steven Giavasis                                                |
-| [BEP014](https://docs.google.com/document/d/11gCzXOPUbYyuQx8fErtMO9tnOKC3kTWiL9axWkkILNE) | [The affine transformations and nonlinear field warps](https://docs.google.com/document/d/11gCzXOPUbYyuQx8fErtMO9tnOKC3kTWiL9axWkkILNE)                                                       | Oscar Esteban                                                  |
-| [BEP015](https://docs.google.com/document/d/1WYOTXDB7GzlHoWqLjd45I3uGBgPxXddST-NTqBnroJE) | [Mapping file](https://docs.google.com/document/d/1WYOTXDB7GzlHoWqLjd45I3uGBgPxXddST-NTqBnroJE)                                                                                               | Eric Earl, Camille Maumet, and Vasudev Raguram                 |
-| [BEP016](https://docs.google.com/document/d/1cQYBvToU7tUEtWMLMwXUCB_T8gebCotE1OczUpMYW60) | [The diffusion weighted imaging derivatives](https://docs.google.com/document/d/1cQYBvToU7tUEtWMLMwXUCB_T8gebCotE1OczUpMYW60)                                                                 | Franco Pestilli and Oscar Esteban                              |
-| [BEP017](https://docs.google.com/document/d/1ugBdUF6dhElXdj3u9vw0iWjE6f_Bibsro3ah7sRV0GA) | [Generic BIDS connectivity data schema](https://docs.google.com/document/d/1ugBdUF6dhElXdj3u9vw0iWjE6f_Bibsro3ah7sRV0GA)                                                                      | Eugene Duff and Paul McCarthy                                  |
-| [BEP018](https://docs.google.com/document/d/1uRkgyzESLKuGjXi98Z97Wh6vt-iLN5nOAb9TG16CjUs) | [Genetic information](https://docs.google.com/document/d/1uRkgyzESLKuGjXi98Z97Wh6vt-iLN5nOAb9TG16CjUs)                                                                                        | Cyril R Pernet, Clara Moreau, and Thomas Nichols               |
-| [BEP019](https://docs.google.com/document/d/1FqJI791ycXr0bfRg2qyLqAf0RpVttJ2cInOgMWrKsNU) | [DICOM Metadata](https://docs.google.com/document/d/1FqJI791ycXr0bfRg2qyLqAf0RpVttJ2cInOgMWrKsNU)                                                                                             | Satrajit Ghosh                                                 |
-| [BEP020](https://docs.google.com/document/d/1eggzTCzSHG3AEKhtnEDbcdk-2avXN6I94X8aUPEBVsw) | [Eye Tracking including Gaze Position and Pupil Size(ET)](https://docs.google.com/document/d/1eggzTCzSHG3AEKhtnEDbcdk-2avXN6I94X8aUPEBVsw)                                                    | Benjamin Gagl and Dejan Draschkow                              |
-| [BEP021](https://docs.google.com/document/d/1PmcVs7vg7Th-cGC-UrX8rAhKUHIzOI-uIOh69_mvdlw) | [Common Electrophysiological Derivatives](https://docs.google.com/document/d/1PmcVs7vg7Th-cGC-UrX8rAhKUHIzOI-uIOh69_mvdlw)                                                                    | Stefan Appelhoff, Cyril Pernet, Robert Oostenveld, Teon Brooks |
-
-When an extension reaches maturity it is merged into the main body of the
-specification. If you would like to contribute to BIDS please consult the
-[BIDS Contributor Guide](https://docs.google.com/document/d/1pWmEEY-1-WuwBPNy5tDAxVJYQ9Een4hZJM06tQZg8X4/edit?usp%3Dsharing&sa=D&ust=1537468908724000)
-All of the ideas that are not backwards compatible and thus will have to wait
-for BIDS 2.0 are listed
-[here](https://docs.google.com/document/d/1LEgsMiisGDe1Gv-hBp1EcLmoz7AlKj6VYULUgDD3Zdw)
+evolve over time. This is accomplished through community-driven BIDS Extension
+Proposals (BEPs). For more information about the BEP process, and list of
+current BEP proposals, see
+[Extending the BIDS specification](06-extensions.md).
 
 ## Citing BIDS
 
