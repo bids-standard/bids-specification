@@ -63,7 +63,7 @@ of the specification.
 | [BEP007](https://docs.google.com/document/d/1gs7USIVO1OApZs3IVo6TeXw9_tfzxhjM2-m--ex4g6o) | Hierarchical Event Descriptor (HED) Tags   | Chris Gorgolewski                                 |
 | [BEP008](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM) | Magnetoencephalography (MEG)               | Guiomar Niso                                      |
 | [BEP010](https://docs.google.com/document/d/1qMUkoaXzRMlJuOcfTYNr3fTsrl4SewWjffjMD5Ew6GY) | intracranial Electroencephalograpgy (iEEG) | Chris Holdgraf, Dora Hermes                       |
-| [BEP018](https://docs.google.com/document/d/1uRkgyzESLKuGjXi98Z97Wh6vt-iLN5nOAb9TG16CjUs) | Genetic information                                                                                        | Cyril R Pernet, Clara Moreau, and Thomas Nichols                           | BEP has been finalized and the google document is being converted to markdown to then open a pull request.                                                                                                                                | Converting to markdown.                                                                |
+| [BEP018](https://docs.google.com/document/d/1uRkgyzESLKuGjXi98Z97Wh6vt-iLN5nOAb9TG16CjUs) | Genetic information                                                                                        | Cyril R Pernet, Clara Moreau, and Thomas Nichols                           |
 
 All of the extension ideas that are not backwards compatible and thus
 will have to wait for BIDS 2.0 are listed
