@@ -35,8 +35,10 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/build
-      # Image already has linkchecker as the entry point
-      - run: ~/build/site
+      - run:
+          command: |
+            chmod a+rX -R ~
+            linkchecker ~/build/site/
 
 # Auto changelog collector
   github-changelog-generator:
