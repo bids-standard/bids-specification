@@ -1,6 +1,6 @@
 Changelog
 
-## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
+## [v1.2.1](https://bids-specification.readthedocs.io/en/v1.2.1/)
 
 -   \[MISC] update Code of Conduct contact [#281](https://github.com/bids-standard/bids-specification/pull/281) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[ENH] Update contributing guide and README to make discussion forums easy to find [#279](https://github.com/bids-standard/bids-specification/pull/279) ([emdupre](https://github.com/emdupre))
@@ -52,7 +52,7 @@ Changelog
 -   \[FIX] Specify marker file names for KIT data (MEG) [#62](https://github.com/bids-standard/bids-specification/pull/62) ([monkeyman192](https://github.com/monkeyman192))
 -   \[FIX] Remove father-level for meg filetypes other than BTi/4D data [#19](https://github.com/bids-standard/bids-specification/pull/19) ([teonbrooks](https://github.com/teonbrooks))
 
-## [v1.2.0](https://github.com/bids-standard/bids-specification/tree/v1.2.0) (2019-03-04)
+## [v1.2.0](https://bids-specification.readthedocs.io/en/v1.2.0/) (2019-03-04)
 
 -   REL: v1.2.0 [#161](https://github.com/bids-standard/bids-specification/pull/161) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[MISC] Adding Dimitri Papadopoulos Orfanos to the list of contributors [#157](https://github.com/bids-standard/bids-specification/pull/157) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
@@ -70,7 +70,7 @@ Changelog
 -   Adding formal decision-making rules [#104](https://github.com/bids-standard/bids-specification/pull/104) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[MRG] number of small corrections to the specification [#98](https://github.com/bids-standard/bids-specification/pull/98) ([robertoostenveld](https://github.com/robertoostenveld))
 
-## [v1.1.2](https://github.com/bids-standard/bids-specification/tree/v1.1.2) (2019-01-10)
+## [v1.1.2](https://bids-specification.readthedocs.io/en/v1.1.2/) (2019-01-10)
 
 -   REL: v.1.1.2 [#121](https://github.com/bids-standard/bids-specification/pull/121) ([chrisgorgo](https://github.com/chrisgorgo))
 -   Update 01-contributors.md [#120](https://github.com/bids-standard/bids-specification/pull/120) ([oesteban](https://github.com/oesteban))
