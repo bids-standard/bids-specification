@@ -25,6 +25,18 @@ jobs:
           command: pipenv run mkdocs build --clean --strict --verbose
       - store_artifacts:
           path: site
+      - persist_to_workspace:
+          root: .
+          paths: site
+
+  linkchecker:
+    docker:
+      - image: yarikoptic/linkchecker:9.4.0.anchorfix1-1
+    steps:
+      - attach_workspace:
+          at: ~/build
+      # Image already has linkchecker as the entry point
+      - run: ~/build/site
 
 # Auto changelog collector
   github-changelog-generator:
@@ -127,6 +139,7 @@ workflows:
   search_build:
     jobs:
       - build
+      - linkchecker
       - github-changelog-generator:
           filters:
                branches:
