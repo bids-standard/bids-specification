@@ -197,7 +197,7 @@ required columns are channel `name`, `type` and `units` in this specific order.
 Channel names should furthermore appear in the table in the same order they do
 in the EEG data file. Any number of additional columns may be provided to
 provide additional information about the channels. Note that electrode
-positions should not be added to this file, but to [`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-electrodes-tsv).
+positions should not be added to this file, but to [`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-_electrodestsv).
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
@@ -272,7 +272,7 @@ sub-<label>/
 File that gives the location of EEG electrodes. Note that coordinates are
 expected in cartesian coordinates according to the `EEGCoordinateSystem` and
 `EEGCoordinateSystemUnits` fields in `*_coordsystem.json`. **If an
-`*_electrodes.tsv` file is specified, a [`*_coordsystem.json`](#coordinate-system-json-coordsystem-json)
+`*_electrodes.tsv` file is specified, a [`*_coordsystem.json`](#coordinate-system-json-_coordsystemjson)
 file MUST be specified as well**. The order of the required columns in the
 `*_electrodes.tsv` file MUST be as listed below.
 
