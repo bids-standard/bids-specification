@@ -14,9 +14,11 @@ $ git remote get-url upstream
 git@github.com:bids-standard/bids-specification.git
 ```
 
-If you do not, add it with:
+If you do not, clone the Master branch of the BIDS-specification and add it to `upstream` with:
 
 ```Shell
+$ git clone https://github.com/bids-standard/bids-specification.git
+$ cd bids-specification
 $ git remote add upstream git@github.com:bids-standard/bids-specification.git
 ```
 
