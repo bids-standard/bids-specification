@@ -39,6 +39,9 @@ jobs:
           command: |
             chmod a+rX -R ~
             linkchecker -t 1 ~/build/site/
+            # check external separately by pointing to all *html so no
+            # failures for local file:/// -- yoh found no better way,
+            linkchecker -t 1 --check-extern --ignore-url 'file:///.*' --ignore-url https://fonts.gstatic.com ~/build/site/*html ~/build/site/*/*.html
 
 # Auto changelog collector
   github-changelog-generator:
