@@ -139,7 +139,9 @@ workflows:
   search_build:
     jobs:
       - build
-      - linkchecker
+      - linkchecker:
+          requires:
+            - build
       - github-changelog-generator:
           filters:
                branches:
