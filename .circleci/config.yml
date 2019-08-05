@@ -38,7 +38,7 @@ jobs:
       - run:
           command: |
             chmod a+rX -R ~
-            linkchecker ~/build/site/
+            linkchecker -t 1 ~/build/site/
 
 # Auto changelog collector
   github-changelog-generator:
