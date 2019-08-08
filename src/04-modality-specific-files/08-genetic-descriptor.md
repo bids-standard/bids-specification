@@ -20,7 +20,7 @@ Two additional keys related to the genetic data can be added. The Key `GeneticDa
   "GeneticDescriptor": ["data paper", "10.0.2.3/dfjj.10"]  
 }
 
-## sub- and participant.tsv
+## Subject naming and Participants file
 
 One issue with having two repositories (one for imaging, one for genetics) is naming of subjects. A simple solution is to use the same ID in both datasets. Alternatively, one can encode the name used in the genetic database in the participant.tsv file. The column `GeneticID` (OPTIONAL) encodes the ID used for the same subject in the `GeneticDataBase` referred to in the dataset_description.json file.
 
