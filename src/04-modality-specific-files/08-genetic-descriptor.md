@@ -2,25 +2,31 @@
 
 The extension was primarily developped by Cyril Pernet and Clara Moreau with contributions from Tom Nichols and Jessica Turner.
 
-The goal of the genetic descriptor is to link imaging and genetic data by providing minimal information about i) where to find genetic information associated with the imaging data and ii) what type of genetic information is available. This is necessary as genetic data are typically stored in dedicated repositories, separately from the imaging data.
+The goal of the genetic descriptor is to link imaging and genetic data. This is necessary as genetic data are typically stored in dedicated repositories, separately from the imaging data. The descriptor provides basics information about:
+* where to find genetic information associated with the imaging data
+* what type of genetic information is available
+
 
 ## dataset_description.json
 
-Two additional keys related to the genetic data can be added. The Key `GeneticDataBase` (MANDATORY) links to the name of the database and web address. The key `GeneticDescriptor` (OPTIONAL) refers to the descriptor (e.g. journal article) of the genetic data.
+The Key `GeneticDataBase` MUST be added to link to the name of the database and web address. The key `GeneticDescriptor` MAY also be present refering to the descriptor (e.g. journal article) of the genetic data.
 
 `dataset_description.json` example:
-
-{  
-  "Name": "xxxxx",  
-  "BIDSVersion":  "xxxxx",  
-  "License": "CC0",  
-  "Authors": ["1st author", "2nd author"],  
-  "Funding": "list your funding sources",  
-  "GeneticDataBase": ["Name", "www",],  
-  "GeneticDescriptor": ["data paper", "10.0.2.3/dfjj.10"]  
+```JSON
+{
+  "Name": "Human Connectom Project",
+  "BIDSVersion":  "1.2.0",
+  "License": "CC0",
+  "Authors": ["1st author", "2nd author"],
+  "Funding": "list your funding sources",
+  "GeneticDataBase": ["dbGaP", "phs001364.v1.p1"],
+  "GeneticDescriptor": ["The HCP SNP dataset, FancyJournal"]
 }
+```
 
 ## Subject naming and Participants file
+
+One issue with having two repositories (one for imaging, one for genetics) is naming of subjects. A simple solution is to use the same ID in both datasets. Alternatively, one can encode the name used in the genetic database in the participant.tsv file. The column `GeneticID` (OPTIONAL) encodes the ID used for the same subject in the `GeneticDataBase` referred to in the dataset_description.json file.
 
 One issue with having two repositories (one for imaging, one for genetics) is naming of subjects. A simple solution is to use the same ID in both datasets. Alternatively, one can encode the name used in the genetic database in the participant.tsv file. The column `GeneticID` MAY encode the ID used for the same subject in the `GeneticDataBase` referred to in the dataset_description.json file.
 
@@ -37,7 +43,7 @@ sub-patient01 33  F patient 489634	no
 
 ## genetic_info.json
 
-This file is the descriptor of the genetic information available either in the participant tsv file and/or the genetic database described in the dataset_description.json. The 'GeneticLevel' and 'SampleOrigin' are the only two mandatory fields.
+This file is the descriptor of the genetic information available either in the participant tsv file and/or the genetic database described in the dataset_description.json. The `GeneticLevel` and `SampleOrigin` are the only two mandatory fields.
 
 | Field name   | Definition | Values |
 | :----------- | :--------- | :------|
@@ -49,12 +55,12 @@ This file is the descriptor of the genetic information available either in the p
 | CellType | OPTIONAL Describes the type of cell analyzed | Value should come from the [cell ontology](http://obofoundry.org/ontology/cl.html) |
 
 `genetic_info.json` example:
-
-{  
-  "GeneticLevel": "Genetic",  
-  "AnalyticalApproach": "SNP Genotypes",  
-  "SampleOrigin": "brain",  
-  "TissueOrigin": "gray matter",  
-  "CellType":  "neuron",  
-  "BrainLocation": "[-30 -15 10]"  
+```JSON
+{
+  "GeneticLevel": "Genetic",
+  "AnalyticalApproach": "SNP Genotypes", "SampleOrigin": "brain",
+  "TissueOrigin": "gray matter",
+  "CellType":  "neuron",
+  "BrainLocation": "[-30 -15 10]"
 }
+```
