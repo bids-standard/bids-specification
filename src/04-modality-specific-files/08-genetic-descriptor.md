@@ -3,15 +3,16 @@
 The extension was primarily developped by Cyril Pernet and Clara Moreau with contributions from Tom Nichols and Jessica Turner.
 
 The goal of the genetic descriptor is to link imaging and genetic data. This is necessary as genetic data are typically stored in dedicated repositories, separately from the imaging data. The descriptor provides basics information about:
-
 -   where to find genetic information associated with the imaging data
 -   what type of genetic information is available
+
 
 ## dataset_description.json
 
 The Key `GeneticDataBase` MUST be added to link to the name of the database and web address. The key `GeneticDescriptor` MAY also be present refering to the descriptor (e.g. journal article) of the genetic data.
 
 `dataset_description.json` example:
+
 
 ```JSON
 {
@@ -56,6 +57,7 @@ This file is the descriptor of the genetic information available either in the p
 | CellType           | OPTIONAL Describes the type of cell analyzed                                     | Value should come from the [cell ontology](http://obofoundry.org/ontology/cl.html)                                                                                                                                                                                                                                                  |
 
 `genetic_info.json` example:
+
 
 ```JSON
 {
