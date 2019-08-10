@@ -12,7 +12,6 @@ The Key `GeneticDataBase` MUST be added to link to the name of the database and 
 
 `dataset_description.json` example:
 
-
 ```JSON
 {
   "Name": "Human Connectom Project",
@@ -41,7 +40,6 @@ sub-control01 34  M control 124587	yes
 sub-control02 12  F control 548936	yes
 sub-patient01 33  F patient 489634	no
 ```
-
 ## genetic_info.json
 
 This file is the descriptor of the genetic information available either in the participant tsv file and/or the genetic database described in the dataset_description.json. The `GeneticLevel` and `SampleOrigin` are the only two mandatory fields.
@@ -54,7 +52,6 @@ This file is the descriptor of the genetic information available either in the p
 | TissueOrigin       | OPTIONAL Describes the type of tissue analyzed for SampleOrigin `brain`          | `gray matter`, `white matter`, `csf`, `meninges`, `macrovascular` or `microvascular`                                                                                                                                                                                                                                                |
 | BrainLocation      | OPTIONAL Refers to the location in space of the TissueOrigin                     | `MNI coordinate` or a `label` taken from the [Allen Brain Atlas](http://atlas.brain-map.org/atlas?atlas=265297125#atlas=265297125&plate=112360888&structure=4392&x=40348.15104166667&y=46928.75&zoom=-7&resolution=206.60&z=3) possibly `layer` to refer to layer-specific gene expression, which can also tie up with laminar fMRI |
 | CellType           | OPTIONAL Describes the type of cell analyzed                                     | Value should come from the [cell ontology](http://obofoundry.org/ontology/cl.html)                                                                                                                                                                                                                                                  |
-
 `genetic_info.json` example:
 
 ```JSON
