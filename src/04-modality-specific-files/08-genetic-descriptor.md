@@ -57,7 +57,6 @@ This file is the descriptor of the genetic information available either in the p
 
 `genetic_info.json` example:
 
-
 ```JSON
 {
   "GeneticLevel": "Genetic",
