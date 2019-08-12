@@ -318,7 +318,7 @@ sequences.
 | Instructions    | RECOMMENDED. Text of the instructions given to participants before the scan. This is especially important in context of resting state fMRI and distinguishing between eyes open and eyes closed paradigms.  |
 | TaskDescription | RECOMMENDED. Longer description of the task.                                                                                                                                                                |
 | CogAtlasID      | RECOMMENDED. URL of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.                                                                                                         |
-| CogPOID         | RECOMMENDED. URL of the corresponding [CogPO](https://www.cogpo.org/) term.                                                                                                                                 |
+| CogPOID         | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                  |
 
 See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms and their definitions.
