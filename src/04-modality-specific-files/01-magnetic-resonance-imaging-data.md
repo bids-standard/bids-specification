@@ -380,7 +380,7 @@ however the user is free to choose any other label than `singleband` and
 `multiband` as long as they are consistent across subjects and sessions. For
 multiband acquisitions, one can also save the single-band reference image as
 type `sbref` (e.g. `dwi/sub-control01_sbref.nii[.gz]`) The bvec and bval files
-are in the [FSL format](http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html):
+are in the [FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
 The bvec files contain 3 rows with n space-delimited floating-point numbers
 (corresponding to the n volumes in the relevant NIfTI file). The first row
 contains the x elements, the second row contains the y elements and third row
