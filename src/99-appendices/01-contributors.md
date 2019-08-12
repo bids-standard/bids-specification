@@ -106,6 +106,7 @@ your name is not listed, please add it.
 -   Michael P. Milham 💡🔍
 -   Henk Mutsaerts 📖
 -   National Institute of Mental Health 💵
+-   Mikael Naveau 🐛
 -   B. Nolan Nichols 📖
 -   Thomas E. Nichols 📖📢🔧
 -   Dylan Nielson 📖💻🔧
