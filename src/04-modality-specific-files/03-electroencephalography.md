@@ -104,7 +104,7 @@ Whenever possible, please avoid using ad hoc wording.
 | SoftwareVersions       | RECOMMENDED. Manufacturer's designation of the acquisition software.                                                                                                                                                                                                              |
 | TaskDescription        | RECOMMENDED. Description of the task.                                                                                                                                                                                                                                             |
 | Instructions           | RECOMMENDED. Text of the instructions given to participants before the scan. This is not only important for behavioral or cognitive tasks but also in resting state paradigms (e.g., to distinguish between eyes open and eyes closed).                                           |
-| CogAtlasID             | RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) term that describes the task (e.g., Resting State with eyes closed "[http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b](http://www.cognitiveatlas.org/term/id/trm_54e69c642d89b)"). |
+| CogAtlasID             | RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) term that describes the task (e.g., Resting State with eyes closed "[http://www.cognitiveatlas.org/task/id/trm_54e69c642d89b](http://www.cognitiveatlas.org/task/id/trm_54e69c642d89b)"). |
 | CogPOID                | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task (e.g., Rest "[http://wiki.cogpo.org/index.php?title=Rest](http://wiki.cogpo.org/index.php?title=Rest)") .                                                                       |
 | DeviceSerialNumber     | RECOMMENDED. The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.                                                     |
 
@@ -197,7 +197,7 @@ required columns are channel `name`, `type` and `units` in this specific order.
 Channel names should furthermore appear in the table in the same order they do
 in the EEG data file. Any number of additional columns may be provided to
 provide additional information about the channels. Note that electrode
-positions should not be added to this file, but to [`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-electrodes-tsv).
+positions should not be added to this file, but to [`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-_electrodestsv).
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
@@ -272,7 +272,7 @@ sub-<label>/
 File that gives the location of EEG electrodes. Note that coordinates are
 expected in cartesian coordinates according to the `EEGCoordinateSystem` and
 `EEGCoordinateSystemUnits` fields in `*_coordsystem.json`. **If an
-`*_electrodes.tsv` file is specified, a [`*_coordsystem.json`](#coordinate-system-json-coordsystem-json)
+`*_electrodes.tsv` file is specified, a [`*_coordsystem.json`](#coordinate-system-json-_coordsystemjson)
 file MUST be specified as well**. The order of the required columns in the
 `*_electrodes.tsv` file MUST be as listed below.
 

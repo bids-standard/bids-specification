@@ -33,15 +33,16 @@ misunderstanding we clarify them here.
     scanning sequence/protocol.
 
 1.  Data type - a functional group of different types of data. In BIDS we define
-    six data types: func (task based and resting state functional MRI), dwi
+    eight data types: func (task based and resting state functional MRI), dwi
     (diffusion weighted imaging), fmap (field inhomogeneity mapping data such as
     field maps), anat (structural imaging such as T1, T2, etc.), meg
-    (magnetoencephalography), beh (behavioral).
+    (magnetoencephalography), eeg (electroencephalography), ieeg (intracranial
+    electroencephalography), beh (behavioral).
 
 1.  Task - a set of structured activities performed by the participant. Tasks
     are usually accompanied by stimuli and responses, and can greatly vary in
     complexity. For the purpose of this specification we consider the so-called
-    “resting state” a task. In the context of brain scanning, a task is always
+    "resting state" a task. In the context of brain scanning, a task is always
     tied to one data acquisition. Therefore, even if during one acquisition the
     subject performed multiple conceptually different behaviors (with different
     sets of instructions) they will be considered one (combined) task.
@@ -71,7 +72,33 @@ not covered by this standard. The most sensible place to put it is next to the
 continuous recording file with the same naming scheme but different extensions.
 The solutions will change from case to case and publicly available datasets will
 be reviewed to include common data types in the future releases of the BIDS
-spec.
+specification.
+
+## File name structure
+
+A file name consists of a chain of *entities*, or key-value pairs, a *suffix* and an
+*extension*.
+Two prominent examples of entities are `subject` and `session`.
+
+For a data file that was collected in a given `session` from a given
+`subject`, the file name will begin with the string `sub-<label>_ses-<label>`.
+
+Note that `sub-<label>` corresponds to the `subject` entity because it has
+the `sub-` "key" and`<label>` "value", where `<label>` would in a real data file
+correspond to a unique identifier of that subject, such as `01`.
+The same holds for the `session` entity with its `ses-` key and its `<label>`
+value.
+
+A chain of entities, followed by a suffix, connected by underscores (`_`)
+produces a human readable file name, such as `sub-01_task-rest_eeg.edf`.
+It is evident from the file name alone that the file contains resting state
+data from subject `01`.
+The suffix `eeg` and the extension `.edf` depend on the imaging modality and
+the data format and indicate further details of the file's contents.
+
+A summary of all entities in BIDS and the order in which they MUST be
+specified is available in the [entity table](./99-appendices/04-entity-table.md)
+in the appendix.
 
 ## Source vs. raw vs. derived data
 
@@ -151,7 +178,7 @@ participant can exist only at participant level directory, i.e
 specific to a participant is to be declared only at top level of dataset for eg:
 `task-sist_bold.json` must be placed under `/dataset/task-sist_bold.json`
 
-Example 1: Two JSON files that are erroneously at the same level.
+Example 1: Two JSON files that are erroneously at the same level
 
 ```Text
 sub-01/
@@ -172,7 +199,7 @@ constraint that no more than one file may be defined at a given level of the
 directory structure. Instead `sub-01_ses-test_task-overtverbgeneration_run-2_bold.json`
 should have been under `sub-01/ses-test/func/`.
 
-Example 2: Multiple run and rec with same acquisition (acq) parameters acq-test1
+Example 2: Multiple `run`s and `rec`s with same acquisition (`acq`) parameters
 
 ```Text
 sub-01/
@@ -191,8 +218,7 @@ apply to different runs and rec files. Also if the JSON file
 (`task-xyz_acq-test1_bold.json`) is defined at dataset top level directory, it
 will be applicable to all task runs with `test1` acquisition parameter.
 
-Example 3: Multiple json files at different levels for same task and
-acquisition parameters
+Example 3: Multiple json files at different levels for same task and acquisition parameters
 
 ```Text
 task-xyz_acq-test1_bold.json
@@ -327,11 +353,14 @@ BIDS uses custom user-defined labels in several situations (naming of
 participants, sessions, acquisition schemes, etc.) Labels are strings and MUST
 only consist of letters (lower or upper case) and/or numbers. If numbers are
 used we RECOMMEND zero padding (e.g., `01` instead of `1` if you have more than
-nine subjects) to make alphabetical sorting more intuitive. Please note that the
-sub- prefix is not part of the subject label, but must be included in file names
-(similarly to other key names). In contrast to other labels, run and echo labels
-MUST be integers. Those labels MAY include zero padding, but this is NOT
-RECOMMENDED to maintain their uniqueness.
+nine subjects) to make alphabetical sorting more intuitive.
+
+Please note that a given label is distinct from the "prefix" it refers to. For
+example `sub-01` refers to the `sub` entity (a subject) with the label `01`.
+The `sub-` prefix is not part of the subject label, but must be included in file
+names (similarly to other key names). In contrast to other labels, `run` and
+`echo` labels MUST be integers. Those labels MAY include zero padding, but this
+is NOT RECOMMENDED to maintain their uniqueness.
 
 ## Units
 

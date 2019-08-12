@@ -2,10 +2,12 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA+FIX] Use linkchecker (from a dedicated docker image) to check all URLs [#293](https://github.com/bids-standard/bids-specification/pull/293) ([yarikoptic](https://github.com/yarikoptic))
 -   \[MISC] update Code of Conduct contact [#281](https://github.com/bids-standard/bids-specification/pull/281) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[ENH] Update contributing guide and README to make discussion forums easy to find [#279](https://github.com/bids-standard/bids-specification/pull/279) ([emdupre](https://github.com/emdupre))
 -   \[ENH] Starter Kit dropdown menu [#278](https://github.com/bids-standard/bids-specification/pull/278) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[INFRA] Update pipenv [#274](https://github.com/bids-standard/bids-specification/pull/274) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] Transpose the entity table and link to text anchors describing each entity [#272](https://github.com/bids-standard/bids-specification/pull/272) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Add Twitter badge to README and link to website to landing page [#268](https://github.com/bids-standard/bids-specification/pull/268) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[ENH] adding release guidelines [#267](https://github.com/bids-standard/bids-specification/pull/267) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[FIX] Common principles: Fix filename in inheritance principle [#261](https://github.com/bids-standard/bids-specification/pull/261) ([Lestropie](https://github.com/Lestropie))
