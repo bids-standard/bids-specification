@@ -1,6 +1,9 @@
 # Genetic Descriptor
 
-The extension was primarily developped by Cyril Pernet and Clara Moreau with contributions from Tom Nichols and Jessica Turner.
+Support for genetic descriptors was developed as a
+[BIDS Extension Proposal](https://github.com/bids-standard/bids-specification/blob/master/src/06-extensions.md#bids-extension-proposals).
+The extension was primarily developped by Cyril Pernet and Clara Moreau
+with contributions from Tom Nichols and Jessica Turner.
 
 The goal of the genetic descriptor is to link imaging and genetic data. This is necessary as genetic data are typically stored in dedicated repositories, separately from the imaging data. The descriptor provides basics information about:
 -   where to find genetic information associated with the imaging data
