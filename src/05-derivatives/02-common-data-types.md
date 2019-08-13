@@ -75,7 +75,6 @@ addition, all processed files include the following metadata JSON fields:
 | GradientNonLinearityGeometryCorrection | OPTIONAL. Boolean. Correction for geometric distortions arising from non-linearity of gradients                                                   |
 | BiasFieldCorrectionMethod              | OPTIONAL. String. Method (if any) used for correction of B1 RF field inhomogeneity                                                                |
 
-
 ## Masks
 
 Template:
