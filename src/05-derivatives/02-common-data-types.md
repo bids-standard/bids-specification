@@ -62,9 +62,19 @@ makes them invalid (e.g., if a source 4D image is averaged to create a single
 static volume, a SamplingFrequency property would no longer be relevant). In
 addition, all processed files include the following metadata JSON fields:
 
-| **Key name**  | **Description**                                                                                 |
-| ------------- | ----------------------------------------------------------------------------------------------- |
-| SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not. |
+| **Key name**                           | **Description**                                                                                                                                   |
+| ---------------------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SkullStripped                          | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not.                                                   |
+| Denoising                              | OPTIONAL. String. Denoising method                                                                                                                |
+| GibbsRingingCorrection                 | OPTIONAL. Boolean. Removal of Gibbs ringing artifacts                                                                                             |
+| MotionCorrection                       | OPTIONAL. String. Motion correction; allowed values: `none`, `volume`, `slice`                                                                    |
+| EddyCurrentCorrection                  | OPTIONAL. String. Eddy current distortion correction; reserved values: `none`, `linear`, `quadratic`, `cubic`                                     |
+| IntensityNormalizationMethod           | OPTIONAL. String. Method (if any) used for intensity normalization                                                                                |
+| SusceptibilityDistortionEstimation     | OPTIONAL. String. Method (if any) used for estimation of the B0 inhomogeneity field; reserved values: `multiecho`, `phaseencode`, `registration`  |
+| SusceptibilityDistortionCorrection     | OPTIONAL. String. Correction for geometric distortions arising from B0 magnetic field inhomogeneity; reserved values: `none`, `static`, `dynamic` |
+| GradientNonLinearityGeometryCorrection | OPTIONAL. Boolean. Correction for geometric distortions arising from non-linearity of gradients                                                   |
+| BiasFieldCorrectionMethod              | OPTIONAL. String. Method (if any) used for correction of B1 RF field inhomogeneity                                                                |
+
 
 ## Masks
 
