@@ -36,7 +36,6 @@ the value is an object with the following fields:
 
 ## Subject naming and Participants file
 
-One issue with having two repositories (one for imaging, one for genetics) is naming of subjects. A simple solution is to use the same ID in both datasets. Alternatively, one can encode the name used in the genetic database in the participant.tsv file. The column `GeneticID` (OPTIONAL) encodes the ID used for the same subject in the `GeneticDataBase` referred to in the dataset_description.json file.
 
 One issue with having two repositories (one for imaging, one for genetics) is naming of subjects. A simple solution is to use the same ID in both datasets. Alternatively, one can encode the name used in the genetic database in the participant.tsv file. The column `GeneticID` MAY encode the ID used for the same subject in the `GeneticDataBase` referred to in the dataset_description.json file.
 
