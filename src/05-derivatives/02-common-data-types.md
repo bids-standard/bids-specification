@@ -115,7 +115,6 @@ And the corresponding `sub-001_task-rest_run-1_bold.dtseries.json` file:
 }
 ```
 
-
 ## Masks
 
 Template:
