@@ -11,7 +11,14 @@ The goal of the genetic descriptor is to link imaging and genetic data. This is 
 
 ## dataset_description.json
 
-The Key `GeneticDataBase` MUST be added to link to the name of the database and web address. The key `GeneticDescriptor` MAY also be present refering to the descriptor (e.g. journal article) of the genetic data.
+In order to link a genetic database entry, the key `GeneticDataBase` MUST be present and
+the value is an object with the following fields:
+
+| Field name           | Definition                                                                     |
+|----------------------|--------------------------------------------------------------------------------|
+| Genetics.Dataset     | REQUIRED. URI where data can be retrieved.                                     |
+| Genetics.Database    | OPTIONAL. URI of database where the dataset is hosted.                         |
+| Genetics.Descriptors | OPTIONAL. List of relevant descriptors (*e.g.*, journal articles) for dataset. |
 
 `dataset_description.json` example:
 
