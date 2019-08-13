@@ -8,7 +8,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat|func|dwi/
-        <source_keywords>[_space-<space>][_desc-<label>]_<suffix>.<ext>
+        <source_keywords>[_space-<space>][_desc-<label>][_res-<index>][_den-<label>]_<suffix>.<ext>
 ```
 
 Processing in this context means transformations of data that does not change
@@ -30,13 +30,22 @@ Note that even though `space` and `desc` are
 optional at least one of them needs to be defined to avoid name conflict with
 the raw file.
 
+**Sampling**. When two or more instances of a given derivative are provided with resolution
+(or surface sampling density) being the only difference between them, then the `res` 
+(for *resolution* of volumetric data) and/or `den` (for *density* of non-parametric surfaces)
+SHOULD be used to avoid name conflicts.
+Note that only CIFTI files combining both regularly gridded and surface sampled data 
+(and their downstream derivatives) are allowed to present both `res` and `den` keywords
+simultaneously.
+
 Examples:
 
 ```Text
 pipeline1/
     sub-001/
         func/
-            sub-001_task-rest_run-1_space-MNI305_bold.nii.gz
+            sub-001_task-rest_run-1_space-MNI305_res-1_bold.nii.gz
+            sub-001_task-rest_run-1_space-MNI305_res-2_bold.nii.gz
             sub-001_task-rest_run-1_space-MNI305_bold.json
 ```
 
@@ -62,9 +71,50 @@ makes them invalid (e.g., if a source 4D image is averaged to create a single
 static volume, a SamplingFrequency property would no longer be relevant). In
 addition, all processed files include the following metadata JSON fields:
 
-| **Key name**  | **Description**                                                                                 |
-| ------------- | ----------------------------------------------------------------------------------------------- |
-| SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not. |
+| **Key name**  | **Description**                                                                                                              |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not.                              |
+| Resolution    | REQUIRED if `res` keyword present. Dictionary of Indexes to Strings. Specifies the interpretation of the resolution keyword. |
+| Density       | REQUIRED if `den` keyword present. Dictionary of Strings to Strings. Specifies the interpretation of the resolution keyword. |
+
+Example JSON file corresponding to `pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_bold.json` above:
+
+```JSON
+{
+  "SkullStripped": true,
+  "Resolution": {
+    "1": "MNI305 1mm isotropic resolution",
+    "2": "MNI305 2mm isotropic resolution"
+  }
+}
+```
+
+Example of CIFTI files having both `res` and `den` keywords:
+
+```Text
+pipeline1/
+    sub-001/
+        func/
+            sub-001_task-rest_run-1_res-1_den-10k_bold.dtseries.nii
+            sub-001_task-rest_run-1_res-1_den-41k_bold.dtseries.nii
+            sub-001_task-rest_run-1_bold.dtseries.json
+```
+
+And the corresponding `sub-001_task-rest_run-1_bold.dtseries.json` file:
+
+```JSON
+{
+    "SkullStripped": true,
+    "Resolution": {
+        "1": "MNI152NLin6Asym 1.6mm isotropic"
+    },
+    "Density": {
+        "10k": "fsaverage5 (5th order icosahedron) - 10242 vertices per hemisphere",
+        "41k": "fsaverage6 (6th order icosahedron) - 40962 vertices per hemisphere"
+    }
+}
+```
+
 
 ## Masks
 
