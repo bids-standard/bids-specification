@@ -161,7 +161,7 @@ field in `dataset_description.json` of each subfolder of `derivatives` to:
 }
 ```
 
-See [Derived dataset and pipeline description](05-derivatives/01-introduction.md#Derived-dataset-and-pipeline-description)
+See [Derived dataset and pipeline description](05-derivatives/01-introduction.md#derived-dataset-and-pipeline-description)
 for more information.
 
 ## The Inheritance Principle
