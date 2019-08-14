@@ -59,14 +59,13 @@ In addition to raw BIDS datasets, derived BIDS datasets include the following
 required or recommended `dataset_description.json` keys (a dot in the Key name
 denotes a key in a subdictionary):
 
-| **Key name**                                | **Description**                                                                                                                                                                                                                              |
-| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PipelineDescription.Name                    | REQUIRED. Name of the pipeline that generated the outputs. In case the derived dataset is stored as a subfolder of the raw dataset this field MUST be a substring of the derived dataset folder name (a.k.a. `<pipeline_name>` - see above). |
-| PipelineDescription.Version                 | OPTIONAL. Version of the pipeline.                                                                                                                                                                                                           |
-| PipelineDescription.CodeURL                 | OPTIONAL. URL where the code for the analysis can be found.                                                                                                                                                                                  |
-| PipelineDescription.DockerHubContainerTag   | OPTIONAL. Docker Hub tag where the software container image used in this analysis can be found.                                                                                                                                              |
-| PipelineDescription.SingularityContainerURL | OPTIONAL. URL where the Singularity software container image used in this analysis can be found.                                                                                                                                             |
-| SourceDatasets                              | OPTIONAL. A list of objects specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`.                                                                        |
+| **Key name**                  | **Description**                                                                                                                                                                                                                              |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PipelineDescription.Name      | REQUIRED. Name of the pipeline that generated the outputs. In case the derived dataset is stored as a subfolder of the raw dataset this field MUST be a substring of the derived dataset folder name (a.k.a. `<pipeline_name>` - see above). |
+| PipelineDescription.Version   | OPTIONAL. Version of the pipeline.                                                                                                                                                                                                           |
+| PipelineDescription.CodeURL   | OPTIONAL. URL where the code for the analysis can be found.                                                                                                                                                                                  |
+| PipelineDescription.Container | OPTIONAL. Object specifying the location and relevant attributes of software container image used to produce the derivative. Valid fields in this object include `Type`, `Tag` and `URI`.
+| SourceDatasets                | OPTIONAL. A list of objects specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`.                                                                        |
 
 Example:
 
@@ -77,7 +76,10 @@ Example:
     "PipelineDescription": {
         "Name": "FMRIPREP",
         "Version": "1.2.5",
-        "DockerHubContainerTag": "poldracklab/fmriprep:1.2.5"
+        "Container": {
+            "Type": "docker",
+            "Tag": "poldracklab/fmriprep:1.2.5"
+            }
         },
     "SourceDatasets": [
         {
