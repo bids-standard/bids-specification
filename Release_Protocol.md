@@ -4,10 +4,15 @@ When it is time to release, use a pull request to put the repository into a rele
 allowing testing and edits prior to merging to master.
 The following procedure ensures a predictable release.
 
+The protocol assumes that you have a [fork](https://help.github.com/en/articles/fork-a-repo)
+of the bids-standard/bids-specification repository and have [cloned](https://help.github.com/en/articles/cloning-a-repository)
+your fork locally to a directory called `bids-specification`.
+
 ### 1. Fetch the latest version of the [master branch of the BIDS-specification](https://github.com/bids-standard/bids-specification/tree/master)
 
-You should have a remote, which we will call `upstream`, for the [
-bids-standard/bids-specification](https://github.com/bids-standard/bids-specification/) repository:
+You should have a remote, which we will call `upstream`, for the
+[bids-standard/bids-specification](https://github.com/bids-standard/bids-specification/)
+repository:
 
 ```Shell
 $ git remote get-url upstream
@@ -17,6 +22,7 @@ git@github.com:bids-standard/bids-specification.git
 If you do not, add it with:
 
 ```Shell
+$ cd bids-specification
 $ git remote add upstream git@github.com:bids-standard/bids-specification.git
 ```
 
@@ -58,7 +64,7 @@ discrepancies is reduced.
 
 ```Shell
 $ git add src/CHANGES.md mkdocs.yml
-$ git commit -m 'REL: v1.2.0`
+$ git commit -m 'REL: v1.2.0'
 $ git push -u upstream rel/1.2.0
 ```
 
