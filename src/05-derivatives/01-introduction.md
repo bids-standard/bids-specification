@@ -17,13 +17,14 @@ Derivatives can be stored/distributed in two ways:
     RECOMMENDED to use the format `<pipeline>-<variant>` in cases where it is
     anticipated that the same pipeline will output more than one variant (e.g.,
     `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
-    subfolder name MUST be a substring of `PipelineDescription.Name` field in
-    the `dataset_description.json` (see below).
+    subfolder name MUST be the `PipelineDescription.Name` field in
+    `data_description.json`, optionally followed by a hyphen and a suffix (see
+    below).
 
     For example:
 
     ```Plain
-    <dataset>/derivatives/fmripreprocess-v1/sub-0001
+    <dataset>/derivatives/fmriprep-v1.4.1/sub-0001
     <dataset>/derivatives/spm/sub-0001
     <dataset>/derivatives/vbm/sub-0001
     ```
