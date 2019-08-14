@@ -57,6 +57,8 @@ If the version preceding the `-dev` is not the target version, update the versio
 In the figure below, we update `v1.2.0-dev` to `v1.2.0`.
 ![dev-to-stable](release_images/site_name_release_1.2dev-1.2.png "dev-to-stable")
 
+Note: this will make our continuous integration ([CircleCI](https://circleci.com/)) fail. This fails because the URL of the new ReadTheDocs rendering has not been generated at this time. It will be generated once the GitHub release has been completed. 
+
 ### 3. Commit changes and push to upstream
 
 By pushing `rel/` branches to the main repository, the chances of continuous integration
@@ -156,6 +158,8 @@ description:
 ![GH-release-3](release_images/GH-release_3.png "GH-release-3")
 
 Click "Publish release".
+
+Note: It will take ReadTheDocs a few minutes to sync with the new release and build the new stable and versioned rendering. 
 
 ### 9. Edit the mkdocs.yml file site_name to set a new development version
 
