@@ -1,6 +1,6 @@
 Changelog
 
-## [v1.2.1](https://bids-specification.readthedocs.io/en/v1.2.1/)
+## [v1.2.1](https://bids-specification.readthedocs.io/en/v1.2.1/) (2019-08-14)
 
 -   FIX: repair link in anatomical MRI table [#297](https://github.com/bids-standard/bids-specification/pull/297) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Clarify requirements in Release Protocol [#294](https://github.com/bids-standard/bids-specification/pull/294) ([franklin-feingold](https://github.com/franklin-feingold))
