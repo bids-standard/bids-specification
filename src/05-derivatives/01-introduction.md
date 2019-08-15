@@ -64,7 +64,7 @@ denotes a key in a subdictionary):
 | PipelineDescription.Name      | REQUIRED. Name of the pipeline that generated the outputs. In case the derived dataset is stored as a subfolder of the raw dataset this field MUST be a substring of the derived dataset folder name (a.k.a. `<pipeline_name>` - see above). |
 | PipelineDescription.Version   | OPTIONAL. Version of the pipeline.                                                                                                                                                                                                           |
 | PipelineDescription.CodeURL   | OPTIONAL. URL where the code for the analysis can be found.                                                                                                                                                                                  |
-| PipelineDescription.Container | OPTIONAL. Object specifying the location and relevant attributes of software container image used to produce the derivative. Valid fields in this object include `Type`, `Tag` and `URI`.
+| PipelineDescription.Container | OPTIONAL. Object specifying the location and relevant attributes of software container image used to produce the derivative. Valid fields in this object include `Type`, `Tag` and `URI`.                                                    |
 | SourceDatasets                | OPTIONAL. A list of objects specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`.                                                                        |
 
 Example:
