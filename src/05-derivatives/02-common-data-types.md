@@ -8,7 +8,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat|func|dwi/
-        <source_keywords>[_space-<space>][_desc-<label>][_res-<index>][_den-<label>]_<suffix>.<ext>
+        <source_keywords>[_space-<space>][_res-<index>][_den-<label>][_desc-<label>]_<suffix>.<ext>
 ```
 
 Processing in this context means transformations of data that does not change
