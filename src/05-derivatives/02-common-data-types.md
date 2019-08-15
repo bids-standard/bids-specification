@@ -83,8 +83,8 @@ Example JSON file corresponding to `pipeline1/sub-001/func/sub-001_task-rest_run
 {
   "SkullStripped": true,
   "Resolution": {
-    "1": "MNI305 1mm isotropic resolution",
-    "2": "MNI305 2mm isotropic resolution"
+    "1": "Matched with original BOLD resolution (2x2x3 mm^3)",
+    "2": "Matched with high-resolution T1w (0.7mm, isotropic)"
   }
 }
 ```
@@ -106,7 +106,7 @@ And the corresponding `sub-001_task-rest_run-1_bold.dtseries.json` file:
 {
     "SkullStripped": true,
     "Resolution": {
-        "1": "MNI152NLin6Asym 1.6mm isotropic"
+        "1": "Matched with MNI152NLin6Asym 1.6mm isotropic"
     },
     "Density": {
         "10k": "fsaverage5 (5th order icosahedron) - 10242 vertices per hemisphere",
