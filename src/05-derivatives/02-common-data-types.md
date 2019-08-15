@@ -109,8 +109,8 @@ And the corresponding `sub-001_task-rest_run-1_bold.dtseries.json` file:
         "1": "Matched with MNI152NLin6Asym 1.6mm isotropic"
     },
     "Density": {
-        "10k": "fsaverage5 (5th order icosahedron) - 10242 vertices per hemisphere",
-        "41k": "fsaverage6 (6th order icosahedron) - 40962 vertices per hemisphere"
+        "10k": "10242 vertices per hemisphere (5th order icosahedron)",
+        "41k": "40962 vertices per hemisphere (6th order icosahedron)"
     }
 }
 ```
