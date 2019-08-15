@@ -108,12 +108,14 @@ Restricted keywords for the `XXXCoordinateSystem` field in the
     [ACPC site](http://www.fieldtriptoolbox.org/faq/acpc/) on the FieldTrip
     toolbox wiki.
 
-## Template Based Coordinate Systems
+## Image-based Coordinate Systems
 
 The transformation of the real world geometry to an artificial frame of
-reference is described in `XXXCoordinateSystem`. Unless otherwise specified
-below, the origin is at the AC and the orientation of the axes is RAS. Unless
-specified explicitly in the sidecar file in the `XXCoordinateSystemUnits` field,
+reference is described in `ImageCoordinateSystem`.
+The origin of the coordinate system and orientation of axes MUST be defined
+by the metadata or headers of the image/surface file (e.g. the
+`x-form` matrices and codes of NIfTI) that serves as `ImageCoordinateSystemReference`.
+Unless specified explicitly in the sidecar file in the `ImageCoordinateSystemUnits` field,
 the units are assumed to be mm.
 
 ### Standard template identifiers
@@ -138,13 +140,22 @@ the units are assumed to be mm.
 | OASIS30Atropos                                      | [https://mindboggle.info/data.html](https://mindboggle.info/data.html)                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | Talairach                                           | Piecewise linear scaling of the brain is implemented as described in TT88. [http://www.talairach.org/](http://www.talairach.org/)                                                                                                                                                                                                                                                                                                                                                                                      |
 | UNCInfant                                           | Infant Brain Atlases from Neonates to 1- and 2-year-olds. [https://www.nitrc.org/projects/pediatricatlas](https://www.nitrc.org/projects/pediatricatlas)                                                                                                                                                                                                                                                                                                                                                               |
-| UNCInfant\[0&#124;1&#124;2\]V\[21&#124;22&#124;23\] | DISCOURAGED, please use ``UNCInfant`` without modifiers. Infant Brain Atlases from Neonates to 1- and 2-year-olds. [https://www.nitrc.org/projects/pediatricatlas](https://www.nitrc.org/projects/pediatricatlas)                                                                                                                                                                                                                                                                                                      |
+| UNCInfant\[0&#124;1&#124;2\]V\[21&#124;22&#124;23\] | DISCOURAGED, please use `UNCInfant` without modifiers. Infant Brain Atlases from Neonates to 1- and 2-year-olds. [https://www.nitrc.org/projects/pediatricatlas](https://www.nitrc.org/projects/pediatricatlas)                                                                                                                                                                                                                                                                                                        |
 
-### Nonstandard template identifiers
+### Nonstandard coordinate system identifiers
 
 | Coordinate System | Description                                                                                                                                                                                                                                                           |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | individual        | Participant specific anatomical space (for example derived from T1w and/or T2w images). This coordinate system requires specifying an additional, participant-specific file to be fully defined. In context of surfaces this space has been refered to as `fsnative`. |
 | study             | Custom space defined using a group/study-specific template. This coordinate system requires specifying an additional file to be fully defined.                                                                                                                        |
+
+### Non-template coordinate system identifiers
+
+The `scanner` coordinate system is implicit and assumed by default if the derivative filename does not define **any** `space-<label>`.
+Please note that `space-scanner` SHOULD NOT be used, it is mentioned in this specification to make its existence explicit.
+
+| Coordinate System | Description                                                                                                                                                                                                                                                           |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| scanner           | The intrinsic coordinate system of the original image (the first entry of `RawSources`) after reconstruction and conversion to NIfTI or equivalent for the case of surfaces and dual volume/surface files.                                                            |
 
 ---

@@ -96,13 +96,14 @@ Example:
 The coordinate system (a.k.a. space) a particular derivative is in SHOULD be
 denoted using a filename keyword `space` whenever such keyword is present in
 the filename template of a given derivative type. The allowed values for this
-keyword depend on the file format:
+keyword depend are identifiers given in section [Image-Based Coordinate
+Systems](../99-appendices/08-coordinate-systems.md#image-based-coordinate-systems).
 
-| File format                  | Description             | Allowed `CoordinateSystem` values                                                                                                                                                                                                                     |
-| ---------------------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NIfTI (`.nii` and `.nii.gz`) | Volume data             | Coordinate systems listed in [Template Based Coordinate Systems: Volume](../99-appendices/08-coordinate-systems.md#volume). If `individual` or `custom` is used then setting [`SpatialReference`](#spatialreference-key-allowed-values) is REQUIRED   |
-| GIFTI (`.gii`)               | Surface data            | Coordinate systems listed in [Template Based Coordinate Systems: Surface](../99-appendices/08-coordinate-systems.md#surface). If `individual` or `custom` is used then setting [`SpatialReference`](#spatialreference-key-allowed-values) is REQUIRED |
-| CIFTI (`.nii`)               | Volume and surface data | Coordinate systems listed in [Template Based Coordinate Systems: Hybrid (Volume/Surface) aliases](../99-appendices/08-coordinate-systems.md#hybrid-volumesurface-aliases)                                                                             |
+| File format                  | Description             |
+| ---------------------------- | ----------------------- |
+| NIfTI (`.nii` and `.nii.gz`) | Volume data             |
+| GIFTI (`.gii`)               | Surface data            |
+| CIFTI (`.nii`)               | Volume and surface data |
 
 Examples:
 
@@ -130,9 +131,8 @@ share the following (non-required) ones:
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Description      | RECOMMENDED. Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                        |
 | Sources          | OPTIONAL. A list of paths relative to dataset root pointing to the file(s) that were directly used in the creation of this derivative. For example in a chain of A->B->C, “C” should only list “B” as Sources, and “B” should only list “A” as Sources. However in case X and Y jointly contribute to Z, then “Z” should list “X” and “Y” as Sources. |
-| RawSources       | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                                |
+| RawSources       | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative. When the derivative filename does not define a `space` keyword, the first entry of `RawSources` MUST be defined and it will define the `scanner` coordinate system that applies.                               |
 | SpatialReference | REQUIRED when a custom template or file is used. A path to a file that was used as, or can be used as, a reference image for determining the coordinate space of this file. The path should start with a `/` and should be relative to the root of the dataset.                                                                                       |
-| ReferenceIndex   | REQUIRED when an index into a 4D (SpatialReference) file is used. Used to index into a 4D spatial-reference file.                                                                                                                                                                                                                                     |
 
 ### SpatialReference key allowed values
 
@@ -168,6 +168,35 @@ sub-01/anat/sub-01_hemi-L_space-individual_thickness.json
 ```JSON
 {
     "SpatialReference": "/sub-01/anat/sub-01_hemi-L_pial.surf.gii"
+}
+```
+
+Preprocessed `bold` NIfTI file in the original coordinate space of the
+original run. Please mind that in this case `RawSources` key is REQUIRED
+(and also `desc-<label>` so that the name does not overlap with the
+original filename).
+
+```Text
+sub-01/func/sub-01_task-rest_desc-preproc_bold.nii.gz
+sub-01/func/sub-01_task-rest_desc-preproc_bold.json
+```
+
+```JSON
+{
+    "RawSources": ["/sub-01/func/sub-01_task-rest_bold.nii.gz"]
+}
+```
+
+If this file was generated with prior knowledge from additional sources
+(e.g., say the same subject's `T1w`), then the first item of `RawSources`
+should be the original `bold` file that defined the coordinate system:
+
+```JSON
+{
+    "RawSources": [
+        "/sub-01/func/sub-01_task-rest_bold.nii.gz",
+        "/sub-01/anat/sub-01_T1w.nii.gz"
+    ]
 }
 ```
 
