@@ -31,10 +31,10 @@ optional at least one of them needs to be defined to avoid name conflict with
 the raw file.
 
 **Sampling**. When two or more instances of a given derivative are provided with resolution
-(or surface sampling density) being the only difference between them, then the `res` 
+(or surface sampling density) being the only difference between them, then the `res`
 (for *resolution* of volumetric data) and/or `den` (for *density* of non-parametric surfaces)
 SHOULD be used to avoid name conflicts.
-Note that only CIFTI files combining both regularly gridded and surface sampled data 
+Note that only CIFTI files combining both regularly gridded and surface sampled data
 (and their downstream derivatives) are allowed to present both `res` and `den` keywords
 simultaneously.
 
@@ -133,7 +133,7 @@ be set to `orig`.
 JSON metadata fields:
 
 | **Key name** | **Description**                                                                                                                                |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------ |----------------------------------------------------------------------------------------------------------------------------------------------- |
 | RawSources   | Same as defined in [Introduction](01-introduction.md), but elevated from OPTIONAL to REQUIRED                                                  |
 | Type         | RECOMMENDED. Short identifier of the mask. Reserved values: `Brain` - brain mask, `Lesion` - lesion mask, `Face` - face mask, `ROI` - ROI mask |
 
