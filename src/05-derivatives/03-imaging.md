@@ -14,7 +14,6 @@ In addition, all processed files include the following metadata JSON fields:
 | ------------- | ----------------------------------------------------------------------------------------------- |
 | SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not. |
 
-
 ## Masks
 
 Template:
@@ -258,7 +257,6 @@ index   name            abbr	color       mapping
 101     "White Matter"	WM      #2f8bbe	    2
 102     "Brainstem"     BS      #36de72	    11
 ```
-
 
 []: <> (################)
 []: <> (Link definitions)
