@@ -47,32 +47,39 @@ informative representations of the diffusion process and the underlying
 biological structure. A wide range of such models are available, each of
 which has its own unique requirements with respect to:
 
--  The input parameters required to define / constrain the model;
+-  The [input](#paramdef-input) parameters required in order to
+   define / constrain the model;
 
--  The appropriate data representation in which the resulting
-   parameters estimated of / from the model are stored on the filesystem;
+-  The appropriate [data representations](#data-representations) utilised to
+   store information parameterised [by](#paramdef-intrinsic) or
+   [from](#paramdef-extrinsic) the model onto the filesystem;
 
 -  The requirements for encapsulation and complete representation of
-   derived orientation information, which is a key strength of diffusion
-   MRI but presents unique challenges for correct interpretation.
+   derived [orientation information](#orientation-specification), which is
+   a key strength of diffusion MRI but presents unique challenges for
+   correct interpretation.
 
 ### Parameter terminology
 
-1. <a name="parameter-intrinsic">*Intrinsic*</a> model parameter:
+Throughout this document, the term "parameter" is used to refer to
+multiple distinct sources of information. The distinction between
+these uses is defined thus:
 
-   Item that is the direct result of fitting the diffusion model to the
+1. <a name="paramdef-input">*Input*</a> model parameter:
+
+   Value or non-numerical setting that influences the conformation
+   of the diffusion model to the empirical diffusion-weighted data.
+
+1. <a name="paramdef-intrinsic">*Intrinsic*</a> model parameter:
+
+   Value that is the direct result of fitting the diffusion model to the
    empirical diffusion-weighted data.
 
-1. <a name="parameter-input">*Input*</a> model parameter:
+1. <a name="paramdef-extrinsic">*Extrinsic*</a> model parameter:
 
-   Item that influences the conformation of the diffusion model to the
-   empirical diffusion-weighted data.
-
-1. <a name="parameter-extrinsic">*Extrinsic*</a> model parameter:
-
-   Item that can be calculated from prior estimated intrinsic model
-   parameters, without necessitating reference to the empirical
-   diffusion-weighted data.
+   Value that can be calculated directly from previously estimated
+   intrinsic model parameters, without necessitating reference to
+   the empirical diffusion-weighted data.
 
 ### File names
 
@@ -91,19 +98,18 @@ which has its own unique requirements with respect to:
 ```
 
 -  File "`<source_keywords>[_space-<space>][_desc-<label>]_<model>.json`"
-   provides basic model information and [input](#parameter-input)
+   provides basic model information and [input](#paramdef-input)
    model parameters.
 
 -  Images "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<intparam*>_<model>.nii[.gz]`"
-   MAY be defined if additional [extrinsic](#parameter-extrinsic)
-   model parameters beyond the compulsory [intrinsic](#parameter-intrinsic)
-   parameters are to be provided.
+   MAY be defined, in order to provide additional [extrinsic](#paramdef-extrinsic)
+   model parameters.
 
 -  OPTIONAL files "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam*>_<model>.json`"
    may provide only information or parameters relevant to derivation of each
-   relevant [extrinsic](#parameter-extrinsic) model parameter image.
+   relevant [extrinsic](#paramdef-extrinsic) model parameter image.
 
--  If all [intrinsic](#parameter-intrinsic) model parameters are
+-  If all [intrinsic](#paramdef-intrinsic) model parameters are
    contained within a single image file, field "`_parameter-*`" MUST be
    omitted (for intrinsic parameter image only):
 
@@ -117,11 +123,17 @@ which has its own unique requirements with respect to:
 
 ### Data representations
 
+There are multiple techniques by which data that relate to the anisotropic
+nature of either the diffusion process or underlying tissue may be
+arranged and/or encoded into NIfTI image data. A list of known techniques
+is enumerated below, accompanied by requisite information specific to the
+reading / writing of each representation.
+
 1. <a name="data-scalar">*Scalars*</a>:
 
-   Any model parameter image (whether intrinsic or extrinsic) where a
-   solitary value is defined in each 3D image voxel is referred to here as a
-   "scalar" image.
+   Any model parameter image (whether [intrinsic](#paramdef-intrinsic) or
+   [extrinsic](#paramdef-extrinsic)) where a solitary numerical value is
+   defined in each 3D image voxel is referred to here as a "scalar" image.
 
 1. <a name="data-dec">*Directionally-Encoded Colours (DEC)*</a>:
 
@@ -133,8 +145,10 @@ which has its own unique requirements with respect to:
 1. <a name="data-spherical">*Spherical coordinates*</a>:
 
    4D image where data across volumes within each voxel encode one or
-   more discrete orientations using polar angles, optionally exploiting
-   the distance from origin to encode the value of some parameter.
+   more discrete orientations using angles on the 2-sphere, optionally
+   exploiting the distance from origin to encode the value of some parameter.
+
+   This may take one of two forms:
 
    1. Value per direction
 
@@ -142,7 +156,7 @@ which has its own unique requirements with respect to:
       coordinate, using ISO convention for both the order of parameters
       and reference frame for angles:
 
-      1. Distance from origin; value of embedded parameter SHOULD be
+      1. Distance from origin; value of embedded parameter MUST be
          indicated in "`_parameter-*`" filename field;
 
       1. Inclination / polar angle, in radians, relative to the zenith
@@ -173,8 +187,20 @@ which has its own unique requirements with respect to:
    4D image where data across volumes within each voxel encode one or
    more discrete orientations using triplets of axis dot products.
 
-   If not all 3-vectors are of unit norm, parameter encoded as vector
-   norm SHOULD be indicated in "`_parameter-*`" filename field.
+   This representation may be used in one of two ways:
+
+   1. Value per direction
+
+      Each 3-vector, once explicitly normalized, provides a direction
+      on the unit sphere; the *norm* of each 3-vector additionally encodes
+      the magnitude of some mode parameter, the nature of which MUST be
+      indicated in the "`_parameter-*`" filename field.
+
+   2. Directions only
+
+      Each triplet of values encodes an orientation on the unit sphere
+      (i.e. the 3-vector data are normalized); no quantitative value is
+      associated with each triplet.
 
    Number of image volumes is equal to (3x*N*), where *N* is the maximum
    number of discrete orientations in any voxel in the image.
@@ -205,19 +231,25 @@ which has its own unique requirements with respect to:
 
    4D image containing, for every image voxel, data corresponding to some
    set of model parameters, the names and order of which are defined within
-   the [intrinsic](#parameter-intrinsic) model parameters section.
+   the [intrinsic](#paramdef-intrinsic) model parameters section.
 
 ### Orientation specification
 
-| **Key name**                | **Relevant [data representations](#data-representations)**                                                                                                                                                        | **Description**                                                                                                                                                                                                                                                          |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `AntipodalSymmetry`         | [Spherical coordinates](#data-spherical), [3-vectors](#data-3vector), [spherical harmonics](#data-sh), [amplitudes](#data-amp), [probability distribution functions](#data-pdf), [parameter vectors](#data-param) | OPTIONAL. Boolean. Indicates whether orientation information should be interpreted as being antipodally symmetric. Assumed to be True if omitted. If True, no constraints are imposed with respect to the domain on the 2-sphere in which orientations may be specified. |
-| `Directions`                | [Amplitudes](#data-amp)                                                                                                                                                                                           | REQUIRED. List. Data are either [spherical coordinates (directions only)](#data-spherical) or [3-vectors](#data-3vector) with unit norm. Defines the dense directional basis set on which samples of a spherical function within each voxel are provided.                |
-| `FillValue`                 | [Spherical coordinates](#data-spherical), [3-vectors](#data-3vector)                                                                                                                                              | OPTIONAL. Float; allowed values: { 0.0, NaN }. Value stored in image when number of discrete orientations in a voxel is fewer than the maximal number for that image.                                                                                                    |
-| `OrientationRepresentation` | All except [scalar](#data-scalar)                                                                                                                                                                                 | REQUIRED. String; allowed values: { `dec`, `unitspherical`, `spherical`, `unit3vector`, `3vector`, `sh`, `amp`, `param` }. The [data representation](#data-representations) used to encode orientation information.                                                      |
-| `ReferenceAxes`             | All except [scalar](#data-scalar)                                                                                                                                                                                 | REQUIRED. String; allowed values: { `ijk`, `xyz` }. Indicates whether the NIfTI image axes, or scanner-space axes, are used as reference for orientation information.                                                                                                    |
-| `SphericalHarmonicBasis`    | [Spherical harmonics](#data-sh)                                                                                                                                                                                   | REQUIRED. String; allowed values: { `MRtrix3`, `Descoteaux` }. Basis by which to define the interpretation of image values across volumes as spherical harmonics coefficients.                                                                                           |
-| `SphericalHarmonicDegree`   | [Spherical harmonics](#data-sh)                                                                                                                                                                                   | REQUIRED. Integer. Maximal degree of the spherical harmonic basis employed.                                                                                                                                                                                              |
+| **Key name**                | **Relevant [data representations](#data-representations)**                                                                                                                                                        | **Description**                                                                                                                                                                                                                                           |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `AntipodalSymmetry`         | [Spherical coordinates](#data-spherical), [3-vectors](#data-3vector), [spherical harmonics](#data-sh), [amplitudes](#data-amp), [probability distribution functions](#data-pdf), [parameter vectors](#data-param) | OPTIONAL. Boolean. Indicates whether orientation information should be interpreted as being antipodally symmetric. Assumed to be True if omitted.                                                                                                         |
+| `Directions`                | [Amplitudes](#data-amp)                                                                                                                                                                                           | REQUIRED. List. Data are either [spherical coordinates (directions only)](#data-spherical) or [3-vectors](#data-3vector) with unit norm. Defines the dense directional basis set on which samples of a spherical function within each voxel are provided. |
+| `FillValue`                 | [Spherical coordinates](#data-spherical), [3-vectors](#data-3vector)                                                                                                                                              | OPTIONAL. Float; allowed values: { 0.0, NaN }. Value stored in image when number of discrete orientations in a voxel is fewer than the maximal number for that image.                                                                                     |
+| `OrientationRepresentation` | All except [scalar](#data-scalar)                                                                                                                                                                                 | REQUIRED. String; allowed values: { `dec`, `unitspherical`, `spherical`, `unit3vector`, `3vector`, `sh`, `amp`, `param` }. The [data representation](#data-representations) used to encode orientation information within the NIfTI image.                |
+| `ReferenceAxes`             | All except [scalar](#data-scalar)                                                                                                                                                                                 | REQUIRED. String; allowed values: { `ijk`, `xyz` }. Indicates whether the NIfTI image axes, or scanner-space axes, are used as reference for orientation information.                                                                                     |
+| `SphericalHarmonicBasis`    | [Spherical harmonics](#data-sh)                                                                                                                                                                                   | REQUIRED. String; allowed values: { `MRtrix3`, `Descoteaux` }. Basis by which to define the interpretation of image values across volumes as spherical harmonics coefficients.                                                                            |
+| `SphericalHarmonicDegree`   | [Spherical harmonics](#data-sh)                                                                                                                                                                                   | REQUIRED. Integer. Maximal degree of the spherical harmonic basis employed.                                                                                                                                                                               |
+
+If `AntipodalSymmetry` is True, then no constraints are imposed with respect
+to the domain on the 2-sphere in which orientations may be specified;
+for instance, 3-vectors { 0.57735, 0.57735, 0.57735 } and
+{ -0.57735, -0.57735, -0.57735 } are both permissible and equivalent to one
+another.
 
 #### Spherical Harmonics bases
 
@@ -315,7 +347,7 @@ the following key/value pairs irrespective of the particular model:
 | Mask             | OPTIONAL. String. Name of image that was used as a binary mask to specify those voxels for which the model was fit.                                                                          |
 | ModelDescription | OPTIONAL. String. Extended information to describe the model.                                                                                                                                |
 | ModelURL         | OPTIONAL. String. URL to the implementation of the specific model utilized.                                                                                                                  |
-| Parameters       | OPTIONAL. Dictionary. *Input* model parameters that are constant across the image (see below).                                                                                               |
+| Parameters       | OPTIONAL. Dictionary. [Input](#paramdef-input) model parameters that are constant across the image (see examples below).                                                                    |
 
 #### Model bootstrapping
 
@@ -451,7 +483,7 @@ Reserved keywords for models built into the specification are as follows:
 | `tort`              | Tortuosity of extra-cellular space                                     | [Scalar](#data-scalar)                       | { `dki` }                                       |                                                                |
 
 While not explicitly included in the table above, *any* [scalar](#data-scalar)
-[extrinsic](parameter-extrinsic) parameter can theoretically be combined
+[extrinsic](paramdef-extrinsic) parameter can theoretically be combined
 with a separate source of orientation information from the diffusion model
 in order to produce a [directionally-encoded colour](#data-dec),
 [spherical coordinates](#data-spherical) or [3-vectors](#data-3vector) image.
@@ -503,7 +535,7 @@ in order to produce a [directionally-encoded colour](#data-dec),
    Dimensions of NIfTI image "`sub-01_desc-gm_csd.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
    Dimensions of NIfTI image "`sub-01_desc-csf_csd.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
 
-   Contents of file "`sub-01_csd.json`" (common to all [intrinsic](#parameter-intrinsic) model parameter images):
+   Contents of file "`sub-01_csd.json`" (common to all [intrinsic](#paramdef-intrinsic) model parameter images):
 
    ```JSON
    {
@@ -566,7 +598,7 @@ in order to produce a [directionally-encoded colour](#data-dec),
    Dimensions of NIfTI image "`sub-01_parameter-od_noddi.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
    Dimensions of NIfTI image "`sub-01_parameter-direction_noddi.nii.gz`": *I*x*J*x*K*x3 ([3-vectors](#data-3vector))
 
-   Contents of file "`sub-01_noddi.json`" (common to all [intrinsic](#parameter-intrinsic) model parameter images):
+   Contents of file "`sub-01_noddi.json`" (common to all [intrinsic](#paramdef-intrinsic) model parameter images):
 
    ```JSON
    {
