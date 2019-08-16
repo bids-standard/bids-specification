@@ -35,7 +35,7 @@ $ git fetch upstream
 $ git checkout -b rel/1.2.0 upstream/master
 ```
 
-### 2. Update the version in the changelog and mkdocs.yml 
+### 2. Update the version and the contributors list
 
 Change the "Unreleased" heading in
 [src/CHANGES.md](https://github.com/bids-standard/bids-specification/blob/master/src/CHANGES.md)
@@ -59,7 +59,10 @@ In the figure below, we update `v1.2.0-dev` to `v1.2.0`.
 
 Note: this will make our continuous integration ([CircleCI](https://circleci.com/)) fail. This fails because the URL of the new ReadTheDocs rendering has not been generated at this time. It will be generated once the GitHub release has been completed. 
 
-#### 2a. Ensure the [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md) is synced with the [Contributors wiki](https://github.com/bids-standard/bids-specification/wiki/Contributors)
+Synchronize the [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md)
+with the [Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
+to ensure all contributors are duly credited.
+Be sure not to remove credits if both have been edited.
 
 ### 3. Commit changes and push to upstream
 
@@ -169,7 +172,9 @@ description:
 
 Click "Publish release".
 
-Note: It will take ReadTheDocs a few minutes to sync with the new release and build the new stable and versioned rendering. 
+Verify ReadTheDocs builds complete and publish. If needed, manually
+trigger [builds](https://readthedocs.org/projects/bids-specification/builds/)
+for `stable` and the most recent tag.
 
 ### 9. Edit the mkdocs.yml file site_name to set a new development version
 
