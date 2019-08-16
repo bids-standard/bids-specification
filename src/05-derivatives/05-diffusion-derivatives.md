@@ -284,14 +284,9 @@ another.
 
       *N* = ((*l<sub>max</sub>*+1) x (*l<sub>max</sub>*+2)) / 2
 
-      | ***l<sub>max</sub>*** | ***N*** |
-      | --------------------- | ------- |
-      | 0                     | 1       |
-      | 2                     | 6       |
-      | 4                     | 15      |
-      | 6                     | 28      |
-      | 8                     | 45      |
-      | ...                   | etc.    |
+      | ***l<sub>max</sub>*** |  0  |  2  |  4  |  6  |  8  | ...  |
+      | --------------------- | --: | --: | --: | --: | --: | :--: |
+      | ***N***               |   1 |   6 |  15 |  28 |  45 | etc. |
 
    -  Relationship between maximal degree of *zonal* spherical harmonic
       function (spherical harmonics function where all *m* != 0 terms are
@@ -300,14 +295,9 @@ another.
 
       *N* = 1 + (*l<sub>max</sub>* / 2)
 
-      | ***l<sub>max</sub>*** | ***N*** |
-      | --------------------- | ------- |
-      | 0                     | 1       |
-      | 2                     | 2       |
-      | 4                     | 3       |
-      | 6                     | 4       |
-      | 8                     | 5       |
-      | ...                   | etc.    |
+      | ***l<sub>max</sub>*** |  0  |  2  |  4  |  6  |  8  | ...  |
+      | --------------------- | --: | --: | --: | --: | --: | :--: |
+      | ***N***               |   1 |   2 |  3  |  4  |  5  | etc. |
 
 -  `Descoteaux`
 
