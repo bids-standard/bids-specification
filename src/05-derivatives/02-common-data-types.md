@@ -32,9 +32,9 @@ the raw file.
 
 **Sampling**. When two or more instances of a given derivative are provided with resolution
 (or surface sampling density) being the only difference between them, then the `res`
-(for *resolution* of volumetric data) and/or `den` (for *density* of non-parametric surfaces)
-SHOULD be used to avoid name conflicts.
-Note that only CIFTI files combining both regularly gridded and surface sampled data
+(for *resolution* of regularly sampled N-D data) and/or `den` (for *density* of non-parametric 
+surfaces) SHOULD be used to avoid name conflicts.
+Note that only files combining both regularly sampled (e.g., gridded) and surface sampled data
 (and their downstream derivatives) are allowed to present both `res` and `den` keywords
 simultaneously.
 
@@ -89,7 +89,8 @@ Example JSON file corresponding to `pipeline1/sub-001/func/sub-001_task-rest_run
 }
 ```
 
-Example of CIFTI files having both `res` and `den` keywords:
+Example of CIFTI files (i.e., a file that combines regularly sampled data
+and non-parametric surfaces) having both `res` and `den` keywords:
 
 ```Text
 pipeline1/
