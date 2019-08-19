@@ -7,7 +7,7 @@ Template:
 ```Text
 <pipeline_name>/
     sub-<participant_label>/
-        anat|func|dwi/
+        anat|func|dwi|meg|eeg|ieeg|beh/
         <source_keywords>[_space-<space>][_res-<index>][_den-<label>][_desc-<label>]_<suffix>.<ext>
 ```
 
