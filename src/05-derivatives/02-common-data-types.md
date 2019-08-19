@@ -75,7 +75,7 @@ addition, all processed files include the following metadata JSON fields:
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not.                              |
 | Resolution    | REQUIRED if `res` keyword present. Dictionary of Indexes to Strings. Specifies the interpretation of the resolution keyword. |
-| Density       | REQUIRED if `den` keyword present. Dictionary of Strings to Strings. Specifies the interpretation of the resolution keyword. |
+| Density       | REQUIRED if `den` keyword present. Dictionary of Strings to Strings. Specifies the interpretation of the density keyword. |
 
 Example JSON file corresponding to `pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_bold.json` above:
 
