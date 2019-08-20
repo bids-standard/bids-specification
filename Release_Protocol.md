@@ -70,14 +70,6 @@ By pushing `rel/` branches to the main repository, the chances of continuous int
 discrepancies is reduced.
 
 ```Shell
-$ git add src/CHANGES.md mkdocs.yml
-$ git commit -m 'REL: v1.2.0'
-$ git push -u upstream rel/1.2.0
-```
-
-If the Contributors needed to be updated:
-
-```Shell
 $ git add src/CHANGES.md mkdocs.yml src/99-appendices/01-contributors.md
 $ git commit -m 'REL: v1.2.0'
 $ git push -u upstream rel/1.2.0
