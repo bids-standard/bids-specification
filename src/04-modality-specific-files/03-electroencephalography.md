@@ -57,6 +57,10 @@ also encourage users to provide additional meta information extracted from the
 manufacturer specific data files in the sidecar JSON file. Other relevant files
 MAY be included alongside the original EEG data in `/sourcedata`.
 
+Note that data can have different RecordingTypes; noncontinuous data can be 
+discontinuous, i.e. having variable length segments, whereas epoched data has 
+identical length segments. Continuous data is by definition without interruption.
+
 Note that for proper documentation of EEG recording metadata it is important to
 understand the difference between electrode and channel: An EEG electrode is
 attached to the skin, whereas a channel is the combination of the analog
