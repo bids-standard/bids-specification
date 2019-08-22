@@ -2,9 +2,18 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] Add CBV and phase to Entity table [#312](https://github.com/bids-standard/bids-specification/pull/312) ([tsalo](https://github.com/tsalo))
+-   \[ENH] Release protocol notes [#304](https://github.com/bids-standard/bids-specification/pull/304) ([franklin-feingold](https://github.com/franklin-feingold))
+-   REL: 1.3.0-dev [#303](https://github.com/bids-standard/bids-specification/pull/303) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[INFRA] Adding contributor appendix sentence to PR template  [#299](https://github.com/bids-standard/bids-specification/pull/299) ([franklin-feingold](https://github.com/franklin-feingold))
+
+## [v1.2.1](https://github.com/bids-standard/bids-specification/tree/v1.2.1) (2019-08-14)
+
+-   Sync rel/1.2.1 to master [#302](https://github.com/bids-standard/bids-specification/pull/302) ([franklin-feingold](https://github.com/franklin-feingold))
 -   FIX: repair link in anatomical MRI table [#297](https://github.com/bids-standard/bids-specification/pull/297) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Clarify requirements in Release Protocol [#294](https://github.com/bids-standard/bids-specification/pull/294) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[INFRA+FIX] Use linkchecker (from a dedicated docker image) to check all URLs [#293](https://github.com/bids-standard/bids-specification/pull/293) ([yarikoptic](https://github.com/yarikoptic))
+-   REL: v1.2.1 [#291](https://github.com/bids-standard/bids-specification/pull/291) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[ENH] Adding Contributors and updating contributions [#284](https://github.com/bids-standard/bids-specification/pull/284) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[MISC] update Code of Conduct contact [#281](https://github.com/bids-standard/bids-specification/pull/281) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[ENH] Update contributing guide and README to make discussion forums easy to find [#279](https://github.com/bids-standard/bids-specification/pull/279) ([emdupre](https://github.com/emdupre))

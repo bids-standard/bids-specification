@@ -2,6 +2,7 @@
 
 - Please keep the title of your pull request short but informative - it will 
   appear in the changelog
+- Please ensure your name is credited on our [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md). To add your name, please edit our [Contributors wiki](https://github.com/bids-standard/bids-specification/wiki/Contributors) and add your name with the type of contribution. For assistance, please contact @franklin-feingold or @sappelhoff.
 - Use one of the following prefixes in the title of your pull request:
   - `[ENH]` - enhancement of the specification that adds a new feature or 
     support for a new data type
