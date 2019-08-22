@@ -65,6 +65,11 @@ additional meta information extracted from the manufacturer-specific data files
 in the sidecar JSON file. Other relevant files MAY be included alongside the
 original iEEG data in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
 
+Note that data can have different RecordingTypes; noncontinuous data can be 
+discontinuous, i.e. having variable length segments or epoched, which implies  
+identical length segments. Continuous data is by definition 1 segment without
+interruption.
+
 ### Terminology: Electrodes vs. Channels
 
 For proper documentation of iEEG recording metadata it is important to
