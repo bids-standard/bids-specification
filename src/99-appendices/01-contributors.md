@@ -100,6 +100,7 @@ your name is not listed, please add it.
 -   Christophe Philips 📖
 -   Russell A. Poldrack 📖🔍📢
 -   Jean-Baptiste Poline 📖📢🤔🎨
+-   Wouter V. Potters 📖
 -   Vasudev Raguram 💻🎨📖🔧
 -   Ariel Rokem 📖
 -   Matt Sanderson 📖💻
