@@ -127,6 +127,7 @@ your name is not listed, please add it.
 -   Andrea Pigorini 📖
 -   Russell A. Poldrack 📖🔍📢
 -   Jean-Baptiste Poline 📖📢🤔🎨
+-   Wouter V. Potters 📖
 -   Nader Pouratian 📖
 -   Pradeep Reddy Raamana 💻🔧
 -   Vasudev Raguram 💻🎨📖🔧
