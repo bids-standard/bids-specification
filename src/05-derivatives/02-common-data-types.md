@@ -97,6 +97,27 @@ Example JSON file corresponding to
 }
 ```
 
+This would be equivalent to having two JSON metadata files, one
+corresponding to `res-lo`
+(`pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_res-lo_bold.json`):
+
+```JSON
+{
+  "SkullStripped": true,
+  "Resolution": "Matched with original BOLD resolution (2x2x3 mm^3)"
+}
+```
+
+And one corresponding to `res-hi`
+(`pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_res-hi_bold.json`):
+
+```JSON "pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_res-hi_bold.json"
+{
+  "SkullStripped": true,
+  "Resolution": "Matched with high-resolution T1w (0.7mm, isotropic)"
+}
+```
+
 Example of CIFTI files (i.e., a file that combines regularly sampled data
 and non-parametric surfaces) having both `res` and `den` keywords:
 
