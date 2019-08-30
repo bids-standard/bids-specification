@@ -166,7 +166,7 @@ be set to `orig`.
 JSON metadata fields:
 
 | **Key name** | **Description**                                                                                                                                |
-| ------------ |----------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | RawSources   | Same as defined in [Introduction](01-introduction.md), but elevated from OPTIONAL to REQUIRED                                                  |
 | Type         | RECOMMENDED. Short identifier of the mask. Reserved values: `Brain` - brain mask, `Lesion` - lesion mask, `Face` - face mask, `ROI` - ROI mask |
 
