@@ -8,7 +8,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat|func|dwi|meg|eeg|ieeg|beh/
-        <source_keywords>[_space-<space>][_res-<index>][_den-<label>][_desc-<label>]_<suffix>.<ext>
+        <source_keywords>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<ext>
 ```
 
 Processing in this context means transformations of data that does not change
@@ -30,13 +30,20 @@ Note that even though `space` and `desc` are
 optional at least one of them needs to be defined to avoid name conflict with
 the raw file.
 
-**Sampling**. When two or more instances of a given derivative are provided with resolution
-(or surface sampling density) being the only difference between them, then the `res`
-(for *resolution* of regularly sampled N-D data) and/or `den` (for *density* of non-parametric 
-surfaces) SHOULD be used to avoid name conflicts.
-Note that only files combining both regularly sampled (e.g., gridded) and surface sampled data
-(and their downstream derivatives) are allowed to present both `res` and `den` keywords
-simultaneously.
+**Sampling**. When two or more instances of a given derivative are provided
+with resolution (or surface sampling density) being the only difference
+between them, then the `res` (for *resolution* of regularly sampled N-D data)
+and/or `den` (for *density* of non-parametric surfaces) SHOULD be used to avoid
+name conflicts.
+Note that only files combining both regularly sampled (e.g., gridded) and surface
+sampled data (and their downstream derivatives) are allowed to present both `res`
+and `den` keywords simultaneously.
+
+!!! tip "Recommendation"
+    Although the `res` entity accepts any BIDS-valid `<label>`, it is
+    recommended to use one-based, consecutive indexes as label to preempt
+    inconsistencies between the value of `res` and the metadata embedded
+    within the actual file.
 
 Examples:
 
@@ -44,8 +51,8 @@ Examples:
 pipeline1/
     sub-001/
         func/
-            sub-001_task-rest_run-1_space-MNI305_res-1_bold.nii.gz
-            sub-001_task-rest_run-1_space-MNI305_res-2_bold.nii.gz
+            sub-001_task-rest_run-1_space-MNI305_res-lo_bold.nii.gz
+            sub-001_task-rest_run-1_space-MNI305_res-hi_bold.nii.gz
             sub-001_task-rest_run-1_space-MNI305_bold.json
 ```
 
@@ -74,7 +81,7 @@ addition, all processed files include the following metadata JSON fields:
 | **Key name**  | **Description**                                                                                                              |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not.                              |
-| Resolution    | REQUIRED if `res` keyword present. Dictionary of Indexes to Strings. Specifies the interpretation of the resolution keyword. |
+| Resolution    | REQUIRED if `res` keyword present. Dictionary of Strings to Strings. Specifies the interpretation of the resolution keyword. |
 | Density       | REQUIRED if `den` keyword present. Dictionary of Strings to Strings. Specifies the interpretation of the density keyword.    |
 
 Example JSON file corresponding to
@@ -84,8 +91,8 @@ Example JSON file corresponding to
 {
   "SkullStripped": true,
   "Resolution": {
-    "1": "Matched with original BOLD resolution (2x2x3 mm^3)",
-    "2": "Matched with high-resolution T1w (0.7mm, isotropic)"
+    "hi": "Matched with high-resolution T1w (0.7mm, isotropic)",
+    "lo": "Matched with original BOLD resolution (2x2x3 mm^3)"
   }
 }
 ```
@@ -99,6 +106,8 @@ pipeline1/
         func/
             sub-001_task-rest_run-1_res-1_den-10k_bold.dtseries.nii
             sub-001_task-rest_run-1_res-1_den-41k_bold.dtseries.nii
+            sub-001_task-rest_run-1_res-2_den-10k_bold.dtseries.nii
+            sub-001_task-rest_run-1_res-2_den-41k_bold.dtseries.nii
             sub-001_task-rest_run-1_bold.dtseries.json
 ```
 
@@ -108,7 +117,8 @@ And the corresponding `sub-001_task-rest_run-1_bold.dtseries.json` file:
 {
     "SkullStripped": true,
     "Resolution": {
-        "1": "Matched with MNI152NLin6Asym 1.6mm isotropic"
+        "1": "Matched with MNI152NLin6Asym 1.6mm isotropic",
+        "2": "Matched with MNI152NLin6Asym 2.0mm isotropic"
     },
     "Density": {
         "10k": "10242 vertices per hemisphere (5th order icosahedron)",

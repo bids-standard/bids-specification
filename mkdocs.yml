@@ -10,6 +10,7 @@ markdown_extensions:
     - toc:
         anchorlink: true
     - pymdownx.superfences
+    - admonition
 plugins:
     - search
 docs_dir: 'src'
