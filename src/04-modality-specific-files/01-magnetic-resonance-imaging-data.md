@@ -214,9 +214,9 @@ based fMRI a corresponding task events file (see below) MUST be provided
 multiband acquisitions, one MAY also save the single-band reference image as
 type `sbref` (e.g. `sub-control01_task-nback_sbref.nii.gz`).
 
-Each task has a unique label MUST only include of letters and/or numbers (other
-characters including spaces and underscores are not allowed). Those labels MUST
-be consistent across subjects and sessions.
+Each task has a unique label that MUST only consist of letters and/or numbers
+(other characters, including spaces and underscores, are not allowed).
+Those labels MUST be consistent across subjects and sessions.
 
 If more than one run of the same task has been acquired a key/value pair:
 `_run-1`, `_run-2`, `_run-3` etc. MUST be used. If only one run was acquired the
