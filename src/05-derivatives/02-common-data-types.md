@@ -111,7 +111,7 @@ corresponding to `res-lo`
 And one corresponding to `res-hi`
 (`pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_res-hi_bold.json`):
 
-```JSON "pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_res-hi_bold.json"
+```JSON
 {
   "SkullStripped": true,
   "Resolution": "Matched with high-resolution T1w (0.7mm, isotropic)"
