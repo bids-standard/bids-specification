@@ -17,13 +17,14 @@ Derivatives can be stored/distributed in two ways:
     RECOMMENDED to use the format `<pipeline>-<variant>` in cases where it is
     anticipated that the same pipeline will output more than one variant (e.g.,
     `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
-    subfolder name MUST be a substring of `PipelineDescription.Name` field in
-    the `dataset_description.json` (see below).
+    subfolder name MUST be the `PipelineDescription.Name` field in
+    `data_description.json`, optionally followed by a hyphen and a suffix (see
+    below).
 
     For example:
 
     ```Plain
-    <dataset>/derivatives/fmripreprocess-v1/sub-0001
+    <dataset>/derivatives/fmriprep-v1.4.1/sub-0001
     <dataset>/derivatives/spm/sub-0001
     <dataset>/derivatives/vbm/sub-0001
     ```
@@ -58,14 +59,13 @@ In addition to raw BIDS datasets, derived BIDS datasets include the following
 required or recommended `dataset_description.json` keys (a dot in the Key name
 denotes a key in a subdictionary):
 
-| **Key name**                                | **Description**                                                                                                                                                                                                                              |
-| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PipelineDescription.Name                    | REQUIRED. Name of the pipeline that generated the outputs. In case the derived dataset is stored as a subfolder of the raw dataset this field MUST be a substring of the derived dataset folder name (a.k.a. `<pipeline_name>` - see above). |
-| PipelineDescription.Version                 | OPTIONAL. Version of the pipeline.                                                                                                                                                                                                           |
-| PipelineDescription.CodeURL                 | OPTIONAL. URL where the code for the analysis can be found.                                                                                                                                                                                  |
-| PipelineDescription.DockerHubContainerTag   | OPTIONAL. Docker Hub tag where the software container image used in this analysis can be found.                                                                                                                                              |
-| PipelineDescription.SingularityContainerURL | OPTIONAL. URL where the Singularity software container image used in this analysis can be found.                                                                                                                                             |
-| SourceDatasets                              | OPTIONAL. A list of objects specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`.                                                                        |
+| **Key name**                  | **Description**                                                                                                                                                                                                                              |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PipelineDescription.Name      | REQUIRED. Name of the pipeline that generated the outputs. In case the derived dataset is stored as a subfolder of the raw dataset this field MUST be a substring of the derived dataset folder name (a.k.a. `<pipeline_name>` - see above). |
+| PipelineDescription.Version   | OPTIONAL. Version of the pipeline.                                                                                                                                                                                                           |
+| PipelineDescription.CodeURL   | OPTIONAL. URL where the code for the analysis can be found.                                                                                                                                                                                  |
+| PipelineDescription.Container | OPTIONAL. Object specifying the location and relevant attributes of software container image used to produce the derivative. Valid fields in this object include `Type`, `Tag` and `URI`.                                                    |
+| SourceDatasets                | OPTIONAL. A list of objects specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`.                                                                        |
 
 Example:
 
@@ -76,7 +76,10 @@ Example:
     "PipelineDescription": {
         "Name": "FMRIPREP",
         "Version": "1.2.5",
-        "DockerHubContainerTag": "poldracklab/fmriprep:1.2.5"
+        "Container": {
+            "Type": "docker",
+            "Tag": "poldracklab/fmriprep:1.2.5"
+            }
         },
     "SourceDatasets": [
         {

@@ -7,8 +7,8 @@ Template:
 ```Text
 <pipeline_name>/
     sub-<participant_label>/
-        anat|func|dwi/
-        <source_keywords>[_space-<space>][_desc-<label>][_res-<index>][_den-<label>]_<suffix>.<ext>
+        anat|func|dwi|meg|eeg|ieeg|beh/
+        <source_keywords>[_space-<space>][_res-<index>][_den-<label>][_desc-<label>]_<suffix>.<ext>
 ```
 
 Processing in this context means transformations of data that does not change
@@ -31,10 +31,10 @@ optional at least one of them needs to be defined to avoid name conflict with
 the raw file.
 
 **Sampling**. When two or more instances of a given derivative are provided with resolution
-(or surface sampling density) being the only difference between them, then the `res` 
-(for *resolution* of volumetric data) and/or `den` (for *density* of non-parametric surfaces)
-SHOULD be used to avoid name conflicts.
-Note that only CIFTI files combining both regularly gridded and surface sampled data 
+(or surface sampling density) being the only difference between them, then the `res`
+(for *resolution* of regularly sampled N-D data) and/or `den` (for *density* of non-parametric 
+surfaces) SHOULD be used to avoid name conflicts.
+Note that only files combining both regularly sampled (e.g., gridded) and surface sampled data
 (and their downstream derivatives) are allowed to present both `res` and `den` keywords
 simultaneously.
 
@@ -75,21 +75,23 @@ addition, all processed files include the following metadata JSON fields:
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not.                              |
 | Resolution    | REQUIRED if `res` keyword present. Dictionary of Indexes to Strings. Specifies the interpretation of the resolution keyword. |
-| Density       | REQUIRED if `den` keyword present. Dictionary of Strings to Strings. Specifies the interpretation of the resolution keyword. |
+| Density       | REQUIRED if `den` keyword present. Dictionary of Strings to Strings. Specifies the interpretation of the density keyword.    |
 
-Example JSON file corresponding to `pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_bold.json` above:
+Example JSON file corresponding to
+`pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_bold.json` above:
 
 ```JSON
 {
   "SkullStripped": true,
   "Resolution": {
-    "1": "MNI305 1mm isotropic resolution",
-    "2": "MNI305 2mm isotropic resolution"
+    "1": "Matched with original BOLD resolution (2x2x3 mm^3)",
+    "2": "Matched with high-resolution T1w (0.7mm, isotropic)"
   }
 }
 ```
 
-Example of CIFTI files having both `res` and `den` keywords:
+Example of CIFTI files (i.e., a file that combines regularly sampled data
+and non-parametric surfaces) having both `res` and `den` keywords:
 
 ```Text
 pipeline1/
@@ -106,11 +108,11 @@ And the corresponding `sub-001_task-rest_run-1_bold.dtseries.json` file:
 {
     "SkullStripped": true,
     "Resolution": {
-        "1": "MNI152NLin6Asym 1.6mm isotropic"
+        "1": "Matched with MNI152NLin6Asym 1.6mm isotropic"
     },
     "Density": {
-        "10k": "fsaverage5 (5th order icosahedron) - 10242 vertices per hemisphere",
-        "41k": "fsaverage6 (6th order icosahedron) - 40962 vertices per hemisphere"
+        "10k": "10242 vertices per hemisphere (5th order icosahedron)",
+        "41k": "40962 vertices per hemisphere (6th order icosahedron)"
     }
 }
 ```
@@ -133,7 +135,7 @@ be set to `orig`.
 JSON metadata fields:
 
 | **Key name** | **Description**                                                                                                                                |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------ |----------------------------------------------------------------------------------------------------------------------------------------------- |
 | RawSources   | Same as defined in [Introduction](01-introduction.md), but elevated from OPTIONAL to REQUIRED                                                  |
 | Type         | RECOMMENDED. Short identifier of the mask. Reserved values: `Brain` - brain mask, `Lesion` - lesion mask, `Face` - face mask, `ROI` - ROI mask |
 
@@ -167,8 +169,8 @@ Common JSON metadata fields:
 ### Discrete Segmentations
 
 Discrete segmentations of brain tissue represent each tissue class with a unique
-integer label in a 3D volume. See [Anatomical Labels](#anatomical-labels) for interpretation how
-integer values map to tissue classes.
+integer label in a 3D volume. See [Anatomical Labels](#anatomical-labels) for
+interpretation how integer values map to tissue classes.
 
 Template:
 
@@ -236,9 +238,9 @@ tissue class, must provide a label mapping in its JSON sidecar. For example:
 ```Text
 pipeline/
     sub-001/
-	    anat/
-		    sub-001_space-orig_probseg.nii.gz
-		    sub-001_space-orig_probseg.json
+        anat/
+            sub-001_space-orig_probseg.nii.gz
+            sub-001_space-orig_probseg.json
 ```
 
 The JSON sidecar must include the label-map key that specifies a tissue label
@@ -353,8 +355,8 @@ These tsv lookup tables should contain the following columns:
 An example, custom dseg.tsv that defines three labels:
 
 ```Text
-index   name            abbr	color       mapping
-100     "Grey Matter"	GM      #ff53bb	    1
-101     "White Matter"	WM      #2f8bbe	    2
-102     "Brainstem"     BS      #36de72	    11
+index   name            abbr    color       mapping
+100     "Grey Matter"   GM      #ff53bb     1
+101     "White Matter"  WM      #2f8bbe     2
+102     "Brainstem"     BS      #36de72     11
 ```
