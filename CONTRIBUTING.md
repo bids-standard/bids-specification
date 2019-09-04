@@ -162,24 +162,30 @@ GitHub has a [nice introduction](https://help.github.com/articles/github-flow/) 
 
 ## Fixing Travis Remark errors
 
-We use a linter called [Remarkjs](https://github.com/remarkjs/remark-lint) to ensure all of our specification documentation is consistent.
-We have found this causes typical errors that are flagged by our continous integration service called [Travis CI](https://travis-ci.org/).
-This behavior is commonly seen when a PR is opened and Travis returns an error. 
-To fix this error please follow this process:
+We use a linter called [Remarkjs](https://github.com/remarkjs/remark-lint) to ensure all of
+our Markdown documents are consistent and well-styled.
+This commonly produces errors, which are flagged by [Travis CI](https://travis-ci.org/),
+a continuous integration service.
+When Travis returns an error, use the following process to resolve the issue:
 
-#### 1. Download Remark-CLI and our style guide
+#### 1. Install NodeJS / npm
 
-Remark-CLI can be downloaded with the help of [npm](https://www.npmjs.com/). 
-Once npm has been downloaded, please follow the [installation instructions on Remark's GitHub.](https://github.com/remarkjs/remark/tree/master/packages/remark-cli#install)
+We use a markdown linter written in Javascript.
+To run command Javascript tools on the command line, please [download and
+install](https://nodejs.org/en/download/) NodeJS.
 
-We use a particular style guide for formatting. 
-To get this style guide please run: 
+#### 2. Install Remark-CLI and our style guide
+
+Remark-CLI can be installed via [npm](https://www.npmjs.com/), which is part of
+the NodeJS distribution.
+
+To install the packages we use for our style guide:
 
 ```
 npm install remark-cli@5.0.0 remark-lint@6.0.2 remark-preset-lint-recommended@3.0.2 remark-preset-lint-markdown-style-guide@2.1.2
 ```
 
-#### 2. Fix the flagged document
+#### 3. Fix the flagged document
 
 Please go to the directory where the flagged file is and run remark like this:
 
@@ -194,10 +200,10 @@ To do this, please run this:
 remark flagged_file_fixed.md --frail
 ```
 
-This command will return whether this file can pass Travis.
+This command will indicate whether this file now conforms to the style guide.
 If it passes, the `flagged_file_fixed.md` can update the `flagged_file.md`.
 Please ensure the names are the same before pushing the fixed file to your forked repository.
-Once the fixed file has been committed, Travis will run again and should pass.
+Once the fixed file has been pushed to your PR branch, Travis will run again and should pass.
 
 ## How the decision to merge a pull request is made?
 
