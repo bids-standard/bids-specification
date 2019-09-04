@@ -7,27 +7,29 @@ Template:
 ```Text
 <pipeline_name>/
     sub-<participant_label>/
-        anat|func|dwi/
-        <source_keywords>[_space-<space>][_desc-<label>]_<suffix>.<ext>
+        <datatype>/
+            <source_keywords>[_space-<space>][_desc-<label>]_<suffix>.<ext>
 ```
 
 Preprocessing in this context means transformations of data that do not change
 the number of dimensions of the input and are not explicitly covered by other
-data types in the specification. Examples:
+data types in the specification.
+Examples:
 
  -  Motion-corrected, temporally denoised, and transformed to MNI space BOLD series
  -  Inhomogeneity corrected and skull stripped T1w files
  -  Motion-corrected DWI files
- -  Time-domain filtered and ICA cleaned EEG data
+ -  Time-domain filtered EEG data
+ -  Spatially filtered EEG data
 
 The `space` keyword is recomended to distinguish files with different underlying
 coordinate systems or registered to different reference maps.
-The `desc` keyword is a general purpose field with freeform values.
-To distinguish between multiple different versions of processing for the same
-input data the `desc` keyword should be used.
+The `desc` (description) keyword is a general purpose field with freeform values,
+which SHOULD be used to distinguish between multiple different versions of
+processing for the same input data.
 
-Note that even though `space` and `desc` are optional at least one of them needs
-to be defined to avoid name conflict with the raw file.
+Note that even though `space` and `desc` are optional at least one of them MUST
+be defined to avoid name conflict with the raw file.
 
 Examples:
 
@@ -59,4 +61,3 @@ All REQUIRED metadata fields coming from a derivative file’s source file(s) MU
 be propagated to the JSON description of the derivative unless the processing
 makes them invalid (e.g., if a source 4D image is averaged to create a single
 static volume, a SamplingFrequency property would no longer be relevant).
-
