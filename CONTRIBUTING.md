@@ -201,9 +201,14 @@ remark flagged_file_fixed.md --frail
 ```
 
 This command will indicate whether this file now conforms to the style guide.
-If it passes, the `flagged_file_fixed.md` can update the `flagged_file.md`.
-Please ensure the names are the same before pushing the fixed file to your forked repository.
-Once the fixed file has been pushed to your PR branch, Travis will run again and should pass.
+If it passes, replace `flagged_file.md` with the contents of `flagged_file_fixed.md`,
+add and commit the change:
+
+```
+mv flagged_file_fixed.md flagged_file.md
+git add flagged_file.md
+git commit -m 'STY: Fixed Markdown style'
+```
 
 ## How the decision to merge a pull request is made?
 
