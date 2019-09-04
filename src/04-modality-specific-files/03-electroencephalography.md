@@ -163,6 +163,12 @@ Example:
   "EEGPlacementScheme":"10 percent system",
   "EEGReference":"single electrode placed on FCz",
   "EEGGround":"placed on AFz",
+  "SoftwareFilters":{
+    "Anti-aliasing filter":{
+      "half-amplitude cutoff (Hz)": 500,
+      "Roll-off": "6dB/Octave"
+    }
+  },
   "HardwareFilters":{
     "ADC's decimation filter (hardware bandwidth limit)":{
       "-3dB cutoff point (Hz)":480,
