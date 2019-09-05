@@ -93,6 +93,7 @@ your name is not listed, please add it.
 -   Jonathan C. Lau 📖
 -   Laura and John Arnold Foundation 💵
 -   Christopher Lee-Messer 📖
+-   Jon Haitz Legarreta 💻📖
 -   Xiangrui Li 📖💻
 -   Vladimir Litvak 📖
 -   Brian N. Lundstrom 📖
