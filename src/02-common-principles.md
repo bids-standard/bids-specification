@@ -329,7 +329,7 @@ Example:
 }
 ```
 
-## Key/value files (dictionaries)
+### Key/value files (dictionaries)
 
 JavaScript Object Notation (JSON) files MUST be used for storing key/value
 pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
