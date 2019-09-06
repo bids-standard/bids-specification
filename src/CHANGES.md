@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] Link to doc builds in CI checks [#315](https://github.com/bids-standard/bids-specification/pull/315) ([jasmainak](https://github.com/jasmainak))
 -   \[MISC] Add BEP027 - BIDS Execution to BEP list [#314](https://github.com/bids-standard/bids-specification/pull/314) ([effigies](https://github.com/effigies))
 -   \[FIX] Add CBV and phase to Entity table [#312](https://github.com/bids-standard/bids-specification/pull/312) ([tsalo](https://github.com/tsalo))
 -   \[ENH] Release protocol notes [#304](https://github.com/bids-standard/bids-specification/pull/304) ([franklin-feingold](https://github.com/franklin-feingold))
