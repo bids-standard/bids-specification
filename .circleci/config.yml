@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  build_docs:
     docker:
       - image: circleci/python:3.6.6
     steps:
@@ -143,10 +143,10 @@ workflows:
   version: 2
   search_build:
     jobs:
-      - build
+      - build_docs
       - linkchecker:
           requires:
-            - build
+            - build_docs
       - github-changelog-generator:
           filters:
                branches:
