@@ -104,6 +104,11 @@ rather than the image data).
             [<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam2>_<model>.json]
 ```
 
+-  Field "`<model>`" is a unique identifier corresponding to the particular
+   diffusion model. If the particular diffusion model is one that is included
+   in this specification, then the [prescribed model label](intrinsic-model-parameters)
+   MUST be utilised; e.g. "`dti`" for the diffusion tensor model.
+
 -  File "`<source_keywords>[_space-<space>][_desc-<label>]_<model>.json`"
    provides basic model information and [input](#paramdef-input)
    model parameters.
