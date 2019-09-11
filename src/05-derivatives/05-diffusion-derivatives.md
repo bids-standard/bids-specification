@@ -208,7 +208,7 @@ reading / writing of each representation.
 
       Each 3-vector, once explicitly normalized, provides a direction
       on the unit sphere; the *norm* of each 3-vector additionally encodes
-      the magnitude of some mode parameter, the nature of which MUST be
+      the magnitude of some model parameter, the nature of which MUST be
       indicated in the "`_parameter-*`" filename field.
 
    2. Directions only
