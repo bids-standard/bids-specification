@@ -81,6 +81,13 @@ these uses is defined thus:
    intrinsic model parameters, without necessitating reference to
    the empirical diffusion-weighted data.
 
+For example, consider a diffusion tensor model fit: the number of
+iterations in the optimisation algorithm would be an *input* parameter;
+the six unique diffusion tensor coefficients would be the *intrinsic*
+parameters; the Fractional Anisotropy (FA) would be an *extrinsic*
+parameter (as it is calculated from the diffusion tensor coefficients
+rather than the image data).
+
 ### File names
 
 ```Text
