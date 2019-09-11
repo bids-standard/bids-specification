@@ -157,7 +157,7 @@ You can update your [fork](https://help.github.com/articles/about-forks/) of the
 GitHub has a [nice introduction](https://help.github.com/articles/github-flow/) to the pull request workflow, but please [get in touch](#get-in-touch) if you have any questions.
 
 ## Example pull request
-<img align="center" src="https://i.imgur.com/s8yELfK.png" alt="Example-Contribution" width="800"/>  
+<img align="center" src="https://i.imgur.com/s8yELfK.png" alt="Example-Contribution" width="800"/>
 
 
 ## Fixing Travis Remark errors
@@ -182,7 +182,7 @@ the NodeJS distribution.
 To install the packages we use for our style guide:
 
 ```
-npm install remark-cli@5.0.0 remark-lint@6.0.2 remark-preset-lint-recommended@3.0.2 remark-preset-lint-markdown-style-guide@2.1.2
+cat npm-requirements.txt | xargs npm install
 ```
 
 #### 3. Fix the flagged document
@@ -193,7 +193,7 @@ Please go to the directory where the flagged file is and run remark like this:
 remark flagged_file.md -o flagged_file_fixed.md
 ```
 
-Please confirm this has fixed the file. 
+Please confirm this has fixed the file.
 To do this, please run this:
 
 ```
