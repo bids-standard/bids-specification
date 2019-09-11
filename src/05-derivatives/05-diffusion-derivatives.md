@@ -109,29 +109,32 @@ rather than the image data).
    in this specification, then the [prescribed model label](intrinsic-model-parameters)
    MUST be utilised; e.g. "`dti`" for the diffusion tensor model.
 
--  File "`<source_keywords>[_space-<space>][_desc-<label>]_<model>.json`"
-   provides basic model information and [input](#paramdef-input)
-   model parameters.
-
--  Images "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<intparam*>_<model>.nii[.gz]`"
-   MAY be defined, in order to provide additional [extrinsic](#paramdef-extrinsic)
-   model parameters.
-
--  OPTIONAL files "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam*>_<model>.json`"
-   may provide only information or parameters relevant to derivation of each
-   relevant [extrinsic](#paramdef-extrinsic) model parameter image.
-
--  If all [intrinsic](#paramdef-intrinsic) model parameters are
-   contained within a single image file, field "`_parameter-`" MUST nevertheless
-   be included, with value "`all`":
+-  Files "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<intparam*>_<model>.nii[.gz]`"
+   provide data corresponding to the various [intrinsic](#paramdef-intrinsic) parameters
+   of the model. In cases where [intrinsic](#paramdef-intrinsic) model parameters are all
+   contained within a single image file, field "`_parameter-`" nevertheless MUST be
+   included, with value "`all`"; e.g.:
 
    ```Text
    <pipeline_name>/
        sub-<participant_label>/
            dwi/
                <source_keywords>[_space-<space>][_desc-<label>]_parameter-all_<model>.nii[.gz]
-               <source_keywords>[_space-<space>][_desc-<label>]_parameter-all_<model>.json
+               <source_keywords>[_space-<space>][_desc-<label>]_<model>.json
    ```
+
+-  File "`<source_keywords>[_space-<space>][_desc-<label>]_<model>.json`"
+   provides basic model information and [input](#paramdef-input)
+   model parameters.
+
+-  OPTIONAL images "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam*>_<model>.nii[.gz]`"
+   may be defined, in order to provide additional [extrinsic](#paramdef-extrinsic)
+   model parameters.
+
+-  OPTIONAL files "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam*>_<model>.json`"
+   may be defined to provide only information or parameters relevant to
+   derivation of each relevant [extrinsic](#paramdef-extrinsic) model
+   parameter image.
 
 ### Data representations
 
