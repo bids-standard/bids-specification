@@ -117,15 +117,15 @@ rather than the image data).
    relevant [extrinsic](#paramdef-extrinsic) model parameter image.
 
 -  If all [intrinsic](#paramdef-intrinsic) model parameters are
-   contained within a single image file, field "`_parameter-*`" MUST be
-   omitted (for intrinsic parameter image only):
+   contained within a single image file, field "`_parameter-`" MUST nevertheless
+   be included, with value "`all`":
 
    ```Text
    <pipeline_name>/
        sub-<participant_label>/
            dwi/
-               <source_keywords>[_space-<space>][_desc-<label>]_<model>.nii[.gz]
-               <source_keywords>[_space-<space>][_desc-<label>]_<model>.json
+               <source_keywords>[_space-<space>][_desc-<label>]_parameter-all_<model>.nii[.gz]
+               <source_keywords>[_space-<space>][_desc-<label>]_parameter-all_<model>.json
    ```
 
 ### Data representations
