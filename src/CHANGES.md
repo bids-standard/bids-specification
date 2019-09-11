@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] Fix `Common principles` `Key/value files` section level [#328](https://github.com/bids-standard/bids-specification/pull/328) ([jhlegarreta](https://github.com/jhlegarreta))
 -   \[INFRA] Set the maximum heading length lint check to `false` [#325](https://github.com/bids-standard/bids-specification/pull/325) ([jhlegarreta](https://github.com/jhlegarreta))
 -   \[INFRA] Link to doc builds in CI checks [#315](https://github.com/bids-standard/bids-specification/pull/315) ([jasmainak](https://github.com/jasmainak))
 -   \[MISC] Add BEP027 - BIDS Execution to BEP list [#314](https://github.com/bids-standard/bids-specification/pull/314) ([effigies](https://github.com/effigies))
