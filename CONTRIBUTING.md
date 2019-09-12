@@ -185,6 +185,20 @@ To install the packages we use for our style guide:
 cat npm-requirements.txt | xargs npm install
 ```
 
+If you are on Windows please run one of these solutions: 
+
+Using PowerShell:
+
+```
+npm install @(cat npm-requirements.txt)
+```
+
+Using Bourne-like shells:
+
+```
+npm install $(cat npm-requirements.txt)
+```
+
 #### 3. Fix the flagged document
 
 Please go to the directory where the flagged file is and run remark like this:
