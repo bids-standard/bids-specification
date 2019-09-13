@@ -179,24 +179,16 @@ install](https://nodejs.org/en/download/) NodeJS.
 Remark-CLI can be installed via [npm](https://www.npmjs.com/), which is part of
 the NodeJS distribution.
 
-To install the packages we use for our style guide:
+To install the packages we use for our style guide, the following command will work on most command lines:
 
 ```
-cat npm-requirements.txt | xargs npm install
+npm install `cat npm-requirements.txt`
 ```
 
-If you are on Windows please run one of these solutions: 
-
-Using PowerShell:
+The equivalent command on PowerShell is:
 
 ```
 npm install @(cat npm-requirements.txt)
-```
-
-Using Bourne-like shells:
-
-```
-npm install $(cat npm-requirements.txt)
 ```
 
 #### 3. Fix the flagged document
