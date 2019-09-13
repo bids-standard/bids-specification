@@ -438,3 +438,19 @@ participants.tsv
 dataset_description.json
 CHANGES
 ```
+
+Additional files and folders containing raw data MAY be added as needed for
+special cases.
+All non-standard file entities SHOULD conform to BIDS conventions, including
+alphabetic entities and suffixes and alphanumeric labels/indices.
+Non-standard suffixes SHOULD reflect the nature of the scan, and existing
+entities SHOULD be used when appropriate.
+For example, an ASSET calibration scan might be named
+`sub-01_acq-ASSET_calibration.nii.gz`.
+
+Non-standard files and directories should be named with care.
+Future BIDS efforts may standardize new entities and suffixes, changing the
+meaning of file names and setting requirements on their contents or metadata.
+Validation and parsing tools MAY treat the presence of non-standard files and
+directories as an error, so consult the details of these tools for mechanisms
+to suppress warnings or provide interpretations of your file names.
