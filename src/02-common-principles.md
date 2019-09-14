@@ -439,6 +439,8 @@ dataset_description.json
 CHANGES
 ```
 
+## Unspecified data
+
 Additional files and folders containing raw data MAY be added as needed for
 special cases.
 All non-standard file entities SHOULD conform to BIDS conventions, including
