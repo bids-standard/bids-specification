@@ -105,20 +105,20 @@ example responses from multiple questionnaires) they can be split into
 individual files separate from `participants.tsv`.
 
 Each of the measurement files MUST be kept in a `/phenotype` directory placed
-at the root of the BIDS dataset. Furthermore each of the measurement files
-MUST end with the `.tsv` extension. The file name of the measurement files can
-be chosen to reflect the contents of the files. For example, the "Adult ADHD
-Clinical Diagnostic Scale" could be saved in a file called: `acds_adult.tsv`.
+at the root of the BIDS dataset and MUST end with the `.tsv` extension.
+File names SHOULD be chosen to reflect the contents of the file.
+For example, the "Adult ADHD Clinical Diagnostic Scale" could be saved in a file
+called `/phenotype/acds_adult.tsv`.
 
 The files can include an arbitrary set of columns, but one of them MUST be
-`participant_id` and the entries of that column MUST be matches to the subjects
+`participant_id` and the entries of that column MUST correspond to the subjects
 in the BIDS dataset and `participants.tsv` file.
 
 As with all other tabular data, the additional phenotypic information files
-MUST be accompanied by a JSON file describing the columns in detail
-(see [here](02-common-principles.md#tabular-files)).
+MAY be accompanied by a JSON file describing the columns in detail
+(see [Tabular files](02-common-principles.md#tabular-files)).
 In addition to the column description, a section describing the measurement tool
-(as a whole) can be added under the name `MeasurementToolMetadata`.
+(as a whole) MAY be added under the name `MeasurementToolMetadata`.
 This section consists of two keys:
 
   - `Description`: A free text description of the measurement tool
