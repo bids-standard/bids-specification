@@ -445,7 +445,7 @@ Additional files and folders containing raw data MAY be added as needed for
 special cases.
 All non-standard file entities SHOULD conform to BIDS conventions, including
 alphabetic entities and suffixes and alphanumeric labels/indices.
-Non-standard suffixes SHOULD reflect the nature of the scan, and existing
+Non-standard suffixes SHOULD reflect the nature of the data, and existing
 entities SHOULD be used when appropriate.
 For example, an ASSET calibration scan might be named
 `sub-01_acq-ASSET_calibration.nii.gz`.
