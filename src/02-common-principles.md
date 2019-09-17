@@ -150,7 +150,7 @@ my_dataset/
 In this example **only the `rawdata` subfolder** needs to be a BIDS-compliant
 dataset.
 The subfolders of `derivatives` MAY be BIDS-compliant derivatives datasets
-(see [Non-compliant datasets][] for further discussion).
+(see [Non-compliant datasets][non-compliant-datasets] for further discussion).
 This specification does not prescribe anything about the contents of `sourcedata`
 folders in the above example - nor does it prescribe the `sourcedata`,
 `derivatives`, or `rawdata` folder names.
@@ -455,4 +455,4 @@ reflects the nature of the scan (e.g., `calibration`). Naming of files within
 the directory should follow the same scheme as above (e.g.,
 `sub-control01_calibration_Xcalibration.nii.gz`)
 
-[Non-compliant datasets]: 05-derivatives/01-introduction.md#non-compliant-datasets
+[non-compliant-datasets]: 05-derivatives/01-introduction.md#non-compliant-datasets
