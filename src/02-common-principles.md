@@ -455,5 +455,4 @@ reflects the nature of the scan (e.g., `calibration`). Naming of files within
 the directory should follow the same scheme as above (e.g.,
 `sub-control01_calibration_Xcalibration.nii.gz`)
 
-
 [Non-compliant datasets]: 05-derivatives/01-introduction.md#non-compliant-datasets
