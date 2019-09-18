@@ -17,7 +17,7 @@ Derivatives can be stored/distributed in two ways:
     RECOMMENDED to use the format `<pipeline>-<variant>` in cases where it is
     anticipated that the same pipeline will output more than one variant (e.g.,
     `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
-    subfolder name MUST be the `PipelineDescription.Name` field in
+    subfolder name SHOULD be the `PipelineDescription.Name` field in
     `data_description.json`, optionally followed by a hyphen and a suffix (see
     below).
 
