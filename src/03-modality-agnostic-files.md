@@ -98,7 +98,7 @@ sub-control02 12  F control
 sub-patient01 33  F patient
 ```
 
-## Phenotype files (questionnaires, etc.)
+## Phenotypic and assessment data
 
 If the dataset includes multiple sets of participant level measurements (for
 example responses from multiple questionnaires) they can be split into
