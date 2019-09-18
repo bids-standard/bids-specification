@@ -144,6 +144,10 @@ arranged and/or encoded into NIfTI image data. A list of known techniques
 is enumerated below, accompanied by requisite information specific to the
 reading / writing of each representation.
 
+For data that encode orientation information, there are fields that MUST
+be specified in the sidecar JSON file in order to ensure appropriate
+interpretation of that information; see [orientation specification](#orientation-specification)).
+
 1. <a name="data-scalar">*Scalars*</a>:
 
    Any model parameter image (whether [intrinsic](#paramdef-intrinsic) or
@@ -227,7 +231,8 @@ reading / writing of each representation.
    spherical harmonics basis.
 
    Number of image volumes depends on the spherical harmonic basis employed,
-   and the maximal spherical harmonic degree *l<sub>max</sub>*.
+   and the maximal spherical harmonic degree *l<sub>max</sub>* (see
+   [spherical harmonics bases](#spherical-harmonics-bases)).
 
 1. <a name="data-amp">*Amplitudes*</a>:
 
@@ -235,8 +240,9 @@ reading / writing of each representation.
    amplitudes of a discrete function spanning the 2-sphere.
 
    Number of image volumes corresponds to the number of discrete directions
-   on the unit sphere along which samples for the function in each voxel
-   are provided.
+   on the unit sphere along which samples for the spherical function in
+   each voxel are provided; these directions MUST themselves be provided
+   in the associated sidecar JSON file (see [orientation specification](#orientation-specification)).
 
 1. <a name="data-pdf">*Probability Distribution Functions (PDFs)*</a>:
 
@@ -247,76 +253,6 @@ reading / writing of each representation.
    4D image containing, for every image voxel, data corresponding to some
    set of model parameters, the names and order of which are defined within
    the [intrinsic](#paramdef-intrinsic) model parameters section.
-
-### Orientation specification
-
-| **Key name**                | **Relevant [data representations](#data-representations)**                                                                                                                                                        | **Description**                                                                                                                                                                                                                                           |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `AntipodalSymmetry`         | [Spherical coordinates](#data-spherical), [3-vectors](#data-3vector), [spherical harmonics](#data-sh), [amplitudes](#data-amp), [probability distribution functions](#data-pdf), [parameter vectors](#data-param) | OPTIONAL. Boolean. Indicates whether orientation information should be interpreted as being antipodally symmetric. Assumed to be True if omitted.                                                                                                         |
-| `Directions`                | [Amplitudes](#data-amp)                                                                                                                                                                                           | REQUIRED. List. Data are either [spherical coordinates (directions only)](#data-spherical) or [3-vectors](#data-3vector) with unit norm. Defines the dense directional basis set on which samples of a spherical function within each voxel are provided. |
-| `FillValue`                 | [Spherical coordinates](#data-spherical), [3-vectors](#data-3vector)                                                                                                                                              | OPTIONAL. Float; allowed values: { 0.0, NaN }. Value stored in image when number of discrete orientations in a voxel is fewer than the maximal number for that image.                                                                                     |
-| `OrientationRepresentation` | All except [scalar](#data-scalar)                                                                                                                                                                                 | REQUIRED. String; allowed values: { `dec`, `unitspherical`, `spherical`, `unit3vector`, `3vector`, `sh`, `amp`, `param` }. The [data representation](#data-representations) used to encode orientation information within the NIfTI image.                |
-| `ReferenceAxes`             | All except [scalar](#data-scalar)                                                                                                                                                                                 | REQUIRED. String; allowed values: { `ijk`, `xyz` }. Indicates whether the NIfTI image axes, or scanner-space axes, are used as reference for orientation information.                                                                                     |
-| `SphericalHarmonicBasis`    | [Spherical harmonics](#data-sh)                                                                                                                                                                                   | REQUIRED. String; allowed values: { `MRtrix3`, `Descoteaux` }. Basis by which to define the interpretation of image values across volumes as spherical harmonics coefficients.                                                                            |
-| `SphericalHarmonicDegree`   | [Spherical harmonics](#data-sh)                                                                                                                                                                                   | REQUIRED. Integer. Maximal degree of the spherical harmonic basis employed.                                                                                                                                                                               |
-
-If `AntipodalSymmetry` is True, then no constraints are imposed with respect
-to the domain on the 2-sphere in which orientations may be specified;
-for instance, 3-vectors { 0.57735, 0.57735, 0.57735 } and
-{ -0.57735, -0.57735, -0.57735 } are both permissible and equivalent to one
-another.
-
-#### Spherical Harmonics bases
-
--  `MRtrix3`
-
-   -  Antipodally symmetric: all basis functions with odd degree are
-      assumed zero; `AntipodalSymmetry` MUST NOT be set to True.
-
-   -  Functions assumed to be real: conjugate symmetry is assumed, i.e.
-      *Y*(*l*,-*m*) = *Y*(*l*,*m*)\*, where \* denotes the complex
-      conjugate.
-
-   -  Mapping of image volumes to spherical harmonic basis function
-      coefficients:
-
-      | **Volume** | **Coefficient**                   |
-      | ---------- | --------------------------------- |
-      | 0          | *l* = 0, *m* = 0                  |
-      | 1          | *l* = 2, *m* = 2 (imaginary part) |
-      | 2          | *l* = 2, *m* = 1 (imaginary part) |
-      | 3          | *l* = 2, *m* = 0                  |
-      | 4          | *l* = 2, *m* = 1 (real part)      |
-      | 5          | *l* = 2, *m* = 2 (real part)      |
-      | 6          | *l* = 4, *m* = 4 (imaginary part) |
-      | 7          | *l* = 4, *m* = 3 (imaginary part) |
-      | ...        | etc.                              |
-
-   -  Normalisation: ***TODO***
-
-   -  Relationship between maximal spherical harmonic degree *l<sub>max</sub>*
-      and number of image volumes *N*:
-
-      *N* = ((*l<sub>max</sub>*+1) x (*l<sub>max</sub>*+2)) / 2
-
-      | ***l<sub>max</sub>*** |  0  |  2  |  4  |  6  |  8  | ...  |
-      | --------------------- | --: | --: | --: | --: | --: | :--: |
-      | ***N***               |   1 |   6 |  15 |  28 |  45 | etc. |
-
-   -  Relationship between maximal degree of *zonal* spherical harmonic
-      function (spherical harmonics function where all *m* != 0 terms are
-      assumed to be zero; used for e.g. response function definition) and
-      number of coefficients *N*:
-
-      *N* = 1 + (*l<sub>max</sub>* / 2)
-
-      | ***l<sub>max</sub>*** |  0  |  2  |  4  |  6  |  8  | ...  |
-      | --------------------- | --: | --: | --: | --: | --: | :--: |
-      | ***N***               |   1 |   2 |  3  |  4  |  5  | etc. |
-
--  `Descoteaux`
-
-   ***TODO***
 
 ### Intrinsic model parameters
 
@@ -492,6 +428,76 @@ While not explicitly included in the table above, *any* [scalar](#data-scalar)
 with a separate source of orientation information from the diffusion model
 in order to produce a [directionally-encoded colour](#data-dec),
 [spherical coordinates](#data-spherical) or [3-vectors](#data-3vector) image.
+
+### Orientation specification
+
+| **Key name**                | **Relevant [data representations](#data-representations)**                                                                                                                                                        | **Description**                                                                                                                                                                                                                                           |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `AntipodalSymmetry`         | [Spherical coordinates](#data-spherical), [3-vectors](#data-3vector), [spherical harmonics](#data-sh), [amplitudes](#data-amp), [probability distribution functions](#data-pdf), [parameter vectors](#data-param) | OPTIONAL. Boolean. Indicates whether orientation information should be interpreted as being antipodally symmetric. Assumed to be True if omitted.                                                                                                         |
+| `Directions`                | [Amplitudes](#data-amp)                                                                                                                                                                                           | REQUIRED. List. Data are either [spherical coordinates (directions only)](#data-spherical) or [3-vectors](#data-3vector) with unit norm. Defines the dense directional basis set on which samples of a spherical function within each voxel are provided. |
+| `FillValue`                 | [Spherical coordinates](#data-spherical), [3-vectors](#data-3vector)                                                                                                                                              | OPTIONAL. Float; allowed values: { 0.0, NaN }. Value stored in image when number of discrete orientations in a voxel is fewer than the maximal number for that image.                                                                                     |
+| `OrientationRepresentation` | All except [scalar](#data-scalar)                                                                                                                                                                                 | REQUIRED. String; allowed values: { `dec`, `unitspherical`, `spherical`, `unit3vector`, `3vector`, `sh`, `amp`, `pdf`, `param` }. The [data representation](#data-representations) used to encode orientation information within the NIfTI image.         |
+| `ReferenceAxes`             | All except [scalar](#data-scalar)                                                                                                                                                                                 | REQUIRED. String; allowed values: { `ijk`, `xyz` }. Indicates whether the NIfTI image axes, or scanner-space axes, are used as reference axes for orientation information.                                                                                |
+| `SphericalHarmonicBasis`    | [Spherical harmonics](#data-sh)                                                                                                                                                                                   | REQUIRED. String; allowed values: { `MRtrix3`, `Descoteaux` }. Basis by which to define the interpretation of image values across volumes as spherical harmonics coefficients.                                                                            |
+| `SphericalHarmonicDegree`   | [Spherical harmonics](#data-sh)                                                                                                                                                                                   | REQUIRED. Integer. Maximal degree of the spherical harmonic basis employed.                                                                                                                                                                               |
+
+If `AntipodalSymmetry` is True, then no constraints are imposed with respect
+to the domain on the 2-sphere in which orientations may be specified;
+for instance, 3-vectors { 0.57735, 0.57735, 0.57735 } and
+{ -0.57735, -0.57735, -0.57735 } are both permissible and equivalent to one
+another.
+
+#### Spherical Harmonics bases
+
+-  `MRtrix3`
+
+   -  Antipodally symmetric: all basis functions with odd degree are
+      assumed zero; `AntipodalSymmetry` MUST NOT be set to True.
+
+   -  Functions assumed to be real: conjugate symmetry is assumed, i.e.
+      *Y*(*l*,-*m*) = *Y*(*l*,*m*)\*, where \* denotes the complex
+      conjugate.
+
+   -  Mapping of image volumes to spherical harmonic basis function
+      coefficients:
+
+      | **Volume** | **Coefficient**                   |
+      | ---------- | --------------------------------- |
+      | 0          | *l* = 0, *m* = 0                  |
+      | 1          | *l* = 2, *m* = 2 (imaginary part) |
+      | 2          | *l* = 2, *m* = 1 (imaginary part) |
+      | 3          | *l* = 2, *m* = 0                  |
+      | 4          | *l* = 2, *m* = 1 (real part)      |
+      | 5          | *l* = 2, *m* = 2 (real part)      |
+      | 6          | *l* = 4, *m* = 4 (imaginary part) |
+      | 7          | *l* = 4, *m* = 3 (imaginary part) |
+      | ...        | etc.                              |
+
+   -  Normalisation: ***TODO***
+
+   -  Relationship between maximal spherical harmonic degree *l<sub>max</sub>*
+      and number of image volumes *N*:
+
+      *N* = ((*l<sub>max</sub>*+1) x (*l<sub>max</sub>*+2)) / 2
+
+      | ***l<sub>max</sub>*** |  0  |  2  |  4  |  6  |  8  | ...  |
+      | --------------------- | --: | --: | --: | --: | --: | :--: |
+      | ***N***               |   1 |   6 |  15 |  28 |  45 | etc. |
+
+   -  Relationship between maximal degree of *zonal* spherical harmonic
+      function (spherical harmonics function where all *m* != 0 terms are
+      assumed to be zero; used for e.g. response function definition) and
+      number of coefficients *N*:
+
+      *N* = 1 + (*l<sub>max</sub>* / 2)
+
+      | ***l<sub>max</sub>*** |  0  |  2  |  4  |  6  |  8  | ...  |
+      | --------------------- | --: | --: | --: | --: | --: | :--: |
+      | ***N***               |   1 |   2 |  3  |  4  |  5  | etc. |
+
+-  `Descoteaux`
+
+   ***TODO***
 
 ## Demonstrative examples
 
