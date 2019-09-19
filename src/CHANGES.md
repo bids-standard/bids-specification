@@ -2,12 +2,18 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] Fix `Common principles` `Key/value files` section level [#328](https://github.com/bids-standard/bids-specification/pull/328) ([jhlegarreta](https://github.com/jhlegarreta))
+-   \[INFRA] Set the maximum heading length lint check to `false` [#325](https://github.com/bids-standard/bids-specification/pull/325) ([jhlegarreta](https://github.com/jhlegarreta))
+-   \[FIX] Number explicitly all cases in MRI field map section headers [#323](https://github.com/bids-standard/bids-specification/pull/323) ([jhlegarreta](https://github.com/jhlegarreta))
+-   \[INFRA] Link to doc builds in CI checks [#315](https://github.com/bids-standard/bids-specification/pull/315) ([jasmainak](https://github.com/jasmainak))
 -   \[MISC] Add BEP027 - BIDS Execution to BEP list [#314](https://github.com/bids-standard/bids-specification/pull/314) ([effigies](https://github.com/effigies))
 -   \[FIX] Add CBV and phase to Entity table [#312](https://github.com/bids-standard/bids-specification/pull/312) ([tsalo](https://github.com/tsalo))
+-   \[FIX] Separate out imaging-specific "common derivatives" [#310](https://github.com/bids-standard/bids-specification/pull/310) ([effigies](https://github.com/effigies))
 -   \[ENH] Release protocol notes [#304](https://github.com/bids-standard/bids-specification/pull/304) ([franklin-feingold](https://github.com/franklin-feingold))
 -   REL: 1.3.0-dev [#303](https://github.com/bids-standard/bids-specification/pull/303) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[INFRA] Adding contributor appendix sentence to PR template  [#299](https://github.com/bids-standard/bids-specification/pull/299) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[ENH] Added discontinuous datatype for EEG and iEEG [#286](https://github.com/bids-standard/bids-specification/pull/286) ([wouterpotters](https://github.com/wouterpotters))
+-   \[FIX] Clarify paragraph about custom data types [#264](https://github.com/bids-standard/bids-specification/pull/264) ([effigies](https://github.com/effigies))
 
 ## [v1.2.1](https://github.com/bids-standard/bids-specification/tree/v1.2.1) (2019-08-14)
 

@@ -459,7 +459,7 @@ Multiple fieldmaps can be stored. In such case the `_run-1`, `_run-2` should be
 used. The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label
 the user may use to distinguish different set of parameters.
 
-#### Phase difference image and at least one magnitude image
+#### Case 1: Phase difference image and at least one magnitude image
 
 Template:
 
@@ -494,7 +494,7 @@ the shorter echo time and `EchoTime2` to the longer echo time. Similarly
 }
 ```
 
-#### Two phase images and two magnitude images
+#### Case 2: Two phase images and two magnitude images
 
 Template:
 
@@ -520,7 +520,7 @@ corresponding `EchoTime` values. For example:
 }
 ```
 
-#### A real fieldmap image
+#### Case 3: A real fieldmap image
 
 Template:
 
