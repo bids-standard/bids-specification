@@ -2,9 +2,13 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] Find npm requirements file in Circle [#336](https://github.com/bids-standard/bids-specification/pull/336) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[ENH] Clarify phenotypic and assessment data in new section [#331](https://github.com/bids-standard/bids-specification/pull/331) ([sappelhoff](https://github.com/sappelhoff))
+-   \[MISC] add information about continuous integration checks to PR template [#330](https://github.com/bids-standard/bids-specification/pull/330) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Fix `Common principles` `Key/value files` section level [#328](https://github.com/bids-standard/bids-specification/pull/328) ([jhlegarreta](https://github.com/jhlegarreta))
 -   \[INFRA] Set the maximum heading length lint check to `false` [#325](https://github.com/bids-standard/bids-specification/pull/325) ([jhlegarreta](https://github.com/jhlegarreta))
 -   \[FIX] Number explicitly all cases in MRI field map section headers [#323](https://github.com/bids-standard/bids-specification/pull/323) ([jhlegarreta](https://github.com/jhlegarreta))
+-   \[MISC] Fixing Travis errors with Remark [#320](https://github.com/bids-standard/bids-specification/pull/320) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[INFRA] Link to doc builds in CI checks [#315](https://github.com/bids-standard/bids-specification/pull/315) ([jasmainak](https://github.com/jasmainak))
 -   \[MISC] Add BEP027 - BIDS Execution to BEP list [#314](https://github.com/bids-standard/bids-specification/pull/314) ([effigies](https://github.com/effigies))
 -   \[FIX] Add CBV and phase to Entity table [#312](https://github.com/bids-standard/bids-specification/pull/312) ([tsalo](https://github.com/tsalo))
