@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] Move the PR template to a separate folder and improve contents [#338](https://github.com/bids-standard/bids-specification/pull/338) ([jhlegarreta](https://github.com/jhlegarreta))
 -   \[INFRA] Find npm requirements file in Circle [#336](https://github.com/bids-standard/bids-specification/pull/336) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[ENH] Clarify phenotypic and assessment data in new section [#331](https://github.com/bids-standard/bids-specification/pull/331) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] add information about continuous integration checks to PR template [#330](https://github.com/bids-standard/bids-specification/pull/330) ([sappelhoff](https://github.com/sappelhoff))
