@@ -2,9 +2,14 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] Move the PR template to a separate folder and improve contents [#338](https://github.com/bids-standard/bids-specification/pull/338) ([jhlegarreta](https://github.com/jhlegarreta))
+-   \[INFRA] Find npm requirements file in Circle [#336](https://github.com/bids-standard/bids-specification/pull/336) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[ENH] Clarify phenotypic and assessment data in new section [#331](https://github.com/bids-standard/bids-specification/pull/331) ([sappelhoff](https://github.com/sappelhoff))
+-   \[MISC] add information about continuous integration checks to PR template [#330](https://github.com/bids-standard/bids-specification/pull/330) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Fix `Common principles` `Key/value files` section level [#328](https://github.com/bids-standard/bids-specification/pull/328) ([jhlegarreta](https://github.com/jhlegarreta))
 -   \[INFRA] Set the maximum heading length lint check to `false` [#325](https://github.com/bids-standard/bids-specification/pull/325) ([jhlegarreta](https://github.com/jhlegarreta))
 -   \[FIX] Number explicitly all cases in MRI field map section headers [#323](https://github.com/bids-standard/bids-specification/pull/323) ([jhlegarreta](https://github.com/jhlegarreta))
+-   \[MISC] Fixing Travis errors with Remark [#320](https://github.com/bids-standard/bids-specification/pull/320) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[INFRA] Link to doc builds in CI checks [#315](https://github.com/bids-standard/bids-specification/pull/315) ([jasmainak](https://github.com/jasmainak))
 -   \[MISC] Add BEP027 - BIDS Execution to BEP list [#314](https://github.com/bids-standard/bids-specification/pull/314) ([effigies](https://github.com/effigies))
 -   \[FIX] Add CBV and phase to Entity table [#312](https://github.com/bids-standard/bids-specification/pull/312) ([tsalo](https://github.com/tsalo))
@@ -13,6 +18,7 @@ Changelog
 -   REL: 1.3.0-dev [#303](https://github.com/bids-standard/bids-specification/pull/303) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[INFRA] Adding contributor appendix sentence to PR template  [#299](https://github.com/bids-standard/bids-specification/pull/299) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[ENH] Added discontinuous datatype for EEG and iEEG [#286](https://github.com/bids-standard/bids-specification/pull/286) ([wouterpotters](https://github.com/wouterpotters))
+-   \[FIX] Clarify paragraph about custom data types [#264](https://github.com/bids-standard/bids-specification/pull/264) ([effigies](https://github.com/effigies))
 
 ## [v1.2.1](https://github.com/bids-standard/bids-specification/tree/v1.2.1) (2019-08-14)
 

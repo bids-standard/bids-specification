@@ -440,7 +440,6 @@ sub-control01/
         sub-control01_phasediff.json
         sub-control01_magnitude1.nii.gz
         sub-control01_scans.tsv
-
 code/
     deface.py
 derivatives/
@@ -450,10 +449,22 @@ dataset_description.json
 CHANGES
 ```
 
-Additional files and folders containing raw data may be added as needed for
-special cases. They should be named using all lowercase with a name that
-reflects the nature of the scan (e.g., `calibration`). Naming of files within
-the directory should follow the same scheme as above (e.g.,
-`sub-control01_calibration_Xcalibration.nii.gz`)
+## Unspecified data
+
+Additional files and folders containing raw data MAY be added as needed for
+special cases.
+All non-standard file entities SHOULD conform to BIDS-style naming conventions, including
+alphabetic entities and suffixes and alphanumeric labels/indices.
+Non-standard suffixes SHOULD reflect the nature of the data, and existing
+entities SHOULD be used when appropriate.
+For example, an ASSET calibration scan might be named
+`sub-01_acq-ASSET_calibration.nii.gz`.
+
+Non-standard files and directories should be named with care.
+Future BIDS efforts may standardize new entities and suffixes, changing the
+meaning of file names and setting requirements on their contents or metadata.
+Validation and parsing tools MAY treat the presence of non-standard files and
+directories as an error, so consult the details of these tools for mechanisms
+to suppress warnings or provide interpretations of your file names.
 
 [non-compliant-datasets]: 05-derivatives/01-introduction.md#non-compliant-datasets
