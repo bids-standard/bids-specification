@@ -222,3 +222,16 @@ sub-01/anat/sub-01_hemi-L_space-individual_thickness.json
     distinguish brain mask files derived from T1w and T2w images; or `_desc-sm4`
     and `_desc-sm8` to distinguish between outputs generated with two different
     levels of smoothing).
+
+-   When naming files that are not yet standardized, it is RECOMMENDED to use
+    names consistent with BIDS conventions where those conventions apply.
+    For example, if a summary statistic is derived from a given task, the file
+    name SHOULD contain `_task-<label>`.
+
+## Non-compliant datasets
+
+Nothing in this specification should be interpreted to disallow the
+storage/distribution non-compliant derivatives of BIDS datasets.
+In particular, if a BIDS dataset contains a `derivatives/` sub-directory,
+the contents of that directory may be a heterogeneous mix of BIDS Derivatives
+datasets and non-compliant derivatives.
