@@ -147,7 +147,8 @@ my_dataset/
     ...
 ```
 
-In this example **only the `rawdata` subfolder** needs to be a BIDS-compliant
+In this example, where `sourcedata` and `derivatives` are not nested inside
+`rawdata`, **only the `rawdata` subfolder** needs to be a BIDS-compliant
 dataset.
 The subfolders of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant datasets][non-compliant-datasets] for further discussion).
