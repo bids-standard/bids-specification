@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] Typo fix (contract -> contrast) in events documentation [#346](https://github.com/bids-standard/bids-specification/pull/346) ([snastase](https://github.com/snastase))
 -   \[MISC] Move the PR template to a separate folder and improve contents [#338](https://github.com/bids-standard/bids-specification/pull/338) ([jhlegarreta](https://github.com/jhlegarreta))
 -   \[INFRA] Find npm requirements file in Circle [#336](https://github.com/bids-standard/bids-specification/pull/336) ([franklin-feingold](https://github.com/franklin-feingold))
 -   ENH: Clarify the position toward non-compliant derivative datasets and files [#334](https://github.com/bids-standard/bids-specification/pull/334) ([effigies](https://github.com/effigies))
