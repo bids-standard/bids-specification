@@ -181,9 +181,11 @@ sub-<label>/
 ```
 
 This file is RECOMMENDED as it provides easily searchable information across
-MEG-BIDS datasets for e.g., general curation, response to queries or batch
-analysis. To avoid confusion, the channels SHOULD be listed in the order they
-appear in the MEG data file. Missing values MUST be indicated with `n/a`.
+BIDS datasets for e.g., general curation, response to queries or batch
+analysis.
+To avoid confusion, the channels SHOULD be listed in the order they
+appear in the MEG data file.
+Missing values MUST be indicated with `n/a`.
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
