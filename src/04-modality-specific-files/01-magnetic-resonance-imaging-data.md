@@ -568,6 +568,22 @@ Example of `[*_]dwi.bval` file, corresponding to the previous `[*_]dwi.bvec` exa
 0 0 2000 2000 1000 1000
 ```
 
+Optionally, a `sub-01_acq-multiband_gradient.tsv` file
+can be provided that specifies gradient directions in RAS+ scanner coordinates.
+
+Optional `dwi.tsv` example:
+
+```Text
+R	A	S	B
+0	0	0	0
+1.0	0	0	1000
+-0.0509541      0.0617551       -0.99679        1000
+```
+
+`[*_]dwi.tsv` files can be saved on any level of the directory structure
+and thus define those values for all sessions and/or subjects in one place (see
+Inheritance principle).
+
 ### Multipart (split) DWI schemes
 
 Some MR schemes cannot be acquired directly by some scanner devices,
@@ -656,7 +672,9 @@ JSON example:
 ```JSON
 {
   "PhaseEncodingDirection": "j-",
-  "TotalReadoutTime": 0.095
+  "TotalReadoutTime": 0.095,
+  "BigDelta": 0.005,
+  "SmallDelta": 0.0005
 }
 ```
 
