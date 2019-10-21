@@ -661,11 +661,20 @@ sub-<label>/[ses-<label>/]             # MultipartID
 
 ### Other RECOMMENDED metadata
 
+#### Phase-encoding information (common metadata fields)
+
 The `PhaseEncodingDirection` and `TotalReadoutTime` metadata
 fields are RECOMMENDED to enable the correction of geometrical distortions
 with [fieldmap information](#fieldmap-data).
 See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms that can be included in the corresponding JSON file.
+
+#### Pulse gradient timing information
+
+| Field name     | Definition                                                                                                                                                                                                                                                                |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| SmallDelta     | RECOMMENDED. Acquisition pulse separation time (in seconds). For Siemens, this is in the shadow header (0029,1120) under `sSpecPara.dSpecLipidSupprBandwidth` in milliseconds. This value is necessary for estimating ensemble average propagators in physical units.     |
+| BiglDelta      | RECOMMENDED. Acquisition pulse separation time (in seconds). For Siemens, this is in the shadow header (0029,1120) under `sSpecPara.dSpecLipidSupprDeltaPos` in milliseconds. This value is also necessary for estimating ensemble average propagators in physical units. |
 
 JSON example:
 
