@@ -72,7 +72,7 @@ To achieve the goals of widespread adoption of the standard while growing to ada
 The following figure illustrates the structure of the groups described in this document.
 The specific organization and responsibilities of these groups are laid out in detail, below.
 
-![leadership_figure](Governance/governance_figure.jpg "Leadership Structure")
+![leadership_figure](governance_figure.jpg "Leadership Structure")
 
 ##### **BIDS Steering Group**
 
