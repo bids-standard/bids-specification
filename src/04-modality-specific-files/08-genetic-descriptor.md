@@ -21,7 +21,6 @@ the value is an object with the following fields:
 | Genetics.Descriptors | OPTIONAL. List of relevant descriptors (*e.g.*, journal articles) for dataset. |
 
 `dataset_description.json` example:
-
 ```JSON
 {
   "Name": "Human Connectom Project",
