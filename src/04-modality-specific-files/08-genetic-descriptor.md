@@ -38,7 +38,6 @@ the value is an object with the following fields:
 
 ## Subject naming and Participants file
 
-
 If the same participants have different identifiers in the genetic and imaging datasets,
 the column `GeneticID` SHOULD be added to the `participants.tsv` file to associate
 the BIDS participant with a subject in the `Genetics.Dataset` referred to in the
@@ -67,7 +66,7 @@ This file is the descriptor of the genetic information available either in the p
 | SampleOrigin       | MANDATORY Describes from which tissue the genetic information was extracted from | `blood`, `saliva`, `brain`, `csf`, `breast milk`, `bile`, `amniotic fluid`, `other biospecimen`                                                                                                                                                                                                                                     |
 | TissueOrigin       | OPTIONAL Describes the type of tissue analyzed for SampleOrigin `brain`          | `gray matter`, `white matter`, `csf`, `meninges`, `macrovascular` or `microvascular`                                                                                                                                                                                                                                                |
 | BrainLocation      | OPTIONAL Refers to the location in space of the TissueOrigin                     | `MNI coordinate` or a `label` taken from the [Allen Brain Atlas](http://atlas.brain-map.org/atlas?atlas=265297125#atlas=265297125&plate=112360888&structure=4392&x=40348.15104166667&y=46928.75&zoom=-7&resolution=206.60&z=3) possibly `layer` to refer to layer-specific gene expression, which can also tie up with laminar fMRI |
-| CellType           | OPTIONAL Describes the type of cell analyzed                                     | Value should come from the [cell ontology](http://obofoundry.org/ontology/cl.html)                                                                                 |  
+| CellType           | OPTIONAL Describes the type of cell analyzed                                     | Value should come from the [cell ontology](http://obofoundry.org/ontology/cl.html)                                                                                 |
 
 `genetic_info.json` example:
 
