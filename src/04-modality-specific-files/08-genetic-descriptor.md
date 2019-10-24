@@ -1,11 +1,11 @@
 # Genetic Descriptor
 
-Support for genetic descriptors was developed as a
-[BIDS Extension Proposal](https://github.com/bids-standard/bids-specification/blob/master/src/06-extensions.md#bids-extension-proposals).
-The extension was primarily developped by Cyril Pernet and Clara Moreau
-with contributions from Tom Nichols and Jessica Turner.
+Support for genetic descriptors was developed as a [BIDS Extension Proposal](https://github.com/bids-standard/bids-specification/blob/master/src/06-extensions.md#bids-extension-proposals).
+The extension was primarily developped by Cyril Pernet and Clara Moreau with contributions from Tom Nichols and Jessica Turner.
 
-The goal of the genetic descriptor is to link imaging and genetic data. This is necessary as genetic data are typically stored in dedicated repositories, separately from the imaging data. The descriptor provides basics information about:
+The goal of the genetic descriptor is to link imaging and genetic data. 
+This is necessary as genetic data are typically stored in dedicated repositories, separately from the imaging data. 
+The descriptor provides basics information about:
 -   where to find genetic information associated with the imaging data
 -   what type of genetic information is available
 
@@ -28,8 +28,11 @@ the value is an object with the following fields:
   "License": "CC0",
   "Authors": ["1st author", "2nd author"],
   "Funding": "list your funding sources",
-  "GeneticDataBase": ["dbGaP", "phs001364.v1.p1"],
-  "GeneticDescriptor": ["The HCP SNP dataset, FancyJournal"]
+  "Genetics": {
+     "Dataset": "dataset",
+     "Database": "database",
+     "Descriptors": "descriptors"
+     }
 }
 ```
 
