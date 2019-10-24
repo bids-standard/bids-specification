@@ -41,7 +41,8 @@ the column `GeneticID` SHOULD be added to the `participants.tsv` file to associa
 the BIDS participant with a subject in the `Genetics.Dataset` referred to in the
 `dataset_description.json` file.
 
-Information about the presence/absence of specific genetic markers can be and should be shared simply in the participants.tsv file adding optopnal columns.
+Information about the presence/absence of specific genetic markers MAY be duplicated
+in the `participants.tsv` file by adding optional columns.
 
 `participants.tsv` example:
 
