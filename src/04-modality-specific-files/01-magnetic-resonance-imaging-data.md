@@ -522,19 +522,26 @@ In such a case, two files could have the following names:
 The user is free to choose any other label than `singleband` and
 `multiband`, as long as they are consistent across subjects and sessions.
 
-### REQUIRED gradient orientation information
+### REQUIRED gradient strength and orientation information
 
-The REQUIRED gradient orientation information corresponding to a DWI acquisition
+The REQUIRED gradient strength and orientation information corresponding to a DWI acquisition
 MUST be stored using `[*_]dwi.bval` and `[*_]dwi.bvec` pairs of files.
-The `[*_]dwi.bval` and `[*_]dwi.bvec` files MAY be saved on any level of the directory structure
+In addition, it is RECOMMENDED to store the gradient orientation in a `[*_]dwi.tsv` file,
+in the *RASB+* format described below.
+The `[*_]dwi.[bval|bvec]` files are DEPRECATED and will be
+phased out in a future release.
+The *RASB+* file format is OPTIONAL and will replace `[*_]dwi.[bval|bvec]` as the
+default method for representing gradients.
+
+The `[*_]dwi.[bval|bvec|tsv]` files MAY be saved on any level of the directory structure
 and thus define those values for all sessions and/or subjects in one place (see
 [the inheritance principle](../02-common-principles.md#the-inheritance-principle)).
 
 As an exception to the [common principles](../02-common-principles.md#definitions)
 that parameters are constant across runs, the gradient table information (stored
-within the `[*_]dwi.bval` and `[*_]dwi.bvec` files) MAY change across DWI runs.
+within `[*_]dwi.[bval|bvec|tsv]` files) MAY change across DWI runs.
 
-**Gradient orientation file formats**.
+**BVEC/BVAL specification**.
 The `[*_]dwi.bval` and `[*_]dwi.bvec` files MUST follow the
 [FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
 The `[*_]dwi.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
@@ -568,8 +575,17 @@ Example of `[*_]dwi.bval` file, corresponding to the previous `[*_]dwi.bvec` exa
 0 0 2000 2000 1000 1000
 ```
 
-Optionally, a `sub-01_acq-multiband_gradient.tsv` file
-can be provided that specifies gradient directions in RAS+ scanner coordinates.
+**RASB+ format for gradient strength and orientation**.
+Gradient strength and orientation can be provided in a TSV file named, for example,
+`sub-01_acq-singleband_dwi.tsv` or `sub-01_acq-multiband_dwi.tsv`.
+This TSV file must contain the columns `R A S B`, where `R`, `A` and `S` contain a unit vector
+describing the gradient direction in scanner coordinates.
+The `B` column contains the *b*-value in (in s/mm<sup>2</sup>).
+Although the *b*-value is a common way to convey gradient
+strength, it does not unambiguously depict the sampled coordinate in *q*-space.
+The relationship between each row of this TSV file and its corresponding *q*-space coordinate
+can be calculated with the `BigDelta` and `SmallDelta` metadata fields in the corresponding
+JSON file.
 
 Optional `dwi.tsv` example:
 
@@ -579,10 +595,6 @@ R	A	S	B
 1.0	0	0	1000
 -0.0509541      0.0617551       -0.99679        1000
 ```
-
-`[*_]dwi.tsv` files can be saved on any level of the directory structure
-and thus define those values for all sessions and/or subjects in one place (see
-Inheritance principle).
 
 ### Multipart (split) DWI schemes
 
