@@ -12,22 +12,38 @@ Derivatives can be stored/distributed in two ways:
 
 1.  Under a `derivatives/` subfolder in the root of the source BIDS dataset
     folder to make a clear distinction between raw data and results of data
-    processing. Each pipeline has a dedicated directory under which it stores
-    all of its outputs. There are few restriction on the directory name; it is
-    RECOMMENDED to use the format `<pipeline>-<variant>` in cases where it is
-    anticipated that the same pipeline will output more than one variant (e.g.,
+    processing. A data processing pipeline will typically have a dedicated directory 
+    under which it stores all of its outputs. Different components of a pipeline can, 
+    however, also be stored under different subfolders. There are few restrictions on
+    the directory names; it is RECOMMENDED to use the format `<pipeline>-<variant>` in 
+    cases where it is anticipated that the same pipeline will output more than one variant (e.g.,
     `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
     subfolder name SHOULD be the `PipelineDescription.Name` field in
     `data_description.json`, optionally followed by a hyphen and a suffix (see
     below).
 
-    For example:
+    Example of derivatives with one directory per pipeline:
 
     ```Plain
     <dataset>/derivatives/fmriprep-v1.4.1/sub-0001
     <dataset>/derivatives/spm/sub-0001
     <dataset>/derivatives/vbm/sub-0001
     ```
+
+    Example of a pipeline with split derivative directories:
+
+    ```Plain
+    <dataset>/derivatives/spm_preproc/sub-0001
+    <dataset>/derivatives/spm_stats/sub-0001
+    ```
+
+    Example of a pipeline with nested derivative directories:
+
+    ```Plain
+    <dataset>/derivatives/spm_preproc/sub-0001
+    <dataset>/derivatives/spm_preproc/derivatives/spm_stats/sub-0001
+    ```    
+
 
 1.  As a standalone dataset independent of the source (raw or derived) BIDS
     dataset. This way of specifying derivatives is particularly useful when the
