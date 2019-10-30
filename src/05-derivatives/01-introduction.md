@@ -29,7 +29,9 @@ Derivatives can be stored/distributed in two ways:
     <dataset>/derivatives/spm/sub-0001
     <dataset>/derivatives/vbm/sub-0001
     ```
-    Examples of a split pipeline outputs:
+
+    Example of a pipeline with split derivative directories:
+
     ```Plain
     <dataset>/derivatives/spm_preproc/sub-0001
     <dataset>/derivatives/spm_stats/sub-0001
