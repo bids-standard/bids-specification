@@ -22,7 +22,7 @@ Derivatives can be stored/distributed in two ways:
     `data_description.json`, optionally followed by a hyphen and a suffix (see
     below).
 
-    Examples of single pipeline outputs:
+    Example of derivatives with one directory per pipeline:
 
     ```Plain
     <dataset>/derivatives/fmriprep-v1.4.1/sub-0001
