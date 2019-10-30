@@ -37,7 +37,7 @@ Derivatives can be stored/distributed in two ways:
     or using a nested structure
     ```Plain
     <dataset>/derivatives/spm_preproc/sub-0001
-    <dataset>/derivatives/spm_preproc/sub-0001/spm_stats/sub-0001
+    <dataset>/derivatives/spm_preproc/derivatives/spm_stats/sub-0001
     ```    
 
 
