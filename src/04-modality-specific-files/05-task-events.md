@@ -11,7 +11,7 @@ sub-<label>/[ses-<label>]
 
 Where `<matches>` corresponds to task file name. For example:
 `sub-control01_task-nback`. It is also possible to have a single \_events.tsv
-file describing events for all participants and runs (see ["Inheritance rule"](../02-common-principles.md#the-inheritance-principle)).
+file describing events for all participants and runs (see [Inheritance Principle](../02-common-principles.md#the-inheritance-principle)).
 As with all other tabular data, `_events` files may be
 accompanied by a JSON file describing the columns in detail (see [here](../02-common-principles.md#tabular-files)).
 
@@ -24,7 +24,7 @@ are supported (in contrast to "block" designs) - each "block of events" can be
 represented by an individual row in the \_events.tsv file (with a long
 duration). Each task events file REQUIRES a corresponding task imaging data file
 (but a single events file MAY be shared by multiple imaging data files - see
-Inheritance rule). The tabular files consists of one row per event and a set of
+Inheritance principle). The tabular files consists of one row per event and a set of
 REQUIRED and OPTIONAL columns:
 
 | Column name   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
