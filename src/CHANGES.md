@@ -7,6 +7,7 @@ Changelog
 -   FIX: clarify that filters should be specified as object of objects [#348](https://github.com/bids-standard/bids-specification/pull/348) ([sappelhoff](https://github.com/sappelhoff))
 -   FIX: Clarify channels.tsv is RECOMMENDED consistently across ephys [#347](https://github.com/bids-standard/bids-specification/pull/347) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Typo fix (contract -> contrast) in events documentation [#346](https://github.com/bids-standard/bids-specification/pull/346) ([snastase](https://github.com/snastase))
+-   RM: rm TOC.md - seems no longer pertinent/used [#341](https://github.com/bids-standard/bids-specification/pull/341) ([yarikoptic](https://github.com/yarikoptic))
 -   \[MISC] Move the PR template to a separate folder and improve contents [#338](https://github.com/bids-standard/bids-specification/pull/338) ([jhlegarreta](https://github.com/jhlegarreta))
 -   \[INFRA] Find npm requirements file in Circle [#336](https://github.com/bids-standard/bids-specification/pull/336) ([franklin-feingold](https://github.com/franklin-feingold))
 -   ENH: Clarify the position toward non-compliant derivative datasets and files [#334](https://github.com/bids-standard/bids-specification/pull/334) ([effigies](https://github.com/effigies))
