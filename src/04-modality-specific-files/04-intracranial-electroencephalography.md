@@ -222,7 +222,7 @@ points on the tissue).
 Although this information can often be extracted from the iEEG recording,
 listing it in a simple `.tsv` document makes it easy to browse or search (e.g.,
 searching for recordings with a sampling frequency of >=1000 Hz).
-Hence, the Channels file is RECOMMENDED.
+Hence, the channels.tsv is RECOMMENDED.
 The two required columns are channel `name` and `type`.
 Channels SHOULD appear in the table in the same order they do in the iEEG data
 file.
