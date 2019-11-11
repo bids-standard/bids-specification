@@ -90,7 +90,7 @@ Specific MEG fields MUST be present:
 | DigitizedLandmarks  | REQUIRED. Boolean ("true" or "false") value indicating whether anatomical landmark points (i.e. fiducials) are contained within this recording.                                                                                                                                                                                                                                                                                   |
 | DigitizedHeadPoints | REQUIRED. Boolean (`true` or `false`) value indicating whether head points outlining the scalp/face surface are contained within this recording.                                                                                                                                                                                                                                                                                  |
 
-SHOULD be present
+SHOULD be present:
 
 | Field name                 | Definition                                                                                                                                                                                                                                                                                                                                                                                          |
 | :------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -162,7 +162,7 @@ Example:
 ```
 
 Note that the date and time information SHOULD be stored in the Study key file
-(`scans.tsv`), see [Scans.tsv](../03-modality-agnostic-files.md#scans-file). As
+(`scans.tsv`), see [Scans file](../03-modality-agnostic-files.md#scans-file). As
 it is indicated there, date time information MUST be expressed in the following
 format `YYYY-MM-DDThh:mm:ss`
 ([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For
