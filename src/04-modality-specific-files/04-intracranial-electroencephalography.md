@@ -218,13 +218,17 @@ sub-<label>/
 
 A channel represents one time series recorded with the recording system (for
 example, there can be a bipolar channel, recorded from two electrodes or contact
-points on the tissue). Although this information can often be extracted from the
-iEEG recording, listing it in a simple `.tsv` document makes it easy to browse
-or search (e.g., searching for recordings with a sampling frequency of >=1000
-Hz). The two required columns are channel name and type. Channels should appear
-in the table in the same order they do in the iEEG data file. Any number of
-additional columns may be provided to provide additional information about the
-channels. Note that electrode positions should not be added to this file but to
+points on the tissue).
+Although this information can often be extracted from the iEEG recording,
+listing it in a simple `.tsv` document makes it easy to browse or search (e.g.,
+searching for recordings with a sampling frequency of >=1000 Hz).
+Hence, the channels.tsv is RECOMMENDED.
+The two required columns are channel `name` and `type`.
+Channels SHOULD appear in the table in the same order they do in the iEEG data
+file.
+Any number of additional columns may be provided to provide additional
+information about the channels.
+Note that electrode positions SHOULD NOT be added to this file but to
 `*_electrodes.tsv`.
 
 The columns of the Channels description table stored in \*\_channels.tsv are:
