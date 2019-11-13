@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] Change recommended anonymization date from 1900 to 1925 [#363](https://github.com/bids-standard/bids-specification/pull/363) ([alexrockhill](https://github.com/alexrockhill))
 -   \[FIX] Minor fixups of inconsistencies while going through a PDF version [#362](https://github.com/bids-standard/bids-specification/pull/362) ([yarikoptic](https://github.com/yarikoptic))
 -   specify further the pipeline following #345 [#358](https://github.com/bids-standard/bids-specification/pull/358) ([CPernet](https://github.com/CPernet))
 -   FIX: clarify that filters should be specified as object of objects [#348](https://github.com/bids-standard/bids-specification/pull/348) ([sappelhoff](https://github.com/sappelhoff))
