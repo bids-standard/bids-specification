@@ -185,8 +185,8 @@ one subject should be shifted by a randomly chosen (but common across all runs
 etc.) number of days. This way relative timing would be preserved, but chances
 of identifying a person based on the date and time of their scan would be
 decreased. Dates that are shifted for anonymization purposes should be set to a
-year 1900 or earlier to clearly distinguish them from unmodified data. Shifting
-dates is recommended, but not required.
+year 1925 or earlier to clearly distinguish them from unmodified data. Shifting
+dates is RECOMMENDED, but not required.
 
 Additional fields can include external behavioral measures relevant to the
 scan. For example vigilance questionnaire score administered after a resting
