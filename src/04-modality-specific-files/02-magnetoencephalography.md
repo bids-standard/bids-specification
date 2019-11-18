@@ -23,9 +23,10 @@ sub-<label>/
 ```
 
 Unprocessed MEG data MUST be stored in the native file format of the MEG
-instrument with which the data was collected. With MEG-BIDS, we wish to promote
-the adoption of good practices in the management of scientific data. Hence, the
-emphasis of MEG-BIDS is not to impose a new, generic data format for the
+instrument with which the data was collected.
+With the MEG specification of BIDS, we wish to promote the adoption of good
+practices in the management of scientific data.
+Hence, the emphasis is not to impose a new, generic data format for the
 modality, but rather to standardize the way data is stored in repositories.
 Further, there is currently no widely accepted standard file format for MEG, but
 major software applications, including free and open-source solutions for MEG
