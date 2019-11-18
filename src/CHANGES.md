@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   FIX: Refer to BIDS consistently, instead of "\\&lt;Modality>-BIDS" [#366](https://github.com/bids-standard/bids-specification/pull/366) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Change recommended anonymization date from 1900 to 1925 [#363](https://github.com/bids-standard/bids-specification/pull/363) ([alexrockhill](https://github.com/alexrockhill))
 -   \[FIX] Minor fixups of inconsistencies while going through a PDF version [#362](https://github.com/bids-standard/bids-specification/pull/362) ([yarikoptic](https://github.com/yarikoptic))
 -   specify further the pipeline following #345 [#358](https://github.com/bids-standard/bids-specification/pull/358) ([CPernet](https://github.com/CPernet))
@@ -101,7 +102,7 @@ Changelog
 -   \[MRG] clarify encoding of README, CHANGES, TSV, and JSON files [#140](https://github.com/bids-standard/bids-specification/pull/140) ([sappelhoff](https://github.com/sappelhoff))
 -   Update site_name and release protocol [#137](https://github.com/bids-standard/bids-specification/pull/137) ([franklin-feingold](https://github.com/franklin-feingold))
 -   BF: Example for IntendedFor was missing session indicator in the filename [#129](https://github.com/bids-standard/bids-specification/pull/129) ([yarikoptic](https://github.com/yarikoptic))
--   Add "part" keyword for mag/phase BOLD images (based on BEP001). [#128](https://github.com/bids-standard/bids-specification/pull/128) ([tsalo](https://github.com/tsalo))
+-   \[ENH] Add "\_phase" suffix to func datatype for functional phase data [#128](https://github.com/bids-standard/bids-specification/pull/128) ([tsalo](https://github.com/tsalo))
 -   Update to Release_Protocol.md [#126](https://github.com/bids-standard/bids-specification/pull/126) ([franklin-feingold](https://github.com/franklin-feingold))
 -   Update tag naming convention [#123](https://github.com/bids-standard/bids-specification/pull/123) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[MRG] Merge bep006 and bep010 [#108](https://github.com/bids-standard/bids-specification/pull/108) ([sappelhoff](https://github.com/sappelhoff))
