@@ -142,6 +142,16 @@ the units are assumed to be mm.
 | UNCInfant                                           | Infant Brain Atlases from Neonates to 1- and 2-year-olds. [https://www.nitrc.org/projects/pediatricatlas](https://www.nitrc.org/projects/pediatricatlas)                                                                                                                                                                                                                                                                                                                                                               |
 | UNCInfant\[0&#124;1&#124;2\]V\[21&#124;22&#124;23\] | DISCOURAGED, please use `UNCInfant` without modifiers. Infant Brain Atlases from Neonates to 1- and 2-year-olds. [https://www.nitrc.org/projects/pediatricatlas](https://www.nitrc.org/projects/pediatricatlas)                                                                                                                                                                                                                                                                                                        |
 
+The following template identifiers are retained for backwards compatibility
+of BIDS implementations.
+Their use is NOT RECOMMENDED for new BIDS datasets and tooling, but their
+presence MUST NOT produce a validation error.
+
+| Coordinate System                                   | Recommended identifier |
+| --------------------------------------------------- | ---------------------- |
+| fsaverage\[3&#124;4&#124;5&#124;6&#124;sym\]        | fsaverage\[&#124;Sym\] |
+| UNCInfant\[0&#124;1&#124;2\]V\[21&#124;22&#124;23\] | UNCInfant              |
+
 ### Nonstandard coordinate system identifiers
 
 | Coordinate System | Description                                                                                                                                                                                                                                                           |

@@ -17,6 +17,7 @@ Been here before? Already know what you're looking for in this guide? Jump to th
 *   [Writing in markdown](#writing-in-markdown)
 *   [Make a change with a pull request](#making-a-change-with-a-pull-request)
 *   [Example pull request](#example-pull-request)
+*   [Fixing Remark errors from Travis](#fixing-travis-remark-errors)
 *   [Recognizing contributions](#recognizing-contributions)
 
 ## Joining the community
@@ -156,11 +157,64 @@ You can update your [fork](https://help.github.com/articles/about-forks/) of the
 GitHub has a [nice introduction](https://help.github.com/articles/github-flow/) to the pull request workflow, but please [get in touch](#get-in-touch) if you have any questions.
 
 ## Example pull request
-<img align="right" src="https://i.imgur.com/s8yELfK.png" alt="Example-Contribution" width="800"/>
+<img align="center" src="https://i.imgur.com/s8yELfK.png" alt="Example-Contribution" width="800"/>
 
-<br />
-<br />
 
+## Fixing Travis Remark errors
+
+We use a linter called [Remarkjs](https://github.com/remarkjs/remark-lint) to ensure all of
+our Markdown documents are consistent and well-styled.
+This commonly produces errors, which are flagged by [Travis CI](https://travis-ci.org/),
+a continuous integration service.
+When Travis returns an error, use the following process to resolve the issue:
+
+#### 1. Install NodeJS / npm
+
+We use a markdown linter written in Javascript.
+To run command Javascript tools on the command line, please [download and
+install](https://nodejs.org/en/download/) NodeJS.
+
+#### 2. Install Remark-CLI and our style guide
+
+Remark-CLI can be installed via [npm](https://www.npmjs.com/), which is part of
+the NodeJS distribution.
+
+To install the packages we use for our style guide, the following command will work on most command lines:
+
+```
+npm install `cat npm-requirements.txt`
+```
+
+The equivalent command on PowerShell is:
+
+```
+npm install @(cat npm-requirements.txt)
+```
+
+#### 3. Fix the flagged document
+
+Please go to the directory where the flagged file is and run remark like this:
+
+```
+remark flagged_file.md -o flagged_file_fixed.md
+```
+
+Please confirm this has fixed the file.
+To do this, please run this:
+
+```
+remark flagged_file_fixed.md --frail
+```
+
+This command will indicate whether this file now conforms to the style guide.
+If it passes, replace `flagged_file.md` with the contents of `flagged_file_fixed.md`,
+add and commit the change:
+
+```
+mv flagged_file_fixed.md flagged_file.md
+git add flagged_file.md
+git commit -m 'STY: Fixed Markdown style'
+```
 
 ## How the decision to merge a pull request is made?
 

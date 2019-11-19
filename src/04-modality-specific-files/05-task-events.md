@@ -20,7 +20,7 @@ recorded during the scan. Events MAY be either stimuli presented to the
 participant or participant responses. A single event file MAY include any
 combination of stimuli and response events. Events MAY overlap in time. Please
 mind that this does not imply that only so called "event related" study designs
-are supported (in contract to "block" designs) - each "block of events" can be
+are supported (in contrast to "block" designs) - each "block of events" can be
 represented by an individual row in the \_events.tsv file (with a long
 duration). Each task events file REQUIRES a corresponding task imaging data file
 (but a single events file MAY be shared by multiple imaging data files - see
