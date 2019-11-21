@@ -12,22 +12,38 @@ Derivatives can be stored/distributed in two ways:
 
 1.  Under a `derivatives/` subfolder in the root of the source BIDS dataset
     folder to make a clear distinction between raw data and results of data
-    processing. Each pipeline has a dedicated directory under which it stores
-    all of its outputs. There are few restriction on the directory name; it is
-    RECOMMENDED to use the format `<pipeline>-<variant>` in cases where it is
-    anticipated that the same pipeline will output more than one variant (e.g.,
+    processing. A data processing pipeline will typically have a dedicated directory 
+    under which it stores all of its outputs. Different components of a pipeline can, 
+    however, also be stored under different subfolders. There are few restrictions on
+    the directory names; it is RECOMMENDED to use the format `<pipeline>-<variant>` in 
+    cases where it is anticipated that the same pipeline will output more than one variant (e.g.,
     `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
-    subfolder name MUST be the `PipelineDescription.Name` field in
+    subfolder name SHOULD be the `PipelineDescription.Name` field in
     `data_description.json`, optionally followed by a hyphen and a suffix (see
     below).
 
-    For example:
+    Example of derivatives with one directory per pipeline:
 
     ```Plain
     <dataset>/derivatives/fmriprep-v1.4.1/sub-0001
     <dataset>/derivatives/spm/sub-0001
     <dataset>/derivatives/vbm/sub-0001
     ```
+
+    Example of a pipeline with split derivative directories:
+
+    ```Plain
+    <dataset>/derivatives/spm_preproc/sub-0001
+    <dataset>/derivatives/spm_stats/sub-0001
+    ```
+
+    Example of a pipeline with nested derivative directories:
+
+    ```Plain
+    <dataset>/derivatives/spm_preproc/sub-0001
+    <dataset>/derivatives/spm_preproc/derivatives/spm_stats/sub-0001
+    ```    
+
 
 1.  As a standalone dataset independent of the source (raw or derived) BIDS
     dataset. This way of specifying derivatives is particularly useful when the
@@ -98,11 +114,11 @@ denoted using a filename keyword `space` whenever such keyword is present in
 the filename template of a given derivative type. The allowed values for this
 keyword depend on the file format:
 
-| File format                  | Description             | Allowed `CoordinateSystem` values                                                                                                                                                                                                                     |
-| ---------------------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NIfTI (`.nii` and `.nii.gz`) | Volume data             | Coordinate systems listed in [Template Based Coordinate Systems: Volume](../99-appendices/08-coordinate-systems.md#volume). If `individual` or `custom` is used then setting [`SpatialReference`](#spatialreference-key-allowed-values) is REQUIRED   |
-| GIFTI (`.gii`)               | Surface data            | Coordinate systems listed in [Template Based Coordinate Systems: Surface](../99-appendices/08-coordinate-systems.md#surface). If `individual` or `custom` is used then setting [`SpatialReference`](#spatialreference-key-allowed-values) is REQUIRED |
-| CIFTI (`.nii`)               | Volume and surface data | Coordinate systems listed in [Template Based Coordinate Systems: Hybrid (Volume/Surface) aliases](../99-appendices/08-coordinate-systems.md#hybrid-volumesurface-aliases)                                                                             |
+| File format                  | Description             | Allowed `CoordinateSystem` values                                                                                                                                                                                                                                      |
+| ---------------------------- | ----------------------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| NIfTI (`.nii` and `.nii.gz`) | Volume data             | Coordinate systems listed in [Template Based Coordinate Systems](../99-appendices/08-coordinate-systems.md#template-based-coordinate-systems). If `individual` or `custom` is used then setting [`SpatialReference`](#spatialreference-key-allowed-values) is REQUIRED |
+| GIFTI (`.gii`)               | Surface data            | Coordinate systems listed in [Template Based Coordinate Systems](../99-appendices/08-coordinate-systems.md#template-based-coordinate-systems). If `individual` or `custom` is used then setting [`SpatialReference`](#spatialreference-key-allowed-values) is REQUIRED |
+| CIFTI (`.nii`)               | Volume and surface data | Coordinate systems listed in [Template Based Coordinate Systems: Hybrid (Volume/Surface) aliases](../99-appendices/08-coordinate-systems.md#hybrid-volumesurface-aliases)                                                                                              |
 
 Examples:
 
@@ -222,3 +238,16 @@ sub-01/anat/sub-01_hemi-L_space-individual_thickness.json
     distinguish brain mask files derived from T1w and T2w images; or `_desc-sm4`
     and `_desc-sm8` to distinguish between outputs generated with two different
     levels of smoothing).
+
+-   When naming files that are not yet standardized, it is RECOMMENDED to use
+    names consistent with BIDS conventions where those conventions apply.
+    For example, if a summary statistic is derived from a given task, the file
+    name SHOULD contain `_task-<label>`.
+
+## Non-compliant datasets
+
+Nothing in this specification should be interpreted to disallow the
+storage/distribution non-compliant derivatives of BIDS datasets.
+In particular, if a BIDS dataset contains a `derivatives/` sub-directory,
+the contents of that directory may be a heterogeneous mix of BIDS Derivatives
+datasets and non-compliant derivatives.

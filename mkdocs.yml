@@ -31,6 +31,7 @@ nav:
       - Derivatives:
         - Introduction: 05-derivatives/01-introduction.md
         - Common data types: 05-derivatives/02-common-data-types.md
+        - Imaging data types: 05-derivatives/03-imaging.md
       - Longitudinal and multi-site studies: 06-longitudinal-and-multi-site-studies.md
       - Extending the BIDS specification: 07-extensions.md
       - Appendix:
