@@ -10,7 +10,7 @@ The file dataset_description.json is a JSON file describing the dataset. Every
 dataset MUST include this file with the following fields:
 
 | Field name         | Definition                                                                                                                                                                                                                    |
-| :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------------------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                |
 | BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                     |
 | License            | RECOMMENDED. What license is this dataset distributed under? The use of license name abbreviations is suggested for specifying a license. A list of common licenses with suggested abbreviations can be found in Appendix II. |

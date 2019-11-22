@@ -8,7 +8,7 @@ Restricted keywords for Manufacturer field in the `*_meg.json` file:
 -   [`KIT/Yokogawa/Ricoh`](06-meg-file-formats.md#kityokogawaricoh)
 -   [`KRISS`](06-meg-file-formats.md#kriss)
 -   [`ITAB`](06-meg-file-formats.md#itab)
--   [`Aalto/MEG–MRI`](06-meg-file-formats.md#aalto-megmri)
+-   [`Aalto/MEG/MRI`](06-meg-file-formats.md#aalto-megmri)
 -   `Other`
 
 Restricted keywords for ManufacturersModelName field in the `*_meg.json` file:

@@ -4,7 +4,7 @@ Legend (source:
 [https://github.com/kentcdodds/all-contributors](https://github.com/kentcdodds/all-contributors))
 
 | Emoji | Represents                                                                  |
-|:------|:----------------------------------------------------------------------------|
+|---------------|-----------------------------------------------------------------------------------------|
 | 💬    | Answering Questions (on the mailing list, NeuroStars, GitHub, or in person) |
 | 🐛    | Bug reports                                                                 |
 | 📝    | Blogposts                                                                   |

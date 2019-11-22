@@ -1,4 +1,4 @@
-Changelog
+# Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
