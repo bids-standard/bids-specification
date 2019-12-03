@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] Typo and style [#378](https://github.com/bids-standard/bids-specification/pull/378) ([TheChymera](https://github.com/TheChymera))
 -   FIX: Refer to BIDS consistently, instead of "\\&lt;Modality>-BIDS" [#366](https://github.com/bids-standard/bids-specification/pull/366) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Change recommended anonymization date from 1900 to 1925 [#363](https://github.com/bids-standard/bids-specification/pull/363) ([alexrockhill](https://github.com/alexrockhill))
 -   \[FIX] Minor fixups of inconsistencies while going through a PDF version [#362](https://github.com/bids-standard/bids-specification/pull/362) ([yarikoptic](https://github.com/yarikoptic))
