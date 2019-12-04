@@ -5,10 +5,49 @@ extent and resolution.
 
 ## Preprocessed, coregistered and/or resampled volumes
 
+Template:
+
+```Text
+<pipeline_name>/
+    sub-<participant_label>/
+        <datatype>/
+            <source_keywords>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<ext>
+```
+
+
 Volumetric preprocessing does not modify the number of dimensions, and so
 the specifications in [Preprocessed or cleaned data][common_preproc]
 apply.
-In addition, all processed files include the following metadata JSON fields:
+The use of surface meshes and volumetric measures sampled to those meshes is
+sufficiently similar in practice to treat them equivalently.
+
+When two or more instances of a given derivative are provided with resolution
+(or surface sampling density) being the only difference between them, then the
+`res` (for *resolution* of regularly sampled N-D data) and/or `den` (for
+*density* of non-parametric surfaces) SHOULD be used to avoid name conflicts.
+Note that only files combining both regularly sampled (e.g., gridded) and surface
+sampled data (and their downstream derivatives) are allowed to present both `res`
+and `den` keywords simultaneously.
+
+!!! tip "Recommendation"
+    Although the `res` entity accepts any BIDS-valid `<label>`, it is
+    recommended to use one-based, consecutive indices as label to avoid
+    inconsistencies between the value of `res` and the metadata embedded
+    within the actual file.
+
+Examples:
+
+```Text
+pipeline1/
+    sub-001/
+        func/
+            sub-001_task-rest_run-1_space-MNI305_res-lo_bold.nii.gz
+            sub-001_task-rest_run-1_space-MNI305_res-hi_bold.nii.gz
+            sub-001_task-rest_run-1_space-MNI305_bold.json
+```
+
+
+The following metadata JSON fields are defined for preprocessed images:
 
 | **Key name**  | **Description**                                                                                                              |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
