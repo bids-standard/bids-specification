@@ -11,7 +11,7 @@ organisation of neuroimaging data.
 In this repository, we develop the
 [BIDS specification](https://bids-specification.readthedocs.io/en/latest/).
 
-# Using BIDS
+# Formatting your data with BIDS
 
 To organize your data in BIDS, all you need is neuro data, a computer, and the
 [BIDS specification](https://bids-specification.readthedocs.io/en/stable/).
