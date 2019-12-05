@@ -5,29 +5,35 @@
 
 *We're so excited you're here and want to contribute.*
 
-We hope that these guidelines are designed to make it as easy as possible to get involved. If you have any questions that aren't discussed below, please let us know through one of the many ways to [get in touch](#get-in-touch).
+We hope that these guidelines are designed to make it as easy as possible to get involved. If you have any questions that aren't discussed below, please let us know by [opening an issue](#understanding-issues).
 
 ## Table of contents
 
 Been here before? Already know what you're looking for in this guide? Jump to the following sections:
 
 *   [Joining the BIDS community](#joining-the-community)
-*   [Get in touch](#get-in-touch)
 *   [Contributing through GitHub](#contributing-through-github)
+*   [Understanding issues](#understanding-issues)
 *   [Writing in markdown](#writing-in-markdown)
 *   [Make a change with a pull request](#making-a-change-with-a-pull-request)
 *   [Example pull request](#example-pull-request)
+*   [Fixing Remark errors from Travis](#fixing-travis-remark-errors)
 *   [Recognizing contributions](#recognizing-contributions)
 
 ## Joining the community
 
-BIDS - the [Brain Imaging Data Structure](http://bids.neuroimaging.io/) - is a growing community of neuroimaging enthusiasts, and we want to make our resources accessible to and engaging for as many researchers as possible.
-
-We therefore require that all contributions **adhere to our [Code of Conduct](CODE_OF_CONDUCT.md)**.
+BIDS - the [Brain Imaging Data Structure](https://bids.neuroimaging.io/) - is a growing community of neuroimaging enthusiasts, and we want to make our resources accessible to and engaging for as many researchers as possible.
 
 How do you know that you're a member of the BIDS community? You're here! You know that BIDS exists! You're officially a member of the community. It's THAT easy! Welcome!
 
-## Get in touch
+Most of our discussions take place here in [GitHub issues](#understanding-issues).
+We also have a [bids-discussion](https://groups.google.com/forum/#!forum/bids-discussion) Google Group, although this is largely now an archive of previous conversations.
+
+Moving forward, we encourage all members to contribute here on [GitHub](https://github.com/bids-standard/bids-specification) or on the [NeuroStars](https://neurostars.org/tags/bids) Discourse Forum, under the `bids` tag.
+
+To keep on top of new posts, please see this guide for setting your [topic notifications](https://meta.discourse.org/t/discourse-new-user-guide/96331#heading--topic-notifications).
+
+As a reminder, we expect that all contributions adhere to our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Contributing through GitHub
 
@@ -36,6 +42,37 @@ How do you know that you're a member of the BIDS community? You're here! You kno
 We know that it can be daunting to start using git and GitHub if you haven't worked with them in the past, but the BIDS Specification maintainers are here to help you figure out any of the jargon or confusing instructions you encounter!
 
 In order to contribute via GitHub you'll need to set up a free account and sign in. Here are some [instructions](https://help.github.com/articles/signing-up-for-a-new-github-account/) to help you get going. Remember that you can ask us any questions you need to along the way.
+
+## Understanding issues
+
+Every project on GitHub uses [issues](https://github.com/bids-standard/bids-specification/issues) slightly differently.
+
+The following outlines how BIDS developers think about communicating through issues.
+
+**Issues** are individual pieces of work that need to be completed or decisions that need to be made to move the project forwards.
+A general guideline: if you find yourself tempted to write a great big issue that
+is difficult to describe as one unit of work, please consider splitting it into two or more issues.
+
+Issues are assigned [labels](#issue-labels) which explain how they relate to the overall project's goals and immediate next steps.
+
+### Issue labels
+
+The current list of labels are [here](https://github.com/bids-standard/bids-specification/labels) and include:
+
+* [![Help wanted](https://img.shields.io/badge/-help%20wanted-159818.svg)](https://github.com/bids-standard/bids-specification/labels/community) *These issues contain a task that a member of the team has determined we need additional help with.*
+
+    If you feel that you can contribute to one of these issues, we especially encourage you to do so!
+
+* [![Opinions wanted](https://img.shields.io/badge/-opinions%20wanted-84b6eb.svg)](https://github.com/bids-standard/bids-specification/labels/opinions%20wanted) *These issues hold discussions where we're especially eager for feedback.*
+
+    Ongoing discussions benefit from broad feedback.
+    This label is used to highlight issues where decisions are being considered, so please join the conversation!
+
+* [![Community](https://img.shields.io/badge/-community-%23ddcc5f.svg)](https://github.com/bids-standard/bids-specification/labels/community) *These issues are related to building and supporting the BIDS community.*
+
+    In addition to the specification itself, we are dedicated to creating a healthy community.
+    These issues highlight pieces of work or discussions around how we can support our members and make it easier to contribute.
+
 
 ## Writing in markdown
 
@@ -95,20 +132,20 @@ Try to keep the changes focused. If you submit a large amount of work in all in 
 
 #### 4. Submit a [pull request](https://help.github.com/articles/about-pull-requests/)
 
-Please keep the title of your pull request short but informative - it will 
+Please keep the title of your pull request short but informative - it will
 appear in the [changelog](src/CHANGES.md).
 
 Use one of the following prefixes in the title of your pull request:
-  - `[ENH]` - enhancement of the specification that adds a new feature or 
+  - `[ENH]` - enhancement of the specification that adds a new feature or
     support for a new data type
   - `[FIX]` - fix of a typo or language clarification
-  - `[INFRA]` - changes to the infrastructure automating the specification 
+  - `[INFRA]` - changes to the infrastructure automating the specification
     release (for example building HTML docs etc.)
-  - `[MISC]` - everything else including changes to the file listing 
+  - `[MISC]` - everything else including changes to the file listing
     contributors
 
-If you are opening a pull request to obtain early feedback, but the changes 
-are not ready to be merged (a.k.a. Work in Progress pull request) please 
+If you are opening a pull request to obtain early feedback, but the changes
+are not ready to be merged (a.k.a. Work in Progress pull request) please
 use a [draft pull request](https://github.blog/2019-02-14-introducing-draft-pull-requests/).
 
 A member of the BIDS Specification team will review your changes to confirm that they can be merged into the main codebase.
@@ -120,15 +157,69 @@ You can update your [fork](https://help.github.com/articles/about-forks/) of the
 GitHub has a [nice introduction](https://help.github.com/articles/github-flow/) to the pull request workflow, but please [get in touch](#get-in-touch) if you have any questions.
 
 ## Example pull request
-<img align="right" src="https://i.imgur.com/s8yELfK.png" alt="Example-Contribution"/>
+<img align="center" src="https://i.imgur.com/s8yELfK.png" alt="Example-Contribution" width="800"/>
 
-<br>
 
-<br>
+## Fixing Travis Remark errors
+
+We use a linter called [Remarkjs](https://github.com/remarkjs/remark-lint) to ensure all of
+our Markdown documents are consistent and well-styled.
+This commonly produces errors, which are flagged by [Travis CI](https://travis-ci.org/),
+a continuous integration service.
+When Travis returns an error, use the following process to resolve the issue:
+
+#### 1. Install NodeJS / npm
+
+We use a markdown linter written in Javascript.
+To run command Javascript tools on the command line, please [download and
+install](https://nodejs.org/en/download/) NodeJS.
+
+#### 2. Install Remark-CLI and our style guide
+
+Remark-CLI can be installed via [npm](https://www.npmjs.com/), which is part of
+the NodeJS distribution.
+
+To install the packages we use for our style guide, the following command will work on most command lines:
+
+```
+npm install `cat npm-requirements.txt`
+```
+
+The equivalent command on PowerShell is:
+
+```
+npm install @(cat npm-requirements.txt)
+```
+
+#### 3. Fix the flagged document
+
+Please go to the directory where the flagged file is and run remark like this:
+
+```
+remark flagged_file.md -o flagged_file_fixed.md
+```
+
+Please confirm this has fixed the file.
+To do this, please run this:
+
+```
+remark flagged_file_fixed.md --frail
+```
+
+This command will indicate whether this file now conforms to the style guide.
+If it passes, replace `flagged_file.md` with the contents of `flagged_file_fixed.md`,
+add and commit the change:
+
+```
+mv flagged_file_fixed.md flagged_file.md
+git add flagged_file.md
+git commit -m 'STY: Fixed Markdown style'
+```
 
 ## How the decision to merge a pull request is made?
 
 The decision-making rules are outlined in [DECISION-MAKING.md](DECISION-MAKING.md).
+
 
 ## Recognizing contributions
 

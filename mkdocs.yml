@@ -1,5 +1,9 @@
 site_name: Brain Imaging Data Structure v1.3.0-dev
-theme: material
+theme:
+    name: material
+    custom_dir: theme_customizations/
+    favicon: images/favicon.png
+    logo: images/logo.png
 extra_javascript:
     - js/jquery-3.4.1.min.js
 markdown_extensions:
@@ -26,9 +30,10 @@ nav:
       - Derivatives:
         - Introduction: 05-derivatives/01-introduction.md
         - Common data types: 05-derivatives/02-common-data-types.md
-        - Structural derivatives: 05-derivatives/03-structural-derivatives.md
-        - Functional derivatives: 05-derivatives/04-functional-derivatives.md
-        - Diffusion derivatives: 05-derivatives/05-diffusion-derivatives.md
+        - Imaging data types: 05-derivatives/03-imaging.md
+        - Structural derivatives: 05-derivatives/04-structural-derivatives.md
+        - Functional derivatives: 05-derivatives/05-functional-derivatives.md
+        - Diffusion derivatives: 05-derivatives/06-diffusion-derivatives.md
       - Longitudinal and multi-site studies: 06-longitudinal-and-multi-site-studies.md
       - Extending the BIDS specification: 07-extensions.md
       - Appendix:
@@ -41,4 +46,7 @@ nav:
         - MEG systems: 99-appendices/07-meg-systems.md
         - Coordinate-systems: 99-appendices/08-coordinate-systems.md
       - Changelog: CHANGES.md
-    - The BIDS Starter Kit: https://github.com/bids-standard/bids-starter-kit
+    - The BIDS Starter Kit:
+      - GitHub repository: https://github.com/bids-standard/bids-starter-kit
+      - Tutorials: https://github.com/bids-standard/bids-starter-kit/wiki/Tutorials
+      - Wiki: https://github.com/bids-standard/bids-starter-kit/wiki
