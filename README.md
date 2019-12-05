@@ -13,17 +13,17 @@ In this repository, we develop the
 
 # Using BIDS
 
-To use BIDS, all you need is neuro data, a computer, and the
+To organize your data in BIDS, all you need is neuro data, a computer, and the
 [BIDS specification](https://bids-specification.readthedocs.io/en/stable/).
 
-As a user, the GitHub repository and all files therein can be safely ignored
+As a dataset curator, the GitHub repository and all files therein can be safely ignored
 to focus on the rendered content instead (see link above).
 The specification is provided in the form of a webpage, built using
 [MkDocs](https://www.mkdocs.org/) and [Read the Docs](https://readthedocs.org/).
 
 # Asking Questions
 
-If you have a question about BIDS, you have several options:
+*Want to learn more about working with BIDS? Have a question, comment, or suggestion?*
 
 1. Read some introductory material, most likely the very basic problems have already been addressed!
   - [BIDS Starter Kit](https://github.com/bids-standard/bids-starter-kit) for tutorials, wikis, templates, ...
