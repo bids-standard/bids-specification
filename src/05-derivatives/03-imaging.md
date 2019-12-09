@@ -14,7 +14,6 @@ Template:
             <source_keywords>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<ext>
 ```
 
-
 Volumetric preprocessing does not modify the number of dimensions, and so
 the specifications in [Preprocessed or cleaned data][common_preproc]
 apply.
@@ -39,7 +38,6 @@ pipeline1/
             sub-001_task-rest_run-1_space-MNI305_res-hi_bold.nii.gz
             sub-001_task-rest_run-1_space-MNI305_bold.json
 ```
-
 
 The following metadata JSON fields are defined for preprocessed images:
 
