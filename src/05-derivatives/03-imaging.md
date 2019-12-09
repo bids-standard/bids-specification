@@ -29,12 +29,6 @@ Note that only files combining both regularly sampled (e.g., gridded) and surfac
 sampled data (and their downstream derivatives) are allowed to present both `res`
 and `den` keywords simultaneously.
 
-!!! tip "Recommendation"
-    Although the `res` entity accepts any BIDS-valid `<label>`, it is
-    recommended to use one-based, consecutive indices as label to avoid
-    inconsistencies between the value of `res` and the metadata embedded
-    within the actual file.
-
 Examples:
 
 ```Text
