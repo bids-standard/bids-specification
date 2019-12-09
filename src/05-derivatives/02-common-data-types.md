@@ -37,6 +37,14 @@ Examples:
 pipeline1/
     sub-001/
         func/
+            sub-001_task-rest_run-1_space-MNI305_bold.nii.gz
+            sub-001_task-rest_run-1_space-MNI305_bold.json
+```
+
+```Text
+pipeline1/
+    sub-001/
+        func/
             sub-001_task-rest_run-1_desc-MC_bold.nii.gz
             sub-001_task-rest_run-1_desc-MC_bold.json
 ```
