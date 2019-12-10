@@ -25,7 +25,7 @@ to focus on the rendered content instead (see link above).
 The specification is provided in the form of a webpage, built using
 [MkDocs](https://www.mkdocs.org/) and [Read the Docs](https://readthedocs.org/).
 
-# Asking Questions
+# Getting started
 
 *Want to learn more about working with BIDS? Have a question, comment, or suggestion?*
 
