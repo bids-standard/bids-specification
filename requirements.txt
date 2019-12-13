@@ -1,2 +1,2 @@
 mkdocs-material
-mkdocs-branchcustomization-plugin ~= 0.1.2
+mkdocs-branchcustomization-plugin ~= 0.1.3
