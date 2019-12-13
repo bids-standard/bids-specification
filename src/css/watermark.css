@@ -1,0 +1,11 @@
+.md-header {
+    background-color: #ff0000;
+}
+
+.md-main__inner {
+    background-image: url(../images/draft_watermark.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: contain, cover;
+    background-position: center;
+}
