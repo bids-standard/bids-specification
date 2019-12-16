@@ -2,6 +2,7 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   ENH: Add watermark to drafts [#383](https://github.com/bids-standard/bids-specification/pull/383) ([effigies](https://github.com/effigies))
 -   \[MISC] Teon Brooks retiring moderator duties for BEP021 [#381](https://github.com/bids-standard/bids-specification/pull/381) ([teonbrooks](https://github.com/teonbrooks))
 -   \[FIX] clarify that string is expected for HowToAcknowledge field in dataset_description.json [#380](https://github.com/bids-standard/bids-specification/pull/380) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Typo and style [#378](https://github.com/bids-standard/bids-specification/pull/378) ([TheChymera](https://github.com/TheChymera))
