@@ -12,6 +12,11 @@ markdown_extensions:
     - pymdownx.superfences
 plugins:
     - search
+    - branchcustomization:
+        update_config:
+         - branch: /(?!^master$)/
+           +extra_css:
+             - css/watermark.css
 docs_dir: 'src'
 use_directory_urls: false
 nav:

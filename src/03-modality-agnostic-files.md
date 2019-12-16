@@ -9,17 +9,17 @@ Template: `dataset_description.json` `README` `CHANGES`
 The file dataset_description.json is a JSON file describing the dataset. Every
 dataset MUST include this file with the following fields:
 
-| Field name         | Definition                                                                                                                                                                                                                    |
-| :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                |
-| BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                     |
-| License            | RECOMMENDED. What license is this dataset distributed under? The use of license name abbreviations is suggested for specifying a license. A list of common licenses with suggested abbreviations can be found in Appendix II. |
-| Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                        |
-| Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                          |
-| HowToAcknowledge   | OPTIONAL. Instructions how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset.             |
-| Funding            | OPTIONAL. List of sources of funding (grant numbers)                                                                                                                                                                          |
-| ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                |
-| DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                        |
+| Field name         | Definition                                                                                                                                                                                                                           |
+| :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                       |
+| BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                            |
+| License            | RECOMMENDED. What license is this dataset distributed under? The use of license name abbreviations is suggested for specifying a license. A list of common licenses with suggested abbreviations can be found in Appendix II.        |
+| Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                               |
+| Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                 |
+| HowToAcknowledge   | OPTIONAL. Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset. |
+| Funding            | OPTIONAL. List of sources of funding (grant numbers)                                                                                                                                                                                 |
+| ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                       |
+| DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                               |
 
 Example:
 
@@ -185,8 +185,8 @@ one subject should be shifted by a randomly chosen (but common across all runs
 etc.) number of days. This way relative timing would be preserved, but chances
 of identifying a person based on the date and time of their scan would be
 decreased. Dates that are shifted for anonymization purposes should be set to a
-year 1900 or earlier to clearly distinguish them from unmodified data. Shifting
-dates is recommended, but not required.
+year 1925 or earlier to clearly distinguish them from unmodified data. Shifting
+dates is RECOMMENDED, but not required.
 
 Additional fields can include external behavioral measures relevant to the
 scan. For example vigilance questionnaire score administered after a resting

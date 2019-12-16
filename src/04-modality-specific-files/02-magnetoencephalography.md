@@ -23,9 +23,10 @@ sub-<label>/
 ```
 
 Unprocessed MEG data MUST be stored in the native file format of the MEG
-instrument with which the data was collected. With MEG-BIDS, we wish to promote
-the adoption of good practices in the management of scientific data. Hence, the
-emphasis of MEG-BIDS is not to impose a new, generic data format for the
+instrument with which the data was collected.
+With the MEG specification of BIDS, we wish to promote the adoption of good
+practices in the management of scientific data.
+Hence, the emphasis is not to impose a new, generic data format for the
 modality, but rather to standardize the way data is stored in repositories.
 Further, there is currently no widely accepted standard file format for MEG, but
 major software applications, including free and open-source solutions for MEG
@@ -90,7 +91,7 @@ Specific MEG fields MUST be present:
 | DigitizedLandmarks  | REQUIRED. Boolean ("true" or "false") value indicating whether anatomical landmark points (i.e. fiducials) are contained within this recording.                                                                                                                                                                                                                                                                                   |
 | DigitizedHeadPoints | REQUIRED. Boolean (`true` or `false`) value indicating whether head points outlining the scalp/face surface are contained within this recording.                                                                                                                                                                                                                                                                                  |
 
-SHOULD be present
+SHOULD be present:
 
 | Field name                 | Definition                                                                                                                                                                                                                                                                                                                                                                                          |
 | :------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -162,7 +163,7 @@ Example:
 ```
 
 Note that the date and time information SHOULD be stored in the Study key file
-(`scans.tsv`), see [Scans.tsv](../03-modality-agnostic-files.md#scans-file). As
+(`scans.tsv`), see [Scans file](../03-modality-agnostic-files.md#scans-file). As
 it is indicated there, date time information MUST be expressed in the following
 format `YYYY-MM-DDThh:mm:ss`
 ([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For
@@ -181,9 +182,11 @@ sub-<label>/
 ```
 
 This file is RECOMMENDED as it provides easily searchable information across
-MEG-BIDS datasets for e.g., general curation, response to queries or batch
-analysis. To avoid confusion, the channels SHOULD be listed in the order they
-appear in the MEG data file. Missing values MUST be indicated with `n/a`.
+BIDS datasets for e.g., general curation, response to queries or batch
+analysis.
+To avoid confusion, the channels SHOULD be listed in the order they
+appear in the MEG data file.
+Missing values MUST be indicated with `n/a`.
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
