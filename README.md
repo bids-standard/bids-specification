@@ -11,7 +11,7 @@ organisation of neuroimaging data.
 In this repository, we develop the
 [BIDS specification](https://bids-specification.readthedocs.io/en/latest/).
 
-# Formatting your data with BIDS
+# When to use BIDS
 
 To organize your data in BIDS, all you need is neuro data, a computer, and the
 [BIDS specification](https://bids-specification.readthedocs.io/en/stable/).
@@ -20,12 +20,12 @@ BIDS currently supports MRI, MEG, EEG, iEEG, behavioral, and physiological data
 and more modalities are being added continuously (see here for
 [work in progress modalities](https://bids-specification.readthedocs.io/en/stable/06-extensions.html#bids-extension-proposals)).
 
-As a dataset curator, the GitHub repository and all files therein can be safely ignored
-to focus on [the rendered content](https://bids-specification.readthedocs.io/en/stable/).
+# Formatting your data with BIDS
+
+As a dataset curator, the GitHub repository and all files therein can be safely ignored.
+Users should focus on [the rendered content](https://bids-specification.readthedocs.io/en/stable/).
 The specification is provided in the form of a webpage, built using
 [MkDocs](https://www.mkdocs.org/) and [Read the Docs](https://readthedocs.org/).
-
-# Getting started
 
 *Want to learn more about working with BIDS? Have a question, comment, or suggestion?*
 
