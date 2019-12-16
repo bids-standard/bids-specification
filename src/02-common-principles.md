@@ -399,7 +399,7 @@ Describing dates and timestamps:
 -   Time stamp information MUST be expressed in the following format: `13:45:30`
 
 -   Dates can be shifted by a random number of days for privacy protection
-    reasons. To distinguish real dates from shifted dates always use year 1900
+    reasons. To distinguish real dates from shifted dates always use year 1925
     or earlier when including shifted years. For longitudinal studies please
     remember to shift dates within one subject by the same number of days to
     maintain the interval information. Example: `1867-06-15T13:45:30`

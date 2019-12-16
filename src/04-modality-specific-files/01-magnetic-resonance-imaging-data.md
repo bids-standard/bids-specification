@@ -294,9 +294,9 @@ combined image rather than an image from each coil.
 | DelayAfterTrigger                 | RECOMMENDED. Duration (in seconds) from trigger delivery to scan onset. This delay is commonly caused by adjustments and loading times. This specification is entirely independent of `NumberOfVolumesDiscardedByScanner` or `NumberOfVolumesDiscardedByUser`, as the delay precedes the acquisition.                                                                                                                                                                                                                                                                                                    |
 
 The following table recapitulates the different ways that specific fields have
-to be populated for functional sequences. Note that all those options can used
-for non sparse sequences but that only options B, D and E are valid for sparse
-sequences.
+to be populated for functional sequences. Note that all these options can be
+used for non sparse sequences but that only options B, D and E are valid for
+sparse sequences.
 
 |          | RepetitionTime  | SliceTiming  | AcquisitionDuration | DelayTime | VolumeTiming |
 |----------|:---------------:|:------------:|:-------------------:|:---------:|:------------:|
