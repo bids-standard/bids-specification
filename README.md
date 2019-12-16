@@ -32,7 +32,7 @@ The specification is provided in the form of a webpage, built using
 1. Read some introductory material, most likely the very basic problems have already been addressed!
   - [BIDS Starter Kit](https://github.com/bids-standard/bids-starter-kit) for tutorials, wikis, templates, ...
 2. Post your question in one of several channels where BIDS members are active
-  - the [NeuroStars](https://neurostars.org/tags/bids) discourse forum, for technical questions
+  - the [NeuroStars](https://neurostars.org/tags/bids) discourse forum
   - the [Google group](https://groups.google.com/forum/#!forum/bids-discussion), for broader discussions surrounding BIDS
   - the [specification repository issue page](https://github.com/bids-standard/bids-specification/issues), if you found inconsistencies, typos, or other issues with the BIDS specification itself
 
