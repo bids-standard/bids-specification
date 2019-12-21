@@ -23,7 +23,7 @@ community.
 ## BIDS Extension Proposals
 
 The BIDS specification can be extended in a backwards compatible way and will
-evolve over time. These are accomplished with BIDS Extension Proposals (BEPs),
+evolve over time. This is accomplished with BIDS Extension Proposals (BEPs),
 which are community-driven processes.
 
 Below is a table of currently-active BEPs. The "Extension label" column
