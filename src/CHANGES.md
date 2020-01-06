@@ -6,6 +6,7 @@ Changelog
 -   \[MISC] Teon Brooks retiring moderator duties for BEP021 [#381](https://github.com/bids-standard/bids-specification/pull/381) ([teonbrooks](https://github.com/teonbrooks))
 -   \[FIX] clarify that string is expected for HowToAcknowledge field in dataset_description.json [#380](https://github.com/bids-standard/bids-specification/pull/380) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Typo and style [#378](https://github.com/bids-standard/bids-specification/pull/378) ([TheChymera](https://github.com/TheChymera))
+-   \[FIX] divide readme into 3 parts [#374](https://github.com/bids-standard/bids-specification/pull/374) ([sappelhoff](https://github.com/sappelhoff))
 -   FIX: Refer to BIDS consistently, instead of "\\&lt;Modality>-BIDS" [#366](https://github.com/bids-standard/bids-specification/pull/366) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Change recommended anonymization date from 1900 to 1925 [#363](https://github.com/bids-standard/bids-specification/pull/363) ([alexrockhill](https://github.com/alexrockhill))
 -   \[FIX] Minor fixups of inconsistencies while going through a PDF version [#362](https://github.com/bids-standard/bids-specification/pull/362) ([yarikoptic](https://github.com/yarikoptic))
