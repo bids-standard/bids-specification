@@ -152,7 +152,7 @@ my_dataset/
     ...
 ```
 
-In this example **only the `rawdata` subfolder needs to a be BIDS compliant
+In this example **only the `rawdata` subfolder needs to be a BIDS compliant
 dataset**. This specification does not prescribe anything about the contents of
 `sourcedata` and `derivatives` folders in the above example - nor does it
 prescribe the `sourcedata`, `derivatives`, or `rawdata` folder names. The above
