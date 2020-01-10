@@ -374,9 +374,12 @@ SI derived units](https://en.wikipedia.org/wiki/SI_derived_unit).
 In case there are valid reasons to deviate from SI units or SI
 derived units, the units MUST be specified in the sidecar JSON file. In case
 data is expressed in SI units or SI derived units, the units MAY be specified in
-the sidecar JSON file. In case prefixes are added to SI or non-SI units (e.g.,
-mm), the prefixed units MUST be specified in the JSON file (see [Appendix V](99-appendices/05-units.md):
-Units). In particular:
+the sidecar JSON file. In case non-standard prefixes are added to SI or non-SI
+units, these non-standard prefixed units MUST be specified in the JSON file.
+See [Appendix V](99-appendices/05-units.md) for a list of standard units and
+prefixes.
+
+For additional rules, see below:
 
 -   Elapsed time SHOULD be expressed in seconds. Please note that some DICOM
     parameters have been traditionally expressed in milliseconds. Those need to
