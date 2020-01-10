@@ -1,7 +1,7 @@
 # Appendix V: Units
 
-Following the International System of Units (SI, abbreviated from the French
-Système international (d'unités))
+Following the [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
+(SI, abbreviated from the French Système international (d'unités))
 
 | Unit name      | Unit symbol | Quantity name                              |
 | ------------------------- | ------------------------------ | ------------------------------------------------------------------ |

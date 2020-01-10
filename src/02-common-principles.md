@@ -367,9 +367,11 @@ is NOT RECOMMENDED to maintain their uniqueness.
 
 ## Units
 
-All units SHOULD be specified as per International System of Units (abbreviated
+All units SHOULD be specified as per [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
+(abbreviated
 as SI, from the French Système international (d'unités)) and can be SI units or
-SI derived units. In case there are valid reasons to deviate from SI units or SI
+SI derived units](https://en.wikipedia.org/wiki/SI_derived_unit).
+In case there are valid reasons to deviate from SI units or SI
 derived units, the units MUST be specified in the sidecar JSON file. In case
 data is expressed in SI units or SI derived units, the units MAY be specified in
 the sidecar JSON file. In case prefixes are added to SI or non-SI units (e.g.,
