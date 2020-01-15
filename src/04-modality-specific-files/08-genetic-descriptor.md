@@ -11,7 +11,7 @@ The descriptor provides basics information about:
 
 ## dataset_description.json
 
-In order to link a genetic database entry, the key `GeneticDataBase` MUST be present and
+In order to link a genetic database entry, the key `Genetics` MUST be present and
 the value is an object with the following fields:
 
 | Field name           | Definition                                                                     |
