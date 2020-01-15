@@ -62,9 +62,20 @@ sub-control02	12	F	control	548936	yes
 sub-patient01	33	F	patient	489634	no
 ```
 
-## genetic_info.json
+## Genetic Information
 
-This file is the descriptor of the genetic information available either in the participant tsv file and/or the genetic database described in the dataset_description.json. The `GeneticLevel` and `SampleOrigin` are the only two mandatory fields.
+Template:
+
+```Text
+genetic_info.json
+```
+
+The `genetic_info.json` file describes the genetic information available in the
+`participants.tsv` file and/or the genetic database described in
+`dataset_description.json`.
+Datasets containing the `Genetics` field in `dataset_description.json` or the
+`GeneticID` column in `participants.tsv` MUST include this file with the following
+fields:
 
 | Field name         | Definition                                                                  | Values                                                                                                                                                                |
 | :----------------- | :-------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
