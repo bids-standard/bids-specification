@@ -1,18 +1,24 @@
 # Genetic Descriptor
 
-Support for genetic descriptors was developed as a [BIDS Extension Proposal](https://github.com/bids-standard/bids-specification/blob/master/src/06-extensions.md#bids-extension-proposals).
-The extension was primarily developped by Cyril Pernet and Clara Moreau with contributions from Tom Nichols and Jessica Turner.
+Support for genetic descriptors was developed as a [BIDS Extension
+Proposal](../06-extensions.md#bids-extension-proposals).
+The extension was primarily developped by Cyril Pernet and Clara Moreau with
+contributions from Tom Nichols and Jessica Turner.
 
-The goal of the genetic descriptor is to link imaging and genetic data. 
-This is necessary as genetic data are typically stored in dedicated repositories, separately from the imaging data. 
-The descriptor provides basics information about:
--   where to find genetic information associated with the imaging data
--   what type of genetic information is available
+Genetic data are typically stored in dedicated repositories,
+separate from imaging data.
+A genetic descriptor links a BIDS dataset to associated genetic data,
+potentially in a separate repository,
+with details of where to find the genetic data and the type of data available.
 
-## dataset_description.json
+## Dataset Description
 
-In order to link a genetic database entry, the key `Genetics` MUST be present and
-the value is an object with the following fields:
+Genetic descriptors are encoded as an additional, OPTIONAL entry in the
+[`dataset_description.json`](../03-modality-agnostic-files.md#dataset_descriptionjson)
+file.
+
+Datasets linked to a genetic database entry include the following REQUIRED or OPTIONAL
+`dataset_description.json` keys (a dot in the key name denotes a key in a subdictionary):
 
 | Field name           | Definition                                                                     |
 |----------------------|--------------------------------------------------------------------------------|
