@@ -26,18 +26,19 @@ Datasets linked to a genetic database entry include the following REQUIRED or OP
 | Genetics.Database    | OPTIONAL. URI of database where the dataset is hosted.                         |
 | Genetics.Descriptors | OPTIONAL. List of relevant descriptors (*e.g.*, journal articles) for dataset. |
 
-`dataset_description.json` example:
+Example:
+
 ```JSON
 {
-  "Name": "Human Connectom Project",
-  "BIDSVersion":  "1.2.0",
+  "Name": "Human Connectome Project",
+  "BIDSVersion":  "1.3.0",
   "License": "CC0",
   "Authors": ["1st author", "2nd author"],
-  "Funding": "list your funding sources",
+  "Funding": ["P41 EB015894/EB/NIBIB NIH HHS/United States"],
   "Genetics": {
-     "Dataset": "dataset",
-     "Database": "database",
-     "Descriptors": "descriptors"
+     "Dataset": "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001364.v1.p1",
+     "Database": "https://www.ncbi.nlm.nih.gov/gap/",
+     "Descriptors": ["https://doi.org/10.1016/j.neuroimage.2013.05.041"]
      }
 }
 ```
@@ -55,10 +56,10 @@ in the `participants.tsv` file by adding optional columns.
 `participants.tsv` example:
 
 ```Text
-participant_id  age sex group GeneticID	IDH Mutation
-sub-control01 34  M control 124587	yes
-sub-control02 12  F control 548936	yes
-sub-patient01 33  F patient 489634	no
+participant_id	age	sex	group	GeneticID	IDH Mutation
+sub-control01	34	M	control	124587	yes
+sub-control02	12	F	control	548936	yes
+sub-patient01	33	F	patient	489634	no
 ```
 
 ## genetic_info.json
@@ -79,7 +80,8 @@ This file is the descriptor of the genetic information available either in the p
 ```JSON
 {
   "GeneticLevel": "Genetic",
-  "AnalyticalApproach": "SNP Genotypes", "SampleOrigin": "brain",
+  "AnalyticalApproach": "SNP Genotypes",
+  "SampleOrigin": "brain",
   "TissueOrigin": "gray matter",
   "CellType":  "neuron",
   "BrainLocation": "[-30 -15 10]"
