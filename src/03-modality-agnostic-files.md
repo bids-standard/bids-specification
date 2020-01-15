@@ -9,17 +9,17 @@ Template: `dataset_description.json` `README` `CHANGES`
 The file dataset_description.json is a JSON file describing the dataset. Every
 dataset MUST include this file with the following fields:
 
-| Field name         | Definition                                                                                                                                                                                                                    |
-| :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                |
-| BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                     |
-| License            | RECOMMENDED. What license is this dataset distributed under? The use of license name abbreviations is suggested for specifying a license. A list of common licenses with suggested abbreviations can be found in Appendix II. |
-| Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                        |
-| Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                          |
-| HowToAcknowledge   | OPTIONAL. Instructions how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset.             |
-| Funding            | OPTIONAL. List of sources of funding (grant numbers)                                                                                                                                                                          |
-| ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                |
-| DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                        |
+| Field name         | Definition                                                                                                                                                                                                                           |
+| :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                       |
+| BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                            |
+| License            | RECOMMENDED. What license is this dataset distributed under? The use of license name abbreviations is suggested for specifying a license. A list of common licenses with suggested abbreviations can be found in Appendix II.        |
+| Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                               |
+| Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                 |
+| HowToAcknowledge   | OPTIONAL. Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset. |
+| Funding            | OPTIONAL. List of sources of funding (grant numbers)                                                                                                                                                                                 |
+| ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                       |
+| DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                               |
 
 Example:
 
@@ -98,20 +98,34 @@ sub-control02 12  F control
 sub-patient01 33  F patient
 ```
 
+## Phenotypic and assessment data
+
 If the dataset includes multiple sets of participant level measurements (for
 example responses from multiple questionnaires) they can be split into
-individual files separate from `participants.tsv`. Those measurements should be
-kept in phenotype/ folder and end with the `.tsv` extension. They can include
-arbitrary set of columns, but one of them has to be participant_id with matching
-`sub-<label>`. As with all other tabular data, those additional
-phenotypic information files can be accompanied by a JSON file describing the
-columns in detail (see [here](02-common-principles.md#tabular-files)).
-In addition to the column description, a
-section describing the measurement tool (as a whole) can be added under the name
-`MeasurementToolMetadata`. This section consists of two keys: `Description` - a
-free text description of the tool, and `TermURL` a link to an entity in an
-ontology corresponding to this tool. For example (content of
-phenotype/acds_adult.json):
+individual files separate from `participants.tsv`.
+
+Each of the measurement files MUST be kept in a `/phenotype` directory placed
+at the root of the BIDS dataset and MUST end with the `.tsv` extension.
+File names SHOULD be chosen to reflect the contents of the file.
+For example, the "Adult ADHD Clinical Diagnostic Scale" could be saved in a file
+called `/phenotype/acds_adult.tsv`.
+
+The files can include an arbitrary set of columns, but one of them MUST be
+`participant_id` and the entries of that column MUST correspond to the subjects
+in the BIDS dataset and `participants.tsv` file.
+
+As with all other tabular data, the additional phenotypic information files
+MAY be accompanied by a JSON file describing the columns in detail
+(see [Tabular files](02-common-principles.md#tabular-files)).
+In addition to the column description, a section describing the measurement tool
+(as a whole) MAY be added under the name `MeasurementToolMetadata`.
+This section consists of two keys:
+
+  - `Description`: A free text description of the measurement tool
+  - `TermURL`: A link to an entity in an ontology corresponding to this tool.
+
+As an example, consider the contents of a file called
+`phenotype/acds_adult.json`:
 
 ```JSON
 {
@@ -143,7 +157,7 @@ columns.
 In addition to the keys available to describe columns in all tabular files
 (`LongName`, `Description`, `Levels`, `Units`, and `TermURL`) the
 `participants.json` file as well as phenotypic files can also include column
-descriptions with `Derivative` field that, when set to true, indicates that
+descriptions with a `Derivative` field that, when set to true, indicates that
 values in the corresponding column is a transformation of values from other
 columns (for example a summary score based on a subset of items in a
 questionnaire).
@@ -171,8 +185,8 @@ one subject should be shifted by a randomly chosen (but common across all runs
 etc.) number of days. This way relative timing would be preserved, but chances
 of identifying a person based on the date and time of their scan would be
 decreased. Dates that are shifted for anonymization purposes should be set to a
-year 1900 or earlier to clearly distinguish them from unmodified data. Shifting
-dates is recommended, but not required.
+year 1925 or earlier to clearly distinguish them from unmodified data. Shifting
+dates is RECOMMENDED, but not required.
 
 Additional fields can include external behavioral measures relevant to the
 scan. For example vigilance questionnaire score administered after a resting

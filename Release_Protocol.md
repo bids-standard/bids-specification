@@ -4,10 +4,15 @@ When it is time to release, use a pull request to put the repository into a rele
 allowing testing and edits prior to merging to master.
 The following procedure ensures a predictable release.
 
+The protocol assumes that you have a [fork](https://help.github.com/en/articles/fork-a-repo)
+of the bids-standard/bids-specification repository and have [cloned](https://help.github.com/en/articles/cloning-a-repository)
+your fork locally to a directory called `bids-specification`.
+
 ### 1. Fetch the latest version of the [master branch of the BIDS-specification](https://github.com/bids-standard/bids-specification/tree/master)
 
-You should have a remote, which we will call `upstream`, for the [
-bids-standard/bids-specification](https://github.com/bids-standard/bids-specification/) repository:
+You should have a remote, which we will call `upstream`, for the
+[bids-standard/bids-specification](https://github.com/bids-standard/bids-specification/)
+repository:
 
 ```Shell
 $ git remote get-url upstream
@@ -17,6 +22,7 @@ git@github.com:bids-standard/bids-specification.git
 If you do not, add it with:
 
 ```Shell
+$ cd bids-specification
 $ git remote add upstream git@github.com:bids-standard/bids-specification.git
 ```
 
@@ -29,7 +35,7 @@ $ git fetch upstream
 $ git checkout -b rel/1.2.0 upstream/master
 ```
 
-### 2. Update the version in the changelog and mkdocs.yml
+### 2. Update the version and the contributors list
 
 Change the "Unreleased" heading in
 [src/CHANGES.md](https://github.com/bids-standard/bids-specification/blob/master/src/CHANGES.md)
@@ -51,14 +57,21 @@ If the version preceding the `-dev` is not the target version, update the versio
 In the figure below, we update `v1.2.0-dev` to `v1.2.0`.
 ![dev-to-stable](release_images/site_name_release_1.2dev-1.2.png "dev-to-stable")
 
+Note: this will make our continuous integration ([CircleCI](https://circleci.com/)) fail. This fails because the URL of the new ReadTheDocs rendering has not been generated at this time. It will be generated once the GitHub release has been completed. 
+
+Synchronize the [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md)
+with the [Contributors wiki page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
+to ensure all contributors are duly credited.
+Be sure not to remove credits if both have been edited.
+
 ### 3. Commit changes and push to upstream
 
 By pushing `rel/` branches to the main repository, the chances of continuous integration
 discrepancies is reduced.
 
 ```Shell
-$ git add src/CHANGES.md mkdocs.yml
-$ git commit -m 'REL: v1.2.0`
+$ git add src/CHANGES.md mkdocs.yml src/99-appendices/01-contributors.md
+$ git commit -m 'REL: v1.2.0'
 $ git push -u upstream rel/1.2.0
 ```
 
@@ -150,6 +163,10 @@ description:
 ![GH-release-3](release_images/GH-release_3.png "GH-release-3")
 
 Click "Publish release".
+
+Verify ReadTheDocs builds complete and publish. If needed, manually
+trigger [builds](https://readthedocs.org/projects/bids-specification/builds/)
+for `stable` and the most recent tag.
 
 ### 9. Edit the mkdocs.yml file site_name to set a new development version
 

@@ -46,8 +46,7 @@ different backgrounds.
 
 The BIDS specification can be extended in a backwards compatible way and will
 evolve over time. This is accomplished through community-driven BIDS Extension
-Proposals (BEPs). For more information about the BEP process, and list of
-current BEP proposals, see
+Proposals (BEPs). For more information about the BEP process, see
 [Extending the BIDS specification](06-extensions.md).
 
 ## Citing BIDS
