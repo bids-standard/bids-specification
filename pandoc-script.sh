@@ -1,4 +1,5 @@
 # make a copy of src directory
+rm -rf copy_src
 rm bids-specs.pdf
 mkdir copy_src
 cp -a ./src/* ./copy_src
@@ -34,7 +35,7 @@ done
 
 cp -a ./*.md ..;
 cd ..
-pandoc index.md *.md -f markdown_github --toc --listings -H listings_setup.tex --include-in-header chapter_break.tex -V toc-title='Table of Contents' -V linkcolor:blue -V geometry:a4paper -V geometry:margin=2cm  --pdf-engine=xelatex  -o bids-specs.pdf
+pandoc index.md *.md -f markdown_github --include-before-body cover.tex  --toc --listings -H listings_setup.tex -H header.tex --include-in-header chapter_break.tex -V toc-title='Table of Contents' -V linkcolor:blue -V geometry:a4paper -V geometry:margin=2cm --pdf-engine=xelatex  -o bids-specs.pdf
 
 cp bids-specs.pdf ..
 cd ..
