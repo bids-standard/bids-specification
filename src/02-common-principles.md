@@ -152,8 +152,8 @@ my_dataset/
     ...
 ```
 
-In this example **only the `rawdata` subfolder needs to be BIDS compliant**
-dataset. This specification does not prescribe anything about the contents of
+In this example **only the `rawdata` subfolder needs to be a BIDS compliant
+dataset**. This specification does not prescribe anything about the contents of
 `sourcedata` and `derivatives` folders in the above example - nor does it
 prescribe the `sourcedata`, `derivatives`, or `rawdata` folder names. The above
 example is just a convention that can be useful for organizing raw, source, and
@@ -218,7 +218,7 @@ apply to different runs and rec files. Also if the JSON file
 (`task-xyz_acq-test1_bold.json`) is defined at dataset top level directory, it
 will be applicable to all task runs with `test1` acquisition parameter.
 
-Example 3: Multiple json files at different levels for same task and acquisition parameters
+Example 3: Multiple JSON files at different levels for same task and acquisition parameters
 
 ```Text
 task-xyz_acq-test1_bold.json
@@ -236,7 +236,7 @@ at the top directory will apply to all bold runs. However, if there is a key
 with different value in the
 `sub-01/func/sub-01_task-xyz_acq-test1_bold.json` file defined at a
 deeper level, that value will be applicable for that particular run/task NIfTI
-file/s. In other words, the `json` file at the deeper level overrides values
+file/s. In other words, the `.json` file at the deeper level overrides values
 that are potentially also defined in the `.json` at a more shallow level. If the
 `.json` file at the more shallow level contains key-value-pairs that are not
 present in the `.json` file at the deeper level, these key-value-pairs are
@@ -271,7 +271,7 @@ NIfTI header.
 
 ### Tabular files
 
-Tabular data MUST be saved as tab delimited values (`.tsv`) files, i.e., csv
+Tabular data MUST be saved as tab delimited values (`.tsv`) files, i.e., CSV
 files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
 line listing the names of all columns (with the exception of physiological and

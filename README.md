@@ -11,8 +11,29 @@ organisation of neuroimaging data.
 In this repository, we develop the
 [BIDS specification](https://bids-specification.readthedocs.io/en/latest/).
 
-**Want to learn more about working with BIDS? Have a question, comment, or suggestion?**
-Open or comment on one of our [NeuroStars issues](https://neurostars.org/tags/bids) or check out the [BIDS Starter Kit](https://github.com/bids-standard/bids-starter-kit)!
+# When to use BIDS
+
+To organize your data in BIDS, all you need is neuro data, a computer, and the
+[BIDS specification](https://bids-specification.readthedocs.io/en/stable/).
+
+BIDS currently supports MRI, MEG, EEG, iEEG, behavioral, and physiological data
+and more modalities will be added.
+
+# Formatting your data with BIDS
+
+As a dataset curator, the GitHub repository and all files therein can be safely ignored.
+Users should focus on [the rendered content](https://bids-specification.readthedocs.io/en/stable/).
+The specification is provided in the form of a webpage, built using
+[MkDocs](https://www.mkdocs.org/) and [Read the Docs](https://readthedocs.org/).
+
+*Want to learn more about working with BIDS? Have a question, comment, or suggestion?*
+
+1. Read some introductory material, most likely the very basic problems have already been addressed!
+  - [BIDS Starter Kit](https://github.com/bids-standard/bids-starter-kit) for tutorials, wikis, templates, ...
+2. Post your question in one of several channels where BIDS members are active
+  - the [NeuroStars](https://neurostars.org/tags/bids) discourse forum
+  - the [Google group](https://groups.google.com/forum/#!forum/bids-discussion), for broader discussions surrounding BIDS
+  - the [specification repository issue page](https://github.com/bids-standard/bids-specification/issues), if you found inconsistencies, typos, or other issues with the BIDS specification itself
 
 # Contributing to BIDS
 

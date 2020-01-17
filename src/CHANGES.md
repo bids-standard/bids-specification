@@ -2,6 +2,13 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] moved list of extension proposals to the main BIDS website [#389](https://github.com/bids-standard/bids-specification/pull/389) ([robertoostenveld](https://github.com/robertoostenveld))
+-   \[FIX] Typos and clarifications [#386](https://github.com/bids-standard/bids-specification/pull/386) ([apjanke](https://github.com/apjanke))
+-   ENH: Add watermark to drafts [#383](https://github.com/bids-standard/bids-specification/pull/383) ([effigies](https://github.com/effigies))
+-   \[MISC] Teon Brooks retiring moderator duties for BEP021 [#381](https://github.com/bids-standard/bids-specification/pull/381) ([teonbrooks](https://github.com/teonbrooks))
+-   \[FIX] clarify that string is expected for HowToAcknowledge field in dataset_description.json [#380](https://github.com/bids-standard/bids-specification/pull/380) ([sappelhoff](https://github.com/sappelhoff))
+-   \[MISC] Typo and style [#378](https://github.com/bids-standard/bids-specification/pull/378) ([TheChymera](https://github.com/TheChymera))
+-   \[FIX] divide readme into 3 parts [#374](https://github.com/bids-standard/bids-specification/pull/374) ([sappelhoff](https://github.com/sappelhoff))
 -   FIX: Refer to BIDS consistently, instead of "\\&lt;Modality>-BIDS" [#366](https://github.com/bids-standard/bids-specification/pull/366) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Change recommended anonymization date from 1900 to 1925 [#363](https://github.com/bids-standard/bids-specification/pull/363) ([alexrockhill](https://github.com/alexrockhill))
 -   \[FIX] Minor fixups of inconsistencies while going through a PDF version [#362](https://github.com/bids-standard/bids-specification/pull/362) ([yarikoptic](https://github.com/yarikoptic))
@@ -24,6 +31,7 @@ Changelog
 -   \[MISC] Add BEP027 - BIDS Execution to BEP list [#314](https://github.com/bids-standard/bids-specification/pull/314) ([effigies](https://github.com/effigies))
 -   \[FIX] Add CBV and phase to Entity table [#312](https://github.com/bids-standard/bids-specification/pull/312) ([tsalo](https://github.com/tsalo))
 -   \[FIX] Separate out imaging-specific "common derivatives" [#310](https://github.com/bids-standard/bids-specification/pull/310) ([effigies](https://github.com/effigies))
+-   \[FIX] Revise template-generated coordinate systems [#307](https://github.com/bids-standard/bids-specification/pull/307) ([oesteban](https://github.com/oesteban))
 -   \[FIX] Normalization of template-generated standard spaces [#306](https://github.com/bids-standard/bids-specification/pull/306) ([oesteban](https://github.com/oesteban))
 -   \[ENH] Release protocol notes [#304](https://github.com/bids-standard/bids-specification/pull/304) ([franklin-feingold](https://github.com/franklin-feingold))
 -   REL: 1.3.0-dev [#303](https://github.com/bids-standard/bids-specification/pull/303) ([franklin-feingold](https://github.com/franklin-feingold))
