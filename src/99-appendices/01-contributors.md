@@ -152,3 +152,4 @@ your name is not listed, please add it.
 -   Gaël Varoquaux 📖
 -   Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
 -   Lyuba Zehl 📖
+-   Sébastien Tourbier 🤔👀📢
