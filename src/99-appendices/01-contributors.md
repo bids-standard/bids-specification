@@ -4,7 +4,7 @@ Legend (source:
 [https://github.com/kentcdodds/all-contributors](https://github.com/kentcdodds/all-contributors))
 
 | Emoji | Represents                                                                  |
-|:------|:----------------------------------------------------------------------------|
+|---------------|-----------------------------------------------------------------------------------------|
 | 💬    | Answering Questions (on the mailing list, NeuroStars, GitHub, or in person) |
 | 🐛    | Bug reports                                                                 |
 | 📝    | Blogposts                                                                   |
@@ -34,6 +34,7 @@ your name is not listed, please add it.
 -   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️📢✅🔧🔌📝
 -   Tibor Auer 💬📖💡🔧📢
 -   Sylvain Baillet 📖🔍
+-   Arshitha Basavaraj 📖
 -   Stephan Bickel 📖
 -   Elizabeth Bock 📖💡
 -   Kristofer Bouchard 📖
