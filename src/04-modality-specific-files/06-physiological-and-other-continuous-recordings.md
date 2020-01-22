@@ -25,7 +25,7 @@ specified using two files: a gzip compressed TSV file with data (without header
 line) and a JSON for storing the following metadata fields:
 
 | Field name        | Definition                                                                                                                                                          |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | SamplingFrequency | REQUIRED. Sampling frequency in Hz of all columns in the file.                                                                                                      |
 | StartTime         | REQUIRED. Start time in seconds in relation to the start of acquisition of the first data sample in the corresponding neural dataset (negative values are allowed). |
 | Columns           | REQUIRED. Names of columns in file.                                                                                                                                 |
@@ -42,7 +42,7 @@ stored in separate files.
 The following naming conventions should be used for column names:
 
 | Column name | Definition                                           |
-| ----------------- | ------------------------------------------------------- |
+| :---------- | :--------------------------------------------------- |
 | cardiac     | continuous pulse measurement                         |
 | respiratory | continuous breathing measurement                     |
 | trigger     | continuous measurement of the scanner trigger signal |

@@ -4,7 +4,7 @@ Following the International System of Units (SI, abbreviated from the French
 Système international (d'unités))
 
 | Unit name      | Unit symbol | Quantity name                              |
-| ------------------------- | ------------------------------ | ------------------------------------------------------------------ |
+| :------------- | :---------- | :----------------------------------------- |
 | metre          | m           | length                                     |
 | kilogram       | kg          | mass                                       |
 | second         | s           | time                                       |
@@ -22,7 +22,7 @@ Système international (d'unités))
 | coulomb        | C           | electric charge or quantity of electricity |
 | volt           | V           | voltage (electrical potential), emf        |
 | farad          | F           | capacitance                                |
-| ohm            | Ω           | resistance, impedance, reactance           |
+| ohm            | Ω           | resistance, impedance, reactance           |
 | siemens        | S           | electrical conductance                     |
 | weber          | Wb          | magnetic flux                              |
 | tesla          | T           | magnetic flux density                      |
@@ -40,7 +40,7 @@ Système international (d'unités))
 ### Multiples
 
 | Prefix name                                 | Prefix symbol | Factor          |
-| ---------------------------------------------------------- | ---------------------------- | ------------------------------- |
+| :------------------------------------------ | :------------ | :-------------- |
 | [deca](https://www.wikiwand.com/en/Deca-)   | da            | 10<sup>1</sup>  |
 | [hecto](https://www.wikiwand.com/en/Hecto-) | h             | 10<sup>2</sup>  |
 | [kilo](https://www.wikiwand.com/en/Kilo-)   | k             | 10<sup>3</sup>  |
@@ -55,7 +55,7 @@ Système international (d'unités))
 ### Submultiples
 
 | Prefix name                                 | Prefix symbol | Factor           |
-| ------------------------------------------------------------------ | ---------------------- | ------------------------------ |
+| :------------------------------------------ | :------------ | :--------------- |
 | [deci](https://www.wikiwand.com/en/Deci-)   | d             | 10<sup>-1</sup>  |
 | [centi](https://www.wikiwand.com/en/Centi-) | c             | 10<sup>-2</sup>  |
 | [milli](https://www.wikiwand.com/en/Milli-) | m             | 10<sup>-3</sup>  |
