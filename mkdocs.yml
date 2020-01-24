@@ -31,6 +31,7 @@ nav:
         - Task events: 04-modality-specific-files/05-task-events.md
         - Physiological and other continuous recordings: 04-modality-specific-files/06-physiological-and-other-continuous-recordings.md
         - Behavioral experiments (with no MRI): 04-modality-specific-files/07-behavioral-experiments.md
+        - Genetic descriptor: 04-modality-specific-files/08-genetic-descriptor.md
       - Longitudinal and multi-site studies: 05-longitudinal-and-multi-site-studies.md
       - Extending the BIDS specification: 06-extensions.md
       - Appendix:
