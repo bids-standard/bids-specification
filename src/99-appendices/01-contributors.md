@@ -132,6 +132,7 @@ your name is not listed, please add it.
 -   Pradeep Reddy Raamana 💻🔧
 -   Vasudev Raguram 💻🎨📖🔧
 -   Nick F. Ramsey 📖
+-   Alex Rockhill 📖🔧
 -   Ariel Rokem 📖
 -   Matt Sanderson 📖💻
 -   Gunnar Schaefer 📖
