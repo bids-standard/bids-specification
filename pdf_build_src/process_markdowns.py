@@ -153,30 +153,6 @@ def add_header():
 	with open('header.tex', 'w') as file:
 		file.writelines( data )
 
-# def remove_cross_internal_links(root_path):
-	
-
-# 	primary_pattern = re.compile(r'\[((?!http).[\w\s.\(\)`*/–]+)\]\(((?!http).+(\.md|\.yml|\.md#[\w\-\w]+))\)')
-	
-
-# 	for root, dirs, files in os.walk(root_path):
-# 		for file in files:
-# 			if file.endswith("." + "md"):
-# 				print("here with "+file)
-# 				with open(os.path.join(root,file),'r') as markdown: 
-# 					data = markdown.readlines()
-
-# 				for ind, line in enumerate(data):
-# 					match = primary_pattern.search(line)
-
-# 					if match: 
-# 						line = re.sub(primary_pattern, match.group().split('](')[0][1:], line)
-
-# 					data[ind] = line
-
-# 				with open(os.path.join(root,file), 'w') as markdown: 
-# 					markdown.writelines(data)
-
 
 def remove_internal_links(root_path, link_type):
 
@@ -201,7 +177,7 @@ def remove_internal_links(root_path, link_type):
 
 				with open(os.path.join(root,file), 'w') as markdown: 
 					markdown.writelines(data)
-					
+
 
 if __name__ == '__main__':
 
@@ -219,7 +195,6 @@ if __name__ == '__main__':
 	extract_header_string()
 	add_header()
 
-	# remove_cross_internal_links(root_path)
 	remove_internal_links(root_path, 'cross')
 	remove_internal_links(root_path, 'same')
 
