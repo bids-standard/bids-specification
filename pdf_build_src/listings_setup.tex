@@ -1,0 +1,38 @@
+% Contents of listings-setup.tex
+\usepackage{xcolor}
+\usepackage{graphicx}
+% \usepackage{sectsty} 
+% \sectionfont{\clearpage}
+% \usepackage{fancyhdr}
+% \usepackage{titlesec}
+% \newcommand{\sectionbreak}{\clearpage}
+% \titleformat{\chapter}[display]{\normalfont\bfseries}{}{0pt}{\Large}
+% \pagestyle{fancy}
+% \fancyhf{}
+% \fancyhead[RE]{\leftmark}
+% \fancyhead[LO]{\rightmark}
+% \fancyhead[LE,RO]{\thepage}
+% \renewcommand\headrulewidth{0pt}
+% \renewcommand\chaptermark[1]{\markboth{#1}{}} 
+% \renewcommand\sectionmark[1]{\markright{\thesection.\ #1}}
+\lstset{
+    basicstyle=\ttfamily,
+    numbers=left,
+    keywordstyle=\color[rgb]{0.13,0.29,0.53}\bfseries,
+    stringstyle=\color[rgb]{0.31,0.60,0.02},
+    commentstyle=\color[rgb]{0.56,0.35,0.01}\itshape,
+    numberstyle=\footnotesize,
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color[RGB]{248,248,248},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    captionpos=b,
+    breaklines=true,
+    breakautoindent=true,
+    escapeinside={\%*}{*)},
+    linewidth=\textwidth,
+    basewidth=0.5em
+}
