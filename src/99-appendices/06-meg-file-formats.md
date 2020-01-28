@@ -61,8 +61,8 @@ file.
 sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.fif
 ```
 
-Note that we do not provide specific specifications for cross-talk and
-fine-calibration matrix files in the present MEG-BIDS version.
+Note that we do not provide specifications for cross-talk and
+fine-calibration matrix files in the current version of BIDS.
 
 Example:
 

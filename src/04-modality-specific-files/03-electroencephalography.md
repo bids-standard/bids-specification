@@ -199,13 +199,16 @@ sub-<label>/
         [sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_channels.tsv]
 ```
 
-Although this information can often be extracted from the EEG recording,
-listing it in a simple `.tsv` document makes it easy to browse or search. The
-required columns are channel `name`, `type` and `units` in this specific order.
-Channel names should furthermore appear in the table in the same order they do
-in the EEG data file. Any number of additional columns may be provided to
-provide additional information about the channels. Note that electrode
-positions should not be added to this file, but to [`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-_electrodestsv).
+This file is RECOMMENDED as it provides easily searchable information across
+BIDS datasets for e.g., general curation, response to queries or batch
+analysis.
+The required columns are channel `name`, `type` and `units` in this specific
+order.
+To avoid confusion, the channels SHOULD be listed in the order they
+appear in the EEG data file.
+Any number of additional columns may be added to provide additional information
+about the channels.
+Note that electrode positions SHOULD NOT be added to this file, but to [`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-_electrodestsv).
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
