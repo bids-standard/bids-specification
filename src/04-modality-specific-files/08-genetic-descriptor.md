@@ -77,14 +77,14 @@ Datasets containing the `Genetics` field in `dataset_description.json` or the
 `genetic_id` column in `participants.tsv` MUST include this file with the following
 fields:
 
-| Field name         | Definition                                                                  | Values                                                                                                                                                                |
-| :----------------- | :-------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| GeneticLevel       | MANDATORY Describes the level of analysis                                   | `Genetic`, `Genomic`, `Epigenomic`, `Transcriptomic`, `Metabolomic`, or `Proteomic`                                                                                   |
-| AnalyticalApproach | OPTIONAL Methodology used to analyse the GeneticLevel                       | Value must be taken from [gapsolr] under /Study/Molecular Data Type, for instance `SNP Genotypes (Array)` or `Methylation (CpG)`                                      |
-| SampleOrigin       | MANDATORY Describes from which tissue the genetic information was extracted | `blood`, `saliva`, `brain`, `csf`, `breast milk`, `bile`, `amniotic fluid`, `other biospecimen`                                                                       |
-| TissueOrigin       | OPTIONAL Describes the type of tissue analyzed for SampleOrigin `brain`     | `gray matter`, `white matter`, `csf`, `meninges`, `macrovascular` or `microvascular`                                                                                  |
-| BrainLocation      | OPTIONAL Refers to the location in space of the TissueOrigin                | `MNI coordinate` or a `label` taken from the [Allen Brain Atlas] possibly `layer` to refer to layer-specific gene expression, which can also tie up with laminar fMRI |
-| CellType           | OPTIONAL Describes the type of cell analyzed                                | Value should come from the [cell ontology]                                                                                                                            |
+| Field name         | Definition                                                                  | Values                                                                                                                                                                       |
+| :----------------- | :-------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GeneticLevel       | MANDATORY Describes the level of analysis                                   | `Genetic`, `Genomic`, `Epigenomic`, `Transcriptomic`, `Metabolomic`, or `Proteomic`                                                                                          |
+| AnalyticalApproach | OPTIONAL Methodology used to analyse the GeneticLevel                       | Value must be taken from [gapsolr][] under /Study/Molecular Data Type, for instance `SNP Genotypes (Array)` or `Methylation (CpG)`                                           |
+| SampleOrigin       | MANDATORY Describes from which tissue the genetic information was extracted | `blood`, `saliva`, `brain`, `csf`, `breast milk`, `bile`, `amniotic fluid`, `other biospecimen`                                                                              |
+| TissueOrigin       | OPTIONAL Describes the type of tissue analyzed for SampleOrigin `brain`     | `gray matter`, `white matter`, `csf`, `meninges`, `macrovascular` or `microvascular`                                                                                         |
+| BrainLocation      | OPTIONAL Refers to the location in space of the TissueOrigin                | `MNI coordinate` or a `label` taken from the [Allen Brain Atlas][allen] possibly `layer` to refer to layer-specific gene expression, which can also tie up with laminar fMRI |
+| CellType           | OPTIONAL Describes the type of cell analyzed                                | Value should come from the [cell ontology][ontology]                                                                                                                         |
 
 `genetic_info.json` example:
 
@@ -99,6 +99,6 @@ fields:
 }
 ```
 
-[Allen Brain Atlas]: http://atlas.brain-map.org/atlas?atlas=265297125&plate=112360888&structure=4392&x=40348.15104166667&y=46928.75&zoom=-7&resolution=206.60&z=3
-[cell ontology]: http://obofoundry.org/ontology/cl.html
+[allen]: http://atlas.brain-map.org/atlas?atlas=265297125&plate=112360888&structure=4392&x=40348.15104166667&y=46928.75&zoom=-7&resolution=206.60&z=3
+[ontology]: http://obofoundry.org/ontology/cl.html
 [gapsolr]: https://www.ncbi.nlm.nih.gov/projects/gapsolr/facets.html
