@@ -30,9 +30,9 @@ Hence, the emphasis is not to impose a new, generic data format for the
 modality, but rather to standardize the way data is stored in repositories.
 Further, there is currently no widely accepted standard file format for MEG, but
 major software applications, including free and open-source solutions for MEG
-data analysis provide readers of such raw files.
+data analysis, provide readers of such raw files.
 
-Some software reader may skip important metadata that is specific to MEG system
+Some software readers may skip important metadata that is specific to MEG system
 manufacturers. It is therefore RECOMMENDED that users provide additional meta
 information extracted from the manufacturer raw data files in a sidecar JSON
 file. This allows for easy searching and indexing of key metadata elements

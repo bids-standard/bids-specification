@@ -70,7 +70,7 @@ sub-<label>/
 
 Optional: Yes
 
-In case of multiple sessions there is an option of adding an additional
+In case of multiple sessions there is an option of adding additional
 participant key files describing variables changing between sessions. In such
 case one file per participant should be added. These files need to include
 compulsory `session_id` column and describe each session by one and only one
