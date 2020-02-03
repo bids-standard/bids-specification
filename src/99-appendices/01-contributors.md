@@ -82,6 +82,7 @@ your name is not listed, please add it.
 -   Christopher J. Honey 📖
 -   Jean-Christophe Houde 📖
 -   International Neuroinformatics Coordinating Facility 💵📋
+-   Andrew Janke 📖💻
 -   Mainak Jas 📖💻
 -   David Keator 📖
 -   James Kent 💬💻
@@ -93,6 +94,7 @@ your name is not listed, please add it.
 -   Jonathan C. Lau 📖
 -   Laura and John Arnold Foundation 💵
 -   Christopher Lee-Messer 📖
+-   Jon Haitz Legarreta 💻📖
 -   Xiangrui Li 📖💻
 -   Vladimir Litvak 📖
 -   Brian N. Lundstrom 📖
@@ -142,6 +144,7 @@ your name is not listed, please add it.
 -   Nicole C. Swann 📖
 -   François Tadel 📖🔌💡
 -   Roberto Toro 🔧
+-   Sébastien Tourbier 🤔👀📢
 -   William Triplett 📖
 -   Jessica A. Turner 📖
 -   Bradley Voytek 📖
