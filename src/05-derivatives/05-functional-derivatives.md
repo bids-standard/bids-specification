@@ -174,7 +174,7 @@ atlases or segmentation algorithms:
 | WhiteMatter    | Signal derived from white matter ROI.                                                  |
 | CSF            | Signal derived from cerebro-spinal fluid ROI.                                          |
 | Background     | Signal derived from background (out of brain) ROI.                                     |
-| GreyMatter     | Signal derived from grey matter ROI.                                                   |
+| GrayMatter     | Signal derived from gray matter ROI.                                                   |
 | Ventricles     | Signal derived from ventricles ROI.                                                    |
 | CircleOfWillis | Signal derived from circle of Willis ROI.                                              |
 | GlobalSignal   | Vector of mean values within the brain mask. Can be used for Global Signal Regression. |
