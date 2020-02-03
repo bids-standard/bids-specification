@@ -12,8 +12,8 @@ should be included in the pipeline documentation.
     sub-<participant_label>/
         dwi/
             <source_keywords>[_space-<space>][_desc-<label>]_dwi.nii[.gz]
-            <source_keywords>[_space-<space>][_desc-<label>]_dwi.bvals
-            <source_keywords>[_space-<space>][_desc-<label>]_dwi.bvecs
+            <source_keywords>[_space-<space>][_desc-<label>]_dwi.bval
+            <source_keywords>[_space-<space>][_desc-<label>]_dwi.bvec
             <source_keywords>[_space-<space>][_desc-<label>]_dwi.json
 ```
 
