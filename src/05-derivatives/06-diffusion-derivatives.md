@@ -228,7 +228,7 @@ Contents of JSON file (using "`_tissue-WM`" as example):
         "ResponseFunctionZSH": [ [ 15335 0 0 0 0 0 ],
                                  [ 7688 -2766 597 -82 10 -5 ],
                                  [ 5258 -2592 1024 -270 48 -11 ],
-                                 [ 4226 -2193 1124 -436 119 -19 ] ]
+                                 [ 4226 -2193 1124 -436 119 -19 ] ],
         "SphericalHarmonicBasis": "MRtrix3",
         "NonNegativityConstraint": "hard"
     }
@@ -459,7 +459,7 @@ Example:
 {
     "TractographyClass": "global",
     "TractographyMethod": "UKF",
-    "Description": "UKF tracking where only short fibers were kept."
+    "Description": "UKF tracking where only short fibers were kept.",
     "Parameters": {
         "MaximumLength": 50.0
     }
