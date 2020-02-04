@@ -2,6 +2,8 @@ Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   BEP 18 suggestions [#398](https://github.com/bids-standard/bids-specification/pull/398) ([effigies](https://github.com/effigies))
+-   \[MISC] Add Sébastien Tourbier to contributors [#394](https://github.com/bids-standard/bids-specification/pull/394) ([sebastientourbier](https://github.com/sebastientourbier))
 -   \[MISC] moved list of extension proposals to the main BIDS website [#389](https://github.com/bids-standard/bids-specification/pull/389) ([robertoostenveld](https://github.com/robertoostenveld))
 -   \[FIX] Typos and clarifications [#386](https://github.com/bids-standard/bids-specification/pull/386) ([apjanke](https://github.com/apjanke))
 -   ENH: Add watermark to drafts [#383](https://github.com/bids-standard/bids-specification/pull/383) ([effigies](https://github.com/effigies))
