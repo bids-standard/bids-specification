@@ -74,7 +74,7 @@ The `genetic_info.json` file describes the genetic information available in the
 `participants.tsv` file and/or the genetic database described in
 `dataset_description.json`.
 Datasets containing the `Genetics` field in `dataset_description.json` or the
-`genetic_id` column in `participants.tsv` MUST include this file with the following
+`GeneticID` column in `participants.tsv` MUST include this file with the following
 fields:
 
 | Field name         | Definition                                                                  | Values                                                                                                                                                                       |
