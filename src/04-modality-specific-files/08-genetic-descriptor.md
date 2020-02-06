@@ -56,7 +56,7 @@ in the `participants.tsv` file by adding optional columns.
 `participants.tsv` example:
 
 ```Text
-participant_id	age	sex	group	genetic_id	idh_mutation
+participant_id	age	sex	group	GeneticID	idh_mutation
 sub-control01	34	M	control	124587	yes
 sub-control02	12	F	control	548936	yes
 sub-patient01	33	F	patient	489634	no
