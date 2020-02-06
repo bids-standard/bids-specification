@@ -9,11 +9,11 @@ cp pandoc_script.py header.tex cover.tex listings_setup.tex src_copy
 # run pandoc_script from src_copy directory 
 cd src_copy
 python pandoc_script.py
-mv bids-specs.pdf ..
+mv bids-spec.pdf ..
 cd ..
 
 # delete the duplicated src directory
 rm -rf src_copy
 
 # open bids-specs.pdf
-open bids-specs.pdf
+open bids-spec.pdf

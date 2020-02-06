@@ -34,4 +34,4 @@ def build_pdf(filename):
 
 if __name__ =="__main__":
 	
-	build_pdf('bids-specs.pdf')
+	build_pdf('bids-spec.pdf')

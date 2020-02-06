@@ -16,7 +16,7 @@ import io
 
 def run_shell_cmd(command): 
 	"""
-	runs shell/bash commands passed as a string using the subprocess module 
+	Runs shell/bash commands passed as a string using the subprocess module.
 	"""
 	process = subprocess.Popen(command.split(), stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 	output = process.stdout.read()
@@ -26,7 +26,7 @@ def run_shell_cmd(command):
 
 def copy_src():
 	"""
-	duplicating src directory by copying contents of src to a new but temporary directory named 'src_copy'
+	Duplicating src directory to a new but temporary directory named 'src_copy'.
 	"""
 	
 	# source and target directories
@@ -44,14 +44,14 @@ def copy_src():
 
 def copy_bids_logo():
 	"""
-	copies BIDS_logo.jpg from the BIDS_logo directory in the root of the repo
+	Copies BIDS_logo.jpg from the BIDS_logo directory in the root of the repo.
 	"""
 	run_shell_cmd("cp ../BIDS_logo/BIDS_logo.jpg src_copy/images/") 
 
 
 def copy_images(root_path): 
 	"""
-	copies images from images directory of subdirectories to images directory 
+	Copies images from images directory of subdirectories to images directory 
 	in the src directory
 	"""
 	subdir_list = []
@@ -68,9 +68,9 @@ def copy_images(root_path):
 
 
 def extract_header_string():
-	'''
-	extracts the latest release's version number and date from changelog or CHANGES.md file
-	'''
+	"""
+	Extracts the latest release's version number and date from CHANGES.md file.
+	"""
 	released_versions = []
 	
 	for i, line in enumerate(open('./src_copy/CHANGES.md')):
@@ -88,9 +88,9 @@ def extract_header_string():
 
 
 def add_header(): 
-	'''
-	adds the header string extracted from changelog to header.tex file 
-	'''
+	"""
+	Adds the header string extracted from changelog to header.tex file.
+	"""
 
 	version_number, version_date = extract_header_string() 
 
@@ -110,8 +110,8 @@ def add_header():
 
 def remove_internal_links(root_path, link_type):
 	"""
-	finds all cross and same markdown internal links
-	and replaces it with plain text associated with the link
+	Finds all cross and same markdown internal links
+	and replaces it with plain text associated with the link.
 	"""
 
 	if link_type == 'cross':
@@ -139,6 +139,21 @@ def remove_internal_links(root_path, link_type):
 					markdown.writelines(data)
 
 
+def modify_changelog(): 
+	""" 
+	Changes first line of the changelog to markdown Heading 1. 
+
+	This modification makes sure that in the pdf build, changelog is a new chapter.
+	"""
+	with open('./src_copy/CHANGES.md', 'r') as file:
+		data = file.readlines()
+
+	data[0] ="# Changelog"
+
+	with open('./src_copy/CHANGES.md', 'w') as file:
+		file.writelines( data )
+
+
 if __name__ == '__main__':
 
 	duplicated_src_dir_path = './src_copy'
@@ -155,6 +170,8 @@ if __name__ == '__main__':
 	# Step 4: extract the latest version number and date 
 	extract_header_string()
 	add_header()
+
+	modify_changelog()
 
 	# Step 5: remove all internal links 
 	remove_internal_links(duplicated_src_dir_path, 'cross')
