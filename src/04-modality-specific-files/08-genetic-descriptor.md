@@ -46,7 +46,7 @@ Example:
 ## Subject naming and Participants file
 
 If the same participants have different identifiers in the genetic and imaging datasets,
-the column `GeneticID` SHOULD be added to the `participants.tsv` file to associate
+the column `genetic_id` SHOULD be added to the `participants.tsv` file to associate
 the BIDS participant with a subject in the `Genetics.Dataset` referred to in the
 `dataset_description.json` file.
 
@@ -56,7 +56,7 @@ in the `participants.tsv` file by adding optional columns.
 `participants.tsv` example:
 
 ```Text
-participant_id	age	sex	group	GeneticID	idh_mutation
+participant_id	age	sex	group	genetic_id	idh_mutation
 sub-control01	34	M	control	124587	yes
 sub-control02	12	F	control	548936	yes
 sub-patient01	33	F	patient	489634	no
@@ -74,7 +74,7 @@ The `genetic_info.json` file describes the genetic information available in the
 `participants.tsv` file and/or the genetic database described in
 `dataset_description.json`.
 Datasets containing the `Genetics` field in `dataset_description.json` or the
-`GeneticID` column in `participants.tsv` MUST include this file with the following
+`genetic_id` column in `participants.tsv` MUST include this file with the following
 fields:
 
 | Field name         | Definition                                                                  | Values                                                                                                                                                                                                             |
