@@ -118,7 +118,7 @@ your name is not listed, please add it.
 -   Patrick Park 📖💡💬
 -   Dianne Patterson 📖
 -   John Pellman 📖
--   Cyril Pernet 💬📖💡📋
+-   Cyril Pernet 💬📝📖🎨💡📋🤔📢
 -   Franco Pestilli 📖💻🎨💡🤔👀🔧
 -   Natalia Petridou 📖
 -   Dmitry Petrov 📖💻
