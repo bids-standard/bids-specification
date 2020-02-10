@@ -4,6 +4,7 @@
     ["lint-no-duplicate-headings", false],
     ["lint-list-item-indent", "tab-size"],
     ["lint-emphasis-marker", "consistent"],
-    ["lint-maximum-line-length", false]
+    ["lint-maximum-line-length", false],
+    ["lint-maximum-heading-length", false]
   ]
 }

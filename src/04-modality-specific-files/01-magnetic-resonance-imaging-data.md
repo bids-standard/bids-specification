@@ -20,7 +20,7 @@ by Ben Inglis:
 | HardcopyDeviceSoftwareVersion | (Deprecated) Manufacturer’s designation of the software of the device that created this Hardcopy Image (the printer). Corresponds to DICOM Tag 0018, 101A `Hardcopy Device Software Version`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | MagneticFieldStrength         | RECOMMENDED. Nominal field strength of MR magnet in Tesla. Corresponds to DICOM Tag 0018,0087 `Magnetic Field Strength`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | ReceiveCoilName               | RECOMMENDED. Information describing the receiver coil. Corresponds to DICOM Tag 0018, 1250 `Receive Coil Name`, although not all vendors populate that DICOM Tag, in which case this field can be derived from an appropriate private DICOM field                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| ReceiveCoilActiveElements     | RECOMMENDED. Information describing the active/selected elements of the receiver coil. This doesn’t correspond to a tag in the DICOM ontology. The vendor-defined terminology for active coil elements can go in this field. As an example, for Siemens, coil channels are typically not activated/selected individually, but rather in pre-defined selectable "groups" of individual channels, and the list of the "groups" of elements that are active/selected in any given scan populates the `Coil String` entry in Siemen’s private DICOM fields (e.g., `HEA;HEP` for the Siemens standard 32 ch coil when both the anterior and posterior groups are activated). This is a flexible field that can be used as most appropriate for a given vendor and coil to define the "active" coil elements. Since individual scans can sometimes not have the intended coil elements selected, it is preferable for this field to be populated directly from the DICOM for each individual scan, so that it can be used as a mechanism for checking that a given scan was collected with the intended coil elements selected |
+| ReceiveCoilActiveElements     | RECOMMENDED. Information describing the active/selected elements of the receiver coil. This doesn’t correspond to a tag in the DICOM ontology. The vendor-defined terminology for active coil elements can go in this field. As an example, for Siemens, coil channels are typically not activated/selected individually, but rather in pre-defined selectable "groups" of individual channels, and the list of the "groups" of elements that are active/selected in any given scan populates the `Coil String` entry in Siemens’ private DICOM fields (e.g., `HEA;HEP` for the Siemens standard 32 ch coil when both the anterior and posterior groups are activated). This is a flexible field that can be used as most appropriate for a given vendor and coil to define the "active" coil elements. Since individual scans can sometimes not have the intended coil elements selected, it is preferable for this field to be populated directly from the DICOM for each individual scan, so that it can be used as a mechanism for checking that a given scan was collected with the intended coil elements selected |
 | GradientSetType               | RECOMMENDED. It should be possible to infer the gradient coil from the scanner model. If not, e.g. because of a custom upgrade or use of a gradient insert set, then the specifications of the actual gradient coil should be reported independently                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | MRTransmitCoilSequence        | RECOMMENDED. This is a relevant field if a non-standard transmit coil is used. Corresponds to DICOM Tag 0018, 9049 `MR Transmit Coil Sequence`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | MatrixCoilMode                | RECOMMENDED. (If used) A method for reducing the number of independent channels by combining in analog the signals from multiple coil elements. There are typically different default modes when using un-accelerated or accelerated (e.g. GRAPPA, SENSE) imaging                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -119,28 +119,32 @@ sub-<label>/[ses-<label>/]
 Anatomical (structural) data acquired for that participant. Currently supported
 modalities include:
 
-| Name               | modality_label | Description                                                                                                                                                                                                                             |
-| :----------------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| T1 weighted        | T1w            |                                                                                                                                                                                                                                         |
-| T2 weighted        | T2w            |                                                                                                                                                                                                                                         |
-| T1 Rho map         | T1rho          | Quantitative T1rho brain imaging<br>[http://www.ncbi.nlm.nih.gov/pubmed/24474423](http://www.ncbi.nlm.nih.gov/pubmed/24474423) <br> [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/](http://www.ncbi.nlm.nih.gov/pubmed/24474423) |
-| T1 map             | T1map          | quantitative T1 map                                                                                                                                                                                                                     |
-| T2 map             | T2map          | quantitative T2 map                                                                                                                                                                                                                     |
-| T2\*               | T2star         | High resolution T2\* image                                                                                                                                                                                                              |
-| FLAIR              | FLAIR          |                                                                                                                                                                                                                                         |
-| FLASH              | FLASH          |                                                                                                                                                                                                                                         |
-| Proton density     | PD             |                                                                                                                                                                                                                                         |
-| Proton density map | PDmap          |                                                                                                                                                                                                                                         |
-| Combined PD/T2     | PDT2           |                                                                                                                                                                                                                                         |
-| Inplane T1         | inplaneT1      | T1-weighted anatomical image matched to functional acquisition                                                                                                                                                                          |
-| Inplane T2         | inplaneT2      | T2-weighted anatomical image matched to functional acquisition                                                                                                                                                                          |
-| Angiography        | angio          |                                                                                                                                                                                                                                         |
+| Name               | `modality_label` | Description                                                                                                                                                                                                                                          |
+| :----------------- | :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| T1 weighted        | T1w              |                                                                                                                                                                                                                                                      |
+| T2 weighted        | T2w              |                                                                                                                                                                                                                                                      |
+| T1 Rho map         | T1rho            | Quantitative T1rho brain imaging<br>[https://www.ncbi.nlm.nih.gov/pubmed/24474423](https://www.ncbi.nlm.nih.gov/pubmed/24474423) <br> [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/) |
+| T1 map             | T1map            | quantitative T1 map                                                                                                                                                                                                                                  |
+| T2 map             | T2map            | quantitative T2 map                                                                                                                                                                                                                                  |
+| T2\*               | T2star           | High resolution T2\* image                                                                                                                                                                                                                           |
+| FLAIR              | FLAIR            |                                                                                                                                                                                                                                                      |
+| FLASH              | FLASH            |                                                                                                                                                                                                                                                      |
+| Proton density     | PD               |                                                                                                                                                                                                                                                      |
+| Proton density map | PDmap            |                                                                                                                                                                                                                                                      |
+| Combined PD/T2     | PDT2             |                                                                                                                                                                                                                                                      |
+| Inplane T1         | inplaneT1        | T1-weighted anatomical image matched to functional acquisition                                                                                                                                                                                       |
+| Inplane T2         | inplaneT2        | T2-weighted anatomical image matched to functional acquisition                                                                                                                                                                                       |
+| Angiography        | angio            |                                                                                                                                                                                                                                                      |
+
+#### The `run` entity
 
 If several scans of the same modality are acquired they MUST be indexed with a
 key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only integers are allowed as
 run labels). When there is only one scan of a given type the run key MAY be
 omitted. Please note that diffusion imaging data is stored elsewhere (see
 below).
+
+#### The `acq` entity
 
 The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label the user
 MAY use to distinguish a different set of parameters used for acquiring the same
@@ -155,10 +159,14 @@ can also be used to make that distinction. At what level of detail to make the
 distinction (e.g. just between RARE and FLASH, or between RARE, FLASH, and
 FLASHsubsampled) remains at the discretion of the researcher.
 
+#### The `ce` entity
+
 Similarly the OPTIONAL `ce-<label>` key/value can be used to distinguish
 sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the
 JSON file, with the same label.
+
+#### The `rec` entity
 
 Similarly the OPTIONAL `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
@@ -183,11 +191,11 @@ fields specific to anatomical scans:
 
 Currently supported image contrasts include:
 
-| Name               | contrast_label | Description                                                                                                             |
-| :----------------- | :------------- | :-----------------------------------------------------------------------------------------------------------------------|
-| BOLD               | bold           | Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)                                                      |
-| CBV                | cbv            | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images)                    |
-| Phase              | phase          | Phase information associated with magnitude information stored in BOLD contrast                                         |
+| Name               | `contrast_label` | Description                                                                                                             |
+| :----------------- | :--------------- | :-----------------------------------------------------------------------------------------------------------------------|
+| BOLD               | bold             | Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)                                                      |
+| CBV                | cbv              | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images)                    |
+| Phase              | phase            | Phase information associated with magnitude information stored in BOLD contrast                                         |
 
 Template:
 
@@ -206,9 +214,9 @@ based fMRI a corresponding task events file (see below) MUST be provided
 multiband acquisitions, one MAY also save the single-band reference image as
 type `sbref` (e.g. `sub-control01_task-nback_sbref.nii.gz`).
 
-Each task has a unique label MUST only include of letters and/or numbers (other
-characters including spaces and underscores are not allowed). Those labels MUST
-be consistent across subjects and sessions.
+Each task has a unique label that MUST only consist of letters and/or numbers
+(other characters, including spaces and underscores, are not allowed).
+Those labels MUST be consistent across subjects and sessions.
 
 If more than one run of the same task has been acquired a key/value pair:
 `_run-1`, `_run-2`, `_run-3` etc. MUST be used. If only one run was acquired the
@@ -282,13 +290,13 @@ combined image rather than an image from each coil.
 | NumberOfVolumesDiscardedByScanner | RECOMMENDED. Number of volumes ("dummy scans") discarded by the scanner (as opposed to those discarded by the user post hoc) before saving the imaging file. For example, a sequence that automatically discards the first 4 volumes before saving would have this field as 4. A sequence that doesn't discard dummy scans would have this set to 0. Please note that the onsets recorded in the \_event.tsv file should always refer to the beginning of the acquisition of the first volume in the corresponding imaging file - independent of the value of `NumberOfVolumesDiscardedByScanner` field. |
 | NumberOfVolumesDiscardedByUser    | RECOMMENDED. Number of volumes ("dummy scans") discarded by the user before including the file in the dataset. If possible, including all of the volumes is strongly recommended. Please note that the onsets recorded in the \_event.tsv file should always refer to the beginning of the acquisition of the first volume in the corresponding imaging file - independent of the value of `NumberOfVolumesDiscardedByUser` field.                                                                                                                                                                       |
 | DelayTime                         | RECOMMENDED. User specified time (in seconds) to delay the acquisition of data for the following volume. If the field is not present it is assumed to be set to zero. Corresponds to Siemens CSA header field `lDelayTimeInTR`. This field is REQUIRED for sparse sequences using the `RepetitionTime` field that do not have the `SliceTiming` field set to allowed for accurate calculation of "acquisition time". This field is mutually exclusive with `VolumeTiming`.                                                                                                                               |
-| AcquisitionDuration               | RECOMMENDED. Duration (in seconds) of volume acquisition. Corresponds to DICOM Tag 0018,9073 `Acquisition Duration`. This field is REQUIRED for sequences that are described with the `VolumeTiming` field and that not have the `SliceTiming` field set to allowed for accurate calculation of "acquisition time". This field is mutually exclusive with `RepetitionTime`.                                                                                                                                                                                                                              |
+| AcquisitionDuration               | RECOMMENDED. Duration (in seconds) of volume acquisition. Corresponds to DICOM Tag 0018,9073 `Acquisition Duration`. This field is REQUIRED for sequences that are described with the `VolumeTiming` field and that do not have the `SliceTiming` field set to allow for accurate calculation of "acquisition time". This field is mutually exclusive with `RepetitionTime`.                                                                                                                                                                                                                             |
 | DelayAfterTrigger                 | RECOMMENDED. Duration (in seconds) from trigger delivery to scan onset. This delay is commonly caused by adjustments and loading times. This specification is entirely independent of `NumberOfVolumesDiscardedByScanner` or `NumberOfVolumesDiscardedByUser`, as the delay precedes the acquisition.                                                                                                                                                                                                                                                                                                    |
 
 The following table recapitulates the different ways that specific fields have
-to be populated for functional sequences. Note that all those options can used
-for non sparse sequences but that only options B, D and E are valid for sparse
-sequences.
+to be populated for functional sequences. Note that all these options can be
+used for non sparse sequences but that only options B, D and E are valid for
+sparse sequences.
 
 |          | RepetitionTime  | SliceTiming  | AcquisitionDuration | DelayTime | VolumeTiming |
 |----------|:---------------:|:------------:|:-------------------:|:---------:|:------------:|
@@ -305,12 +313,12 @@ sequences.
 
 ##### fMRI task information
 
-| Field name      | Definition                                                                                                                                                                                                 |
-| :-------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Instructions    | RECOMMENDED. Text of the instructions given to participants before the scan. This is especially important in context of resting state fMRI and distinguishing between eyes open and eyes closed paradigms. |
-| TaskDescription | RECOMMENDED. Longer description of the task.                                                                                                                                                               |
-| CogAtlasID      | RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) Task term.                                                                                                         |
-| CogPOID         | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                 |
+| Field name      | Definition                                                                                                                                                                                                  |
+| :-------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Instructions    | RECOMMENDED. Text of the instructions given to participants before the scan. This is especially important in context of resting state fMRI and distinguishing between eyes open and eyes closed paradigms.  |
+| TaskDescription | RECOMMENDED. Longer description of the task.                                                                                                                                                                |
+| CogAtlasID      | RECOMMENDED. URL of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.                                                                                                         |
+| CogPOID         | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                  |
 
 See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms and their definitions.
@@ -372,20 +380,18 @@ however the user is free to choose any other label than `singleband` and
 `multiband` as long as they are consistent across subjects and sessions. For
 multiband acquisitions, one can also save the single-band reference image as
 type `sbref` (e.g. `dwi/sub-control01_sbref.nii[.gz]`) The bvec and bval files
-are in the FSL format<sup>4</sup>: The bvec files contain 3 rows with n
-space-delimited floating-point numbers (corresponding to the n volumes in the
-relevant NIfTI file). The first row contains the x elements, the second row
-contains the y elements and third row contains the z elements of a unit vector
-in the direction of the applied diffusion gradient, where the i-th elements in
-each row correspond together to the i-th volume with `[0,0,0]` for
-non-diffusion-weighted volumes. Inherent to the FSL format for bvec
-specification is the fact that the coordinate system of the bvecs is with
-respect to the participant (i.e., defined by the axes of the corresponding
-dwi.nii file) and not the magnet’s coordinate system, which means that any
-rotations applied to dwi.nii also need to be applied to the corresponding bvec
-file.
-
-<sup>4</sup>[http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html](http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html)
+are in the [FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
+The bvec files contain 3 rows with n space-delimited floating-point numbers
+(corresponding to the n volumes in the relevant NIfTI file). The first row
+contains the x elements, the second row contains the y elements and third row
+contains the z elements of a unit vector in the direction of the applied
+diffusion gradient, where the i-th elements in each row correspond together to
+the i-th volume with `[0,0,0]` for non-diffusion-weighted volumes. Inherent to
+the FSL format for bvec specification is the fact that the coordinate system of
+the bvecs is with respect to the participant (i.e., defined by the axes of the
+corresponding dwi.nii file) and not the magnet’s coordinate system, which means
+that any rotations applied to dwi.nii also need to be applied to the
+corresponding bvec file.
 
 bvec example:
 
@@ -453,7 +459,7 @@ Multiple fieldmaps can be stored. In such case the `_run-1`, `_run-2` should be
 used. The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label
 the user may use to distinguish different set of parameters.
 
-#### Phase difference image and at least one magnitude image
+#### Case 1: Phase difference image and at least one magnitude image
 
 Template:
 
@@ -488,7 +494,7 @@ the shorter echo time and `EchoTime2` to the longer echo time. Similarly
 }
 ```
 
-#### Two phase images and two magnitude images
+#### Case 2: Two phase images and two magnitude images
 
 Template:
 
@@ -504,7 +510,7 @@ sub-<label>/[ses-<label>/]
 ```
 
 Similar to the case above, but instead of a precomputed phase difference map two
-separate phase images are presented. The two sidecar JSON file need to specify
+separate phase images are presented. The two sidecar JSON files need to specify
 corresponding `EchoTime` values. For example:
 
 ```JSON
@@ -514,7 +520,7 @@ corresponding `EchoTime` values. For example:
 }
 ```
 
-#### A real fieldmap image
+#### Case 3: A real fieldmap image
 
 Template:
 
