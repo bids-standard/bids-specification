@@ -1,39 +1,44 @@
 # Appendix V: Units
 
-Following the [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
-(SI, abbreviated from the French Système international (d'unités))
+Following the International System of Units (SI, abbreviated from the French
+Système international (d'unités)). The ASCII representation is taken from
+[here](http://people.csail.mit.edu/jaffer/MIXF/CMIXF-12), where additional units
+may be found. The primary reason for choosing an ASCII representation, is that
+certain characters can have multiple unicode representations that look very
+similar. The BIDS specification will allow only the following unicode symbols for
+backwards compatibility: U+00B5 (µ) and U+00B0 (°) and U+2126 (Ω).
 
-| Unit name      | Unit symbol | Quantity name                              |
-| ------------------------- | ------------------------------ | ------------------------------------------------------------------ |
-| metre          | m           | length                                     |
-| kilogram       | kg          | mass                                       |
-| second         | s           | time                                       |
-| ampere         | A           | electric current                           |
-| kelvin         | K           | thermodynamic temperature                  |
-| mole           | mol         | amount of substance                        |
-| candela        | cd          | luminous intensity                         |
-| radian         | rad         | angle                                      |
-| steradian      | sr          | solid angle                                |
-| hertz          | Hz          | frequency                                  |
-| newton         | N           | force, weight                              |
-| pascal         | Pa          | pressure, stress                           |
-| joule          | J           | energy, work, heat                         |
-| watt           | W           | power, radiant flux                        |
-| coulomb        | C           | electric charge or quantity of electricity |
-| volt           | V           | voltage (electrical potential), emf        |
-| farad          | F           | capacitance                                |
-| ohm            | Ω           | resistance, impedance, reactance           |
-| siemens        | S           | electrical conductance                     |
-| weber          | Wb          | magnetic flux                              |
-| tesla          | T           | magnetic flux density                      |
-| henry          | H           | inductance                                 |
-| degree Celsius | °C          | temperature relative to 273.15 K           |
-| lumen          | lm          | luminous flux                              |
-| lux            | lx          | illuminance                                |
-| becquerel      | Bq          | radioactivity (decays per unit time)       |
-| gray           | Gy          | absorbed dose (of ionizing radiation)      |
-| sievert        | Sv          | equivalent dose (of ionizing radiation)    |
-| katal          | kat         | catalytic activity                         |
+| Unit name      | Unit symbol       | Quantity name                              |
+| -------------- | ----------------- | ------------------------------------------ |
+| metre          | m                 | length                                     |
+| kilogram       | kg                | mass                                       |
+| second         | s                 | time                                       |
+| ampere         | A                 | electric current                           |
+| kelvin         | K                 | thermodynamic temperature                  |
+| mole           | mol               | amount of substance                        |
+| candela        | cd                | luminous intensity                         |
+| radian         | rad               | angle                                      |
+| steradian      | sr                | solid angle                                |
+| hertz          | Hz                | frequency                                  |
+| newton         | N                 | force, weight                              |
+| pascal         | Pa                | pressure, stress                           |
+| joule          | J                 | energy, work, heat                         |
+| watt           | W                 | power, radiant flux                        |
+| coulomb        | C                 | electric charge or quantity of electricity |
+| volt           | V                 | voltage (electrical potential), emf        |
+| farad          | F                 | capacitance                                |
+| ohm            | Ohm or Ω (U+2126) | resistance, impedance, reactance           |
+| siemens        | S                 | electrical conductance                     |
+| weber          | Wb                | magnetic flux                              |
+| tesla          | T                 | magnetic flux density                      |
+| henry          | H                 | inductance                                 |
+| degree Celsius | oC or °C (U+00B0) | temperature relative to 273.15 K           |
+| lumen          | lm                | luminous flux                              |
+| lux            | lx                | illuminance                                |
+| becquerel      | Bq                | radioactivity (decays per unit time)       |
+| gray           | Gy                | absorbed dose (of ionizing radiation)      |
+| sievert        | Sv                | equivalent dose (of ionizing radiation)    |
+| katal          | kat               | catalytic activity                         |
 
 ## Prefixes
 
@@ -54,15 +59,15 @@ Following the [International System of Units](https://en.wikipedia.org/wiki/Inte
 
 ### Submultiples
 
-| Prefix name                                 | Prefix symbol | Factor           |
-| ------------------------------------------------------------------ | ---------------------- | ------------------------------ |
-| [deci](https://www.wikiwand.com/en/Deci-)   | d             | 10<sup>-1</sup>  |
-| [centi](https://www.wikiwand.com/en/Centi-) | c             | 10<sup>-2</sup>  |
-| [milli](https://www.wikiwand.com/en/Milli-) | m             | 10<sup>-3</sup>  |
-| [micro](https://www.wikiwand.com/en/Micro-) | µ             | 10<sup>-6</sup>  |
-| [nano](https://www.wikiwand.com/en/Nano-)   | n             | 10<sup>-9</sup>  |
-| [pico](https://www.wikiwand.com/en/Pico-)   | p             | 10<sup>-12</sup> |
-| [femto](https://www.wikiwand.com/en/Femto-) | f             | 10<sup>-15</sup> |
-| [atto](https://www.wikiwand.com/en/Atto-)   | a             | 10<sup>-18</sup> |
-| [zepto](https://www.wikiwand.com/en/Zepto-) | z             | 10<sup>-21</sup> |
-| [yocto](https://www.wikiwand.com/en/Yocto-) | y             | 10<sup>-24</sup> |
+| Prefix name                                 | Prefix symbol   | Factor           |
+| ------------------------------------------- | --------------- | ---------------- |
+| [deci](https://www.wikiwand.com/en/Deci-)   | d               | 10<sup>-1</sup>  |
+| [centi](https://www.wikiwand.com/en/Centi-) | c               | 10<sup>-2</sup>  |
+| [milli](https://www.wikiwand.com/en/Milli-) | m               | 10<sup>-3</sup>  |
+| [micro](https://www.wikiwand.com/en/Micro-) | u or µ (U+00B5) | 10<sup>-6</sup>  |
+| [nano](https://www.wikiwand.com/en/Nano-)   | n               | 10<sup>-9</sup>  |
+| [pico](https://www.wikiwand.com/en/Pico-)   | p               | 10<sup>-12</sup> |
+| [femto](https://www.wikiwand.com/en/Femto-) | f               | 10<sup>-15</sup> |
+| [atto](https://www.wikiwand.com/en/Atto-)   | a               | 10<sup>-18</sup> |
+| [zepto](https://www.wikiwand.com/en/Zepto-) | z               | 10<sup>-21</sup> |
+| [yocto](https://www.wikiwand.com/en/Yocto-) | y               | 10<sup>-24</sup> |
