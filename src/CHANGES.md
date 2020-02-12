@@ -1,6 +1,6 @@
 Changelog
 
-## [v1.2.2](https://bids-specification.readthedocs.io/en/v1.2.2/) (2020-02-03)
+## [v1.2.2](https://bids-specification.readthedocs.io/en/v1.2.2/) (2020-02-12)
 
 -   \[MISC] moved list of extension proposals to the main BIDS website [#389](https://github.com/bids-standard/bids-specification/pull/389) ([robertoostenveld](https://github.com/robertoostenveld))
 -   \[FIX] Typos and clarifications [#386](https://github.com/bids-standard/bids-specification/pull/386) ([apjanke](https://github.com/apjanke))
