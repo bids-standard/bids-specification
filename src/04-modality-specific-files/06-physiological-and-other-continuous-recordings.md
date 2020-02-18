@@ -17,7 +17,7 @@ Where `<matches>` corresponds to task file name without the `_bold.nii[.gz]`
 suffix. For example: `sub-control01_task-nback_run-1`. If the same continuous
 recording has been used for all subjects (for example in the case where they
 all watched the same movie) one file can be used and placed in the root
-directory. For example:`task-movie_stim.tsv.gz`
+directory. For example: `task-movie_stim.tsv.gz`
 
 Physiological recordings such as cardiac and respiratory signals and other
 continuous measures (such as parameters of a film or audio stimuli) can be
