@@ -154,6 +154,21 @@ def modify_changelog():
 		file.writelines( data )
 
 
+def edit_titlepage(): 
+	""" Adds title and version number of the specification to the titlepage """
+
+	version_number, version_date = extract_header_string()
+	
+	with open('./cover.tex', 'r') as file:
+		data = file.readlines()
+
+	data[-1] = "\\textsc{\large "+version_number+"}"+"\\\\[0.5cm]"+"{\large "+version_date+"}"+"\\\\[2cm]"+"\\vfill"+"\\end{titlepage}"
+	
+
+	with open('./cover.tex', 'w') as file:
+		data = file.writelines(data)
+
+
 if __name__ == '__main__':
 
 	duplicated_src_dir_path = './src_copy'
@@ -170,6 +185,8 @@ if __name__ == '__main__':
 	# Step 4: extract the latest version number and date 
 	extract_header_string()
 	add_header()
+
+	edit_titlepage()
 
 	modify_changelog()
 
