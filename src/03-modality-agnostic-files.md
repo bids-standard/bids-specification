@@ -1,4 +1,4 @@
-# Modality-agnostic files
+# Modality agnostic files
 
 ## Dataset description
 
