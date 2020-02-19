@@ -1,4 +1,4 @@
-# Appendix III: Hierarchical Event Descriptor
+# Appendix III: Hierarchical Event Descriptors
 
 Hierarchical Event Descriptors (HED) are a controlled vocabulary of terms describing events in a behavioral
 paradigm. HED was originally developed with EEG in mind, but is applicable to
