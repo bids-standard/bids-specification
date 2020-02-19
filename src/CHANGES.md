@@ -1,4 +1,4 @@
-Changelog
+# Changelog
 
 ## [v1.2.2](https://bids-specification.readthedocs.io/en/v1.2.2/) (2020-02-12)
 
