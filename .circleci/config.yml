@@ -30,11 +30,14 @@ jobs:
           paths: site
 
   build_docs_pdf:
+    working_directory: ~/bids-specification/pdf_build_src
     docker:
       - image: danteev/texlive
     steps:
-      - checkout
+      - checkout:
+          path: ~/bids-specification
       - run: 
+          name: generate pdf version docs 
           command: |
             cd ~/build/pdf_build_src
             sh build_pdf.sh
