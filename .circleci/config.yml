@@ -38,6 +38,8 @@ jobs:
         command: |
           cd pdf_build_src
           sh build_pdf.sh
+      - store_artifacts:
+        path: rendered_pdf
 
   linkchecker:
     docker:
@@ -154,10 +156,7 @@ workflows:
   search_build:
     jobs:
       - build_docs
-      - build_docs_pdf:
-          filters:
-            branches:
-              only: updated-pdf-version-specs
+      - build_docs_pdf
       - linkchecker:
           requires:
             - build_docs
