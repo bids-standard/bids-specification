@@ -36,7 +36,7 @@ jobs:
       - checkout
       - run: 
           command: |
-            cd ~/pdf_build_src
+            cd ~/build/pdf_build_src
             sh build_pdf.sh
       - store_artifacts:
           path: rendered_pdf
