@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build_docs:
+      build_docs:
     docker:
       - image: circleci/python:3.6.6
     steps:
@@ -35,11 +35,11 @@ jobs:
     steps:
       - checkout
       - run: 
-        command: |
-          cd pdf_build_src
-          sh build_pdf.sh
+          command: |
+            cd ~/pdf_build_src
+            sh build_pdf.sh
       - store_artifacts:
-        path: rendered_pdf
+          path: rendered_pdf
 
   linkchecker:
     docker:
