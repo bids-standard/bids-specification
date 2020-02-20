@@ -52,7 +52,7 @@ by Ben Inglis:
 | TotalReadoutTime               | RECOMMENDED. This is actually the "effective" total readout time , defined as the readout duration, specified in seconds, that would have generated data with the given level of distortion. It is NOT the actual, physical duration of the readout train. If `EffectiveEchoSpacing` has been properly computed, it is just `EffectiveEchoSpacing * (ReconMatrixPE - 1)`.<sup>3</sup> . This parameter is REQUIRED if corresponding "field/distortion" maps acquired with opposing phase encoding directions are present (see 8.9.4).                                                                                                                                                                                                                                                                                                  |
 
 <sup>2</sup>Conveniently, for Siemens’ data, this value is easily obtained as
-1/\[`BWPPPE` \* `ReconMatrixPE`], where BWPPPE is the
+1/\[`BWPPPE` \* `ReconMatrixPE`\], where BWPPPE is the
 "`BandwidthPerPixelPhaseEncode` in DICOM tag (0019,1028) and ReconMatrixPE is
 the size of the actual reconstructed data in the phase direction (which is NOT
 reflected in a single DICOM tag for all possible aforementioned scan

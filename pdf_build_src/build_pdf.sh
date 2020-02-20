@@ -14,6 +14,3 @@ cd ..
 
 # delete the duplicated src directory
 rm -rf src_copy
-
-# open bids-specs.pdf
-open bids-spec.pdf
