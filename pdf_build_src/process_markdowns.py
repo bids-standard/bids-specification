@@ -64,7 +64,7 @@ def extract_header_string():
     """Extract the latest release's version number and date from CHANGES.md."""
     released_versions = []
 
-    for i, line in enumerate(open('./src_copy/CHANGES.md')):
+    for i, line in enumerate(open('src_copy/CHANGES.md')):
 
         match_list = re.findall(r'^##\s\[v.+\]', line)
 
@@ -135,12 +135,12 @@ def modify_changelog():
     This modification makes sure that in the pdf build, changelog is a new
     chapter.
     """
-    with open('./src_copy/CHANGES.md', 'r') as file:
+    with open('src_copy/CHANGES.md', 'r') as file:
         data = file.readlines()
 
     data[0] = "# Changelog"
 
-    with open('./src_copy/CHANGES.md', 'w') as file:
+    with open('src_copy/CHANGES.md', 'w') as file:
         file.writelines(data)
 
 
@@ -148,7 +148,7 @@ def edit_titlepage():
     """Add title and version number of the specification to the titlepage."""
     version_number, version_date = extract_header_string()
 
-    with open('./cover.tex', 'r') as file:
+    with open('cover.tex', 'r') as file:
         data = file.readlines()
 
     data[-1] = ("\\textsc{\large "+version_number+"}" +
@@ -160,13 +160,13 @@ def edit_titlepage():
                 "\\vfill" +
                 "\\end{titlepage}")
 
-    with open('./cover.tex', 'w') as file:
+    with open('cover.tex', 'w') as file:
         data = file.writelines(data)
 
 
 if __name__ == '__main__':
 
-    duplicated_src_dir_path = './src_copy'
+    duplicated_src_dir_path = 'src_copy'
 
     # Step 1: make a copy of the src directory in the current directory
     copy_src()
