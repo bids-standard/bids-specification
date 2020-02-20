@@ -25,7 +25,7 @@ def copy_src():
     """Duplicate src directory to a new but temp directory named 'src_copy'."""
     # source and target directories
     src_path = "../src/"
-    target_path = "src_copy"
+    target_path = "/src_copy"
 
     # make new directory
     mkdir_cmd = "mkdir "+target_path
@@ -38,7 +38,7 @@ def copy_src():
 
 def copy_bids_logo():
     """Copy BIDS_logo.jpg from the BIDS_logo dir in the root of the repo."""
-    run_shell_cmd("cp ../BIDS_logo/BIDS_logo.jpg src_copy/images/")
+    run_shell_cmd("cp ../BIDS_logo/BIDS_logo.jpg /src_copy/images/")
 
 
 def copy_images(root_path):
@@ -64,7 +64,7 @@ def extract_header_string():
     """Extract the latest release's version number and date from CHANGES.md."""
     released_versions = []
 
-    for i, line in enumerate(open(os.path.join(os.path.dirname(__file__), 'src_copy/CHANGES.md'))):
+    for i, line in enumerate(open(os.path.join(os.path.dirname(__file__), '/src_copy/CHANGES.md'))):
 
         match_list = re.findall(r'^##\s\[v.+\]', line)
 
@@ -74,6 +74,7 @@ def extract_header_string():
 
     version_number = released_versions[0][0].strip('[]')
     version_date = released_versions[0][1].strip('()')
+    print(version_number, version_date)
 
     return version_number, version_date
 
@@ -170,16 +171,21 @@ if __name__ == '__main__':
 
     # Step 1: make a copy of the src directory in the current directory
     copy_src()
+    run_shell_cmd("ls -a")
 
     # Step 2: copy BIDS_logo to images directory of the src_copy directory
     copy_bids_logo()
+    run_shell_cmd("ls -a")
 
     # Step 3: copy images from subdirectories of src_copy directory
     copy_images(duplicated_src_dir_path)
+    run_shell_cmd("ls -a")
 
     # Step 4: extract the latest version number and date
     extract_header_string()
+    run_shell_cmd("ls -a")
     add_header()
+    run_shell_cmd("ls -a")
 
     edit_titlepage()
 
