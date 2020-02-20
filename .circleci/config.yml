@@ -38,9 +38,7 @@ jobs:
           path: ~/bids-specification
       - run: 
           name: generate pdf version docs 
-          command: |
-            cd ~/build/pdf_build_src
-            sh build_pdf.sh
+          command: sh build_pdf.sh
       - store_artifacts:
           path: rendered_pdf
 
