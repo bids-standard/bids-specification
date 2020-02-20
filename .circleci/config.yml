@@ -36,8 +36,8 @@ jobs:
       - checkout
       - run: 
         command: |
-         cd pdf_build_src
-         sh build_pdf.sh
+          cd pdf_build_src
+          sh build_pdf.sh
 
   linkchecker:
     docker:
@@ -154,7 +154,10 @@ workflows:
   search_build:
     jobs:
       - build_docs
-      - build_docs_pdf
+      - build_docs_pdf:
+          filters:
+            branches:
+              only: updated-pdf-version-specs
       - linkchecker:
           requires:
             - build_docs
