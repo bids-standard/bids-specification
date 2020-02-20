@@ -32,7 +32,7 @@ jobs:
   build_docs_pdf:
     working_directory: ~/bids-specification/pdf_build_src
     docker:
-      - image: danteev/texlive
+      - image: danteev/texlive:TL2017
     steps:
       - checkout:
           path: ~/bids-specification
