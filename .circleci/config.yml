@@ -154,6 +154,7 @@ workflows:
   search_build:
     jobs:
       - build_docs
+      - build_docs_pdf
       - linkchecker:
           requires:
             - build_docs
