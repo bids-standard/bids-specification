@@ -64,7 +64,7 @@ def extract_header_string():
     """Extract the latest release's version number and date from CHANGES.md."""
     released_versions = []
 
-    for i, line in enumerate(open('~/bids-specification/pdf_build_src/src_copy/CHANGES.md')):
+    for i, line in enumerate(open(os.path.join(os.path.dirname(__file__), 'src_copy/CHANGES.md'))):
 
         match_list = re.findall(r'^##\s\[v.+\]', line)
 
