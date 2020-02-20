@@ -2,7 +2,7 @@
 
 Support for genetic descriptors was developed as a [BIDS Extension
 Proposal](../06-extensions.md#bids-extension-proposals).
-The extension was primarily developped by Cyril Pernet and Clara Moreau with
+The extension was primarily developed by Cyril Pernet and Clara Moreau with
 contributions from Tom Nichols and Jessica Turner.
 
 Genetic data are typically stored in dedicated repositories,
@@ -79,9 +79,9 @@ fields:
 
 | Field name         | Definition                                                                  | Values                                                                                                                                                                                                             |
 | :----------------- | :-------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GeneticLevel       | MANDATORY Describes the level of analysis                                   | `Genetic`, `Genomic`, `Epigenomic`, `Transcriptomic`, `Metabolomic`, or `Proteomic`                                                                                                                                |
+| GeneticLevel       | REQUIRED. Describes the level of analysis                                   | `Genetic`, `Genomic`, `Epigenomic`, `Transcriptomic`, `Metabolomic`, or `Proteomic`                                                                                                                                |
 | AnalyticalApproach | OPTIONAL Methodology or methodologies used to analyse the GeneticLevel      | String or list of strings. Each Value must be taken from the [database of Genotypes and Phenotypes (dbGaP)][gapsolr] under /Study/Molecular Data Type, for instance `SNP Genotypes (Array)` or `Methylation (CpG)` |
-| SampleOrigin       | MANDATORY Describes from which tissue the genetic information was extracted | `blood`, `saliva`, `brain`, `csf`, `breast milk`, `bile`, `amniotic fluid`, `other biospecimen`                                                                                                                    |
+| SampleOrigin       | REQUIRED. Describes from which tissue the genetic information was extracted | `blood`, `saliva`, `brain`, `csf`, `breast milk`, `bile`, `amniotic fluid`, `other biospecimen`                                                                                                                    |
 | TissueOrigin       | OPTIONAL Describes the type of tissue analyzed for SampleOrigin `brain`     | `gray matter`, `white matter`, `csf`, `meninges`, `macrovascular` or `microvascular`                                                                                                                               |
 | BrainLocation      | OPTIONAL Refers to the location in space of the TissueOrigin                | `MNI coordinate` or a `label` taken from the [Allen Brain Atlas][allen] possibly `layer` to refer to layer-specific gene expression, which can also tie up with laminar fMRI                                       |
 | CellType           | OPTIONAL Describes the type of cell analyzed                                | Value should come from the [cell ontology][ontology]                                                                                                                                                               |
