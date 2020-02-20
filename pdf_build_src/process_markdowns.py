@@ -32,7 +32,7 @@ def copy_src():
     run_shell_cmd(mkdir_cmd)
 
     # copy contents of src directory
-    copy_cmd = "cp -a "+src_path+" "+target_path
+    copy_cmd = "cp -R "+src_path+" "+target_path
     run_shell_cmd(copy_cmd)
 
 
@@ -57,7 +57,7 @@ def copy_images(root_path):
 
     for each in subdir_list:
         if each != root_path:
-            run_shell_cmd("cp -a "+each+"/images/"+" "+root_path+"/images/")
+            run_shell_cmd("cp -R "+each+"/images/"+" "+root_path+"/images/")
 
 
 def extract_header_string():
