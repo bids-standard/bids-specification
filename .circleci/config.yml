@@ -29,6 +29,16 @@ jobs:
           root: .
           paths: site
 
+  build_docs_pdf:
+    docker:
+      - image: danteev/texlive
+    steps:
+      - checkout
+      - run: 
+        command: |
+         cd pdf_build_src
+         sh build_pdf.sh
+
   linkchecker:
     docker:
       - image: yarikoptic/linkchecker:9.4.0.anchorfix1-1
