@@ -1,6 +1,6 @@
 version: 2
 jobs:
-      build_docs:
+  build_docs:
     docker:
       - image: circleci/python:3.6.6
     steps:
@@ -69,7 +69,7 @@ jobs:
            working_directory: ~/build
            command: |
              if (git log -1 --pretty=%s | grep Merge*) && (! git log -1 --pretty=%b | grep REL:) ; then
-             github_changelog_generator --user bids-standard --project bids-specification --token ${CHANGE_TOKEN} --output ~/build/CHANGES.md --base ~/build/src/pregh-changes.md --header-label Changelog --no-issues --no-issues-wo-labels --no-filter-by-milestone --no-compare-link --pr-label ""
+             github_changelog_generator --user bids-standard --project bids-specification --token ${CHANGE_TOKEN} --output ~/build/CHANGES.md --base ~/build/src/pregh-changes.md --header-label "# Changelog" --no-issues --no-issues-wo-labels --no-filter-by-milestone --no-compare-link --pr-label ""
              cat ~/build/CHANGES.md
              mv ~/build/CHANGES.md ~/build/src/CHANGES.md
              else
@@ -156,7 +156,6 @@ workflows:
   search_build:
     jobs:
       - build_docs
-      - build_docs_pdf
       - linkchecker:
           requires:
             - build_docs
