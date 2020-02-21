@@ -57,7 +57,8 @@ def copy_images(root_path):
 
     for each in subdir_list:
         if each != root_path:
-            run_shell_cmd("cp "+each+"/images/*"+" "+root_path+"/images/")
+            run_shell_cmd("cp -R "+each+"/images"+" "+root_path+"/images/")
+    run_shell_cmd("mv " + root_path +"/images/images/* " + root_path+"/images/.")
 
 
 def extract_header_string():
@@ -103,7 +104,7 @@ def add_header():
 def remove_internal_links(root_path, link_type):
     """Find and replace all cross and same markdown internal links.
 
-    The links will be replaced with plain text associated with the link.
+    The links will be replaced with plain text associated with it.
     """
     if link_type == 'cross':
         # regex that matches cross markdown links within a file
