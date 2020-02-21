@@ -41,6 +41,8 @@ jobs:
           command: sh build_pdf.sh
       - store_artifacts:
           path: bids-spec.pdf
+      - run:
+          command: rm bids-spec.pdf
 
   linkchecker:
     docker:
