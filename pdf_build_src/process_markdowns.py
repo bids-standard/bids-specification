@@ -57,7 +57,7 @@ def copy_images(root_path):
 
     for each in subdir_list:
         if each != root_path:
-            run_shell_cmd("cp -R "+each+"/images/"+" "+root_path+"/images/")
+            run_shell_cmd("cp -R "+each+"/images/*"+" "+root_path+"/images/")
 
 
 def extract_header_string():
@@ -138,12 +138,12 @@ def modify_changelog():
     This modification makes sure that in the pdf build, changelog is a new
     chapter.
     """
-    with open('src_copy/CHANGES.md', 'r') as file:
+    with open('src_copy/src/CHANGES.md', 'r') as file:
         data = file.readlines()
 
     data[0] = "# Changelog"
 
-    with open('src_copy/CHANGES.md', 'w') as file:
+    with open('src_copy/src/CHANGES.md', 'w') as file:
         file.writelines(data)
 
 
