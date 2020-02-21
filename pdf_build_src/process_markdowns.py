@@ -51,7 +51,8 @@ def copy_images(root_path):
     subdir_list = []
 
     # walk through the src directory to find subdirectories named 'images'
-    # and copy contents to the 'images' directory in the duplicate src directory
+    # and copy contents to the 'images' directory in the duplicate src 
+    # directory
     for root, dirs, files in os.walk(root_path):
         if 'images' in dirs:
             subdir_list.append(root)
@@ -59,7 +60,6 @@ def copy_images(root_path):
     for each in subdir_list:
         if each != root_path:
             run_shell_cmd("cp -R "+each+"/images"+" "+root_path+"/images/")
-    run_shell_cmd("mv " + root_path +"/images/images/* " + root_path+"/images/.")
 
 
 def extract_header_string():
@@ -70,34 +70,11 @@ def extract_header_string():
     with open(os.path.join(os.path.dirname(__file__), 'src_copy/mkdocs.yml'), 'r') as file:
         data = file.readlines()
 
-    print(data[0])
     header_string = data[0].split(": ")[1]
+    
     title = " ".join(header_string.split()[0:4])
     version_number = header_string.split()[-1]
     build_date = datetime.today().strftime('%Y-%m-%d')
-    header = " ".join([title, version_number, build_date])
-    print(title)
-    print(version_number)
-    print(build_date)
-    print(header)
-
-    # print(data[0])
-    # header_string = data[0].split(":")[1]
-    # print(header_string)
-
-    # for i, line in enumerate()):
-
-    #     match_list = re.findall(r'^##\s\[v.+\]', line)
-
-    #     if len(match_list) > 0:
-    #         wordlist = line.split()
-    #         released_versions.append([match_list[0].split()[1], wordlist[2]])
-
-    # version_number = released_versions[0][0].strip('[]')
-    # version_date = released_versions[0][1].strip('()')
-    
-    # # debug statement 4
-    # print(version_number, version_date)
 
     return title, version_number, build_date
 
@@ -106,7 +83,6 @@ def add_header():
     """Add the header string extracted from changelog to header.tex file."""
     title, version_number, build_date = extract_header_string()
     header = " ".join([title, version_number, build_date])
-
 
     # creating a header string with latest version number and date
     header_string = ("\chead{ " + header + " }")
@@ -195,34 +171,25 @@ if __name__ == '__main__':
 
     # Step 1: make a copy of the src directory in the current directory
     copy_src()
-    
-    # debug statement 1
-    subprocess.call(["ls", "-a"], shell=True) # src_copy directory successfully created
-    
-    # debug statement 2
-    # verify contents of the duplicated src directory 
-    subprocess.call("ls -a ./src_copy/src", shell=True)
 
     # Step 2: copy BIDS_logo to images directory of the src_copy directory
     copy_bids_logo()
 
     # Step 3: copy images from subdirectories of src_copy directory
     copy_images(duplicated_src_dir_path)
-    subprocess.call("mv src_copy/src/images/images/* src_copy/src/images/", shell=True)
-    
-    # debug statement 3
-    # verify if the images from sub dirs of src have been copied 
-    subprocess.call("ls -a ./src_copy/src/images", shell=True)
+    subprocess.call("mv src_copy/src/images/images/* src_copy/src/images/", 
+                    shell=True)
 
-    # Step 4: extract the latest version number and date
+    # Step 4: extract the latest version number, date and title
     extract_header_string()
-    subprocess.call("ls -a ./src_copy/", shell=True)
     add_header()
 
     edit_titlepage()
 
+    # Step 5: modify changelog to be a level 1 heading to facilitate section 
+    # separation
     modify_changelog()
 
-    # Step 5: remove all internal links
+    # Step 6: remove all internal links
     remove_internal_links(duplicated_src_dir_path, 'cross')
     remove_internal_links(duplicated_src_dir_path, 'same')

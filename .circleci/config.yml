@@ -42,6 +42,7 @@ jobs:
       - store_artifacts:
           path: bids-spec.pdf
       - run:
+          name: remove pdf version from repo
           command: rm bids-spec.pdf
 
   linkchecker:
