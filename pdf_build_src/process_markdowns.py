@@ -64,7 +64,7 @@ def extract_header_string():
     """Extract the latest release's version number and date from CHANGES.md."""
     released_versions = []
 
-    for i, line in enumerate(open(os.path.join(os.path.dirname(__file__), 'src_copy/CHANGES.md'))):
+    for i, line in enumerate(open(os.path.join(os.path.dirname(__file__), 'src_copy/src/CHANGES.md'))):
 
         match_list = re.findall(r'^##\s\[v.+\]', line)
 
@@ -167,7 +167,7 @@ def edit_titlepage():
 
 if __name__ == '__main__':
 
-    duplicated_src_dir_path = 'src_copy'
+    duplicated_src_dir_path = 'src_copy/src'
 
     # Step 1: make a copy of the src directory in the current directory
     copy_src()
