@@ -57,7 +57,7 @@ def copy_images(root_path):
 
     for each in subdir_list:
         if each != root_path:
-            run_shell_cmd("cp -R "+each+"/images/*"+" "+root_path+"/images/")
+            run_shell_cmd("cp "+each+"/images/*"+" "+root_path+"/images/")
 
 
 def extract_header_string():
