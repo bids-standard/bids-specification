@@ -38,7 +38,7 @@ def copy_src():
 
 def copy_bids_logo():
     """Copy BIDS_logo.jpg from the BIDS_logo dir in the root of the repo."""
-    run_shell_cmd("cp ../BIDS_logo/BIDS_logo.jpg src_copy/images/")
+    run_shell_cmd("cp ../BIDS_logo/BIDS_logo.jpg src_copy/src/images/")
 
 
 def copy_images(root_path):
@@ -74,6 +74,8 @@ def extract_header_string():
 
     version_number = released_versions[0][0].strip('[]')
     version_date = released_versions[0][1].strip('()')
+    
+    # debug statement 4
     print(version_number, version_date)
 
     return version_number, version_date
@@ -171,19 +173,26 @@ if __name__ == '__main__':
 
     # Step 1: make a copy of the src directory in the current directory
     copy_src()
-    subprocess.call(["ls", "-a"], shell=True)
+    
+    # debug statement 1
+    subprocess.call(["ls", "-a"], shell=True) # src_copy directory successfully created
+    
+    # debug statement 2
+    # verify contents of the duplicated src directory 
+    subprocess.call("ls -a ./src_copy/src", shell=True)
 
     # Step 2: copy BIDS_logo to images directory of the src_copy directory
     copy_bids_logo()
-    # subprocess.call(["ls", "-a"], shell=True)
 
     # Step 3: copy images from subdirectories of src_copy directory
     copy_images(duplicated_src_dir_path)
-    subprocess.call("ls -a ./src_copy", shell=True)
+    
+    # debug statement 3
+    # verify if the images from sub dirs of src have been copied 
+    subprocess.call("ls -a ./src_copy/src/images", shell=True)
 
     # Step 4: extract the latest version number and date
     extract_header_string()
-    # subprocess.call(["ls", "-a"], shell=True)
     add_header()
 
     edit_titlepage()
