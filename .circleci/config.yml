@@ -35,9 +35,19 @@ jobs:
     steps:
       - checkout
       - run: 
+<<<<<<< HEAD
         command: |
          cd pdf_build_src
          sh build_pdf.sh
+=======
+          name: generate pdf version docs 
+          command: sh build_pdf.sh
+      - store_artifacts:
+          path: bids-spec.pdf
+      - run:
+          name: remove pdf version from repo
+          command: rm bids-spec.pdf
+>>>>>>> 29ca8ef... cleaned up code and final checks with circleci
 
   linkchecker:
     docker:
