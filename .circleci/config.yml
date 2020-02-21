@@ -40,7 +40,7 @@ jobs:
           name: generate pdf version docs 
           command: sh build_pdf.sh
       - store_artifacts:
-          path: rendered_pdf
+          path: bids-spec.pdf
 
   linkchecker:
     docker:
