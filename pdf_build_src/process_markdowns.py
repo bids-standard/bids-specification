@@ -10,6 +10,7 @@ well.
 import os
 import subprocess
 import re
+from datetime import datetime
 
 
 def run_shell_cmd(command):
@@ -64,31 +65,51 @@ def copy_images(root_path):
 def extract_header_string():
     """Extract the latest release's version number and date from CHANGES.md."""
     released_versions = []
+    run_shell_cmd("cp ../mkdocs.yml src_copy/")
 
-    for i, line in enumerate(open(os.path.join(os.path.dirname(__file__), 'src_copy/src/CHANGES.md'))):
+    with open(os.path.join(os.path.dirname(__file__), 'src_copy/mkdocs.yml'), 'r') as file:
+        data = file.readlines()
 
-        match_list = re.findall(r'^##\s\[v.+\]', line)
+    print(data[0])
+    header_string = data[0].split(": ")[1]
+    title = " ".join(header_string.split()[0:4])
+    version_number = header_string.split()[-1]
+    build_date = datetime.today().strftime('%Y-%m-%d')
+    header = " ".join([title, version_number, build_date])
+    print(title)
+    print(version_number)
+    print(build_date)
+    print(header)
 
-        if len(match_list) > 0:
-            wordlist = line.split()
-            released_versions.append([match_list[0].split()[1], wordlist[2]])
+    # print(data[0])
+    # header_string = data[0].split(":")[1]
+    # print(header_string)
 
-    version_number = released_versions[0][0].strip('[]')
-    version_date = released_versions[0][1].strip('()')
+    # for i, line in enumerate()):
+
+    #     match_list = re.findall(r'^##\s\[v.+\]', line)
+
+    #     if len(match_list) > 0:
+    #         wordlist = line.split()
+    #         released_versions.append([match_list[0].split()[1], wordlist[2]])
+
+    # version_number = released_versions[0][0].strip('[]')
+    # version_date = released_versions[0][1].strip('()')
     
-    # debug statement 4
-    print(version_number, version_date)
+    # # debug statement 4
+    # print(version_number, version_date)
 
-    return version_number, version_date
+    return title, version_number, build_date
 
 
 def add_header():
     """Add the header string extracted from changelog to header.tex file."""
-    version_number, version_date = extract_header_string()
+    title, version_number, build_date = extract_header_string()
+    header = " ".join([title, version_number, build_date])
+
 
     # creating a header string with latest version number and date
-    header_string = ("\chead{Brain Imaging Data Structure " +
-                     version_number + " " + version_date + "}")
+    header_string = ("\chead{ " + header + " }")
 
     with open('header.tex', 'r') as file:
         data = file.readlines()
@@ -150,7 +171,7 @@ def modify_changelog():
 
 def edit_titlepage():
     """Add title and version number of the specification to the titlepage."""
-    version_number, version_date = extract_header_string()
+    title, version_number, build_date = extract_header_string()
 
     with open('cover.tex', 'r') as file:
         data = file.readlines()
@@ -158,7 +179,7 @@ def edit_titlepage():
     data[-1] = ("\\textsc{\large "+version_number+"}" +
                 "\\\\[0.5cm]" +
                 "{\large " +
-                version_date +
+                build_date +
                 "}" +
                 "\\\\[2cm]" +
                 "\\vfill" +
@@ -195,6 +216,7 @@ if __name__ == '__main__':
 
     # Step 4: extract the latest version number and date
     extract_header_string()
+    subprocess.call("ls -a ./src_copy/", shell=True)
     add_header()
 
     edit_titlepage()
