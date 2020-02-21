@@ -187,6 +187,7 @@ if __name__ == '__main__':
 
     # Step 3: copy images from subdirectories of src_copy directory
     copy_images(duplicated_src_dir_path)
+    subprocess.call("mv src_copy/src/images/images/* src_copy/src/images/", shell=True)
     
     # debug statement 3
     # verify if the images from sub dirs of src have been copied 
