@@ -112,7 +112,7 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>]_<modality_label>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_part-<mag|phase>][_run-<index>]_<modality_label>.nii[.gz]
         sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
 ```
 
@@ -171,6 +171,16 @@ JSON file, with the same label.
 Similarly the OPTIONAL `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
 
+#### The `part` entity
+
+Complex-valued data MUST be split into one file for each data type.
+Each file shares the same name with the exception of the `part-<mag|phase>`
+key/value.
+
+In cases where both magnitude and phase data are not reconstructed, the
+`part-<mag|phase>` key/value is OPTIONAL.
+If the key/value is not provided, data are assumed to be magnitude.
+
 If the structural images included in the dataset were defaced (to protect
 identity of participants) one CAN provide the binary mask that was used to
 remove facial features in the form of `_defacemask` files. In such cases the
@@ -202,8 +212,10 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     func/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_<contrast_label>.nii[.gz]
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_bold.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_phase.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<mag|phase>]_cbv.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<mag|phase>]_sbref.nii[.gz]
 ```
 
 Imaging data acquired during functional imaging (i.e. imaging which supports
@@ -264,6 +276,25 @@ sub-01/
 Please note that the `<index>` denotes the number/index (in a form of an
 integer) of the echo not the echo time value which needs to be stored in the
 field EchoTime of the separate JSON file.
+
+Complex-valued data MUST be split into one file for each data type.
+For BOLD data, there are separate suffices for magnitude (`_bold`) and phase
+(`_phase`) data.
+For other contrasts (e.g., `_sbref` or `_cbv`), each file shares the same
+name with the exception of the `part-<mag|phase>` key/value. For example:
+
+```Text
+sub-01/
+   func/
+      sub-01_task-cuedSGT_bold.nii.gz
+      sub-01_task-cuedSGT_bold.json
+      sub-01_task-cuedSGT_phase.nii.gz
+      sub-01_task-cuedSGT_phase.json
+      sub-01_task-cuedSGT_part-mag_sbref.nii.gz
+      sub-01_task-cuedSGT_part-mag_sbref.nii.gz
+      sub-01_task-cuedSGT_part-phase_sbref.nii.gz
+      sub-01_task-cuedSGT_part-phase_sbref.nii.gz
+```
 
 Some meta information about the acquisition MUST be provided in an additional
 JSON file.
