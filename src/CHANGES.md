@@ -1,7 +1,19 @@
-Changelog
+# Changelog
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] add # before heading in CHANGES [#419](https://github.com/bids-standard/bids-specification/pull/419) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] fix heading of auto changelog to be a markdown header [#417](https://github.com/bids-standard/bids-specification/pull/417) ([sappelhoff](https://github.com/sappelhoff))
+-   REL: 1.3.0-dev [#413](https://github.com/bids-standard/bids-specification/pull/413) ([franklin-feingold](https://github.com/franklin-feingold))
+-   ENH: Add OPTIONAL EthicsApprovals field to dataset description [#412](https://github.com/bids-standard/bids-specification/pull/412) ([effigies](https://github.com/effigies))
+
+## [v1.2.2](https://github.com/bids-standard/bids-specification/tree/v1.2.2) (2020-02-12)
+
+-   \[MISC] update contributions by CPernet [#409](https://github.com/bids-standard/bids-specification/pull/409) ([CPernet](https://github.com/CPernet))
+-   Units2ascii [#408](https://github.com/bids-standard/bids-specification/pull/408) ([satra](https://github.com/satra))
+-   REL: v1.2.2 [#405](https://github.com/bids-standard/bids-specification/pull/405) ([franklin-feingold](https://github.com/franklin-feingold))
+-   BEP 18 suggestions [#398](https://github.com/bids-standard/bids-specification/pull/398) ([effigies](https://github.com/effigies))
+-   \[MISC] Add Sébastien Tourbier to contributors [#394](https://github.com/bids-standard/bids-specification/pull/394) ([sebastientourbier](https://github.com/sebastientourbier))
 -   \[MISC] moved list of extension proposals to the main BIDS website [#389](https://github.com/bids-standard/bids-specification/pull/389) ([robertoostenveld](https://github.com/robertoostenveld))
 -   \[FIX] Typos and clarifications [#386](https://github.com/bids-standard/bids-specification/pull/386) ([apjanke](https://github.com/apjanke))
 -   ENH: Add watermark to drafts [#383](https://github.com/bids-standard/bids-specification/pull/383) ([effigies](https://github.com/effigies))
