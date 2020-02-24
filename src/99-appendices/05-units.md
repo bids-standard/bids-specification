@@ -1,8 +1,8 @@
 # Appendix V: Units
 
-Following the International System of Units (SI, abbreviated from the French
-Système international (d'unités)).
-
+The specification of units MUST follow the
+[International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
+(SI, abbreviated from the French Système international (d'unités)).
 The [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention
 for encoding units is RECOMMENDED to achieve maximum portability and limited
 variability of representation.
