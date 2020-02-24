@@ -199,16 +199,16 @@ below, that contains common tissue classes and can be used to map segmentations
 | Integer value | Description             | Abbreviation (label) |
 | ------------- | ----------------------- | -------------------- |
 | 0             | Background              | BG                   |
-| 1             | Grey Matter             | GM                   |
+| 1             | Gray Matter             | GM                   |
 | 2             | White Matter            | WM                   |
 | 3             | Cerebrospinal Fluid     | CSF                  |
-| 4             | Grey and White Matter   | GWM                  |
+| 4             | Gray and White Matter   | GWM                  |
 | 5             | Bone                    | B                    |
 | 6             | Soft Tissue             | ST                   |
 | 7             | Non-brain               | NB                   |
 | 8             | Lesion                  | L                    |
-| 9             | Cortical Grey Matter    | CGM                  |
-| 10            | Subcortical Grey Matter | SCGM                 |
+| 9             | Cortical Gray Matter    | CGM                  |
+| 10            | Subcortical Gray Matter | SCGM                 |
 | 11            | Brainstem               | BS                   |
 | 12            | Cerebellum              | CBM                  |
 
@@ -253,7 +253,7 @@ An example, custom dseg.tsv that defines three labels:
 
 ```Text
 index   name            abbr	color       mapping
-100     "Grey Matter"	GM      #ff53bb	    1
+100     "Gray Matter"	GM      #ff53bb	    1
 101     "White Matter"	WM      #2f8bbe	    2
 102     "Brainstem"     BS      #36de72	    11
 ```
