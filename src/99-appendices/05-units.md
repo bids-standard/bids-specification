@@ -1,12 +1,22 @@
 # Appendix V: Units
 
 Following the International System of Units (SI, abbreviated from the French
-Système international (d'unités)). The ASCII representation is taken from
-[here](http://people.csail.mit.edu/jaffer/MIXF/CMIXF-12), where additional units
-may be found. The primary reason for choosing an ASCII representation, is that
-certain characters can have multiple unicode representations that look very
-similar. The BIDS specification will allow only the following unicode symbols for
-backwards compatibility: U+00B5 (µ) and U+00B0 (°) and U+2126 (Ω).
+Système international (d'unités)).
+
+The [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention
+for encoding units is RECOMMENDED to achieve maximum portability and limited
+variability of representation.
+Earlier versions of the BIDS standard listed the following Unicode symbols, and
+these are still included for backwards compatibility:
+
+1. `U+00B5` (µ)
+
+1. `U+00B0` (°)
+
+1. `U+2126` (Ω).
+
+It is REQUIRED that units be CMIXF-12 compliant or among these three Unicode
+characters.
 
 | Unit name      | Unit symbol       | Quantity name                              |
 | -------------- | ----------------- | ------------------------------------------ |
