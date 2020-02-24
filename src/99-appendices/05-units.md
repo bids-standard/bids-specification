@@ -9,11 +9,9 @@ variability of representation.
 Earlier versions of the BIDS standard listed the following Unicode symbols, and
 these are still included for backwards compatibility:
 
-1. `U+00B5` (µ)
-
-1. `U+00B0` (°)
-
-1. `U+2126` (Ω).
+1.  `U+00B5` (µ)
+1.  `U+00B0` (°)
+1.  `U+2126` (Ω).
 
 It is REQUIRED that units be CMIXF-12 compliant or among these three Unicode
 characters.
