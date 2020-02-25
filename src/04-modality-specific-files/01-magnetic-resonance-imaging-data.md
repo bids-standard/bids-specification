@@ -112,7 +112,7 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>]_<modality_label>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_ch-<index>]_<modality_label>.nii[.gz]
         sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
 ```
 
@@ -171,6 +171,14 @@ JSON file, with the same label.
 Similarly the OPTIONAL `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
 
+#### The `ch` entity
+
+The OPTIONAL `ch-<index>` key/value can be used to distinguish channel-specific
+data from sequences not employing coil combination.
+The key `CoilString` MAY also be added in the JSON file, with a corresponding
+identifier for the channel within the coil.
+If `ch-<index>` is not used, data are assumed to be combined across channels.
+
 If the structural images included in the dataset were defaced (to protect
 identity of participants) one CAN provide the binary mask that was used to
 remove facial features in the form of `_defacemask` files. In such cases the
@@ -202,8 +210,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     func/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_<contrast_label>.nii[.gz]
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_ch-<index>]_<contrast_label>.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_ch-<index>]_sbref.nii[.gz]
 ```
 
 Imaging data acquired during functional imaging (i.e. imaging which supports
@@ -246,6 +254,11 @@ can be used to distinguish different phase-encoding directions and
 reconstruction algorithms (for example ones using motion correction).
 See [`fmap` Case 4](01-magnetic-resonance-imaging-data.md#case-4-multiple-phase-encoded-directions-pepolar)
 for more information on `dir` field specification.
+
+Similarly the OPTIONAL `ch-<index>` key/value can be used to distinguish
+channel-specific data from sequences not employing coil combination.
+The key CoilString MAY also be added in the JSON file, with a corresponding
+channel identifier.
 
 Multi-echo data MUST be split into one file per echo. Each file shares the same
 name with the exception of the `_echo-<index>` key/value. For example:
