@@ -29,6 +29,22 @@ jobs:
           root: .
           paths: site
 
+  build_docs_pdf:
+    working_directory: ~/bids-specification/pdf_build_src
+    docker:
+      - image: danteev/texlive:TL2017
+    steps:
+      - checkout:
+          path: ~/bids-specification
+      - run: 
+          name: generate pdf version docs 
+          command: sh build_pdf.sh
+      - store_artifacts:
+          path: bids-spec.pdf
+      - run:
+          name: remove pdf version from repo
+          command: rm bids-spec.pdf
+
   linkchecker:
     docker:
       - image: yarikoptic/linkchecker:9.4.0.anchorfix1-1
@@ -57,7 +73,7 @@ jobs:
            working_directory: ~/build
            command: |
              if (git log -1 --pretty=%s | grep Merge*) && (! git log -1 --pretty=%b | grep REL:) ; then
-             github_changelog_generator --user bids-standard --project bids-specification --token ${CHANGE_TOKEN} --output ~/build/CHANGES.md --base ~/build/src/pregh-changes.md --header-label Changelog --no-issues --no-issues-wo-labels --no-filter-by-milestone --no-compare-link --pr-label ""
+             github_changelog_generator --user bids-standard --project bids-specification --token ${CHANGE_TOKEN} --output ~/build/CHANGES.md --base ~/build/src/pregh-changes.md --header-label "# Changelog" --no-issues --no-issues-wo-labels --no-filter-by-milestone --no-compare-link --pr-label ""
              cat ~/build/CHANGES.md
              mv ~/build/CHANGES.md ~/build/src/CHANGES.md
              else
@@ -144,6 +160,7 @@ workflows:
   search_build:
     jobs:
       - build_docs
+      - build_docs_pdf
       - linkchecker:
           requires:
             - build_docs
