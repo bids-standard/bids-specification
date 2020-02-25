@@ -136,6 +136,7 @@ your name is not listed, please add it.
 -   Nick F. Ramsey 📖
 -   Alex Rockhill 📖🔧
 -   Ariel Rokem 📖
+-   Taylor Salo 📖💬
 -   Matt Sanderson 📖💻
 -   Gunnar Schaefer 📖
 -   Jan-Mathijs Schoffelen 📖
