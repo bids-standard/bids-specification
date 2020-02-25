@@ -2,6 +2,8 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] use new bids-maintenance GitHub account to take over automatic work [#426](https://github.com/bids-standard/bids-specification/pull/426) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Unify section titles and table-of-contents entries [#422](https://github.com/bids-standard/bids-specification/pull/422) ([nicholst](https://github.com/nicholst))
 -   \[INFRA] add # before heading in CHANGES [#419](https://github.com/bids-standard/bids-specification/pull/419) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] fix heading of auto changelog to be a markdown header [#417](https://github.com/bids-standard/bids-specification/pull/417) ([sappelhoff](https://github.com/sappelhoff))
 -   REL: 1.3.0-dev [#413](https://github.com/bids-standard/bids-specification/pull/413) ([franklin-feingold](https://github.com/franklin-feingold))
@@ -9,6 +11,7 @@
 
 ## [v1.2.2](https://github.com/bids-standard/bids-specification/tree/v1.2.2) (2020-02-12)
 
+-   \[FIX] improve wording on data dictionaries [#410](https://github.com/bids-standard/bids-specification/pull/410) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] update contributions by CPernet [#409](https://github.com/bids-standard/bids-specification/pull/409) ([CPernet](https://github.com/CPernet))
 -   Units2ascii [#408](https://github.com/bids-standard/bids-specification/pull/408) ([satra](https://github.com/satra))
 -   REL: v1.2.2 [#405](https://github.com/bids-standard/bids-specification/pull/405) ([franklin-feingold](https://github.com/franklin-feingold))
