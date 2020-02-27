@@ -29,7 +29,8 @@ standard you will benefit in the following ways:
     and speed up the curation process by using BIDS to structure and describe
     your data right after acquisition.
 
--   There are [validation tools](https://github.com/Squishymedia/BIDS-Validator)
+-   There are validation tools such as the
+    [bids-validator](https://github.com/bids-standard/bids-validator)
     that can check your dataset integrity and let you easily spot missing
     values.
 
