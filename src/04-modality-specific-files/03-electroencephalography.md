@@ -1,6 +1,6 @@
-# Electroencephalography
+# Electroencephalography (EEG)
 
-Support for Electroencephalography (EEG) was developed as a [BIDS Extension Proposal](../06-extensions.md#bids-extension-proposals).
+Support for EEG was developed as a [BIDS Extension Proposal](../06-extensions.md#bids-extension-proposals).
 Please cite the following paper when referring to this part of the standard in
 context of the academic literature:
 

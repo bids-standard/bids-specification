@@ -34,7 +34,6 @@ your name is not listed, please add it.
 -   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️📢✅🔧🔌📝
 -   Tibor Auer 💬📖💡🔧📢
 -   Sylvain Baillet 📖🔍
--   Arshitha Basavaraj 📖
 -   Stephan Bickel 📖
 -   Elizabeth Bock 📖💡
 -   Kristofer Bouchard 📖

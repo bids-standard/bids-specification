@@ -1,4 +1,4 @@
-# Longitudinal and multi-site studies
+# Longitudinal studies with multiple sessions (visits)
 
 Multiple sessions (visits) are encoded by adding an extra layer of directories
 and file names in the form of `ses-<label>`. Session label can consist
