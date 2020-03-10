@@ -1,4 +1,4 @@
-# Modality-agnostic files
+# Modality agnostic files
 
 ## Dataset description
 
@@ -17,7 +17,8 @@ dataset MUST include this file with the following fields:
 | Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                               |
 | Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                 |
 | HowToAcknowledge   | OPTIONAL. Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset. |
-| Funding            | OPTIONAL. List of sources of funding (grant numbers)                                                                                                                                                                                 |
+| Funding            | OPTIONAL. List of sources of funding (grant numbers).                                                                                                                                                                                |
+| EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                  |                                                                                                                |
 | ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                       |
 | DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                               |
 
@@ -37,6 +38,9 @@ Example:
   "Funding": [
     "National Institute of Neuroscience Grant F378236MFH1",
     "National Institute of Neuroscience Grant 5RMZ0023106"
+  ],
+  "EthicsApprovals": [
+    "Army Human Research Protections Office (Protocol ARL-20098-10051, ARL 12-040, and ARL 12-041)"
   ],
   "ReferencesAndLinks": [
     "https://www.ncbi.nlm.nih.gov/pubmed/001012092119281",

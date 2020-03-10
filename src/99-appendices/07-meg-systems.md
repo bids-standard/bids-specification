@@ -1,6 +1,6 @@
-# Appendix VII: preferred names of MEG systems
+# Appendix VII: MEG systems
 
-Restricted keywords for Manufacturer field in the `*_meg.json` file:
+Perferred names of MEG systems comprise restricted keywords for Manufacturer field in the `*_meg.json` file:
 
 -   [`CTF`](06-meg-file-formats.md#ctf)
 -   [`Neuromag/Elekta/Megin`](06-meg-file-formats.md#neuromagelektamegin)

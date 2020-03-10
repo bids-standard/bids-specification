@@ -59,20 +59,6 @@ jobs:
             # failures for local file:/// -- yoh found no better way,
             linkchecker -t 1 --check-extern --ignore-url 'file:///.*' --ignore-url https://fonts.gstatic.com ~/build/site/*html ~/build/site/*/*.html
 
-  linkchecker:
-    docker:
-      - image: yarikoptic/linkchecker:9.4.0.anchorfix1-1
-    steps:
-      - attach_workspace:
-          at: ~/build
-      - run:
-          command: |
-            chmod a+rX -R ~
-            linkchecker -t 1 ~/build/site/
-            # check external separately by pointing to all *html so no
-            # failures for local file:/// -- yoh found no better way,
-            linkchecker -t 1 --check-extern --ignore-url 'file:///.*' --ignore-url https://fonts.gstatic.com ~/build/site/*html ~/build/site/*/*.html
-
 # Auto changelog collector
   github-changelog-generator:
     working_directory: ~/build

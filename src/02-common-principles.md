@@ -289,13 +289,16 @@ onset duration  response_time correct stop_trial  go_trial
 200 200 0 n/a n/a n/a
 ```
 
-Tabular files MAY be optionally accompanied by a simple data dictionary in a
-JSON format (see below). The data dictionaries MUST have the same name as their
-corresponding tabular files but with `.json` extensions. If a JSON file
+Tabular files MAY be optionally accompanied by a simple data dictionary
+in the form of a [JSON object](https://www.w3schools.com/js/js_json_objects.asp)
+within a JSON file.
+The JSON files containing the data dictionaries MUST have the same name as
+their corresponding tabular files but with `.json` extensions.
+If a data dictionary
 is provided, it MAY contain one or more fields describing the columns found in
 the TSV file (in addition to any other metadata one wishes to include that
-describe the file as a whole). Note that if a field name included in the JSON
-sidecar matches a column name in the TSV file, then that field MUST contain a
+describe the file as a whole). Note that if a field name included in the data
+dictionary matches a column name in the TSV file, then that field MUST contain a
 description of the corresponding column, using an object containing the following
 fields:
 
