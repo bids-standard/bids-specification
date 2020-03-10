@@ -35,7 +35,7 @@ $ git fetch upstream
 $ git checkout -b rel/1.2.0 upstream/master
 ```
 
-### 2. Update the version and the contributors list
+### 2. Update the version, contributors list, linking of previous versions, and the Changelog
 
 Change the "Unreleased" heading in
 [src/CHANGES.md](https://github.com/bids-standard/bids-specification/blob/master/src/CHANGES.md)
@@ -64,6 +64,21 @@ with the [Contributors wiki page](https://github.com/bids-standard/bids-specific
 to ensure all contributors are duly credited.
 Be sure not to remove credits if both have been edited.
 
+Please change the previous version links from GitHub to ReadTheDocs. 
+In the figure below, we update v1.2.2.
+![github-to-rtd](release_images/GitHub_to_RTD_spec_rendering.png "github-to-rtd")
+
+Remove `REL:` entries in [src/CHANGES.md](https://github.com/bids-standard/bids-specification/blob/master/src/CHANGES.md).
+
+```Diff
+- REL: v1.2.2 #405 (franklin-feingold)
+```
+
+Review `src/CHANGES.md` to ensure that the document produces a changelog that is useful to a
+reader of the specification.
+For example, several small PRs fixing typos might be merged into a single line-item, or less
+important changes might be moved down the list to ensure that large changes are more prominent.
+
 ### 3. Commit changes and push to upstream
 
 By pushing `rel/` branches to the main repository, the chances of continuous integration
@@ -84,7 +99,7 @@ Minor revisions may be made using GitHub's [suggestion
 feature](https://help.github.com/en/articles/incorporating-feedback-in-your-pull-request).
 For larger changes, pull requests should be made against `master`.
 
-**Merging other pull requests during this period requires agreement in this discussion.**
+**Merging other pull requests during this period requires agreement among BIDS Maintainers.**
 
 There are no hard-and-fast rules for what other pull requests might be merged, but the focus
 should generally be on achieving a self-consistent, backwards-compatible document.
@@ -95,22 +110,16 @@ probably wait.
 If `master` is updated, it should be merged into the `rel/<verison>` branch:
 
 ```Shell
-$ get fetch upstream
+$ git fetch upstream
 $ git checkout rel/1.2.0
 $ git merge upstream/master
 $ git push rel/1.2.0
 ```
 
-### 5. Clean the changelog
+### 5. Set release date and merge
 
-Review `src/CHANGES.md` to ensure that the document produces a changelog that is useful to a
-reader of the specification.
-For example, several small PRs fixing typos might be merged into a single line-item, or less
-important changes might be moved down the list to ensure that large changes are more prominent.
-
-### 6. Set release date and merge
-
-On the day of release, the current date should be added to/updated in the changelog in the form
+On the day of release, please ensure the release branch aligns with the master branch. 
+The current date should be added to/updated in the changelog in the form
 YYYY-MM-DD.
 The date should be placed after the link to the versioned URL.
 For example:
@@ -122,7 +131,7 @@ For example:
 
 Verify that the pull request title matches "REL: vX.Y.Z" and merge the pull request.
 
-### 7. Tag the release
+### 6. Tag the release
 
 GitHub's release mechanism does not have all of the features we need, so manually tag the release
 in your local repository.
@@ -146,7 +155,7 @@ There are four components to the tag command:
 4. `upstream/master` instructs `git` to tag the most recent commit on the `master` branch of the
    `upstream` remote.
 
-### 8. Create a GitHub release
+### 7. Create a GitHub release
 
 Some GitHub processes may only trigger on a GitHub release, rather than a tag push.
 To make a GitHub release, go to the [Releases
@@ -168,7 +177,7 @@ Verify ReadTheDocs builds complete and publish. If needed, manually
 trigger [builds](https://readthedocs.org/projects/bids-specification/builds/)
 for `stable` and the most recent tag.
 
-### 9. Edit the mkdocs.yml file site_name to set a new development version
+### 8. Edit the mkdocs.yml file site_name to set a new development version
 
 Please submit a PR with the title `REL: <version>-dev`.
 This should be the first merged PR in the new version.
@@ -180,3 +189,11 @@ Note that the development version number should be larger than the last release,
 version of the next *intended* release, followed by `-dev`.
 For example, after the 1.3.0 release, either `1.3.1-dev` or `1.4.0-dev` would be reasonable, based
 on the expected next version.
+
+### 9. Sharing news of the release
+
+Please share news of the release on the [identified platforms](https://docs.google.com/spreadsheets/d/16SAGK3zG93WM2EWuoZDcRIC7ygPc5b7PDNGpFyC3obA/edit#gid=0).
+Please use our previous release posts as a guide.
+
+
+
