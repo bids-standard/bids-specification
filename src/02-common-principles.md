@@ -298,9 +298,9 @@ If a data dictionary
 is provided, it MAY contain one or more fields describing the columns found in
 the TSV file (in addition to any other metadata one wishes to include that
 describe the file as a whole). Note that if a field name included in the data
-dictionary matches a column name in the TSV file, then that field MUST contain
-a description of the corresponding column, using an object containing the
-following fields:
+dictionary matches a column name in the TSV file, then that field MUST contain a
+description of the corresponding column, using an object containing the following
+fields:
 
 | Field name  | Definition                                                                                                             |
 | :---------- | :--------------------------------------------------------------------------------------------------------------------- |
