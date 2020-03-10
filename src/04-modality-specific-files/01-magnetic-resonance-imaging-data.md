@@ -1,4 +1,4 @@
-# Magnetic Resonance Imaging data
+# Magnetic Resonance Imaging
 
 ## Common metadata fields
 

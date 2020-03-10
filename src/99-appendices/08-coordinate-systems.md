@@ -1,4 +1,4 @@
-# Appendix VIII: Preferred Names of Coordinate Systems
+# Appendix VIII: Coordinate systems
 
 To interpret a coordinate (x, y, z), it is required that you know relative to
 which origin the coordinates are expressed, you have to know the interpretation
