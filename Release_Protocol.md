@@ -35,7 +35,7 @@ $ git fetch upstream
 $ git checkout -b rel/1.2.0 upstream/master
 ```
 
-### 2. Update the version, contributors list, linking of previous versions, and the Changelog
+### 2. Update the version, contributors list, previous version URLs, and the Changelog
 
 Change the "Unreleased" heading in
 [src/CHANGES.md](https://github.com/bids-standard/bids-specification/blob/master/src/CHANGES.md)
