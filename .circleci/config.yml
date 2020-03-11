@@ -50,8 +50,8 @@ jobs:
     steps:
       - checkout:
           path: ~/bids-specification
-      - run: 
-          name: generate pdf version docs 
+      - run:
+          name: generate pdf version docs
           command: sh build_pdf.sh
       - store_artifacts:
           path: bids-spec.pdf
@@ -160,7 +160,6 @@ workflows:
   search_build:
     jobs:
       - build_docs
-      - build_docs_pdf
       - linkchecker:
           requires:
             - build_docs
@@ -180,3 +179,4 @@ workflows:
           filters:
                branches:
                    only: master
+      - build_docs_pdf
