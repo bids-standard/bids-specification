@@ -1,4 +1,4 @@
-# intracranial Electroencephalography 
+# Intracranial Electroencephalography
 
 Support for Intracranial Electroencephalography (iEEG) was developed as a [BIDS Extension Proposal](../06-extensions.md#bids-extension-proposals).
 Please cite the following paper when referring to this part of the standard in
