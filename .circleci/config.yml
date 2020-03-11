@@ -43,6 +43,22 @@ jobs:
             # failures for local file:/// -- yoh found no better way,
             linkchecker -t 1 --check-extern --ignore-url 'file:///.*' --ignore-url https://fonts.gstatic.com ~/build/site/*html ~/build/site/*/*.html
 
+  build_docs_pdf:
+    working_directory: ~/bids-specification/pdf_build_src
+    docker:
+      - image: danteev/texlive:TL2017
+    steps:
+      - checkout:
+          path: ~/bids-specification
+      - run: 
+          name: generate pdf version docs 
+          command: sh build_pdf.sh
+      - store_artifacts:
+          path: bids-spec.pdf
+      - run:
+          name: remove pdf version from repo
+          command: rm bids-spec.pdf
+
 # Auto changelog collector
   github-changelog-generator:
     working_directory: ~/build
@@ -144,6 +160,7 @@ workflows:
   search_build:
     jobs:
       - build_docs
+      - build_docs_pdf
       - linkchecker:
           requires:
             - build_docs
