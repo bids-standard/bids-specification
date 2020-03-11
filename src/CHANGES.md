@@ -2,6 +2,8 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] add support for building PDF versions of the spec [#431](https://github.com/bids-standard/bids-specification/pull/431) ([Arshitha](https://github.com/Arshitha))
+-   \[ENH] Explicitly mention bids-validator and update link [#428](https://github.com/bids-standard/bids-specification/pull/428) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] use new bids-maintenance GitHub account to take over automatic work [#426](https://github.com/bids-standard/bids-specification/pull/426) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Unify section titles and table-of-contents entries [#422](https://github.com/bids-standard/bids-specification/pull/422) ([nicholst](https://github.com/nicholst))
 -   \[INFRA] add # before heading in CHANGES [#419](https://github.com/bids-standard/bids-specification/pull/419) ([sappelhoff](https://github.com/sappelhoff))
@@ -15,6 +17,7 @@
 -   \[MISC] update contributions by CPernet [#409](https://github.com/bids-standard/bids-specification/pull/409) ([CPernet](https://github.com/CPernet))
 -   Units2ascii [#408](https://github.com/bids-standard/bids-specification/pull/408) ([satra](https://github.com/satra))
 -   REL: v1.2.2 [#405](https://github.com/bids-standard/bids-specification/pull/405) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[FIX] Fix typos and formatting [#404](https://github.com/bids-standard/bids-specification/pull/404) ([alexandreroutier](https://github.com/alexandreroutier))
 -   BEP 18 suggestions [#398](https://github.com/bids-standard/bids-specification/pull/398) ([effigies](https://github.com/effigies))
 -   \[MISC] Add Sébastien Tourbier to contributors [#394](https://github.com/bids-standard/bids-specification/pull/394) ([sebastientourbier](https://github.com/sebastientourbier))
 -   \[MISC] moved list of extension proposals to the main BIDS website [#389](https://github.com/bids-standard/bids-specification/pull/389) ([robertoostenveld](https://github.com/robertoostenveld))
