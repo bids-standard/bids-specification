@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: BIDS NeuroStars forum
+    url: https://neurostars.org/
+    about: Ask (and answer) concrete technical questions or about implementation details around BIDS.
+  - name: BIDS mailing list
+    url: https://groups.google.com/forum/#!forum/bids-discussion
+    about: Use the BIDS mailing list for announcements, and to draw attention to any item related to BIDS
