@@ -10,7 +10,7 @@ assignees: ''
 
 - Have you checked our contributing guide? It's a helpful resource: https://github.com/bids-standard/bids-specification/blob/master/CONTRIBUTING.md
 
-- Is your idea backwards compatible? If not, please add it to this Google Doc instead of opening an issue: https://docs.google.com/document/d/1LEgsMiisGDe1Gv-hBp1EcLmoz7AlKj6VYULUgDD3Zdw/
+- Is your idea backwards compatible? If not, please add it to the BIDS 2.0 Google Doc instead of opening an issue: https://docs.google.com/document/d/1LEgsMiisGDe1Gv-hBp1EcLmoz7AlKj6VYULUgDD3Zdw/
 
 - Is there already a group working on your idea? Check the BIDS extension proposals: https://bids.neuroimaging.io/get_involved.html#extending-the-bids-specification
 
