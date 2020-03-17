@@ -2,6 +2,8 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] Add issue templates for GitHub [#434](https://github.com/bids-standard/bids-specification/pull/434) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] Update release protocol [#432](https://github.com/bids-standard/bids-specification/pull/432) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[INFRA] add support for building PDF versions of the spec [#431](https://github.com/bids-standard/bids-specification/pull/431) ([Arshitha](https://github.com/Arshitha))
 -   \[ENH] Explicitly mention bids-validator and update link [#428](https://github.com/bids-standard/bids-specification/pull/428) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] use new bids-maintenance GitHub account to take over automatic work [#426](https://github.com/bids-standard/bids-specification/pull/426) ([sappelhoff](https://github.com/sappelhoff))
@@ -20,6 +22,7 @@
 -   \[FIX] Fix typos and formatting [#404](https://github.com/bids-standard/bids-specification/pull/404) ([alexandreroutier](https://github.com/alexandreroutier))
 -   BEP 18 suggestions [#398](https://github.com/bids-standard/bids-specification/pull/398) ([effigies](https://github.com/effigies))
 -   \[MISC] Add Sébastien Tourbier to contributors [#394](https://github.com/bids-standard/bids-specification/pull/394) ([sebastientourbier](https://github.com/sebastientourbier))
+-   \[FIX] consistent units description between EEG/MEG/iEEG. Clarify (derived) SI units + prefixes [#391](https://github.com/bids-standard/bids-specification/pull/391) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] moved list of extension proposals to the main BIDS website [#389](https://github.com/bids-standard/bids-specification/pull/389) ([robertoostenveld](https://github.com/robertoostenveld))
 -   \[FIX] Typos and clarifications [#386](https://github.com/bids-standard/bids-specification/pull/386) ([apjanke](https://github.com/apjanke))
 -   ENH: Add watermark to drafts [#383](https://github.com/bids-standard/bids-specification/pull/383) ([effigies](https://github.com/effigies))
