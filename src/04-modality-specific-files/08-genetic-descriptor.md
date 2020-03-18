@@ -51,7 +51,10 @@ the BIDS participant with a subject in the `Genetics.Dataset` referred to in the
 `dataset_description.json` file.
 
 Information about the presence/absence of specific genetic markers MAY be duplicated
-in the `participants.tsv` file by adding optional columns.
+in the `participants.tsv` file by adding optional columns (like `idh_mutation` in the
+example below).
+Note that optional columns MUST be further described in an accompanying
+`participants.json` file as described in the [tabular files section](https://bids-specification.rtfd.io/en/stable/02-common-principles.html#tabular-files).
 
 `participants.tsv` example:
 
