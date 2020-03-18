@@ -289,23 +289,26 @@ onset duration  response_time correct stop_trial  go_trial
 200 200 0 n/a n/a n/a
 ```
 
-Tabular files MAY be optionally accompanied by a simple data dictionary in a
-JSON format (see below). The data dictionaries MUST have the same name as their
-corresponding tabular files but with `.json` extensions. If a JSON file
+Tabular files MAY be optionally accompanied by a simple data dictionary
+in the form of a [JSON object](https://www.w3schools.com/js/js_json_objects.asp)
+within a JSON file.
+The JSON files containing the data dictionaries MUST have the same name as
+their corresponding tabular files but with `.json` extensions.
+If a data dictionary
 is provided, it MAY contain one or more fields describing the columns found in
 the TSV file (in addition to any other metadata one wishes to include that
-describe the file as a whole). Note that if a field name included in the JSON
-sidecar matches a column name in the TSV file, then that field MUST contain a
+describe the file as a whole). Note that if a field name included in the data
+dictionary matches a column name in the TSV file, then that field MUST contain a
 description of the corresponding column, using an object containing the following
 fields:
 
-| Field name  | Definition                                                                                                             |
-| :---------- | :--------------------------------------------------------------------------------------------------------------------- |
-| LongName    | Long (unabbreviated) name of the column.                                                                               |
-| Description | Description of the column.                                                                                             |
-| Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).                     |
-| Units       | Measurement units. `[<prefix symbol>] <unit symbol>` format following the SI standard is RECOMMENDED (see Appendix V). |
-| TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web.                          |
+| Field name  | Definition                                                                                                                                                  |
+| :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| LongName    | Long (unabbreviated) name of the column.                                                                                                                    |
+| Description | Description of the column.                                                                                                                                  |
+| Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).                                                          |
+| Units       | Measurement units. `[<prefix symbol>] <unit symbol>` format following the SI standard is RECOMMENDED (see [units section](./02-common-principles.md#units). |
+| TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web.                                                               |
 
 Example:
 
@@ -364,14 +367,19 @@ is NOT RECOMMENDED to maintain their uniqueness.
 
 ## Units
 
-All units SHOULD be specified as per International System of Units (abbreviated
+All units SHOULD be specified as per [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
+(abbreviated
 as SI, from the French Système international (d'unités)) and can be SI units or
-SI derived units. In case there are valid reasons to deviate from SI units or SI
+[SI derived units](https://en.wikipedia.org/wiki/SI_derived_unit).
+In case there are valid reasons to deviate from SI units or SI
 derived units, the units MUST be specified in the sidecar JSON file. In case
 data is expressed in SI units or SI derived units, the units MAY be specified in
-the sidecar JSON file. In case prefixes are added to SI or non-SI units (e.g.,
-mm), the prefixed units MUST be specified in the JSON file (see [Appendix V](99-appendices/05-units.md):
-Units). In particular:
+the sidecar JSON file. In case non-standard prefixes are added to SI or non-SI
+units, these non-standard prefixed units MUST be specified in the JSON file.
+See [Appendix V](99-appendices/05-units.md) for a list of standard units and
+prefixes.
+
+For additional rules, see below:
 
 -   Elapsed time SHOULD be expressed in seconds. Please note that some DICOM
     parameters have been traditionally expressed in milliseconds. Those need to
