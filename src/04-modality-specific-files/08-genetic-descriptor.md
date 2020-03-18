@@ -54,7 +54,8 @@ Information about the presence/absence of specific genetic markers MAY be duplic
 in the `participants.tsv` file by adding optional columns (like `idh_mutation` in the
 example below).
 Note that optional columns MUST be further described in an accompanying
-`participants.json` file as described in the [tabular files section](02-common-principles.md#tabular-files).
+`participants.json` file as described in
+[Tabular files](../02-common-principles.md#tabular-files).
 
 `participants.tsv` example:
 
