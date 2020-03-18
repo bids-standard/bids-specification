@@ -186,6 +186,3 @@ workflows:
                - github-changelog-generator
                - remark
                - Changelog-bot
-          filters:
-               branches:
-                   only: master
