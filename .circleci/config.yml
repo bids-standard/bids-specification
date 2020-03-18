@@ -179,4 +179,13 @@ workflows:
           filters:
                branches:
                    only: master
-      - build_docs_pdf
+      - build_docs_pdf:
+          requires:
+               - build_docs
+               - linkchecker
+               - github-changelog-generator
+               - remark
+               - Changelog-bot
+          filters:
+               branches:
+                   only: master
