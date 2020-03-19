@@ -179,4 +179,12 @@ workflows:
           filters:
                branches:
                    only: master
-      - build_docs_pdf
+      # Ensure that build_docs_pdf always runs last, so that we can use the CircleCI API link for the "latest" artifact
+      # https://circleci.com/api/v1.1/project/github/bids-standard/bids-specification/latest/artifacts/0/bids-spec.pdf?branch=master
+      - build_docs_pdf:
+          requires:
+               - build_docs
+               - linkchecker
+               - github-changelog-generator
+               - remark
+               - Changelog-bot
