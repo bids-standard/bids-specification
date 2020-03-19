@@ -2,7 +2,9 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] ensure build_docs_pdf CircleCI job runs last [#436](https://github.com/bids-standard/bids-specification/pull/436) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] Add issue templates for GitHub [#434](https://github.com/bids-standard/bids-specification/pull/434) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] Get latest PDF build from CircleCI artifacts [#433](https://github.com/bids-standard/bids-specification/pull/433) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] Update release protocol [#432](https://github.com/bids-standard/bids-specification/pull/432) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[INFRA] add support for building PDF versions of the spec [#431](https://github.com/bids-standard/bids-specification/pull/431) ([Arshitha](https://github.com/Arshitha))
 -   \[ENH] Explicitly mention bids-validator and update link [#428](https://github.com/bids-standard/bids-specification/pull/428) ([sappelhoff](https://github.com/sappelhoff))
