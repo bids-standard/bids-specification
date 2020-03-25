@@ -50,6 +50,42 @@ Example:
 }
 ```
 
+If dataset was created using some software pipeline, it is recommended to
+include the following `dataset_description.json` keys (a dot in the Key name
+denotes a key in a subdictionary):
+
+| **Key name**                  | **Description**                                                                                                                                                                                                                              |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PipelineDescription.Name      | REQUIRED. Name of the pipeline that generated the outputs. In case the derived dataset is stored as a subfolder of the raw dataset this field MUST be a substring of the derived dataset folder name (a.k.a. `<pipeline_name>` - see above). |
+| PipelineDescription.Version   | OPTIONAL. Version of the pipeline.                                                                                                                                                                                                           |
+| PipelineDescription.CodeURL   | OPTIONAL. URL where the code for the analysis can be found.                                                                                                                                                                                  |
+| PipelineDescription.Container | OPTIONAL. Object specifying the location and relevant attributes of software container image used to produce the derivative. Valid fields in this object include `Type`, `Tag` and `URI`.                                                    |
+| SourceDatasets                | OPTIONAL. A list of objects specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`.                                                                        |
+
+Example:
+
+```JSON
+{
+    "Name": "FMRIPREP Outputs",
+    "BIDSVersion": "TODO (depends when this PR will be merged)",
+    "PipelineDescription": {
+        "Name": "FMRIPREP",
+        "Version": "1.2.5",
+        "Container": {
+            "Type": "docker",
+            "Tag": "poldracklab/fmriprep:1.2.5"
+            }
+        },
+    "SourceDatasets": [
+        {
+            "DOI": "10.18112/openneuro.ds000114.v1.0.1",
+            "URL": "https://openneuro.org/datasets/ds000114/versions/1.0.1",
+            "Version": "1.0.1"
+        }
+    ]
+}
+```
+
 ### `README`
 
 In addition a free form text file (`README`) describing the dataset in more
