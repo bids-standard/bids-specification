@@ -217,3 +217,224 @@ code organization of these scripts at the moment.
 <sup>1</sup>Storing actual source files with the data is preferred over links to
 external source repositories to maximize long term preservation (which would
 suffer if an external repository would not be available anymore).
+
+
+<!----- Conversion time: 1.344 seconds.
+
+
+Using this Markdown file:
+
+1. Cut and paste this output into your source file.
+2. See the notes and action items below regarding this conversion run.
+3. Check the rendered output (headings, lists, code blocks, tables) for proper
+   formatting and use a linkchecker before you publish this page.
+
+Conversion notes:
+
+* Docs to Markdown version 1.0β20
+* Tue Mar 24 2020 09:07:42 GMT-0700 (PDT)
+* Source doc: BIDS Extension Proposal XX (BEP0XX): Provenance
+----->
+
+
+--------------------------
+--------------------------
+## BIDS Extension Proposal XX (BEP0XX):
+
+
+## Provenance
+
+
+### version 0.0.1 (draft)
+
+
+###  Available under the CC-BY 4.0 International license.
+
+Extension moderator/lead: Satra Ghosh &lt;[satra@mit.edu](mailto:satra@mit.edu)> Camille Maumet &lt;camille.maumet@inria.fr>
+
+
+```
+This document contains a draft of the Brain Imaging Data Structure standard extension. It is a community effort to define standards in data / metadata. This is a working document in draft stage and any comments are welcome. 
+
+This specification is an extension of BIDS, and general principles are shared. The specification should work for many different settings and facilitate the integration with other imaging methods.
+
+To see the original BIDS specification, see this link. This document inherits all components of the original specification (e.g. how to store imaging data, events, stimuli and behavioral data), and should be seen as an extension of it, not a replacement.
+```
+
+
+Provenance of BIDS datasets, files and derivatives
+
+Interpreting and comparing scientific results and enabling reusable data and analysis output require understanding provenance, i.e. how the data were generated and processed. To be useful, the provenance must be understandable, easily communicated, and captured automatically in machine accessible form. Provenance records are thus used to encode transformations between digital objects.
+
+Provenance comes up in many different contexts in BIDS. 
+
+
+
+1. The raw conversion from DICOM images or other instrument native formats to BIDS layout, details of stimulus presentation and cognitive paradigms, and clinical and neuropsychiatric assessments, each come with their own details of provenance.
+2. In BIDS derivatives, the consideration of outputs requires knowledge of which inputs from the BIDS dataset were used together with what software was run in what environment and with what parameters.
+3. For datasets and derivatives, provenance can also include details of why the data were collected in the first place covering hypotheses, claims, and prior publications. Provenance can encode support for which claims were supported by future analyses.
+4. Provenance can involve information about people and institutions involved in a study.
+5. Provenance records can highlight reuse of datasets while providing appropriate attribution to the original dataset generators as well as future transformers.  
+
+Provenance can be captured using different mechanisms, but independent of encoding, always reflects transformations by either humans or software. The interpretability of provenance records requires a consistent vocabulary for provenance as well as an expectation for a consistent terminology for the objects being encoded. 
+
+Encoding Provenance In BIDS
+
+i. Provenance information SHOULD be included in a BIDS dataset when possible.
+
+ii. Provenance records MUST use the [PROV model](https://www.w3.org/TR/prov-o/) ontology and SHOULD be augmented by terms curated in the BIDS specification, the [NIDM](http://nidm.nidash.org/) model, and future enhancements to these models.
+
+iii. If provenance records are included, these records of provenance of a dataset or a file MUST be described using a `[&lt;prefix>_]prov.jsonld` file. Since these [jsonld](https://json-ld.org/) documents are graph objects, they can be aggregated without the need to apply any inheritance principle. 
+
+iv. The provenance file MAY be used to reflect the _provenance of a dataset, a collection of files or a specific file at any level_of the bids hierarchy. 
+
+v. Provenance information SHOULD be anonymized/de-identified as necessary. 
+
+Justification for Separating Provenance from file JSON
+
+Provenance is information about a file, including any metadata that is relevant to the file itself. Thus any BIDS data file and its associated JSON sidecar metadata together constitute a unique entity. As such, one may want to record the provenance of the JSON file as much as the provenance of the BIDS file. In addition, separating the provenance as a separate file for now, allows this to be an OPTIONAL component, and by encoding provenance as a JSON-LD document allows capturing the provenance as an individual record or multiple records distributed throughout the dataset.
+
+Possible places to encode provenance
+
+**Dataset level provenance.** At the dataset level, provenance could be about the dataset itself, or about any entity in the dataset. This provenance may evolve as new data are added, which may include sourcedata, BIDS data, and BIDS derived data. One option is to make use of <code>[https://w3c.github.io/json-ld-syntax/#named-graphs](https://w3c.github.io/json-ld-syntax/#named-graphs)</code>
+
+In this example, with this `prov.jsonld` file we encode that the T1.mgz file was generated by version 6 of the FreeSurfer software.
+
+
+```
+{
+  "@context": "https://some/url/to/bids_context.jsonld",
+  "@id": "http://example.org/ds00000X",
+  "generatedAt": "2020-01-10T10:00:00",
+  "wasGeneratedBy": {
+      "@id": "https://banda.mit.edu/",
+      "@type": "Project",
+      "startedAt": "2016-09-01T10:00:00",
+      "wasAssociatedWith": { "@id": "NIH",
+                             "@type": "Organization",
+                             "hadRole": "Funding"
+                           }
+    },
+  "@graph": [
+    {
+      "@id": "sub-01/mri/T1.mgz",
+      "@type": "Image",
+      "sha512": "121231221ab4534...",
+      "derivedFrom": "../sub-01/anat/..._T1.nii.gz",
+      "attributedTo": "MyFreeSurfer",
+      "generatedAt": "2019-01-10T10:00:00"
+    }, 
+    {
+      "@id": "MyFreeSurfer",
+      "@type": "SoftwareAgent",
+      "version": "6.0.0",
+      "RRID": "RRID:SCR_001847"
+    }
+  ]
+}
+```
+
+
+**File level provenance.** This follows some of the same concepts at the dataset level, but is specifically about the current file under consideration.
+
+
+```
+sub-01/ 
+    func/
+        sub-01_task-xyz_acq-test1_run-1_bold.nii.gz
+        sub-01_task-xyz_acq-test1_run-1_prov.jsonld
+...
+{
+  "@context": "https://some/url/to/bids_context.jsonld",
+  "generatedAt": "2020-01-10T10:00:00",
+  "sha512": "1001231221ab4534...",
+  "derivedFrom": "../../../sourcedata/sub-01/...dcm",
+  "attributedTo": {"@type": "SoftwareAgent",
+               "version": "1.3.0",
+               "RRID": "RRID:SCR_017427"
+        	 "label": "SPM",
+        "description": "If this is a custom script, treat this as a methods section",
+              }
+  }
+```
+
+
+The NIDM extensions (nidash.org)  to the PROV model would allow one to incorporate many aspects of the neuroimaging research workflow from data to results. This includes capturing who performed data collection, what software were used, what analyses were run, and what hardware and software resources (e.g., operating system and dependencies) were used.
+
+BIDS JSON-LD context
+
+For most developers and users, the context will appear in the jsonld file as:
+
+{
+
+    "`@context": "https://some/url/to/bids_context.jsonld",`
+
+
+```
+  ...
+}
+```
+
+
+Details of the context, will encode terminology that is consistent across BIDS and may itself involve separate context files. so `"https://some/url/to/bids_context.jsonld"` could look like:
+
+{
+
+    "`@context": ["https://some/url/to/bids_common_context.jsonld",`
+
+
+```
+               "https://some/url/to/bids_derivates_context.jsonld",
+               "https://some/url/to/bids_provenance_context.jsonld",
+               ...
+              ]
+}
+```
+
+
+Contexts are created at the BIDS organization level, and only if necessary extended by a dataset. Thus most dataset creators will be able to reuse existing contexts. For terms, many of these are already in BIDS, with additional ones being curated by the NIDM-terms grant. Additional, terms can and should be re-used from schema.org, bioschemas, and other ontologies and vocabularies whenever possible.
+
+Example context: Common
+
+
+```
+https://some/url/to/bids_common_context.jsonld
+{ "@context": {
+    "RepetitionTime": {
+      "@id": "http://.../bids/RepetitionTime",
+      "@type": "xsd:float",
+      "hasUnit": "s"
+    },
+    ...
+  }
+}
+```
+
+
+Example context: Provenance
+
+
+```
+https://some/url/to/bids_provenance_context.jsonld
+
+{ "@context": {
+    "generatedAt": {
+      "@id": "http://www.w3.org/ns/prov#generatedAtTime",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "attributedTo": {
+      "@id": "http://www.w3.org/ns/prov#wasAttributedTo",
+      "@type": "@id"
+    },
+    "derivedFrom": {
+      "@id": "http://www.w3.org/ns/prov#wasDerivedFrom",
+      "@type": "@id"
+    },
+    "RRID": {"@id": "https://schema.org/identifier", "@type": "@id"}
+    "sha512": 
+{"@id": "http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions/sha512", "@type": "@id"}
+  },
+    ...
+  }  
+}
+
