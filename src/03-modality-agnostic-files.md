@@ -66,21 +66,18 @@ Example:
 
 ```JSON
 {
-    "Name": "FMRIPREP Outputs",
-    "BIDSVersion": "TODO (depends when this PR will be merged)",
     "PipelineDescription": {
-        "Name": "FMRIPREP",
-        "Version": "1.2.5",
+        "Name": "reproin",
+        "Version": "0.6.0",
         "Container": {
             "Type": "docker",
-            "Tag": "poldracklab/fmriprep:1.2.5"
+            "Tag": "repronim/reproin:0.6.0"
             }
         },
     "SourceDatasets": [
         {
-            "DOI": "10.18112/openneuro.ds000114.v1.0.1",
-            "URL": "https://openneuro.org/datasets/ds000114/versions/1.0.1",
-            "Version": "1.0.1"
+            "URL": "s3://fcp-indi/data/Projects/ADHD200/RawData/Brown/",
+            "Version": "April 11 2011"
         }
     ]
 }
