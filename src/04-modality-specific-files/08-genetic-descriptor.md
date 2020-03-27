@@ -91,12 +91,12 @@ fields:
 | CellType           | OPTIONAL Describes the type of cell analyzed                                | Value should come from the [cell ontology][ontology]                                                                                                                                                               |
   
 To ensure dataset description consistency, we recommend following [Multi-omics approaches to disease](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1215-1) by Hasin et al. 2017 to determine the `GeneticLevel:`   
-- `Genetic`: data report on a single genetic location (typically directly in the `participants.tsv` file) 
-- `Genomic`:  data link to participants' genome (multiple genetic locations)
-- `Epigenomic`: data link to participants' characterization of reversible modifications of DNA
-- `Transcriptomic`: data link to participants RNA levels
-- `Metabolomic`: data link to participants' products of cellular metabolic functions
-- `Proteomic`: data link to participants peptides and proteins quantification 
+  - `Genetic`: data report on a single genetic location (typically directly in the `participants.tsv` file) 
+  - `Genomic`:  data link to participants' genome (multiple genetic locations)
+  - `Epigenomic`: data link to participants' characterization of reversible modifications of DNA
+  - `Transcriptomic`: data link to participants RNA levels
+  - `Metabolomic`: data link to participants' products of cellular metabolic functions
+  - `Proteomic`: data link to participants peptides and proteins quantification 
 
 `genetic_info.json` example:
 
