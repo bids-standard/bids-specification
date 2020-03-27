@@ -89,12 +89,20 @@ fields:
 | TissueOrigin       | OPTIONAL Describes the type of tissue analyzed for SampleOrigin `brain`     | `gray matter`, `white matter`, `csf`, `meninges`, `macrovascular` or `microvascular`                                                                                                                               |
 | BrainLocation      | OPTIONAL Refers to the location in space of the TissueOrigin                | `MNI coordinate` or a `label` taken from the [Allen Brain Atlas][allen] possibly `layer` to refer to layer-specific gene expression, which can also tie up with laminar fMRI                                       |
 | CellType           | OPTIONAL Describes the type of cell analyzed                                | Value should come from the [cell ontology][ontology]                                                                                                                                                               |
+  
+To ensure dataset description consistency, we recommend following [Multi-omics approaches to disease](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1215-1) by Hasin et al. 2017 to determine the `GeneticLevel:`   
+- `Genetic`: data report on a single genetic location (typically directly in the `participants.tsv` file) 
+- `Genomic`:  data link to participants' genome (multiple genetic locations)
+- `Epigenomic`: data link to participants' characterization of reversible modifications of DNA
+- `Transcriptomic`: data link to participants RNA levels
+- `Metabolomic`: data link to participants' products of cellular metabolic functions
+- `Proteomic`: data link to participants peptides and proteins quantification 
 
 `genetic_info.json` example:
 
 ```JSON
 {
-  "GeneticLevel": "Genetic",
+  "GeneticLevel": "Genomic",
   "AnalyticalApproach": ["Whole Genome Sequencing", "SNP/CNV Genotypes"],
   "SampleOrigin": "brain",
   "TissueOrigin": "gray matter",
