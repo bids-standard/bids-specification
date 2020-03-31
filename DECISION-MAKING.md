@@ -2,8 +2,60 @@
 
 ## Introduction
 
-The Brain Imaging Data Structure (BIDS) community set out the following
-decision-making rules with the intention to:
+In October 2019, the BIDS community [voted](https://github.com/bids-standard/bids-specification/issues/355)
+to ratify a governance structure and to elect five members as a *Steering Group*
+to oversee the development and adoption of the standard.
+
+The document outlining our governance structure is hosted on the BIDS website:
+[https://bids.neuroimaging.io/governance.html](https://bids.neuroimaging.io/governance.html)
+
+In the following, we list the current members of subgroups detailed in the
+BIDS governance.
+
+**Steering Group**
+
+| Name                                                                 
+|------------------------------------------------------------------------------|
+| Guiomar Niso ([@guiomar](https://github.com/guiomar))                        |
+| Melanie Ganz ([@melanieganz](https://github.com/melanieganz))                |
+| Robert Oostenveld ([@robertoostenveld](https://github.com/robertoostenveld)) |
+| Russel Poldrack ([@poldrack](https://github.com/poldrack))                   |
+| Kristie Whitaker ([@KristieJane](https://github.com/KristieJane))            |
+
+**Maintainers Group**
+
+| Name                                                                           | Time commitment |
+|--------------------------------------------------------------------------------|-----------------|
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         |
+| Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |
+| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | 5h/week         |
+
+**BEP Leads Group**
+
+Leaders of BIDS Extension Proposals are listed in the
+[table of BEPs](https://bids.neuroimaging.io/get_involved.html#extending-the-bids-specification).
+
+**Contributors Group**
+
+Contributors are listed in [Appendix I](https://bids-specification.readthedocs.io/en/stable/99-appendices/01-contributors.html)
+of the BIDS specification. Contributors who have not yet entered their name
+into this list are encouraged to edit the [Contributors WIKI page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
+with their name, using the emojis listed in the WIKI to indicate their
+contributions.
+
+**Other groups**
+
+The following groups not listed in detail. Please learn more about these groups
+from the [governance document](https://bids.neuroimaging.io/governance.html).
+
+- BEP working groups
+- Advisory Group
+- BIDS Community
+
+## GitHub Workflow
+
+For the day-to-day work on the BIDS specification, we currently abide by the
+following rules with the intention to:
 
 - Strive for consensus.
 - Promote open discussions.
@@ -15,24 +67,6 @@ decision-making rules with the intention to:
 
 The rules outlined below are inspired by the [lazy consensus system used in the Apache Foundation](https://www.apache.org/foundation/voting.html)
 and heavily depends on [GitHub Pull Request Review system](https://help.github.com/articles/about-pull-requests/).
-
-## Definitions
-
-**Repository** - [https://github.com/bids-standard/bids-specification](https://github.com/bids-standard/bids-specification)
-
-**Contributor** - a person listed in the Appendix I: Contributors. The
-community decides on the content of this file using the same process as any
-other change to the Repository (see below) allowing the meaning of "Contributor"
-to evolve independently of the Decision-making rules.
-
-**Maintainer** - a Contributor responsible for the long term health of the
-project and the community. Maintainers have additional rights (see Rules)
-helping them to resolve conflicts and increase the pace of the development
-when necessary. Current Maintainers:
-
-| Name                                                            | Time commitment |
-|-----------------------------------------------------------------|-----------------|
-| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff)) | 5h/week         |
 
 ## Rules
 
