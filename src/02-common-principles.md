@@ -274,8 +274,8 @@ Tabular data MUST be saved as tab delimited values (`.tsv`) files, i.e., CSV
 files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
 line listing the names of all columns (with the exception of physiological and
-other continuous acquisition data - see below for details). Names MUST be
-separated with tabs.
+other continuous acquisition data - see [below for details](04/modality-specific-files/06-physiological-and-other-continuous-recordings.md)).
+Names MUST be separated with tabs.
 It is RECOMMENDED that the column names in the header of the TSV file are
 written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
 first letter in lower case (e.g., `variable_name`, not `Variable_name`).
@@ -345,9 +345,12 @@ such files. An online editor for JSON with built-in validation is available at:
 [http://jsoneditoronline.org](http://jsoneditoronline.org). 
 It is RECOMMENDED that keys in a JSON file are written in [CamelCase](https://en.wikipedia.org/wiki/Camel_case)
 with the first letter in upper case (e.g., `SamplingFrequency`, not
-`samplingFrequency`).
+`samplingFrequency`). Note however, when a JSON file is used as an accompanying
+sidecar file for a [TSV file](#tabular-files), the keys linking a TSV column
+with their description in the JSON file need to follow the exact formatting
+as in the TSV file.
 
-Example:
+Example of a hypothetical `*_bold.json` file, accompanying a `*_bold.nii` file:
 
 ```JSON
 {
@@ -355,6 +358,24 @@ Example:
   "Instruction": "Lie still and keep your eyes open"
 }
 ```
+
+Example of a hypothetical `*_events.json` file, accompanying an
+`*_events.tsv` file. Note that the JSON file contains a key describing an
+*arbitrary* column `stim_presentation_side` in the TSV file it accompanies.
+See [task events section](04/modality-specific-files/05-task-events.md)
+for more information.
+
+```JSON
+{
+  "stim_presentation_side": {
+    "Levels": {
+      "1": "stimulus presented on LEFT side",
+      "2": "stimulus presented on RIGHT side"
+    }
+  }
+}
+```
+
 
 ## Participant names and other labels
 
