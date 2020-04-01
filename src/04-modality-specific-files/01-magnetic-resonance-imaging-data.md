@@ -104,7 +104,8 @@ Useful for multimodal co-registration with MEG, (S)EEG, TMS, etc.
 
 When adding additional metadata please use the camelcase version of
 [DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
-whenever possible.
+whenever possible. See also
+[recommendations on JSON files](../02-common-principles.md#Key-value-files-dictionaries).
 
 ### Anatomy imaging data
 
