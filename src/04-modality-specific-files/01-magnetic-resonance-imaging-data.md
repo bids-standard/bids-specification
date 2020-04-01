@@ -102,9 +102,10 @@ Useful for multimodal co-registration with MEG, (S)EEG, TMS, etc.
 | InstitutionAddress          | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`.               |
 | InstitutionalDepartmentName | RECOMMENDED. The department in the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`. |
 
-When adding additional metadata please use the camelcase version of
+When adding additional metadata please use the CamelCase version of
 [DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
-whenever possible.
+whenever possible. See also
+[recommendations on JSON files](../02-common-principles.md#Key-value-files-dictionaries).
 
 ### Anatomy imaging data
 
