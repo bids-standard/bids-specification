@@ -111,8 +111,8 @@ from accidental changes by file permissions. In addition it is easy to
 distinguish partial results from the raw data and share the latter. You can read
 more about organizing derivatives [here](05-derivatives/01-introduction.md).
 
-Similar rules apply to source data which is defined as data before 
-harmonization and/or file format conversion (for example E-Prime event logs or 
+Similar rules apply to source data, which is defined as data before
+harmonization, reconstruction, and/or file format conversion (for example E-Prime event logs or
 DICOM files). This specification currently does not go into details of 
 recommending a particular naming scheme for including different types of 
 source data (raw event logs, parameter files, etc. before conversion to BIDS). 

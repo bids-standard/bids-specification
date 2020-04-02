@@ -130,7 +130,7 @@ sub-01/anat/sub-01_hemi-L_space-fsaverage5_thickness.shape.gii
 sub-01/anat/sub-01_hemi-R_space-fsaverage5_thickness.shape.gii
 sub-01/anat/sub-01_hemi-L_space-individual_thickness.shape.gii
 sub-01/anat/sub-01_hemi-R_space-individual_thickness.shape.gii
-sub-01/func/sub-01_task-rest_space-HCPMNIfsLR32k_bold.nii
+sub-01/func/sub-01_task-rest_space-fsLR_bold.dtseries.nii
 ```
 
 ## Common file level metadata fields
