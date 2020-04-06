@@ -1,8 +1,10 @@
 # Appendix V: Units
 
-The specification of units MUST follow the
+As described in the [units section](../../02-common-principles.md#units),
+the specification of units MUST follow the
 [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
 (SI, abbreviated from the French Système international (d'unités)).
+
 The [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention
 for encoding units is RECOMMENDED to achieve maximum portability and limited
 variability of representation.
@@ -15,6 +17,21 @@ these are still included for backwards compatibility:
 
 It is REQUIRED that units be CMIXF-12 compliant or among these three Unicode
 characters.
+
+Units MUST consist of the `unit symbol` with an optionally accompanying
+`prefix symbol` (see table below). Appropriate upper- or lower- casing MUST
+be applied as declared by CMIXF-12.
+
+For cases that are unspecified by this appendix, or the
+[units section](../../02-common-principles.md#units), the
+[CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention
+applies.
+
+Examples:
+
+1.   `uV` or `µV` are permissible, but NOT: `microV`, `µvolt`, `1e-6V`, etc.
+1.   Combinations of units are allowed, e.g., `V/us` for the [Slew rate](https://en.wikipedia.org/wiki/Slew_rate)
+
 
 | Unit name      | Unit symbol       | Quantity name                              |
 | -------------- | ----------------- | ------------------------------------------ |
