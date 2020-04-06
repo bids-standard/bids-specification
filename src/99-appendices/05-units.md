@@ -1,6 +1,6 @@
 # Appendix V: Units
 
-As described in the [units section](../../02-common-principles.md#units),
+As described in the [units section](../02-common-principles.md#units),
 the specification of units MUST follow the
 [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
 (SI, abbreviated from the French Système international (d'unités)).
@@ -23,15 +23,14 @@ Units MUST consist of the `unit symbol` with an optionally accompanying
 be applied as declared by CMIXF-12.
 
 For cases that are unspecified by this appendix, or the
-[units section](../../02-common-principles.md#units), the
+[units section](../02-common-principles.md#units), the
 [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention
 applies.
 
 Examples:
 
-1.   `uV` or `µV` are permissible, but NOT: `microV`, `µvolt`, `1e-6V`, etc.
-1.   Combinations of units are allowed, e.g., `V/us` for the [Slew rate](https://en.wikipedia.org/wiki/Slew_rate)
-
+1.  `uV` or `µV` are permissible, but NOT: `microV`, `µvolt`, `1e-6V`, etc.
+1.  Combinations of units are allowed, e.g., `V/us` for the [Slew rate](https://en.wikipedia.org/wiki/Slew_rate)
 
 | Unit name      | Unit symbol       | Quantity name                              |
 | -------------- | ----------------- | ------------------------------------------ |
