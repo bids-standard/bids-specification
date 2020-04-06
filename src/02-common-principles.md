@@ -522,7 +522,9 @@ data is expressed in SI units or SI derived units, the units MAY be specified in
 the sidecar JSON file. In case non-standard prefixes are added to SI or non-SI
 units, these non-standard prefixed units MUST be specified in the JSON file.
 See [Appendix V](99-appendices/05-units.md) for a list of standard units and
-prefixes.
+prefixes. Note also that for the *formatting* of SI units, the
+[CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention for
+encoding units is RECOMMENDED.
 
 For additional rules, see below:
 
