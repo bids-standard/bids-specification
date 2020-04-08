@@ -273,8 +273,8 @@ NIfTI header.
 Tabular data MUST be saved as tab delimited values (`.tsv`) files, i.e., CSV
 files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
-line listing the names of all columns (with the exception of physiological and
-other continuous acquisition data - see [below for details](04-modality-specific-files/06-physiological-and-other-continuous-recordings.md)).
+line listing the names of all columns (with the exception of
+[physiological and other continuous recordings](04-modality-specific-files/06-physiological-and-other-continuous-recordings.md)).
 Names MUST be separated with tabs.
 It is RECOMMENDED that the column names in the header of the TSV file are
 written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
