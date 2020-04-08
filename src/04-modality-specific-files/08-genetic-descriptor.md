@@ -113,4 +113,4 @@ To ensure dataset description consistency, we recommend following [Multi-omics a
 
 [allen]: http://atlas.brain-map.org/atlas?atlas=265297125&plate=112360888&structure=4392&x=40348.15104166667&y=46928.75&zoom=-7&resolution=206.60&z=3
 [ontology]: http://obofoundry.org/ontology/cl.html
-[gapsolr]: https://www.ncbi.nlm.nih.gov/projects/gapsolr/facets.html
+[gapsolr]: https://www.ncbi.nlm.nih.gov/gap/advanced_search/
