@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   Added contributors from VisLab [#444](https://github.com/bids-standard/bids-specification/pull/444) ([VisLab](https://github.com/VisLab))
 -   FIX: Clarify  snake_case+CamelCase in TSV+JSON [#442](https://github.com/bids-standard/bids-specification/pull/442) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Eliminate web/online-specific language [#437](https://github.com/bids-standard/bids-specification/pull/437) ([nicholst](https://github.com/nicholst))
 -   \[INFRA] ensure build_docs_pdf CircleCI job runs last [#436](https://github.com/bids-standard/bids-specification/pull/436) ([sappelhoff](https://github.com/sappelhoff))
