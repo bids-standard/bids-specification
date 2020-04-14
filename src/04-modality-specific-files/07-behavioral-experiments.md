@@ -5,14 +5,14 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     beh/
-        sub-<label>[_ses-<label>]_task-<task_name>_events.tsv
-        sub-<label>[_ses-<label>]_task-<task_name>_events.json
-        sub-<label>[_ses-<label>]_task-<task_name>_beh.tsv
-        sub-<label>[_ses-<label>]_task-<task_name>_beh.json
-        sub-<label>[_ses-<label>]_task-<task_name>_physio.tsv.gz
-        sub-<label>[_ses-<label>]_task-<task_name>_physio.json
-        sub-<label>[_ses-<label>]_task-<task_name>_stim.tsv.gz
-        sub-<label>[_ses-<label>]_task-<task_name>_stim.json
+        sub-<label>[_ses-<label>]_task-<label>_events.tsv
+        sub-<label>[_ses-<label>]_task-<label>_events.json
+        sub-<label>[_ses-<label>]_task-<label>_beh.tsv
+        sub-<label>[_ses-<label>]_task-<label>_beh.json
+        sub-<label>[_ses-<label>]_task-<label>_physio.tsv.gz
+        sub-<label>[_ses-<label>]_task-<label>_physio.json
+        sub-<label>[_ses-<label>]_task-<label>_stim.tsv.gz
+        sub-<label>[_ses-<label>]_task-<label>_stim.json
 ```
 
 In addition to logs from behavioral experiments performed along imaging data
