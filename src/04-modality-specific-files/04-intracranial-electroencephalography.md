@@ -70,7 +70,7 @@ Note the RecordingType, which depends on whether the data stream on disk is inte
 ### Terminology: Electrodes vs. Channels
 
 For proper documentation of iEEG recording metadata it is important to
-understand the difference between electrode and channel: An iEEG electrode
+understand the difference between electrode and channel: an iEEG electrode
 is placed on or in the brain, whereas a channel is the combination of the analog
 differential amplifier and analog-to-digital converter that result in a
 potential (voltage) difference that is stored in the iEEG dataset. We employ the
