@@ -1,6 +1,6 @@
 # Changelog
 
-## [v1.3.0](https://bids-specification.readthedocs.io/en/v1.3.0/) (2020-4-14)
+## [v1.3.0](https://bids-specification.readthedocs.io/en/v1.3.0/) (2020-04-14)
 
 -   Added contributors from VisLab [#444](https://github.com/bids-standard/bids-specification/pull/444) ([VisLab](https://github.com/VisLab))
 -   FIX: Clarify  snake_case+CamelCase in TSV+JSON [#442](https://github.com/bids-standard/bids-specification/pull/442) ([sappelhoff](https://github.com/sappelhoff))
