@@ -1,6 +1,6 @@
 # The Brain Imaging Data Structure
 
-This resource defines the Brain Imaging Data Structure (BIDS) specification, including the core specification as well as many modality-specific extensions. 
+This resource defines the Brain Imaging Data Structure (BIDS) specification, including the core specification as well as many modality-specific extensions.
 
 To get started, [check out the introduction](01-introduction.md). If you'd like
 more information on how to adapt your own datasets to match the BIDS
