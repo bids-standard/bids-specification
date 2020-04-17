@@ -6,6 +6,8 @@ theme:
     logo: images/logo.png
 extra_javascript:
     - js/jquery-3.4.1.min.js
+extra_css:
+    - css/section_numbering.css
 markdown_extensions:
     - toc:
         anchorlink: true
