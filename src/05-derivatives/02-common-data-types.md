@@ -12,8 +12,10 @@ Template:
 ```
 
 Preprocessing in this context means transformations of data that do not change
-the number of dimensions of the input and are not explicitly covered by other
-data types in the specification.
+the data type of the input (as expressed by its BIDS `suffix`).
+For instance, a change in the number of dimensions is likely to disrupt the propagation
+of the input's `suffix` and generally, the outcomes of such transformation
+cannot be considered _preprocessed_ or _cleaned data_.
 Examples:
 
  -  Motion-corrected, temporally denoised, and transformed to MNI space BOLD series
@@ -49,13 +51,6 @@ pipeline1/
             sub-001_task-rest_run-1_desc-MC_bold.json
 ```
 
-```Text
-pipeline1/
-    sub-001/
-        func/
-            sub-001_task-rest_run-1_desc-fmriprep_bold.nii.gz
-            sub-001_task-rest_run-1_desc-fmriprep_bold.json
-```
 
 All REQUIRED metadata fields coming from a derivative file’s source file(s) MUST
 be propagated to the JSON description of the derivative unless the processing

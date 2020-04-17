@@ -1,4 +1,4 @@
-# Modality-agnostic files
+# Modality agnostic files
 
 ## Dataset description
 
@@ -10,7 +10,7 @@ The file dataset_description.json is a JSON file describing the dataset. Every
 dataset MUST include this file with the following fields:
 
 | Field name         | Definition                                                                                                                                                                                                                           |
-| :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------------------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                       |
 | BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                            |
 | License            | RECOMMENDED. What license is this dataset distributed under? The use of license name abbreviations is suggested for specifying a license. A list of common licenses with suggested abbreviations can be found in Appendix II.        |
@@ -18,7 +18,7 @@ dataset MUST include this file with the following fields:
 | Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                 |
 | HowToAcknowledge   | OPTIONAL. Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset. |
 | Funding            | OPTIONAL. List of sources of funding (grant numbers).                                                                                                                                                                                |
-| EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                  |
+| EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                  |                                                                                                                |
 | ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                       |
 | DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                               |
 
