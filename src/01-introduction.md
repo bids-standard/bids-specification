@@ -29,9 +29,8 @@ standard you will benefit in the following ways:
     and speed up the curation process by using BIDS to structure and describe
     your data right after acquisition.
 
--   There are [validation tools](https://github.com/Squishymedia/BIDS-Validator)
-    that can check your dataset integrity and let you easily spot missing
-    values.
+-   Validation tools such as the [BIDS Validator](https://github.com/bids-standard/bids-validator)
+    can check your dataset integrity and help you easily spot missing values.
 
 BIDS is heavily inspired by the format used internally by OpenfMRI.org and has
 been supported by the International Neuroinformatics Coordinating Facility and

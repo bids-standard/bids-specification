@@ -1,1 +1,4 @@
 site/
+.DS_Store
+src/.DS_Store
+src/04-modality-specific-files/.DS_Store
