@@ -23,8 +23,8 @@ Template:
 sub-<label>/
   [ses-<label>]/
     ieeg/
-      sub-<label>[_ses-<label>]_task-<task_label>[_run-<index>]_ieeg.<manufacturer_specific_extension>
-      sub-<label>[_ses-<label>]_task-<task_label>[_run-<index>]_ieeg.json
+      sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_ieeg.<manufacturer_specific_extension>
+      sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_ieeg.json
 ```
 
 The iEEG community uses a variety of formats for storing raw data, and there is
@@ -70,7 +70,7 @@ Note the RecordingType, which depends on whether the data stream on disk is inte
 ### Terminology: Electrodes vs. Channels
 
 For proper documentation of iEEG recording metadata it is important to
-understand the difference between electrode and channel: An iEEG electrode
+understand the difference between electrode and channel: an iEEG electrode
 is placed on or in the brain, whereas a channel is the combination of the analog
 differential amplifier and analog-to-digital converter that result in a
 potential (voltage) difference that is stored in the iEEG dataset. We employ the
@@ -102,9 +102,9 @@ please avoid using ad hoc wording.
 
 Generic fields MUST be present:
 
-| Field name         | Definition                                                                                                                                                                                                                                                                                                                                                                                                                |
-| --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| TaskName           | REQUIRED. Name of the task (for resting state use the "rest" prefix). No two tasks should have the same name. Task label is derived from this field by removing all non alphanumeric (`[a-zA-Z0-9]`) characters. Note this does not have to be a "behavioral task" that subjects perform, but can reflect some information about the conditions present when the data was acquired (e.g., "rest", "sleep", or "seizure"). |
+| Field name | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| TaskName   | REQUIRED. Name of the task (for resting state use the "rest" prefix). No two tasks should have the same name. The task label included in the file name is derived from this TaskName field by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters. For example TaskName `faces n-back` will correspond to task label `facesnback`. Note this does not have to be a "behavioral task" that subjects perform, but can reflect some information about the conditions present when the data was acquired (e.g., "rest", "sleep", or "seizure"). |
 
 SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
