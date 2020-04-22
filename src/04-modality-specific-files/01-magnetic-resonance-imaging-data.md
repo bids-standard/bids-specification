@@ -136,6 +136,13 @@ modalities include:
 | Inplane T1         | inplaneT1        | T1-weighted anatomical image matched to functional acquisition                                                                                    |
 | Inplane T2         | inplaneT2        | T2-weighted anatomical image matched to functional acquisition                                                                                    |
 | Angiography        | angio            |                                                                                                                                                   |
+##### Grouping suffixes
+
+**Function:**
+
+Files that belong to a **grouped scan collection** are intended to be used together within a qMRI analysis framework.
+The quantitative maps that are output from these calculations (e.g., `T1map`, `T2map` etc) are described in the [qMRI map suffixes](#qmri-map-suffixes) section below.
+A change to the specification is REQUIRED to expand or to modify the following table.
 
 #### The `run` entity
 
