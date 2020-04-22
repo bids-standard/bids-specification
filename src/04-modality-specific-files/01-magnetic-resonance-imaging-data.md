@@ -117,26 +117,6 @@ sub-<label>/[ses-<label>/]
         sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
 ```
 
-Anatomical (structural) data acquired for that participant. Currently supported
-modalities include:
-
-| Name               | `modality_label` | Description                                                                                                                                       |
-| ---------------------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| T1 weighted        | T1w              |                                                                                                                                                   |
-| T2 weighted        | T2w              |                                                                                                                                                   |
-| T1 Rho map         | T1rho            | Quantitative T1rho brain imaging <br> <https://www.ncbi.nlm.nih.gov/pubmed/24474423> <br> <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/> |
-| T1 map             | T1map            | quantitative T1 map                                                                                                                               |
-| T2 map             | T2map            | quantitative T2 map                                                                                                                               |
-| T2\*               | T2star           | High resolution T2\* image                                                                                                                        |
-| FLAIR              | FLAIR            |                                                                                                                                                   |
-| FLASH              | FLASH            |                                                                                                                                                   |
-| Proton density     | PD               |                                                                                                                                                   |
-| Proton density map | PDmap            |                                                                                                                                                   |
-| Combined PD/T2     | PDT2             |                                                                                                                                                   |
-| Inplane T1         | inplaneT1        | T1-weighted anatomical image matched to functional acquisition                                                                                    |
-| Inplane T2         | inplaneT2        | T2-weighted anatomical image matched to functional acquisition                                                                                    |
-| Angiography        | angio            |                                                                                                                                                   |
-
 #### The `run` entity
 
 If several scans of the same modality are acquired they MUST be indexed with a
