@@ -141,6 +141,25 @@ example, in a spoiled gradient-echo scan, keeping the repetition and the echo ti
 short with a relatively large flip angle increases the contribution of `T1`, yielding
 a primarily T1-weighted image.
 
+#### Grouped scan collections for contrast improvement or quantitative map calculation
+
+A group of anatomical scans may be collected to enhance certain contrast features,
+such as to calculate a weighted average of multi-echo gradient echo (`MEGRE`) images,
+which is known to improve segmentation algorithm outputs. Note that outputs from
+this approach are still in the confines of an arbitrary grayscale representation.
+
+Quantitative MRI (qMRI) methods mathematically characterize the signal changes observed in a collection of parametrically altered scans under certain biophysical model assumptions. These `grouped scan collections` are then processed to derive a `qMRI map`, representing anatomical features in a physically meaningful parameter range.
+
+In both cases, the contrast characteristics change with varying acquisition parameters across `grouped scan collections`. Therefore, it is not tenable to name all the members
+of a `grouped scan collection` with one conventional MRI suffix label (e.g., `T1w`)
+or any other label that implies interchangeability among its instances. 
+
+To circumvent this problem, the `_<suffix>` entity is adaptively used according 
+to the intended application of anatomical imaging data. For conventional MRI 
+applications, the suffixes will correspond to common anatomical contrasts `T1w`,
+`T2w`, `T2starw` etc. For groups of scans acquired for contrast improvement or 
+qMRI processing, the `_<suffix>` indicates the collection that the scans belong to.
+
 #### The `run` entity
 
 If several scans of the same modality are acquired they MUST be indexed with a
