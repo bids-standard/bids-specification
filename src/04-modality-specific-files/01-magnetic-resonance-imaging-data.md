@@ -136,6 +136,15 @@ modalities include:
 | Inplane T1         | inplaneT1        | T1-weighted anatomical image matched to functional acquisition                                                                                    |
 | Inplane T2         | inplaneT2        | T2-weighted anatomical image matched to functional acquisition                                                                                    |
 | Angiography        | angio            |                                                                                                                                                   |
+#### qMRI map suffixes
+
+**Function:**
+
+Denotes the parameter contained within an individual file of a
+quantitative parametric image.
+
+Changes to the specification is REQUIRED to
+expand or to modify the following table.
 
 #### The `run` entity
 
