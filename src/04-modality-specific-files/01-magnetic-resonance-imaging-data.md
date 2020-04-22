@@ -155,6 +155,26 @@ A change to the specification is REQUIRED to expand or to modify the following t
 | Magnetization transfer saturation          | MTS     | Grouping | Parametrically linked anatomical images for calculating a semi-quantitative magnetization transfer saturation index map. The MTS method involves three sets of anatomical images that differ in terms of application of a magnetization transfer RF pulse (MTon or MToff) and flip angle. _Associated output suffixes_: T1map, MTsat                                                                                                                                                                                               |
 | Multi-parametric mapping                   | MPM     | Grouping | Parametrically linked anatomical images for multiparametric mapping (a.k.a hMRI). The MPM method involves anatomical images differing in terms of application of a magnetization transfer RF pulse (MTon or MToff), flip angle and (optionally) echo time and magnitue/phase parts. Please visit [here](https://owncloud.gwdg.de/index.php/s/iv2TOQwGy4FGDDZ) for suggested MPM acquisition protocols.,_Associated output suffixes_:R1map, R2starmap, MTsat, PDmap, T1map, T2starmap                                               |
 | Double-angle B1 mapping                    | B1DAM   | Grouping | Parametrically linked anatomical images for RF transmit field (B1 plus) mapping. Double angle method is based on the calculation of the actual angles from signal ratios, collected by two acquisitions at different nominal excitation angles. Common sequence types for this application include spin echo and echo planar imaging. _Associated output suffixes_: B1plusmap                                                                                                                                                      |
+For example:
+
+```Text
+sub-01_fa-1_VFA.nii.gz
+sub-01_fa-1_VFA.json
+sub-01_fa-2_VFA.nii.gz
+sub-01_fa-2_VFA.json
+```
+
+Please see the [entity table appendix]() for the REQUIRED and OPTIONAL entities
+for each `grouping suffix`. 
+
+Note that every image in a **grouped scan collection** has the same `_<suffix>` 
+as they are likely to be used together.
+Although the acquisitions will have many identical acquisition parameters, only one-to-one-mapping is allowed between a `.json`-sidecar file and an image in a 
+grouped scan collection. This means that parameter values that are identical 
+across a set of grouped scans will still have to be stored separately in each `.json`-sidecar file.
+
+Note: Individual images within a grouped scan collection may be used for any purpose.
+For example, the acquisition that is most similar to a `T1w` image may be used in analysis pipelines needing a conventional T1-weighted image.
 
 #### The `run` entity
 
