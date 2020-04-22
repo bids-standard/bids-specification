@@ -156,12 +156,28 @@ expand or to modify the following table.
 | Observed transverse relaxation rate map                | R2starmap | Parametric   | In seconds-1 (1/s). R2* maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_`MEGRE`, `MPM`                                                                                                                                 |
 | Proton density map                                     | PDmap     | Parametric   | In arbitrary units (a.u.). PD maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MPM`                                                                                                                                    |
 | Magnetization transfer ratio map                       | MTRmap    | Parametric   | In percentage (%). MTR maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MTR`                                                                                                                                           |
-| Magnetization transfer saturation index map            | MTSat     | Parametric   | In arbitrary units (a.u.). MTsat maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MTS`, `MPM`                                                                                                                          |
+| Magnetization transfer saturation index map            | MTsat     | Parametric   | In arbitrary units (a.u.). MTsat maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MTS`, `MPM`                                                                                                                          |
 | Homogeneous (flat) T1 image by MP2RAGE                 | UNIT1     | Parametric   | In arbitrary units (a.u.). UNIT1 maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MP2RAGE`                                                                                                                             |
 | Longutidunal relaxation in rotating frame (T1 rho) map | T1rho     | Parametric   | In seconds (s). T1-rho maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ N/A                                                                                                                                             |
 | Myelin water fraction map                              | MWFmap    | Parametric   | In percentage (%). MWF maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MESE`                                                                                                                                          |
 | Combined PD/T2 map                                     | PDT2map   | Parametric   | In arbitrary units (a.u.). Combined PD/T2 maps are REQUIRED to use this suffix irrespective of the method they are related to. N/A                                                                                                                                                   |
 | RF transmit field map                                  | B1plusmap | Parametric   | In arbitrary units (a.u.). Radio frequency (RF) transmit field maps are REQUIRED to use this suffix irrespective of the method they are related to. For further details please see the fieldmap data section.  _Can be generated from_: `B1DAM`                                                                      |
+
+Quantitative maps can be obtained right off the scanner or by processing files
+belonging to a `grouped scan collection`. Regardless of the method they are
+obtained by, one of the `_suffix` entries listed in the table above is REQUIRED
+for a proper naming. For example:
+
+```Text
+sub-01_T1map.nii.gz
+sub-01_T1map.json
+```
+**Important:**
+
+Quantitative unit of the parameter contained by a quantitative map MUST comply
+with the unit description provided for its respective `_suffix` entry.
+For example, a T1 map in milliseconds unit (ms) is not valid, given that the
+description of the `T1map` suffix requires the parameter to be in seconds (s).
 
 #### The `run` entity
 
