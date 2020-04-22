@@ -117,6 +117,16 @@ sub-<label>/[ses-<label>/]
         sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
 ```
 
+The term anatomical imaging data spans a broad range of MRI applications. These
+applications share in common the ability to convey structural information about
+the imaged anatomy, but differ by the nature of the data they contain. Anatomical
+(structural) data for a participant may refer to:
+* a single standalone data set (e.g. a 3D high resolution T1-weighted image)
+* a group of images acquired for the purpose of improving contrast characteristics 
+or calculating quantitative maps
+(e.g. four 3D volumes provided as an input to an MP2RAGE calculation) 
+* the quantitative maps themselves (e.g. `T1map` etc.).
+
 #### The `run` entity
 
 If several scans of the same modality are acquired they MUST be indexed with a
