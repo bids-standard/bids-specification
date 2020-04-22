@@ -192,8 +192,8 @@ for `stable` and the most recent tag.
 
 ### 9. Edit the mkdocs.yml file site_name to set a new development version
 
-Please submit a PR with the title `REL: <version>-dev`.
-This should be the first merged PR in the new version.
+Please commit to `master` with the title `REL: <version>-dev`.
+This should be the first commit in the new version.
 This process is illustrated below.
 
 ![stable-to-dev](release_images/site_name_release_1.2-1.3dev.png "stable-to-dev")
