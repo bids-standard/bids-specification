@@ -127,6 +127,20 @@ or calculating quantitative maps
 (e.g. four 3D volumes provided as an input to an MP2RAGE calculation) 
 * the quantitative maps themselves (e.g. `T1map` etc.).
 
+#### Conventional structural acquisitions
+
+Anatomical images of this type typically refer to a volumetric high-resolution 
+dataset, representing the measured MRI signal in an arbitrary scale of gray
+shades. Contrast factor of these grayscale images depend on the relative contribution
+of inherent tissue parameters (e.g. `T1`, `T2` and `PD`) to the measured signal. 
+
+Contribution weights of these parameters are determined by the type of acquisition
+sequence (e.g. `spin-` or `gradient-echo`) and the setting of various parameters
+(e.g. `Repetition Time`, `Echo Time`, `Inversion Time` and `Flip Angle`). For 
+example, in a spoiled gradient-echo scan, keeping the repetition and the echo time 
+short with a relatively large flip angle increases the contribution of `T1`, yielding
+a primarily T1-weighted image.
+
 #### The `run` entity
 
 If several scans of the same modality are acquired they MUST be indexed with a
