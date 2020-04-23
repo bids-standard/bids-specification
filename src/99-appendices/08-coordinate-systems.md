@@ -71,18 +71,11 @@ detailed extensive descriptions of these EEG coordinate systems on the
 Restricted keywords for the `XXXCoordinateSystem` field in the
 `coordsystem.json` file for EEG datasets:
 
--   `BESA`: Although natively this is a spherical coordinate system, the
-    electrode positions should be expressed in Cartesian coordinates, with a RAS
-    orientation. The X axis is the T8-T7 line, positive at T8. The Y axis is the
-    Oz-Fpz line, positive at Fpz. The origin of the sphere fitted to the
-    electrodes is approximately 4 cm above the point between the ears.
-
 -   `Captrak`: RAS orientation and the origin between the ears
 
 Note that the short descriptions above do not capture all details, There are
 detailed extensive descriptions of these EEG coordinate systems on the
-[FieldTrip toolbox web page](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
-and on the [BESA wiki](http://wiki.besa.de/index.php?title=Electrodes_and_Surface_Locations#Coordinate_systems).
+[FieldTrip toolbox web page](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined).
 
 ## iEEG Specific Coordinate Systems
 
