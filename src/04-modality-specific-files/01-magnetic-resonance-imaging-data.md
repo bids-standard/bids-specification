@@ -117,15 +117,16 @@ sub-<label>/[ses-<label>/]
         sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
 ```
 
-The term anatomical imaging data spans a broad range of MRI applications. These
-applications share in common the ability to convey structural information about
-the imaged anatomy, but differ by the nature of the data they contain. Anatomical
-(structural) data for a participant may refer to:
-* a single standalone data set (e.g. a 3D high resolution T1-weighted image)
-* a group of images acquired for the purpose of improving contrast characteristics 
-or calculating quantitative maps
+The term anatomical imaging data pertains to a broad range of MRI applications that provide structural 
+information about (brain) anatomy, but differ by the nature of the data they contain. Anatomical
+(structural) data for a participant may refer to three types of data:
+1. a single image with specific weighting on an arbitrary scale (e.g. a 3D high resolution T1-weighted image).
+This type is most commonly used in neuroimaging applications.
+2. a group of images acquired within a single protocol for the purpose of improving contrast 
+characteristics (e.g., a multi-echo anatomical GRE image) or calculating quantitative maps
 (e.g. four 3D volumes provided as an input to an MP2RAGE calculation) 
-* the quantitative maps themselves (e.g. `T1map` etc.).
+3. a quantitative map of which the intensities are put on an absolute scales (e.g., seconds for a T1 map).
+These images are generally produced by some mathematical operation on images from class 2.
 
 #### Conventional structural acquisitions
 
@@ -145,8 +146,7 @@ a primarily T1-weighted image.
 
 A group of anatomical scans may be collected to enhance certain contrast features,
 such as to calculate a weighted average of multi-echo gradient echo (`MEGRE`) images,
-which is known to improve segmentation algorithm outputs. Note that outputs from
-this approach are still in the confines of an arbitrary grayscale representation.
+which is known to improve segmentation algorithm outputs.
 
 Quantitative MRI (qMRI) methods mathematically characterize the signal changes observed in a collection of parametrically altered scans under certain biophysical model assumptions. These `grouped scan collections` are then processed to derive a `qMRI map`, representing anatomical features in a physically meaningful parameter range.
 
