@@ -2,7 +2,11 @@
 
 ## Dataset description
 
-Template: `dataset_description.json` `README` `CHANGES`
+Templates:
+
+-   `dataset_description.json`
+-   `README`
+-   `CHANGES`
 
 ### `dataset_description.json`
 
@@ -68,10 +72,10 @@ Example:
 
 ```Text
 1.0.1 2015-08-27
- - Fixed slice timing information.
+  - Fixed slice timing information.
 
 1.0.0 2015-08-17
- - Initial release.
+  - Initial release.
 ```
 
 ## Participants file
@@ -81,28 +85,104 @@ Template:
 ```Text
 participants.tsv
 participants.json
+```
+
+The purpose of this RECOMMENDED file is to describe properties of participants
+such as age, sex, handedness etc.
+In case of single session studies this file has one compulsory column
+`participant_id` that consists of `sub-<label>`, followed by a list of optional
+columns describing participants.
+Each participant MUST be described by one and only one row.
+
+Commonly used *optional* columns in `participant.tsv` files are `age`, `sex`,
+and `handedness`. We RECOMMEND to use the following values for these three
+columns in case that you use them:
+
+-   `age`: numeric value in years (float or integer value)
+
+-   `sex`: string value indicating phenotypical sex, one of "male", "female",
+    "other"
+
+    -   for "male", use one of these values: `male`, `m`, `M`, `MALE`, `Male`
+
+    -   for "female", use one of these values: `female`, `f`, `F`, `FEMALE`,
+      ` Female`
+
+    -   for "other", use one of these values: `other`, `o`, `O`, `OTHER`,
+        `Other`
+
+-   `handedness`: string value indicating one of "left", "right",
+    "ambidextrous"
+
+    -   for "left", use one of these values: `left`, `l`, `L`, `LEFT`, `Left`
+
+    -   for "right", use one of these values: `right`, `r`, `R`, `RIGHT`,
+        `Right`
+
+    -   for "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`,
+        `AMBIDEXTROUS`, `Ambidextrous`
+
+Throughout BIDS you can indicate missing values with `n/a` (i.e., "not
+available").
+
+`participants.tsv` example:
+
+```Text
+participant_id age sex handedness group
+sub-01 34 M right read
+sub-02 12 F right write
+sub-03 33 F n/a read
+```
+
+It is RECOMMENDED to accompany each `participants.tsv` file with a sidecar
+`participants.json` file to explain the values in the TSV columns (see also
+the [section on tabular files](02-common-principles.md#tabular-files)).
+Such sidecar files are needed to interpret the data, especially so when
+optional columns are defined beyond `age`, `sex`, and `handedness`, such as
+`group` in this example.
+
+`participants.json` example:
+
+```JSON
+{
+    "age": {
+        "Description": "age of the participant",
+        "Units": "years"
+    },
+    "sex": {
+        "Description": "sex of the participant as reported by the participant",
+        "Levels": {
+            "M": "male",
+            "F": "female"
+        }
+    },    
+    "handedness": {
+        "Description": "handedness of the participant as reported by the participant",
+        "Levels": {
+            "left": "left",
+            "right": "right"
+        }
+    },
+    "group": {
+        "Description": "experimental group the participant belonged to",
+        "Levels": {
+            "read": "participants who read an inspirational text before the experiment",
+            "write": "participants who wrote an inspirational text before the experiment"
+        }
+    }
+}
+```
+
+## Phenotypic and assessment data
+
+Template:
+
+```Text
 phenotype/<measurement_tool_name>.tsv
 phenotype/<measurement_tool_name>.json
 ```
 
 Optional: Yes
-
-The purpose of this file is to describe properties of participants such as age,
-handedness, sex, etc. In case of single session studies this file has one
-compulsory column `participant_id` that consists of `sub-<label>`,
-followed by a list of optional columns describing participants. Each participant
-needs to be described by one and only one row.
-
-`participants.tsv` example:
-
-```Text
-participant_id  age sex group
-sub-control01 34  M control
-sub-control02 12  F control
-sub-patient01 33  F patient
-```
-
-## Phenotypic and assessment data
 
 If the dataset includes multiple sets of participant level measurements (for
 example responses from multiple questionnaires) they can be split into
