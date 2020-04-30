@@ -89,14 +89,15 @@ participants.json
 
 The purpose of this RECOMMENDED file is to describe properties of participants
 such as age, sex, handedness etc.
-In case of single session studies this file has one compulsory column
+In case of single-session studies, this file has one compulsory column
 `participant_id` that consists of `sub-<label>`, followed by a list of optional
 columns describing participants.
 Each participant MUST be described by one and only one row.
 
 Commonly used *optional* columns in `participant.tsv` files are `age`, `sex`,
-and `handedness`. We RECOMMEND to use the following values for these three
-columns in case that you use them:
+and `handedness`. We RECOMMEND to make use of these columns, and
+in case that you do use them, we RECOMMEND to use the following values
+for them:
 
 -   `age`: numeric value in years (float or integer value)
 
@@ -135,11 +136,12 @@ sub-03 33 F n/a read
 ```
 
 It is RECOMMENDED to accompany each `participants.tsv` file with a sidecar
-`participants.json` file to explain the values in the TSV columns (see also
+`participants.json` file to describe the TSV column names and properties of their values (see also
 the [section on tabular files](02-common-principles.md#tabular-files)).
 Such sidecar files are needed to interpret the data, especially so when
 optional columns are defined beyond `age`, `sex`, and `handedness`, such as
-`group` in this example.
+`group` in this example, or when a different age unit is needed (e.g., gestational weeks).
+If no `units` is provided for age, it will be assumed to be in years relative to date of birth. 
 
 `participants.json` example:
 
