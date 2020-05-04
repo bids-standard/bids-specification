@@ -88,32 +88,35 @@ sub-control01_ses-001_task-rest_run-01_proc-sss_meg.fif
 sub-control01_ses-001_task-rest_run-01_proc-sss_meg.json
 ```
 
-In the case of data runs exceeding 2Gb, the data is stored in two separate
-files:
+In the case of long data recordings that exceed a file size of 2Gb, the `.fif`
+files are conventionally split into multiple parts. For example:
 
 ```Text
-sub-control01_ses-001_task-rest_run-01_meg.fif
-sub-control01_ses-001_task-rest_run-01_meg-1.fif
+some_file.fif
+some_file-1.fif
 ```
 
-Each of these two files has a pointer to the next file. In some software
-applications, like [MNE](https://www.martinos.org/mne/stable/index.html), one
-can simply specify the name of the first file, and data will be read in both
-files via this pointer. For this reason, it is RECOMMENDED to rename and write
-back the file once read, to avoid the persistence of a pointer associated with
-the old file name.
+Each of these files has an internal pointer to the next file.
+This is important when renaming these split recordings to the BIDS convention.
+Instead of a simple renaming, files should be read in and saved under their new
+names with dedicated tools like [MNE](https://mne.tools), which will ensure
+that not only the file names, but also the internal file pointers will be
+updated.
 
-Naming convention:
+It is RECOMMENDED that `.fif` files with multiple parts use the `part-<id>`
+entity to indicate each part.
+
+Example:
 
 ```Text
 sub-control01_ses-001_task-rest_run-01_part-01_meg.fif
 sub-control01_ses-001_task-rest_run-01_part-02_meg.fif
 ```
 
-More about the Neuromag/Elekta/MEGIN data organization at:
-[http://www.fieldtriptoolbox.org/getting_started/neuromag](http://www.fieldtriptoolbox.org/getting_started/neuromag)
-And BabyMEG :
-[http://www.fieldtriptoolbox.org/getting_started/babysquid](http://www.fieldtriptoolbox.org/getting_started/babysquid)
+More information can be found under the following links:
+
+-   Neuromag/Elekta/MEGIN data organization: [http://www.fieldtriptoolbox.org/getting_started/neuromag](http://www.fieldtriptoolbox.org/getting_started/neuromag)
+-   BabyMEG: [http://www.fieldtriptoolbox.org/getting_started/babysquid](http://www.fieldtriptoolbox.org/getting_started/babysquid)
 
 ## BTi/4D neuroimaging
 
