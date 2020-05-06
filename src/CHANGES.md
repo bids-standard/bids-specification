@@ -9,6 +9,7 @@
 -   \[FIX] unordered list formatting in BEP018 [#449](https://github.com/bids-standard/bids-specification/pull/449) ([sappelhoff](https://github.com/sappelhoff))
 -   REL: 1.3.1-dev [#448](https://github.com/bids-standard/bids-specification/pull/448) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[FIX] fix inconsistencies for task label between sections [#446](https://github.com/bids-standard/bids-specification/pull/446) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[FIX] update DECISION-MAKING.md document with new governance [#441](https://github.com/bids-standard/bids-specification/pull/441) ([sappelhoff](https://github.com/sappelhoff))
 
 ## [v1.3.0](https://github.com/bids-standard/bids-specification/tree/v1.3.0) (2020-04-14)
 
