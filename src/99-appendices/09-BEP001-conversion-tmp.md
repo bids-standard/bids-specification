@@ -90,13 +90,13 @@ These entities will appear in the filenames in the following (alphabetical) orde
 
 ### Other considerations
 
-#### `RepetitionTime` --> `RepetitionTimeExcitation`
+#### 1) `RepetitionTime` --> `RepetitionTimeExcitation`
 
 Please use `RepetitionTimeExcitation` for `TR` in anatomical imaging data json files. 
 
 For anatomical acquisitions with multiple readout blocks within a `TR` (e.g. `MP2RAGE`), `RepetitionTimeExcitation` is used along with `RepetitionTimePreparation`.  
 
-#### Ordering of the `metadata` values with respect to the `index` 
+#### 2) Ordering of the `metadata` values with respect to the `index` 
 
 ##### Ascending order indexing 
 |entity| respective `EchoTime` value in JSON|
@@ -113,3 +113,7 @@ etc.
 etc.
 
 > :warning: Indexes MUST correspond to the same value throughout the dataset. For example, `fa-2` MUST NOT point to `FlipAngle = 5` for `echo-1` and to something else (e.g. `FlipAngle = 25`) for `echo-2`.
+
+#### 3) `index` numeric format 
+
+Use format `%03d` (`001`,`002`,etc) instead of `%d` (`1`,`2`,etc.) for better listing. 
