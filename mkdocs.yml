@@ -42,6 +42,7 @@ nav:
         - MEG file formats: 99-appendices/06-meg-file-formats.md
         - MEG systems: 99-appendices/07-meg-systems.md
         - Coordinate systems: 99-appendices/08-coordinate-systems.md
+        - BEP001: 99-appendices/09-BEP001-conversion-tmp.md
       - Changelog: CHANGES.md
     - The BIDS Starter Kit:
       - GitHub repository: https://github.com/bids-standard/bids-starter-kit
