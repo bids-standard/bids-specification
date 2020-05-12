@@ -103,14 +103,15 @@ names with dedicated tools like [MNE](https://mne.tools), which will ensure
 that not only the file names, but also the internal file pointers will be
 updated.
 
-It is RECOMMENDED that `.fif` files with multiple parts use the `part-<index>`
-entity to indicate each part.
+It is RECOMMENDED that `.fif` files with multiple parts use the `split-<label>`
+entity to indicate each part, and to use zero-padded integers for the
+`<label>`.
 
 Example:
 
 ```Text
-sub-control01_ses-001_task-rest_run-01_part-01_meg.fif
-sub-control01_ses-001_task-rest_run-01_part-02_meg.fif
+sub-control01_ses-001_task-rest_run-01_split-01_meg.fif
+sub-control01_ses-001_task-rest_run-01_split-02_meg.fif
 ```
 
 More information can be found under the following links:

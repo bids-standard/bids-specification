@@ -49,7 +49,7 @@ files of various nature: e.g., CTF's `.ds` format, or BTi/4D.
 Yet other manufacturers split their files once they exceed a certain size
 limit. For example Neuromag/Elekta/Megin, which can produce several files
 for a single recording. Both `some_file.fif` and `some_file-1.fif` would
-belong to a single recording. In BIDS, the `part` entity is RECOMMENDED to
+belong to a single recording. In BIDS, the `split` entity is RECOMMENDED to
 deal with split files.
 Please refer to [Appendix VI](../99-appendices/06-meg-file-formats.md) for
 general information on how to deal with such manufacturer specifics and to see
