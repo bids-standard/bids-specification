@@ -24,17 +24,17 @@ BIDS governance.
 
 **Maintainers Group**
 
-| Name                                                                           | Time commitment | Domain expert         |
+| Name                                                                           | Time commitment | Purview               |
 |--------------------------------------------------------------------------------|-----------------|-----------------------|
 | Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         |                       |
 | Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |                       |
 | Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | 5h/week         | Community development | 
 
-In addition to the [BIDS Governance](https://docs.google.com/document/d/1R-J2lL9V_wIkYhye4zH-feyl4P4J8NyO40rIYyY141o/edit#bookmark=id.y2yr6itn36kv) classification of a Maintainer, the Steering Group and Maintainers Group have enhanced this to include a `Domain Expert` responsibility.
-This domain can range from maintaining a modality supported in the specification to nuturing a welcoming BIDS community. 
-The domain will be choosen by the Maintainer and agreed upon by the Maintainers Group.
-The Maintainer is primarily responsible for maintaining their choosen domain.
-Though, a Maintainer may contribute in a domain that is not their own.
+In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group) classification of a Maintainer, the Steering Group and Maintainers Group have enhanced this to include a `Purview` responsibility.
+A purview can range from maintaining a modality supported in the specification to nuturing a welcoming BIDS community. 
+The purview will be choosen by the Maintainer and agreed upon by the Maintainers Group.
+The Maintainer is primarily responsible for maintaining their choosen purview.
+Though, a Maintainer may contribute in a purview that is not their own.
 
 **BEP Leads Group**
 
