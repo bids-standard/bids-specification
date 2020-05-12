@@ -30,11 +30,13 @@ BIDS governance.
 | Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |                       |
 | Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | 5h/week         | Community development | 
 
-In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group) classification of a Maintainer, the Steering Group and Maintainers Group have enhanced this to include a `Purview` responsibility.
-A purview can range from maintaining a modality supported in the specification to nuturing a welcoming BIDS community. 
-The purview will be choosen by the Maintainer and agreed upon by the Maintainers Group.
-The Maintainer is primarily responsible for maintaining their choosen purview.
-Though, a Maintainer may contribute in a purview that is not their own.
+In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
+classification of a maintainer, maintainers may declare a limited scope or purview of responsibility.
+Such a purview can range from maintaining a modality supported in the specification to nurturing a
+welcoming BIDS community. 
+One or more purviews can be chosen by the maintainer and agreed upon by the Maintainers Group.
+A maintainer is primarily responsible for issues within their chosen purview(s), although
+contributions elsewhere are welcome, as well.
 
 **BEP Leads Group**
 
