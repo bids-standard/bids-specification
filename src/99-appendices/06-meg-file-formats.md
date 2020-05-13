@@ -103,9 +103,8 @@ names with dedicated tools like [MNE](https://mne.tools), which will ensure
 that not only the file names, but also the internal file pointers will be
 updated.
 
-It is RECOMMENDED that `.fif` files with multiple parts use the `split-<label>`
-entity to indicate each part, and to use zero-padded integers for the
-`<label>`.
+It is RECOMMENDED that `.fif` files with multiple parts use the `split-<index>`
+entity to indicate each part.
 
 Example:
 
