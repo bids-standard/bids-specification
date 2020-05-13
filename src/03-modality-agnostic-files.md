@@ -264,8 +264,8 @@ imaging acquisition sequence (each run `.nii[.gz]` file) within one session.
 Each `.nii[.gz]` file should be described by at most one row. Relative paths to
 files should be used under a compulsory `filename` header. If acquisition time
 is included it should be under `acq_time` header. Datetime should be expressed
-in the following format `2009-06-15T13:45:30` (year, month, day, hour (24h),
-minute, second; this is equivalent to the RFC3339 "date-time" format, time zone
+in the following format `2009-06-15T13:45:30[.000000]` (year, month, day, hour [24h],
+minute, second, and optionally fractional second; this is equivalent to the RFC3339 "date-time" format, time zone
 is always assumed as local time). For anonymization purposes all dates within
 one subject should be shifted by a randomly chosen (but common across all runs
 etc.) number of days. This way relative timing would be preserved, but chances
