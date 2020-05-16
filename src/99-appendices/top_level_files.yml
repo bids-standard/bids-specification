@@ -1,0 +1,32 @@
+README:
+  extensions:
+    - md
+    - rst
+    - None
+CHANGES:
+  extensions:
+    - md
+    - rst
+    - None
+dataset_description:
+  extensions:
+    - json
+genetic_info:
+  extensions:
+    - json
+participants:
+  extensions:
+    - tsv
+    - json
+phasediff:
+  extensions:
+    - json
+phase1:
+  extensions:
+    - json
+phase2:
+  extensions:
+    - json
+fieldmap:
+  extensions:
+    - json
