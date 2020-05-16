@@ -22,3 +22,29 @@ group1:
     acq: optional
     run: optional
     proc: optional
+group2:
+  datatypes:
+    - meg
+  suffices:
+    - headshape
+  extensions:
+    - pos
+    - txt
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+    space: optional
+group3:
+  datatypes:
+    - meg
+  suffices:
+    - markers
+  extensions:
+    - json
+  entities:
+    sub: required
+    ses: optional
+    task: optional
+    acq: optional
+    space: optional

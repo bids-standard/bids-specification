@@ -1,0 +1,13 @@
+group1:
+  datatypes:
+    - meg
+    - eeg
+    - ieeg
+  suffices:
+    - photo
+  extensions:
+    - jpg
+  entities:
+    sub: required
+    ses: optional
+    acq: optional

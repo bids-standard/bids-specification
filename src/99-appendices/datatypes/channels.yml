@@ -1,0 +1,15 @@
+group1:
+  datatypes:
+    - meg
+    - eeg
+    - ieeg
+  suffices:
+    - channels
+  extensions:
+    - json
+    - tsv
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    run: optional
