@@ -44,8 +44,8 @@ task-based, resting-state, and noise recordings. If multiple Tasks were
 performed within a single Run, the task description can be set to
 `task-multitask`. The \_meg.json SHOULD contain details on the Tasks.
 
-Some manufacturers data storage conventions use folders which contain data
-files of various nature: e.g., CTF's `.ds` format, or BTi/4D.
+Some manufacturers' data storage conventions use folders which contain data
+files of various nature: for example, CTF's `.ds` format, or BTi/4D.
 Yet other manufacturers split their files once they exceed a certain size
 limit. For example Neuromag/Elekta/Megin, which can produce several files
 for a single recording. Both `some_file.fif` and `some_file-1.fif` would
@@ -53,7 +53,7 @@ belong to a single recording. In BIDS, the `split` entity is RECOMMENDED to
 deal with split files.
 Please refer to [Appendix VI](../99-appendices/06-meg-file-formats.md) for
 general information on how to deal with such manufacturer specifics and to see
-some more examples.
+more examples.
 
 The `proc` label is analogous to `rec` for MR and denotes a variant of a file
 that was a result of particular processing performed on the device. This is

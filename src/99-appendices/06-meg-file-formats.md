@@ -115,8 +115,8 @@ sub-control01_ses-001_task-rest_run-01_split-02_meg.fif
 
 More information can be found under the following links:
 
--   Neuromag/Elekta/MEGIN data organization: [http://www.fieldtriptoolbox.org/getting_started/neuromag](http://www.fieldtriptoolbox.org/getting_started/neuromag)
--   BabyMEG: [http://www.fieldtriptoolbox.org/getting_started/babysquid](http://www.fieldtriptoolbox.org/getting_started/babysquid)
+-   [Neuromag/Elekta/MEGIN data organization](http://www.fieldtriptoolbox.org/getting_started/neuromag)
+-   [BabyMEG](http://www.fieldtriptoolbox.org/getting_started/babysquid)
 
 ## BTi/4D neuroimaging
 
