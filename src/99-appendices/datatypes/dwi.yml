@@ -1,0 +1,32 @@
+group1:
+  datatypes:
+    - dwi
+  suffices:
+    - dwi
+  extensions:
+    - nii.gz
+    - nii
+    - json
+    - bvec
+    - bval
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+    dir: optional
+    run: optional
+group2:
+  datatypes:
+    - dwi
+  suffices:
+    - sbref
+  extensions:
+    - nii.gz
+    - nii
+    - json
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+    dir: optional
+    run: optional

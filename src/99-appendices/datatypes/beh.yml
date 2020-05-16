@@ -1,0 +1,26 @@
+group1:
+  datatypes:
+    - beh
+  suffices:
+    - stim
+    - physio
+  extensions:
+    - tsv.gz
+    - json
+  entities:
+    sub: required
+    ses: optional
+    task: required
+group2:
+  datatypes:
+    - beh
+  suffices:
+    - events
+    - beh
+  extensions:
+    - tsv
+    - json
+  entities:
+    sub: required
+    ses: optional
+    task: required

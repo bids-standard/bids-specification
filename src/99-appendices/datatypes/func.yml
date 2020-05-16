@@ -1,0 +1,58 @@
+group1:
+  datatypes:
+    - func
+  suffices:
+    - bold
+    - cbv
+    - phase
+    - sbref
+  extensions:
+    - nii.gz
+    - nii
+    - json
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    ce: optional
+    rec: optional
+    dir: optional
+    run: optional
+    echo: optional
+group2:
+  datatypes:
+    - func
+  suffices:
+    - events
+  extensions:
+    - tsv
+    - json
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    ce: optional
+    rec: optional
+    dir: optional
+    run: optional
+    echo: optional
+group3:
+  datatypes:
+    - func
+  suffices:
+    - physio
+    - stim
+  extensions:
+    - tsv.gz
+    - json
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    rec: optional
+    run: optional
+    recording: optional
+    proc: optional

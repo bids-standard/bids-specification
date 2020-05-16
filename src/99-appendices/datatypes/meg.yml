@@ -1,0 +1,24 @@
+group1:
+  datatypes:
+    - meg
+  suffices:
+    - meg
+  extensions:
+    - json
+    - ctf/
+    - fif
+    - 4d/
+    - sqd
+    - con
+    - raw
+    - ave
+    - mrk
+    - kdf
+    - mhd
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    run: optional
+    proc: optional

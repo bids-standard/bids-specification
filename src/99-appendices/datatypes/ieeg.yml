@@ -1,0 +1,21 @@
+group1:
+  datatypes:
+    - ieeg
+  suffices:
+    - ieeg
+  extensions:
+    - json
+    - edf
+    - vhdr
+    - eeg
+    - vmrk
+    - set
+    - fdt
+    - nwb
+    - mef
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    run: optional

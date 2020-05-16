@@ -1,0 +1,39 @@
+sub:
+  description: Subject
+  format: label
+ses:
+  description: Session
+  format: label
+task:
+  description: Task
+  format: label
+acq:
+  description: Acquisition
+  format: label
+ce:
+  description: Contrast Enhancing Agent
+  format: label
+rec:
+  description: Reconstruction
+  format: label
+dir:
+  description: Phase-Encoding Direction
+  format: label
+run:
+  description: Run
+  format: index
+mod:
+  description: Corresponding Modality
+  format: label
+echo:
+  description: Echo
+  format: index
+recording:
+  description: Recording
+  format: label
+proc:
+  description: Processed (on device)
+  format: label
+space:
+  description: Space
+  format: label
