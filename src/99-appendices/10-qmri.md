@@ -1,4 +1,4 @@
-### qMRI method-specific priority levels for grouping suffix
+# Method-specific priority levels for grouping suffix
 
 Although there is not an upper limit to the amount of metadata
 for images collected by a `grouping suffix`, some of the metadata entries become
@@ -29,7 +29,7 @@ model for parameter fitting (e.g. `RepetitionTimeExcitation` of `VFA`).
 * The metadata fields listed in the OPTIONAL column can be used to derive
 various qMRI applications from an existing `grouping suffix`. The following section expands on the set of rules to derive qMRI applications from an existing `grouping suffix`.
 
-### qMRI applications that can be derived from an existing `grouping suffix`
+# qMRI applications that can be derived from an existing `grouping suffix`
 
 Certain grouping suffixes may refer to a generic data collection regime such as
 variable flip angle (VFA), rather than a more specific acquisition, e.g.,
@@ -92,7 +92,7 @@ For a dataset with a `grouping suffix`, the BIDS validation is successful if:
 * provided suffixes are present in the list of available suffixes
 * sidecar JSON files follow the hierarchy defined for `grouping suffix`.
 
-### Management of the qMRI maps
+# Management of the qMRI maps
 
 All qMRI maps are generated following a set of calculations. Unlike conventional 
 MR images, they are not products of an MRI image reconstruction (from k-space data 
@@ -101,7 +101,7 @@ to structural images). There are two possible options in the way a qMRI map is o
 1. The qMRI map is calculated at the scanner site through a non-transparent vendor pipeline.
 2. The qMRI map is generated off-site using an open-source software. 
 
-#### Where to place qMRI maps? 
+## Where to place qMRI maps? 
 
 **If the qMRI map is calculated at the scanner site through a non-transparent vendor pipeline:** 
 
@@ -146,12 +146,11 @@ BIDS-apps. For example:
  └── sub-#N/..
 ```
 
-In the example above, outputs of the `MTS` that are placed under `derivatives`
-folder are symbolic linked to the respective `anat` folder, so that an
-application looking for a qMRI map can easily locate them in the same directory
-along with other anatomical images. 
+In the example above, outputs of the `MTS` that are placed under the `derivatives`
+folder are symbolic linked to the respective `anat` folder. This way, an
+application can easily pick up a qMRI map along with other anatomical images.
 
-#### Which metadata fields should a qMRI map contain? 
+## Which metadata fields should a qMRI map contain? 
 
 **If the qMRI map is calculated at the scanner site through a non-transparent vendor pipeline:** 
 
