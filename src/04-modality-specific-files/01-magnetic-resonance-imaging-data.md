@@ -124,8 +124,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_ce-<label>][_rec-<label>][_run-<index>]_<suffix>.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_fa-<index>][_ce-<label>][_rec-<label>][_run-<index>]_<suffix>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_fa-<index>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
 ```
 
 The term anatomical imaging data pertains to a broad range of MRI applications that provide structural 
@@ -349,9 +349,7 @@ can also be used to make that distinction. At what level of detail to make the
 distinction (e.g. just between RARE and FLASH, or between RARE, FLASH, and
 FLASHsubsampled) remains at the discretion of the researcher.
 
-#### The `echo` entity
-
-### The echo entity 
+#### The echo entity 
 
 If the value of `EchoTime` metadata field varies at least once across a collection 
 of anatomical images having a common `grouping suffix`, the use of `echo-<index>`
@@ -368,6 +366,23 @@ sub-01_echo-2_MEGRE.nii.gz
 sub-01_echo-2_MEGRE.json   (`EchoTime` = 0.0015)
 sub-01_echo-3_MEGRE.nii.gz
 sub-01_echo-3_MEGRE.json   (`EchoTime` = 0.0025)
+```
+
+#### The fa entity 
+
+If the value of `FlipAngle` metadata field varies at least once across a collection 
+of anatomical images having a common `grouping suffix`, the use of `fa-<index>`
+key/value pair is REQUIRED. Note that only integers from 1 to N are allowed as
+values to this entity for N different `FlipAngle` parameter values. The actual 
+`FlipAngle` parameter values MUST NOT be explicitly declared by the entity. Instead,
+the parameter values are stored in sidecar json files and indexed by the `fa` entity
+in ascending order. For example:
+
+```
+sub-01_fa-1_VFA.nii.gz 
+sub-01_fa-1_VFA.json   (`FlipAngle` = 5)
+sub-01_fa-2_VFA.nii.gz 
+sub-01_fa-2_VFA.json   (`FlipAngle` = 25)
 ```
 
 #### The `ce` entity
