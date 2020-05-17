@@ -160,24 +160,25 @@ JSON content is confined to the metadata made available by the vendor pipeline.
 
 JSON file of the qMRI map MUST inherit metadata from its parent images (typically a grouped scan 
 collection) by adhering to the following rules:
-     * All the acquisition parameters that are unchanged across constituents of
-     a `grouped scan collection` are added to the JSON file of the resultant
-     qMRI map.
-     * Relevant acquisition parameters that vary across constituents of a
-     `grouped scan collection` are added to the JSON file of the resultant
-     qMRI map **in array form**. To find out which varying scan parameters are
-     relevant to a given `grouped scan collection`, please see the
-    [method-specific priority levels for qMRI metadata](#prioritylevels) above.
-     * The JSON file accompanying a qMRI map which is obtained by
-     using an open-source software MUST include all the metadata fields listed
-     in the following table for the sake of provenance.
+* All the acquisition parameters that are unchanged across constituents of
+a `grouped scan collection` are added to the JSON file of the resultant
+qMRI map.
+* Relevant acquisition parameters that vary across constituents of a
+`grouped scan collection` are added to the JSON file of the resultant
+qMRI map **`in array form`**. 
+ > To find out which varying scan parameters are
+ relevant to a given `grouped scan collection`, please see the
+[method-specific priority levels for qMRI metadata](#prioritylevels) above.
+* The JSON file accompanying a qMRI map which is obtained by
+using an open-source software MUST include all the metadata fields listed
+in the following table for the sake of provenance.
 
 | Field name                  | Definition                                                     |
 | :-------------------------- | :------------------------------------------------------------- |
 | BasedOn | List of files grouped by an `grouping suffix` to generate the map. The fieldmaps are also listed, if involved in the processing. |
 | EstimationReference | Reference to the study/studies on which the implementation is based.|
 | EstimationAlgorithm | Type of algoritm used to perform fitting (e.g. linear, non-linear, LM etc.)|
-| EstimationSoftwareName | The name of the open-source tool used for fitting (e.g. qMRLab, QUIT, hMRI-Toolbox etc.)|
+| EstimationSoftwareName | The name of the open-source tool used for fitting (e.g. [qMRLab](https://qmrlab.org), [QUIT](https://github.com/spinicist/QUIT), [hMRI-Toolbox](https://hmri-group.github.io/hMRI-toolbox/) etc.)|
 | EstimationSoftwareVer | Version of the open-source tool used for fitting (e.g. v2.3.0 etc.)|
 | EstimationSoftwareLang | Language in which the software is natively developed (e.g. MATLAB R2018b, C++17, Python 3.6 etc.)|
 | EstimationSoftwareEnv | Operation system on which the application was run (e.g. OSX 10.14.3, Ubuntu 18.04, Win10 etc.)|
