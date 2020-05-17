@@ -315,6 +315,16 @@ with the unit description provided for its respective `_suffix` entry.
 For example, a T1 map in milliseconds unit (ms) is not valid, given that the
 description of the `T1map` suffix requires the parameter to be in seconds (s).
 
+#### The `part` entity
+
+Some applications depends on `magnitude` and `phase` reconstructed images for the 
+calculation of a parameter map. In such case two files could have the following 
+names: `sub-01_part-mag_T1w.nii.gz` and `sub-01_part-phase_T1w.nii.gz`. 
+
+Phase images SHOULD be in radians and have a range of (0, 2 pi] (including 0, 
+excluding 2 pi). The `part-<mag/phase>` key/value pair is associated with the 
+DICOM tag [0008,9208](https://dicom.innolitics.com/ciods/enhanced-mr-image/enhanced-mr-image/00089208).
+
 #### The `run` entity
 
 If several scans of the same modality are acquired they MUST be indexed with a
