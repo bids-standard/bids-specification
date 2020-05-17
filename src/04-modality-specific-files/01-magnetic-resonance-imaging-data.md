@@ -211,6 +211,18 @@ fields specific to anatomical scans:
 | -----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ContrastBolusIngredient | OPTIONAL. Active ingredient of agent. Values MUST be one of: IODINE, GADOLINIUM, CARBON DIOXIDE, BARIUM, XENON Corresponds to DICOM Tag 0018,1048. |
 
+##### Legacy suffixes (to be deprecated)
+
+Some suffixes that were available in versions of the specification prior to 1.x.x. have been identified as legacy suffixes. The legacy sufficies generate inconsistencies and/or ambiguities with additional sufficies added in version 1.x.x and so are therefore not recommended for use in new datasets. They remain valid sufficies to maintain backwards compatibility with earlier datasets. 
+
+The following suffixes are valid, but SHOULD NOT be used for new BIDS compatible datasets (created after version 1.x.x.):
+
+| Name           | Suffix    | Description                                                    | Reason to deprecate                                                                                                                                                                                                                                                                                                                                                                                                |
+|----------------|-----------|----------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| T2\*           | T2star    | Not provided.                                                  | Ambiguous, may refer to a parametric image or to a conventional image. **Change:** Replaced by `T2starw` or `T2starmap`.                                                                                                                                                                                                                                                                                           |
+| FLASH          | FLASH     | Not provided.                                                  | FLASH (Fast-Low-Angle-Shot) is a vendor specific implementation for spoiled  gradient echo acquisition. It is commonly used for rapid anatomical imaging  and also for many different qMRI applications. Given the versatility and the popularity of the FLASH sequence, it can easily obfuscate purpose of a  `grouped scan collection` when used as a `grouping suffix`. **Change:** Removed from suffixes.     |
+| Proton Density | PD        | Not provided.                                                  | Ambiguous, may refer to a parametric image or to a conventional image. **Change:** Replaced by `PDw` or `PDmap`.                                                                                                                                                                                                                                                                                                   |
+
 ### Task (including resting state) imaging data
 
 Currently supported image contrasts include:
