@@ -122,10 +122,10 @@ BIDS-apps. For example:
  |   └── qMRI-software/
  |       └── sub-01/
  |           └── anat/
- |               ├── sub-01_T1map.nii.gz ──────────┐ S
- |               ├── sub-01_T1map.json   ────────┐ | Y
- |               ├── sub-01_MTsat.nii.gz ──────┐ | | M
- |               └── sub-01_MTsat.json   ────┐ | | | L 
+ |               ├── sub-01_T1map.nii.gz ─────────┐ S
+ |               ├── sub-01_T1map.json   ───────┐ | Y
+ |               ├── sub-01_MTsat.nii.gz ─────┐ | | M
+ |               └── sub-01_MTsat.json   ───┐ | | | L 
  ├── sub-01/                                | | | | I
  |   ├── anat/                              | | | | N
  |   |   ├── sub-01_T1w.nii.gz              | | | | K
