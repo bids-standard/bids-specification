@@ -160,6 +160,30 @@ applications, the suffixes will correspond to common anatomical contrasts `T1w`,
 `T2w`, `T2starw` etc. For groups of scans acquired for contrast improvement or 
 qMRI processing, the `_<suffix>` indicates the collection that the scans belong to.
 
+#### The `_<suffix>` entity
+
+To ensure an comprehensible, human readable directory that contains anatomical 
+imaging data, the `_<suffix>` entity can be used in one of three ways:
+
+1. Conventional MRI suffixes
+2. Grouping suffixes
+3. Quantitative MRI (qMRI) map suffixes
+
+This distinction was added to the specification on acceptance of the BEP001 
+proposal in version `1.x.x`. However, as a result, some  suffixes that were introduced
+into BIDS at an earlier point time are inconsistent with this typology: for example 
+because they are linked to a readout-sequence rather than a contrast, or because 
+they don't clearly distinguish between a quantitative map or a contrast-weighted 
+image. These `legacy`-suffixes are no longer recommended but remain part of the 
+specification in order to maintain backwards compatability with previous versions 
+of the specification.
+
+These can be found in the [legacy suffixes](#legacy-suffixes) subsection.
+
+Previous versions of the specification used the term `modality_label` instead of 
+`_suffix` to represent this entity. The change in term was introduced in version 
+`1.x.x.` to accodomate a broad definition of anatomical imaging applications.
+
 #### The `run` entity
 
 If several scans of the same modality are acquired they MUST be indexed with a
