@@ -124,8 +124,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_fa-<index>][_mt-<on/off>][_ce-<label>][_rec-<label>][_run-<index>]_<suffix>.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_fa-<index>][_mt-<on/off>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_fa-<index>][_inv-<index>][_mt-<on/off>][_ce-<label>][_rec-<label>][_run-<index>]_<suffix>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_fa-<index>][_inv-<index>][_mt-<on/off>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
 ```
 
 The term anatomical imaging data pertains to a broad range of MRI applications that provide structural 
@@ -383,6 +383,25 @@ sub-01_fa-1_VFA.nii.gz
 sub-01_fa-1_VFA.json   (`FlipAngle` = 5)
 sub-01_fa-2_VFA.nii.gz 
 sub-01_fa-2_VFA.json   (`FlipAngle` = 25)
+```
+
+#### The `inv` entity 
+
+If the value of `InversionTime` metadata field varies at least once across a 
+collection of anatomical images having a common `grouping suffix`, the use of 
+`inv-<index>` key/value pair is REQUIRED. Note that only integers from 1 to N 
+are allowed as values to this entity for N different `InversionTime` parameter 
+values. The actual `InversionTime` parameter values MUST NOT be explicitly declared 
+by the entity. Instead, the parameter values are stored in sidecar json files and 
+indexed by the `inv` entity in ascending order. For example: 
+
+```
+sub-01_inv-1_IRT1.nii.gz
+sub-01_inv-1_IRT1.json     (`InversionTime` = 0.0050)
+sub-01_inv-2_IRT1.nii.gz
+sub-01_inv-2_IRT1.json     (`InversionTime` = 0.0100)
+sub-01_inv-3_IRT1.nii.gz
+sub-01_inv-4_IRT1.json     (`InversionTime` = 0.0150)
 ```
 
 #### The `mt` entity 
