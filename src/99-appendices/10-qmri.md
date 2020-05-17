@@ -126,16 +126,16 @@ BIDS-apps. For example:
  |               ├── sub-01_T1map.json   ────────┐ | Y
  |               ├── sub-01_MTsat.nii.gz ──────┐ | | M
  |               └── sub-01_MTsat.json   ────┐ | | | L 
- ├── sub-01/                                 | | | | I
- |   ├── anat/                               | | | | N
- |   |   ├── sub-01_T1w.nii.gz               | | | | K
- |   |   ├── sub-01_T1w.json                 | | | | 
- |   |   ├── sub-01_fa-1_mt-on_MTS.nii.gz    | | | | T
- |   |   ├── sub-01_fa-1_mt-on_MTS.json      | | | | O 
- |   |   ├── sub-01_fa-1_mt-off_MTS.nii.gz   | | | | 
- |   |   ├── sub-01_fa-1_mt-off_MTS.json     | | | | A
- |   |   ├── sub-01_fa-2_mt-off_MTS.nii.gz   | | | | N
- |   |   ├── sub-01_fa-2_mt-off_MTS.json     | | | | A
+ ├── sub-01/                                | | | | I
+ |   ├── anat/                              | | | | N
+ |   |   ├── sub-01_T1w.nii.gz              | | | | K
+ |   |   ├── sub-01_T1w.json                | | | | 
+ |   |   ├── sub-01_fa-1_mt-on_MTS.nii.gz   | | | | T
+ |   |   ├── sub-01_fa-1_mt-on_MTS.json     | | | | O 
+ |   |   ├── sub-01_fa-1_mt-off_MTS.nii.gz  | | | | 
+ |   |   ├── sub-01_fa-1_mt-off_MTS.json    | | | | A
+ |   |   ├── sub-01_fa-2_mt-off_MTS.nii.gz  | | | | N
+ |   |   ├── sub-01_fa-2_mt-off_MTS.json    | | | | A
  |   |   ├── sub-01_T1map.nii.gz ◀───────────├─├─├─┘ T
  |   |   ├── sub-01_T1map.json   ◀───────────├─├─┘   
  |   |   ├── sub-01_MTsat.nii.gz ◀───────────├─┘     
