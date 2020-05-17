@@ -92,15 +92,73 @@ For a dataset with a `grouping suffix`, the BIDS validation is successful if:
 * provided suffixes are present in the list of available suffixes
 * sidecar JSON files follow the hierarchy defined for `grouping suffix`.
 
-### Metadata of qMRI maps
+### Management of the qMRI maps
 
-Metadata fields listed in the sidecar JSON of a qMRI map depend on the method by
-which it is obtained:
-* If a qMRI map is generated at the scanner site through non-transparent vendor
-implementation, JSON content is confined to the available metadata.
-* If a qMRI map is generated using an open-source software, its sidecar JSON
-file MUST inherit content from the JSON files of the constituent images of a
-`grouped scan collection` by adhering to the following rules:
+All qMRI maps are generated following a set of calculations. Unlike conventional 
+MR images, they are not products of an MRI image reconstruction (from k-space data 
+to structural images). There are two possible options in the way a qMRI map is obtained: 
+
+1. The qMRI map is calculated at the scanner site through a non-transparent vendor pipeline.
+2. The qMRI map is generated off-site using an open-source software. 
+
+#### Where to place qMRI maps? 
+
+**If the qMRI map is calculated at the scanner site through a non-transparent vendor pipeline:** 
+
+Although qMRI maps are derivatives, we cannot relate them to their parent images (which may
+not even be accessible) through a set of calculations in this case. Therefore, such maps obtained
+at the scanner site via non-transparent pipelines are placed at the `/sub-#/anat` directory.
+
+**If the qMRI map is generated using an open-source software:**
+
+Quantitative maps SHOULD be stored in the `derivatives` folder, but MAY
+be symbolic linked to the corresponding raw data directory to facilitate the
+easy use of these images as input to processing workflows implemented as
+BIDS-apps. For example:
+
+```diff
+ ds-example/
+ ├── derivatives/
+ |   └── qMRI-software/
+ |       └── sub-01/
+ |           └── anat/
++|               ├── sub-01_T1map.nii.gz
++|               ├── sub-01_T1map.json
++|               ├── sub-01_MTsat.nii.gz
++|               └── sub-01_MTsat.json
+ ├── sub-01/
+ |   ├── anat/
+ |   |   ├── sub-01_fa-1_mt-on_MTS.nii.gz
+ |   |   ├── sub-01_fa-1_mt-on_MTS.json
+ |   |   ├── sub-01_fa-1_mt-off_MTS.nii.gz
+ |   |   ├── sub-01_fa-1_mt-off_MTS.json
+ |   |   ├── sub-01_fa-2_mt-off_MTS.nii.gz
+ |   |   ├── sub-01_fa-2_mt-off_MTS.json
+-|   |   ├── sub-01_T1map.nii.gz
+-|   |   ├── sub-01_T1map.json
+-|   |   ├── sub-01_MTsat.nii.gz
+-|   |   └── sub-01_MTsat.json
+ |   |
+ |   └──func/..
+ |
+ └── sub-#N/..
+```
+
+In the `diff` styled file tree above, the files highlighted by red are
+symbolic linked to the qMRI outputs (highlighted by green), so that an
+application looking for a qMRI map can locate them under the `sub-01/anat` 
+directory along with other anatomical images. 
+
+#### Which metadata fields should a qMRI map contain? 
+
+**If the qMRI map is calculated at the scanner site through a non-transparent vendor pipeline:** 
+
+JSON content is confined to the metadata made available by the vendor pipeline.
+
+**If the qMRI map is generated using an open-source software:**
+
+JSON file of the qMRI map MUST inherit metadata from its parent images (typically a grouped scan 
+collection) by adhering to the following rules:
      * All the acquisition parameters that are unchanged across constituents of
      a `grouped scan collection` are added to the JSON file of the resultant
      qMRI map.
