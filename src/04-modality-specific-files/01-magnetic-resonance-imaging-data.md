@@ -160,7 +160,7 @@ applications, the suffixes will correspond to common anatomical contrasts `T1w`,
 `T2w`, `T2starw` etc. For groups of scans acquired for contrast improvement or 
 qMRI processing, the `_<suffix>` indicates the collection that the scans belong to.
 
-#### The `_<suffix>` entity
+#### The `_suffix` entity
 
 To ensure an comprehensible, human readable directory that contains anatomical 
 imaging data, the `_<suffix>` entity can be used in one of three ways:
