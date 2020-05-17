@@ -130,7 +130,7 @@ sub-01_T1map.nii.gz
 sub-01_T1map.json
 ```
 
-```Text
+```
 sub-01_T1map.json
 {
 
@@ -169,4 +169,4 @@ sub-01_T1map.json
 “EstimationSoftwareVersion”: “2.3.0”,
 “EstimationSoftwareEnv”: “Ubuntu 16.04”
 }
-```\
+```
