@@ -272,10 +272,6 @@ Although the acquisitions will have many identical acquisition parameters, only 
 grouped scan collection. This follows directly from the [inheritance principles of BIDS](../02-common-principles.md#the-inheritance-principle): parameter values that are identical 
 across a set of grouped scans will still have to be stored separately in each `.json`-sidecar file.
 
-Note: Individual images within a grouped scan collection may be used for any purpose.
-For example, the acquisition that is most similar to a `T1w` image may be used in analysis pipelines needing a conventional T1-weighted image.
-
-
 #### The `run` entity
 
 If several scans of the same modality are acquired they MUST be indexed with a
