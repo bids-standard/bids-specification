@@ -122,34 +122,34 @@ BIDS-apps. For example:
  |   └── qMRI-software/
  |       └── sub-01/
  |           └── anat/
-+|               ├── sub-01_T1map.nii.gz
-+|               ├── sub-01_T1map.json
-+|               ├── sub-01_MTsat.nii.gz
-+|               └── sub-01_MTsat.json
- ├── sub-01/
- |   ├── anat/
- |   |   ├── sub-01_T1w.nii.gz
- |   |   ├── sub-01_T1w.json
- |   |   ├── sub-01_fa-1_mt-on_MTS.nii.gz
- |   |   ├── sub-01_fa-1_mt-on_MTS.json
- |   |   ├── sub-01_fa-1_mt-off_MTS.nii.gz
- |   |   ├── sub-01_fa-1_mt-off_MTS.json
- |   |   ├── sub-01_fa-2_mt-off_MTS.nii.gz
- |   |   ├── sub-01_fa-2_mt-off_MTS.json
--|   |   ├── sub-01_T1map.nii.gz
--|   |   ├── sub-01_T1map.json
--|   |   ├── sub-01_MTsat.nii.gz
--|   |   └── sub-01_MTsat.json
+ |               ├── sub-01_T1map.nii.gz ──────────┐ S
+ |               ├── sub-01_T1map.json   ────────┐ | Y
+ |               ├── sub-01_MTsat.nii.gz ──────┐ | | M
+ |               └── sub-01_MTsat.json   ────┐ | | | L 
+ ├── sub-01/                                 | | | | I
+ |   ├── anat/                               | | | | N
+ |   |   ├── sub-01_T1w.nii.gz               | | | | K
+ |   |   ├── sub-01_T1w.json                 | | | | 
+ |   |   ├── sub-01_fa-1_mt-on_MTS.nii.gz    | | | | T
+ |   |   ├── sub-01_fa-1_mt-on_MTS.json      | | | | O 
+ |   |   ├── sub-01_fa-1_mt-off_MTS.nii.gz   | | | | 
+ |   |   ├── sub-01_fa-1_mt-off_MTS.json     | | | | A
+ |   |   ├── sub-01_fa-2_mt-off_MTS.nii.gz   | | | | N
+ |   |   ├── sub-01_fa-2_mt-off_MTS.json     | | | | A
+ |   |   ├── sub-01_T1map.nii.gz ◀───────────├─├─├─┘ T
+ |   |   ├── sub-01_T1map.json   ◀───────────├─├─┘   
+ |   |   ├── sub-01_MTsat.nii.gz ◀───────────├─┘     
+ |   |   └── sub-01_MTsat.json   ◀───────────┘         
  |   |
  |   └──func/..
  |
  └── sub-#N/..
 ```
 
-In the `diff` styled file tree above, the files highlighted by red are
-symbolic linked to the qMRI outputs (highlighted by green), so that an
-application looking for a qMRI map can locate them under the `sub-01/anat` 
-directory along with other anatomical images. 
+In the example above, outputs of the `MTS` that are placed under `derivatives`
+folder are symbolic linked to the respective `anat` folder, so that an
+application looking for a qMRI map can easily locate them in the same directory
+along with other anatomical images. 
 
 #### Which metadata fields should a qMRI map contain? 
 
