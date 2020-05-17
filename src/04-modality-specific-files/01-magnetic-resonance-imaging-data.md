@@ -184,6 +184,57 @@ Previous versions of the specification used the term `modality_label` instead of
 `_suffix` to represent this entity. The change in term was introduced in version 
 `1.x.x.` to accodomate a broad definition of anatomical imaging applications.
 
+##### Conventional MRI suffixes
+
+**Function:**
+
+Denotes the type of the predominant contrast conveyed by an individual file of
+a conventional anatomical image.
+One of the `_<suffix>` entries listed in the table below
+is REQUIRED (with additional entities where applicable) to provide a self-explanatory 
+file name.
+
+A change to the specification is REQUIRED to expand or to modify the following table.
+
+| Name                                       | _suffix | _suffix type | Description                                                                                                                                                                                                                     |
+|--------------------------------------------|---------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| T1 weighted images                         | T1w     | Conventional | Denotes images with predominant T1 contribution.                                                                                                                                                                                |
+| T2 weighted images                         | T2w     | Conventional | Denotes images with predominant T2 contribution.                                                                                                                                                                                |
+| Proton density weighted images             | PDw     | Conventional | Denotes images with predominant proton density (PD) contribution.                                                                                                                                                               |
+| T2 star weighted images                    | T2starw | Conventional | Denotes images with predominant T2* contribution, typically images acquired using a GRE sequence with low flip angle, long echo time and long repetition time. Please note that this suffix is not a surrogate for `T2starmap`. |
+| Fluid Attenuated Inversion Recovery Images | FLAIR   | Conventional | Denotes images with predominant T2 contribution (a.k.a T2-FLAIR), in which signal from fluids (e.g. CSF) is nulled out by adjusting inversion time, coupled with notably long repetition and echo times.              |
+| Inplane T1                                 | inplaneT1 | Conventional | T1-weighted anatomical image matched to functional acquisition                                                           |
+| Inplane T2                                 | inplaneT2 | Conventional | T2-weighted anatomical image matched to functional acquisition                                                           | 
+
+Example use for conventional **T1 weighted images**:
+
+```Text
+sub-01_run-1_T1w.nii.gz
+sub-01_run-1_T1w.json
+sub-01_run-2_T1w.nii.gz
+sub-01_run-2_T1w.json
+```
+
+The `run` entity in the example above denotes the index of the acquisition
+repeated with the identical scan parameters (e.g., to achieve a higher SNR by averaging the scans together).
+Note that changing parameters between multiple acquisitions of the same sequence
+creates a different use case: **grouped scan collections**. For more information see
+the [grouping suffixes](#grouping-suffixes) subsection.
+
+**Important:**
+
+If an anatomical image is defaced for anonymization, one MAY provide
+the binary mask that was used to remove facial features. In the specific case of
+naming this binary mask, the `_<suffix>` entity is replaced by `_<defacemask>` entry.
+Therefore, to contain the original `_<suffix>` entry, the OPTIONAL `mod-<suffix>`
+entity is used. For example, deface mask image belonging to a **T1 weighted image**
+is named as follows:
+
+```
+sub-01_mod-T1w_defacemask.nii.gz
+sub-01_mod-T1w_defacemask.json
+```
+
 #### The `run` entity
 
 If several scans of the same modality are acquired they MUST be indexed with a
