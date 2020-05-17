@@ -124,8 +124,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_fa-<index>][_inv-<index>][_ce-<label>][_rec-<label>][_run-<index>]_<suffix>.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_fa-<index>][_inv-<index>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_fa-<index>][_inv-<index>][_mt-<on/off>][_ce-<label>][_rec-<label>][_run-<index>]_<suffix>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_fa-<index>][_inv-<index>][_mt-<on/off>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
 ```
 
 The term anatomical imaging data pertains to a broad range of MRI applications that provide structural 
@@ -349,7 +349,7 @@ can also be used to make that distinction. At what level of detail to make the
 distinction (e.g. just between RARE and FLASH, or between RARE, FLASH, and
 FLASHsubsampled) remains at the discretion of the researcher.
 
-#### The echo entity 
+#### The `echo` entity 
 
 If the value of `EchoTime` metadata field varies at least once across a collection 
 of anatomical images having a common `grouping suffix`, the use of `echo-<index>`
@@ -368,7 +368,7 @@ sub-01_echo-3_MEGRE.nii.gz
 sub-01_echo-3_MEGRE.json   (`EchoTime` = 0.0025)
 ```
 
-#### The fa entity 
+#### The `fa` entity 
 
 If the value of `FlipAngle` metadata field varies at least once across a collection 
 of anatomical images having a common `grouping suffix`, the use of `fa-<index>`
@@ -402,6 +402,20 @@ sub-01_inv-2_IRT1.nii.gz
 sub-01_inv-2_IRT1.json     (`InversionTime` = 0.0100)
 sub-01_inv-3_IRT1.nii.gz
 sub-01_inv-4_IRT1.json     (`InversionTime` = 0.0150)
+```
+
+#### The `mt` entity 
+
+If a collection of anatomical images having a common `grouping suffix` includes
+at least one scan in which a magnetization transfer pulse is applied, the 
+`mt-<on/off>` key/value pair MUST BE used. The value of this entity can be either 
+`on` or `off` (in lowercase), as determined by the `MTState` metadata. For example: 
+
+```
+sub-01_mt-on_MTR.nii.gz
+sub-01_mt-on_MTR.json      (`MTState` = On)
+sub-01_mt-off_MTR.nii.gz
+sub-01_mt-off_MTR.json     (`MTState` = Off)
 ```
 
 #### The `ce` entity
