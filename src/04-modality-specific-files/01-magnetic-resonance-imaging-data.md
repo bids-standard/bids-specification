@@ -124,8 +124,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_ce-<label>][_rec-<label>][_run-<index>]_<suffix>.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_ce-<label>][_rec-<label>][_run-<index>]_<suffix>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
 ```
 
 The term anatomical imaging data pertains to a broad range of MRI applications that provide structural 
@@ -348,6 +348,27 @@ are used to record the same modality (e.g. RARE and FLASH for T1w) this field
 can also be used to make that distinction. At what level of detail to make the
 distinction (e.g. just between RARE and FLASH, or between RARE, FLASH, and
 FLASHsubsampled) remains at the discretion of the researcher.
+
+#### The `echo` entity
+
+### The echo entity 
+
+If the value of `EchoTime` metadata field varies at least once across a collection 
+of anatomical images having a common `grouping suffix`, the use of `echo-<index>`
+key/value pair is REQUIRED. Note that only integers (from 1 to N) are allowed as
+values to this entity for N different `EchoTime` parameter values. The actual 
+`EchoTime` parameter values MUST NOT be explicitly declared by the entity. Instead, 
+the parameter values are stored in sidecar json files and indexed by the `echo` entity
+in ascending order. For example: 
+
+```
+sub-01_echo-1_MEGRE.nii.gz
+sub-01_echo-1_MEGRE.json   (`EchoTime` = 0.0005)
+sub-01_echo-2_MEGRE.nii.gz 
+sub-01_echo-2_MEGRE.json   (`EchoTime` = 0.0015)
+sub-01_echo-3_MEGRE.nii.gz
+sub-01_echo-3_MEGRE.json   (`EchoTime` = 0.0025)
+```
 
 #### The `ce` entity
 
