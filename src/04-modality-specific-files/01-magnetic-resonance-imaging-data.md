@@ -113,48 +113,52 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>]_<modality_label>.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_ce-<label>][_rec-<label>][_run-<index>]_<suffix>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
 ```
 
-Anatomical (structural) data acquired for that participant. Currently supported
-modalities include:
+The term anatomical imaging data pertains to a broad range of MRI applications that provide structural 
+information about (brain) anatomy, but differ by the nature of the data they contain. Anatomical
+(structural) data for a participant may refer to three types of data:
+1. a single image with specific weighting on an arbitrary scale (e.g. a 3D high resolution T1-weighted image).
+This type is most commonly used in neuroimaging applications.
+2. a group of images acquired within a single protocol for the purpose of improving contrast 
+characteristics (e.g., a multi-echo anatomical GRE image) or calculating quantitative maps
+(e.g. four 3D volumes provided as an input to an MP2RAGE calculation) 
+3. a quantitative map of which the intensities are put on an absolute scales (e.g., seconds for a T1 map).
+These images are generally produced by some mathematical operation on images from class 2.
 
-| Name               | `modality_label` | Description                                                                                                                                       |
-| ---------------------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| T1 weighted        | T1w              |                                                                                                                                                   |
-| T2 weighted        | T2w              |                                                                                                                                                   |
-| T1 Rho map         | T1rho            | Quantitative T1rho brain imaging <br> <https://www.ncbi.nlm.nih.gov/pubmed/24474423> <br> <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/> |
-| T1 map             | T1map            | quantitative T1 map                                                                                                                               |
-| T2 map             | T2map            | quantitative T2 map                                                                                                                               |
-| T2\*               | T2star           | High resolution T2\* image                                                                                                                        |
-| FLAIR              | FLAIR            |                                                                                                                                                   |
-| FLASH              | FLASH            |                                                                                                                                                   |
-| Proton density     | PD               |                                                                                                                                                   |
-| Proton density map | PDmap            |                                                                                                                                                   |
-| Combined PD/T2     | PDT2             |                                                                                                                                                   |
-| Inplane T1         | inplaneT1        | T1-weighted anatomical image matched to functional acquisition                                                                                    |
-| Inplane T2         | inplaneT2        | T2-weighted anatomical image matched to functional acquisition                                                                                    |
-| Angiography        | angio            |                                                                                                                                                   |
-#### The `_<suffix>` entity
+#### Conventional structural acquisitions
 
-To ensure an comprehensible, human readable directory that contains anatomical 
-imaging data, the `_<suffix>` entity can be used in one of three ways:
+Anatomical images of this type typically refer to a volumetric high-resolution 
+dataset, representing the measured MRI signal in an arbitrary scale of gray
+shades. Contrast factor of these grayscale images depend on the relative contribution
+of inherent tissue parameters (e.g. `T1`, `T2` and `PD`) to the measured signal. 
 
-1. Conventional MRI suffixes
-2. Grouping suffixes
-3. Quantitative MRI (qMRI) map suffixes
+Contribution weights of these parameters are determined by the type of acquisition
+sequence (e.g. `spin-` or `gradient-echo`) and the setting of various parameters
+(e.g. `Repetition Time`, `Echo Time`, `Inversion Time` and `Flip Angle`). For 
+example, in a spoiled gradient-echo scan, keeping the repetition and the echo time 
+short with a relatively large flip angle increases the contribution of `T1`, yielding
+a primarily T1-weighted image.
 
-This distinction was added to the specification on acceptance of the BEP001 
-proposal in version `1.x.x`. However, as a result, some  suffixes that were introduced
-into BIDS at an earlier point time are inconsistent with this typology:
-for example because they are linked to a readout-sequence rather than a contrast, or
-because they don't clearly distinguish between a quantitative map or a contrast-weighted image.
-These `legacy`-suffixes are no longer recommended but remain part of the specification in 
-order to maintain backwards compatability with previous versions of the specification.
-These can be found in the [legacy suffixes](#legacy-suffixes) subsection.
+#### Grouped scan collections for contrast improvement or quantitative map calculation
 
-Previous versions of the specification used the term `modality_label` instead of `_suffix` to represent this entity. The change in term was introduced in version 1.x.x. to accodomate a broad definition of anatomical imaging applications.
+A group of anatomical scans may be collected to enhance certain contrast features,
+such as to calculate a weighted average of multi-echo gradient echo (`MEGRE`) images,
+which is known to improve segmentation algorithm outputs.
+
+Quantitative MRI (qMRI) methods mathematically characterize the signal changes observed in a collection of parametrically altered scans under certain biophysical model assumptions. These `grouped scan collections` are then processed to derive a `qMRI map`, representing anatomical features in a physically meaningful parameter range.
+
+In both cases, the contrast characteristics change with varying acquisition parameters across `grouped scan collections`. Therefore, it is not tenable to name all the members
+of a `grouped scan collection` with one conventional MRI suffix label (e.g., `T1w`)
+or any other label that implies interchangeability among its instances. 
+
+To circumvent this problem, the `_<suffix>` entity is adaptively used according 
+to the intended application of anatomical imaging data. For conventional MRI 
+applications, the suffixes will correspond to common anatomical contrasts `T1w`,
+`T2w`, `T2starw` etc. For groups of scans acquired for contrast improvement or 
+qMRI processing, the `_<suffix>` indicates the collection that the scans belong to.
 
 #### The `run` entity
 
