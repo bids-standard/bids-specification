@@ -234,6 +234,43 @@ is named as follows:
 sub-01_mod-T1w_defacemask.nii.gz
 sub-01_mod-T1w_defacemask.json
 ```
+##### Grouping suffixes
+
+**Function:**
+
+Files that belong to a **grouped scan collection** are part of a single scan protocol that acquires multiple images with  similar acquisition parameters and is intended to a) increase contrast by combining multiple similar images (e.g., a multi-echo GRE), or b) to estimate physical parameters on an absolute scale, within a qMRI analysis framework (e.g., a T1-map using a MP2RAGE-protocol).
+The quantitative maps that are output from these calculations (e.g., `T1map`, `T2map` etc) are described in the [qMRI map suffixes](#qmri-map-suffixes) section below.
+A change to the specification is REQUIRED to expand or to modify the following table.
+
+| Name                                       | Suffix  | Type     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|--------------------------------------------|---------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Variable flip angle                        | VFA     | Grouping | Parametrically linked anatomical images (primarily) for relaxometry mapping. The VFA method involves at least two spoiled gradient echo (SPGR) of steady-state free precession (SSFP) images acquired at different flip angles. Depending on the provided metadata fields and the sequence type, data may be eligible for DESPOT1, DESPOT2 and their variants ([Deoni et al. 2005](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.20314)). Please visit the [qMRI appendix](#prioritylevels) for details. _Associated output suffixes_: T1map, T2map, R1map, R2map |
+| Inversion recovery (for T1 mapping)        | IRT1    | Grouping | Parametrically linked anatomical images for T1 mapping. The IRT1 method involves multiple inversion recovery spin-echo images acquired at different inversion times ([Barral et al. 2010](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.22497)). _Associated output suffixes_: T1map, R1map                                                                                                                                                                                                                                                                                                                    |
+| Magnetization prepared two gradient echoes | MP2RAGE | Grouping | Parametrically linked anatomical images (primarily) for T1 mapping. The MP2RAGE method is a special protocol that collects several images at different flip angles and inversion times to create a parametric T1map by combining the magnitude and phase images ([Marques et al. 2010](https://www.sciencedirect.com/science/article/pii/S1053811909010738?casa_token=u_CYBx4hi7IAAAAA:3w0cMTyU5jA1BdFs0s5oVcQeqF2tZho0iJ9d4N1kExfaX27v9-JnWacF6mbEp_lMKZ64CvoTl8k)). _Associated output suffixes_: T1map, R1map, UNIT1                                                                                                                                                                                                                 |
+| Multi-echo spin echo                       | MESE    | Grouping | Parametrically linked anatomical images (primarily) for T2 mapping.The MESE method involves multiple spin echo images acquired at different echo times. _Associated output suffixes_: T2map, R2map, MWFmap                                                                                                                                                                                                                                                                                                                         |
+| Multi-echo gradient echo                   | MEGRE   | Grouping | Parametrically linked multiple anatomical gradient echo images acquired at different echo times. _Associated output suffixes_: T2starmap, R2starmap                                                                                                                                                                                                                                                                                                                                             |
+| Magnetization transfer ratio               | MTR     | Grouping | Parametrically linked anatomical images for calculating a semi-quantitative magnetization transfer ratio map. _Associated output suffixes_: MTRmap                                                                                                                                                                                                                                                                                                                                                                                 |
+| Magnetization transfer saturation          | MTS     | Grouping | Parametrically linked anatomical images for calculating a semi-quantitative magnetization transfer saturation index map. The MTS method involves three sets of anatomical images that differ in terms of application of a magnetization transfer RF pulse (MTon or MToff) and flip angle ([Helms et al. 2008](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.21732)). _Associated output suffixes_: T1map, MTsat                                                                                                                                                                                               |
+| Multi-parametric mapping                   | MPM     | Grouping | Parametrically linked anatomical images for multiparametric mapping (a.k.a hMRI). The MPM approaches involves the acquisition of highly-similar anatomical images that differ in terms of application of a magnetization transfer RF pulse (MTon or MToff), flip angle and (optionally) echo time and magnitue/phase parts ([Weiskopf et al. 2013](https://www.frontiersin.org/articles/10.3389/fnins.2013.00095/full)). See [here](https://owncloud.gwdg.de/index.php/s/iv2TOQwGy4FGDDZ) for suggested MPM acquisition protocols.,_Associated output suffixes_:R1map, R2starmap, MTsat, PDmap, T1map, T2starmap                                               |
+| Double-angle B1 mapping                    | B1DAM   | Grouping | Parametrically linked anatomical images for RF transmit field (B1 plus) mapping ([Insko and Bolinger 1993](https://www.sciencedirect.com/science/article/abs/pii/S1064185883711332)). Double angle method is based on the calculation of the actual angles from signal ratios, collected by two acquisitions at different nominal excitation angles. Common sequence types for this application include spin echo and echo planar imaging. _Associated output suffixes_: B1plusmap                                                                                                                                                      |
+
+For example:
+
+```Text
+sub-01_fa-1_VFA.nii.gz
+sub-01_fa-1_VFA.json
+sub-01_fa-2_VFA.nii.gz
+sub-01_fa-2_VFA.json
+```
+
+Please see the [entity table appendix]() for the REQUIRED and OPTIONAL entities
+for each `grouping suffix`. 
+
+Note that every image in a **grouped scan collection** has the same `_<suffix>` 
+as they are likely to be used together.
+Although the acquisitions will have many identical acquisition parameters, only one-to-one-mapping is allowed between a `.json`-sidecar file and an image in a 
+grouped scan collection. This follows directly from the [inheritance principles of BIDS](../02-common-principles.md#the-inheritance-principle): parameter values that are identical 
+across a set of grouped scans will still have to be stored separately in each `.json`-sidecar file.
 
 #### The `run` entity
 
