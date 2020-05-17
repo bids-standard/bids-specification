@@ -128,6 +128,8 @@ BIDS-apps. For example:
 +|               └── sub-01_MTsat.json
  ├── sub-01/
  |   ├── anat/
+ |   |   ├── sub-01_T1w.nii.gz
+ |   |   ├── sub-01_T1w.json
  |   |   ├── sub-01_fa-1_mt-on_MTS.nii.gz
  |   |   ├── sub-01_fa-1_mt-on_MTS.json
  |   |   ├── sub-01_fa-1_mt-off_MTS.nii.gz
