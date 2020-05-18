@@ -112,7 +112,7 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_part-<mag|phase>][_run-<index>]_<modality_label>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_part-<mag|phase>]_<modality_label>.nii[.gz]
         sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
 ```
 
