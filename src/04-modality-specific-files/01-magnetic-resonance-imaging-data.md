@@ -704,6 +704,17 @@ JSON example:
 
 ### Fieldmap data
 
+Both B0 (static magnetic field strength pattern), B1+ (transmit field pattern), and
+B1- (receive field pattern) maps can be useful in post-processing raw functional and
+anatomical data.
+
+B0 maps are primarily used to correct for spatial distortions in functional data
+acquired with EPI sequences.
+
+B1+ and B1- maps are mostly used in anatomical imaging, especially when applying
+quantitative MRI (qMRI or hMRI) techniques.
+
+#### B0 fieldmaps
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
 current version of this standard considers four different scenarios. Please note
 that in all cases fieldmap data can be linked to a specific scan(s) it was
@@ -734,7 +745,7 @@ Multiple fieldmaps can be stored. In such case the `_run-1`, `_run-2` should be
 used. The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label
 the user may use to distinguish different set of parameters.
 
-#### Case 1: Phase difference image and at least one magnitude image
+##### Case 1: Phase difference image and at least one magnitude image
 
 Template:
 
@@ -769,7 +780,7 @@ the shorter echo time and `EchoTime2` to the longer echo time. Similarly
 }
 ```
 
-#### Case 2: Two phase images and two magnitude images
+##### Case 2: Two phase images and two magnitude images
 
 Template:
 
@@ -795,7 +806,7 @@ corresponding `EchoTime` values. For example:
 }
 ```
 
-#### Case 3: A real fieldmap image
+##### Case 3: A real fieldmap image
 
 Template:
 
@@ -819,7 +830,7 @@ the fieldmap. The possible options are: `Hz`, `rad/s`, or `Tesla`. For example:
 }
 ```
 
-#### Case 4: Multiple phase encoded directions ("pepolar")
+##### Case 4: Multiple phase encoded directions ("pepolar")
 
 Template:
 
