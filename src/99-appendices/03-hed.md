@@ -3,7 +3,7 @@
 Hierarchical Event Descriptors (HED) are a controlled vocabulary of terms describing events in a behavioral
 paradigm. HED was originally developed with EEG in mind, but is applicable to
 all behavioral experiments. Each level of a hierarchical tag is delimited with
-a forward slash (`/`). An HED string contains one or more HED tags separated by
+a forward slash (`/`). A HED string contains one or more HED tags separated by
 commas (`,`). Parentheses (brackets, `()`) group tags and enable specification
 of multiple items and their attributes in a single HED string (see section 2.4
 in [HED Tagging Strategy Guide](http://www.hedtags.org/downloads/HED%20Tagging%20Strategy%20Guide.pdf)).
@@ -26,7 +26,7 @@ onset	duration	HED
 ...
 ```
 
-The direct approach requires that each line in the events file must be
+The direct approach requires that each line in the events file be
 annotated. Since there are typically thousands of events in each experiment,
 this method of annotation is usually not convenient unless the annotations are
 automatically generated. In many experiments, the event instances fall into a
@@ -75,5 +75,5 @@ The tags in the `HED` column are often specific to the event instances, while
 the common properties associated with categories such as `mycodes` are
 encapsulated in the \_events.json dictionary. Downstream tools should not
 distinguish between tags specified using the different mechanisms. Further,
-the normal BIDS inheritance principle applies so these data dictionaries can
+the normal BIDS inheritance principle applies, so these data dictionaries can
 appear higher in the BIDS hierarchy.
