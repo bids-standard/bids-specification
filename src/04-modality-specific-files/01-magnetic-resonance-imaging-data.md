@@ -113,7 +113,7 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_ch-<index>]_<modality_label>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_ch-<label>]_<modality_label>.nii[.gz]
         sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
 ```
 
@@ -174,9 +174,9 @@ different reconstruction algorithms (for example ones using motion correction).
 
 #### The `ch` entity
 
-The OPTIONAL `ch-<index>` key/value can be used to distinguish channel-specific data.
+The OPTIONAL `ch-<label>` key/value can be used to distinguish channel-specific data.
 Typically it is used for sequences not employing coil combination (e.g., SWI).
-When the file contains data from a single channel, `ch-<index>` SHOULD be provided.
+When the file contains data from a single channel, `ch-<label>` SHOULD be provided.
 The key `CoilString` MAY also be added in the JSON file, with a corresponding
 identifier for the channel within the coil.
 
@@ -211,8 +211,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     func/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_ch-<index>]_<contrast_label>.nii[.gz]
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_ch-<index>]_sbref.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_ch-<label>]_<contrast_label>.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_ch-<label>]_sbref.nii[.gz]
 ```
 
 Imaging data acquired during functional imaging (i.e. imaging which supports
@@ -256,7 +256,7 @@ reconstruction algorithms (for example ones using motion correction).
 See [`fmap` Case 4](01-magnetic-resonance-imaging-data.md#case-4-multiple-phase-encoded-directions-pepolar)
 for more information on `dir` field specification.
 
-Similarly the OPTIONAL `ch-<index>` key/value can be used to distinguish
+Similarly the OPTIONAL `ch-<label>` key/value can be used to distinguish
 channel-specific data from sequences not employing coil combination.
 The key CoilString MAY also be added in the JSON file, with a corresponding
 channel identifier.
