@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] linkchecker - ignore github pull and tree URLs [#477](https://github.com/bids-standard/bids-specification/pull/477) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] Align tables in MRI section [#465](https://github.com/bids-standard/bids-specification/pull/465) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Drop `\_part-` reference from example, introduce `\_split-` entity [#460](https://github.com/bids-standard/bids-specification/pull/460) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] clarify participants tsv+json with examples and recommendations [#459](https://github.com/bids-standard/bids-specification/pull/459) ([sappelhoff](https://github.com/sappelhoff))
