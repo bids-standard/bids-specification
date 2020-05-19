@@ -3,6 +3,7 @@
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
 -   \[FIX] Align tables in MRI section [#465](https://github.com/bids-standard/bids-specification/pull/465) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Drop `\_part-` reference from example, introduce `\_split-` entity [#460](https://github.com/bids-standard/bids-specification/pull/460) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] clarify participants tsv+json with examples and recommendations [#459](https://github.com/bids-standard/bids-specification/pull/459) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Remove BESA from list of restricted keywords of EEG coordsystems [#457](https://github.com/bids-standard/bids-specification/pull/457) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] add steps for release protocol (PDF upload) [#455](https://github.com/bids-standard/bids-specification/pull/455) ([sappelhoff](https://github.com/sappelhoff))
