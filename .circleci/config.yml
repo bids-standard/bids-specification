@@ -46,6 +46,7 @@ jobs:
               --ignore-url 'file:///.*' \
               --ignore-url https://fonts.gstatic.com \
               --ignore-url "https://github.com/bids-standard/bids-specification/(pull|tree)/.*" \
+              --ignore-url "https://github.com/[^/]*" \
               ~/build/site/*html ~/build/site/*/*.html
             else
             echo "Release PR - do nothing"
