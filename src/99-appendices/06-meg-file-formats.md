@@ -3,14 +3,14 @@
 Each MEG system brand has specific file organization and data formats.
 RECOMMENDED values for `manufacturer_specific_extensions`:
 
-| Value  | Definition                                                                            |
-| ------ | ------------------------------------------------------------------------------------- |
-| `ctf`  | CTF (folder with `.ds` extension)                                                     |
-| `fif`  | Neuromag / Elekta / MEGIN  and BabyMEG (file with extension `.fif`)                   |
-| `4d`   | BTi / 4D Neuroimaging (folder containing multiple files without extensions)           |
-| `kit`  | KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`) |
-| `kdf`  | KRISS (file with extension `.kdf`)                                                    |
-| `itab` | Chieti system (file with extension `.raw` and `.mhd`)                                 |
+| Value                                                 | Definition                                                                            |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| [`ctf`](06-meg-file-formats.md#ctf)                   | CTF (folder with `.ds` extension)                                                     |
+| [`fif`](06-meg-file-formats.md#neuromagelektamegin)   | Neuromag / Elekta / MEGIN  and BabyMEG (file with extension `.fif`)                   |
+| [`4d`](06-meg-file-formats.md#bti4d-neuroimaging)     | BTi / 4D Neuroimaging (folder containing multiple files without extensions)           |
+| [`kit`](06-meg-file-formats.md#kityokogawaricoh)      | KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`) |
+| [`kdf`](06-meg-file-formats.md#kriss)                 | KRISS (file with extension `.kdf`)                                                    |
+| [`itab`](06-meg-file-formats.md#itab)                 | Chieti system (file with extension `.raw` and `.mhd`)                                 |
 
 Below are specifications for each system brand.
 
@@ -27,10 +27,11 @@ sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.ds>
 ```
 
 CTF's data storage is therefore via directories containing multiple files. The
-files contained within a .ds directory are named such that they match the
+files contained within a `.ds` directory are named such that they match the
 parent directory, but preserve the original file extension (e.g., `.meg4`,
 `.res4`, etc.). The renaming of CTF datasets SHOULD be done with a specialized
-software such as the CTF newDs command-line application or [MNE-BIDS](https://github.com/mne-tools/mne-bids).
+software such as the CTF newDs command-line application or
+[MNE-BIDS](https://github.com/mne-tools/mne-bids).
 
 Example:
 
@@ -60,8 +61,8 @@ file.
 sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.fif
 ```
 
-Note that we do not provide specific specifications for cross-talk and
-fine-calibration matrix files in the present MEG-BIDS version.
+Note that we do not provide specifications for cross-talk and
+fine-calibration matrix files in the current version of BIDS.
 
 Example:
 
@@ -77,7 +78,7 @@ sub-control01/
 ```
 
 After applying the MaxFilter pre-processing tool, files should be renamed with
-the corresponding label (e.g. `proc-sss`) and placed into a `derivatives`
+the corresponding label (e.g., `proc-sss`) and placed into a `derivatives`
 subfolder.
 
 Example:
@@ -87,31 +88,35 @@ sub-control01_ses-001_task-rest_run-01_proc-sss_meg.fif
 sub-control01_ses-001_task-rest_run-01_proc-sss_meg.json
 ```
 
-In the case of data runs exceeding 2Gb, the data is stored in two separate
-files:
+In the case of long data recordings that exceed a file size of 2Gb, the `.fif`
+files are conventionally split into multiple parts. For example:
 
 ```Text
-sub-control01_ses-001_task-rest_run-01_meg.fif
-sub-control01_ses-001_task-rest_run-01_meg-1.fif
+some_file.fif
+some_file-1.fif
 ```
 
-Each of these two files has a pointer to the next file. In some software
-applications, like MNE, one can simply specify the name of the first file, and
-data will be read in both files via this pointer. For this reason, it is
-RECOMMENDED to rename and write back the file once read, to avoid the
-persistence of a pointer associated with the old file name.
+Each of these files has an internal pointer to the next file.
+This is important when renaming these split recordings to the BIDS convention.
+Instead of a simple renaming, files should be read in and saved under their new
+names with dedicated tools like [MNE](https://mne.tools), which will ensure
+that not only the file names, but also the internal file pointers will be
+updated.
 
-Naming convention:
+It is RECOMMENDED that `.fif` files with multiple parts use the `split-<index>`
+entity to indicate each part.
+
+Example:
 
 ```Text
-sub-control01_ses-001_task-rest_run-01_part-01_meg.fif
-sub-control01_ses-001_task-rest_run-01_part-02_meg.fif
+sub-control01_ses-001_task-rest_run-01_split-01_meg.fif
+sub-control01_ses-001_task-rest_run-01_split-02_meg.fif
 ```
 
-More about the Neuromag/Elekta/MEGIN data organization at:
-[http://www.fieldtriptoolbox.org/getting_started/neuromag](http://www.fieldtriptoolbox.org/getting_started/neuromag)
-And BabyMEG :
-[http://www.fieldtriptoolbox.org/getting_started/babysquid](http://www.fieldtriptoolbox.org/getting_started/babysquid)
+More information can be found under the following links:
+
+-   [Neuromag/Elekta/MEGIN data organization](http://www.fieldtriptoolbox.org/getting_started/neuromag)
+-   [BabyMEG](http://www.fieldtriptoolbox.org/getting_started/babysquid)
 
 ## BTi/4D neuroimaging
 
@@ -124,7 +129,7 @@ sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg>
 ```
 
 One SHOULD rename/create a father run specific directory and keep the original
-files for each run inside (e.g. "c,rfhp0.1Hz", "config" and "hs_file").
+files for each run inside (e.g., `c,rfhp0.1Hz`, `config` and `hs_file`).
 
 Example:
 
@@ -189,16 +194,17 @@ More about the KIT/Yokogawa/Ricoh data organization at:
 
 ## KRISS
 
-Each experimental run on the KRISS system produces a file with extension .kdf.
-Additional files can be available in the same folder: the digitized positions of
-the head points (\_digitizer.txt), the position of the center of the MEG coils
-(.chn) and the event markers (.trg).
+Each experimental run on the KRISS system produces a file with extension
+`.kdf`. Additional files can be available in the same folder: the digitized
+positions of the head points (`\_digitizer.txt`), the position of the center of
+the MEG coils (`.chn`) and the event markers (`.trg`).
 
 ```Text
 [sub-<label>[_ses-<label>]_headshape.txt]
 sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.kdf
 sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.chn
 sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.trg
+sub-<label>[_ses-<label>]_task-<label>[_acq-<label>]_digitizer.txt
 ```
 
 Example:
@@ -216,6 +222,7 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_meg.chn
             sub-control01_ses-001_task-rest_run-01_meg.kdf
             sub-control01_ses-001_task-rest_run-01_meg.trg
+            sub-control01_ses-001_task-rest_digitizer.txt
 ```
 
 ## ITAB
@@ -226,7 +233,8 @@ header that contains detailed information about the data acquisition system,
 followed by binary data. The associated binary header file contains part of the
 information from the ASCII header, specifically the one needed to process data,
 plus other information on offline preprocessing performed after data acquisition
-(e.g., sensor position relative to subject’s head, head markers, stimulus information).
+(e.g., sensor position relative to subject’s head, head markers, stimulus
+information).
 
 Example:
 
@@ -245,7 +253,7 @@ sub-control01/
 ## Aalto MEG–MRI
 
 For stand-alone MEG data, the Aalto hybrid device uses the standard `.fif` data
-format and follows the conventions of Elekta/Neuromag as described above in
-section 5.2. The `.fif` files may contain unreconstructed MRI data. The
-inclusion of MRI data and information for accurate reconstruction will be fully
-standardized at a later stage.
+format and follows the conventions of Elekta/Neuromag as described
+[above](06-meg-file-formats.md#neuromagelektamegin). The `.fif` files may
+contain unreconstructed MRI data. The inclusion of MRI data and information for
+accurate reconstruction will be fully standardized at a later stage.

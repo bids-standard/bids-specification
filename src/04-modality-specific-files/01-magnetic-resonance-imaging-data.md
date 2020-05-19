@@ -1,4 +1,4 @@
-# Magnetic Resonance Imaging data
+# Magnetic Resonance Imaging
 
 ## Common metadata fields
 
@@ -11,7 +11,7 @@ by Ben Inglis:
 ### Scanner Hardware
 
 | Field name                    | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| :---------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Manufacturer                  | RECOMMENDED. Manufacturer of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0070 `Manufacturer`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | ManufacturersModelName        | RECOMMENDED. Manufacturer's model name of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | DeviceSerialNumber            | RECOMMENDED. The serial number of the equipment that produced the composite instances. Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`. A pseudonym can also be used to prevent the equipment from being identifiable, so long as each pseudonym is unique within the dataset                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
@@ -29,7 +29,7 @@ by Ben Inglis:
 #### Sequence Specifics
 
 | Field name                  | Definition                                                                                                                                                                                                                                                                     |
-| :-------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | PulseSequenceType           | RECOMMENDED. A general description of the pulse sequence used for the scan (i.e. MPRAGE, Gradient Echo EPI, Spin Echo EPI, Multiband gradient echo EPI).                                                                                                                       |
 | ScanningSequence            | RECOMMENDED. Description of the type of data acquired. Corresponds to DICOM Tag 0018, 0020 `Scanning Sequence`.                                                                                                                                                                |
 | SequenceVariant             | RECOMMENDED. Variant of the ScanningSequence. Corresponds to DICOM Tag 0018, 0021 `Sequence Variant`.                                                                                                                                                                          |
@@ -41,7 +41,7 @@ by Ben Inglis:
 #### In-Plane Spatial Encoding
 
 | Field name                     | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| :----------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | NumberShots                    | RECOMMENDED. The number of RF excitations need to reconstruct a slice or volume. Please mind that this is not the same as Echo Train Length which denotes the number of lines of k-space collected after an excitation.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ParallelReductionFactorInPlane | RECOMMENDED. The parallel imaging (e.g, GRAPPA) factor. Use the denominator of the fraction of k-space encoded for each slice. For example, 2 means half of k-space is encoded. Corresponds to DICOM Tag 0018, 9069 `Parallel Reduction Factor In-plane`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | ParallelAcquisitionTechnique   | RECOMMENDED. The type of parallel imaging used (e.g. GRAPPA, SENSE). Corresponds to DICOM Tag 0018, 9078 `Parallel Acquisition Technique`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
@@ -64,46 +64,48 @@ first "effective" echo and the center of the last "effective" echo.
 
 #### Timing Parameters
 
-| Field name             | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| :--------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| EchoTime               | RECOMMENDED. The echo time (TE) for the acquisition, specified in seconds. This parameter is REQUIRED if corresponding fieldmap data is present or the data comes from a multi echo sequence. Corresponds to DICOM Tag 0018, 0081 `Echo Time` (please note that the DICOM term is in milliseconds not seconds).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| InversionTime          | RECOMMENDED. The inversion time (TI) for the acquisition, specified in seconds. Inversion time is the time after the middle of inverting RF pulse to middle of excitation pulse to detect the amount of longitudinal magnetization. Corresponds to DICOM Tag 0018, 0082 `Inversion Time` (please note that the DICOM term is in milliseconds not seconds).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| SliceTiming            | RECOMMENDED. The time at which each slice was acquired within each volume (frame) of the acquisition. Slice timing is not slice order -- rather, it is a list of times (in JSON format) containing the time (in seconds) of each slice acquisition in relation to the beginning of volume acquisition. The list goes through the slices along the slice axis in the slice encoding dimension (see below). Note that to ensure the proper interpretation of the `SliceTiming` field, it is important to check if the OPTIONAL `SliceEncodingDirection` exists. In particular, if `SliceEncodingDirection` is negative, the entries in `SliceTiming` are defined in reverse order with respect to the slice axis (i.e., the final entry in the `SliceTiming` list is the time of acquisition of slice 0). This parameter is REQUIRED for sparse sequences that do not have the `DelayTime` field set. In addition without this parameter slice time correction will not be possible.   |
-| SliceEncodingDirection | RECOMMENDED. Possible values: `i`, `j`, `k`, `i-`, `j-`, `k-` (the axis of the NIfTI data along which slices were acquired, and the direction in which `SliceTiming` is defined with respect to). `i`, `j`, `k` identifiers correspond to the first, second and third axis of the data in the NIfTI file. A `-` sign indicates that the contents of `SliceTiming` are defined in reverse order - that is, the first entry corresponds to the slice with the largest index, and the final entry corresponds to slice index zero. When present, the axis defined by `SliceEncodingDirection` needs to be consistent with the ‘slice_dim’ field in the NIfTI header. When absent, the entries in `SliceTiming` must be in the order of increasing slice index as defined by the NIfTI header.                                                                                                                                                                                           |
-| DwellTime              | RECOMMENDED. Actual dwell time (in seconds) of the receiver per point in the readout direction, including any oversampling. For Siemens, this corresponds to DICOM field (0019,1018) (in ns). This value is necessary for the optional readout distortion correction of anatomicals in the HCP Pipelines. It also usefully provides a handle on the readout bandwidth, which isn’t captured in the other metadata tags. Not to be confused with `EffectiveEchoSpacing`, and the frequent mislabeling of echo spacing (which is spacing in the phase encoding direction) as "dwell time" (which is spacing in the readout direction).                                                                                                                                                                                                                                                                                                                                                 |
+| Field name             | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| EchoTime               | RECOMMENDED. The echo time (TE) for the acquisition, specified in seconds. This parameter is REQUIRED if corresponding fieldmap data is present or the data comes from a multi echo sequence. Corresponds to DICOM Tag 0018, 0081 `Echo Time` (please note that the DICOM term is in milliseconds not seconds).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| InversionTime          | RECOMMENDED. The inversion time (TI) for the acquisition, specified in seconds. Inversion time is the time after the middle of inverting RF pulse to middle of excitation pulse to detect the amount of longitudinal magnetization. Corresponds to DICOM Tag 0018, 0082 `Inversion Time` (please note that the DICOM term is in milliseconds not seconds).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| SliceTiming            | RECOMMENDED. The time at which each slice was acquired within each volume (frame) of the acquisition. Slice timing is not slice order -- rather, it is a list of times (in JSON format) containing the time (in seconds) of each slice acquisition in relation to the beginning of volume acquisition. The list goes through the slices along the slice axis in the slice encoding dimension (see below). Note that to ensure the proper interpretation of the `SliceTiming` field, it is important to check if the OPTIONAL `SliceEncodingDirection` exists. In particular, if `SliceEncodingDirection` is negative, the entries in `SliceTiming` are defined in reverse order with respect to the slice axis (i.e., the final entry in the `SliceTiming` list is the time of acquisition of slice 0). This parameter is REQUIRED for sparse sequences that do not have the `DelayTime` field set. In addition without this parameter slice time correction will not be possible. |
+| SliceEncodingDirection | RECOMMENDED. Possible values: `i`, `j`, `k`, `i-`, `j-`, `k-` (the axis of the NIfTI data along which slices were acquired, and the direction in which `SliceTiming` is defined with respect to). `i`, `j`, `k` identifiers correspond to the first, second and third axis of the data in the NIfTI file. A `-` sign indicates that the contents of `SliceTiming` are defined in reverse order - that is, the first entry corresponds to the slice with the largest index, and the final entry corresponds to slice index zero. When present, the axis defined by `SliceEncodingDirection` needs to be consistent with the ‘slice_dim’ field in the NIfTI header. When absent, the entries in `SliceTiming` must be in the order of increasing slice index as defined by the NIfTI header.                                                                                                                                                                                         |
+| DwellTime              | RECOMMENDED. Actual dwell time (in seconds) of the receiver per point in the readout direction, including any oversampling. For Siemens, this corresponds to DICOM field (0019,1018) (in ns). This value is necessary for the optional readout distortion correction of anatomicals in the HCP Pipelines. It also usefully provides a handle on the readout bandwidth, which isn’t captured in the other metadata tags. Not to be confused with `EffectiveEchoSpacing`, and the frequent mislabeling of echo spacing (which is spacing in the phase encoding direction) as "dwell time" (which is spacing in the readout direction).                                                                                                                                                                                                                                                                                                                                               |
 
 #### RF & Contrast
 
-| Field name                  | Definition                                                                                                                                                                                                                                                                                                                                     |
-| :-------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| FlipAngle                   | RECOMMENDED. Flip angle for the acquisition, specified in degrees. Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.                                                                                                                                                                                                                          |
-| MultibandAccelerationFactor | RECOMMENDED. The multiband factor, for multiband acquisitions.                                                                                                                                                                                                                                                                                 |
-| NegativeContrast            | OPTIONAL. Boolean (`true` or `false`) value specifying whether increasing voxel intensity (within sample voxels) denotes a decreased value with respect to the contrast suffix. This is commonly the case when Cerebral Blood Volume is estimated via usage of a contrast agent in conjunction with a T2\* weighted acquisition protocol.      |
+| Field name                  | Definition                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FlipAngle                   | RECOMMENDED. Flip angle for the acquisition, specified in degrees. Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.                                                                                                                                                                                                                     |
+| MultibandAccelerationFactor | RECOMMENDED. The multiband factor, for multiband acquisitions.                                                                                                                                                                                                                                                                            |
+| NegativeContrast            | OPTIONAL. Boolean (`true` or `false`) value specifying whether increasing voxel intensity (within sample voxels) denotes a decreased value with respect to the contrast suffix. This is commonly the case when Cerebral Blood Volume is estimated via usage of a contrast agent in conjunction with a T2\* weighted acquisition protocol. |
 
 #### Slice Acceleration
 
 | Field name                  | Definition                                                     |
-| :-------------------------- | :------------------------------------------------------------- |
+| ---------------------------- | ------------------------------------------------------------- |
 | MultibandAccelerationFactor | RECOMMENDED. The multiband factor, for multiband acquisitions. |
 
 #### Anatomical landmarks
+
 Useful for multimodal co-registration with MEG, (S)EEG, TMS, etc.
 
 | Field name                    | Definition                                                                                                                                                                                                                                                                                                                                     |
-| :---------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | AnatomicalLandmarkCoordinates | RECOMMENDED. Key:value pairs of any number of additional anatomical landmarks and their coordinates in voxel units (where first voxel has index 0,0,0) relative to the associated anatomical MRI, (e.g. `{"AC": [127,119,149], "PC": [128,93,141], "IH": [131,114,206]}, or {"NAS": [127,213,139], "LPA": [52,113,96], "RPA": [202,113,91]}`). |
 
 #### Institution information
 
 | Field name                  | Definition                                                                                                                                                                            |
-| :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | InstitutionName             | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0080 `InstitutionName`.                     |
 | InstitutionAddress          | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`.               |
 | InstitutionalDepartmentName | RECOMMENDED. The department in the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`. |
 
-When adding additional metadata please use the camelcase version of
+When adding additional metadata please use the CamelCase version of
 [DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
-whenever possible.
+whenever possible. See also
+[recommendations on JSON files](../02-common-principles.md#keyvalue-files-dictionaries).
 
 ### Anatomy imaging data
 
@@ -119,28 +121,32 @@ sub-<label>/[ses-<label>/]
 Anatomical (structural) data acquired for that participant. Currently supported
 modalities include:
 
-| Name               | `modality_label` | Description                                                                                                                                                                                                                             |
-| :----------------- | :--------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| T1 weighted        | T1w              |                                                                                                                                                                                                                                         |
-| T2 weighted        | T2w              |                                                                                                                                                                                                                                         |
-| T1 Rho map         | T1rho            | Quantitative T1rho brain imaging<br>[http://www.ncbi.nlm.nih.gov/pubmed/24474423](http://www.ncbi.nlm.nih.gov/pubmed/24474423) <br> [http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/](http://www.ncbi.nlm.nih.gov/pubmed/24474423) |
-| T1 map             | T1map            | quantitative T1 map                                                                                                                                                                                                                     |
-| T2 map             | T2map            | quantitative T2 map                                                                                                                                                                                                                     |
-| T2\*               | T2star           | High resolution T2\* image                                                                                                                                                                                                              |
-| FLAIR              | FLAIR            |                                                                                                                                                                                                                                         |
-| FLASH              | FLASH            |                                                                                                                                                                                                                                         |
-| Proton density     | PD               |                                                                                                                                                                                                                                         |
-| Proton density map | PDmap            |                                                                                                                                                                                                                                         |
-| Combined PD/T2     | PDT2             |                                                                                                                                                                                                                                         |
-| Inplane T1         | inplaneT1        | T1-weighted anatomical image matched to functional acquisition                                                                                                                                                                          |
-| Inplane T2         | inplaneT2        | T2-weighted anatomical image matched to functional acquisition                                                                                                                                                                          |
-| Angiography        | angio            |                                                                                                                                                                                                                                         |
+| Name               | `modality_label` | Description                                                                                                                                       |
+| ---------------------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| T1 weighted        | T1w              |                                                                                                                                                   |
+| T2 weighted        | T2w              |                                                                                                                                                   |
+| T1 Rho map         | T1rho            | Quantitative T1rho brain imaging <br> <https://www.ncbi.nlm.nih.gov/pubmed/24474423> <br> <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/> |
+| T1 map             | T1map            | quantitative T1 map                                                                                                                               |
+| T2 map             | T2map            | quantitative T2 map                                                                                                                               |
+| T2\*               | T2star           | High resolution T2\* image                                                                                                                        |
+| FLAIR              | FLAIR            |                                                                                                                                                   |
+| FLASH              | FLASH            |                                                                                                                                                   |
+| Proton density     | PD               |                                                                                                                                                   |
+| Proton density map | PDmap            |                                                                                                                                                   |
+| Combined PD/T2     | PDT2             |                                                                                                                                                   |
+| Inplane T1         | inplaneT1        | T1-weighted anatomical image matched to functional acquisition                                                                                    |
+| Inplane T2         | inplaneT2        | T2-weighted anatomical image matched to functional acquisition                                                                                    |
+| Angiography        | angio            |                                                                                                                                                   |
+
+#### The `run` entity
 
 If several scans of the same modality are acquired they MUST be indexed with a
 key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only integers are allowed as
 run labels). When there is only one scan of a given type the run key MAY be
 omitted. Please note that diffusion imaging data is stored elsewhere (see
 below).
+
+#### The `acq` entity
 
 The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label the user
 MAY use to distinguish a different set of parameters used for acquiring the same
@@ -155,10 +161,14 @@ can also be used to make that distinction. At what level of detail to make the
 distinction (e.g. just between RARE and FLASH, or between RARE, FLASH, and
 FLASHsubsampled) remains at the discretion of the researcher.
 
+#### The `ce` entity
+
 Similarly the OPTIONAL `ce-<label>` key/value can be used to distinguish
 sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the
 JSON file, with the same label.
+
+#### The `rec` entity
 
 Similarly the OPTIONAL `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
@@ -176,18 +186,18 @@ list of terms and their definitions. There are also some OPTIONAL JSON
 fields specific to anatomical scans:
 
 | Field name              | Definition                                                                                                                                         |
-| :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ContrastBolusIngredient | OPTIONAL. Active ingredient of agent. Values MUST be one of: IODINE, GADOLINIUM, CARBON DIOXIDE, BARIUM, XENON Corresponds to DICOM Tag 0018,1048. |
 
 ### Task (including resting state) imaging data
 
 Currently supported image contrasts include:
 
-| Name               | `contrast_label` | Description                                                                                                             |
-| :----------------- | :--------------- | :-----------------------------------------------------------------------------------------------------------------------|
-| BOLD               | bold             | Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)                                                      |
-| CBV                | cbv              | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images)                    |
-| Phase              | phase            | Phase information associated with magnitude information stored in BOLD contrast                                         |
+| Name  | `contrast_label` | Description                                                                                          |
+|--------------------------------------------------------------------------------- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------|
+| BOLD  | bold             | Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)                                   |
+| CBV   | cbv              | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images) |
+| Phase | phase            | Phase information associated with magnitude information stored in BOLD contrast                      |
 
 Template:
 
@@ -206,9 +216,9 @@ based fMRI a corresponding task events file (see below) MUST be provided
 multiband acquisitions, one MAY also save the single-band reference image as
 type `sbref` (e.g. `sub-control01_task-nback_sbref.nii.gz`).
 
-Each task has a unique label MUST only include of letters and/or numbers (other
-characters including spaces and underscores are not allowed). Those labels MUST
-be consistent across subjects and sessions.
+Each task has a unique label that MUST only consist of letters and/or numbers
+(other characters, including spaces and underscores, are not allowed).
+Those labels MUST be consistent across subjects and sessions.
 
 If more than one run of the same task has been acquired a key/value pair:
 `_run-1`, `_run-2`, `_run-3` etc. MUST be used. If only one run was acquired the
@@ -263,10 +273,10 @@ JSON file.
 #### Required fields
 
 | Field name     | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | RepetitionTime | REQUIRED. The time in seconds between the beginning of an acquisition of one volume and the beginning of acquisition of the volume following it (TR). Please note that this definition includes time between scans (when no data has been acquired) in case of sparse acquisition schemes. This value needs to be consistent with the `pixdim[4]` field (after accounting for units stored in `xyzt_units` field) in the NIfTI header. This field is mutually exclusive with `VolumeTiming` and is derived from DICOM Tag 0018, 0080 and converted to seconds. |
 | VolumeTiming   | REQUIRED. The time at which each volume was acquired during the acquisition. It is described using a list of times (in JSON format) referring to the onset of each volume in the BOLD series. The list must have the same length as the BOLD series, and the values must be non-negative and monotonically increasing. This field is mutually exclusive with `RepetitionTime` and `DelayTime`. If defined, this requires acquisition time (TA) be defined via either `SliceTiming` or `AcquisitionDuration` be defined.                                        |
-| TaskName       | REQUIRED. Name of the task. No two tasks should have the same name. Task label (`task-`) included in the file name is derived from this field by removing all non alphanumeric (`[a-zA-Z0-9]`) characters. For example task name `faces n-back` will corresponds to task label `facesnback`. A RECOMMENDED convention is to name resting state task using labels beginning with `rest`.                                                                                                                                                                        |
+| TaskName       | REQUIRED. Name of the task. No two tasks should have the same name. The task label included in the file name is derived from this TaskName field by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters. For example TaskName `faces n-back` will correspond to task label `facesnback`. A RECOMMENDED convention is to name resting state task using labels beginning with `rest`.                                                                                                                                                                       |
 
 For the fields described above and in the following section, the term "Volume"
 refers to a reconstruction of the object being imaged (e.g., brain or part of a
@@ -278,27 +288,28 @@ combined image rather than an image from each coil.
 ##### Timing Parameters
 
 | Field name                        | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | NumberOfVolumesDiscardedByScanner | RECOMMENDED. Number of volumes ("dummy scans") discarded by the scanner (as opposed to those discarded by the user post hoc) before saving the imaging file. For example, a sequence that automatically discards the first 4 volumes before saving would have this field as 4. A sequence that doesn't discard dummy scans would have this set to 0. Please note that the onsets recorded in the \_event.tsv file should always refer to the beginning of the acquisition of the first volume in the corresponding imaging file - independent of the value of `NumberOfVolumesDiscardedByScanner` field. |
 | NumberOfVolumesDiscardedByUser    | RECOMMENDED. Number of volumes ("dummy scans") discarded by the user before including the file in the dataset. If possible, including all of the volumes is strongly recommended. Please note that the onsets recorded in the \_event.tsv file should always refer to the beginning of the acquisition of the first volume in the corresponding imaging file - independent of the value of `NumberOfVolumesDiscardedByUser` field.                                                                                                                                                                       |
 | DelayTime                         | RECOMMENDED. User specified time (in seconds) to delay the acquisition of data for the following volume. If the field is not present it is assumed to be set to zero. Corresponds to Siemens CSA header field `lDelayTimeInTR`. This field is REQUIRED for sparse sequences using the `RepetitionTime` field that do not have the `SliceTiming` field set to allowed for accurate calculation of "acquisition time". This field is mutually exclusive with `VolumeTiming`.                                                                                                                               |
-| AcquisitionDuration               | RECOMMENDED. Duration (in seconds) of volume acquisition. Corresponds to DICOM Tag 0018,9073 `Acquisition Duration`. This field is REQUIRED for sequences that are described with the `VolumeTiming` field and that not have the `SliceTiming` field set to allowed for accurate calculation of "acquisition time". This field is mutually exclusive with `RepetitionTime`.                                                                                                                                                                                                                              |
+| AcquisitionDuration               | RECOMMENDED. Duration (in seconds) of volume acquisition. Corresponds to DICOM Tag 0018,9073 `Acquisition Duration`. This field is REQUIRED for sequences that are described with the `VolumeTiming` field and that do not have the `SliceTiming` field set to allow for accurate calculation of "acquisition time". This field is mutually exclusive with `RepetitionTime`.                                                                                                                                                                                                                             |
 | DelayAfterTrigger                 | RECOMMENDED. Duration (in seconds) from trigger delivery to scan onset. This delay is commonly caused by adjustments and loading times. This specification is entirely independent of `NumberOfVolumesDiscardedByScanner` or `NumberOfVolumesDiscardedByUser`, as the delay precedes the acquisition.                                                                                                                                                                                                                                                                                                    |
 
 The following table recapitulates the different ways that specific fields have
-to be populated for functional sequences. Note that all those options can used
-for non sparse sequences but that only options B, D and E are valid for sparse
-sequences.
+to be populated for functional sequences. Note that all these options can be
+used for non sparse sequences but that only options B, D and E are valid for
+sparse sequences.
 
-|          | RepetitionTime  | SliceTiming  | AcquisitionDuration | DelayTime | VolumeTiming |
-|----------|:---------------:|:------------:|:-------------------:|:---------:|:------------:|
-| option A |       \[ X ]    |              |         \[ ]        |           |      \[ ]    |
-| option B |       \[ ]      |     \[ X ]   |                     |    \[ ]   |      \[ X ]  |
-| option C |       \[ ]      |              |         \[ X ]      |    \[ ]   |      \[ X ]  |
-| option D |       \[ X ]    |     \[ X ]   |         \[ ]        |           |      \[ ]    |
-| option E |       \[ X ]    |              |         \[ ]        |    \[ X ] |      \[ ]    |
+|          | RepetitionTime | SliceTiming | AcquisitionDuration | DelayTime | VolumeTiming |
+| -------- | :------------: | :---------: | :-----------------: | :-------: | :----------: |
+| option A |     \[ X ]     |             |         \[ ]        |           |     \[ ]     |
+| option B |      \[ ]      |    \[ X ]   |                     |    \[ ]   |    \[ X ]    |
+| option C |      \[ ]      |             |        \[ X ]       |    \[ ]   |    \[ X ]    |
+| option D |     \[ X ]     |    \[ X ]   |         \[ ]        |           |     \[ ]     |
+| option E |     \[ X ]     |             |         \[ ]        |   \[ X ]  |     \[ ]     |
 
 **Legend**
+
 -   \[ X ] --> has to be filled
 -   \[   \] --> has to be left empty
 -   empty cell --> can be specified but not required
@@ -306,10 +317,10 @@ sequences.
 ##### fMRI task information
 
 | Field name      | Definition                                                                                                                                                                                                 |
-| :-------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Instructions    | RECOMMENDED. Text of the instructions given to participants before the scan. This is especially important in context of resting state fMRI and distinguishing between eyes open and eyes closed paradigms. |
 | TaskDescription | RECOMMENDED. Longer description of the task.                                                                                                                                                               |
-| CogAtlasID      | RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) Task term.                                                                                                         |
+| CogAtlasID      | RECOMMENDED. URL of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.                                                                                                        |
 | CogPOID         | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                 |
 
 See [Common metadata fields](#common-metadata-fields) for a list of
@@ -372,20 +383,18 @@ however the user is free to choose any other label than `singleband` and
 `multiband` as long as they are consistent across subjects and sessions. For
 multiband acquisitions, one can also save the single-band reference image as
 type `sbref` (e.g. `dwi/sub-control01_sbref.nii[.gz]`) The bvec and bval files
-are in the FSL format<sup>4</sup>: The bvec files contain 3 rows with n
-space-delimited floating-point numbers (corresponding to the n volumes in the
-relevant NIfTI file). The first row contains the x elements, the second row
-contains the y elements and third row contains the z elements of a unit vector
-in the direction of the applied diffusion gradient, where the i-th elements in
-each row correspond together to the i-th volume with `[0,0,0]` for
-non-diffusion-weighted volumes. Inherent to the FSL format for bvec
-specification is the fact that the coordinate system of the bvecs is with
-respect to the participant (i.e., defined by the axes of the corresponding
-dwi.nii file) and not the magnet’s coordinate system, which means that any
-rotations applied to dwi.nii also need to be applied to the corresponding bvec
-file.
-
-<sup>4</sup>[http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html](http://fsl.fmrib.ox.ac.uk/fsl/fsl4.0/fdt/fdt_dtifit.html)
+are in the [FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
+The bvec files contain 3 rows with n space-delimited floating-point numbers
+(corresponding to the n volumes in the relevant NIfTI file). The first row
+contains the x elements, the second row contains the y elements and third row
+contains the z elements of a unit vector in the direction of the applied
+diffusion gradient, where the i-th elements in each row correspond together to
+the i-th volume with `[0,0,0]` for non-diffusion-weighted volumes. Inherent to
+the FSL format for bvec specification is the fact that the coordinate system of
+the bvecs is with respect to the participant (i.e., defined by the axes of the
+corresponding dwi.nii file) and not the magnet’s coordinate system, which means
+that any rotations applied to dwi.nii also need to be applied to the
+corresponding bvec file.
 
 bvec example:
 
@@ -453,7 +462,7 @@ Multiple fieldmaps can be stored. In such case the `_run-1`, `_run-2` should be
 used. The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label
 the user may use to distinguish different set of parameters.
 
-#### Phase difference image and at least one magnitude image
+#### Case 1: Phase difference image and at least one magnitude image
 
 Template:
 
@@ -488,7 +497,7 @@ the shorter echo time and `EchoTime2` to the longer echo time. Similarly
 }
 ```
 
-#### Two phase images and two magnitude images
+#### Case 2: Two phase images and two magnitude images
 
 Template:
 
@@ -504,7 +513,7 @@ sub-<label>/[ses-<label>/]
 ```
 
 Similar to the case above, but instead of a precomputed phase difference map two
-separate phase images are presented. The two sidecar JSON file need to specify
+separate phase images are presented. The two sidecar JSON files need to specify
 corresponding `EchoTime` values. For example:
 
 ```JSON
@@ -514,7 +523,7 @@ corresponding `EchoTime` values. For example:
 }
 ```
 
-#### A real fieldmap image
+#### Case 3: A real fieldmap image
 
 Template:
 

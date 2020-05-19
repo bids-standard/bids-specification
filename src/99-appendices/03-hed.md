@@ -1,6 +1,6 @@
-# Appendix III: Hierarchical Event Descriptor (HED) Tags
+# Appendix III: Hierarchical Event Descriptors
 
-HED is a controlled vocabulary of terms describing events in a behavioral
+Hierarchical Event Descriptors (HED) are a controlled vocabulary of terms describing events in a behavioral
 paradigm. HED was originally developed with EEG in mind, but is applicable to
 all behavioral experiments. Each level of a hierarchical tag is delimited with
 a forward slash (`/`). An HED string contains one or more HED tags separated by
@@ -75,5 +75,5 @@ The tags in the `HED` column are often specific to the event instances, while
 the common properties associated with categories such as `mycodes` are
 encapsulated in the \_events.json dictionary. Downstream tools should not
 distinguish between tags specified using the different mechanisms. Further,
-the normal BIDS inheritance rules apply so these data dictionaries can appear
-higher in the BIDS hierarchy.
+the normal BIDS inheritance principle applies so these data dictionaries can
+appear higher in the BIDS hierarchy.

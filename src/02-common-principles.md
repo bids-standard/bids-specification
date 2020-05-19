@@ -34,15 +34,16 @@ misunderstanding we clarify them here.
     scanning sequence/protocol.
 
 1.  **Data type** - a functional group of different types of data. In BIDS we
-    define six data types: `func` (task based and resting state functional MRI),
+    define eight data types: `func` (task based and resting state functional MRI),
     `dwi` (diffusion weighted imaging), `fmap` (field inhomogeneity mapping data
     such as field maps), `anat` (structural imaging such as T1, T2, etc.), `meg`
-    (magnetoencephalography), `beh` (behavioral).
+    (magnetoencephalography), `eeg` (electroencephalography), `ieeg` (intracranial
+    electroencephalography), `beh` (behavioral).
 
-1.  **Task** - a set of structured activities performed by the participant. 
+1.  **Task** - a set of structured activities performed by the participant.
     Tasks are usually accompanied by stimuli and responses, and can greatly vary
     in complexity. For the purpose of this specification we consider the so-called
-    “resting state” a task. In the context of brain scanning, a task is always
+    "resting state" a task. In the context of brain scanning, a task is always
     tied to one data acquisition. Therefore, even if during one acquisition the
     subject performed multiple conceptually different behaviors (with different
     sets of instructions) they will be considered one (combined) task.
@@ -61,7 +62,7 @@ misunderstanding we clarify them here.
     `run-<index>` specification.
 
 1.  **`<label>`** - an alphanumeric value, possibly prefixed with arbitrary
-    number of 0s for consistent indentation, e.g., it is `rest` in `task-rest` 
+    number of 0s for consistent indentation, e.g., it is `rest` in `task-rest`
     following `task-<label>` specification.
 
 1.  **`suffix`** - a portion of the file name with `key-value_` pairs (thus after
@@ -87,7 +88,33 @@ not covered by this standard. The most sensible place to put it is next to the
 continuous recording file with the same naming scheme but different extensions.
 The solutions will change from case to case and publicly available datasets will
 be reviewed to include common data types in the future releases of the BIDS
-spec.
+specification.
+
+## File name structure
+
+A file name consists of a chain of *entities*, or key-value pairs, a *suffix* and an
+*extension*.
+Two prominent examples of entities are `subject` and `session`.
+
+For a data file that was collected in a given `session` from a given
+`subject`, the file name will begin with the string `sub-<label>_ses-<label>`.
+
+Note that `sub-<label>` corresponds to the `subject` entity because it has
+the `sub-` "key" and`<label>` "value", where `<label>` would in a real data file
+correspond to a unique identifier of that subject, such as `01`.
+The same holds for the `session` entity with its `ses-` key and its `<label>`
+value.
+
+A chain of entities, followed by a suffix, connected by underscores (`_`)
+produces a human readable file name, such as `sub-01_task-rest_eeg.edf`.
+It is evident from the file name alone that the file contains resting state
+data from subject `01`.
+The suffix `eeg` and the extension `.edf` depend on the imaging modality and
+the data format and indicate further details of the file's contents.
+
+A summary of all entities in BIDS and the order in which they MUST be
+specified is available in the [entity table](./99-appendices/04-entity-table.md)
+in the appendix.
 
 ## Source vs. raw vs. derived data
 
@@ -141,8 +168,8 @@ my_dataset/
     ...
 ```
 
-In this example **only the `rawdata` subfolder needs to be BIDS compliant**
-dataset. This specification does not prescribe anything about the contents of
+In this example **only the `rawdata` subfolder needs to be a BIDS compliant
+dataset**. This specification does not prescribe anything about the contents of
 `sourcedata` and `derivatives` folders in the above example - nor does it
 prescribe the `sourcedata`, `derivatives`, or `rawdata` folder names. The above
 example is just a convention that can be useful for organizing raw, source, and
@@ -167,7 +194,7 @@ participant can exist only at participant level directory, i.e
 specific to a participant is to be declared only at top level of dataset for eg:
 `task-sist_bold.json` must be placed under `/dataset/task-sist_bold.json`
 
-Example 1: Two JSON files that are erroneously at the same level.
+Example 1: Two JSON files that are erroneously at the same level
 
 ```Text
 sub-01/
@@ -188,7 +215,7 @@ constraint that no more than one file may be defined at a given level of the
 directory structure. Instead `sub-01_ses-test_task-overtverbgeneration_run-2_bold.json`
 should have been under `sub-01/ses-test/func/`.
 
-Example 2: Multiple run and rec with same acquisition (acq) parameters acq-test1
+Example 2: Multiple `run`s and `rec`s with same acquisition (`acq`) parameters
 
 ```Text
 sub-01/
@@ -207,8 +234,7 @@ apply to different runs and rec files. Also if the JSON file
 (`task-xyz_acq-test1_bold.json`) is defined at dataset top level directory, it
 will be applicable to all task runs with `test1` acquisition parameter.
 
-Example 3: Multiple json files at different levels for same task and
-acquisition parameters
+Example 3: Multiple JSON files at different levels for same task and acquisition parameters
 
 ```Text
 task-xyz_acq-test1_bold.json
@@ -224,9 +250,9 @@ sub-01/
 In the above example, the fields from the `task-xyz_acq-test1_bold.json` file
 at the top directory will apply to all bold runs. However, if there is a key
 with different value in the
-`sub-01/func/sub-01_task-xyz_acq-test1_run-1_bold.json` file defined at a
+`sub-01/func/sub-01_task-xyz_acq-test1_bold.json` file defined at a
 deeper level, that value will be applicable for that particular run/task NIfTI
-file/s. In other words, the `json` file at the deeper level overrides values
+file/s. In other words, the `.json` file at the deeper level overrides values
 that are potentially also defined in the `.json` at a more shallow level. If the
 `.json` file at the more shallow level contains key-value-pairs that are not
 present in the `.json` file at the deeper level, these key-value-pairs are
@@ -254,19 +280,22 @@ additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
 Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://github.com/rordenlab/dcm2niix)
 and [dicm2nii](http://www.mathworks.com/matlabcentral/fileexchange/42997-dicom-to-nifti-converter/content/dicm2nii.m)
-DICOM to NIfTI converters. A provided
-[validator](https://github.com/bids-standard/bids-validator)
+DICOM to NIfTI converters. The [BIDS-validator](https://github.com/bids-standard/bids-validator)
 will check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
 
 ### Tabular files
 
-Tabular data MUST be saved as tab delimited values (`.tsv`) files, i.e., csv
+Tabular data MUST be saved as tab delimited values (`.tsv`) files, i.e., CSV
 files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
-line listing the names of all columns (with the exception of physiological and
-other continuous acquisition data - see below for details). Names MUST be
-separated with tabs. String values containing tabs MUST be escaped using double
+line listing the names of all columns (with the exception of
+[physiological and other continuous recordings](04-modality-specific-files/06-physiological-and-other-continuous-recordings.md)).
+Names MUST be separated with tabs.
+It is RECOMMENDED that the column names in the header of the TSV file are
+written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
+first letter in lower case (e.g., `variable_name`, not `Variable_name`).
+String values containing tabs MUST be escaped using double
 quotes. Missing and non-applicable values MUST be coded as `n/a`. Numerical
 values MUST employ the dot (`.`) as decimal separator and MAY be specified
 in scientific notation, using `e` or `E` to separate the significand from the
@@ -279,23 +308,26 @@ onset duration  response_time correct stop_trial  go_trial
 200 200 0 n/a n/a n/a
 ```
 
-Tabular files MAY be optionally accompanied by a simple data dictionary in a
-JSON format (see below). The data dictionaries MUST have the same name as their
-corresponding tabular files but with `.json` extensions. If a JSON file
+Tabular files MAY be optionally accompanied by a simple data dictionary
+in the form of a [JSON object](https://www.w3schools.com/js/js_json_objects.asp)
+within a JSON file.
+The JSON files containing the data dictionaries MUST have the same name as
+their corresponding tabular files but with `.json` extensions.
+If a data dictionary
 is provided, it MAY contain one or more fields describing the columns found in
 the TSV file (in addition to any other metadata one wishes to include that
-describe the file as a whole). Note that if a field name included in the JSON
-sidecar matches a column name in the TSV file, then that field MUST contain a
+describe the file as a whole). Note that if a field name included in the data
+dictionary matches a column name in the TSV file, then that field MUST contain a
 description of the corresponding column, using an object containing the following
 fields:
 
-| Field name  | Definition                                                                                                             |
-| :---------- | :--------------------------------------------------------------------------------------------------------------------- |
-| LongName    | Long (unabbreviated) name of the column.                                                                               |
-| Description | Description of the column.                                                                                             |
-| Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).                     |
-| Units       | Measurement units. `[<prefix symbol>] <unit symbol>` format following the SI standard is RECOMMENDED (see Appendix V). |
-| TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web.                          |
+| Field name  | Definition                                                                                                                                                  |
+| :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| LongName    | Long (unabbreviated) name of the column.                                                                                                                    |
+| Description | Description of the column.                                                                                                                                  |
+| Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).                                                          |
+| Units       | Measurement units. `[<prefix symbol>] <unit symbol>` format following the SI standard is RECOMMENDED (see [units section](./02-common-principles.md#units). |
+| TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web.                                                               |
 
 Example:
 
@@ -319,7 +351,7 @@ Example:
 }
 ```
 
-## Key/value files (dictionaries)
+### Key/value files (dictionaries)
 
 JavaScript Object Notation (JSON) files MUST be used for storing key/value
 pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
@@ -327,8 +359,14 @@ format can be found here: [http://json.org/](http://json.org/). Several editors
 have built-in support for JSON syntax highlighting that aids manual creation of
 such files. An online editor for JSON with built-in validation is available at:
 [http://jsoneditoronline.org](http://jsoneditoronline.org). 
+It is RECOMMENDED that keys in a JSON file are written in [CamelCase](https://en.wikipedia.org/wiki/Camel_case)
+with the first letter in upper case (e.g., `SamplingFrequency`, not
+`samplingFrequency`). Note however, when a JSON file is used as an accompanying
+sidecar file for a [TSV file](#tabular-files), the keys linking a TSV column
+with their description in the JSON file need to follow the exact formatting
+as in the TSV file.
 
-Example:
+Example of a hypothetical `*_bold.json` file, accompanying a `*_bold.nii` file:
 
 ```JSON
 {
@@ -337,26 +375,53 @@ Example:
 }
 ```
 
+Example of a hypothetical `*_events.json` file, accompanying an
+`*_events.tsv` file. Note that the JSON file contains a key describing an
+*arbitrary* column `stim_presentation_side` in the TSV file it accompanies.
+See [task events section](04-modality-specific-files/05-task-events.md)
+for more information.
+
+```JSON
+{
+  "stim_presentation_side": {
+    "Levels": {
+      "1": "stimulus presented on LEFT side",
+      "2": "stimulus presented on RIGHT side"
+    }
+  }
+}
+```
+
 ## Participant names and other labels
 
-BIDS allows for custom user-defined `<label>`s and `<index>`es e.g., for
-naming of participants, sessions, acquisition schemes, etc. Note that they
-MUST use only allowed characters as described in [Definitions](02-common-principles.md#definitions)
-above. In `<index>`es we RECOMMEND zero padding (e.g., `01` instead of `1`
-if you have more than nine subjects) to make alphabetical sorting more
-intuitive. Zero padding is NOT RECOMMENDED to be used to maintain their
-uniqueness.
+BIDS allows for custom user-defined `<label>`s and `<index>`es e.g.,
+for naming of participants, sessions, acquisition schemes, etc. Note
+that they MUST consist only of allowed characters as described in
+[Definitions](02-common-principles.md#definitions) above. In `<index>`es
+we RECOMMEND using zero padding (e.g., `01` instead of `1` if you have more than
+nine subjects) to make alphabetical sorting more intuitive. Note that
+zero padding is NOT RECOMMENDED to maintain their uniqueness.
+
+Please note that a given label or index is distinct from the "prefix"
+it refers to. For example `sub-01` refers to the `sub` entity (a
+subject) with the label `01`. The `sub-` prefix is not part of the subject
+label, but must be included in file names (similarly to other key names).
 
 ## Units
 
-All units SHOULD be specified as per International System of Units (abbreviated
+All units SHOULD be specified as per [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
+(abbreviated
 as SI, from the French Système international (d'unités)) and can be SI units or
-SI derived units. In case there are valid reasons to deviate from SI units or SI
+[SI derived units](https://en.wikipedia.org/wiki/SI_derived_unit).
+In case there are valid reasons to deviate from SI units or SI
 derived units, the units MUST be specified in the sidecar JSON file. In case
 data is expressed in SI units or SI derived units, the units MAY be specified in
-the sidecar JSON file. In case prefixes are added to SI or non-SI units (e.g.,
-mm), the prefixed units MUST be specified in the JSON file (see [Appendix V](99-appendices/05-units.md):
-Units). In particular:
+the sidecar JSON file. In case non-standard prefixes are added to SI or non-SI
+units, these non-standard prefixed units MUST be specified in the JSON file.
+See [Appendix V](99-appendices/05-units.md) for a list of standard units and
+prefixes.
+
+For additional rules, see below:
 
 -   Elapsed time SHOULD be expressed in seconds. Please note that some DICOM
     parameters have been traditionally expressed in milliseconds. Those need to
@@ -374,7 +439,7 @@ Describing dates and timestamps:
 -   Time stamp information MUST be expressed in the following format: `13:45:30`
 
 -   Dates can be shifted by a random number of days for privacy protection
-    reasons. To distinguish real dates from shifted dates always use year 1900
+    reasons. To distinguish real dates from shifted dates always use year 1925
     or earlier when including shifted years. For longitudinal studies please
     remember to shift dates within one subject by the same number of days to
     maintain the interval information. Example: `1867-06-15T13:45:30`
@@ -415,7 +480,6 @@ sub-control01/
         sub-control01_phasediff.json
         sub-control01_magnitude1.nii.gz
         sub-control01_scans.tsv
-
 code/
     deface.py
 derivatives/
@@ -425,8 +489,20 @@ dataset_description.json
 CHANGES
 ```
 
-Additional files and folders containing raw data may be added as needed for
-special cases. They should be named using all lowercase with a name that
-reflects the nature of the scan (e.g., `calibration`). Naming of files within
-the directory should follow the same scheme as above (e.g.,
-`sub-control01_calibration_Xcalibration.nii.gz`)
+## Unspecified data
+
+Additional files and folders containing raw data MAY be added as needed for
+special cases.
+All non-standard file entities SHOULD conform to BIDS-style naming conventions, including
+alphabetic entities and suffixes and alphanumeric labels/indices.
+Non-standard suffixes SHOULD reflect the nature of the data, and existing
+entities SHOULD be used when appropriate.
+For example, an ASSET calibration scan might be named
+`sub-01_acq-ASSET_calibration.nii.gz`.
+
+Non-standard files and directories should be named with care.
+Future BIDS efforts may standardize new entities and suffixes, changing the
+meaning of file names and setting requirements on their contents or metadata.
+Validation and parsing tools MAY treat the presence of non-standard files and
+directories as an error, so consult the details of these tools for mechanisms
+to suppress warnings or provide interpretations of your file names.

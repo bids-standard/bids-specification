@@ -1,25 +1,30 @@
-# Modality-agnostic files
+# Modality agnostic files
 
 ## Dataset description
 
-Template: `dataset_description.json` `README` `CHANGES`
+Templates:
+
+-   `dataset_description.json`
+-   `README`
+-   `CHANGES`
 
 ### `dataset_description.json`
 
 The file dataset_description.json is a JSON file describing the dataset. Every
 dataset MUST include this file with the following fields:
 
-| Field name         | Definition                                                                                                                                                                                                                    |
-| :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                |
-| BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                     |
-| License            | RECOMMENDED. What license is this dataset distributed under? The use of license name abbreviations is suggested for specifying a license. A list of common licenses with suggested abbreviations can be found in Appendix II. |
-| Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                        |
-| Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                          |
-| HowToAcknowledge   | OPTIONAL. Instructions how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset.             |
-| Funding            | OPTIONAL. List of sources of funding (grant numbers)                                                                                                                                                                          |
-| ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                |
-| DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                        |
+| Field name         | Definition                                                                                                                                                                                                                           |
+| ------------------------------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                       |
+| BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                            |
+| License            | RECOMMENDED. What license is this dataset distributed under? The use of license name abbreviations is suggested for specifying a license. A list of common licenses with suggested abbreviations can be found in Appendix II.        |
+| Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                               |
+| Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                 |
+| HowToAcknowledge   | OPTIONAL. Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset. |
+| Funding            | OPTIONAL. List of sources of funding (grant numbers).                                                                                                                                                                                |
+| EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                  |                                                                                                                |
+| ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                       |
+| DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                               |
 
 Example:
 
@@ -37,6 +42,9 @@ Example:
   "Funding": [
     "National Institute of Neuroscience Grant F378236MFH1",
     "National Institute of Neuroscience Grant 5RMZ0023106"
+  ],
+  "EthicsApprovals": [
+    "Army Human Research Protections Office (Protocol ARL-20098-10051, ARL 12-040, and ARL 12-041)"
   ],
   "ReferencesAndLinks": [
     "https://www.ncbi.nlm.nih.gov/pubmed/001012092119281",
@@ -64,10 +72,10 @@ Example:
 
 ```Text
 1.0.1 2015-08-27
- - Fixed slice timing information.
+  - Fixed slice timing information.
 
 1.0.0 2015-08-17
- - Initial release.
+  - Initial release.
 ```
 
 ## Participants file
@@ -77,41 +85,133 @@ Template:
 ```Text
 participants.tsv
 participants.json
+```
+
+The purpose of this RECOMMENDED file is to describe properties of participants
+such as age, sex, handedness etc.
+In case of single-session studies, this file has one compulsory column
+`participant_id` that consists of `sub-<label>`, followed by a list of optional
+columns describing participants.
+Each participant MUST be described by one and only one row.
+
+Commonly used *optional* columns in `participant.tsv` files are `age`, `sex`,
+and `handedness`. We RECOMMEND to make use of these columns, and
+in case that you do use them, we RECOMMEND to use the following values
+for them:
+
+-   `age`: numeric value in years (float or integer value)
+
+-   `sex`: string value indicating phenotypical sex, one of "male", "female",
+    "other"
+
+    -   for "male", use one of these values: `male`, `m`, `M`, `MALE`, `Male`
+
+    -   for "female", use one of these values: `female`, `f`, `F`, `FEMALE`,
+      ` Female`
+
+    -   for "other", use one of these values: `other`, `o`, `O`, `OTHER`,
+        `Other`
+
+-   `handedness`: string value indicating one of "left", "right",
+    "ambidextrous"
+
+    -   for "left", use one of these values: `left`, `l`, `L`, `LEFT`, `Left`
+
+    -   for "right", use one of these values: `right`, `r`, `R`, `RIGHT`,
+        `Right`
+
+    -   for "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`,
+        `AMBIDEXTROUS`, `Ambidextrous`
+
+Throughout BIDS you can indicate missing values with `n/a` (i.e., "not
+available").
+
+`participants.tsv` example:
+
+```Text
+participant_id age sex handedness group
+sub-01 34 M right read
+sub-02 12 F right write
+sub-03 33 F n/a read
+```
+
+It is RECOMMENDED to accompany each `participants.tsv` file with a sidecar
+`participants.json` file to describe the TSV column names and properties of their values (see also
+the [section on tabular files](02-common-principles.md#tabular-files)).
+Such sidecar files are needed to interpret the data, especially so when
+optional columns are defined beyond `age`, `sex`, and `handedness`, such as
+`group` in this example, or when a different age unit is needed (e.g., gestational weeks).
+If no `units` is provided for age, it will be assumed to be in years relative to date of birth. 
+
+`participants.json` example:
+
+```JSON
+{
+    "age": {
+        "Description": "age of the participant",
+        "Units": "years"
+    },
+    "sex": {
+        "Description": "sex of the participant as reported by the participant",
+        "Levels": {
+            "M": "male",
+            "F": "female"
+        }
+    },    
+    "handedness": {
+        "Description": "handedness of the participant as reported by the participant",
+        "Levels": {
+            "left": "left",
+            "right": "right"
+        }
+    },
+    "group": {
+        "Description": "experimental group the participant belonged to",
+        "Levels": {
+            "read": "participants who read an inspirational text before the experiment",
+            "write": "participants who wrote an inspirational text before the experiment"
+        }
+    }
+}
+```
+
+## Phenotypic and assessment data
+
+Template:
+
+```Text
 phenotype/<measurement_tool_name>.tsv
 phenotype/<measurement_tool_name>.json
 ```
 
 Optional: Yes
 
-The purpose of this file is to describe properties of participants such as age,
-handedness, sex, etc. In case of single session studies this file has one
-compulsory column `participant_id` that consists of `sub-<label>`,
-followed by a list of optional columns describing participants. Each participant
-needs to be described by one and only one row.
-
-`participants.tsv` example:
-
-```Text
-participant_id  age sex group
-sub-control01 34  M control
-sub-control02 12  F control
-sub-patient01 33  F patient
-```
-
 If the dataset includes multiple sets of participant level measurements (for
 example responses from multiple questionnaires) they can be split into
-individual files separate from `participants.tsv`. Those measurements should be
-kept in phenotype/ folder and end with the `.tsv` extension. They can include
-arbitrary set of columns, but one of them has to be participant_id with matching
-`sub-<label>`. As with all other tabular data, those additional
-phenotypic information files can be accompanied by a JSON file describing the
-columns in detail (see [here](02-common-principles.md#tabular-files)).
-In addition to the column description, a
-section describing the measurement tool (as a whole) can be added under the name
-`MeasurementToolMetadata`. This section consists of two keys: `Description` - a
-free text description of the tool, and `TermURL` a link to an entity in an
-ontology corresponding to this tool. For example (content of
-phenotype/acds_adult.json):
+individual files separate from `participants.tsv`.
+
+Each of the measurement files MUST be kept in a `/phenotype` directory placed
+at the root of the BIDS dataset and MUST end with the `.tsv` extension.
+File names SHOULD be chosen to reflect the contents of the file.
+For example, the "Adult ADHD Clinical Diagnostic Scale" could be saved in a file
+called `/phenotype/acds_adult.tsv`.
+
+The files can include an arbitrary set of columns, but one of them MUST be
+`participant_id` and the entries of that column MUST correspond to the subjects
+in the BIDS dataset and `participants.tsv` file.
+
+As with all other tabular data, the additional phenotypic information files
+MAY be accompanied by a JSON file describing the columns in detail
+(see [Tabular files](02-common-principles.md#tabular-files)).
+In addition to the column description, a section describing the measurement tool
+(as a whole) MAY be added under the name `MeasurementToolMetadata`.
+This section consists of two keys:
+
+  - `Description`: A free text description of the measurement tool
+  - `TermURL`: A link to an entity in an ontology corresponding to this tool.
+
+As an example, consider the contents of a file called
+`phenotype/acds_adult.json`:
 
 ```JSON
 {
@@ -143,7 +243,7 @@ columns.
 In addition to the keys available to describe columns in all tabular files
 (`LongName`, `Description`, `Levels`, `Units`, and `TermURL`) the
 `participants.json` file as well as phenotypic files can also include column
-descriptions with `Derivative` field that, when set to true, indicates that
+descriptions with a `Derivative` field that, when set to true, indicates that
 values in the corresponding column is a transformation of values from other
 columns (for example a summary score based on a subset of items in a
 questionnaire).
@@ -171,8 +271,8 @@ one subject should be shifted by a randomly chosen (but common across all runs
 etc.) number of days. This way relative timing would be preserved, but chances
 of identifying a person based on the date and time of their scan would be
 decreased. Dates that are shifted for anonymization purposes should be set to a
-year 1900 or earlier to clearly distinguish them from unmodified data. Shifting
-dates is recommended, but not required.
+year 1925 or earlier to clearly distinguish them from unmodified data. Shifting
+dates is RECOMMENDED, but not required.
 
 Additional fields can include external behavioral measures relevant to the
 scan. For example vigilance questionnaire score administered after a resting
