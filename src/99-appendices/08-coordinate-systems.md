@@ -1,4 +1,4 @@
-# Appendix VIII: Preferred Names of Coordinate Systems
+# Appendix VIII: Coordinate systems
 
 To interpret a coordinate (x, y, z), it is required that you know relative to
 which origin the coordinates are expressed, you have to know the interpretation
@@ -71,18 +71,11 @@ detailed extensive descriptions of these EEG coordinate systems on the
 Restricted keywords for the `XXXCoordinateSystem` field in the
 `coordsystem.json` file for EEG datasets:
 
--   `BESA`: Although natively this is a spherical coordinate system, the
-    electrode positions should be expressed in Cartesian coordinates, with a RAS
-    orientation. The X axis is the T8-T7 line, positive at T8. The Y axis is the
-    Oz-Fpz line, positive at Fpz. The origin of the sphere fitted to the
-    electrodes is approximately 4 cm above the point between the ears.
-
 -   `Captrak`: RAS orientation and the origin between the ears
 
 Note that the short descriptions above do not capture all details, There are
 detailed extensive descriptions of these EEG coordinate systems on the
-[FieldTrip toolbox web page](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
-and on the [BESA wiki](http://wiki.besa.de/index.php?title=Electrodes_and_Surface_Locations#Coordinate_systems).
+[FieldTrip toolbox web page](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined).
 
 ## iEEG Specific Coordinate Systems
 
@@ -115,7 +108,7 @@ the units are assumed to be mm.
 ### Standard template identifiers
 
 | Coordinate System                                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ICBM452AirSpace                                     | Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" with "linear transforms of the subjects into the atlas space using a 12-parameter affine transformation" [https://www.loni.usc.edu/research/atlases](https://www.loni.usc.edu/research/atlases)                                                                                                                                                                                                                          |
 | ICBM452Warp5Space                                   | Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" "based on a 5th order polynomial transformation into the atlas space" [https://www.loni.usc.edu/research/atlases](https://www.loni.usc.edu/research/atlases)                                                                                                                                                                                                                                                             |
 | IXI549Space                                         | Reference space defined by the average of the "549 (...) subjects from the IXI dataset" linearly transformed to ICBM MNI 452. Used by SPM12. [http://www.brain-development.org/](http://www.brain-development.org/)                                                                                                                                                                                                                                                                                                    |
@@ -139,7 +132,7 @@ Their use is NOT RECOMMENDED for new BIDS datasets and tooling, but their
 presence MUST NOT produce a validation error.
 
 | Coordinate System                                   | Recommended identifier |
-| --------------------------------------------------- | ---------------------- |
+| -----------------------------------------------------------------------------------| ---------------------------------------------- |
 | fsaverage\[3&#124;4&#124;5&#124;6&#124;sym\]        | fsaverage\[&#124;Sym\] |
 | UNCInfant\[0&#124;1&#124;2\]V\[21&#124;22&#124;23\] | UNCInfant              |
 

@@ -4,7 +4,7 @@ Legend (source:
 [https://github.com/kentcdodds/all-contributors](https://github.com/kentcdodds/all-contributors))
 
 | Emoji | Represents                                                                  |
-|:------|:----------------------------------------------------------------------------|
+|---------------|-----------------------------------------------------------------------------------------|
 | 💬    | Answering Questions (on the mailing list, NeuroStars, GitHub, or in person) |
 | 🐛    | Bug reports                                                                 |
 | 📝    | Blogposts                                                                   |
@@ -84,6 +84,7 @@ your name is not listed, please add it.
 -   International Neuroinformatics Coordinating Facility 💵📋
 -   Andrew Janke 📖💻
 -   Mainak Jas 📖💻
+-   Alexander Jones 💻🐛
 -   David Keator 📖
 -   James Kent 💬💻
 -   Gregory Kiar 📖💻🎨🔧
@@ -134,6 +135,7 @@ your name is not listed, please add it.
 -   Pradeep Reddy Raamana 💻🔧
 -   Vasudev Raguram 💻🎨📖🔧
 -   Nick F. Ramsey 📖
+-   Kay Robbins 💻📖🐛
 -   Alex Rockhill 📖🔧
 -   Ariel Rokem 📖
 -   Taylor Salo 📖💬
