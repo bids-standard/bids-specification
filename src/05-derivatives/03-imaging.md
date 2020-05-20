@@ -114,7 +114,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func|anat|dwi/
-            <source_keywords>[space-<space>][_label-<label>]_probseg.nii.gz
+            <source_keywords>[_space-<space>][_label-<label>]_probseg.nii.gz
 ```
 
 Example:
