@@ -81,21 +81,21 @@ And one corresponding to `res-hi`
 }
 ```
 
-Example of CIFTI files (i.e., a file that combines regularly sampled data
+Example of CIFTI-2 files (a format that combines regularly sampled data
 and non-parametric surfaces) having both `res` and `den` keywords:
 
 ```Text
 pipeline1/
     sub-001/
         func/
-            sub-001_task-rest_run-1_res-1_den-10k_bold.dtseries.nii
-            sub-001_task-rest_run-1_res-1_den-41k_bold.dtseries.nii
-            sub-001_task-rest_run-1_res-2_den-10k_bold.dtseries.nii
-            sub-001_task-rest_run-1_res-2_den-41k_bold.dtseries.nii
-            sub-001_task-rest_run-1_bold.dtseries.json
+            sub-001_task-rest_run-1_space-fsLR_res-1_den-10k_bold.dtseries.nii
+            sub-001_task-rest_run-1_space-fsLR_res-1_den-41k_bold.dtseries.nii
+            sub-001_task-rest_run-1_space-fsLR_res-2_den-10k_bold.dtseries.nii
+            sub-001_task-rest_run-1_space-fsLR_res-2_den-41k_bold.dtseries.nii
+            sub-001_task-rest_run-1_space-fsLR_bold.json
 ```
 
-And the corresponding `sub-001_task-rest_run-1_bold.dtseries.json` file:
+And the corresponding `sub-001_task-rest_run-1_space-fsLR_bold.json` file:
 
 ```JSON
 {
