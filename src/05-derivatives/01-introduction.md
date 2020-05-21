@@ -154,7 +154,7 @@ share the following (non-required) ones:
 
 | **Value**      | **Description**                                                                                                               |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `"orig"`       | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
+| `orig`         | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
 | URI or path    | This can be used to point to a specific file. Paths are written relative to the root of the derivative dataset.               |
 
 In the case of images with multiple references, a data dictionary must link the relevant structures to reference files.
