@@ -51,7 +51,6 @@ pipeline1/
             sub-001_task-rest_run-1_desc-MC_bold.json
 ```
 
-
 All REQUIRED metadata fields coming from a derivative file’s source file(s) MUST
 be propagated to the JSON description of the derivative unless the processing
 makes them invalid (e.g., if a source 4D image is averaged to create a single
