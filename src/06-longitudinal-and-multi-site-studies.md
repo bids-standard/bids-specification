@@ -1,4 +1,4 @@
-# Longitudinal studies with multiple sessions (visits)
+# Longitudinal and multi-site studies
 
 Multiple sessions (visits) are encoded by adding an extra layer of directories
 and file names in the form of `ses-<label>`. Session label can consist
@@ -70,7 +70,7 @@ sub-<label>/
 
 Optional: Yes
 
-In case of multiple sessions there is an option of adding an additional
+In case of multiple sessions there is an option of adding additional
 participant key files describing variables changing between sessions. In such
 case one file per participant should be added. These files need to include
 compulsory `session_id` column and describe each session by one and only one
@@ -90,8 +90,8 @@ ses-followup  2009-06-17T13:45:30 110
 
 This version of the BIDS specification does not explicitly cover studies with
 data coming from multiple sites or multiple centers (such extension is planned
-in BIDS 2.0.0). There are however ways to model your data without any loss in
-terms of metadata.
+in [BIDS `2.0`](https://docs.google.com/document/d/1LEgsMiisGDe1Gv-hBp1EcLmoz7AlKj6VYULUgDD3Zdw/)).
+There are however ways to model your data without any loss in terms of metadata.
 
 ### Treat each site/center as a separate dataset
 

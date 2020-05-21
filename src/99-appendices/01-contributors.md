@@ -4,7 +4,7 @@ Legend (source:
 [https://github.com/kentcdodds/all-contributors](https://github.com/kentcdodds/all-contributors))
 
 | Emoji | Represents                                                                  |
-|:------|:----------------------------------------------------------------------------|
+|---------------|-----------------------------------------------------------------------------------------|
 | 💬    | Answering Questions (on the mailing list, NeuroStars, GitHub, or in person) |
 | 🐛    | Bug reports                                                                 |
 | 📝    | Blogposts                                                                   |
@@ -83,7 +83,9 @@ your name is not listed, please add it.
 -   Christopher J. Honey 📖
 -   Jean-Christophe Houde 📖
 -   International Neuroinformatics Coordinating Facility 💵📋
+-   Andrew Janke 📖💻
 -   Mainak Jas 📖💻
+-   Alexander Jones 💻🐛
 -   David Keator 📖
 -   James Kent 💬💻
 -   Gregory Kiar 📖💻🎨🔧
@@ -94,6 +96,7 @@ your name is not listed, please add it.
 -   Jonathan C. Lau 📖
 -   Laura and John Arnold Foundation 💵
 -   Christopher Lee-Messer 📖
+-   Jon Haitz Legarreta 💻📖
 -   Xiangrui Li 📖💻
 -   Vladimir Litvak 📖
 -   Brian N. Lundstrom 📖
@@ -119,7 +122,7 @@ your name is not listed, please add it.
 -   Patrick Park 📖💡💬
 -   Dianne Patterson 📖
 -   John Pellman 📖
--   Cyril Pernet 💬📖💡📋
+-   Cyril Pernet 💬📝📖🎨💡📋🤔📢
 -   Franco Pestilli 📖💻🎨💡🤔👀🔧
 -   Natalia Petridou 📖
 -   Dmitry Petrov 📖💻
@@ -133,6 +136,7 @@ your name is not listed, please add it.
 -   Pradeep Reddy Raamana 💻🔧
 -   Vasudev Raguram 💻🎨📖🔧
 -   Nick F. Ramsey 📖
+-   Kay Robbins 💻📖🐛
 -   Alex Rockhill 📖🔧
 -   Ariel Rokem 📖
 -   Matt Sanderson 📖💻
@@ -144,6 +148,7 @@ your name is not listed, please add it.
 -   Nicole C. Swann 📖
 -   François Tadel 📖🔌💡
 -   Roberto Toro 🔧
+-   Sébastien Tourbier 🤔👀📢
 -   William Triplett 📖
 -   Jessica A. Turner 📖
 -   Bradley Voytek 📖
@@ -154,3 +159,4 @@ your name is not listed, please add it.
 -   Gaël Varoquaux 📖
 -   Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
 -   Lyuba Zehl 📖
+-   Sébastien Tourbier 🤔👀📢
