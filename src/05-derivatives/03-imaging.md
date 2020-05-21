@@ -21,7 +21,7 @@ The use of surface meshes and volumetric measures sampled to those meshes is
 sufficiently similar in practice to treat them equivalently.
 
 When two or more instances of a given derivative are provided with resolution
-(or surface sampling density) being the only difference between them, then the
+or surface sampling density being the only difference between them, then the
 `res` (for *resolution* of regularly sampled N-D data) and/or `den` (for
 *density* of non-parametric surfaces) SHOULD be used to avoid name conflicts.
 Note that only files combining both regularly sampled (e.g., gridded) and surface
