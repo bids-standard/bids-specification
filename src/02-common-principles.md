@@ -65,7 +65,7 @@ misunderstanding we clarify them here.
     number of 0s for consistent indentation, e.g., it is `rest` in `task-rest`
     following `task-<label>` specification.
 
-1.  **`suffix`** - a portion of the file name with `key-value_` pairs (thus after
+1.  **`suffix`** - an alphanumeric value, located after the `key-value_` pairs (thus after
     the final `_`), right before the **File extension**, e.g., it is `eeg` in
     `sub-05_task-matchingpennies_eeg.vhdr`.
 
