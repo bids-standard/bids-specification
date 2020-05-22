@@ -76,13 +76,12 @@ the common properties associated with categories such as `mycodes` are
 encapsulated in the \_events.json dictionary. Downstream tools should not
 distinguish between tags specified using the different mechanisms. Further,
 the normal BIDS inheritance principle applies, so these data dictionaries can
-appear higher in the BIDS hierarchy.  
+appear higher in the BIDS hierarchy.
 
-The HED vocabulary is specified by a HED-schema, which delineates the allowed HED path strings. By default, BIDSuses the latest HED-schema available in the
-[hed-specification repository](https://github.com/hed-standard/hed-specification/tree/HED-restructure/hedxml)
-maintained by the HED-standards group. You can specify the version of HED used to tag your data in the
-\_events.json sidecar using a HED version number. The validator will try to match that version to one of the existing versions in the the [hed-specification repository](https://github.com/hed-standard/hed-specification/tree/HED-restructure/hedxml). Since only one HED schema can be used in a study, the specification of an alternative HED schema SHOULD be made in an \_events.json sidecar at the top level of the study hierachy to avoid ambiguity.
-
+The HED vocabulary is specified by a HED schema, which delineates the allowed HED path strings. By default, BIDS uses the latest HED schema available in the
+[hed-specification repository](https://github.com/hed-standard/hed-specification/tree/master/hedxml)
+maintained by the hed-standard group. You can specify the version of HED used to tag your data in the
+\_events.json sidecar using a HED version number. The validator will try to match that version to one of the existing versions in the the [hed-specification repository](https://github.com/hed-standard/hed-specification/tree/master/hedxml). Since only one HED schema can be used in a study, the specification of an alternative HED schema SHOULD be made in an \_events.json sidecar at the top level of the study hierarchy to avoid ambiguity.
 
 Example:
 
@@ -91,4 +90,3 @@ Example:
 	"HEDSchemaVersion": "HED7.1.1.xml"
 }
 ```
-
