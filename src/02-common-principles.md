@@ -70,8 +70,9 @@ misunderstanding we clarify them here.
     `sub-05_task-matchingpennies_eeg.vhdr`.
 
 1.  **File extension** - a portion of the the file name after the left-most
-    period (`.`) preceded by any other alphanumeric (so `.gitignore` does not have a
-    suffix)
+    period (`.`) preceded by any other alphanumeric. For example, `.gitignore` does
+    not have a file extension, but the file extension of `test.nii.gz` is `.nii.gz`.
+    Note that the left-most period is included in the file extension.
 
 ## Compulsory, optional, and additional data and metadata
 
