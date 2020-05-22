@@ -88,7 +88,7 @@ Example:
 
 ```JSON
 {
-	"HEDSchemaVersion: "HED7.1.1.xml"
+	"HEDSchemaVersion": "HED7.1.1.xml"
 }
 ```
 
