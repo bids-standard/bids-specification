@@ -5,14 +5,111 @@ extent and resolution.
 
 ## Preprocessed, coregistered and/or resampled volumes
 
+Template:
+
+```Text
+<pipeline_name>/
+    sub-<participant_label>/
+        <datatype>/
+            <source_keywords>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<ext>
+```
+
 Volumetric preprocessing does not modify the number of dimensions, and so
 the specifications in [Preprocessed or cleaned data][common_preproc]
 apply.
-In addition, all processed files include the following metadata JSON fields:
+The use of surface meshes and volumetric measures sampled to those meshes is
+sufficiently similar in practice to treat them equivalently.
 
-| **Key name**  | **Description**                                                                                 |
-| ------------- | ----------------------------------------------------------------------------------------------- |
-| SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not. |
+When two or more instances of a given derivative are provided with resolution
+or surface sampling density being the only difference between them, then the
+`res` (for *resolution* of regularly sampled N-D data) and/or `den` (for
+*density* of non-parametric surfaces) SHOULD be used to avoid name conflicts.
+Note that only files combining both regularly sampled (e.g., gridded) and surface
+sampled data (and their downstream derivatives) are allowed to present both `res`
+and `den` keywords simultaneously.
+
+Examples:
+
+```Text
+pipeline1/
+    sub-001/
+        func/
+            sub-001_task-rest_run-1_space-MNI305_res-lo_bold.nii.gz
+            sub-001_task-rest_run-1_space-MNI305_res-hi_bold.nii.gz
+            sub-001_task-rest_run-1_space-MNI305_bold.json
+```
+
+The following metadata JSON fields are defined for preprocessed images:
+
+| **Key name**  | **Description**                                                                                                                |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not.                                |
+| Resolution    | REQUIRED if `res` is present. String or dictionary of label to string. Specifies the interpretation of the resolution keyword. |
+| Density       | REQUIRED if `den` is present. String or dictionary of label to string. Specifies the interpretation of the density keyword.    |
+
+Example JSON file corresponding to
+`pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_bold.json` above:
+
+```JSON
+{
+  "SkullStripped": true,
+  "Resolution": {
+    "hi": "Matched with high-resolution T1w (0.7mm, isotropic)",
+    "lo": "Matched with original BOLD resolution (2x2x3 mm^3)"
+  }
+}
+```
+
+This would be equivalent to having two JSON metadata files, one
+corresponding to `res-lo`
+(`pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_res-lo_bold.json`):
+
+```JSON
+{
+  "SkullStripped": true,
+  "Resolution": "Matched with original BOLD resolution (2x2x3 mm^3)"
+}
+```
+
+And one corresponding to `res-hi`
+(`pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_res-hi_bold.json`):
+
+```JSON
+{
+  "SkullStripped": true,
+  "Resolution": "Matched with high-resolution T1w (0.7mm, isotropic)"
+}
+```
+
+Example of CIFTI-2 files (a format that combines regularly sampled data
+and non-parametric surfaces) having both `res` and `den` keywords:
+
+```Text
+pipeline1/
+    sub-001/
+        func/
+            sub-001_task-rest_run-1_space-fsLR_res-1_den-10k_bold.dtseries.nii
+            sub-001_task-rest_run-1_space-fsLR_res-1_den-41k_bold.dtseries.nii
+            sub-001_task-rest_run-1_space-fsLR_res-2_den-10k_bold.dtseries.nii
+            sub-001_task-rest_run-1_space-fsLR_res-2_den-41k_bold.dtseries.nii
+            sub-001_task-rest_run-1_space-fsLR_bold.json
+```
+
+And the corresponding `sub-001_task-rest_run-1_space-fsLR_bold.json` file:
+
+```JSON
+{
+    "SkullStripped": true,
+    "Resolution": {
+        "1": "Matched with MNI152NLin6Asym 1.6mm isotropic",
+        "2": "Matched with MNI152NLin6Asym 2.0mm isotropic"
+    },
+    "Density": {
+        "10k": "10242 vertices per hemisphere (5th order icosahedron)",
+        "41k": "40962 vertices per hemisphere (6th order icosahedron)"
+    }
+}
+```
 
 ## Masks
 

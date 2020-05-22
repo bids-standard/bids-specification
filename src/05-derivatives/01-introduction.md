@@ -113,7 +113,7 @@ The coordinate system (a.k.a. space) a particular derivative is in SHOULD be
 denoted using a filename keyword `space` whenever such keyword is present in
 the filename template of a given derivative type. The allowed values for this
 keyword depend are identifiers given in section [Image-Based Coordinate
-Systems](../99-appendices/08-coordinate-systems.md#image-based-coordinate-systems).
+Systems][coordsys].
 
 | File format                  | Description             |
 | ---------------------------- | ----------------------- |
@@ -148,14 +148,18 @@ share the following (non-required) ones:
 | Description      | RECOMMENDED. Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                        |
 | Sources          | OPTIONAL. A list of paths relative to dataset root pointing to the file(s) that were directly used in the creation of this derivative. For example in a chain of A->B->C, “C” should only list “B” as Sources, and “B” should only list “A” as Sources. However in case X and Y jointly contribute to Z, then “Z” should list “X” and “Y” as Sources. |
 | RawSources       | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative. When the derivative filename does not define a `space` keyword, the first entry of `RawSources` MUST be defined and it will define the `scanner` coordinate system that applies.                               |
-| SpatialReference | REQUIRED when a custom template or file is used. A path to a file that was used as, or can be used as, a reference image for determining the coordinate space of this file. The path should start with a `/` and should be relative to the root of the dataset.                                                                                       |
+| SpatialReference | REQUIRED in case a custom reference image was used. OPTIONAL if a coordinate system listed in [Image-Based Coordinate Systems][coordsys] is used. For images with a single reference, the value MUST be a single string. For images with multiple references, such as surface and volume references, a data dictionary MUST be used.                  |
 
 ### SpatialReference key allowed values
 
-| **Value name** | **Description**                                                                                                               |
+| **Value**      | **Description**                                                                                                               |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| orig           | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
-| uri or path    | This can be used to point to a specific file.                                                                                 |
+| `orig`         | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
+| URI or path    | This can be used to point to a specific file. Paths are written relative to the root of the derivative dataset.               |
+
+In the case of images with multiple references, a data dictionary must link the relevant structures to reference files.
+If a single volumetric reference is used for multiple structures, the `VolumeReference` key MAY be used to reduce duplication.
+For CIFTI-2 images, the relevant structures are BrainStructure values defined in the BrainModel elements found in the CIFTI-2 header.
 
 ### Examples
 
@@ -170,6 +174,27 @@ sub-01/func/sub-01_task-rest_space-individual_bold.json
 ```JSON
 {
     "SpatialReference": "/sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
+}
+```
+
+Preprocessed `bold` CIFTI-2 files that have been sampled to the fsLR surface
+meshes defined in the Conte69 atlas along with the MNI152NLin6Asym template.
+In this example, because all volumetric structures are sampled to the same
+reference, the `VolumeReference` key is used as a default, and only the
+surface references need to be specified by BrainStructure names.
+
+```Text
+sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.dtseries.nii
+sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.json
+```
+
+```JSON
+{
+    "SpatialReference": {
+        "VolumeReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz",
+        "CIFTI_STRUCTURE_CORTEX_LEFT": "https://github.com/mgxd/brainplot/raw/master/brainplot/Conte69_Atlas/Conte69.L.midthickness.32k_fs_LR.surf.gii",
+        "CIFTI_STRUCTURE_CORTEX_RIGHT": "https://github.com/mgxd/brainplot/raw/master/brainplot/Conte69_Atlas/Conte69.R.midthickness.32k_fs_LR.surf.gii"
+    }
 }
 ```
 
@@ -280,3 +305,5 @@ storage/distribution non-compliant derivatives of BIDS datasets.
 In particular, if a BIDS dataset contains a `derivatives/` sub-directory,
 the contents of that directory may be a heterogeneous mix of BIDS Derivatives
 datasets and non-compliant derivatives.
+
+[coordsys]: ../99-appendices/08-coordinate-systems.md#image-based-coordinate-systems
