@@ -81,12 +81,24 @@ appear higher in the BIDS hierarchy.
 The HED vocabulary is specified by a HED schema, which delineates the allowed HED path strings. By default, BIDS uses the latest HED schema available in the
 [hed-specification repository](https://github.com/hed-standard/hed-specification/tree/master/hedxml)
 maintained by the hed-standard group. You can specify the version of HED used to tag your data in the
-\_events.json sidecar using a HED version number. The validator will try to match that version to one of the existing versions in the the [hed-specification repository](https://github.com/hed-standard/hed-specification/tree/master/hedxml). Since only one HED schema can be used in a study, the specification of an alternative HED schema SHOULD be made in an \_events.json sidecar at the top level of the study hierarchy to avoid ambiguity.
+\_events.json sidecar at the top level of the study hierarchy using a HED version number. The validator will try to match that version to one of the existing versions in the the [hed-specification repository](https://github.com/hed-standard/hed-specification/tree/master/hedxml). 
 
 Example:
 
 ```JSON
 {
-	"HEDSchemaVersion": "HED7.1.1.xml"
+	"HEDSchemaVersion": "7.1.1"
 }
 ```
+
+Alternatively, you can include a HED schema file at the top level of the study and specify its location in the HEDSchemaPath field in the \_events.json sidecar at the top level of the study hierarchy. 
+
+Example:
+
+```JSON
+{
+	"HEDSchemaPath": "HED7.1.1.xml"
+}
+```
+Only one HED schema can be used in a study. The validator first looks for a HED schema in study, then a version number, and then the latest schema [hed-specification repository](https://github.com/hed-standard/hed-specification/tree/master/hedxml). 
+
