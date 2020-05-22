@@ -100,5 +100,6 @@ Example:
 	"HEDSchemaPath": "HED7.1.1.xml"
 }
 ```
+
 Only one HED schema can be used in a study. The validator first looks for a HED schema in study, then a version number, and then the latest schema [hed-specification repository](https://github.com/hed-standard/hed-specification/tree/master/hedxml). 
 
