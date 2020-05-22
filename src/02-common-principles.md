@@ -66,7 +66,8 @@ misunderstanding we clarify them here.
     following `task-<label>` specification.
 
 1.  **`suffix`** - a portion of the file name with `key-value_` pairs (thus after
-    the final `_`), right before the **File extension**.
+    the final `_`), right before the **File extension**, e.g., it is `eeg` in
+    `sub-05_task-matchingpennies_eeg.vhdr`.
 
 1.  **File extension** - a portion of the the file name after the left-most
     period (`.`) preceded by any other alphanumeric (so `.gitignore` does not have a
