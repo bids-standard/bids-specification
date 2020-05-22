@@ -402,7 +402,8 @@ that they MUST consist only of allowed characters as described in
 [Definitions](02-common-principles.md#definitions) above. In `<index>`es
 we RECOMMEND using zero padding (e.g., `01` instead of `1` if you have more than
 nine subjects) to make alphabetical sorting more intuitive. Note that
-zero padding is NOT RECOMMENDED to maintain their uniqueness.
+zero padding SHOULD NOT be used to merely maintain uniqueness
+of `<index>`es.
 
 Please note that a given label or index is distinct from the "prefix"
 it refers to. For example `sub-01` refers to the `sub` entity (a
