@@ -1,0 +1,8 @@
+- code/:
+    - required: False
+- derivatives/:
+    - required: False
+- sourcedata/:
+    - required: False
+- stimuli/:
+    - required: False

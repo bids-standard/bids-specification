@@ -19,7 +19,7 @@ genetic_info:
   extensions:
     - json
 participants:
-  required: True
+  required: False
   extensions:
     - tsv
     - json
