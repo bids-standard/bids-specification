@@ -2,7 +2,7 @@ groups:
 # First group
   - datatypes:
       - anat
-    suffices:
+    suffixes:
       - T1w
       - T2w
       - T1rho
@@ -30,7 +30,7 @@ groups:
 # Second group
   - datatypes:
       - anat
-    suffices:
+    suffixes:
       - defacemask
     extensions:
       - nii.gz

@@ -1,7 +1,7 @@
 group1:
   datatypes:
     - func
-  suffices:
+  suffixes:
     - bold
     - cbv
     - phase
@@ -23,7 +23,7 @@ group1:
 group2:
   datatypes:
     - func
-  suffices:
+  suffixes:
     - events
   extensions:
     - tsv
@@ -41,7 +41,7 @@ group2:
 group3:
   datatypes:
     - func
-  suffices:
+  suffixes:
     - physio
     - stim
   extensions:

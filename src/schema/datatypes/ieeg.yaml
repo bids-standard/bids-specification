@@ -1,7 +1,7 @@
 group1:
   datatypes:
     - ieeg
-  suffices:
+  suffixes:
     - ieeg
   extensions:
     - json

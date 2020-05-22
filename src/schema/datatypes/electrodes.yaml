@@ -2,7 +2,7 @@ group1:
   datatypes:
     - eeg
     - ieeg
-  suffices:
+  suffixes:
     - electrodes
   extensions:
     - json

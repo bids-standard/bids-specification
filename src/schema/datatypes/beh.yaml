@@ -1,7 +1,7 @@
 group1:
   datatypes:
     - beh
-  suffices:
+  suffixes:
     - stim
     - physio
   extensions:
@@ -14,7 +14,7 @@ group1:
 group2:
   datatypes:
     - beh
-  suffices:
+  suffixes:
     - events
     - beh
   extensions:

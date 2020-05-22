@@ -3,7 +3,7 @@ group1:
     - meg
     - eeg
     - ieeg
-  suffices:
+  suffixes:
     - photo
   extensions:
     - jpg

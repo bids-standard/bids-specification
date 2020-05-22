@@ -1,7 +1,7 @@
 group1:
   datatypes:
     - meg
-  suffices:
+  suffixes:
     - meg
   extensions:
     - json
@@ -25,7 +25,7 @@ group1:
 group2:
   datatypes:
     - meg
-  suffices:
+  suffixes:
     - headshape
   extensions:
     - pos
@@ -38,7 +38,7 @@ group2:
 group3:
   datatypes:
     - meg
-  suffices:
+  suffixes:
     - markers
   extensions:
     - json

@@ -1,7 +1,7 @@
 group1:
   datatypes:
     - fmap
-  suffices:
+  suffixes:
     - phasediff
     - phase1
     - phase2
@@ -21,7 +21,7 @@ group1:
 group2:
   datatypes:
     - fmap
-  suffices:
+  suffixes:
     - epi
   extensions:
     - nii.gz

@@ -1,7 +1,7 @@
 group1:
   datatypes:
     - dwi
-  suffices:
+  suffixes:
     - dwi
   extensions:
     - nii.gz
@@ -18,7 +18,7 @@ group1:
 group2:
   datatypes:
     - dwi
-  suffices:
+  suffixes:
     - sbref
   extensions:
     - nii.gz
