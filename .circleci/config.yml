@@ -37,11 +37,20 @@ jobs:
           at: ~/build
       - run:
           command: |
+            if (! git log -1 --pretty=%b | grep REL:) ; then
             chmod a+rX -R ~
             linkchecker -t 1 ~/build/site/
             # check external separately by pointing to all *html so no
             # failures for local file:/// -- yoh found no better way,
-            linkchecker -t 1 --check-extern --ignore-url 'file:///.*' --ignore-url https://fonts.gstatic.com ~/build/site/*html ~/build/site/*/*.html
+            linkchecker -t 1 --check-extern \
+              --ignore-url 'file:///.*' \
+              --ignore-url https://fonts.gstatic.com \
+              --ignore-url "https://github.com/bids-standard/bids-specification/(pull|tree)/.*" \
+              --ignore-url "https://github.com/[^/]*" \
+              ~/build/site/*html ~/build/site/*/*.html
+            else
+            echo "Release PR - do nothing"
+            fi
 
   build_docs_pdf:
     working_directory: ~/bids-specification/pdf_build_src

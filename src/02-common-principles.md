@@ -6,21 +6,22 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 
-Throughout this specification we use a list of terms. To avoid
+Throughout this specification we use a list of terms and abbreviations. To avoid
 misunderstanding we clarify them here.
 
-1.  Dataset - a set of neuroimaging and behavioral data acquired for a purpose
-    of a particular study. A dataset consists of data acquired from one or more
-    subjects, possibly from multiple sessions.
+1.  **Dataset** - a set of neuroimaging and behavioral data acquired for a
+    purpose of a particular study. A dataset consists of data acquired from one
+    or more subjects, possibly from multiple sessions.
 
-1.  Subject - a person or animal participating in the study.
+1.  **Subject** - a person or animal participating in the study.  Used
+    interchangeably with term **Participant**.
 
-1.  Session - a logical grouping of neuroimaging and behavioral data consistent
-    across subjects. Session can (but doesn't have to) be synonymous to a visit
-    in a longitudinal study. In general, subjects will stay in the scanner
-    during one session. However, for example, if a subject has to leave the
-    scanner room and then be re-positioned on the scanner bed, the set of MRI
-    acquisitions will still be considered as a session and match sessions
+1.  **Session** - a logical grouping of neuroimaging and behavioral data
+    consistent across subjects. Session can (but doesn't have to) be synonymous
+    to a visit in a longitudinal study. In general, subjects will stay in the
+    scanner during one session. However, for example, if a subject has to leave
+    the scanner room and then be re-positioned on the scanner bed, the set of
+    MRI acquisitions will still be considered as a session and match sessions
     acquired in other subjects. Similarly, in situations where different data
     types are obtained over several visits (for example fMRI on one day followed
     by DWI the day after) those can be grouped in one session. Defining multiple
@@ -28,33 +29,50 @@ misunderstanding we clarify them here.
     are planned and performed on all -or most- subjects, often in the case of
     some intervention between sessions (e.g., training).
 
-1.  Data acquisition - a continuous uninterrupted block of time during which a
-    brain scanning instrument was acquiring data according to particular
+1.  **Data acquisition** - a continuous uninterrupted block of time during which
+    a brain scanning instrument was acquiring data according to particular
     scanning sequence/protocol.
 
-1.  Data type - a functional group of different types of data. In BIDS we define
-    eight data types: func (task based and resting state functional MRI), dwi
-    (diffusion weighted imaging), fmap (field inhomogeneity mapping data such as
-    field maps), anat (structural imaging such as T1, T2, etc.), meg
-    (magnetoencephalography), eeg (electroencephalography), ieeg (intracranial
-    electroencephalography), beh (behavioral).
+1.  **Data type** - a functional group of different types of data. In BIDS we
+    define eight data types: `func` (task based and resting state functional MRI),
+    `dwi` (diffusion weighted imaging), `fmap` (field inhomogeneity mapping data
+    such as field maps), `anat` (structural imaging such as T1, T2, etc.), `meg`
+    (magnetoencephalography), `eeg` (electroencephalography), `ieeg` (intracranial
+    electroencephalography), `beh` (behavioral).
 
-1.  Task - a set of structured activities performed by the participant. Tasks
-    are usually accompanied by stimuli and responses, and can greatly vary in
-    complexity. For the purpose of this specification we consider the so-called
+1.  **Task** - a set of structured activities performed by the participant.
+    Tasks are usually accompanied by stimuli and responses, and can greatly vary
+    in complexity. For the purpose of this specification we consider the so-called
     "resting state" a task. In the context of brain scanning, a task is always
     tied to one data acquisition. Therefore, even if during one acquisition the
     subject performed multiple conceptually different behaviors (with different
     sets of instructions) they will be considered one (combined) task.
 
-1.  Event - a stimulus or subject response recorded during a task. Each event
-    has an onset time and duration. Note that not all tasks will have recorded
-    events (e.g., resting state).
+1.  **Event** - a stimulus or subject response recorded during a task. Each
+    event has an onset time and duration. Note that not all tasks will have
+    recorded events (e.g., “resting state”).
 
-1.  Run - an uninterrupted repetition of data acquisition that has the same
+1.  **Run** - an uninterrupted repetition of data acquisition that has the same
     acquisition parameters and task (however events can change from run to run
     due to different subject response or randomized nature of the stimuli). Run
     is a synonym of a data acquisition.
+
+1.  **`<index>`** - a numeric value, possibly prefixed with arbitrary number of
+    0s for consistent indentation, e.g., it is `01` in `run-01` following
+    `run-<index>` specification.
+
+1.  **`<label>`** - an alphanumeric value, possibly prefixed with arbitrary
+    number of 0s for consistent indentation, e.g., it is `rest` in `task-rest`
+    following `task-<label>` specification.
+
+1.  **`suffix`** - an alphanumeric value, located after the `key-value_` pairs (thus after
+    the final `_`), right before the **File extension**, e.g., it is `eeg` in
+    `sub-05_task-matchingpennies_eeg.vhdr`.
+
+1.  **File extension** - a portion of the the file name after the left-most
+    period (`.`) preceded by any other alphanumeric. For example, `.gitignore` does
+    not have a file extension, but the file extension of `test.nii.gz` is `.nii.gz`.
+    Note that the left-most period is included in the file extension.
 
 ## Compulsory, optional, and additional data and metadata
 
@@ -264,8 +282,7 @@ additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
 Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://github.com/rordenlab/dcm2niix)
 and [dicm2nii](http://www.mathworks.com/matlabcentral/fileexchange/42997-dicom-to-nifti-converter/content/dicm2nii.m)
-DICOM to NIfTI converters. A provided
-[validator](https://github.com/bids-standard/bids-validator)
+DICOM to NIfTI converters. The [BIDS-validator](https://github.com/bids-standard/bids-validator)
 will check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
 
@@ -274,9 +291,13 @@ NIfTI header.
 Tabular data MUST be saved as tab delimited values (`.tsv`) files, i.e., CSV
 files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
-line listing the names of all columns (with the exception of physiological and
-other continuous acquisition data - see below for details). Names MUST be
-separated with tabs. String values containing tabs MUST be escaped using double
+line listing the names of all columns (with the exception of
+[physiological and other continuous recordings](04-modality-specific-files/06-physiological-and-other-continuous-recordings.md)).
+Names MUST be separated with tabs.
+It is RECOMMENDED that the column names in the header of the TSV file are
+written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
+first letter in lower case (e.g., `variable_name`, not `Variable_name`).
+String values containing tabs MUST be escaped using double
 quotes. Missing and non-applicable values MUST be coded as `n/a`. Numerical
 values MUST employ the dot (`.`) as decimal separator and MAY be specified
 in scientific notation, using `e` or `E` to separate the significand from the
@@ -340,8 +361,14 @@ format can be found here: [http://json.org/](http://json.org/). Several editors
 have built-in support for JSON syntax highlighting that aids manual creation of
 such files. An online editor for JSON with built-in validation is available at:
 [http://jsoneditoronline.org](http://jsoneditoronline.org). 
+It is RECOMMENDED that keys in a JSON file are written in [CamelCase](https://en.wikipedia.org/wiki/Camel_case)
+with the first letter in upper case (e.g., `SamplingFrequency`, not
+`samplingFrequency`). Note however, when a JSON file is used as an accompanying
+sidecar file for a [TSV file](#tabular-files), the keys linking a TSV column
+with their description in the JSON file need to follow the exact formatting
+as in the TSV file.
 
-Example:
+Example of a hypothetical `*_bold.json` file, accompanying a `*_bold.nii` file:
 
 ```JSON
 {
@@ -350,20 +377,38 @@ Example:
 }
 ```
 
+Example of a hypothetical `*_events.json` file, accompanying an
+`*_events.tsv` file. Note that the JSON file contains a key describing an
+*arbitrary* column `stim_presentation_side` in the TSV file it accompanies.
+See [task events section](04-modality-specific-files/05-task-events.md)
+for more information.
+
+```JSON
+{
+  "stim_presentation_side": {
+    "Levels": {
+      "1": "stimulus presented on LEFT side",
+      "2": "stimulus presented on RIGHT side"
+    }
+  }
+}
+```
+
 ## Participant names and other labels
 
-BIDS uses custom user-defined labels in several situations (naming of
-participants, sessions, acquisition schemes, etc.) Labels are strings and MUST
-only consist of letters (lower or upper case) and/or numbers. If numbers are
-used we RECOMMEND zero padding (e.g., `01` instead of `1` if you have more than
-nine subjects) to make alphabetical sorting more intuitive.
+BIDS allows for custom user-defined `<label>`s and `<index>`es e.g.,
+for naming of participants, sessions, acquisition schemes, etc. Note
+that they MUST consist only of allowed characters as described in
+[Definitions](02-common-principles.md#definitions) above. In `<index>`es
+we RECOMMEND using zero padding (e.g., `01` instead of `1` if you have more than
+nine subjects) to make alphabetical sorting more intuitive. Note that
+zero padding SHOULD NOT be used to merely maintain uniqueness
+of `<index>`es.
 
-Please note that a given label is distinct from the "prefix" it refers to. For
-example `sub-01` refers to the `sub` entity (a subject) with the label `01`.
-The `sub-` prefix is not part of the subject label, but must be included in file
-names (similarly to other key names). In contrast to other labels, `run` and
-`echo` labels MUST be integers. Those labels MAY include zero padding, but this
-is NOT RECOMMENDED to maintain their uniqueness.
+Please note that a given label or index is distinct from the "prefix"
+it refers to. For example `sub-01` refers to the `sub` entity (a
+subject) with the label `01`. The `sub-` prefix is not part of the subject
+label, but must be included in file names (similarly to other key names).
 
 ## Units
 

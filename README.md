@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.com/bids-standard/bids-specification.svg?branch=master)](https://travis-ci.com/bids-standard/bids-specification)
 [![CircleCI](https://circleci.com/gh/bids-standard/bids-specification.svg?style=svg)](https://circleci.com/gh/bids-standard/bids-specification)
 [![@BIDSstandard](http://img.shields.io/twitter/follow/bidsstandard.svg?style=social)](https://twitter.com/BIDSstandard)
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3686061.svg)](https://doi.org/10.5281/zenodo.3686061)
 
 <img src="./BIDS_logo/BIDS_logo_black_transparent_background_crop.png" alt="bids-logo" width="600"/>
 
