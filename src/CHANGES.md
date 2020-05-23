@@ -3,6 +3,7 @@
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
 -   \[INFRA] linkchecker - ignore github pull and tree URLs [#477](https://github.com/bids-standard/bids-specification/pull/477) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Allow fractional seconds in scans file datetimes [#470](https://github.com/bids-standard/bids-specification/pull/470) ([tsalo](https://github.com/tsalo))
 -   \[MISC] Maintainers - `Scope` responsibility [#467](https://github.com/bids-standard/bids-specification/pull/467) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[FIX] Align tables in MRI section [#465](https://github.com/bids-standard/bids-specification/pull/465) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Drop `\_part-` reference from example, introduce `\_split-` entity [#460](https://github.com/bids-standard/bids-specification/pull/460) ([sappelhoff](https://github.com/sappelhoff))
