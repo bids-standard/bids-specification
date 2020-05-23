@@ -268,8 +268,10 @@ Datetime should be expressed in the following format
 `2009-06-15T13:45:30[.000000]` (year, month, day, hour (24h), minute, second,
 and optionally fractional second; this is equivalent to the RFC3339 "date-time"
 format, time zone is always assumed as local time).
+No specific precision is required for fractional seconds, but the precision
+SHOULD be consistent across the dataset
 For anonymization purposes all dates within one subject should be shifted by a
-randomly chosen (but common across all runs etc.) number of days.
+randomly chosen (but consistent across all runs etc.) number of days.
 This way relative timing would be preserved, but chances of identifying a
 person based on the date and time of their scan would be decreased.
 Dates that are shifted for anonymization purposes should be set to a year 1925
