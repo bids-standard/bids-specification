@@ -273,8 +273,8 @@ REQUIRED for GIFTI files. For example:
 pipeline/
     sub-001/
         anat/
-            sub-001_hemi-L_dparc.label.gii
-            sub-001_hemi-R_dparc.label.gii
+            sub-001_hemi-L_dseg.label.gii
+            sub-001_hemi-R_dseg.label.gii
 ```
 
 The REQUIRED extension for CIFTI parcellations is `.dlabel.nii`. For example:
@@ -283,8 +283,8 @@ The REQUIRED extension for CIFTI parcellations is `.dlabel.nii`. For example:
 pipeline/
     sub-001/
         anat/
-            sub-001_dparc.dlabel.nii
-            sub-001_dparc.dlabel.nii
+            sub-001_dseg.dlabel.nii
+            sub-001_dseg.dlabel.nii
 ```
 
 ### Anatomical Labels
