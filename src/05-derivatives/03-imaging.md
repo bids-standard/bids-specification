@@ -349,10 +349,10 @@ These TSV lookup tables contain the following columns:
 An example, custom dseg.tsv that defines three labels:
 
 ```Text
-index   name            abbr	color       mapping
-100     "Gray Matter"	GM      #ff53bb	    1
-101     "White Matter"	WM      #2f8bbe	    2
-102     "Brainstem"     BS      #36de72	    11
+index   name            abbr    color       mapping
+100     Gray Matter     GM      #ff53bb     1
+101     White Matter    WM      #2f8bbe     2
+102     Brainstem       BS      #36de72     11
 ```
 
 []: <> (################)
