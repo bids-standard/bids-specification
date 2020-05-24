@@ -20,7 +20,7 @@ Derivatives can be stored/distributed in two ways:
     `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
     subfolder name SHOULD be the `PipelineDescription.Name` field in
     `data_description.json`, optionally followed by a hyphen and a suffix (see
-    [Derived dataset and pipeline description]#derived-dataset-and-pipeline-description).
+    [Derived dataset and pipeline description](#derived-dataset-and-pipeline-description).
 
     Example of derivatives with one directory per pipeline:
 
