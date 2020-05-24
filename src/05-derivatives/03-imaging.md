@@ -119,7 +119,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat|func|dwi/
-            <source_keywords>[_space-<space>][_desc-<label>]_mask.nii.gz
+            <source_keywords>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_mask.nii.gz
 ```
 
 A binary (1 - inside, 0 - outside) mask in the space defined by `<space>`. By
@@ -132,6 +132,8 @@ JSON metadata fields:
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | RawSources   | Same as defined in [Introduction][intro], but elevated from OPTIONAL to REQUIRED                                                               |
 | Type         | RECOMMENDED. Short identifier of the mask. Reserved values: `Brain` - brain mask, `Lesion` - lesion mask, `Face` - face mask, `ROI` - ROI mask |
+| Resolution   | REQUIRED if `res` is present. String or dictionary of label to string. Specifies the interpretation of the resolution keyword.                 |
+| Density      | REQUIRED if `den` is present. String or dictionary of label to string. Specifies the interpretation of the density keyword.                    |
 
 Examples:
 
@@ -155,10 +157,12 @@ manual_masks/
 
 Common JSON metadata fields:
 
-| **Key name** | **Description**                                                                                    |
-| ------------ | -------------------------------------------------------------------------------------------------- |
-| Manual       | OPTIONAL. Boolean. Indicates if the segmenation was performed manually or via an automated process |
-| Atlas        | OPTIONAL. Which atlas (if any) was used to derive the segmentation.                                |
+| **Key name** | **Description**                                                                                                                |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| Manual       | OPTIONAL. Boolean. Indicates if the segmenation was performed manually or via an automated process                             |
+| Atlas        | OPTIONAL. Which atlas (if any) was used to derive the segmentation.                                                            |
+| Resolution   | REQUIRED if `res` is present. String or dictionary of label to string. Specifies the interpretation of the resolution keyword. |
+| Density      | REQUIRED if `den` is present. String or dictionary of label to string. Specifies the interpretation of the density keyword.    |
 
 ### Discrete Segmentations
 
@@ -172,7 +176,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat|func|dwi/
-            <source_keywords>[_space-<space>]_dseg.nii.gz
+            <source_keywords>[_space-<space>][_res-<label>][_den-<label>]_dseg.nii.gz
 ```
 
 Example:
@@ -211,7 +215,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func|anat|dwi/
-            <source_keywords>[_space-<space>][_label-<label>]_probseg.nii.gz
+            <source_keywords>[_space-<space>][_res-<label>][_den-<label>][_label-<label>]_probseg.nii.gz
 ```
 
 Example:
@@ -263,7 +267,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat/
-            <source_keywords>[_hemi-{L|R}][_space-<space>]_dseg.{label.gii|dlabel.nii}
+            <source_keywords>[_hemi-{L|R}][_space-<space>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
 ```
 
 The REQUIRED extension for GIFTI parcellations is `.label.gii`. The `hemi` tag is
