@@ -110,11 +110,11 @@ Example:
 
 ## Coordinate systems
 
-The coordinate system (a.k.a. space) a particular derivative is in SHOULD be
-denoted using a filename keyword `space` whenever such keyword is present in
-the filename template of a given derivative type. The allowed values for this
-keyword depend are identifiers given in section [Image-Based Coordinate
-Systems][coordsys].
+The spatial reference (_space_ in the following) to which a particular derivative
+is aligned SHOULD be denoted using a filename keyword `space` whenever such keyword
+is present in the filename template of a given derivative type.
+The allowed values for this keyword depend are identifiers given in section
+[Image-Based Coordinate Systems][coordsys].
 
 | File format                  | Description             |
 | ---------------------------- | ----------------------- |

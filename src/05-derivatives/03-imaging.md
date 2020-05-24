@@ -323,7 +323,7 @@ pipeline/
             sub-001_space-orig_dseg.tsv
 ```
 
-Definitions can also be specified with a top-level dseg.tsv, which propagates to
+Definitions can also be specified with a top-level `dseg.tsv`, which propagates to
 segmentations in relative subdirectories.
 
 Example:
@@ -336,7 +336,7 @@ pipeline/
             sub-001_space-orig_dseg.nii.gz
 ```
 
-These tsv lookup tables should contain the following columns:
+These TSV lookup tables contain the following columns:
 
 | Column name | Description                                                             |
 | ----------- | ----------------------------------------------------------------------- |

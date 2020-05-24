@@ -102,9 +102,10 @@ in the appendix.
 
 ## Source vs. raw vs. derived data
 
-BIDS originally was designed to harmonize and describe raw (unprocessed
-or minimally processed due to file format conversion) data. During analysis such
-data will be transformed and partial as well as final results will be saved.
+BIDS originally was designed to describe and apply consistent naming conventions
+to raw (unprocessed or minimally processed due to file format conversion) data.
+During analysis such data will be transformed and partial as well as final results
+will be saved.
 Derivatives of the raw data (other than products of DICOM to NIfTI conversion)
 MUST be kept separate from the raw data. This way one can protect the raw data
 from accidental changes by file permissions. In addition it is easy to
