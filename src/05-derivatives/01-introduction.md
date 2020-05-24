@@ -89,7 +89,7 @@ Example:
 ```JSON
 {
     "Name": "FMRIPREP Outputs",
-    "BIDSVersion": "TODO (depends when this PR will be merged)",
+    "BIDSVersion": "1.4.0",
     "PipelineDescription": {
         "Name": "FMRIPREP",
         "Version": "1.2.5",
