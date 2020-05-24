@@ -20,7 +20,7 @@ Derivatives can be stored/distributed in two ways:
     `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
     subfolder name SHOULD be the `PipelineDescription.Name` field in
     `data_description.json`, optionally followed by a hyphen and a suffix (see
-    below).
+    [Derived dataset and pipeline description]#derived-dataset-and-pipeline-description).
 
     Example of derivatives with one directory per pipeline:
 
@@ -72,17 +72,17 @@ top level of the particular pipeline:
 `<dataset>/derivatives/<pipeline_name>/dataset_description.json`
 
 In addition to the keys for raw BIDS datasets,
-derived BIDS datasets include the following required or recommended
+derived BIDS datasets include the following REQUIRED, RECOMMENDED or OPTIONAL
 `dataset_description.json` keys
 (a dot in the Key name denotes a key in a subdictionary):
 
 | **Key name**                  | **Description**                                                                                                                                                                                                                              |
 | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | PipelineDescription.Name      | REQUIRED. Name of the pipeline that generated the outputs. In case the derived dataset is stored as a subfolder of the raw dataset this field MUST be a substring of the derived dataset folder name (a.k.a. `<pipeline_name>` - see above). |
-| PipelineDescription.Version   | OPTIONAL. Version of the pipeline.                                                                                                                                                                                                           |
+| PipelineDescription.Version   | RECOMMENDED. Version of the pipeline.                                                                                                                                                                                                        |
 | PipelineDescription.CodeURL   | OPTIONAL. URL where the code for the analysis can be found.                                                                                                                                                                                  |
 | PipelineDescription.Container | OPTIONAL. Object specifying the location and relevant attributes of software container image used to produce the derivative. Valid fields in this object include `Type`, `Tag` and `URI`.                                                    |
-| SourceDatasets                | OPTIONAL. A list of objects specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`.                                                                        |
+| SourceDatasets                | RECOMMENDED. A list of objects specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`.                                                                     |
 
 Example:
 
@@ -231,7 +231,7 @@ should be the original `bold` file that defined the coordinate system:
 ## Metadata conventions
 
 -   Unless specified otherwise, individual sidecar JSON files and all metadata
-    fields within are optional. However, the appropriate use of these files and
+    fields within are OPTIONAL. However, the appropriate use of these files and
     pertinent fields is very valuable and thus encouraged. Moreover, for some
     types of files, there may be one or more required metadata fields, in which
     case at least one metadata file containing that field must be located
@@ -239,8 +239,8 @@ should be the original `bold` file that defined the coordinate system:
     Principle](../02-common-principles.md#the-inheritance-principle)).
 
 -   When chaining derivative pipelines, any JSON fields that were specified as
-    mandatory in the input files should be propagated forward in the output
-    file’s JSON provided they remain valid. Non-required JSON fields can be
+    mandatory in the input files SHOULD be propagated forward in the output
+    file’s JSON provided they remain valid. Non-required JSON fields MAY be
     propagated, and are highly useful, but it is the pipeline’s responsibility
     to ensure that the values are still relevant and appropriate to the type of
     output data.
