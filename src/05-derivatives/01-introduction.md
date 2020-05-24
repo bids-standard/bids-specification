@@ -174,7 +174,7 @@ sub-01/func/sub-01_task-rest_space-individual_bold.json
 
 ```JSON
 {
-    "SpatialReference": "/sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
+    "SpatialReference": "sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
 }
 ```
 
@@ -211,7 +211,7 @@ sub-01/func/sub-01_task-rest_desc-preproc_bold.json
 
 ```JSON
 {
-    "RawSources": ["/sub-01/func/sub-01_task-rest_bold.nii.gz"]
+    "RawSources": ["sub-01/func/sub-01_task-rest_bold.nii.gz"]
 }
 ```
 
@@ -222,8 +222,8 @@ should be the original `bold` file that defined the coordinate system:
 ```JSON
 {
     "RawSources": [
-        "/sub-01/func/sub-01_task-rest_bold.nii.gz",
-        "/sub-01/anat/sub-01_T1w.nii.gz"
+        "sub-01/func/sub-01_task-rest_bold.nii.gz",
+        "sub-01/anat/sub-01_T1w.nii.gz"
     ]
 }
 ```
