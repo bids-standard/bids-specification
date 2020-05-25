@@ -8,9 +8,9 @@ the specification of units MUST follow the
 The [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention
 for encoding units is REQUIRED to achieve maximum portability and limited
 variability of representation.
-In case that a CMIXF representation of SI units is not possible, you will have
-to declare your units as custom units and define them in accompanying JSON
-files, as described in the [units section](../02-common-principles.md#units).
+If a CMIXF-12 representation of a unit is not possible, the unit MUST be declared
+as custom units and defined in an accompanying JSON file, as described in the
+[units section](../02-common-principles.md#units).
 Earlier versions of the BIDS standard listed the following Unicode symbols, and
 these are still included for backwards compatibility:
 
@@ -20,8 +20,9 @@ these are still included for backwards compatibility:
 
 It is REQUIRED that units be CMIXF-12 compliant or among these three Unicode
 characters.
-Please take care to not confuse the accepted unicode `U+00B5` (µ) with the
-unicode NOT accepted `U+03BC` (μ):
+Please take care not to confuse the accepted Unicode character
+[`U+00B5`](https://codepoints.net/U+00B5) (µ) with the disallowed Unicode
+character [`U+03BC`](https://codepoints.net/U+03BC) (μ):
 They look equal in appearance but are different to the computer.
 
 Units MUST consist of the `unit symbol` with an optionally accompanying
@@ -44,6 +45,7 @@ Examples:
 | -------------- | ----------------- | ------------------------------------------ |
 | metre          | m                 | length                                     |
 | kilogram       | kg                | mass                                       |
+| litre (liter)  | L                 | volume                                     |
 | second         | s                 | time                                       |
 | ampere         | A                 | electric current                           |
 | kelvin         | K                 | thermodynamic temperature                  |

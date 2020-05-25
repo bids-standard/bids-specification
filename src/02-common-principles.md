@@ -527,7 +527,7 @@ Note also that for the *formatting* of SI units, the [CMIXF-12](https://people.c
 convention for encoding units is REQUIRED.
 More information about CMIXF can be found in [Appendix V](99-appendices/05-units.md)
 but to provide some examples, CMIXF formatting of "micro volts" would be `uV`,
-and of "kilobecquerel per ml" would be `kBq/ml`.
+and of "kilobecquerel per milliliter" would be `kBq/mL`.
 
 For additional rules, see below:
 
