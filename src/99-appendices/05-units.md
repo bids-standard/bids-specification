@@ -21,6 +21,10 @@ these are still included for backwards compatibility:
 It is REQUIRED that units be CMIXF-12 compliant or among these three Unicode
 characters.
 
+Please take care to not confuse the accepted unicode `U+00B5` (µ) with the
+unicode NOT accepted `U+03BC` (μ):
+They look equal in appearance but are different to the computer.
+
 Units MUST consist of the `unit symbol` with an optionally accompanying
 `prefix symbol` (see table below). Appropriate upper- or lower- casing MUST
 be applied as declared by CMIXF-12.
