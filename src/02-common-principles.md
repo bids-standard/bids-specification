@@ -513,18 +513,22 @@ label, but must be included in file names (similarly to other key names).
 ## Units
 
 All units SHOULD be specified as per [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
-(abbreviated
-as SI, from the French Système international (d'unités)) and can be SI units or
-[SI derived units](https://en.wikipedia.org/wiki/SI_derived_unit).
-In case there are valid reasons to deviate from SI units or SI
-derived units, the units MUST be specified in the sidecar JSON file. In case
-data is expressed in SI units or SI derived units, the units MAY be specified in
-the sidecar JSON file. In case non-standard prefixes are added to SI or non-SI
-units, these non-standard prefixed units MUST be specified in the JSON file.
+(abbreviated as SI, from the French Système international (d'unités)) and can
+be SI units or [SI derived units](https://en.wikipedia.org/wiki/SI_derived_unit).
+In case there are valid reasons to deviate from SI units or SI derived units,
+the units MUST be specified in the sidecar JSON file.
+In case data is expressed in SI units or SI derived units, the units MAY be
+specified in the sidecar JSON file.
+In case non-standard prefixes are added to SI or non-SI units, these
+non-standard prefixed units MUST be specified in the JSON file.
 See [Appendix V](99-appendices/05-units.md) for a list of standard units and
-prefixes. Note also that for the *formatting* of SI units, the
-[CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention for
-encoding units is REQUIRED.
+prefixes.
+Note also that for the *formatting* of SI units, the [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12)
+convention for encoding units is REQUIRED.
+More information about CMIXF can be found in [Appendix V](99-appendices/05-units.md)
+but to provide some examples, CMIXF formatting of "micro volts" would be `uV`,
+and of "kilobecquerel per ml" would be `kBq/ml`.
+
 
 For additional rules, see below:
 
@@ -537,17 +541,24 @@ For additional rules, see below:
 Describing dates and timestamps:
 
 -   Date time information MUST be expressed in the following format
-    `YYYY-MM-DDThh:mm:ss` (one of the
-    [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time formats). For
-    example: `2009-06-15T13:45:30`
+    `YYYY-MM-DDThh:mm:ss[.000000]` (year, month, day, hour (24h), minute,
+    second, and optionally fractional second).
+    This is equivalent to the RFC3339 "date-time" format, time zone is always
+    assumed as local time).
+    No specific precision is required for fractional seconds, but the precision
+    SHOULD be consistent across the dataset.
+    For example `2009-06-15T13:45:30`
 
--   Time stamp information MUST be expressed in the following format: `13:45:30`
+-   Time stamp information MUST be expressed in the following format:
+    `13:45:30[.000000]`
 
 -   Dates can be shifted by a random number of days for privacy protection
-    reasons. To distinguish real dates from shifted dates always use year 1925
-    or earlier when including shifted years. For longitudinal studies please
-    remember to shift dates within one subject by the same number of days to
-    maintain the interval information. Example: `1867-06-15T13:45:30`
+    reasons.
+    To distinguish real dates from shifted dates always use year 1925
+    or earlier when including shifted years.
+    For longitudinal studies dates MUST be shifted by the same number of days
+    within each subject to maintain the interval information.
+    For example: `1867-06-15T13:45:30`
 
 -   Age SHOULD be given as the number of years since birth at the time of
     scanning (or first scan in case of multi session datasets). Using higher
