@@ -199,6 +199,20 @@ sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.json
 }
 ```
 
+Participant cortical thickness GIFTI file in `individual` coordinate space.
+Please mind that in this case `SpatialReference` key is REQUIRED.
+
+```Text
+sub-01/anat/sub-01_hemi-L_space-individual_thickness.shape.gii
+sub-01/anat/sub-01_hemi-L_space-individual_thickness.json
+```
+
+```JSON
+{
+    "SpatialReference": "/sub-01/anat/sub-01_hemi-L_pial.surf.gii"
+}
+```
+
 Preprocessed `bold` NIfTI file in the original coordinate space of the
 original run. Please mind that in this case `RawSources` key is REQUIRED
 (and also `desc-<label>` so that the name does not overlap with the
