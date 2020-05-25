@@ -6,8 +6,11 @@ the specification of units MUST follow the
 (SI, abbreviated from the French Système international (d'unités)).
 
 The [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention
-for encoding units is RECOMMENDED to achieve maximum portability and limited
+for encoding units is REQUIRED to achieve maximum portability and limited
 variability of representation.
+In case that a CMIXF representation of SI units is not possible, you will have
+to declare your units as custom units and define them in accompanying JSON
+files, as described in the [units section](../02-common-principles.md#units).
 Earlier versions of the BIDS standard listed the following Unicode symbols, and
 these are still included for backwards compatibility:
 
