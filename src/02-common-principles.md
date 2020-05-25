@@ -423,13 +423,13 @@ dictionary matches a column name in the TSV file, then that field MUST contain a
 description of the corresponding column, using an object containing the following
 fields:
 
-| Field name  | Definition                                                                                                                                                  |
-| :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| LongName    | Long (unabbreviated) name of the column.                                                                                                                    |
-| Description | Description of the column.                                                                                                                                  |
-| Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).                                                          |
-| Units       | Measurement units. `[<prefix symbol>] <unit symbol>` format following the SI standard is RECOMMENDED (see [units section](./02-common-principles.md#units). |
-| TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web.                                                               |
+| Field name  | Definition                                                                                                                        |
+| :---------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| LongName    | Long (unabbreviated) name of the column.                                                                                          |
+| Description | Description of the column.                                                                                                        |
+| Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).                                |
+| Units       | Measurement units. SI units in CMIXF formatting are REQUIRED when possible (see [units section](./02-common-principles.md#units). |
+| TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web.                                     |
 
 Example:
 
