@@ -524,7 +524,7 @@ units, these non-standard prefixed units MUST be specified in the JSON file.
 See [Appendix V](99-appendices/05-units.md) for a list of standard units and
 prefixes. Note also that for the *formatting* of SI units, the
 [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention for
-encoding units is RECOMMENDED.
+encoding units is REQUIRED.
 
 For additional rules, see below:
 
