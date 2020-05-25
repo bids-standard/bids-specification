@@ -20,7 +20,6 @@ these are still included for backwards compatibility:
 
 It is REQUIRED that units be CMIXF-12 compliant or among these three Unicode
 characters.
-
 Please take care to not confuse the accepted unicode `U+00B5` (µ) with the
 unicode NOT accepted `U+03BC` (μ):
 They look equal in appearance but are different to the computer.
@@ -33,6 +32,8 @@ For cases that are unspecified by this appendix, or the
 [units section](../02-common-principles.md#units), the
 [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention
 applies.
+You can use the [cmixf Python package](https://github.com/sensein/cmixf) to
+check whether your formatting is compliant.
 
 Examples:
 
