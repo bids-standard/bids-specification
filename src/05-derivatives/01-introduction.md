@@ -20,7 +20,7 @@ Derivatives can be stored/distributed in two ways:
     `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
     subfolder name SHOULD be the `PipelineDescription.Name` field in
     `data_description.json`, optionally followed by a hyphen and a suffix (see
-    below).
+    [Derived dataset and pipeline description](#derived-dataset-and-pipeline-description).
 
     Example of derivatives with one directory per pipeline:
 
@@ -71,24 +71,25 @@ As for any BIDS dataset a `dataset_description.json` file MUST be found at the
 top level of the particular pipeline:
 `<dataset>/derivatives/<pipeline_name>/dataset_description.json`
 
-In addition to raw BIDS datasets, derived BIDS datasets include the following
-required or recommended `dataset_description.json` keys (a dot in the Key name
-denotes a key in a subdictionary):
+In addition to the keys for raw BIDS datasets,
+derived BIDS datasets include the following REQUIRED, RECOMMENDED or OPTIONAL
+`dataset_description.json` keys
+(a dot in the Key name denotes a key in a subdictionary):
 
 | **Key name**                  | **Description**                                                                                                                                                                                                                              |
 | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | PipelineDescription.Name      | REQUIRED. Name of the pipeline that generated the outputs. In case the derived dataset is stored as a subfolder of the raw dataset this field MUST be a substring of the derived dataset folder name (a.k.a. `<pipeline_name>` - see above). |
-| PipelineDescription.Version   | OPTIONAL. Version of the pipeline.                                                                                                                                                                                                           |
+| PipelineDescription.Version   | RECOMMENDED. Version of the pipeline.                                                                                                                                                                                                        |
 | PipelineDescription.CodeURL   | OPTIONAL. URL where the code for the analysis can be found.                                                                                                                                                                                  |
 | PipelineDescription.Container | OPTIONAL. Object specifying the location and relevant attributes of software container image used to produce the derivative. Valid fields in this object include `Type`, `Tag` and `URI`.                                                    |
-| SourceDatasets                | OPTIONAL. A list of objects specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`.                                                                        |
+| SourceDatasets                | RECOMMENDED. A list of objects specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`.                                                                     |
 
 Example:
 
 ```JSON
 {
     "Name": "FMRIPREP Outputs",
-    "BIDSVersion": "TODO (depends when this PR will be merged)",
+    "BIDSVersion": "1.4.0",
     "PipelineDescription": {
         "Name": "FMRIPREP",
         "Version": "1.2.5",
@@ -109,11 +110,11 @@ Example:
 
 ## Coordinate systems
 
-The coordinate system (a.k.a. space) a particular derivative is in SHOULD be
-denoted using a filename keyword `space` whenever such keyword is present in
-the filename template of a given derivative type. The allowed values for this
-keyword depend are identifiers given in section [Image-Based Coordinate
-Systems](../99-appendices/08-coordinate-systems.md#image-based-coordinate-systems).
+The spatial reference (_space_ in the following) to which a particular derivative
+is aligned SHOULD be denoted using a filename keyword `space` whenever such keyword
+is present in the filename template of a given derivative type.
+The allowed values for this keyword depend are identifiers given in section
+[Image-Based Coordinate Systems][coordsys].
 
 | File format                  | Description             |
 | ---------------------------- | ----------------------- |
@@ -148,14 +149,18 @@ share the following (non-required) ones:
 | Description      | RECOMMENDED. Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                        |
 | Sources          | OPTIONAL. A list of paths relative to dataset root pointing to the file(s) that were directly used in the creation of this derivative. For example in a chain of A->B->C, “C” should only list “B” as Sources, and “B” should only list “A” as Sources. However in case X and Y jointly contribute to Z, then “Z” should list “X” and “Y” as Sources. |
 | RawSources       | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative. When the derivative filename does not define a `space` keyword, the first entry of `RawSources` MUST be defined and it will define the `scanner` coordinate system that applies.                               |
-| SpatialReference | REQUIRED when a custom template or file is used. A path to a file that was used as, or can be used as, a reference image for determining the coordinate space of this file. The path should start with a `/` and should be relative to the root of the dataset.                                                                                       |
+| SpatialReference | REQUIRED in case a custom reference image was used. OPTIONAL if a coordinate system listed in [Image-Based Coordinate Systems][coordsys] is used. For images with a single reference, the value MUST be a single string. For images with multiple references, such as surface and volume references, a data dictionary MUST be used.                  |
 
 ### SpatialReference key allowed values
 
-| **Value name** | **Description**                                                                                                               |
+| **Value**      | **Description**                                                                                                               |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| orig           | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
-| uri or path    | This can be used to point to a specific file.                                                                                 |
+| `orig`         | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
+| URI or path    | This can be used to point to a specific file. Paths are written relative to the root of the derivative dataset.               |
+
+In the case of images with multiple references, a data dictionary must link the relevant structures to reference files.
+If a single volumetric reference is used for multiple structures, the `VolumeReference` key MAY be used to reduce duplication.
+For CIFTI-2 images, the relevant structures are BrainStructure values defined in the BrainModel elements found in the CIFTI-2 header.
 
 ### Examples
 
@@ -169,21 +174,28 @@ sub-01/func/sub-01_task-rest_space-individual_bold.json
 
 ```JSON
 {
-    "SpatialReference": "/sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
+    "SpatialReference": "sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
 }
 ```
 
-Participant cortical thickness GIFTI file in `individual` coordinate space.
-Please mind that in this case `SpatialReference` key is REQUIRED.
+Preprocessed `bold` CIFTI-2 files that have been sampled to the fsLR surface
+meshes defined in the Conte69 atlas along with the MNI152NLin6Asym template.
+In this example, because all volumetric structures are sampled to the same
+reference, the `VolumeReference` key is used as a default, and only the
+surface references need to be specified by BrainStructure names.
 
 ```Text
-sub-01/anat/sub-01_hemi-L_space-individual_thickness.shape.gii
-sub-01/anat/sub-01_hemi-L_space-individual_thickness.json
+sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.dtseries.nii
+sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.json
 ```
 
 ```JSON
 {
-    "SpatialReference": "/sub-01/anat/sub-01_hemi-L_pial.surf.gii"
+    "SpatialReference": {
+        "VolumeReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz",
+        "CIFTI_STRUCTURE_CORTEX_LEFT": "https://github.com/mgxd/brainplot/raw/master/brainplot/Conte69_Atlas/Conte69.L.midthickness.32k_fs_LR.surf.gii",
+        "CIFTI_STRUCTURE_CORTEX_RIGHT": "https://github.com/mgxd/brainplot/raw/master/brainplot/Conte69_Atlas/Conte69.R.midthickness.32k_fs_LR.surf.gii"
+    }
 }
 ```
 
@@ -199,7 +211,7 @@ sub-01/func/sub-01_task-rest_desc-preproc_bold.json
 
 ```JSON
 {
-    "RawSources": ["/sub-01/func/sub-01_task-rest_bold.nii.gz"]
+    "RawSources": ["sub-01/func/sub-01_task-rest_bold.nii.gz"]
 }
 ```
 
@@ -210,8 +222,8 @@ should be the original `bold` file that defined the coordinate system:
 ```JSON
 {
     "RawSources": [
-        "/sub-01/func/sub-01_task-rest_bold.nii.gz",
-        "/sub-01/anat/sub-01_T1w.nii.gz"
+        "sub-01/func/sub-01_task-rest_bold.nii.gz",
+        "sub-01/anat/sub-01_T1w.nii.gz"
     ]
 }
 ```
@@ -219,7 +231,7 @@ should be the original `bold` file that defined the coordinate system:
 ## Metadata conventions
 
 -   Unless specified otherwise, individual sidecar JSON files and all metadata
-    fields within are optional. However, the appropriate use of these files and
+    fields within are OPTIONAL. However, the appropriate use of these files and
     pertinent fields is very valuable and thus encouraged. Moreover, for some
     types of files, there may be one or more required metadata fields, in which
     case at least one metadata file containing that field must be located
@@ -227,8 +239,8 @@ should be the original `bold` file that defined the coordinate system:
     Principle](../02-common-principles.md#the-inheritance-principle)).
 
 -   When chaining derivative pipelines, any JSON fields that were specified as
-    mandatory in the input files should be propagated forward in the output
-    file’s JSON provided they remain valid. Non-required JSON fields can be
+    mandatory in the input files SHOULD be propagated forward in the output
+    file’s JSON provided they remain valid. Non-required JSON fields MAY be
     propagated, and are highly useful, but it is the pipeline’s responsibility
     to ensure that the values are still relevant and appropriate to the type of
     output data.
@@ -280,3 +292,5 @@ storage/distribution non-compliant derivatives of BIDS datasets.
 In particular, if a BIDS dataset contains a `derivatives/` sub-directory,
 the contents of that directory may be a heterogeneous mix of BIDS Derivatives
 datasets and non-compliant derivatives.
+
+[coordsys]: ../99-appendices/08-coordinate-systems.md#image-based-coordinate-systems

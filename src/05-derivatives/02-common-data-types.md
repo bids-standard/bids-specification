@@ -22,7 +22,7 @@ Examples:
  -  Inhomogeneity corrected and skull stripped T1w files
  -  Motion-corrected DWI files
  -  Time-domain filtered EEG data
- -  Spatially filtered EEG data
+ -  MaxFilter (for example, SSS) cleaned MEG data
 
 The `space` keyword is recomended to distinguish files with different underlying
 coordinate systems or registered to different reference maps.
@@ -30,10 +30,7 @@ The `desc` (description) keyword is a general purpose field with freeform values
 which SHOULD be used to distinguish between multiple different versions of
 processing for the same input data.
 
-Note that even though `space` and `desc` are optional at least one of them MUST
-be defined to avoid name conflict with the raw file.
-
-Examples:
+Examples of preprocessed data:
 
 ```Text
 pipeline1/
@@ -51,8 +48,7 @@ pipeline1/
             sub-001_task-rest_run-1_desc-MC_bold.json
 ```
 
-
 All REQUIRED metadata fields coming from a derivative file’s source file(s) MUST
 be propagated to the JSON description of the derivative unless the processing
 makes them invalid (e.g., if a source 4D image is averaged to create a single
-static volume, a SamplingFrequency property would no longer be relevant).
+static volume, a `RepetitionTime` property would no longer be relevant).

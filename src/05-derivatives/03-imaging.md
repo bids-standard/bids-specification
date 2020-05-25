@@ -5,14 +5,111 @@ extent and resolution.
 
 ## Preprocessed, coregistered and/or resampled volumes
 
+Template:
+
+```Text
+<pipeline_name>/
+    sub-<participant_label>/
+        <datatype>/
+            <source_keywords>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<ext>
+```
+
 Volumetric preprocessing does not modify the number of dimensions, and so
 the specifications in [Preprocessed or cleaned data][common_preproc]
 apply.
-In addition, all processed files include the following metadata JSON fields:
+The use of surface meshes and volumetric measures sampled to those meshes is
+sufficiently similar in practice to treat them equivalently.
 
-| **Key name**  | **Description**                                                                                 |
-| ------------- | ----------------------------------------------------------------------------------------------- |
-| SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not. |
+When two or more instances of a given derivative are provided with resolution
+or surface sampling density being the only difference between them, then the
+`res` (for *resolution* of regularly sampled N-D data) and/or `den` (for
+*density* of non-parametric surfaces) SHOULD be used to avoid name conflicts.
+Note that only files combining both regularly sampled (e.g., gridded) and surface
+sampled data (and their downstream derivatives) are allowed to present both `res`
+and `den` keywords simultaneously.
+
+Examples:
+
+```Text
+pipeline1/
+    sub-001/
+        func/
+            sub-001_task-rest_run-1_space-MNI305_res-lo_bold.nii.gz
+            sub-001_task-rest_run-1_space-MNI305_res-hi_bold.nii.gz
+            sub-001_task-rest_run-1_space-MNI305_bold.json
+```
+
+The following metadata JSON fields are defined for preprocessed images:
+
+| **Key name**  | **Description**                                                                                                                |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not.                                |
+| Resolution    | REQUIRED if `res` is present. String or dictionary of label to string. Specifies the interpretation of the resolution keyword. |
+| Density       | REQUIRED if `den` is present. String or dictionary of label to string. Specifies the interpretation of the density keyword.    |
+
+Example JSON file corresponding to
+`pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_bold.json` above:
+
+```JSON
+{
+  "SkullStripped": true,
+  "Resolution": {
+    "hi": "Matched with high-resolution T1w (0.7mm, isotropic)",
+    "lo": "Matched with original BOLD resolution (2x2x3 mm^3)"
+  }
+}
+```
+
+This would be equivalent to having two JSON metadata files, one
+corresponding to `res-lo`
+(`pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_res-lo_bold.json`):
+
+```JSON
+{
+  "SkullStripped": true,
+  "Resolution": "Matched with original BOLD resolution (2x2x3 mm^3)"
+}
+```
+
+And one corresponding to `res-hi`
+(`pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_res-hi_bold.json`):
+
+```JSON
+{
+  "SkullStripped": true,
+  "Resolution": "Matched with high-resolution T1w (0.7mm, isotropic)"
+}
+```
+
+Example of CIFTI-2 files (a format that combines regularly sampled data
+and non-parametric surfaces) having both `res` and `den` keywords:
+
+```Text
+pipeline1/
+    sub-001/
+        func/
+            sub-001_task-rest_run-1_space-fsLR_res-1_den-10k_bold.dtseries.nii
+            sub-001_task-rest_run-1_space-fsLR_res-1_den-41k_bold.dtseries.nii
+            sub-001_task-rest_run-1_space-fsLR_res-2_den-10k_bold.dtseries.nii
+            sub-001_task-rest_run-1_space-fsLR_res-2_den-41k_bold.dtseries.nii
+            sub-001_task-rest_run-1_space-fsLR_bold.json
+```
+
+And the corresponding `sub-001_task-rest_run-1_space-fsLR_bold.json` file:
+
+```JSON
+{
+    "SkullStripped": true,
+    "Resolution": {
+        "1": "Matched with MNI152NLin6Asym 1.6mm isotropic",
+        "2": "Matched with MNI152NLin6Asym 2.0mm isotropic"
+    },
+    "Density": {
+        "10k": "10242 vertices per hemisphere (5th order icosahedron)",
+        "41k": "40962 vertices per hemisphere (6th order icosahedron)"
+    }
+}
+```
 
 ## Masks
 
@@ -22,7 +119,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat|func|dwi/
-            <source_keywords>[_space-<space>][_desc-<label>]_mask.nii.gz
+            <source_keywords>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_mask.nii.gz
 ```
 
 A binary (1 - inside, 0 - outside) mask in the space defined by `<space>`. By
@@ -35,6 +132,8 @@ JSON metadata fields:
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | RawSources   | Same as defined in [Introduction][intro], but elevated from OPTIONAL to REQUIRED                                                               |
 | Type         | RECOMMENDED. Short identifier of the mask. Reserved values: `Brain` - brain mask, `Lesion` - lesion mask, `Face` - face mask, `ROI` - ROI mask |
+| Resolution   | REQUIRED if `res` is present. String or dictionary of label to string. Specifies the interpretation of the resolution keyword.                 |
+| Density      | REQUIRED if `den` is present. String or dictionary of label to string. Specifies the interpretation of the density keyword.                    |
 
 Examples:
 
@@ -58,10 +157,12 @@ manual_masks/
 
 Common JSON metadata fields:
 
-| **Key name** | **Description**                                                                                    |
-| ------------ | -------------------------------------------------------------------------------------------------- |
-| Manual       | OPTIONAL. Boolean. Indicates if the segmenation was performed manually or via an automated process |
-| Atlas        | OPTIONAL. Which atlas (if any) was used to derive the segmentation.                                |
+| **Key name** | **Description**                                                                                                                |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| Manual       | OPTIONAL. Boolean. Indicates if the segmenation was performed manually or via an automated process                             |
+| Atlas        | OPTIONAL. Which atlas (if any) was used to derive the segmentation.                                                            |
+| Resolution   | REQUIRED if `res` is present. String or dictionary of label to string. Specifies the interpretation of the resolution keyword. |
+| Density      | REQUIRED if `den` is present. String or dictionary of label to string. Specifies the interpretation of the density keyword.    |
 
 ### Discrete Segmentations
 
@@ -75,7 +176,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat|func|dwi/
-            <source_keywords>[_space-<space>]_dseg.nii.gz
+            <source_keywords>[_space-<space>][_res-<label>][_den-<label>]_dseg.nii.gz
 ```
 
 Example:
@@ -114,7 +215,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func|anat|dwi/
-            <source_keywords>[_space-<space>][_label-<label>]_probseg.nii.gz
+            <source_keywords>[_space-<space>][_res-<label>][_den-<label>][_label-<label>]_probseg.nii.gz
 ```
 
 Example:
@@ -166,7 +267,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat/
-            <source_keywords>[_hemi-{L|R}][_space-<space>]_dseg.{label.gii|dlabel.nii}
+            <source_keywords>[_hemi-{L|R}][_space-<space>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
 ```
 
 The REQUIRED extension for GIFTI parcellations is `.label.gii`. The `hemi` tag is
@@ -176,8 +277,8 @@ REQUIRED for GIFTI files. For example:
 pipeline/
     sub-001/
         anat/
-            sub-001_hemi-L_dparc.label.gii
-            sub-001_hemi-R_dparc.label.gii
+            sub-001_hemi-L_dseg.label.gii
+            sub-001_hemi-R_dseg.label.gii
 ```
 
 The REQUIRED extension for CIFTI parcellations is `.dlabel.nii`. For example:
@@ -186,8 +287,8 @@ The REQUIRED extension for CIFTI parcellations is `.dlabel.nii`. For example:
 pipeline/
     sub-001/
         anat/
-            sub-001_dparc.dlabel.nii
-            sub-001_dparc.dlabel.nii
+            sub-001_dseg.dlabel.nii
+            sub-001_dseg.dlabel.nii
 ```
 
 ### Anatomical Labels
@@ -226,7 +327,7 @@ pipeline/
             sub-001_space-orig_dseg.tsv
 ```
 
-Definitions can also be specified with a top-level dseg.tsv, which propagates to
+Definitions can also be specified with a top-level `dseg.tsv`, which propagates to
 segmentations in relative subdirectories.
 
 Example:
@@ -239,7 +340,7 @@ pipeline/
             sub-001_space-orig_dseg.nii.gz
 ```
 
-These tsv lookup tables should contain the following columns:
+These TSV lookup tables contain the following columns:
 
 | Column name | Description                                                             |
 | ----------- | ----------------------------------------------------------------------- |
@@ -252,10 +353,10 @@ These tsv lookup tables should contain the following columns:
 An example, custom dseg.tsv that defines three labels:
 
 ```Text
-index   name            abbr	color       mapping
-100     "Gray Matter"	GM      #ff53bb	    1
-101     "White Matter"	WM      #2f8bbe	    2
-102     "Brainstem"     BS      #36de72	    11
+index   name            abbr    color       mapping
+100     Gray Matter     GM      #ff53bb     1
+101     White Matter    WM      #2f8bbe     2
+102     Brainstem       BS      #36de72     11
 ```
 
 []: <> (################)
