@@ -140,11 +140,18 @@ Their use is NOT RECOMMENDED for new BIDS datasets and tooling, but their
 presence MUST NOT produce a validation error.
 
 | Coordinate System                                   | Recommended identifier |
-| -----------------------------------------------------------------------------------| ---------------------------------------------- |
+| --------------------------------------------------- | ---------------------- |
 | fsaverage\[3&#124;4&#124;5&#124;6&#124;sym\]        | fsaverage\[&#124;Sym\] |
 | UNCInfant\[0&#124;1&#124;2\]V\[21&#124;22&#124;23\] | UNCInfant              |
 
 ### Nonstandard coordinate system identifiers
+
+The following template identifiers are RECOMMENDED for individual- and study-specific reference
+spaces.
+In order for these spaces to be interpretable, `SpatialReference` metadata MUST be provided, as
+described in [Common file level metadata fields][common file level metadata fields].
+
+In the case of multiple study templates, additional names may need to be defined.
 
 | Coordinate System | Description                                                                                                                                                                                                                                                           |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -161,3 +168,5 @@ Please note that `space-scanner` SHOULD NOT be used, it is mentioned in this spe
 | scanner           | The intrinsic coordinate system of the original image (the first entry of `RawSources`) after reconstruction and conversion to NIfTI or equivalent for the case of surfaces and dual volume/surface files.                                                            |
 
 ---
+
+[common file level metadata fields]: ../05-derivatives/01-introduction.md#common-file-level-metadata-fields
