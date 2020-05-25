@@ -337,7 +337,7 @@ Each `.nii[.gz]` file should be described by at most one row.
 Relative paths to files should be used under a compulsory `filename` header.
 If acquisition time is included it should be under `acq_time` header.
 Datetime should be expressed as described in the
-[Units section](../02-common-principles.md#units).
+[Units section](./02-common-principles.md#units).
 For anonymization purposes all dates within one subject should be shifted by a
 randomly chosen (but consistent across all runs etc.) number of days.
 This way relative timing would be preserved, but chances of identifying a
