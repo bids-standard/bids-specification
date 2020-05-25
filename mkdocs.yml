@@ -10,7 +10,6 @@ markdown_extensions:
     - toc:
         anchorlink: true
     - pymdownx.superfences
-    - admonition
 plugins:
     - search
     - branchcustomization:
