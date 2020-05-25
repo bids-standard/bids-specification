@@ -529,7 +529,6 @@ More information about CMIXF can be found in [Appendix V](99-appendices/05-units
 but to provide some examples, CMIXF formatting of "micro volts" would be `uV`,
 and of "kilobecquerel per ml" would be `kBq/ml`.
 
-
 For additional rules, see below:
 
 -   Elapsed time SHOULD be expressed in seconds. Please note that some DICOM
