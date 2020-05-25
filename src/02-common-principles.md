@@ -553,7 +553,7 @@ Describing dates and timestamps:
 
 -   Dates can be shifted by a random number of days for privacy protection
     reasons.
-    To distinguish real dates from shifted dates always use year 1925
+    To distinguish real dates from shifted dates, always use year 1925
     or earlier when including shifted years.
     For longitudinal studies dates MUST be shifted by the same number of days
     within each subject to maintain the interval information.
