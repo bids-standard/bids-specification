@@ -431,7 +431,7 @@ Their collection is RECOMMENDED, before/during/after each session.
 This data MUST be stored inside a subject folder named `sub-emptyroom`.
 The `session label` SHOULD be the date of the empty-room recording in
 the format `YYYYMMDD`, i.e.,  `ses-YYYYMMDD`.
-The task label in the `*_meg.json` file SHOULD be set to `noise`.
+The `task label` in the `*_meg.json` file SHOULD be set to `noise`.
 The `scans.tsv` file containing the date and time of the acquisition SHOULD also be
 included.
 The rationale is that this naming scheme will allow users to easily retrieve the
