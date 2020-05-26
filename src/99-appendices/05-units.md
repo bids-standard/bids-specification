@@ -14,9 +14,9 @@ as custom units and defined in an accompanying JSON file, as described in the
 Earlier versions of the BIDS standard listed the following Unicode symbols, and
 these are still included for backwards compatibility:
 
-1.  `U+00B5` (µ)
-1.  `U+00B0` (°)
-1.  `U+2126` (Ω).
+1.  [`U+00B5` (µ)](https://codepoints.net/U+00B5)
+1.  [`U+00B0` (°)](https://codepoints.net/U+00B0)
+1.  [`U+2126` (Ω)](https://codepoints.net/U+2126)
 
 It is REQUIRED that units be CMIXF-12 compliant or among these three Unicode
 characters.
