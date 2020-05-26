@@ -103,11 +103,10 @@ Restricted keywords for the `XXXCoordinateSystem` field in the
 ## Image-based Coordinate Systems
 
 The transformation of the real world geometry to an artificial frame of
-reference is described in `ImageCoordinateSystem`.
-The origin of the coordinate system and orientation of axes MUST be defined
-by the metadata or headers of the image/surface file (e.g. the
-`x-form` matrices and codes of NIfTI) that serves as `ImageCoordinateSystemReference`.
-Unless specified explicitly in the sidecar file in the `ImageCoordinateSystemUnits` field,
+reference is described in `XXXCoordinateSystem`.
+Unless otherwise specified below, the origin is at the AC and the orientation of
+the axes is RAS.
+Unless specified explicitly in the sidecar file in the `XXXCoordinateSystemUnits` field,
 the units are assumed to be mm.
 
 ### Standard template identifiers
