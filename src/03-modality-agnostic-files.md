@@ -7,24 +7,25 @@ Templates:
 -   `dataset_description.json`
 -   `README`
 -   `CHANGES`
+-   `LICENSE`
 
 ### `dataset_description.json`
 
-The file dataset_description.json is a JSON file describing the dataset. Every
-dataset MUST include this file with the following fields:
+The file `dataset_description.json` is a JSON file describing the dataset.
+Every dataset MUST include this file with the following fields:
 
-| Field name         | Definition                                                                                                                                                                                                                           |
+| Field name         | Definition                                                                                                                                                                                                                                                       |
 | ------------------------------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                       |
-| BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                            |
-| License            | RECOMMENDED. What license is this dataset distributed under? The use of license name abbreviations is suggested for specifying a license. A list of common licenses with suggested abbreviations can be found in Appendix II.        |
-| Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                               |
-| Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                 |
-| HowToAcknowledge   | OPTIONAL. Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset. |
-| Funding            | OPTIONAL. List of sources of funding (grant numbers).                                                                                                                                                                                |
-| EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                  |                                                                                                                |
-| ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                       |
-| DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                               |
+| Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                                                   |
+| BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                                                        |
+| License            | RECOMMENDED. The license for the dataset. The use of license name abbreviations is RECOMMENDED for specifying a license (see [Appendix 2](./99-appendices/02-licenses.md). The corresponding full license text MAY be specified in an additional `LICENSE` file. |
+| Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                                                           |
+| Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                                             |
+| HowToAcknowledge   | OPTIONAL. Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset.                             |
+| Funding            | OPTIONAL. List of sources of funding (grant numbers).                                                                                                                                                                                                            |
+| EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                                              |
+| ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                                                   |
+| DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                                                           |
 
 Example:
 
@@ -57,8 +58,8 @@ Example:
 ### `README`
 
 In addition a free form text file (`README`) describing the dataset in more
-details SHOULD be provided. The `README` file MUST be either in ASCII or UTF-8
-encoding.
+details SHOULD be provided.
+The `README` file MUST be either in ASCII or UTF-8 encoding.
 
 ### `CHANGES`
 
@@ -77,6 +78,13 @@ Example:
 1.0.0 2015-08-17
   - Initial release.
 ```
+
+### `LICENSE`
+
+A `LICENSE` file MAY be provided in addition to the short specification of the
+used license in the `dataset_description.json` `"License"` field.
+The `"License"` field and `LICENSE` file MUST correspond.
+The `LICENSE` file MUST be either in ASCII or UTF-8 encoding.
 
 ## Participants file
 
