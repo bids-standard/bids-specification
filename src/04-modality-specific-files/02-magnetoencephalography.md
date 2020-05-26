@@ -426,17 +426,17 @@ has to be updated, then for MEG it could be considered to be a new session.
 
 ## Empty-room MEG recordings
 
-Empty-room MEG recordings capture the environment and system noise.
+Empty-room MEG recordings capture the environmental and recording system's noise.
 Their collection is RECOMMENDED, before/during/after each session.
 This data MUST be stored inside a subject folder named `sub-emptyroom`.
-The `session label` SHOULD be that of the date of the empty-room recording
-(e.g., `ses-YYYYMMDD`).
+The `session label` SHOULD be the date of the empty-room recording in
+the format `YYYYMMDD`, i.e.,  `ses-YYYYMMDD`.
 The task label in the `*_meg.json` file SHOULD be set to `noise`.
-The `scans.tsv` file containing the date/time of the acquisition SHOULD also be
+The `scans.tsv` file containing the date and time of the acquisition SHOULD also be
 included.
-Hence, users will be able to retrieve the empty-room recording that best
-matches a particular session with a participant, based on date/time of
-recording.
+The rationale is that this naming scheme will allow users to easily retrieve the
+ empty-room recording that best matches a particular experimental session,
+ based on date and time of the recording.
 
 Example:
 
