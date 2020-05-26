@@ -14,16 +14,17 @@ as custom units and defined in an accompanying JSON file, as described in the
 Earlier versions of the BIDS standard listed the following Unicode symbols, and
 these are still included for backwards compatibility:
 
-1.  [`U+00B5` (µ)](https://codepoints.net/U+00B5)
+1.  [`U+03BC` (μ)](https://codepoints.net/U+03BC) or [`U+00B5` (µ)](https://codepoints.net/U+00B5)
+1.  [`U+03A9` (Ω)](https://codepoints.net/U+03A9) or [`U+2126` (Ω)](https://codepoints.net/U+2126)
 1.  [`U+00B0` (°)](https://codepoints.net/U+00B0)
-1.  [`U+2126` (Ω)](https://codepoints.net/U+2126)
 
-It is REQUIRED that units be CMIXF-12 compliant or among these three Unicode
+Note that for the first two Unicode symbols in the list above, two characters
+are permissible for each, but the first character mentioned respectively is
+preferred as per Unicode rules (see the section on "Duplicated Characters"
+on page 11 in the [unicode report](https://www.unicode.org/reports/tr25/)).
+
+It is REQUIRED that units be CMIXF-12 compliant or among these five Unicode
 characters.
-Please take care not to confuse the accepted Unicode character
-[`U+00B5`](https://codepoints.net/U+00B5) (µ) with the disallowed Unicode
-character [`U+03BC`](https://codepoints.net/U+03BC) (μ):
-They look equal in appearance but are different to the computer.
 
 Units MUST consist of the `unit symbol` with an optionally accompanying
 `prefix symbol` (see table below). Appropriate upper- or lower- casing MUST
@@ -41,38 +42,38 @@ Examples:
 1.  `uV` or `µV` are permissible, but NOT: `microV`, `µvolt`, `1e-6V`, etc.
 1.  Combinations of units are allowed, e.g., `V/us` for the [Slew rate](https://en.wikipedia.org/wiki/Slew_rate)
 
-| Unit name      | Unit symbol       | Quantity name                              |
-| -------------- | ----------------- | ------------------------------------------ |
-| metre          | m                 | length                                     |
-| kilogram       | kg                | mass                                       |
-| litre (liter)  | L                 | volume                                     |
-| second         | s                 | time                                       |
-| ampere         | A                 | electric current                           |
-| kelvin         | K                 | thermodynamic temperature                  |
-| mole           | mol               | amount of substance                        |
-| candela        | cd                | luminous intensity                         |
-| radian         | rad               | angle                                      |
-| steradian      | sr                | solid angle                                |
-| hertz          | Hz                | frequency                                  |
-| newton         | N                 | force, weight                              |
-| pascal         | Pa                | pressure, stress                           |
-| joule          | J                 | energy, work, heat                         |
-| watt           | W                 | power, radiant flux                        |
-| coulomb        | C                 | electric charge or quantity of electricity |
-| volt           | V                 | voltage (electrical potential), emf        |
-| farad          | F                 | capacitance                                |
-| ohm            | Ohm or Ω (U+2126) | resistance, impedance, reactance           |
-| siemens        | S                 | electrical conductance                     |
-| weber          | Wb                | magnetic flux                              |
-| tesla          | T                 | magnetic flux density                      |
-| henry          | H                 | inductance                                 |
-| degree Celsius | oC or °C (U+00B0) | temperature relative to 273.15 K           |
-| lumen          | lm                | luminous flux                              |
-| lux            | lx                | illuminance                                |
-| becquerel      | Bq                | radioactivity (decays per unit time)       |
-| gray           | Gy                | absorbed dose (of ionizing radiation)      |
-| sievert        | Sv                | equivalent dose (of ionizing radiation)    |
-| katal          | kat               | catalytic activity                         |
+| Unit name      | Unit symbol | Quantity name                              |
+| -------------- | ----------- | ------------------------------------------ |
+| metre          | m           | length                                     |
+| kilogram       | kg          | mass                                       |
+| litre (liter)  | L           | volume                                     |
+| second         | s           | time                                       |
+| ampere         | A           | electric current                           |
+| kelvin         | K           | thermodynamic temperature                  |
+| mole           | mol         | amount of substance                        |
+| candela        | cd          | luminous intensity                         |
+| radian         | rad         | angle                                      |
+| steradian      | sr          | solid angle                                |
+| hertz          | Hz          | frequency                                  |
+| newton         | N           | force, weight                              |
+| pascal         | Pa          | pressure, stress                           |
+| joule          | J           | energy, work, heat                         |
+| watt           | W           | power, radiant flux                        |
+| coulomb        | C           | electric charge or quantity of electricity |
+| volt           | V           | voltage (electrical potential), emf        |
+| farad          | F           | capacitance                                |
+| ohm            | Ohm         | resistance, impedance, reactance           |
+| siemens        | S           | electrical conductance                     |
+| weber          | Wb          | magnetic flux                              |
+| tesla          | T           | magnetic flux density                      |
+| henry          | H           | inductance                                 |
+| degree Celsius | oC          | temperature relative to 273.15 K           |
+| lumen          | lm          | luminous flux                              |
+| lux            | lx          | illuminance                                |
+| becquerel      | Bq          | radioactivity (decays per unit time)       |
+| gray           | Gy          | absorbed dose (of ionizing radiation)      |
+| sievert        | Sv          | equivalent dose (of ionizing radiation)    |
+| katal          | kat         | catalytic activity                         |
 
 ## Prefixes
 
@@ -93,15 +94,15 @@ Examples:
 
 ### Submultiples
 
-| Prefix name                                 | Prefix symbol   | Factor           |
-| ------------------------------------------- | --------------- | ---------------- |
-| [deci](https://www.wikiwand.com/en/Deci-)   | d               | 10<sup>-1</sup>  |
-| [centi](https://www.wikiwand.com/en/Centi-) | c               | 10<sup>-2</sup>  |
-| [milli](https://www.wikiwand.com/en/Milli-) | m               | 10<sup>-3</sup>  |
-| [micro](https://www.wikiwand.com/en/Micro-) | u or µ (U+00B5) | 10<sup>-6</sup>  |
-| [nano](https://www.wikiwand.com/en/Nano-)   | n               | 10<sup>-9</sup>  |
-| [pico](https://www.wikiwand.com/en/Pico-)   | p               | 10<sup>-12</sup> |
-| [femto](https://www.wikiwand.com/en/Femto-) | f               | 10<sup>-15</sup> |
-| [atto](https://www.wikiwand.com/en/Atto-)   | a               | 10<sup>-18</sup> |
-| [zepto](https://www.wikiwand.com/en/Zepto-) | z               | 10<sup>-21</sup> |
-| [yocto](https://www.wikiwand.com/en/Yocto-) | y               | 10<sup>-24</sup> |
+| Prefix name                                 | Prefix symbol | Factor           |
+| ------------------------------------------- | ------------- | ---------------- |
+| [deci](https://www.wikiwand.com/en/Deci-)   | d             | 10<sup>-1</sup>  |
+| [centi](https://www.wikiwand.com/en/Centi-) | c             | 10<sup>-2</sup>  |
+| [milli](https://www.wikiwand.com/en/Milli-) | m             | 10<sup>-3</sup>  |
+| [micro](https://www.wikiwand.com/en/Micro-) | u             | 10<sup>-6</sup>  |
+| [nano](https://www.wikiwand.com/en/Nano-)   | n             | 10<sup>-9</sup>  |
+| [pico](https://www.wikiwand.com/en/Pico-)   | p             | 10<sup>-12</sup> |
+| [femto](https://www.wikiwand.com/en/Femto-) | f             | 10<sup>-15</sup> |
+| [atto](https://www.wikiwand.com/en/Atto-)   | a             | 10<sup>-18</sup> |
+| [zepto](https://www.wikiwand.com/en/Zepto-) | z             | 10<sup>-21</sup> |
+| [yocto](https://www.wikiwand.com/en/Yocto-) | y             | 10<sup>-24</sup> |
