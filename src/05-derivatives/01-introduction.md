@@ -33,15 +33,15 @@ Derivatives can be stored/distributed in two ways:
     Example of a pipeline with split derivative directories:
 
     ```Plain
-    <dataset>/derivatives/spm_preproc/sub-0001
-    <dataset>/derivatives/spm_stats/sub-0001
+    <dataset>/derivatives/spm-preproc/sub-0001
+    <dataset>/derivatives/spm-stats/sub-0001
     ```
 
     Example of a pipeline with nested derivative directories:
 
     ```Plain
-    <dataset>/derivatives/spm_preproc/sub-0001
-    <dataset>/derivatives/spm_preproc/derivatives/spm_stats/sub-0001
+    <dataset>/derivatives/spm-preproc/sub-0001
+    <dataset>/derivatives/spm-preproc/derivatives/spm-stats/sub-0001
     ```
 
 
