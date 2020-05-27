@@ -354,7 +354,7 @@ v. Provenance information SHOULD be anonymized/de-identified as necessary.
 
 ### Examples of provenance in BIDS. 
 
-1. The raw conversion from DICOM images or other instrument native formats 
+ 1. The raw conversion from DICOM images or other instrument native formats 
 to BIDS structure, details of stimulus presentation and cognitive paradigms, 
 and clinical and neuropsychiatric assessments, each come with their 
 own details of provenance.
@@ -372,8 +372,6 @@ own details of provenance.
                       "commandLine": "dcm2niix ..."
                       }
     }
-   ```
-2. In BIDS derivatives, the consideration of outputs requires knowledge of 
 which inputs from the BIDS dataset were used together with what software was 
 run in what environment and with what parameters.
    ```
@@ -391,8 +389,6 @@ run in what environment and with what parameters.
                       "commandLine": "mri_convert ..."
                       }
     }
-   ```
-3. Provenance can involve information about people and institutions 
 involved in a study.
    ```
     {
@@ -414,8 +410,6 @@ involved in a study.
          "role": "PI"}
        }
     }
-   ```
-4. Provenance records can highlight reuse of datasets while providing 
 appropriate attribution to the original dataset generators as well as 
 future transformers.  
 5. For datasets and derivatives, provenance can also include details of 
