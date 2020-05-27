@@ -288,7 +288,7 @@ should be the original `bold` file that defined the coordinate system:
 ## Non-compliant datasets
 
 Nothing in this specification should be interpreted to disallow the
-storage/distribution non-compliant derivatives of BIDS datasets.
+storage/distribution of non-compliant derivatives of BIDS datasets.
 In particular, if a BIDS dataset contains a `derivatives/` sub-directory,
 the contents of that directory may be a heterogeneous mix of BIDS Derivatives
 datasets and non-compliant derivatives.

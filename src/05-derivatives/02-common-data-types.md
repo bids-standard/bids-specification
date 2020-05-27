@@ -44,8 +44,8 @@ pipeline1/
 pipeline1/
     sub-001/
         func/
-            sub-001_task-rest_run-1_desc-MC_bold.nii.gz
-            sub-001_task-rest_run-1_desc-MC_bold.json
+            sub-001_task-rest_run-1_desc-preproc_bold.nii.gz
+            sub-001_task-rest_run-1_desc-preproc_bold.json
 ```
 
 All REQUIRED metadata fields coming from a derivative file’s source file(s) MUST
