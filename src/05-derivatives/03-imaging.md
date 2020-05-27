@@ -41,11 +41,11 @@ pipeline1/
 
 The following metadata JSON fields are defined for preprocessed images:
 
-| **Key name**  | **Description**                                                                                                                |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not.                                |
-| Resolution    | REQUIRED if `res` is present. String or dictionary of label to string. Specifies the interpretation of the resolution keyword. |
-| Density       | REQUIRED if `den` is present. String or dictionary of label to string. Specifies the interpretation of the density keyword.    |
+| **Key name**  | **Description**                                                                                                                        |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not.                                        |
+| Resolution    | REQUIRED if `res` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the resolution keyword. |
+| Density       | REQUIRED if `den` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the density keyword.    |
 
 Example JSON file corresponding to
 `pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_bold.json` above:
@@ -132,8 +132,8 @@ JSON metadata fields:
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | RawSources   | Same as defined in [Introduction][intro], but elevated from OPTIONAL to REQUIRED                                                               |
 | Type         | RECOMMENDED. Short identifier of the mask. Reserved values: `Brain` - brain mask, `Lesion` - lesion mask, `Face` - face mask, `ROI` - ROI mask |
-| Resolution   | REQUIRED if `res` is present. String or dictionary of label to string. Specifies the interpretation of the resolution keyword.                 |
-| Density      | REQUIRED if `den` is present. String or dictionary of label to string. Specifies the interpretation of the density keyword.                    |
+| Resolution   | REQUIRED if `res` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the resolution keyword.         |
+| Density      | REQUIRED if `den` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the density keyword.            |
 
 Examples:
 
@@ -157,12 +157,12 @@ manual_masks/
 
 Common JSON metadata fields:
 
-| **Key name** | **Description**                                                                                                                |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| Manual       | OPTIONAL. Boolean. Indicates if the segmenation was performed manually or via an automated process                             |
-| Atlas        | OPTIONAL. Which atlas (if any) was used to derive the segmentation.                                                            |
-| Resolution   | REQUIRED if `res` is present. String or dictionary of label to string. Specifies the interpretation of the resolution keyword. |
-| Density      | REQUIRED if `den` is present. String or dictionary of label to string. Specifies the interpretation of the density keyword.    |
+| **Key name** | **Description**                                                                                                                        |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Manual       | OPTIONAL. Boolean. Indicates if the segmenation was performed manually or via an automated process                                     |
+| Atlas        | OPTIONAL. Which atlas (if any) was used to derive the segmentation.                                                                    |
+| Resolution   | REQUIRED if `res` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the resolution keyword. |
+| Density      | REQUIRED if `den` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the density keyword.    |
 
 ### Discrete Segmentations
 
@@ -293,7 +293,7 @@ pipeline/
 
 ### Anatomical Labels
 
-BIDS supplies a standard, generic label-index dictionary, defined in the table
+BIDS supplies a standard, generic label-index mapping, defined in the table
 below, that contains common tissue classes and can be used to map segmentations
 (and parcellations) between lookup tables.
 
@@ -365,3 +365,4 @@ index   name            abbr    color       mapping
 
 [intro]: 01-introduction.md
 [common_preproc]: 02-common-data-types.md#preprocessed-or-cleaned-data
+[object]: https://www.json.org/json-en.html
