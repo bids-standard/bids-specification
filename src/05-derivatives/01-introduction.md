@@ -273,12 +273,13 @@ should be the original `bold` file that defined the coordinate system:
     create and use the sidecar JSON files to detail the specifics of individual
     files.
 
--   When necessary to distinguish two files, the `_desc-<label>` keyword-value
-    should be used. This includes the cases of needing to distinguish both
-    differing inputs and differing outputs (e.g., `_desc-T1w` and `_desc-T2w` to
-    distinguish brain mask files derived from T1w and T2w images; or `_desc-sm4`
-    and `_desc-sm8` to distinguish between outputs generated with two different
-    levels of smoothing).
+-   When necessary to distinguish two files that do not otherwise have a
+    distinguishing entity, the `_desc-<label>` keyword-value SHOULD be used.
+    This includes the cases of needing to distinguish both differing inputs and
+    differing outputs (for example, `_desc-T1w` and `_desc-T2w` to distinguish
+    brain mask files derived from T1w and T2w images;
+    or `_desc-sm4` and `_desc-sm8` to distinguish between outputs generated with
+    two different levels of smoothing).
 
 -   When naming files that are not yet standardized, it is RECOMMENDED to use
     names consistent with BIDS conventions where those conventions apply.
