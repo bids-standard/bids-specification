@@ -35,17 +35,22 @@ Examples of preprocessed data:
 ```Text
 pipeline1/
     sub-001/
+        anat/
+            sub-001_space-MNI305_T1w.nii.gz
+            sub-001_space-MNI305_T1w.json
         func/
-            sub-001_task-rest_run-1_space-MNI305_bold.nii.gz
-            sub-001_task-rest_run-1_space-MNI305_bold.json
+            sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.nii.gz
+            sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.json
 ```
 
 ```Text
-pipeline1/
+pipeline2/
     sub-001/
-        func/
-            sub-001_task-rest_run-1_desc-preproc_bold.nii.gz
-            sub-001_task-rest_run-1_desc-preproc_bold.json
+        eeg/
+            sub-001_task-listening_run-1_desc-autoannotation_events.tsv
+            sub-001_task-listening_run-1_desc-autoannotation_events.json
+            sub-001_task-listening_run-1_desc-filtered_eeg.edf
+            sub-001_task-listening_run-1_desc-filtered_eeg.json
 ```
 
 All REQUIRED metadata fields coming from a derivative file’s source file(s) MUST
