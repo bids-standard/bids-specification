@@ -289,13 +289,13 @@ entity MUST index the images as follows:
 └── sub-01/
      └── fmap/
          ├── sub-01_fa-1_echo-1_TB1EPI.nii.gz (SE)
-         ├── sub-01_fa-1_echo-1_TB1EPI.nii.gz
+         ├── sub-01_fa-1_echo-1_TB1EPI.json
          ├── sub-01_fa-1_echo-2_TB1EPI.nii.gz (STE)
-         ├── sub-01_fa-1_echo-2_TB1EPI.nii.gz
+         ├── sub-01_fa-1_echo-2_TB1EPI.json
          ├── sub-01_fa-2_echo-1_TB1EPI.nii.gz (SE)
-         ├── sub-01_fa-2_echo-1_TB1EPI.nii.gz
+         ├── sub-01_fa-2_echo-1_TB1EPI.json
          ├── sub-01_fa-2_echo-2_TB1EPI.nii.gz (STE)
-         └── sub-01_fa-2_echo-2_TB1EPI.nii.gz
+         └── sub-01_fa-2_echo-2_TB1EPI.json
 ```
 
 ### `TB1AFI`
