@@ -141,7 +141,7 @@ the [section on tabular files](02-common-principles.md#tabular-files)).
 Such sidecar files are needed to interpret the data, especially so when
 optional columns are defined beyond `age`, `sex`, and `handedness`, such as
 `group` in this example, or when a different age unit is needed (e.g., gestational weeks).
-If no `units` is provided for age, it will be assumed to be in years relative to date of birth. 
+If no `units` is provided for age, it will be assumed to be in years relative to date of birth.
 
 `participants.json` example:
 
@@ -157,7 +157,7 @@ If no `units` is provided for age, it will be assumed to be in years relative to
             "M": "male",
             "F": "female"
         }
-    },    
+    },
     "handedness": {
         "Description": "handedness of the participant as reported by the participant",
         "Levels": {
@@ -261,21 +261,26 @@ Optional: Yes
 
 The purpose of this file is to describe timing and other properties of each
 imaging acquisition sequence (each run `.nii[.gz]` file) within one session.
-Each `.nii[.gz]` file should be described by at most one row. Relative paths to
-files should be used under a compulsory `filename` header. If acquisition time
-is included it should be under `acq_time` header. Datetime should be expressed
-in the following format `2009-06-15T13:45:30` (year, month, day, hour (24h),
-minute, second; this is equivalent to the RFC3339 "date-time" format, time zone
-is always assumed as local time). For anonymization purposes all dates within
-one subject should be shifted by a randomly chosen (but common across all runs
-etc.) number of days. This way relative timing would be preserved, but chances
-of identifying a person based on the date and time of their scan would be
-decreased. Dates that are shifted for anonymization purposes should be set to a
-year 1925 or earlier to clearly distinguish them from unmodified data. Shifting
-dates is RECOMMENDED, but not required.
+Each `.nii[.gz]` file should be described by at most one row.
+Relative paths to files should be used under a compulsory `filename` header.
+If acquisition time is included it should be under `acq_time` header.
+Datetime should be expressed in the following format
+`2009-06-15T13:45:30[.000000]` (year, month, day, hour (24h), minute, second,
+and optionally fractional second; this is equivalent to the RFC3339 "date-time"
+format, time zone is always assumed as local time).
+No specific precision is required for fractional seconds, but the precision
+SHOULD be consistent across the dataset
+For anonymization purposes all dates within one subject should be shifted by a
+randomly chosen (but consistent across all runs etc.) number of days.
+This way relative timing would be preserved, but chances of identifying a
+person based on the date and time of their scan would be decreased.
+Dates that are shifted for anonymization purposes should be set to a year 1925
+or earlier to clearly distinguish them from unmodified data.
+Shifting dates is RECOMMENDED, but not required.
 
 Additional fields can include external behavioral measures relevant to the
-scan. For example vigilance questionnaire score administered after a resting
+scan.
+For example vigilance questionnaire score administered after a resting
 state scan.
 
 Example:
