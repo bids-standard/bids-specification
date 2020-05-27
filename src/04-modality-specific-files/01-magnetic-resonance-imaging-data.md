@@ -712,7 +712,7 @@ anatomical data.
 B0 maps are primarily used to correct for spatial distortions in functional data
 acquired with EPI sequences.
 
-B1<sup>+</sup> and B1<sup>+</sup>  maps are mostly used in anatomical imaging, especially
+B1<sup>+</sup> and B1<sup>-</sup>  maps are mostly used in anatomical imaging, especially
 in quantitative MRI applications. Further information about these radiofrequency (RF)
 field maps are available in the [qMRI appendix](../99-appendices/10-qmri.md).
 
