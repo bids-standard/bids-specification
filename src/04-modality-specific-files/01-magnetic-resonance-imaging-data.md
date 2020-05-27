@@ -307,8 +307,8 @@ expand or to modify the following table.
 | Longutidunal relaxation in rotating frame (T1 rho) map | T1rho     | Parametric   | In seconds (s). T1-rho maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ N/A                                                                                                                                             |
 | Myelin water fraction map                              | MWFmap    | Parametric   | In percentage (%). MWF maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MESE`                                                                                                                                          |
 | Combined PD/T2 map                                     | PDT2map   | Parametric   | In arbitrary units (a.u.). Combined PD/T2 maps are REQUIRED to use this suffix irrespective of the method they are related to. N/A                                                                                                                                                   |
-| RF transmit field map                                  | B1plusmap | Parametric   | In percent units (p.u.). Radio frequency (RF) transmit field maps are REQUIRED to use this suffix irrespective of the method they are related to. Please see the [qMRI appendix]() for associated inputs and further details                                                                     |
-| RF receive sensitivity map                                  | B1minusmap | Parametric   | In percent units (p.u.). Radio frequency (RF) receive sensitivity maps are REQUIRED to use this suffix irrespective of the method they are related to. Please see the [qMRI appendix]() for associated inputs and further details                                                                     |
+| RF transmit field map                                  | B1plusmap | Parametric   | In percent units (p.u.). Radio frequency (RF) transmit field maps are REQUIRED to use this suffix irrespective of the method they are related to. Please see the [qMRI appendix](../99-appendices/10-qmri.md) for associated inputs and further details                                                                     |
+| RF receive sensitivity map                                  | B1minusmap | Parametric   | In percent units (p.u.). Radio frequency (RF) receive sensitivity maps are REQUIRED to use this suffix irrespective of the method they are related to. Please see the [qMRI appendix](../99-appendices/10-qmri.md) for associated inputs and further details                                                                     |
 | Observed signal amplitude map                                | S0map | Parametric   | In arbitrary units (a.u.). For a multi-echo sequence, S0 maps index the baseline signal before exponential (T2*) signal decay. In other words: the exponential of the intercept for a linear decay model across log-transformed echos. For more information, please see, for example, [the tedana documentation](https://tedana.readthedocs.io/en/latest/approach.html#monoexponential-decay-model-fit). S0 maps are REQUIRED to use this suffix irrespective of the method they are related to. _Associated suffixes:_ T2starmap.       |
 
 Quantitative maps can be obtained right off the scanner or by processing files
@@ -705,15 +705,16 @@ JSON example:
 
 ### Fieldmap data
 
-Both B0 (static magnetic field strength pattern), B1+ (transmit field pattern), and
-B1- (receive field pattern) maps can be useful in post-processing raw functional and
+All three of B0 (static magnetic field strength pattern), B1<sup>+</sup> (transmit field pattern), and
+B1<sup>-</sup> (receive field pattern) maps can be useful in post-processing raw functional and
 anatomical data.
 
 B0 maps are primarily used to correct for spatial distortions in functional data
 acquired with EPI sequences.
 
-B1+ and B1- maps are mostly used in anatomical imaging, especially when applying
-quantitative MRI (qMRI or hMRI) techniques.
+B1<sup>+</sup> and B1<sup>+</sup>  maps are mostly used in anatomical imaging, especially
+in quantitative MRI applications. Further information about these radiofrequency (RF)
+field maps are available in the [qMRI appendix](../99-appendices/10-qmri.md).
 
 #### B0 fieldmaps
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
