@@ -430,32 +430,32 @@ Empty-room MEG recordings capture the environmental and recording system's
 noise.
 There are two widely used strategies for collecting these recordings:
 
-1.  Some labs record one empty-room recording per day, which is then shared by
-    all researchers of the lab that record data from a study subject that day
+1.  Some labs record one empty-room measurement per day, which is then shared by
+    all researchers that record subject data on that day
 
-1.  Some labs make it the responsibility of the researcher to record a short
-    empty-room recording prior to each subject specific recording
+2.  Some labs make it the responsibility of each researcher to record a short
+    empty-room measurement prior to each subject-specific recording
     (e.g., while preparing the study subject for the task)
 
-For cases resembling the first strategy, it is RECOMMENDED to store the
+For cases resembling the **first** strategy, it is RECOMMENDED to store the
 empty-room recording inside a subject folder named `sub-emptyroom`.
 If a `session-<label>` entity is present, its label SHOULD be the date of the
 empty-room recording in the format `YYYYMMDD`, i.e., `ses-YYYYMMDD`.
 For these cases, the `scans.tsv` file containing the date and time of the
 acquisition SHOULD also be included.
 
-However, for cases resembling the second strategy, the subject data and
+However, for cases resembling the **second** strategy, the subject data and
 empty-room recording are naturally linked and it is thus RECOMMENDED to instead
 store the empty-room recording inside the study subject's folder.
 
-Furthermore, in both cases the label for the `task-<label>` entity in the
+Furthermore, in **both** cases the label for the `task-<label>` entity in the
 `*_meg.json` file SHOULD be set to `noise`.
 
 The rationale is that this naming scheme will allow users to easily retrieve the
 empty-room recording that best matches a particular experimental session, based
 on date and time of the recording.
-In the context of BIDS it is RECOMMENDED to record an empty-room recording for
-each session.
+In the context of BIDS it is RECOMMENDED to perform an empty-room recording for
+each experimental session.
 
 Example for cases resembling strategy 1:
 
