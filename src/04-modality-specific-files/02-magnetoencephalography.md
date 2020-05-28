@@ -426,19 +426,37 @@ has to be updated, then for MEG it could be considered to be a new session.
 
 ## Empty-room MEG recordings
 
-Empty-room MEG recordings capture the environmental and recording system's noise.
-Their collection is RECOMMENDED, before/during/after each session.
-This data MUST be stored inside a subject folder named `sub-emptyroom`.
-The `session label` SHOULD be the date of the empty-room recording in
-the format `YYYYMMDD`, i.e.,  `ses-YYYYMMDD`.
-The `task label` in the `*_meg.json` file SHOULD be set to `noise`.
-The `scans.tsv` file containing the date and time of the acquisition SHOULD also be
-included.
-The rationale is that this naming scheme will allow users to easily retrieve the
- empty-room recording that best matches a particular experimental session,
- based on date and time of the recording.
+Empty-room MEG recordings capture the environmental and recording system's
+noise.
+There are two widely used strategies for collecting these recordings:
 
-Example:
+1.   Some labs record one empty-room recording per day, which is then shared by
+     all researchers of the lab that record data from a study subject that day
+1.   Some labs make it the responsibility of the researcher to record a short
+     empty-room recording prior to each subject specific recording
+     (e.g., while preparing the study subject for the task)
+
+For cases resembling the first strategy, it is RECOMMENDED to store the
+empty-room recording inside a subject folder named `sub-emptyroom`.
+If a `session-<label>` entity is present, its label SHOULD be the date of the
+empty-room recording in the format `YYYYMMDD`, i.e., `ses-YYYYMMDD`.
+For these cases, the `scans.tsv` file containing the date and time of the
+acquisition SHOULD also be included.
+
+However, for cases resembling the second strategy, the subject data and
+empty-room recording are naturally linked and it is thus RECOMMENDED to instead
+store the empty-room recording inside the study subject's folder.
+
+Furthermore, in both cases the label for the `task-<label>` entity in the
+`*_meg.json` file SHOULD be set to `noise`.
+
+The rationale is that this naming scheme will allow users to easily retrieve the
+empty-room recording that best matches a particular experimental session, based
+on date and time of the recording.
+In the context of BIDS it is RECOMMENDED to record an empty-room recording for
+each session.
+
+Example for cases resembling strategy 1:
 
 ```Text
 sub-control01/
@@ -449,4 +467,15 @@ sub-emptyroom/
         meg/
             sub-emptyroom_ses-20170801_task-noise_meg.ds
             sub-emptyroom_ses-20170801_task-noise_meg.json
+```
+
+Example for cases resembling strategy 2:
+
+```Text
+sub-control01/
+sub-control02/
+    sub-control01_task-bart_meg.ds
+    sub-control01_task-noise_meg.ds
+    sub-control01_task-noise_bart.json
+    sub-control01_task-noise_meg.json
 ```
