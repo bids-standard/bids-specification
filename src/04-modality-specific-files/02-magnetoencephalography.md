@@ -430,11 +430,12 @@ Empty-room MEG recordings capture the environmental and recording system's
 noise.
 There are two widely used strategies for collecting these recordings:
 
-1.   Some labs record one empty-room recording per day, which is then shared by
-     all researchers of the lab that record data from a study subject that day
-1.   Some labs make it the responsibility of the researcher to record a short
-     empty-room recording prior to each subject specific recording
-     (e.g., while preparing the study subject for the task)
+1.  Some labs record one empty-room recording per day, which is then shared by
+    all researchers of the lab that record data from a study subject that day
+
+1.  Some labs make it the responsibility of the researcher to record a short
+    empty-room recording prior to each subject specific recording
+    (e.g., while preparing the study subject for the task)
 
 For cases resembling the first strategy, it is RECOMMENDED to store the
 empty-room recording inside a subject folder named `sub-emptyroom`.
