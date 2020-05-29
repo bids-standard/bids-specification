@@ -214,11 +214,11 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
-| Column name | Definition                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name        | REQUIRED. Channel name (e.g., FC1, Cz)                                                                                                                                                                                                                                                                                                                                                                                           |
-| type        | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                                                                                                                                                                                                                                                                                              |
-| units       | REQUIRED. Physical unit of the value represented in this channel, e.g., V for Volt, specified according to the [SI unit symbol](https://en.wikipedia.org/wiki/International_System_of_Units#Base_units) and possibly prefix symbol (e.g., mV, μV), or as a [derived SI unit](https://en.wikipedia.org/wiki/SI_derived_unit) (e.g., fT/cm). For guidelines for Units and Prefixes see [Appendix V](../99-appendices/05-units.md). |
+| Column name | Definition                                                                                                                                                                              |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name        | REQUIRED. Channel name (e.g., FC1, Cz)                                                                                                                                                  |
+| type        | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                                                     |
+| units       | REQUIRED. Physical unit of the value represented in this channel, e.g., `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [units section](../02-common-principles.md#units). |
 
 SHOULD be present:
 
@@ -263,10 +263,10 @@ Example:
 
 ```Text
 name     type   units   description                     status  status_description
-VEOG     VEOG   microV  n/a                             good    n/a
-FDI      EMG    microV  left first dorsal interosseous  good    n/a
-Cz       EEG    microV  n/a                             bad     high frequency noise
-UADC001  MISC   n/a     enevelope of audio signal       good    n/a
+VEOG     VEOG   uV      n/a                             good    n/a
+FDI      EMG    uV      left first dorsal interosseous  good    n/a
+Cz       EEG    uV      n/a                             bad     high frequency noise
+UADC001  MISC   n/a     envelope of audio signal        good    n/a
 ```
 
 ## Electrodes description (`*_electrodes.tsv`)
@@ -301,8 +301,8 @@ SHOULD be present:
 | Column name | Definition                                                                  |
 | ------------------------------| ------------------------------------------------------------------------------- |
 | type        | RECOMMENDED. Type of the electrode (e.g., cup, ring, clip-on, wire, needle) |
-| material    | RECOMMENDED. Material of the electrode, e.g., Tin, Ag/AgCl, Gold            |
-| impedance   | RECOMMENDED. Impedance of the electrode in kOhm                             |
+| material    | RECOMMENDED. Material of the electrode  (e.g., Tin, Ag/AgCl, Gold)          |
+| impedance   | RECOMMENDED. Impedance of the electrode, units MUST be in `kOhm`.           |
 
 Example:
 
@@ -376,7 +376,7 @@ Fields relating to the EEG electrode positions:
 | Keyword                        | Description                                                                                                                                                            |
 | --------------------------------------------------------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | EEGCoordinateSystem            | REQUIRED. Refers to the coordinate system in which the EEG electrode positions are to be interpreted (see [Appendix VIII](../99-appendices/08-coordinate-systems.md)). |
-| EEGCoordinateUnits             | REQUIRED. Units in which the coordinates that are listed in the field `EEGCoordinateSystem` are represented (e.g., "mm", "cm").                                        |
+| EEGCoordinateUnits             | REQUIRED. Units in which the coordinates that are listed in the field `EEGCoordinateSystem` are represented. MUST be `m`, `cm`, or `mm`.                               |
 | EEGCoordinateSystemDescription | RECOMMENDED. Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.    |
 
 Fields relating to the position of fiducials measured during an EEG session/run:
@@ -386,7 +386,7 @@ Fields relating to the position of fiducials measured during an EEG session/run:
 | FiducialsDescription                          | OPTIONAL. Free-form text description of how the fiducials such as vitamin-E capsules were placed relative to anatomical landmarks, and how the position of the fiducials were measured (e.g., both with Polhemus and with T1w MRI).      |
 | FiducialsCoordinates                          | RECOMMENDED. Key:value pairs of the labels and 3-D digitized position of anatomical landmarks, interpreted following the `FiducialsCoordinateSystem` (e.g., `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). |
 | FiducialsCoordinateSystem                     | RECOMMENDED. Refers to the coordinate space to which the landmarks positions are to be interpreted - preferably the same as the `EEGCoordinateSystem`.                                                                                   |
-| FiducialsCoordinateUnits                      | RECOMMENDED. Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented (e.g.,  "mm", "cm").                                                                                      |
+| FiducialsCoordinateUnits                      | RECOMMENDED. Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented. MUST be `m`, `cm`, or `mm`.                                                                              |
 | FiducialsCoordinateSystemDescription          | RECOMMENDED. Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                      |
 
 Fields relating to the position of anatomical landmark measured during an EEG session/run:
@@ -395,7 +395,7 @@ Fields relating to the position of anatomical landmark measured during an EEG se
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | AnatomicalLandmarkCoordinates                 | RECOMMENDED. Key:value pairs of the labels and 3-D digitized position of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem` (e.g., `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). |
 | AnatomicalLandmarkCoordinateSystem            | RECOMMENDED. Refers to the coordinate space to which the landmarks positions are to be interpreted - preferably the same as the `EEGCoordinateSystem`.                                                                                            |
-| AnatomicalLandmarkCoordinateUnits             | RECOMMENDED. Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented (e.g.,  "mm", "cm").                                                                                               |
+| AnatomicalLandmarkCoordinateUnits             | RECOMMENDED. Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented. MUST be `m`, `cm`, or `mm`.                                                                                       |
 | AnatomicalLandmarkCoordinateSystemDescription | RECOMMENDED. Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                               |
 
 If the position of anatomical landmarks is measured using the same system or
