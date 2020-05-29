@@ -11,7 +11,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         <datatype>/
-            <source_keywords>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<ext>
+            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<ext>
 ```
 
 Volumetric preprocessing does not modify the number of dimensions, and so
@@ -26,7 +26,7 @@ or surface sampling density being the only difference between them, then the
 *density* of non-parametric surfaces) SHOULD be used to avoid name conflicts.
 Note that only files combining both regularly sampled (e.g., gridded) and surface
 sampled data (and their downstream derivatives) are allowed to present both `res`
-and `den` keywords simultaneously.
+and `den` entities simultaneously.
 
 Examples:
 
@@ -82,7 +82,7 @@ And one corresponding to `res-hi`
 ```
 
 Example of CIFTI-2 files (a format that combines regularly sampled data
-and non-parametric surfaces) having both `res` and `den` keywords:
+and non-parametric surfaces) having both `res` and `den` entities:
 
 ```Text
 pipeline1/
@@ -119,7 +119,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat|func|dwi/
-            <source_keywords>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_mask.nii.gz
+            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_mask.nii.gz
 ```
 
 A binary (1 - inside, 0 - outside) mask in the space defined by `<space>`. By
@@ -176,7 +176,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat|func|dwi/
-            <source_keywords>[_space-<space>][_res-<label>][_den-<label>]_dseg.nii.gz
+            <source_entities>[_space-<space>][_res-<label>][_den-<label>]_dseg.nii.gz
 ```
 
 Example:
@@ -215,7 +215,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         func|anat|dwi/
-            <source_keywords>[_space-<space>][_res-<label>][_den-<label>][_label-<label>]_probseg.nii.gz
+            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_label-<label>]_probseg.nii.gz
 ```
 
 Example:
@@ -267,7 +267,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat/
-            <source_keywords>[_hemi-{L|R}][_space-<space>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
+            <source_entities>[_hemi-{L|R}][_space-<space>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
 ```
 
 The REQUIRED extension for GIFTI parcellations is `.label.gii`. The `hemi` tag is

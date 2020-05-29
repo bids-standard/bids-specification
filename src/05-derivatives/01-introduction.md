@@ -274,14 +274,14 @@ should be the original `bold` file that defined the coordinate system:
     copy of that raw file.
 
 -   Each Derivatives filename MUST be of the form:
-    `<source_keywords>[_keyword-<value>]_<suffix>.<ext>`
+    `<source_entities>[_keyword-<value>]_<suffix>.<ext>`
     (where `<value>` could either be an `<index>` or a `<label>` depending on
-    the keyword)
+    the keyword; see [Definitions][definitions])
 
 -   When the derivatives chain involves outputs derived from a single raw input,
-    `source_keywords` MUST be the entire source filename, with the omission of
+    `source_entities` MUST be the entire source filename, with the omission of
     the source suffix and extension. One exception to this rule is filename
-    keywords that are no longer relevant. Depending on the nature of the
+    entities that are no longer relevant. Depending on the nature of the
     derivative file, the suffix can either be the same as the source file if
     that suffix is still appropriate, or a new appropriate value selected from
     the controlled list.
@@ -316,5 +316,6 @@ datasets and non-compliant derivatives.
 []: <> (Link definitions)
 []: <> (################)
 
+[definitions]: ../02-common-principles.md#defintions
 [coordsys]: ../99-appendices/08-coordinate-systems.md#image-based-coordinate-systems
 [object]: https://www.json.org/json-en.html

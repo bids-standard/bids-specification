@@ -8,7 +8,7 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         <datatype>/
-            <source_keywords>[_space-<space>][_desc-<label>]_<suffix>.<ext>
+            <source_entities>[_space-<space>][_desc-<label>]_<suffix>.<ext>
 ```
 
 Preprocessing in this context means transformations of data that do not change
