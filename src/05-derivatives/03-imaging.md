@@ -342,21 +342,21 @@ pipeline/
 
 These TSV lookup tables contain the following columns:
 
-| Column name | Description                                                             |
-| ----------- | ----------------------------------------------------------------------- |
-| index       | REQUIRED. The label integer index                                       |
-| name        | REQUIRED. The unique label name                                         |
-| abbr        | OPTIONAL. The unique label abbreviation                                 |
-| mapping     | OPTIONAL. Corresponding integer label in the standard BIDS label lookup |
-| color       | OPTIONAL. Hexadecimal. Label color for visualization                    |
+| Column name  | Description                                                             |
+| ------------ | ----------------------------------------------------------------------- |
+| index        | REQUIRED. The label integer index                                       |
+| name         | REQUIRED. The unique label name                                         |
+| abbreviation | OPTIONAL. The unique label abbreviation                                 |
+| mapping      | OPTIONAL. Corresponding integer label in the standard BIDS label lookup |
+| color        | OPTIONAL. Hexadecimal. Label color for visualization                    |
 
 An example, custom dseg.tsv that defines three labels:
 
 ```Text
-index   name            abbr    color       mapping
-100     Gray Matter     GM      #ff53bb     1
-101     White Matter    WM      #2f8bbe     2
-102     Brainstem       BS      #36de72     11
+index   name            abbreviation    color       mapping
+100     Gray Matter     GM              #ff53bb     1
+101     White Matter    WM              #2f8bbe     2
+102     Brainstem       BS              #36de72     11
 ```
 
 []: <> (################)
