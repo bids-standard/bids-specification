@@ -342,7 +342,7 @@ MUST be present:
 | Column name  | Definition                                                                                                                                 |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | name         | REQUIRED. Name of the electrode contact point.                                                                                             |
-| x            | REQUIRED. X position. The positions of the center of each electrode in xyz space. Units are specified in `*_space-<label>_electrode.json`. |
+| x            | REQUIRED. X position. The positions of the center of each electrode in xyz space. Units are specified in `space-<label>_coordsystem.json`. |
 | y            | REQUIRED. Y position.                                                                                                                      |
 | z            | REQUIRED. Z position. If electrodes are in 2D space this should be a column of `n/a` values.                                               |
 | size         | REQUIRED. Surface area of the electrode, units MUST be in `mm^2`.                                                                          |
