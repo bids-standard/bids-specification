@@ -525,9 +525,10 @@ See [Appendix V](99-appendices/05-units.md) for a list of standard units and
 prefixes.
 Note also that for the *formatting* of SI units, the [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12)
 convention for encoding units is REQUIRED.
-More information about CMIXF can be found in [Appendix V](99-appendices/05-units.md)
-but to provide some examples, CMIXF formatting of "micro volts" would be `uV`,
-and of "kilobecquerel per milliliter" would be `kBq/mL`.
+CMIXF provides a consistent system for all units and prefix symbols with only basic
+characters, avoiding symbols that can cause text encoding problems; for example the
+CMIXF formatting for "micro volts" is `uV`, "degrees Celsius" is `oC` and "Ohm" is `Ohm`. 
+See [Appendix V](99-appendices/05-units.md) for more information.
 
 For additional rules, see below:
 
