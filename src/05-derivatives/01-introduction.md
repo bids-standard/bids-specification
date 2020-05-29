@@ -75,10 +75,10 @@ In addition to the keys for raw BIDS datasets,
 derived BIDS datasets include the following REQUIRED and RECOMMENDED
 `dataset_description.json` keys:
 
-| **Key name**          | **Description**                                                                                                                                                          |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| GeneratedBy           | REQUIRED. List of JSON objects with at least one element.                                                                                                                |
-| SourceDatasets        | RECOMMENDED. A list of objects specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`. |
+| **Key name**   | **Description**                                                                                                                                                                    |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GeneratedBy    | REQUIRED. List of [objects][object] with at least one element.                                                                                                                     |
+| SourceDatasets | RECOMMENDED. A list of [objects][object] specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`. |
 
 Each object in the `GeneratedBy` list includes the following REQUIRED, RECOMMENDED
 and OPTIONAL keys:
@@ -89,7 +89,7 @@ and OPTIONAL keys:
 | Version      | RECOMMENDED. Version of the pipeline.                                                                                                                                                                        |
 | Description  | OPTIONAL. Plain-text description of the pipeline or process that generated the outputs. RECOMMENDED if `Name` is `"Manual"`.                                                                                 |
 | CodeURL      | OPTIONAL. URL where the code used to generate the derivatives may be found.                                                                                                                                  |
-| Container    | OPTIONAL. Object specifying the location and relevant attributes of software container image used to produce the derivative. Valid fields in this object include `Type`, `Tag` and `URI`.                    |
+| Container    | OPTIONAL. [Object][object] specifying the location and relevant attributes of software container image used to produce the derivative. Valid fields in this object include `Type`, `Tag` and `URI`.          |
 
 If a derived dataset is stored as a subfolder of the raw dataset, then the `Name` field
 of the first `GeneratedBy` object MUST be a substring of the derived dataset folder name.
@@ -167,7 +167,7 @@ share the following (non-required) ones:
 | Description      | RECOMMENDED. Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                        |
 | Sources          | OPTIONAL. A list of paths relative to dataset root pointing to the file(s) that were directly used in the creation of this derivative. For example in a chain of A->B->C, “C” should only list “B” as Sources, and “B” should only list “A” as Sources. However in case X and Y jointly contribute to Z, then “Z” should list “X” and “Y” as Sources. |
 | RawSources       | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative. When the derivative filename does not define a `space` keyword, the first entry of `RawSources` MUST be defined and it will define the `scanner` coordinate system that applies.                               |
-| SpatialReference | REQUIRED in case a custom reference image was used. OPTIONAL if a coordinate system listed in [Image-Based Coordinate Systems][coordsys] is used. For images with a single reference, the value MUST be a single string. For images with multiple references, such as surface and volume references, a data dictionary MUST be used.                  |
+| SpatialReference | REQUIRED in case a custom reference image was used. OPTIONAL if a coordinate system listed in [Image-Based Coordinate Systems][coordsys] is used. For images with a single reference, the value MUST be a single string. For images with multiple references, such as surface and volume references, a JSON object MUST be used.                      |
 
 ### SpatialReference key allowed values
 
@@ -176,7 +176,7 @@ share the following (non-required) ones:
 | `orig`         | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
 | URI or path    | This can be used to point to a specific file. Paths are written relative to the root of the derivative dataset.               |
 
-In the case of images with multiple references, a data dictionary must link the relevant structures to reference files.
+In the case of images with multiple references, an [object][] must link the relevant structures to reference files.
 If a single volumetric reference is used for multiple structures, the `VolumeReference` key MAY be used to reduce duplication.
 For CIFTI-2 images, the relevant structures are BrainStructure values defined in the BrainModel elements found in the CIFTI-2 header.
 
@@ -312,4 +312,9 @@ In particular, if a BIDS dataset contains a `derivatives/` sub-directory,
 the contents of that directory may be a heterogeneous mix of BIDS Derivatives
 datasets and non-compliant derivatives.
 
+[]: <> (################)
+[]: <> (Link definitions)
+[]: <> (################)
+
 [coordsys]: ../99-appendices/08-coordinate-systems.md#image-based-coordinate-systems
+[object]: https://www.json.org/json-en.html
