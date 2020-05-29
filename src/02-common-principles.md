@@ -447,7 +447,7 @@ Example:
   },
   "bmi": {
     "LongName": "Body mass index",
-    "Units": "kilograms per squared meters",
+    "Units": "kg/m^2",
     "TermURL": "http://purl.bioontology.org/ontology/SNOMEDCT/60621009"
   }
 }
