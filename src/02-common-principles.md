@@ -170,7 +170,7 @@ In this example, where `sourcedata` and `derivatives` are not nested inside
 `rawdata`, **only the `rawdata` subfolder** needs to be a BIDS-compliant
 dataset.
 The subfolders of `derivatives` MAY be BIDS-compliant derivatives datasets
-(see [Non-compliant datasets][non-compliant-datasets] for further discussion).
+(see [Non-compliant derivatives][#non-compliant-derivatives] for further discussion).
 This specification does not prescribe anything about the contents of `sourcedata`
 folders in the above example - nor does it prescribe the `sourcedata`,
 `derivatives`, or `rawdata` folder names.
@@ -185,8 +185,99 @@ field in `dataset_description.json` of each subfolder of `derivatives` to:
 }
 ```
 
+### Storage of derived datasets
+
+Derivatives can be stored/distributed in two ways:
+
+1.  Under a `derivatives/` subfolder in the root of the source BIDS dataset
+    folder to make a clear distinction between raw data and results of data
+    processing. A data processing pipeline will typically have a dedicated directory
+    under which it stores all of its outputs. Different components of a pipeline can,
+    however, also be stored under different subfolders. There are few restrictions on
+    the directory names; it is RECOMMENDED to use the format `<pipeline>-<variant>` in
+    cases where it is anticipated that the same pipeline will output more than one variant (e.g.,
+    `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
+    subfolder name SHOULD be the `GeneratedBy.Name` field in
+    `data_description.json`, optionally followed by a hyphen and a suffix (see
+    [Derived dataset and pipeline description](#derived-dataset-and-pipeline-description).
+
+    Example of derivatives with one directory per pipeline:
+
+    ```Plain
+    <dataset>/derivatives/fmriprep-v1.4.1/sub-0001
+    <dataset>/derivatives/spm/sub-0001
+    <dataset>/derivatives/vbm/sub-0001
+    ```
+
+    Example of a pipeline with split derivative directories:
+
+    ```Plain
+    <dataset>/derivatives/spm-preproc/sub-0001
+    <dataset>/derivatives/spm-stats/sub-0001
+    ```
+
+    Example of a pipeline with nested derivative directories:
+
+    ```Plain
+    <dataset>/derivatives/spm-preproc/sub-0001
+    <dataset>/derivatives/spm-preproc/derivatives/spm-stats/sub-0001
+    ```
+
+
+1.  As a standalone dataset independent of the source (raw or derived) BIDS
+    dataset.
+    This way of specifying derivatives is particularly useful when the source
+    dataset is provided with read-only access, for publishing derivatives as
+    independent bodies of work, or for describing derivatives that were created
+    from more than one source dataset.
+    The `sourcedata/` subdirectory MAY be used to include the source dataset(s)
+    that were used to generate the derivatives.
+    Likewise, any code used to generate the derivatives from the source data
+    MAY be included in the `code/` subdirectory.
+
+    Example of a derivative dataset including the raw dataset as source:
+
+    ```Plain
+    my_processed_data/
+      code/
+        processing_pipeline-1.0.0.img
+        hpc_submitter.sh
+        ...
+      sourcedata/
+        dataset_description.json
+        participants.tsv
+        sub-01/
+        sub-02/
+        ...
+      dataset_description.json
+      sub-01/
+      sub-02/
+      ...
+    ```
+
+Throughout this specification, if a section applies particularly to derivatives,
+then Case 1 will be assumed for clarity in templates and examples, but removing
+`/derivatives/<pipeline>` from the template name will provide the equivalent for
+Case 2.
+In both cases, every derivatives dataset is considered a BIDS dataset and must
+include a `dataset_description.json` file at the root level (see
+[Dataset description](03-modality-agnostic-files.md#dataset-description).
+Consequently, files should be organized to comply with BIDS to the full extent
+possible (that is, unless explicitly contradicted for derivatives).
+Any subject-specific derivatives should be housed within each subject’s directory;
+if session-specific derivatives are generated, they should be deposited under a
+session subdirectory within the corresponding subject directory; and so on.
+
 See [Derived dataset and pipeline description](05-derivatives/01-introduction.md#derived-dataset-and-pipeline-description)
 for more information.
+
+### Non-compliant deriatives
+
+Nothing in this specification should be interpreted to disallow the
+storage/distribution of non-compliant derivatives of BIDS datasets.
+In particular, if a BIDS dataset contains a `derivatives/` sub-directory,
+the contents of that directory may be a heterogeneous mix of BIDS Derivatives
+datasets and non-compliant derivatives.
 
 ## The Inheritance Principle
 
@@ -520,5 +611,3 @@ meaning of file names and setting requirements on their contents or metadata.
 Validation and parsing tools MAY treat the presence of non-standard files and
 directories as an error, so consult the details of these tools for mechanisms
 to suppress warnings or provide interpretations of your file names.
-
-[non-compliant-datasets]: 05-derivatives/01-introduction.md#non-compliant-datasets
