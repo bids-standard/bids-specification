@@ -166,6 +166,8 @@ Please note that `space-scanner` SHOULD NOT be used, it is mentioned in this spe
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | scanner           | The intrinsic coordinate system of the original image (the first entry of `RawSources`) after reconstruction and conversion to NIfTI or equivalent for the case of surfaces and dual volume/surface files.                                                            |
 
----
+[]: <> (################)
+[]: <> (Link definitions)
+[]: <> (################)
 
-[common file level metadata fields]: ../05-derivatives/01-introduction.md#common-file-level-metadata-fields
+[common file level metadata fields]: ../05-derivatives/02-common-data-types.md#common-file-level-metadata-fields
