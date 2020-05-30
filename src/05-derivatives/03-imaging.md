@@ -122,9 +122,8 @@ Template:
             <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_mask.nii.gz
 ```
 
-A binary (1 - inside, 0 - outside) mask in the space defined by `<space>`. By
-default (i.e., if no transformation has taken place) the value of `space` should
-be set to `orig`.
+A binary (1 - inside, 0 - outside) mask in the space defined by `<space>`.
+If no transformation has taken place, the value of `space` SHOULD be set to `orig`.
 
 JSON metadata fields:
 
@@ -132,6 +131,7 @@ JSON metadata fields:
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | RawSources   | Same as defined in [Introduction][intro], but elevated from OPTIONAL to REQUIRED                                                               |
 | Type         | RECOMMENDED. Short identifier of the mask. Reserved values: `Brain` - brain mask, `Lesion` - lesion mask, `Face` - face mask, `ROI` - ROI mask |
+| Atlas        | OPTIONAL. Which atlas (if any) was used to generate the mask.                                                                                  |
 | Resolution   | REQUIRED if `res` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the resolution keyword.         |
 | Density      | REQUIRED if `den` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the density keyword.            |
 
@@ -153,9 +153,24 @@ manual_masks/
             sub-001_desc-tumor_mask.json
 ```
 
-## Segmentations and parcellations
+## Segmentations
 
-Common JSON metadata fields:
+A *segmentation* is a labeling of a spatial image with anatomical structures
+such that each voxel is identified with a label or a combination of labels.
+A *discrete segmentation* represents each tissue class with a unique integer
+label.
+A *probabilistic segmentation* represents each tissue class as values between
+0 and 1 (inclusive) at each location in the image, and one volume/frame per
+tissue class are concatenated in a single file.
+
+Segmentations may be defined in a volume (labeled voxels), a surface (labeled
+vertices) or a combined volume/surface space.
+
+The following section describes discrete and probabilistic segmentations of
+volumes, followed by discrete segmentations of surface/combined spaces.
+Probabilistic segmentations of surfaces are currently [unspecified][].
+
+The following metadata fields apply to all segmentation files:
 
 | **Key name** | **Description**                                                                                                                        |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -189,24 +204,25 @@ pipeline/
             sub-001_space-orig_dseg.json
 ```
 
-A segmentation could be a binary mask that functions as a discrete `label` for a
-single structure. In this case, the label key must be used to specify the
-corresponding structure. For example:
+A segmentation can be used to generate a binary mask that functions as a
+discrete "label" for a single structure.
+In this case, the mask suffix MUST be used, and the `desc` entity SHOULD be used
+to specify the masked structure (see [Anatomical labels](#anatomical-labels), and
+the `Atlas` metadata SHOULD be defined.
+For example:
 
 ```Text
 pipeline/
     sub-001/
         anat/
-            sub-001_space-orig_label-GM_dseg.nii.gz
+            sub-001_space-orig_desc-GM_mask.nii.gz
 ```
-
-See [Anatomical Labels](#anatomical-labels) for reserved key values for `label`.
 
 ### Probabilistic Segmentations
 
 Probabilistic segmentations of brain tissue represent a single tissue class with
 values ranging from 0 to 1 in individual 3D volumes or across multiple frames.
-Similarly to a discrete, binary segmentation, the label key can be used to
+If a single tissue class is included the `label` entity SHOULD be used to
 specify the corresponding structure.
 
 Template:
@@ -366,3 +382,4 @@ index   name            abbreviation    color       mapping
 [intro]: 01-introduction.md
 [common_preproc]: 02-common-data-types.md#preprocessed-or-cleaned-data
 [object]: https://www.json.org/json-en.html
+[unspecified]: ../02-common-principles.md#unspecified-data
