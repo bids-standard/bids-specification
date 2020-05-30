@@ -126,7 +126,7 @@ Data is considered to be *preprocessed* or *cleaned* if the data type of the inp
 as expressed by the BIDS `suffix`, is unchanged.
 By contrast, processing steps that change the number of dimensions are likely to disrupt
 the propagation of the input's `suffix` and generally, the outcomes of such transformation
-cannot be considered _preprocessed_ or _cleaned data_.
+cannot be considered preprocessed or cleaned data.
 
 Examples of preprocessing:
 

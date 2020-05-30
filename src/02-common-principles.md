@@ -127,8 +127,9 @@ will be saved.
 Derivatives of the raw data (other than products of DICOM to NIfTI conversion)
 MUST be kept separate from the raw data. This way one can protect the raw data
 from accidental changes by file permissions. In addition it is easy to
-distinguish partial results from the raw data and share the latter. You can read
-more about organizing derivatives [here](05-derivatives/01-introduction.md).
+distinguish partial results from the raw data and share the latter.
+See [Storage of derived datasets](#storage-of-derived-datasets) for more on
+organizing derivatives.
 
 Similar rules apply to source data, which is defined as data before
 harmonization, reconstruction, and/or file format conversion (for example E-Prime event logs or
@@ -199,7 +200,7 @@ Derivatives can be stored/distributed in two ways:
     `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
     subfolder name SHOULD be the `GeneratedBy.Name` field in
     `data_description.json`, optionally followed by a hyphen and a suffix (see
-    [Derived dataset and pipeline description](#derived-dataset-and-pipeline-description).
+    [Derived dataset and pipeline description][derived-dataset-description].
 
     Example of derivatives with one directory per pipeline:
 
@@ -261,15 +262,12 @@ then Case 1 will be assumed for clarity in templates and examples, but removing
 Case 2.
 In both cases, every derivatives dataset is considered a BIDS dataset and must
 include a `dataset_description.json` file at the root level (see
-[Dataset description](03-modality-agnostic-files.md#dataset-description).
+[Dataset description][dataset-description].
 Consequently, files should be organized to comply with BIDS to the full extent
 possible (that is, unless explicitly contradicted for derivatives).
 Any subject-specific derivatives should be housed within each subject’s directory;
 if session-specific derivatives are generated, they should be deposited under a
 session subdirectory within the corresponding subject directory; and so on.
-
-See [Derived dataset and pipeline description](05-derivatives/01-introduction.md#derived-dataset-and-pipeline-description)
-for more information.
 
 ### Non-compliant deriatives
 
@@ -611,3 +609,10 @@ meaning of file names and setting requirements on their contents or metadata.
 Validation and parsing tools MAY treat the presence of non-standard files and
 directories as an error, so consult the details of these tools for mechanisms
 to suppress warnings or provide interpretations of your file names.
+
+[]: <> (################)
+[]: <> (Link definitions)
+[]: <> (################)
+
+[dataset-description]: 03-modality-agnostic-files.md#dataset-description
+[derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description
