@@ -270,7 +270,8 @@ for each volume:
 }
 ```
 
-Values of `label` need to map to Abbreviations defined in [Anatomical Labels](#anatomical-labels).
+Values of `label` SHOULD correspond to abbreviations defined in
+[Anatomical Labels](#anatomical-labels).
 
 ### Surface Parcellations
 
