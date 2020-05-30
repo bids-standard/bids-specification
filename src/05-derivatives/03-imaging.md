@@ -273,10 +273,12 @@ for each volume:
 Values of `label` SHOULD correspond to abbreviations defined in
 [Anatomical Labels](#anatomical-labels).
 
-### Surface Parcellations
+### Discrete surface segmentations
 
-Discrete parcellations (surface segmentations) of cortical structures should be
-stored as GIFTI or CIFTI file.
+Discrete surface segmentations (sometimes called *parcellations*) of cortical
+structures MUST be stored as GIFTI label files, with extension `.label.gii`.
+For combined volume/surface spaces, discrete segmentations MUST be stored as
+CIFTI-2 dense label fles, with extension `.dlabel.nii`.
 
 Template:
 
@@ -287,8 +289,7 @@ Template:
             <source_entities>[_hemi-{L|R}][_space-<space>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
 ```
 
-The REQUIRED extension for GIFTI parcellations is `.label.gii`. The `hemi` tag is
-REQUIRED for GIFTI files. For example:
+The `hemi` tag is REQUIRED for GIFTI files. For example:
 
 ```Text
 pipeline/
