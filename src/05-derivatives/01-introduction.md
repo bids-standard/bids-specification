@@ -129,9 +129,9 @@ Example:
 ## Coordinate systems
 
 The spatial reference (_space_ in the following) to which a particular derivative
-is aligned SHOULD be denoted using a filename keyword `space` whenever such keyword
+is aligned SHOULD be denoted using the entity `space` whenever the entity
 is present in the filename template of a given derivative type.
-The allowed values for this keyword depend are identifiers given in section
+The allowed values for this entity depend are identifiers given in section
 [Image-Based Coordinate Systems][coordsys].
 
 | File format                  | Description             |
@@ -316,6 +316,6 @@ datasets and non-compliant derivatives.
 []: <> (Link definitions)
 []: <> (################)
 
-[definitions]: ../02-common-principles.md#defintions
+[definitions]: ../02-common-principles.md#definitions
 [coordsys]: ../99-appendices/08-coordinate-systems.md#image-based-coordinate-systems
 [object]: https://www.json.org/json-en.html
