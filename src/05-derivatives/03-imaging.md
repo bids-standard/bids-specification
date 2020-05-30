@@ -291,10 +291,10 @@ pipeline/
             sub-001_dseg.dlabel.nii
 ```
 
-### Anatomical Labels
+### Common Image-derived Labels
 
 BIDS supplies a standard, generic label-index mapping, defined in the table
-below, that contains common tissue classes and can be used to map segmentations
+below, that contains common image-derived segmentations and can be used to map segmentations
 (and parcellations) between lookup tables.
 
 | Integer value | Description             | Abbreviation (label) |
