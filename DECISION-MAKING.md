@@ -24,11 +24,19 @@ BIDS governance.
 
 **Maintainers Group**
 
-| Name                                                                           | Time commitment |
-|--------------------------------------------------------------------------------|-----------------|
-| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         |
-| Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |
-| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | 5h/week         |
+| Name                                                                           | Time commitment | Scope                 |
+|--------------------------------------------------------------------------------|-----------------|-----------------------|
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         |                       |
+| Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |                       |
+| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | 5h/week         | Community development | 
+
+In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
+classification of a maintainer, maintainers may declare a limited scope of responsibility.
+Such a scope can range from maintaining a modality supported in the specification to nurturing a
+welcoming BIDS community. 
+One or more scopes can be chosen by the maintainer and agreed upon by the Maintainers Group.
+A maintainer is primarily responsible for issues within their chosen scope(s), although
+contributions elsewhere are welcome, as well.
 
 **BEP Leads Group**
 
