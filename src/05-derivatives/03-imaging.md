@@ -119,11 +119,14 @@ Template:
 <pipeline_name>/
     sub-<participant_label>/
         anat|func|dwi/
-            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_mask.nii.gz
+            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_label-<label>][_desc-<label>]_mask.nii.gz
 ```
 
 A binary (1 - inside, 0 - outside) mask in the space defined by `<space>`.
 If no transformation has taken place, the value of `space` SHOULD be set to `orig`.
+If the mask is an ROI mask derived from an atlas, then the `label` entity SHOULD
+be used to specify the masked structure (see [Anatomical labels](#anatomical-labels),
+and the `Atlas` metadata SHOULD be defined.
 
 JSON metadata fields:
 
@@ -131,7 +134,7 @@ JSON metadata fields:
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | RawSources   | Same as defined in [Introduction][intro], but elevated from OPTIONAL to REQUIRED                                                               |
 | Type         | RECOMMENDED. Short identifier of the mask. Reserved values: `Brain` - brain mask, `Lesion` - lesion mask, `Face` - face mask, `ROI` - ROI mask |
-| Atlas        | OPTIONAL. Which atlas (if any) was used to generate the mask.                                                                                  |
+| Atlas        | OPTIONAL. Which atlas (if any) was used to generate the mask. RECOMMENDED if `label` entity is defined.                                        |
 | Resolution   | REQUIRED if `res` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the resolution keyword.         |
 | Density      | REQUIRED if `den` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the density keyword.            |
 
@@ -208,7 +211,7 @@ pipeline/
 
 A segmentation can be used to generate a binary mask that functions as a
 discrete "label" for a single structure.
-In this case, the mask suffix MUST be used, and the `desc` entity SHOULD be used
+In this case, the mask suffix MUST be used, and the `label` entity SHOULD be used
 to specify the masked structure (see [Anatomical labels](#anatomical-labels), and
 the `Atlas` metadata SHOULD be defined.
 For example:
