@@ -156,12 +156,13 @@ manual_masks/
 ## Segmentations
 
 A *segmentation* is a labeling of a spatial image with anatomical structures
-such that each voxel is identified with a label or a combination of labels.
-A *discrete segmentation* represents each tissue class with a unique integer
+such that each location (for example, a voxel or a surface vertex) is identified
+with a label or a combination of labels.
+A *discrete segmentation* represents each structure with a unique integer
 label.
-A *probabilistic segmentation* represents each tissue class as values between
+A *probabilistic segmentation* represents each structure as values between
 0 and 1 (inclusive) at each location in the image, and one volume/frame per
-tissue class are concatenated in a single file.
+structure may be concatenated in a single file.
 
 Segmentations may be defined in a volume (labeled voxels), a surface (labeled
 vertices) or a combined volume/surface space.
@@ -181,9 +182,10 @@ The following metadata fields apply to all segmentation files:
 
 ### Discrete Segmentations
 
-Discrete segmentations of brain tissue represent each tissue class with a unique
-integer label in a 3D volume. See [Anatomical Labels](#anatomical-labels) for interpretation how
-integer values map to tissue classes.
+Discrete segmentations of brain tissue represent multiple anatomical structures
+(such as tissue class or Brodmann area) with a unique integer label in a 3D volume.
+See [Anatomical Labels](#anatomical-labels) for interpretation how integer values
+map to anatomical structures.
 
 Template:
 
@@ -215,15 +217,16 @@ For example:
 pipeline/
     sub-001/
         anat/
-            sub-001_space-orig_desc-GM_mask.nii.gz
+            sub-001_space-orig_label-GM_mask.nii.gz
 ```
 
 ### Probabilistic Segmentations
 
-Probabilistic segmentations of brain tissue represent a single tissue class with
-values ranging from 0 to 1 in individual 3D volumes or across multiple frames.
-If a single tissue class is included the `label` entity SHOULD be used to
-specify the corresponding structure.
+Probabilistic segmentations of brain tissue represent a single anatomical
+structure with values ranging from 0 to 1 in individual 3D volumes or across
+multiple frames.
+If a single structure is included the `label` entity SHOULD be used to specify
+the structure.
 
 Template:
 
