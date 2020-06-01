@@ -125,7 +125,8 @@ Template:
 A binary (1 - inside, 0 - outside) mask in the space defined by `<space>`.
 If no transformation has taken place, the value of `space` SHOULD be set to `orig`.
 If the mask is an ROI mask derived from an atlas, then the `label` entity SHOULD
-be used to specify the masked structure (see [Anatomical labels](#anatomical-labels),
+be used to specify the masked structure
+(see [Common image-derived labels](#common-image-derived-labels)),
 and the `Atlas` metadata SHOULD be defined.
 
 JSON metadata fields:
@@ -187,8 +188,8 @@ The following metadata fields apply to all segmentation files:
 
 Discrete segmentations of brain tissue represent multiple anatomical structures
 (such as tissue class or Brodmann area) with a unique integer label in a 3D volume.
-See [Anatomical Labels](#anatomical-labels) for interpretation how integer values
-map to anatomical structures.
+See [Common image-derived labels](#common-image-derived-labels) for interpretation
+how integer values map to anatomical structures.
 
 Template:
 
@@ -212,8 +213,9 @@ pipeline/
 A segmentation can be used to generate a binary mask that functions as a
 discrete "label" for a single structure.
 In this case, the mask suffix MUST be used, and the `label` entity SHOULD be used
-to specify the masked structure (see [Anatomical labels](#anatomical-labels), and
-the `Atlas` metadata SHOULD be defined.
+to specify the masked structure
+(see [Common image-derived labels](#common-image-derived-labels)),
+and the `Atlas` metadata SHOULD be defined.
 For example:
 
 ```Text
@@ -250,7 +252,8 @@ pipeline/
             sub-001_space-orig_label-WM_probseg.nii.gz
 ```
 
-See [Anatomical labels](#anatomical-labels) for reserved key values for `label`.
+See [Common image-derived labels](#common-image-derived-labels)
+for reserved key values for `label`.
 
 A 4D probabilistic segmentation, in which each frame corresponds to a different
 tissue class, must provide a label mapping in its JSON sidecar. For example:
@@ -277,7 +280,7 @@ for each volume:
 ```
 
 Values of `label` SHOULD correspond to abbreviations defined in
-[Anatomical Labels](#anatomical-labels).
+[Common image-derived labels](#common-image-derived-labels).
 
 ### Discrete surface segmentations
 
@@ -315,7 +318,7 @@ pipeline/
             sub-001_dseg.dlabel.nii
 ```
 
-### Common Image-derived Labels
+### Common image-derived labels
 
 BIDS supplies a standard, generic label-index mapping, defined in the table
 below, that contains common image-derived segmentations and can be used to map segmentations
