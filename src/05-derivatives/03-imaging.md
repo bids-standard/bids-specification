@@ -330,15 +330,14 @@ below, that contains common image-derived segmentations and can be used to map s
 | 1             | Gray Matter             | GM                   |
 | 2             | White Matter            | WM                   |
 | 3             | Cerebrospinal Fluid     | CSF                  |
-| 4             | Gray and White Matter   | GWM                  |
-| 5             | Bone                    | B                    |
-| 6             | Soft Tissue             | ST                   |
-| 7             | Non-brain               | NB                   |
-| 8             | Lesion                  | L                    |
-| 9             | Cortical Gray Matter    | CGM                  |
-| 10            | Subcortical Gray Matter | SGM                  |
-| 11            | Brainstem               | BS                   |
-| 12            | Cerebellum              | CBM                  |
+| 4             | Bone                    | B                    |
+| 5             | Soft Tissue             | ST                   |
+| 6             | Non-brain               | NB                   |
+| 7             | Lesion                  | L                    |
+| 8             | Cortical Gray Matter    | CGM                  |
+| 9             | Subcortical Gray Matter | SGM                  |
+| 10            | Brainstem               | BS                   |
+| 11            | Cerebellum              | CBM                  |
 
 These definitions can be overridden (or added to) by providing custom labels in
 a sidecar `<matches>.tsv` file, in which `<matches>` corresponds to segmentation
