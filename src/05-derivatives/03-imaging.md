@@ -333,7 +333,7 @@ below, that contains common image-derived segmentations and can be used to map s
 | 7             | Non-brain               | NB                   |
 | 8             | Lesion                  | L                    |
 | 9             | Cortical Gray Matter    | CGM                  |
-| 10            | Subcortical Gray Matter | SCGM                 |
+| 10            | Subcortical Gray Matter | SGM                  |
 | 11            | Brainstem               | BS                   |
 | 12            | Cerebellum              | CBM                  |
 
