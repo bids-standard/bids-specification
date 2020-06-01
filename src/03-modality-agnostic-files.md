@@ -88,11 +88,11 @@ Example:
   "BIDSVersion": "1.4.0",
   "GeneratedBy": [
     {
-      "Name": "FMRIPREP",
-      "Version": "1.2.5",
+      "Name": "fmriprep",
+      "Version": "1.4.1",
       "Container": {
         "Type": "docker",
-        "Tag": "poldracklab/fmriprep:1.2.5"
+        "Tag": "poldracklab/fmriprep:1.4.1"
         }
     },
     {
