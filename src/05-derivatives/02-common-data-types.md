@@ -2,26 +2,25 @@
 
 ## Common file level metadata fields
 
-Each derivative file SHOULD be described by a JSON file provided as a sidecar or
-higher up in the hierarchy of the derived dataset (according to
-[The Inheritance Principle](../02-common-principles.md#the-inheritance-principle))
+Each derivative data file SHOULD be described by a JSON file provided as a sidecar
+or higher up in the hierarchy of the derived dataset (according to the
+[Inheritance Principle](../02-common-principles.md#the-inheritance-principle))
 unless a particular derivative includes REQUIRED metadata fields, in which case a
 JSON file is also REQUIRED.
 Each derivative type defines their own set of fields, but all of them
 share the following (non-required) ones:
 
-| **Key name** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Description  | RECOMMENDED. Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Sources      | OPTIONAL. A list of paths relative to dataset root pointing to the file(s) that were directly used in the creation of this derivative. For example, if a derivative A is used in the creation of another derivative B, which is in turn used to generate C in a chain of A->B->C, C should only list B in `Sources`, and B should only list A in `Sources`. However, in case both X and Y are directly used in the creation of Z, then Z should list X and Y in `Sources`, regardless of whether X was used to generate Y. |
-| RawSources   | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative. When the derivative filename does not define a `space` keyword, the first entry of `RawSources` MUST be defined and it will define the `scanner` coordinate system that applies.                                                                                                                                                                                                    |
+| **Key name** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description  | RECOMMENDED. Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Sources      | OPTIONAL. A list of files with the paths specified relative to dataset root; these files were directly used in the creation of this derivative data file. For example, if a derivative A is used in the creation of another derivative B, which is in turn used to generate C in a chain of A->B->C, C should only list B in `Sources`, and B should only list A in `Sources`. However, in case both X and Y are directly used in the creation of Z, then Z should list X and Y in `Sources`, regardless of whether X was used to generate Y. |
+| RawSources   | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 ### Examples
 
-Preprocessed `bold` NIfTI file in the original coordinate space of the
-original run. Please mind that in this case `RawSources` key is REQUIRED
-(and also `desc-<label>` so that the name does not overlap with the
-original filename).
+Preprocessed `bold` NIfTI file in the original coordinate space of the original run.
+The location of the file in the original datasets is encoded in the `RawSources`
+metadata, and `desc-<label>` is used to prevent clashing with the original file name.
 
 ```Text
 sub-01/func/sub-01_task-rest_desc-preproc_bold.nii.gz
@@ -34,8 +33,8 @@ sub-01/func/sub-01_task-rest_desc-preproc_bold.json
 }
 ```
 
-If this file was generated with prior knowledge from additional sources
-(e.g., say the same subject's `T1w`), then the first item of `RawSources`
+If this file was generated with prior knowledge from additional sources, such as
+the same subject's `T1w`, then both files MAY be included in `RawSources`.
 should be the original `bold` file that defined the coordinate system:
 
 ```JSON
@@ -43,6 +42,20 @@ should be the original `bold` file that defined the coordinate system:
     "RawSources": [
         "sub-01/func/sub-01_task-rest_bold.nii.gz",
         "sub-01/anat/sub-01_T1w.nii.gz"
+    ]
+}
+```
+
+On the other hand, if a preprocessed version of the T1w image was used, and it also
+occurs in the derivatives, `Sources` and `RawSources` can both be specified:
+
+```JSON
+{
+    "Sources": [
+        "sub-01/anat/sub-01_desc-preproc_T1w.nii.gz"
+    ],
+    "RawSources": [
+        "sub-01/func/sub-01_task-rest_bold.nii.gz"
     ]
 }
 ```
