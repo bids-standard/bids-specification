@@ -35,7 +35,6 @@ sub-01/func/sub-01_task-rest_desc-preproc_bold.json
 
 If this file was generated with prior knowledge from additional sources, such as
 the same subject's `T1w`, then both files MAY be included in `RawSources`.
-should be the original `bold` file that defined the coordinate system:
 
 ```JSON
 {
@@ -47,7 +46,7 @@ should be the original `bold` file that defined the coordinate system:
 ```
 
 On the other hand, if a preprocessed version of the T1w image was used, and it also
-occurs in the derivatives, `Sources` and `RawSources` can both be specified:
+occurs in the derivatives, `Sources` and `RawSources` can both be specified.
 
 ```JSON
 {
