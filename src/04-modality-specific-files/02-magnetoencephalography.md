@@ -477,6 +477,6 @@ sub-control01/
 sub-control02/
     sub-control01_task-bart_meg.ds
     sub-control01_task-noise_meg.ds
-    sub-control01_task-noise_bart.json
+    sub-control01_task-bart_meg.json
     sub-control01_task-noise_meg.json
 ```
