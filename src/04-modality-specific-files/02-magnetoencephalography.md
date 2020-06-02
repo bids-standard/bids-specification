@@ -433,7 +433,7 @@ There are two widely used strategies for collecting these recordings:
 1.  Some labs record one empty-room measurement per day, which is then shared by
     all researchers that record subject data on that day
 
-2.  Some labs make it the responsibility of each researcher to record a short
+1.  Some labs make it the responsibility of each researcher to record a short
     empty-room measurement prior to each subject-specific recording
     (e.g., while preparing the study subject for the task)
 
