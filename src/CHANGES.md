@@ -2,6 +2,10 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   Clarify mask/dseg/probseg in common derivatives [#489](https://github.com/bids-standard/bids-specification/pull/489) ([effigies](https://github.com/effigies))
+-   Reorganize derivatives [#488](https://github.com/bids-standard/bids-specification/pull/488) ([effigies](https://github.com/effigies))
+-   Enh/prov [#486](https://github.com/bids-standard/bids-specification/pull/486) ([satra](https://github.com/satra))
+-   \[ENH] optionally allow LICENSE file [#483](https://github.com/bids-standard/bids-specification/pull/483) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] linkchecker - ignore github pull and tree URLs [#477](https://github.com/bids-standard/bids-specification/pull/477) ([yarikoptic](https://github.com/yarikoptic))
 -   \[ENH] Allow fractional seconds in scans file datetimes [#470](https://github.com/bids-standard/bids-specification/pull/470) ([tsalo](https://github.com/tsalo))
 -   \[MISC] Maintainers - `Scope` responsibility [#467](https://github.com/bids-standard/bids-specification/pull/467) ([franklin-feingold](https://github.com/franklin-feingold))
