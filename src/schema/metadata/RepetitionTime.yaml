@@ -1,0 +1,13 @@
+description: "The time in seconds between the beginning of an acquisition of one
+              volume and the beginning of acquisition of the volume following it (TR).
+              Please note that this definition includes time between scans
+              (when no data has been acquired) in case of sparse acquisition schemes.
+              This value needs to be consistent with the pixdim[4] field
+              (after accounting for units stored in xyzt_units field) in the NIfTI header.
+              This field is mutually exclusive with VolumeTiming and is derived from
+              DICOM Tag 0018, 0080 and converted to seconds."
+format: float
+unit: seconds
+mutually_exclusive:
+  - VolumeTiming
+requires: None

@@ -17,6 +17,14 @@
     dir: optional
     run: optional
     echo: optional
+  metadata:
+    Manufacturer: optional
+    ManufacturersModelName: optional
+    DeviceSerialNumber: optional
+    StationName: optional
+    RepetitionTime: required
+    VolumeTiming: required
+    TaskName: required
 - suffixes:
     - events
   extensions:

@@ -1,0 +1,7 @@
+description: "Manufacturer of the equipment that produced the composite
+              instances.
+              Corresponds to DICOM Tag 0008, 0070 Manufacturer"
+format: label
+unit: None
+mutually_exclusive: None
+requires: None
