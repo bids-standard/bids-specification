@@ -188,8 +188,8 @@ The following metadata fields apply to all segmentation files:
 
 Discrete segmentations of brain tissue represent multiple anatomical structures
 (such as tissue class or Brodmann area) with a unique integer label in a 3D volume.
-See [Common image-derived labels](#common-image-derived-labels) for interpretation
-how integer values map to anatomical structures.
+See [Common image-derived labels](#common-image-derived-labels) for a description
+of how integer values map to anatomical structures.
 
 Template:
 
