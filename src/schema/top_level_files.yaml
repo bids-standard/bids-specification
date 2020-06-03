@@ -21,7 +21,7 @@ genetic_info:
 participants:
   required: False
   extensions:
-    - tsv
+    - .tsv
     - .json
 phasediff:
   required: False
