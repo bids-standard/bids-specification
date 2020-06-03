@@ -6,7 +6,7 @@ group1:
   suffixes:
     - photo
   extensions:
-    - jpg
+    - .jpg
   entities:
     sub: required
     ses: optional

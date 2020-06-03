@@ -6,8 +6,8 @@ group1:
   suffixes:
     - channels
   extensions:
-    - json
-    - tsv
+    - .json
+    - .tsv
   entities:
     sub: required
     ses: optional

@@ -4,17 +4,17 @@ group1:
   suffixes:
     - meg
   extensions:
-    - json
-    - ctf/
-    - fif
     - 4d/
-    - sqd
-    - con
-    - raw
-    - ave
-    - mrk
-    - kdf
-    - mhd
+    - ctf/
+    - .json
+    - .fif
+    - .sqd
+    - .con
+    - .raw
+    - .ave
+    - .mrk
+    - .kdf
+    - .mhd
   entities:
     sub: required
     ses: optional
@@ -28,8 +28,8 @@ group2:
   suffixes:
     - headshape
   extensions:
-    - pos
-    - txt
+    - .pos
+    - .txt
   entities:
     sub: required
     ses: optional
@@ -41,7 +41,7 @@ group3:
   suffixes:
     - markers
   extensions:
-    - json
+    - .json
   entities:
     sub: required
     ses: optional

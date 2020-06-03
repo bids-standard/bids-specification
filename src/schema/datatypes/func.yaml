@@ -7,9 +7,9 @@ group1:
     - phase
     - sbref
   extensions:
-    - nii.gz
-    - nii
-    - json
+    - .nii.gz
+    - .nii
+    - .json
   entities:
     sub: required
     ses: optional
@@ -26,8 +26,8 @@ group2:
   suffixes:
     - events
   extensions:
-    - tsv
-    - json
+    - .tsv
+    - .json
   entities:
     sub: required
     ses: optional
@@ -45,8 +45,8 @@ group3:
     - physio
     - stim
   extensions:
-    - tsv.gz
-    - json
+    - .tsv.gz
+    - .json
   entities:
     sub: required
     ses: optional

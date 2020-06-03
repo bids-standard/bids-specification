@@ -5,8 +5,8 @@ group1:
     - stim
     - physio
   extensions:
-    - tsv.gz
-    - json
+    - .tsv.gz
+    - .json
   entities:
     sub: required
     ses: optional
@@ -18,8 +18,8 @@ group2:
     - events
     - beh
   extensions:
-    - tsv
-    - json
+    - .tsv
+    - .json
   entities:
     sub: required
     ses: optional

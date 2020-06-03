@@ -1,41 +1,41 @@
 README:
   required: True
   extensions:
-    - md
-    - rst
+    - .md
+    - .rst
     - None
 CHANGES:
   required: True
   extensions:
-    - md
-    - rst
+    - .md
+    - .rst
     - None
 dataset_description:
   required: True
   extensions:
-    - json
+    - .json
 genetic_info:
   required: False
   extensions:
-    - json
+    - .json
 participants:
   required: False
   extensions:
     - tsv
-    - json
+    - .json
 phasediff:
   required: False
   extensions:
-    - json
+    - .json
 phase1:
   required: False
   extensions:
-    - json
+    - .json
 phase2:
   required: False
   extensions:
-    - json
+    - .json
 fieldmap:
   required: False
   extensions:
-    - json
+    - .json

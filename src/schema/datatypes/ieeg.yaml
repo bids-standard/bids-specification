@@ -4,15 +4,15 @@ group1:
   suffixes:
     - ieeg
   extensions:
-    - json
-    - edf
-    - vhdr
-    - eeg
-    - vmrk
-    - set
-    - fdt
-    - nwb
-    - mef
+    - .json
+    - .edf
+    - .vhdr
+    - .eeg
+    - .vmrk
+    - .set
+    - .fdt
+    - .nwb
+    - .mef
   entities:
     sub: required
     ses: optional

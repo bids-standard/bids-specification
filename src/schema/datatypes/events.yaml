@@ -6,8 +6,8 @@ group1:
   suffixes:
     - events
   extensions:
-    - json
-    - tsv
+    - .json
+    - .tsv
   entities:
     sub: required
     ses: optional

@@ -10,9 +10,9 @@ group1:
     - magnitude
     - fieldmap
   extensions:
-    - nii.gz
-    - nii
-    - json
+    - .nii.gz
+    - .nii
+    - .json
   entities:
     sub: required
     ses: optional
@@ -24,9 +24,9 @@ group2:
   suffixes:
     - epi
   extensions:
-    - nii.gz
-    - nii
-    - json
+    - .nii.gz
+    - .nii
+    - .json
   entities:
     sub: required
     ses: optional

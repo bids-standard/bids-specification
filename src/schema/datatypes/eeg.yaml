@@ -4,14 +4,14 @@ group1:
   suffixes:
     - eeg
   extensions:
-    - json
-    - edf
-    - vhdr
-    - vmrk
-    - eeg
-    - set
-    - fdt
-    - bdf
+    - .json
+    - .edf
+    - .vhdr
+    - .vmrk
+    - .eeg
+    - .set
+    - .fdt
+    - .bdf
   entities:
     sub: required
     ses: optional

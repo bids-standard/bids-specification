@@ -18,9 +18,9 @@ groups:
       - inplaneT2
       - angio
     extensions:
-      - nii.gz
-      - nii
-      - json
+      - .nii.gz
+      - .nii
+      - .json
     entities:
       sub: required
       ses: optional
@@ -33,9 +33,9 @@ groups:
     suffixes:
       - defacemask
     extensions:
-      - nii.gz
-      - nii
-      - json
+      - .nii.gz
+      - .nii
+      - .json
     entities:
       sub: required
       ses: optional

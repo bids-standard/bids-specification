@@ -5,8 +5,8 @@ group1:
   suffixes:
     - electrodes
   extensions:
-    - json
-    - tsv
+    - .json
+    - .tsv
   entities:
     sub: required
     ses: optional
