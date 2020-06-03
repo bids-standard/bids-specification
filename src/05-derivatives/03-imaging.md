@@ -212,7 +212,7 @@ pipeline/
 
 A segmentation can be used to generate a binary mask that functions as a
 discrete "label" for a single structure.
-In this case, the mask suffix MUST be used, and the `label` entity SHOULD be used
+In this case, the mask suffix MUST be used, the `label` entity SHOULD be used
 to specify the masked structure
 (see [Common image-derived labels](#common-image-derived-labels)),
 and the `Atlas` metadata SHOULD be defined.
@@ -230,7 +230,7 @@ pipeline/
 Probabilistic segmentations of brain tissue represent a single anatomical
 structure with values ranging from 0 to 1 in individual 3D volumes or across
 multiple frames.
-If a single structure is included the `label` entity SHOULD be used to specify
+If a single structure is included, the `label` entity SHOULD be used to specify
 the structure.
 
 Template:
@@ -266,7 +266,7 @@ pipeline/
 		    sub-001_space-orig_probseg.json
 ```
 
-The JSON sidecar must include the label-map key that specifies a tissue label
+The JSON sidecar MUST include the label-map key that specifies a tissue label
 for each volume:
 
 ```JSON
@@ -285,9 +285,9 @@ Values of `label` SHOULD correspond to abbreviations defined in
 ### Discrete surface segmentations
 
 Discrete surface segmentations (sometimes called *parcellations*) of cortical
-structures MUST be stored as GIFTI label files, with extension `.label.gii`.
+structures MUST be stored as GIFTI label files, with the extension `.label.gii`.
 For combined volume/surface spaces, discrete segmentations MUST be stored as
-CIFTI-2 dense label fles, with extension `.dlabel.nii`.
+CIFTI-2 dense label fles, with the extension `.dlabel.nii`.
 
 Template:
 
