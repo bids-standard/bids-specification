@@ -1,45 +1,44 @@
-groups:
 # First group
-  - datatypes:
-      - anat
-    suffixes:
-      - T1w
-      - T2w
-      - T1rho
-      - T1map
-      - T2map
-      - T2star
-      - FLAIR
-      - FLASH
-      - PD
-      - PDmap
-      - PDT2
-      - inplaneT1
-      - inplaneT2
-      - angio
-    extensions:
-      - .nii.gz
-      - .nii
-      - .json
-    entities:
-      sub: required
-      ses: optional
-      acq: optional
-      ce: optional
-      rec: optional
+- datatypes:
+    - anat
+  suffixes:
+    - T1w
+    - T2w
+    - T1rho
+    - T1map
+    - T2map
+    - T2star
+    - FLAIR
+    - FLASH
+    - PD
+    - PDmap
+    - PDT2
+    - inplaneT1
+    - inplaneT2
+    - angio
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+    ce: optional
+    rec: optional
 # Second group
-  - datatypes:
-      - anat
-    suffixes:
-      - defacemask
-    extensions:
-      - .nii.gz
-      - .nii
-      - .json
-    entities:
-      sub: required
-      ses: optional
-      acq: optional
-      ce: optional
-      rec: optional
-      mod: optional
+- datatypes:
+    - anat
+  suffixes:
+    - defacemask
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+    ce: optional
+    rec: optional
+    mod: optional
