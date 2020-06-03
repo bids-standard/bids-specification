@@ -1,14 +1,12 @@
-group1:
-  datatypes:
+- datatypes:
+    - meg
     - eeg
     - ieeg
   suffixes:
-    - electrodes
+    - photo
   extensions:
-    - .json
-    - .tsv
+    - .jpg
   entities:
     sub: required
     ses: optional
     acq: optional
-    space: optional

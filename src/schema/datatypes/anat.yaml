@@ -1,7 +1,5 @@
 # First group
-- datatypes:
-    - anat
-  suffixes:
+- suffixes:
     - T1w
     - T2w
     - T1rho
@@ -27,9 +25,7 @@
     ce: optional
     rec: optional
 # Second group
-- datatypes:
-    - anat
-  suffixes:
+- suffixes:
     - defacemask
   extensions:
     - .nii.gz

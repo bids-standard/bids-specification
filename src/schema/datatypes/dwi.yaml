@@ -1,7 +1,4 @@
-group1:
-  datatypes:
-    - dwi
-  suffixes:
+- suffixes:
     - dwi
   extensions:
     - .nii.gz
@@ -15,10 +12,7 @@ group1:
     acq: optional
     dir: optional
     run: optional
-group2:
-  datatypes:
-    - dwi
-  suffixes:
+- suffixes:
     - sbref
   extensions:
     - .nii.gz

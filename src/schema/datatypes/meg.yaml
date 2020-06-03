@@ -1,7 +1,4 @@
-group1:
-  datatypes:
-    - meg
-  suffixes:
+- suffixes:
     - meg
   extensions:
     - 4d/
@@ -22,10 +19,7 @@ group1:
     acq: optional
     run: optional
     proc: optional
-group2:
-  datatypes:
-    - meg
-  suffixes:
+- suffixes:
     - headshape
   extensions:
     - .pos
@@ -35,10 +29,7 @@ group2:
     ses: optional
     acq: optional
     space: optional
-group3:
-  datatypes:
-    - meg
-  suffixes:
+- suffixes:
     - markers
   extensions:
     - .json

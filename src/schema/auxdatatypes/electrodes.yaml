@@ -1,15 +1,13 @@
-group1:
-  datatypes:
-    - meg
+- datatypes:
     - eeg
     - ieeg
   suffixes:
-    - channels
+    - electrodes
   extensions:
     - .json
     - .tsv
   entities:
     sub: required
     ses: optional
-    task: required
-    run: optional
+    acq: optional
+    space: optional

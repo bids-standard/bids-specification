@@ -1,7 +1,4 @@
-group1:
-  datatypes:
-    - eeg
-  suffixes:
+- suffixes:
     - eeg
   extensions:
     - .json

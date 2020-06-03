@@ -1,7 +1,4 @@
-group1:
-  datatypes:
-    - ieeg
-  suffixes:
+- suffixes:
     - ieeg
   extensions:
     - .mefd/

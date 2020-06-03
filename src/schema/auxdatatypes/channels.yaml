@@ -1,13 +1,14 @@
-group1:
-  datatypes:
+- datatypes:
     - meg
     - eeg
     - ieeg
   suffixes:
-    - photo
+    - channels
   extensions:
-    - .jpg
+    - .json
+    - .tsv
   entities:
     sub: required
     ses: optional
-    acq: optional
+    task: required
+    run: optional

@@ -1,5 +1,4 @@
-group1:
-  datatypes:
+- datatypes:
     - meg
     - eeg
     - ieeg

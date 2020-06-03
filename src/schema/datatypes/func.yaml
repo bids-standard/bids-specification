@@ -1,7 +1,4 @@
-group1:
-  datatypes:
-    - func
-  suffixes:
+- suffixes:
     - bold
     - cbv
     - phase
@@ -20,10 +17,7 @@ group1:
     dir: optional
     run: optional
     echo: optional
-group2:
-  datatypes:
-    - func
-  suffixes:
+- suffixes:
     - events
   extensions:
     - .tsv
@@ -38,10 +32,7 @@ group2:
     dir: optional
     run: optional
     echo: optional
-group3:
-  datatypes:
-    - func
-  suffixes:
+- suffixes:
     - physio
     - stim
   extensions:

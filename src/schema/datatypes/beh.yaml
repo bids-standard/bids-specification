@@ -1,7 +1,4 @@
-group1:
-  datatypes:
-    - beh
-  suffixes:
+- suffixes:
     - stim
     - physio
   extensions:
@@ -11,10 +8,7 @@ group1:
     sub: required
     ses: optional
     task: required
-group2:
-  datatypes:
-    - beh
-  suffixes:
+- suffixes:
     - events
     - beh
   extensions:

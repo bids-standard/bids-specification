@@ -1,7 +1,4 @@
-group1:
-  datatypes:
-    - fmap
-  suffixes:
+- suffixes:
     - phasediff
     - phase1
     - phase2
@@ -18,10 +15,7 @@ group1:
     ses: optional
     acq: optional
     run: optional
-group2:
-  datatypes:
-    - fmap
-  suffixes:
+- suffixes:
     - epi
   extensions:
     - .nii.gz
