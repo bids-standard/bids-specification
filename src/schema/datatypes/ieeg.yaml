@@ -4,6 +4,7 @@ group1:
   suffixes:
     - ieeg
   extensions:
+    - .mefd/
     - .json
     - .edf
     - .vhdr
@@ -12,7 +13,6 @@ group1:
     - .set
     - .fdt
     - .nwb
-    - .mef
   entities:
     sub: required
     ses: optional
