@@ -187,9 +187,10 @@ levels unless they are overridden by a file at the lower level. For example,
 TR to a specific value. If one of the runs has a different TR than the one
 specified in that file, another `sub-*_task-rest_bold.json` file can be placed
 within that specific series directory specifying the TR for that specific run.
-There is no notion of "unsetting" a key/value pair. Once a key/value pair is 
-set in a given level in the dataset, lower down in the hierarchy that 
-key/value pair will always have some assigned value. Files for a particular 
+There is no notion of "unsetting" a key/value pair.
+Once a key/value pair is set in a given level in the dataset, lower down in
+the hierarchy that key/value pair will always have some assigned value.
+Files for a particular 
 participant can exist only at participant level directory, i.e
 `/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any file that is not
 specific to a participant is to be declared only at top level of dataset for eg:
