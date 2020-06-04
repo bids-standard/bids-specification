@@ -287,7 +287,7 @@ Values of `label` SHOULD correspond to abbreviations defined in
 Discrete surface segmentations (sometimes called *parcellations*) of cortical
 structures MUST be stored as GIFTI label files, with the extension `.label.gii`.
 For combined volume/surface spaces, discrete segmentations MUST be stored as
-CIFTI-2 dense label fles, with the extension `.dlabel.nii`.
+CIFTI-2 dense label files, with the extension `.dlabel.nii`.
 
 Template:
 
