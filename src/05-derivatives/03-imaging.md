@@ -159,12 +159,16 @@ manual_masks/
 
 ## Segmentations
 
-A *segmentation* is a labeling of a spatial image with anatomical structures
-such that each location (for example, a voxel or a surface vertex) is identified
-with a label or a combination of labels.
-A *discrete segmentation* represents each structure with a unique integer
+A *segmentation* is a labeling of regions of an image such that each location
+(for example, a voxel or a surface vertex) is identified with a label or a
+combination of labels. 
+Labeled regions may include anatomical structures (such as tissue class,
+Brodmann area or white matter tract), discontiguous, functionally-defined
+networks, tumors or lesions.
+
+A *discrete segmentation* represents each region with a unique integer
 label.
-A *probabilistic segmentation* represents each structure as values between
+A *probabilistic segmentation* represents each region as values between
 0 and 1 (inclusive) at each location in the image, and one volume/frame per
 structure may be concatenated in a single file.
 
