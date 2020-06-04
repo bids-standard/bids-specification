@@ -454,6 +454,9 @@ Furthermore, in **both** cases the label for the `task-<label>` entity in the
 The rationale is that this naming scheme will allow users to easily retrieve the
 empty-room recording that best matches a particular experimental session, based
 on date and time of the recording.
+It should be possible to query empty-room recordings just like usual subject
+recordings, hence all metadata sidecar files (such as the `channels.tsv`) file
+SHOULD be present as well, irrespective of the storing strategy.
 In the context of BIDS it is RECOMMENDED to perform an empty-room recording for
 each experimental session.
 
@@ -468,6 +471,7 @@ sub-emptyroom/
         meg/
             sub-emptyroom_ses-20170801_task-noise_meg.ds
             sub-emptyroom_ses-20170801_task-noise_meg.json
+            sub-emptyroom_ses-20170801_task-noise_channels.tsv
 ```
 
 Example for cases resembling strategy 2:
