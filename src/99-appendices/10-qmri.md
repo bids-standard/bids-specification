@@ -226,3 +226,188 @@ sub-01_T1map.json
 “EstimationSoftwareEnv”: “Ubuntu 16.04”
 }
 ```
+
+# Radiofrequency (RF) field mapping 
+
+Most qMRI methods are susceptible to the nonuniformities in the transmit (B1<sup>+</sup>) and/or receive (B1<sup>-</sup>) radiofrequency (RF) fields. Various (acquisition based)
+methods are available to derive maps of spatial variations in the B1<sup>+</sup> and B1<sup>-</sup> 
+fields. These maps are commonly used for the correction of qMRI estimation errors 
+arising from the imperfections in the respective RF field.
+
+An approach similar to that used in anatomical MR images to group a set of input images intended
+for qMRI application (`grouping suffix`) is applied for the inputs of B1<sup>+</sup> and B1<sup>-</sup> RF field mapping. Note that these images do not convey substantial
+structural information by design. Therefore, both inputs and outputs of RF field
+maps are stored in the `fmap` folder.
+
+## Grouping suffixes for RF field mapping 
+
+| Name                                       | Suffix  | Type     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|--------------------------------------------|---------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Double-angle B1<sup>+</sup> mapping                    | TB1DAM   | RF Grouping | Groups images for B1<sup>+</sup> field mapping ([Insko and Bolinger 1993](https://www.sciencedirect.com/science/article/abs/pii/S1064185883711332)). Double angle method is based on the calculation of the actual angles from signal ratios, collected by two acquisitions at different nominal excitation flip angles. Common sequence types for this application include spin echo and echo planar imaging. _Associated output suffixes_: `B1plusmap`                                                                                                                                                      |
+| B1<sup>+</sup> mapping with 3D EPI            | TB1EPI   | RF Grouping | Groups images for B1<sup>+</sup> field mapping ([Jiru and Klose 2006](https://dx.doi.org/10.1002/mrm.21083)). This method is based on two EPI readouts to acquire spin echo (SE) and stimulated echo (STE) images at multiple flip angles in one sequence, used in the calculation of deviations from the nominal flip angle. _Associated output suffixes_: `B1plusmap`                                                                                                                                                      |
+| Actual Flip Ange Imaging (AFI)             | TB1AFI   | RF Grouping | Groups images for B1<sup>+</sup> field mapping ([Yarnykh 2007](https://dx.doi.org/10.1002/mrm.21120)). This method calculates a B1<sup>+</sup> map from two images acquired at interleaved (two) TRs with identical RF pulses using a steady-state sequence. _Associated output suffixes_: `B1plusmap`                                                                                                                                                      |
+| Siemens `tfl_b1_map`             | TB1TFL   | RF Grouping | Groups images acquired using `tfl_b1_map` product sequence by Siemens based on the method by [Chung et al. (2010)](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.22423). The sequence generates one ~anatomical image and one scaled flip angle map._Associated output suffixes_: `B1plusmap`                                                                                                                                                      |
+| Siemens `rf_map`             | TB1RFM   | RF Grouping | Groups images acquired using `rf_map` product sequence by Siemens, using a method combining SE and STE images with EPI readout similar to that by ([Jiru and Klose 2006](https://dx.doi.org/10.1002/mrm.21083)). The sequence generates one ~anatomical image and one scaled flip angle map. _Associated output suffixes_: `B1plusmap`                                                                                                                                                      |
+| B1<sup>-</sup> field correction          | RB1COR   | RF Grouping | Groups low resolution images acquired by the body coil (in the gantry of the scanner) and the head coil using identical acquisition parameters to generate a combined sensitivity map as described in [Papp et al. (2016)](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.26058). _Associated output suffixes_: `B1minusmap`                                                                                                                                                      |
+
+## Entity specifications for RF field mapping grouping suffixes
+
+### `TB1DAM` 
+
+The `fa` entity MUST be used to distinguish images with this suffix: 
+
+```
+└── sub-01/
+     └── fmap/
+         ├── sub-01_fa-1_TB1DAM.nii.gz
+         ├── sub-01_fa-1_TB1DAM.json
+         ├── sub-01_fa-2_TB1DAM.nii.gz
+         └── sub-01_fa-2_TB1DAM.json
+```
+
+### `TB1EPI`
+
+The `fa` and `echo` entities MUST be used to distinguish images with this suffix.
+The use of `fa` follows the default convention. However, this suffix defines a
+specific use case for the `echo` entity:
+
+At each `FlipAngle`, the `TB1EPI` suffix lists two images acquired at two echo times.
+However, the second echo in this method is generated in a different fashion compared 
+to the `MESE`. The first echo is a typical spin echo (SE), whereas the second
+echo is a stimulated echo (STE) that is not generated by an inversion pulse. 
+
+To properly identify constituents of this particular method, values of the `echo`
+entity MUST index the images as follows:  
+
+|`echo-1`|`echo-2`|
+|:--|:----|
+|Lower `EchoTime` | Higher `EchoTime`                  |
+|Spin Echo (SE) image|Stimulated Echo (STE) image|
+
+
+```
+└── sub-01/
+     └── fmap/
+         ├── sub-01_fa-1_echo-1_TB1EPI.nii.gz (SE)
+         ├── sub-01_fa-1_echo-1_TB1EPI.json
+         ├── sub-01_fa-1_echo-2_TB1EPI.nii.gz (STE)
+         ├── sub-01_fa-1_echo-2_TB1EPI.json
+         ├── sub-01_fa-2_echo-1_TB1EPI.nii.gz (SE)
+         ├── sub-01_fa-2_echo-1_TB1EPI.json
+         ├── sub-01_fa-2_echo-2_TB1EPI.nii.gz (STE)
+         └── sub-01_fa-2_echo-2_TB1EPI.json
+```
+
+### `TB1AFI`
+
+This method calculates a B1<sup>+</sup> map from two images acquired at two
+interleaved excitation repetition times (TR). Note that there is not an entity 
+for the TR and its definition depends on the modality (`functional` or `anatomical`)
+in the specification. 
+
+Therefore, to properly identify constituents of this particular method, values of 
+the `acq` entity SHOULD begin with either `tr1` (lower TR) or `tr2` (higher TR) 
+and MAY be followed by freeform entries:  
+
+|First `TR`|Second `TR`|Use case|
+|:--|:----| :----| 
+|`_acq-tr1`|`_acq-tr2`|Single acquisition|
+|`_acq-tr1Test`|`_acq-tr2Test`|Acquisition `Test`|
+|`_acq-tr1Retest`|`_acq-tr2Retest`|Acquisition `Retest`|
+
+```
+└── sub-01/
+     └── fmap/
+         ├── sub-01_acq-tr1_TB1AFI.nii.gz
+         ├── sub-01_acq-tr1_TB1AFI.json
+         ├── sub-01_acq-tr2_TB1AFI.nii.gz
+         └── sub-01_acq-tr2_TB1AFI.json
+```
+
+### `TB1TFL` and `TB1RMF`
+
+These suffixes describe two outputs generated by Siemens `tfl_b1_map` and `rf_map`
+product sequences, respectively. Both sequences output two images. The first image
+appears like an anatomical images and the second output is a scaled flip angle map.
+
+To properly identify constituents of this particular method, values of 
+the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be followed 
+by freeform entries:
+
+|Anatomical (like) image|Scaled FA map|Use case|
+|:--|:----| :----| 
+|`_acq-anat`|`_acq-famp`|Single acquisition|
+|`_acq-anatTest`|`_acq-fampTest`|Acquisition `Test`|
+|`_acq-anatRetest`|`_acq-fampRetest`|Acquisition `Retest`|
+
+```
+└── sub-01/
+     └── fmap/
+         ├── sub-01_acq-anat_TB1TFL.nii.gz 
+         ├── sub-01_acq-anat_TB1TFL.json
+         ├── sub-01_acq-famp_TB1TFL.nii.gz
+         └── sub-01_acq-famp_TB1TFL.json
+```
+
+The example above applies to the `TB1RFM` suffix as well. 
+
+### `RB1COR`
+
+This method generates a sensitivity map by combining two low resolution images
+collected by two transmit coils (the body and the head coil) upon subsequent scans
+with identical acquisition parameters.
+
+To properly identify constituents of this particular method, values of the `acq`
+entity SHOULD begin with either `body` or `head` and MAY be followed by freeform
+entries:  
+
+|Body coil|Head coil|Use case|
+|:--|:----| :----| 
+|`_acq-body`|`_acq-head`|Single acquisition|
+|`_acq-bodyMTw`|`_acq-headMTw`|`MTw` for `MPM`|
+|`_acq-bodyPDw`|`_acq-headPDw`|`PDw` for `MPM`|
+|`_acq-bodyT1w`|`_acq-headT1w`|`T1w` for `MPM`|
+
+```
+└── sub-01/
+     └── fmap/
+         ├── sub-01_acq-body_RB1COR.nii.gz (Body coil)
+         ├── sub-01_acq-body_RB1COR.json
+         ├── sub-01_acq-head_RB1COR.nii.gz (Head coil)
+         └── sub-01_acq-head_RB1COR.json
+```
+
+## Where to place RF field maps? 
+
+**If the RF field map is generated using an open-source software:**
+
+RF field maps SHOULD be stored in the `derivatives` folder, but MAY
+be symbolic linked to the corresponding raw data directory to facilitate the
+easy use of these images as input to processing workflows implemented as
+BIDS-apps. For example:
+
+```diff
+ ds-example/
+ ├── derivatives/
+ |   └── qMRI-software/
+ |       └── sub-01/
+ |           └── fmap/
+ |               ├── sub-01_acq-PDw_B1minusmap.nii.gz    ─────────┐ 
+ |               ├── sub-01_acq-PDw_B1minusmap.json      ───────┐ | 
+ |               ├── sub-01_B1plusmap.nii.gz             ─────┐ | | 
+ |               └── sub-01_B1plusmap.json               ───┐ | | | 
+ └── sub-01/                                                | | | | S
+     └── fmap/                                              | | | | Y
+         ├── sub-01_acq-bodyPDw_RB1COR.nii.gz               | | | | M
+         ├── sub-01_acq-bodyPDw_RB1COR.json                 | | | | L
+         ├── sub-01_acq-headPDw_RB1COR.nii.gz               | | | | I
+         ├── sub-01_acq-headPDw_RB1COR.json                 | | | | N
+         ├── sub-01_fa-1_TB1DAM.nii.gz                      | | | | K
+         ├── sub-01_fa-1_TB1DAM.json                        | | | | 
+         ├── sub-01_fa-2_TB1DAM.nii.gz                      | | | | T
+         ├── sub-01_fa-2_TB1DAM.json                        | | | | O
+         ├── sub-01_acq-PDw_B1minusmap.nii.gz  ◀────────────├─├─├─┘
+         ├── sub-01_acq-PDw_B1minusmap.json    ◀────────────├─├─┘
+         ├── sub-01_B1plusmap.nii.gz           ◀────────────├─┘
+         └── sub-01_B1plusmap.json             ◀────────────┘
+```
