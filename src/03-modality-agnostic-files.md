@@ -17,6 +17,7 @@ dataset MUST include this file with the following fields:
 | ------------------------------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                       |
 | BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                            |
+| DatasetType        | RECOMMENDED. The interpretaton of the dataset. MUST be one of `"raw"` or `"derivative"`. For backwards compatibility, the default value is `"raw"`.                                                                                  |
 | License            | RECOMMENDED. What license is this dataset distributed under? The use of license name abbreviations is suggested for specifying a license. A list of common licenses with suggested abbreviations can be found in Appendix II.        |
 | Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                               |
 | Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                 |
@@ -31,7 +32,8 @@ Example:
 ```JSON
 {
   "Name": "The mother of all experiments",
-  "BIDSVersion": "1.0.1",
+  "BIDSVersion": "1.4.0",
+  "DatasetType": "raw",
   "License": "CC0",
   "Authors": [
     "Paul Broca",
@@ -86,6 +88,7 @@ Example:
 {
   "Name": "FMRIPREP Outputs",
   "BIDSVersion": "1.4.0",
+  "DatasetType": "derivative",
   "GeneratedBy": [
     {
       "Name": "fmriprep",
