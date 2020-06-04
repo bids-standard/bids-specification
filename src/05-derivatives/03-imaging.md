@@ -298,7 +298,9 @@ Template:
             <source_entities>[_hemi-{L|R}][_space-<space>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
 ```
 
-The `hemi` tag is REQUIRED for GIFTI files. For example:
+The `hemi` tag is REQUIRED for GIFTI files storing information about
+a structure that is restricted to a hemibrain.
+For example:
 
 ```Text
 pipeline/
