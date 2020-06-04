@@ -475,8 +475,11 @@ Example for cases resembling strategy 2:
 ```Text
 sub-control01/
 sub-control02/
-    sub-control01_task-bart_meg.ds
-    sub-control01_task-noise_meg.ds
-    sub-control01_task-bart_meg.json
-    sub-control01_task-noise_meg.json
+    meg/
+        sub-control01_task-bart_meg.ds
+        sub-control01_task-bart_meg.json
+        sub-control01_task-bart_channels.tsv
+        sub-control01_task-noise_meg.ds        
+        sub-control01_task-noise_meg.json
+        sub-control01_task-noise_channels.tsv
 ```
