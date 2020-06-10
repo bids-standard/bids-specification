@@ -1,0 +1,134 @@
+#!/usr/bin/env python3
+#
+# pip install pyyaml-include click click-didyoumean
+
+import logging
+import os
+from pathlib import Path
+import yaml
+#
+import click
+from click_didyoumean import DYMGroup
+from yamlinclude import YamlIncludeConstructor
+
+
+#
+# Aux utilities
+#
+
+
+def get_logger(name=None):
+    """Return a logger to use
+    """
+    return logging.getLogger("bids-schema" + (".%s" % name if name else ""))
+
+
+def set_logger_level(lgr, level):
+    if isinstance(level, int):
+        pass
+    elif level.isnumeric():
+        level = int(level)
+    elif level.isalpha():
+        level = getattr(logging, level)
+    else:
+        lgr.warning("Do not know how to treat loglevel %s" % level)
+        return
+    lgr.setLevel(level)
+
+
+_DEFAULT_LOG_FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+lgr = get_logger()
+# Basic settings for output, for now just basic
+set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
+FORMAT = "%(asctime)-15s [%(levelname)8s] %(message)s"
+logging.basicConfig(format=FORMAT)
+
+#
+# Constants and defaults
+#
+BIDS_SCHEMA = Path(__file__).parent.parent / "src" / "schema" / "bids.yaml"
+
+#
+# Main group
+#
+
+
+def print_version(ctx, param, value):
+    if not value or ctx.resilient_parsing:
+        return
+    click.echo(__version__)
+    ctx.exit()
+
+
+def upper(ctx, param, value):
+    import pdb
+
+    pdb.set_trace()
+    return value.upper()
+
+#
+# Common options to reuse
+#
+# Functions to provide customizations where needed
+def _updated_option(*args, **kwargs):
+    args, d = args[:-1], args[-1]
+    kwargs.update(d)
+    return click.option(*args, **kwargs)
+
+
+def schema_path_option():
+    return click.option(
+        "--schema-path",
+        type=click.Path(exists=True, dir_okay=False),
+        default=str(BIDS_SCHEMA),
+        help="Path to the top level .yaml file describing the schema")
+
+
+# group to provide commands
+@click.group(cls=DYMGroup)
+@click.option(
+    "--version", is_flag=True, callback=print_version, expose_value=False, is_eager=True
+)
+@click.option(
+    "-l",
+    "--log-level",
+    help="Log level name",
+    # TODO: may be bring also handling of  int  values.  For now -- no need
+    type=click.Choice(["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]),
+    default="INFO",
+    # callback=upper,  # TODO: not in effect! seems to come to play only after type validation
+    show_default=True,
+)
+@click.option("--pdb", help="Fall into pdb if errors out", is_flag=True)
+def main(log_level, pdb=False):
+    """A client to support BIDS schema manipulations.
+    """
+    set_logger_level(get_logger(), log_level)
+    if pdb:
+        map_to_click_exceptions._do_map = False
+        from ..utils import setup_exceptionhook
+
+        setup_exceptionhook()
+
+
+def load_schema(schema_path):
+    schema_path = Path(schema_path)
+    YamlIncludeConstructor.add_to_loader_class(
+        loader_class=yaml.FullLoader, base_dir=schema_path.parent)
+
+    with open(schema_path) as f:
+        return yaml.load(f, Loader=yaml.FullLoader)
+
+
+@main.command()
+# TODO: may be add "format" and make it also json?
+@schema_path_option()
+def show(schema_path):
+    """Print full schema."""
+    schema = load_schema(schema_path)
+    print(yaml.safe_dump(schema, default_flow_style=False))
+
+
+if __name__ == '__main__':
+    main()
