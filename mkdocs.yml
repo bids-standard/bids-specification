@@ -9,6 +9,7 @@ extra_javascript:
 markdown_extensions:
     - toc:
         anchorlink: true
+    - pymdownx.superfences
 plugins:
     - search
     - branchcustomization:
@@ -32,8 +33,12 @@ nav:
         - Physiological and other continuous recordings: 04-modality-specific-files/06-physiological-and-other-continuous-recordings.md
         - Behavioral experiments (with no MRI): 04-modality-specific-files/07-behavioral-experiments.md
         - Genetic Descriptor: 04-modality-specific-files/08-genetic-descriptor.md
-      - Longitudinal and multi-site studies: 05-longitudinal-and-multi-site-studies.md
-      - BIDS Extension Proposals: 06-extensions.md
+      - Derivatives:
+        - BIDS Derivatives: 05-derivatives/01-introduction.md
+        - Common data types and metadata: 05-derivatives/02-common-data-types.md
+        - Imaging data types: 05-derivatives/03-imaging.md
+      - Longitudinal and multi-site studies: 06-longitudinal-and-multi-site-studies.md
+      - BIDS Extension Proposals: 07-extensions.md
       - Appendix:
         - Contributors: 99-appendices/01-contributors.md
         - Licenses: 99-appendices/02-licenses.md

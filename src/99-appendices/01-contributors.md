@@ -50,8 +50,9 @@ your name is not listed, please add it.
 -   Alejandro de la Vega 🐛💻⚠️
 -   Arnaud Delorme 📖💡
 -   Benjamin Dichter 📖
+-   Erin W. Dickie 📖🤔👀📢💬
 -   Eugene P. Duff 📖
--   Elizabeth DuPre 📖💡🔍🤔
+-   Elizabeth DuPre 📖💡🔍🤔💬
 -   Eric A. Earl 🤔
 -   Anders Eklund 📖📢💻
 -   Oscar Esteban 📖🔧🤔💬💻
@@ -141,6 +142,7 @@ your name is not listed, please add it.
 -   Matt Sanderson 📖💻
 -   Gunnar Schaefer 📖
 -   Jan-Mathijs Schoffelen 📖
+-   Robert E. Smith 💻📖
 -   Vanessa Sochat 📖
 -   Arjen Stolk 📖
 -   Nicole C. Swann 📖
