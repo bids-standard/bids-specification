@@ -2,6 +2,8 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] Clarify language on unsetting a key/value pair [#495](https://github.com/bids-standard/bids-specification/pull/495) ([nicholst](https://github.com/nicholst))
+-   ENH: Add RECOMMENDED DatasetType key to dataset description [#494](https://github.com/bids-standard/bids-specification/pull/494) ([effigies](https://github.com/effigies))
 -   Clarify mask/dseg/probseg in common derivatives [#489](https://github.com/bids-standard/bids-specification/pull/489) ([effigies](https://github.com/effigies))
 -   Reorganize derivatives [#488](https://github.com/bids-standard/bids-specification/pull/488) ([effigies](https://github.com/effigies))
 -   Enh/prov [#486](https://github.com/bids-standard/bids-specification/pull/486) ([satra](https://github.com/satra))
@@ -21,6 +23,7 @@
 -   \[FIX] fix inconsistencies for task label between sections [#446](https://github.com/bids-standard/bids-specification/pull/446) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] update DECISION-MAKING.md document with new governance [#441](https://github.com/bids-standard/bids-specification/pull/441) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Add `res` and `den` keywords to indicate resolution of resampled data [#301](https://github.com/bids-standard/bids-specification/pull/301) ([oesteban](https://github.com/oesteban))
+-   \[ENH] BEP 003: Common Derivatives [#265](https://github.com/bids-standard/bids-specification/pull/265) ([effigies](https://github.com/effigies))
 -   \[ENH] Add Glossary of terms/abbreviations used in the specification [#152](https://github.com/bids-standard/bids-specification/pull/152) ([yarikoptic](https://github.com/yarikoptic))
 
 ## [v1.3.0](https://github.com/bids-standard/bids-specification/tree/v1.3.0) (2020-04-14)
