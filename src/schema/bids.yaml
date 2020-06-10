@@ -1,0 +1,7 @@
+entities: !include entities.yaml
+associated_data: !include associated_data.yaml
+top_level_files: !include top_level_files.yaml
+# Full hierarchies
+datatypes: !include datatypes/*.yaml
+auxdatatypes: !include auxdatatypes/*.yaml
+metadata: !include metadata/*.yaml
