@@ -290,7 +290,7 @@ within that specific series directory specifying the TR for that specific run.
 There is no notion of "unsetting" a key/value pair.
 Once a key/value pair is set in a given level in the dataset, lower down in
 the hierarchy that key/value pair will always have some assigned value.
-Files for a particular 
+Files for a particular
 participant can exist only at participant level directory, i.e
 `/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any file that is not
 specific to a participant is to be declared only at top level of dataset for eg:
@@ -423,13 +423,13 @@ dictionary matches a column name in the TSV file, then that field MUST contain a
 description of the corresponding column, using an object containing the following
 fields:
 
-| Field name  | Definition                                                                                                                        |
-| :---------- | :-------------------------------------------------------------------------------------------------------------------------------- |
-| LongName    | Long (unabbreviated) name of the column.                                                                                          |
-| Description | Description of the column.                                                                                                        |
-| Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).                                |
-| Units       | Measurement units. SI units in CMIXF formatting are REQUIRED when possible (see [units section](./02-common-principles.md#units). |
-| TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web.                                     |
+| Field name  | Definition                                                                                                             |
+| :---------- | :--------------------------------------------------------------------------------------------------------------------- |
+| LongName    | Long (unabbreviated) name of the column.                                                                               |
+| Description | Description of the column.                                                                                             |
+| Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).                     |
+| Units       | Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [units section](./02-common-principles.md#units). |
+| TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web.                          |
 
 Example:
 
@@ -524,10 +524,10 @@ non-standard prefixed units MUST be specified in the JSON file.
 See [Appendix V](99-appendices/05-units.md) for a list of standard units and
 prefixes.
 Note also that for the *formatting* of SI units, the [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12)
-convention for encoding units is REQUIRED.
+convention for encoding units is RECOMMENDED.
 CMIXF provides a consistent system for all units and prefix symbols with only basic
 characters, avoiding symbols that can cause text encoding problems; for example the
-CMIXF formatting for "micro volts" is `uV`, "degrees Celsius" is `oC` and "Ohm" is `Ohm`. 
+CMIXF formatting for "micro volts" is `uV`, "degrees Celsius" is `oC` and "Ohm" is `Ohm`.
 See [Appendix V](99-appendices/05-units.md) for more information.
 
 For additional rules, see below:

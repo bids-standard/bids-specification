@@ -1,14 +1,14 @@
 # Appendix V: Units
 
 As described in the [units section](../02-common-principles.md#units),
-the specification of units MUST follow the
+the specification of units SHOULD follow the
 [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
 (SI, abbreviated from the French Système international (d'unités)).
 
 The [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention
-for encoding units is REQUIRED to achieve maximum portability and limited
+for encoding units is RECOMMENDED to achieve maximum portability and limited
 variability of representation.
-If a CMIXF-12 representation of a unit is not possible, the unit MUST be declared
+If a CMIXF-12 representation of a unit is not possible, the unit can be declared
 as custom units and defined in an accompanying JSON file, as described in the
 [units section](../02-common-principles.md#units).
 Earlier versions of the BIDS standard listed the following Unicode symbols, and
@@ -23,24 +23,27 @@ are permissible for each, but the first character mentioned respectively is
 preferred as per Unicode rules (see the section on "Duplicated Characters"
 on page 11 in the [unicode report](https://www.unicode.org/reports/tr25/)).
 
-It is REQUIRED that units be CMIXF-12 compliant or among these five Unicode
+It is RECOMMENDED that units be CMIXF-12 compliant or among these five Unicode
 characters.
+Please note the appropriate upper- or lower- casing when using CMIXF-12.
 
-Units MUST consist of the `unit symbol` with an optionally accompanying
-`prefix symbol` (see table below). Appropriate upper- or lower- casing MUST
-be applied as declared by CMIXF-12.
-
-For cases that are unspecified by this appendix, or the
-[units section](../02-common-principles.md#units), the
-[CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention
+For cases that are unspecified by this appendix or the[units section](../02-common-principles.md#units),
+the [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention
 applies.
+
 You can use the [cmixf Python package](https://github.com/sensein/cmixf) to
 check whether your formatting is compliant.
 
-Examples:
+Examples for CMIXF-12 (including the five unicode symbols mentioned above):
 
-1.  `uV` or `µV` are permissible, but NOT: `microV`, `µvolt`, `1e-6V`, etc.
-1.  Combinations of units are allowed, e.g., `V/us` for the [Slew rate](https://en.wikipedia.org/wiki/Slew_rate)
+1.  Different formatting of "micro Volts":
+    1.  RECOMMENDED: `uV` or `µV`
+    1.  NOT RECOMMENDED: `microV`, `µvolt`, `1e-6V`, etc.
+1.  Combinations of units:
+    1.  RECOMMENDED: `V/us` for the [Slew rate](https://en.wikipedia.org/wiki/Slew_rate)
+    1.  NOT RECOMMENDED: `volts per microsecond`
+
+## Unit table
 
 | Unit name      | Unit symbol | Quantity name                              |
 | -------------- | ----------- | ------------------------------------------ |
