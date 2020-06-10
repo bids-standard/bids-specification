@@ -2,6 +2,7 @@
 #
 # pip install click click-didyoumean tabulate
 
+from itertools import chain
 import logging
 import os
 from pathlib import Path
@@ -192,20 +193,41 @@ def show(schema_path):
 @main.command()
 # TODO: output path, for now just print
 @schema_path_option()
-def entity_table(schema_path):
+def entity_table(schema_path, tablefmt="github"):
     """Produce entity table (markdown) based on schema."""
-    import tabulate
+    from tabulate import tabulate
     schema = load_schema(schema_path)
     # prepare the table based on the schema
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     header = ['Entity']
     formats = ['Format']
-    modalities = {}  # ordered dict
-    for entity in schema['entities']:
-        pass
+    entity_to_col = {}
+    table = [formats]
+
+    # Compose header and formats first
+    for i, (entity, spec) in enumerate(schema['entities'].items()):
+        header.append(spec["name"])
+        formats.append(f'`{entity}-<{spec["format"]}>`')
+        entity_to_col[entity] = i + 1
+    # Go through data types
+    for dtype, specs in chain(schema['datatypes'].items(),
+                              schema['auxdatatypes'].items()):
+        # each dtype could have multiple specs
+        for spec in specs:
+            # datatypes use suffixes, while
+            # for auxdatatypes we need to use datatypes
+            # TODO: RF to avoid this guesswork
+            suffixes = spec.get('datatypes') or spec.get('suffixes')
+            # TODO: <br> is specific for html form
+            suffixes_str = '<br>({})'.format(' '.join(suffixes)) \
+                if (suffixes and suffixes != [dtype]) else ''
+            dtype_row = [f'{dtype}{suffixes_str}'] + [''] * len(entity_to_col)
+            for ent, req in spec.get('entities', []).items():
+                dtype_row[entity_to_col[ent]] = req.upper()
+            table.append(dtype_row)
 
     # print it as markdown
-    print(tabulate(table, headers, tablefmt="github"))
+    print(tabulate(table, header, tablefmt=tablefmt))
 
 
 if __name__ == '__main__':
