@@ -39,6 +39,7 @@ Examples for CMIXF-12 (including the five unicode symbols mentioned above):
 1.  Different formatting of "micro Volts":
     1.  RECOMMENDED: `uV` or `µV`
     1.  NOT RECOMMENDED: `microV`, `µvolt`, `1e-6V`, etc.
+
 1.  Combinations of units:
     1.  RECOMMENDED: `V/us` for the [Slew rate](https://en.wikipedia.org/wiki/Slew_rate)
     1.  NOT RECOMMENDED: `volts per microsecond`
