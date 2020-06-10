@@ -1,20 +1,59 @@
 #!/usr/bin/env python3
 #
-# pip install pyyaml-include click click-didyoumean
+# pip install click click-didyoumean tabulate
 
 import logging
 import os
 from pathlib import Path
 import yaml
+import sys
 #
 import click
 from click_didyoumean import DYMGroup
-from yamlinclude import YamlIncludeConstructor
+#from yamlinclude import YamlIncludeConstructor
 
+# helper to debug
+from pprint import pprint
 
 #
 # Aux utilities
 #
+
+
+def is_interactive():
+    """Return True if all in/outs are tty"""
+    # TODO: check on windows if hasattr check would work correctly and add value:
+    #
+    return sys.stdin.isatty() and sys.stdout.isatty() and sys.stderr.isatty()
+
+
+def setup_exceptionhook(ipython=False):
+    """Overloads default sys.excepthook with our exceptionhook handler.
+
+       If interactive, our exceptionhook handler will invoke
+       pdb.post_mortem; if not interactive, then invokes default handler.
+    """
+
+    def _pdb_excepthook(type, value, tb):
+        import traceback
+
+        traceback.print_exception(type, value, tb)
+        print()
+        if is_interactive():
+            import pdb
+
+            pdb.post_mortem(tb)
+
+    if ipython:
+        from IPython.core import ultratb
+
+        sys.excepthook = ultratb.FormattedTB(
+            mode="Verbose",
+            # color_scheme='Linux',
+            call_pdb=is_interactive(),
+        )
+    else:
+        sys.excepthook = _pdb_excepthook
 
 
 def get_logger(name=None):
@@ -47,7 +86,7 @@ logging.basicConfig(format=FORMAT)
 #
 # Constants and defaults
 #
-BIDS_SCHEMA = Path(__file__).parent.parent / "src" / "schema" / "bids.yaml"
+BIDS_SCHEMA = Path(__file__).parent.parent / "src" / "schema"
 
 #
 # Main group
@@ -80,9 +119,9 @@ def _updated_option(*args, **kwargs):
 def schema_path_option():
     return click.option(
         "--schema-path",
-        type=click.Path(exists=True, dir_okay=False),
+        type=click.Path(exists=True, dir_okay=True),
         default=str(BIDS_SCHEMA),
-        help="Path to the top level .yaml file describing the schema")
+        help="Path to the directory with the schema")
 
 
 # group to provide commands
@@ -106,19 +145,39 @@ def main(log_level, pdb=False):
     """
     set_logger_level(get_logger(), log_level)
     if pdb:
-        map_to_click_exceptions._do_map = False
-        from ..utils import setup_exceptionhook
-
+        #map_to_click_exceptions._do_map = False
         setup_exceptionhook()
 
 
-def load_schema(schema_path):
-    schema_path = Path(schema_path)
-    YamlIncludeConstructor.add_to_loader_class(
-        loader_class=yaml.FullLoader, base_dir=schema_path.parent)
+def _get_entry_name(path):
+    if path.suffix == '.yaml':
+        return path.name[:-5]  # no .yaml
+    else:
+        return path.name
 
-    with open(schema_path) as f:
-        return yaml.load(f, Loader=yaml.FullLoader)
+
+def load_schema(schema_path):
+    """The schema loader
+
+    It allows for schema, like BIDS itself, to be specified in
+    a hierarchy of directories and files.
+    File (having .yaml stripped) and directory names become keys
+    in the associative array (dict) of entries composed from content
+    of files and entire directories.
+    """
+    schema_path = Path(schema_path)
+    if schema_path.is_file():
+        assert schema_path.suffix == '.yaml'
+        with open(schema_path) as f:
+            return yaml.load(f, Loader=yaml.SafeLoader)
+    elif schema_path.is_dir():
+        # iterate through files and subdirectories
+        return {
+            _get_entry_name(path): load_schema(path)
+            for path in sorted(schema_path.iterdir())
+        }
+    else:
+        raise RutimeError(f"{schema_path} is somehow nothing we can load")
 
 
 @main.command()
@@ -128,6 +187,25 @@ def show(schema_path):
     """Print full schema."""
     schema = load_schema(schema_path)
     print(yaml.safe_dump(schema, default_flow_style=False))
+
+
+@main.command()
+# TODO: output path, for now just print
+@schema_path_option()
+def entity_table(schema_path):
+    """Produce entity table (markdown) based on schema."""
+    import tabulate
+    schema = load_schema(schema_path)
+    # prepare the table based on the schema
+    import pdb; pdb.set_trace()
+    header = ['Entity']
+    formats = ['Format']
+    modalities = {}  # ordered dict
+    for entity in schema['entities']:
+        pass
+
+    # print it as markdown
+    print(tabulate(table, headers, tablefmt="github"))
 
 
 if __name__ == '__main__':
