@@ -1,6 +1,6 @@
 # Changelog
 
-## [v1.4.0](https://bids-specification.readthedocs.io/en/v1.4.0/) (2020-06-12)
+## [v1.4.0](https://bids-specification.readthedocs.io/en/v1.4.0/) (2020-06-11)
 
 -   \[FIX] Clarify language on unsetting a key/value pair [#495](https://github.com/bids-standard/bids-specification/pull/495) ([nicholst](https://github.com/nicholst))
 -   ENH: Add RECOMMENDED DatasetType key to dataset description [#494](https://github.com/bids-standard/bids-specification/pull/494) ([effigies](https://github.com/effigies))
@@ -264,8 +264,8 @@
     NumberOfVolumesDiscardedByScanner field \[[4.1 Task (including
     resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 
--   Added TotalReadoutTime to functional images metadata list
-     \[[4.1 Task (including resting state) imaging
+-   Added TotalReadoutTime to functional images metadata list
+     \[[4.1 Task (including resting state) imaging
     data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 
 ## 1.0.1-rc1
@@ -280,16 +280,16 @@
 
 -   Added SoftwareVersions
 
--   Added run-&lt;run_index> to the phase encoding
+-   Added run-&lt;run_index> to the phase encoding
     maps. Improved the description.
 
--   Added InversionTime metadata key.
+-   Added InversionTime metadata key.
 
 -   Clarification on the source vs raw language.
 
--   Added trial_type column to the event files.
+-   Added trial_type column to the event files.
 
--   Added missing sub-&lt;participant_label> in
+-   Added missing sub-&lt;participant_label> in
     behavioral data file names
 
 -   Added ability to store stimuli files.
@@ -320,10 +320,10 @@
 
 ## 1.0.0-rc3
 
--   Renamed PhaseEncodingDirection values from “x”, “y”,
+-   Renamed PhaseEncodingDirection values from “x”, “y”,
     “z” to “i”, “j”, “k” to avoid confusion with FSL parameters
 
--   Renamed SliceEncodingDirection values from “x”, “y”,
+-   Renamed SliceEncodingDirection values from “x”, “y”,
     “z” to “i”, “j”, “k”
 
 ## 1.0.0-rc2
@@ -336,39 +336,39 @@
 
 -   Make support for uncompressed .nii files more explicit.
 
--   Added BIDSVersion to dataset.json
+-   Added BIDSVersion to dataset.json
 
--   Remove the statement that SliceEncodingDirection is
+-   Remove the statement that SliceEncodingDirection is
     necessary for slice time correction
 
 -   Change dicom converter recommendation from dcmstack to dcm2nii and
     dicm2nii following interactions with the community (see
-    <https://github.com/moloney/dcmstack/issues/39> and
+    <https://github.com/moloney/dcmstack/issues/39> and
     <https://github.com/neurolabusc/dcm2niix/issues/4>).
 
 -   Added section on behavioral experiments with no accompanying MRI
     acquisition
 
--   Add \_magnitude.nii\[.gz] image for GE type
+-   Add \_magnitude.nii\[.gz] image for GE type
     fieldmaps.
 
--   Replaced EchoTimeDifference with
-    EchoTime1 and EchoTime2 (SPM toolbox
+-   Replaced EchoTimeDifference with
+    EchoTime1 and EchoTime2 (SPM toolbox
     requires this input).
 
 -   Added support for single band reference image for DWI.
 
--   Added DatasetDOI field in the dataset
+-   Added DatasetDOI field in the dataset
     description.
 
 -   Added description of more metadata fields relevant to DWI fieldmap
     correction.
 
--   PhaseEncodingDirection is now expressed in “x”, “y” etc. instead of “PA”
+-   PhaseEncodingDirection is now expressed in “x”, “y” etc. instead of “PA”
     “RL” for DWI scans
     (so it’s the same as BOLD scans)
 
--   Added rec-&lt;label> flag to BOLD files to
+-   Added rec-&lt;label> flag to BOLD files to
     distinguish
     between different reconstruction algorithms
     (analogous to anatomical scans).
