@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -eu
+topdir=$(dirname $0)/..
+sed -i -e '/^| *Entity/,1000d' "$topdir/src/99-appendices/04-entity-table.md"
+"$topdir/tools/bids-schema" entity-table >> "$topdir/src/99-appendices/04-entity-table.md"
