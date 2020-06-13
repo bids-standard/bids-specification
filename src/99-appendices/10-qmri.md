@@ -37,7 +37,7 @@ magnetization prepared two gradient echoes (MP2RAGE). Such generic acquisitions
 can serve as a basis to derive various qMRI applications by changes to
 the acquisition sequence (e.g. readout) type or varying additional scan parameters.
 
-If such a inheritance relationship is applicable between an already existing
+If such an inheritance relationship is applicable between an already existing
 `grouping suffix` and a new qMRI application to be included in the specification,
 the inheritor qMRI method MUST be listed in the table below instead of
 introducing a new `grouping suffix`. This approach:
