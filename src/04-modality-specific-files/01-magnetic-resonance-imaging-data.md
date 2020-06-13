@@ -215,7 +215,8 @@ A change to the specification is REQUIRED to expand or to modify the following t
 | T2 star weighted images                    | T2starw | Conventional | Denotes images with predominant T2* contribution, typically images acquired using a GRE sequence with low flip angle, long echo time and long repetition time. Please note that this suffix is not a surrogate for `T2starmap`. |
 | Fluid Attenuated Inversion Recovery Images | FLAIR   | Conventional | Denotes images with predominant T2 contribution (a.k.a T2-FLAIR), in which signal from fluids (e.g. CSF) is nulled out by adjusting inversion time, coupled with notably long repetition and echo times.              |
 | Inplane T1                                 | inplaneT1 | Conventional | T1-weighted anatomical image matched to functional acquisition                                                           |
-| Inplane T2                                 | inplaneT2 | Conventional | T2-weighted anatomical image matched to functional acquisition                                                           | 
+| Inplane T2                                 | inplaneT2 | Conventional | T2-weighted anatomical image matched to functional acquisition                                                           |
+| PDw and T2w images obtained using dual-echo FSE           | PDT2| Conventional | PDw and T2w images acquired using a dual-echo FSE sequence through view sharing process [(Johnson et al. 1994)](http://www.ajnr.org/content/15/4/667.short).                                                           | 
 
 Example use for conventional **T1 weighted images**:
 
