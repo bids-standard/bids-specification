@@ -37,7 +37,7 @@ magnetization prepared two gradient echoes (MP2RAGE). Such generic acquisitions
 can serve as a basis to derive various qMRI applications by changes to
 the acquisition sequence (e.g. readout) type or varying additional scan parameters.
 
-If such inheritance relationship is applicable between an already existing
+If such an inheritance relationship is applicable between an already existing
 `grouping suffix` and a new qMRI application to be included in the specification,
 the inheritor qMRI method MUST be listed in the table below instead of
 introducing a new `grouping suffix`. This approach:
@@ -92,6 +92,35 @@ For a dataset with a `grouping suffix`, the BIDS validation is successful if:
 * provided suffixes are present in the list of available suffixes
 * sidecar JSON files follow the hierarchy defined for `grouping suffix`.
 
+# Introducing a new qMRI grouping suffix
+
+In the future, novel qMRI applications will be introduced that are not yet
+described by the BIDS. If such applications can not be interpreted as a 
+subset of a pre-existing `grouping suffix`,
+a new grouping suffix can be introduced, but should adhere to the following
+principles:
+
+* All grouping suffixes MUST be capitalized.
+* Grouping suffixes MUST attain a clear description of the qMRI application
+that they relate to. Hyperlinks to example applications and/or more detailed
+descriptions are encouraged whenever possible.
+* Unless the pulse sequence is exclusively associated with a specific qMRI
+application (e.g. `MP2RAGE`), sequence names are NOT used as grouping suffixes.
+* If it is possible to derive a qMRI application from an already existing
+grouping suffix by defining a set of logical conditions over the metadata
+fields, the [table of method-specific priority levels](#prioritylevels) and the
+[table of qMRI applications that can be derived from an existing grouping suffix](#varianttable)
+ MUST be expanded instead of introducing a new grouping suffix.
+ Please visit the [JSON content for grouping suffixes](#whichmetadata) 
+ for further details.
+* Please note that if a structural data has the type of grouped scan collection,
+the use of `_suffix` alone cannot distinguish its members from each other,
+failing to identify their roles as inputs to the calculation of qMRI maps.
+Although such images are REQUIRED to be grouped by a proper grouping suffix,
+they are also RECOMMENDED to include at least one of the `acq`, `part`, `echo`,
+`met`, `inv`-key/value-pairs (please visit corresponding sections for details).
+
+
 # Management of the qMRI maps
 
 All qMRI maps are generated following a set of calculations. Unlike conventional 
@@ -99,7 +128,7 @@ MR images, they are not products of an MRI image reconstruction (from k-space da
 to structural images). There are two possible options in the way a qMRI map is obtained: 
 
 1. The qMRI map is calculated at the scanner site through a non-transparent vendor pipeline.
-2. The qMRI map is generated off-site using an open-source software. 
+2. The qMRI map is generated off-site using open-source software. 
 
 ## Where to place qMRI maps? 
 
@@ -109,7 +138,7 @@ Although qMRI maps are derivatives, we cannot relate them to their parent images
 not even be accessible) through a set of calculations in this case. Therefore, such maps obtained
 at the scanner site via non-transparent pipelines are placed at the `/sub-#/anat` directory.
 
-**If the qMRI map is generated using an open-source software:**
+**If the qMRI map is generated using open-source software:**
 
 Quantitative maps SHOULD be stored in the `derivatives` folder, but MAY
 be symbolic linked to the corresponding raw data directory to facilitate the
@@ -146,13 +175,13 @@ In the example above, outputs of the `MTS` that are placed under the `derivative
 folder are symbolic linked to the respective `anat` folder. This way, an
 application can easily pick up a qMRI map along with other anatomical images.
 
-## Which metadata fields should a qMRI map contain? 
+## <a name="whichmetadata">Which metadata fields should a qMRI map contain?</a>
 
 **If the qMRI map is calculated at the scanner site through a non-transparent vendor pipeline:** 
 
 JSON content is confined to the metadata made available by the vendor pipeline.
 
-**If the qMRI map is generated using an open-source software:**
+**If the qMRI map is generated using open-source software:**
 
 JSON file of the qMRI map MUST inherit metadata from its parent images (typically a grouped scan 
 collection) by adhering to the following rules:
@@ -166,7 +195,7 @@ qMRI map **`in array form`**.
  relevant to a given `grouped scan collection`, please see the
 [method-specific priority levels for qMRI metadata](#prioritylevels) above.
 * The JSON file accompanying a qMRI map which is obtained by
-using an open-source software MUST include all the metadata fields listed
+using open-source software MUST include all the metadata fields listed
 in the following table for the sake of provenance.
 
 | Field name                  | Definition                                                     |
@@ -379,7 +408,7 @@ entries:
 
 ## Where to place RF field maps? 
 
-**If the RF field map is generated using an open-source software:**
+**If the RF field map is generated using open-source software:**
 
 RF field maps SHOULD be stored in the `derivatives` folder, but MAY
 be symbolic linked to the corresponding raw data directory to facilitate the
@@ -392,10 +421,10 @@ BIDS-apps. For example:
  |   └── qMRI-software/
  |       └── sub-01/
  |           └── fmap/
- |               ├── sub-01_acq-PDw_RB1map.nii.gz    ─────────┐ 
- |               ├── sub-01_acq-PDw_RB1map.json      ───────┐ | 
- |               ├── sub-01_TB1map.nii.gz             ─────┐ | | 
- |               └── sub-01_TB1map.json               ───┐ | | | 
+ |               ├── sub-01_acq-PDw_RB1map.nii.gz        ─────────┐ 
+ |               ├── sub-01_acq-PDw_RB1map.json          ───────┐ | 
+ |               ├── sub-01_TB1map.nii.gz                ─────┐ | | 
+ |               └── sub-01_TB1map.json                  ───┐ | | | 
  └── sub-01/                                                | | | | S
      └── fmap/                                              | | | | Y
          ├── sub-01_acq-bodyPDw_RB1COR.nii.gz               | | | | M
@@ -406,8 +435,9 @@ BIDS-apps. For example:
          ├── sub-01_fa-1_TB1DAM.json                        | | | | 
          ├── sub-01_fa-2_TB1DAM.nii.gz                      | | | | T
          ├── sub-01_fa-2_TB1DAM.json                        | | | | O
-         ├── sub-01_acq-PDw_RB1map.nii.gz  ◀────────────├─├─├─┘
-         ├── sub-01_acq-PDw_RB1map.json    ◀────────────├─├─┘
-         ├── sub-01_TB1map.nii.gz           ◀────────────├─┘
-         └── sub-01_TB1map.json             ◀────────────┘
+         ├── sub-01_acq-PDw_RB1map.nii.gz      ◀────────────├─├─├─┘
+         ├── sub-01_acq-PDw_RB1map.json        ◀────────────├─├─┘
+         ├── sub-01_TB1map.nii.gz              ◀────────────├─┘
+         └── sub-01_TB1map.json                ◀────────────┘
+
 ```
