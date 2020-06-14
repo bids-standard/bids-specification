@@ -272,13 +272,13 @@ maps are stored in the `fmap` folder.
 
 | Name                                       | Suffix  | Type     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 |--------------------------------------------|---------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Double-angle B1<sup>+</sup> mapping                    | TB1DAM   | RF Grouping | Groups images for B1<sup>+</sup> field mapping ([Insko and Bolinger 1993](https://www.sciencedirect.com/science/article/abs/pii/S1064185883711332)). Double angle method is based on the calculation of the actual angles from signal ratios, collected by two acquisitions at different nominal excitation flip angles. Common sequence types for this application include spin echo and echo planar imaging. _Associated output suffixes_: `B1plusmap`                                                                                                                                                      |
-| B1<sup>+</sup> mapping with 3D EPI            | TB1EPI   | RF Grouping | Groups images for B1<sup>+</sup> field mapping ([Jiru and Klose 2006](https://dx.doi.org/10.1002/mrm.21083)). This method is based on two EPI readouts to acquire spin echo (SE) and stimulated echo (STE) images at multiple flip angles in one sequence, used in the calculation of deviations from the nominal flip angle. _Associated output suffixes_: `B1plusmap`                                                                                                                                                      |
-| Actual Flip Ange Imaging (AFI)             | TB1AFI   | RF Grouping | Groups images for B1<sup>+</sup> field mapping ([Yarnykh 2007](https://dx.doi.org/10.1002/mrm.21120)). This method calculates a B1<sup>+</sup> map from two images acquired at interleaved (two) TRs with identical RF pulses using a steady-state sequence. _Associated output suffixes_: `B1plusmap`                                                                                                                                                      |
-| Siemens `tfl_b1_map`             | TB1TFL   | RF Grouping | Groups images acquired using `tfl_b1_map` product sequence by Siemens based on the method by [Chung et al. (2010)](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.22423). The sequence generates one ~anatomical image and one scaled flip angle map._Associated output suffixes_: `B1plusmap`                                                                                                                                                      |
-| Siemens `rf_map`             | TB1RFM   | RF Grouping | Groups images acquired using `rf_map` product sequence by Siemens, using a method combining SE and STE images with EPI readout similar to that by ([Jiru and Klose 2006](https://dx.doi.org/10.1002/mrm.21083)). The sequence generates one ~anatomical image and one scaled flip angle map. _Associated output suffixes_: `B1plusmap`                                                                                                                                                      |
-|Saturation‐prepared with 2 rapid Gradient Echoes (SA2RAGE) B1<sup>+</sup> mapping | TB1SRGE | RF Grouping |Groups images for  B1+ field mapping ([Eggenschwiler et al. 2011](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.23145)). SA2RAGE uses a ratio of two saturation recovery images with different time delays, and a simulated look-up table to estimate B1+. This sequence can also be used in conjunction with MP2RAGE T1 mapping to iteratively improve B1+ and T1 map estimation ([Marques & Gruetter 2013](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0069294)). Associated output suffixes: B1plusmap                                                                                                                                                     |
-| B1<sup>-</sup> field correction          | RB1COR   | RF Grouping | Groups low resolution images acquired by the body coil (in the gantry of the scanner) and the head coil using identical acquisition parameters to generate a combined sensitivity map as described in [Papp et al. (2016)](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.26058). _Associated output suffixes_: `B1minusmap`                                                                                                                                                      |
+| Double-angle B1<sup>+</sup> mapping                    | TB1DAM   | RF Grouping | Groups images for B1<sup>+</sup> field mapping ([Insko and Bolinger 1993](https://www.sciencedirect.com/science/article/abs/pii/S1064185883711332)). Double angle method is based on the calculation of the actual angles from signal ratios, collected by two acquisitions at different nominal excitation flip angles. Common sequence types for this application include spin echo and echo planar imaging. _Associated output suffixes_: `TB1map`                                                                                                                                                      |
+| B1<sup>+</sup> mapping with 3D EPI            | TB1EPI   | RF Grouping | Groups images for B1<sup>+</sup> field mapping ([Jiru and Klose 2006](https://dx.doi.org/10.1002/mrm.21083)). This method is based on two EPI readouts to acquire spin echo (SE) and stimulated echo (STE) images at multiple flip angles in one sequence, used in the calculation of deviations from the nominal flip angle. _Associated output suffixes_: `TB1map`                                                                                                                                                      |
+| Actual Flip Ange Imaging (AFI)             | TB1AFI   | RF Grouping | Groups images for B1<sup>+</sup> field mapping ([Yarnykh 2007](https://dx.doi.org/10.1002/mrm.21120)). This method calculates a B1<sup>+</sup> map from two images acquired at interleaved (two) TRs with identical RF pulses using a steady-state sequence. _Associated output suffixes_: `TB1map`                                                                                                                                                      |
+| Siemens `tfl_b1_map`             | TB1TFL   | RF Grouping | Groups images acquired using `tfl_b1_map` product sequence by Siemens based on the method by [Chung et al. (2010)](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.22423). The sequence generates one ~anatomical image and one scaled flip angle map._Associated output suffixes_: `TB1map`                                                                                                                                                      |
+| Siemens `rf_map`             | TB1RFM   | RF Grouping | Groups images acquired using `rf_map` product sequence by Siemens, using a method combining SE and STE images with EPI readout similar to that by ([Jiru and Klose 2006](https://dx.doi.org/10.1002/mrm.21083)). The sequence generates one ~anatomical image and one scaled flip angle map. _Associated output suffixes_: `TB1map`                                                                                                                                                      |
+|Saturation‐prepared with 2 rapid Gradient Echoes (SA2RAGE) B1<sup>+</sup> mapping | TB1SRGE | RF Grouping |Groups images for  B1+ field mapping ([Eggenschwiler et al. 2011](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.23145)). SA2RAGE uses a ratio of two saturation recovery images with different time delays, and a simulated look-up table to estimate B1+. This sequence can also be used in conjunction with MP2RAGE T1 mapping to iteratively improve B1+ and T1 map estimation ([Marques & Gruetter 2013](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0069294)). Associated output suffixes: TB1map                                                                                                                                                     |
+| B1<sup>-</sup> field correction          | RB1COR   | RF Grouping | Groups low resolution images acquired by the body coil (in the gantry of the scanner) and the head coil using identical acquisition parameters to generate a combined sensitivity map as described in [Papp et al. (2016)](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.26058). _Associated output suffixes_: `RB1map`                                                                                                                                                      |
 
 
 ## Entity specifications for RF field mapping grouping suffixes
@@ -302,19 +302,30 @@ The `fa` and `echo` entities MUST be used to distinguish images with this suffix
 The use of `fa` follows the default convention. However, this suffix defines a
 specific use case for the `echo` entity:
 
-At each `FlipAngle`, the `TB1EPI` suffix lists two images acquired at two echo times.
-However, the second echo in this method is generated in a different fashion compared 
-to the `MESE`. The first echo is a typical spin echo (SE), whereas the second
-echo is a stimulated echo (STE) that is not generated by an inversion pulse. 
-
-To properly identify constituents of this particular method, values of the `echo`
-entity MUST index the images as follows:  
-
 |`echo-1`|`echo-2`|
 |:--|:----|
 |Lower `EchoTime` | Higher `EchoTime`                  |
 |Spin Echo (SE) image|Stimulated Echo (STE) image|
 
+At each `FlipAngle`, the `TB1EPI` suffix lists two images acquired at two echo times.
+The first echo is a spin echo (SE) formed by the pulses alpha-2alpha. However, the 
+second echo in this method is generated in a different fashion compared to a typical
+MESE acquisition. The second echo is a stimulated echo (STE) that is formed by an 
+additional alpha pulse (i.e., alpha-2alpha-alpha).
+
+The `FlipAngle` value corresponds to the nominal flip angle value of the STE pulse. 
+The nominal FA value of the SE pulse is twice this value.
+
+Note that the following metadata fields MUST be defined in the accompanying JSON 
+files:
+
+| Field name         | Definition |
+| :----------------- | :--------- |
+| `TotalReadoutTime` |   The effective readout length defined as `EffectiveEchoSpacing * PEReconMatrix`, with `EffectiveEchoSpacing = TrueEchoSpacing / PEacceleration`         |
+| `MixingTime`       |  Time interval between the SE and STE pulses          |
+
+To properly identify constituents of this particular method, values of the `echo`
+entity MUST index the images as follows:  
 
 ```
 └── sub-01/
