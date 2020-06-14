@@ -127,22 +127,26 @@ All qMRI maps are generated following a set of calculations. Unlike conventional
 MR images, they are not products of an MRI image reconstruction (from k-space data 
 to structural images). There are two possible options in the way a qMRI map is obtained: 
 
-1. The qMRI map is calculated at the scanner site through a non-transparent vendor pipeline.
-2. The qMRI map is generated off-site using open-source software. 
+1. Pre-generated qMRI maps: The qMRI maps are generated immediately after the 
+reconstruction of the multi-contrast input images and made available to the user
+at the scanner console. The acquisition scenarios may include (a) vendor pipelines 
+or (b) open-source pipelines deployed on the scanner site.
+2. Post-generated qMRI maps: The qMRI maps are generated from the multi-contrast
+input images after they are exported outside the scanner site.
 
 ## Where to place qMRI maps? 
 
-**If the qMRI map is calculated at the scanner site through a non-transparent vendor pipeline:** 
+**If the provenance record of the qMRI map generation is NOT accessible:**
 
-Although qMRI maps are derivatives, we cannot relate them to their parent images (which may
-not even be accessible) through a set of calculations in this case. Therefore, such maps obtained
-at the scanner site via non-transparent pipelines are placed at the `/sub-#/anat` directory.
+Although qMRI maps are derivatives by definition, we cannot relate them to their 
+multi-contrast input images in this case. Therefore, qMRI maps lacking provenance
+are directly placed at the `/sub-#/anat` directory.
 
-**If the qMRI map is generated using open-source software:**
+**If the provenance record of the qMRI map generation is available:**
 
-Quantitative maps SHOULD be stored in the `derivatives` folder, but MAY
+In this case, qMRI maps SHOULD be stored in the `derivatives` folder, but MAY
 be symbolic linked to the corresponding raw data directory to facilitate the
-easy use of these images as input to processing workflows implemented as
+easy use of these images as inputs to the processing workflows implemented as
 BIDS-apps. For example:
 
 ```diff
@@ -177,11 +181,12 @@ application can easily pick up a qMRI map along with other anatomical images.
 
 ## <a name="whichmetadata">Which metadata fields should a qMRI map contain?</a>
 
-**If the qMRI map is calculated at the scanner site through a non-transparent vendor pipeline:** 
+**If the provenance record of the qMRI map generation is NOT accessible:**
 
-JSON content is confined to the metadata made available by the vendor pipeline.
+JSON content is confined to the metadata made available for the pre-generated
+qMRI map.
 
-**If the qMRI map is generated using open-source software:**
+**If the provenance record of the qMRI map generation is available:**
 
 JSON file of the qMRI map MUST inherit metadata from its parent images (typically a grouped scan 
 collection) by adhering to the following rules:
@@ -421,7 +426,11 @@ entries:
 
 ## Where to place RF field maps? 
 
-**If the RF field map is generated using open-source software:**
+**If the provenance record of the RF field map generation is NOT accessible:**
+
+RF field maps lacking provenance are directly placed at the `/sub-#/fmap` directory.
+
+**If the provenance record of the RF rield map generation is available:**
 
 RF field maps SHOULD be stored in the `derivatives` folder, but MAY
 be symbolic linked to the corresponding raw data directory to facilitate the
