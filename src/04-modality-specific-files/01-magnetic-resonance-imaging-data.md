@@ -113,8 +113,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_ce-<label>][_rec-<label>][_run-<index>]_<suffix>.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<label>][_ce-<label>][_rec-<label>][_run-<index>]_<suffix>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
 ```
 
 The term anatomical imaging data pertains to a broad range of MRI applications that provide structural 
@@ -317,13 +317,29 @@ description of the `T1map` suffix requires the parameter to be in seconds (s).
 
 #### The `part` entity
 
-Some applications depends on `magnitude` and `phase` reconstructed images for the 
-calculation of a parameter map. In such case two files could have the following 
-names: `sub-01_part-mag_T1w.nii.gz` and `sub-01_part-phase_T1w.nii.gz`. 
+This entity shall be used to indicate which component of the complex representation
+of the MRI signal is represented in voxel data. The `part-<label>` key/value pair is
+associated with the DICOM tag [0008,9208](https://dicom.innolitics.com/ciods/enhanced-mr-image/enhanced-mr-image/00089208). Allowed label values for this entity are 
+`phase`, `mag`, `real` and `imag`, which are typically used in `mag/phase` or 
+`real/imag` pairs. For example:
 
-Phase images SHOULD be in radians and have a range of (0, 2 pi] (including 0, 
-excluding 2 pi). The `part-<mag/phase>` key/value pair is associated with the 
-DICOM tag [0008,9208](https://dicom.innolitics.com/ciods/enhanced-mr-image/enhanced-mr-image/00089208).
+```
+sub-01_part-mag_T1w.nii.gz 
+sub-01_part-mag_T1w.json
+sub-01_part-phase_T1w.nii.gz 
+sub-01_part-phase_T1w.json
+```
+
+Phase images MAY be in radians or in arbitrary units. The sidecar JSON file MUST 
+include the units of the `phase` image. The possible options are:  `radians` or 
+`a.u.` for grayscale images. For example: 
+
+sub-01_part-phase.json
+```
+{
+   "Units": "radians"
+}
+```
 
 #### The `run` entity
 
