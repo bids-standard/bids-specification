@@ -19,6 +19,7 @@
     acq: optional
     run: optional
     proc: optional
+    split: optional
 - suffixes:
     - headshape
   extensions:

@@ -111,3 +111,17 @@ space:
                 be used to indicate the way in which electrode positions are interpreted.
                 The space label needs to be taken from the list in Appendix VIII"
   format: label
+split:
+  name: Split
+  description: "In the case of long data recordings that exceed a file size of
+                2Gb, the .fif files are conventionally split into multiple parts.
+                Each of these files has an internal pointer to the next file.
+                This is important when renaming these split recordings to the BIDS
+                convention.
+                Instead of a simple renaming, files should be read in and saved
+                under their new names with dedicated tools like MNE, which will
+                ensure that not only the file names, but also the internal file
+                pointers will be updated.
+                It is RECOMMENDED that .fif files with multiple parts use the
+                `split-<index>` entity to indicate each part."
+  format: index
