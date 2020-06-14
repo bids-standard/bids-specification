@@ -2,7 +2,7 @@
     - meg
   extensions:
     - 4d/
-    - ctf/
+    - .ds/
     - .json
     - .fif
     - .sqd
