@@ -232,6 +232,7 @@ def entity_table(schema_path, tablefmt="github"):
             for ent, req in spec.get('entities', []).items():
                 dtype_row[entity_to_col[ent]] = req.upper()
 
+            # Merge specs within dtypes if they share all of the same entities
             if dtype_row in dtype_rows.values():
                 for k, v in dtype_rows.items():
                     if dtype_row == v:
@@ -265,6 +266,7 @@ def entity_table(schema_path, tablefmt="github"):
 
     # print it as markdown
     table = table.drop(columns=['DataType'])
+    header.remove('DataType')
     print(tabulate(table, header, tablefmt=tablefmt))
     return table
 

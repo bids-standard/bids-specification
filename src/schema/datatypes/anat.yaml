@@ -21,6 +21,7 @@
   entities:
     sub: required
     ses: optional
+    run: optional
     acq: optional
     ce: optional
     rec: optional
@@ -34,6 +35,7 @@
   entities:
     sub: required
     ses: optional
+    run: optional
     acq: optional
     ce: optional
     rec: optional
