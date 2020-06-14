@@ -8,10 +8,13 @@ import os
 from pathlib import Path
 import yaml
 import sys
+from warnings import warn
+
+import pandas as pd
 #
 import click
 from click_didyoumean import DYMGroup
-#from yamlinclude import YamlIncludeConstructor
+# from yamlinclude import YamlIncludeConstructor
 
 # helper to debug
 from pprint import pprint
@@ -167,18 +170,18 @@ def load_schema(schema_path):
     of files and entire directories.
     """
     schema_path = Path(schema_path)
-    if schema_path.is_file():
-        assert schema_path.suffix == '.yaml'
+    if schema_path.is_file() and (schema_path.suffix == '.yaml'):
         with open(schema_path) as f:
             return yaml.load(f, Loader=yaml.SafeLoader)
     elif schema_path.is_dir():
         # iterate through files and subdirectories
-        return {
+        res = {
             _get_entry_name(path): load_schema(path)
             for path in sorted(schema_path.iterdir())
         }
+        return {k: v for k, v in res.items() if v is not None}
     else:
-        raise RutimeError(f"{schema_path} is somehow nothing we can load")
+        warn(f"{schema_path} is somehow nothing we can load")
 
 
 @main.command()
@@ -194,13 +197,15 @@ def show(schema_path):
 # TODO: output path, for now just print
 @schema_path_option()
 def entity_table(schema_path, tablefmt="github"):
-    """Produce entity table (markdown) based on schema."""
+    """Produce entity table (markdown) based on schema.
+    This only works if the top-level schema *directory* is provided.
+    """
     from tabulate import tabulate
     schema = load_schema(schema_path)
     # prepare the table based on the schema
     # import pdb; pdb.set_trace()
-    header = ['Entity']
-    formats = ['Format']
+    header = ['Entity', 'DataType']
+    formats = ['Format', 'DataType']
     entity_to_col = {}
     table = [formats]
 
@@ -209,9 +214,12 @@ def entity_table(schema_path, tablefmt="github"):
         header.append(spec["name"])
         formats.append(f'`{entity}-<{spec["format"]}>`')
         entity_to_col[entity] = i + 1
+
     # Go through data types
     for dtype, specs in chain(schema['datatypes'].items(),
                               schema['auxdatatypes'].items()):
+        dtype_rows = {}
+
         # each dtype could have multiple specs
         for spec in specs:
             # datatypes use suffixes, while
@@ -219,15 +227,46 @@ def entity_table(schema_path, tablefmt="github"):
             # TODO: RF to avoid this guesswork
             suffixes = spec.get('datatypes') or spec.get('suffixes')
             # TODO: <br> is specific for html form
-            suffixes_str = '<br>({})'.format(' '.join(suffixes)) \
-                if (suffixes and suffixes != [dtype]) else ''
-            dtype_row = [f'{dtype}{suffixes_str}'] + [''] * len(entity_to_col)
+            suffixes_str = ' '.join(suffixes) if suffixes else ''
+            dtype_row = [dtype] + ([''] * len(entity_to_col))
             for ent, req in spec.get('entities', []).items():
                 dtype_row[entity_to_col[ent]] = req.upper()
-            table.append(dtype_row)
+
+            if dtype_row in dtype_rows.values():
+                for k, v in dtype_rows.items():
+                    if dtype_row == v:
+                        dtype_rows.pop(k)
+                        new_k = k + ' ' + suffixes_str
+                        new_k = new_k.strip()
+                        dtype_rows[new_k] = v
+                        break
+            else:
+                dtype_rows[suffixes_str] = dtype_row
+
+        # Reformat first column
+        dtype_rows = {dtype+'<br>({})'.format(k): v for k, v in dtype_rows.items()}
+        dtype_rows = [[k] + v for k, v in dtype_rows.items()]
+        table += dtype_rows
+
+    # Create multi-level index because first two rows are headers
+    cols = list(zip(header, table[0]))
+    cols = pd.MultiIndex.from_tuples(cols)
+    table = pd.DataFrame(data=table[1:], columns=cols)
+    table = table.set_index(('Entity', 'Format'))
+
+    # Now we can split as needed
+
+    # Flatten multi-index
+    vals = table.index.tolist()
+    table.loc['Format'] = table.columns.get_level_values(1)
+    table.columns = table.columns.get_level_values(0)
+    table = table.loc[['Format'] + vals]
+    table.index.name = 'Entity'
 
     # print it as markdown
+    table = table.drop(columns=['DataType'])
     print(tabulate(table, header, tablefmt=tablefmt))
+    return table
 
 
 if __name__ == '__main__':

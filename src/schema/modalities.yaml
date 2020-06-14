@@ -1,0 +1,18 @@
+mri:
+  datatypes:
+    - anat
+    - dwi
+    - fmap
+    - func
+eeg:
+  datatypes:
+    - eeg
+ieeg:
+  datatypes:
+    - ieeg
+meg:
+  datatypes:
+    - meg
+beh:
+  datatypes:
+    - beh
