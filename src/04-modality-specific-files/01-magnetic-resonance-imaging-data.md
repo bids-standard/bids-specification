@@ -37,6 +37,17 @@ by Ben Inglis:
 | SequenceName                | RECOMMENDED. Manufacturer’s designation of the sequence name. Corresponds to DICOM Tag 0018, 0024 `Sequence Name`.                                                                                                                                                             |
 | PulseSequenceDetails        | RECOMMENDED. Information beyond pulse sequence type that identifies the specific pulse sequence used (i.e. "Standard Siemens Sequence distributed with the VB17 software," "Siemens WIP ### version #.##," or "Sequence written by X using a version compiled on MM/DD/YYYY"). |
 | NonlinearGradientCorrection | RECOMMENDED. Boolean stating if the image saved has been corrected for gradient nonlinearities by the scanner sequence.                                                                                                                                                        |
+| MTState           | RECOMMENDED. Boolean value (`true` or `false`), specifying whether the magnetization transfer pulse is applied. This parameter is REQUIRED by all the anatomical images grouped by `MTR`, `MTS` and `MPM` suffixes. This field originally corresponds to DICOM tag 0018, 9020 `Magnetization Transfer`. |
+| MTOffsetFrequency | RECOMMENDED. The frequency offset of the magnetization transfer pulse with respect to the central H1 Larmor frequency in Hertz (Hz).                                                                                                                                                                    |
+| MTPulseBandwidth  | RECOMMENDED. The excitation bandwidth of the magnetization transfer pulse in Hertz (Hz).                                                                                                                                                                                                                |
+| MTNumberOfPulses  | RECOMMENDED. Number of magnetization transfer RF pulses applied before the readout.                                                                                                                                                                                                                     |
+| MTPulseShape      | RECOMMENDED. Shape of the magnetization transfer RF pulse waveform. Accepted values: `HARD`, `GAUSSIAN`, `GAUSSHANN` (gaussian pulse with Hanning window), `SINC`, `SINCHANN` (sinc pulse with Hanning window), `SINCGAUSS` (sinc pulse with Gaussian window), `FERMI`.                                 |
+| MTPulseDuration   | RECOMMENDED. Duration of the magnetization transfer RF pulse in seconds.                                                                                                                                                                                                                                |
+| SpoilingState            | RECOMMENDED. Boolean value (`true` or `false`), specifying whether the pulse sequence uses any type of spoiling stratey to suppress transverse magnetization remaining after the readout. |
+| SpoilingType             | RECOMMENDED. Specifies which spoiling method(s) are used by a spoiled sequence. Accepted values: `RF`, `GRADIENT` or `COMBINED`.                                                          |
+| SpoilingRFPhaseIncrement | RECOMMENDED. The amount of incrementation described in degrees, which is applied to the phase of the excitation pulse at each TR period for achieving RF spoiling.                        |
+| SpoilingGradientMoment   | RECOMMENDED. Zeroth moment of the spoiler gradient lobe in militesla times second per meter (mT.s/m).                                                                                     |
+| SpoilingGradientDuration | RECOMMENDED. The duration of the spoiler gradient lobe in seconds. The duration of a trapezoidal lobe is defined as the summation of ramp-up and plateu times.                            |
 
 #### In-Plane Spatial Encoding
 
@@ -113,8 +124,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_part-<label>][_ce-<label>][_rec-<label>][_run-<index>]_<suffix>.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_part-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<label>][_echo-<index>][_fa-<index>][_inv-<index>][_mt-<on/off>][_ce-<label>][_rec-<label>][_run-<index>]_<suffix>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<label>][_echo-<index>][_fa-<index>][_inv-<index>][_mt-<on/off>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
 ```
 
 The term anatomical imaging data pertains to a broad range of MRI applications that provide structural 
@@ -204,7 +215,8 @@ A change to the specification is REQUIRED to expand or to modify the following t
 | T2 star weighted images                    | T2starw | Conventional | Denotes images with predominant T2* contribution, typically images acquired using a GRE sequence with low flip angle, long echo time and long repetition time. Please note that this suffix is not a surrogate for `T2starmap`. |
 | Fluid Attenuated Inversion Recovery Images | FLAIR   | Conventional | Denotes images with predominant T2 contribution (a.k.a T2-FLAIR), in which signal from fluids (e.g. CSF) is nulled out by adjusting inversion time, coupled with notably long repetition and echo times.              |
 | Inplane T1                                 | inplaneT1 | Conventional | T1-weighted anatomical image matched to functional acquisition                                                           |
-| Inplane T2                                 | inplaneT2 | Conventional | T2-weighted anatomical image matched to functional acquisition                                                           | 
+| Inplane T2                                 | inplaneT2 | Conventional | T2-weighted anatomical image matched to functional acquisition                                                           |
+| PDw and T2w images obtained using dual-echo FSE           | PDT2| Conventional | PDw and T2w images acquired using a dual-echo FSE sequence through view sharing process [(Johnson et al. 1994)](http://www.ajnr.org/content/15/4/667.short).                                                           | 
 
 Example use for conventional **T1 weighted images**:
 
@@ -252,7 +264,6 @@ A change to the specification is REQUIRED to expand or to modify the following t
 | Magnetization transfer ratio               | MTR     | Grouping | Parametrically linked anatomical images for calculating a semi-quantitative magnetization transfer ratio map. _Associated output suffixes_: MTRmap                                                                                                                                                                                                                                                                                                                                                                                 |
 | Magnetization transfer saturation          | MTS     | Grouping | Parametrically linked anatomical images for calculating a semi-quantitative magnetization transfer saturation index map. The MTS method involves three sets of anatomical images that differ in terms of application of a magnetization transfer RF pulse (MTon or MToff) and flip angle ([Helms et al. 2008](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.21732)). _Associated output suffixes_: T1map, MTsat                                                                                                                                                                                               |
 | Multi-parametric mapping                   | MPM     | Grouping | Parametrically linked anatomical images for multiparametric mapping (a.k.a hMRI). The MPM approaches involves the acquisition of highly-similar anatomical images that differ in terms of application of a magnetization transfer RF pulse (MTon or MToff), flip angle and (optionally) echo time and magnitue/phase parts ([Weiskopf et al. 2013](https://www.frontiersin.org/articles/10.3389/fnins.2013.00095/full)). See [here](https://owncloud.gwdg.de/index.php/s/iv2TOQwGy4FGDDZ) for suggested MPM acquisition protocols.,_Associated output suffixes_:R1map, R2starmap, MTsat, PDmap, T1map, T2starmap                                               |
-| Double-angle B1 mapping                    | B1DAM   | Grouping | Parametrically linked anatomical images for RF transmit field (B1 plus) mapping ([Insko and Bolinger 1993](https://www.sciencedirect.com/science/article/abs/pii/S1064185883711332)). Double angle method is based on the calculation of the actual angles from signal ratios, collected by two acquisitions at different nominal excitation angles. Common sequence types for this application include spin echo and echo planar imaging. _Associated output suffixes_: B1plusmap                                                                                                                                                      |
 
 For example:
 
@@ -297,7 +308,10 @@ expand or to modify the following table.
 | Longutidunal relaxation in rotating frame (T1 rho) map | T1rho     | Parametric   | In seconds (s). T1-rho maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ N/A                                                                                                                                             |
 | Myelin water fraction map                              | MWFmap    | Parametric   | In percentage (%). MWF maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MESE`                                                                                                                                          |
 | Combined PD/T2 map                                     | PDT2map   | Parametric   | In arbitrary units (a.u.). Combined PD/T2 maps are REQUIRED to use this suffix irrespective of the method they are related to. N/A                                                                                                                                                   |
-| RF transmit field map                                  | B1plusmap | Parametric   | In arbitrary units (a.u.). Radio frequency (RF) transmit field maps are REQUIRED to use this suffix irrespective of the method they are related to. For further details please see the fieldmap data section.  _Can be generated from_: `B1DAM`                                                                      |
+| RF transmit field map                                  | TB1map | Parametric   | In percent units (p.u.). Radio frequency (RF) transmit field maps are REQUIRED to use this suffix irrespective of the method they are related to. Please see the [qMRI appendix](../99-appendices/10-qmri.md) for associated inputs and further details                                                                     |
+| RF receive sensitivity map                                  | RB1map | Parametric   | In percent units (p.u.). Radio frequency (RF) receive sensitivity maps are REQUIRED to use this suffix irrespective of the method they are related to. Please see the [qMRI appendix](../99-appendices/10-qmri.md) for associated inputs and further details                                                                     |
+| Observed signal amplitude map                                | S0map | Parametric   | In arbitrary units (a.u.). For a multi-echo sequence, S0 maps index the baseline signal before exponential (T2*) signal decay. In other words: the exponential of the intercept for a linear decay model across log-transformed echos. For more information, please see, for example, [the tedana documentation](https://tedana.readthedocs.io/en/latest/approach.html#monoexponential-decay-model-fit). S0 maps are REQUIRED to use this suffix irrespective of the method they are related to. _Associated suffixes:_ T2starmap.       |
+| Quantitative susceptibility map (QSM)                   | Chimap | Parametric   | In parts per million (ppm). QSM allows for determining the underlying magnetic susceptibility of tissue (Chi).  Chi-maps are usually constructed from the phase images of GRE sequences. Chi-maps are quantitative and are reconstructed by solving the magnetic field to susceptibility source inverse problem ([Wang & Liu, 2014](https://onlinelibrary.wiley.com/doi/10.1002/mrm.25358)). |
 
 Quantitative maps can be obtained right off the scanner or by processing files
 belonging to a `grouped scan collection`. Regardless of the method they are
@@ -363,6 +377,75 @@ are used to record the same modality (e.g. RARE and FLASH for T1w) this field
 can also be used to make that distinction. At what level of detail to make the
 distinction (e.g. just between RARE and FLASH, or between RARE, FLASH, and
 FLASHsubsampled) remains at the discretion of the researcher.
+
+#### The `echo` entity 
+
+If the value of `EchoTime` metadata field varies at least once across a collection 
+of anatomical images having a common `grouping suffix`, the use of `echo-<index>`
+key/value pair is REQUIRED. Note that only integers (from 1 to N) are allowed as
+values to this entity for N different `EchoTime` parameter values. The actual 
+`EchoTime` parameter values MUST NOT be explicitly declared by the entity. Instead, 
+the parameter values are stored in sidecar json files and indexed by the `echo` entity
+in ascending order. For example: 
+
+```
+sub-01_echo-1_MEGRE.nii.gz
+sub-01_echo-1_MEGRE.json   (`EchoTime` = 0.0005)
+sub-01_echo-2_MEGRE.nii.gz 
+sub-01_echo-2_MEGRE.json   (`EchoTime` = 0.0015)
+sub-01_echo-3_MEGRE.nii.gz
+sub-01_echo-3_MEGRE.json   (`EchoTime` = 0.0025)
+```
+
+#### The `fa` entity 
+
+If the value of `FlipAngle` metadata field varies at least once across a collection 
+of anatomical images having a common `grouping suffix`, the use of `fa-<index>`
+key/value pair is REQUIRED. Note that only integers from 1 to N are allowed as
+values to this entity for N different `FlipAngle` parameter values. The actual 
+`FlipAngle` parameter values MUST NOT be explicitly declared by the entity. Instead,
+the parameter values are stored in sidecar json files and indexed by the `fa` entity
+in ascending order. For example:
+
+```
+sub-01_fa-1_VFA.nii.gz 
+sub-01_fa-1_VFA.json   (`FlipAngle` = 5)
+sub-01_fa-2_VFA.nii.gz 
+sub-01_fa-2_VFA.json   (`FlipAngle` = 25)
+```
+
+#### The `inv` entity 
+
+If the value of `InversionTime` metadata field varies at least once across a 
+collection of anatomical images having a common `grouping suffix`, the use of 
+`inv-<index>` key/value pair is REQUIRED. Note that only integers from 1 to N 
+are allowed as values to this entity for N different `InversionTime` parameter 
+values. The actual `InversionTime` parameter values MUST NOT be explicitly declared 
+by the entity. Instead, the parameter values are stored in sidecar json files and 
+indexed by the `inv` entity in ascending order. For example: 
+
+```
+sub-01_inv-1_IRT1.nii.gz
+sub-01_inv-1_IRT1.json     (`InversionTime` = 0.0050)
+sub-01_inv-2_IRT1.nii.gz
+sub-01_inv-2_IRT1.json     (`InversionTime` = 0.0100)
+sub-01_inv-3_IRT1.nii.gz
+sub-01_inv-4_IRT1.json     (`InversionTime` = 0.0150)
+```
+
+#### The `mt` entity 
+
+If a collection of anatomical images having a common `grouping suffix` includes
+at least one scan in which a magnetization transfer pulse is applied, the 
+`mt-<on/off>` key/value pair MUST BE used. The value of this entity can be either 
+`on` or `off` (in lowercase), as determined by the `MTState` metadata. For example: 
+
+```
+sub-01_mt-on_MTR.nii.gz
+sub-01_mt-on_MTR.json      (`MTState` = On)
+sub-01_mt-off_MTR.nii.gz
+sub-01_mt-off_MTR.json     (`MTState` = Off)
+```
 
 #### The `ce` entity
 
@@ -482,7 +565,8 @@ sub-01/
 
 Please note that the `<index>` denotes the number/index (in a form of an
 integer) of the echo not the echo time value which needs to be stored in the
-field EchoTime of the separate JSON file.
+field EchoTime of the separate JSON file (see also 
+[here](01-magnetic-resonance-imaging-data.md#the-echo-entity)).
 
 Some meta information about the acquisition MUST be provided in an additional
 JSON file.
@@ -649,6 +733,18 @@ JSON example:
 
 ### Fieldmap data
 
+All three of B0 (static magnetic field strength pattern), B1<sup>+</sup> (transmit field pattern), and
+B1<sup>-</sup> (receive field pattern) maps can be useful in post-processing raw functional and
+anatomical data.
+
+B0 maps are primarily used to correct for spatial distortions in functional data
+acquired with EPI sequences.
+
+B1<sup>+</sup> and B1<sup>-</sup>  maps are mostly used in anatomical imaging, especially
+in quantitative MRI applications. Further information about these radiofrequency (RF)
+field maps are available in the [qMRI appendix](../99-appendices/10-qmri.md).
+
+#### B0 fieldmaps
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
 current version of this standard considers four different scenarios. Please note
 that in all cases fieldmap data can be linked to a specific scan(s) it was
@@ -679,7 +775,7 @@ Multiple fieldmaps can be stored. In such case the `_run-1`, `_run-2` should be
 used. The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label
 the user may use to distinguish different set of parameters.
 
-#### Case 1: Phase difference image and at least one magnitude image
+##### Case 1: Phase difference image and at least one magnitude image
 
 Template:
 
@@ -714,7 +810,7 @@ the shorter echo time and `EchoTime2` to the longer echo time. Similarly
 }
 ```
 
-#### Case 2: Two phase images and two magnitude images
+##### Case 2: Two phase images and two magnitude images
 
 Template:
 
@@ -740,7 +836,7 @@ corresponding `EchoTime` values. For example:
 }
 ```
 
-#### Case 3: A real fieldmap image
+##### Case 3: A real fieldmap image
 
 Template:
 
@@ -764,7 +860,7 @@ the fieldmap. The possible options are: `Hz`, `rad/s`, or `Tesla`. For example:
 }
 ```
 
-#### Case 4: Multiple phase encoded directions ("pepolar")
+##### Case 4: Multiple phase encoded directions ("pepolar")
 
 Template:
 
