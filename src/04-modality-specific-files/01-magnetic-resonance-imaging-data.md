@@ -124,8 +124,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_fa-<index>][_inv-<index>][_mt-<on/off>][_ce-<label>][_rec-<label>][_run-<index>]_<suffix>.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_part-<mag/phase>][_echo-<index>][_fa-<index>][_inv-<index>][_mt-<on/off>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<label>][_echo-<index>][_fa-<index>][_inv-<index>][_mt-<on/off>][_ce-<label>][_rec-<label>][_run-<index>]_<suffix>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_part-<label>][_echo-<index>][_fa-<index>][_inv-<index>][_mt-<on/off>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
 ```
 
 The term anatomical imaging data pertains to a broad range of MRI applications that provide structural 
@@ -328,6 +328,32 @@ Quantitative unit of the parameter contained by a quantitative map MUST comply
 with the unit description provided for its respective `_suffix` entry.
 For example, a T1 map in milliseconds unit (ms) is not valid, given that the
 description of the `T1map` suffix requires the parameter to be in seconds (s).
+
+#### The `part` entity
+
+This entity shall be used to indicate which component of the complex representation
+of the MRI signal is represented in voxel data. The `part-<label>` key/value pair is
+associated with the DICOM tag [0008,9208](https://dicom.innolitics.com/ciods/enhanced-mr-image/enhanced-mr-image/00089208). Allowed label values for this entity are 
+`phase`, `mag`, `real` and `imag`, which are typically used in `mag/phase` or 
+`real/imag` pairs. For example:
+
+```
+sub-01_part-mag_T1w.nii.gz 
+sub-01_part-mag_T1w.json
+sub-01_part-phase_T1w.nii.gz 
+sub-01_part-phase_T1w.json
+```
+
+Phase images MAY be in radians or in arbitrary units. The sidecar JSON file MUST 
+include the units of the `phase` image. The possible options are:  `radians` or 
+`a.u.` for grayscale images. For example: 
+
+sub-01_part-phase.json
+```
+{
+   "Units": "radians"
+}
+```
 
 #### The `run` entity
 
