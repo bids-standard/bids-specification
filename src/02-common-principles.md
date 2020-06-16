@@ -290,8 +290,7 @@ within that specific series directory specifying the TR for that specific run.
 There is no notion of "unsetting" a key/value pair.
 Once a key/value pair is set in a given level in the dataset, lower down in
 the hierarchy that key/value pair will always have some assigned value.
-Files for a particular
-participant can exist only at participant level directory, i.e
+Files for a particular participant can exist only at participant level directory, i.e
 `/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any file that is not
 specific to a participant is to be declared only at top level of dataset for eg:
 `task-sist_bold.json` must be placed under `/dataset/task-sist_bold.json`
@@ -423,13 +422,13 @@ dictionary matches a column name in the TSV file, then that field MUST contain a
 description of the corresponding column, using an object containing the following
 fields:
 
-| Field name  | Definition                                                                                                             |
-| :---------- | :--------------------------------------------------------------------------------------------------------------------- |
-| LongName    | Long (unabbreviated) name of the column.                                                                               |
-| Description | Description of the column.                                                                                             |
-| Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).                     |
-| Units       | Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [units section](./02-common-principles.md#units). |
-| TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web.                          |
+| Field name  | Definition                                                                                                      |
+| :---------- | :-------------------------------------------------------------------------------------------------------------- |
+| LongName    | Long (unabbreviated) name of the column.                                                                        |
+| Description | Description of the column.                                                                                      |
+| Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).              |
+| Units       | Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
+| TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
 
 Example:
 

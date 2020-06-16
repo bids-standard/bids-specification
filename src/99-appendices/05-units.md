@@ -1,6 +1,6 @@
 # Appendix V: Units
 
-As described in the [units section](../02-common-principles.md#units),
+As described in the [Units](../02-common-principles.md#units),
 the specification of units SHOULD follow the
 [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
 (SI, abbreviated from the French Système international (d'unités)).
@@ -18,10 +18,10 @@ these are still included for backwards compatibility:
 1.  [`U+03A9` (Ω)](https://codepoints.net/U+03A9) or [`U+2126` (Ω)](https://codepoints.net/U+2126)
 1.  [`U+00B0` (°)](https://codepoints.net/U+00B0)
 
-Note that for the first two Unicode symbols in the list above, two characters
-are permissible for each, but the first character mentioned respectively is
-preferred as per Unicode rules (see the section on "Duplicated Characters"
-on page 11 in the [unicode report](https://www.unicode.org/reports/tr25/)).
+Note that for the first two entries in this list, two characters are permissible
+for each, but the first character in each entry is preferred, per Unicode rules
+(see the section on "Duplicated Characters" on page 11 in the
+[unicode report](https://www.unicode.org/reports/tr25/)).
 
 It is RECOMMENDED that units be CMIXF-12 compliant or among these five Unicode
 characters.
