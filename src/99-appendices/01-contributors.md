@@ -34,6 +34,7 @@ your name is not listed, please add it.
 -   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️📢✅🔧🔌📝
 -   Tibor Auer 💬📖💡🔧📢
 -   Sylvain Baillet 📖🔍
+-   Arshitha Basavaraj 📖🚇💻
 -   Stephan Bickel 📖
 -   Elizabeth Bock 📖💡
 -   Kristofer Bouchard 📖
@@ -50,8 +51,9 @@ your name is not listed, please add it.
 -   Alejandro de la Vega 🐛💻⚠️
 -   Arnaud Delorme 📖💡
 -   Benjamin Dichter 📖
+-   Erin W. Dickie 📖🤔👀📢💬
 -   Eugene P. Duff 📖
--   Elizabeth DuPre 📖💡🔍🤔
+-   Elizabeth DuPre 📖💡🔍🤔💬
 -   Eric A. Earl 🤔
 -   Anders Eklund 📖📢💻
 -   Oscar Esteban 📖🔧🤔💬💻
@@ -84,6 +86,7 @@ your name is not listed, please add it.
 -   International Neuroinformatics Coordinating Facility 💵📋
 -   Andrew Janke 📖💻
 -   Mainak Jas 📖💻
+-   Alexander Jones 💻🐛
 -   David Keator 📖
 -   James Kent 💬💻
 -   Gregory Kiar 📖💻🎨🔧
@@ -134,11 +137,13 @@ your name is not listed, please add it.
 -   Pradeep Reddy Raamana 💻🔧
 -   Vasudev Raguram 💻🎨📖🔧
 -   Nick F. Ramsey 📖
+-   Kay Robbins 💻📖🐛
 -   Alex Rockhill 📖🔧
 -   Ariel Rokem 📖
 -   Matt Sanderson 📖💻
 -   Gunnar Schaefer 📖
 -   Jan-Mathijs Schoffelen 📖
+-   Robert E. Smith 💻📖
 -   Vanessa Sochat 📖
 -   Arjen Stolk 📖
 -   Nicole C. Swann 📖
@@ -155,4 +160,3 @@ your name is not listed, please add it.
 -   Gaël Varoquaux 📖
 -   Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
 -   Lyuba Zehl 📖
--   Sébastien Tourbier 🤔👀📢

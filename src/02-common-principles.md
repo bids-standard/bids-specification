@@ -6,21 +6,22 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 
-Throughout this specification we use a list of terms. To avoid
+Throughout this specification we use a list of terms and abbreviations. To avoid
 misunderstanding we clarify them here.
 
-1.  Dataset - a set of neuroimaging and behavioral data acquired for a purpose
-    of a particular study. A dataset consists of data acquired from one or more
-    subjects, possibly from multiple sessions.
+1.  **Dataset** - a set of neuroimaging and behavioral data acquired for a
+    purpose of a particular study. A dataset consists of data acquired from one
+    or more subjects, possibly from multiple sessions.
 
-1.  Subject - a person or animal participating in the study.
+1.  **Subject** - a person or animal participating in the study.  Used
+    interchangeably with term **Participant**.
 
-1.  Session - a logical grouping of neuroimaging and behavioral data consistent
-    across subjects. Session can (but doesn't have to) be synonymous to a visit
-    in a longitudinal study. In general, subjects will stay in the scanner
-    during one session. However, for example, if a subject has to leave the
-    scanner room and then be re-positioned on the scanner bed, the set of MRI
-    acquisitions will still be considered as a session and match sessions
+1.  **Session** - a logical grouping of neuroimaging and behavioral data
+    consistent across subjects. Session can (but doesn't have to) be synonymous
+    to a visit in a longitudinal study. In general, subjects will stay in the
+    scanner during one session. However, for example, if a subject has to leave
+    the scanner room and then be re-positioned on the scanner bed, the set of
+    MRI acquisitions will still be considered as a session and match sessions
     acquired in other subjects. Similarly, in situations where different data
     types are obtained over several visits (for example fMRI on one day followed
     by DWI the day after) those can be grouped in one session. Defining multiple
@@ -28,33 +29,50 @@ misunderstanding we clarify them here.
     are planned and performed on all -or most- subjects, often in the case of
     some intervention between sessions (e.g., training).
 
-1.  Data acquisition - a continuous uninterrupted block of time during which a
-    brain scanning instrument was acquiring data according to particular
+1.  **Data acquisition** - a continuous uninterrupted block of time during which
+    a brain scanning instrument was acquiring data according to particular
     scanning sequence/protocol.
 
-1.  Data type - a functional group of different types of data. In BIDS we define
-    eight data types: func (task based and resting state functional MRI), dwi
-    (diffusion weighted imaging), fmap (field inhomogeneity mapping data such as
-    field maps), anat (structural imaging such as T1, T2, etc.), meg
-    (magnetoencephalography), eeg (electroencephalography), ieeg (intracranial
-    electroencephalography), beh (behavioral).
+1.  **Data type** - a functional group of different types of data. In BIDS we
+    define eight data types: `func` (task based and resting state functional MRI),
+    `dwi` (diffusion weighted imaging), `fmap` (field inhomogeneity mapping data
+    such as field maps), `anat` (structural imaging such as T1, T2, etc.), `meg`
+    (magnetoencephalography), `eeg` (electroencephalography), `ieeg` (intracranial
+    electroencephalography), `beh` (behavioral).
 
-1.  Task - a set of structured activities performed by the participant. Tasks
-    are usually accompanied by stimuli and responses, and can greatly vary in
-    complexity. For the purpose of this specification we consider the so-called
+1.  **Task** - a set of structured activities performed by the participant.
+    Tasks are usually accompanied by stimuli and responses, and can greatly vary
+    in complexity. For the purpose of this specification we consider the so-called
     "resting state" a task. In the context of brain scanning, a task is always
     tied to one data acquisition. Therefore, even if during one acquisition the
     subject performed multiple conceptually different behaviors (with different
     sets of instructions) they will be considered one (combined) task.
 
-1.  Event - a stimulus or subject response recorded during a task. Each event
-    has an onset time and duration. Note that not all tasks will have recorded
-    events (e.g., resting state).
+1.  **Event** - a stimulus or subject response recorded during a task. Each
+    event has an onset time and duration. Note that not all tasks will have
+    recorded events (e.g., “resting state”).
 
-1.  Run - an uninterrupted repetition of data acquisition that has the same
+1.  **Run** - an uninterrupted repetition of data acquisition that has the same
     acquisition parameters and task (however events can change from run to run
     due to different subject response or randomized nature of the stimuli). Run
     is a synonym of a data acquisition.
+
+1.  **`<index>`** - a numeric value, possibly prefixed with arbitrary number of
+    0s for consistent indentation, e.g., it is `01` in `run-01` following
+    `run-<index>` specification.
+
+1.  **`<label>`** - an alphanumeric value, possibly prefixed with arbitrary
+    number of 0s for consistent indentation, e.g., it is `rest` in `task-rest`
+    following `task-<label>` specification.
+
+1.  **`suffix`** - an alphanumeric value, located after the `key-value_` pairs (thus after
+    the final `_`), right before the **File extension**, e.g., it is `eeg` in
+    `sub-05_task-matchingpennies_eeg.vhdr`.
+
+1.  **File extension** - a portion of the the file name after the left-most
+    period (`.`) preceded by any other alphanumeric. For example, `.gitignore` does
+    not have a file extension, but the file extension of `test.nii.gz` is `.nii.gz`.
+    Note that the left-most period is included in the file extension.
 
 ## Compulsory, optional, and additional data and metadata
 
@@ -102,39 +120,34 @@ in the appendix.
 
 ## Source vs. raw vs. derived data
 
-BIDS in its current form is designed to harmonize and describe raw (unprocessed
-or minimally processed due to file format conversion) data. During analysis such
-data will be transformed and partial as well as final results will be saved.
+BIDS was originally designed to describe and apply consistent naming conventions
+to raw (unprocessed or minimally processed due to file format conversion) data.
+During analysis such data will be transformed and partial as well as final results
+will be saved.
 Derivatives of the raw data (other than products of DICOM to NIfTI conversion)
 MUST be kept separate from the raw data. This way one can protect the raw data
 from accidental changes by file permissions. In addition it is easy to
-distinguish partial results from the raw data and share the latter. Similar
-rules apply to source data which is defined as data before harmonization and/or
-file format conversion (for example E-Prime event logs or DICOM files).
+distinguish partial results from the raw data and share the latter.
+See [Storage of derived datasets](#storage-of-derived-datasets) for more on
+organizing derivatives.
 
-This specification currently does not go into details of recommending a
-particular naming scheme for including different types of source data (raw event
-logs, parameter files, etc. before conversion to BIDS) and data derivatives
-(correlation maps, brain masks, contrasts maps, etc.). However, in the case that
-these data are to be included:
+Similar rules apply to source data, which is defined as data before
+harmonization, reconstruction, and/or file format conversion (for example, E-Prime event logs or
+DICOM files). This specification currently does not go into details of
+recommending a particular naming scheme for including different types of
+source data (raw event logs, parameter files, etc. before conversion to BIDS).
+However, in the case that these data are to be included:
 
-1.  These data MUST be kept in separate `sourcedata` and `derivatives` folders
-    each with a similar folder structure as presented below for the BIDS-managed
-    data. For example:
-    `derivatives/fmriprep/sub-01/ses-pre/sub-01_ses-pre_mask.nii.gz` or
+1.  These data MUST be kept in separate `sourcedata` folder with a similar
+    folder structure as presented below for the BIDS-managed data. For example:
     `sourcedata/sub-01/ses-pre/func/sub-01_ses-pre_task-rest_bold.dicom.tgz` or
     `sourcedata/sub-01/ses-pre/func/MyEvent.sce`.
 
-1.  A README file SHOULD be found at the root of the `sourcedata` or the
-    `derivatives` folder (or both). This file should describe the nature of the
-    raw data or the derived data. In the case of the existence of a
-    `derivatives` folder, we RECOMMEND including details about the software
-    stack and settings used to generate the results. Inclusion of non-imaging
-    objects that improve reproducibility are encouraged (scripts, settings
-    files, etc.).
-
-1.  We RECOMMEND including the PDF print-out with the actual sequence parameters
-    generated by the scanner in the `sourcedata` folder.
+1.  A README file SHOULD be found at the root of the `sourcedata` folder or the
+    `derivatives` folder, or both.
+    This file should describe the nature of the raw data or the derived data.
+    We RECOMMEND including the PDF print-out with the actual sequence
+    parameters generated by the scanner in the `sourcedata`  folder.
 
 Alternatively one can organize their data in the following way
 
@@ -149,15 +162,120 @@ my_dataset/
     sub-02/
     ...
   derivatives/
+    pipeline_1/
+    pipeline_2/
     ...
 ```
 
-In this example **only the `rawdata` subfolder needs to be a BIDS compliant
-dataset**. This specification does not prescribe anything about the contents of
-`sourcedata` and `derivatives` folders in the above example - nor does it
-prescribe the `sourcedata`, `derivatives`, or `rawdata` folder names. The above
-example is just a convention that can be useful for organizing raw, source, and
-derived data while maintaining BIDS compliancy of the raw data folder.
+In this example, where `sourcedata` and `derivatives` are not nested inside
+`rawdata`, **only the `rawdata` subfolder** needs to be a BIDS-compliant
+dataset.
+The subfolders of `derivatives` MAY be BIDS-compliant derivatives datasets
+(see [Non-compliant derivatives][#non-compliant-derivatives] for further discussion).
+This specification does not prescribe anything about the contents of `sourcedata`
+folders in the above example - nor does it prescribe the `sourcedata`,
+`derivatives`, or `rawdata` folder names.
+The above example is just a convention that can be useful for organizing raw,
+source, and derived data while maintaining BIDS compliancy of the raw data
+folder. When using this convention it is RECOMMENDED to set the `SourceDatasets`
+field in `dataset_description.json` of each subfolder of `derivatives` to:
+
+```JSON
+{
+  "SourceDatasets": [ {"URL": "file://../../rawdata/"} ]
+}
+```
+
+### Storage of derived datasets
+
+Derivatives can be stored/distributed in two ways:
+
+1.  Under a `derivatives/` subfolder in the root of the source BIDS dataset
+    folder to make a clear distinction between raw data and results of data
+    processing. A data processing pipeline will typically have a dedicated directory
+    under which it stores all of its outputs. Different components of a pipeline can,
+    however, also be stored under different subfolders. There are few restrictions on
+    the directory names; it is RECOMMENDED to use the format `<pipeline>-<variant>` in
+    cases where it is anticipated that the same pipeline will output more than one variant (e.g.,
+    `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
+    subfolder name SHOULD be the `GeneratedBy.Name` field in
+    `data_description.json`, optionally followed by a hyphen and a suffix (see
+    [Derived dataset and pipeline description][derived-dataset-description]).
+
+    Example of derivatives with one directory per pipeline:
+
+    ```Plain
+    <dataset>/derivatives/fmriprep-v1.4.1/sub-0001
+    <dataset>/derivatives/spm/sub-0001
+    <dataset>/derivatives/vbm/sub-0001
+    ```
+
+    Example of a pipeline with split derivative directories:
+
+    ```Plain
+    <dataset>/derivatives/spm-preproc/sub-0001
+    <dataset>/derivatives/spm-stats/sub-0001
+    ```
+
+    Example of a pipeline with nested derivative directories:
+
+    ```Plain
+    <dataset>/derivatives/spm-preproc/sub-0001
+    <dataset>/derivatives/spm-preproc/derivatives/spm-stats/sub-0001
+    ```
+
+
+1.  As a standalone dataset independent of the source (raw or derived) BIDS
+    dataset.
+    This way of specifying derivatives is particularly useful when the source
+    dataset is provided with read-only access, for publishing derivatives as
+    independent bodies of work, or for describing derivatives that were created
+    from more than one source dataset.
+    The `sourcedata/` subdirectory MAY be used to include the source dataset(s)
+    that were used to generate the derivatives.
+    Likewise, any code used to generate the derivatives from the source data
+    MAY be included in the `code/` subdirectory.
+
+    Example of a derivative dataset including the raw dataset as source:
+
+    ```Plain
+    my_processed_data/
+      code/
+        processing_pipeline-1.0.0.img
+        hpc_submitter.sh
+        ...
+      sourcedata/
+        dataset_description.json
+        participants.tsv
+        sub-01/
+        sub-02/
+        ...
+      dataset_description.json
+      sub-01/
+      sub-02/
+      ...
+    ```
+
+Throughout this specification, if a section applies particularly to derivatives,
+then Case 1 will be assumed for clarity in templates and examples, but removing
+`/derivatives/<pipeline>` from the template name will provide the equivalent for
+Case 2.
+In both cases, every derivatives dataset is considered a BIDS dataset and must
+include a `dataset_description.json` file at the root level (see
+[Dataset description][dataset-description].
+Consequently, files should be organized to comply with BIDS to the full extent
+possible (that is, unless explicitly contradicted for derivatives).
+Any subject-specific derivatives should be housed within each subject’s directory;
+if session-specific derivatives are generated, they should be deposited under a
+session subdirectory within the corresponding subject directory; and so on.
+
+### Non-compliant deriatives
+
+Nothing in this specification should be interpreted to disallow the
+storage/distribution of non-compliant derivatives of BIDS datasets.
+In particular, if a BIDS dataset contains a `derivatives/` sub-directory,
+the contents of that directory may be a heterogeneous mix of BIDS Derivatives
+datasets and non-compliant derivatives.
 
 ## The Inheritance Principle
 
@@ -169,10 +287,10 @@ levels unless they are overridden by a file at the lower level. For example,
 TR to a specific value. If one of the runs has a different TR than the one
 specified in that file, another `sub-*_task-rest_bold.json` file can be placed
 within that specific series directory specifying the TR for that specific run.
-There is no notion of "unsetting" a key/value pair. For example if there is a
-JSON file corresponding to particular participant/run defining a key/value and
-there is a JSON file on the root level of the dataset that does not define this
-key/value it will not be "unset" for all subjects/runs. Files for a particular
+There is no notion of "unsetting" a key/value pair.
+Once a key/value pair is set in a given level in the dataset, lower down in
+the hierarchy that key/value pair will always have some assigned value.
+Files for a particular 
 participant can exist only at participant level directory, i.e
 `/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any file that is not
 specific to a participant is to be declared only at top level of dataset for eg:
@@ -264,8 +382,7 @@ additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
 Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://github.com/rordenlab/dcm2niix)
 and [dicm2nii](http://www.mathworks.com/matlabcentral/fileexchange/42997-dicom-to-nifti-converter/content/dicm2nii.m)
-DICOM to NIfTI converters. A provided
-[validator](https://github.com/bids-standard/bids-validator)
+DICOM to NIfTI converters. The [BIDS-validator](https://github.com/bids-standard/bids-validator)
 will check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
 
@@ -274,9 +391,13 @@ NIfTI header.
 Tabular data MUST be saved as tab delimited values (`.tsv`) files, i.e., CSV
 files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
-line listing the names of all columns (with the exception of physiological and
-other continuous acquisition data - see below for details). Names MUST be
-separated with tabs. String values containing tabs MUST be escaped using double
+line listing the names of all columns (with the exception of
+[physiological and other continuous recordings](04-modality-specific-files/06-physiological-and-other-continuous-recordings.md)).
+Names MUST be separated with tabs.
+It is RECOMMENDED that the column names in the header of the TSV file are
+written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
+first letter in lower case (e.g., `variable_name`, not `Variable_name`).
+String values containing tabs MUST be escaped using double
 quotes. Missing and non-applicable values MUST be coded as `n/a`. Numerical
 values MUST employ the dot (`.`) as decimal separator and MAY be specified
 in scientific notation, using `e` or `E` to separate the significand from the
@@ -340,8 +461,14 @@ format can be found here: [http://json.org/](http://json.org/). Several editors
 have built-in support for JSON syntax highlighting that aids manual creation of
 such files. An online editor for JSON with built-in validation is available at:
 [http://jsoneditoronline.org](http://jsoneditoronline.org). 
+It is RECOMMENDED that keys in a JSON file are written in [CamelCase](https://en.wikipedia.org/wiki/Camel_case)
+with the first letter in upper case (e.g., `SamplingFrequency`, not
+`samplingFrequency`). Note however, when a JSON file is used as an accompanying
+sidecar file for a [TSV file](#tabular-files), the keys linking a TSV column
+with their description in the JSON file need to follow the exact formatting
+as in the TSV file.
 
-Example:
+Example of a hypothetical `*_bold.json` file, accompanying a `*_bold.nii` file:
 
 ```JSON
 {
@@ -350,20 +477,38 @@ Example:
 }
 ```
 
+Example of a hypothetical `*_events.json` file, accompanying an
+`*_events.tsv` file. Note that the JSON file contains a key describing an
+*arbitrary* column `stim_presentation_side` in the TSV file it accompanies.
+See [task events section](04-modality-specific-files/05-task-events.md)
+for more information.
+
+```JSON
+{
+  "stim_presentation_side": {
+    "Levels": {
+      "1": "stimulus presented on LEFT side",
+      "2": "stimulus presented on RIGHT side"
+    }
+  }
+}
+```
+
 ## Participant names and other labels
 
-BIDS uses custom user-defined labels in several situations (naming of
-participants, sessions, acquisition schemes, etc.) Labels are strings and MUST
-only consist of letters (lower or upper case) and/or numbers. If numbers are
-used we RECOMMEND zero padding (e.g., `01` instead of `1` if you have more than
-nine subjects) to make alphabetical sorting more intuitive.
+BIDS allows for custom user-defined `<label>`s and `<index>`es e.g.,
+for naming of participants, sessions, acquisition schemes, etc. Note
+that they MUST consist only of allowed characters as described in
+[Definitions](02-common-principles.md#definitions) above. In `<index>`es
+we RECOMMEND using zero padding (e.g., `01` instead of `1` if you have more than
+nine subjects) to make alphabetical sorting more intuitive. Note that
+zero padding SHOULD NOT be used to merely maintain uniqueness
+of `<index>`es.
 
-Please note that a given label is distinct from the "prefix" it refers to. For
-example `sub-01` refers to the `sub` entity (a subject) with the label `01`.
-The `sub-` prefix is not part of the subject label, but must be included in file
-names (similarly to other key names). In contrast to other labels, `run` and
-`echo` labels MUST be integers. Those labels MAY include zero padding, but this
-is NOT RECOMMENDED to maintain their uniqueness.
+Please note that a given label or index is distinct from the "prefix"
+it refers to. For example `sub-01` refers to the `sub` entity (a
+subject) with the label `01`. The `sub-` prefix is not part of the subject
+label, but must be included in file names (similarly to other key names).
 
 ## Units
 
@@ -464,3 +609,10 @@ meaning of file names and setting requirements on their contents or metadata.
 Validation and parsing tools MAY treat the presence of non-standard files and
 directories as an error, so consult the details of these tools for mechanisms
 to suppress warnings or provide interpretations of your file names.
+
+[]: <> (################)
+[]: <> (Link definitions)
+[]: <> (################)
+
+[dataset-description]: 03-modality-agnostic-files.md#dataset-description
+[derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description
