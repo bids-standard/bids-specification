@@ -140,7 +140,7 @@ your name is not listed, please add it.
 -   Kay Robbins 💻📖🐛
 -   Alex Rockhill 📖🔧
 -   Ariel Rokem 📖
--   Taylor Salo 💬📖
+-   Taylor Salo 💬📖🔌
 -   Matt Sanderson 📖💻
 -   Gunnar Schaefer 📖
 -   Jan-Mathijs Schoffelen 📖
