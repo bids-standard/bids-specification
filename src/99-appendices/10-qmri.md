@@ -1,9 +1,10 @@
+This appendix contains detailed information on how to organize quantitative MRI
+data in the BIDS format.
+
 # Method-specific priority levels for grouping suffix
 
-Although there is not an upper limit to the amount of metadata
-for images collected by a `grouping suffix`, some of the metadata entries become
-REQUIRED when considered within the context of a specific qMRI
-application.
+Some of the metadata entries are REQUIRED for specific qMRI methods.
+These metadata are laid-out in the table below.
 
 <a name="prioritylevels">Table of method-specific priority levels for qMRI metadata</a>
 
@@ -25,11 +26,15 @@ Explanation of the table:
 minimum viable qMRI application for the corresponding `grouping suffix`.
 * Note that some of the metadata fields may be unaltered across different members
 of a given `grouped scan collection`, yet still needed as an input to a qMRI
-model for parameter fitting (e.g. `RepetitionTimeExcitation` of `VFA`). 
+model for parameter fitting (e.g. `RepetitionTimeExcitation` of `VFA`) and therefore
+should be included in all json-sidecars. 
 * The metadata fields listed in the OPTIONAL column can be used to derive
-various qMRI applications from an existing `grouping suffix`. The following section expands on the set of rules to derive qMRI applications from an existing `grouping suffix`.
+various qMRI applications from an existing `grouping suffix`. 
 
-# qMRI applications that can be derived from an existing `grouping suffix`
+The following section expands on the set of rules to derive novel qMRI applications
+from an existing `grouping suffix`.
+
+# How to derive the intended qMRI application from an ambiguous `grouping suffix`
 
 Certain grouping suffixes may refer to a generic data collection regime such as
 variable flip angle (VFA), rather than a more specific acquisition, e.g.,
@@ -62,10 +67,11 @@ specification.
  constituent images of the respective `grouping suffix`, fixed otherwise (`fix`). 
  If the OPTIONAL metadata type is `var`, respective naming entities can be found in the 
  OPTIONAL entities column of [`grouping suffix` table](#grouping-suffix). 
-*** 
+
+* * *
 
 A derived qMRI application becomes avaiable if all the OPTIONAL metadata fields
-listed for a `grouping suffix` is provided in the data. In addition, conditional
+listed for a `grouping suffix` is provided for the data. In addition, conditional
 rules based on the value of a given REQUIRED metada field can be set
 for the description of a derived qMRI application. Note that the value of this
 REQUIRED metadata is fixed across constituent images of a `grouping suffix`. 
@@ -79,7 +85,10 @@ T2 fitting application. Finally, if the `DESPOT2` data has more than one
 `SpoilingRFPhaseIncrement` field as a metadata field, then the dataset is valid
 for `DESPOT2-FM`. In this case, `rfphase` entity can be used to distinguish inputs. 
 
-Please note that OPTIONAL metadata fields listed in the [qMRI applications that can be derived from an existing suffix table](#varianttable) MUST be also included in the [method sprecific priority levels for qMRI metadata table](#prioritylevels)  for the sake of completeness.
+Please note that OPTIONAL metadata fields listed in the 
+qMRI applications that can be derived from an existing suffix table](#varianttable) MUST
+also be included in the
+[method sprecific priority levels for qMRI metadata table](#prioritylevels) for the sake of completeness.
 
 Please also note that the rules concerning the presence/value of certain metadata
 fields within the context of `grouping suffix` is not a part of the BIDS
@@ -110,15 +119,16 @@ application (e.g. `MP2RAGE`), sequence names are NOT used as grouping suffixes.
 grouping suffix by defining a set of logical conditions over the metadata
 fields, the [table of method-specific priority levels](#prioritylevels) and the
 [table of qMRI applications that can be derived from an existing grouping suffix](#varianttable)
- MUST be expanded instead of introducing a new grouping suffix.
- Please visit the [JSON content for grouping suffixes](#whichmetadata) 
- for further details.
+MUST be expanded instead of introducing a new grouping suffix.
+Please visit the [JSON content for grouping suffixes](#whichmetadata) 
+for further details.
 * Please note that if a structural data has the type of grouped scan collection,
 the use of `_suffix` alone cannot distinguish its members from each other,
 failing to identify their roles as inputs to the calculation of qMRI maps.
 Although such images are REQUIRED to be grouped by a proper grouping suffix,
 they are also RECOMMENDED to include at least one of the `acq`, `part`, `echo`,
-`met`, `inv`-key/value-pairs (please visit corresponding sections for details).
+`met`, `inv`-key/value-pairs  to indicate which scanning parameters are 
+systematically altered.
 
 
 # Management of the qMRI maps
@@ -130,9 +140,9 @@ to structural images). There are two possible options in the way a qMRI map is o
 1. Pre-generated qMRI maps: The qMRI maps are generated immediately after the 
 reconstruction of the multi-contrast input images and made available to the user
 at the scanner console. The acquisition scenarios may include (a) vendor pipelines 
-or (b) open-source pipelines deployed on the scanner site.
+or (b) open-source pipelines deployed at the scanner site.
 2. Post-generated qMRI maps: The qMRI maps are generated from the multi-contrast
-input images after they are exported outside the scanner site.
+input images after they are exported outside of the scanner site.
 
 ## Where to place qMRI maps? 
 
@@ -205,7 +215,7 @@ in the following table for the sake of provenance.
 
 | Field name                  | Definition                                                     |
 | :-------------------------- | :------------------------------------------------------------- |
-| BasedOn | List of files grouped by an `grouping suffix` to generate the map. The fieldmaps are also listed, if involved in the processing. |
+| BasedOn | List of files grouped by an `grouping suffix` to generate the map. Fieldmaps are also listed, if involved in the processing. |
 | EstimationReference | Reference to the study/studies on which the implementation is based.|
 | EstimationAlgorithm | Type of algoritm used to perform fitting (e.g. linear, non-linear, LM etc.)|
 | EstimationSoftwareName | The name of the open-source tool used for fitting (e.g. [qMRLab](https://qmrlab.org), [QUIT](https://github.com/spinicist/QUIT), [hMRI-Toolbox](https://hmri-group.github.io/hMRI-toolbox/) etc.)|
@@ -263,15 +273,17 @@ sub-01_T1map.json
 
 # Radiofrequency (RF) field mapping 
 
-Most qMRI methods are susceptible to the nonuniformities in the transmit (B1<sup>+</sup>) and/or receive (B1<sup>-</sup>) radiofrequency (RF) fields. Various (acquisition based)
-methods are available to derive maps of spatial variations in the B1<sup>+</sup> and B1<sup>-</sup> 
-fields. These maps are commonly used for the correction of qMRI estimation errors 
-arising from the imperfections in the respective RF field.
+Most qMRI methods are susceptible to nonuniformities in the transmit (B1<sup>+</sup>)
+and/or receive (B1<sup>-</sup>) radiofrequency (RF) fields. Various (acquisition based)
+methods are available to derive maps of spatial variations in the B1<sup>+</sup>
+and B1<sup>-</sup> fields. These maps are commonly used for the correction of qMRI
+estimation errors arising from the imperfections in the respective RF field.
 
-An approach similar to that used in anatomical MR images to group a set of input images intended
-for qMRI application (`grouping suffix`) is applied for the inputs of B1<sup>+</sup> and B1<sup>-</sup> RF field mapping. Note that these images do not convey substantial
-structural information by design. Therefore, both inputs and outputs of RF field
-maps are stored in the `fmap` folder.
+An approach similar to that used in anatomical MR images to group a set of input images
+intended for qMRI application (`grouping suffix`) is applied for the inputs of
+B1<sup>+</sup> and B1<sup>-</sup> RF field mapping. Note that these images do not
+convey substantial structural information by design. Therefore, both inputs and
+outputs of RF field maps are stored in the `fmap` folder.
 
 ## Grouping suffixes for RF field mapping 
 
