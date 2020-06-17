@@ -14,6 +14,7 @@ Been here before? Already know what you're looking for in this guide? Jump to th
 *   [Joining the BIDS community](#joining-the-community)
 *   [Contributing through GitHub](#contributing-through-github)
 *   [Understanding issues](#understanding-issues)
+*   [Commenting on a pull request](#commenting-on-a-pull-request)
 *   [Writing in markdown](#writing-in-markdown)
 *   [Make a change with a pull request](#making-a-change-with-a-pull-request)
 *   [Example pull request](#example-pull-request)
@@ -73,6 +74,69 @@ The current list of labels are [here](https://github.com/bids-standard/bids-spec
     In addition to the specification itself, we are dedicated to creating a healthy community.
     These issues highlight pieces of work or discussions around how we can support our members and make it easier to contribute.
 
+## Commenting on a pull request
+
+Our primary method of adding to or enhancing BIDS occurs in the form of [pull requests](https://help.github.com/articles/about-pull-requests/).
+BIDS Extension Proposals ([BEPs](https://docs.google.com/document/d/1pWmEEY-1-WuwBPNy5tDAxVJYQ9Een4hZJM06tQZg8X4/)) are submitted as pull requests, and commenting on pull requests is an important way of participating in the BIDS community.
+
+This section outlines how to comment on a pull request.
+
+### Navigating to open pull requests
+
+The list of pull requests can be found by clicking on the "Pull requests" tab in the [BIDS-Specification repository](https://github.com/bids-standard/bids-specification).
+
+![BIDS-mainpage](commenting_images/BIDS_GitHub_mainpage.png "BIDS_GitHub_mainpage")
+
+### Selecting an open pull request
+
+In this example we will be navigating to our [BIDS common derivatives pull request](https://github.com/bids-standard/bids-specification/pull/265).
+
+![BIDS-pr-list](commenting_images/BIDS_pr_list.png "BIDS_pr_list")
+
+### Pull request description
+
+Upon opening the pull request we see a detailed description of what this pull request is seeking to address.
+Descriptions are important for reviewers and the community to gain context into what the pull request is achieving.
+
+![BIDS-pr](commenting_images/BIDS_pr.png "BIDS_pr")
+
+### Generally commenting on a pull request
+
+At the bottom of the pull request page, a comment box is provided for general comments and questions.
+
+![BIDS-comment](commenting_images/BIDS_comment.png "BIDS-comment")
+
+### Specific comments on a pull request
+
+The proposed changes to the text of the specification can be seen in the "Files changed" tab.
+Proposed additions are displayed on a green background with a `+` before each added line.
+Proposed deletions are displayed on a red background with a `-` before each removed line.
+To comment on a specific line, hover over it, and click the blue plus sign (pictured below).
+Multiple lines can be selected by clicking and dragging the plus sign.
+
+![BIDS-specific-comment](commenting_images/BIDS_file_comment.png "BIDS-specific-comment")
+
+#### Suggesting text
+
+Comments on lines can contain "suggestions", which allow you to propose specific wording for consideration.
+To make a suggestion, click the plus/minus (±) icon in the comment box (pictured below).
+
+![BIDS-suggest-box](commenting_images/BIDS_suggest.png "BIDS-suggest")
+
+Once the button is clicked the highlighted text will be copied into the comment box and formatted as
+a [Markdown code block](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks).
+
+![BIDS-suggest-text](commenting_images/BIDS_suggest_text.png "BIDS-suggest-box")
+
+The "Preview" tab in the comment box will show your suggestion as it will be rendered.
+The "Suggested change" box will highlight the differences between the original text and your suggestion.
+
+![BIDS-suggest-change](commenting_images/BIDS_suggest_change.png "BIDS-suggest-change")
+
+A comment may be submitted on its own by clicking "Add single comment".
+Several comments may be grouped by clicking "Start a review".
+As more comments are written, accept them with "Add review comment", and submit your review comments
+as a batch by clicking the "Finish your review" button.
 
 ## Writing in markdown
 

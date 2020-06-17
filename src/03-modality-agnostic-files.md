@@ -2,32 +2,39 @@
 
 ## Dataset description
 
-Template: `dataset_description.json` `README` `CHANGES`
+Templates:
+
+-   `dataset_description.json`
+-   `README`
+-   `CHANGES`
+-   `LICENSE`
 
 ### `dataset_description.json`
 
-The file dataset_description.json is a JSON file describing the dataset. Every
-dataset MUST include this file with the following fields:
+The file `dataset_description.json` is a JSON file describing the dataset.
+Every dataset MUST include this file with the following fields:
 
-| Field name         | Definition                                                                                                                                                                                                                           |
+| Field name         | Definition                                                                                                                                                                                                                                                         |
 | ------------------------------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                       |
-| BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                            |
-| License            | RECOMMENDED. What license is this dataset distributed under? The use of license name abbreviations is suggested for specifying a license. A list of common licenses with suggested abbreviations can be found in Appendix II.        |
-| Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                               |
-| Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                 |
-| HowToAcknowledge   | OPTIONAL. Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset. |
-| Funding            | OPTIONAL. List of sources of funding (grant numbers).                                                                                                                                                                                |
-| EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                  |                                                                                                                |
-| ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                       |
-| DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                               |
+| Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                                                     |
+| BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                                                          |
+| DatasetType        | RECOMMENDED. The interpretaton of the dataset. MUST be one of `"raw"` or `"derivative"`. For backwards compatibility, the default value is `"raw"`.                                                                                                                |
+| License            | RECOMMENDED. The license for the dataset. The use of license name abbreviations is RECOMMENDED for specifying a license (see [Appendix II](./99-appendices/02-licenses.md)). The corresponding full license text MAY be specified in an additional `LICENSE` file. |
+| Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                                                             |
+| Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                                               |
+| HowToAcknowledge   | OPTIONAL. Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset.                               |
+| Funding            | OPTIONAL. List of sources of funding (grant numbers).                                                                                                                                                                                                              |
+| EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                                                |
+| ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                                                     |
+| DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                                                             |
 
 Example:
 
 ```JSON
 {
   "Name": "The mother of all experiments",
-  "BIDSVersion": "1.0.1",
+  "BIDSVersion": "1.4.0",
+  "DatasetType": "raw",
   "License": "CC0",
   "Authors": [
     "Paul Broca",
@@ -50,11 +57,73 @@ Example:
 }
 ```
 
+#### Derived dataset and pipeline description
+
+As for any BIDS dataset, a `dataset_description.json` file MUST be found at the
+top level of the a derived dataset:
+`<dataset>/derivatives/<pipeline_name>/dataset_description.json`
+
+In addition to the keys for raw BIDS datasets,
+derived BIDS datasets include the following REQUIRED and RECOMMENDED
+`dataset_description.json` keys:
+
+| **Key name**   | **Description**                                                                                                                                                                    |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GeneratedBy    | REQUIRED. List of [objects][object] with at least one element.                                                                                                                     |
+| SourceDatasets | RECOMMENDED. A list of [objects][object] specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`. |
+
+Each object in the `GeneratedBy` list includes the following REQUIRED, RECOMMENDED
+and OPTIONAL keys:
+
+| **Key name** | **Description**                                                                                                                                                                                              |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Name         | REQUIRED. Name of the pipeline or process that generated the outputs. Use `"Manual"` to indicate the derivatives were generated by hand, or adjusted manually after an initial run of an automated pipeline. |
+| Version      | RECOMMENDED. Version of the pipeline.                                                                                                                                                                        |
+| Description  | OPTIONAL. Plain-text description of the pipeline or process that generated the outputs. RECOMMENDED if `Name` is `"Manual"`.                                                                                 |
+| CodeURL      | OPTIONAL. URL where the code used to generate the derivatives may be found.                                                                                                                                  |
+| Container    | OPTIONAL. [Object][object] specifying the location and relevant attributes of software container image used to produce the derivative. Valid fields in this object include `Type`, `Tag` and `URI`.          |
+
+Example:
+
+```JSON
+{
+  "Name": "FMRIPREP Outputs",
+  "BIDSVersion": "1.4.0",
+  "DatasetType": "derivative",
+  "GeneratedBy": [
+    {
+      "Name": "fmriprep",
+      "Version": "1.4.1",
+      "Container": {
+        "Type": "docker",
+        "Tag": "poldracklab/fmriprep:1.4.1"
+        }
+    },
+    {
+      "Name": "Manual",
+      "Description": "Re-added RepetitionTime metadata to bold.json files"
+    }
+  ],
+  "SourceDatasets": [
+    {
+      "DOI": "10.18112/openneuro.ds000114.v1.0.1",
+      "URL": "https://openneuro.org/datasets/ds000114/versions/1.0.1",
+      "Version": "1.0.1"
+    }
+  ]
+}
+```
+
+If a derived dataset is stored as a subfolder of the raw dataset, then the `Name` field
+of the first `GeneratedBy` object MUST be a substring of the derived dataset folder name.
+That is, in a directory `<dataset>/derivatives/<pipeline>[-<variant>]/`, the first
+`GeneratedBy` object should have a `Name` of `<pipeline>`.
+
 ### `README`
 
 In addition a free form text file (`README`) describing the dataset in more
-details SHOULD be provided. The `README` file MUST be either in ASCII or UTF-8
-encoding.
+details SHOULD be provided.
+The `README` file MUST be either in ASCII or UTF-8 encoding.
 
 ### `CHANGES`
 
@@ -68,11 +137,18 @@ Example:
 
 ```Text
 1.0.1 2015-08-27
- - Fixed slice timing information.
+  - Fixed slice timing information.
 
 1.0.0 2015-08-17
- - Initial release.
+  - Initial release.
 ```
+
+### `LICENSE`
+
+A `LICENSE` file MAY be provided in addition to the short specification of the
+used license in the `dataset_description.json` `"License"` field.
+The `"License"` field and `LICENSE` file MUST correspond.
+The `LICENSE` file MUST be either in ASCII or UTF-8 encoding.
 
 ## Participants file
 
@@ -81,28 +157,106 @@ Template:
 ```Text
 participants.tsv
 participants.json
+```
+
+The purpose of this RECOMMENDED file is to describe properties of participants
+such as age, sex, handedness etc.
+In case of single-session studies, this file has one compulsory column
+`participant_id` that consists of `sub-<label>`, followed by a list of optional
+columns describing participants.
+Each participant MUST be described by one and only one row.
+
+Commonly used *optional* columns in `participant.tsv` files are `age`, `sex`,
+and `handedness`. We RECOMMEND to make use of these columns, and
+in case that you do use them, we RECOMMEND to use the following values
+for them:
+
+-   `age`: numeric value in years (float or integer value)
+
+-   `sex`: string value indicating phenotypical sex, one of "male", "female",
+    "other"
+
+    -   for "male", use one of these values: `male`, `m`, `M`, `MALE`, `Male`
+
+    -   for "female", use one of these values: `female`, `f`, `F`, `FEMALE`,
+      ` Female`
+
+    -   for "other", use one of these values: `other`, `o`, `O`, `OTHER`,
+        `Other`
+
+-   `handedness`: string value indicating one of "left", "right",
+    "ambidextrous"
+
+    -   for "left", use one of these values: `left`, `l`, `L`, `LEFT`, `Left`
+
+    -   for "right", use one of these values: `right`, `r`, `R`, `RIGHT`,
+        `Right`
+
+    -   for "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`,
+        `AMBIDEXTROUS`, `Ambidextrous`
+
+Throughout BIDS you can indicate missing values with `n/a` (i.e., "not
+available").
+
+`participants.tsv` example:
+
+```Text
+participant_id age sex handedness group
+sub-01 34 M right read
+sub-02 12 F right write
+sub-03 33 F n/a read
+```
+
+It is RECOMMENDED to accompany each `participants.tsv` file with a sidecar
+`participants.json` file to describe the TSV column names and properties of their values (see also
+the [section on tabular files](02-common-principles.md#tabular-files)).
+Such sidecar files are needed to interpret the data, especially so when
+optional columns are defined beyond `age`, `sex`, and `handedness`, such as
+`group` in this example, or when a different age unit is needed (e.g., gestational weeks).
+If no `units` is provided for age, it will be assumed to be in years relative to date of birth.
+
+`participants.json` example:
+
+```JSON
+{
+    "age": {
+        "Description": "age of the participant",
+        "Units": "years"
+    },
+    "sex": {
+        "Description": "sex of the participant as reported by the participant",
+        "Levels": {
+            "M": "male",
+            "F": "female"
+        }
+    },
+    "handedness": {
+        "Description": "handedness of the participant as reported by the participant",
+        "Levels": {
+            "left": "left",
+            "right": "right"
+        }
+    },
+    "group": {
+        "Description": "experimental group the participant belonged to",
+        "Levels": {
+            "read": "participants who read an inspirational text before the experiment",
+            "write": "participants who wrote an inspirational text before the experiment"
+        }
+    }
+}
+```
+
+## Phenotypic and assessment data
+
+Template:
+
+```Text
 phenotype/<measurement_tool_name>.tsv
 phenotype/<measurement_tool_name>.json
 ```
 
 Optional: Yes
-
-The purpose of this file is to describe properties of participants such as age,
-handedness, sex, etc. In case of single session studies this file has one
-compulsory column `participant_id` that consists of `sub-<label>`,
-followed by a list of optional columns describing participants. Each participant
-needs to be described by one and only one row.
-
-`participants.tsv` example:
-
-```Text
-participant_id  age sex group
-sub-control01 34  M control
-sub-control02 12  F control
-sub-patient01 33  F patient
-```
-
-## Phenotypic and assessment data
 
 If the dataset includes multiple sets of participant level measurements (for
 example responses from multiple questionnaires) they can be split into
@@ -179,21 +333,26 @@ Optional: Yes
 
 The purpose of this file is to describe timing and other properties of each
 imaging acquisition sequence (each run `.nii[.gz]` file) within one session.
-Each `.nii[.gz]` file should be described by at most one row. Relative paths to
-files should be used under a compulsory `filename` header. If acquisition time
-is included it should be under `acq_time` header. Datetime should be expressed
-in the following format `2009-06-15T13:45:30` (year, month, day, hour (24h),
-minute, second; this is equivalent to the RFC3339 "date-time" format, time zone
-is always assumed as local time). For anonymization purposes all dates within
-one subject should be shifted by a randomly chosen (but common across all runs
-etc.) number of days. This way relative timing would be preserved, but chances
-of identifying a person based on the date and time of their scan would be
-decreased. Dates that are shifted for anonymization purposes should be set to a
-year 1925 or earlier to clearly distinguish them from unmodified data. Shifting
-dates is RECOMMENDED, but not required.
+Each `.nii[.gz]` file should be described by at most one row.
+Relative paths to files should be used under a compulsory `filename` header.
+If acquisition time is included it should be under `acq_time` header.
+Datetime should be expressed in the following format
+`2009-06-15T13:45:30[.000000]` (year, month, day, hour (24h), minute, second,
+and optionally fractional second; this is equivalent to the RFC3339 "date-time"
+format, time zone is always assumed as local time).
+No specific precision is required for fractional seconds, but the precision
+SHOULD be consistent across the dataset
+For anonymization purposes all dates within one subject should be shifted by a
+randomly chosen (but consistent across all runs etc.) number of days.
+This way relative timing would be preserved, but chances of identifying a
+person based on the date and time of their scan would be decreased.
+Dates that are shifted for anonymization purposes should be set to a year 1925
+or earlier to clearly distinguish them from unmodified data.
+Shifting dates is RECOMMENDED, but not required.
 
 Additional fields can include external behavioral measures relevant to the
-scan. For example vigilance questionnaire score administered after a resting
+scan.
+For example vigilance questionnaire score administered after a resting
 state scan.
 
 Example:
