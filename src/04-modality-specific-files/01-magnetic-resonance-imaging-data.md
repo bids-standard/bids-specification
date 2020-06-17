@@ -46,7 +46,7 @@ by Ben Inglis:
 | SpoilingState            | RECOMMENDED. Boolean value (`true` or `false`), specifying whether the pulse sequence uses any type of spoiling stratey to suppress transverse magnetization remaining after the readout. |
 | SpoilingType             | RECOMMENDED. Specifies which spoiling method(s) are used by a spoiled sequence. Accepted values: `RF`, `GRADIENT` or `COMBINED`.                                                          |
 | SpoilingRFPhaseIncrement | RECOMMENDED. The amount of incrementation described in degrees, which is applied to the phase of the excitation pulse at each TR period for achieving RF spoiling.                        |
-| SpoilingGradientMoment   | RECOMMENDED. Zeroth moment of the spoiler gradient lobe in militesla times second per meter (mT.s/m).                                                                                     |
+| SpoilingGradientMoment   | RECOMMENDED. Zeroth moment of the spoiler gradient lobe in millitesla times second per meter (mT.s/m).                                                                                     |
 | SpoilingGradientDuration | RECOMMENDED. The duration of the spoiler gradient lobe in seconds. The duration of a trapezoidal lobe is defined as the summation of ramp-up and plateu times.                            |
 
 #### In-Plane Spatial Encoding
@@ -135,7 +135,7 @@ information about (brain) anatomy, but differ by the nature of the data they con
 1. a single image with specific weighting on an arbitrary scale (e.g. a 3D high resolution T1-weighted image).
 This type is most commonly used in neuroimaging applications.
 2. a group of images acquired within a single protocol for the purpose of improving contrast 
-characteristics (e.g., a multi-echo anatomical GRE image) or calculating quantitative maps
+characteristics (e.g., a set of multi-echo anatomical GRE images) or calculating quantitative maps
 (e.g. four 3D volumes provided as an input to an MP2RAGE calculation) 
 3. a quantitative map of which the intensities are put on an absolute scales (e.g., seconds for a T1 map).
 These images are generally produced by some mathematical operation on images from class 2.
@@ -143,16 +143,16 @@ These images are generally produced by some mathematical operation on images fro
 #### Conventional structural acquisitions
 
 Anatomical images of this type typically refer to a volumetric high-resolution 
-dataset, representing the measured MRI signal in an arbitrary scale of gray
-shades. Contrast factor of these grayscale images depend on the relative contribution
+dataset, representing the measured MRI signal in an arbitrary scale of "gray
+shades". Contrast factor of these grayscale images depend on the relative contribution
 of inherent tissue parameters (e.g. `T1`, `T2` and `PD`) to the measured signal. 
 
 Contribution weights of these parameters are determined by the type of acquisition
 sequence (e.g. `spin-` or `gradient-echo`) and the setting of various parameters
 (e.g. `Repetition Time`, `Echo Time`, `Inversion Time` and `Flip Angle`). For 
 example, in a spoiled gradient-echo scan, keeping the repetition and the echo time 
-short with a relatively large flip angle increases the contribution of `T1`, yielding
-a primarily T1-weighted image.
+short with a relatively large flip angle increases the contribution of `T1` effects
+to the image contrast, yielding a primarily T1-weighted image.
 
 #### Grouped scan collections for contrast improvement or quantitative map calculation
 
@@ -160,9 +160,13 @@ A group of anatomical scans may be collected to enhance certain contrast feature
 such as to calculate a weighted average of multi-echo gradient echo (`MEGRE`) images,
 which is known to improve segmentation algorithm outputs.
 
-Quantitative MRI (qMRI) methods mathematically characterize the signal changes observed in a collection of parametrically altered scans under certain biophysical model assumptions. These `grouped scan collections` are then processed to derive a `qMRI map`, representing anatomical features in a physically meaningful parameter range.
+Quantitative MRI (qMRI) methods mathematically characterize the signal changes observed
+in a collection of parametrically altered scans under certain biophysical model assumptions.
+These `grouped scan collections` can then be processed to derive a `qMRI map`, representing
+anatomical features in a physically meaningful parameter range.
 
-In both cases, the contrast characteristics change with varying acquisition parameters across `grouped scan collections`. Therefore, it is not tenable to name all the members
+In both cases, the contrast characteristics change with varying acquisition parameters across
+`grouped scan collections`. Therefore, it is not tenable to name all the members
 of a `grouped scan collection` with one conventional MRI suffix label (e.g., `T1w`)
 or any other label that implies interchangeability among its instances. 
 
@@ -213,7 +217,7 @@ A change to the specification is REQUIRED to expand or to modify the following t
 | T1 weighted images                         | T1w     | Conventional | Denotes images with predominant T1 contribution.                                                                                                                                                                                |
 | T2 weighted images                         | T2w     | Conventional | Denotes images with predominant T2 contribution.                                                                                                                                                                                |
 | Proton density weighted images             | PDw     | Conventional | Denotes images with predominant proton density (PD) contribution.                                                                                                                                                               |
-| T2 star weighted images                    | T2starw | Conventional | Denotes images with predominant T2* contribution, typically images acquired using a GRE sequence with low flip angle, long echo time and long repetition time. Please note that this suffix is not a surrogate for `T2starmap`. |
+| T2 star weighted images                    | T2starw | Conventional | Denotes images with predominant T2\* contribution. Please note that this suffix is not a surrogate for `T2starmap`. |
 | Fluid Attenuated Inversion Recovery Images | FLAIR   | Conventional | Denotes images with predominant T2 contribution (a.k.a T2-FLAIR), in which signal from fluids (e.g. CSF) is nulled out by adjusting inversion time, coupled with notably long repetition and echo times.              |
 | Inplane T1                                 | inplaneT1 | Conventional | T1-weighted anatomical image matched to functional acquisition                                                           |
 | Inplane T2                                 | inplaneT2 | Conventional | T2-weighted anatomical image matched to functional acquisition                                                           |
@@ -240,8 +244,7 @@ If an anatomical image is defaced for anonymization, one MAY provide
 the binary mask that was used to remove facial features. In the specific case of
 naming this binary mask, the `_<suffix>` entity is replaced by `_<defacemask>` entry.
 Therefore, to contain the original `_<suffix>` entry, the OPTIONAL `mod-<suffix>`
-entity is used. For example, deface mask image belonging to a **T1 weighted image**
-is named as follows:
+entity is used. For example, deface mask image belonging to a **T1 weighted image** is named as follows:
 
 ```
 sub-01_mod-T1w_defacemask.nii.gz
@@ -251,20 +254,27 @@ sub-01_mod-T1w_defacemask.json
 
 **Function:**
 
-Files that belong to a **grouped scan collection** are part of a single scan protocol that acquires multiple images with  similar acquisition parameters and is intended to a) increase contrast by combining multiple similar images (e.g., a multi-echo GRE), or b) to estimate physical parameters on an absolute scale, within a qMRI analysis framework (e.g., a T1-map using a MP2RAGE-protocol).
-The quantitative maps that are output from these calculations (e.g., `T1map`, `T2map` etc) are described in the [qMRI map suffixes](#qmri-map-suffixes) section below.
-A change to the specification is REQUIRED to expand or to modify the following table.
+Files that belong to a **grouped scan collection** are part of a single scan
+protocol that acquires multiple images with  similar acquisition parameters
+that are systematically altered. Grouped scan collections are intended to
+a) increase contrast by combining multiple similar images (e.g., a multi-echo
+GRE), or b) to estimate physical parameters on an absolute scale, within a
+qMRI analysis framework (e.g., a T1-map using a MP2RAGE-protocol). The
+quantitative maps that are output from these calculations (e.g., `T1map`,
+`T2map` etc) are described in the [qMRI map suffixes](#qmri-map-suffixes)
+section below.  A change to the specification is REQUIRED to expand or to
+modify the following table.
 
 | Name                                       | Suffix  | Type     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 |--------------------------------------------|---------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Variable flip angle                        | VFA     | Grouping | Parametrically linked anatomical images (primarily) for relaxometry mapping. The VFA method involves at least two spoiled gradient echo (SPGR) of steady-state free precession (SSFP) images acquired at different flip angles. Depending on the provided metadata fields and the sequence type, data may be eligible for DESPOT1, DESPOT2 and their variants ([Deoni et al. 2005](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.20314)). Please visit the [qMRI appendix](#prioritylevels) for details. _Associated output suffixes_: T1map, T2map, R1map, R2map |
-| Inversion recovery (for T1 mapping)        | IRT1    | Grouping | Parametrically linked anatomical images for T1 mapping. The IRT1 method involves multiple inversion recovery spin-echo images acquired at different inversion times ([Barral et al. 2010](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.22497)). _Associated output suffixes_: T1map, R1map                                                                                                                                                                                                                                                                                                                    |
-| Magnetization prepared two gradient echoes | MP2RAGE | Grouping | Parametrically linked anatomical images (primarily) for T1 mapping. The MP2RAGE method is a special protocol that collects several images at different flip angles and inversion times to create a parametric T1map by combining the magnitude and phase images ([Marques et al. 2010](https://www.sciencedirect.com/science/article/pii/S1053811909010738?casa_token=u_CYBx4hi7IAAAAA:3w0cMTyU5jA1BdFs0s5oVcQeqF2tZho0iJ9d4N1kExfaX27v9-JnWacF6mbEp_lMKZ64CvoTl8k)). _Associated output suffixes_: T1map, R1map, UNIT1                                                                                                                                                                                                                 |
-| Multi-echo spin echo                       | MESE    | Grouping | Parametrically linked anatomical images (primarily) for T2 mapping.The MESE method involves multiple spin echo images acquired at different echo times. _Associated output suffixes_: T2map, R2map, MWFmap                                                                                                                                                                                                                                                                                                                         |
-| Multi-echo gradient echo                   | MEGRE   | Grouping | Parametrically linked multiple anatomical gradient echo images acquired at different echo times. _Associated output suffixes_: T2starmap, R2starmap                                                                                                                                                                                                                                                                                                                                             |
-| Magnetization transfer ratio               | MTR     | Grouping | Parametrically linked anatomical images for calculating a semi-quantitative magnetization transfer ratio map. _Associated output suffixes_: MTRmap                                                                                                                                                                                                                                                                                                                                                                                 |
-| Magnetization transfer saturation          | MTS     | Grouping | Parametrically linked anatomical images for calculating a semi-quantitative magnetization transfer saturation index map. The MTS method involves three sets of anatomical images that differ in terms of application of a magnetization transfer RF pulse (MTon or MToff) and flip angle ([Helms et al. 2008](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.21732)). _Associated output suffixes_: T1map, MTsat                                                                                                                                                                                               |
-| Multi-parametric mapping                   | MPM     | Grouping | Parametrically linked anatomical images for multiparametric mapping (a.k.a hMRI). The MPM approaches involves the acquisition of highly-similar anatomical images that differ in terms of application of a magnetization transfer RF pulse (MTon or MToff), flip angle and (optionally) echo time and magnitue/phase parts ([Weiskopf et al. 2013](https://www.frontiersin.org/articles/10.3389/fnins.2013.00095/full)). See [here](https://owncloud.gwdg.de/index.php/s/iv2TOQwGy4FGDDZ) for suggested MPM acquisition protocols.,_Associated output suffixes_:R1map, R2starmap, MTsat, PDmap, T1map, T2starmap                                               |
+| Variable flip angle                        | VFA     | Grouping | The VFA method involves at least two spoiled gradient echo (SPGR) of steady-state free precession (SSFP) images acquired at different flip angles. Depending on the provided metadata fields and the sequence type, data may be eligible for DESPOT1, DESPOT2 and their variants ([Deoni et al. 2005](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.20314)). Please visit the [qMRI appendix](#prioritylevels) for details. _Associated output suffixes_: T1map, T2map, R1map, R2map |
+| Inversion recovery (for T1 mapping)        | IRT1    | Grouping | The IRT1 method involves multiple inversion recovery spin-echo images acquired at different inversion times ([Barral et al. 2010](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.22497)). _Associated output suffixes_: T1map, R1map                                                                                                                                                                                                                                                                                                                    |
+| Magnetization prepared two gradient echoes | MP2RAGE | Grouping | The MP2RAGE method is a special protocol that collects several images at different flip angles and inversion times to create a parametric T1map by combining the magnitude and phase images ([Marques et al. 2010](https://www.sciencedirect.com/science/article/pii/S1053811909010738?casa_token=u_CYBx4hi7IAAAAA:3w0cMTyU5jA1BdFs0s5oVcQeqF2tZho0iJ9d4N1kExfaX27v9-JnWacF6mbEp_lMKZ64CvoTl8k)). _Associated output suffixes_: T1map, R1map, UNIT1                                                                                                                                                                                                                 |
+| Multi-echo spin echo                       | MESE    | Grouping | The MESE method involves multiple spin echo images acquired at different echo times and is primarily used for T2 mapping. _Associated output suffixes_: T2map, R2map, MWFmap                                                                                                                                                                                                                                                                                                                         |
+| Multi-echo gradient echo                   | MEGRE   | Grouping | Anatomical gradient echo images acquired at different echo times. _Associated output suffixes_: T2starmap, R2starmap                                                                                                                                                                                                                                                                                                                                             |
+| Magnetization transfer ratio               | MTR     | Grouping | Anatomical images for calculating a semi-quantitative magnetization transfer ratio map. _Associated output suffixes_: MTRmap                                                                                                                                                                                                                                                                                                                                                                                 |
+| Magnetization transfer saturation          | MTS     | Grouping | Anatomical images for calculating a semi-quantitative magnetization transfer saturation index map. The MTS method involves three sets of anatomical images that differ in terms of application of a magnetization transfer RF pulse (MTon or MToff) and flip angle ([Helms et al. 2008](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.21732)). _Associated output suffixes_: T1map, MTsat                                                                                                                                                                                               |
+| Multi-parametric mapping                   | MPM     | Grouping | Anatomical images for multiparametric mapping (a.k.a hMRI). The MPM approaches involves the acquisition of highly-similar anatomical images that differ in terms of application of a magnetization transfer RF pulse (MTon or MToff), flip angle and (optionally) echo time and magnitue/phase parts ([Weiskopf et al. 2013](https://www.frontiersin.org/articles/10.3389/fnins.2013.00095/full)). See [here](https://owncloud.gwdg.de/index.php/s/iv2TOQwGy4FGDDZ) for suggested MPM acquisition protocols.,_Associated output suffixes_:R1map, R2starmap, MTsat, PDmap, T1map, T2starmap                                               |
 
 For example:
 
@@ -279,10 +289,13 @@ Please see the [entity table appendix]() for the REQUIRED and OPTIONAL entities
 for each `grouping suffix`. 
 
 Note that every image in a **grouped scan collection** has the same `_<suffix>` 
-as they are likely to be used together.
-Although the acquisitions will have many identical acquisition parameters, only one-to-one-mapping is allowed between a `.json`-sidecar file and an image in a 
-grouped scan collection. This follows directly from the [inheritance principles of BIDS](../02-common-principles.md#the-inheritance-principle): parameter values that are identical 
-across a set of grouped scans will still have to be stored separately in each `.json`-sidecar file.
+as they are supposed to be used together. Although the acquisitions will have
+many identical acquisition parameters, only one-to-one-mapping is allowed
+between a `.json`-sidecar file and an image in a grouped scan collection.
+This follows directly from the
+[inheritance principles of BIDS](../02-common-principles.md#the-inheritance-principle):
+parameter values that are identical across a set of grouped scans will still
+have to be stored separately in each `.json`-sidecar file.
 
 ##### qMRI map suffixes 
 
@@ -298,20 +311,20 @@ expand or to modify the following table.
 |--------------------------------------------------------|-----------|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Longitudinal relaxation time map                       | T1map     | Parametric   | In seconds (s). T1 maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `VFA`, `IRT1`, `MP2RAGE`, `MTS`,`MPM`. See [this interactive book on T1 mapping](https://qmrlab.org/t1_book/intro) for further reading on T1-mapping.  |
 | True transverse relaxation time map                    | T2map     | Parametric   | In seconds (s). T2 maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MESE`, `MPM`                                                                                                                                       |
-| Observed transverse relaxation time map                | T2starmap | Parametric   | In seconds (s). T2* maps are REQUIRED to use this suffix irrespective of the method they are related to._Can be generated from:_ `MEGRE`, `MPM`                                                                                                                                      |
+| Observed transverse relaxation time map                | T2starmap | Parametric   | In seconds (s). T2\* maps are REQUIRED to use this suffix irrespective of the method they are related to._Can be generated from:_ `MEGRE`, `MPM`                                                                                                                                      |
 | Longitudinal relaxation rate map                       | R1map     | Parametric   | In seconds-1 (1/s). R1 maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `VFA`, `IRT1`, `MP2RAGE`, `MTS`, `MPM`                                                                                                           |
 | True transverse relaxation rate map                    | R2map     | Parametric   | In seconds-1 (1/s). R2 maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MESE`, `MPM`                                                                                                                                  |
-| Observed transverse relaxation rate map                | R2starmap | Parametric   | In seconds-1 (1/s). R2* maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_`MEGRE`, `MPM`                                                                                                                                 |
+| Observed transverse relaxation rate map                | R2starmap | Parametric   | In seconds-1 (1/s). R2\* maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_`MEGRE`, `MPM`                                                                                                                                 |
 | Proton density map                                     | PDmap     | Parametric   | In arbitrary units (a.u.). PD maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MPM`                                                                                                                                    |
 | Magnetization transfer ratio map                       | MTRmap    | Parametric   | In percentage (%). MTR maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MTR`                                                                                                                                           |
 | Magnetization transfer saturation index map            | MTsat     | Parametric   | In arbitrary units (a.u.). MTsat maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MTS`, `MPM`                                                                                                                          |
-| Homogeneous (flat) T1-weighted image by MP2RAGE                 | UNIT1     | Parametric   | In arbitrary units (a.u.). UNIT1 images are REQUIRED to use this suffix irrespective of the method they are related to. Note that although this image is T1-weighted, regions without MR signal will contain white salt-and-pepper noise that most segmentation algorithms will fail on. _Can be generated from:_ `MP2RAGE`                                                                                                                             |
+| Homogeneous (flat) T1-weighted image by MP2RAGE                 | UNIT1     | Parametric   | In arbitrary units (a.u.). UNIT1 images are REQUIRED to use this suffix irrespective of the method they are related to. Note that although this image is T1-weighted, regions without MR signal will contain white salt-and-pepper noise that most segmentation algorithms will fail on. Therefore, it is important to dissociate it from from `_T1w` _Can be generated from:_ `MP2RAGE`                                                                                                                             |
 | Longutidunal relaxation in rotating frame (T1 rho) map | T1rho     | Parametric   | In seconds (s). T1-rho maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ N/A                                                                                                                                             |
 | Myelin water fraction map                              | MWFmap    | Parametric   | In percentage (%). MWF maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MESE`                                                                                                                                          |
 | Combined PD/T2 map                                     | PDT2map   | Parametric   | In arbitrary units (a.u.). Combined PD/T2 maps are REQUIRED to use this suffix irrespective of the method they are related to. N/A                                                                                                                                                   |
 | RF transmit field map                                  | TB1map | Parametric   | In percent units (p.u.). Radio frequency (RF) transmit field maps are REQUIRED to use this suffix irrespective of the method they are related to. Please see the [qMRI appendix](../99-appendices/10-qmri.md) for associated inputs and further details                                                                     |
 | RF receive sensitivity map                                  | RB1map | Parametric   | In percent units (p.u.). Radio frequency (RF) receive sensitivity maps are REQUIRED to use this suffix irrespective of the method they are related to. Please see the [qMRI appendix](../99-appendices/10-qmri.md) for associated inputs and further details                                                                     |
-| Observed signal amplitude map                                | S0map | Parametric   | In arbitrary units (a.u.). For a multi-echo sequence, S0 maps index the baseline signal before exponential (T2*) signal decay. In other words: the exponential of the intercept for a linear decay model across log-transformed echos. For more information, please see, for example, [the tedana documentation](https://tedana.readthedocs.io/en/latest/approach.html#monoexponential-decay-model-fit). S0 maps are REQUIRED to use this suffix irrespective of the method they are related to. _Associated suffixes:_ T2starmap.       |
+| Observed signal amplitude map                                | S0map | Parametric   | In arbitrary units (a.u.). For a multi-echo sequence, S0 maps index the baseline signal before exponential (T2\*) signal decay. In other words: the exponential of the intercept for a linear decay model across log-transformed echos. For more information, please see, for example, [the tedana documentation](https://tedana.readthedocs.io/en/latest/approach.html#monoexponential-decay-model-fit). S0 maps are REQUIRED to use this suffix irrespective of the method they are related to. _Associated suffixes:_ T2starmap.       |
 | Quantitative susceptibility map (QSM)                   | Chimap | Parametric   | In parts per million (ppm). QSM allows for determining the underlying magnetic susceptibility of tissue (Chi).  Chi-maps are usually constructed from the phase images of GRE sequences. Chi-maps are quantitative and are reconstructed by solving the magnetic field to susceptibility source inverse problem ([Wang & Liu, 2014](https://onlinelibrary.wiley.com/doi/10.1002/mrm.25358)). |
 
 Quantitative maps can be obtained right off the scanner or by processing files
@@ -334,9 +347,10 @@ description of the `T1map` suffix requires the parameter to be in seconds (s).
 
 This entity shall be used to indicate which component of the complex representation
 of the MRI signal is represented in voxel data. The `part-<label>` key/value pair is
-associated with the DICOM tag [0008,9208](https://dicom.innolitics.com/ciods/enhanced-mr-image/enhanced-mr-image/00089208). Allowed label values for this entity are 
-`phase`, `mag`, `real` and `imag`, which are typically used in `mag/phase` or 
-`real/imag` pairs. For example:
+associated with the DICOM tag
+[0008,9208](https://dicom.innolitics.com/ciods/enhanced-mr-image/enhanced-mr-image/00089208).
+Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
+which are typically used in `mag/phase` or `real/imag` pairs. For example:
 
 ```
 sub-01_part-mag_T1w.nii.gz 
@@ -355,6 +369,9 @@ sub-01_part-phase.json
    "Units": "radians"
 }
 ```
+
+If the `part` key/value pair is absent from a filename, the image SHOULD be a 
+magnitude image.
 
 #### The `run` entity
 
@@ -480,7 +497,11 @@ fields specific to anatomical scans:
 
 ##### Legacy suffixes (to be deprecated)
 
-Some suffixes that were available in versions of the specification prior to 1.x.x. have been identified as legacy suffixes. The legacy sufficies generate inconsistencies and/or ambiguities with additional sufficies added in version 1.x.x and so are therefore not recommended for use in new datasets. They remain valid sufficies to maintain backwards compatibility with earlier datasets. 
+Some suffixes that were available in versions of the specification prior to
+1.x.x. have been identified as legacy suffixes. The legacy sufficies generate
+inconsistencies and/or ambiguities with additional sufficies added in version
+1.x.x and so are therefore not recommended for use in new datasets. They are,
+however, still valid sufixxes, to maintain backwards compatibility. 
 
 The following suffixes are valid, but SHOULD NOT be used for new BIDS compatible datasets (created after version 1.x.x.):
 
@@ -576,8 +597,21 @@ JSON file.
 
 | Field name     | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 |-----------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| RepetitionTime | REQUIRED. The time in seconds between the beginning of an acquisition of one volume and the beginning of acquisition of the volume following it (TR). When used in the context of functional acquisitions this parameter best corresponds to [DICOM Tag 0020,0110](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0020,0110)): the "time delta between images in a dynamic of functional set of images" but may be found in [DICOM Tag 0018, 0080](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080)): "the period of time in msec between the beginning of a pulse sequence and the beginning of the succeeding (essentially identical) pulse sequence". This definition includes time between scans (when no data has been acquired) in case of sparse acquisition schemes. This value MUST be consistent with the '`pixdim[4]`' field (after accounting for units stored in '`xyzt_units`' field) in the NIfTI header. This field is mutually exclusive with `VolumeTiming`. |
-| VolumeTiming   | REQUIRED. The time at which each volume was acquired during the acquisition. It is described using a list of times (in JSON format) referring to the onset of each volume in the BOLD series. The list must have the same length as the BOLD series, and the values must be non-negative and monotonically increasing. This field is mutually exclusive with `RepetitionTime` and `DelayTime`. If defined, this requires acquisition time (TA) be defined via either `SliceTiming` or `AcquisitionDuration` be defined.                                        |
+| RepetitionTime | REQUIRED. The time in seconds between the beginning of an
+acquisition of one volume and the beginning of acquisition of the volume
+following it (TR). When used in the context of functional acquisitions this
+parameter best corresponds to
+[DICOM Tag 0020,0110](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0020,0110)):
+the "time delta between images in a dynamic of functional set of images" but
+may also be found in [DICOM Tag 0018, 0080](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080)):
+"the period of time in msec between the beginning of a pulse sequence and
+the beginning of the succeeding (essentially identical) pulse sequence".
+This definition includes time between scans (when no data has been acquired)
+in case of sparse acquisition schemes. This value MUST be consistent with the
+'`pixdim[4]`' field (after accounting for units stored in '`xyzt_units`' field)
+in the NIfTI header. This field is mutually exclusive with `VolumeTiming`. |
+| VolumeTiming   | REQUIRED. The time at which each volume was acquired during the
+acquisition. It is described using a list of times (in JSON format) referring to the onset of each volume in the BOLD series. The list must have the same length as the BOLD series, and the values must be non-negative and monotonically increasing. This field is mutually exclusive with `RepetitionTime` and `DelayTime`. If defined, this requires acquisition time (TA) be defined via either `SliceTiming` or `AcquisitionDuration` be defined.                                        |
 | TaskName       | REQUIRED. Name of the task. No two tasks should have the same name. The task label included in the file name is derived from this TaskName field by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters. For example TaskName `faces n-back` will correspond to task label `facesnback`. A RECOMMENDED convention is to name resting state task using labels beginning with `rest`.                                                                                                                                                                       |
 
 For the fields described above and in the following section, the term "Volume"
