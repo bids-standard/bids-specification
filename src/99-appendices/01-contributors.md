@@ -41,8 +41,10 @@ your name is not listed, please add it.
 -   Eric Bridgeford 📖🔧
 -   Teon L. Brooks 📖💻⚠️💬👀🤔🔧🐛📢
 -   Suyash Bhogawar 📖💡⚠️🔧💬
+-   Mathieu Boudreau 📖
 -   Vince D. Calhoun 📖
 -   Alexander L. Cohen 🐛💻📖💬
+-   Julien Cohen-Adad 📖
 -   R. Cameron Craddock 📖📢
 -   Sasha D'Ambrosio 📖
 -   Samir Das 📖
@@ -81,14 +83,17 @@ your name is not listed, please add it.
 -   Dora Hermes 📖💻✅🔍🤔
 -   Katja Heuer 🔧
 -   Chris Holdgraf 📖🤔
+-   Gilles de Hollander 📖🤔💡
 -   Christopher J. Honey 📖
 -   Jean-Christophe Houde 📖
 -   International Neuroinformatics Coordinating Facility 💵📋
 -   Andrew Janke 📖💻
 -   Mainak Jas 📖💻
 -   Alexander Jones 💻🐛
+-   Agâh Karakuzu 📖🤔💡
 -   David Keator 📖
 -   James Kent 💬💻
+-   Ali Khan 📖🤔
 -   Gregory Kiar 📖💻🎨🔧
 -   Robert Knight 📖
 -   Jean-Philippe Lachaux 📖
@@ -98,17 +103,21 @@ your name is not listed, please add it.
 -   Laura and John Arnold Foundation 💵
 -   Christopher Lee-Messer 📖
 -   Jon Haitz Legarreta 💻📖
+-   Ilana Leppert 📖
+-   Tobias Leutritz 📖
 -   Xiangrui Li 📖💻
 -   Vladimir Litvak 📖
 -   Brian N. Lundstrom 📖
 -   Dan Lurie 🤔📖🔧🔌💻💬
 -   Camille Maumet 📖
 -   Christopher J. Markiewicz 💬🐛💻📖🎨💡🤔🔌👀🔧📢
+-   José Marques 🤔
 -   Kai J. Miller 📖
 -   Jeremy Moreau 📖💡
 -   Zachary Michael 📖
 -   Ezequiel Mikulan 📖💻
 -   Michael P. Milham 💡🔍
+-   Martijn Mulder 📖🤔
 -   Henk Mutsaerts 📖
 -   National Institute of Mental Health 💵
 -   Mikael Naveau 🐛
@@ -143,8 +152,10 @@ your name is not listed, please add it.
 -   Matt Sanderson 📖💻
 -   Gunnar Schaefer 📖
 -   Jan-Mathijs Schoffelen 📖
+-   Julien Sein 📖
 -   Robert E. Smith 💻📖
 -   Vanessa Sochat 📖
+-   Isla Staden 📖
 -   Arjen Stolk 📖
 -   Nicole C. Swann 📖
 -   François Tadel 📖🔌💡
@@ -157,6 +168,8 @@ your name is not listed, please add it.
 -   Joseph Wexler 📖💡
 -   Kirstie Whitaker 📖💡🔍🤔📢💬
 -   Jonathan Winawer 📖
+-   Tobias Wood 📖
 -   Gaël Varoquaux 📖
 -   Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
 -   Lyuba Zehl 📖
+-   Wietske van der Zwaag 📖🤔💡
