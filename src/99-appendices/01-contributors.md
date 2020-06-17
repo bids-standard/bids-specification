@@ -4,7 +4,7 @@ Legend (source:
 [https://github.com/kentcdodds/all-contributors](https://github.com/kentcdodds/all-contributors))
 
 | Emoji | Represents                                                                  |
-|---------------|-----------------------------------------------------------------------------------------|
+|-------|-----------------------------------------------------------------------------|
 | 💬    | Answering Questions (on the mailing list, NeuroStars, GitHub, or in person) |
 | 🐛    | Bug reports                                                                 |
 | 📝    | Blogposts                                                                   |
@@ -21,8 +21,8 @@ Legend (source:
 | 👀    | Reviewed Pull Requests                                                      |
 | 🔧    | Tools                                                                       |
 | 🌍    | Translation                                                                 |
-| ⚠️    | Tests                                                                       |
-| ✅     | Tutorials                                                                   |
+| ⚠️     | Tests                                                                       |
+| ✅    | Tutorials                                                                   |
 | 📢    | Talks                                                                       |
 | 📹    | Videos                                                                      |
 
@@ -140,6 +140,7 @@ your name is not listed, please add it.
 -   Kay Robbins 💻📖🐛
 -   Alex Rockhill 📖🔧
 -   Ariel Rokem 📖
+-   Taylor Salo 💬📖
 -   Matt Sanderson 📖💻
 -   Gunnar Schaefer 📖
 -   Jan-Mathijs Schoffelen 📖
