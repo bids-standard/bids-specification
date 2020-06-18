@@ -428,39 +428,24 @@ has to be updated, then for MEG it could be considered to be a new session.
 
 Empty-room MEG recordings capture the environmental and recording system's
 noise.
-There are two widely used strategies for collecting these recordings:
-
-1.  Some labs record one empty-room measurement per day, which is then shared by
-    all researchers that record subject data on that day
-
-1.  Some labs make it the responsibility of each researcher to record a short
-    empty-room measurement prior to each subject-specific recording
-    (e.g., while preparing the study subject for the task)
-
-For cases resembling the **first** strategy, it is RECOMMENDED to store the
-empty-room recording inside a subject folder named `sub-emptyroom`.
+In the context of BIDS it is RECOMMENDED to perform an empty-room recording for
+each experimental session.
+It is RECOMMENDED to store the empty-room recording inside a subject folder
+named `sub-emptyroom`.
+The label for the `task-<label>` entity in the empty-room recording SHOULD be
+set to `noise`.
 If a `session-<label>` entity is present, its label SHOULD be the date of the
 empty-room recording in the format `YYYYMMDD`, i.e., `ses-YYYYMMDD`.
-For these cases, the `scans.tsv` file containing the date and time of the
-acquisition SHOULD also be included.
-
-However, for cases resembling the **second** strategy, the subject data and
-empty-room recording are naturally linked and it is thus RECOMMENDED to instead
-store the empty-room recording inside the study subject's folder.
-
-Furthermore, in **both** cases the label for the `task-<label>` entity in the
-`*_meg.json` file SHOULD be set to `noise`.
-
+The `scans.tsv` file containing the date and time of the acquisition SHOULD
+also be included.
 The rationale is that this naming scheme will allow users to easily retrieve the
 empty-room recording that best matches a particular experimental session, based
 on date and time of the recording.
 It should be possible to query empty-room recordings just like usual subject
 recordings, hence all metadata sidecar files (such as the `channels.tsv`) file
-SHOULD be present as well, irrespective of the storing strategy.
-In the context of BIDS it is RECOMMENDED to perform an empty-room recording for
-each experimental session.
+SHOULD be present as well.
 
-Example for cases resembling strategy 1:
+Example:
 
 ```Text
 sub-control01/
@@ -472,18 +457,4 @@ sub-emptyroom/
             sub-emptyroom_ses-20170801_task-noise_meg.ds
             sub-emptyroom_ses-20170801_task-noise_meg.json
             sub-emptyroom_ses-20170801_task-noise_channels.tsv
-```
-
-Example for cases resembling strategy 2:
-
-```Text
-sub-control01/
-sub-control02/
-    meg/
-        sub-control01_task-bart_meg.ds
-        sub-control01_task-bart_meg.json
-        sub-control01_task-bart_channels.tsv
-        sub-control01_task-noise_meg.ds        
-        sub-control01_task-noise_meg.json
-        sub-control01_task-noise_channels.tsv
 ```
