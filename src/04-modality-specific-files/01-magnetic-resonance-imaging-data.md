@@ -280,7 +280,7 @@ integer) of the echo not the echo time value which needs to be stored in the
 field EchoTime of the separate JSON file.
 
 Complex-valued data MUST be split into one file for each data type.
-For BOLD data, there are separate suffices for magnitude (`_bold`) and phase
+For BOLD data, there are separate suffixes for magnitude (`_bold`) and phase
 (`_phase`) data.
 For other contrasts (e.g., `_sbref` or `_cbv`), each file shares the same
 name with the exception of the `part-<mag|phase>` key/value. For example:
