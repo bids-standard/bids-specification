@@ -1,4 +1,4 @@
-## 1.1.1
+## [1.1.1](https://doi.org/10.5281/zenodo.3759805) (2018-06-06)
 
 -   Improved the MEG landmark coordinates description.
 
@@ -10,7 +10,7 @@ from the meg.json.
 
 -   Improved the behavioral data description.
 
-## 1.1.0
+## [1.1.0](https://doi.org/10.5281/zenodo.3759802) (2018-04-19)
 
 -   Added support for MEG data (merged BEP008)
 -   Added SequenceName field.
@@ -18,7 +18,7 @@ from the meg.json.
 -   Added VolumeTiming and AcquisitionDuration fields [[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 -   Added DwellTime field.
 
-## 1.0.2
+## [1.0.2](https://doi.org/10.5281/zenodo.3759801) (2017-07-18)
 
 -   Added support for high resolution (anatomical) T2star images [[4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)].
 
@@ -31,7 +31,7 @@ from the meg.json.
 
 -   Added support for multi echo BOLD data [[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 
-## 1.0.1
+## [1.0.1](https://doi.org/10.5281/zenodo.3759788) (2017-03-13)
 
 -   Added InstitutionName field [[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 
@@ -77,7 +77,7 @@ from the meg.json.
 
 -   Added quantitative proton density maps.
 
-## 1.0.0
+## [1.0.0](https://doi.org/10.5281/zenodo.3686062) (2016-06-23)
 
 -   Added ability to specify fieldmaps acquired with multiple parameter
    sets.
