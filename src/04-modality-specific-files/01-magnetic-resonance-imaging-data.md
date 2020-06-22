@@ -501,7 +501,7 @@ Some suffixes that were available in versions of the specification prior to
 1.4.0. have been identified as legacy suffixes. The legacy sufficies generate
 inconsistencies and/or ambiguities with additional sufficies added in version
 1.4.0 and so are therefore not recommended for use in new datasets. They are,
-however, still valid sufixxes, to maintain backwards compatibility. 
+however, still valid sufixes, to maintain backwards compatibility.
 
 The following suffixes are valid, but SHOULD NOT be used for new BIDS compatible datasets (created after version 1.4.0.):
 
