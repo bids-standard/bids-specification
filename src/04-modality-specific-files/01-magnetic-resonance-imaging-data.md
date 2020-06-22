@@ -186,7 +186,7 @@ imaging data, the `_<suffix>` entity can be used in one of three ways:
 3. Quantitative MRI (qMRI) map suffixes
 
 This distinction was added to the specification on acceptance of the BEP001 
-proposal in version `1.x.x`. However, as a result, some  suffixes that were introduced
+proposal in version `1.4.0`. However, as a result, some  suffixes that were introduced
 into BIDS at an earlier point time are inconsistent with this typology: for example 
 because they are linked to a readout-sequence rather than a contrast, or because 
 they don't clearly distinguish between a quantitative map or a contrast-weighted 
@@ -198,7 +198,7 @@ These can be found in the [legacy suffixes](#legacy-suffixes) subsection.
 
 Previous versions of the specification used the term `modality_label` instead of 
 `_suffix` to represent this entity. The change in term was introduced in version 
-`1.x.x.` to accodomate a broad definition of anatomical imaging applications.
+`1.4.0.` to accodomate a broad definition of anatomical imaging applications.
 
 ##### Conventional MRI suffixes
 
@@ -498,12 +498,12 @@ fields specific to anatomical scans:
 ##### Legacy suffixes (to be deprecated)
 
 Some suffixes that were available in versions of the specification prior to
-1.x.x. have been identified as legacy suffixes. The legacy sufficies generate
+1.4.0. have been identified as legacy suffixes. The legacy sufficies generate
 inconsistencies and/or ambiguities with additional sufficies added in version
-1.x.x and so are therefore not recommended for use in new datasets. They are,
+1.4.0 and so are therefore not recommended for use in new datasets. They are,
 however, still valid sufixxes, to maintain backwards compatibility. 
 
-The following suffixes are valid, but SHOULD NOT be used for new BIDS compatible datasets (created after version 1.x.x.):
+The following suffixes are valid, but SHOULD NOT be used for new BIDS compatible datasets (created after version 1.4.0.):
 
 | Name           | Suffix    | Description                                                    | Reason to deprecate                                                                                                                                                                                                                                                                                                                                                                                                |
 |----------------|-----------|----------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
