@@ -304,7 +304,7 @@ have to be stored separately in each `.json`-sidecar file.
 Denotes the parameter contained within an individual file of a
 quantitative parametric image.
 
-Changes to the specification is REQUIRED to
+Changes to the specification are REQUIRED to
 expand or to modify the following table.
 
 | Name                                                   | _suffix   | _suffix type | Description                                                                                                                                                                                                                                                                          |
