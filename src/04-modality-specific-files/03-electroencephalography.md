@@ -34,15 +34,17 @@ The EEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, EEG data MUST be
 stored in one of the following formats:
 
--   [European data format](https://www.edfplus.info/) (`.edf`)
+-   [European data format](https://www.edfplus.info/)
+    (Each recording consisting of a `.edf` file)
 
 -   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
-    (`.vhdr`, `.vmrk`, `.eeg`) by Brain Products GmbH
+    (Each recording consisting of a  `.vhdr`, `.vmrk`, `.eeg` file triplet)
 
 -   The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab)
-    (`.set` and `.fdt` files)
+    (Each recording consisting of a `.set` file with an optional `.fdt` file)
 
--   [Biosemi](https://www.biosemi.com/) data format (`.bdf`)
+-   [Biosemi](https://www.biosemi.com/) data format
+    (Each recording consisting of a `.bdf` file)
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
