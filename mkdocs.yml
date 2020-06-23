@@ -1,4 +1,4 @@
-site_name: Brain Imaging Data Structure v1.3.1-dev
+site_name: Brain Imaging Data Structure v1.4.1-dev
 theme:
     name: material
     custom_dir: theme_customizations/
@@ -10,7 +10,6 @@ markdown_extensions:
     - toc:
         anchorlink: true
     - pymdownx.superfences
-    - admonition
 plugins:
     - search
     - branchcustomization:
@@ -35,8 +34,8 @@ nav:
         - Behavioral experiments (with no MRI): 04-modality-specific-files/07-behavioral-experiments.md
         - Genetic Descriptor: 04-modality-specific-files/08-genetic-descriptor.md
       - Derivatives:
-        - Introduction: 05-derivatives/01-introduction.md
-        - Common data types: 05-derivatives/02-common-data-types.md
+        - BIDS Derivatives: 05-derivatives/01-introduction.md
+        - Common data types and metadata: 05-derivatives/02-common-data-types.md
         - Imaging data types: 05-derivatives/03-imaging.md
         - Structural derivatives: 05-derivatives/04-structural-derivatives.md
         - Functional derivatives: 05-derivatives/05-functional-derivatives.md

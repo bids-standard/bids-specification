@@ -235,13 +235,13 @@ The columns of the Channels description table stored in \*\_channels.tsv are:
 
 MUST be present:
 
-| Column name  | Definition                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name         | REQUIRED. Label of the channel. The label must correspond to \_electrodes.tsv name and all ieeg type channels are required to have a position. The reference channel name MAY be provided in the reference column.                                                                                                                                                                                                               |
-| type         | REQUIRED. Type of channel, see below for adequate keywords in this field.                                                                                                                                                                                                                                                                                                                                                        |
-| units        | REQUIRED. Physical unit of the value represented in this channel, e.g., V for Volt, specified according to the [SI unit symbol](https://en.wikipedia.org/wiki/International_System_of_Units#Base_units) and possibly prefix symbol (e.g., mV, μV), or as a [derived SI unit](https://en.wikipedia.org/wiki/SI_derived_unit) (e.g., fT/cm). For guidelines for Units and Prefixes see [Appendix V](../99-appendices/05-units.md). |
-| low_cutoff   | REQUIRED. Frequencies used for the low pass filter applied to the channel in Hz. If no low pass filter was applied, use `n/a`. Note that anti-alias is a low pass filter, specify its frequencies here if applicable.                                                                                                                                                                                                            |
-| high_cutoff  | REQUIRED. Frequencies used for the high pass filter applied to the channel in Hz. If no high pass filter applied, use `n/a`.                                                                                                                                                                                                                                                                                                     |
+| Column name  | Definition                                                                                                                                                                                                            |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name         | REQUIRED. Label of the channel. The label must correspond to \_electrodes.tsv name and all ieeg type channels are required to have a position. The reference channel name MAY be provided in the reference column.    |
+| type         | REQUIRED. Type of channel, see below for adequate keywords in this field.                                                                                                                                             |
+| units        | REQUIRED. Physical unit of the value represented in this channel, e.g., `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [Units](../02-common-principles.md#units)).                                      |
+| low_cutoff   | REQUIRED. Frequencies used for the low pass filter applied to the channel in Hz. If no low pass filter was applied, use `n/a`. Note that anti-alias is a low pass filter, specify its frequencies here if applicable. |
+| high_cutoff  | REQUIRED. Frequencies used for the high pass filter applied to the channel in Hz. If no high pass filter applied, use `n/a`.                                                                                          |
 
 SHOULD be present:
 
@@ -259,10 +259,10 @@ SHOULD be present:
 
 ```Text
 name  type  units low_cutoff  high_cutoff status  status_description
-LT01  ECOG  μV    300         0.11        good    n/a
-LT02  ECOG  μV    300         0.11        bad     broken
-H01   SEEG  μV    300         0.11        bad     line_noise
-ECG1  ECG   μV    n/a         0.11        good    n/a
+LT01  ECOG  uV    300         0.11        good    n/a
+LT02  ECOG  uV    300         0.11        bad     broken
+H01   SEEG  uV    300         0.11        bad     line_noise
+ECG1  ECG   uV    n/a         0.11        good    n/a
 TR1   TRIG  n/a   n/a         n/a         good    n/a
 ```
 Restricted keyword list for field type in alphabetic order (shared with the MEG
@@ -339,13 +339,13 @@ listed below.
 
 MUST be present:                                                   
 
-| Column name  | Definition                                                                                                                                                                   |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name         | REQUIRED. Name of the electrode contact point.                                                                                                                               |
-| x            | REQUIRED. X position. The positions of the center of each electrode in xyz space. Units are in millimeters or pixels and are specified in \_\*space-<label>\_electrode.json. |
-| y            | REQUIRED. Y position.                                                                                                                                                        |
-| z            | REQUIRED. Z position. If electrodes are in 2D space this should be a column of n/a values.                                                                                   |
-| size         | REQUIRED. Surface area of the electrode, in mm^2.                                                                                                                            |
+| Column name  | Definition                                                                                                                                 |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| name         | REQUIRED. Name of the electrode contact point.                                                                                             |
+| x            | REQUIRED. X position. The positions of the center of each electrode in xyz space. Units are specified in `space-<label>_coordsystem.json`. |
+| y            | REQUIRED. Y position.                                                                                                                      |
+| z            | REQUIRED. Z position. If electrodes are in 2D space this should be a column of `n/a` values.                                               |
+| size         | REQUIRED. Surface area of the electrode, units MUST be in `mm^2`.                                                                          |
 
 SHOULD be present:
 
@@ -361,7 +361,7 @@ MAY be present:
 | Column name | Definition                                                                                                                                                |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | type        | OPTIONAL. Optional type of the electrode, e.g., cup, ring, clip-on, wire, needle, ...                                                                     |
-| impedance   | OPTIONAL. Impedance of the electrode in kOhm.                                                                                                             |
+| impedance   | OPTIONAL. Impedance of the electrode, units MUST be in `kOhm`.                                                                                            |
 | dimension   | OPTIONAL. Size of the group (grid/strip/probe) that this electrode belongs to. Must be of form `[AxB]` with the smallest dimension first (e.g., `[1x8]`). |
 
 Example:
