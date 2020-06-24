@@ -136,7 +136,7 @@ information about (brain) anatomy, but differ by the nature of the data they con
 This type is most commonly used in neuroimaging applications.
 2. a group of images acquired within a single protocol for the purpose of improving contrast 
 characteristics (e.g., a set of multi-echo anatomical GRE images) or calculating quantitative maps
-(e.g. four 3D volumes provided as an input to an MP2RAGE calculation) 
+(e.g. four 3D volumes provided as an input to an MP2RAGE calculation). 
 3. a quantitative map of which the intensities are put on an absolute scales (e.g., seconds for a T1 map).
 These images are generally produced by some mathematical operation on images from class 2.
 
@@ -144,7 +144,7 @@ These images are generally produced by some mathematical operation on images fro
 
 Anatomical images of this type typically refer to a volumetric high-resolution 
 dataset, representing the measured MRI signal in an arbitrary scale of "gray
-shades". Contrast factor of these grayscale images depend on the relative contribution
+shades". Contrast factor of these grayscale images depends on the relative contribution
 of inherent tissue parameters (e.g. `T1`, `T2` and `PD`) to the measured signal. 
 
 Contribution weights of these parameters are determined by the type of acquisition
@@ -311,7 +311,7 @@ expand or to modify the following table.
 |--------------------------------------------------------|-----------|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Longitudinal relaxation time map                       | T1map     | Parametric   | In seconds (s). T1 maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `VFA`, `IRT1`, `MP2RAGE`, `MTS`,`MPM`. See [this interactive book on T1 mapping](https://qmrlab.org/t1_book/intro) for further reading on T1-mapping.  |
 | True transverse relaxation time map                    | T2map     | Parametric   | In seconds (s). T2 maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MESE`, `MPM`                                                                                                                                       |
-| Observed transverse relaxation time map                | T2starmap | Parametric   | In seconds (s). T2\* maps are REQUIRED to use this suffix irrespective of the method they are related to._Can be generated from:_ `MEGRE`, `MPM`                                                                                                                                      |
+| Observed transverse relaxation time map                | T2starmap | Parametric   | In seconds (s). T2\* maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MEGRE`, `MPM`                                                                                                                                     |
 | Longitudinal relaxation rate map                       | R1map     | Parametric   | In seconds-1 (1/s). R1 maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `VFA`, `IRT1`, `MP2RAGE`, `MTS`, `MPM`                                                                                                           |
 | True transverse relaxation rate map                    | R2map     | Parametric   | In seconds-1 (1/s). R2 maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_ `MESE`, `MPM`                                                                                                                                  |
 | Observed transverse relaxation rate map                | R2starmap | Parametric   | In seconds-1 (1/s). R2\* maps are REQUIRED to use this suffix irrespective of the method they are related to. _Can be generated from:_`MEGRE`, `MPM`                                                                                                                                 |
