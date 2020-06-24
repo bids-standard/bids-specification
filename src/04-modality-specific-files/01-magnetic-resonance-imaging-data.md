@@ -202,7 +202,7 @@ Previous versions of the specification used the term `modality_label` instead of
 
 ##### Conventional MRI suffixes
 
-**Function:**
+**Purpose:**
 
 Denotes the type of the predominant contrast conveyed by an individual file of
 a conventional anatomical image.
@@ -252,7 +252,7 @@ sub-01_mod-T1w_defacemask.json
 ```
 ##### Grouping suffixes
 
-**Function:**
+**Purpose:**
 
 Files that belong to a **grouped scan collection** are part of a single scan
 protocol that acquires multiple images with  similar acquisition parameters
@@ -345,7 +345,7 @@ description of the `T1map` suffix requires the parameter to be in seconds (s).
 
 #### The `part` entity
 
-This entity shall be used to indicate which component of the complex representation
+This entity is used to indicate which component of the complex representation
 of the MRI signal is represented in voxel data. The `part-<label>` key/value pair is
 associated with the DICOM tag
 [0008,9208](https://dicom.innolitics.com/ciods/enhanced-mr-image/enhanced-mr-image/00089208).
@@ -498,10 +498,10 @@ fields specific to anatomical scans:
 ##### Legacy suffixes (to be deprecated)
 
 Some suffixes that were available in versions of the specification prior to
-1.4.0. have been identified as legacy suffixes. The legacy sufficies generate
-inconsistencies and/or ambiguities with additional sufficies added in version
+1.4.0. have been identified as legacy suffixes. The legacy suffixes generate
+inconsistencies and/or ambiguities with additional suffixes added in version
 1.4.0 and so are therefore not recommended for use in new datasets. They are,
-however, still valid sufixes, to maintain backwards compatibility.
+however, still valid suffixes, to maintain backwards compatibility.
 
 The following suffixes are valid, but SHOULD NOT be used for new BIDS compatible datasets (created after version 1.4.0.):
 
