@@ -183,7 +183,7 @@ The following metadata fields apply to all segmentation files:
 
 | **Key name** | **Description**                                                                                                                        |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
-| Manual       | OPTIONAL. Boolean. Indicates if the segmentation was performed manually or via an automated process                                     |
+| Manual       | OPTIONAL. Boolean. Indicates if the segmentation was performed manually or via an automated process                                    |
 | Atlas        | OPTIONAL. Which atlas (if any) was used to derive the segmentation.                                                                    |
 | Resolution   | REQUIRED if `res` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the resolution keyword. |
 | Density      | REQUIRED if `den` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the density keyword.    |
