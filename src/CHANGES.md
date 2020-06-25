@@ -2,7 +2,11 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[Fix] 'segmentation' spelling in 05-derivatives/03-imaging.md [#514](https://github.com/bids-standard/bids-specification/pull/514) ([rwblair](https://github.com/rwblair))
+-   \[FIX] Typos in DECISION-MAKING file [#504](https://github.com/bids-standard/bids-specification/pull/504) ([tsalo](https://github.com/tsalo))
 -   \[ENH] Add `Commenting on a PR` to CONTRIBUTING.md [#490](https://github.com/bids-standard/bids-specification/pull/490) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[FIX] clarify MEG empty-room recording naming conventions [#480](https://github.com/bids-standard/bids-specification/pull/480) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Recommend SI units formatting to adhere to CMIXF-12 [#411](https://github.com/bids-standard/bids-specification/pull/411) ([sappelhoff](https://github.com/sappelhoff))
 
 ## [v1.4.0](https://github.com/bids-standard/bids-specification/tree/v1.4.0) (2020-06-11)
 
