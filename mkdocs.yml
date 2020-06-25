@@ -31,7 +31,7 @@ nav:
         - Intracranial Electroencephalography: 04-modality-specific-files/04-intracranial-electroencephalography.md
         - Task events: 04-modality-specific-files/05-task-events.md
         - Physiological and other continuous recordings: 04-modality-specific-files/06-physiological-and-other-continuous-recordings.md
-        - Behavioral experiments (with no MRI): 04-modality-specific-files/07-behavioral-experiments.md
+        - Behavioral experiments (with no neural recordings): 04-modality-specific-files/07-behavioral-experiments.md
         - Genetic Descriptor: 04-modality-specific-files/08-genetic-descriptor.md
       - Derivatives:
         - BIDS Derivatives: 05-derivatives/01-introduction.md
