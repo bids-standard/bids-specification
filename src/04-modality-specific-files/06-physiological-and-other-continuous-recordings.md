@@ -14,7 +14,7 @@ sub-<label>/[ses-<label>/]
 Optional: Yes
 
 In the template file names, the `<matches>` part corresponds to task file name
-without the suffix.
+before the suffix.
 For example for the file `sub-control01_task-nback_run-1_bold.nii.gz`,
 `<matches>` would correspond to `sub-control01_task-nback_run-1`.
 
@@ -42,14 +42,14 @@ line) and a JSON for storing the following metadata fields:
 Additional metadata may be included as in
 [any TSV file](../02-common-principles.md#tabular-files) to specify, for
 example, the units of the recorded time series.
-Please note that in contrast to other TSV files in BIDS, the TSV files specified
+Please note that, in contrast to other TSV files in BIDS, the TSV files specified
 for phsyiological and other continuous recordings *do not* include a header
 line.
 Instead the name of columns are specified in the JSON file.
 This is to improve compatibility with existing software (e.g., FSL, PNM) as well
 as to make support for other file formats possible in the future.
 
-Example for `*.tsv.gz`:
+Example `*_physio.tsv.gz`:
 
 ```Text
 sub-control01/
@@ -60,12 +60,12 @@ sub-control01/
 (after decompression)
 
 ```Text
-34 110 0
-44 112 0
-23 100 1
+34    110    0
+44    112    0
+23    100    1
 ```
 
-Example for `*.json`:
+Example `*_physio.json`:
 
 ```Text
 sub-control01/
@@ -104,7 +104,7 @@ stored in separate files.
 If the same continuous recording has been used for all subjects (for example in
 the case where they all watched the same movie), one file MAY be used and
 placed in the root directory.
-For example:`task-movie_stim.tsv.gz`
+For example, `task-movie_stim.tsv.gz`
 
 For motion parameters acquired from scanner side motion correction, the
 `_physio` suffix SHOULD be used.
