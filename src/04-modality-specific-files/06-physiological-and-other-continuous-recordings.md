@@ -4,7 +4,7 @@ Template:
 
 ```Text
 sub-<label>/[ses-<label>/]
-    func/
+    <datatype>/
         <matches>[_recording-<label>]_physio.tsv.gz
         <matches>[_recording-<label>]_physio.json
         <matches>[_recording-<label>]_stim.tsv.gz
@@ -12,6 +12,10 @@ sub-<label>/[ses-<label>/]
 ```
 
 Optional: Yes
+
+For the template directory name, `<datatype>` can correspond to any data
+recording modality, for example `func`, `anat`, `dwi`, `meg`, `eeg`, `ieeg`,
+or `beh`.
 
 In the template file names, the `<matches>` part corresponds to task file name
 before the suffix.
@@ -84,7 +88,7 @@ sub-control01/
 }
 ```
 
-## Additional rules
+## Recommendations for specific use cases
 
 To store pulse or breathing measurements, or the scanner trigger signal, the
 following naming conventions SHOULD be used for the column names:
