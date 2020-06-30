@@ -2,6 +2,9 @@
 
 ## Functional derivatives maps
 
+A derivative map is a measure derived from a functional series, mapped onto spatial
+locations as defined by voxels in a volume or vertices on a surface.
+
 Template:
 
 ```Text
@@ -52,14 +55,15 @@ The following metadata JSON fields are valid for derivative maps:
 A time series is a chronologically ordered series of numeric values.
 Time series will generally be stored as tables, with a row of column headers
 indicating the name of the series.
-In the case where every voxel has a time series, then the data should be stored
-in a 4D NIfTI file.
+In the case where the time series varies spatially, the data SHOULD be stored in
+an appropriate file, such as a 4D NIfTI file, a `.time.gii` GIFTI file,
+or a `.dtseries.nii` CIFTI-2 file.
 
 All time series files MUST be accompanied by a data dictionary in JSON format,
 consistent with the format described in
 [Common principles](../02-common-principles.md#tabular-files), which describes
 metadata for each column name.
-In the case of NIfTI time series files, the notion of column name does not
+In the case of spatial time series files, the notion of column name does not
 apply, so column-level metadata may be applied to the entire file.
 In addition, the following fields apply to the entire file in all cases:
 
@@ -73,7 +77,7 @@ Note that there are several differences with these fields in
 The `"TR"` sampling frequency serves to indicate that no resampling is needed
 to use the series as a regressor for BOLD data, including BOLD series with
 non-uniform sampling, such as clustered sparse acquisition.
-`StartTime` is assumed to be 0 and therefore not mandatory.
+`StartTime` is assumed to be 0 and therefore OPTIONAL.
 Additionally, because time series TSV files have column headers, the `Columns`
 field is omitted.
 
