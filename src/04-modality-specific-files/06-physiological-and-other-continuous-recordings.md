@@ -110,7 +110,7 @@ the case where they all watched the same movie), one file MAY be used and
 placed in the root directory.
 For example, `task-movie_stim.tsv.gz`
 
-For motion parameters acquired from scanner side motion correction, the
+For motion parameters acquired from MRI scanner side motion correction, the
 `_physio` suffix SHOULD be used.
 
 For multi-echo data, a given `physio.tsv` file is applicable to all echos of
