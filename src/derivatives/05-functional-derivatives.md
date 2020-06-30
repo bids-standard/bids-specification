@@ -6,10 +6,10 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         func/
-            <source_keywords>[_space-<space>][_desc-<label>]_<suffix>.nii[.gz]
-            <source_keywords>[_space-<space>][_desc-<label>]_<suffix>.json
+            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.{nii[.gz],gii,dscalar.nii}
+            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.json
 ```
 
 for example:
@@ -83,10 +83,10 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         func/
-	        <source_keywords>[_desc-<label>]_timeseries.tsv
-	        <source_keywords>[_desc-<label>]_timeseries.json
+            <source_entities>[_desc-<label>]_timeseries.tsv
+            <source_entities>[_desc-<label>]_timeseries.json
 ```
 
 for example:
@@ -135,10 +135,10 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         func/
-            <source_keywords>[_atlas-<atlas_label>][_desc-<label>]_timeseries.<tsv|nii[.gz]>
-            <source_keywords>[_atlas-<atlas_label>][_desc-<label>]_timeseries.json
+            <source_entities>[_atlas-<label>][_desc-<label>]_timeseries.<tsv|nii[.gz]>
+            <source_entities>[_atlas-<label>][_desc-<label>]_timeseries.json
 ```
 
 for example:
@@ -242,10 +242,10 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
-    func/
-        <source_keywords>[_desc-<label>]_motion.tsv
-        <source_keywords>[_desc-<label>]_motion.json
+    sub-<label>/
+        func/
+            <source_entities>[_desc-<label>]_motion.tsv
+            <source_entities>[_desc-<label>]_motion.json
 ```
 
 #### Column names
@@ -279,10 +279,10 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         func/
-	        <source_keywords>[_desc-<label>]_outliers.tsv
-            <source_keywords>[_desc-<label>]_outliers.json
+            <source_entities>[_desc-<label>]_outliers.tsv
+            <source_entities>[_desc-<label>]_outliers.json
 ```
 
 Outlier masks are columns of zeros (0), with ones (1) indicating volumes that
@@ -327,11 +327,11 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         func/
-            <source_keywords>[_desc-<label>]_<mixing|components>.tsv
-            <source_keywords>[_desc-<label>]_<mixing|components>.nii.gz
-            <source_keywords>[_desc-<label>]_decomposition.json
+            <source_entities>[_desc-<label>]_<mixing|components>.tsv
+            <source_entities>[_desc-<label>]_<mixing|components>.nii.gz
+            <source_entities>[_desc-<label>]_decomposition.json
 ```
 
 for example:
