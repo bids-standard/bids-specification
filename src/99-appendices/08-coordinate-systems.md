@@ -83,7 +83,7 @@ detailed extensive descriptions of these EEG coordinate systems on the
 Restricted keywords for the `<datatype>CoordinateSystem` field in the
 `coordsystem.json` file for EEG datasets:
 
--   `Captrak`: RAS orientation and the origin between the ears
+-   `CapTrak`: RAS orientation and the origin between the ears
 
 Note that the short descriptions above do not capture all details, There are
 detailed extensive descriptions of these EEG coordinate systems on the
