@@ -15,9 +15,9 @@ sub-<label>/[ses-<label>/]
         sub-<label>[_ses-<label>]_task-<label>_stim.json
 ```
 
-In addition to logs from behavioral experiments performed along imaging data
-acquisitions one can also include data from experiments performed outside of the
-scanner.
+In addition to logs from behavioral experiments performed alongside imaging data
+acquisitions, one can also include data from experiments performed with no neural
+recordings.
 The results of those experiments can be stored in the `beh` folder using the same
 formats for event timing (`_events.tsv`), metadata (`_events.json`),
 physiological (`_physio.tsv.gz`, `_physio.json`)
