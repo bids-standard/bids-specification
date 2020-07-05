@@ -351,15 +351,15 @@ scan.
 For example vigilance questionnaire score administered after a resting
 state scan.
 All such included additional fields SHOULD be documented in an accompanying
-`scans.json` file that describes these fields in detail
+`_scans.json` file that describes these fields in detail
 (see [Tabular files](02-common-principles.md#tabular-files)).
 
-Example `scans.tsv`:
+Example `_scans.tsv`:
 
 ```Text
-filename    acq_time
-func/sub-control01_task-nback_bold.nii.gz    1877-06-15T13:45:30
-func/sub-control01_task-motor_bold.nii.gz    1877-06-15T13:55:33
+filename	acq_time
+func/sub-control01_task-nback_bold.nii.gz	1877-06-15T13:45:30
+func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33
 ```
 
 ## Code
