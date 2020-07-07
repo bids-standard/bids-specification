@@ -199,11 +199,11 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
-| Column name | Definition                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name        | REQUIRED. Channel name (e.g., MRT012, MEG023)                                                                                                                                                                                                                                                                                                                                                                                    |
-| type        | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                                                                                                                                                                                                                                                                                              |
-| units       | REQUIRED. Physical unit of the value represented in this channel, e.g., V for Volt, specified according to the [SI unit symbol](https://en.wikipedia.org/wiki/International_System_of_Units#Base_units) and possibly prefix symbol (e.g., mV, μV), or as a [derived SI unit](https://en.wikipedia.org/wiki/SI_derived_unit) (e.g., fT/cm). For guidelines for Units and Prefixes see [Appendix V](../99-appendices/05-units.md). |
+| Column name | Definition                                                                                                                                                                       |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name        | REQUIRED. Channel name (e.g., MRT012, MEG023)                                                                                                                                    |
+| type        | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                                              |
+| units       | REQUIRED. Physical unit of the value represented in this channel, e.g., `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [Units](../02-common-principles.md#units)). |
 
 SHOULD be present:
 
@@ -426,14 +426,24 @@ has to be updated, then for MEG it could be considered to be a new session.
 
 ## Empty-room MEG recordings
 
-Empty-room MEG recordings capture the environment and system noise. Their
-collection is RECOMMENDED, before/during/after each session. This data is stored
-inside a subject folder named `sub-emptyroom`. The `session label` SHOULD be
-that of the date of the empty-room recording (e.g. `ses-YYYYMMDD`). The
-`scans.tsv` file containing the date/time of the acquisition SHOULD also be
-included. Hence, users will be able to retrieve the empty-room recording that
-best matches a particular session with a participant, based on date/time of
-recording.
+Empty-room MEG recordings capture the environmental and recording system's
+noise.
+In the context of BIDS it is RECOMMENDED to perform an empty-room recording for
+each experimental session.
+It is RECOMMENDED to store the empty-room recording inside a subject folder
+named `sub-emptyroom`.
+The label for the `task-<label>` entity in the empty-room recording SHOULD be
+set to `noise`.
+If a `session-<label>` entity is present, its label SHOULD be the date of the
+empty-room recording in the format `YYYYMMDD`, i.e., `ses-YYYYMMDD`.
+The `scans.tsv` file containing the date and time of the acquisition SHOULD
+also be included.
+The rationale is that this naming scheme will allow users to easily retrieve the
+empty-room recording that best matches a particular experimental session, based
+on date and time of the recording.
+It should be possible to query empty-room recordings just like usual subject
+recordings, hence all metadata sidecar files (such as the `channels.tsv`) file
+SHOULD be present as well.
 
 Example:
 
@@ -446,6 +456,5 @@ sub-emptyroom/
         meg/
             sub-emptyroom_ses-20170801_task-noise_meg.ds
             sub-emptyroom_ses-20170801_task-noise_meg.json
+            sub-emptyroom_ses-20170801_task-noise_channels.tsv
 ```
-
-`TaskName` in the `*_meg.json` file should be set to "noise".

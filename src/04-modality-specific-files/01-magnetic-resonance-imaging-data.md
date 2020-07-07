@@ -537,8 +537,11 @@ sub-<label>/[ses-<label>/]
 
 In some cases (for example GE) the scanner software will output a precomputed
 fieldmap denoting the B0 inhomogeneities along with a magnitude image used for
-coregistration. In this case the sidecar JSON file needs to include the units of
-the fieldmap. The possible options are: `Hz`, `rad/s`, or `Tesla`. For example:
+coregistration.
+In this case the sidecar JSON file needs to include the units of the fieldmap.
+The possible options are: Hertz (`Hz`), Radians per second (`rad/s`), or Tesla
+(`T`).
+For example:
 
 ```JSON
 {

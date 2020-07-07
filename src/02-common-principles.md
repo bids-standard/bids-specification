@@ -290,8 +290,7 @@ within that specific series directory specifying the TR for that specific run.
 There is no notion of "unsetting" a key/value pair.
 Once a key/value pair is set in a given level in the dataset, lower down in
 the hierarchy that key/value pair will always have some assigned value.
-Files for a particular 
-participant can exist only at participant level directory, i.e
+Files for a particular participant can exist only at participant level directory, i.e
 `/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any file that is not
 specific to a participant is to be declared only at top level of dataset for eg:
 `task-sist_bold.json` must be placed under `/dataset/task-sist_bold.json`
@@ -423,13 +422,13 @@ dictionary matches a column name in the TSV file, then that field MUST contain a
 description of the corresponding column, using an object containing the following
 fields:
 
-| Field name  | Definition                                                                                                                                                  |
-| :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| LongName    | Long (unabbreviated) name of the column.                                                                                                                    |
-| Description | Description of the column.                                                                                                                                  |
-| Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).                                                          |
-| Units       | Measurement units. `[<prefix symbol>] <unit symbol>` format following the SI standard is RECOMMENDED (see [units section](./02-common-principles.md#units). |
-| TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web.                                                               |
+| Field name  | Definition                                                                                                      |
+| :---------- | :-------------------------------------------------------------------------------------------------------------- |
+| LongName    | Long (unabbreviated) name of the column.                                                                        |
+| Description | Description of the column.                                                                                      |
+| Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).              |
+| Units       | Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
+| TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
 
 Example:
 
@@ -447,7 +446,7 @@ Example:
   },
   "bmi": {
     "LongName": "Body mass index",
-    "Units": "kilograms per squared meters",
+    "Units": "kg/m^2",
     "TermURL": "http://purl.bioontology.org/ontology/SNOMEDCT/60621009"
   }
 }
@@ -513,16 +512,22 @@ label, but must be included in file names (similarly to other key names).
 ## Units
 
 All units SHOULD be specified as per [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
-(abbreviated
-as SI, from the French Système international (d'unités)) and can be SI units or
-[SI derived units](https://en.wikipedia.org/wiki/SI_derived_unit).
-In case there are valid reasons to deviate from SI units or SI
-derived units, the units MUST be specified in the sidecar JSON file. In case
-data is expressed in SI units or SI derived units, the units MAY be specified in
-the sidecar JSON file. In case non-standard prefixes are added to SI or non-SI
-units, these non-standard prefixed units MUST be specified in the JSON file.
+(abbreviated as SI, from the French Système international (d'unités)) and can
+be SI units or [SI derived units](https://en.wikipedia.org/wiki/SI_derived_unit).
+In case there are valid reasons to deviate from SI units or SI derived units,
+the units MUST be specified in the sidecar JSON file.
+In case data is expressed in SI units or SI derived units, the units MAY be
+specified in the sidecar JSON file.
+In case non-standard prefixes are added to SI or non-SI units, these
+non-standard prefixed units MUST be specified in the JSON file.
 See [Appendix V](99-appendices/05-units.md) for a list of standard units and
 prefixes.
+Note also that for the *formatting* of SI units, the [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12)
+convention for encoding units is RECOMMENDED.
+CMIXF provides a consistent system for all units and prefix symbols with only basic
+characters, avoiding symbols that can cause text encoding problems; for example the
+CMIXF formatting for "micro volts" is `uV`, "degrees Celsius" is `oC` and "Ohm" is `Ohm`.
+See [Appendix V](99-appendices/05-units.md) for more information.
 
 For additional rules, see below:
 
@@ -535,17 +540,24 @@ For additional rules, see below:
 Describing dates and timestamps:
 
 -   Date time information MUST be expressed in the following format
-    `YYYY-MM-DDThh:mm:ss` (one of the
-    [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time formats). For
-    example: `2009-06-15T13:45:30`
+    `YYYY-MM-DDThh:mm:ss[.000000]` (year, month, day, hour (24h), minute,
+    second, and optionally fractional second).
+    This is equivalent to the RFC3339 "date-time" format, time zone is always
+    assumed as local time).
+    No specific precision is required for fractional seconds, but the precision
+    SHOULD be consistent across the dataset.
+    For example `2009-06-15T13:45:30`
 
--   Time stamp information MUST be expressed in the following format: `13:45:30`
+-   Time stamp information MUST be expressed in the following format:
+    `13:45:30[.000000]`
 
 -   Dates can be shifted by a random number of days for privacy protection
-    reasons. To distinguish real dates from shifted dates always use year 1925
-    or earlier when including shifted years. For longitudinal studies please
-    remember to shift dates within one subject by the same number of days to
-    maintain the interval information. Example: `1867-06-15T13:45:30`
+    reasons.
+    To distinguish real dates from shifted dates, always use year 1925
+    or earlier when including shifted years.
+    For longitudinal studies dates MUST be shifted by the same number of days
+    within each subject to maintain the interval information.
+    For example: `1867-06-15T13:45:30`
 
 -   Age SHOULD be given as the number of years since birth at the time of
     scanning (or first scan in case of multi session datasets). Using higher
