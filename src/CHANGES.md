@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] clarify that scans.json is allowed and recommended [#523](https://github.com/bids-standard/bids-specification/pull/523) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] add copyright holder to license.  [#521](https://github.com/bids-standard/bids-specification/pull/521) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Update `beh/` specification to contrast with any neural recordings [#515](https://github.com/bids-standard/bids-specification/pull/515) ([effigies](https://github.com/effigies))
 -   \[Fix] 'segmentation' spelling in 05-derivatives/03-imaging.md [#514](https://github.com/bids-standard/bids-specification/pull/514) ([rwblair](https://github.com/rwblair))
