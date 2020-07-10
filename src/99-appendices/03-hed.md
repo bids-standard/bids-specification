@@ -78,12 +78,17 @@ distinguish between tags specified using the different mechanisms. Further,
 the normal BIDS inheritance principle applies, so these data dictionaries can
 appear higher in the BIDS hierarchy.
 
-The HED vocabulary is specified by a HED schema, which delineates the allowed HED path strings. By default, BIDS uses the latest HED schema available in the
+The HED vocabulary is specified by a HED schema, which delineates the allowed HED path strings. By default, 
+BIDS uses the latest HED schema available in the
 [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository
-maintained by the hed-standard group. You can specify the version of HED used to tag your data in the
-`\_events.json` sidecar at the top level of the study hierarchy using a HED version number. The validator will try to match that version to one of the existing versions in the  [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository. 
+maintained by the hed-standard group. To override this default, you can either provide a specific HED version number or the actual HED xml file. 
 
-Example:
+To override the default by using a specific standard version of the HED schema, add the field `HEDSchemaVersion` 
+with the version number to  the `_events.json` sidecar at the top level of the study hierarchy. 
+
+Example: The following `_events.json` sidecar at the top level of the study will cause the BIDS validator to download
+HED7.1.1.xml from the [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository and use it
+to validate the study event annotations.
 
 ```JSON
 {
@@ -91,14 +96,17 @@ Example:
 }
 ```
 
-Alternatively, you can include a HED schema file in the `sourcedata` folder at the top level of the study and specify its file name in the `HEDSchemaFile` field in the `\_events.json` sidecar at the top level of the study hierarchy. 
+To override the default by using a custom XML file, put a copy of the file in the `sourcedata` directory at the top level of the study
+and add the field `HEDSchemaFile` with the schema file name to the `_events.json` sidecar at the top level of the study hierarchy. 
 
-Example:
+Example: The following `_events.json` sidecar at the top level of the study will cause the BIDS validator to look for the 
+`HED7.2.1.xml` file in the `sourcedata` directory of the study and use it to validate the study event annotations.
 
 ```JSON
 {
-	"HEDSchemaFile": "HED7.1.1.xml"
+	"HEDSchemaFile": "HED7.2.1.xml"
 }
 ```
-Only one HED schema can be used to validate a study. To resolve which schema to use, the BIDS validator first looks for a HED schema file in the study, then a version number, and then the latest schema in the [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository. 
 
+The preferred method is to use the latest HED schema from the [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository
+and explicitly specify the `HEDSchemaVersion` used for future reference.
