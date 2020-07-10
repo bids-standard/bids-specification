@@ -79,9 +79,9 @@ the normal BIDS inheritance principle applies, so these data dictionaries can
 appear higher in the BIDS hierarchy.
 
 The HED vocabulary is specified by a HED schema, which delineates the allowed HED path strings. By default, BIDS uses the latest HED schema available in the
-[hed-specification repository](https://github.com/hed-standard/hed-specification/tree/master/hedxml)
+[hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository
 maintained by the hed-standard group. You can specify the version of HED used to tag your data in the
-\_events.json sidecar at the top level of the study hierarchy using a HED version number. The validator will try to match that version to one of the existing versions in the  [hed-specification repository](https://github.com/hed-standard/hed-specification/tree/master/hedxml). 
+`\_events.json` sidecar at the top level of the study hierarchy using a HED version number. The validator will try to match that version to one of the existing versions in the  [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository. 
 
 Example:
 
@@ -91,14 +91,14 @@ Example:
 }
 ```
 
-Alternatively, you can include a HED schema file at the top level of the study and specify its location in the HEDSchemaPath field in the \_events.json sidecar at the top level of the study hierarchy. 
+Alternatively, you can include a HED schema file in the `sourcedata` folder at the top level of the study and specify its file name in the `HEDSchemaFile` field in the `\_events.json` sidecar at the top level of the study hierarchy. 
 
 Example:
 
 ```JSON
 {
-	"HEDSchemaPath": "HED7.1.1.xml"
+	"HEDSchemaFile": "HED7.1.1.xml"
 }
 ```
-Only one HED schema can be used in a study. To resolve which schema to use, the BIDS validator first looks for a HED schema in the study, then a version number, and then the latest schema in the [hed-specification repository](https://github.com/hed-standard/hed-specification/tree/master/hedxml). 
+Only one HED schema can be used to validate a study. To resolve which schema to use, the BIDS validator first looks for a HED schema file in the study, then a version number, and then the latest schema in the [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository. 
 
