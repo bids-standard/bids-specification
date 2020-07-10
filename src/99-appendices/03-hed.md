@@ -81,13 +81,13 @@ appear higher in the BIDS hierarchy.
 The HED vocabulary is specified by a HED schema, which delineates the allowed HED path strings. By default, 
 BIDS uses the latest HED schema available in the
 [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository
-maintained by the hed-standard group. To override this default, you can either provide a specific HED version number or the actual HED xml file. 
+maintained by the hed-standard group. To override this default, you can either provide a specific HED version number or the actual HED XML file. 
 
 To override the default by using a specific standard version of the HED schema, add the field `HEDSchemaVersion` 
 with the version number to  the `_events.json` sidecar at the top level of the study hierarchy. 
 
 Example: The following `_events.json` sidecar at the top level of the study will cause the BIDS validator to download
-HED7.1.1.xml from the [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository and use it
+`HED7.1.1.xml` from the [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository and use it
 to validate the study event annotations.
 
 ```JSON
