@@ -81,7 +81,7 @@ appear higher in the BIDS hierarchy.
 The HED vocabulary is specified by a HED schema, which delineates the allowed HED path strings. By default, BIDS uses the latest HED schema available in the
 [hed-specification repository](https://github.com/hed-standard/hed-specification/tree/master/hedxml)
 maintained by the hed-standard group. You can specify the version of HED used to tag your data in the
-\_events.json sidecar at the top level of the study hierarchy using a HED version number. The validator will try to match that version to one of the existing versions in the the [hed-specification repository](https://github.com/hed-standard/hed-specification/tree/master/hedxml). 
+\_events.json sidecar at the top level of the study hierarchy using a HED version number. The validator will try to match that version to one of the existing versions in the  [hed-specification repository](https://github.com/hed-standard/hed-specification/tree/master/hedxml). 
 
 Example:
 
