@@ -81,32 +81,36 @@ appear higher in the BIDS hierarchy.
 The HED vocabulary is specified by a HED schema, which delineates the allowed HED path strings. By default, 
 BIDS uses the latest HED schema available in the
 [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository
-maintained by the hed-standard group. To override this default, you can either provide a specific HED version number or the actual HED XML file. 
+maintained by the hed-standard group. 
 
-To override the default by using a specific standard version of the HED schema, add the field `HEDSchemaVersion` 
-with the version number to  the `_events.json` sidecar at the top level of the study hierarchy. 
+You can override the default by providing a specific HED version number or including an HED XML file
+in the `sourcedata` directory at the top level of the study. You would indicate the version or
+the relative XML path using the optional `HEDVersion` field of the `dataset_description.json` file. 
+The preferred method is to validate with the latest version, but to use the `HEDVersion` field to specify
+which version was used for later reference.  
 
-Example: The following `_events.json` sidecar at the top level of the study will cause the BIDS validator to download
-`HED7.1.1.xml` from the [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository and use it
-to validate the study event annotations.
-
-```JSON
-{
-	"HEDSchemaVersion": "7.1.1"
-}
-```
-
-To override the default by using a custom XML file, put a copy of the file in the `sourcedata` directory at the top level of the study
-and add the field `HEDSchemaFile` with the schema file name to the `_events.json` sidecar at the top level of the study hierarchy. 
-
-Example: The following `_events.json` sidecar at the top level of the study will cause the BIDS validator to look for the 
-`HED7.2.1.xml` file in the `sourcedata` directory of the study and use it to validate the study event annotations.
+Example: The following `dataset_description.json` file specifies that 
+`HED7.1.1.xml` from the [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository
+should be used to validate the study event annotations.
 
 ```JSON
 {
-	"HEDSchemaFile": "HED7.2.1.xml"
+  "Name": "The mother of all experiments",
+  "BIDSVersion": "1.4.0",
+  "HEDVersion": "7.1.1"
 }
 ```
 
-The preferred method is to use the latest HED schema from the [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository
-and explicitly specify the `HEDSchemaVersion` used for future reference.
+Example: The following `dataset_description.json` file specifies that 
+`HED7.2.1.xml` file in the study's top-level `sourcedata` file
+should be used to validate the study event annotations.
+
+Example:
+
+```JSON
+{
+  "Name": "The mother of all experiments",
+  "BIDSVersion": "1.4.0",
+  "HEDVersion": "file://sourcedata/HED7.2.1.xml"
+}
+```
