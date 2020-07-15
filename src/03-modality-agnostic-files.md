@@ -16,7 +16,6 @@ Every dataset MUST include this file with the following fields:
 
 | Field name         | Definition                                                                                                                                                                                                                                                         |
 | ------------------------------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-<<<<<<< HEAD
 | Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                                                     |
 | BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                                                          |
 | DatasetType        | RECOMMENDED. The interpretaton of the dataset. MUST be one of `"raw"` or `"derivative"`. For backwards compatibility, the default value is `"raw"`.                                                                                                                |
@@ -28,7 +27,6 @@ Every dataset MUST include this file with the following fields:
 | EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                                                |
 | ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                                                     |
 | DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                                                             |
-
 | HEDVersion         | OPTIONAL. HED version number or the name of HED XML schema file used to validate HED tags for study.                                                                                                                                              |
 
 Example:
