@@ -101,7 +101,7 @@ should be used to validate the study event annotations.
 }
 ```
 
-Example: The following `dataset_description.json` file specifies that 
+Example: The following `dataset_description.json` file specifies that the 
 `HED7.2.1.xml` file in the study's top-level `sourcedata` file
 should be used to validate the study event annotations.
 
