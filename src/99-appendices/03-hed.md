@@ -83,9 +83,9 @@ BIDS uses the latest HED schema available in the
 [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository
 maintained by the hed-standard group. 
 
-You can override the default by providing a specific HED version number or including an HED XML file
+You can override the default by providing a specific HED version number or including a HED XML file
 in the `sourcedata` directory at the top level of the study. You would indicate the version or
-the relative XML path using the optional `HEDVersion` field of the `dataset_description.json` file. 
+the XML filename using the optional `HEDVersion` field of the `dataset_description.json` file. 
 The preferred method is to validate with the latest version, but to use the `HEDVersion` field to specify
 which version was used for later reference.  
 
