@@ -111,6 +111,6 @@ Example:
 {
   "Name": "The mother of all experiments",
   "BIDSVersion": "1.4.0",
-  "HEDVersion": "file://sourcedata/HED7.2.1.xml"
+  "HEDVersion": "HED7.2.1.xml"
 }
 ```
