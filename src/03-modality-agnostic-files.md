@@ -27,7 +27,7 @@ Every dataset MUST include this file with the following fields:
 | EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                                                |
 | ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                                                     |
 | DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                                                             |
-| HEDVersion         | RECOMMENDED. HED version number or the name of HED XML schema file used to validate HED tags for study.                                                                                                                                              |
+| HEDVersion         | RECOMMENDED. HED version number or the name of the HED XML schema file located in `sourcedata` used to validate HED tags for study.                                                                                                                                              |
 
 Example:
 
