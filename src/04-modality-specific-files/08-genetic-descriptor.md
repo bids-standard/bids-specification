@@ -1,7 +1,7 @@
 # Genetic Descriptor
 
 Support for genetic descriptors was developed as a [BIDS Extension
-Proposal](../06-extensions.md#bids-extension-proposals).
+Proposal](../07-extensions.md#bids-extension-proposals).
 The extension was primarily developed by Cyril Pernet and Clara Moreau with
 contributions from Tom Nichols and Jessica Turner.
 

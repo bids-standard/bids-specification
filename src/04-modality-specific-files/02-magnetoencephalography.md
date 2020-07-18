@@ -1,6 +1,6 @@
 # Magnetoencephalography
 
-Support for Magnetoencephalography (MEG) was developed as a [BIDS Extension Proposal](../06-extensions.md#bids-extension-proposals).
+Support for Magnetoencephalography (MEG) was developed as a [BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
 Please cite the following paper when referring to this part of the standard in
 context of the academic literature:
 
@@ -42,11 +42,18 @@ MAY be included alongside the MEG data; examples are provided below.
 This template is for MEG data of any kind, including but not limited to
 task-based, resting-state, and noise recordings. If multiple Tasks were
 performed within a single Run, the task description can be set to
-`task-multitask`. The \_meg.json SHOULD contain details on the Tasks. Some
-manufacturers data storage conventions use folders which contain data files of
-various nature: e.g., CTF’s .ds format, or BTi/4D. Please refer to
-[Appendix VI](../99-appendices/06-meg-file-formats.md) for examples from a
-selection of MEG manufacturers.
+`task-multitask`. The \_meg.json SHOULD contain details on the Tasks.
+
+Some manufacturers' data storage conventions use folders which contain data
+files of various nature: for example, CTF's `.ds` format, or BTi/4D.
+Yet other manufacturers split their files once they exceed a certain size
+limit. For example Neuromag/Elekta/Megin, which can produce several files
+for a single recording. Both `some_file.fif` and `some_file-1.fif` would
+belong to a single recording. In BIDS, the `split` entity is RECOMMENDED to
+deal with split files.
+Please refer to [Appendix VI](../99-appendices/06-meg-file-formats.md) for
+general information on how to deal with such manufacturer specifics and to see
+more examples.
 
 The `proc` label is analogous to `rec` for MR and denotes a variant of a file
 that was a result of particular processing performed on the device. This is
@@ -192,11 +199,11 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
-| Column name | Definition                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name        | REQUIRED. Channel name (e.g., MRT012, MEG023)                                                                                                                                                                                                                                                                                                                                                                                    |
-| type        | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                                                                                                                                                                                                                                                                                              |
-| units       | REQUIRED. Physical unit of the value represented in this channel, e.g., V for Volt, specified according to the [SI unit symbol](https://en.wikipedia.org/wiki/International_System_of_Units#Base_units) and possibly prefix symbol (e.g., mV, μV), or as a [derived SI unit](https://en.wikipedia.org/wiki/SI_derived_unit) (e.g., fT/cm). For guidelines for Units and Prefixes see [Appendix V](../99-appendices/05-units.md). |
+| Column name | Definition                                                                                                                                                                       |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name        | REQUIRED. Channel name (e.g., MRT012, MEG023)                                                                                                                                    |
+| type        | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                                              |
+| units       | REQUIRED. Physical unit of the value represented in this channel, e.g., `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [Units](../02-common-principles.md#units)). |
 
 SHOULD be present:
 
@@ -419,14 +426,24 @@ has to be updated, then for MEG it could be considered to be a new session.
 
 ## Empty-room MEG recordings
 
-Empty-room MEG recordings capture the environment and system noise. Their
-collection is RECOMMENDED, before/during/after each session. This data is stored
-inside a subject folder named `sub-emptyroom`. The `session label` SHOULD be
-that of the date of the empty-room recording (e.g. `ses-YYYYMMDD`). The
-`scans.tsv` file containing the date/time of the acquisition SHOULD also be
-included. Hence, users will be able to retrieve the empty-room recording that
-best matches a particular session with a participant, based on date/time of
-recording.
+Empty-room MEG recordings capture the environmental and recording system's
+noise.
+In the context of BIDS it is RECOMMENDED to perform an empty-room recording for
+each experimental session.
+It is RECOMMENDED to store the empty-room recording inside a subject folder
+named `sub-emptyroom`.
+The label for the `task-<label>` entity in the empty-room recording SHOULD be
+set to `noise`.
+If a `session-<label>` entity is present, its label SHOULD be the date of the
+empty-room recording in the format `YYYYMMDD`, i.e., `ses-YYYYMMDD`.
+The `scans.tsv` file containing the date and time of the acquisition SHOULD
+also be included.
+The rationale is that this naming scheme will allow users to easily retrieve the
+empty-room recording that best matches a particular experimental session, based
+on date and time of the recording.
+It should be possible to query empty-room recordings just like usual subject
+recordings, hence all metadata sidecar files (such as the `channels.tsv`) file
+SHOULD be present as well.
 
 Example:
 
@@ -439,6 +456,5 @@ sub-emptyroom/
         meg/
             sub-emptyroom_ses-20170801_task-noise_meg.ds
             sub-emptyroom_ses-20170801_task-noise_meg.json
+            sub-emptyroom_ses-20170801_task-noise_channels.tsv
 ```
-
-`TaskName` in the `*_meg.json` file should be set to "noise".
