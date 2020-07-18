@@ -336,7 +336,7 @@ A general introduction to entities is given in the section on
             fo.write(title)
             fo.write('\n\n')
             fo.write(table)
-            if i == len(tables):
+            if i == len(tables) - 1:
                 fo.write('\n')
             else:
                 fo.write('\n\n')
@@ -347,7 +347,8 @@ def _main(argv=None):
 
     Examples
     --------
-    > python bids_schema.py entity ../src/schema/ ../src/99-appendices/04-entity-table.md
+    >>> python bids_schema.py entity ../src/schema/ \
+    >>> ../src/99-appendices/04-entity-table.md
     """
     options = _get_parser().parse_args(argv)
     args = vars(options).copy()

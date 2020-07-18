@@ -45,4 +45,3 @@ A general introduction to entities is given in the section on
 |---------------------------------|---------------|---------------|----------------|
 | Format                          | `sub-<label>` | `ses-<label>` | `task-<label>` |
 | beh<br>(stim physio events beh) | REQUIRED      | OPTIONAL      | REQUIRED       |
-
