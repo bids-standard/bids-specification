@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
-#
-# pip install click click-didyoumean tabulate
 import argparse
 from itertools import chain
 import logging
 import os
 from pathlib import Path
-import yaml
 import sys
 from warnings import warn
+import yaml
+
+import numpy as np
 import pandas as pd
-from pprint import pprint
 
 
 #
@@ -18,8 +17,8 @@ from pprint import pprint
 #
 def is_interactive():
     """Return True if all in/outs are tty"""
-    # TODO: check on windows if hasattr check would work correctly and add value:
-    #
+    # TODO: check on windows if hasattr check would work correctly and add
+    # value:
     return sys.stdin.isatty() and sys.stdout.isatty() and sys.stderr.isatty()
 
 
@@ -79,27 +78,9 @@ set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
 FORMAT = "%(asctime)-15s [%(levelname)8s] %(message)s"
 logging.basicConfig(format=FORMAT)
 
-#
-# Constants and defaults
-#
 BIDS_SCHEMA = Path(__file__).parent.parent / "src" / "schema"
 
-#
-# Main group
-#
 
-
-def upper(ctx, param, value):
-    import pdb
-
-    pdb.set_trace()
-    return value.upper()
-
-
-#
-# Common options to reuse
-#
-# Functions to provide customizations where needed
 def _get_entry_name(path):
     if path.suffix == '.yaml':
         return path.name[:-5]  # no .yaml
@@ -155,6 +136,16 @@ def load_schema(schema_path):
     File (having .yaml stripped) and directory names become keys
     in the associative array (dict) of entries composed from content
     of files and entire directories.
+
+    Parameters
+    ----------
+    schema_path : str
+        Folder containing yaml files or yaml file.
+
+    Returns
+    -------
+    dict
+        Schema in dictionary form.
     """
     schema_path = Path(schema_path)
     if schema_path.is_file() and (schema_path.suffix == '.yaml'):
@@ -177,9 +168,35 @@ def show(schema_path):
     print(yaml.safe_dump(schema, default_flow_style=False))
 
 
-def entity_table(schema_path):
+def drop_unused_entities(df):
+    df = df.replace('', np.nan).dropna(axis=1, how='all').fillna('')
+    return df
+
+
+def flatten_multiindexed_columns(df):
+    # Flatten multi-index
+    vals = df.index.tolist()
+    df.loc['Format'] = df.columns.get_level_values(1)
+    df.columns = df.columns.get_level_values(0)
+    df = df.loc[['Format'] + vals]
+    df.index.name = 'Entity'
+    df = df.drop(columns=['DataType'])
+    return df
+
+
+def make_entity_table(schema_path):
     """Produce entity table (markdown) based on schema.
     This only works if the top-level schema *directory* is provided.
+
+    Parameters
+    ----------
+    schema_path : str
+        Folder containing schema, which is stored in yaml files.
+
+    Returns
+    -------
+    table : pandas.DataFrame
+        DataFrame of entity table, with two layers of columns.
     """
     schema = load_schema(schema_path)
 
@@ -226,7 +243,8 @@ def entity_table(schema_path):
                 dtype_rows[suffixes_str] = dtype_row
 
         # Reformat first column
-        dtype_rows = {dtype+'<br>({})'.format(k): v for k, v in dtype_rows.items()}
+        dtype_rows = {dtype+'<br>({})'.format(k): v for k, v in
+                      dtype_rows.items()}
         dtype_rows = [[k] + v for k, v in dtype_rows.items()]
         table += dtype_rows
 
@@ -236,38 +254,76 @@ def entity_table(schema_path):
     table = pd.DataFrame(data=table[1:], columns=cols)
     table = table.set_index(('Entity', 'Format'))
 
-    # Now we can split as needed
+    # Now we can split as needed, in the next function
     return table
 
 
-def github_entity_table(schema_path, tablefmt='github'):
+def make_entity_table_markdown(schema_path, tablefmt='github'):
+    """
+    Create a tabulated entity table from the schema.
+
+    This only works if the top-level schema *directory* is provided.
+
+    Parameters
+    ----------
+    schema_path : str
+        Path to schema.
+    tablefmt : {'github'}, optional
+        Format for tabulated table.
+
+    Returns
+    -------
+    out_tables : dict
+        Dictionary of tabulated entity tables, with table title as key.
+    """
     from tabulate import tabulate
-    table = entity_table(schema_path)
+    table = make_entity_table(schema_path)
 
-    # Flatten multi-index
-    vals = table.index.tolist()
-    table.loc['Format'] = table.columns.get_level_values(1)
-    table.columns = table.columns.get_level_values(0)
-    table = table.loc[['Format'] + vals]
-    table.index.name = 'Entity'
+    # Split table
+    EG_DATATYPES = ['eeg', 'ieeg', 'meg', 'channels', 'electrodes', 'events',
+                    'photo']
+    MRI_DATATYPES = ['anat', 'func', 'fmap', 'dwi']
+    mri_table = table.loc[
+        table[('DataType', 'DataType')].isin(MRI_DATATYPES)
+    ]
+    eg_table = table.loc[
+        table[('DataType', 'DataType')].isin(EG_DATATYPES)
+    ]
+    beh_table = table[
+        ~table[('DataType', 'DataType')].isin(MRI_DATATYPES + EG_DATATYPES)
+    ]
 
-    # print it as markdown
-    table = table.drop(columns=['DataType'])
-    return tabulate(table, headers='keys', tablefmt=tablefmt)
+    out_tables = {}
+    titles = [
+        '## Magnetic Resonance Imaging',
+        '## Encephalography (EEG, iEEG, and MEG)',
+        '## Behavioral Data'
+    ]
+    tables = [mri_table, eg_table, beh_table]
+    for i, table in enumerate(tables):
+        title = titles[i]
+        table = drop_unused_entities(table)
+        table = flatten_multiindexed_columns(table)
+        # print it as markdown
+        table_str = tabulate(table, headers='keys', tablefmt=tablefmt)
+        out_tables[title] = table_str
+
+    return out_tables
 
 
 def save_entity_table(schema_path, out_file):
 
-    table = github_entity_table(schema_path)
+    tables = make_entity_table_markdown(schema_path)
 
     intro_text = """\
 # Appendix IV: Entity table
 
 This section compiles the entities (key-value pairs) described throughout this
-specification, and establishes a common order within a filename. For example, if
-a file has an acquisition and reconstruction label, the acquisition entity must
-precede the reconstruction entity. REQUIRED and OPTIONAL entities for a given
-file type are denoted. Entity formats indicate whether the value is alphanumeric
+specification, and establishes a common order within a filename. 
+For example, if a file has an acquisition and reconstruction label, the
+acquisition entity must precede the reconstruction entity.
+REQUIRED and OPTIONAL entities for a given file type are denoted. Entity
+formats indicate whether the value is alphanumeric
 (`<label>`) or numeric (`<index>`).
 
 A general introduction to entities is given in the section on
@@ -276,12 +332,23 @@ A general introduction to entities is given in the section on
     with open(out_file, 'w') as fo:
         fo.write(intro_text)
         fo.write('\n')
-        fo.write(table)
-        fo.write('\n')
+        for i, (title, table) in enumerate(tables.items()):
+            fo.write(title)
+            fo.write('\n\n')
+            fo.write(table)
+            if i == len(tables):
+                fo.write('\n')
+            else:
+                fo.write('\n\n')
 
 
 def _main(argv=None):
-    """BIDS schema CLI entrypoint"""
+    """BIDS schema CLI entrypoint.
+
+    Examples
+    --------
+    > python bids_schema.py entity ../src/schema/ ../src/99-appendices/04-entity-table.md
+    """
     options = _get_parser().parse_args(argv)
     args = vars(options).copy()
     args.pop('func')
