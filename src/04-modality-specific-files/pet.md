@@ -30,71 +30,29 @@ Figure 1: Overview of a common PET experiment, including blood measurements, and
 Template:
 
 ```Text
-sub-<label>/
-    [ses-<label>]/
-      eeg/
-        sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_eeg.<manufacturer_specific_extension>
-        sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_eeg.json
+sub-<participant_label>/
+      [ses-<session_label>/]
+        pet/
+        sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.nii[.gz]
+        sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.json
 ```
 
-The EEG community uses a variety of formats for storing raw data, and there is
-no single standard that all researchers agree on. For BIDS, EEG data MUST be
-stored in one of the following formats:
+PET data belongs in the /pet folder. PET imaging data SHOULD be stored in 4D (or 3D if only one volume was acquired) NifTI files with _pet suffix. Volumes should be stored in chronological order (the order they were acquired in).
 
--   [European data format](https://www.edfplus.info/)
-    (Each recording consisting of a `.edf` file)
+Multiple sessions (visits) are encoded by adding an extra layer of directories and file names in the form of ses-<label>. Session labels can consist only of alphanumeric characters [a-zA-Z0-9] and should be consistent across subjects. If numbers are used in session labels we recommend using zero padding (for example ses-01, ses-11 instead of ses-1, ses-11). This makes results of alphabetical sorting more intuitive. The extra session layer (at least one /ses-<label> subfolder) should be added for all subjects if at least one subject in the dataset has more than one session. Skipping the session layer for only some subjects in the dataset is not allowed. If a /ses-<label> subfolder is included as part of the directory hierarchy, then the same ses-<label> tag must also be included as part of the file names themselves. In general, we assume that a new session wrt PET starts with either a new injection (probably most common case) or with the subject being taken out of the scanner (same injection, but subject leaves the scanner and returns). However, for example, if a subject has to leave the scanner room and then be re-positioned on the scanner bed e.g. to use the bathroom, the set of PET acquisitions will still be considered as a session and match sessions acquired in other subjects. Similarly, in situations where different data types are obtained over several visits (for example FDG PET on one day followed by amyloid PET a couple days after) those can be grouped in one session. Please see the difference with the run-<label> below.
 
--   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
-    (Each recording consisting of a  `.vhdr`, `.vmrk`, `.eeg` file triplet)
+With respect to the task-<label>, data is arranged in a similar way as task-based and resting state BOLD fMRI data. In case of studies using combined PET/fMRI, subject-specific tasks may be carried out during the acquisition within the same session. Therefore, it is possible to specify task-<label> in accordance with the fMRI data. For more information please see https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#task-including-resting-state-imaging-data. 
 
--   The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab)
-    (Each recording consisting of a `.set` file with an optional `.fdt` file)
+In case of studies with multiple acquisitions per subject using different tracers, the acq-<label> must be used to distinguish between different tracers. Please keep in mind that the label used is arbitrary and each file requires a separate JSON sidecar with details of the tracer used (see below). Examples are e.g. acq-18FFDG for fludeoxyglucose, acq-11CPIB for Pittsburgh compound B, etc.
 
--   [Biosemi](https://www.biosemi.com/) data format
-    (Each recording consisting of a `.bdf` file)
+The reconstruction key (rec-<label>) has four reserved values: acdyn, for reconstructions with attenuation correction of dynamic data; acstat, for reconstructions with attenuation correction of static data; nacdyn, for reconstructions without attenuation correction of dynamic data; and nacstat, for reconstructions without attenuation correction of static data. Further details regarding reconstruction are in the _pet.json file. In case of multiple reconstructions of the data with the same type, we allow for using a number after the <label> in order to distinguish, e.g. rec-acdyn1 and rec-acdyn2. 
 
-It is RECOMMENDED to use the European data format, or the BrainVision data
-format. It is furthermore discouraged to use the other accepted formats over
-these RECOMMENDED formats, particularly because there are conversion scripts
-available in most commonly used programming languages to convert data into the
-RECOMMENDED formats. The data in their original format, if different from the
-supported formats, can be stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
+The run entity is used if one scan type/contrast is repeated multiple times within the same scan session/visit. If several scans of the same modality are acquired they MUST be indexed with a key-value pair: _run-1, _run-2, _run-3 etc. (only integers are allowed as run labels). When there is only one scan of a given type the run key MAY be omitted. An example of this would be two consecutive scans performed within the same session, e.g. two short FDG scans right after each other. It is our assumption that the run-<label> is used in PET for the cases where the subject does not leave the scanner. Otherwise, we refer to the ses-<label> definition.
 
-The original data format is especially valuable in case conversion elicits the
-loss of crucial metadata specific to manufacturers and specific EEG systems. We
-also encourage users to provide additional meta information extracted from the
-manufacturer specific data files in the sidecar JSON file. Other relevant files
-MAY be included alongside the original EEG data in `/sourcedata`.
+In addition to the imaging data a _pet.json sidecar file needs to be provided. The included metadata are divided into sections described below.
 
-Note the RecordingType, which depends on whether the data stream on disk is interrupted or not. Continuous data is by definition 1 segment without interruption. Epoched data consists of multiple segments that all have the same length (e.g., corresponding to trials) and that have gaps in between. Discontinuous data consists of multiple segments of different length, for example due to a pause in the acquisition.
 
-Note that for proper documentation of EEG recording metadata it is important to
-understand the difference between electrode and channel: An EEG electrode is
-attached to the skin, whereas a channel is the combination of the analog
-differential amplifier and analog-to-digital converter that result in a
-potential (voltage) difference that is stored in the EEG dataset. We employ
-the following short definitions:
-
--   Electrode = A single point of contact between the acquisition system and
-    the recording site (e.g., scalp, neural tissue, ...). Multiple electrodes
-    can be organized as caps (for EEG), arrays, grids, leads, strips, probes,
-    shafts, etc.
-
--   Channel = A single analog-to-digital converter in the recording system that
-    regularly samples the value of a transducer, which results in the signal
-    being represented as a time series in the digitized data. This can be
-    connected to two electrodes (to measure the potential difference between
-    them), a magnetic field or magnetic gradient sensor, temperature sensor,
-    accelerometer, etc.
-
-Although the *reference* and *ground* electrodes are often referred to as
-channels, they are in most common EEG systems not recorded by
-themselves. Therefore they are not represented as channels in the data.
-The type of referencing for all channels and optionally the location of
-the reference electrode and the location of the ground electrode MAY
-be specified.
-
-### Sidecar JSON (`*_eeg.json`)
+### Sidecar JSON (`*_pet.json`)
 
 Generic fields MUST be present:
 
@@ -152,40 +110,49 @@ SHOULD be present:
 Example:
 
 ```JSON
-{
-  "TaskName":"Seeing stuff",
-  "TaskDescription":"Subjects see various images for which phase, amplitude spectrum, and color vary continuously",
-  "Instructions":"Your task is to detect images when they appear for the 2nd time, only then press the response button with your right/left hand (counterbalanced across subjects)",
-  "InstitutionName":"The world best university, 10 Beachfront Avenue, Papeete",
-  "SamplingFrequency":2400,
-  "Manufacturer":"Brain Products",
-  "ManufacturersModelName":"BrainAmp DC",
-  "CapManufacturer":"EasyCap",
-  "CapManufacturersModelName":"M1-ext",
-  "EEGChannelCount":87,
-  "EOGChannelCount":2,
-  "ECGChannelCount":1,
-  "EMGChannelCount":0,
-  "MiscChannelCount":0,
-  "TriggerChannelCount":1,
-  "PowerLineFrequency":50,
-  "EEGPlacementScheme":"10 percent system",
-  "EEGReference":"single electrode placed on FCz",
-  "EEGGround":"placed on AFz",
-  "SoftwareFilters":{
-    "Anti-aliasing filter":{
-      "half-amplitude cutoff (Hz)": 500,
-      "Roll-off": "6dB/Octave"
-    }
-  },
-  "HardwareFilters":{
-    "ADC's decimation filter (hardware bandwidth limit)":{
-      "-3dB cutoff point (Hz)":480,
-      "Filter order sinc response":5
-    }
-  },
-  "RecordingDuration":600,
-  "RecordingType":"continuous"
+{       
+	"Modality": "PET",
+	"Manufacturer": "Siemens",
+	"ManufacturersModelName": "High-Resolution Research Tomograph (HRRT, CTI/Siemens)",
+	"BodyPart": "Brain",
+	"BodyWeight": 21,
+	"BodyWeightUnit": "kg",
+	"unit": "Bq/ml", 
+	"TracerName": "CIMBI-36",
+	"TracerRadionuclide": "C11",
+	"TracerMolecularWeight": 380.28,
+	"TracerMolecularWeightUnit": "g/mol",
+	"TracerInjectionType": "bolus",
+	"InjectedRadioactivity": 573,
+	"InjectedRadioActivityUnit": "MBq",
+	"InjectedMass": 0.62,
+	"InjectedMassUnit": "ug",
+	"SpecificRadioactivity": 353.51,
+	"SpecificRadioactivityUnit": "GBq/umol",
+	"ModeOfAdministration": "bolus",
+	"MolarActivity": 1.62,
+	"MolarActivityUnit": "nmol",
+	"MolarActivityMeasTime": "12:59:00",
+	"TimeZero": "13:04:42",
+	"ScanStart": 0,
+	"InjectionStart": 0,
+	"FrameTimesStart": [0, 10, 20, 30, 40, 50, 60, 80, 100, 120, 140, 160, 180, 240, 300, 360, 420, 480, 540, 660, 780, 900, 1020, 1140, 1260, 1380, 1500, 1800, 2100, 2400, 2700, 3000, 3300, 3600, 3900, 4200, 4500, 4800, 5100, 5400, 5700, 6000, 6300, 6600, 6900],
+	"FrameDuration": [10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 60, 60, 60, 60, 60, 60, 120, 120, 120, 120, 120, 120, 120, 120, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
+	"AcquisitionMode": "list mode",
+	"ImageDecayCorrected": "true",
+	"ImageDecayCorrectionTime": 0,
+	"ReconMatrixSize": [256,256,207,45],
+	"ImageVoxelSize": [1.2188,1.2188,1.2188],
+	"ReconMethodName": "3D-OSEM-PSF",
+	"ReconMethodParameterLabels": ["subsets","iterations"],
+	"ReconMethodParameterUnit": ["none","none"],
+	"ReconMethodParameterValues": [16,10],
+	"ReconFilterType": "none",
+	"AttenuationCorrection": "[137Cs]transmission scan-based",
+	"PlasmaAvail": "false",
+	"MetaboliteAvail": "false",
+	"ContinuousBloodAvail": "false",
+	"DiscreteBloodAvail: “false”
 }
 ```
 
@@ -197,16 +164,22 @@ format `YYYY-MM-DDThh:mm:ss`
 example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
 on local REB/IRB ethics board policy.
 
-## Channels description (`*_channels.tsv`)
+## Blood data (`*_blood.tsv`)
+
+This section includes all data needed to perform blood analysis for PET data. The section may be omitted if blood measurements of radioactivity were not made. It contains the values and information regarding plasma samples, discrete blood samples, continuous blood samples from an autosampler, and metabolite fractions. All these measurements should be defined according to a single time-scale in relation to time zero defined by the PET data (Figure 1). Additionally, if blood and metabolite measurements were made one should always report radioactivity in plasma and corresponding parent fraction measurements, including fractions of radiometabolites. All definitions used below are in accordance with Innis et al. 2007 [3]. All method specific information related to the measurements can be stated in the field “description”. 
 
 Template:
 
 ```Text
-sub-<label>/
-    [ses-<label>]/
-      eeg/
-        [sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_channels.tsv]
+sub-<participant_label>/
+      [ses-<session_label>/]
+        pet/
+          sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>_blood.tsv
+          sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>_blood.json
 ```
+
+Blood data belongs in the /pet folder along with the corresponding PET data. However, the blood data also follows the inheritance principle (https://bids-specification.readthedocs.io/en/stable/02-common-principles.html#the-inheritance-principle) and may be moved to an upper level folder if it does not change e.g. with multiple reconstructions. The blood data is most often recorded using an autosampler for continuous blood samples, or manually for discrete blood samples. Therefore, the recording key (recording-<label>) has two reserved values: continuous, for continuous whole blood data measurements (2.2.4); and discrete, for discrete blood data, including whole blood (2.2.4), plasma (2.2.2), parent fraction and metabolite fractions (2.2.3). Blood data will be stored in tabular *.tsv files with a _blood suffix (https://bids-specification.readthedocs.io/en/stable/02-common-principles.html#tabular-files). 
+The first column in the *.tsv file should be a time column (2.2.1), defined in relation to time zero defined by the _pet.json file. All other information relevant to the blood measurements are recommended, and can be added as an additional column. It is expected that all values are (if relevant) decay corrected to time zero. 
 
 This file is RECOMMENDED as it provides easily searchable information across
 BIDS datasets for e.g., general curation, response to queries or batch
@@ -451,10 +424,3 @@ given by the participant.
 The `acq` parameter can be used to indicate acquisition of different photos of
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA).
-
-Example:
-
-Picture of a NAS fiducial placed between the eyebrows, rather than at the
-actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
-
-![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
