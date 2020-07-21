@@ -92,6 +92,7 @@ your name is not listed, please add it.
 -   Gregory Kiar 📖💻🎨🔧
 -   Robert Knight 📖
 -   Jean-Philippe Lachaux 📖
+-   Marc Lalancette 📖
 -   Pamela LaMontagne 📖💡
 -   Kevin Larcher 💬
 -   Jonathan C. Lau 📖
