@@ -140,11 +140,8 @@ modalities include:
 
 #### The `run` entity
 
-If several scans of the same modality are acquired they MUST be indexed with a
-key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only integers are allowed as
-run labels). When there is only one scan of a given type the run key MAY be
-omitted. Please note that diffusion imaging data is stored elsewhere (see
-below).
+If several scans of the same modality are acquired they MUST be indexed with a key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only natural numbers are allowed as run labels). When there is only one scan of a given type the run key MAY be omitted. 
+Please note that diffusion imaging data is stored elsewhere (see below).
 
 #### The `acq` entity
 
@@ -264,7 +261,7 @@ sub-01/
 ```
 
 Please note that the `<index>` denotes the number/index (in a form of an
-integer) of the echo not the echo time value which needs to be stored in the
+natural number) of the echo not the echo time value which needs to be stored in the
 field EchoTime of the separate JSON file.
 
 Some meta information about the acquisition MUST be provided in an additional
