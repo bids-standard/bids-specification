@@ -141,7 +141,7 @@ Example:
 ```JSON
 {
    "InstitutionName": "Stanford University",
-   "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
+   "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
    "Manufacturer": "CTF",
    "ManufacturersModelName": "CTF-275",
    "DeviceSerialNumber": "11035",
@@ -173,7 +173,7 @@ Note that the date and time information SHOULD be stored in the Study key file
 (`scans.tsv`), see [Scans file](../03-modality-agnostic-files.md#scans-file). As
 it is indicated there, date time information MUST be expressed in the following
 format `YYYY-MM-DDThh:mm:ss`
-([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For
+([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For
 example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
 on local REB/IRB ethics board policy.
 
@@ -226,7 +226,7 @@ UDIO001 TRIG V analogue trigger 1200  0.1 300 0 n/a good
 MLC11 MEGGRADAXIAL T sensor 1st-order grad 1200 0 n/a 50 SSS bad
 ```
 
-Restricted keyword list for field `type`
+Restricted keyword list for field `type`
 
 | Keyword          | Definition                                           |
 | ---------------- | ---------------------------------------------------- |
@@ -259,7 +259,7 @@ Restricted keyword list for field `type`
 | FITERR           | Fit error signal from each head localization coil    |
 | OTHER            | Any other type of channel                            |
 
-Example of free text for field `description`
+Example of free text for field `description`
 
 -   stimulus, response, vertical EOG, horizontal EOG, skin conductance, sats,
     intracranial, eyetracker
@@ -353,10 +353,10 @@ Fiducials information:
 | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | FiducialsDescription | OPTIONAL. A freeform text field documenting the anatomical landmarks that were used and how the head localization coils were placed relative to these. This field can describe, for instance, whether the true anatomical locations of the left and right pre-auricular points were used and digitized, or rather whether they were defined as the intersection between the tragus and the helix (the entry of the ear canal), or any other anatomical description of selected points in the vicinity of the ears. |
 
-For more information on the definition of anatomical landmarks, please visit:
+For more information on the definition of anatomical landmarks, please visit:
 [http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
 
-For more information on typical coordinate systems for MEG-MRI coregistration:
+For more information on typical coordinate systems for MEG-MRI coregistration:
 [http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined),
 or:
 [http://neuroimage.usc.edu/brainstorm/CoordinateSystems](http://neuroimage.usc.edu/brainstorm/CoordinateSystems)
@@ -405,10 +405,10 @@ sub-<label>/
 This file is RECOMMENDED.
 
 The 3-D locations of points that describe the head shape and/or EEG
-electrode locations can be digitized and stored in separate files. The
+electrode locations can be digitized and stored in separate files. The
 `*_acq-<label>` can be used when more than one type of digitization in done for
 a session, for example when the head points are in a separate file from the EEG
-locations. These files are stored in the specific format of the 3-D digitizer’s
+locations. These files are stored in the specific format of the 3-D digitizer’s
 manufacturer (see [Appendix VI](../99-appendices/06-meg-file-formats.md)).
 
 Example:
@@ -422,7 +422,7 @@ sub-control01
 
 Note that the `*_headshape` file(s) is shared by all the runs and tasks in a
 session. If the subject needs to be taken out of the scanner and the head-shape
-has to be updated, then for MEG it could be considered to be a new session.
+has to be updated, then for MEG it could be considered to be a new session.
 
 ## Empty-room MEG recordings
 

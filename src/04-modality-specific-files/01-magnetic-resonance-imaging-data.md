@@ -56,7 +56,7 @@ by Ben Inglis:
 "`BandwidthPerPixelPhaseEncode` in DICOM tag (0019,1028) and ReconMatrixPE is
 the size of the actual reconstructed data in the phase direction (which is NOT
 reflected in a single DICOM tag for all possible aforementioned scan
-manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and
+manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and
 [here](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime)
 
 <sup>3</sup>We use the "FSL definition", i.e, the time between the center of the
@@ -102,7 +102,7 @@ Useful for multimodal co-registration with MEG, (S)EEG, TMS, etc.
 | InstitutionAddress          | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`.               |
 | InstitutionalDepartmentName | RECOMMENDED. The department in the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`. |
 
-When adding additional metadata please use the CamelCase version of
+When adding additional metadata please use the CamelCase version of
 [DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
 whenever possible. See also
 [recommendations on JSON files](../02-common-principles.md#keyvalue-files-dictionaries).
@@ -148,12 +148,12 @@ below).
 
 #### The `acq` entity
 
-The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label the user
+The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label the user
 MAY use to distinguish a different set of parameters used for acquiring the same
 modality. For example this should be used when a study includes two T1w images -
 one full brain low resolution and and one restricted field of view but high
 resolution. In such case two files could have the following names:
-`sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however the
+`sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however the
 user is free to choose any other label than `highres` and `lowres` as long as
 they are consistent across subjects and sessions. In case different sequences
 are used to record the same modality (e.g. RARE and FLASH for T1w) this field
@@ -249,7 +249,7 @@ reconstruction algorithms (for example ones using motion correction).
 See [`fmap` Case 4](01-magnetic-resonance-imaging-data.md#case-4-multiple-phase-encoded-directions-pepolar)
 for more information on `dir` field specification.
 
-Multi-echo data MUST be split into one file per echo. Each file shares the same
+Multi-echo data MUST be split into one file per echo. Each file shares the same
 name with the exception of the `_echo-<index>` key/value. For example:
 
 ```Text
@@ -267,7 +267,7 @@ Please note that the `<index>` denotes the number/index (in a form of an
 integer) of the echo not the echo time value which needs to be stored in the
 field EchoTime of the separate JSON file.
 
-Some meta information about the acquisition MUST be provided in an additional
+Some meta information about the acquisition MUST be provided in an additional
 JSON file.
 
 #### Required fields
@@ -351,10 +351,10 @@ sub-control01/
 ```
 
 If this information is the same for all participants, sessions and runs it can
-be provided in `task-<label>_bold.json` (in the root directory of the
+be provided in `task-<label>_bold.json` (in the root directory of the
 dataset). However, if the information differs between subjects/runs it can be
 specified in the
-`sub-<label>/func/sub-<label>_task-<label>[_acq-<label>][_run-<index>]_bold.json` file.
+`sub-<label>/func/sub-<label>_task-<label>[_acq-<label>][_run-<index>]_bold.json` file.
 If both files are specified fields from the file corresponding to a particular
 participant, task and run takes precedence.
 
@@ -569,7 +569,7 @@ specified in the corresponding JSON file as one of: `i`, `j`, `k`, `i-`, `j-`,
 `k-`. For these differentially phase encoded sequences, one also needs to
 specify the Total Readout Time defined as the time (in seconds) from the center
 of the first echo to the center of the last echo (aka "FSL definition" - see
-[here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup/Faq#How_do_I_know_what_phase-encode_vectors_to_put_into_my_--datain_text_file.3F) and
+[here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup/Faq#How_do_I_know_what_phase-encode_vectors_to_put_into_my_--datain_text_file.3F) and
 [here](https://lcni.uoregon.edu/kb-articles/kb-0003) how to calculate it). For
 example
 
