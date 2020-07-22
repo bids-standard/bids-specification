@@ -1,7 +1,7 @@
 - suffixes:
     - meg
   extensions:
-    - 4d/
+    - /  # corresponds to BTi/4D data
     - .ds/
     - .json
     - .fif
