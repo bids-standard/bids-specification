@@ -64,5 +64,5 @@ as well as other papers describing specific BIDS extensions (see below).
 
 BIDS has also a
 [Research Resource Identifier (RRID)](https://www.force11.org/group/resource-identification-initiative)
--  `RRID:SCR_016124` - which you can also include in your manuscript in addition
+-   `RRID:SCR_016124` - which you can also include in your manuscript in addition
 to citing the paper.
