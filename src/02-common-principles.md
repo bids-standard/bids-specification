@@ -9,11 +9,11 @@ interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 Throughout this specification we use a list of terms and abbreviations. To avoid
 misunderstanding we clarify them here.
 
-1.  **Dataset** - a set of neuroimaging and behavioral data acquired for a
+1.  **Dataset** - a set of neuroimaging and behavioral data acquired for a
     purpose of a particular study. A dataset consists of data acquired from one
     or more subjects, possibly from multiple sessions.
 
-1.  **Subject** - a person or animal participating in the study.  Used
+1.  **Subject** - a person or animal participating in the study.  Used
     interchangeably with term **Participant**.
 
 1.  **Session** - a logical grouping of neuroimaging and behavioral data
@@ -118,7 +118,7 @@ A summary of all entities in BIDS and the order in which they MUST be
 specified is available in the [entity table](./99-appendices/04-entity-table.md)
 in the appendix.
 
-## Source vs. raw vs. derived data
+## Source vs. raw vs. derived data
 
 BIDS was originally designed to describe and apply consistent naming conventions
 to raw (unprocessed or minimally processed due to file format conversion) data.
@@ -379,9 +379,9 @@ possible. Since the NIfTI standard offers limited support for the various image
 acquisition parameters available in DICOM files, we RECOMMEND that users provide
 additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
-Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://github.com/rordenlab/dcm2niix)
+Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://github.com/rordenlab/dcm2niix)
 and [dicm2nii](http://www.mathworks.com/matlabcentral/fileexchange/42997-dicom-to-nifti-converter/content/dicm2nii.m)
-DICOM to NIfTI converters. The [BIDS-validator](https://github.com/bids-standard/bids-validator)
+DICOM to NIfTI converters. The [BIDS-validator](https://github.com/bids-standard/bids-validator)
 will check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
 
@@ -459,7 +459,7 @@ pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
 format can be found here: [http://json.org/](http://json.org/). Several editors
 have built-in support for JSON syntax highlighting that aids manual creation of
 such files. An online editor for JSON with built-in validation is available at:
-[http://jsoneditoronline.org](http://jsoneditoronline.org). 
+[http://jsoneditoronline.org](http://jsoneditoronline.org). 
 It is RECOMMENDED that keys in a JSON file are written in [CamelCase](https://en.wikipedia.org/wiki/Camel_case)
 with the first letter in upper case (e.g., `SamplingFrequency`, not
 `samplingFrequency`). Note however, when a JSON file is used as an accompanying
@@ -548,7 +548,7 @@ Describing dates and timestamps:
     SHOULD be consistent across the dataset.
     For example `2009-06-15T13:45:30`
 
--   Time stamp information MUST be expressed in the following format:
+-   Time stamp information MUST be expressed in the following format:
     `13:45:30[.000000]`
 
 -   Dates can be shifted by a random number of days for privacy protection
@@ -569,7 +569,7 @@ Describing dates and timestamps:
 ### Single session example
 
 This is an example of the folder and file structure. Because there is only one
-session, the session level is not required by the format. For details on
+session, the session level is not required by the format. For details on
 individual files see descriptions in the next section:
 
 ```Text
