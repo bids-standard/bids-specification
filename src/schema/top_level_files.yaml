@@ -1,14 +1,10 @@
 README:
   required: True
   extensions:
-    - .md
-    - .rst
     - None
 CHANGES:
   required: True
   extensions:
-    - .md
-    - .rst
     - None
 dataset_description:
   required: True
