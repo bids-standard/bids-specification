@@ -23,19 +23,3 @@ participants:
   extensions:
     - .tsv
     - .json
-phasediff:
-  required: False
-  extensions:
-    - .json
-phase1:
-  required: False
-  extensions:
-    - .json
-phase2:
-  required: False
-  extensions:
-    - .json
-fieldmap:
-  required: False
-  extensions:
-    - .json
