@@ -51,7 +51,7 @@ onset	duration	mycodes
 
 ```
  
-The tags in the `HED` column of the \_events.tsv file are often specific to the individual event instances, 
+The tags in the `HED` column of the \_events.tsv file are often specific to the individual event instances,
 while the common properties are represented by categorial values appearing in other columns. 
 You may provide a `HED` column and multiple categorical columns to document your events.
 Each of these categorical columns should be documented in a corresponding \_events.json sidecar. 
