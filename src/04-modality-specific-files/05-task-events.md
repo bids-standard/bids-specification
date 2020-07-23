@@ -125,7 +125,7 @@ sub-control01/
           "afraid": "A face showing fear is displayed",
           "angry":  "A face showing anger is displayed",
 		  "sad":    "A face showing sadness is displayed"
-       }
+        }
    },
    "identifier": {
        "LongName": "Unique identifier from Karolinska (KDEF) database",
