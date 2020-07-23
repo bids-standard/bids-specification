@@ -45,17 +45,18 @@ Example:
 ```Text
 onset	duration	mycodes
 1.1	n/a	Fixation  
-1.3	n/a	Button
-1.8	n/a	Target
+1.3	n/a	Button  
+1.8	n/a	Target  
 ...
 
 ```
 
-If you provide an \_events.json file somewhere in your data hierarchy that has
-an HED mapping for `mycodes`, the HED tags associated with a given `mycodes`
-value can then be associated with the event instances in that category. You
-may provide a `HED` column and multiple category columns. The union of the
-relevant HED tags will then be associated with the event instance.
+You may provide a `HED` column and multiple category columns to document your events. 
+The tags in the `HED` column of the \_events.tsv file are often specific to the individual event instances,  
+while the common properties are represented by categorial values appearing in other columns. 
+Each of these categorical columns should be documented in a corresponding \_events.json sidecar. 
+The column name (e.g., `mycodes`) is the dictionary key as illustrated by the following example.  
+
 
 Example:
 
@@ -71,30 +72,27 @@ Example:
        }		  
        "HED": {
            "Fixation": "Event/Category/Experimental stimulus, Event/Label/CrossFix, 
-		                Event/Description/A cross appears at screen center to serve as a fixation point, 
-						Sensory presentation/Visual, Item/Object/2D Shape/Cross, 
-						Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, 
-						Attribute/Location/Screen/Center",
+		       Event/Description/A cross appears at screen center to serve as a fixation point, 
+		       Sensory presentation/Visual, Item/Object/2D Shape/Cross, 
+		       Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, 
+		       Attribute/Location/Screen/Center",  
            "Target":   "Event/Label/TargetImage, Event/Category/Experimental stimulus, 
-		                Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed.,  
-					    (Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, 
-					    Sensory presentation/Visual/Rendering type/Screen/2D), 
-					    (Item/Natural scene/Arial/Satellite, 
-						Sensory presentation/Visual/Rendering type/Screen/2D)",
+		       Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed.,  
+		       Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, 
+		       Sensory presentation/Visual/Rendering type/Screen/2D), 
+		       (Item/Natural scene/Arial/Satellite, 
+		       Sensory presentation/Visual/Rendering type/Screen/2D)",  
            "Button":    "Event/Category/Participant response, Event/Label/PressButton, 
-		                 Event/Description/The participant presses the button as soon as the target is visible,  
-						 Action/Button press"
+		       Event/Description/The participant presses the button as soon as the target is visible,  
+		       Action/Button press"
         }
     }
 }
 ```
-
-The tags in the `HED` column are often specific to the event instances, while
-the common properties associated with categories such as `mycodes` are
-encapsulated in the \_events.json dictionary. Downstream tools should not
-distinguish between tags specified using the different mechanisms. Further,
-the normal BIDS inheritance principle applies, so these data dictionaries can
-appear higher in the BIDS hierarchy.
+Downstream tools should not distinguish between tags specified using the explicit HED column and 
+the categorical specifications, but should form the union before analysis. Further,
+the normal BIDS inheritance principle applies, so the data dictionaries can
+appear higher in the BIDS hierarchy.  
 
 The HED vocabulary is specified by a HED schema, which delineates the allowed 
 HED path strings. By default, BIDS uses the latest HED schema available in the
