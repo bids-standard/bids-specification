@@ -45,8 +45,8 @@ the first volume.
 
 An arbitrary number of additional columns can be added. Those allow describing
 other properties of events that could be later referred in modelling and
-hypothesis extensions of BIDS. Note that any additional columns in a TSV file
-SHOULD be documented in an accompanying JSON sidecar file.
+hypothesis extensions of BIDS. Note that the `trial_type` and any additional
+columns in a TSV file SHOULD be documented in an accompanying JSON sidecar file.
 
 In case of multi-echo task run, a single `_events.tsv` file will suffice for all
 echoes.
@@ -64,6 +64,27 @@ onset duration  trial_type  response_time stim_file
 1.2 0.6 go  1.435 images/red_square.jpg
 5.6 0.6 stop  1.739 images/blue_square.jpg
 ```
+
+The accompanying JSON side car might be:
+
+```Text
+sub-control01/
+    func/
+        sub-control01_task-stopsignal_events.json
+```
+
+```JSON
+{
+   "trial_type": {
+       "LongName": "Event category",
+       "Descripton": "Indicator of type of action that is expected",
+       "Levels": {
+          "go": "A red square is displayed to indicate starting",
+          "stop": "A blue square is displayed to indicate stopping",
+       }
+}
+```	   
+
 
 References to existing databases can also be encoded using additional columns.
 Example 2 includes references to the Karolinska Directed Emotional Faces (KDEF)
@@ -86,6 +107,7 @@ onset duration  trial_type  identifier  database  response_time
 5.6 0.6 sad AF01ANSA  kdef  1.739
 ```
 
+This file should be accompanied by a data dictionary 
 For multi-echo files events.tsv file is applicable to all echos of particular
 run:
 
