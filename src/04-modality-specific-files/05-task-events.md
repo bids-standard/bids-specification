@@ -128,7 +128,7 @@ sub-control01/
        }
    },
    "identifier": {
-       "LongName": "Unique identifier from Karolinska (KDEF) database,
+       "LongName": "Unique identifier from Karolinska (KDEF) database",
 	   "Description": ID from http://www.emotionlab.se/resources/kdef used to identify the displayed image"
    }
 }
