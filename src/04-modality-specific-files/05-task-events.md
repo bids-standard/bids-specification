@@ -77,11 +77,12 @@ sub-control01/
 {
    "trial_type": {
        "LongName": "Event category",
-       "Descripton": "Indicator of type of action that is expected",
+       "Description": "Indicator of type of action that is expected",
        "Levels": {
           "go": "A red square is displayed to indicate starting",
           "stop": "A blue square is displayed to indicate stopping",
        }
+    }
 }
 ```	   
 
@@ -107,7 +108,33 @@ onset duration  trial_type  identifier  database  response_time
 5.6 0.6 sad AF01ANSA  kdef  1.739
 ```
 
-This file should be accompanied by a data dictionary 
+This file should be accompanied by a data dictionary.  
+
+```Text
+sub-control01/
+    func/
+        sub-control01_task-emoface_events.json
+```
+
+```JSON  
+{
+   "trial_type": {
+       "LongName": "Emotion image type",
+       "Descripton": "Type of emotional face from Karolinska database that is displayed",
+       "Levels": {
+          "afraid": "A face showing fear is displayed",
+          "angry": "A face showing anger is displayed",
+		  "sad": "A face showing sadness is displayed"
+       }
+   },
+   "identifier": {
+       "LongName": "Unique identifier from Karolinska (KDEF) database,
+	   "Description": ID from http://www.emotionlab.se/resources/kdef used to identify the displayed image"
+   }
+}
+```	   
+
+
 For multi-echo files events.tsv file is applicable to all echos of particular
 run:
 

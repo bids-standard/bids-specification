@@ -61,10 +61,10 @@ The column name (e.g., `mycodes`) is the dictionary key to this documentation, a
 Example:
 
 ```JSON
-{
+{ 
    "mycodes": {
        "LongName": "Local event type names",
-       "Descripton": "Main types of events that comprise a trial",
+	   "Description": "Main types of events that comprise a trial",
        "Levels": {
           "Fixation": "Fixation cross is displayed",
           "Target":   "Target image appears",
@@ -86,7 +86,7 @@ Example:
 		       Event/Description/The participant presses the button as soon as the target is visible,  
 		       Action/Button press"
         }
-    }
+   }
 }
 ```
 Downstream tools should not distinguish between tags specified using the explicit HED column and 
