@@ -69,7 +69,7 @@ Example:
           "Fixation": "Fixation cross is displayed",
           "Target":   "Target image appears",
           "Button":   "Subject presses a button"
-       }		  
+       },		  
        "HED": {
            "Fixation": "Event/Category/Experimental stimulus, Event/Label/CrossFix, 
 		       Event/Description/A cross appears at screen center to serve as a fixation point, 
@@ -82,7 +82,7 @@ Example:
 		       Sensory presentation/Visual/Rendering type/Screen/2D), 
 		       (Item/Natural scene/Arial/Satellite, 
 		       Sensory presentation/Visual/Rendering type/Screen/2D)",  
-           "Button":    "Event/Category/Participant response, Event/Label/PressButton, 
+           "Button":   "Event/Category/Participant response, Event/Label/PressButton, 
 		       Event/Description/The participant presses the button as soon as the target is visible,  
 		       Action/Button press"
         }
