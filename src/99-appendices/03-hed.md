@@ -62,8 +62,8 @@ Example:
 ```JSON
 {
    "mycodes": {
-       "LongName": "Local event type names"
-       "Descripton": "Main event categories for trials in the
+       "LongName": "Local event type names",
+       "Descripton": "Main types of event that comprise a trial",
        "Levels": {
           "Fixation": "Fixation cross is displayed",
           "Target":   "Target image appears",
