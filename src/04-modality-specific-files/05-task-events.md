@@ -129,7 +129,7 @@ sub-control01/
    },
    "identifier": {
        "LongName": "Unique identifier from Karolinska (KDEF) database",  
-	   "Description": I"D from KDEF database used to identify the displayed image"
+	   "Description": "ID from KDEF database used to identify the displayed image"
    }
 }
 ```	   
