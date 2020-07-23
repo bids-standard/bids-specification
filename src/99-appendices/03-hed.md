@@ -61,11 +61,29 @@ Example:
 
 ```JSON
 {
-    "mycodes": {
-        "HED": {
-            "Fixation": "Event/Category/Experimental stimulus, Event/Label/CrossFix, Event/Description/A cross appears at screen center to serve as a fixation point, Sensory presentation/Visual, Item/Object/2D Shape/Cross, Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, Attribute/Location/Screen/Center",
-            "Target": "Event/Label/Target image, Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed., Event/Category/Experimental stimulus, (Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, Sensory presentation/Visual/Rendering type/Screen/2D), (Item/Natural scene/Arial/Satellite, Sensory presentation/Visual/Rendering type/Screen/2D)",
-            "Button": "..."
+   "mycodes": {
+       "LongName": "Local event type names"
+       "Descripton": "Main event categories for trials in the
+       "Levels": {
+          "Fixation": "Fixation cross is displayed",
+          "Target":   "Target image appears",
+          "Button":   "Subject presses a button"
+       }		  
+       "HED": {
+           "Fixation": "Event/Category/Experimental stimulus, Event/Label/CrossFix, 
+		                Event/Description/A cross appears at screen center to serve as a fixation point, 
+						Sensory presentation/Visual, Item/Object/2D Shape/Cross, 
+						Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, 
+						Attribute/Location/Screen/Center",
+           "Target":   "Event/Label/TargetImage, Event/Category/Experimental stimulus, 
+		                Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed.,  
+					    (Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, 
+					    Sensory presentation/Visual/Rendering type/Screen/2D), 
+					    (Item/Natural scene/Arial/Satellite, 
+						Sensory presentation/Visual/Rendering type/Screen/2D)",
+           "Button":    "Event/Category/Participant response, Event/Label/PressButton, 
+		                 Event/Description/The participant presses the button as soon as the target is visible,  
+						 Action/Button press"
         }
     }
 }
@@ -78,16 +96,15 @@ distinguish between tags specified using the different mechanisms. Further,
 the normal BIDS inheritance principle applies, so these data dictionaries can
 appear higher in the BIDS hierarchy.
 
-The HED vocabulary is specified by a HED schema, which delineates the allowed HED path strings. By default, 
-BIDS uses the latest HED schema available in the
+The HED vocabulary is specified by a HED schema, which delineates the allowed 
+HED path strings. By default, BIDS uses the latest HED schema available in the
 [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository
 maintained by the hed-standard group. 
 
-You can override the default by providing a specific HED version number or including a HED XML file
-in the `sourcedata` directory at the top level of the study. You would indicate the version or
-the XML filename using the optional `HEDVersion` field of the `dataset_description.json` file. 
-The preferred method is to validate with the latest version, but to use the `HEDVersion` field to specify
-which version was used for later reference.  
+You can override the default by providing a specific HED version number in the 
+`dataset_description.json` file using the `HEDVersion` field. 
+The preferred approach is to validate with the latest version (the default), 
+but to use the `HEDVersion` field to specify which version was used for later reference.  
 
 Example: The following `dataset_description.json` file specifies that 
 `HED7.1.1.xml` from the [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository
@@ -98,19 +115,5 @@ should be used to validate the study event annotations.
   "Name": "The mother of all experiments",
   "BIDSVersion": "1.4.0",
   "HEDVersion": "7.1.1"
-}
-```
-
-Example: The following `dataset_description.json` file specifies that the 
-`HED7.2.1.xml` file in the study's top-level `sourcedata` file
-should be used to validate the study event annotations.
-
-Example:
-
-```JSON
-{
-  "Name": "The mother of all experiments",
-  "BIDSVersion": "1.4.0",
-  "HEDVersion": "HED7.2.1.xml"
 }
 ```
