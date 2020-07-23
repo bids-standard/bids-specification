@@ -186,7 +186,7 @@ Note that the date and time information SHOULD be stored in the Study key file
 ([`scans.tsv`](../03-modality-agnostic-files.md#scans-file)). As it is
 indicated there, date time information MUST be expressed in the following
 format `YYYY-MM-DDThh:mm:ss`
-([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For
+([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For
 example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
 on local REB/IRB ethics board policy.
 
@@ -235,7 +235,7 @@ SHOULD be present:
 | status             | OPTIONAL. Data quality observed on the channel `(good/bad)`. A channel is considered `bad` if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in `[status_description]`.                                                     |
 | status_description | OPTIONAL. Free-form text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `[status]`.                                                                                                       |
 
-Restricted keyword list for field `type` in alphabetic order (shared with the
+Restricted keyword list for field `type` in alphabetic order (shared with the
 MEG and iEEG modality; however, only the types that are common in EEG data are listed here):
 
 | Keyword  | Description                                                  |
@@ -361,7 +361,7 @@ landmarks, or the placement of LEDs on the nasion and preauricular points to
 triangulate the position of other LED-lit electrodes on a research subject's
 head.
 
--   For more information on the definition of anatomical landmarks, please visit:
+-   For more information on the definition of anatomical landmarks, please visit:
     [http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
 
 -   For more information on coordinate systems for coregistration, please visit:

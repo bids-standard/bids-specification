@@ -11,7 +11,7 @@ Perferred names of MEG systems comprise restricted keywords for Manufacturer fie
 -   [`Aalto/MEG-MRI`](06-meg-file-formats.md#aalto-megmri)
 -   `Other`
 
-Restricted keywords for ManufacturersModelName field in the `*_meg.json` file:
+Restricted keywords for ManufacturersModelName field in the `*_meg.json` file:
 
 | System Model Name     | Manufacturer          | Details                                                                                      |
 |--------------------------------------------------------------------------------- | -----------------------------------------------------------------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------- |

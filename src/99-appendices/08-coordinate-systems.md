@@ -50,7 +50,7 @@ restricted keywords, as listed in the sections below. If no value from the list
 of restricted keywords fits, there is always the option to specify the value as
 follows:
 
--   `Other`: Use this for other coordinate systems and specify further details
+-   `Other`: Use this for other coordinate systems and specify further details
     in the `XXXCoordinateSystemDescription` field
 
 ## MEG Specific Coordinate Systems
@@ -58,10 +58,10 @@ follows:
 Restricted keywords for the `XXXCoordinateSystem` field in the
 `coordinatesystem.json` file for MEG datasets:
 
--   `CTF`: ALS orientation and the origin between the ears
+-   `CTF`: ALS orientation and the origin between the ears
 -   `ElektaNeuromag`: RAS orientation and the origin between the ears
 -   `4DBti`: ALS orientation and the origin between the ears
--   `KitYokogawa`: ALS orientation and the origin between the ears
+-   `KitYokogawa`: ALS orientation and the origin between the ears
 -   `ChietiItab`: RAS orientation and the origin between the ears
 
 Note that the short descriptions above do not capture all details, There are

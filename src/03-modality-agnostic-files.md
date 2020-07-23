@@ -339,6 +339,7 @@ imaging acquisition sequence (each *run* file) within one session.
 Each neural recording file should be described by at most one row.
 Relative paths to files should be used under a compulsory `filename` header.
 If acquisition time is included it should be under `acq_time` header.
+Acquisition time refers to when the first data point in each run was acquired.
 Datetime should be expressed as described in [Units](./02-common-principles.md#units).
 For anonymization purposes all dates within one subject should be shifted by a
 randomly chosen (but consistent across all runs etc.) number of days.
