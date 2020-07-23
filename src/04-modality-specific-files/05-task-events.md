@@ -119,17 +119,17 @@ sub-control01/
 ```JSON  
 {
    "trial_type": {
-       "LongName": "Emotion image type",
+       "LongName":   "Emotion image type",
        "Descripton": "Type of emotional face from Karolinska database that is displayed",
        "Levels": {
           "afraid": "A face showing fear is displayed",
-          "angry": "A face showing anger is displayed",
-		  "sad": "A face showing sadness is displayed"
+          "angry":  "A face showing anger is displayed",
+		  "sad":    "A face showing sadness is displayed"
        }
    },
    "identifier": {
        "LongName": "Unique identifier from Karolinska (KDEF) database",
-	   "Description": ID from http://www.emotionlab.se/resources/kdef used to identify the displayed image"
+	   "Description": ID from KDEF database used to identify the displayed image"
    }
 }
 ```	   
