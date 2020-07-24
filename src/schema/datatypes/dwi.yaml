@@ -1,3 +1,4 @@
+# First group
 - suffixes:
     - dwi
   extensions:
@@ -12,6 +13,7 @@
     acq: optional
     dir: optional
     run: optional
+# Second group
 - suffixes:
     - sbref
   extensions:

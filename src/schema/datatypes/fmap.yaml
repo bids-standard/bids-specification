@@ -1,3 +1,4 @@
+# First group
 - suffixes:
     - phasediff
     - phase1
@@ -15,6 +16,7 @@
     ses: optional
     acq: optional
     run: optional
+# Second group
 - suffixes:
     - epi
   extensions:

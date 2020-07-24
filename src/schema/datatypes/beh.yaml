@@ -1,3 +1,4 @@
+# First group
 - suffixes:
     - stim
     - physio
@@ -8,6 +9,7 @@
     sub: required
     ses: optional
     task: required
+# Second group
 - suffixes:
     - events
     - beh

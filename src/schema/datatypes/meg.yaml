@@ -1,3 +1,4 @@
+# First group
 - suffixes:
     - meg
   extensions:
@@ -20,6 +21,7 @@
     run: optional
     proc: optional
     split: optional
+# Second group
 - suffixes:
     - headshape
   extensions:

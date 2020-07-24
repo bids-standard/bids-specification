@@ -1,3 +1,4 @@
+# First group
 - suffixes:
     - bold
     - cbv
@@ -17,6 +18,7 @@
     dir: optional
     run: optional
     echo: optional
+# Second group
 - suffixes:
     - events
   extensions:
@@ -32,6 +34,7 @@
     dir: optional
     run: optional
     echo: optional
+# Third group
 - suffixes:
     - physio
     - stim
