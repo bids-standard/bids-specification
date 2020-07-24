@@ -16,8 +16,9 @@ Been here before? Already know what you're looking for in this guide? Jump to th
 *   [Understanding issues](#understanding-issues)
 *   [Commenting on a pull request](#commenting-on-a-pull-request)
 *   [Writing in markdown](#writing-in-markdown)
-*   [Make a change with a pull request](#making-a-change-with-a-pull-request)
+*   [Making a change with a pull request](#making-a-change-with-a-pull-request)
 *   [Example pull request](#example-pull-request)
+*   [Updating the specification schema](#updating-the-schema)
 *   [Fixing Remark errors from Travis](#fixing-travis-remark-errors)
 *   [Recognizing contributions](#recognizing-contributions)
 
@@ -223,6 +224,54 @@ GitHub has a [nice introduction](https://help.github.com/articles/github-flow/) 
 ## Example pull request
 <img align="center" src="https://i.imgur.com/s8yELfK.png" alt="Example-Contribution" width="800"/>
 
+
+## Updating the schema
+
+Portions of the BIDS specification are defined using YAML files, in order to make the specification machine-readable.
+Currently, the only portion of the specification that relies on this schema is the Entity Table, but any changes to the specification should be mirrored in the schema.
+
+### The format of the schema
+
+The schema reflects the files and objects in the specification, as well as associations between these objects.
+Here is a list of the files and subfolders of the schema, with a description for each:
+
+- `associated_data.yaml`:
+    Folders that contain files falling outside the jurisdiction of the specification, but which are commonly contained within the same folder as a BIDS dataset.
+    The schema specifies which folders are accepted and whether they are required or optional.
+- `top_level_files.yaml`:
+    Modality-agnostic files stored at the top level of a BIDS dataset.
+    The schema specifies whether these files are required or optional, as well as acceptable extensions for each.
+- `modalities.yaml`:
+    Modalities supported by the specification, along with a list of associated datatypes.
+- `entities.yaml`:
+    A list of entities (key/value pairs in folder and filenames) with associated descriptions and formatting rules.
+    The order of the entities in the file determines the order in which entities must appear in filenames.
+- `datatypes/*.yaml`:
+    Datatypes supported by the specification.
+    Each datatype may support many suffixes.
+    These suffixes are divided into groups based on what extensions and entities are allowed for each.
+- `auxdatatypes/*.yaml`:
+    Auxiliary (not directly imaging or data-containing) datatypes supported by the specification.
+    Each auxiliary datatype is associated with a set of datatypes, and these auxiliary datatypes are grouped based on what datatypes, extensions, and entities are allowed for each.
+
+### Making a change to the schema
+
+#### 1. Ensure that changes to the specification are matched in the schema
+
+The schema formalizes the rules described in the specification text, so you must ensure that any changes which impact the rules of the specification (including, but not limited to, adding new entities, suffixes, datatypes, modalities, etc.) are reflected in the schema as well.
+
+#### 2. Generate an updated entity table before pushing your changes
+
+Run the Python script `tools/bids_schema.py`:
+
+```bash
+cd tools/
+python bids_schema.py entity ../src/schema/ ../src/99-appendices/04-entity-table.md
+```
+
+#### 3. Push your changes
+
+For more information on making general changes with a pull request, please review [Making a change with a pull request](#making-a-change-with-a-pull-request).
 
 ## Fixing Travis Remark errors
 
