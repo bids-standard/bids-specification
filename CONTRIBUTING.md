@@ -233,7 +233,7 @@ Currently, the only portion of the specification that relies on this schema is t
 ### The format of the schema
 
 The schema reflects the files and objects in the specification, as well as associations between these objects.
-Here is a list of the files and subfolders of the schema, with a description for each:
+Here is a list of the files and subfolders of the schema, roughly in order of importance:
 
 - `datatypes/*.yaml`:
     Data types supported by the specification.
