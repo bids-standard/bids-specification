@@ -170,12 +170,8 @@ Example:
 ```
 
 Note that the date and time information SHOULD be stored in the Study key file
-(`scans.tsv`), see [Scans file](../03-modality-agnostic-files.md#scans-file). As
-it is indicated there, date time information MUST be expressed in the following
-format `YYYY-MM-DDThh:mm:ss`
-([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For
-example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
-on local REB/IRB ethics board policy.
+(`scans.tsv`), see [Scans file](../03-modality-agnostic-files.md#scans-file).
+Date time information MUST be expressed as indicated in [Units](../02-common-principles.md#units)
 
 ## Channels description (`*_channels.tsv`)
 
