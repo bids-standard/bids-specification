@@ -459,7 +459,7 @@ pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
 format can be found here: [http://json.org/](http://json.org/). Several editors
 have built-in support for JSON syntax highlighting that aids manual creation of
 such files. An online editor for JSON with built-in validation is available at:
-[http://jsoneditoronline.org](http://jsoneditoronline.org). 
+[http://jsoneditoronline.org](http://jsoneditoronline.org).
 It is RECOMMENDED that keys in a JSON file are written in [CamelCase](https://en.wikipedia.org/wiki/Camel_case)
 with the first letter in upper case (e.g., `SamplingFrequency`, not
 `samplingFrequency`). Note however, when a JSON file is used as an accompanying
@@ -542,8 +542,8 @@ Describing dates and timestamps:
 -   Date time information MUST be expressed in the following format
     `YYYY-MM-DDThh:mm:ss[.000000]` (year, month, day, hour (24h), minute,
     second, and optionally fractional second).
-    This is equivalent to the RFC3339 "date-time" format, time zone is always
-    assumed as local time).
+    This is equivalent to the [RFC3339](https://tools.ietf.org/html/rfc3339)
+    "date-time" format, time zone is always assumed as local time.
     No specific precision is required for fractional seconds, but the precision
     SHOULD be consistent across the dataset.
     For example `2009-06-15T13:45:30`
