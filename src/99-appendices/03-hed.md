@@ -64,7 +64,7 @@ Example:
 { 
    "mycodes": {
        "LongName": "Local event type names",
-	   "Description": "Main types of events that comprise a trial",
+       "Description": "Main types of events that comprise a trial",
        "Levels": {
           "Fixation": "Fixation cross is displayed",
           "Target":   "Target image appears",
