@@ -548,6 +548,12 @@ Describing dates and timestamps:
     SHOULD be consistent across the dataset.
     For example `2009-06-15T13:45:30`
 
+-   Note that depending on local REB/IRB ethics board policy, Date time information
+    does not need to be fully detailed.
+    For example, it is permissible to set the time to `00:00:00` if reporting the
+    exact recording time is undesirable.
+    However, see paragraph on anonymization below.
+
 -   Time stamp information MUST be expressed in the following format:
     `13:45:30[.000000]`
 
