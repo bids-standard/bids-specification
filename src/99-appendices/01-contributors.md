@@ -98,6 +98,7 @@ your name is not listed, please add it.
 -   Laura and John Arnold Foundation 💵
 -   Christopher Lee-Messer 📖
 -   Jon Haitz Legarreta 💻📖
+-   Adam Li 📖💻
 -   Xiangrui Li 📖💻
 -   Vladimir Litvak 📖
 -   Brian N. Lundstrom 📖
