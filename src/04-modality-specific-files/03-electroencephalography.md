@@ -236,7 +236,7 @@ SHOULD be present:
 | status_description | OPTIONAL. Free-form text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `[status]`.                                                                                                       |
 
 Restricted keyword list for field `type` in alphabetic order (shared with the
-MEG and iEEG modality; however, only the types that are common in EEG data are listed here):
+MEG and iEEG modality; however, only the types that are common in EEG data are listed here). Note that upper-casing is REQUIRED:
 
 | Keyword  | Description                                                  |
 | -----------------| -------------------------------------------------------------- |
