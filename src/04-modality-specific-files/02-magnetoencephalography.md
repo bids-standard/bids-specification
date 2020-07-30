@@ -226,7 +226,7 @@ UDIO001 TRIG V analogue trigger 1200  0.1 300 0 n/a good
 MLC11 MEGGRADAXIAL T sensor 1st-order grad 1200 0 n/a 50 SSS bad
 ```
 
-Restricted keyword list for field `type`. Note that upper-casing is REQUIRED:
+Restricted keyword list for field `type`. Note that upper-case is REQUIRED:
 
 | Keyword          | Definition                                           |
 | ---------------- | ---------------------------------------------------- |
