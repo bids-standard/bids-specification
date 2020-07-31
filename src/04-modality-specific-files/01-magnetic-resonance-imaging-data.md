@@ -139,11 +139,11 @@ modalities include:
 | Angiography        | angio            |                                                                                                                                                   |
 
 If the structural images included in the dataset were defaced (to protect
-identity of participants) one CAN provide the binary mask that was used to
-remove facial features in the form of `_defacemask` files. In such cases the
-OPTIONAL `mod-<label>` key/value pair corresponds to modality label for eg: T1w,
-inplaneT1, referenced by a defacemask image. E.g.,
-`sub-01_mod-T1w_defacemask.nii.gz`.
+identity of participants) one MAY provide the binary mask that was used to
+remove facial features in the form of `_defacemask` files.
+In such cases,  the OPTIONAL `mod-<label>` key/value pair corresponds to modality suffix,
+such as T1w or inplaneT1, referenced by the defacemask image.
+For example, `sub-01_mod-T1w_defacemask.nii.gz`.
 
 #### The `run` entity
 
@@ -186,7 +186,7 @@ fields specific to anatomical scans:
 
 #### The `rec` entity
 
-Similarly the OPTIONAL `rec-<label>` key/value can be used to distinguish
+Similarly, the OPTIONAL `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
 
 ### Task (including resting state) imaging data
