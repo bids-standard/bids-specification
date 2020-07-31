@@ -423,7 +423,7 @@ description of the corresponding column, using an object containing the followin
 fields:
 
 | Field name  | Definition                                                                                                      |
-| :---------- | :-------------------------------------------------------------------------------------------------------------- |
+| :--------------------- | :-------------------------------------------------------------------------------------------------------------- |
 | LongName    | Long (unabbreviated) name of the column.                                                                        |
 | Description | Description of the column.                                                                                      |
 | Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).              |
