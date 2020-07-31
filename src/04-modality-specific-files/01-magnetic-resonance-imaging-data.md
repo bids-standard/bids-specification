@@ -121,8 +121,8 @@ sub-<label>/[ses-<label>/]
 Anatomical (structural) data acquired for that participant. Currently supported
 modalities include:
 
-| Name               | `modality_label` | Description                                                                                                                                       |
-| ---------------------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name               | `modality_label` | Description  |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | T1 weighted        | T1w              |                                                                                                                                                   |
 | T2 weighted        | T2w              |                                                                                                                                                   |
 | T1 Rho map         | T1rho            | Quantitative T1rho brain imaging <br> <https://www.ncbi.nlm.nih.gov/pubmed/24474423> <br> <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/> |
@@ -186,7 +186,7 @@ list of terms and their definitions. There are also some OPTIONAL JSON
 fields specific to anatomical scans:
 
 | Field name              | Definition                                                                                                                                         |
-| -----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --------------------------------------------------------------------- |------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ContrastBolusIngredient | OPTIONAL. Active ingredient of agent. Values MUST be one of: IODINE, GADOLINIUM, CARBON DIOXIDE, BARIUM, XENON Corresponds to DICOM Tag 0018,1048. |
 
 ### Task (including resting state) imaging data
@@ -194,7 +194,7 @@ fields specific to anatomical scans:
 Currently supported image contrasts include:
 
 | Name  | `contrast_label` | Description                                                                                          |
-|--------------------------------------------------------------------------------- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------|
+|--------------- | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------|
 | BOLD  | bold             | Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)                                   |
 | CBV   | cbv              | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images) |
 | Phase | phase            | Phase information associated with magnitude information stored in BOLD contrast                      |
@@ -273,7 +273,7 @@ JSON file.
 #### Required fields
 
 | Field name     | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | RepetitionTime | REQUIRED. The time in seconds between the beginning of an acquisition of one volume and the beginning of acquisition of the volume following it (TR). Please note that this definition includes time between scans (when no data has been acquired) in case of sparse acquisition schemes. This value needs to be consistent with the `pixdim[4]` field (after accounting for units stored in `xyzt_units` field) in the NIfTI header. This field is mutually exclusive with `VolumeTiming` and is derived from DICOM Tag 0018, 0080 and converted to seconds. |
 | VolumeTiming   | REQUIRED. The time at which each volume was acquired during the acquisition. It is described using a list of times (in JSON format) referring to the onset of each volume in the BOLD series. The list must have the same length as the BOLD series, and the values must be non-negative and monotonically increasing. This field is mutually exclusive with `RepetitionTime` and `DelayTime`. If defined, this requires acquisition time (TA) be defined via either `SliceTiming` or `AcquisitionDuration` be defined.                                        |
 | TaskName       | REQUIRED. Name of the task. No two tasks should have the same name. The task label included in the file name is derived from this TaskName field by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters. For example TaskName `faces n-back` will correspond to task label `facesnback`. A RECOMMENDED convention is to name resting state task using labels beginning with `rest`.                                                                                                                                                                       |
