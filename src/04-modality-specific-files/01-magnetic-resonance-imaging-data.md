@@ -138,6 +138,13 @@ modalities include:
 | Inplane T2         | inplaneT2        | T2-weighted anatomical image matched to functional acquisition                                                                                    |
 | Angiography        | angio            |                                                                                                                                                   |
 
+If the structural images included in the dataset were defaced (to protect
+identity of participants) one CAN provide the binary mask that was used to
+remove facial features in the form of `_defacemask` files. In such cases the
+OPTIONAL `mod-<label>` key/value pair corresponds to modality label for eg: T1w,
+inplaneT1, referenced by a defacemask image. E.g.,
+`sub-01_mod-T1w_defacemask.nii.gz`.
+
 #### The `run` entity
 
 If several scans of the same modality are acquired they MUST be indexed with a
@@ -168,18 +175,6 @@ sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the
 JSON file, with the same label.
 
-#### The `rec` entity
-
-Similarly the OPTIONAL `rec-<label>` key/value can be used to distinguish
-different reconstruction algorithms (for example ones using motion correction).
-
-If the structural images included in the dataset were defaced (to protect
-identity of participants) one CAN provide the binary mask that was used to
-remove facial features in the form of `_defacemask` files. In such cases the
-OPTIONAL `mod-<label>` key/value pair corresponds to modality label for eg: T1w,
-inplaneT1, referenced by a defacemask image. E.g.,
-`sub-01_mod-T1w_defacemask.nii.gz`.
-
 Some meta information about the acquisition MAY be provided in an additional
 JSON file. See [Common metadata fields](#common-metadata-fields) for a
 list of terms and their definitions. There are also some OPTIONAL JSON
@@ -188,6 +183,11 @@ fields specific to anatomical scans:
 | Field name              | Definition                                                                                                                                         |
 | -----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ContrastBolusIngredient | OPTIONAL. Active ingredient of agent. Values MUST be one of: IODINE, GADOLINIUM, CARBON DIOXIDE, BARIUM, XENON Corresponds to DICOM Tag 0018,1048. |
+
+#### The `rec` entity
+
+Similarly the OPTIONAL `rec-<label>` key/value can be used to distinguish
+different reconstruction algorithms (for example ones using motion correction).
 
 ### Task (including resting state) imaging data
 
