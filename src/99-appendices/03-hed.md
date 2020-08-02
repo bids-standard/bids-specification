@@ -57,7 +57,6 @@ You may provide a `HED` column and multiple categorical columns to document your
 Each of these categorical columns should be documented in a corresponding `*_events.json` sidecar. 
 The column name (e.g., `mycodes`) is the dictionary key to this documentation, as illustrated by the following example.  
 
-
 Example:
 
 ```JSON
