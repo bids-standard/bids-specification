@@ -570,6 +570,11 @@ Describing dates and timestamps:
     within each subject to maintain the interval information.
     For example: `1867-06-15T13:45:30`
 
+-   WARNING: The Neuromag/Elekta/MEGIN file format for MEG (`.fif`) does *not*
+    support recording dates earlier than `1902` roughly.
+    See [MEG-file-formats](./99-appendices/06-meg-file-formats.md#recording-dates-in-fif-files)
+    for more information.
+
 -   Age SHOULD be given as the number of years since birth at the time of
     scanning (or first scan in case of multi session datasets). Using higher
     accuracy (weeks) should in general be avoided due to privacy protection,
