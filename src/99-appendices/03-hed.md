@@ -14,7 +14,7 @@ sidecar JSON files (`CogAtlasID` and `CogPOID`), HED tags from the `Paradigm`
 HED subcategory should not be used to annotate events.
 
 There are several ways to associate HED annotations with events within the BIDS
-framework. The most direct way is to use the `HED` column of the \_events.tsv
+framework. The most direct way is to use the `HED` column of the `*_events.tsv`
 file to annotate events:  
 
 Example:
@@ -34,11 +34,11 @@ much smaller number of categories, and often these categories are labeled with
 numerical codes or short names. It is therefore more convenient to associate
 the HED annotations with these categories and allow the analysis tools to make
 the association with individual event instances during analysis. To use this
-approach, your *_events.tsv file should associate a category (often called an
+approach, your `*_events.tsv` file should associate a category (often called an
 event code) with each event instance. Since BIDS allows an arbitrary number of
-columns to be included in an *_events.tsv file, you can make this association
+columns to be included in an `*_events.tsv` file, you can make this association
 by including columns representing various types of event categories in your
-*_events.tsv file.
+`*_events.tsv` file.
 
 Example:
 
@@ -51,10 +51,10 @@ onset	duration	mycodes
 
 ```
  
-The tags in the `HED` column of the *_events.tsv file are often specific to the individual event instances,
+The tags in the `HED` column of the `*_events.tsv` file are often specific to the individual event instances,
 while the common properties are represented by categorial values appearing in other columns. 
 You may provide a `HED` column and multiple categorical columns to document your events.
-Each of these categorical columns should be documented in a corresponding *_events.json sidecar. 
+Each of these categorical columns should be documented in a corresponding `*_events.json` sidecar. 
 The column name (e.g., `mycodes`) is the dictionary key to this documentation, as illustrated by the following example.  
 
 
