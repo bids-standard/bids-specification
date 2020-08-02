@@ -65,13 +65,7 @@ onset duration  trial_type  response_time stim_file
 5.6 0.6 stop  1.739 images/blue_square.jpg
 ```
 
-The accompanying JSON side car might be:
-
-```Text
-sub-control01/
-    func/
-        sub-control01_task-stopsignal_events.json
-```
+In the accompanying JSON sidecar, the `trial_type` column might look as follows:
 
 ```JSON
 {
