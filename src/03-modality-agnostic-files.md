@@ -29,7 +29,6 @@ Every dataset MUST include this file with the following fields:
 | ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                                                     |
 | DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                                                             |
 
-
 Example:
 
 ```JSON
