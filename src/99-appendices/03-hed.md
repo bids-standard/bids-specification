@@ -44,9 +44,9 @@ Example:
 
 ```Text
 onset	duration	mycodes
-1.1	n/a	Fixation  
-1.3	n/a	Button  
-1.8	n/a	Target  
+1.1	n/a	Fixation
+1.3	n/a	Button
+1.8	n/a	Target
 ...
 
 ```
@@ -61,7 +61,7 @@ The column name (e.g., `mycodes`) is the dictionary key to this documentation, a
 Example:
 
 ```JSON
-{ 
+{
    "mycodes": {
        "LongName": "Local event type names",
        "Description": "Main types of events that comprise a trial",
@@ -69,21 +69,21 @@ Example:
           "Fixation": "Fixation cross is displayed",
           "Target":   "Target image appears",
           "Button":   "Subject presses a button"
-       },		  
+       },	  
        "HED": {
-           "Fixation": "Event/Category/Experimental stimulus, Event/Label/CrossFix, 
-		       Event/Description/A cross appears at screen center to serve as a fixation point, 
-		       Sensory presentation/Visual, Item/Object/2D Shape/Cross, 
-		       Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen, 
-		       Attribute/Location/Screen/Center",  
-           "Target":   "Event/Label/TargetImage, Event/Category/Experimental stimulus, 
-		       Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed.,  
-		       Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target, 
-		       Sensory presentation/Visual/Rendering type/Screen/2D), 
-		       (Item/Natural scene/Arial/Satellite, 
-		       Sensory presentation/Visual/Rendering type/Screen/2D)",  
+           "Fixation": "Event/Category/Experimental stimulus, Event/Label/CrossFix,
+		       Event/Description/A cross appears at screen center to serve as a fixation point,
+		       Sensory presentation/Visual, Item/Object/2D Shape/Cross,
+		       Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen,
+		       Attribute/Location/Screen/Center",
+           "Target":   "Event/Label/TargetImage, Event/Category/Experimental stimulus,
+		       Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed.,
+		       Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target,
+		       Sensory presentation/Visual/Rendering type/Screen/2D),
+		       (Item/Natural scene/Arial/Satellite,
+		       Sensory presentation/Visual/Rendering type/Screen/2D)",
            "Button":   "Event/Category/Participant response, Event/Label/PressButton, 
-		       Event/Description/The participant presses the button as soon as the target is visible,  
+		       Event/Description/The participant presses the button as soon as the target is visible,
 		       Action/Button press"
         }
    }
