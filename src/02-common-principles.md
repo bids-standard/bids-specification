@@ -422,13 +422,13 @@ dictionary matches a column name in the TSV file, then that field MUST contain a
 description of the corresponding column, using an object containing the following
 fields:
 
-| Field name  | Definition                                                                                                      |
-| :---------- | :-------------------------------------------------------------------------------------------------------------- |
-| LongName    | Long (unabbreviated) name of the column.                                                                        |
-| Description | Description of the column.                                                                                      |
-| Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).              |
-| Units       | Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
-| TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
+| Field name  | Definition                                                                                                                   |
+| :---------- | :--------------------------------------------------------------------------------------------------------------------------- |
+| LongName    | OPTIONAL. Long (unabbreviated) name of the column.                                                                           |
+| Description | REQUIRED. Description of the column.                                                                                         |
+| Levels      | RECOMMENDED. For categorical variables: a dictionary of possible values (keys) and their descriptions (values).              |
+| Units       | RECOMMENDED. Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
+| TermURL     | RECOMMENDED. URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
 
 Example:
 
@@ -459,7 +459,7 @@ pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
 format can be found here: [http://json.org/](http://json.org/). Several editors
 have built-in support for JSON syntax highlighting that aids manual creation of
 such files. An online editor for JSON with built-in validation is available at:
-[http://jsoneditoronline.org](http://jsoneditoronline.org). 
+[http://jsoneditoronline.org](http://jsoneditoronline.org).
 It is RECOMMENDED that keys in a JSON file are written in [CamelCase](https://en.wikipedia.org/wiki/Camel_case)
 with the first letter in upper case (e.g., `SamplingFrequency`, not
 `samplingFrequency`). Note however, when a JSON file is used as an accompanying
