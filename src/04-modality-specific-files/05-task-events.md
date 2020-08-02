@@ -115,6 +115,10 @@ sub-control01/
         sub-control01_task-emoface_events.json
 ```
 
+The `trial_type` and `identifier` columns from the `*_events.tsv` files might be described in this
+dictionary as follows. Note that all other columns SHOULD also be described but are omitted for the sake
+of example.
+
 ```JSON  
 {
    "trial_type": {
@@ -133,7 +137,7 @@ sub-control01/
 }
 ```	   
 
-For multi-echo files events.tsv file is applicable to all echos of particular
+For multi-echo files, the `*_events.tsv` file is applicable to all echos of particular
 run:
 
 ```Text
