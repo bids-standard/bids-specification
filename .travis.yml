@@ -15,4 +15,4 @@ matrix:
       install:
         - pip install yamllint
       script:
-        - python -c "yamllint -f standard src/schema/"
+        - yamllint -f standard src/schema/
