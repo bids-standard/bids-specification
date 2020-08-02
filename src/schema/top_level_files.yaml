@@ -1,21 +1,22 @@
+---
 README:
-  required: True
+  required: true
   extensions:
     - None
 CHANGES:
-  required: True
+  required: true
   extensions:
     - None
 dataset_description:
-  required: True
+  required: true
   extensions:
     - .json
 genetic_info:
-  required: False
+  required: false
   extensions:
     - .json
 participants:
-  required: False
+  required: false
   extensions:
     - .tsv
     - .json
