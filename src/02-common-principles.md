@@ -549,16 +549,18 @@ Describing dates and timestamps:
     supported.
     No specific precision is required for fractional seconds, but the precision
     SHOULD be consistent across the dataset.
-    For example `2009-06-15T13:45:30`
+    For example `2009-06-15T13:45:30`.
+
+-   Time stamp information MUST be expressed in the following format:
+    `hh:mm:ss[.000000]`
+    For example `13:45:30`.
 
 -   Note that depending on local REB/IRB ethics board policy, Date time information
     does not need to be fully detailed.
     For example, it is permissible to set the time to `00:00:00` if reporting the
     exact recording time is undesirable.
-    However, see paragraph on anonymization below.
-
--   Time stamp information MUST be expressed in the following format:
-    `13:45:30[.000000]`
+    However, for privacy protection reasons, it it generally RECOMMENDED to shift
+    dates, as described below.
 
 -   Dates can be shifted by a random number of days for privacy protection
     reasons.
