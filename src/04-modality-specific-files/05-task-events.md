@@ -86,7 +86,6 @@ sub-control01/
 }
 ```	   
 
-
 References to existing databases can also be encoded using additional columns.
 Example 2 includes references to the Karolinska Directed Emotional Faces (KDEF)
 database<sup>6</sup>:
@@ -133,7 +132,6 @@ sub-control01/
    }
 }
 ```	   
-
 
 For multi-echo files events.tsv file is applicable to all echos of particular
 run:
