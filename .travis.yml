@@ -1,10 +1,20 @@
-language: node_js
-node_js:
-  - "10"
-cache:
-  directories:
-  - node_modules # NPM packages
-before_script:
-  - npm install `cat npm-requirements.txt`
-script:
-  - remark src/*.md src/*/*.md --frail
+matrix:
+  include:
+    - language: node_js
+      node_js:
+        - "10"
+      cache:
+        directories:
+        - node_modules # NPM packages
+      before_script:
+        - npm install `cat npm-requirements.txt`
+      script:
+        - remark src/*.md src/*/*.md --frail
+    - language: python
+      python: 3.7
+      install:
+        - pip install numpy pandas
+      before_script:
+        - cd tools/
+      script:
+        - python -m "from bids_schema import load_schema; data = load_schema('../src/schema'); assert isinstance(data, dict)"
