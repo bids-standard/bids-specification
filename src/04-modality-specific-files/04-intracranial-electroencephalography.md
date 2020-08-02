@@ -293,9 +293,9 @@ and EEG modality; however, only types that are common in iEEG data are listed he
 | REF      | Reference channel                                                      |
 | OTHER    | Any other type of channel                                              |
 
-The free text field `description` in the `*_channels.tsv` file can for example be specified as
-intracranial, stimulus, response, vertical EOG, horizontal EOG, skin
-conductance, eyetracker, etc.
+Example of free-form text for field `description`
+
+-   intracranial, stimulus, response, vertical EOG,  skin conductance
 
 ## Electrode description (`*_electrodes.tsv`)
 
