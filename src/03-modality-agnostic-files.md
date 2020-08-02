@@ -18,6 +18,7 @@ Every dataset MUST include this file with the following fields:
 | ------------------------------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                                                     |
 | BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                                                          |
+| HEDVersion         | RECOMMENDED if HED tags are used. The version of the HED schema  used to validate HED tags for study.                                                                                                                                              |
 | DatasetType        | RECOMMENDED. The interpretaton of the dataset. MUST be one of `"raw"` or `"derivative"`. For backwards compatibility, the default value is `"raw"`.                                                                                                                |
 | License            | RECOMMENDED. The license for the dataset. The use of license name abbreviations is RECOMMENDED for specifying a license (see [Appendix II](./99-appendices/02-licenses.md)). The corresponding full license text MAY be specified in an additional `LICENSE` file. |
 | Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                                                             |
@@ -27,7 +28,7 @@ Every dataset MUST include this file with the following fields:
 | EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                                                |
 | ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                                                     |
 | DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                                                             |
-| HEDVersion         | RECOMMENDED. HED version number or the name of the HED XML schema file located in `sourcedata` used to validate HED tags for study.                                                                                                                                              |
+
 
 Example:
 
