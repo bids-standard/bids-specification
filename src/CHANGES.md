@@ -2,6 +2,8 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   FIX: clarify that \\&lt;physio|stim>.json is REQUIRED [#542](https://github.com/bids-standard/bids-specification/pull/542) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Replace all non-breaking spaces with vanilla spaces [#536](https://github.com/bids-standard/bids-specification/pull/536) ([nicholst](https://github.com/nicholst))
 -   \[FIX] clarify that scans.json is allowed and recommended [#523](https://github.com/bids-standard/bids-specification/pull/523) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] add copyright holder to license.  [#521](https://github.com/bids-standard/bids-specification/pull/521) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Update `beh/` specification to contrast with any neural recordings [#515](https://github.com/bids-standard/bids-specification/pull/515) ([effigies](https://github.com/effigies))
@@ -9,6 +11,7 @@
 -   \[FIX] restructure and clarify \*\_physio/\*\_stim section [#513](https://github.com/bids-standard/bids-specification/pull/513) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] clarify file formats in EEG, iEEG [#511](https://github.com/bids-standard/bids-specification/pull/511) ([sappelhoff](https://github.com/sappelhoff))
 -   \[Fix] Add links and release dates to pre GH changelog, fix formatting [#509](https://github.com/bids-standard/bids-specification/pull/509) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Clarify that `acq\_time` in `scans.json` refers to first data point acquired [#506](https://github.com/bids-standard/bids-specification/pull/506) ([tsalo](https://github.com/tsalo))
 -   \[INFRA] make circle artifact link a GH action, point to pdf [#505](https://github.com/bids-standard/bids-specification/pull/505) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Typos in DECISION-MAKING file [#504](https://github.com/bids-standard/bids-specification/pull/504) ([tsalo](https://github.com/tsalo))
 -   \[ENH] Add `Commenting on a PR` to CONTRIBUTING.md [#490](https://github.com/bids-standard/bids-specification/pull/490) ([franklin-feingold](https://github.com/franklin-feingold))
