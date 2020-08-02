@@ -17,4 +17,4 @@ matrix:
       before_script:
         - cd tools/
       script:
-        - python -m "from bids_schema import load_schema; data = load_schema('../src/schema'); assert isinstance(data, dict)"
+        - python -c "from bids_schema import load_schema; data = load_schema('../src/schema'); assert isinstance(data, dict)"
