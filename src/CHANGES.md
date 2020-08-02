@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] Clarify Upper-casing of Channels.tsv Channel Type [#548](https://github.com/bids-standard/bids-specification/pull/548) ([adam2392](https://github.com/adam2392))
 -   FIX: clarify that \\&lt;physio|stim>.json is REQUIRED [#542](https://github.com/bids-standard/bids-specification/pull/542) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Replace all non-breaking spaces with vanilla spaces [#536](https://github.com/bids-standard/bids-specification/pull/536) ([nicholst](https://github.com/nicholst))
 -   \[FIX] clarify that scans.json is allowed and recommended [#523](https://github.com/bids-standard/bids-specification/pull/523) ([sappelhoff](https://github.com/sappelhoff))
