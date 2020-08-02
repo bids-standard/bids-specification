@@ -13,7 +13,7 @@ matrix:
     - language: python
       python: 3.7
       install:
-        - pip install numpy pandas yaml
+        - pip install numpy pandas pyyaml
       before_script:
         - cd tools/
       script:
