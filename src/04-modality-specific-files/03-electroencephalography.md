@@ -219,7 +219,7 @@ MUST be present:
 | Column name | Definition                                                                                                                                                                       |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name        | REQUIRED. Channel name (e.g., FC1, Cz)                                                                                                                                           |
-| type        | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                                              |
+| type        | REQUIRED. Type of channel; MUST use the channel types listed below. Note that the type MUST be in upper-case.                                                                    |
 | units       | REQUIRED. Physical unit of the value represented in this channel, e.g., `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [Units](../02-common-principles.md#units)). |
 
 SHOULD be present:
@@ -236,7 +236,8 @@ SHOULD be present:
 | status_description | OPTIONAL. Free-form text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `[status]`.                                                                                                       |
 
 Restricted keyword list for field `type` in alphabetic order (shared with the
-MEG and iEEG modality; however, only the types that are common in EEG data are listed here):
+MEG and iEEG modality; however, only the types that are common in EEG data are listed here).
+Note that upper-case is REQUIRED:
 
 | Keyword  | Description                                                  |
 | -----------------| -------------------------------------------------------------- |

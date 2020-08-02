@@ -202,7 +202,7 @@ MUST be present:
 | Column name | Definition                                                                                                                                                                       |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name        | REQUIRED. Channel name (e.g., MRT012, MEG023)                                                                                                                                    |
-| type        | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                                              |
+| type        | REQUIRED. Type of channel; MUST use the channel types listed below. Note that the type MUST be in upper-case.                                                                    |
 | units       | REQUIRED. Physical unit of the value represented in this channel, e.g., `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [Units](../02-common-principles.md#units)). |
 
 SHOULD be present:
@@ -226,7 +226,8 @@ UDIO001 TRIG V analogue trigger 1200  0.1 300 0 n/a good
 MLC11 MEGGRADAXIAL T sensor 1st-order grad 1200 0 n/a 50 SSS bad
 ```
 
-Restricted keyword list for field `type`
+Restricted keyword list for field `type`.
+Note that upper-case is REQUIRED:
 
 | Keyword          | Definition                                           |
 | ---------------- | ---------------------------------------------------- |
@@ -259,7 +260,7 @@ Restricted keyword list for field `type`
 | FITERR           | Fit error signal from each head localization coil    |
 | OTHER            | Any other type of channel                            |
 
-Example of free text for field `description`
+Example of free text for field `description`:
 
 -   stimulus, response, vertical EOG, horizontal EOG, skin conductance, sats,
     intracranial, eyetracker

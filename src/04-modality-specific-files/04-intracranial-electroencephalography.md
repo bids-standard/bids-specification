@@ -240,7 +240,7 @@ MUST be present:
 | Column name  | Definition                                                                                                                                                                                                            |
 | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name         | REQUIRED. Label of the channel. The label must correspond to \_electrodes.tsv name and all ieeg type channels are required to have a position. The reference channel name MAY be provided in the reference column.    |
-| type         | REQUIRED. Type of channel, see below for adequate keywords in this field.                                                                                                                                             |
+| type         | REQUIRED. Type of channel, see below for adequate keywords in this field. Note that the type MUST be in upper case.                                                                                                   |
 | units        | REQUIRED. Physical unit of the value represented in this channel, e.g., `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [Units](../02-common-principles.md#units)).                                      |
 | low_cutoff   | REQUIRED. Frequencies used for the low pass filter applied to the channel in Hz. If no low pass filter was applied, use `n/a`. Note that anti-alias is a low pass filter, specify its frequencies here if applicable. |
 | high_cutoff  | REQUIRED. Frequencies used for the high pass filter applied to the channel in Hz. If no high pass filter applied, use `n/a`.                                                                                          |
@@ -268,7 +268,8 @@ ECG1  ECG   uV    n/a         0.11        good    n/a
 TR1   TRIG  n/a   n/a         n/a         good    n/a
 ```
 Restricted keyword list for field type in alphabetic order (shared with the MEG
-and EEG modality; however, only types that are common in iEEG data are listed here):
+and EEG modality; however, only types that are common in iEEG data are listed here).
+Note that upper-case is REQUIRED:
 
 | Keyword  | Description                                                            |
 | ------------------------ | -------------------------------------------------------------------- |
@@ -293,9 +294,9 @@ and EEG modality; however, only types that are common in iEEG data are listed he
 | REF      | Reference channel                                                      |
 | OTHER    | Any other type of channel                                              |
 
-The free text field for the channel description can for example be specified as
-intracranial, stimulus, response, vertical EOG, horizontal EOG, skin
-conductance, eyetracker, etc.
+Example of free-form text for field `description`:
+
+-   intracranial, stimulus, response, vertical EOG,  skin conductance
 
 ## Electrode description (`*_electrodes.tsv`)
 
