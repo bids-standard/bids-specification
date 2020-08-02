@@ -260,7 +260,7 @@ Note that upper-case is REQUIRED:
 | FITERR           | Fit error signal from each head localization coil    |
 | OTHER            | Any other type of channel                            |
 
-Example of free text for field `description`.
+Example of free text for field `description`:
 
 -   stimulus, response, vertical EOG, horizontal EOG, skin conductance, sats,
     intracranial, eyetracker

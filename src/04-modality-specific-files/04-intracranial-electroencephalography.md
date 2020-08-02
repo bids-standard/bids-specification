@@ -268,7 +268,8 @@ ECG1  ECG   uV    n/a         0.11        good    n/a
 TR1   TRIG  n/a   n/a         n/a         good    n/a
 ```
 Restricted keyword list for field type in alphabetic order (shared with the MEG
-and EEG modality; however, only types that are common in iEEG data are listed here). Note that upper-case is REQUIRED:
+and EEG modality; however, only types that are common in iEEG data are listed here).
+Note that upper-case is REQUIRED:
 
 | Keyword  | Description                                                            |
 | ------------------------ | -------------------------------------------------------------------- |
@@ -293,7 +294,7 @@ and EEG modality; however, only types that are common in iEEG data are listed he
 | REF      | Reference channel                                                      |
 | OTHER    | Any other type of channel                                              |
 
-Example of free-form text for field `description`
+Example of free-form text for field `description`:
 
 -   intracranial, stimulus, response, vertical EOG,  skin conductance
 
