@@ -425,7 +425,7 @@ fields:
 | Field name  | Definition                                                                                                                   |
 | :---------- | :--------------------------------------------------------------------------------------------------------------------------- |
 | LongName    | OPTIONAL. Long (unabbreviated) name of the column.                                                                           |
-| Description | REQUIRED. Description of the column.                                                                                         |
+| Description | RECOMMENDED. Description of the column.                                                                                      |
 | Levels      | RECOMMENDED. For categorical variables: a dictionary of possible values (keys) and their descriptions (values).              |
 | Units       | RECOMMENDED. Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
 | TermURL     | RECOMMENDED. URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
