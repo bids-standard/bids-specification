@@ -12,7 +12,7 @@ The document outlining our governance structure is hosted on the BIDS website:
 In the following, we list the current members of subgroups detailed in the
 BIDS governance.
 
-**Steering Group**
+### Steering Group
 
 | Name                                                                         |
 |------------------------------------------------------------------------------|
@@ -22,7 +22,7 @@ BIDS governance.
 | Russell Poldrack ([@poldrack](https://github.com/poldrack))                  |
 | Kirstie Whitaker ([@KirstieJane](https://github.com/KirstieJane))            |
 
-**Maintainers Group**
+### Maintainers Group
 
 | Name                                                                           | Time commitment | Scope                 |
 |--------------------------------------------------------------------------------|-----------------|-----------------------|
@@ -38,12 +38,12 @@ One or more scopes can be chosen by the maintainer and agreed upon by the Mainta
 A maintainer is primarily responsible for issues within their chosen scope(s), although
 contributions elsewhere are welcome, as well.
 
-**BEP Leads Group**
+### BEP Leads Group
 
 Leaders of BIDS Extension Proposals are listed in the
 [table of BEPs](https://bids.neuroimaging.io/get_involved.html#extending-the-bids-specification).
 
-**Contributors Group**
+### Contributors Group
 
 Contributors are listed in [Appendix I](https://bids-specification.readthedocs.io/en/stable/99-appendices/01-contributors.html)
 of the BIDS specification. Contributors who have not yet entered their name
@@ -51,7 +51,7 @@ into this list are encouraged to edit the [Contributors WIKI page](https://githu
 with their name, using the emojis listed in the WIKI to indicate their
 contributions.
 
-**Other groups**
+### Other groups
 
 The following groups not listed in detail. Please learn more about these groups
 from the [governance document](https://bids.neuroimaging.io/governance.html).
