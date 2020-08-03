@@ -572,6 +572,9 @@ Describing dates and timestamps:
 
 -   WARNING: The Neuromag/Elekta/MEGIN file format for MEG (`.fif`) does *not*
     support recording dates earlier than `1902` roughly.
+    Some analysis software packages (e.g., MNE-Python) handle their data as `.fif`
+    internally and will break if recording dates are specified prior to `1902`,
+    even if the original data format is not `.fif`.
     See [MEG-file-formats](./99-appendices/06-meg-file-formats.md#recording-dates-in-fif-files)
     for more information.
 
