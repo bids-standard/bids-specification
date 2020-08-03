@@ -540,13 +540,13 @@ For additional rules, see below:
 Describing dates and timestamps:
 
 -   Date time information MUST be expressed in the following format
-    `YYYY-MM-DDThh:mm:ss[.000000]` (year, month, day, hour (24h), minute,
-    second, and optionally fractional second).
+    `YYYY-MM-DDThh:mm:ss[.000000][Z]` (year, month, day, hour (24h), minute,
+    second, optional fractional seconds, and optional UTC time indicator).
     This is almost equivalent to the [RFC3339](https://tools.ietf.org/html/rfc3339)
-    "date-time" format, with the exception that in BIDS, time zone is always
-    assumed as local time.
-    The RFC3339 `Z` syntax to indicate UTC or the RFC3339 "offset" syntax are not
-    supported.
+    "date-time" format, with the exception that UTC indicator `Z` is optional and
+    non-zero UTC offsets are not indicated.
+    If `Z` is not indicated, time zone is always assumed to be the local time of the
+    dataset viewer.
     No specific precision is required for fractional seconds, but the precision
     SHOULD be consistent across the dataset.
     For example `2009-06-15T13:45:30`.
