@@ -14,7 +14,7 @@ and can be used for practical guidance when curating a new dataset.
 -   Single dynamic scan (pet, mri): [`pet_example_2`](https://doi.org/10.5281/zenodo.1490922)
 
 
-Further datasets are available from the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
+Further PET datasets are available from [OpenNeuro](https://openneuro.org).
 
 ## PET recording data
 
@@ -55,10 +55,9 @@ In addition to the imaging data a _pet.json sidecar file needs to be provided. T
 This section is mandatory and contains general information about the imaging experiment. Some of the fields are marked optional (MAY), e.g. anaesthesia; for those fields a BIDS PET validator will not throw an error even if they are not present. Note, although bodyweight is a recommended information in (Knudsen et al. 2020, JCBFM [1]), this consists of meta information at the participant level and should hence be part of the participants.tsv or session.tsv file in case of multiple measurements.
 | Field name | Definition                                                                                                                                                                                                                                                                                                                              |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Modality   | REQUIRED. Name of the imaging modality. Example values could be "PET", "PETMR", or "PETCT". |
 | Manufacturer | REQUIRED. Scanner manufacturer (e.g. "Siemens").|
 | ManufacturersModelName | REQUIRED. PET scanner model name (e.g. "mMR Biograph"). |
-| Unit | REQUIRED. Unit of the image file; please see BIDS main spec section 6. SI unit for radioactivity (Becquerel) should be used (e.g. "Bq/ml"). Corresponds to DICOM Tag 0054, 1001 Units. |
+| Unit | REQUIRED. Unit of the image file; please see BIDS main spec section 6. SI unit for radioactivity (Becquerel) should be used (e.g. "Bq/mL"). Corresponds to DICOM Tag 0054, 1001 Units. |
 | TracerName | REQUIRED. Name of the tracer compound used (e.g. "CIMBI-36") |
 | TracerRadionuclide | REQUIRED. Radioisotope labelling tracer (e.g. "C11"). |
 | InstitutionName | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0080 InstitutionName. |
@@ -95,10 +94,10 @@ This section is mandatory and contains information regarding the radioactive mat
 | MolarActivityUnit | RECOMMENDED. Unit of the specified molar radioactivity (e.g. "Bq/g"). |
 | MolarActivityMeasTime | RECOMMENDED. Time to which molar radioactivity measurement above applies in the default unit "hh:mm:ss". |
 | InfusionSpeed | RECOMMENDED. If given, infusion speed. |
-| InfusionSpeedUnit | RECOMMENDED. Unit of infusion speed (e.g. "ml/s"). |
+| InfusionSpeedUnit | RECOMMENDED. Unit of infusion speed (e.g. "mL/s"). |
 | InjectedVolume | RECOMMENDED. Injected volume of the radiotracer. |
-| InjectedVolumeUnit | RECOMMENDED. Unit of the injected volume of the radiotracer (e.g. "ml"). |
-| Purity | RECOMMENDED. Purity of the radiolabeled compound. |
+| InjectedVolumeUnit | RECOMMENDED. Unit of the injected volume of the radiotracer (e.g. "mL"). |
+| Purity | RECOMMENDED. Purity of the radiolabeled compound (e.g. 90). |
 | PurityUnit | RECOMMENDED. Unit of the radiochemical purity (e.g. "percent"). | 
 
 
@@ -140,11 +139,27 @@ This optional section includes information about the image reconstruction. All r
 | SinglesRate | RECOMMENDED. Singles rate for each frame. |
 
 #### The "Blood" section
-In order to simplify a distinction between PET data acquired with and without blood measurements, we have added a specific section detailing blood measurements in the _pet.json. If blood data is available, meaning some of the “Avail” below with a given prefix are true, the following fields with the given prefix are required and at the same time we require the presence of a *_blood.tsv with a corresponding *_blood.json detailing the column content. If true, please see the section 2.2 Blood data.
+In order to simplify a distinction between PET data acquired with and without blood measurements, we have added a specific section detailing blood measurements in the _pet.json. If blood data is available, meaning some of the “Avail” below with a given prefix are true, the following fields with the given prefix are required and at the same time we require the presence of a *_blood.tsv with a corresponding *_blood.json detailing the column content. If true, please see the section "Blood data (*_blood.tsv)".
 
 | Field name | Definition                                                                                                                                                                                                                                                                                                                              |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|  | |
+| PlasmaAvail | REQUIRED. Boolean that specifies if plasma measurements are available. If this is false, all of the plasma fields should be excluded. |
+| PlasmaFreeFraction | RECOMMENDED. Measured free fraction in plasma, i.e. concentration of free compound in plasma divided by total concentration of compound in plasma. |
+| PlasmaFreeFractionMethod | RECOMMENDED. Method used to estimate free fraction. |
+| MetaboliteAvail | REQUIRED. Boolean that specifies if metabolite measurements are available. If this is false, all of the metabolite fields should be excluded. |
+| MetaboliteMethod | REQUIRED. Method used to measure metabolites. |
+| MetaboliteRecoveryCorrectionApplied | REQUIRED. Metabolite recovery correction from the HPLC, for tracers where it changes with time postinjection. If “true” please include recovery fractions from the HPLC as a column in the table with blood data (*_blood.tsv). |
+| ContinuousBloodAvail | REQUIRED. Boolean that specifies if continuous blood measurements are available. If this is false, all of the continuous blood fields should be excluded. |
+| ContinuousBloodDispersionCorrected | REQUIRED. Boolean flag specifying whether the continuous blood data have been dispersion-corrected. |
+| ContinuousBloodWithdrawalRate | RECOMMENDED. The rate at which the blood was withdrawn from the subject. The unit of the specified withdrawal rate should be in ml/s. |
+| ContinuousBloodTubingType | RECOMMENDED. Description of the type of tubing used, ideally including the material and (internal) diameter. |
+| ContinuousBloodTubingLength | RECOMMENDED. The length of the blood tubing, from the subject to the detector in the default unit centimeter. |
+| ContinuousBloodDispersionConstant | RECOMMENDED. External dispersion time constant resulting from tubing in default unit seconds. |
+| DiscreteBloodAvail | REQUIRED. Boolean that specifies if discrete blood measurements are available. If this is false, all of the discrete blood fields should be excluded. |
+| DiscreteBloodHaematocrit | RECOMMENDED. Measured haematocrit, i.e. the volume of erythrocytes divided by the volume of whole blood. |
+| DiscreteBloodDensity | RECOMMENDED. Measured blood density. Unit of blood density should be in g/ml. |
+
+
 
 #### Example (`*_pet.json`)
 
@@ -156,7 +171,7 @@ In order to simplify a distinction between PET data acquired with and without bl
 	"BodyPart": "Brain",
 	"BodyWeight": 21,
 	"BodyWeightUnit": "kg",
-	"Unit": "Bq/ml", 
+	"Unit": "Bq/mL", 
 	"TracerName": "CIMBI-36",
 	"TracerRadionuclide": "C11",
 	"TracerMolecularWeight": 380.28,
@@ -213,14 +228,50 @@ The first column in the *_.tsv file should be a time column (2.2.1), defined in 
 
 ### Time
 
+| Field name  | Definition                                                                                                      |
+| :---------- | :-------------------------------------------------------------------------------------------------------------- |
+| ColumnName    | REQUIRED. Name of the column (e.g. "time".                                                                        |
+| Description | REQUIRED. Time in relation to TimeZero defined by the *_pet.json. (e.g. 5)                                                                                      |
+| Units       | REQUIRED. Unit of time steps (e.g. "s") |   
+
 ### The "Plasma" section
 This section may be omitted if discrete plasma measurements of radioactivity were not made. It contains information regarding discretely sampled plasma data.
+
+| Field name  | Definition                                                                                                      |
+| :---------- | :-------------------------------------------------------------------------------------------------------------- |
+| ColumnName    | REQUIRED. Name of the column (e.g. "metabolite_parent_fraction".                                                                        |
+| Description | REQUIRED. Radioactivity in plasma.                                                                                      |
+| Units       | REQUIRED. Unit of plasma radioactivity (e.g. "kBq/mL") |   
 
 ### The "Metabolite" section
 This section may be omitted if metabolite measurements were not made. It may contain information regarding metabolite info, such as the following three column examples:
 
+| Field name  | Definition                                                                                                      |
+| :---------- | :-------------------------------------------------------------------------------------------------------------- |
+| ColumnName    | REQUIRED. Name of the column (e.g. "plasma_radioactivity".                                                                        |
+| Description | REQUIRED. Parent fraction of the radiotracer (0-1).                                                                                      |
+| Units       | REQUIRED. Unit of parent fraction (e.g. "unitless") |  
+
+| Field name  | Definition                                                                                                      |
+| :---------- | :-------------------------------------------------------------------------------------------------------------- |
+| ColumnName    | REQUIRED. Name of the column (e.g. "metabolite_polar_fraction".                                                                        |
+| Description | REQUIRED. Polar metabolite fraction of the radiotracer (0-1).                                                                                     |
+| Units       | REQUIRED. Unit of polar metabolite fraction (e.g. "unitless") |  
+
+| Field name  | Definition                                                                                                      |
+| :---------- | :-------------------------------------------------------------------------------------------------------------- |
+| ColumnName    | REQUIRED. Name of the column (e.g. "hplc_recovery_fractions".                                                                        |
+| Description | REQUIRED. HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC).                                                                                     |
+| Units       | REQUIRED. Unit of recovery fractions (e.g. "unitless") |   
+
 ### The "WholeBlood" section
 This section may be omitted if whole blood measurements of radioactivity were not made. It contains information regarding sampled whole blood data.
+
+| Field name  | Definition                                                                                                      |
+| :---------- | :-------------------------------------------------------------------------------------------------------------- |
+| ColumnName    | REQUIRED. Name of the column (e.g. "whole_blood_radioactivity".                                                                        |
+| Description | REQUIRED. Radioactivity in whole blood samples.                                                                                      |
+| Units       | REQUIRED. Unit of  radioactivity measurements  in whole blood samples (e.g. "kBq/mL") |   
 
 ### Example (`*_recording-discrete_blood.tsv`)
 ```JSON
@@ -231,11 +282,11 @@ This section may be omitted if whole blood measurements of radioactivity were no
     },
     "plasma_radioactivity": {
         "Description": "Radioactivity in plasma samples. Measured using COBRA counter.", 
-        "Units": "kBq/ml"
+        "Units": "kBq/mL"
     },
     "whole_blood_radioactivity": {
         "Description": "Radioactivity in whole blood samples. Measured using COBRA counter.",
-        "Units": "kBq/ml"
+        "Units": "kBq/mL"
     },
     "metabolite_parent_fraction": {
         "Description": "Parent fraction of the radiotracer.",
