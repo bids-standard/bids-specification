@@ -56,8 +56,8 @@ This section is mandatory and contains general information about the imaging exp
 | Field name | Definition                                                                                                                                                                                                                                                                                                                              |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Modality   | REQUIRED. Name of the imaging modality. Example values could be "PET", "PETMR", or "PETCT". |
-| Manufacturer | REQUIRED. Scanner manufacturer (e.g. Siemens).|
-| ManufacturersModelName | REQUIRED. PET scanner model name. |
+| Manufacturer | REQUIRED. Scanner manufacturer (e.g. "Siemens").|
+| ManufacturersModelName | REQUIRED. PET scanner model name (e.g. "mMR Biograph"). |
 | Unit | REQUIRED. Unit of the image file; please see BIDS main spec section 6. SI unit for radioactivity (Becquerel) should be used (e.g. "Bq/ml"). Corresponds to DICOM Tag 0054, 1001 Units. |
 | TracerName | REQUIRED. Name of the tracer compound used (e.g. "CIMBI-36") |
 | TracerRadionuclide | REQUIRED. Radioisotope labelling tracer (e.g. "C11"). |
@@ -81,9 +81,9 @@ This section is mandatory and contains information regarding the radioactive mat
 
 | Field name | Definition                                                                                                                                                                                                                                                                                                                              |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| InjectedRadioactivity | REQUIRED. Total amount of radioactivity injected into the patient. Corresponds to DICOM Tag (0018,1074) Radionuclide Total Dose. | 
+| InjectedRadioactivity | REQUIRED. Total amount of radioactivity injected into the patient (e.g. 400). Corresponds to DICOM Tag (0018,1074) Radionuclide Total Dose. | 
 | InjectedRadioactivityUnit | REQUIRED. Unit format of the specified injected radioactivity (e.g. "MBq"). |
-| InjectedMass | REQUIRED. Total mass of radiolabeled compound injected into subject. This can be derived as the ratio of the InjectedRadioactivity and MolarRadioactivity. |
+| InjectedMass | REQUIRED. Total mass of radiolabeled compound injected into subject (e.g. 10). This can be derived as the ratio of the InjectedRadioactivity and MolarRadioactivity. |
 | InjectedMassUnit | REQUIRED. Unit format of the mass of compound injected (e.g. "ug" or "umol"). |
 | SpecificRadioactivity | REQUIRED. Specific activity of compound injected. |
 | SpecificRadioactivityUnit | REQUIRED. Unit format of specified specific radioactivity (e.g. "Bq/g"). |
@@ -105,11 +105,47 @@ This section is mandatory and contains information regarding the radioactive mat
 #### The "Time" section
 This section is mandatory and contains timing information about the imaging experiment.
 
+| Field name | Definition                                                                                                                                                                                                                                                                                                                              | 
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| TimeZero | REQUIRED. Time zero to which all scan and/or blood measurements have been adjusted to, in the unit “hh:mm:ss”. This should be equal to InjectionStart or ScanStart. |
+| ScanStart | REQUIRED. Time of start of scan with respect to TimeZero in the default unit seconds. |
+| InjectionStart | REQUIRED. Time of start of injection with respect to TimeZero in the default unit seconds. This corresponds to DICOM Tag (0018,1042) converted to seconds relative to timeZero. |
+| FrameTimesStart | REQUIRED. Start times for all frames relative to TimeZero in default unit seconds. |
+| FrameDuration | REQUIRED. Time duration of each frame in default unit seconds. This corresponds to DICOM Tag (0018,1242) converted to seconds. | 
+| ScanDate | RECOMMENDED. Date of scan in the default unit “yyyy:mm:dd”. |
+| InjectionEnd | RECOMMENDED. Time of end of injection with respect to TimeZero in the default unit seconds. | 
+
 #### The "Recon" section
 This optional section includes information about the image reconstruction. All reconstruction specific parameters that are not specified, but one wants to include, should go into the ReconMethodParameterVal field. 
 
+| Field name | Definition                                                                                                                                                                                                                                                                                                                               |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| AcquisitionMode | REQUIRED. Type of acquisition of the PET data (e.g. "list mode") |
+| ImageDecayCorrected | REQUIRED. Boolean flag specifying whether the image data have been decay-corrected. |
+| ImageDecayCorrectionTime | REQUIRED. Point in time from which the decay correction was applied with respect to TimeZero in the default unit seconds. |
+| ReconMethodName | REQUIRED. Reconstruction method or algorithm (e.g. "3d-op-osem"). |
+| ReconMethodParameterLabels  | REQUIRED. Names of reconstruction parameters (e.g. ["subsets", "iterations"]) |
+| ReconMethodParameterUnit  | REQUIRED. Unit of reconstruction parameters (e.g. ["none", "none"]). |
+| ReconMethodParameterValues | REQUIRED. Values of reconstruction parameters (e.g. [21, 3]) |
+| ReconFilterType | REQUIRED. Type of post-recon smoothing (e.g. ["Shepp"]) |
+| ReconFilterSize | REQUIRED. Kernel size of post-recon filter (FWHM). |
+| AttenuationCorrection | REQUIRED. Short description of the attenuation correction method used. |
+| ReconMethodImplementationVersion | RECOMMENDED. Identification for the software used, such as name and version. |
+| AttenuationCorrectionMethodReference | RECOMMENDED. Reference paper for the attenuation correction method used. |
+| ScaleFactor | RECOMMENDED. Scale factor for each frame (e.g. []). |
+| ScatterFraction | RECOMMENDED. Scatter fraction for each frame (e.g. []). |
+| DecayCorrectionFactor | RECOMMENDED. Decay correction factor for each frame. |
+| PromptRate | RECOMMENDED. Prompt rate for each frame. |
+| RandomRate | RECOMMENDED. Random rate for each frame. |
+| SinglesRate | RECOMMENDED. Singles rate for each frame. |
+
 #### The "Blood" section
 In order to simplify a distinction between PET data acquired with and without blood measurements, we have added a specific section detailing blood measurements in the _pet.json. If blood data is available, meaning some of the “Avail” below with a given prefix are true, the following fields with the given prefix are required and at the same time we require the presence of a *_blood.tsv with a corresponding *_blood.json detailing the column content. If true, please see the section 2.2 Blood data.
+
+| Field name | Definition                                                                                                                                                                                                                                                                                                                              |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  | |
+
 #### Example (`*_pet.json`)
 
 ```JSON
