@@ -89,9 +89,9 @@ Example:
 }
 ```
 Downstream tools should not distinguish between tags specified using the explicit HED column and 
-the categorical specifications, but should form the union before analysis. Further,
-the normal BIDS inheritance principle applies, so the data dictionaries can
-appear higher in the BIDS hierarchy.  
+the categorical specifications, but should form the union before analysis.
+Further, the [inheritance principle](../02-common-principles.md#the-inheritance-principle) applies,
+so the data dictionaries can appear higher in the BIDS hierarchy.  
 
 The HED vocabulary is specified by a HED schema, which delineates the allowed 
 HED path strings. By default, BIDS uses the latest HED schema available in the
