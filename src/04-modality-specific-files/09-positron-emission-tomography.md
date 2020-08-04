@@ -165,7 +165,6 @@ In order to simplify a distinction between PET data acquired with and without bl
 
 ```JSON
 {       
-	"Modality": "PET",
 	"Manufacturer": "Siemens",
 	"ManufacturersModelName": "High-Resolution Research Tomograph (HRRT, CTI/Siemens)",
 	"BodyPart": "Brain",
@@ -181,11 +180,11 @@ In order to simplify a distinction between PET data acquired with and without bl
 	"InjectedRadioActivityUnit": "MBq",
 	"InjectedMass": 0.62,
 	"InjectedMassUnit": "ug",
-	"SpecificRadioactivity": 353.51,
-	"SpecificRadioactivityUnit": "GBq/umol",
+	"SpecificRadioactivity": 929.6,
+	"SpecificRadioactivityUnit": "MBq/ug",
 	"ModeOfAdministration": "bolus",
-	"MolarActivity": 1.62,
-	"MolarActivityUnit": "nmol",
+	"MolarActivity": 353.51,
+	"MolarActivityUnit": "GBq/umol",
 	"MolarActivityMeasTime": "12:59:00",
 	"TimeZero": "13:04:42",
 	"ScanStart": 0,
