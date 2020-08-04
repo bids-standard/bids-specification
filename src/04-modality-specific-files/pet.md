@@ -25,8 +25,6 @@ As specified above, this extension is relevant for PET imaging and its associate
 
 Figure 1: Overview of a common PET experiment, including blood measurements, and defined on a common time scale. Note, “time zero”can either be defined as time of injection or scan start, and all the PET and blood data should be decay-corrected to this time point. Furthermore, although in this example tracer injection coincides with scan start, this is not always the case and hence we allow for the flexibility of specifying either time of injection or scan start as “time zero”. 
 
-## PET Imaging data
-
 Template:
 
 ```Text
@@ -51,17 +49,58 @@ The run entity is used if one scan type/contrast is repeated multiple times with
 
 In addition to the imaging data a _pet.json sidecar file needs to be provided. The included metadata are divided into sections described below.
 
-
 ### Sidecar JSON (`*_pet.json`)
 
 #### The "Info" section
 This section is mandatory and contains general information about the imaging experiment. Some of the fields are marked optional (MAY), e.g. anaesthesia; for those fields a BIDS PET validator will not throw an error even if they are not present. Note, although bodyweight is a recommended information in (Knudsen et al. 2020, JCBFM [1]), this consists of meta information at the participant level and should hence be part of the participants.tsv or session.tsv file in case of multiple measurements.
 | Field name | Definition                                                                                                                                                                                                                                                                                                                              |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Modality   | REQUIRED. Name of the modality. Example values could be "PET", "PETMR", or "PETCT". |
+| Modality   | REQUIRED. Name of the imaging modality. Example values could be "PET", "PETMR", or "PETCT". |
+| Manufacturer | REQUIRED. Scanner manufacturer (e.g. Siemens).|
+| ManufacturersModelName | REQUIRED. PET scanner model name. |
+| Unit | REQUIRED. Unit of the image file; please see BIDS main spec section 6. SI unit for radioactivity (Becquerel) should be used (e.g. "Bq/ml"). Corresponds to DICOM Tag 0054, 1001 Units. |
+| TracerName | REQUIRED. Name of the tracer compound used (e.g. "CIMBI-36") |
+| TracerRadionuclide | REQUIRED. Radioisotope labelling tracer (e.g. "C11"). |
+| InstitutionName | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0080 InstitutionName. |
+| InstitutionAddress | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0081 InstitutionAddress. |
+| InstitutionDepartmentName | RECOMMENDED. The department in the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1040 Institutional Department Name. |
+| BodyPart | RECOMMENDED. Name of the organ / body region scanned. |
+| TracerRadLex | RECOMMENDED. ID of the tracer compound from the RadLex Ontology. |
+| TracerSNOMED | RECOMMENDED. ID of the tracer compound from the SNOMED Ontology (subclass of Radioactive isotope). |
+| TracerMolecularWeight | RECOMMENDED. Accurate molecular weight of the tracer used. |
+| TracerMolecularWeightUnit | RECOMMENDED. Unit of the molecular weights measurement (.e.g "g/mol"). |
+| PharmaceuticalName | RECOMMENDED. Name of pharmaceutical coadministered with tracer. |
+| PharmaceuticalDoseAmount | RECOMMENDED. Dose amount of pharmaceutical coadministered with tracer.|
+| PharmaceuticalDoseUnit | RECOMMENDED. Unit format relating to pharmaceutical dose (e.g. "mg" or "mg/kg"). |
+| PharmaceuticalDoseRegimen | RECOMMENDED. Details of the pharmaceutical dose regimen. Either adequate description or short-code relating to regimen documented elsewhere (e.g. "single oral bolus"). |
+| PharmaceuticalDoseTime | RECOMMENDED. Time of administration of pharmaceutical dose, relative to time zero (please see below). For an infusion, this should be a vector with two elements specifying the start and end of the infusion period. For more complex dose regimens, the regimen description should be complete enough to enable unambiguous interpretation of the DoseTime vector. Unit format of the specified pharmaceutical dose time should be seconds.|
+| Anaesthesia | MAY. Details of anaesthesia used, if any. |
 
 #### The "Radiochem" section
 This section is mandatory and contains information regarding the radioactive material used in the experiment.
+
+| Field name | Definition                                                                                                                                                                                                                                                                                                                              |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| InjectedRadioactivity | REQUIRED. Total amount of radioactivity injected into the patient. Corresponds to DICOM Tag (0018,1074) Radionuclide Total Dose. | 
+| InjectedRadioactivityUnit | REQUIRED. Unit format of the specified injected radioactivity (e.g. "MBq"). |
+| InjectedMass | REQUIRED. Total mass of radiolabeled compound injected into subject. This can be derived as the ratio of the InjectedRadioactivity and MolarRadioactivity. |
+| InjectedMassUnit | REQUIRED. Unit format of the mass of compound injected (e.g. "ug" or "umol"). |
+| SpecificRadioactivity | REQUIRED. Specific activity of compound injected. |
+| SpecificRadioactivityUnit | REQUIRED. Unit format of specified specific radioactivity (e.g. "Bq/g"). |
+| ModeOfAdministration | REQUIRED. Mode of administration of the injection (e.g. "bolus" or "infusion"). |
+| InjectedMassPerWeight | RECOMMENDED. Injected mass per kilogram bodyweight. |
+| InjectedMassPerWeightUnit | RECOMMENDED. Unit format of the injected mass per kilogram bodyweight (e.g. "ug/kg"). |
+| SpecificRadioactivityMeasTime | RECOMMENDED. Time to which specific radioactivity measurement above applies in the default unit "hh:mm:ss". |
+| MolarActivity | RECOMMENDED. Molar activity of compound injected. Corresponds to DICOM Tag (0018,1077) Radiopharmaceutical Specific Activity. |
+| MolarActivityUnit | RECOMMENDED. Unit of the specified molar radioactivity (e.g. "Bq/g"). |
+| MolarActivityMeasTime | RECOMMENDED. Time to which molar radioactivity measurement above applies in the default unit "hh:mm:ss". |
+| InfusionSpeed | RECOMMENDED. If given, infusion speed. |
+| InfusionSpeedUnit | RECOMMENDED. Unit of infusion speed (e.g. "ml/s"). |
+| InjectedVolume | RECOMMENDED. Injected volume of the radiotracer. |
+| InjectedVolumeUnit | RECOMMENDED. Unit of the injected volume of the radiotracer (e.g. "ml"). |
+| Purity | RECOMMENDED. Purity of the radiolabeled compound. |
+| PurityUnit | RECOMMENDED. Unit of the radiochemical purity (e.g. "percent"). | 
+
 
 #### The "Time" section
 This section is mandatory and contains timing information about the imaging experiment.
