@@ -555,12 +555,13 @@ Describing dates and timestamps:
     `hh:mm:ss[.000000]`
     For example `13:45:30`.
 
--   Note that, depending on local REB/IRB ethics board policy, date time information
-    does not need to be fully detailed.
+-   Note that, depending on local ethics board policy, date time information may not
+    need to be fully detailed.
     For example, it is permissible to set the time to `00:00:00` if reporting the
     exact recording time is undesirable.
-    However, for privacy protection reasons, it is generally RECOMMENDED to shift
-    dates, as described below, without completely removing time information, as time information can be useful for research purposes.
+    However, for privacy protection reasons, it is RECOMMENDED to shift dates, as
+    described below, without completely removing time information, as time information
+    can be useful for research purposes.
 
 -   Dates can be shifted by a random number of days for privacy protection
     reasons.
