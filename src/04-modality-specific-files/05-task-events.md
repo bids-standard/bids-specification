@@ -45,8 +45,9 @@ the first volume.
 
 An arbitrary number of additional columns can be added. Those allow describing
 other properties of events that could be later referred in modelling and
-hypothesis extensions of BIDS. Note that the `trial_type` and any additional
-columns in a TSV file SHOULD be documented in an accompanying JSON sidecar file.
+hypothesis extensions of BIDS.   
+Note that the `trial_type` and any additional columns in a TSV file SHOULD be 
+documented in an accompanying JSON sidecar file.
 
 In case of multi-echo task run, a single `_events.tsv` file will suffice for all
 echoes.
