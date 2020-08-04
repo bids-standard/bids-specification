@@ -111,7 +111,8 @@ sub-control01/
 ```
 
 The `trial_type` and `identifier` columns from the `*_events.tsv` files might be described in this
-dictionary as follows. Note that all other columns SHOULD also be described but are omitted for the sake
+dictionary as follows. 
+Note that all other columns SHOULD also be described but are omitted for the sake
 of example.
 
 ```JSON  
