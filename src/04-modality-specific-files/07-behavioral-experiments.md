@@ -5,14 +5,14 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     beh/
-        sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_events.tsv
-        sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_events.json
-        sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_beh.tsv
-        sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_beh.json
-        sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_physio.tsv.gz
-        sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_physio.json
-        sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_stim.tsv.gz
-        sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_stim.json
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_events.tsv
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_events.json
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_beh.tsv
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_beh.json
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_recording-<label>]_physio.tsv.gz
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_recording-<label>]_physio.json
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_recording-<label>]_stim.tsv.gz
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_recording-<label>]_stim.json
 ```
 
 In addition to logs from behavioral experiments performed alongside imaging data
