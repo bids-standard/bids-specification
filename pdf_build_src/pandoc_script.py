@@ -5,8 +5,22 @@ This is done once the duplicate src directory is processed.
 import os
 import subprocess
 
+"""Number of chars maximal in one line approximated from a line of the PDF"""
+NB_CHARS_LINE_PDF = 100
+
 def correct_table(table):
-    """Compute the max number of characters and dashes for each column and create the corrected table"""
+    """Compute the max number of characters and dashes for each column and create the corrected table
+
+    Parameters
+    ----------
+    table : List of List of str
+        Table content extracted from the markdown file.
+
+    Returns
+    -------
+    new_table : List of str
+        List of corrected lines of the input table with corrected number of dashes and aligned fences.
+    """
     import numpy as np
     new_table = []
     nb_of_rows = len(table)
