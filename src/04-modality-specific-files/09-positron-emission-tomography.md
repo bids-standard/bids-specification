@@ -156,7 +156,7 @@ In order to simplify a distinction between PET data acquired with and without bl
 	"BodyPart": "Brain",
 	"BodyWeight": 21,
 	"BodyWeightUnit": "kg",
-	"unit": "Bq/ml", 
+	"Unit": "Bq/ml", 
 	"TracerName": "CIMBI-36",
 	"TracerRadionuclide": "C11",
 	"TracerMolecularWeight": 380.28,
@@ -178,7 +178,7 @@ In order to simplify a distinction between PET data acquired with and without bl
 	"FrameTimesStart": [0, 10, 20, 30, 40, 50, 60, 80, 100, 120, 140, 160, 180, 240, 300, 360, 420, 480, 540, 660, 780, 900, 1020, 1140, 1260, 1380, 1500, 1800, 2100, 2400, 2700, 3000, 3300, 3600, 3900, 4200, 4500, 4800, 5100, 5400, 5700, 6000, 6300, 6600, 6900],
 	"FrameDuration": [10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 60, 60, 60, 60, 60, 60, 120, 120, 120, 120, 120, 120, 120, 120, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
 	"AcquisitionMode": "list mode",
-	"ImageDecayCorrected": "true",
+	"ImageDecayCorrected": true,
 	"ImageDecayCorrectionTime": 0,
 	"ReconMatrixSize": [256,256,207,45],
 	"ImageVoxelSize": [1.2188,1.2188,1.2188],
@@ -188,10 +188,10 @@ In order to simplify a distinction between PET data acquired with and without bl
 	"ReconMethodParameterValues": [16,10],
 	"ReconFilterType": "none",
 	"AttenuationCorrection": "[137Cs]transmission scan-based",
-	"PlasmaAvail": "false",
-	"MetaboliteAvail": "false",
-	"ContinuousBloodAvail": "false",
-	"DiscreteBloodAvail": "false"
+	"PlasmaAvail": false,
+	"MetaboliteAvail": false,
+	"ContinuousBloodAvail": false,
+	"DiscreteBloodAvail": false
 }
 ```
 
