@@ -22,25 +22,84 @@ def correct_table(table):
         List of corrected lines of the input table with corrected number of dashes and aligned fences.
     """
     import numpy as np
-    new_table = []
+    
     nb_of_rows = len(table)
     nb_of_cols = len(table[0])
+
     nb_of_chars = []
-    for row in table:
-        nb_of_chars.append([len(elem) for elem in row])
-    nb_of_chars = np.array(nb_of_chars)
-    max_chars_in_cols = nb_of_chars.max(axis=0)
-    print('    - Number of chars in table cells: {}'.format(max_chars_in_cols))
+    for i, row in enumerate(table):
+         # Ignore number of dashes in the count of characters
+        if i != 1:
+            nb_of_chars.append([len(elem) for elem in row])
 
-    for row in table:
-        for i, elem in enumerate(row):
-            if i == 0:
-                row_content = '|'
-            elif i > 0:
-                row_content += ' {:{align}{width}} |'.format(elem, align='<', width=(max_chars_in_cols[i]))
+    # Convert the list to a numpy array and computes the maximum number of chars for each column
+    nb_of_chars_arr = np.array(nb_of_chars)
+    max_chars_in_cols = nb_of_chars_arr.max(axis=0)
 
-        print(row_content)
+    # Computes number of dashes based on the maximal number of characters in each column
+    nb_of_dashes = max_chars_in_cols
+    prop_of_dashes = nb_of_dashes / nb_of_dashes.sum()
+    nb_of_chars_in_pdf = prop_of_dashes * int(NB_CHARS_LINE_PDF)
 
+    # print('    - Number of chars in table cells: {}'.format(max_chars_in_cols))
+    # print('    - Number of dashes (per column): {}'.format(nb_of_dashes))
+    # print('    - Proportion of dashes (per column): {}'.format(prop_of_dashes))
+    # print('    - Number of chars max in column (PDF): {}'.format(nb_of_chars_in_pdf))
+
+    # Offset that can be used to ajust the correction of number of dashes in the first and 
+    # second columns by the number specified
+    offset = [15, 0]
+    
+    # Computes the corrected number of dashes. An offset can be used to extend 
+    for i, (value, prop) in enumerate(zip(max_chars_in_cols,prop_of_dashes)):
+        # Correction for first column
+        if i == 1:
+            if int(value) < int(NB_CHARS_LINE_PDF) and prop < 0.5:
+                first_column_width = int(nb_of_dashes.sum() * (value / int(NB_CHARS_LINE_PDF)) + offset[0])
+            else:
+                first_column_width = int(value)
+            # print('    - Final number of chars in first column: {}'.format(first_column_width))
+        # Correction for second column
+        elif i == 2:
+            if int(value) < int(NB_CHARS_LINE_PDF) and prop < 0.5:
+                second_column_width = int(nb_of_dashes.sum() * (value / int(NB_CHARS_LINE_PDF)) + offset[1])
+            else:
+                second_column_width = int(value)
+            # print('    - Final number of chars in second column: {}'.format(second_column_width))
+
+    # Format the lines with correct number of dashes or whitespaces and correct alignment of fences and
+    # populate the new table (A List of str)
+    new_table = []
+    for i, row in enumerate(table):
+        row_content = []
+        for j, elem in enumerate(row):
+            if j == 0 or j == len(row) - 1:
+                row_content.append(elem)
+            else:
+                if i == 1:
+                    if j == 1:
+                        row_content.append('{:-{align}{width}}'.format(elem, align='<', width=(first_column_width)))
+                    elif j == 2:
+                        row_content.append('{:-{align}{width}}'.format(elem, align='<', width=(second_column_width)))
+                    else:
+                        row_content.append('{:-{align}{width}}'.format(elem, align='<', width=(max_chars_in_cols[j])))
+                else:
+                    if j == 1:
+                        row_content.append('{:{align}{width}}'.format(elem, align='<', width=(first_column_width)))
+                    elif j == 2:
+                        row_content.append('{:{align}{width}}'.format(elem, align='<', width=(second_column_width)))
+                    else:
+                        row_content.append('{:{align}{width}}'.format(elem, align='<', width=(max_chars_in_cols[j])))
+           
+        #print(row_content)
+
+        # Handles return to line
+        if i < nb_of_rows - 1:
+            new_table.append('|'.join(row_content)+' \n')
+        elif i == nb_of_rows - 1:
+            new_table.append('|'.join(row_content)+' \n\n')
+
+    return new_table
 
 def correct_tables():
     """Make sure that:
@@ -50,20 +109,22 @@ def correct_tables():
     markdown_list = []
     for root, dirs, files in os.walk('.'):
         for file in files:
-            if file.endswith(".md") and file != 'index.md' and file != '01-contributors.md':
+            if file.endswith(".md") and file != 'index.md' and file != '01-contributors.md' and file != '04-entity-table.md':
                 print('Check tables in {}'.format(os.path.join(root, file)))
                 markdown_list.append(os.path.join(root, file))
                 with open(os.path.join(root, file),'r') as f:
                     content = f.readlines()
-                line_nb = 0
                 tables = []
                 table_mode = False
-                for line in content:
+                start_line = 0
+                new_content = []
+                for line_nb, line in enumerate(content):
                     if line:
-                        # Use dashes to detect where a table start 
+                        # Use dashes to detect where a table start and extract the header and the dashes lines
                         if '--' in line and not table_mode:
                             table_mode = True
-                            print('  * Detected table starting line {}'.format(line_nb-1))
+                            start_line = line_nb-1
+                            print('  * Detected table starting line {}'.format(start_line))
                             table = []
                             header_row = [c.strip() for c in content[line_nb-1].split('|')]
                             row = [c.strip() for c in line.split('|')]
@@ -75,13 +136,28 @@ def correct_tables():
                             if row != ['']:
                                 table.append(row)
                             else:
+                                end_line = line_nb-1
                                 table_mode = False
+                                
+                                # Correct the given table
                                 table = correct_table(table)
-                                tables.append(table)
 
+                                # Update the corresponding lines in the markdown with the corrected table
+                                count = 0
+                                for i, new_line in enumerate(content):
+                                    if i == start_line:
+                                        new_content.pop()
+                                    if i >= start_line and i <= end_line:
+                                        new_content.append(table[count])
+                                        count += 1   
+                        else:
+                            new_content.append(line)
 
                     line_nb += 1
-                #print(tables)
+
+                # Overwrite with the new markdown content
+                with open(os.path.join(root, file),'w') as f:
+                    f.writelines(new_content)
 
            
 def build_pdf(filename):
