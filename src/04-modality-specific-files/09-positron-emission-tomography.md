@@ -194,8 +194,6 @@ In order to simplify a distinction between PET data acquired with and without bl
 	"AcquisitionMode": "list mode",
 	"ImageDecayCorrected": true,
 	"ImageDecayCorrectionTime": 0,
-	"ReconMatrixSize": [256,256,207,45],
-	"ImageVoxelSize": [1.2188,1.2188,1.2188],
 	"ReconMethodName": "3D-OSEM-PSF",
 	"ReconMethodParameterLabels": ["subsets","iterations"],
 	"ReconMethodParameterUnit": ["none","none"],
