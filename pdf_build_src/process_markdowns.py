@@ -286,7 +286,7 @@ def correct_tables(root_path):
                     if line:
                         # Use dashes to detect where a table start and 
                         # extract the header and the dashes lines
-                        if '--' in line and not table_mode:
+                        if '--' in line and '|' in line and not table_mode:
                             table_mode = True
                             start_line = line_nb-1
                             print('  * Detected table starting line {}'.format(start_line))
