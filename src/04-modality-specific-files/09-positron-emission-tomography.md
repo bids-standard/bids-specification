@@ -151,13 +151,13 @@ In order to simplify a distinction between PET data acquired with and without bl
 | MetaboliteRecoveryCorrectionApplied | REQUIRED. Metabolite recovery correction from the HPLC, for tracers where it changes with time postinjection. If “true” please include recovery fractions from the HPLC as a column in the table with blood data (*_blood.tsv). |
 | ContinuousBloodAvail | REQUIRED. Boolean that specifies if continuous blood measurements are available. If this is false, all of the continuous blood fields should be excluded. |
 | ContinuousBloodDispersionCorrected | REQUIRED. Boolean flag specifying whether the continuous blood data have been dispersion-corrected. |
-| ContinuousBloodWithdrawalRate | RECOMMENDED. The rate at which the blood was withdrawn from the subject. The unit of the specified withdrawal rate should be in ml/s. |
+| ContinuousBloodWithdrawalRate | RECOMMENDED. The rate at which the blood was withdrawn from the subject. The unit of the specified withdrawal rate should be in mL/s. |
 | ContinuousBloodTubingType | RECOMMENDED. Description of the type of tubing used, ideally including the material and (internal) diameter. |
 | ContinuousBloodTubingLength | RECOMMENDED. The length of the blood tubing, from the subject to the detector in the default unit centimeter. |
 | ContinuousBloodDispersionConstant | RECOMMENDED. External dispersion time constant resulting from tubing in default unit seconds. |
 | DiscreteBloodAvail | REQUIRED. Boolean that specifies if discrete blood measurements are available. If this is false, all of the discrete blood fields should be excluded. |
 | DiscreteBloodHaematocrit | RECOMMENDED. Measured haematocrit, i.e. the volume of erythrocytes divided by the volume of whole blood. |
-| DiscreteBloodDensity | RECOMMENDED. Measured blood density. Unit of blood density should be in g/ml. |
+| DiscreteBloodDensity | RECOMMENDED. Measured blood density. Unit of blood density should be in g/mL. |
 
 
 
