@@ -148,8 +148,9 @@ NB_CHARS_LINE_PDF = 100
 def correct_table(table, offset = [20, 80], debug=False):
     """Create the corrected table.
 
-    It computes the number of characters maximal in each column and reformat line to make sure 
-    the first and second lines have enough dashes (in proportion) and fences anr correctly aligned 
+    Compute the number of characters maximal in each table column and reformat each 
+    row in the table to make sure the first and second rows of the table have enough
+    dashes (in proportion) and that fences are correctly aligned
     for correct rendering in the generated PDF.
 
     Parameters
