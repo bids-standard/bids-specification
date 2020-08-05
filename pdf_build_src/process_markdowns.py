@@ -204,29 +204,33 @@ def correct_table(table):
                 second_column_width = int(value)
             # print('    - Final number of chars in second column: {}'.format(second_column_width))
 
-    # Format the lines with correct number of dashes or whitespaces and correct alignment of fences and
-    # populate the new table (A List of str)
+    # Format the lines with correct number of dashes or whitespaces and 
+    # correct alignment of fences and populate the new table (A List of str)
     new_table = []
     for i, row in enumerate(table):
+
+        if i == 1:
+            str_format = '{:-{align}{width}}'
+        else:
+            str_format = '{:{align}{width}}'
+
         row_content = []
         for j, elem in enumerate(row):
+            # Set the column width
+            column_width = max_chars_in_cols[j]
+            if j == 1:
+                column_width = first_column_width
+            elif j == 2:
+                column_width = second_column_width
+            
             if j == 0 or j == len(row) - 1:
                 row_content.append(elem)
             else:
                 if i == 1:
-                    if j == 1:
-                        row_content.append('{:-{align}{width}}'.format(elem, align='<', width=(first_column_width)))
-                    elif j == 2:
-                        row_content.append('{:-{align}{width}}'.format(elem, align='<', width=(second_column_width)))
-                    else:
-                        row_content.append('{:-{align}{width}}'.format(elem, align='<', width=(max_chars_in_cols[j])))
+                    row_content.append(str_format.format(elem, align='<', width=(column_width)))
                 else:
-                    if j == 1:
-                        row_content.append('{:{align}{width}}'.format(elem, align='<', width=(first_column_width)))
-                    elif j == 2:
-                        row_content.append('{:{align}{width}}'.format(elem, align='<', width=(second_column_width)))
-                    else:
-                        row_content.append('{:{align}{width}}'.format(elem, align='<', width=(max_chars_in_cols[j])))
+                    row_content.append(str_format.format(elem, align='<', width=(column_width)))
+
         new_table.append(row_content)
         #print(row_content)
     return new_table
