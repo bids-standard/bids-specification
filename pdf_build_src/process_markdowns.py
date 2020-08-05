@@ -189,16 +189,17 @@ def correct_table(table, offset = [20, 80], debug=False):
 
     # Computes the corrected number of dashes. An offset can be used to extend 
     for i, (value, prop) in enumerate(zip(max_chars_in_cols,prop_of_dashes)):
-        # Correction for first column
+        # Correction for first column (Rules could be changed here for instance)
         if i == 1:
-            if int(value) < int(NB_CHARS_LINE_PDF) and prop < 0.25:
+            if int(value) < int(NB_CHARS_LINE_PDF) and prop < 0.2 and max_chars_in_cols[2] > 2 * NB_CHARS_LINE_PDF:
+                first_column_width = int(nb_of_dashes.sum() * (value / int(NB_CHARS_LINE_PDF)) + 6 * offset[0])
+            elif int(value) < int(NB_CHARS_LINE_PDF) and prop < 0.2 and max_chars_in_cols[2] <= 2 * NB_CHARS_LINE_PDF:
                 first_column_width = int(nb_of_dashes.sum() * (value / int(NB_CHARS_LINE_PDF)) + offset[0])
             else:
-                first_column_width = int(value)
-            
+                first_column_width = int(value)     
         # Correction for second column
         elif i == 2:
-            if int(value) < int(NB_CHARS_LINE_PDF) and prop < 0.25:
+            if int(value) < int(NB_CHARS_LINE_PDF) and prop < 0.2:
                 second_column_width = int(nb_of_dashes.sum() * (value / int(NB_CHARS_LINE_PDF)) + offset[1])
             else:
                 second_column_width = int(value)
