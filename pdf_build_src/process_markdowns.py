@@ -380,5 +380,4 @@ if __name__ == '__main__':
     remove_internal_links(duplicated_src_dir_path, 'same')
 
     # Step 7: correct number of dashes and fences alignment for rendering tables in PDF
-    correct_tables(duplicated_src_dir_path) 
-    
+    correct_tables(duplicated_src_dir_path)
