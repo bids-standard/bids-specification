@@ -185,20 +185,20 @@ def correct_table(table):
 
     # Offset that can be used to ajust the correction of number of dashes in the first and 
     # second columns by the number specified
-    offset = [15, 5]
+    offset = [10, 40]
     
     # Computes the corrected number of dashes. An offset can be used to extend 
     for i, (value, prop) in enumerate(zip(max_chars_in_cols,prop_of_dashes)):
         # Correction for first column
         if i == 1:
-            if int(value) < int(NB_CHARS_LINE_PDF) and prop < 0.5:
+            if int(value) < int(NB_CHARS_LINE_PDF) and prop < 0.25:
                 first_column_width = int(nb_of_dashes.sum() * (value / int(NB_CHARS_LINE_PDF)) + offset[0])
             else:
                 first_column_width = int(value)
             # print('    - Final number of chars in first column: {}'.format(first_column_width))
         # Correction for second column
         elif i == 2:
-            if int(value) < int(NB_CHARS_LINE_PDF) and prop < 0.5:
+            if int(value) < int(NB_CHARS_LINE_PDF) and prop < 0.25:
                 second_column_width = int(nb_of_dashes.sum() * (value / int(NB_CHARS_LINE_PDF)) + offset[1])
             else:
                 second_column_width = int(value)
@@ -226,13 +226,14 @@ def correct_table(table):
             if j == 0 or j == len(row) - 1:
                 row_content.append(elem)
             else:
-                if i == 1:
-                    row_content.append(str_format.format(elem, align='<', width=(column_width)))
+                if '`' in elem:
+                    str_format = ' {:{align}{width}}'
+                    row_content.append(str_format.format(elem, align='<', width=(column_width-1)))
                 else:
                     row_content.append(str_format.format(elem, align='<', width=(column_width)))
-
+        # print(row_content)
         new_table.append(row_content)
-        #print(row_content)
+        
     return new_table
 
 
