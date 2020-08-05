@@ -165,9 +165,9 @@ def correct_table(table, offset = [20, 80], debug=False):
 
     Returns
     -------
-    new_table : List of List of str
+    new_table : list of list of str
         List of corrected lines of the input table with corrected number of dashes and aligned fences.
-        To be later join with |'s
+        To be later joined with pipe characters (``|``).
     """
     nb_of_rows = len(table)
     nb_of_cols = len(table[0])
