@@ -233,9 +233,8 @@ def correct_table(table):
 
 
 def correct_tables(root_path):
-    """Make sure that:
-    * proportion and number of dashes (---) are sufficiently enough for PDF generation, and 
-    * fences (|) are corrected aligned
+    """Rewrite tables in markdown files such that the proportion and number of dashes (---) are 
+    sufficiently enough for PDF generation and fences (|) are corrected aligned.
     """
     markdown_list = []
     for root, dirs, files in os.walk(root_path):
@@ -251,7 +250,8 @@ def correct_tables(root_path):
                 new_content = []
                 for line_nb, line in enumerate(content):
                     if line:
-                        # Use dashes to detect where a table start and extract the header and the dashes lines
+                        # Use dashes to detect where a table start and 
+                        # extract the header and the dashes lines
                         if '--' in line and not table_mode:
                             table_mode = True
                             start_line = line_nb-1
@@ -273,7 +273,8 @@ def correct_tables(root_path):
                                 # Correct the given table
                                 table = correct_table(table)
 
-                                # Update the corresponding lines in the markdown with the corrected table
+                                # Update the corresponding lines in 
+                                # the markdown with the corrected table
                                 count = 0
                                 for i, new_line in enumerate(content):
                                     if i == start_line:
