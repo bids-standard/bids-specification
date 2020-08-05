@@ -42,7 +42,7 @@ jobs:
   build_docs_pdf:
     working_directory: ~/bids-specification/pdf_build_src
     docker:
-      - image: danteev/texlive:2020
+      - image: danteev/texlive:latest
     steps:
       - checkout:
           path: ~/bids-specification
