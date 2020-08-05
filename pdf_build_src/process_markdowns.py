@@ -157,9 +157,9 @@ def correct_table(table, offset = [20, 80], debug=False):
     ----------
     table : list of list of str
         Table content extracted from the markdown file.
-    offset : [x, y]
-        Offset that can be used to ajust the correction of number of dashes in the first (x) and 
-        second (y) columns by the number specified
+    offset : list of int
+        Offset that is used to adjust the correction of number of dashes in the first (offset[0]) and 
+        second (offset[1]) columns by the number specified. Defaults to [20, 80].
     debug : Bool
         If True, print debugging informations (By default: False)
 
