@@ -185,7 +185,7 @@ def correct_table(table):
 
     # Offset that can be used to ajust the correction of number of dashes in the first and 
     # second columns by the number specified
-    offset = [15, 0]
+    offset = [15, 5]
     
     # Computes the corrected number of dashes. An offset can be used to extend 
     for i, (value, prop) in enumerate(zip(max_chars_in_cols,prop_of_dashes)):
