@@ -48,8 +48,7 @@ jobs:
           path: ~/bids-specification
       - run:
           command: |
-            pip3 install --upgrade pip
-            pip3 install numpy
+            python3 -m pip install numpy
       - run:
           name: generate pdf version docs
           command: sh build_pdf.sh
