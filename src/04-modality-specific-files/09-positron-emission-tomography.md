@@ -10,8 +10,14 @@ context of the academic literature:
 The following example PET datasets have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
+<<<<<<< Updated upstream
 -   Single dynamic scan (pet, blood): [`pet_example_1`](https://doi.org/10.17605/OSF.IO/CJ2DR)
 -   Single dynamic scan (pet, mri): [`pet_example_2`](https://doi.org/10.5281/zenodo.1490922)
+=======
+-   Single dynamic scan (pet, mri, blood): [`pet_example1`](https://www.dropbox.com/sh/dmjmaxfswatptpm/AACw31cTyChLA1kwM4Vhqueja?dl=0)
+-   Single dynamic scan (pet, blood): [`pet_example2`](https://www.dropbox.com/sh/i95a71rpq2unks7/AACby5XcYQp9vcwgx3cNXBhza?dl=0)
+-   Single dynamic scan (pet, mri): [`pet_example3`](https://www.dropbox.com/sh/i0c3iq50id4s0d3/AABSjaczHM1SQnMRvh3fc7fna?dl=0)
+>>>>>>> Stashed changes
 
 
 Further PET datasets are available from [OpenNeuro](https://openneuro.org).
