@@ -31,11 +31,12 @@ def build_pdf(filename):
     flags = (" -f markdown_github --include-before-body cover.tex --toc "
              "-V documentclass=report --listings -H listings_setup.tex "
              "-H header.tex -V linkcolor:blue -V geometry:a4paper "
-             "-V geometry:margin=2cm --pdf-engine=xelatex -o ")
+             "-V geometry:margin=2cm --pdf-engine=xelatex -o "
+             )
     output_filename = filename
 
     cmd = default_pandoc_cmd + files_string + flags + output_filename
-    subprocess.run(cmd.split())
+    subprocess.run(cmd.split() + ["-V mainfont=\"DejaVu Sans\" "])
 
 
 if __name__ == "__main__":
