@@ -185,7 +185,7 @@ In order to simplify a distinction between PET data acquired with and without bl
 	"ModeOfAdministration": "bolus",
 	"MolarActivity": 353.51,
 	"MolarActivityUnit": "GBq/umol",
-	"MolarActivityMeasTime": "12:59:00",
+	"MolarActivityMeasTime": "13:04:42",
 	"TimeZero": "13:04:42",
 	"ScanStart": 0,
 	"InjectionStart": 0,
