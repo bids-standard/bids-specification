@@ -10,6 +10,7 @@ import os
 import subprocess
 import re
 from datetime import datetime
+import numpy as np
 
 
 def run_shell_cmd(command):
@@ -141,16 +142,26 @@ def modify_changelog():
         file.writelines(data)
 
 
-"""Number of chars maximal in one line approximated from a line of the PDF"""
+# Number of chars maximal in one line approximated from a line of the PDF
 NB_CHARS_LINE_PDF = 100
 
-def correct_table(table):
-    """Compute the max number of characters and dashes for each column and create the corrected table
+def correct_table(table, offset = [10, 40], debug=False):
+    """Create the corrected table.
+    It computes the number of characters maximal in each column and reformat line to make sure 
+    the first and second lines have enough dashes (in proportion) and fences anr correctly aligned 
+    for correct rendering in the generated PDF.
 
     Parameters
     ----------
     table : List of List of str
         Table content extracted from the markdown file.
+
+    offset : [x, y]
+        Offset that can be used to ajust the correction of number of dashes in the first (x) and 
+        second (y) columns by the number specified
+
+    debug : Bool
+        If True, print debugging informations (By default: False)
 
     Returns
     -------
@@ -158,8 +169,7 @@ def correct_table(table):
         List of corrected lines of the input table with corrected number of dashes and aligned fences.
         To be later join with |'s
     """
-    import numpy as np
-    
+
     nb_of_rows = len(table)
     nb_of_cols = len(table[0])
 
@@ -178,15 +188,6 @@ def correct_table(table):
     prop_of_dashes = nb_of_dashes / nb_of_dashes.sum()
     nb_of_chars_in_pdf = prop_of_dashes * int(NB_CHARS_LINE_PDF)
 
-    # print('    - Number of chars in table cells: {}'.format(max_chars_in_cols))
-    # print('    - Number of dashes (per column): {}'.format(nb_of_dashes))
-    # print('    - Proportion of dashes (per column): {}'.format(prop_of_dashes))
-    # print('    - Number of chars max in column (PDF): {}'.format(nb_of_chars_in_pdf))
-
-    # Offset that can be used to ajust the correction of number of dashes in the first and 
-    # second columns by the number specified
-    offset = [10, 40]
-    
     # Computes the corrected number of dashes. An offset can be used to extend 
     for i, (value, prop) in enumerate(zip(max_chars_in_cols,prop_of_dashes)):
         # Correction for first column
@@ -195,14 +196,21 @@ def correct_table(table):
                 first_column_width = int(nb_of_dashes.sum() * (value / int(NB_CHARS_LINE_PDF)) + offset[0])
             else:
                 first_column_width = int(value)
-            # print('    - Final number of chars in first column: {}'.format(first_column_width))
+            
         # Correction for second column
         elif i == 2:
             if int(value) < int(NB_CHARS_LINE_PDF) and prop < 0.25:
                 second_column_width = int(nb_of_dashes.sum() * (value / int(NB_CHARS_LINE_PDF)) + offset[1])
             else:
                 second_column_width = int(value)
-            # print('    - Final number of chars in second column: {}'.format(second_column_width))
+
+    if debug:
+        print('    - Number of chars in table cells: {}'.format(max_chars_in_cols))
+        print('    - Number of dashes (per column): {}'.format(nb_of_dashes))
+        print('    - Proportion of dashes (per column): {}'.format(prop_of_dashes))
+        print('    - Number of chars max in column (PDF): {}'.format(nb_of_chars_in_pdf))
+        print('    - Final number of chars in first column: {}'.format(first_column_width))
+        print('    - Final number of chars in second column: {}'.format(second_column_width))
 
     # Format the lines with correct number of dashes or whitespaces and 
     # correct alignment of fences and populate the new table (A List of str)
@@ -231,15 +239,24 @@ def correct_table(table):
                     row_content.append(str_format.format(elem, align='<', width=(column_width-1)))
                 else:
                     row_content.append(str_format.format(elem, align='<', width=(column_width)))
-        # print(row_content)
+        if debug:
+            print(row_content)
+
         new_table.append(row_content)
         
     return new_table
 
 
 def correct_tables(root_path):
-    """Rewrite tables in markdown files such that the proportion and number of dashes (---) are 
-    sufficiently enough for PDF generation and fences (|) are corrected aligned.
+    """Change tables in markdown files for correct rendering in PDF.
+    This modification makes sure that the proportion and number of dashes (---) are 
+    sufficiently enough for correct PDF rendering and fences (|) are corrected aligned.
+
+    Parameters
+    ----------
+    root_path : str
+        Path to the root directory containing the markdown files
+
     """
     markdown_list = []
     for root, dirs, files in os.walk(root_path):
