@@ -218,9 +218,9 @@ def correct_table(table, offset = [10, 40], debug=False):
     for i, row in enumerate(table):
 
         if i == 1:
-            str_format = '{:-{align}{width}}'
+            str_format = ' {:-{align}{width}} '
         else:
-            str_format = '{:{align}{width}}'
+            str_format = ' {:{align}{width}} '
 
         row_content = []
         for j, elem in enumerate(row):
@@ -235,8 +235,20 @@ def correct_table(table, offset = [10, 40], debug=False):
                 row_content.append(elem)
             else:
                 if '`' in elem:
-                    str_format = ' {:{align}{width}}'
-                    row_content.append(str_format.format(elem, align='<', width=(column_width-1)))
+                    str_format = ' {:{align}{width}} '
+                    row_content.append(str_format.format(elem, align='<', width=(column_width)))
+                elif '-:' in elem and ':-' in elem :
+                    str_format = ' {:-{align}{width}}: '
+                    row_content.append(str_format.format(':-', align='<', width=(column_width)))
+                elif not '-:' in elem and ':-' in elem :
+                    str_format = ' {:-{align}{width}} '
+                    row_content.append(str_format.format(':-', align='<', width=(column_width)))
+                elif '-:' in elem and not ':-' in elem :
+                    str_format = ' {:-{align}{width}}: '
+                    row_content.append(str_format.format('-', align='<', width=(column_width)))
+                elif i == 1 and not '-:' in elem and not ':-' in elem :
+                    str_format = ' {:-{align}{width}} '
+                    row_content.append(str_format.format('-', align='<', width=(column_width)))
                 else:
                     row_content.append(str_format.format(elem, align='<', width=(column_width)))
         if debug:
