@@ -145,8 +145,9 @@ def modify_changelog():
 # Number of chars maximal in one line approximated from a line of the PDF
 NB_CHARS_LINE_PDF = 100
 
-def correct_table(table, offset = [10, 40], debug=False):
+def correct_table(table, offset = [20, 80], debug=False):
     """Create the corrected table.
+
     It computes the number of characters maximal in each column and reformat line to make sure 
     the first and second lines have enough dashes (in proportion) and fences anr correctly aligned 
     for correct rendering in the generated PDF.
@@ -155,11 +156,9 @@ def correct_table(table, offset = [10, 40], debug=False):
     ----------
     table : List of List of str
         Table content extracted from the markdown file.
-
     offset : [x, y]
         Offset that can be used to ajust the correction of number of dashes in the first (x) and 
         second (y) columns by the number specified
-
     debug : Bool
         If True, print debugging informations (By default: False)
 
@@ -261,6 +260,7 @@ def correct_table(table, offset = [10, 40], debug=False):
 
 def correct_tables(root_path):
     """Change tables in markdown files for correct rendering in PDF.
+
     This modification makes sure that the proportion and number of dashes (---) are 
     sufficiently enough for correct PDF rendering and fences (|) are corrected aligned.
 
@@ -305,7 +305,7 @@ def correct_tables(root_path):
                                 table_mode = False
                                 
                                 # Correct the given table
-                                table = correct_table(table)
+                                table = correct_table(table, debug=True)
 
                                 # Update the corresponding lines in 
                                 # the markdown with the corrected table
