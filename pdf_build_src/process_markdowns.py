@@ -160,8 +160,8 @@ def correct_table(table, offset = [20, 80], debug=False):
     offset : list of int
         Offset that is used to adjust the correction of number of dashes in the first (offset[0]) and 
         second (offset[1]) columns by the number specified. Defaults to [20, 80].
-    debug : Bool
-        If True, print debugging informations (By default: False)
+    debug : bool
+        If True, print debugging information. Defaults to False.
 
     Returns
     -------
