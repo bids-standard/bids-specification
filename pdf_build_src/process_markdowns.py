@@ -155,7 +155,7 @@ def correct_table(table, offset = [20, 80], debug=False):
 
     Parameters
     ----------
-    table : List of List of str
+    table : list of list of str
         Table content extracted from the markdown file.
     offset : [x, y]
         Offset that can be used to ajust the correction of number of dashes in the first (x) and 
