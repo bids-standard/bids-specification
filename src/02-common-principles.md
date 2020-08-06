@@ -101,7 +101,7 @@ Two prominent examples of entities are `subject` and `session`.
 For a data file that was collected in a given `session` from a given
 `subject`, the file name MUST begin with the string `sub-<label>_ses-<label>`. 
 If the `session` level is omitted in the folder structure, the file name MUST begin 
-with the string `sub-<label>`.
+with the string `sub-<label>`, without `ses-<label>`.
 
 Note that `sub-<label>` corresponds to the `subject` entity because it has
 the `sub-` "key" and`<label>` "value", where `<label>` would in a real data file
