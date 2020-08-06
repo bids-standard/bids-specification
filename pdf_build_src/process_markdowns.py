@@ -50,7 +50,7 @@ def copy_images(root_path):
     subdir_list = []
 
     # walk through the src directory to find subdirectories named 'images'
-    # and copy contents to the 'images' directory in the duplicate src 
+    # and copy contents to the 'images' directory in the duplicate src
     # directory
     for root, dirs, files in os.walk(root_path):
         if 'images' in dirs:
@@ -70,7 +70,7 @@ def extract_header_string():
         data = file.readlines()
 
     header_string = data[0].split(": ")[1]
-    
+
     title = " ".join(header_string.split()[0:4])
     version_number = header_string.split()[-1]
     build_date = datetime.today().strftime('%Y-%m-%d')
@@ -146,7 +146,7 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
 
     """Create the corrected table.
 
-    Compute the number of characters maximal in each table column and reformat each 
+    Compute the number of characters maximal in each table column and reformat each
     row in the table to make sure the first and second rows of the table have enough
     dashes (in proportion) and that fences are correctly aligned
     for correct rendering in the generated PDF.
@@ -156,7 +156,7 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
     table : list of list of str
         Table content extracted from the markdown file.
     offset : list of int
-        Offset that is used to adjust the correction of number of dashes in the first (offset[0]) and 
+        Offset that is used to adjust the correction of number of dashes in the first (offset[0]) and
         second (offset[1]) columns by the number specified in percentage. Defaults to [0.0, 0.0].
     debug : bool
         If True, print debugging information. Defaults to False.
@@ -196,7 +196,7 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
         print('    - Final number of chars in first column: {}'.format(first_column_width))
         print('    - Final number of chars in second column: {}'.format(second_column_width))
 
-    # Format the lines with correct number of dashes or whitespaces and 
+    # Format the lines with correct number of dashes or whitespaces and
     # correct alignment of fences and populate the new table (A List of str)
     new_table = []
     for i, row in enumerate(table):
@@ -214,7 +214,7 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
                 column_width = first_column_width
             elif j == 2:
                 column_width = second_column_width
-            
+
             if j == 0 or j == len(row) - 1:
                 row_content.append(elem)
             else:
@@ -235,7 +235,7 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
                     row_content.append(str_format.format(elem, align='<', width=(column_width)))
 
         new_table.append(row_content)
-        
+
     return new_table
 
 def _contains_table_start(line, debug=False):
@@ -247,8 +247,8 @@ def _contains_table_start(line, debug=False):
     nb_of_dashes = line.count('-')
 
     if debug:
-        print('Number of dashes / pipes : {} / {}'.format(nb_of_dashes, nb_of_pipes)) 
-    
+        print('Number of dashes / pipes : {} / {}'.format(nb_of_dashes, nb_of_pipes))
+
     if nb_of_pipes > 2 and nb_of_dashes > 2:
         is_table = True
 
@@ -258,7 +258,7 @@ def _contains_table_start(line, debug=False):
 def correct_tables(root_path, debug=False):
     """Change tables in markdown files for correct rendering in PDF.
 
-    This modification makes sure that the proportion and number of dashes (---) are 
+    This modification makes sure that the proportion and number of dashes (---) are
     sufficiently enough for correct PDF rendering and fences (|) are correctly aligned.
 
 
@@ -284,13 +284,13 @@ def correct_tables(root_path, debug=False):
                 start_line = 0
                 new_content = []
                 for line_nb, line in enumerate(content):
-                    # Use dashes to detect where a table start and 
+                    # Use dashes to detect where a table start and
                     # extract the header and the dashes lines
                     if not table_mode and _contains_table_start(line, debug):
                         # Initialize a list to store table rows
                         table = []
 
-                        # Set table_mode to True such that the next lines 
+                        # Set table_mode to True such that the next lines
                         # will be append to the table list
                         table_mode = True
 
@@ -298,7 +298,7 @@ def correct_tables(root_path, debug=False):
                         start_line = line_nb-1
 
                         print('  * Detected table starting line {}'.format(start_line))
-                        # Extract for each row (header and the one containing dashes) 
+                        # Extract for each row (header and the one containing dashes)
                         # the content of each column and strip to remove extra whitespace
                         header_row = [c.strip() for c in content[line_nb-1].split('|')]
                         row = [c.strip() for c in line.split('|')]
@@ -308,7 +308,7 @@ def correct_tables(root_path, debug=False):
                         table.append(row)
 
                     elif table_mode:
-                        # Extract from the line string the content of each column 
+                        # Extract from the line string the content of each column
                         # and strip them to remove extra whitespace
                         row = [c.strip() for c in line.split('|')]
 
@@ -330,13 +330,13 @@ def correct_tables(root_path, debug=False):
                             is_end_of_table = True
                             end_line = line_nb - 1
 
-                        # If the end of the table is reached, correct the table and 
-                        # append each corrected row (line) to the content of the new markdown content 
+                        # If the end of the table is reached, correct the table and
+                        # append each corrected row (line) to the content of the new markdown content
                         if is_end_of_table:
                             print('    - End of table detected after line {}'.format(end_line))
-                            
-                            # Set table_mode to False such that the script will look 
-                            # for a new table start at the next markdown line 
+
+                            # Set table_mode to False such that the script will look
+                            # for a new table start at the next markdown line
                             table_mode = False
 
                             # Correct the given table
@@ -345,7 +345,7 @@ def correct_tables(root_path, debug=False):
                             if debug:
                                 print(table)
 
-                            # Update the corresponding lines in 
+                            # Update the corresponding lines in
                             # the markdown with the corrected table
                             count = 0
                             for i, new_line in enumerate(content):
@@ -353,10 +353,10 @@ def correct_tables(root_path, debug=False):
                                     new_content.pop()
                                 if i >= start_line and i < end_line:
                                     new_content.append('|'.join(table[count])+' \n')
-                                    count += 1   
+                                    count += 1
                                 elif i == end_line:
                                     new_content.append('|'.join(table[count])+' \n\n')
-                                    count += 1 
+                                    count += 1
                             print('    - Appended corrected table lines to the new markdown content')
                     else:
                         new_content.append(line)
@@ -400,7 +400,7 @@ if __name__ == '__main__':
 
     # Step 3: copy images from subdirectories of src_copy directory
     copy_images(duplicated_src_dir_path)
-    subprocess.call("mv src_copy/src/images/images/* src_copy/src/images/", 
+    subprocess.call("mv src_copy/src/images/images/* src_copy/src/images/",
                     shell=True)
 
     # Step 4: extract the latest version number, date and title
@@ -409,7 +409,7 @@ if __name__ == '__main__':
 
     edit_titlepage()
 
-    # Step 5: modify changelog to be a level 1 heading to facilitate section 
+    # Step 5: modify changelog to be a level 1 heading to facilitate section
     # separation
     modify_changelog()
 

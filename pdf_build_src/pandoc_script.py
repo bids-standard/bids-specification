@@ -3,6 +3,7 @@
 This is done once the duplicate src directory is processed.
 """
 import os
+import pathlib
 import subprocess
            
 def build_pdf(filename):
@@ -42,7 +43,8 @@ def build_pdf(filename):
     ]
 
     # Add input files to command
-    cmd += [f'"{index_page}"'] + [f'"{i}"' for i in sorted(markdown_list)]
+    root = pathlib.Path(__file__).parent.absolute()
+    cmd += [str(root / index_page)] + [str(root / i) for i in sorted(markdown_list)]
 
     print(os.listdir())
     print(os.getcwd())
