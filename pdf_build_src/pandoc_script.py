@@ -22,21 +22,26 @@ def build_pdf(filename):
             elif file == 'index.md':
                 index_page = os.path.join(root, file)
 
-    default_pandoc_cmd = "pandoc "
+    cmd = [
+        'pandoc',
+        index_page,
+        " ".join(sorted(markdown_list)),  # ordering is taken care of by the inherent file naming
+        '-f markdown_github',
+        '--include-before-body cover.tex',
+        '--toc',
+        '-V documentclass=report',
+        '--listings',
+        '-H listings_setup.tex',
+        '-H header.tex',
+        '-V linkcolor:blue',
+        '-V geometry:a4paper',
+        '-V geometry:margin=2cm',
+        '--pdf-engine=xelatex',
+        '-o {}'.format(filename),
+    ]
 
-    # creates string of file paths in the order we'd like them to be appear
-    # ordering is taken care of by the inherent file naming
-    files_string = index_page + " " + " ".join(sorted(markdown_list))
-
-    flags = (" -f markdown_github --include-before-body cover.tex --toc "
-             "-V documentclass=report --listings -H listings_setup.tex "
-             "-H header.tex -V linkcolor:blue -V geometry:a4paper "
-             "-V geometry:margin=2cm --pdf-engine=xelatex -o "
-             )
-    output_filename = filename
-
-    cmd = default_pandoc_cmd + files_string + flags + output_filename
-    subprocess.run(cmd.split() + ["-V mainfont=\"DejaVu Sans\" "])
+    print('running: \n\n' + ' '.join(cmd))
+    subprocess.run(cmd)
 
 
 if __name__ == "__main__":
