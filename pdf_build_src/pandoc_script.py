@@ -14,6 +14,7 @@ def build_pdf(filename):
         Name of the output file.
 
     """
+    # Get all input files
     markdown_list = []
     for root, dirs, files in os.walk('.'):
         for file in files:
@@ -22,10 +23,9 @@ def build_pdf(filename):
             elif file == 'index.md':
                 index_page = os.path.join(root, file)
 
+    # Prepare the command options
     cmd = [
         'pandoc',
-        index_page,
-        " ".join(sorted(markdown_list)),  # ordering is taken care of by the inherent file naming
         '--from=gfm',
         '--include-before-body=./cover.tex',
         '--toc',
@@ -41,8 +41,11 @@ def build_pdf(filename):
         '--output={}'.format(filename),
     ]
 
-    print(os.getcwd())
+    # Add input files to command
+    cmd + [f'"{index_page}"'] + [f'"{i}"' for i in sorted(markdown_list)]
+
     print(os.listdir())
+    print(os.getcwd())
     print('running: \n\n' + '\n'.join(cmd))
     subprocess.run(cmd)
 
