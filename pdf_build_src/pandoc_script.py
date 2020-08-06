@@ -34,7 +34,6 @@ def build_pdf(filename):
         '--include-in-header=./header.tex',
         '--include-in-header=./listings_setup.tex',
         '-V documentclass=report',
-        '-V mainfont="DejaVu Sans"',
         '-V linkcolor:blue',
         '-V geometry:a4paper',
         '-V geometry:margin=2cm',
