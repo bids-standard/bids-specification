@@ -38,7 +38,7 @@ def build_pdf(filename):
         '-V linkcolor:blue',
         '-V geometry:a4paper',
         '-V geometry:margin=2cm',
-        '--pdf-engine=lualatex',
+        '--pdf-engine=xelatex',
         '--output={}'.format(filename),
     ]
 
