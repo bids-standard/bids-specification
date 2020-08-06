@@ -42,7 +42,7 @@ def build_pdf(filename):
     ]
 
     # Add input files to command
-    cmd + [f'"{index_page}"'] + [f'"{i}"' for i in sorted(markdown_list)]
+    cmd += [f'"{index_page}"'] + [f'"{i}"' for i in sorted(markdown_list)]
 
     print(os.listdir())
     print(os.getcwd())
