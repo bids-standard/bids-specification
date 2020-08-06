@@ -26,7 +26,7 @@ def build_pdf(filename):
         'pandoc',
         index_page,
         " ".join(sorted(markdown_list)),  # ordering is taken care of by the inherent file naming
-        '-f gfm',
+        '--from=gfm',
         '--include-before-body=cover.tex',
         '--toc',
         '-V documentclass=report',
