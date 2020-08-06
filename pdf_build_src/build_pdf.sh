@@ -8,7 +8,7 @@ cp pandoc_script.py header.tex cover.tex listings_setup.tex src_copy/src
 
 # run pandoc_script from src_copy directory
 cd src_copy/src
-tree .
+python3 -c "import os; print(os.listdir())"
 python3 pandoc_script.py
 mv bids-spec.pdf ../..
 cd ../..
