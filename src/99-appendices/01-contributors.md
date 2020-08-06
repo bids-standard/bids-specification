@@ -1,7 +1,7 @@
 # Appendix I: Contributors
 
 Legend (source:
-[https://github.com/kentcdodds/all-contributors](https://github.com/kentcdodds/all-contributors))
+[https://allcontributors.org/docs/en/emoji-key](https://allcontributors.org/docs/en/emoji-key))
 
 | Emoji | Represents                                                                  |
 |---------------|-----------------------------------------------------------------------------------------|
