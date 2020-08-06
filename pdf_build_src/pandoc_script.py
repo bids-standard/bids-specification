@@ -27,6 +27,7 @@ def build_pdf(filename):
         index_page,
         " ".join(sorted(markdown_list)),  # ordering is taken care of by the inherent file naming
         '--from=gfm',
+        '--resource-path=.',
         '--include-before-body=cover.tex',
         '--toc',
         '-V documentclass=report',
@@ -37,7 +38,7 @@ def build_pdf(filename):
         '-V geometry:a4paper',
         '-V geometry:margin=2cm',
         '--pdf-engine=xelatex',
-        '-o {}'.format(filename),
+        '--output={}'.format(filename),
     ]
 
     print('running: \n\n' + '\n'.join(cmd))
