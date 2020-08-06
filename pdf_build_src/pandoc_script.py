@@ -27,12 +27,11 @@ def build_pdf(filename):
         index_page,
         " ".join(sorted(markdown_list)),  # ordering is taken care of by the inherent file naming
         '--from=gfm',
-        '--resource-path=.',
         '--include-before-body=./cover.tex',
         '--toc',
         '--listings',
-        '-H ./listings_setup.tex',
         '-H ./header.tex',
+        '-H ./listings_setup.tex',
         '-V documentclass=report',
         '-V mainfont="DejaVu Sans"',
         '-V linkcolor:blue',
@@ -42,6 +41,8 @@ def build_pdf(filename):
         '--output={}'.format(filename),
     ]
 
+    print(os.getcwd())
+    print(os.listdir())
     print('running: \n\n' + '\n'.join(cmd))
     subprocess.run(cmd)
 
