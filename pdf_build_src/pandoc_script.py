@@ -38,16 +38,17 @@ def build_pdf(filename):
         '-V linkcolor:blue',
         '-V geometry:a4paper',
         '-V geometry:margin=2cm',
-        '--pdf-engine=xelatex',
+        '--pdf-engine=lualatex',
         '--output={}'.format(filename),
     ]
 
     # Add input files to command
+    # The filenames in `markdown_list` will ensure correct order when sorted
     root = pathlib.Path(__file__).parent.absolute()
-    cmd += [str(root / index_page)] + [str(root / i) for i in sorted(markdown_list)]
+    cmd += [str(root / index_page)]
+    cmd += [str(root / i) for i in sorted(markdown_list)]
 
-    print(os.listdir())
-    print(os.getcwd())
+    # print and run
     print('running: \n\n' + '\n'.join(cmd))
     subprocess.run(cmd)
 
