@@ -27,7 +27,7 @@ def build_pdf(filename):
         index_page,
         " ".join(sorted(markdown_list)),  # ordering is taken care of by the inherent file naming
         '-f markdown_github',
-        '--include-before-body cover.tex',
+        '--include-before-body=cover.tex',
         '--toc',
         '-V documentclass=report',
         '--listings',
@@ -40,7 +40,7 @@ def build_pdf(filename):
         '-o {}'.format(filename),
     ]
 
-    print('running: \n\n' + ' '.join(cmd))
+    print('running: \n\n' + '\n'.join(cmd))
     subprocess.run(cmd)
 
 
