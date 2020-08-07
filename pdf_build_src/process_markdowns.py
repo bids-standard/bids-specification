@@ -142,10 +142,7 @@ def modify_changelog():
         file.writelines(data)
 
 
-# Number of chars maximal in one line approximated from a line of the PDF
-NB_CHARS_LINE_PDF = 100
-
-def correct_table(table, offset = [20, 80], debug=False):
+def correct_table(table, offset = [0.0, 0.0], debug=False):
     """Create the corrected table.
 
     Compute the number of characters maximal in each table column and reformat each 
@@ -159,7 +156,7 @@ def correct_table(table, offset = [20, 80], debug=False):
         Table content extracted from the markdown file.
     offset : list of int
         Offset that is used to adjust the correction of number of dashes in the first (offset[0]) and 
-        second (offset[1]) columns by the number specified. Defaults to [20, 80].
+        second (offset[1]) columns by the number specified in percentage. Defaults to [0.0, 0.0].
     debug : bool
         If True, print debugging information. Defaults to False.
 
@@ -170,7 +167,7 @@ def correct_table(table, offset = [20, 80], debug=False):
         To be later joined with pipe characters (``|``).
     """
     nb_of_rows = len(table)
-    nb_of_cols = len(table[0])
+    nb_of_cols = len(table[0]) - 2
 
     nb_of_chars = []
     for i, row in enumerate(table):
@@ -181,34 +178,20 @@ def correct_table(table, offset = [20, 80], debug=False):
     # Convert the list to a numpy array and computes the maximum number of chars for each column
     nb_of_chars_arr = np.array(nb_of_chars)
     max_chars_in_cols = nb_of_chars_arr.max(axis=0)
+    max_chars = max_chars_in_cols.max()
 
-    # Computes number of dashes based on the maximal number of characters in each column
-    nb_of_dashes = max_chars_in_cols
-    prop_of_dashes = nb_of_dashes / nb_of_dashes.sum()
-    nb_of_chars_in_pdf = prop_of_dashes * int(NB_CHARS_LINE_PDF)
+    # Computes an equal number of dashes per column based on the maximal number of characters over the columns
+    nb_of_dashes = max_chars
+    prop_of_dashes = 1.0 / nb_of_cols
 
-    # Computes the corrected number of dashes. An offset can be used to extend 
-    for i, (value, prop) in enumerate(zip(max_chars_in_cols,prop_of_dashes)):
-        # Correction for first column (Rules could be changed here for instance)
-        if i == 1:
-            if int(value) < int(NB_CHARS_LINE_PDF) and prop < 0.2 and max_chars_in_cols[2] > 2 * NB_CHARS_LINE_PDF:
-                first_column_width = int(nb_of_dashes.sum() * (value / int(NB_CHARS_LINE_PDF)) + 6 * offset[0])
-            elif int(value) < int(NB_CHARS_LINE_PDF) and prop < 0.2 and max_chars_in_cols[2] <= 2 * NB_CHARS_LINE_PDF:
-                first_column_width = int(nb_of_dashes.sum() * (value / int(NB_CHARS_LINE_PDF)) + offset[0])
-            else:
-                first_column_width = int(value)     
-        # Correction for second column
-        elif i == 2:
-            if int(value) < int(NB_CHARS_LINE_PDF) and prop < 0.2:
-                second_column_width = int(nb_of_dashes.sum() * (value / int(NB_CHARS_LINE_PDF)) + offset[1])
-            else:
-                second_column_width = int(value)
+    # Adjust number of characters in first and second column based  offset parameter
+    first_column_width = int(offset[0] * nb_of_dashes) + nb_of_dashes
+    second_column_width = int(offset[1] * nb_of_dashes) + nb_of_dashes
 
     if debug:
         print('    - Number of chars in table cells: {}'.format(max_chars_in_cols))
         print('    - Number of dashes (per column): {}'.format(nb_of_dashes))
         print('    - Proportion of dashes (per column): {}'.format(prop_of_dashes))
-        print('    - Number of chars max in column (PDF): {}'.format(nb_of_chars_in_pdf))
         print('    - Final number of chars in first column: {}'.format(first_column_width))
         print('    - Final number of chars in second column: {}'.format(second_column_width))
 
