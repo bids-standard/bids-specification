@@ -258,6 +258,19 @@ def correct_table(table, offset = [20, 80], debug=False):
         
     return new_table
 
+def _contains_table_start(line):
+    """Check if line is start of a md table."""
+    is_table = False
+
+    nb_of_pipes = line.count('|')
+    nb_of_dashes = line.count('-')
+    
+    if nb_of_pipes > 2 and nb_of_dashes > 2:
+        is_table = True
+        print('Number of dashes / pipes : {} / {}'.format(nb_of_dashes, nb_of_pipes))
+
+    return is_table
+
 
 def correct_tables(root_path):
     """Change tables in markdown files for correct rendering in PDF.
@@ -272,9 +285,10 @@ def correct_tables(root_path):
 
     """
     markdown_list = []
+    exclude_files = ['index.md', '01-contributors.md']
     for root, dirs, files in os.walk(root_path):
         for file in files:
-            if file.endswith(".md") and file != 'index.md' and file != '01-contributors.md' and file != '04-entity-table.md':
+            if file.endswith(".md") and file not in exclude_files:
                 print('Check tables in {}'.format(os.path.join(root, file)))
                 markdown_list.append(os.path.join(root, file))
                 with open(os.path.join(root, file),'r') as f:
@@ -284,44 +298,72 @@ def correct_tables(root_path):
                 start_line = 0
                 new_content = []
                 for line_nb, line in enumerate(content):
-                    if line:
-                        # Use dashes to detect where a table start and 
-                        # extract the header and the dashes lines
-                        if '--' in line and '|' in line and not table_mode:
-                            table_mode = True
-                            start_line = line_nb-1
-                            print('  * Detected table starting line {}'.format(start_line))
-                            table = []
-                            header_row = [c.strip() for c in content[line_nb-1].split('|')]
-                            row = [c.strip() for c in line.split('|')]
-                            table.append(header_row)
-                            table.append(row)
-                        elif table_mode:
-                            row = [c.strip() for c in line.split('|')]
-                            # Add row to table if this is not the end of the table
-                            if row != ['']:
-                                table.append(row)
-                            else:
-                                end_line = line_nb-1
-                                table_mode = False
-                                
-                                # Correct the given table
-                                table = correct_table(table, debug=True)
+                    # Use dashes to detect where a table start and 
+                    # extract the header and the dashes lines
+                    if not table_mode and _contains_table_start(line):
+                        # Initialize a list to store table rows
+                        table = []
+                        # Set table_mode to True such that the next lines 
+                        # will be append to the table list
+                        table_mode = True
+                        # Keep track of the line number where the table starts
+                        start_line = line_nb-1
+                        print('  * Detected table starting line {}'.format(start_line))
+            
+                        # Extract for each row (header and the one containing dashes) 
+                        # the content of each column and strip to remove extra whitespace
+                        header_row = [c.strip() for c in content[line_nb-1].split('|')]
+                        row = [c.strip() for c in line.split('|')]
+                        table.append(header_row)
+                        table.append(row)
+                    elif table_mode:
+                        print(line)
+                        # Extract from the line string the content of each column 
+                        # and strip them to remove extra whitespace
+                        row = [c.strip() for c in line.split('|')]
 
-                                # Update the corresponding lines in 
-                                # the markdown with the corrected table
-                                count = 0
-                                for i, new_line in enumerate(content):
-                                    if i == start_line:
-                                        new_content.pop()
-                                    if i >= start_line and i < end_line:
-                                        new_content.append('|'.join(table[count])+' \n')
-                                        count += 1   
-                                    elif i == end_line:
-                                        new_content.append('|'.join(table[count])+' \n\n')
-                                        count += 1 
+                        # Add row to table if this is not the end of the table
+                        is_end_of_table = False
+
+                        if len(row) > 1:
+                            print('    .. Append row : {}'.format(row))
+                            table.append(row)
+                            if line_nb < len(content) - 1:
+                                if not len(content[line_nb]) > 1:
+                                    is_end_of_table = True
+                                    end_line = line_nb
+                            elif line_nb == len(content) - 1:
+                                    is_end_of_table = True
+                                    end_line = line_nb
                         else:
-                            new_content.append(line)
+                            is_end_of_table = True
+                            end_line = line_nb - 1
+
+                        if is_end_of_table:
+                            print('    End of table')
+                            
+                            
+                            table_mode = False
+                            
+                            # Correct the given table
+                            table = correct_table(table, debug=True)
+
+                            print(table)
+
+                            # Update the corresponding lines in 
+                            # the markdown with the corrected table
+                            count = 0
+                            for i, new_line in enumerate(content):
+                                if i == start_line:
+                                    new_content.pop()
+                                if i >= start_line and i < end_line:
+                                    new_content.append('|'.join(table[count])+' \n')
+                                    count += 1   
+                                elif i == end_line:
+                                    new_content.append('|'.join(table[count])+' \n\n')
+                                    count += 1 
+                    else:
+                        new_content.append(line)
 
                     line_nb += 1
 
