@@ -208,7 +208,7 @@ def correct_table(table, offset = [0.0, 0.0], debug=False):
         row_content = []
         for j, elem in enumerate(row):
             # Set the column width
-            column_width = max_chars_in_cols[j]
+            column_width = nb_of_dashes
             if j == 1:
                 column_width = first_column_width
             elif j == 2:
