@@ -150,7 +150,7 @@ your name is not listed, please add it.
 -   Nicole C. Swann 📖
 -   François Tadel 📖🔌💡
 -   Roberto Toro 🔧
--   Sébastien Tourbier 🤔👀📢🐛📖
+-   Sébastien Tourbier 🤔👀📢🐛💻📖
 -   William Triplett 📖
 -   Jessica A. Turner 📖
 -   Bradley Voytek 📖
