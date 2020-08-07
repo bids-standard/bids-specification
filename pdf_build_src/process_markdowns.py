@@ -251,28 +251,28 @@ def correct_table(table, offset = [20, 80], debug=False):
                     row_content.append(str_format.format('-', align='<', width=(column_width)))
                 else:
                     row_content.append(str_format.format(elem, align='<', width=(column_width)))
-        if debug:
-            print(row_content)
 
         new_table.append(row_content)
         
     return new_table
 
-def _contains_table_start(line):
+def _contains_table_start(line, debug = False):
     """Check if line is start of a md table."""
     is_table = False
 
     nb_of_pipes = line.count('|')
     nb_of_dashes = line.count('-')
+
+    if debug:
+        print('Number of dashes / pipes : {} / {}'.format(nb_of_dashes, nb_of_pipes)) 
     
     if nb_of_pipes > 2 and nb_of_dashes > 2:
         is_table = True
-        print('Number of dashes / pipes : {} / {}'.format(nb_of_dashes, nb_of_pipes))
 
     return is_table
 
 
-def correct_tables(root_path):
+def correct_tables(root_path, debug=False):
     """Change tables in markdown files for correct rendering in PDF.
 
     This modification makes sure that the proportion and number of dashes (---) are 
@@ -282,17 +282,19 @@ def correct_tables(root_path):
     ----------
     root_path : str
         Path to the root directory containing the markdown files
-
+    debug : bool
+        If True, print debugging information. Defaults to False.
     """
-    markdown_list = []
     exclude_files = ['index.md', '01-contributors.md']
     for root, dirs, files in os.walk(root_path):
         for file in files:
             if file.endswith(".md") and file not in exclude_files:
                 print('Check tables in {}'.format(os.path.join(root, file)))
-                markdown_list.append(os.path.join(root, file))
+
+                # Load lines of the markdown file
                 with open(os.path.join(root, file),'r') as f:
                     content = f.readlines()
+
                 tables = []
                 table_mode = False
                 start_line = 0
@@ -303,30 +305,35 @@ def correct_tables(root_path):
                     if not table_mode and _contains_table_start(line):
                         # Initialize a list to store table rows
                         table = []
+
                         # Set table_mode to True such that the next lines 
                         # will be append to the table list
                         table_mode = True
+
                         # Keep track of the line number where the table starts
                         start_line = line_nb-1
+
                         print('  * Detected table starting line {}'.format(start_line))
-            
                         # Extract for each row (header and the one containing dashes) 
                         # the content of each column and strip to remove extra whitespace
                         header_row = [c.strip() for c in content[line_nb-1].split('|')]
                         row = [c.strip() for c in line.split('|')]
+
+                        # Add the two lines to the table row list
                         table.append(header_row)
                         table.append(row)
+
                     elif table_mode:
-                        print(line)
                         # Extract from the line string the content of each column 
                         # and strip them to remove extra whitespace
                         row = [c.strip() for c in line.split('|')]
 
-                        # Add row to table if this is not the end of the table
+                        # Detect if this is the end of the table and add the row if not empty.
+                        # The end of the table is reached when:
+                        #  * the row is empty (len(row) <= 1)
+                        #  * or the successive row is empty (len(content[line_nb]) > 1)
                         is_end_of_table = False
-
                         if len(row) > 1:
-                            print('    .. Append row : {}'.format(row))
                             table.append(row)
                             if line_nb < len(content) - 1:
                                 if not len(content[line_nb]) > 1:
@@ -339,16 +346,20 @@ def correct_tables(root_path):
                             is_end_of_table = True
                             end_line = line_nb - 1
 
+                        # If the end of the table is reached, correct the table and 
+                        # append each corrected row (line) to the content of the new markdown content 
                         if is_end_of_table:
-                            print('    End of table')
+                            print('    - End of table detected after line {}'.format(end_line))
                             
-                            
+                            # Set table_mode to False such that the script will look 
+                            # for a new table start at the next markdown line 
                             table_mode = False
-                            
-                            # Correct the given table
-                            table = correct_table(table, debug=True)
 
-                            print(table)
+                            # Correct the given table
+                            table = correct_table(table, debug=debug)
+                            print('    - Table corrected')
+                            if debug:
+                                print(table)
 
                             # Update the corresponding lines in 
                             # the markdown with the corrected table
@@ -362,6 +373,7 @@ def correct_tables(root_path):
                                 elif i == end_line:
                                     new_content.append('|'.join(table[count])+' \n\n')
                                     count += 1 
+                            print('    - Appended corrected table lines to the new markdown content')
                     else:
                         new_content.append(line)
 
