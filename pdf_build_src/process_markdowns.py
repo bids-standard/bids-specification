@@ -283,7 +283,7 @@ def correct_tables(root_path, debug=False):
                 for line_nb, line in enumerate(content):
                     # Use dashes to detect where a table start and 
                     # extract the header and the dashes lines
-                    if not table_mode and _contains_table_start(line):
+                    if not table_mode and _contains_table_start(line, debug):
                         # Initialize a list to store table rows
                         table = []
 
