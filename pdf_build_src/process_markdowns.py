@@ -217,10 +217,8 @@ def correct_table(table, offset = [0.0, 0.0], debug=False):
             if j == 0 or j == len(row) - 1:
                 row_content.append(elem)
             else:
-                if '`' in elem:
-                    str_format = ' {:{align}{width}} '
-                    row_content.append(str_format.format(elem, align='<', width=(column_width)))
-                elif '-:' in elem and ':-' in elem :
+                # Handles alignment descriptors in pipe tables
+                if '-:' in elem and ':-' in elem :
                     str_format = ' {:-{align}{width}}: '
                     row_content.append(str_format.format(':-', align='<', width=(column_width)))
                 elif not '-:' in elem and ':-' in elem :
