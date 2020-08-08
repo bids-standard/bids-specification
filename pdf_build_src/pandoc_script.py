@@ -32,7 +32,7 @@ def build_pdf(filename):
         '--toc',
         '--listings',
         '--include-in-header=./header.tex',
-        '--include-in-header=./listings_setup.tex',
+        '--include-in-header=./header_setup.tex',
         '-V documentclass=report',
         '-V linkcolor:blue',
         '-V geometry:a4paper',
