@@ -118,6 +118,16 @@ More information can be found under the following links:
 -   [Neuromag/Elekta/MEGIN data organization](http://www.fieldtriptoolbox.org/getting_started/neuromag)
 -   [BabyMEG](http://www.fieldtriptoolbox.org/getting_started/babysquid)
 
+### recording dates in `.fif` files
+
+It is important to note that recording dates in `.fif` files are represented
+as `int32` format seconds since (or before) [*the Epoch*](https://en.wikipedia.org/wiki/Unix_time)
+(`1970-01-01T00:00:00.000000` UTC).
+Integers in `int32` format can encode values from -2,147,483,647 to +2,147,483,647.
+Due to this representation, the Neuromag/Elekta/MEGIN file format for MEG (`.fif`) does *not*
+support recording dates earlier than `1901-12-13T08:45:53.000000` UTC or later than
+`2038-01-19T03:14:07.000000` UTC.
+
 ## BTi/4D neuroimaging
 
 Each experimental run on a 4D neuroimaging/BTi system results in a folder

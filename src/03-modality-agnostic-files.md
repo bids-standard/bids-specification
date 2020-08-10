@@ -13,20 +13,20 @@ Templates:
 
 The file `dataset_description.json` is a JSON file describing the dataset.
 Every dataset MUST include this file with the following fields:
-
-| Field name         | Definition                                                                                                                                                                                                                                                         |
-| ------------------------------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                                                     |
-| BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                                                          |
-| DatasetType        | RECOMMENDED. The interpretaton of the dataset. MUST be one of `"raw"` or `"derivative"`. For backwards compatibility, the default value is `"raw"`.                                                                                                                |
-| License            | RECOMMENDED. The license for the dataset. The use of license name abbreviations is RECOMMENDED for specifying a license (see [Appendix II](./99-appendices/02-licenses.md)). The corresponding full license text MAY be specified in an additional `LICENSE` file. |
-| Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                                                             |
-| Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                                               |
-| HowToAcknowledge   | OPTIONAL. Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset.                               |
-| Funding            | OPTIONAL. List of sources of funding (grant numbers).                                                                                                                                                                                                              |
-| EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                                                |
-| ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                                                     |
-| DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                                                             |
+| **Field name**         |   **Definition**                                                                                                                                                                                                                                                          |
+|:------------------ |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                                                        |
+| BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                                                             |
+| HEDVersion         | RECOMMENDED if HED tags are used. The version of the HED schema used to validate HED tags for study.                                                                                                                                                                  |
+| DatasetType        | RECOMMENDED. The interpretation of the dataset. MUST be one of `"raw"` or `"derivative"`. For backwards compatibility, the default value is `"raw"`.                                                                                                                  |
+| License            | RECOMMENDED. The license for the dataset. The use of license name abbreviations is RECOMMENDED for specifying a license (see [Appendix II](./99-appendices/02-licenses.md)). The corresponding full license text MAY be specified in an additional `LICENSE` file.    |
+| Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                                                                |
+| Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                                                  |
+| HowToAcknowledge   | OPTIONAL. Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset.                                  |
+| Funding            | OPTIONAL. List of sources of funding (grant numbers).                                                                                                                                                                                                                 |
+| EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                                                   |
+| ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                                                        |
+| DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                                                                |
 
 Example:
 
@@ -53,7 +53,8 @@ Example:
     "https://www.ncbi.nlm.nih.gov/pubmed/001012092119281",
     "Alzheimer A., & Kraepelin, E. (2015). Neural correlates of presenile dementia in humans. Journal of Neuroscientific Data, 2, 234001. http://doi.org/1920.8/jndata.2015.7"
   ],
-  "DatasetDOI": "10.0.2.3/dfjj.10"
+  "DatasetDOI": "10.0.2.3/dfjj.10",
+  "HEDVersion": "7.1.1"
 }
 ```
 

@@ -99,7 +99,9 @@ A file name consists of a chain of *entities*, or key-value pairs, a *suffix* an
 Two prominent examples of entities are `subject` and `session`.
 
 For a data file that was collected in a given `session` from a given
-`subject`, the file name will begin with the string `sub-<label>_ses-<label>`.
+`subject`, the file name MUST begin with the string `sub-<label>_ses-<label>`. 
+If the `session` level is omitted in the folder structure, the file name MUST begin 
+with the string `sub-<label>`, without `ses-<label>`.
 
 Note that `sub-<label>` corresponds to the `subject` entity because it has
 the `sub-` "key" and`<label>` "value", where `<label>` would in a real data file
@@ -459,7 +461,7 @@ pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
 format can be found here: [http://json.org/](http://json.org/). Several editors
 have built-in support for JSON syntax highlighting that aids manual creation of
 such files. An online editor for JSON with built-in validation is available at:
-[http://jsoneditoronline.org](http://jsoneditoronline.org). 
+[http://jsoneditoronline.org](http://jsoneditoronline.org).
 It is RECOMMENDED that keys in a JSON file are written in [CamelCase](https://en.wikipedia.org/wiki/Camel_case)
 with the first letter in upper case (e.g., `SamplingFrequency`, not
 `samplingFrequency`). Note however, when a JSON file is used as an accompanying
@@ -540,16 +542,28 @@ For additional rules, see below:
 Describing dates and timestamps:
 
 -   Date time information MUST be expressed in the following format
-    `YYYY-MM-DDThh:mm:ss[.000000]` (year, month, day, hour (24h), minute,
-    second, and optionally fractional second).
-    This is equivalent to the RFC3339 "date-time" format, time zone is always
-    assumed as local time).
+    `YYYY-MM-DDThh:mm:ss[.000000][Z]` (year, month, day, hour (24h), minute,
+    second, optional fractional seconds, and optional UTC time indicator).
+    This is almost equivalent to the [RFC3339](https://tools.ietf.org/html/rfc3339)
+    "date-time" format, with the exception that UTC indicator `Z` is optional and
+    non-zero UTC offsets are not indicated.
+    If `Z` is not indicated, time zone is always assumed to be the local time of the
+    dataset viewer.
     No specific precision is required for fractional seconds, but the precision
     SHOULD be consistent across the dataset.
-    For example `2009-06-15T13:45:30`
+    For example `2009-06-15T13:45:30`.
 
 -   Time stamp information MUST be expressed in the following format:
-    `13:45:30[.000000]`
+    `hh:mm:ss[.000000]`
+    For example `13:45:30`.
+
+-   Note that, depending on local ethics board policy, date time information may not
+    need to be fully detailed.
+    For example, it is permissible to set the time to `00:00:00` if reporting the
+    exact recording time is undesirable.
+    However, for privacy protection reasons, it is RECOMMENDED to shift dates, as
+    described below, without completely removing time information, as time information
+    can be useful for research purposes.
 
 -   Dates can be shifted by a random number of days for privacy protection
     reasons.
@@ -558,6 +572,14 @@ Describing dates and timestamps:
     For longitudinal studies dates MUST be shifted by the same number of days
     within each subject to maintain the interval information.
     For example: `1867-06-15T13:45:30`
+
+-   WARNING: The Neuromag/Elekta/MEGIN file format for MEG (`.fif`) does *not*
+    support recording dates earlier than `1902` roughly.
+    Some analysis software packages (e.g., MNE-Python) handle their data as `.fif`
+    internally and will break if recording dates are specified prior to `1902`,
+    even if the original data format is not `.fif`.
+    See [MEG-file-formats](./99-appendices/06-meg-file-formats.md#recording-dates-in-fif-files)
+    for more information.
 
 -   Age SHOULD be given as the number of years since birth at the time of
     scanning (or first scan in case of multi session datasets). Using higher

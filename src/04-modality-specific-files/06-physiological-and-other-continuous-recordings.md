@@ -37,6 +37,9 @@ continuous measures (such as parameters of a film or audio stimuli) can be
 specified using two files: a gzip compressed TSV file with data (without header
 line) and a JSON for storing the following metadata fields:
 
+Note that when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
+`*_<physio|stim>.json` MUST be supplied as well.
+
 | Field name        | Definition                                                                                                                                                          |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | SamplingFrequency | REQUIRED. Sampling frequency in Hz of all columns in the file.                                                                                                      |

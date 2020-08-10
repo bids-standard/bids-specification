@@ -42,10 +42,13 @@ jobs:
   build_docs_pdf:
     working_directory: ~/bids-specification/pdf_build_src
     docker:
-      - image: danteev/texlive:TL2017
+      - image: danteev/texlive:latest
     steps:
       - checkout:
           path: ~/bids-specification
+      - run:
+          command: |
+            pip3 install numpy
       - run:
           name: generate pdf version docs
           command: sh build_pdf.sh
