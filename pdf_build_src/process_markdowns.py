@@ -142,7 +142,8 @@ def modify_changelog():
         file.writelines(data)
 
 
-def correct_table(table, offset = [0.0, 0.0], debug=False):
+def correct_table(table, offset=[0.0, 0.0], debug=False):
+
     """Create the corrected table.
 
     Compute the number of characters maximal in each table column and reformat each 
