@@ -10,6 +10,7 @@ import os
 import subprocess
 import re
 from datetime import datetime
+import numpy as np
 
 
 def run_shell_cmd(command):
@@ -141,6 +142,232 @@ def modify_changelog():
         file.writelines(data)
 
 
+def correct_table(table, offset=[0.0, 0.0], debug=False):
+
+    """Create the corrected table.
+
+    Compute the number of characters maximal in each table column and reformat each 
+    row in the table to make sure the first and second rows of the table have enough
+    dashes (in proportion) and that fences are correctly aligned
+    for correct rendering in the generated PDF.
+
+    Parameters
+    ----------
+    table : list of list of str
+        Table content extracted from the markdown file.
+    offset : list of int
+        Offset that is used to adjust the correction of number of dashes in the first (offset[0]) and 
+        second (offset[1]) columns by the number specified in percentage. Defaults to [0.0, 0.0].
+    debug : bool
+        If True, print debugging information. Defaults to False.
+
+    Returns
+    -------
+    new_table : list of list of str
+        List of corrected lines of the input table with corrected number of dashes and aligned fences.
+        To be later joined with pipe characters (``|``).
+    """
+    nb_of_rows = len(table)
+    nb_of_cols = len(table[0]) - 2
+
+    nb_of_chars = []
+    for i, row in enumerate(table):
+         # Ignore number of dashes in the count of characters
+        if i != 1:
+            nb_of_chars.append([len(elem) for elem in row])
+
+    # Convert the list to a numpy array and computes the maximum number of chars for each column
+    nb_of_chars_arr = np.array(nb_of_chars)
+    max_chars_in_cols = nb_of_chars_arr.max(axis=0)
+    max_chars = max_chars_in_cols.max()
+
+    # Computes an equal number of dashes per column based on the maximal number of characters over the columns
+    nb_of_dashes = max_chars
+    prop_of_dashes = 1.0 / nb_of_cols
+
+    # Adjust number of characters in first and second column based  offset parameter
+    first_column_width = int(offset[0] * nb_of_dashes) + nb_of_dashes
+    second_column_width = int(offset[1] * nb_of_dashes) + nb_of_dashes
+
+    if debug:
+        print('    - Number of chars in table cells: {}'.format(max_chars_in_cols))
+        print('    - Number of dashes (per column): {}'.format(nb_of_dashes))
+        print('    - Proportion of dashes (per column): {}'.format(prop_of_dashes))
+        print('    - Final number of chars in first column: {}'.format(first_column_width))
+        print('    - Final number of chars in second column: {}'.format(second_column_width))
+
+    # Format the lines with correct number of dashes or whitespaces and 
+    # correct alignment of fences and populate the new table (A List of str)
+    new_table = []
+    for i, row in enumerate(table):
+
+        if i == 1:
+            str_format = ' {:-{align}{width}} '
+        else:
+            str_format = ' {:{align}{width}} '
+
+        row_content = []
+        for j, elem in enumerate(row):
+            # Set the column width
+            column_width = nb_of_dashes
+            if j == 1:
+                column_width = first_column_width
+            elif j == 2:
+                column_width = second_column_width
+            
+            if j == 0 or j == len(row) - 1:
+                row_content.append(elem)
+            else:
+                # Handles alignment descriptors in pipe tables
+                if '-:' in elem and ':-' in elem :
+                    str_format = ' {:-{align}{width}}: '
+                    row_content.append(str_format.format(':-', align='<', width=(column_width)))
+                elif not '-:' in elem and ':-' in elem :
+                    str_format = ' {:-{align}{width}} '
+                    row_content.append(str_format.format(':-', align='<', width=(column_width)))
+                elif '-:' in elem and not ':-' in elem :
+                    str_format = ' {:-{align}{width}}: '
+                    row_content.append(str_format.format('-', align='<', width=(column_width)))
+                elif i == 1 and not '-:' in elem and not ':-' in elem :
+                    str_format = ' {:-{align}{width}} '
+                    row_content.append(str_format.format('-', align='<', width=(column_width)))
+                else:
+                    row_content.append(str_format.format(elem, align='<', width=(column_width)))
+
+        new_table.append(row_content)
+        
+    return new_table
+
+def _contains_table_start(line, debug=False):
+
+    """Check if line is start of a md table."""
+    is_table = False
+
+    nb_of_pipes = line.count('|')
+    nb_of_dashes = line.count('-')
+
+    if debug:
+        print('Number of dashes / pipes : {} / {}'.format(nb_of_dashes, nb_of_pipes)) 
+    
+    if nb_of_pipes > 2 and nb_of_dashes > 2:
+        is_table = True
+
+    return is_table
+
+
+def correct_tables(root_path, debug=False):
+    """Change tables in markdown files for correct rendering in PDF.
+
+    This modification makes sure that the proportion and number of dashes (---) are 
+    sufficiently enough for correct PDF rendering and fences (|) are correctly aligned.
+
+
+    Parameters
+    ----------
+    root_path : str
+        Path to the root directory containing the markdown files
+    debug : bool
+        If True, print debugging information. Defaults to False.
+    """
+    exclude_files = ['index.md', '01-contributors.md']
+    for root, dirs, files in os.walk(root_path):
+        for file in files:
+            if file.endswith(".md") and file not in exclude_files:
+                print('Check tables in {}'.format(os.path.join(root, file)))
+
+                # Load lines of the markdown file
+                with open(os.path.join(root, file),'r') as f:
+                    content = f.readlines()
+
+                tables = []
+                table_mode = False
+                start_line = 0
+                new_content = []
+                for line_nb, line in enumerate(content):
+                    # Use dashes to detect where a table start and 
+                    # extract the header and the dashes lines
+                    if not table_mode and _contains_table_start(line, debug):
+                        # Initialize a list to store table rows
+                        table = []
+
+                        # Set table_mode to True such that the next lines 
+                        # will be append to the table list
+                        table_mode = True
+
+                        # Keep track of the line number where the table starts
+                        start_line = line_nb-1
+
+                        print('  * Detected table starting line {}'.format(start_line))
+                        # Extract for each row (header and the one containing dashes) 
+                        # the content of each column and strip to remove extra whitespace
+                        header_row = [c.strip() for c in content[line_nb-1].split('|')]
+                        row = [c.strip() for c in line.split('|')]
+
+                        # Add the two lines to the table row list
+                        table.append(header_row)
+                        table.append(row)
+
+                    elif table_mode:
+                        # Extract from the line string the content of each column 
+                        # and strip them to remove extra whitespace
+                        row = [c.strip() for c in line.split('|')]
+
+                        # Detect if this is the end of the table and add the row if not empty.
+                        # The end of the table is reached when:
+                        #  * the row is empty (len(row) <= 1)
+                        #  * or the successive row is empty (len(content[line_nb]) > 1)
+                        is_end_of_table = False
+                        if len(row) > 1:
+                            table.append(row)
+                            if line_nb < len(content) - 1:
+                                if not len(content[line_nb]) > 1:
+                                    is_end_of_table = True
+                                    end_line = line_nb
+                            elif line_nb == len(content) - 1:
+                                    is_end_of_table = True
+                                    end_line = line_nb
+                        else:
+                            is_end_of_table = True
+                            end_line = line_nb - 1
+
+                        # If the end of the table is reached, correct the table and 
+                        # append each corrected row (line) to the content of the new markdown content 
+                        if is_end_of_table:
+                            print('    - End of table detected after line {}'.format(end_line))
+                            
+                            # Set table_mode to False such that the script will look 
+                            # for a new table start at the next markdown line 
+                            table_mode = False
+
+                            # Correct the given table
+                            table = correct_table(table, debug=debug)
+                            print('    - Table corrected')
+                            if debug:
+                                print(table)
+
+                            # Update the corresponding lines in 
+                            # the markdown with the corrected table
+                            count = 0
+                            for i, new_line in enumerate(content):
+                                if i == start_line:
+                                    new_content.pop()
+                                if i >= start_line and i < end_line:
+                                    new_content.append('|'.join(table[count])+' \n')
+                                    count += 1   
+                                elif i == end_line:
+                                    new_content.append('|'.join(table[count])+' \n\n')
+                                    count += 1 
+                            print('    - Appended corrected table lines to the new markdown content')
+                    else:
+                        new_content.append(line)
+
+                    line_nb += 1
+
+                # Overwrite with the new markdown content
+                with open(os.path.join(root, file),'w') as f:
+                    f.writelines(new_content)
+
+
 def edit_titlepage():
     """Add title and version number of the specification to the titlepage."""
     title, version_number, build_date = extract_header_string()
@@ -189,3 +416,6 @@ if __name__ == '__main__':
     # Step 6: remove all internal links
     remove_internal_links(duplicated_src_dir_path, 'cross')
     remove_internal_links(duplicated_src_dir_path, 'same')
+
+    # Step 7: correct number of dashes and fences alignment for rendering tables in PDF
+    correct_tables(duplicated_src_dir_path)
