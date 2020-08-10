@@ -268,8 +268,7 @@ The schema formalizes the rules described in the specification text, so you must
 Run the Python script `tools/bids_schema.py`:
 
 ```bash
-cd tools/
-python bids_schema.py entity ../src/schema/ ../src/99-appendices/04-entity-table.md
+python tools/bids_schema.py entity src/schema/ src/99-appendices/04-entity-table.md
 ```
 
 #### 3. Push your changes
