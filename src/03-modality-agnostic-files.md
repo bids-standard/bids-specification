@@ -130,9 +130,8 @@ The `README` file MUST be either in ASCII or UTF-8 encoding.
 ### `CHANGES`
 
 Version history of the dataset (describing changes, updates and corrections) MAY
-be provided in the form of a `CHANGES` text file. This file MUST follow the CPAN
-Changelog convention:
-[http://search.cpan.org/~haarg/CPAN-Changes-0.400002/lib/CPAN/Changes/Spec.pod](https://metacpan.org/pod/release/HAARG/CPAN-Changes-0.400002/lib/CPAN/Changes/Spec.pod).
+be provided in the form of a `CHANGES` text file. This file MUST follow the
+[CPAN Changelog convention](https://metacpan.org/pod/release/HAARG/CPAN-Changes-0.400002/lib/CPAN/Changes/Spec.pod).
 The `CHANGES` file MUST be either in ASCII or UTF-8 encoding.
 
 Example:
