@@ -17,8 +17,9 @@ For example: `RAS` means that the first dimension (X) points towards the right
 hand side of the head, the second dimension (Y) points towards the Anterior
 aspect of the head, and the third dimension (Z) points towards the top of the
 head.
-The directions are following the *neurological convention*, so the subject's
-left side of the head is also on the left side of the image.
+The directions are considered to be from the subject's perspective.
+For example, in the `RAS` coordinate system, a point to the subject's left
+will have a negative `x` value.
 
 Besides coordinate systems, defined by their origin and direction of the axes,
 BIDS defines "spaces" as an artificial frame of reference, created to describe
@@ -45,8 +46,9 @@ different conventions used in specific software packages developed by different
 
 Generally, across the MEG, EEG, and iEEG modalities, the first two pieces of
 information for a coordinate system (origin and orientation) are specified in
-`<datatype>CoordinateSystem`. The third piece of information for a coordinate
-system (units) are specified in `<datatype>CoordinateSystemUnits`.
+`<datatype>CoordinateSystem`.
+The third piece of information for a coordinate system (units) are specified in
+`<datatype>CoordinateSystemUnits`.
 Here, `<datatype>` can be one of `MEG`, `EEG`, or `iEEG`, depending on the
 modality that is being used.
 
@@ -58,9 +60,8 @@ option to specify the value as follows:
 -   `Other`: Use this for other coordinate systems and specify further details
     in the `<datatype>CoordinateSystemDescription` field
 
-**If you feel like a specific coordinate system should be added to the list
-of restricted keywords for either MEG, EEG, or iEEG, please open a new issue
-on the
+**If you believe a specific coordinate system should be added to the list
+of restricted keywords for MEG, EEG, or iEEG, please open a new issue on the
 [bids-standard/bids-specification GitHub repository](https://github.com/bids-standard/bids-specification/issues/new/choose).**
 
 ## MEG Specific Coordinate Systems
