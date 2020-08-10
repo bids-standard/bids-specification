@@ -259,7 +259,8 @@ def correct_tables(root_path, debug=False):
     """Change tables in markdown files for correct rendering in PDF.
 
     This modification makes sure that the proportion and number of dashes (---) are 
-    sufficiently enough for correct PDF rendering and fences (|) are corrected aligned.
+    sufficiently enough for correct PDF rendering and fences (|) are correctly aligned.
+
 
     Parameters
     ----------
