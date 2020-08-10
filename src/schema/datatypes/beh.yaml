@@ -10,7 +10,9 @@
     sub: required
     ses: optional
     task: required
+    acq: optional
     run: optional
+    recording: optional
 # Second group
 - suffixes:
     - events
@@ -22,3 +24,5 @@
     sub: required
     ses: optional
     task: required
+    acq: optional
+    run: optional
