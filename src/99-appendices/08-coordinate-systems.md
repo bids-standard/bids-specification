@@ -148,7 +148,7 @@ presence MUST NOT produce a validation error.
 The following template identifiers are RECOMMENDED for individual- and study-specific reference
 spaces.
 In order for these spaces to be interpretable, `SpatialReference` metadata MUST be provided, as
-described in [Common file level metadata fields][common file level metadata fields].
+described in [Common file level metadata fields][].
 
 In the case of multiple study templates, additional names may need to be defined.
 
