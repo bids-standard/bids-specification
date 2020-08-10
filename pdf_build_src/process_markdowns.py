@@ -168,14 +168,19 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
         List of corrected lines of the input table with corrected number of dashes and aligned fences.
         To be later joined with pipe characters (``|``).
     """
-    nb_of_rows = len(table)
+    # nb_of_rows = len(table)
     nb_of_cols = len(table[0]) - 2
 
     nb_of_chars = []
     for i, row in enumerate(table):
-         # Ignore number of dashes in the count of characters
+        # Ignore number of dashes in the count of characters
         if i != 1:
             nb_of_chars.append([len(elem) for elem in row])
+        print(row)
+    print('\n\n')
+    print(nb_of_chars)
+    print([len(i) for i in nb_of_chars])
+    print('\n\n')
 
     # Convert the list to a numpy array and computes the maximum number of chars for each column
     nb_of_chars_arr = np.array(nb_of_chars)
@@ -245,6 +250,8 @@ def _contains_table_start(line, debug=False):
     is_table = False
 
     nb_of_pipes = line.count('|')
+    nb_of_escaped_pipes = line.count('\|')
+    nb_of_pipes = nb_of_pipes - nb_of_escaped_pipes
     nb_of_dashes = line.count('-')
 
     if debug:
@@ -259,8 +266,8 @@ def _contains_table_start(line, debug=False):
 def correct_tables(root_path, debug=False):
     """Change tables in markdown files for correct rendering in PDF.
 
-    This modification makes sure that the proportion and number of dashes (---) are
-    sufficiently enough for correct PDF rendering and fences (|) are correctly aligned.
+    This modification makes sure that the proportion and number of dashes (-) are
+    sufficient enough for correct PDF rendering and fences (|) are correctly aligned.
 
 
     Parameters
@@ -269,6 +276,16 @@ def correct_tables(root_path, debug=False):
         Path to the root directory containing the markdown files
     debug : bool
         If True, print debugging information. Defaults to False.
+
+    Notes
+    -----
+    This function MUST respect escaped pipes (i.e., pipes preceded by a backslash),
+    and not interpret them as table delimiters. Here this is implemented with a regex
+    split and a negative lookbehind assertion [1]_.
+
+    References
+    ----------
+    .. [1] https://stackoverflow.com/a/21107911/5201771
     """
     exclude_files = ['index.md', '01-contributors.md']
     for root, dirs, files in os.walk(root_path):
@@ -301,8 +318,8 @@ def correct_tables(root_path, debug=False):
                         print('  * Detected table starting line {}'.format(start_line))
                         # Extract for each row (header and the one containing dashes)
                         # the content of each column and strip to remove extra whitespace
-                        header_row = [c.strip() for c in content[line_nb-1].split('|')]
-                        row = [c.strip() for c in line.split('|')]
+                        header_row = [c.strip() for c in re.split(r'(?<!\\)\|', content[line_nb-1])]
+                        row = [c.strip() for c in re.split(r'(?<!\\)\|', line)]
 
                         # Add the two lines to the table row list
                         table.append(header_row)
@@ -311,7 +328,7 @@ def correct_tables(root_path, debug=False):
                     elif table_mode:
                         # Extract from the line string the content of each column
                         # and strip them to remove extra whitespace
-                        row = [c.strip() for c in line.split('|')]
+                        row = [c.strip() for c in re.split(r'(?<!\\)\|', line)]
 
                         # Detect if this is the end of the table and add the row if not empty.
                         # The end of the table is reached when:
