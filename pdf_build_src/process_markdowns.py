@@ -1,4 +1,5 @@
 """Process the markdown files.
+
 The purpose of the script is to create a duplicate src directory within which
 all of the markdown files are processed to match the specifications of building
 a pdf from multiple markdown files using the pandoc library (***add link to
@@ -45,6 +46,7 @@ def copy_bids_logo():
 
 def copy_images(root_path):
     """Copy images.
+
     Will be done from images directory of subdirectories to images directory
     in the src directory
     """
@@ -64,7 +66,6 @@ def copy_images(root_path):
 
 def extract_header_string():
     """Extract the latest release's version number and date from CHANGES.md."""
-    released_versions = []
     run_shell_cmd("cp ../mkdocs.yml src_copy/")
 
     with open(os.path.join(os.path.dirname(__file__), 'src_copy/mkdocs.yml'), 'r') as file:
@@ -85,7 +86,7 @@ def add_header():
     header = " ".join([title, version_number, build_date])
 
     # creating a header string with latest version number and date
-    header_string = ("\chead{ " + header + " }")
+    header_string = (r"\chead{ " + header + " }")
 
     with open('header.tex', 'r') as file:
         data = file.readlines()
@@ -100,6 +101,7 @@ def add_header():
 
 def remove_internal_links(root_path, link_type):
     """Find and replace all cross and same markdown internal links.
+
     The links will be replaced with plain text associated with it.
     """
     if link_type == 'cross':
@@ -131,6 +133,7 @@ def remove_internal_links(root_path, link_type):
 
 def modify_changelog():
     """Change first line of the changelog to markdown Heading 1.
+
     This modification makes sure that in the pdf build, changelog is a new
     chapter.
     """
@@ -144,7 +147,6 @@ def modify_changelog():
 
 
 def correct_table(table, offset=[0.0, 0.0], debug=False):
-
     """Create the corrected table.
 
     Compute the number of characters maximal in each table column and reformat each
@@ -176,11 +178,6 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
         # Ignore number of dashes in the count of characters
         if i != 1:
             nb_of_chars.append([len(elem) for elem in row])
-        print(row)
-    print('\n\n')
-    print(nb_of_chars)
-    print([len(i) for i in nb_of_chars])
-    print('\n\n')
 
     # Convert the list to a numpy array and computes the maximum number of chars for each column
     nb_of_chars_arr = np.array(nb_of_chars)
@@ -225,16 +222,16 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
                 row_content.append(elem)
             else:
                 # Handles alignment descriptors in pipe tables
-                if '-:' in elem and ':-' in elem :
+                if '-:' in elem and ':-' in elem:
                     str_format = ' {:-{align}{width}}: '
                     row_content.append(str_format.format(':-', align='<', width=(column_width)))
-                elif not '-:' in elem and ':-' in elem :
+                elif '-:' not in elem and ':-' in elem:
                     str_format = ' {:-{align}{width}} '
                     row_content.append(str_format.format(':-', align='<', width=(column_width)))
-                elif '-:' in elem and not ':-' in elem :
+                elif '-:' in elem and ':-'not in elem:
                     str_format = ' {:-{align}{width}}: '
                     row_content.append(str_format.format('-', align='<', width=(column_width)))
-                elif i == 1 and not '-:' in elem and not ':-' in elem :
+                elif i == 1 and '-:' not in elem and ':-' not in elem:
                     str_format = ' {:-{align}{width}} '
                     row_content.append(str_format.format('-', align='<', width=(column_width)))
                 else:
@@ -244,13 +241,13 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
 
     return new_table
 
-def _contains_table_start(line, debug=False):
 
+def _contains_table_start(line, debug=False):
     """Check if line is start of a md table."""
     is_table = False
 
     nb_of_pipes = line.count('|')
-    nb_of_escaped_pipes = line.count('\|')
+    nb_of_escaped_pipes = line.count(r'\|')
     nb_of_pipes = nb_of_pipes - nb_of_escaped_pipes
     nb_of_dashes = line.count('-')
 
@@ -294,10 +291,9 @@ def correct_tables(root_path, debug=False):
                 print('Check tables in {}'.format(os.path.join(root, file)))
 
                 # Load lines of the markdown file
-                with open(os.path.join(root, file),'r') as f:
+                with open(os.path.join(root, file), 'r') as f:
                     content = f.readlines()
 
-                tables = []
                 table_mode = False
                 start_line = 0
                 new_content = []
@@ -342,8 +338,8 @@ def correct_tables(root_path, debug=False):
                                     is_end_of_table = True
                                     end_line = line_nb
                             elif line_nb == len(content) - 1:
-                                    is_end_of_table = True
-                                    end_line = line_nb
+                                is_end_of_table = True
+                                end_line = line_nb
                         else:
                             is_end_of_table = True
                             end_line = line_nb - 1
@@ -382,7 +378,7 @@ def correct_tables(root_path, debug=False):
                     line_nb += 1
 
                 # Overwrite with the new markdown content
-                with open(os.path.join(root, file),'w') as f:
+                with open(os.path.join(root, file), 'w') as f:
                     f.writelines(new_content)
 
 
