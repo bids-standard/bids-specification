@@ -140,13 +140,13 @@ modalities include:
 
 Currently supported entities include:
 
-- [`sub-<label>`](99-appendices/09-entities.md#sub)
-- [`ses-<label>`](99-appendices/09-entities.md#ses)
-- [`acq-<label>`](99-appendices/09-entities.md#acq)
-- [`ce-<label>`](99-appendices/09-entities.md#ce)
-- [`rec-<label>`](99-appendices/09-entities.md#rec)
-- [`run-<index>`](99-appendices/09-entities.md#run)
-- [`mod-<label>`](99-appendices/09-entities.md#mod)
+- [`sub-<label>`](../99-appendices/09-entities.md#sub)
+- [`ses-<label>`](../99-appendices/09-entities.md#ses)
+- [`acq-<label>`](../99-appendices/09-entities.md#acq)
+- [`ce-<label>`](../99-appendices/09-entities.md#ce)
+- [`rec-<label>`](../99-appendices/09-entities.md#rec)
+- [`run-<index>`](../99-appendices/09-entities.md#run)
+- [`mod-<label>`](../99-appendices/09-entities.md#mod)
 
 ### Task (including resting state) imaging data
 
