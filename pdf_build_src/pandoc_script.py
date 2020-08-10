@@ -5,7 +5,8 @@ This is done once the duplicate src directory is processed.
 import os
 import pathlib
 import subprocess
-           
+
+
 def build_pdf(filename):
     """Construct command with required pandoc flags and run using subprocess.
 

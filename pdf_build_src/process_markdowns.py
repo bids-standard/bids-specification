@@ -7,9 +7,10 @@ well.
 """
 
 import os
-import subprocess
 import re
+import subprocess
 from datetime import datetime
+
 import numpy as np
 
 
