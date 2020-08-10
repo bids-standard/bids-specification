@@ -28,7 +28,7 @@ def build_pdf(filename):
     # Prepare the command options
     cmd = [
         'pandoc',
-        '--from=gfm',
+        '--from=markdown_github',
         '--include-before-body=./cover.tex',
         '--toc',
         '--listings',
