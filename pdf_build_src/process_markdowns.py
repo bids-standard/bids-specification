@@ -238,7 +238,8 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
         
     return new_table
 
-def _contains_table_start(line, debug = False):
+def _contains_table_start(line, debug=False):
+
     """Check if line is start of a md table."""
     is_table = False
 
