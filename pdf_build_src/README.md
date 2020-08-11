@@ -14,7 +14,7 @@ For the pdf build to be successful, the following need to be installed:
 - Latest version of LaTeX: By default, Pandoc creates PDFs using LaTeX.
   Because a full MacTeX installation uses four gigabytes of disk space,
   pandoc recommends BasicTeX or TinyTeX and using the tlmgr tool to install additional packages as needed.
-- The [Symbola font](https://packages.ubuntu.com/search?keywords=fonts-symbola) that provides all emoji unicodes necessary to render the contributior icons in the PDF
+- The [Symbola font](https://packages.ubuntu.com/search?keywords=fonts-symbola) that provides all emoji unicodes necessary to render the contributor icons in the PDF
 
 Installation instructions for both pandoc and LaTeX: https://pandoc.org/installing.html
 
