@@ -40,9 +40,9 @@ acq:
     full brain low resolution and and one restricted field of view but high
     resolution.
     In such case two files could have the following names:
-    `sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however the
-    user is free to choose any other label than highres and lowres as long as
-    they are consistent across subjects and sessions.
+    `sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however
+    the user is free to choose any other label than highres and lowres as long
+    as they are consistent across subjects and sessions.
     In case different sequences are used to record the same modality (e.g. RARE
     and FLASH for T1w) this field can also be used to make that distinction.
     At what level of detail to make the distinction (e.g. just between RARE and
@@ -55,8 +55,8 @@ ce:
     The `ce-<label>` key/value can be used to distinguish
     sequences using different contrast enhanced images.
     The label is the name of the contrast agent.
-    The key `ContrastBolusIngredient` MAY be also be added in the JSON file, with
-    the same label.
+    The key `ContrastBolusIngredient` MAY be also be added in the JSON file,
+    with the same label.
   format: label
 rec:
   name: Reconstruction

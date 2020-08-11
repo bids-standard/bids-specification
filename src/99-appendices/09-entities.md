@@ -184,4 +184,3 @@ new names with dedicated tools like MNE, which will ensure that not only
 the file names, but also the internal file pointers will be updated.
 It is RECOMMENDED that .fif files with multiple parts use the
 `split-<index>` entity to indicate each part.
-

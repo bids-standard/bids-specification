@@ -214,8 +214,8 @@ each is given in the [Entity Table](04-entity-table.md).
 """
     with open(out_file, 'w') as fo:
         fo.write(intro_text)
-        fo.write('\n')
         for entity, entity_info in entities.items():
+            fo.write('\n')
             fo.write('## {}'.format(entity))
             fo.write('\n\n')
             fo.write('Full name: {}'.format(entity_info['name']))
@@ -223,7 +223,6 @@ each is given in the [Entity Table](04-entity-table.md).
             fo.write('Format: `{}_<{}>`'.format(entity, entity_info['format']))
             fo.write('\n\n')
             fo.write('Definition: {}'.format(entity_info['description']))
-            fo.write('\n')
 
 
 def drop_unused_entities(df):
