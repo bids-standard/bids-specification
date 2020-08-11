@@ -1,0 +1,15 @@
+---
+- datatypes:
+    - meg
+    - eeg
+    - ieeg
+  suffixes:
+    - events
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    run: optional

@@ -1,0 +1,14 @@
+---
+- datatypes:
+    - eeg
+    - ieeg
+  suffixes:
+    - electrodes
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+    space: optional

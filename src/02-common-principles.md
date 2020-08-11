@@ -416,21 +416,23 @@ in the form of a [JSON object](https://www.w3schools.com/js/js_json_objects.asp)
 within a JSON file.
 The JSON files containing the data dictionaries MUST have the same name as
 their corresponding tabular files but with `.json` extensions.
-If a data dictionary
-is provided, it MAY contain one or more fields describing the columns found in
-the TSV file (in addition to any other metadata one wishes to include that
-describe the file as a whole). Note that if a field name included in the data
-dictionary matches a column name in the TSV file, then that field MUST contain a
-description of the corresponding column, using an object containing the following
-fields:
+If a data dictionary is provided,
+it MAY contain one or more fields describing the columns found in the TSV file
+(in addition to any other metadata one wishes to include that describe the file as a whole).
+Note that if a field name included in the data dictionary matches a column name in the TSV file,
+then that field MUST contain a description of the corresponding column,
+using an object containing the following fields:
 
-| Field name  | Definition                                                                                                      |
-| :---------- | :-------------------------------------------------------------------------------------------------------------- |
-| LongName    | Long (unabbreviated) name of the column.                                                                        |
-| Description | Description of the column.                                                                                      |
-| Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).              |
-| Units       | Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
-| TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
+| Field name  | Definition                                                                                                                   |
+| :---------- | :--------------------------------------------------------------------------------------------------------------------------- |
+| LongName    | OPTIONAL. Long (unabbreviated) name of the column.                                                                           |
+| Description | RECOMMENDED. Description of the column.                                                                                      |
+| Levels      | RECOMMENDED. For categorical variables: a dictionary of possible values (keys) and their descriptions (values).              |
+| Units       | RECOMMENDED. Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
+| TermURL     | RECOMMENDED. URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
+
+Please note that while both `Units` and `Levels` are RECOMMENDED, typically only one
+of these two fields would be specified for describing a single TSV file column.
 
 Example:
 
