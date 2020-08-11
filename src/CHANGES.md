@@ -4,6 +4,7 @@
 
 -   \[INFRA] Auto adjust table fences before PDF conversion [#560](https://github.com/bids-standard/bids-specification/pull/560) ([sebastientourbier](https://github.com/sebastientourbier))
 -   \[ENH] Support run and acq entities in behavior-only data [#556](https://github.com/bids-standard/bids-specification/pull/556) ([tsalo](https://github.com/tsalo))
+-   \[FIX] Clarify requirement levels for TSV metadata fields [#555](https://github.com/bids-standard/bids-specification/pull/555) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Reorganize rec, ce entities, \_defacemask [#550](https://github.com/bids-standard/bids-specification/pull/550) ([emdupre](https://github.com/emdupre))
 -   \[FIX] Clarify Upper-casing of Channels.tsv Channel Type [#548](https://github.com/bids-standard/bids-specification/pull/548) ([adam2392](https://github.com/adam2392))
 -   \[ENH] Extend date time information to include optional UTC syntax, warn about FIF requirements [#546](https://github.com/bids-standard/bids-specification/pull/546) ([sappelhoff](https://github.com/sappelhoff))
