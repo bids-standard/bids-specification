@@ -1,73 +1,202 @@
 # Appendix IX: Entities
 
-This appendix defines the entities available in the specification.
+This section compiles the entities (key-value pairs) described throughout this
+specification, and describes each.
+
+A general introduction to entities is given in the section on
+[file name structure](../02-common-principles.md#file-name-structure).
+
+The ordering of entities and whether it is allowed, OPTIONAL, or REQUIRED for
+each is given in the [Entity Table](04-entity-table.md).
+
 
 ## sub
 
-The `sub-<label>` key/value pair refers to the subject identifier.
+Full name: Subject
+
+Format: `sub_<label>`
+
+Definition: A person or animal participating in the study.
+
 
 ## ses
 
-The `ses-<label>` key/value pair refers to the session identifier.
+Full name: Session
+
+Format: `ses_<label>`
+
+Definition: A logical grouping of neuroimaging and behavioral data consistent across
+subjects.
+Session can (but doesn't have to) be synonymous to a visit in a
+longitudinal study.
+In general, subjects will stay in the scanner during one session.
+However, for example, if a subject has to leave the scanner room and then
+be re-positioned on the scanner bed, the set of MRI acquisitions will still
+be considered as a session and match sessions acquired in other subjects.
+Similarly, in situations where different data types are obtained over
+several visits (for example fMRI on one day followed by DWI the day after)
+those can be grouped in one session.
+Defining multiple sessions is appropriate when several identical or similar
+data acquisitions are planned and performed on all -or most- subjects,
+often in the case of some intervention between sessions (e.g., training).
+
 
 ## task
 
-Each task has a unique label that MUST only consist of letters and/or numbers (other characters, including spaces and underscores, are not allowed).
+Full name: Task
+
+Format: `task_<label>`
+
+Definition: Each task has a unique label that MUST only consist of letters and/or
+numbers (other characters, including spaces and underscores, are not
+allowed).
 Those labels MUST be consistent across subjects and sessions.
+
 
 ## acq
 
-The `acq-<label>` key/value pair corresponds to a custom label one may use to distinguish different set of parameters used for acquiring the same task.
-For example this should be used when a study includes two resting state images - one single band and one multiband.
-In such case two files could have the following names: `sub-01_task-rest_acq-singleband_bold.nii.gz` and `sub-01_task-rest_acq-multiband_bold.nii.gz`, however the user is MAY choose any other label than singleband and multiband as long as they are consistent across subjects and sessions and consist only of the legal label characters.
+Full name: Acquisition
+
+Format: `acq_<label>`
+
+Definition: The `acq-<label>` key/value pair corresponds to a custom label the
+user MAY use to distinguish a different set of parameters used for
+acquiring the same modality.
+For example this should be used when a study includes two T1w images - one
+full brain low resolution and and one restricted field of view but high
+resolution.
+In such case two files could have the following names:
+`sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however the
+user is free to choose any other label than highres and lowres as long as
+they are consistent across subjects and sessions.
+In case different sequences are used to record the same modality (e.g. RARE
+and FLASH for T1w) this field can also be used to make that distinction.
+At what level of detail to make the distinction (e.g. just between RARE and
+FLASH, or between RARE, FLASH, and FLASHsubsampled) remains at the
+discretion of the researcher.
+
 
 ## ce
 
-The `ce-<label>` key/value pair can be used to distinguish sequences using different contrast enhanced images.
+Full name: Contrast Enhancing Agent
+
+Format: `ce_<label>`
+
+Definition: The `ce-<label>` key/value can be used to distinguish
+sequences using different contrast enhanced images.
 The label is the name of the contrast agent.
-The key `ContrastBolusIngredient` MAY be also be added in the JSON file, with the same label.
+The key `ContrastBolusIngredient` MAY be also be added in the JSON file, with
+the same label.
+
 
 ## rec
 
-The `rec-<label>` key/value pair can be used to distinguish different reconstruction algorithms (for example ones using motion correction).
+Full name: Reconstruction
+
+Format: `rec_<label>`
+
+Definition: The `rec-<label>` key/value can be used to distinguish
+different reconstruction algorithms (for example ones using motion
+correction).
+
 
 ## dir
 
-The `dir-<label>` key/value pair can be set to arbitrary alphanumeric label (`[a-zA-Z0-9]+` for example `LR` or `AP`) that can help users to distinguish between different files, but should not be used to infer any scanning parameters (such as phase encoding directions) of the corresponding sequence.
+Full name: Phase-Encoding Direction
+
+Format: `dir_<label>`
+
+Definition: The `dir-<label>` key/value can be used to distinguish
+different phase-encoding directions.
+
 
 ## run
 
-If more than one run of the same task has been acquired a key/value pair: `_run-1`, `_run-2`, `_run-3` etc. MUST be used.
-If only one run was acquired the `run-<index>` can be omitted.
-In the context of functional imaging a run is defined as the same task, but in some cases it can mean different set of stimuli (for example randomized order) and participant responses.
+Full name: Run
+
+Format: `run_<index>`
+
+Definition: If several scans of the same modality are acquired they MUST be indexed
+with a key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only integers
+are allowed as run labels).
+When there is only one scan of a given type the run key MAY be omitted.
+
 
 ## mod
 
-The `mod-<label>` key/value pair is used to denote the modality suffix of the origin of a defacemask file.
-If the structural images included in the dataset were defaced (to protect identity of participants) one MAY provide the binary mask that was used to remove facial features in the form of `_defacemask` files.
-In such cases, the OPTIONAL `mod-<label>` key/value pair corresponds to modality suffix, such as T1w or inplaneT1, referenced by the defacemask image.
-For example, `sub-01_mod-T1w_defacemask.nii.gz`.
+Full name: Corresponding Modality
+
+Format: `mod_<label>`
+
+Definition: The `mod-<label>` key/value pair corresponds to modality label for defacing
+masks, e.g., T1w, inplaneT1, referenced by a defacemask image.
+E.g., `sub-01_mod-T1w_defacemask.nii.gz`.
+
 
 ## echo
 
-Multi-echo data MUST be split into one file per echo.
-Each file shares the same name with the exception of the `echo-<index>` key/value.
+Full name: Echo
+
+Format: `echo_<index>`
+
+Definition: Multi-echo data MUST be split into one file per echo.
+Each file shares the same name with the exception of the `_echo-<index>`
+key/value.
+
 
 ## recording
 
+Full name: Recording
+
+Format: `recording_<label>`
+
+Definition: More than one continuous recording file can be included (with different
+sampling frequencies).
+In such case use different labels.
+For example: `_recording-contrast`, `_recording-saturation`.
+
+
 ## proc
 
-The `proc-<label>` key/value pair is analogous to `rec` for MR and denotes a variant of a file that was a result of particular processing performed on the device.
-This is useful for files produced in particular by Elekta’s MaxFilter (e.g. sss, tsss, trans, quat, mc, etc.), which some installations impose to be run on raw data because of active shielding software corrections before the MEG data can actually be exploited.
+Full name: Processed (on device)
+
+Format: `proc_<label>`
+
+Definition: The proc label is analogous to rec for MR and denotes a variant of a file
+that was a result of particular processing performed on the device.
+This is useful for files produced in particular by Elekta’s MaxFilter
+(e.g. sss, tsss, trans, quat, mc, etc.), which some installations impose to
+be run on raw data because of active shielding software corrections before
+the MEG data can actually be exploited.
+
 
 ## space
 
-The final frontier.
+Full name: Space
+
+Format: `space_<label>`
+
+Definition: The space label (`*[_space-<label>]_electrodes.tsv`) can be used
+to indicate the way in which electrode positions are interpreted.
+The space label needs to be taken from the list in Appendix VIII.
+
 
 ## split
 
-Some manufacturers' data storage conventions use folders which contain data files of various nature: for example, CTF's .ds format, or BTi/4D.
-Yet other manufacturers split their files once they exceed a certain size limit.
-For example Neuromag/Elekta/Megin, which can produce several files for a single recording.
-Both some_file.fif and some_file-1.fif would belong to a single recording.
-In BIDS, the `split-<index>` key/value pair is RECOMMENDED to deal with split files.
+Full name: Split
+
+Format: `split_<index>`
+
+Definition: In the case of long data recordings that exceed a file size of 2Gb, the
+.fif files are conventionally split into multiple parts.
+Each of these files has an internal pointer to the next file.
+This is important when renaming these split recordings to the BIDS
+convention.
+
+Instead of a simple renaming, files should be read in and saved under their
+new names with dedicated tools like MNE, which will ensure that not only
+the file names, but also the internal file pointers will be updated.
+It is RECOMMENDED that .fif files with multiple parts use the
+`split-<index>` entity to indicate each part.
+
+

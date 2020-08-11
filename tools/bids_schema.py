@@ -109,18 +109,44 @@ def _get_parser():
         type=Path,
         help=('Path to schema to show.')
     )
-    # entity_table()
-    entity_parser = subparsers.add_parser(
-        'entity',
-        help=('Print entity table')
+    # save_entity_table()
+    entitytable_parser = subparsers.add_parser(
+        'entitytable',
+        help=('Save entity table to file')
     )
-    entity_parser.set_defaults(func=save_entity_table)
-    entity_parser.add_argument(
+    entitytable_parser.set_defaults(func=save_entity_table)
+    entitytable_parser.add_argument(
         'schema_path',
         type=Path,
         help=('Path to schema to show.')
     )
-    entity_parser.add_argument(
+    entitytable_parser.add_argument(
+        'out_file',
+        type=str,
+        help=('Output filename.')
+    )
+    entitytable_parser.add_argument(
+        '--entities_file',
+        type=str,
+        help=('File in which entities are described. '
+              'This is used for hyperlinks in the table, so the path to the '
+              'file should be considered from the location of out_file. '
+              'Default is "09-entities.md".'),
+        default='09-entities.md',
+        required=False,
+    )
+    # save_entities()
+    entities_parser = subparsers.add_parser(
+        'entities',
+        help=('Save entities to file')
+    )
+    entities_parser.set_defaults(func=save_entities)
+    entities_parser.add_argument(
+        'schema_path',
+        type=Path,
+        help=('Path to schema to show.')
+    )
+    entities_parser.add_argument(
         'out_file',
         type=str,
         help=('Output filename.')
@@ -168,12 +194,52 @@ def show(schema_path):
     print(yaml.safe_dump(schema, default_flow_style=False))
 
 
+def save_entities(schema_path, out_file):
+    """Save entity definitions to a markdown file.
+    Each entity gets its own heading.
+    """
+    schema = load_schema(schema_path)
+    entities = schema['entities']
+    intro_text = """\
+# Appendix IX: Entities
+
+This section compiles the entities (key-value pairs) described throughout this
+specification, and describes each.
+
+A general introduction to entities is given in the section on
+[file name structure](../02-common-principles.md#file-name-structure).
+
+The ordering of entities and whether it is allowed, OPTIONAL, or REQUIRED for
+each is given in the [Entity Table](04-entity-table.md).
+"""
+    with open(out_file, 'w') as fo:
+        fo.write(intro_text)
+        fo.write('\n\n')
+        for entity, entity_info in entities.items():
+            fo.write('## {}'.format(entity))
+            fo.write('\n\n')
+            fo.write('Full name: {}'.format(entity_info['name']))
+            fo.write('\n\n')
+            fo.write('Format: `{}_<{}>`'.format(entity, entity_info['format']))
+            fo.write('\n\n')
+            fo.write('Definition: {}'.format(entity_info['description']))
+            fo.write('\n\n')
+
+
 def drop_unused_entities(df):
+    """Remove columns from a dataframe where all values in the column are NaNs.
+    For entity tables, this limits each table to only entities thare are used
+    within the modality.
+    """
     df = df.replace('', np.nan).dropna(axis=1, how='all').fillna('')
     return df
 
 
 def flatten_multiindexed_columns(df):
+    """Remove multi-indexing of multi-indexed column headers.
+    The first layer is the "DataType", while the second layer is the "Format".
+    This second layer will become a new row.
+    """
     # Flatten multi-index
     vals = df.index.tolist()
     df.loc['Format'] = df.columns.get_level_values(1)
@@ -184,7 +250,7 @@ def flatten_multiindexed_columns(df):
     return df
 
 
-def make_entity_table(schema_path):
+def make_entity_table(schema_path, entities_file='09-entities.md'):
     """Produce entity table (markdown) based on schema.
     This only works if the top-level schema *directory* is provided.
 
@@ -192,11 +258,16 @@ def make_entity_table(schema_path):
     ----------
     schema_path : str
         Folder containing schema, which is stored in yaml files.
+    entities_file : str, optional
+        File in which entities are described.
+        This is used for hyperlinks in the table, so the path to the file
+        should be considered from the location of out_file.
+        Default is '09-entities.md'.
 
     Returns
     -------
     table : pandas.DataFrame
-        DataFrame of entity table, with two layers of columns.
+        DataFrame of entity table, with two layers of column headers.
     """
     schema = load_schema(schema_path)
 
@@ -210,7 +281,8 @@ def make_entity_table(schema_path):
     # Compose header and formats first
     for i, (entity, spec) in enumerate(schema['entities'].items()):
         header.append(spec["name"])
-        formats.append(f'`{entity}-<{spec["format"]}>`')
+        formats.append(f'[`{entity}-<{spec["format"]}>`]'
+                       f'({entities_file}#{entity})')
         entity_to_col[entity] = i + 1
 
     # Go through data types
@@ -258,9 +330,10 @@ def make_entity_table(schema_path):
     return table
 
 
-def make_entity_table_markdown(schema_path, tablefmt='github'):
+def make_entity_table_markdown(schema_path, tablefmt='github',
+                               entities_file='09-entities.md'):
     """
-    Create a tabulated entity table from the schema.
+    Create a group of tabulated entity tables from the schema.
 
     This only works if the top-level schema *directory* is provided.
 
@@ -270,6 +343,11 @@ def make_entity_table_markdown(schema_path, tablefmt='github'):
         Path to schema.
     tablefmt : {'github'}, optional
         Format for tabulated table.
+    entities_file : str, optional
+        File in which entities are described.
+        This is used for hyperlinks in the table, so the path to the file
+        should be considered from the location of out_file.
+        Default is '09-entities.md'.
 
     Returns
     -------
@@ -277,7 +355,7 @@ def make_entity_table_markdown(schema_path, tablefmt='github'):
         Dictionary of tabulated entity tables, with table title as key.
     """
     from tabulate import tabulate
-    table = make_entity_table(schema_path)
+    table = make_entity_table(schema_path, entities_file=entities_file)
 
     # Split table
     EG_DATATYPES = ['eeg', 'ieeg', 'meg', 'channels', 'electrodes', 'events',
@@ -311,8 +389,24 @@ def make_entity_table_markdown(schema_path, tablefmt='github'):
     return out_tables
 
 
-def save_entity_table(schema_path, out_file):
+def save_entity_table(schema_path, out_file, entities_file='09-entities.md'):
+    """
+    Create entity table from schema path and then save the table to a markdown
+    file.
 
+    Parameters
+    ----------
+    schema_path : str
+        Path to folder containing schema.
+        Do not point to a specific file in the schema.
+    out_file : str
+        Output file for the entity table.
+    entities_file : str, optional
+        File in which entities are described.
+        This is used for hyperlinks in the table, so the path to the file
+        should be considered from the location of out_file.
+        Default is '09-entities.md'.
+    """
     tables = make_entity_table_markdown(schema_path)
 
     intro_text = """\
@@ -327,8 +421,10 @@ Entity formats indicate whether the value is alphanumeric
 (`<label>`) or numeric (`<index>`).
 
 A general introduction to entities is given in the section on
-[file name structure](../02-common-principles.md#file-name-structure)
-"""
+[file name structure](../02-common-principles.md#file-name-structure),
+while entity definitions are in [Appendix IX]({entities_file}).
+""".format(entities_file=entities_file)
+
     with open(out_file, 'w') as fo:
         fo.write(intro_text)
         fo.write('\n')
@@ -347,8 +443,11 @@ def _main(argv=None):
 
     Examples
     --------
-    >>> python bids_schema.py entity ../src/schema/ \
+    >>> python bids_schema.py entitytable ../src/schema/ \
     >>> ../src/99-appendices/04-entity-table.md
+
+    >>> python bids_schema.py entities ../src/schema/ \
+    >>> ../src/99-appendices/09-entities.md
     """
     options = _get_parser().parse_args(argv)
     args = vars(options).copy()
