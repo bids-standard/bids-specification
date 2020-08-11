@@ -9,7 +9,6 @@ A general introduction to entities is given in the section on
 The ordering of entities and whether it is allowed, OPTIONAL, or REQUIRED for
 each is given in the [Entity Table](04-entity-table.md).
 
-
 ## sub
 
 Full name: Subject
@@ -17,7 +16,6 @@ Full name: Subject
 Format: `sub_<label>`
 
 Definition: A person or animal participating in the study.
-
 
 ## ses
 
@@ -40,7 +38,6 @@ Defining multiple sessions is appropriate when several identical or similar
 data acquisitions are planned and performed on all -or most- subjects,
 often in the case of some intervention between sessions (e.g., training).
 
-
 ## task
 
 Full name: Task
@@ -51,7 +48,6 @@ Definition: Each task has a unique label that MUST only consist of letters and/o
 numbers (other characters, including spaces and underscores, are not
 allowed).
 Those labels MUST be consistent across subjects and sessions.
-
 
 ## acq
 
@@ -75,7 +71,6 @@ At what level of detail to make the distinction (e.g. just between RARE and
 FLASH, or between RARE, FLASH, and FLASHsubsampled) remains at the
 discretion of the researcher.
 
-
 ## ce
 
 Full name: Contrast Enhancing Agent
@@ -88,7 +83,6 @@ The label is the name of the contrast agent.
 The key `ContrastBolusIngredient` MAY be also be added in the JSON file, with
 the same label.
 
-
 ## rec
 
 Full name: Reconstruction
@@ -99,7 +93,6 @@ Definition: The `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion
 correction).
 
-
 ## dir
 
 Full name: Phase-Encoding Direction
@@ -108,7 +101,6 @@ Format: `dir_<label>`
 
 Definition: The `dir-<label>` key/value can be used to distinguish
 different phase-encoding directions.
-
 
 ## run
 
@@ -121,7 +113,6 @@ with a key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only integers
 are allowed as run labels).
 When there is only one scan of a given type the run key MAY be omitted.
 
-
 ## mod
 
 Full name: Corresponding Modality
@@ -131,7 +122,6 @@ Format: `mod_<label>`
 Definition: The `mod-<label>` key/value pair corresponds to modality label for defacing
 masks, e.g., T1w, inplaneT1, referenced by a defacemask image.
 E.g., `sub-01_mod-T1w_defacemask.nii.gz`.
-
 
 ## echo
 
@@ -143,7 +133,6 @@ Definition: Multi-echo data MUST be split into one file per echo.
 Each file shares the same name with the exception of the `_echo-<index>`
 key/value.
 
-
 ## recording
 
 Full name: Recording
@@ -154,7 +143,6 @@ Definition: More than one continuous recording file can be included (with differ
 sampling frequencies).
 In such case use different labels.
 For example: `_recording-contrast`, `_recording-saturation`.
-
 
 ## proc
 
@@ -169,7 +157,6 @@ This is useful for files produced in particular by Elekta’s MaxFilter
 be run on raw data because of active shielding software corrections before
 the MEG data can actually be exploited.
 
-
 ## space
 
 Full name: Space
@@ -179,7 +166,6 @@ Format: `space_<label>`
 Definition: The space label (`*[_space-<label>]_electrodes.tsv`) can be used
 to indicate the way in which electrode positions are interpreted.
 The space label needs to be taken from the list in Appendix VIII.
-
 
 ## split
 
@@ -198,5 +184,4 @@ new names with dedicated tools like MNE, which will ensure that not only
 the file names, but also the internal file pointers will be updated.
 It is RECOMMENDED that .fif files with multiple parts use the
 `split-<index>` entity to indicate each part.
-
 
