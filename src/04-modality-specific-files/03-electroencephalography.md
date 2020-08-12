@@ -246,6 +246,7 @@ Note that upper-case is REQUIRED:
 | GSR      | Galvanic skin response                                       |
 | HEOG     | Horizontal EOG (eye)                                         |
 | MISC     | Miscellaneous                                                |
+| PPG      | Photoplethysmography                                         |
 | PUPIL    | Eye tracker pupil diameter                                   |
 | REF      | Reference channel                                            |
 | RESP     | Respiration                                                  |
