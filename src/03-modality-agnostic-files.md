@@ -28,6 +28,8 @@ Every dataset MUST include this file with the following fields:
 | EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                                                |
 | ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                                                     |
 | DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                                                             |
+| Preregistration    | OPTIONAL.  URL or Document Object Identifier of the time-stamped pre-registration of the study that produced the dataset.              
+                                                |
 
 Example:
 
