@@ -14,8 +14,8 @@ Templates:
 The file `dataset_description.json` is a JSON file describing the dataset.
 Every dataset MUST include this file with the following fields:
 
-| **Field name**     |   **Definition**                                                                                                                                                                                                                                                   |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Field name**     | **Definition**                                                                                                                                                                                                                                                     |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                                                     |
 | BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                                                          |
 | HEDVersion         | RECOMMENDED if HED tags are used. The version of the HED schema used to validate HED tags for study.                                                                                                                                                               |
@@ -28,8 +28,7 @@ Every dataset MUST include this file with the following fields:
 | EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                                                |
 | ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                                                     |
 | DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                                                             |
-| Preregistration    | OPTIONAL.  URL or Document Object Identifier of the time-stamped pre-registration of the study that produced the dataset.              
-                                                |
+| Preregistration    | OPTIONAL.  URL or Document Object Identifier of the time-stamped pre-registration of the study that produced the dataset.                                                                                                                                          |
 
 Example:
 
