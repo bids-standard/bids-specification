@@ -316,16 +316,16 @@ sparse sequences.
 
 ##### fMRI task information
 
-| Field name                  | Definition                                                                                                                                                                                                 |
-|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Instructions                | RECOMMENDED. Text of the instructions given to participants before the scan. This is especially important in context of resting state fMRI and distinguishing between eyes open and eyes closed paradigms. |
-| TaskDescription             | RECOMMENDED. Longer description of the task.                                                                                                                                                               |
-| CogAtlasID                  | RECOMMENDED. URL of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.                                                                                                        |
-| CogPOID                     | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                 |
-| StimuliPresentationOS       | RECOMMENDED. Operating system used to run the stimuli presentation software.                                                                                                                               |
-| StimuliPresentationSoftware | RECOMMENDED. Name of the software that was used to present the stimuli ideally with its [Research Ressource Identifier](https://scicrunch.org/resources)                                                   |
-| StimuliPresentationVersion: | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                 |
-| StimuliPresentationCode     | RECOMMENDED. URL to code of that was used to present the stimuli.                                                                                                                                          |
+| Field name                   | Definition                                                                                                                                                                                                 |
+|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Instructions                 | RECOMMENDED. Text of the instructions given to participants before the scan. This is especially important in context of resting state fMRI and distinguishing between eyes open and eyes closed paradigms. |
+| TaskDescription              | RECOMMENDED. Longer description of the task.                                                                                                                                                               |
+| CogAtlasID                   | RECOMMENDED. URL of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.                                                                                                        |
+| CogPOID                      | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                 |
+| StimulusPresentationOS       | RECOMMENDED. Operating system used to run the stimuli presentation software.                                                                                                                               |
+| StimulusPresentationSoftware | RECOMMENDED. Name of the software that was used to present the stimuli ideally with its [Research Ressource Identifier](https://scicrunch.org/resources)                                                   |
+| StimulusPresentationVersion  | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                 |
+| StimulusPresentationCode     | RECOMMENDED. URL to code of that was used to present the stimuli.                                                                                                                                          |
 
 See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms and their definitions.
