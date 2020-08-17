@@ -323,7 +323,7 @@ sparse sequences.
 | CogAtlasID                   | RECOMMENDED. URL of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.                                                                                                        |
 | CogPOID                      | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                 |
 | StimulusPresentationOS       | RECOMMENDED. Operating system used to run the stimuli presentation software.                                                                                                                               |
-| StimulusPresentationSoftware | RECOMMENDED. Name of the software that was used to present the stimuli ideally with its [Research Ressource Identifier](https://scicrunch.org/resources)                                                   |
+| StimulusPresentationSoftware | RECOMMENDED. Name of the software that was used to present the stimuli ideally with its [Research Resource Identifier](https://scicrunch.org/resources)                                                   |
 | StimulusPresentationVersion  | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                 |
 | StimulusPresentationCode     | RECOMMENDED. URL to code of that was used to present the stimuli.                                                                                                                                          |
 
