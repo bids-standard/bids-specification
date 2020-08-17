@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[ENH] added PPG as an accepted channel type for EEG, MEG and iEEG [#570](https://github.com/bids-standard/bids-specification/pull/570) ([robertoostenveld](https://github.com/robertoostenveld))
 -   \[INFRA] enable pandoc emojis for the pdf build [#562](https://github.com/bids-standard/bids-specification/pull/562) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] Auto adjust table fences before PDF conversion [#560](https://github.com/bids-standard/bids-specification/pull/560) ([sebastientourbier](https://github.com/sebastientourbier))
 -   \[ENH] Support run and acq entities in behavior-only data [#556](https://github.com/bids-standard/bids-specification/pull/556) ([tsalo](https://github.com/tsalo))
