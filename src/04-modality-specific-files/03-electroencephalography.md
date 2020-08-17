@@ -112,7 +112,7 @@ Whenever possible, please avoid using ad hoc wording.
 | CogPOID                      | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task (e.g., Rest "[http://wiki.cogpo.org/index.php?title=Rest](http://wiki.cogpo.org/index.php?title=Rest)") .                                                                       |
 | DeviceSerialNumber           | RECOMMENDED. The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.                                                     |
 | StimulusPresentationOS       | RECOMMENDED. Operating system used to run the stimuli presentation software.                                                                                                                                                                                                      |
-| StimulusPresentationSoftware | RECOMMENDED. Name of the software that was used to present the stimuli, ideally with its [Research Resource Identifier](https://scicrunch.org/resources)                                                                                                                         |
+| StimulusPresentationSoftware | RECOMMENDED. Name of the software that was used to present the stimuli, ideally with its [Research Resource Identifier](https://scicrunch.org/resources) Examples: 'Psychtoolbox, RRID:SCR_002881' or 'PsychoPy, RRID:SCR_006571'                                                                                                                         |
 | StimulusPresentationVersion  | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                                                                                        |
 | StimulusPresentationCode     | RECOMMENDED. URL to code of that was used to present the stimuli.                                                                                                                                                                                                                 |
 
@@ -183,6 +183,10 @@ Example:
   },
   "RecordingDuration":600,
   "RecordingType":"continuous"
+  "StimulusPresentationOS": "Linux-Ubuntu 18.04.5 LTS"
+  "StimulusPresentationSoftware": "PsychoPy, RRID:SCR_006571"
+  "StimulusPresentationVersion": "2020.2.2"
+  "StimulusPresentationCode": "https://github.com/hanna_meier/oddball"
 }
 ```
 

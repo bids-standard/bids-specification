@@ -323,7 +323,7 @@ sparse sequences.
 | CogAtlasID                   | RECOMMENDED. URL of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.                                                                                                        |
 | CogPOID                      | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                 |
 | StimulusPresentationOS       | RECOMMENDED. Operating system used to run the stimuli presentation software.                                                                                                                               |
-| StimulusPresentationSoftware | RECOMMENDED. Name of the software that was used to present the stimuli ideally with its [Research Resource Identifier](https://scicrunch.org/resources)                                                   |
+| StimulusPresentationSoftware | RECOMMENDED. Name of the software that was used to present the stimuli ideally with its [Research Resource Identifier](https://scicrunch.org/resources) Examples: 'Psychtoolbox, RRID:SCR_002881' or 'PsychoPy, RRID:SCR_006571'                                                   |
 | StimulusPresentationVersion  | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                 |
 | StimulusPresentationCode     | RECOMMENDED. URL to code of that was used to present the stimuli.                                                                                                                                          |
 
@@ -351,6 +351,10 @@ sub-control01/
    "InstitutionName": "Stanford University",
    "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
    "DeviceSerialNumber": "11035"
+   "StimulusPresentationOS": "Linux-Ubuntu 18.04.5 LTS"
+   "StimulusPresentationSoftware": "Psychtoolbox, RRID:SCR_002881"
+   "StimulusPresentationVersion": "3.0.14"
+   "StimulusPresentationCode": "https://github.com/jane_doe/face_localizer"
 }
 ```
 
