@@ -140,11 +140,11 @@ modalities include:
 
 #### The `run` entity
 
-If several scans of the same modality are acquired they MUST be indexed with a key-value pair:
-`_run-1`, `_run-2`, `_run-3` etc.
-(only nonnegative integers are allowed as run labels).
-When there is only one scan of a given type the run key MAY be omitted.
-Please note that diffusion imaging data is stored elsewhere (see below).
+If several scans of the same modality are acquired they MUST be indexed with a
+key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only nonnegative integers are allowed as
+run labels). When there is only one scan of a given type the run key MAY be
+omitted. Please note that diffusion imaging data is stored elsewhere (see
+below).
 
 #### The `acq` entity
 
