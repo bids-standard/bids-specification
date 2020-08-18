@@ -349,7 +349,7 @@ sub-control01/
    "PhaseEncodingDirection": "j",
    "InstitutionName": "Stanford University",
    "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
-   "DeviceSerialNumber": "11035"
+   "DeviceSerialNumber": "11035",
    "StimulusPresentationOS": "Linux-Ubuntu 18.04.5 LTS"
    "StimulusPresentationSoftware": "Psychtoolbox, RRID:SCR_002881"
    "StimulusPresentationVersion": "3.0.14"

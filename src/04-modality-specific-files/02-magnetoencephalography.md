@@ -168,7 +168,7 @@ Example:
    "ContinuousHeadLocalization": true,
    "HeadCoilFrequency": [1470,1530,1590],
    "DigitizedLandmarks": true,
-   "DigitizedHeadPoints": true
+   "DigitizedHeadPoints": true,
    "StimulusPresentationOS": "Linux-Ubuntu 18.04.5 LTS"
    "StimulusPresentationSoftware": "Psychtoolbox, RRID:SCR_002881"
    "StimulusPresentationVersion": "3.0.14"

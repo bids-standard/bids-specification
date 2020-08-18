@@ -198,7 +198,7 @@ Example:
   "RecordingType":"continuous",
   "iEEGGround":"placed on the right mastoid",
   "iEEGPlacementScheme":"right occipital temporal surface",
-  "ElectricalStimulation":false
+  "ElectricalStimulation":false,
   "StimulusPresentationOS": "Windows 10"
   "StimulusPresentationSoftware": "PsychoPy, RRID:SCR_006571"
   "StimulusPresentationVersion": "2020.2.2"

@@ -180,7 +180,7 @@ Example:
     }
   },
   "RecordingDuration":600,
-  "RecordingType":"continuous"
+  "RecordingType":"continuous",
   "StimulusPresentationOS": "Linux-Ubuntu 18.04.5 LTS"
   "StimulusPresentationSoftware": "PsychoPy, RRID:SCR_006571"
   "StimulusPresentationVersion": "2020.2.2"
