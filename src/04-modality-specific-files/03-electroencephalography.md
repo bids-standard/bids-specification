@@ -110,10 +110,7 @@ Whenever possible, please avoid using ad hoc wording.
 | CogAtlasID                   | RECOMMENDED. URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) term that describes the task (e.g., Resting State with eyes closed "[http://www.cognitiveatlas.org/task/id/trm_54e69c642d89b](http://www.cognitiveatlas.org/task/id/trm_54e69c642d89b)"). |
 | CogPOID                      | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task (e.g., Rest "[http://wiki.cogpo.org/index.php?title=Rest](http://wiki.cogpo.org/index.php?title=Rest)") .                                                                       |
 | DeviceSerialNumber           | RECOMMENDED. The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.                                                     |
-| StimulusPresentationOS       | RECOMMENDED. Operating system used to run the stimuli presentation software.                                                                                                                                                                                                      |
-| StimulusPresentationSoftware | RECOMMENDED. Name of the software that was used to present the stimuli, ideally with its [Research Resource Identifier](https://scicrunch.org/resources) Examples: 'Psychtoolbox, RRID:SCR_002881' or 'PsychoPy, RRID:SCR_006571'                                                 |
-| StimulusPresentationVersion  | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                                                                                        |
-| StimulusPresentationCode     | RECOMMENDED. URL to code of that was used to present the stimuli.                                                                                                                                                                                                                 |
+
 Specific EEG fields MUST be present:
 
 | Field name         | Definition                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -126,7 +123,7 @@ Specific EEG fields MUST be present:
 SHOULD be present:
 
 | Field name                 | Definition                                                                                                                                                                                                                                                                                                                                                                                          |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | CapManufacturer            | RECOMMENDED. Name of the cap manufacturer (e.g., "EasyCap").                                                                                                                                                                                                                                                                                                                                        |
 | CapManufacturersModelName  | RECOMMENDED. Manufacturer's designation of the EEG cap model (e.g., "actiCAP 64 Ch Standard-2").                                                                                                                                                                                                                                                                                                    |
 | EEGChannelCount            | RECOMMENDED. Number of EEG channels included in the recording (e.g., 128).                                                                                                                                                                                                                                                                                                                          |
@@ -180,11 +177,7 @@ Example:
     }
   },
   "RecordingDuration":600,
-  "RecordingType":"continuous",
-  "StimulusPresentationOS": "Linux-Ubuntu 18.04.5 LTS"
-  "StimulusPresentationSoftware": "PsychoPy, RRID:SCR_006571"
-  "StimulusPresentationVersion": "2020.2.2"
-  "StimulusPresentationCode": "https://github.com/hanna_meier/oddball"
+  "RecordingType":"continuous"
 }
 ```
 

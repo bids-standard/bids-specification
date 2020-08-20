@@ -316,16 +316,13 @@ sparse sequences.
 
 ##### fMRI task information
 
-| Field name                   | Definition                                                                                                                                                                                                                       |
-|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Instructions                 | RECOMMENDED. Text of the instructions given to participants before the scan. This is especially important in context of resting state fMRI and distinguishing between eyes open and eyes closed paradigms.                       |
-| TaskDescription              | RECOMMENDED. Longer description of the task.                                                                                                                                                                                     |
-| CogAtlasID                   | RECOMMENDED. URL of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.                                                                                                                              |
-| CogPOID                      | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                                       |
-| StimulusPresentationOS       | RECOMMENDED. Operating system used to run the stimuli presentation software.                                                                                                                                                     |
-| StimulusPresentationSoftware | RECOMMENDED. Name of the software that was used to present the stimuli ideally with its [Research Resource Identifier](https://scicrunch.org/resources) Examples: 'Psychtoolbox, RRID:SCR_002881' or 'PsychoPy, RRID:SCR_006571' |
-| StimulusPresentationVersion  | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                                       |
-| StimulusPresentationCode     | RECOMMENDED. URL to code of that was used to present the stimuli.                                                                                                                                                                |
+| Field name      | Definition                                                                                                                                                                                                 |
+|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Instructions    | RECOMMENDED. Text of the instructions given to participants before the scan. This is especially important in context of resting state fMRI and distinguishing between eyes open and eyes closed paradigms. |
+| TaskDescription | RECOMMENDED. Longer description of the task.                                                                                                                                                               |
+| CogAtlasID      | RECOMMENDED. URL of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.                                                                                                        |
+| CogPOID         | RECOMMENDED. URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                 |
+
 See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms and their definitions.
 
@@ -349,11 +346,7 @@ sub-control01/
    "PhaseEncodingDirection": "j",
    "InstitutionName": "Stanford University",
    "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
-   "DeviceSerialNumber": "11035",
-   "StimulusPresentationOS": "Linux-Ubuntu 18.04.5 LTS"
-   "StimulusPresentationSoftware": "Psychtoolbox, RRID:SCR_002881"
-   "StimulusPresentationVersion": "3.0.14"
-   "StimulusPresentationCode": "https://github.com/jane_doe/face_localizer"
+   "DeviceSerialNumber": "11035"
 }
 ```
 
