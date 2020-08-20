@@ -37,10 +37,6 @@ REQUIRED and OPTIONAL columns:
 | stim_file     | OPTIONAL. Represents the location of the stimulus file (image, video, sound etc.) presented at the given onset time. There are no restrictions on the file formats of the stimuli files, but they should be stored in the /stimuli folder (under the root folder of the dataset; with optional subfolders). The values under the stim_file column correspond to a path relative to "/stimuli". For example "images/cat03.jpg" will be translated to "/stimuli/images/cat03.jpg". |
 | value         | OPTIONAL. Marker value associated with the event (e.g., the value of a TTL trigger that was recorded at the onset of the event).                                                                                                                                                                                                                                                                                                                                                 |
 | HED           | OPTIONAL. Hierarchical Event Descriptor (HED) Tag. See [Appendix III](../99-appendices/03-hed.md) for details.                                                                                                                                                                                                                                                                                                                                                                   |
-| StimulusPresentationOS       | RECOMMENDED. Operating system used to run the stimuli presentation software.                                                                                                                                                     |
-| StimulusPresentationSoftware | RECOMMENDED. Name of the software that was used to present the stimuli ideally with its [Research Resource Identifier](https://scicrunch.org/resources) Examples: 'Psychtoolbox, RRID:SCR_002881' or 'PsychoPy, RRID:SCR_006571' |
-| StimulusPresentationVersion  | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                                       |
-| StimulusPresentationCode     | RECOMMENDED. URL to code of that was used to present the stimuli.                                                                                                                                                                |
 
 <sup>5</sup> For example in case there is an in scanner training phase that
 begins before the scanning sequence has started events from this sequence should
@@ -49,8 +45,8 @@ the first volume.
 
 An arbitrary number of additional columns can be added. Those allow describing
 other properties of events that could be later referred in modelling and
-hypothesis extensions of BIDS.  
-Note that the `trial_type` and any additional columns in a TSV file SHOULD be 
+hypothesis extensions of BIDS.
+Note that the `trial_type` and any additional columns in a TSV file SHOULD be
 documented in an accompanying JSON sidecar file.
 
 In case of multi-echo task run, a single `_events.tsv` file will suffice for all
@@ -83,7 +79,7 @@ In the accompanying JSON sidecar, the `trial_type` column might look as follows:
        }
     }
 }
-```	   
+```
 
 References to existing databases can also be encoded using additional columns.
 Example 2 includes references to the Karolinska Directed Emotional Faces (KDEF)
@@ -106,7 +102,7 @@ onset duration  trial_type  identifier  database  response_time
 5.6 0.6 sad AF01ANSA  kdef  1.739
 ```
 
-This file should be accompanied by a data dictionary.  
+This file should be accompanied by a data dictionary.
 
 ```Text
 sub-control01/
@@ -114,12 +110,19 @@ sub-control01/
         sub-control01_task-emoface_events.json
 ```
 
-The `trial_type` and `identifier` columns from the `*_events.tsv` files might be described in this
-dictionary as follows. 
-Note that all other columns SHOULD also be described but are omitted for the sake
-of example.
+Specific fields related to stimulus presentation details SHOULD also be present in this data dictionary:
 
-```JSON  
+| Column name                  | Description                                                                                                                                                                                                                      |
+|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| StimulusPresentationOS       | RECOMMENDED. Operating system used to run the stimuli presentation software.                                                                                                                                                     |
+| StimulusPresentationSoftware | RECOMMENDED. Name of the software that was used to present the stimuli ideally with its [Research Resource Identifier](https://scicrunch.org/resources) Examples: 'Psychtoolbox, RRID:SCR_002881' or 'PsychoPy, RRID:SCR_006571' |
+| StimulusPresentationVersion  | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                                       |
+| StimulusPresentationCode     | RECOMMENDED. URL to code of that was used to present the stimuli.                                                                                                                                                                |
+
+The `trial_type` and `identifier` columns from the `*_events.tsv` files as well as information reltated to stimulus presentation might be described in this
+dictionary as follows.
+
+```JSON
 {
    "trial_type": {
        "LongName":   "Emotion image type",
@@ -133,9 +136,16 @@ of example.
    "identifier": {
        "LongName": "Unique identifier from Karolinska (KDEF) database",
        "Description": "ID from KDEF database used to identify the displayed image"
-   }
+   },
+   "StimulusPresentationOS": "Linux-Ubuntu 18.04.5 LTS",
+   "StimulusPresentationSoftware": "Psychtoolbox, RRID:SCR_002881",
+   "StimulusPresentationVersion": "3.0.14",
+   "StimulusPresentationCode": "https://github.com/jane_doe/face_localizer"
 }
-```	   
+```
+
+Note that all other columns SHOULD also be described but are omitted for the sake
+of example.
 
 For multi-echo files, the `*_events.tsv` file is applicable to all echos of particular
 run:
