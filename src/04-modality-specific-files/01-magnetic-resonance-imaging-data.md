@@ -263,7 +263,7 @@ sub-01/
       sub-01_task-cuedSGT_run-1_echo-3_bold.json
 ```
 
-Please note that the `<index>` denotes the number/index (in a form of a
+Please note that the `<index>` denotes the number/index (in the form of a
 nonnegative integer) of the echo not the echo time value which needs to be stored in the
 field EchoTime of the separate JSON file.
 
