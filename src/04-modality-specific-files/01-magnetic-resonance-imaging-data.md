@@ -184,13 +184,6 @@ When the file contains data from a single channel, `ch-<label>` SHOULD be provid
 The key `CoilString` MAY also be added in the JSON file, with a corresponding
 identifier for the channel within the coil.
 
-If the structural images included in the dataset were defaced (to protect
-identity of participants) one CAN provide the binary mask that was used to
-remove facial features in the form of `_defacemask` files. In such cases the
-OPTIONAL `mod-<label>` key/value pair corresponds to modality label for eg: T1w,
-inplaneT1, referenced by a defacemask image. E.g.,
-`sub-01_mod-T1w_defacemask.nii.gz`.
-
 Some meta information about the acquisition MAY be provided in an additional
 JSON file. See [Common metadata fields](#common-metadata-fields) for a
 list of terms and their definitions. There are also some OPTIONAL JSON
