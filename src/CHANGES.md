@@ -2,31 +2,104 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[ENH] added PPG as an accepted channel type for EEG, MEG and iEEG [#570](https://github.com/bids-standard/bids-specification/pull/570) ([robertoostenveld](https://github.com/robertoostenveld))
+-   \[INFRA] enable pandoc emojis for the pdf build [#562](https://github.com/bids-standard/bids-specification/pull/562) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] Auto adjust table fences before PDF conversion [#560](https://github.com/bids-standard/bids-specification/pull/560) ([sebastientourbier](https://github.com/sebastientourbier))
+-   \[ENH] Support run and acq entities in behavior-only data [#556](https://github.com/bids-standard/bids-specification/pull/556) ([tsalo](https://github.com/tsalo))
+-   \[FIX] Clarify requirement levels for TSV metadata fields [#555](https://github.com/bids-standard/bids-specification/pull/555) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Reorganize rec, ce entities, \_defacemask [#550](https://github.com/bids-standard/bids-specification/pull/550) ([emdupre](https://github.com/emdupre))
+-   \[FIX] Clarify Upper-casing of Channels.tsv Channel Type [#548](https://github.com/bids-standard/bids-specification/pull/548) ([adam2392](https://github.com/adam2392))
+-   \[ENH] Extend date time information to include optional UTC syntax, warn about FIF requirements [#546](https://github.com/bids-standard/bids-specification/pull/546) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] clarify that \\&lt;physio|stim>.json is REQUIRED [#542](https://github.com/bids-standard/bids-specification/pull/542) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Replace all non-breaking spaces with vanilla spaces [#536](https://github.com/bids-standard/bids-specification/pull/536) ([nicholst](https://github.com/nicholst))
+-   \[FIX] Clarify use of session entity in file names [#532](https://github.com/bids-standard/bids-specification/pull/532) ([Moo-Marc](https://github.com/Moo-Marc))
+-   \[ENH] Add the ability of users to specify an explicit HED.xml schema for validation. [#527](https://github.com/bids-standard/bids-specification/pull/527) ([VisLab](https://github.com/VisLab))
+-   \[FIX] clarify that scans.json is allowed and recommended [#523](https://github.com/bids-standard/bids-specification/pull/523) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] add copyright holder to license.  [#521](https://github.com/bids-standard/bids-specification/pull/521) ([sappelhoff](https://github.com/sappelhoff))
+-   \[ENH] Update `beh/` specification to contrast with any neural recordings [#515](https://github.com/bids-standard/bids-specification/pull/515) ([effigies](https://github.com/effigies))
+-   \[Fix] 'segmentation' spelling in 05-derivatives/03-imaging.md [#514](https://github.com/bids-standard/bids-specification/pull/514) ([rwblair](https://github.com/rwblair))
+-   \[FIX] restructure and clarify \*\_physio/\*\_stim section [#513](https://github.com/bids-standard/bids-specification/pull/513) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] clarify file formats in EEG, iEEG [#511](https://github.com/bids-standard/bids-specification/pull/511) ([sappelhoff](https://github.com/sappelhoff))
+-   \[Fix] Add links and release dates to pre GH changelog, fix formatting [#509](https://github.com/bids-standard/bids-specification/pull/509) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Clarify that `acq\_time` in `scans.json` refers to first data point acquired [#506](https://github.com/bids-standard/bids-specification/pull/506) ([tsalo](https://github.com/tsalo))
+-   \[INFRA] make circle artifact link a GH action, point to pdf [#505](https://github.com/bids-standard/bids-specification/pull/505) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Typos in DECISION-MAKING file [#504](https://github.com/bids-standard/bids-specification/pull/504) ([tsalo](https://github.com/tsalo))
+-   \[ENH] Add `Commenting on a PR` to CONTRIBUTING.md [#490](https://github.com/bids-standard/bids-specification/pull/490) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[FIX] clarify MEG empty-room recording naming conventions [#480](https://github.com/bids-standard/bids-specification/pull/480) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] Convert entity table to yaml [#475](https://github.com/bids-standard/bids-specification/pull/475) ([tsalo](https://github.com/tsalo))
+-   \[FIX] Recommend SI units formatting to adhere to CMIXF-12 [#411](https://github.com/bids-standard/bids-specification/pull/411) ([sappelhoff](https://github.com/sappelhoff))
+
+## [v1.4.0](https://github.com/bids-standard/bids-specification/tree/v1.4.0) (2020-06-11)
+
+-   REL: v1.4.0 [#496](https://github.com/bids-standard/bids-specification/pull/496) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[FIX] Clarify language on unsetting a key/value pair [#495](https://github.com/bids-standard/bids-specification/pull/495) ([nicholst](https://github.com/nicholst))
+-   \[ENH] Add RECOMMENDED DatasetType key to dataset description [#494](https://github.com/bids-standard/bids-specification/pull/494) ([effigies](https://github.com/effigies))
+-   \[ENH] Clarify mask/dseg/probseg in common derivatives [#489](https://github.com/bids-standard/bids-specification/pull/489) ([effigies](https://github.com/effigies))
+-   \[ENH] Reorganize derivatives [#488](https://github.com/bids-standard/bids-specification/pull/488) ([effigies](https://github.com/effigies))
+-   \[ENH] BEP028: Provenance [#486](https://github.com/bids-standard/bids-specification/pull/486) ([satra](https://github.com/satra))
+-   \[ENH] optionally allow LICENSE file [#483](https://github.com/bids-standard/bids-specification/pull/483) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] linkchecker - ignore github pull and tree URLs [#477](https://github.com/bids-standard/bids-specification/pull/477) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Allow fractional seconds in scans file datetimes [#470](https://github.com/bids-standard/bids-specification/pull/470) ([tsalo](https://github.com/tsalo))
+-   \[MISC] Maintainers - `Scope` responsibility [#467](https://github.com/bids-standard/bids-specification/pull/467) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[FIX] Align tables in MRI section [#465](https://github.com/bids-standard/bids-specification/pull/465) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Drop `\_part-` reference from example, introduce `\_split-` entity [#460](https://github.com/bids-standard/bids-specification/pull/460) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] clarify participants tsv+json with examples and recommendations [#459](https://github.com/bids-standard/bids-specification/pull/459) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Remove BESA from list of restricted keywords of EEG coordsystems [#457](https://github.com/bids-standard/bids-specification/pull/457) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] add steps for release protocol (PDF upload) [#455](https://github.com/bids-standard/bids-specification/pull/455) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Add reference to PDF on front page of specification [#452](https://github.com/bids-standard/bids-specification/pull/452) ([nicholst](https://github.com/nicholst))
+-   \[INFRA] Add conditional for link-checking releases [#451](https://github.com/bids-standard/bids-specification/pull/451) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[FIX] unordered list formatting in BEP018 [#449](https://github.com/bids-standard/bids-specification/pull/449) ([sappelhoff](https://github.com/sappelhoff))
+-   REL: 1.3.1-dev [#448](https://github.com/bids-standard/bids-specification/pull/448) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[FIX] fix inconsistencies for task label between sections [#446](https://github.com/bids-standard/bids-specification/pull/446) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[FIX] update DECISION-MAKING.md document with new governance [#441](https://github.com/bids-standard/bids-specification/pull/441) ([sappelhoff](https://github.com/sappelhoff))
+-   \[ENH] Add `res` and `den` keywords to indicate resolution of resampled data [#301](https://github.com/bids-standard/bids-specification/pull/301) ([oesteban](https://github.com/oesteban))
+-   \[ENH] BEP 003: Common Derivatives [#265](https://github.com/bids-standard/bids-specification/pull/265) ([effigies](https://github.com/effigies))
+-   \[ENH] Add Glossary of terms/abbreviations used in the specification [#152](https://github.com/bids-standard/bids-specification/pull/152) ([yarikoptic](https://github.com/yarikoptic))
+
+## [v1.3.0](https://github.com/bids-standard/bids-specification/tree/v1.3.0) (2020-04-14)
+
+-   \[INFRA] add zenodo badge to README [#447](https://github.com/bids-standard/bids-specification/pull/447) ([sappelhoff](https://github.com/sappelhoff))
+-   \[MISC] Added contributors from VisLab [#444](https://github.com/bids-standard/bids-specification/pull/444) ([VisLab](https://github.com/VisLab))
+-   \[FIX] Clarify  snake_case+CamelCase in TSV+JSON [#442](https://github.com/bids-standard/bids-specification/pull/442) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Eliminate web/online-specific language [#437](https://github.com/bids-standard/bids-specification/pull/437) ([nicholst](https://github.com/nicholst))
+-   \[INFRA] ensure build_docs_pdf CircleCI job runs last [#436](https://github.com/bids-standard/bids-specification/pull/436) ([sappelhoff](https://github.com/sappelhoff))
+-   REL: v1.3.0 [#435](https://github.com/bids-standard/bids-specification/pull/435) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[INFRA] Add issue templates for GitHub [#434](https://github.com/bids-standard/bids-specification/pull/434) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] Get latest PDF build from CircleCI artifacts [#433](https://github.com/bids-standard/bids-specification/pull/433) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] Update release protocol [#432](https://github.com/bids-standard/bids-specification/pull/432) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[INFRA] add support for building PDF versions of the spec [#431](https://github.com/bids-standard/bids-specification/pull/431) ([Arshitha](https://github.com/Arshitha))
+-   \[ENH] Explicitly mention bids-validator and update link [#428](https://github.com/bids-standard/bids-specification/pull/428) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] use new bids-maintenance GitHub account to take over automatic work [#426](https://github.com/bids-standard/bids-specification/pull/426) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Unify section titles and table-of-contents entries [#422](https://github.com/bids-standard/bids-specification/pull/422) ([nicholst](https://github.com/nicholst))
 -   \[INFRA] add # before heading in CHANGES [#419](https://github.com/bids-standard/bids-specification/pull/419) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] fix heading of auto changelog to be a markdown header [#417](https://github.com/bids-standard/bids-specification/pull/417) ([sappelhoff](https://github.com/sappelhoff))
 -   REL: 1.3.0-dev [#413](https://github.com/bids-standard/bids-specification/pull/413) ([franklin-feingold](https://github.com/franklin-feingold))
--   ENH: Add OPTIONAL EthicsApprovals field to dataset description [#412](https://github.com/bids-standard/bids-specification/pull/412) ([effigies](https://github.com/effigies))
+-   \[ENH] Add OPTIONAL EthicsApprovals field to dataset description [#412](https://github.com/bids-standard/bids-specification/pull/412) ([effigies](https://github.com/effigies))
+-   \[ENH] BEP 018 - Genetic Information [#395](https://github.com/bids-standard/bids-specification/pull/395) ([effigies](https://github.com/effigies))
 
 ## [v1.2.2](https://github.com/bids-standard/bids-specification/tree/v1.2.2) (2020-02-12)
 
+-   \[FIX] improve wording on data dictionaries [#410](https://github.com/bids-standard/bids-specification/pull/410) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] update contributions by CPernet [#409](https://github.com/bids-standard/bids-specification/pull/409) ([CPernet](https://github.com/CPernet))
 -   Units2ascii [#408](https://github.com/bids-standard/bids-specification/pull/408) ([satra](https://github.com/satra))
 -   REL: v1.2.2 [#405](https://github.com/bids-standard/bids-specification/pull/405) ([franklin-feingold](https://github.com/franklin-feingold))
+-   \[FIX] Fix typos and formatting [#404](https://github.com/bids-standard/bids-specification/pull/404) ([alexandreroutier](https://github.com/alexandreroutier))
 -   BEP 18 suggestions [#398](https://github.com/bids-standard/bids-specification/pull/398) ([effigies](https://github.com/effigies))
 -   \[MISC] Add Sébastien Tourbier to contributors [#394](https://github.com/bids-standard/bids-specification/pull/394) ([sebastientourbier](https://github.com/sebastientourbier))
+-   \[FIX] consistent units description between EEG/MEG/iEEG. Clarify (derived) SI units + prefixes [#391](https://github.com/bids-standard/bids-specification/pull/391) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] moved list of extension proposals to the main BIDS website [#389](https://github.com/bids-standard/bids-specification/pull/389) ([robertoostenveld](https://github.com/robertoostenveld))
 -   \[FIX] Typos and clarifications [#386](https://github.com/bids-standard/bids-specification/pull/386) ([apjanke](https://github.com/apjanke))
--   ENH: Add watermark to drafts [#383](https://github.com/bids-standard/bids-specification/pull/383) ([effigies](https://github.com/effigies))
+-   \[INFRA] Add watermark to drafts [#383](https://github.com/bids-standard/bids-specification/pull/383) ([effigies](https://github.com/effigies))
 -   \[MISC] Teon Brooks retiring moderator duties for BEP021 [#381](https://github.com/bids-standard/bids-specification/pull/381) ([teonbrooks](https://github.com/teonbrooks))
 -   \[FIX] clarify that string is expected for HowToAcknowledge field in dataset_description.json [#380](https://github.com/bids-standard/bids-specification/pull/380) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Typo and style [#378](https://github.com/bids-standard/bids-specification/pull/378) ([TheChymera](https://github.com/TheChymera))
 -   \[FIX] divide readme into 3 parts [#374](https://github.com/bids-standard/bids-specification/pull/374) ([sappelhoff](https://github.com/sappelhoff))
--   FIX: Refer to BIDS consistently, instead of "\\&lt;Modality>-BIDS" [#366](https://github.com/bids-standard/bids-specification/pull/366) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Refer to BIDS consistently, instead of "\\&lt;Modality>-BIDS" [#366](https://github.com/bids-standard/bids-specification/pull/366) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Change recommended anonymization date from 1900 to 1925 [#363](https://github.com/bids-standard/bids-specification/pull/363) ([alexrockhill](https://github.com/alexrockhill))
 -   \[FIX] Minor fixups of inconsistencies while going through a PDF version [#362](https://github.com/bids-standard/bids-specification/pull/362) ([yarikoptic](https://github.com/yarikoptic))
--   specify further the pipeline following #345 [#358](https://github.com/bids-standard/bids-specification/pull/358) ([CPernet](https://github.com/CPernet))
--   FIX: clarify that filters should be specified as object of objects [#348](https://github.com/bids-standard/bids-specification/pull/348) ([sappelhoff](https://github.com/sappelhoff))
--   FIX: Clarify channels.tsv is RECOMMENDED consistently across ephys [#347](https://github.com/bids-standard/bids-specification/pull/347) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] specify the derivatives pipeline following #345 [#358](https://github.com/bids-standard/bids-specification/pull/358) ([CPernet](https://github.com/CPernet))
+-   \[FIX] clarify that filters should be specified as object of objects [#348](https://github.com/bids-standard/bids-specification/pull/348) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Clarify channels.tsv is RECOMMENDED consistently across ephys [#347](https://github.com/bids-standard/bids-specification/pull/347) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Typo fix (contract -> contrast) in events documentation [#346](https://github.com/bids-standard/bids-specification/pull/346) ([snastase](https://github.com/snastase))
 -   RM: rm TOC.md - seems no longer pertinent/used [#341](https://github.com/bids-standard/bids-specification/pull/341) ([yarikoptic](https://github.com/yarikoptic))
 -   \[MISC] Move the PR template to a separate folder and improve contents [#338](https://github.com/bids-standard/bids-specification/pull/338) ([jhlegarreta](https://github.com/jhlegarreta))
@@ -186,164 +259,87 @@
 -   Adding code of conduct [#6](https://github.com/bids-standard/bids-specification/pull/6) ([chrisgorgo](https://github.com/chrisgorgo))
 -   Renaming the main document [#1](https://github.com/bids-standard/bids-specification/pull/1) ([chrisgorgo](https://github.com/chrisgorgo))
 
-## 1.1.1
+## [1.1.1](https://doi.org/10.5281/zenodo.3759805) (2018-06-06)
 
 -   Improved the MEG landmark coordinates description.
-
--   Replaced ManufacturersCapModelName in meg.json with CapManufacturer and
-    CapManufacturersModelName.
-
--   Remove EEGSamplingFrequency and ManufacturersAmplifierModelName
-    from the meg.json.
-
+-   Replaced `ManufacturersCapModelName` in `meg.json` with `CapManufacturer` and `CapManufacturersModelName`.
+-   Remove `EEGSamplingFrequency` and `ManufacturersAmplifierModelName` from the `meg.json.`
 -   Improved the behavioral data description.
 
-## 1.1.0
+## [1.1.0](https://doi.org/10.5281/zenodo.3759802) (2018-04-19)
 
 -   Added support for MEG data (merged BEP008)
--   Added SequenceName field.
+-   Added `SequenceName` field.
 -   Added support for describing events with Hierarchical Event Descriptors \[[4.3 Task events](04-modality-specific-files/05-task-events.md)].
--   Added VolumeTiming and AcquisitionDuration fields \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
--   Added DwellTime field.
+-   Added `VolumeTiming` and `AcquisitionDuration` fields \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+-   Added `DwellTime` field.
 
-## 1.0.2
+## [1.0.2](https://doi.org/10.5281/zenodo.3759801) (2017-07-18)
 
 -   Added support for high resolution (anatomical) T2star images \[[4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)].
-
 -   Added support for multiple defacing masks \[[4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)].
-
--   Added optional key and metadata field for contrast enhanced structural scans
-    \[[4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)]
-
--   Added DelayTime field \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
-
+-   Added optional key and metadata field for contrast enhanced structural scans \[[4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)]
+-   Added `DelayTime` field \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 -   Added support for multi echo BOLD data \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 
-## 1.0.1
+## [1.0.1](https://doi.org/10.5281/zenodo.3759788) (2017-03-13)
 
--   Added InstitutionName field \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
-
--   Added InstitutionAddress field \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
-
--   Added DeviceSerialNumber field \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
-
--   Added NumberOfVolumesDiscardedByUser and
-    NumberOfVolumesDiscardedByScanner field \[[4.1 Task (including
-    resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
-
--   Added TotalReadoutTime to functional images metadata list
-     \[[4.1 Task (including resting state) imaging
-    data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+-   Added `InstitutionName` field \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+-   Added `InstitutionAddress` field \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+-   Added `DeviceSerialNumber` field \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+-   Added `NumberOfVolumesDiscardedByUser` and `NumberOfVolumesDiscardedByScanner` field \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+-   Added `TotalReadoutTime to` functional images metadata list \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
 
 ## 1.0.1-rc1
 
--   Added T1 Rho maps \[[4.1 Anatomy imaging
-    data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)].
-
--   Added support for phenotypic information split into multiple files
-    \[[3.2 Participant key file](03-modality-agnostic-files.md#participants-file)].
-
+-   Added T1 Rho maps \[[4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)].
+-   Added support for phenotypic information split into multiple files \[[3.2 Participant key file](03-modality-agnostic-files.md#participants-file)].
 -   Added recommendations for multi site datasets
-
--   Added SoftwareVersions
-
--   Added run-&lt;run_index> to the phase encoding
-    maps. Improved the description.
-
--   Added InversionTime metadata key.
-
+-   Added `SoftwareVersions`
+-   Added `run-<run_index>` to the phase encoding maps. Improved the description.
+-   Added `InversionTime` metadata key.
 -   Clarification on the source vs raw language.
-
--   Added trial_type column to the event files.
-
--   Added missing sub-&lt;participant_label> in
-    behavioral data file names
-
+-   Added `trial_type` column to the event files.
+-   Added missing `sub-<participant_label>` in behavioral data file names
 -   Added ability to store stimuli files.
-
 -   Clarified the language describing allowed subject labels.
-
 -   Added quantitative proton density maps.
 
-## 1.0.0
+## [1.0.0](https://doi.org/10.5281/zenodo.3686062) (2016-06-23)
 
--   Added ability to specify fieldmaps acquired with multiple parameter
-    sets.
-
+-   Added ability to specify fieldmaps acquired with multiple parameter sets.
 -   Added ability to have multiple runs of the same fieldmap.
-
 -   Added FLASH anatomical images.
 
 ## 1.0.0-rc4
 
 -   Replaced links to neurolex with explicit DICOM Tags.
-
 -   Added sourcedata.
-
 -   Added data dictionaries.
-
--   Be more explicit about contents of JSON files for structural
-    (anatomical) scans.
+-   Be more explicit about contents of JSON files for structural (anatomical) scans.
 
 ## 1.0.0-rc3
 
--   Renamed PhaseEncodingDirection values from “x”, “y”,
-    “z” to “i”, “j”, “k” to avoid confusion with FSL parameters
-
--   Renamed SliceEncodingDirection values from “x”, “y”,
-    “z” to “i”, “j”, “k”
+-   Renamed `PhaseEncodingDirection` values from "x", "y", "z" to "i", "j", "k" to avoid confusion with FSL parameters
+-   Renamed `SliceEncodingDirection` values from "x", "y", "z" to "i", "j", "k"
 
 ## 1.0.0-rc2
 
--   Removed the requirement that TSV files cannot include more than two
-    consecutive spaces.
-
--   Refactor of the definitions sections (copied from the
-    manuscript)
-
--   Make support for uncompressed .nii files more explicit.
-
--   Added BIDSVersion to dataset.json
-
--   Remove the statement that SliceEncodingDirection is
-    necessary for slice time correction
-
--   Change dicom converter recommendation from dcmstack to dcm2nii and
-    dicm2nii following interactions with the community (see
-    <https://github.com/moloney/dcmstack/issues/39> and
-    <https://github.com/neurolabusc/dcm2niix/issues/4>).
-
--   Added section on behavioral experiments with no accompanying MRI
-    acquisition
-
--   Add \_magnitude.nii\[.gz] image for GE type
-    fieldmaps.
-
--   Replaced EchoTimeDifference with
-    EchoTime1 and EchoTime2 (SPM toolbox
-    requires this input).
-
+-   Removed the requirement that TSV files cannot include more than two consecutive spaces.
+-   Refactor of the definitions sections (copied from the manuscript)
+-   Make support for uncompressed `.nii` files more explicit.
+-   Added `BIDSVersion` to `dataset.json`
+-   Remove the statement that `SliceEncodingDirection` is necessary for slice time correction
+-   Change dicom converter recommendation from dcmstack to dcm2nii and dicm2nii following interactions with the community (see <https://github.com/moloney/dcmstack/issues/39> and <https://github.com/neurolabusc/dcm2niix/issues/4>).
+-   Added section on behavioral experiments with no accompanying MRI acquisition
+-   Add `_magnitude.nii[.gz]` image for GE type fieldmaps.
+-   Replaced EchoTimeDifference with EchoTime1 and EchoTime2 (SPM toolbox requires this input).
 -   Added support for single band reference image for DWI.
-
--   Added DatasetDOI field in the dataset
-    description.
-
--   Added description of more metadata fields relevant to DWI fieldmap
-    correction.
-
--   PhaseEncodingDirection is now expressed in “x”, “y” etc. instead of “PA”
-    “RL” for DWI scans
-    (so it’s the same as BOLD scans)
-
--   Added rec-&lt;label> flag to BOLD files to
-    distinguish
-    between different reconstruction algorithms
-    (analogous to anatomical scans).
-
--   Added recommendation to use \_physio suffix for continuous recordings
-    of motion
-    parameters obtained by
-    the scanner side reconstruction algorithms.
+-   Added DatasetDOI field in the dataset description.
+-   Added description of more metadata fields relevant to DWI fieldmap correction.
+-   PhaseEncodingDirection is now expressed in "x", "y" etc. instead of "PA" "RL" for DWI scans (so it's the same as BOLD scans)
+-   Added `rec-<label>` flag to BOLD files to distinguish between different reconstruction algorithms (analogous to anatomical scans).
+-   Added recommendation to use `_physio` suffix for continuous recordings of motion parameters obtained by the scanner side reconstruction algorithms.
 
 ## 1.0.0-rc1
 

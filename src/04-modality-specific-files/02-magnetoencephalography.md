@@ -1,6 +1,6 @@
-# Magnetoencephalography (MEG)
+# Magnetoencephalography
 
-Support for MEG was developed as a [BIDS Extension Proposal](../06-extensions.md#bids-extension-proposals).
+Support for Magnetoencephalography (MEG) was developed as a [BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
 Please cite the following paper when referring to this part of the standard in
 context of the academic literature:
 
@@ -42,11 +42,18 @@ MAY be included alongside the MEG data; examples are provided below.
 This template is for MEG data of any kind, including but not limited to
 task-based, resting-state, and noise recordings. If multiple Tasks were
 performed within a single Run, the task description can be set to
-`task-multitask`. The \_meg.json SHOULD contain details on the Tasks. Some
-manufacturers data storage conventions use folders which contain data files of
-various nature: e.g., CTF’s .ds format, or BTi/4D. Please refer to
-[Appendix VI](../99-appendices/06-meg-file-formats.md) for examples from a
-selection of MEG manufacturers.
+`task-multitask`. The \_meg.json SHOULD contain details on the Tasks.
+
+Some manufacturers' data storage conventions use folders which contain data
+files of various nature: for example, CTF's `.ds` format, or BTi/4D.
+Yet other manufacturers split their files once they exceed a certain size
+limit. For example Neuromag/Elekta/Megin, which can produce several files
+for a single recording. Both `some_file.fif` and `some_file-1.fif` would
+belong to a single recording. In BIDS, the `split` entity is RECOMMENDED to
+deal with split files.
+Please refer to [Appendix VI](../99-appendices/06-meg-file-formats.md) for
+general information on how to deal with such manufacturer specifics and to see
+more examples.
 
 The `proc` label is analogous to `rec` for MR and denotes a variant of a file
 that was a result of particular processing performed on the device. This is
@@ -59,16 +66,16 @@ actually be exploited.
 
 Generic fields MUST be present:
 
-| Field name | Definition                                                                                                                                                                                                                  |
-| :--------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| TaskName   | REQUIRED. Name of the task (for resting state use the `rest` prefix). Different Tasks SHOULD NOT have the same name. The Task label is derived from this field by removing all non alphanumeric (`[a-zA-Z0-9]`) characters. |
+| Field name | Definition                                                                                                                                                                                                                                                                                                                              |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| TaskName   | REQUIRED. Name of the task (for resting state use the `rest` prefix). No two tasks should have the same name. The task label included in the file name is derived from this TaskName field by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters. For example TaskName `faces n-back` will correspond to task label `facesnback`. |
 
 SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad-hoc wording.
 
 | Field name             | Definition                                                                                                                                                                                                                                                                      |
-| :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                      |
 | InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                   |
 | Manufacturer           | RECOMMENDED. Manufacturer of the MEG system (`CTF`, `Elekta/Neuromag`, `BTi/4D`, `KIT/Yokogawa`, `ITAB`, `KRISS`, `Other`). See [Appendix VII](../99-appendices/07-meg-systems.md) with preferred names                                                                         |
@@ -83,7 +90,7 @@ Whenever possible, please avoid using ad-hoc wording.
 Specific MEG fields MUST be present:
 
 | Field name          | Definition                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| :------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ----------------------------------------------------------------------------------------------------------------------------------------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | SamplingFrequency   | REQUIRED. Sampling frequency (in Hz) of all the data in the recording, regardless of their type (e.g., 2400)                                                                                                                                                                                                                                                                                                                      |
 | PowerLineFrequency  | REQUIRED. Frequency (in Hz) of the power grid at the geographical location of the MEG instrument (i.e. 50 or 60)                                                                                                                                                                                                                                                                                                                  |
 | DewarPosition       | REQUIRED. Position of the dewar during the MEG scan: `upright`, `supine` or `degrees` of angle from vertical: for example on CTF systems, upright=15°, supine = 90°.                                                                                                                                                                                                                                                              |
@@ -94,7 +101,7 @@ Specific MEG fields MUST be present:
 SHOULD be present:
 
 | Field name                 | Definition                                                                                                                                                                                                                                                                                                                                                                                          |
-| :------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | MEGChannelCount            | RECOMMENDED. Number of MEG channels (e.g. 275)                                                                                                                                                                                                                                                                                                                                                      |
 | MEGREFChannelCount         | RECOMMENDED. Number of MEG reference channels (e.g. 23). For systems without such channels (e.g. Neuromag Vectorview), `MEGREFChannelCount`=0                                                                                                                                                                                                                                                       |
 | EEGChannelCount            | RECOMMENDED. Number of EEG channels recorded simultaneously (e.g. 21)                                                                                                                                                                                                                                                                                                                               |
@@ -118,7 +125,7 @@ SHOULD be present:
 Specific EEG fields (if recorded with MEG) SHOULD be present:
 
 | Field name                      | Definition                                                                                                                                                                        |
-| :------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | EEGPlacementScheme              | OPTIONAL. Placement scheme of EEG electrodes. Either the name of a standardised placement system (e.g., "10-20") or a list of standardised electrode names (e.g. `["Cz", "Pz"]`). |
 | CapManufacturer                 | OPTIONAL. Manufacturer of the EEG cap (e.g. `EasyCap`)                                                                                                                            |
 | CapManufacturersModelName       | OPTIONAL. Manufacturer’s designation of the EEG cap model (e.g., `M10`)                                                                                                           |
@@ -134,7 +141,7 @@ Example:
 ```JSON
 {
    "InstitutionName": "Stanford University",
-   "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
+   "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
    "Manufacturer": "CTF",
    "ManufacturersModelName": "CTF-275",
    "DeviceSerialNumber": "11035",
@@ -163,12 +170,8 @@ Example:
 ```
 
 Note that the date and time information SHOULD be stored in the Study key file
-(`scans.tsv`), see [Scans file](../03-modality-agnostic-files.md#scans-file). As
-it is indicated there, date time information MUST be expressed in the following
-format `YYYY-MM-DDThh:mm:ss`
-([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For
-example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
-on local REB/IRB ethics board policy.
+(`scans.tsv`), see [Scans file](../03-modality-agnostic-files.md#scans-file).
+Date time information MUST be expressed as indicated in [Units](../02-common-principles.md#units)
 
 ## Channels description (`*_channels.tsv`)
 
@@ -192,16 +195,16 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
-| Column name | Definition                                                                                                                                             |
-| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name        | REQUIRED. Channel name (e.g., MRT012, MEG023)                                                                                                          |
-| type        | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                    |
-| units       | REQUIRED. Physical unit of the data values recorded by this channel in SI (see [Appendix V](../99-appendices/05-units.md): Units for allowed symbols). |
+| Column name | Definition                                                                                                                                                                       |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name        | REQUIRED. Channel name (e.g., MRT012, MEG023)                                                                                                                                    |
+| type        | REQUIRED. Type of channel; MUST use the channel types listed below. Note that the type MUST be in upper-case.                                                                    |
+| units       | REQUIRED. Physical unit of the value represented in this channel, e.g., `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [Units](../02-common-principles.md#units)). |
 
 SHOULD be present:
 
 | Column name        | Definition                                                                                                                                                                                                                                                                    |
-| :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | description        | OPTIONAL. Brief free-text description of the channel, or other information of interest. See examples below.                                                                                                                                                                   |
 | sampling_frequency | OPTIONAL. Sampling rate of the channel in Hz.                                                                                                                                                                                                                                 |
 | low_cutoff         | OPTIONAL. Frequencies used for the high-pass filter applied to the channel in Hz. If no high-pass filter applied, use `n/a`.                                                                                                                                                  |
@@ -219,7 +222,8 @@ UDIO001 TRIG V analogue trigger 1200  0.1 300 0 n/a good
 MLC11 MEGGRADAXIAL T sensor 1st-order grad 1200 0 n/a 50 SSS bad
 ```
 
-Restricted keyword list for field `type`
+Restricted keyword list for field `type`.
+Note that upper-case is REQUIRED:
 
 | Keyword          | Definition                                           |
 | ---------------- | ---------------------------------------------------- |
@@ -252,7 +256,7 @@ Restricted keyword list for field `type`
 | FITERR           | Fit error signal from each head localization coil    |
 | OTHER            | Any other type of channel                            |
 
-Example of free text for field `description`
+Example of free text for field `description`:
 
 -   stimulus, response, vertical EOG, horizontal EOG, skin conductance, sats,
     intracranial, eyetracker
@@ -284,7 +288,7 @@ EEG, head localization coils, and anatomical landmarks.
 MEG and EEG sensors:
 
 | Field name                     | Description                                                                                                                                                                                                                                                        |
-| :----------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | MEGCoordinateSystem            | REQUIRED. Defines the coordinate system for the MEG sensors. See [Appendix VIII](../99-appendices/08-coordinate-systems.md): preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in `[MEGCoordinateSystemDescription]`. |
 | MEGCoordinateUnits             | REQUIRED. Units of the coordinates of `MEGCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                           |
 | MEGCoordinateSystemDescription | OPTIONAL. Freeform text description or link to document describing the MEG coordinate system system in detail.                                                                                                                                                     |
@@ -295,7 +299,7 @@ MEG and EEG sensors:
 Head localization coils:
 
 | Field name                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| :---------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | HeadCoilCoordinates                 | OPTIONAL. Key:value pairs describing head localization coil labels and their coordinates, interpreted following the `HeadCoilCoordinateSystem`, e.g., {`NAS`: `[12.7,21.3,13.9]`, `LPA`: `[5.2,11.3,9.6]`, `RPA`: `[20.2,11.3,9.1]`}. Note that coils are not always placed at locations that have a known anatomical name (e.g. for Elekta, Yokogawa systems); in that case generic labels can be used (e.g. {`coil1`: `[12.2,21.3,12.3]`, `coil2`: `[6.7,12.3,8.6]`, `coil3`: `[21.9,11.0,8.1]`} ). |
 | HeadCoilCoordinateSystem            | OPTIONAL. Defines the coordinate system for the coils. See [Appendix VIII](../99-appendices/08-coordinate-systems.md): preferred names of Coordinate systems. If "Other", provide definition of the coordinate system in `HeadCoilCoordinateSystemDescription`.                                                                                                                                                                                                                                       |
 | HeadCoilCoordinateUnits             | OPTIONAL. Units of the coordinates of `HeadCoilCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                                                                                                                                                                                                                                         |
@@ -304,7 +308,7 @@ Head localization coils:
 Digitized head points:
 
 | Field name                                     | Description                                                                                                                                                                                                                                                                                |
-| :--------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | DigitizedHeadPoints                            | OPTIONAL. Relative path to the file containing the locations of digitized head points collected during the session (e.g., `sub-01_headshape.pos`). RECOMMENDED for all MEG systems, especially for CTF and BTi/4D. For Elekta/Neuromag the head points will be stored in the fif file.     |
 | DigitizedHeadPointsCoordinateSystem            | OPTIONAL. Defines the coordinate system for the digitized head points. See [Appendix VIII](../99-appendices/08-coordinate-systems.md): preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in `DigitizedHeadPointsCoordinateSystemDescription`. |
 | DigitizedHeadPointsCoordinateUnits             | OPTIONAL. Units of the coordinates of `DigitizedHeadPointsCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                   |
@@ -313,13 +317,13 @@ Digitized head points:
 Anatomical MRI:
 
 | Field name  | Description                                                                                                                                                                                                                                                                                          |
-| :---------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | IntendedFor | OPTIONAL. Path or list of path relative to the subject subfolder pointing to the structural MRI, possibly of different types if a list is specified, to be used with the MEG recording. The path(s) need(s) to use forward slashes instead of backward slashes (e.g. `ses-/anat/sub-01_T1w.nii.gz`). |
 
 Anatomical landmarks:
 
 | Field name                                    | Description                                                                                                                                                                                                                                                                              |
-| :-------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | AnatomicalLandmarkCoordinates                 | OPTIONAL. Key:value pairs of the labels and 3-D digitized locations of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem`, e.g., {"NAS": `[12.7,21.3,13.9]`, "LPA": `[5.2,11.3,9.6]`, "RPA": `[20.2,11.3,9.1]`}.                                       |
 | AnatomicalLandmarkCoordinateSystem            | OPTIONAL. Defines the coordinate system for the anatomical landmarks. See [Appendix VIII](../99-appendices/08-coordinate-systems.md): preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in `AnatomicalLandmarkCoordinateSystemDescription`. |
 | AnatomicalLandmarkCoordinateUnits             | OPTIONAL. Units of the coordinates of `AnatomicalLandmarkCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                  |
@@ -343,13 +347,13 @@ session-specific labels e.g., "NAS-session1": `[127,213,139]`,"NAS-session2":
 Fiducials information:
 
 | Field name           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| :------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | FiducialsDescription | OPTIONAL. A freeform text field documenting the anatomical landmarks that were used and how the head localization coils were placed relative to these. This field can describe, for instance, whether the true anatomical locations of the left and right pre-auricular points were used and digitized, or rather whether they were defined as the intersection between the tragus and the helix (the entry of the ear canal), or any other anatomical description of selected points in the vicinity of the ears. |
 
-For more information on the definition of anatomical landmarks, please visit:
+For more information on the definition of anatomical landmarks, please visit:
 [http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
 
-For more information on typical coordinate systems for MEG-MRI coregistration:
+For more information on typical coordinate systems for MEG-MRI coregistration:
 [http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined),
 or:
 [http://neuroimage.usc.edu/brainstorm/CoordinateSystems](http://neuroimage.usc.edu/brainstorm/CoordinateSystems)
@@ -398,10 +402,10 @@ sub-<label>/
 This file is RECOMMENDED.
 
 The 3-D locations of points that describe the head shape and/or EEG
-electrode locations can be digitized and stored in separate files. The
+electrode locations can be digitized and stored in separate files. The
 `*_acq-<label>` can be used when more than one type of digitization in done for
 a session, for example when the head points are in a separate file from the EEG
-locations. These files are stored in the specific format of the 3-D digitizer’s
+locations. These files are stored in the specific format of the 3-D digitizer’s
 manufacturer (see [Appendix VI](../99-appendices/06-meg-file-formats.md)).
 
 Example:
@@ -415,18 +419,28 @@ sub-control01
 
 Note that the `*_headshape` file(s) is shared by all the runs and tasks in a
 session. If the subject needs to be taken out of the scanner and the head-shape
-has to be updated, then for MEG it could be considered to be a new session.
+has to be updated, then for MEG it could be considered to be a new session.
 
 ## Empty-room MEG recordings
 
-Empty-room MEG recordings capture the environment and system noise. Their
-collection is RECOMMENDED, before/during/after each session. This data is stored
-inside a subject folder named `sub-emptyroom`. The `session label` SHOULD be
-that of the date of the empty-room recording (e.g. `ses-YYYYMMDD`). The
-`scans.tsv` file containing the date/time of the acquisition SHOULD also be
-included. Hence, users will be able to retrieve the empty-room recording that
-best matches a particular session with a participant, based on date/time of
-recording.
+Empty-room MEG recordings capture the environmental and recording system's
+noise.
+In the context of BIDS it is RECOMMENDED to perform an empty-room recording for
+each experimental session.
+It is RECOMMENDED to store the empty-room recording inside a subject folder
+named `sub-emptyroom`.
+The label for the `task-<label>` entity in the empty-room recording SHOULD be
+set to `noise`.
+If a `session-<label>` entity is present, its label SHOULD be the date of the
+empty-room recording in the format `YYYYMMDD`, i.e., `ses-YYYYMMDD`.
+The `scans.tsv` file containing the date and time of the acquisition SHOULD
+also be included.
+The rationale is that this naming scheme will allow users to easily retrieve the
+empty-room recording that best matches a particular experimental session, based
+on date and time of the recording.
+It should be possible to query empty-room recordings just like usual subject
+recordings, hence all metadata sidecar files (such as the `channels.tsv`) file
+SHOULD be present as well.
 
 Example:
 
@@ -439,6 +453,5 @@ sub-emptyroom/
         meg/
             sub-emptyroom_ses-20170801_task-noise_meg.ds
             sub-emptyroom_ses-20170801_task-noise_meg.json
+            sub-emptyroom_ses-20170801_task-noise_channels.tsv
 ```
-
-`TaskName` in the `*_meg.json` file should be set to "noise".

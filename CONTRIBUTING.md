@@ -14,9 +14,11 @@ Been here before? Already know what you're looking for in this guide? Jump to th
 *   [Joining the BIDS community](#joining-the-community)
 *   [Contributing through GitHub](#contributing-through-github)
 *   [Understanding issues](#understanding-issues)
+*   [Commenting on a pull request](#commenting-on-a-pull-request)
 *   [Writing in markdown](#writing-in-markdown)
-*   [Make a change with a pull request](#making-a-change-with-a-pull-request)
+*   [Making a change with a pull request](#making-a-change-with-a-pull-request)
 *   [Example pull request](#example-pull-request)
+*   [Updating the specification schema](#updating-the-schema)
 *   [Fixing Remark errors from Travis](#fixing-travis-remark-errors)
 *   [Recognizing contributions](#recognizing-contributions)
 
@@ -73,6 +75,69 @@ The current list of labels are [here](https://github.com/bids-standard/bids-spec
     In addition to the specification itself, we are dedicated to creating a healthy community.
     These issues highlight pieces of work or discussions around how we can support our members and make it easier to contribute.
 
+## Commenting on a pull request
+
+Our primary method of adding to or enhancing BIDS occurs in the form of [pull requests](https://help.github.com/articles/about-pull-requests/).
+BIDS Extension Proposals ([BEPs](https://docs.google.com/document/d/1pWmEEY-1-WuwBPNy5tDAxVJYQ9Een4hZJM06tQZg8X4/)) are submitted as pull requests, and commenting on pull requests is an important way of participating in the BIDS community.
+
+This section outlines how to comment on a pull request.
+
+### Navigating to open pull requests
+
+The list of pull requests can be found by clicking on the "Pull requests" tab in the [BIDS-Specification repository](https://github.com/bids-standard/bids-specification).
+
+![BIDS-mainpage](commenting_images/BIDS_GitHub_mainpage.png "BIDS_GitHub_mainpage")
+
+### Selecting an open pull request
+
+In this example we will be navigating to our [BIDS common derivatives pull request](https://github.com/bids-standard/bids-specification/pull/265).
+
+![BIDS-pr-list](commenting_images/BIDS_pr_list.png "BIDS_pr_list")
+
+### Pull request description
+
+Upon opening the pull request we see a detailed description of what this pull request is seeking to address.
+Descriptions are important for reviewers and the community to gain context into what the pull request is achieving.
+
+![BIDS-pr](commenting_images/BIDS_pr.png "BIDS_pr")
+
+### Generally commenting on a pull request
+
+At the bottom of the pull request page, a comment box is provided for general comments and questions.
+
+![BIDS-comment](commenting_images/BIDS_comment.png "BIDS-comment")
+
+### Specific comments on a pull request
+
+The proposed changes to the text of the specification can be seen in the "Files changed" tab.
+Proposed additions are displayed on a green background with a `+` before each added line.
+Proposed deletions are displayed on a red background with a `-` before each removed line.
+To comment on a specific line, hover over it, and click the blue plus sign (pictured below).
+Multiple lines can be selected by clicking and dragging the plus sign.
+
+![BIDS-specific-comment](commenting_images/BIDS_file_comment.png "BIDS-specific-comment")
+
+#### Suggesting text
+
+Comments on lines can contain "suggestions", which allow you to propose specific wording for consideration.
+To make a suggestion, click the plus/minus (±) icon in the comment box (pictured below).
+
+![BIDS-suggest-box](commenting_images/BIDS_suggest.png "BIDS-suggest")
+
+Once the button is clicked the highlighted text will be copied into the comment box and formatted as
+a [Markdown code block](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks).
+
+![BIDS-suggest-text](commenting_images/BIDS_suggest_text.png "BIDS-suggest-box")
+
+The "Preview" tab in the comment box will show your suggestion as it will be rendered.
+The "Suggested change" box will highlight the differences between the original text and your suggestion.
+
+![BIDS-suggest-change](commenting_images/BIDS_suggest_change.png "BIDS-suggest-change")
+
+A comment may be submitted on its own by clicking "Add single comment".
+Several comments may be grouped by clicking "Start a review".
+As more comments are written, accept them with "Add review comment", and submit your review comments
+as a batch by clicking the "Finish your review" button.
 
 ## Writing in markdown
 
@@ -159,6 +224,56 @@ GitHub has a [nice introduction](https://help.github.com/articles/github-flow/) 
 ## Example pull request
 <img align="center" src="https://i.imgur.com/s8yELfK.png" alt="Example-Contribution" width="800"/>
 
+
+## Updating the schema
+
+Portions of the BIDS specification are defined using YAML files, in order to make the specification machine-readable.
+Currently, the only portion of the specification that relies on this schema is the Entity Table, but any changes to the specification should be mirrored in the schema.
+
+### The format of the schema
+
+The schema reflects the files and objects in the specification, as well as associations between these objects.
+Here is a list of the files and subfolders of the schema, roughly in order of importance:
+
+- `datatypes/*.yaml`:
+    Data types supported by the specification.
+    Each datatype may support many suffixes.
+    These suffixes are divided into groups based on what extensions and entities are allowed for each.
+    Data types correspond to subfolders (e.g., `anat`, `func`) in the BIDS structure.
+- `auxdatatypes/*.yaml`:
+    Auxiliary (not directly imaging or data-containing) data types supported by the specification.
+    Each auxiliary data type is associated with a set of data types, and these auxiliary data types are grouped based on what data types, extensions, and entities are allowed for each.
+    Examples of auxiliary data types include `channels`, `electrodes`, and `photo`.
+- `entities.yaml`:
+    A list of entities (key/value pairs in folder and filenames) with associated descriptions and formatting rules.
+    The order of the entities in the file determines the order in which entities must appear in filenames.
+- `top_level_files.yaml`:
+    Modality-agnostic files stored at the top level of a BIDS dataset.
+    The schema specifies whether these files are required or optional, as well as acceptable extensions for each.
+- `modalities.yaml`:
+    Modalities supported by the specification, along with a list of associated data types.
+    Modalities are not reflected directly in the BIDS structure, but data types are modality-specific.
+- `associated_data.yaml`:
+    Folders that are commonly contained within the same folder as a BIDS dataset, but which do not follow the BIDS structure internally, such as `code` or `sourcedata`.
+    The schema specifies which folders are accepted and whether they are required or optional.
+
+### Making a change to the schema
+
+#### 1. Ensure that changes to the specification are matched in the schema
+
+The schema formalizes the rules described in the specification text, so you must ensure that any changes which impact the rules of the specification (including, but not limited to, adding new entities, suffixes, datatypes, modalities, etc.) are reflected in the schema as well.
+
+#### 2. Generate an updated entity table before pushing your changes
+
+Run the Python script `tools/bids_schema.py`:
+
+```bash
+python tools/bids_schema.py entity src/schema/ src/99-appendices/04-entity-table.md
+```
+
+#### 3. Push your changes
+
+For more information on making general changes with a pull request, please review [Making a change with a pull request](#making-a-change-with-a-pull-request).
 
 ## Fixing Travis Remark errors
 

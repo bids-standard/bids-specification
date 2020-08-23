@@ -1,39 +1,46 @@
 # Appendix I: Contributors
 
 Legend (source:
-[https://github.com/kentcdodds/all-contributors](https://github.com/kentcdodds/all-contributors))
+[https://allcontributors.org/docs/en/emoji-key](https://allcontributors.org/docs/en/emoji-key))
 
-| Emoji | Represents                                                                  |
-|:------|:----------------------------------------------------------------------------|
-| 💬    | Answering Questions (on the mailing list, NeuroStars, GitHub, or in person) |
-| 🐛    | Bug reports                                                                 |
-| 📝    | Blogposts                                                                   |
-| 💻    | Code                                                                        |
-| 📖    | Documentation and specification                                             |
-| 🎨    | Design                                                                      |
-| 💡    | Examples                                                                    |
-| 📋    | Event Organizers                                                            |
-| 💵    | Financial Support                                                           |
-| 🔍    | Funding/Grant Finders                                                       |
-| 🤔    | Ideas & Planning                                                            |
-| 🚇    | Infrastructure (Hosting, Build-Tools, etc)                                  |
-| 🔌    | Plugin/utility libraries                                                    |
-| 👀    | Reviewed Pull Requests                                                      |
-| 🔧    | Tools                                                                       |
-| 🌍    | Translation                                                                 |
-| ⚠️    | Tests                                                                       |
-| ✅     | Tutorials                                                                   |
-| 📢    | Talks                                                                       |
-| 📹    | Videos                                                                      |
+| Emoji | Represents                                                                        |
+|-------|---------------------------------------------------------------------------------- |
+| 💬    | Answering Questions (on the mailing list, NeuroStars, GitHub, or in person, etc.) |
+| 🐛    | Bug reports                                                                       |
+| 📝    | Blogposts                                                                         |
+| 💻    | Code                                                                              |
+| 🖋    | Content (separate from Blogposts, for example Website news)                       |
+| 📖    | Documentation and specification                                                   |
+| 🔣    | Data (example datasets)                                                           |
+| 🎨    | Design                                                                            |
+| 💡    | Examples (for example datasets, use `Data`)                                       |
+| 📋    | Event Organizers                                                                  |
+| 💵    | Financial Support                                                                 |
+| 🔍    | Funding/Grant Finders                                                             |
+| 🤔    | Ideas & Planning                                                                  |
+| 🚇    | Infrastructure (hosting, build-tools, etc.)                                       |
+| 🚧    | Maintenance of the BIDS standard                                                  |
+| 🧑‍🏫 | Mentoring new contributors                                                        |
+| 🔌    | Plugin/utility libraries                                                          |
+| 📆    | Project management                                                                |
+| 👀    | Reviewed Pull Requests                                                            |
+| 🔧    | Tools                                                                             |
+| 🌍    | Translation                                                                       |
+| ⚠️    | Tests                                                                             |
+| ✅     | Tutorials                                                                         |
+| 📢    | Talks                                                                             |
+| 📓    | User testing (of new features, tools, etc.)                                       |
+| 📹    | Videos                                                                            |
 
 The following individuals have contributed to the Brain Imaging Data Structure
-ecosystem (in alphabetical order). If you contributed to the BIDS ecosystem and
-your name is not listed, please add it.
+ecosystem (in alphabetical order).
+If you contributed to the BIDS ecosystem and your name is not listed, please add it.
 
 -   Fidel Alfaro Almagro 💬📖💡🔌
 -   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️📢✅🔧🔌📝
 -   Tibor Auer 💬📖💡🔧📢
 -   Sylvain Baillet 📖🔍
+-   Arshitha Basavaraj 📖🚇💻
 -   Stephan Bickel 📖
 -   Elizabeth Bock 📖💡
 -   Kristofer Bouchard 📖
@@ -50,8 +57,9 @@ your name is not listed, please add it.
 -   Alejandro de la Vega 🐛💻⚠️
 -   Arnaud Delorme 📖💡
 -   Benjamin Dichter 📖
+-   Erin W. Dickie 📖🤔👀📢💬
 -   Eugene P. Duff 📖
--   Elizabeth DuPre 📖💡🔍🤔
+-   Elizabeth DuPre 📖💡🔍🤔💬
 -   Eric A. Earl 🤔
 -   Anders Eklund 📖📢💻
 -   Oscar Esteban 📖🔧🤔💬💻
@@ -84,17 +92,20 @@ your name is not listed, please add it.
 -   International Neuroinformatics Coordinating Facility 💵📋
 -   Andrew Janke 📖💻
 -   Mainak Jas 📖💻
+-   Alexander Jones 💻🐛
 -   David Keator 📖
 -   James Kent 💬💻
 -   Gregory Kiar 📖💻🎨🔧
 -   Robert Knight 📖
 -   Jean-Philippe Lachaux 📖
+-   Marc Lalancette 📖
 -   Pamela LaMontagne 📖💡
 -   Kevin Larcher 💬
 -   Jonathan C. Lau 📖
 -   Laura and John Arnold Foundation 💵
 -   Christopher Lee-Messer 📖
 -   Jon Haitz Legarreta 💻📖
+-   Adam Li 📖💻
 -   Xiangrui Li 📖💻
 -   Vladimir Litvak 📖
 -   Brian N. Lundstrom 📖
@@ -134,17 +145,20 @@ your name is not listed, please add it.
 -   Pradeep Reddy Raamana 💻🔧
 -   Vasudev Raguram 💻🎨📖🔧
 -   Nick F. Ramsey 📖
+-   Kay Robbins 💻📖🐛
 -   Alex Rockhill 📖🔧
 -   Ariel Rokem 📖
+-   Taylor Salo 💬📖🔌
 -   Matt Sanderson 📖💻
 -   Gunnar Schaefer 📖
 -   Jan-Mathijs Schoffelen 📖
+-   Robert E. Smith 💻📖
 -   Vanessa Sochat 📖
 -   Arjen Stolk 📖
 -   Nicole C. Swann 📖
 -   François Tadel 📖🔌💡
 -   Roberto Toro 🔧
--   Sébastien Tourbier 🤔👀📢
+-   Sébastien Tourbier 🤔👀📢🐛💻📖
 -   William Triplett 📖
 -   Jessica A. Turner 📖
 -   Bradley Voytek 📖
@@ -155,4 +169,3 @@ your name is not listed, please add it.
 -   Gaël Varoquaux 📖
 -   Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
 -   Lyuba Zehl 📖
--   Sébastien Tourbier 🤔👀📢

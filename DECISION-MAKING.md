@@ -2,8 +2,68 @@
 
 ## Introduction
 
-The Brain Imaging Data Structure (BIDS) community set out the following
-decision-making rules with the intention to:
+In October 2019, the BIDS community [voted](https://github.com/bids-standard/bids-specification/issues/355)
+to ratify a governance structure and to elect five members as a *Steering Group*
+to oversee the development and adoption of the standard.
+
+The document outlining our governance structure is hosted on the BIDS website:
+[https://bids.neuroimaging.io/governance.html](https://bids.neuroimaging.io/governance.html)
+
+In the following, we list the current members of subgroups detailed in the
+BIDS governance.
+
+### Steering Group
+
+| Name                                                                         |
+|------------------------------------------------------------------------------|
+| Guiomar Niso ([@guiomar](https://github.com/guiomar))                        |
+| Melanie Ganz ([@melanieganz](https://github.com/melanieganz))                |
+| Robert Oostenveld ([@robertoostenveld](https://github.com/robertoostenveld)) |
+| Russell Poldrack ([@poldrack](https://github.com/poldrack))                  |
+| Kirstie Whitaker ([@KirstieJane](https://github.com/KirstieJane))            |
+
+### Maintainers Group
+
+| Name                                                                           | Time commitment | Scope                 |
+|--------------------------------------------------------------------------------|-----------------|-----------------------|
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         |                       |
+| Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |                       |
+| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | 5h/week         | Community development |
+
+In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
+classification of a maintainer, maintainers may declare a limited scope of responsibility.
+Such a scope can range from maintaining a modality supported in the specification to nurturing a
+welcoming BIDS community.
+One or more scopes can be chosen by the maintainer and agreed upon by the Maintainers Group.
+A maintainer is primarily responsible for issues within their chosen scope(s), although
+contributions elsewhere are welcome, as well.
+
+### BEP Leads Group
+
+Leaders of BIDS Extension Proposals are listed in the
+[table of BEPs](https://bids.neuroimaging.io/get_involved.html#extending-the-bids-specification).
+
+### Contributors Group
+
+Contributors are listed in [Appendix I](https://bids-specification.readthedocs.io/en/stable/99-appendices/01-contributors.html)
+of the BIDS specification. Contributors who have not yet entered their name
+into this list are encouraged to edit the [Contributors WIKI page](https://github.com/bids-standard/bids-specification/wiki/Contributors)
+with their name, using the emojis listed in the WIKI to indicate their
+contributions.
+
+### Other groups
+
+The following groups not listed in detail. Please learn more about these groups
+from the [governance document](https://bids.neuroimaging.io/governance.html).
+
+- BEP working groups
+- Advisory Group
+- BIDS Community
+
+## GitHub Workflow
+
+For the day-to-day work on the BIDS specification, we currently abide by the
+following rules with the intention to:
 
 - Strive for consensus.
 - Promote open discussions.
@@ -15,24 +75,6 @@ decision-making rules with the intention to:
 
 The rules outlined below are inspired by the [lazy consensus system used in the Apache Foundation](https://www.apache.org/foundation/voting.html)
 and heavily depends on [GitHub Pull Request Review system](https://help.github.com/articles/about-pull-requests/).
-
-## Definitions
-
-**Repository** - [https://github.com/bids-standard/bids-specification](https://github.com/bids-standard/bids-specification)
-
-**Contributor** - a person listed in the Appendix I: Contributors. The
-community decides on the content of this file using the same process as any
-other change to the Repository (see below) allowing the meaning of "Contributor"
-to evolve independently of the Decision-making rules.
-
-**Maintainer** - a Contributor responsible for the long term health of the
-project and the community. Maintainers have additional rights (see Rules)
-helping them to resolve conflicts and increase the pace of the development
-when necessary. Current Maintainers:
-
-| Name                                                            | Time commitment |
-|-----------------------------------------------------------------|-----------------|
-| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff)) | 5h/week         |
 
 ## Rules
 
@@ -60,7 +102,7 @@ when necessary. Current Maintainers:
 1. A Maintainer can merge any PR - even if it's not eligible to merge according
    to Rule 4.
 1. Any Contributor can Review a PR and Request changes. If a Contributor
-   Request changes they need to provide an explanation what changes
+   Requests changes they need to provide an explanation what changes
    should be added and justification of their importance. Reviews requesting
    changes can also be used to request more time to review a PR.
 1. A Contributor that Requested changes can Dismiss their own review or Approve
@@ -70,7 +112,7 @@ when necessary. Current Maintainers:
    their review or accepting the changes the Review can be Dismissed with a
    vote or by a Maintainer. Rules governing voting:
    1. A Vote can be triggered by any Contributor, but only after 5 working days
-      from the time a Review Requesting Changes has been raised and in case a
+      from the time a Review Requesting changes has been raised and in case a
       Vote has been triggered previously no sooner than 15 working days since
       its conclusion.
    1. Only Contributors can vote, each contributor gets one vote.
@@ -80,7 +122,7 @@ when necessary. Current Maintainers:
       be added to it while a vote is ongoing. If a commit is accidentally made
       during that period it should be reverted.
    1. The quorum for a Vote is 30% of all Contributors.
-   1. The outcome of the vote is decided based on a simple majority.
+   1. The outcome of the Vote is decided based on a simple majority.
 
 ## Comments
 

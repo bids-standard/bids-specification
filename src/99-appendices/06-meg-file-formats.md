@@ -6,7 +6,7 @@ RECOMMENDED values for `manufacturer_specific_extensions`:
 | Value                                                 | Definition                                                                            |
 | ----------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | [`ctf`](06-meg-file-formats.md#ctf)                   | CTF (folder with `.ds` extension)                                                     |
-| [`fif`](06-meg-file-formats.md#neuromagelektamegin)   | Neuromag / Elekta / MEGIN  and BabyMEG (file with extension `.fif`)                   |
+| [`fif`](06-meg-file-formats.md#neuromagelektamegin)   | Neuromag / Elekta / MEGIN and BabyMEG (file with extension `.fif`)                    |
 | [`4d`](06-meg-file-formats.md#bti4d-neuroimaging)     | BTi / 4D Neuroimaging (folder containing multiple files without extensions)           |
 | [`kit`](06-meg-file-formats.md#kityokogawaricoh)      | KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`) |
 | [`kdf`](06-meg-file-formats.md#kriss)                 | KRISS (file with extension `.kdf`)                                                    |
@@ -47,7 +47,7 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_channels.tsv
 ```
 
-To learn more about  CTF’s data organization:
+To learn more about CTF’s data organization:
 [http://www.fieldtriptoolbox.org/getting_started/ctf](http://www.fieldtriptoolbox.org/getting_started/ctf)
 
 ## Neuromag/Elekta/MEGIN
@@ -88,32 +88,45 @@ sub-control01_ses-001_task-rest_run-01_proc-sss_meg.fif
 sub-control01_ses-001_task-rest_run-01_proc-sss_meg.json
 ```
 
-In the case of data runs exceeding 2Gb, the data is stored in two separate
-files:
+In the case of long data recordings that exceed a file size of 2Gb, the `.fif`
+files are conventionally split into multiple parts. For example:
 
 ```Text
-sub-control01_ses-001_task-rest_run-01_meg.fif
-sub-control01_ses-001_task-rest_run-01_meg-1.fif
+some_file.fif
+some_file-1.fif
 ```
 
-Each of these two files has a pointer to the next file. In some software
-applications, like [MNE](https://www.martinos.org/mne/stable/index.html), one
-can simply specify the name of the first file, and data will be read in both
-files via this pointer. For this reason, it is RECOMMENDED to rename and write
-back the file once read, to avoid the persistence of a pointer associated with
-the old file name.
+Each of these files has an internal pointer to the next file.
+This is important when renaming these split recordings to the BIDS convention.
+Instead of a simple renaming, files should be read in and saved under their new
+names with dedicated tools like [MNE](https://mne.tools), which will ensure
+that not only the file names, but also the internal file pointers will be
+updated.
 
-Naming convention:
+It is RECOMMENDED that `.fif` files with multiple parts use the `split-<index>`
+entity to indicate each part.
+
+Example:
 
 ```Text
-sub-control01_ses-001_task-rest_run-01_part-01_meg.fif
-sub-control01_ses-001_task-rest_run-01_part-02_meg.fif
+sub-control01_ses-001_task-rest_run-01_split-01_meg.fif
+sub-control01_ses-001_task-rest_run-01_split-02_meg.fif
 ```
 
-More about the Neuromag/Elekta/MEGIN data organization at:
-[http://www.fieldtriptoolbox.org/getting_started/neuromag](http://www.fieldtriptoolbox.org/getting_started/neuromag)
-And BabyMEG :
-[http://www.fieldtriptoolbox.org/getting_started/babysquid](http://www.fieldtriptoolbox.org/getting_started/babysquid)
+More information can be found under the following links:
+
+-   [Neuromag/Elekta/MEGIN data organization](http://www.fieldtriptoolbox.org/getting_started/neuromag)
+-   [BabyMEG](http://www.fieldtriptoolbox.org/getting_started/babysquid)
+
+### recording dates in `.fif` files
+
+It is important to note that recording dates in `.fif` files are represented
+as `int32` format seconds since (or before) [*the Epoch*](https://en.wikipedia.org/wiki/Unix_time)
+(`1970-01-01T00:00:00.000000` UTC).
+Integers in `int32` format can encode values from -2,147,483,647 to +2,147,483,647.
+Due to this representation, the Neuromag/Elekta/MEGIN file format for MEG (`.fif`) does *not*
+support recording dates earlier than `1901-12-13T08:45:53.000000` UTC or later than
+`2038-01-19T03:14:07.000000` UTC.
 
 ## BTi/4D neuroimaging
 

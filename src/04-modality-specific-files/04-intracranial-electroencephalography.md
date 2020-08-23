@@ -1,6 +1,6 @@
-# intracranial Electroencephalography (iEEG)
+# Intracranial Electroencephalography
 
-Support for iEEG was developed as a [BIDS Extension Proposal](../06-extensions.md#bids-extension-proposals).
+Support for Intracranial Electroencephalography (iEEG) was developed as a [BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
 Please cite the following paper when referring to this part of the standard in
 context of the academic literature:
 
@@ -23,26 +23,28 @@ Template:
 sub-<label>/
   [ses-<label>]/
     ieeg/
-      sub-<label>[_ses-<label>]_task-<task_label>[_run-<index>]_ieeg.<manufacturer_specific_extension>
-      sub-<label>[_ses-<label>]_task-<task_label>[_run-<index>]_ieeg.json
+      sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_ieeg.<manufacturer_specific_extension>
+      sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_ieeg.json
 ```
 
 The iEEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, iEEG data MUST be
 stored in one of the following formats:
 
--   [European Data Format](https://www.edfplus.info/) (`.edf`)
+-   [European Data Format](https://www.edfplus.info/)
+    (Each recording consisting of a `.edf` file)
 
 -   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
-    (`.vhdr`, `.eeg`, `.vmrk`) by Brain Products GmbH
+    (Each recording consisting of a  `.vhdr`, `.vmrk`, `.eeg` file triplet)
 
 -   The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab)
-    (`.set` and `.fdt` files)
+    (Each recording consisting of a `.set` file with an optional `.fdt` file)
 
--   [Neurodata Without Borders](https://github.com/NeurodataWithoutBorders/pynwb)
-    (`.nwb`)
+-   [Neurodata Without Borders](https://nwb-schema.readthedocs.io)
+    (Each recording consisting of a `.nwb` file)
 
--   [MEF3](http://msel.mayo.edu/codes.html) (`.mef`)
+-   [MEF3](https://msel.mayo.edu/files/codes/MEF%203%20Specification.pdf)
+    (Each recording consisting of a `.mefd` directory)
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -70,7 +72,7 @@ Note the RecordingType, which depends on whether the data stream on disk is inte
 ### Terminology: Electrodes vs. Channels
 
 For proper documentation of iEEG recording metadata it is important to
-understand the difference between electrode and channel: An iEEG electrode
+understand the difference between electrode and channel: an iEEG electrode
 is placed on or in the brain, whereas a channel is the combination of the analog
 differential amplifier and analog-to-digital converter that result in a
 potential (voltage) difference that is stored in the iEEG dataset. We employ the
@@ -102,16 +104,16 @@ please avoid using ad hoc wording.
 
 Generic fields MUST be present:
 
-| Field name         | Definition                                                                                                                                                                                                                                                                                                                                                                                                                |
-| :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| TaskName           | REQUIRED. Name of the task (for resting state use the "rest" prefix). No two tasks should have the same name. Task label is derived from this field by removing all non alphanumeric (`[a-zA-Z0-9]`) characters. Note this does not have to be a "behavioral task" that subjects perform, but can reflect some information about the conditions present when the data was acquired (e.g., "rest", "sleep", or "seizure"). |
+| Field name | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| TaskName   | REQUIRED. Name of the task (for resting state use the "rest" prefix). No two tasks should have the same name. The task label included in the file name is derived from this TaskName field by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters. For example TaskName `faces n-back` will correspond to task label `facesnback`. Note this does not have to be a "behavioral task" that subjects perform, but can reflect some information about the conditions present when the data was acquired (e.g., "rest", "sleep", or "seizure"). |
 
 SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
 | Field name             | Definition                                                                                                                                                                                                                    |
-| :--------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --------------------------------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                    |
 | InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                 |
 | Manufacturer           | RECOMMENDED. Manufacturer of the amplifier system (e.g., "TDT, Blackrock").                                                                                                                                                   |
@@ -126,7 +128,7 @@ Whenever possible, please avoid using ad hoc wording.
 Specific iEEG fields MUST be present:
 
 | Field name         | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ----------------------------------------------------------------------------------------------------------------------------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | iEEGReference      | REQUIRED. General description of the reference scheme used and (when applicable) of location of the reference electrode in the raw recordings (e.g., "left mastoid", "bipolar", "T01" for electrode with name T01, "intracranial electrode on top of a grid, not included with data", "upside down electrode"). If different channels have a different reference, this field should have a general description and the channel specific reference should be defined in the \_channels.tsv file. |
 | SamplingFrequency  | REQUIRED. Sampling frequency (in Hz) of all the iEEG channels in the recording (e.g., 2400). All other channels should have frequency specified as well in the `channels.tsv` file.                                                                                                                                                                                                                                                                                                             |
 | PowerLineFrequency | REQUIRED. Frequency (in Hz) of the power grid where the iEEG recording was done (i.e., 50 or 60).                                                                                                                                                                                                                                                                                                                                                                                               |
@@ -135,7 +137,7 @@ Specific iEEG fields MUST be present:
 Specific iEEG fields SHOULD be present:
 
 | Field name                      | Definition                                                                                                                                                                                                                                                                                                                                                                                         |
-| :------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | DCOffsetCorrection              | RECOMMENDED. A description of the method (if any) used to correct for a DC offset. If the method used was subtracting the mean value for each channel, use "mean".                                                                                                                                                                                                                                 |
 | HardwareFilters                 | RECOMMENDED.A [JSON object](https://www.w3schools.com/js/js_json_objects.asp) of temporal hardware filters applied, or `"n/a"` if the data is not available. Each key:value pair in the JSON object is a name of the filter and an object in which its parameters are defined as key:value pairs. E.g., `{"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dB/Octave"}}` |
 | ElectrodeManufacturer           | RECOMMENDED. can be used if all electrodes are of the same manufacturer (e.g., AD-TECH, DIXI). If electrodes of different manufacturers are used, please use the corresponding table in the \_electrodes.tsv file.                                                                                                                                                                                 |
@@ -159,7 +161,7 @@ Specific iEEG fields SHOULD be present:
 Specific iEEG fields MAY be present:
 
 | Field name                      | Definition                                                                                                                                                                                                                          |
-| :------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ElectricalStimulation           | OPTIONAL. Boolean field to specify if electrical stimulation was done during the recording (options are "true" or "false"). Parameters for event-like stimulation should be specified in the \_events.tsv file (see example below). |
 | ElectricalStimulationParameters | OPTIONAL. Free form description of stimulation parameters, such as frequency, shape etc. Specific onsets can be specified in the \_events.tsv file. Specific shapes can be described here in freeform text.                         |
 
@@ -198,12 +200,8 @@ Example:
 ```
 
 Note that the date and time information SHOULD be stored in the Study key file
-([`scans.tsv`](../03-modality-agnostic-files.md#scans-file)). As it is indicated
-there, date time information MUST be expressed in the following format
-`YYYY-MM-DDThh:mm:ss`
-([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For
-example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
-on local REB/IRB ethics board policy.
+([`scans.tsv`](../03-modality-agnostic-files.md#scans-file)).
+Date time information MUST be expressed as indicated in [Units](../02-common-principles.md#units)
 
 ## Channels description (`*_channels.tsv`)
 
@@ -235,18 +233,18 @@ The columns of the Channels description table stored in \*\_channels.tsv are:
 
 MUST be present:
 
-| Column name  | Definition                                                                                                                                                                                                                                                                                                                               |
-| :----------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name         | REQUIRED. Label of the channel. The label must correspond to \_electrodes.tsv name and all ieeg type channels are required to have a position. The reference channel name MAY be provided in the reference column.                                                                                                                       |
-| type         | REQUIRED. Type of channel, see below for adequate keywords in this field.                                                                                                                                                                                                                                                                |
-| units        | REQUIRED. Physical unit of the value represented in this channel, e.g., V for Volt, specified according to the [SI unit symbol](https://en.wikipedia.org/wiki/International_System_of_Units#Base_units) and possibly prefix symbol (e.g., mV, μV). For guidelines for Units and Prefixes see [Appendix V](../99-appendices/05-units.md). |
-| low_cutoff   | REQUIRED. Frequencies used for the low pass filter applied to the channel in Hz. If no low pass filter was applied, use `n/a`. Note that anti-alias is a low pass filter, specify its frequencies here if applicable.                                                                                                                    |
-| high_cutoff  | REQUIRED. Frequencies used for the high pass filter applied to the channel in Hz. If no high pass filter applied, use `n/a`.                                                                                                                                                                                                             |
+| Column name  | Definition                                                                                                                                                                                                            |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name         | REQUIRED. Label of the channel. The label must correspond to \_electrodes.tsv name and all ieeg type channels are required to have a position. The reference channel name MAY be provided in the reference column.    |
+| type         | REQUIRED. Type of channel, see below for adequate keywords in this field. Note that the type MUST be in upper case.                                                                                                   |
+| units        | REQUIRED. Physical unit of the value represented in this channel, e.g., `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [Units](../02-common-principles.md#units)).                                      |
+| low_cutoff   | REQUIRED. Frequencies used for the low pass filter applied to the channel in Hz. If no low pass filter was applied, use `n/a`. Note that anti-alias is a low pass filter, specify its frequencies here if applicable. |
+| high_cutoff  | REQUIRED. Frequencies used for the high pass filter applied to the channel in Hz. If no high pass filter applied, use `n/a`.                                                                                          |
 
 SHOULD be present:
 
 | Column name        | Definition                                                                                                                                                                                                                                                                           |
-| :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | reference          | OPTIONAL. Specification of the reference (e.g., 'mastoid', 'ElectrodeName01', 'intracranial', 'CAR', 'other', 'n/a'). If the channel is not an electrode channel (e.g., a microphone channel) use `n/a`.                                                                             |
 | group              | OPTIONAL. Which group of channels (grid/strip/seeg/depth) this channel belongs to. This is relevant because one group has one cable-bundle and noise can be shared. This can be a name or number. Note that any groups specified in `_electrodes.tsv` must match those present here. |
 | sampling_frequency | OPTIONAL. Sampling rate of the channel in Hz.                                                                                                                                                                                                                                        |
@@ -259,17 +257,18 @@ SHOULD be present:
 
 ```Text
 name  type  units low_cutoff  high_cutoff status  status_description
-LT01  ECOG  μV    300         0.11        good    n/a
-LT02  ECOG  μV    300         0.11        bad     broken
-H01   SEEG  μV    300         0.11        bad     line_noise
-ECG1  ECG   μV    n/a         0.11        good    n/a
+LT01  ECOG  uV    300         0.11        good    n/a
+LT02  ECOG  uV    300         0.11        bad     broken
+H01   SEEG  uV    300         0.11        bad     line_noise
+ECG1  ECG   uV    n/a         0.11        good    n/a
 TR1   TRIG  n/a   n/a         n/a         good    n/a
 ```
 Restricted keyword list for field type in alphabetic order (shared with the MEG
-and EEG modality; however, only types that are common in iEEG data are listed here):
+and EEG modality; however, only types that are common in iEEG data are listed here).
+Note that upper-case is REQUIRED:
 
 | Keyword  | Description                                                            |
-| :------- | :--------------------------------------------------------------------- |
+| ------------------------ | -------------------------------------------------------------------- |
 | EEG      | Electrode channel from electroencephalogram                            |
 | ECOG     | Electrode channel from electrocorticogram (intracranial)               |
 | SEEG     | Electrode channel from stereo-electroencephalogram (intracranial)      |
@@ -291,9 +290,9 @@ and EEG modality; however, only types that are common in iEEG data are listed he
 | REF      | Reference channel                                                      |
 | OTHER    | Any other type of channel                                              |
 
-The free text field for the channel description can for example be specified as
-intracranial, stimulus, response, vertical EOG, horizontal EOG, skin
-conductance, eyetracker, etc.
+Example of free-form text for field `description`:
+
+-   intracranial, stimulus, response, vertical EOG,  skin conductance
 
 ## Electrode description (`*_electrodes.tsv`)
 
@@ -337,20 +336,20 @@ For example:
 The order of the required columns in the `*_electrodes.tsv` file MUST be as
 listed below.
 
-MUST be present:                                                   
+MUST be present:
 
-| Column name  | Definition                                                                                                                                                                   |
-| :----------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name         | REQUIRED. Name of the electrode contact point.                                                                                                                               |
-| x            | REQUIRED. X position. The positions of the center of each electrode in xyz space. Units are in millimeters or pixels and are specified in \_\*space-<label>\_electrode.json. |
-| y            | REQUIRED. Y position.                                                                                                                                                        |
-| z            | REQUIRED. Z position. If electrodes are in 2D space this should be a column of n/a values.                                                                                   |
-| size         | REQUIRED. Surface area of the electrode, in mm^2.                                                                                                                            |
+| Column name  | Definition                                                                                                                                 |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| name         | REQUIRED. Name of the electrode contact point.                                                                                             |
+| x            | REQUIRED. X position. The positions of the center of each electrode in xyz space. Units are specified in `space-<label>_coordsystem.json`. |
+| y            | REQUIRED. Y position.                                                                                                                      |
+| z            | REQUIRED. Z position. If electrodes are in 2D space this should be a column of `n/a` values.                                               |
+| size         | REQUIRED. Surface area of the electrode, units MUST be in `mm^2`.                                                                          |
 
 SHOULD be present:
 
 | Column name  | Definition                                                                                                                                                           |
-| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | material     | OPTIONAL. Material of the electrodes.                                                                                                                                |
 | manufacturer | OPTIONAL. Recommended field to specify the manufacturer for each electrode. Can be used if electrodes were manufactured by more than one company.                    |
 | group        | OPTIONAL. Optional field to specify the group that the electrode is a part of. Note that any group specified here should match a group specified in `_channels.tsv`. |
@@ -359,9 +358,9 @@ SHOULD be present:
 MAY be present:
 
 | Column name | Definition                                                                                                                                                |
-| :---------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | type        | OPTIONAL. Optional type of the electrode, e.g., cup, ring, clip-on, wire, needle, ...                                                                     |
-| impedance   | OPTIONAL. Impedance of the electrode in kOhm.                                                                                                             |
+| impedance   | OPTIONAL. Impedance of the electrode, units MUST be in `kOhm`.                                                                                            |
 | dimension   | OPTIONAL. Size of the group (grid/strip/probe) that this electrode belongs to. Must be of form `[AxB]` with the smallest dimension first (e.g., `[1x8]`). |
 
 Example:
@@ -391,13 +390,13 @@ also be specified.
 General fields:
 
 | Field name  | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | IntendedFor | RECOMMENDED. This can be an MRI/CT or a file containing the operative photo, x-ray or drawing with path relative to the project folder. If only a surface reconstruction is available, this should point to the surface reconstruction file. Note that this file should have the same coordinate system specified in `iEEGCoordinateSystem`. For example, **T1**: `sub-<label>/ses-<label>/anat/sub-01_T1w.nii.gz`  **Surface**: `/derivatives/surfaces/sub-<label>/ses-<label>/anat/sub-01_T1w_pial.R.surf.gii` **Operative photo**: `/sub-<label>/ses-<label>/ieeg/sub-0001_ses-01_acq-photo1_photo.jpg` **Talairach**: `/derivatives/surfaces/sub-Talairach/ses-01/anat/sub-Talairach_T1w_pial.R.surf.gii`                                                                 |
 
 Fields relating to the iEEG electrode positions:
 
 | Field name                          | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | iEEGCoordinateSystem                | REQUIRED. Defines the coordinate system for the iEEG electrodes. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords. If positions correspond to pixel indices in a 2D image (of either a volume-rendering, surface-rendering, operative photo, or operative drawing), this must be "Pixels". For more information, see the section on [2D coordinate systems](#allowed-2d-coordinate-systems) |
 | iEEGCoordinateUnits                 | REQUIRED. Units of the \_electrodes.tsv, MUST be "m", "mm", "cm" or "pixels".                                                                                                                                                                                                                                                                                                                                                               |
 | iEEGCoordinateSystemDescription     | RECOMMENDED. Freeform text description or link to document describing the iEEG coordinate system system in detail (e.g., "Coordinate system with the origin at anterior commissure (AC), negative y-axis going through the posterior commissure (PC), z-axis going to a mid-hemisperic point which lies superior to the AC-PC line, x-axis going to the right").                                                                            |

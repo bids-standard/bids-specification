@@ -1,0 +1,19 @@
+---
+- suffixes:
+    - ieeg
+  extensions:
+    - .mefd/
+    - .json
+    - .edf
+    - .vhdr
+    - .eeg
+    - .vmrk
+    - .set
+    - .fdt
+    - .nwb
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    run: optional

@@ -1,6 +1,6 @@
-# Electroencephalography (EEG)
+# Electroencephalography
 
-Support for EEG was developed as a [BIDS Extension Proposal](../06-extensions.md#bids-extension-proposals).
+Support for Electroencephalography (EEG) was developed as a [BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
 Please cite the following paper when referring to this part of the standard in
 context of the academic literature:
 
@@ -34,15 +34,17 @@ The EEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, EEG data MUST be
 stored in one of the following formats:
 
--   [European data format](https://www.edfplus.info/) (`.edf`)
+-   [European data format](https://www.edfplus.info/)
+    (Each recording consisting of a `.edf` file)
 
 -   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
-    (`.vhdr`, `.vmrk`, `.eeg`) by Brain Products GmbH
+    (Each recording consisting of a  `.vhdr`, `.vmrk`, `.eeg` file triplet)
 
 -   The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab)
-    (`.set` and `.fdt` files)
+    (Each recording consisting of a `.set` file with an optional `.fdt` file)
 
--   [Biosemi](https://www.biosemi.com/) data format (`.bdf`)
+-   [Biosemi](https://www.biosemi.com/) data format
+    (Each recording consisting of a `.bdf` file)
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -89,16 +91,16 @@ be specified.
 
 Generic fields MUST be present:
 
-| Field name | Definition                                                                                                                                                                                                                  |
-| :--------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| TaskName   | REQUIRED. Name of the task (for resting state use the `rest` prefix). Different Tasks SHOULD NOT have the same name. The Task label is derived from this field by removing all non alphanumeric (`[a-zA-Z0-9]`) characters. |
+| Field name | Definition                                                                                                                                                                                                                                                                                                                              |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| TaskName   | REQUIRED. Name of the task (for resting state use the `rest` prefix). No two tasks should have the same name. The task label included in the file name is derived from this TaskName field by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters. For example TaskName `faces n-back` will correspond to task label `facesnback`. |
 
 SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
 | Field name             | Definition                                                                                                                                                                                                                                                                        |
-| :--------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                        |
 | InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                     |
 | Manufacturer           | RECOMMENDED. Manufacturer of the EEG system (e.g., `Biosemi`, `Brain Products`, `Neuroscan`).                                                                                                                                                                                     |
@@ -113,7 +115,7 @@ Whenever possible, please avoid using ad hoc wording.
 Specific EEG fields MUST be present:
 
 | Field name         | Definition                                                                                                                                                                                                                                                                                                                                                                                       |
-| :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | EEGReference       | REQUIRED. General description of the reference scheme used and (when applicable) of location of the reference electrode in the raw recordings (e.g., "left mastoid", "Cz", "CMS"). If different channels have a different reference, this field should have a general description and the channel specific reference should be defined in the \_channels.tsv file.                               |
 | SamplingFrequency  | REQUIRED. Sampling frequency (in Hz) of all the data in the recording, regardless of their type (e.g., 2400).                                                                                                                                                                                                                                                                                    |
 | PowerLineFrequency | REQUIRED. Frequency (in Hz) of the power grid at the geographical location of the EEG instrument (i.e., 50 or 60).                                                                                                                                                                                                                                                                               |
@@ -122,7 +124,7 @@ Specific EEG fields MUST be present:
 SHOULD be present:
 
 | Field name                 | Definition                                                                                                                                                                                                                                                                                                                                                                                          |
-| :--------------------------| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | CapManufacturer            | RECOMMENDED. Name of the cap manufacturer (e.g., "EasyCap").                                                                                                                                                                                                                                                                                                                                        |
 | CapManufacturersModelName  | RECOMMENDED. Manufacturer's designation of the EEG cap model (e.g., "actiCAP 64 Ch Standard-2").                                                                                                                                                                                                                                                                                                    |
 | EEGChannelCount            | RECOMMENDED. Number of EEG channels included in the recording (e.g., 128).                                                                                                                                                                                                                                                                                                                          |
@@ -181,12 +183,8 @@ Example:
 ```
 
 Note that the date and time information SHOULD be stored in the Study key file
-([`scans.tsv`](../03-modality-agnostic-files.md#scans-file)). As it is
-indicated there, date time information MUST be expressed in the following
-format `YYYY-MM-DDThh:mm:ss`
-([ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time format). For
-example: 2009-06-15T13:45:30. It does not need to be fully detailed, depending
-on local REB/IRB ethics board policy.
+([`scans.tsv`](../03-modality-agnostic-files.md#scans-file)).
+Date time information MUST be expressed as indicated in [Units](../02-common-principles.md#units)
 
 ## Channels description (`*_channels.tsv`)
 
@@ -214,16 +212,16 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
-| Column name | Definition                                                                                                                                                   |
-| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name        | REQUIRED. Channel name (e.g., FC1, Cz)                                                                                                                       |
-| type        | REQUIRED. Type of channel; MUST use the channel types listed below.                                                                                          |
-| units       | REQUIRED. Physical unit of the data values recorded by this channel in SI units (see [Appendix V](../99-appendices/05-units.md): Units for allowed symbols). |
+| Column name | Definition                                                                                                                                                                       |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name        | REQUIRED. Channel name (e.g., FC1, Cz)                                                                                                                                           |
+| type        | REQUIRED. Type of channel; MUST use the channel types listed below. Note that the type MUST be in upper-case.                                                                    |
+| units       | REQUIRED. Physical unit of the value represented in this channel, e.g., `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [Units](../02-common-principles.md#units)). |
 
 SHOULD be present:
 
 | Column name        | Definition                                                                                                                                                                                                                                                                    |
-| :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | description        | OPTIONAL. Free-form text description of the channel, or other information of interest. See examples below.                                                                                                                                                                    |
 | sampling_frequency | OPTIONAL. Sampling rate of the channel in Hz.                                                                                                                                                                                                                                 |
 | reference          | OPTIONAL. Name of the reference electrode(s) (not needed when it is common to all channels, in that case it can be specified in `*_eeg.json` as `EEGReference`).                                                                                                              |
@@ -233,11 +231,12 @@ SHOULD be present:
 | status             | OPTIONAL. Data quality observed on the channel `(good/bad)`. A channel is considered `bad` if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in `[status_description]`.                                                     |
 | status_description | OPTIONAL. Free-form text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `[status]`.                                                                                                       |
 
-Restricted keyword list for field `type` in alphabetic order (shared with the
-MEG and iEEG modality; however, only the types that are common in EEG data are listed here):
+Restricted keyword list for field `type` in alphabetic order (shared with the
+MEG and iEEG modality; however, only the types that are common in EEG data are listed here).
+Note that upper-case is REQUIRED:
 
 | Keyword  | Description                                                  |
-| :--------| :----------------------------------------------------------- |
+| -----------------| -------------------------------------------------------------- |
 | AUDIO    | Audio signal                                                 |
 | EEG      | Electroencephalogram channel                                 |
 | EOG      | Generic electrooculogram (eye), different from HEOG and VEOG |
@@ -247,6 +246,7 @@ MEG and iEEG modality; however, only the types that are common in EEG data are l
 | GSR      | Galvanic skin response                                       |
 | HEOG     | Horizontal EOG (eye)                                         |
 | MISC     | Miscellaneous                                                |
+| PPG      | Photoplethysmography                                         |
 | PUPIL    | Eye tracker pupil diameter                                   |
 | REF      | Reference channel                                            |
 | RESP     | Respiration                                                  |
@@ -263,10 +263,10 @@ Example:
 
 ```Text
 name     type   units   description                     status  status_description
-VEOG     VEOG   microV  n/a                             good    n/a
-FDI      EMG    microV  left first dorsal interosseous  good    n/a
-Cz       EEG    microV  n/a                             bad     high frequency noise
-UADC001  MISC   n/a     enevelope of audio signal       good    n/a
+VEOG     VEOG   uV      n/a                             good    n/a
+FDI      EMG    uV      left first dorsal interosseous  good    n/a
+Cz       EEG    uV      n/a                             bad     high frequency noise
+UADC001  MISC   n/a     envelope of audio signal        good    n/a
 ```
 
 ## Electrodes description (`*_electrodes.tsv`)
@@ -290,7 +290,7 @@ file MUST be specified as well**. The order of the required columns in the
 MUST be present:
 
 | Column name | Definition                                   |
-| :-----------| :------------------------------------------- |
+| --------------| ------------------------------------------------- |
 | name        | REQUIRED. Name of the electrode              |
 | x           | REQUIRED. Recorded position along the x-axis |
 | y           | REQUIRED. Recorded position along the y-axis |
@@ -299,10 +299,10 @@ MUST be present:
 SHOULD be present:
 
 | Column name | Definition                                                                  |
-| :-----------| :-------------------------------------------------------------------------- |
+| ------------------------------| ------------------------------------------------------------------------------- |
 | type        | RECOMMENDED. Type of the electrode (e.g., cup, ring, clip-on, wire, needle) |
-| material    | RECOMMENDED. Material of the electrode, e.g., Tin, Ag/AgCl, Gold            |
-| impedance   | RECOMMENDED. Impedance of the electrode in kOhm                             |
+| material    | RECOMMENDED. Material of the electrode  (e.g., Tin, Ag/AgCl, Gold)          |
+| impedance   | RECOMMENDED. Impedance of the electrode, units MUST be in `kOhm`.           |
 
 Example:
 
@@ -359,7 +359,7 @@ landmarks, or the placement of LEDs on the nasion and preauricular points to
 triangulate the position of other LED-lit electrodes on a research subject's
 head.
 
--   For more information on the definition of anatomical landmarks, please visit:
+-   For more information on the definition of anatomical landmarks, please visit:
     [http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
 
 -   For more information on coordinate systems for coregistration, please visit:
@@ -368,34 +368,34 @@ head.
 General fields:
 
 | Keyword              | Description                                                                                |
-| :--------------------| :----------------------------------------------------------------------------------------- |
+| -----------------------------------| ------------------------------------------------------------------------------------------------- |
 | IntendedFor          | OPTIONAL. Relative path to associate the electrodes, landmarks and fiducials to an MRI/CT. |
 
 Fields relating to the EEG electrode positions:
 
 | Keyword                        | Description                                                                                                                                                            |
-| :------------------------------| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --------------------------------------------------------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | EEGCoordinateSystem            | REQUIRED. Refers to the coordinate system in which the EEG electrode positions are to be interpreted (see [Appendix VIII](../99-appendices/08-coordinate-systems.md)). |
-| EEGCoordinateUnits             | REQUIRED. Units in which the coordinates that are listed in the field `EEGCoordinateSystem` are represented (e.g., "mm", "cm").                                        |
+| EEGCoordinateUnits             | REQUIRED. Units in which the coordinates that are listed in the field `EEGCoordinateSystem` are represented. MUST be `m`, `cm`, or `mm`.                               |
 | EEGCoordinateSystemDescription | RECOMMENDED. Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.    |
 
 Fields relating to the position of fiducials measured during an EEG session/run:
 
 | Keyword                                       | Description                                                                                                                                                                                                                              |
-| :---------------------------------------------| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ---------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | FiducialsDescription                          | OPTIONAL. Free-form text description of how the fiducials such as vitamin-E capsules were placed relative to anatomical landmarks, and how the position of the fiducials were measured (e.g., both with Polhemus and with T1w MRI).      |
 | FiducialsCoordinates                          | RECOMMENDED. Key:value pairs of the labels and 3-D digitized position of anatomical landmarks, interpreted following the `FiducialsCoordinateSystem` (e.g., `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). |
 | FiducialsCoordinateSystem                     | RECOMMENDED. Refers to the coordinate space to which the landmarks positions are to be interpreted - preferably the same as the `EEGCoordinateSystem`.                                                                                   |
-| FiducialsCoordinateUnits                      | RECOMMENDED. Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented (e.g.,  "mm", "cm").                                                                                      |
+| FiducialsCoordinateUnits                      | RECOMMENDED. Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented. MUST be `m`, `cm`, or `mm`.                                                                              |
 | FiducialsCoordinateSystemDescription          | RECOMMENDED. Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                      |
 
 Fields relating to the position of anatomical landmark measured during an EEG session/run:
 
 | Keyword                                       | Description                                                                                                                                                                                                                                       |
-| :---------------------------------------------| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | AnatomicalLandmarkCoordinates                 | RECOMMENDED. Key:value pairs of the labels and 3-D digitized position of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem` (e.g., `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). |
 | AnatomicalLandmarkCoordinateSystem            | RECOMMENDED. Refers to the coordinate space to which the landmarks positions are to be interpreted - preferably the same as the `EEGCoordinateSystem`.                                                                                            |
-| AnatomicalLandmarkCoordinateUnits             | RECOMMENDED. Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented (e.g.,  "mm", "cm").                                                                                               |
+| AnatomicalLandmarkCoordinateUnits             | RECOMMENDED. Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented. MUST be `m`, `cm`, or `mm`.                                                                                       |
 | AnatomicalLandmarkCoordinateSystemDescription | RECOMMENDED. Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                               |
 
 If the position of anatomical landmarks is measured using the same system or

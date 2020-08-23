@@ -1,0 +1,18 @@
+---
+- suffixes:
+    - eeg
+  extensions:
+    - .json
+    - .edf
+    - .vhdr
+    - .vmrk
+    - .eeg
+    - .set
+    - .fdt
+    - .bdf
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    run: optional
