@@ -175,56 +175,17 @@ based fMRI a corresponding task events file (see below) MUST be provided
 multiband acquisitions, one MAY also save the single-band reference image as
 type `sbref` (e.g. `sub-control01_task-nback_sbref.nii.gz`).
 
-Each task has a unique label that MUST only consist of letters and/or numbers
-(other characters, including spaces and underscores, are not allowed).
-Those labels MUST be consistent across subjects and sessions.
+Currently supported entities include:
 
-If more than one run of the same task has been acquired a key/value pair:
-`_run-1`, `_run-2`, `_run-3` etc. MUST be used. If only one run was acquired the
-`run-<index>` can be omitted. In the context of functional imaging a run is
-defined as the same task, but in some cases it can mean different set of stimuli
-(for example randomized order) and participant responses.
-
-The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label one may
-use to distinguish different set of parameters used for acquiring the same task.
-For example this should be used when a study includes two resting state images -
-one single band and one multiband. In such case two files could have the
-following names: `sub-01_task-rest_acq-singleband_bold.nii.gz` and
-`sub-01_task-rest_acq-multiband_bold.nii.gz`, however the user is MAY choose any
-other label than `singleband` and `multiband` as long as they are consistent
-across subjects and sessions and consist only of the legal label characters.
-
-Similarly the OPTIONAL `ce-<label>` key/value can be used to distinguish
-sequences using different contrast enhanced images. The label is the name of the
-contrast agent. The key ContrastBolusIngredient MAY be also be added in the JSON
-file, with the same label.
-
-Similarly the OPTIONAL `rec-<label>` key/value can be used to distinguish
-different reconstruction algorithms (for example ones using motion correction).
-
-Similarly the OPTIONAL `dir-<label>` and `rec-<label>` key/values
-can be used to distinguish different phase-encoding directions and
-reconstruction algorithms (for example ones using motion correction).
-See [`fmap` Case 4](01-magnetic-resonance-imaging-data.md#case-4-multiple-phase-encoded-directions-pepolar)
-for more information on `dir` field specification.
-
-Multi-echo data MUST be split into one file per echo. Each file shares the same
-name with the exception of the `_echo-<index>` key/value. For example:
-
-```Text
-sub-01/
-   func/
-      sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-      sub-01_task-cuedSGT_run-1_echo-1_bold.json
-      sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-      sub-01_task-cuedSGT_run-1_echo-2_bold.json
-      sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
-      sub-01_task-cuedSGT_run-1_echo-3_bold.json
-```
-
-Please note that the `<index>` denotes the number/index (in a form of an
-integer) of the echo not the echo time value which needs to be stored in the
-field EchoTime of the separate JSON file.
+-   [`sub-<label>`](../99-appendices/09-entities.md#sub)
+-   [`ses-<label>`](../99-appendices/09-entities.md#ses)
+-   [`task-<label>`](../99-appendices/09-entities.md#task)
+-   [`acq-<label>`](../99-appendices/09-entities.md#acq)
+-   [`ce-<label>`](../99-appendices/09-entities.md#ce)
+-   [`rec-<label>`](../99-appendices/09-entities.md#rec)
+-   [`dir-<label>`](../99-appendices/09-entities.md#dir)
+-   [`run-<index>`](../99-appendices/09-entities.md#run)
+-   [`echo-<index>`](../99-appendices/09-entities.md#echo)
 
 Some meta information about the acquisition MUST be provided in an additional
 JSON file.
@@ -332,16 +293,10 @@ sub-<label>/[ses-<label>/]
        sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_sbref.json
 ```
 
-Diffusion-weighted imaging data acquired for that participant. The OPTIONAL
-`acq-<label>` key/value pair corresponds to a custom label the user may use to
-distinguish different set of parameters. For example this should be used when a
-study includes two diffusion images - one single band and one multiband. In such
-case two files could have the following names:
-`sub-01_acq-singleband_dwi.nii.gz` and `sub-01_acq-multiband_dwi.nii.gz`,
-however the user is free to choose any other label than `singleband` and
-`multiband` as long as they are consistent across subjects and sessions. For
-multiband acquisitions, one can also save the single-band reference image as
-type `sbref` (e.g. `dwi/sub-control01_sbref.nii[.gz]`) The bvec and bval files
+Diffusion-weighted imaging data acquired for that participant.
+For multiband acquisitions, one can also save the single-band reference image as
+type `sbref` (e.g. `dwi/sub-control01_sbref.nii[.gz]`).
+The bvec and bval files
 are in the [FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
 The bvec files contain 3 rows with n space-delimited floating-point numbers
 (corresponding to the n volumes in the relevant NIfTI file). The first row
@@ -376,6 +331,14 @@ bval example:
 `.bval` and `.bvec` files can be saved on any level of the directory structure
 and thus define those values for all sessions and/or subjects in one place (see
 Inheritance principle).
+
+Currently supported entities include:
+
+-   [`sub-<label>`](../99-appendices/09-entities.md#sub)
+-   [`ses-<label>`](../99-appendices/09-entities.md#ses)
+-   [`acq-<label>`](../99-appendices/09-entities.md#acq)
+-   [`dir-<label>`](../99-appendices/09-entities.md#dir)
+-   [`run-<index>`](../99-appendices/09-entities.md#run)
 
 See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms that can be included in the corresponding JSON file.
@@ -417,9 +380,13 @@ slashes. Here’s an example with multiple target scans:
 The IntendedFor field is OPTIONAL and in case the fieldmaps do not correspond to
 any particular scans it does not have to be filled.
 
-Multiple fieldmaps can be stored. In such case the `_run-1`, `_run-2` should be
-used. The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label
-the user may use to distinguish different set of parameters.
+Currently supported entities include:
+
+-   [`sub-<label>`](../99-appendices/09-entities.md#sub)
+-   [`ses-<label>`](../99-appendices/09-entities.md#ses)
+-   [`acq-<label>`](../99-appendices/09-entities.md#acq)
+-   [`dir-<label>`](../99-appendices/09-entities.md#dir)
+-   [`run-<index>`](../99-appendices/09-entities.md#run)
 
 #### Case 1: Phase difference image and at least one magnitude image
 
