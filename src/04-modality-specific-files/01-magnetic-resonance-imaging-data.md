@@ -115,7 +115,7 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_ch-<label>]_<modality_label>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_coil-<label>]_<modality_label>.nii[.gz]
         sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
 ```
 
@@ -176,13 +176,13 @@ sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the
 JSON file, with the same label.
 
-#### The `ch` entity
+#### The `coil` entity
 
-The OPTIONAL `ch-<label>` key/value can be used to distinguish channel-specific data.
+The OPTIONAL `coil-<label>` key/value can be used to distinguish coil-specific data.
 Typically it is used for sequences not employing coil combination (e.g., SWI).
-When the file contains data from a single channel, `ch-<label>` SHOULD be provided.
+When the file contains data from a single coil, `coil-<label>` SHOULD be provided.
 The key `CoilString` MAY also be added in the JSON file, with a corresponding
-identifier for the channel within the coil.
+identifier for the coil.
 
 Some meta information about the acquisition MAY be provided in an additional
 JSON file. See [Common metadata fields](#common-metadata-fields) for a
@@ -213,8 +213,8 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     func/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_ch-<label>]_<contrast_label>.nii[.gz]
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_ch-<label>]_sbref.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_coil-<label>]_<contrast_label>.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_coil-<label>]_sbref.nii[.gz]
 ```
 
 Imaging data acquired during functional imaging (i.e. imaging which supports
@@ -258,10 +258,10 @@ reconstruction algorithms (for example ones using motion correction).
 See [`fmap` Case 4](01-magnetic-resonance-imaging-data.md#case-4-multiple-phase-encoded-directions-pepolar)
 for more information on `dir` field specification.
 
-Similarly the OPTIONAL `ch-<label>` key/value can be used to distinguish
-channel-specific data from sequences not employing coil combination.
-The key CoilString MAY also be added in the JSON file, with a corresponding
-channel identifier.
+Similarly the OPTIONAL `coil-<label>` key/value can be used to distinguish
+coil-specific data from sequences not employing coil combination.
+The key `CoilString` MAY also be added in the JSON file, with a corresponding
+coil identifier.
 
 Multi-echo data MUST be split into one file per echo. Each file shares the same
 name with the exception of the `_echo-<index>` key/value. For example:

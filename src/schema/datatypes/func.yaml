@@ -19,7 +19,7 @@
     dir: optional
     run: optional
     echo: optional
-    ch: optional
+    coil: optional
 # Second group
 - suffixes:
     - events
