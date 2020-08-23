@@ -94,6 +94,15 @@ echo:
     Each file shares the same name with the exception of the `_echo-<index>`
     key/value.
   format: index
+ch:
+  name: Channel
+  description: |
+    The `ch-<label>` key/value can be used to distinguish channel-specific data.
+    Typically it is used for sequences not employing coil combination (e.g., SWI).
+    When the file contains data from a single channel, `ch-<label>` SHOULD be provided.
+    The key `CoilString` MAY also be added in the JSON file, with a corresponding
+    identifier for the channel within the coil.
+  format: label
 recording:
   name: Recording
   description: |

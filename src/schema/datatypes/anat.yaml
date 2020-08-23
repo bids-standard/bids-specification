@@ -26,6 +26,7 @@
     acq: optional
     ce: optional
     rec: optional
+    ch: optional
 # Second group
 - suffixes:
     - defacemask
