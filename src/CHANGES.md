@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   Updating the bep009 with the latest master branch updates [#576](https://github.com/bids-standard/bids-specification/pull/576) ([melanieganz](https://github.com/melanieganz))
 -   \[ENH] added PPG as an accepted channel type for EEG, MEG and iEEG [#570](https://github.com/bids-standard/bids-specification/pull/570) ([robertoostenveld](https://github.com/robertoostenveld))
 -   \[INFRA] enable pandoc emojis for the pdf build [#562](https://github.com/bids-standard/bids-specification/pull/562) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] Auto adjust table fences before PDF conversion [#560](https://github.com/bids-standard/bids-specification/pull/560) ([sebastientourbier](https://github.com/sebastientourbier))
@@ -12,6 +13,7 @@
 -   \[ENH] Extend date time information to include optional UTC syntax, warn about FIF requirements [#546](https://github.com/bids-standard/bids-specification/pull/546) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] clarify that \\&lt;physio|stim>.json is REQUIRED [#542](https://github.com/bids-standard/bids-specification/pull/542) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Replace all non-breaking spaces with vanilla spaces [#536](https://github.com/bids-standard/bids-specification/pull/536) ([nicholst](https://github.com/nicholst))
+-   \[FIX] Clarify indices are nonnegative integers. [#535](https://github.com/bids-standard/bids-specification/pull/535) ([nicholst](https://github.com/nicholst))
 -   \[FIX] Clarify use of session entity in file names [#532](https://github.com/bids-standard/bids-specification/pull/532) ([Moo-Marc](https://github.com/Moo-Marc))
 -   \[ENH] Add the ability of users to specify an explicit HED.xml schema for validation. [#527](https://github.com/bids-standard/bids-specification/pull/527) ([VisLab](https://github.com/VisLab))
 -   \[FIX] clarify that scans.json is allowed and recommended [#523](https://github.com/bids-standard/bids-specification/pull/523) ([sappelhoff](https://github.com/sappelhoff))
