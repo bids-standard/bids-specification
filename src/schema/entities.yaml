@@ -75,8 +75,8 @@ run:
   name: Run
   description: |
     If several scans of the same modality are acquired they MUST be indexed
-    with a key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only nonnegative
-    integers are allowed as run labels).
+    with a key-value pair: `_run-1`, `_run-2`, ..., `_run-<index>`
+    (only nonnegative integers are allowed for the `<index>`).
     When there is only one scan of a given type the run key MAY be omitted.
   format: index
 mod:
