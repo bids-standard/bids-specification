@@ -182,7 +182,7 @@ The `part-<label>` key/value pair is associated with the DICOM tag `0008,9208`.
 Allowed label values for this entity are `phase`, `mag`, `real` and `imag`, which are typically used in `mag/phase` or `real/imag` pairs.
 For example:
 
-```
+```Text
 sub-01_part-mag_T1w.nii.gz
 sub-01_part-mag_T1w.json
 sub-01_part-phase_T1w.nii.gz
@@ -196,7 +196,7 @@ For example:
 
 sub-01_part-phase.json
 
-```
+```Text
 {
    "Units": "radians"
 }
