@@ -1,0 +1,24 @@
+---
+mri:
+  name: Magnetic Resonance Imaging
+  datatypes:
+    - anat
+    - dwi
+    - fmap
+    - func
+eeg:
+  name: Electroencephalography
+  datatypes:
+    - eeg
+ieeg:
+  name: Intracranial Electroencephalography
+  datatypes:
+    - ieeg
+meg:
+  name: Magnetoencephalography
+  datatypes:
+    - meg
+beh:
+  name: Behavioral experiments
+  datatypes:
+    - beh

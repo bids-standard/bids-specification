@@ -6,7 +6,7 @@ RECOMMENDED values for `manufacturer_specific_extensions`:
 | Value                                                 | Definition                                                                            |
 | ----------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | [`ctf`](06-meg-file-formats.md#ctf)                   | CTF (folder with `.ds` extension)                                                     |
-| [`fif`](06-meg-file-formats.md#neuromagelektamegin)   | Neuromag / Elekta / MEGIN  and BabyMEG (file with extension `.fif`)                   |
+| [`fif`](06-meg-file-formats.md#neuromagelektamegin)   | Neuromag / Elekta / MEGIN and BabyMEG (file with extension `.fif`)                    |
 | [`4d`](06-meg-file-formats.md#bti4d-neuroimaging)     | BTi / 4D Neuroimaging (folder containing multiple files without extensions)           |
 | [`kit`](06-meg-file-formats.md#kityokogawaricoh)      | KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`) |
 | [`kdf`](06-meg-file-formats.md#kriss)                 | KRISS (file with extension `.kdf`)                                                    |
@@ -47,7 +47,7 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_channels.tsv
 ```
 
-To learn more about  CTF’s data organization:
+To learn more about CTF’s data organization:
 [http://www.fieldtriptoolbox.org/getting_started/ctf](http://www.fieldtriptoolbox.org/getting_started/ctf)
 
 ## Neuromag/Elekta/MEGIN
@@ -117,6 +117,16 @@ More information can be found under the following links:
 
 -   [Neuromag/Elekta/MEGIN data organization](http://www.fieldtriptoolbox.org/getting_started/neuromag)
 -   [BabyMEG](http://www.fieldtriptoolbox.org/getting_started/babysquid)
+
+### recording dates in `.fif` files
+
+It is important to note that recording dates in `.fif` files are represented
+as `int32` format seconds since (or before) [*the Epoch*](https://en.wikipedia.org/wiki/Unix_time)
+(`1970-01-01T00:00:00.000000` UTC).
+Integers in `int32` format can encode values from -2,147,483,647 to +2,147,483,647.
+Due to this representation, the Neuromag/Elekta/MEGIN file format for MEG (`.fif`) does *not*
+support recording dates earlier than `1901-12-13T08:45:53.000000` UTC or later than
+`2038-01-19T03:14:07.000000` UTC.
 
 ## BTi/4D neuroimaging
 

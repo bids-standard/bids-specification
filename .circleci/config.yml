@@ -2,29 +2,16 @@ version: 2
 jobs:
   build_docs:
     docker:
-      - image: circleci/python:3.6.6
+      - image: circleci/python:3.8
     steps:
       - checkout
-      - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
-      - restore_cache:  # ensure this step occurs *before* installing dependencies
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
       - run:
           command: |
-            sudo pip install pip==18.0
-            sudo pip install pipenv==2018.7.1
-            pipenv install
-      - save_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
-          paths:
-            - ".venv"
-            - "/usr/local/bin"
-            - "/usr/local/lib/python3.6/site-packages"
+            pip install --upgrade pip
+            pip install -r requirements.txt
       - run:
           name: generate docs
-          command: pipenv run mkdocs build --clean --strict --verbose
-      - store_artifacts:
-          path: site
+          command: mkdocs build --clean --strict --verbose
       - persist_to_workspace:
           root: .
           paths: site
@@ -55,10 +42,17 @@ jobs:
   build_docs_pdf:
     working_directory: ~/bids-specification/pdf_build_src
     docker:
-      - image: danteev/texlive:TL2017
+      - image: danteev/texlive:latest
     steps:
       - checkout:
           path: ~/bids-specification
+      - run:
+          name: install numpy
+          command: |
+            pip3 install numpy
+      - run:
+          name: install font that works with unicode emojis
+          command: apt-get update && apt-get install -y fonts-symbola
       - run:
           name: generate pdf version docs
           command: sh build_pdf.sh

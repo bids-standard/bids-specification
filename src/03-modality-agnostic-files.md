@@ -14,11 +14,12 @@ Templates:
 The file `dataset_description.json` is a JSON file describing the dataset.
 Every dataset MUST include this file with the following fields:
 
-| Field name         | Definition                                                                                                                                                                                                                                                         |
-| ------------------------------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Field name**     |   **Definition**                                                                                                                                                                                                                                                   |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                                                     |
 | BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                                                          |
-| DatasetType        | RECOMMENDED. The interpretaton of the dataset. MUST be one of `"raw"` or `"derivative"`. For backwards compatibility, the default value is `"raw"`.                                                                                                                |
+| HEDVersion         | RECOMMENDED if HED tags are used. The version of the HED schema used to validate HED tags for study.                                                                                                                                                               |
+| DatasetType        | RECOMMENDED. The interpretation of the dataset. MUST be one of `"raw"` or `"derivative"`. For backwards compatibility, the default value is `"raw"`.                                                                                                               |
 | License            | RECOMMENDED. The license for the dataset. The use of license name abbreviations is RECOMMENDED for specifying a license (see [Appendix II](./99-appendices/02-licenses.md)). The corresponding full license text MAY be specified in an additional `LICENSE` file. |
 | Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                                                             |
 | Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                                               |
@@ -53,7 +54,8 @@ Example:
     "https://www.ncbi.nlm.nih.gov/pubmed/001012092119281",
     "Alzheimer A., & Kraepelin, E. (2015). Neural correlates of presenile dementia in humans. Journal of Neuroscientific Data, 2, 234001. http://doi.org/1920.8/jndata.2015.7"
   ],
-  "DatasetDOI": "10.0.2.3/dfjj.10"
+  "DatasetDOI": "10.0.2.3/dfjj.10",
+  "HEDVersion": "7.1.1"
 }
 ```
 
@@ -128,9 +130,8 @@ The `README` file MUST be either in ASCII or UTF-8 encoding.
 ### `CHANGES`
 
 Version history of the dataset (describing changes, updates and corrections) MAY
-be provided in the form of a `CHANGES` text file. This file MUST follow the CPAN
-Changelog convention:
-[http://search.cpan.org/~haarg/CPAN-Changes-0.400002/lib/CPAN/Changes/Spec.pod](https://metacpan.org/pod/release/HAARG/CPAN-Changes-0.400002/lib/CPAN/Changes/Spec.pod).
+be provided in the form of a `CHANGES` text file. This file MUST follow the
+[CPAN Changelog convention](https://metacpan.org/pod/release/HAARG/CPAN-Changes-0.400002/lib/CPAN/Changes/Spec.pod).
 The `CHANGES` file MUST be either in ASCII or UTF-8 encoding.
 
 Example:
@@ -327,21 +328,18 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     sub-<label>[_ses-<label>]_scans.tsv
+    sub-<label>[_ses-<label>]_scans.json
 ```
 
 Optional: Yes
 
 The purpose of this file is to describe timing and other properties of each
-imaging acquisition sequence (each run `.nii[.gz]` file) within one session.
-Each `.nii[.gz]` file should be described by at most one row.
+imaging acquisition sequence (each *run* file) within one session.
+Each neural recording file should be described by at most one row.
 Relative paths to files should be used under a compulsory `filename` header.
 If acquisition time is included it should be under `acq_time` header.
-Datetime should be expressed in the following format
-`2009-06-15T13:45:30[.000000]` (year, month, day, hour (24h), minute, second,
-and optionally fractional second; this is equivalent to the RFC3339 "date-time"
-format, time zone is always assumed as local time).
-No specific precision is required for fractional seconds, but the precision
-SHOULD be consistent across the dataset
+Acquisition time refers to when the first data point in each run was acquired.
+Datetime should be expressed as described in [Units](./02-common-principles.md#units).
 For anonymization purposes all dates within one subject should be shifted by a
 randomly chosen (but consistent across all runs etc.) number of days.
 This way relative timing would be preserved, but chances of identifying a
@@ -354,13 +352,16 @@ Additional fields can include external behavioral measures relevant to the
 scan.
 For example vigilance questionnaire score administered after a resting
 state scan.
+All such included additional fields SHOULD be documented in an accompanying
+`_scans.json` file that describes these fields in detail
+(see [Tabular files](02-common-principles.md#tabular-files)).
 
-Example:
+Example `_scans.tsv`:
 
 ```Text
-filename  acq_time
-func/sub-control01_task-nback_bold.nii.gz 1877-06-15T13:45:30
-func/sub-control01_task-motor_bold.nii.gz 1877-06-15T13:55:33
+filename	acq_time
+func/sub-control01_task-nback_bold.nii.gz	1877-06-15T13:45:30
+func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33
 ```
 
 ## Code

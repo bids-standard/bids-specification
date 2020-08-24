@@ -9,11 +9,11 @@ interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 Throughout this specification we use a list of terms and abbreviations. To avoid
 misunderstanding we clarify them here.
 
-1.  **Dataset** - a set of neuroimaging and behavioral data acquired for a
+1.  **Dataset** - a set of neuroimaging and behavioral data acquired for a
     purpose of a particular study. A dataset consists of data acquired from one
     or more subjects, possibly from multiple sessions.
 
-1.  **Subject** - a person or animal participating in the study.  Used
+1.  **Subject** - a person or animal participating in the study.  Used
     interchangeably with term **Participant**.
 
 1.  **Session** - a logical grouping of neuroimaging and behavioral data
@@ -99,7 +99,9 @@ A file name consists of a chain of *entities*, or key-value pairs, a *suffix* an
 Two prominent examples of entities are `subject` and `session`.
 
 For a data file that was collected in a given `session` from a given
-`subject`, the file name will begin with the string `sub-<label>_ses-<label>`.
+`subject`, the file name MUST begin with the string `sub-<label>_ses-<label>`. 
+If the `session` level is omitted in the folder structure, the file name MUST begin 
+with the string `sub-<label>`, without `ses-<label>`.
 
 Note that `sub-<label>` corresponds to the `subject` entity because it has
 the `sub-` "key" and`<label>` "value", where `<label>` would in a real data file
@@ -118,7 +120,7 @@ A summary of all entities in BIDS and the order in which they MUST be
 specified is available in the [entity table](./99-appendices/04-entity-table.md)
 in the appendix.
 
-## Source vs. raw vs. derived data
+## Source vs. raw vs. derived data
 
 BIDS was originally designed to describe and apply consistent naming conventions
 to raw (unprocessed or minimally processed due to file format conversion) data.
@@ -290,8 +292,7 @@ within that specific series directory specifying the TR for that specific run.
 There is no notion of "unsetting" a key/value pair.
 Once a key/value pair is set in a given level in the dataset, lower down in
 the hierarchy that key/value pair will always have some assigned value.
-Files for a particular 
-participant can exist only at participant level directory, i.e
+Files for a particular participant can exist only at participant level directory, i.e
 `/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any file that is not
 specific to a participant is to be declared only at top level of dataset for eg:
 `task-sist_bold.json` must be placed under `/dataset/task-sist_bold.json`
@@ -380,9 +381,9 @@ possible. Since the NIfTI standard offers limited support for the various image
 acquisition parameters available in DICOM files, we RECOMMEND that users provide
 additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
-Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://github.com/rordenlab/dcm2niix)
+Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://github.com/rordenlab/dcm2niix)
 and [dicm2nii](http://www.mathworks.com/matlabcentral/fileexchange/42997-dicom-to-nifti-converter/content/dicm2nii.m)
-DICOM to NIfTI converters. The [BIDS-validator](https://github.com/bids-standard/bids-validator)
+DICOM to NIfTI converters. The [BIDS-validator](https://github.com/bids-standard/bids-validator)
 will check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
 
@@ -415,21 +416,23 @@ in the form of a [JSON object](https://www.w3schools.com/js/js_json_objects.asp)
 within a JSON file.
 The JSON files containing the data dictionaries MUST have the same name as
 their corresponding tabular files but with `.json` extensions.
-If a data dictionary
-is provided, it MAY contain one or more fields describing the columns found in
-the TSV file (in addition to any other metadata one wishes to include that
-describe the file as a whole). Note that if a field name included in the data
-dictionary matches a column name in the TSV file, then that field MUST contain a
-description of the corresponding column, using an object containing the following
-fields:
+If a data dictionary is provided,
+it MAY contain one or more fields describing the columns found in the TSV file
+(in addition to any other metadata one wishes to include that describe the file as a whole).
+Note that if a field name included in the data dictionary matches a column name in the TSV file,
+then that field MUST contain a description of the corresponding column,
+using an object containing the following fields:
 
-| Field name  | Definition                                                                                                                                                  |
-| :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| LongName    | Long (unabbreviated) name of the column.                                                                                                                    |
-| Description | Description of the column.                                                                                                                                  |
-| Levels      | For categorical variables: a dictionary of possible values (keys) and their descriptions (values).                                                          |
-| Units       | Measurement units. `[<prefix symbol>] <unit symbol>` format following the SI standard is RECOMMENDED (see [units section](./02-common-principles.md#units). |
-| TermURL     | URL pointing to a formal definition of this type of data in an ontology available on the web.                                                               |
+| Field name  | Definition                                                                                                                   |
+| :---------- | :--------------------------------------------------------------------------------------------------------------------------- |
+| LongName    | OPTIONAL. Long (unabbreviated) name of the column.                                                                           |
+| Description | RECOMMENDED. Description of the column.                                                                                      |
+| Levels      | RECOMMENDED. For categorical variables: a dictionary of possible values (keys) and their descriptions (values).              |
+| Units       | RECOMMENDED. Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
+| TermURL     | RECOMMENDED. URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
+
+Please note that while both `Units` and `Levels` are RECOMMENDED, typically only one
+of these two fields would be specified for describing a single TSV file column.
 
 Example:
 
@@ -447,7 +450,7 @@ Example:
   },
   "bmi": {
     "LongName": "Body mass index",
-    "Units": "kilograms per squared meters",
+    "Units": "kg/m^2",
     "TermURL": "http://purl.bioontology.org/ontology/SNOMEDCT/60621009"
   }
 }
@@ -460,7 +463,7 @@ pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
 format can be found here: [http://json.org/](http://json.org/). Several editors
 have built-in support for JSON syntax highlighting that aids manual creation of
 such files. An online editor for JSON with built-in validation is available at:
-[http://jsoneditoronline.org](http://jsoneditoronline.org). 
+[http://jsoneditoronline.org](http://jsoneditoronline.org).
 It is RECOMMENDED that keys in a JSON file are written in [CamelCase](https://en.wikipedia.org/wiki/Camel_case)
 with the first letter in upper case (e.g., `SamplingFrequency`, not
 `samplingFrequency`). Note however, when a JSON file is used as an accompanying
@@ -513,16 +516,22 @@ label, but must be included in file names (similarly to other key names).
 ## Units
 
 All units SHOULD be specified as per [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
-(abbreviated
-as SI, from the French Système international (d'unités)) and can be SI units or
-[SI derived units](https://en.wikipedia.org/wiki/SI_derived_unit).
-In case there are valid reasons to deviate from SI units or SI
-derived units, the units MUST be specified in the sidecar JSON file. In case
-data is expressed in SI units or SI derived units, the units MAY be specified in
-the sidecar JSON file. In case non-standard prefixes are added to SI or non-SI
-units, these non-standard prefixed units MUST be specified in the JSON file.
+(abbreviated as SI, from the French Système international (d'unités)) and can
+be SI units or [SI derived units](https://en.wikipedia.org/wiki/SI_derived_unit).
+In case there are valid reasons to deviate from SI units or SI derived units,
+the units MUST be specified in the sidecar JSON file.
+In case data is expressed in SI units or SI derived units, the units MAY be
+specified in the sidecar JSON file.
+In case non-standard prefixes are added to SI or non-SI units, these
+non-standard prefixed units MUST be specified in the JSON file.
 See [Appendix V](99-appendices/05-units.md) for a list of standard units and
 prefixes.
+Note also that for the *formatting* of SI units, the [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12)
+convention for encoding units is RECOMMENDED.
+CMIXF provides a consistent system for all units and prefix symbols with only basic
+characters, avoiding symbols that can cause text encoding problems; for example the
+CMIXF formatting for "micro volts" is `uV`, "degrees Celsius" is `oC` and "Ohm" is `Ohm`.
+See [Appendix V](99-appendices/05-units.md) for more information.
 
 For additional rules, see below:
 
@@ -535,17 +544,44 @@ For additional rules, see below:
 Describing dates and timestamps:
 
 -   Date time information MUST be expressed in the following format
-    `YYYY-MM-DDThh:mm:ss` (one of the
-    [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) date-time formats). For
-    example: `2009-06-15T13:45:30`
+    `YYYY-MM-DDThh:mm:ss[.000000][Z]` (year, month, day, hour (24h), minute,
+    second, optional fractional seconds, and optional UTC time indicator).
+    This is almost equivalent to the [RFC3339](https://tools.ietf.org/html/rfc3339)
+    "date-time" format, with the exception that UTC indicator `Z` is optional and
+    non-zero UTC offsets are not indicated.
+    If `Z` is not indicated, time zone is always assumed to be the local time of the
+    dataset viewer.
+    No specific precision is required for fractional seconds, but the precision
+    SHOULD be consistent across the dataset.
+    For example `2009-06-15T13:45:30`.
 
--   Time stamp information MUST be expressed in the following format: `13:45:30`
+-   Time stamp information MUST be expressed in the following format:
+    `hh:mm:ss[.000000]`
+    For example `13:45:30`.
+
+-   Note that, depending on local ethics board policy, date time information may not
+    need to be fully detailed.
+    For example, it is permissible to set the time to `00:00:00` if reporting the
+    exact recording time is undesirable.
+    However, for privacy protection reasons, it is RECOMMENDED to shift dates, as
+    described below, without completely removing time information, as time information
+    can be useful for research purposes.
 
 -   Dates can be shifted by a random number of days for privacy protection
-    reasons. To distinguish real dates from shifted dates always use year 1925
-    or earlier when including shifted years. For longitudinal studies please
-    remember to shift dates within one subject by the same number of days to
-    maintain the interval information. Example: `1867-06-15T13:45:30`
+    reasons.
+    To distinguish real dates from shifted dates, always use year 1925
+    or earlier when including shifted years.
+    For longitudinal studies dates MUST be shifted by the same number of days
+    within each subject to maintain the interval information.
+    For example: `1867-06-15T13:45:30`
+
+-   WARNING: The Neuromag/Elekta/MEGIN file format for MEG (`.fif`) does *not*
+    support recording dates earlier than `1902` roughly.
+    Some analysis software packages (e.g., MNE-Python) handle their data as `.fif`
+    internally and will break if recording dates are specified prior to `1902`,
+    even if the original data format is not `.fif`.
+    See [MEG-file-formats](./99-appendices/06-meg-file-formats.md#recording-dates-in-fif-files)
+    for more information.
 
 -   Age SHOULD be given as the number of years since birth at the time of
     scanning (or first scan in case of multi session datasets). Using higher
@@ -557,7 +593,7 @@ Describing dates and timestamps:
 ### Single session example
 
 This is an example of the folder and file structure. Because there is only one
-session, the session level is not required by the format. For details on
+session, the session level is not required by the format. For details on
 individual files see descriptions in the next section:
 
 ```Text

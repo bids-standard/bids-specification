@@ -1,0 +1,33 @@
+---
+# First group
+- suffixes:
+    - phasediff
+    - phase1
+    - phase2
+    - magnitude1
+    - magnitude2
+    - magnitude
+    - fieldmap
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+    run: optional
+# Second group
+- suffixes:
+    - epi
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+    ce: optional
+    dir: required
+    run: optional

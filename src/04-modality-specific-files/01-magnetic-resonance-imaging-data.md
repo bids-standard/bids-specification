@@ -56,7 +56,7 @@ by Ben Inglis:
 "`BandwidthPerPixelPhaseEncode` in DICOM tag (0019,1028) and ReconMatrixPE is
 the size of the actual reconstructed data in the phase direction (which is NOT
 reflected in a single DICOM tag for all possible aforementioned scan
-manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and
+manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and
 [here](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime)
 
 <sup>3</sup>We use the "FSL definition", i.e, the time between the center of the
@@ -102,7 +102,7 @@ Useful for multimodal co-registration with MEG, (S)EEG, TMS, etc.
 | InstitutionAddress          | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`.               |
 | InstitutionalDepartmentName | RECOMMENDED. The department in the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`. |
 
-When adding additional metadata please use the CamelCase version of
+When adding additional metadata please use the CamelCase version of
 [DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
 whenever possible. See also
 [recommendations on JSON files](../02-common-principles.md#keyvalue-files-dictionaries).
@@ -138,22 +138,29 @@ modalities include:
 | Inplane T2         | inplaneT2        | T2-weighted anatomical image matched to functional acquisition                                                                                    |
 | Angiography        | angio            |                                                                                                                                                   |
 
+If the structural images included in the dataset were defaced (to protect
+identity of participants) one MAY provide the binary mask that was used to
+remove facial features in the form of `_defacemask` files.
+In such cases,  the OPTIONAL `mod-<label>` key/value pair corresponds to modality suffix,
+such as T1w or inplaneT1, referenced by the defacemask image.
+For example, `sub-01_mod-T1w_defacemask.nii.gz`.
+
 #### The `run` entity
 
 If several scans of the same modality are acquired they MUST be indexed with a
-key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only integers are allowed as
+key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only nonnegative integers are allowed as
 run labels). When there is only one scan of a given type the run key MAY be
 omitted. Please note that diffusion imaging data is stored elsewhere (see
 below).
 
 #### The `acq` entity
 
-The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label the user
+The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label the user
 MAY use to distinguish a different set of parameters used for acquiring the same
 modality. For example this should be used when a study includes two T1w images -
 one full brain low resolution and and one restricted field of view but high
 resolution. In such case two files could have the following names:
-`sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however the
+`sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however the
 user is free to choose any other label than `highres` and `lowres` as long as
 they are consistent across subjects and sessions. In case different sequences
 are used to record the same modality (e.g. RARE and FLASH for T1w) this field
@@ -168,11 +175,6 @@ sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the
 JSON file, with the same label.
 
-#### The `rec` entity
-
-Similarly the OPTIONAL `rec-<label>` key/value can be used to distinguish
-different reconstruction algorithms (for example ones using motion correction).
-
 #### The `part` entity
 
 Complex-valued data MUST be split into one file for each data type.
@@ -183,13 +185,6 @@ In cases where both magnitude and phase data are not reconstructed, the
 `part-<mag|phase>` key/value is OPTIONAL.
 If the key/value is not provided, data are assumed to be magnitude.
 
-If the structural images included in the dataset were defaced (to protect
-identity of participants) one CAN provide the binary mask that was used to
-remove facial features in the form of `_defacemask` files. In such cases the
-OPTIONAL `mod-<label>` key/value pair corresponds to modality label for eg: T1w,
-inplaneT1, referenced by a defacemask image. E.g.,
-`sub-01_mod-T1w_defacemask.nii.gz`.
-
 Some meta information about the acquisition MAY be provided in an additional
 JSON file. See [Common metadata fields](#common-metadata-fields) for a
 list of terms and their definitions. There are also some OPTIONAL JSON
@@ -198,6 +193,11 @@ fields specific to anatomical scans:
 | Field name              | Definition                                                                                                                                         |
 | -----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ContrastBolusIngredient | OPTIONAL. Active ingredient of agent. Values MUST be one of: IODINE, GADOLINIUM, CARBON DIOXIDE, BARIUM, XENON Corresponds to DICOM Tag 0018,1048. |
+
+#### The `rec` entity
+
+Similarly, the OPTIONAL `rec-<label>` key/value can be used to distinguish
+different reconstruction algorithms (for example ones using motion correction).
 
 ### Task (including resting state) imaging data
 
@@ -261,7 +261,7 @@ reconstruction algorithms (for example ones using motion correction).
 See [`fmap` Case 4](01-magnetic-resonance-imaging-data.md#case-4-multiple-phase-encoded-directions-pepolar)
 for more information on `dir` field specification.
 
-Multi-echo data MUST be split into one file per echo. Each file shares the same
+Multi-echo data MUST be split into one file per echo. Each file shares the same
 name with the exception of the `_echo-<index>` key/value. For example:
 
 ```Text
@@ -275,8 +275,8 @@ sub-01/
       sub-01_task-cuedSGT_run-1_echo-3_bold.json
 ```
 
-Please note that the `<index>` denotes the number/index (in a form of an
-integer) of the echo not the echo time value which needs to be stored in the
+Please note that the `<index>` denotes the number/index (in the form of a
+nonnegative integer) of the echo not the echo time value which needs to be stored in the
 field EchoTime of the separate JSON file.
 
 Complex-valued data MUST be split into one file for each data type.
@@ -382,10 +382,10 @@ sub-control01/
 ```
 
 If this information is the same for all participants, sessions and runs it can
-be provided in `task-<label>_bold.json` (in the root directory of the
+be provided in `task-<label>_bold.json` (in the root directory of the
 dataset). However, if the information differs between subjects/runs it can be
 specified in the
-`sub-<label>/func/sub-<label>_task-<label>[_acq-<label>][_run-<index>]_bold.json` file.
+`sub-<label>/func/sub-<label>_task-<label>[_acq-<label>][_run-<index>]_bold.json` file.
 If both files are specified fields from the file corresponding to a particular
 participant, task and run takes precedence.
 
@@ -568,8 +568,11 @@ sub-<label>/[ses-<label>/]
 
 In some cases (for example GE) the scanner software will output a precomputed
 fieldmap denoting the B0 inhomogeneities along with a magnitude image used for
-coregistration. In this case the sidecar JSON file needs to include the units of
-the fieldmap. The possible options are: `Hz`, `rad/s`, or `Tesla`. For example:
+coregistration.
+In this case the sidecar JSON file needs to include the units of the fieldmap.
+The possible options are: Hertz (`Hz`), Radians per second (`rad/s`), or Tesla
+(`T`).
+For example:
 
 ```JSON
 {
@@ -597,7 +600,7 @@ specified in the corresponding JSON file as one of: `i`, `j`, `k`, `i-`, `j-`,
 `k-`. For these differentially phase encoded sequences, one also needs to
 specify the Total Readout Time defined as the time (in seconds) from the center
 of the first echo to the center of the last echo (aka "FSL definition" - see
-[here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup/Faq#How_do_I_know_what_phase-encode_vectors_to_put_into_my_--datain_text_file.3F) and
+[here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup/Faq#How_do_I_know_what_phase-encode_vectors_to_put_into_my_--datain_text_file.3F) and
 [here](https://lcni.uoregon.edu/kb-articles/kb-0003) how to calculate it). For
 example
 

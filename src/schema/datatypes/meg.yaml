@@ -1,0 +1,45 @@
+---
+# First group
+- suffixes:
+    - meg
+  extensions:
+    - /  # corresponds to BTi/4D data
+    - .ds/
+    - .json
+    - .fif
+    - .sqd
+    - .con
+    - .raw
+    - .ave
+    - .mrk
+    - .kdf
+    - .mhd
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    run: optional
+    proc: optional
+    split: optional
+# Second group
+- suffixes:
+    - headshape
+  extensions:
+    - .pos
+    - .txt
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+    space: optional
+- suffixes:
+    - markers
+  extensions:
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    task: optional
+    acq: optional
+    space: optional
