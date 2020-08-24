@@ -11,9 +11,11 @@ sub-<label>/[ses-<label>]
 
 Where `<matches>` corresponds to task file name. For example:
 `sub-control01_task-nback`. It is also possible to have a single \_events.tsv
-file describing events for all participants and runs (see [Inheritance Principle](../02-common-principles.md#the-inheritance-principle)).
-As with all other tabular data, `_events` files may be
-accompanied by a JSON file describing the columns in detail (see [here](../02-common-principles.md#tabular-files)).
+file describing events for all participants and runs (see
+[Inheritance Principle](../02-common-principles.md#the-inheritance-principle)).
+As with all other tabular data, `_events` files may be accompanied by a JSON
+file describing the columns in detail (see
+[here](../02-common-principles.md#tabular-files)).
 
 The purpose of this file is to describe timing and other properties of events
 recorded during the scan. Events MAY be either stimuli presented to the
@@ -24,11 +26,11 @@ are supported (in contrast to "block" designs) - each "block of events" can be
 represented by an individual row in the \_events.tsv file (with a long
 duration). Each task events file REQUIRES a corresponding task imaging data file
 (but a single events file MAY be shared by multiple imaging data files - see
-Inheritance principle). The tabular files consists of one row per event and a set of
-REQUIRED and OPTIONAL columns:
+Inheritance principle). The tabular files consists of one row per event and a
+set of REQUIRED and OPTIONAL columns:
 
 | Column name   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-|-----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | onset         | REQUIRED. Onset (in seconds) of the event measured from the beginning of the acquisition of the first volume in the corresponding task imaging data file. If any acquired scans have been discarded before forming the imaging data file, ensure that a time of 0 corresponds to the first image stored. In other words negative numbers in "onset" are allowed<sup>5</sup>.                                                                                                     |
 | duration      | REQUIRED. Duration of the event (measured from onset) in seconds. Must always be either zero or positive. A "duration" value of zero implies that the delta function or event is so short as to be effectively modeled as an impulse.                                                                                                                                                                                                                                            |
 | sample        | OPTIONAL. Onset of the event according to the sampling scheme of the recorded modality (i.e., referring to the raw data file that the `events.tsv` file accompanies).                                                                                                                                                                                                                                                                                                            |
@@ -45,9 +47,8 @@ the first volume.
 
 An arbitrary number of additional columns can be added. Those allow describing
 other properties of events that could be later referred in modelling and
-hypothesis extensions of BIDS.
-Note that the `trial_type` and any additional columns in a TSV file SHOULD be
-documented in an accompanying JSON sidecar file.
+hypothesis extensions of BIDS. Note that the `trial_type` and any additional
+columns in a TSV file SHOULD be documented in an accompanying JSON sidecar file.
 
 In case of multi-echo task run, a single `_events.tsv` file will suffice for all
 echoes.
@@ -110,16 +111,19 @@ sub-control01/
         sub-control01_task-emoface_events.json
 ```
 
-Specific fields related to stimulus presentation details SHOULD also be present in this data dictionary:
+Specific fields related to stimulus presentation details SHOULD also be present
+in this data dictionary:
 
-| Column name                  | Description                                                                                                                                                                                                                      |
-|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| StimulusPresentationOS       | RECOMMENDED. Operating system used to run the stimuli presentation software.                                                                                                                                                     |
-| StimulusPresentationSoftware | RECOMMENDED. Name of the software that was used to present the stimuli ideally with its [Research Resource Identifier](https://scicrunch.org/resources) Examples: 'Psychtoolbox, RRID:SCR_002881' or 'PsychoPy, RRID:SCR_006571' |
-| StimulusPresentationVersion  | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                                       |
-| StimulusPresentationCode     | RECOMMENDED. URL to code of that was used to present the stimuli.                                                                                                                                                                |
+| Column name                      | Description                                                                                                                                                                                                                                                                                                                                   |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| StimulusPresentationOS           | RECOMMENDED. Operating system used to run the stimuli presentation software. Should mention the OS type (Windows, MacOS, Linux), distribution (if applicable: Ubuntu, Debian) and the version number or equivalent code name (Windows - 10; MacOS - Catalina or MacOS - 10.15; Linux - Ubuntu - Bionic Beaver or Linux - Ubuntu -18.04.5 LTS) |
+| StimulusPresentationSoftwareName | RECOMMENDED. Name of the software that was used to present the stimuli                                                                                                                                                                                                                                                                        |
+| StimulusPresentationSoftwareRRID | RECOMMENDED. Name ideally with its [Research Resource Identifier](https://scicrunch.org/resources) of the software that was used to present the stimuli Examples: the RRID for Psychtoolbox is 'SCR_002881' that of PsychoPy is 'SCR_006571'                                                                                                  |
+| StimulusPresentationVersion      | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                                                                                                                                                    |
+| StimulusPresentationCode         | RECOMMENDED. DOI of the archive (for example on Zenodo, figshare...) for the code that was used to present the stimuli. Alternatively this could be a URL to code on Github, Gitlab...                                                                                                                                                        |
 
-The `trial_type` and `identifier` columns from the `*_events.tsv` files as well as information reltated to stimulus presentation might be described in this
+The `trial_type` and `identifier` columns from the `*_events.tsv` files as well
+as information reltated to stimulus presentation might be described in this
 dictionary as follows.
 
 ```JSON
@@ -138,17 +142,18 @@ dictionary as follows.
        "Description": "ID from KDEF database used to identify the displayed image"
    },
    "StimulusPresentationOS": "Linux-Ubuntu 18.04.5 LTS",
-   "StimulusPresentationSoftware": "Psychtoolbox, RRID:SCR_002881",
+   "StimulusPresentationSoftwareName": "Psychtoolbox",
+   "StimulusPresentationSoftwareRRID": "SCR_002881",
    "StimulusPresentationVersion": "3.0.14",
-   "StimulusPresentationCode": "https://github.com/jane_doe/face_localizer"
+   "StimulusPresentationCode": "https://zenodo.org/record/17173364"
 }
 ```
 
-Note that all other columns SHOULD also be described but are omitted for the sake
-of example.
+Note that all other columns SHOULD also be described but are omitted for the
+sake of example.
 
-For multi-echo files, the `*_events.tsv` file is applicable to all echos of particular
-run:
+For multi-echo files, the `*_events.tsv` file is applicable to all echos of
+particular run:
 
 ```Text
 sub-01_task-cuedSGT_run-1_events.tsv
