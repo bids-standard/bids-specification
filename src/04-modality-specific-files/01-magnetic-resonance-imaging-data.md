@@ -177,13 +177,32 @@ JSON file, with the same label.
 
 #### The `part` entity
 
-Complex-valued data MUST be split into one file for each data type.
-Each file shares the same name with the exception of the `part-<mag|phase>`
-key/value.
+This entity is used to indicate which component of the complex representation of the MRI signal is represented in voxel data.
+The `part-<label>` key/value pair is associated with the DICOM tag `0008,9208`.
+Allowed label values for this entity are `phase`, `mag`, `real` and `imag`, which are typically used in `mag/phase` or `real/imag` pairs.
+For example:
 
-In cases where both magnitude and phase data are not reconstructed, the
-`part-<mag|phase>` key/value is OPTIONAL.
-If the key/value is not provided, data are assumed to be magnitude.
+```
+sub-01_part-mag_T1w.nii.gz
+sub-01_part-mag_T1w.json
+sub-01_part-phase_T1w.nii.gz
+sub-01_part-phase_T1w.json
+```
+
+Phase images MAY be in radians or in arbitrary units.
+The sidecar JSON file MUST include the units of the `phase` image.
+The possible options are: `radians` or `a.u.` for grayscale images.
+For example:
+
+sub-01_part-phase.json
+
+```
+{
+   "Units": "radians"
+}
+```
+
+If the `part` key/value pair is absent from a filename, the image SHOULD be a magnitude image.
 
 Some meta information about the acquisition MAY be provided in an additional
 JSON file. See [Common metadata fields](#common-metadata-fields) for a
