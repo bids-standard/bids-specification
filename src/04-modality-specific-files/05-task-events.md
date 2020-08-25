@@ -13,9 +13,9 @@ Where `<matches>` corresponds to task file name. For example:
 `sub-control01_task-nback`. It is also possible to have a single \_events.tsv
 file describing events for all participants and runs (see
 [Inheritance Principle](../02-common-principles.md#the-inheritance-principle)).
-As with all other tabular data, `_events` files may be accompanied by a JSON
+As with all other tabular data, `_events` files MAY be accompanied by a JSON
 file describing the columns in detail (see
-[here](../02-common-principles.md#tabular-files)).
+[Tabular Files](../02-common-principles.md#tabular-files)).
 
 The purpose of this file is to describe timing and other properties of events
 recorded during the scan. Events MAY be either stimuli presented to the
@@ -120,7 +120,7 @@ in this data dictionary:
 | StimulusPresentationSoftwareName | RECOMMENDED. Name of the software that was used to present the stimuli                                                                                                                                                                                                                                                                        |
 | StimulusPresentationSoftwareRRID | RECOMMENDED. Name ideally with its [Research Resource Identifier](https://scicrunch.org/resources) of the software that was used to present the stimuli Examples: the RRID for Psychtoolbox is 'SCR_002881' that of PsychoPy is 'SCR_006571'                                                                                                  |
 | StimulusPresentationVersion      | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                                                                                                                                                    |
-| StimulusPresentationCode         | RECOMMENDED. DOI of the archive (for example on Zenodo, figshare...) for the code that was used to present the stimuli. Alternatively this could be a URL to code on Github, Gitlab...                                                                                                                                                        |
+| StimulusPresentationCode         | RECOMMENDED. DOI of the archive (for example on Zenodo, figshare...) for the code that was used to present the stimuli. Alternatively this could be a URL to code on GitHub, GitLab, etc.                                                                                                                                                     |
 
 The `trial_type` and `identifier` columns from the `*_events.tsv` files as well
 as information reltated to stimulus presentation might be described in this
@@ -145,7 +145,7 @@ dictionary as follows.
    "StimulusPresentationSoftwareName": "Psychtoolbox",
    "StimulusPresentationSoftwareRRID": "SCR_002881",
    "StimulusPresentationVersion": "3.0.14",
-   "StimulusPresentationCode": "https://zenodo.org/record/17173364"
+   "StimulusPresentationCode": "10.5281/zenodo.3686062"
 }
 ```
 
