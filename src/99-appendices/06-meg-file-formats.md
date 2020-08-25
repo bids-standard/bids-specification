@@ -52,10 +52,10 @@ To learn more about CTF’s data organization:
 
 ## Neuromag/Elekta/MEGIN
 
-Neuromag/Elekta/MEGIN data and Tristan Technologies BabyMEG data is stored with
-file extension `.fif`. The digitized positions of the head points are saved
-inside the fif file along with the MEG data, with typically no `_headshape`
-file.
+Neuromag/Elekta/MEGIN and Tristan Technologies BabyMEG data is stored as
+FIFF files with the extension `.fif`. The digitized positions of the head
+points are saved inside the fif file along with the MEG data, with typically no
+`_headshape` file.
 
 ```Text
 sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.fif
@@ -63,12 +63,14 @@ sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.fif
 
 ### Cross-talk and fine-calibration files
 
-All raw fif files need to be processed using Maxwell filtering to make them usable.
+Raw FIFF files typically need to be processed using Maxwell filtering
+(signal-space separation, SSS) to make the data usable.
 To this end, two specific files are needed:
 The *cross-talk* file, and the *fine-calibration* file,
-both of which result from the Neuromag software
+both of which are produced by the MaxFilter software
 and the work of the Neuromag/Elekta/MEGIN engineers during maintenance of the MEG acquisition system.
-Both files are thus specific to the site of recording and nearest date of maintenance.
+Both files are thus specific to the site of recording and may change in the
+process of regular system maintenance.
 
 In BIDS, the cross-talk and fine-calibration files are shared unmodified,
 but with BIDS file naming convention and by using the `acq` entity.
@@ -98,11 +100,11 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_channels.tsv
 ```
 
-### Sharing fif data *after* Maxwell filtering
+### Sharing FIFF data *after* Maxwell filtering
 
-After applying Maxwell filtering (e.g., by using the MaxFilter pre-processing tool),
+After applying Maxwell filtering (e.g., by using the MaxFilter software),
 files should be renamed with the corresponding label (e.g., `proc-sss`)
-and placed into a `derivatives` subfolder.
+and placed in a `derivatives` subfolder.
 
 Example:
 
@@ -129,7 +131,7 @@ names with dedicated tools like [MNE](https://mne.tools), which will ensure
 that not only the file names, but also the internal file pointers will be
 updated.
 
-It is RECOMMENDED that `.fif` files with multiple parts use the `split-<index>`
+It is RECOMMENDED that FIFF files with multiple parts use the `split-<index>`
 entity to indicate each part.
 
 Example:
