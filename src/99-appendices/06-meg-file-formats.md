@@ -73,7 +73,6 @@ Both files are thus specific to the site of recording and nearest date of mainte
 In BIDS, the cross-talk and fine-calibration files are shared unmodified,
 but with BIDS file naming convention and by using the `acq` entity.
 
-
 -   cross-talk file template: `[sub-<label>][_ses-<label>][_]acq-crosstalk_meg.dat`
 -   fine-calibration file template: `[sub-<label>][_ses-<label>][_]acq-finecalib_meg.fif`
 
