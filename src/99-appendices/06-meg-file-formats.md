@@ -80,7 +80,6 @@ By making use of the [Inheritance Principle](../02-common-principles.md#the-inhe
 the cross-talk and fine-calibration data can be stored at any level of nesting within the BIDS dataset.
 For example for each subject and task, or for each session, or only once for a whole dataset.
 
-
 Example fif dataset:
 
 ```Text
@@ -96,7 +95,7 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_channels.tsv
 ```
 
-# Sharing fif data *after* Maxwell filtering
+### Sharing fif data *after* Maxwell filtering
 
 After applying Maxwell filtering (e.g., by using the MaxFilter pre-processing tool),
 files should be renamed with the corresponding label (e.g., `proc-sss`)
