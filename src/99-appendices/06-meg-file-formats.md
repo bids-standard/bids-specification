@@ -61,12 +61,31 @@ file.
 sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.fif
 ```
 
-Note that we do not provide specifications for cross-talk and
-fine-calibration matrix files in the current version of BIDS.
+### Cross-talk and fine-calibration files
 
-Example:
+All raw fif files need to be processed using Maxwell filtering to make them usable.
+To this end, two specific files are needed:
+The *cross-talk* file, and the *fine-calibration* file,
+both of which result from the Neuromag software
+and the work of the Neuromag/Elekta/MEGIN engineers during maintenance of the MEG acquisition system.
+Both files are thus specific to the site of recording and nearest date of maintenance.
+
+In BIDS, the cross-talk and fine-calibration files are shared unmodified,
+but with BIDS file naming convention and by using the `acq` entity.
+
+-   cross-talk file example: `sub-01_task-rest_acq-crosstalk_meg.dat`
+-   fine-calibration file example: `sub-01_task-rest_acq-finecalibration_meg.fif`
+
+By making use of the [Inheritance Principle](../02-common-principles.md#the-inheritance-principle),
+the cross-talk and fine-calibration data can be stored at any level of nesting within the BIDS dataset.
+For example for each subject and task, or for each session, or only once for a whole dataset.
+
+
+Example fif dataset:
 
 ```Text
+acq_crosstalk_meg.dat
+acq_finecalibration_meg.fif
 sub-control01/
     ses-001/
         sub-control01_ses-001_scans.tsv
@@ -77,9 +96,11 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_channels.tsv
 ```
 
-After applying the MaxFilter pre-processing tool, files should be renamed with
-the corresponding label (e.g., `proc-sss`) and placed into a `derivatives`
-subfolder.
+# Sharing fif data *after* Maxwell filtering
+
+After applying Maxwell filtering (e.g., by using the MaxFilter pre-processing tool),
+files should be renamed with the corresponding label (e.g., `proc-sss`)
+and placed into a `derivatives` subfolder.
 
 Example:
 
@@ -88,8 +109,11 @@ sub-control01_ses-001_task-rest_run-01_proc-sss_meg.fif
 sub-control01_ses-001_task-rest_run-01_proc-sss_meg.json
 ```
 
+### Split files
+
 In the case of long data recordings that exceed a file size of 2Gb, the `.fif`
-files are conventionally split into multiple parts. For example:
+files are conventionally split into multiple parts.
+For example:
 
 ```Text
 some_file.fif
@@ -118,7 +142,7 @@ More information can be found under the following links:
 -   [Neuromag/Elekta/MEGIN data organization](http://www.fieldtriptoolbox.org/getting_started/neuromag)
 -   [BabyMEG](http://www.fieldtriptoolbox.org/getting_started/babysquid)
 
-### recording dates in `.fif` files
+### Recording dates in `.fif` files
 
 It is important to note that recording dates in `.fif` files are represented
 as `int32` format seconds since (or before) [*the Epoch*](https://en.wikipedia.org/wiki/Unix_time)
