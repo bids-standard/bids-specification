@@ -63,7 +63,8 @@ sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.fif
 
 ### Cross-talk and fine-calibration files
 
-Raw FIFF files typically need to be processed using Maxwell filtering
+In case internal active shielding (IAS) was used during acquisition, raw FIFF
+files need to be processed using Maxwell filtering
 (signal-space separation, SSS) to make the data usable.
 To this end, two specific files are needed:
 The *cross-talk* file, and the *fine-calibration* file,
@@ -100,9 +101,9 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_channels.tsv
 ```
 
-### Sharing FIFF data *after* Maxwell filtering
+### Sharing FIFF data after signal-space separation (SSS)
 
-After applying Maxwell filtering (e.g., by using the MaxFilter software),
+After applying SSS (e.g., by using the MaxFilter software),
 files should be renamed with the corresponding label (e.g., `proc-sss`)
 and placed in a `derivatives` subfolder.
 
