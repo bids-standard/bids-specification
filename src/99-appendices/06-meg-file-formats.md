@@ -77,10 +77,10 @@ In BIDS, the cross-talk and fine-calibration files are shared unmodified,
 but with BIDS file naming convention and by using the `acq` entity.
 
 -   cross-talk file template: `[sub-<label>][_ses-<label>][_]acq-crosstalk_meg.dat`
--   fine-calibration file template: `[sub-<label>][_ses-<label>][_]acq-finecalib_meg.fif`
+-   fine-calibration file template: `[sub-<label>][_ses-<label>][_]acq-calibration_meg.fif`
 
 Note that cross-talk files MUST be denoted using `acq-crosstalk` and
-fine-calibration files MUST be denoted using `acq-finecalib`.
+fine-calibration files MUST be denoted using `acq-calibration`.
 
 By making use of the [Inheritance Principle](../02-common-principles.md#the-inheritance-principle),
 the cross-talk and fine-calibration data can be stored at any level of nesting within the BIDS dataset.
@@ -89,8 +89,8 @@ For example for each session, or only once for a whole dataset.
 Example fif dataset with cross-talk and fine-calibration files stored once at the dataset root:
 
 ```Text
-acq_crosstalk_meg.dat
-acq_finecalib_meg.fif
+acq-crosstalk_meg.dat
+acq-calibration_meg.fif
 sub-control01/
     ses-001/
         sub-control01_ses-001_scans.tsv
