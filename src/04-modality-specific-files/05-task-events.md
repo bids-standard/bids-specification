@@ -127,16 +127,15 @@ in this data dictionary:
 | StimulusPresentationVersion      | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                                                   |
 | StimulusPresentationCode         | RECOMMENDED. DOI of the archive (for example on Zenodo, figshare...) for the code that was used to present the stimuli. Alternatively this could be a URL to code on GitHub, GitLab, etc.                                                    |
 The operating system description should include:
--  type (Windows, MacOS, Linux),
--  distribution (if applicable: Ubuntu, Debian)
--  the version number or equivalent code name.
+-   type (Windows, MacOS, Linux),
+-   distribution (if applicable: Ubuntu, Debian)
+-   the version number or equivalent code name.
 
 Examples:
-- Windows - 10
-- MacOS - Catalina or MacOS - 10.15
-- Linux - Ubuntu - Bionic Beaver
-- Linux - Ubuntu -18.04.5 LTS
-
+-   Windows - 10
+-   MacOS - Catalina or MacOS - 10.15
+-   Linux - Ubuntu - Bionic Beaver
+-   Linux - Ubuntu -18.04.5 LTS
 
 The `trial_type` and `identifier` columns from the `*_events.tsv` files as well
 as information related to stimulus presentation might be described in this
