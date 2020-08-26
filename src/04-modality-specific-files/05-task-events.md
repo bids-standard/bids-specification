@@ -11,10 +11,10 @@ sub-<label>/[ses-<label>]
 
 Where `<matches>` corresponds to task file name. For example:
 `sub-control01_task-nback`.
-It is also possible to have a single \_events.tsv file describing events
+It is also possible to have a single `_events.tsv` file describing events
 for all participants and runs (see
 [Inheritance Principle](../02-common-principles.md#the-inheritance-principle)).
-As with all other tabular data, `_events` files MAY be accompanied by a JSON
+As with all other tabular data, `_events.tsv` files MAY be accompanied by a JSON
 file describing the columns in detail (see
 [Tabular Files](../02-common-principles.md#tabular-files)).
 
@@ -29,7 +29,7 @@ represented by an individual row in the \_events.tsv file (with a long
 duration).
 Each task events file REQUIRES a corresponding task imaging data file
 (but a single events file MAY be shared by multiple imaging data files - see
-Inheritance principle).
+[Inheritance Principle](../02-common-principles.md#the-inheritance-principle)).
 The tabular files consists of one row per event and a set of REQUIRED
 and OPTIONAL columns:
 
@@ -126,6 +126,7 @@ in this data dictionary:
 | StimulusPresentationSoftwareRRID | RECOMMENDED. Name ideally with its [Research Resource Identifier](https://scicrunch.org/resources) of the software that was used to present the stimuli Examples: the RRID for Psychtoolbox is 'SCR_002881' that of PsychoPy is 'SCR_006571' |
 | StimulusPresentationVersion      | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                                                   |
 | StimulusPresentationCode         | RECOMMENDED. DOI of the archive (for example on Zenodo, figshare...) for the code that was used to present the stimuli. Alternatively this could be a URL to code on GitHub, GitLab, etc.                                                    |
+
 The operating system description should include:
 -   type (Windows, MacOS, Linux),
 -   distribution (if applicable: Ubuntu, Debian)
