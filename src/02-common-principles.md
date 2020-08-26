@@ -271,7 +271,7 @@ Any subject-specific derivatives should be housed within each subject’s direct
 if session-specific derivatives are generated, they should be deposited under a
 session subdirectory within the corresponding subject directory; and so on.
 
-### Non-compliant deriatives
+### Non-compliant derivatives
 
 Nothing in this specification should be interpreted to disallow the
 storage/distribution of non-compliant derivatives of BIDS datasets.
