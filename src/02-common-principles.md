@@ -173,7 +173,7 @@ In this example, where `sourcedata` and `derivatives` are not nested inside
 `rawdata`, **only the `rawdata` subfolder** needs to be a BIDS-compliant
 dataset.
 The subfolders of `derivatives` MAY be BIDS-compliant derivatives datasets
-(see [Non-compliant derivatives][#non-compliant-derivatives] for further discussion).
+(see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
 This specification does not prescribe anything about the contents of `sourcedata`
 folders in the above example - nor does it prescribe the `sourcedata`,
 `derivatives`, or `rawdata` folder names.
