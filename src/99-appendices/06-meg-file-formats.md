@@ -86,7 +86,7 @@ By making use of the [Inheritance Principle](../02-common-principles.md#the-inhe
 the cross-talk and fine-calibration data can be stored at any level of nesting within the BIDS dataset.
 For example for each session, or only once for a whole dataset.
 
-Example fif dataset with cross-talk and fine-calibration files stored once at the dataset root:
+Example FIFF dataset with cross-talk and fine-calibration files stored once at the dataset root:
 
 ```Text
 acq-crosstalk_meg.dat
