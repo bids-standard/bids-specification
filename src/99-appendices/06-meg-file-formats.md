@@ -54,7 +54,7 @@ To learn more about CTF’s data organization:
 
 Neuromag/Elekta/MEGIN and Tristan Technologies BabyMEG data is stored as
 FIFF files with the extension `.fif`. The digitized positions of the head
-points are saved inside the fif file along with the MEG data, with typically no
+points are saved inside the FIFF file along with the MEG data, with typically no
 `_headshape` file.
 
 ```Text
