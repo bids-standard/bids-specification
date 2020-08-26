@@ -10,8 +10,8 @@ sub-<label>/[ses-<label>]
 ```
 
 Where `<matches>` corresponds to task file name. For example:
-`sub-control01_task-nback`. 
-It is also possible to have a single \_events.tsv file describing events 
+`sub-control01_task-nback`.
+It is also possible to have a single \_events.tsv file describing events
 for all participants and runs (see
 [Inheritance Principle](../02-common-principles.md#the-inheritance-principle)).
 As with all other tabular data, `_events` files MAY be accompanied by a JSON
@@ -19,18 +19,18 @@ file describing the columns in detail (see
 [Tabular Files](../02-common-principles.md#tabular-files)).
 
 The purpose of this file is to describe timing and other properties of events
-recorded during the scan. 
-Events MAY be either stimuli presented to the participant or participant responses. 
-A single event file MAY include any combination of stimuli and response events. 
-Events MAY overlap in time. 
+recorded during the scan.
+Events MAY be either stimuli presented to the participant or participant responses.
+A single event file MAY include any combination of stimuli and response events.
+Events MAY overlap in time.
 Please mind that this does not imply that only so called "event related" study designs
 are supported (in contrast to "block" designs) - each "block of events" can be
 represented by an individual row in the \_events.tsv file (with a long
-duration). 
+duration).
 Each task events file REQUIRES a corresponding task imaging data file
 (but a single events file MAY be shared by multiple imaging data files - see
-Inheritance principle). 
-The tabular files consists of one row per event and a set of REQUIRED 
+Inheritance principle).
+The tabular files consists of one row per event and a set of REQUIRED
 and OPTIONAL columns:
 
 | Column name   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -51,8 +51,8 @@ the first volume.
 
 An arbitrary number of additional columns can be added. Those allow describing
 other properties of events that could be later referred in modelling and
-hypothesis extensions of BIDS. 
-Note that the `trial_type` and any additional columns in a TSV file 
+hypothesis extensions of BIDS.
+Note that the `trial_type` and any additional columns in a TSV file
 SHOULD be documented in an accompanying JSON sidecar file.
 
 In case of multi-echo task run, a single `_events.tsv` file will suffice for all
