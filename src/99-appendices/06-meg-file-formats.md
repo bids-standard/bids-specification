@@ -104,7 +104,7 @@ sub-control01/
 ### Sharing FIFF data after signal-space separation (SSS)
 
 After applying SSS (e.g., by using the MaxFilter software),
-files should be renamed with the corresponding label (e.g., `proc-sss`)
+files SHOULD be renamed with the corresponding label (e.g., `proc-sss`)
 and placed in a `derivatives` subfolder.
 
 Example:
