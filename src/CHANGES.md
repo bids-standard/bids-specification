@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] Fix link in Common principles [#583](https://github.com/bids-standard/bids-specification/pull/583) ([tsalo](https://github.com/tsalo))
 -   \[ENH] Specify how to share cross-talk and fine-calibration for Neuromag/Elekta/MEGIN data [#581](https://github.com/bids-standard/bids-specification/pull/581) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Specify echo and run indices are nonnegative integers in schema [#578](https://github.com/bids-standard/bids-specification/pull/578) ([tsalo](https://github.com/tsalo))
 -   Updating the bep009 with the latest master branch updates [#576](https://github.com/bids-standard/bids-specification/pull/576) ([melanieganz](https://github.com/melanieganz))
