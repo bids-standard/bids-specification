@@ -20,6 +20,7 @@
 -   \[ENH] Add the ability of users to specify an explicit HED.xml schema for validation. [#527](https://github.com/bids-standard/bids-specification/pull/527) ([VisLab](https://github.com/VisLab))
 -   \[FIX] clarify that scans.json is allowed and recommended [#523](https://github.com/bids-standard/bids-specification/pull/523) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] add copyright holder to license.  [#521](https://github.com/bids-standard/bids-specification/pull/521) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] clarify XXXCoord\* in the coordinate systems appendix [#520](https://github.com/bids-standard/bids-specification/pull/520) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Update `beh/` specification to contrast with any neural recordings [#515](https://github.com/bids-standard/bids-specification/pull/515) ([effigies](https://github.com/effigies))
 -   \[Fix] 'segmentation' spelling in 05-derivatives/03-imaging.md [#514](https://github.com/bids-standard/bids-specification/pull/514) ([rwblair](https://github.com/rwblair))
 -   \[FIX] restructure and clarify \*\_physio/\*\_stim section [#513](https://github.com/bids-standard/bids-specification/pull/513) ([sappelhoff](https://github.com/sappelhoff))
