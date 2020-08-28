@@ -147,7 +147,7 @@ For example, `sub-01_mod-T1w_defacemask.nii.gz`.
 
 If several scans of the same modality are acquired they MUST be indexed with the
 [`run-<index>`](../99-appendices/09-entities.md#run) key-value pair:
-`_run-1`, `_run-2`, `_run-3` etc. (only integers are allowed as
+`_run-1`, `_run-2`, `_run-3` etc. (only nonnegative integers are allowed as
 run labels). When there is only one scan of a given type the run key MAY be
 omitted. Please note that diffusion imaging data is stored elsewhere (see
 below).
@@ -264,8 +264,8 @@ sub-01/
       sub-01_task-cuedSGT_run-1_echo-3_bold.json
 ```
 
-Please note that the `<index>` denotes the number/index (in a form of an
-integer) of the echo not the echo time value which needs to be stored in the
+Please note that the `<index>` denotes the number/index (in the form of a
+nonnegative integer) of the echo not the echo time value which needs to be stored in the
 field EchoTime of the separate JSON file.
 
 Some meta information about the acquisition MUST be provided in an additional

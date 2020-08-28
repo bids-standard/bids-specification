@@ -173,7 +173,7 @@ In this example, where `sourcedata` and `derivatives` are not nested inside
 `rawdata`, **only the `rawdata` subfolder** needs to be a BIDS-compliant
 dataset.
 The subfolders of `derivatives` MAY be BIDS-compliant derivatives datasets
-(see [Non-compliant derivatives][#non-compliant-derivatives] for further discussion).
+(see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
 This specification does not prescribe anything about the contents of `sourcedata`
 folders in the above example - nor does it prescribe the `sourcedata`,
 `derivatives`, or `rawdata` folder names.
@@ -271,7 +271,7 @@ Any subject-specific derivatives should be housed within each subject’s direct
 if session-specific derivatives are generated, they should be deposited under a
 session subdirectory within the corresponding subject directory; and so on.
 
-### Non-compliant deriatives
+### Non-compliant derivatives
 
 Nothing in this specification should be interpreted to disallow the
 storage/distribution of non-compliant derivatives of BIDS datasets.

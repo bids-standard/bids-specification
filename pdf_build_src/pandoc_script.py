@@ -3,8 +3,10 @@
 This is done once the duplicate src directory is processed.
 """
 import os
+import pathlib
 import subprocess
-           
+
+
 def build_pdf(filename):
     """Construct command with required pandoc flags and run using subprocess.
 
@@ -14,6 +16,7 @@ def build_pdf(filename):
         Name of the output file.
 
     """
+    # Get all input files
     markdown_list = []
     for root, dirs, files in os.walk('.'):
         for file in files:
@@ -22,20 +25,32 @@ def build_pdf(filename):
             elif file == 'index.md':
                 index_page = os.path.join(root, file)
 
-    default_pandoc_cmd = "pandoc "
+    # Prepare the command options
+    cmd = [
+        'pandoc',
+        '--from=markdown_github',
+        '--include-before-body=./cover.tex',
+        '--toc',
+        '--listings',
+        '--include-in-header=./header.tex',
+        '--include-in-header=./header_setup.tex',
+        '-V documentclass=report',
+        '-V linkcolor:blue',
+        '-V geometry:a4paper',
+        '-V geometry:margin=2cm',
+        '--pdf-engine=xelatex',
+        '--output={}'.format(filename),
+    ]
 
-    # creates string of file paths in the order we'd like them to be appear
-    # ordering is taken care of by the inherent file naming
-    files_string = index_page + " " + " ".join(sorted(markdown_list))
+    # Add input files to command
+    # The filenames in `markdown_list` will ensure correct order when sorted
+    root = pathlib.Path(__file__).parent.absolute()
+    cmd += [str(root / index_page)]
+    cmd += [str(root / i) for i in sorted(markdown_list)]
 
-    flags = (" -f markdown_github --include-before-body cover.tex --toc "
-             "-V documentclass=report --listings -H listings_setup.tex "
-             "-H header.tex -V linkcolor:blue -V geometry:a4paper "
-             "-V geometry:margin=2cm --pdf-engine=xelatex -o ")
-    output_filename = filename
-
-    cmd = default_pandoc_cmd + files_string + flags + output_filename
-    subprocess.run(cmd.split())
+    # print and run
+    print('running: \n\n' + '\n'.join(cmd))
+    subprocess.run(cmd)
 
 
 if __name__ == "__main__":
