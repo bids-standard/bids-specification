@@ -1,11 +1,13 @@
 ---
 sub:
   name: Subject
+  pybids_name: subject
   description: |
     A person or animal participating in the study.
   format: label
 ses:
   name: Session
+  pybids_name: session
   description: |
     A logical grouping of neuroimaging and behavioral data consistent across
     subjects.
@@ -24,6 +26,7 @@ ses:
   format: label
 task:
   name: Task
+  pybids_name: task
   format: label
   description: |
     Each task has a unique label that MUST only consist of letters and/or
@@ -32,6 +35,7 @@ task:
     Those labels MUST be consistent across subjects and sessions.
 acq:
   name: Acquisition
+  pybids_name: acquisition
   description: |
     The `acq-<label>` key/value pair corresponds to a custom label the
     user MAY use to distinguish a different set of parameters used for
@@ -51,6 +55,7 @@ acq:
   format: label
 ce:
   name: Contrast Enhancing Agent
+  pybids_name: ceagent
   description: |
     The `ce-<label>` key/value can be used to distinguish
     sequences using different contrast enhanced images.
@@ -60,6 +65,7 @@ ce:
   format: label
 rec:
   name: Reconstruction
+  pybids_name: reconstruction
   description: |
     The `rec-<label>` key/value can be used to distinguish
     different reconstruction algorithms (for example ones using motion
@@ -67,12 +73,14 @@ rec:
   format: label
 dir:
   name: Phase-Encoding Direction
+  pybids_name: direction
   description: |
     The `dir-<label>` key/value can be used to distinguish
     different phase-encoding directions.
   format: label
 run:
   name: Run
+  pybids_name: run
   description: |
     If several scans of the same modality are acquired they MUST be indexed
     with a key-value pair: `_run-1`, `_run-2`, ..., `_run-<index>`
@@ -81,6 +89,7 @@ run:
   format: index
 mod:
   name: Corresponding Modality
+  pybids_name: modality
   description: |
     The `mod-<label>` key/value pair corresponds to modality label for defacing
     masks, e.g., T1w, inplaneT1, referenced by a defacemask image.
@@ -88,6 +97,7 @@ mod:
   format: label
 echo:
   name: Echo
+  pybids_name: echo
   description: |
     Multi-echo data MUST be split into one file per echo.
     Each file shares the same name with the exception of the `_echo-<index>`
@@ -98,6 +108,7 @@ echo:
   format: index
 recording:
   name: Recording
+  pybids_name: recording
   description: |
     More than one continuous recording file can be included (with different
     sampling frequencies).
@@ -106,6 +117,7 @@ recording:
   format: label
 proc:
   name: Processed (on device)
+  pybids_name: ''
   description: |
     The proc label is analogous to rec for MR and denotes a variant of a file
     that was a result of particular processing performed on the device.
@@ -116,6 +128,7 @@ proc:
   format: label
 space:
   name: Space
+  pybids_name: space
   description: |
     The space label (`*[_space-<label>]_electrodes.tsv`) can be used
     to indicate the way in which electrode positions are interpreted.
@@ -123,6 +136,7 @@ space:
   format: label
 split:
   name: Split
+  pybids_name: ''
   description: |
     In the case of long data recordings that exceed a file size of 2Gb, the
     .fif files are conventionally split into multiple parts.
