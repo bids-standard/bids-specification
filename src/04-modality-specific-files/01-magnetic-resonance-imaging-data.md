@@ -141,7 +141,8 @@ modalities include:
 If the structural images included in the dataset were defaced (to protect
 identity of participants) one MAY provide the binary mask that was used to
 remove facial features in the form of `_defacemask` files.
-In such cases,  the OPTIONAL `mod-<label>` key/value pair corresponds to modality suffix,
+In such cases,  the OPTIONAL [`mod-<label>`](../99-appendices/09-entities.md#mod)
+key/value pair corresponds to modality suffix,
 such as T1w or inplaneT1, referenced by the defacemask image.
 For example, `sub-01_mod-T1w_defacemask.nii.gz`.
 
@@ -213,7 +214,8 @@ multiband acquisitions, one MAY also save the single-band reference image as
 type `sbref` (e.g. `sub-control01_task-nback_sbref.nii.gz`).
 
 Each task has a unique label that MUST only consist of letters and/or numbers
-(other characters, including spaces and underscores, are not allowed).
+(other characters, including spaces and underscores, are not allowed) with the
+[`task-<label>`](../99-appendices/09-entities.md#task) key/value pair.
 Those labels MUST be consistent across subjects and sessions.
 
 If more than one run of the same task has been acquired the
@@ -375,7 +377,8 @@ sub-<label>/[ses-<label>/]
 ```
 
 Diffusion-weighted imaging data acquired for that participant. The OPTIONAL
-`acq-<label>` key/value pair corresponds to a custom label the user may use to
+[`acq-<label>`](../99-appendices/09-entities.md#acq)
+key/value pair corresponds to a custom label the user may use to
 distinguish different set of parameters. For example this should be used when a
 study includes two diffusion images - one single band and one multiband. In such
 case two files could have the following names:
@@ -459,8 +462,10 @@ slashes. Here’s an example with multiple target scans:
 The IntendedFor field is OPTIONAL and in case the fieldmaps do not correspond to
 any particular scans it does not have to be filled.
 
-Multiple fieldmaps can be stored. In such case the `_run-1`, `_run-2` should be
-used. The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label
+Multiple fieldmaps can be stored.
+In such case the [`run-<index>`](../99-appendices/09-entities.md#run) key/value pair should be
+used. The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
+key/value pair corresponds to a custom label
 the user may use to distinguish different set of parameters.
 
 #### Case 1: Phase difference image and at least one magnitude image
@@ -582,7 +587,8 @@ example
 }
 ```
 
-`label` value of `_dir-` can be set to arbitrary alphanumeric label (`[a-zA-Z0-9]+` for
+The `label` value of the [`dir-<label>`](../99-appendices/09-entities.md#dir) key/value pair
+can be set to arbitrary alphanumeric label (`[a-zA-Z0-9]+` for
 example `LR` or `AP`) that can help users to distinguish between different
 files, but should not be used to infer any scanning parameters (such as phase
 encoding directions) of the corresponding sequence. Please rely only on the JSON
