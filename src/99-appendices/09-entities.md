@@ -13,7 +13,7 @@ each is given in the [Entity Table](04-entity-table.md).
 
 Full name: Subject
 
-Format: `sub_<label>`
+Format: `sub-<label>`
 
 Definition: A person or animal participating in the study.
 
@@ -21,7 +21,7 @@ Definition: A person or animal participating in the study.
 
 Full name: Session
 
-Format: `ses_<label>`
+Format: `ses-<label>`
 
 Definition: A logical grouping of neuroimaging and behavioral data consistent across
 subjects.
@@ -42,7 +42,7 @@ often in the case of some intervention between sessions (e.g., training).
 
 Full name: Task
 
-Format: `task_<label>`
+Format: `task-<label>`
 
 Definition: Each task has a unique label that MUST only consist of letters and/or
 numbers (other characters, including spaces and underscores, are not
@@ -53,7 +53,7 @@ Those labels MUST be consistent across subjects and sessions.
 
 Full name: Acquisition
 
-Format: `acq_<label>`
+Format: `acq-<label>`
 
 Definition: The `acq-<label>` key/value pair corresponds to a custom label the
 user MAY use to distinguish a different set of parameters used for
@@ -62,9 +62,9 @@ For example this should be used when a study includes two T1w images - one
 full brain low resolution and and one restricted field of view but high
 resolution.
 In such case two files could have the following names:
-`sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however the
-user is free to choose any other label than highres and lowres as long as
-they are consistent across subjects and sessions.
+`sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however
+the user is free to choose any other label than highres and lowres as long
+as they are consistent across subjects and sessions.
 In case different sequences are used to record the same modality (e.g. RARE
 and FLASH for T1w) this field can also be used to make that distinction.
 At what level of detail to make the distinction (e.g. just between RARE and
@@ -75,19 +75,19 @@ discretion of the researcher.
 
 Full name: Contrast Enhancing Agent
 
-Format: `ce_<label>`
+Format: `ce-<label>`
 
 Definition: The `ce-<label>` key/value can be used to distinguish
 sequences using different contrast enhanced images.
 The label is the name of the contrast agent.
-The key `ContrastBolusIngredient` MAY be also be added in the JSON file, with
-the same label.
+The key `ContrastBolusIngredient` MAY be also be added in the JSON file,
+with the same label.
 
 ## rec
 
 Full name: Reconstruction
 
-Format: `rec_<label>`
+Format: `rec-<label>`
 
 Definition: The `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion
@@ -97,7 +97,7 @@ correction).
 
 Full name: Phase-Encoding Direction
 
-Format: `dir_<label>`
+Format: `dir-<label>`
 
 Definition: The `dir-<label>` key/value can be used to distinguish
 different phase-encoding directions.
@@ -106,18 +106,18 @@ different phase-encoding directions.
 
 Full name: Run
 
-Format: `run_<index>`
+Format: `run-<index>`
 
 Definition: If several scans of the same modality are acquired they MUST be indexed
-with a key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only integers
-are allowed as run labels).
+with a key-value pair: `_run-1`, `_run-2`, ..., `_run-<index>`
+(only nonnegative integers are allowed for the `<index>`).
 When there is only one scan of a given type the run key MAY be omitted.
 
 ## mod
 
 Full name: Corresponding Modality
 
-Format: `mod_<label>`
+Format: `mod-<label>`
 
 Definition: The `mod-<label>` key/value pair corresponds to modality label for defacing
 masks, e.g., T1w, inplaneT1, referenced by a defacemask image.
@@ -127,17 +127,20 @@ E.g., `sub-01_mod-T1w_defacemask.nii.gz`.
 
 Full name: Echo
 
-Format: `echo_<index>`
+Format: `echo-<index>`
 
 Definition: Multi-echo data MUST be split into one file per echo.
 Each file shares the same name with the exception of the `_echo-<index>`
 key/value.
+Please note that the `<index>` denotes the number/index (in the form of a
+nonnegative integer) of the echo not the echo time value which needs to be
+stored in the field `EchoTime` of the separate JSON file.
 
 ## recording
 
 Full name: Recording
 
-Format: `recording_<label>`
+Format: `recording-<label>`
 
 Definition: More than one continuous recording file can be included (with different
 sampling frequencies).
@@ -148,7 +151,7 @@ For example: `_recording-contrast`, `_recording-saturation`.
 
 Full name: Processed (on device)
 
-Format: `proc_<label>`
+Format: `proc-<label>`
 
 Definition: The proc label is analogous to rec for MR and denotes a variant of a file
 that was a result of particular processing performed on the device.
@@ -161,7 +164,7 @@ the MEG data can actually be exploited.
 
 Full name: Space
 
-Format: `space_<label>`
+Format: `space-<label>`
 
 Definition: The space label (`*[_space-<label>]_electrodes.tsv`) can be used
 to indicate the way in which electrode positions are interpreted.
@@ -171,7 +174,7 @@ The space label needs to be taken from the list in Appendix VIII.
 
 Full name: Split
 
-Format: `split_<index>`
+Format: `split-<index>`
 
 Definition: In the case of long data recordings that exceed a file size of 2Gb, the
 .fif files are conventionally split into multiple parts.
