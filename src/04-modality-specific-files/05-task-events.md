@@ -121,10 +121,10 @@ in this data dictionary:
 
 | Field name           | Description                                                                                                                                                                                                                                        |
 |----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| StimulusPresentation | RECOMMENDED. List of fields related to the software used to present the stimuli during the experiment. Valid fields include `OperatingSystem`, `SoftwareName`, `SoftwareRRID`, `SoftwareVersion` and `Code`. See table below for more information. |
+| StimulusPresentation | RECOMMENDED. Object containing key value pairs related to the software used to present the stimuli during the experiment. For example: `OperatingSystem`, `SoftwareName`, `SoftwareRRID`, `SoftwareVersion` and `Code`. See table below for more information. |
 
 
-The `StimulusPresentation` field MAY includes any of the following RECOMMENDED keys:
+The object supplied for `StimulusPresentation`  SHOULD include the following key value pairs:
 
 | Key name                         | Description                                                                                                                                                                                                                                  |
 |----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -146,7 +146,7 @@ Examples:
 -   Linux - Ubuntu -18.04.5 LTS
 
 The `trial_type` and `identifier` columns from the `*_events.tsv` files as well
-as information related to stimulus presentation might be described in this json
+as information related to stimulus presentation might be described in this JSON
 dictionary as follows.
 
 ```JSON
@@ -164,13 +164,12 @@ dictionary as follows.
        "LongName": "Unique identifier from Karolinska (KDEF) database",
        "Description": "ID from KDEF database used to identify the displayed image"
    },
-    "StimulusPresentation":
-    {
-    "OperatingSystem": "Linux-Ubuntu 18.04.5 LTS",
-    "SoftwareName": "Psychtoolbox",
-    "SoftwareRRID": "SCR_002881",
-    "SoftwareVersion": "3.0.14",
-    "Code": "10.5281/zenodo.3581316"
+    "StimulusPresentation": {
+        "OperatingSystem": "Linux-Ubuntu 18.04.5 LTS",
+        "SoftwareName": "Psychtoolbox",
+        "SoftwareRRID": "SCR_002881",
+        "SoftwareVersion": "3.0.14",
+        "Code": "10.5281/zenodo.3581316"
     }
 }
 ```
