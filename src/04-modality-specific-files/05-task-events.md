@@ -119,10 +119,9 @@ sub-control01/
 Specific fields related to stimulus presentation details SHOULD also be present
 in this data dictionary:
 
-| Field name           | Description                                                                                                                                                                                                                                        |
-|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Field name           | Description                                                                                                                                                                                                                                                   |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | StimulusPresentation | RECOMMENDED. Object containing key value pairs related to the software used to present the stimuli during the experiment. For example: `OperatingSystem`, `SoftwareName`, `SoftwareRRID`, `SoftwareVersion` and `Code`. See table below for more information. |
-
 
 The object supplied for `StimulusPresentation`  SHOULD include the following key value pairs:
 
