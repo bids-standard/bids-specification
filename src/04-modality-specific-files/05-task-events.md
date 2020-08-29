@@ -169,7 +169,7 @@ Note that all other columns SHOULD also be described but are omitted for the
 sake of example.
 
 For multi-echo files, the `*_events.tsv` file is applicable to all echos of
-particular run:
+a particular run:
 
 ```Text
 sub-01_task-cuedSGT_run-1_events.tsv
