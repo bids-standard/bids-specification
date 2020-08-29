@@ -119,13 +119,20 @@ sub-control01/
 Specific fields related to stimulus presentation details SHOULD also be present
 in this data dictionary:
 
-| Column name                      | Description                                                                                                                                                                                                                                  |
+| Field name           | Description                                                                                                                                                                                                                                        |
+|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| StimulusPresentation | RECOMMENDED. List of fields related to the software used to present the stimuli during the experiment. Valid fields include `OperatingSystem`, `SoftwareName`, `SoftwareRRID`, `SoftwareVersion` and `Code`. See table below for more information. |
+
+
+The `StimulusPresentation` field MAY includes any of the following RECOMMENDED keys:
+
+| Key name                         | Description                                                                                                                                                                                                                                  |
 |----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| StimulusPresentationOS           | RECOMMENDED. Operating system used to run the stimuli presentation software (for formatting recommendations, see examples below this table).                                                                                                 |
-| StimulusPresentationSoftwareName | RECOMMENDED. Name of the software that was used to present the stimuli                                                                                                                                                                       |
+| OperatingSystem                  | RECOMMENDED. Operating system used to run the stimuli presentation software (for formatting recommendations, see examples below this table).                                                                                                 |
+| SoftwareName                     | RECOMMENDED. Name of the software that was used to present the stimuli                                                                                                                                                                       |
 | StimulusPresentationSoftwareRRID | RECOMMENDED. Name ideally with its [Research Resource Identifier](https://scicrunch.org/resources) of the software that was used to present the stimuli Examples: the RRID for Psychtoolbox is 'SCR_002881' that of PsychoPy is 'SCR_006571' |
-| StimulusPresentationVersion      | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                                                   |
-| StimulusPresentationCode         | RECOMMENDED. DOI of the archive (for example on Zenodo, figshare...) for the code that was used to present the stimuli. Alternatively this could be a URL to code on GitHub, GitLab, etc.                                                    |
+| SoftwareRRID                     | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                                                   |
+| Code                             | RECOMMENDED. DOI of the archive (for example on Zenodo, figshare...) for the code that was used to present the stimuli. Alternatively this could be a URL to code on GitHub, GitLab, etc.                                                    |
 
 The operating system description should include:
 -   type (Windows, MacOS, Linux),
@@ -139,7 +146,7 @@ Examples:
 -   Linux - Ubuntu -18.04.5 LTS
 
 The `trial_type` and `identifier` columns from the `*_events.tsv` files as well
-as information related to stimulus presentation might be described in this
+as information related to stimulus presentation might be described in this json
 dictionary as follows.
 
 ```JSON
@@ -157,11 +164,14 @@ dictionary as follows.
        "LongName": "Unique identifier from Karolinska (KDEF) database",
        "Description": "ID from KDEF database used to identify the displayed image"
    },
-   "StimulusPresentationOS": "Linux-Ubuntu 18.04.5 LTS",
-   "StimulusPresentationSoftwareName": "Psychtoolbox",
-   "StimulusPresentationSoftwareRRID": "SCR_002881",
-   "StimulusPresentationVersion": "3.0.14",
-   "StimulusPresentationCode": "10.5281/zenodo.3686062"
+    "StimulusPresentation":
+    {
+    "OperatingSystem": "Linux-Ubuntu 18.04.5 LTS",
+    "SoftwareName": "Psychtoolbox",
+    "SoftwareRRID": "SCR_002881",
+    "SoftwareVersion": "3.0.14",
+    "Code": "10.5281/zenodo.3581316"
+    }
 }
 ```
 
