@@ -49,13 +49,13 @@ files of various nature: for example, CTF's `.ds` format, or BTi/4D.
 Yet other manufacturers split their files once they exceed a certain size
 limit. For example Neuromag/Elekta/Megin, which can produce several files
 for a single recording. Both `some_file.fif` and `some_file-1.fif` would
-belong to a single recording. In BIDS, the `split` entity is RECOMMENDED to
+belong to a single recording. In BIDS, the [`split`](../99-appendices/09-entities.md#split) entity is RECOMMENDED to
 deal with split files.
 Please refer to [Appendix VI](../99-appendices/06-meg-file-formats.md) for
 general information on how to deal with such manufacturer specifics and to see
 more examples.
 
-The `proc` label is analogous to `rec` for MR and denotes a variant of a file
+The [`proc-<label>`](../99-appendices/09-entities.md#proc) entity is analogous to [`rec-<label>`](../99-appendices/09-entities.md#proc) for MR and denotes a variant of a file
 that was a result of particular processing performed on the device. This is
 useful for files produced in particular by Elekta’s MaxFilter (e.g. sss, tsss,
 trans, quat, mc, etc.), which some installations impose to be run on raw data
@@ -379,7 +379,7 @@ taped to the skin. Please note that the photos may need to be cropped or blurred
 to conceal identifying features prior to sharing, depending on the terms of the
 consent given by the participant.
 
-The `acq` parameter can be used to indicate acquisition of different photos of
+The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity can be used to indicate acquisition of different photos of
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA)).
 
@@ -403,7 +403,7 @@ This file is RECOMMENDED.
 
 The 3-D locations of points that describe the head shape and/or EEG
 electrode locations can be digitized and stored in separate files. The
-`*_acq-<label>` can be used when more than one type of digitization in done for
+[`acq-<label>`](../99-appendices/09-entities.md#acq) entity can be used when more than one type of digitization in done for
 a session, for example when the head points are in a separate file from the EEG
 locations. These files are stored in the specific format of the 3-D digitizer’s
 manufacturer (see [Appendix VI](../99-appendices/06-meg-file-formats.md)).
@@ -429,9 +429,9 @@ In the context of BIDS it is RECOMMENDED to perform an empty-room recording for
 each experimental session.
 It is RECOMMENDED to store the empty-room recording inside a subject folder
 named `sub-emptyroom`.
-The label for the `task-<label>` entity in the empty-room recording SHOULD be
+The label for the [`task-<label>`](../99-appendices/09-entities.md#task) entity in the empty-room recording SHOULD be
 set to `noise`.
-If a `session-<label>` entity is present, its label SHOULD be the date of the
+If a [`session-<label>`](../99-appendices/09-entities.md#ses) entity is present, its label SHOULD be the date of the
 empty-room recording in the format `YYYYMMDD`, i.e., `ses-YYYYMMDD`.
 The `scans.tsv` file containing the date and time of the acquisition SHOULD
 also be included.

@@ -311,7 +311,7 @@ that coordinates are expected in cartesian coordinates according to the
 `*_coordsystem.json`. If an `*_electrodes.tsv` file is specified, a
 `*_coordsystem.json` file MUST be specified as well.
 
-The optional space label (`*[_space-<label>]_electrodes.tsv`) can be used to
+The optional [`space-<label>`](../99-appendices/09-entities.md#space) entity (`*[_space-<label>]_electrodes.tsv`) can be used to
 indicate the way in which electrode positions are interpreted. The space label
 needs to be taken from the list in
 [Appendix VIII](../99-appendices/08-coordinate-systems.md)
@@ -325,7 +325,7 @@ For examples:
     space)
 
 When referring to the `*_electrodes.tsv` file in a certain _space_ as defined
-above, the `space-<label>` of the accompanying `*_coordsystem.json` MUST
+above, the [`space-<label>`](../99-appendices/09-entities.md#space) of the accompanying `*_coordsystem.json` MUST
 correspond.
 
 For example:
@@ -421,9 +421,9 @@ upper left pixel and (N,0) corresponding to the lower left pixel.
 ### Multiple coordinate systems
 
 If electrode positions are known in multiple coordinate systems (e.g., MRI, CT
-and MNI), these spaces can be distinguished by the optional `[_space-<label>]`
+and MNI), these spaces can be distinguished by the optional [`space-<label>`](../99-appendices/09-entities.md#space)
 field, see the [`*_electrodes.tsv`-section](#electrode-description-_electrodestsv)
-for more information. Note that the `[_space-<label>]` fields must correspond
+for more information. Note that the [`space-<label>`](../99-appendices/09-entities.md#space) fields must correspond
 between `*_electrodes.tsv` and `*_coordsystem.json` if they refer to the same
 data.
 
@@ -458,7 +458,7 @@ during surgery, or screenshots of a brain rendering with electrode positions.
 The photos may need to be cropped and/or blurred to conceal identifying features
 or entirely omitted prior to sharing, depending on obtained consent.
 
-If there are photos of the electrodes, the acquisition field should be specified
+If there are photos of the electrodes, the [`acq-<label>`](../99-appendices/09-entities.md#acq) entity should be specified
 with:
 
 -   `*_photo.jpg` in case of an operative photo
@@ -470,7 +470,7 @@ with:
 
 -   `*_acq-render#_photo.jpg` in case of a rendering
 
-The session label may be used to specify when the photo was taken.
+The [`ses-<label>`](../99-appendices/09-entities.md#ses) entity may be used to specify when the photo was taken.
 
 Example of the operative photo of ECoG electrodes (here is an annotated example in
 which electrodes and vasculature are marked, taken from Hermes et al.,

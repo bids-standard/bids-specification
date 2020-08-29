@@ -22,7 +22,7 @@ before the suffix.
 For example for the file `sub-control01_task-nback_run-1_bold.nii.gz`,
 `<matches>` would correspond to `sub-control01_task-nback_run-1`.
 
-The `recording-<label>` entity can be used to distinguish between several
+The [`recording-<label>`](../99-appendices/09-entities.md#recording) entity can be used to distinguish between several
 recording files.
 For example `sub-01_task-bart_recording-eyetracking_physio.tsv.gz` to contain
 the eyetracking data in a certain sampling frequency, and
