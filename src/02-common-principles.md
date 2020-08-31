@@ -99,8 +99,8 @@ A file name consists of a chain of *entities*, or key-value pairs, a *suffix* an
 Two prominent examples of entities are `subject` and `session`.
 
 For a data file that was collected in a given `session` from a given
-`subject`, the file name MUST begin with the string `sub-<label>_ses-<label>`. 
-If the `session` level is omitted in the folder structure, the file name MUST begin 
+`subject`, the file name MUST begin with the string `sub-<label>_ses-<label>`.
+If the `session` level is omitted in the folder structure, the file name MUST begin
 with the string `sub-<label>`, without `ses-<label>`.
 
 Note that `sub-<label>` corresponds to the `subject` entity because it has
@@ -134,8 +134,11 @@ See [Storage of derived datasets](#storage-of-derived-datasets) for more on
 organizing derivatives.
 
 Similar rules apply to source data, which is defined as data before
-harmonization, reconstruction, and/or file format conversion (for example, E-Prime event logs or
-DICOM files). This specification currently does not go into details of
+harmonization, reconstruction, and/or file format conversion (for example, E-Prime event logs or DICOM files).
+Storing actual source files with the data is preferred over links to
+external source repositories to maximize long term preservation,
+which would suffer if an external repository would not be available anymore.
+This specification currently does not go into details of
 recommending a particular naming scheme for including different types of
 source data (raw event logs, parameter files, etc. before conversion to BIDS).
 However, in the case that these data are to be included:

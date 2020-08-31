@@ -368,15 +368,14 @@ func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33
 
 Template: `code/*`
 
-Source code of scripts that were used to prepare the dataset (for example if it
-was anonymized or defaced) MAY be stored here.<sup>1</sup> Extra care should be
-taken to avoid including original IDs or any identifiable information with the
-source code. There are no limitations or recommendations on the language and/or
+Source code of scripts that were used to prepare the dataset MAY be stored here.
+Examples include anonymization or decacing of the data, or
+the converstion from the format of the source data to the BIDS format
+(see [source vs. raw vs. derived data](./02-common-principles.md#source-vs-raw-vs-derived-data)).
+Extra care should be taken to avoid including original IDs or
+any identifiable information with the source code.
+There are no limitations or recommendations on the language and/or
 code organization of these scripts at the moment.
-
-<sup>1</sup>Storing actual source files with the data is preferred over links to
-external source repositories to maximize long term preservation (which would
-suffer if an external repository would not be available anymore).
 
 <!-- Link Definitions -->
 
