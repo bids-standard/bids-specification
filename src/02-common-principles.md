@@ -138,7 +138,7 @@ harmonization, reconstruction, and/or file format conversion (for example, E-Pri
 Storing actual source files with the data is preferred over links to
 external source repositories to maximize long term preservation,
 which would suffer if an external repository would not be available anymore.
-This specification currently does not go into details of
+This specification currently does not go into the details of
 recommending a particular naming scheme for including different types of
 source data (raw event logs, parameter files, etc. before conversion to BIDS).
 However, in the case that these data are to be included:

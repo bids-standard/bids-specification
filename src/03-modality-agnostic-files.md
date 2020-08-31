@@ -344,7 +344,7 @@ For anonymization purposes all dates within one subject should be shifted by a
 randomly chosen (but consistent across all runs etc.) number of days.
 This way relative timing would be preserved, but chances of identifying a
 person based on the date and time of their scan would be decreased.
-Dates that are shifted for anonymization purposes SHOULD be set to a year 1925
+Dates that are shifted for anonymization purposes SHOULD be set to the year 1925
 or earlier to clearly distinguish them from unmodified data.
 Shifting dates is RECOMMENDED, but not required.
 
