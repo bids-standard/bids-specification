@@ -649,9 +649,7 @@ Validation and parsing tools MAY treat the presence of non-standard files and
 directories as an error, so consult the details of these tools for mechanisms
 to suppress warnings or provide interpretations of your file names.
 
-[]: <> (################)
-[]: <> (Link definitions)
-[]: <> (################)
+<!-- Link Definitions -->
 
 [dataset-description]: 03-modality-agnostic-files.md#dataset-description
 [derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description
