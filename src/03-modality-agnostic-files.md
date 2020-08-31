@@ -369,8 +369,8 @@ func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33
 Template: `code/*`
 
 Source code of scripts that were used to prepare the dataset MAY be stored here.
-Examples include anonymization or decacing of the data, or
-the converstion from the format of the source data to the BIDS format
+Examples include anonymization or defacing of the data, or
+the conversion from the format of the source data to the BIDS format
 (see [source vs. raw vs. derived data](./02-common-principles.md#source-vs-raw-vs-derived-data)).
 Extra care should be taken to avoid including original IDs or
 any identifiable information with the source code.
