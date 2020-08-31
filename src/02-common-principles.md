@@ -415,7 +415,7 @@ onset duration  response_time correct stop_trial  go_trial
 ```
 
 Tabular files MAY be optionally accompanied by a simple data dictionary
-in the form of a [JSON object](https://www.w3schools.com/js/js_json_objects.asp)
+in the form of a JSON [object](https://www.json.org/json-en.html)
 within a JSON file.
 The JSON files containing the data dictionaries MUST have the same name as
 their corresponding tabular files but with `.json` extensions.
