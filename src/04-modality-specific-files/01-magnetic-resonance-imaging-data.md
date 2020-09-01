@@ -191,7 +191,7 @@ sub-01_part-phase_T1w.json
 
 Phase images MAY be in radians or in arbitrary units.
 The sidecar JSON file MUST include the units of the `phase` image.
-The possible options are: `rad` or `a.u.` for grayscale images.
+The possible options are `rad` or `a.u.`.
 For example:
 
 sub-01_part-phase_T1w.json
@@ -233,7 +233,7 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     func/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_bold.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<label>]_bold.nii[.gz]
         sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_phase.nii[.gz]
         sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<label>]_cbv.nii[.gz]
         sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<label>]_sbref.nii[.gz]
@@ -300,17 +300,20 @@ field EchoTime of the separate JSON file.
 
 Complex-valued data MUST be split into one file for each data type.
 For BOLD data, there are separate suffixes for magnitude (`_bold`) and phase
-(`_phase`) data.
-For other contrasts (e.g., `_sbref` or `_cbv`), each file shares the same
-name with the exception of the `part-<mag|phase>` key/value. For example:
+(`_phase`) data, but the `_phase` suffix is considered a legacy suffix
+(i.e., still supported in the specification, but to be deprecated later).
+For backwards compatibility, `_phase` is considered equivalent to `_part-phase_bold`.
+When the `_phase` suffix is not used, each file shares the same
+name with the exception of the `part-<mag|phase>` or `part-<real|imag>` key/value.
+For example:
 
 ```Text
 sub-01/
    func/
-      sub-01_task-cuedSGT_bold.nii.gz
-      sub-01_task-cuedSGT_bold.json
-      sub-01_task-cuedSGT_phase.nii.gz
-      sub-01_task-cuedSGT_phase.json
+      sub-01_task-cuedSGT_part-mag_bold.nii.gz
+      sub-01_task-cuedSGT_part-mag_bold.json
+      sub-01_task-cuedSGT_part-phase_bold.nii.gz
+      sub-01_task-cuedSGT_part-phase_bold.json
       sub-01_task-cuedSGT_part-mag_sbref.nii.gz
       sub-01_task-cuedSGT_part-mag_sbref.nii.gz
       sub-01_task-cuedSGT_part-phase_sbref.nii.gz

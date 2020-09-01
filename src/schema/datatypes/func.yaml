@@ -2,23 +2,6 @@
 # First group
 - suffixes:
     - bold
-    - phase
-  extensions:
-    - .nii.gz
-    - .nii
-    - .json
-  entities:
-    sub: required
-    ses: optional
-    task: required
-    acq: optional
-    ce: optional
-    rec: optional
-    dir: optional
-    run: optional
-    echo: optional
-# Second group
-- suffixes:
     - cbv
     - sbref
   extensions:
@@ -36,6 +19,23 @@
     run: optional
     echo: optional
     part: optional
+# Second group
+- suffixes:
+    - phase
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    ce: optional
+    rec: optional
+    dir: optional
+    run: optional
+    echo: optional
 # Third group
 - suffixes:
     - events
