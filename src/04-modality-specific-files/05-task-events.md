@@ -164,21 +164,21 @@ The object supplied for `StimulusPresentation` SHOULD include the following key-
 | Key name        | Description                                                                                                                                                                                                                                   |
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | OperatingSystem | RECOMMENDED. Operating system used to run the stimuli presentation software (for formatting recommendations, see examples below this table).                                                                                                  |
-| SoftwareName    | RECOMMENDED. Name of the software that was used to present the stimuli                                                                                                                                                                        |
-| SoftwareRRID    | RECOMMENDED. Name ideally with its [Research Resource Identifier](https://scicrunch.org/resources) of the software that was used to present the stimuli. Examples: the RRID for Psychtoolbox is 'SCR_002881' that of PsychoPy is 'SCR_006571' |
+| SoftwareName    | RECOMMENDED. Name of the software that was used to present the stimuli.                                                                                                                                                                       |
+| SoftwareRRID    | RECOMMENDED. [Research Resource Identifier](https://scicrunch.org/resources) of the software that was used to present the stimuli. Examples: The RRID for Psychtoolbox is 'SCR_002881', and that of PsychoPy is 'SCR_006571'. |
 | SoftwareVersion | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                                                    |
-| Code            | RECOMMENDED. DOI of the archive (for example on Zenodo, figshare...) for the code that was used to present the stimuli. Alternatively this could be a URL to code on GitHub, GitLab, etc.                                                     |
+| Code            | RECOMMENDED. DOI of the archive (for example on Zenodo, figshare, etc.) for the code that was used to present the stimuli. Alternatively this could be a URL to code on GitHub, GitLab, etc.                                                     |
 
 The operating system description should include:
 -   type (Windows, MacOS, Linux),
 -   distribution (if applicable: Ubuntu, Debian)
--   the version number or equivalent code name.
+-   the version number or equivalent code name
 
 Examples:
 -   Windows - 10
 -   MacOS - Catalina or MacOS - 10.15
 -   Linux - Ubuntu - Bionic Beaver
--   Linux - Ubuntu -18.04.5 LTS
+-   Linux - Ubuntu - 18.04.5 LTS
 
 The information related to stimulus presentation might be described
 in the accompanying JSON sidecar as follows (based on the example of the previous section):
