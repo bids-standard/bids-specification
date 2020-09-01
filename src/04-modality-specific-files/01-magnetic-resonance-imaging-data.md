@@ -315,9 +315,9 @@ sub-01/
       sub-01_task-cuedSGT_part-phase_bold.nii.gz
       sub-01_task-cuedSGT_part-phase_bold.json
       sub-01_task-cuedSGT_part-mag_sbref.nii.gz
-      sub-01_task-cuedSGT_part-mag_sbref.nii.gz
+      sub-01_task-cuedSGT_part-mag_sbref.json
       sub-01_task-cuedSGT_part-phase_sbref.nii.gz
-      sub-01_task-cuedSGT_part-phase_sbref.nii.gz
+      sub-01_task-cuedSGT_part-phase_sbref.json
 ```
 
 Some meta information about the acquisition MUST be provided in an additional
