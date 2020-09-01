@@ -57,6 +57,16 @@ misunderstanding we clarify them here.
     due to different subject response or randomized nature of the stimuli). Run
     is a synonym of a data acquisition.
 
+1.  **Modality** - the category of brain data recorded by a file.
+    For MRI data, different pulse sequences are considered distinct modalities,
+    such as `T1w`, `bold` or `dwi`.
+    For passive recording techniques, such as EEG, MEG or iEEG,
+    the technique is sufficiently uniform to define the modalities `eeg`,
+    `meg` and `ieeg`.
+    When applicable, the modality is indicated in the **suffix**.
+    The modality may overlap with, but should not be confused with
+    the **data type**.
+
 1.  **`<index>`** - a nonnegative integer, possibly prefixed with arbitrary number of
     0s for consistent indentation, e.g., it is `01` in `run-01` following
     `run-<index>` specification.
