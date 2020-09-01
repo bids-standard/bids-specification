@@ -55,16 +55,16 @@ hypothesis extensions of BIDS.
 Note that the `trial_type` and any additional columns in a TSV file
 SHOULD be documented in an accompanying JSON sidecar file.
 
-In case of multi-echo task run, a single `_events.tsv` file will suffice for all
-echoes.
-
 Example:
 
 ```Text
 sub-control01/
     func/
         sub-control01_task-stopsignal_events.tsv
+        sub-control01_task-stopsignal_events.json
 ```
+
+Example of the content of the TSV file:
 
 ```Text
 onset duration  trial_type  response_time stim_file
@@ -87,6 +87,21 @@ In the accompanying JSON sidecar, the `trial_type` column might look as follows:
 }
 ```
 
+Note that all other columns SHOULD also be described but are omitted for the
+sake of example.
+
+For multi-echo files, the `*_events.tsv` file is applicable to all echos of
+a particular run:
+
+```Text
+sub-01_task-cuedSGT_run-1_events.tsv
+sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
+sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
+sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
+```
+
+## Stimuli databases
+
 References to existing databases can also be encoded using additional columns.
 Example 2 includes references to the Karolinska Directed Emotional Faces (KDEF)
 database<sup>6</sup>:
@@ -99,7 +114,10 @@ Example:
 sub-control01/
     func/
         sub-control01_task-emoface_events.tsv
+        sub-control01_task-emoface_events.json
 ```
+
+Example of the content of the TSV file:
 
 ```Text
 onset duration  trial_type  identifier  database  response_time
@@ -108,16 +126,34 @@ onset duration  trial_type  identifier  database  response_time
 5.6 0.6 sad AF01ANSA  kdef  1.739
 ```
 
-This file should be accompanied by a data dictionary.
+The `trial_type` and `identifier` columns from the `*_events.tsv` files might be described
+in the accompanying JSON sidecar as follows:
 
-```Text
-sub-control01/
-    func/
-        sub-control01_task-emoface_events.json
+```JSON
+{
+   "trial_type": {
+       "LongName":   "Emotion image type",
+       "Descripton": "Type of emotional face from Karolinska database that is displayed",
+       "Levels": {
+          "afraid": "A face showing fear is displayed",
+          "angry":  "A face showing anger is displayed",
+		  "sad":    "A face showing sadness is displayed"
+        }
+   },
+   "identifier": {
+       "LongName": "Unique identifier from Karolinska (KDEF) database",
+       "Description": "ID from KDEF database used to identify the displayed image"
+   }
+}
 ```
 
+Note that all other columns SHOULD also be described but are omitted for the
+sake of example.
+
+## Stimulus presentation details
+
 Specific fields related to stimulus presentation details SHOULD also be present
-in this data dictionary:
+in the accompanying JSON sidecar:
 
 | Field name           | Description                                                                                                                                                                                                                                                    |
 |----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -144,9 +180,8 @@ Examples:
 -   Linux - Ubuntu - Bionic Beaver
 -   Linux - Ubuntu -18.04.5 LTS
 
-The `trial_type` and `identifier` columns from the `*_events.tsv` files as well
-as information related to stimulus presentation might be described in this JSON
-dictionary as follows.
+The information related to stimulus presentation might be described
+in the accompanying JSON sidecar as follows (based on the example of the previous section):
 
 ```JSON
 {
@@ -171,17 +206,4 @@ dictionary as follows.
         "Code": "10.5281/zenodo.3581316"
     }
 }
-```
-
-Note that all other columns SHOULD also be described but are omitted for the
-sake of example.
-
-For multi-echo files, the `*_events.tsv` file is applicable to all echos of
-a particular run:
-
-```Text
-sub-01_task-cuedSGT_run-1_events.tsv
-sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
 ```
