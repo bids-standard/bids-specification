@@ -157,7 +157,7 @@ in the accompanying JSON sidecar:
 
 | Field name           | Description                                                                                                                                                                                                                                                    |
 |----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| StimulusPresentation | RECOMMENDED. Object containing key value pairs related to the software used to present the stimuli during the experiment, specifically: `OperatingSystem`, `SoftwareName`, `SoftwareRRID`, `SoftwareVersion` and `Code`. See table below for more information. |
+| StimulusPresentation | RECOMMENDED. [Object][] containing key value pairs related to the software used to present the stimuli during the experiment, specifically: `OperatingSystem`, `SoftwareName`, `SoftwareRRID`, `SoftwareVersion` and `Code`. See table below for more information. |
 
 The object supplied for `StimulusPresentation` SHOULD include the following key-value pairs:
 
@@ -207,3 +207,7 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
     }
 }
 ```
+
+<!-- Link Definitions -->
+
+[object]: https://www.json.org/json-en.html
