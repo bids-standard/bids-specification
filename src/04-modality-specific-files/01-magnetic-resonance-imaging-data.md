@@ -191,18 +191,18 @@ sub-01_part-phase_T1w.json
 
 Phase images MAY be in radians or in arbitrary units.
 The sidecar JSON file MUST include the units of the `phase` image.
-The possible options are: `radians` or `a.u.` for grayscale images.
+The possible options are: `rad` or `a.u.` for grayscale images.
 For example:
 
-sub-01_part-phase.json
+sub-01_part-phase_T1w.json
 
 ```Text
 {
-   "Units": "radians"
+   "Units": "rad"
 }
 ```
 
-If the `part` key/value pair is absent from a filename, the image SHOULD be a magnitude image.
+When there is only a magnitude image of a given type, the `part` key MAY be omitted.
 
 Some meta information about the acquisition MAY be provided in an additional
 JSON file. See [Common metadata fields](#common-metadata-fields) for a
