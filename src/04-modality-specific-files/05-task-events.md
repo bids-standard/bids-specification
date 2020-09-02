@@ -176,7 +176,7 @@ The operating system description should include:
 
 Examples:
 -   Windows - 10
--   MacOS - Catalina or MacOS - 10.15
+-   macOS - Catalina or macOS - 10.15
 -   Linux - Ubuntu - Bionic Beaver
 -   Linux - Ubuntu - 18.04.5 LTS
 
