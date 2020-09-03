@@ -317,7 +317,7 @@ sparse sequences.
 ##### fMRI task information
 
 | Field name      | Definition                                                                                                                                                                                                 |
-|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Instructions    | RECOMMENDED. Text of the instructions given to participants before the scan. This is especially important in context of resting state fMRI and distinguishing between eyes open and eyes closed paradigms. |
 | TaskDescription | RECOMMENDED. Longer description of the task.                                                                                                                                                               |
 | CogAtlasID      | RECOMMENDED. URL of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.                                                                                                        |

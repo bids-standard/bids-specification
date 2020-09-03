@@ -113,7 +113,7 @@ encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
 | Field name             | Definition                                                                                                                                                                                                                    |
-|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------------------------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | InstitutionName        | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                    |
 | InstitutionAddress     | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                 |
 | Manufacturer           | RECOMMENDED. Manufacturer of the amplifier system (e.g., "TDT, Blackrock").                                                                                                                                                   |
