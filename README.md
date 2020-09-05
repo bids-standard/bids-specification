@@ -32,6 +32,7 @@ The specification is provided in the form of a webpage, built using
   - [BIDS Starter Kit](https://github.com/bids-standard/bids-starter-kit) for tutorials, wikis, templates, ...
 2. Post your question in one of several channels where BIDS members are active
   - the [NeuroStars](https://neurostars.org/tags/bids) discourse forum
+  - the [BrainHack Mattermost](https://mattermost.brainhack.org), for instant messaging (see also this [news item](https://bids.neuroimaging.io/2020/06/24/Join-the-BIDS-community-on-the-BrainHack-Mattermost.html))
   - the [Google group](https://groups.google.com/forum/#!forum/bids-discussion), for broader discussions surrounding BIDS
   - the [specification repository issue page](https://github.com/bids-standard/bids-specification/issues), if you found inconsistencies, typos, or other issues with the BIDS specification itself
 
