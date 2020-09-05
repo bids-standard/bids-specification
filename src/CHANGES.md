@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] Add tsalo as a BIDS maintainer [#597](https://github.com/bids-standard/bids-specification/pull/597) ([tsalo](https://github.com/tsalo))
 -   \[MISC] fix links, make json object links consistent, fix pandoc rendering [#587](https://github.com/bids-standard/bids-specification/pull/587) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Fix link in Common principles [#583](https://github.com/bids-standard/bids-specification/pull/583) ([tsalo](https://github.com/tsalo))
 -   \[ENH] Specify how to share cross-talk and fine-calibration for Neuromag/Elekta/MEGIN data [#581](https://github.com/bids-standard/bids-specification/pull/581) ([sappelhoff](https://github.com/sappelhoff))
