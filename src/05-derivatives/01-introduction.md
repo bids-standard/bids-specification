@@ -69,9 +69,7 @@ in [Derived dataset and pipeline description][derived-dataset-description].
     For example, if a summary statistic is derived from a given task, the file
     name SHOULD contain `_task-<label>`.
 
-[]: <> (################)
-[]: <> (Link definitions)
-[]: <> (################)
+<!-- Link Definitions -->
 
 [definitions]: ../02-common-principles.md#definitions
 [storage]: ../02-common-principles.md#storage-of-derived-datasets

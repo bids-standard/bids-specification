@@ -161,7 +161,7 @@ manual_masks/
 
 A *segmentation* is a labeling of regions of an image such that each location
 (for example, a voxel or a surface vertex) is identified with a label or a
-combination of labels. 
+combination of labels.
 Labeled regions may include anatomical structures (such as tissue class,
 Brodmann area or white matter tract), discontiguous, functionally-defined
 networks, tumors or lesions.
@@ -401,9 +401,7 @@ index   name                abbreviation
 139     pars orbitalis      IFGor
 ```
 
-[]: <> (################)
-[]: <> (Link definitions)
-[]: <> (################)
+<!-- Link Definitions -->
 
 [intro]: 01-introduction.md
 [common_preproc]: 02-common-data-types.md#preprocessed-or-cleaned-data

@@ -99,8 +99,8 @@ A file name consists of a chain of *entities*, or key-value pairs, a *suffix* an
 Two prominent examples of entities are `subject` and `session`.
 
 For a data file that was collected in a given `session` from a given
-`subject`, the file name MUST begin with the string `sub-<label>_ses-<label>`. 
-If the `session` level is omitted in the folder structure, the file name MUST begin 
+`subject`, the file name MUST begin with the string `sub-<label>_ses-<label>`.
+If the `session` level is omitted in the folder structure, the file name MUST begin
 with the string `sub-<label>`, without `ses-<label>`.
 
 Note that `sub-<label>` corresponds to the `subject` entity because it has
@@ -134,8 +134,11 @@ See [Storage of derived datasets](#storage-of-derived-datasets) for more on
 organizing derivatives.
 
 Similar rules apply to source data, which is defined as data before
-harmonization, reconstruction, and/or file format conversion (for example, E-Prime event logs or
-DICOM files). This specification currently does not go into details of
+harmonization, reconstruction, and/or file format conversion (for example, E-Prime event logs or DICOM files).
+Storing actual source files with the data is preferred over links to
+external source repositories to maximize long term preservation,
+which would suffer if an external repository would not be available anymore.
+This specification currently does not go into the details of
 recommending a particular naming scheme for including different types of
 source data (raw event logs, parameter files, etc. before conversion to BIDS).
 However, in the case that these data are to be included:
@@ -412,7 +415,7 @@ onset duration  response_time correct stop_trial  go_trial
 ```
 
 Tabular files MAY be optionally accompanied by a simple data dictionary
-in the form of a [JSON object](https://www.w3schools.com/js/js_json_objects.asp)
+in the form of a JSON [object](https://www.json.org/json-en.html)
 within a JSON file.
 The JSON files containing the data dictionaries MUST have the same name as
 their corresponding tabular files but with `.json` extensions.
@@ -646,9 +649,7 @@ Validation and parsing tools MAY treat the presence of non-standard files and
 directories as an error, so consult the details of these tools for mechanisms
 to suppress warnings or provide interpretations of your file names.
 
-[]: <> (################)
-[]: <> (Link definitions)
-[]: <> (################)
+<!-- Link Definitions -->
 
 [dataset-description]: 03-modality-agnostic-files.md#dataset-description
 [derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description

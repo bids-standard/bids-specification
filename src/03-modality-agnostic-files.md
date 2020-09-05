@@ -69,10 +69,10 @@ In addition to the keys for raw BIDS datasets,
 derived BIDS datasets include the following REQUIRED and RECOMMENDED
 `dataset_description.json` keys:
 
-| **Key name**   | **Description**                                                                                                                                                                    |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GeneratedBy    | REQUIRED. List of [objects][object] with at least one element.                                                                                                                     |
-| SourceDatasets | RECOMMENDED. A list of [objects][object] specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`. |
+| **Key name**   | **Description**                                                                                                                                                              |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GeneratedBy    | REQUIRED. List of [objects][] with at least one element.                                                                                                                     |
+| SourceDatasets | RECOMMENDED. A list of [objects][] specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`. |
 
 Each object in the `GeneratedBy` list includes the following REQUIRED, RECOMMENDED
 and OPTIONAL keys:
@@ -83,7 +83,7 @@ and OPTIONAL keys:
 | Version      | RECOMMENDED. Version of the pipeline.                                                                                                                                                                        |
 | Description  | OPTIONAL. Plain-text description of the pipeline or process that generated the outputs. RECOMMENDED if `Name` is `"Manual"`.                                                                                 |
 | CodeURL      | OPTIONAL. URL where the code used to generate the derivatives may be found.                                                                                                                                  |
-| Container    | OPTIONAL. [Object][object] specifying the location and relevant attributes of software container image used to produce the derivative. Valid fields in this object include `Type`, `Tag` and `URI`.          |
+| Container    | OPTIONAL. [Object][] specifying the location and relevant attributes of software container image used to produce the derivative. Valid fields in this object include `Type`, `Tag` and `URI`.                |
 
 Example:
 
@@ -344,7 +344,7 @@ For anonymization purposes all dates within one subject should be shifted by a
 randomly chosen (but consistent across all runs etc.) number of days.
 This way relative timing would be preserved, but chances of identifying a
 person based on the date and time of their scan would be decreased.
-Dates that are shifted for anonymization purposes should be set to a year 1925
+Dates that are shifted for anonymization purposes SHOULD be set to the year 1925
 or earlier to clearly distinguish them from unmodified data.
 Shifting dates is RECOMMENDED, but not required.
 
@@ -368,12 +368,16 @@ func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33
 
 Template: `code/*`
 
-Source code of scripts that were used to prepare the dataset (for example if it
-was anonymized or defaced) MAY be stored here.<sup>1</sup> Extra care should be
-taken to avoid including original IDs or any identifiable information with the
-source code. There are no limitations or recommendations on the language and/or
+Source code of scripts that were used to prepare the dataset MAY be stored here.
+Examples include anonymization or defacing of the data, or
+the conversion from the format of the source data to the BIDS format
+(see [source vs. raw vs. derived data](./02-common-principles.md#source-vs-raw-vs-derived-data)).
+Extra care should be taken to avoid including original IDs or
+any identifiable information with the source code.
+There are no limitations or recommendations on the language and/or
 code organization of these scripts at the moment.
 
-<sup>1</sup>Storing actual source files with the data is preferred over links to
-external source repositories to maximize long term preservation (which would
-suffer if an external repository would not be available anymore).
+<!-- Link Definitions -->
+
+[objects]: https://www.json.org/json-en.html
+[object]: https://www.json.org/json-en.html
