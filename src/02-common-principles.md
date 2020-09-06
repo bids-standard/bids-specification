@@ -57,7 +57,7 @@ misunderstanding we clarify them here.
     due to different subject response or randomized nature of the stimuli). Run
     is a synonym of a data acquisition.
 
-1.  **`<index>`** - a numeric value, possibly prefixed with arbitrary number of
+1.  **`<index>`** - a nonnegative integer, possibly prefixed with arbitrary number of
     0s for consistent indentation, e.g., it is `01` in `run-01` following
     `run-<index>` specification.
 
