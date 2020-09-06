@@ -76,29 +76,58 @@ process of regular system maintenance.
 In BIDS, the cross-talk and fine-calibration files are shared unmodified,
 but with BIDS file naming convention and by using the `acq` entity.
 
--   cross-talk file template: `[sub-<label>][_ses-<label>][_]acq-crosstalk_meg.dat`
--   fine-calibration file template: `[sub-<label>][_ses-<label>][_]acq-calibration_meg.fif`
+-   cross-talk file template: `sub-<label>[_ses-<label>]_acq-crosstalk_meg.dat`
+-   fine-calibration file template: `sub-<label>[_ses-<label>]_acq-calibration_meg.fif`
 
 Note that cross-talk files MUST be denoted using `acq-crosstalk` and
 fine-calibration files MUST be denoted using `acq-calibration`.
 
-By making use of the [Inheritance Principle](../02-common-principles.md#the-inheritance-principle),
-the cross-talk and fine-calibration data can be stored at any level of nesting within the BIDS dataset.
-For example for each session, or only once for a whole dataset.
+The cross-talk and fine-calibration data MUST be stored in the subject level `meg` folder,
+optionally nested in a subject specific `ses-<label>` folder, as shown in the following examples.
 
-Example FIFF dataset with cross-talk and fine-calibration files stored once at the dataset root:
+#### Example 1:
 
 ```Text
-acq-crosstalk_meg.dat
-acq-calibration_meg.fif
 sub-control01/
-    ses-001/
-        sub-control01_ses-001_scans.tsv
+    ses-01/
+        sub-control01_ses-01_scans.tsv
         meg/
-            sub-control01_ses-001_coordsystem.json
-            sub-control01_ses-001_task-rest_run-01_meg.fif
-            sub-control01_ses-001_task-rest_run-01_meg.json
-            sub-control01_ses-001_task-rest_run-01_channels.tsv
+            sub-control01_ses-01_coordsystem.json
+            sub-control01_ses-01_task-rest_run-01_meg.fif
+            sub-control01_ses-01_task-rest_run-01_meg.json
+            sub-control01_ses-01_task-rest_run-01_channels.tsv
+            sub-control01_ses-01_acq-crosstalk_meg.dat
+            sub-control01_ses-01_acq-calibration_meg.fif
+    ses-02/
+        sub-control01_ses-02_scans.tsv
+        meg/
+            sub-control01_ses-02_coordsystem.json
+            sub-control01_ses-02_task-rest_run-01_meg.fif
+            sub-control01_ses-02_task-rest_run-01_meg.json
+            sub-control01_ses-02_task-rest_run-01_channels.tsv
+            sub-control01_ses-02_acq-crosstalk_meg.dat
+            sub-control01_ses-02_acq-calibration_meg.fif
+```
+
+#### Example 2:
+
+```Text
+sub-01/
+    meg/
+        sub-01_coordsystem.json
+        sub-01_task-rest_meg.fif
+        sub-01_task-rest_meg.json
+        sub-01_task-rest_channels.tsv
+        sub-01_acq-crosstalk_meg.dat
+        sub-01_acq-calibration_meg.fif
+sub-02/
+    meg/
+        sub-02_coordsystem.json
+        sub-02_task-rest_meg.fif
+        sub-02_task-rest_meg.json
+        sub-02_task-rest_channels.tsv
+        sub-02_acq-crosstalk_meg.dat
+        sub-02_acq-calibration_meg.fif
 ```
 
 ### Sharing FIFF data after signal-space separation (SSS)
