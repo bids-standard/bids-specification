@@ -85,7 +85,7 @@ fine-calibration files MUST be denoted using `acq-calibration`.
 The cross-talk and fine-calibration data MUST be stored in the subject level `meg` folder,
 optionally nested in a subject specific `ses-<label>` folder, as shown in the following examples.
 
-#### Example 1:
+#### Example 1
 
 ```Text
 sub-control01/
@@ -109,7 +109,7 @@ sub-control01/
             sub-control01_ses-02_acq-calibration_meg.fif
 ```
 
-#### Example 2:
+#### Example 2
 
 ```Text
 sub-01/
