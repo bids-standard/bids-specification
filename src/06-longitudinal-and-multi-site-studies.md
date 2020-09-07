@@ -90,7 +90,7 @@ ses-followup  2009-06-17T13:45:30 110
 
 This version of the BIDS specification does not explicitly cover studies with
 data coming from multiple sites or multiple centers (such extension is planned
-in [BIDS `2.0`](https://docs.google.com/document/d/1LEgsMiisGDe1Gv-hBp1EcLmoz7AlKj6VYULUgDD3Zdw/)).
+in [BIDS `2.0`](https://github.com/bids-standard/bids-2-devel).
 There are however ways to model your data without any loss in terms of metadata.
 
 ### Treat each site/center as a separate dataset
