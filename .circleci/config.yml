@@ -66,21 +66,21 @@ jobs:
   github-changelog-generator:
     working_directory: ~/build
     docker:
-      - image: ferrarimarco/github-changelog-generator:1.14.3
+      - image: ferrarimarco/github-changelog-generator:1.15.2
     steps:
       - setup_remote_docker:
-           version: 17.11.0-ce
+           version: 18.06.0-ce
       - checkout
       - run:
            name: Build changelog
            working_directory: ~/build
            command: |
              if (git log -1 --pretty=%s | grep Merge*) && (! git log -1 --pretty=%b | grep REL:) ; then
-             github_changelog_generator --user bids-standard --project bids-specification --token ${CHANGE_TOKEN} --output ~/build/CHANGES.md --base ~/build/src/pregh-changes.md --header-label "# Changelog" --no-issues --no-issues-wo-labels --no-filter-by-milestone --no-compare-link --pr-label ""
-             cat ~/build/CHANGES.md
-             mv ~/build/CHANGES.md ~/build/src/CHANGES.md
+               github_changelog_generator --user bids-standard --project bids-specification --token ${CHANGE_TOKEN} --output ~/build/CHANGES.md --base ~/build/src/pregh-changes.md --header-label "# Changelog" --no-issues --no-issues-wo-labels --no-filter-by-milestone --no-compare-link --pr-label "" --release-branch master
+               cat ~/build/CHANGES.md
+               mv ~/build/CHANGES.md ~/build/src/CHANGES.md
              else
-             echo "Commit or Release, do nothing"
+               echo "Commit or Release, do nothing"
              fi
       - persist_to_workspace:
              root: .
