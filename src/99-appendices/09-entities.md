@@ -140,6 +140,20 @@ Please note that the `<index>` denotes the number/index (in the form of a
 nonnegative integer) of the echo not the echo time value which needs to be
 stored in the field `EchoTime` of the separate JSON file.
 
+## coil
+
+Full name: Coil
+
+Format: `coil-<label>`
+
+Definition: The `coil-<label>` key/value can be used to distinguish coil-specific data.
+Typically it is used for sequences not employing coil combination
+(e.g., SWI).
+When the file contains data from a single coil, `coil-<label>`
+SHOULD be provided.
+The key `CoilString` MAY also be added in the JSON file, with a
+corresponding identifier for the coil.
+
 ## recording
 
 Full name: Recording
