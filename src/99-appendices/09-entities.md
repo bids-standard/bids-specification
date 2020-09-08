@@ -151,6 +151,26 @@ sampling frequencies).
 In such case use different labels.
 For example: `_recording-contrast`, `_recording-saturation`.
 
+## part
+
+Full name: Part
+
+Format: `part-<label>`
+
+Definition: This entity is used to indicate which component of the complex
+representation of the MRI signal is represented in voxel data.
+The `part-<label>` key/value pair is associated with the DICOM tag
+`0008,9208`.
+Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
+which are typically used in `mag/phase` or `real/imag` pairs.
+
+Phase images MAY be in radians or in arbitrary units.
+The sidecar JSON file MUST include the units of the `phase` image.
+The possible options are `rad` or `a.u.`.
+
+When there is only a magnitude image of a given type, the `part` key MAY be
+omitted.
+
 ## proc
 
 Full name: Processed (on device)
