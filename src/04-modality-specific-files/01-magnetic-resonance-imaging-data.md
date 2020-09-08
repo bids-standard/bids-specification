@@ -174,9 +174,7 @@ sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the
 JSON file, with the same label.
 
-#### The `coil` entity
-
-The OPTIONAL `coil-<label>` key/value can be used to distinguish coil-specific data.
+The OPTIONAL [`coil-<label>`](../99-appendices/09-entities.md#coil) key/value can be used to distinguish coil-specific data.
 Typically it is used for sequences not employing coil combination (e.g., SWI).
 When the file contains data from a single coil, `coil-<label>` SHOULD be provided.
 The key `CoilString` MAY also be added in the JSON file, with a corresponding
@@ -261,7 +259,7 @@ reconstruction algorithms (for example ones using motion correction).
 See [`fmap` Case 4](01-magnetic-resonance-imaging-data.md#case-4-multiple-phase-encoded-directions-pepolar)
 for more information on `dir` field specification.
 
-Similarly the OPTIONAL `coil-<label>` key/value can be used to distinguish
+Similarly the OPTIONAL [`coil-<label>`](../99-appendices/09-entities.md#coil) key/value can be used to distinguish
 coil-specific data from sequences not employing coil combination.
 The key `CoilString` MAY also be added in the JSON file, with a corresponding
 coil identifier.
