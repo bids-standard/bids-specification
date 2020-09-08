@@ -176,7 +176,7 @@ JSON file, with the same label.
 #### The `part` entity
 
 This entity is used to indicate which component of the complex representation of the MRI signal is represented in voxel data.
-The `part-<label>` key/value pair is associated with the DICOM tag `0008,9208`.
+The [`part-<label>`](../99-appendices/09-entities.md#part) key/value pair is associated with the DICOM tag `0008,9208`.
 Allowed label values for this entity are `phase`, `mag`, `real` and `imag`, which are typically used in `mag/phase` or `real/imag` pairs.
 For example:
 
