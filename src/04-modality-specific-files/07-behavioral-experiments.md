@@ -27,7 +27,7 @@ Additionally, events files that do not include the mandatory `onset` and
 `duration` columns can still be included, but should be labeled `_beh.tsv`
 rather than `_events.tsv`.
 
-The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label to
+The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair corresponds to a custom label to
 distinguish different conditions present during multiple runs of the same task.
 For example, if a study includes runs of an n-back task, with deep brain
 stimulation turned on or off, the data files may be labelled

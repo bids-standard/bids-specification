@@ -141,21 +141,20 @@ modalities include:
 If the structural images included in the dataset were defaced (to protect
 identity of participants) one MAY provide the binary mask that was used to
 remove facial features in the form of `_defacemask` files.
-In such cases,  the OPTIONAL `mod-<label>` key/value pair corresponds to modality suffix,
+In such cases,  the OPTIONAL [`mod-<label>`](../99-appendices/09-entities.md#mod)
+key/value pair corresponds to modality suffix,
 such as T1w or inplaneT1, referenced by the defacemask image.
 For example, `sub-01_mod-T1w_defacemask.nii.gz`.
 
-#### The `run` entity
-
-If several scans of the same modality are acquired they MUST be indexed with a
-key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only nonnegative integers are allowed as
+If several scans of the same modality are acquired they MUST be indexed with the
+[`run-<index>`](../99-appendices/09-entities.md#run) key-value pair:
+`_run-1`, `_run-2`, `_run-3` etc. (only nonnegative integers are allowed as
 run labels). When there is only one scan of a given type the run key MAY be
 omitted. Please note that diffusion imaging data is stored elsewhere (see
 below).
 
-#### The `acq` entity
-
-The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label the user
+The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
+key/value pair corresponds to a custom label the user
 MAY use to distinguish a different set of parameters used for acquiring the same
 modality. For example this should be used when a study includes two T1w images -
 one full brain low resolution and and one restricted field of view but high
@@ -168,9 +167,8 @@ can also be used to make that distinction. At what level of detail to make the
 distinction (e.g. just between RARE and FLASH, or between RARE, FLASH, and
 FLASHsubsampled) remains at the discretion of the researcher.
 
-#### The `ce` entity
-
-Similarly the OPTIONAL `ce-<label>` key/value can be used to distinguish
+Similarly the OPTIONAL [`ce-<label>`](../99-appendices/09-entities.md#ce)
+key/value can be used to distinguish
 sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the
 JSON file, with the same label.
@@ -184,9 +182,8 @@ fields specific to anatomical scans:
 | -----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ContrastBolusIngredient | OPTIONAL. Active ingredient of agent. Values MUST be one of: IODINE, GADOLINIUM, CARBON DIOXIDE, BARIUM, XENON Corresponds to DICOM Tag 0018,1048. |
 
-#### The `rec` entity
-
-Similarly, the OPTIONAL `rec-<label>` key/value can be used to distinguish
+Similarly, the OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec)
+key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
 
 ### Task (including resting state) imaging data
@@ -217,16 +214,19 @@ multiband acquisitions, one MAY also save the single-band reference image as
 type `sbref` (e.g. `sub-control01_task-nback_sbref.nii.gz`).
 
 Each task has a unique label that MUST only consist of letters and/or numbers
-(other characters, including spaces and underscores, are not allowed).
+(other characters, including spaces and underscores, are not allowed) with the
+[`task-<label>`](../99-appendices/09-entities.md#task) key/value pair.
 Those labels MUST be consistent across subjects and sessions.
 
-If more than one run of the same task has been acquired a key/value pair:
-`_run-1`, `_run-2`, `_run-3` etc. MUST be used. If only one run was acquired the
+If more than one run of the same task has been acquired the
+[`run-<index>`](../99-appendices/09-entities.md#run) key/value pair MUST be used:
+`_run-1`, `_run-2`, `_run-3` etc. If only one run was acquired the
 `run-<index>` can be omitted. In the context of functional imaging a run is
 defined as the same task, but in some cases it can mean different set of stimuli
 (for example randomized order) and participant responses.
 
-The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label one may
+The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
+key/value pair corresponds to a custom label one may
 use to distinguish different set of parameters used for acquiring the same task.
 For example this should be used when a study includes two resting state images -
 one single band and one multiband. In such case two files could have the
@@ -235,22 +235,25 @@ following names: `sub-01_task-rest_acq-singleband_bold.nii.gz` and
 other label than `singleband` and `multiband` as long as they are consistent
 across subjects and sessions and consist only of the legal label characters.
 
-Similarly the OPTIONAL `ce-<label>` key/value can be used to distinguish
+Similarly the OPTIONAL [`ce-<label>`](../99-appendices/09-entities.md#ce)
+key/value can be used to distinguish
 sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key ContrastBolusIngredient MAY be also be added in the JSON
 file, with the same label.
 
-Similarly the OPTIONAL `rec-<label>` key/value can be used to distinguish
+Similarly the OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec)
+key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
 
-Similarly the OPTIONAL `dir-<label>` and `rec-<label>` key/values
+Similarly the OPTIONAL [`dir-<label>`](../99-appendices/09-entities.md#dir)
+and [`rec-<label>`](../99-appendices/09-entities.md#rec) key/values
 can be used to distinguish different phase-encoding directions and
 reconstruction algorithms (for example ones using motion correction).
 See [`fmap` Case 4](01-magnetic-resonance-imaging-data.md#case-4-multiple-phase-encoded-directions-pepolar)
 for more information on `dir` field specification.
 
-Multi-echo data MUST be split into one file per echo. Each file shares the same
-name with the exception of the `_echo-<index>` key/value. For example:
+Multi-echo data MUST be split into one file per echo using the
+[`echo-<index>`](../99-appendices/09-entities.md#echo) key-value pair. For example:
 
 ```Text
 sub-01/
@@ -374,7 +377,8 @@ sub-<label>/[ses-<label>/]
 ```
 
 Diffusion-weighted imaging data acquired for that participant. The OPTIONAL
-`acq-<label>` key/value pair corresponds to a custom label the user may use to
+[`acq-<label>`](../99-appendices/09-entities.md#acq)
+key/value pair corresponds to a custom label the user may use to
 distinguish different set of parameters. For example this should be used when a
 study includes two diffusion images - one single band and one multiband. In such
 case two files could have the following names:
@@ -458,8 +462,10 @@ slashes. Here’s an example with multiple target scans:
 The IntendedFor field is OPTIONAL and in case the fieldmaps do not correspond to
 any particular scans it does not have to be filled.
 
-Multiple fieldmaps can be stored. In such case the `_run-1`, `_run-2` should be
-used. The OPTIONAL `acq-<label>` key/value pair corresponds to a custom label
+Multiple fieldmaps can be stored.
+In such case the [`run-<index>`](../99-appendices/09-entities.md#run) key/value pair should be
+used. The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
+key/value pair corresponds to a custom label
 the user may use to distinguish different set of parameters.
 
 #### Case 1: Phase difference image and at least one magnitude image
@@ -581,7 +587,8 @@ example
 }
 ```
 
-`label` value of `_dir-` can be set to arbitrary alphanumeric label (`[a-zA-Z0-9]+` for
+The `label` value of the [`dir-<label>`](../99-appendices/09-entities.md#dir) key/value pair
+can be set to arbitrary alphanumeric label (`[a-zA-Z0-9]+` for
 example `LR` or `AP`) that can help users to distinguish between different
 files, but should not be used to infer any scanning parameters (such as phase
 encoding directions) of the corresponding sequence. Please rely only on the JSON
