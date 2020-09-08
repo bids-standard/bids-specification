@@ -52,21 +52,45 @@ To learn more about CTF’s data organization:
 
 ## Neuromag/Elekta/MEGIN
 
-Neuromag/Elekta/MEGIN data and Tristan Technologies BabyMEG data is stored with
-file extension `.fif`. The digitized positions of the head points are saved
-inside the fif file along with the MEG data, with typically no `_headshape`
-file.
+Neuromag/Elekta/MEGIN and Tristan Technologies BabyMEG data is stored as
+FIFF files with the extension `.fif`. The digitized positions of the head
+points are saved inside the FIFF file along with the MEG data, with typically no
+`_headshape` file.
 
 ```Text
 sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.fif
 ```
 
-Note that we do not provide specifications for cross-talk and
-fine-calibration matrix files in the current version of BIDS.
+### Cross-talk and fine-calibration files
 
-Example:
+In case internal active shielding (IAS) was used during acquisition, raw FIFF
+files need to be processed using Maxwell filtering
+(signal-space separation, SSS) to make the data usable.
+To this end, two specific files are needed:
+The *cross-talk* file, and the *fine-calibration* file,
+both of which are produced by the MaxFilter software
+and the work of the Neuromag/Elekta/MEGIN engineers during maintenance of the MEG acquisition system.
+Both files are thus specific to the site of recording and may change in the
+process of regular system maintenance.
+
+In BIDS, the cross-talk and fine-calibration files are shared unmodified,
+but with BIDS file naming convention and by using the `acq` entity.
+
+-   cross-talk file template: `[sub-<label>][_ses-<label>][_]acq-crosstalk_meg.dat`
+-   fine-calibration file template: `[sub-<label>][_ses-<label>][_]acq-calibration_meg.fif`
+
+Note that cross-talk files MUST be denoted using `acq-crosstalk` and
+fine-calibration files MUST be denoted using `acq-calibration`.
+
+By making use of the [Inheritance Principle](../02-common-principles.md#the-inheritance-principle),
+the cross-talk and fine-calibration data can be stored at any level of nesting within the BIDS dataset.
+For example for each session, or only once for a whole dataset.
+
+Example FIFF dataset with cross-talk and fine-calibration files stored once at the dataset root:
 
 ```Text
+acq-crosstalk_meg.dat
+acq-calibration_meg.fif
 sub-control01/
     ses-001/
         sub-control01_ses-001_scans.tsv
@@ -77,9 +101,11 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_channels.tsv
 ```
 
-After applying the MaxFilter pre-processing tool, files should be renamed with
-the corresponding label (e.g., `proc-sss`) and placed into a `derivatives`
-subfolder.
+### Sharing FIFF data after signal-space separation (SSS)
+
+After applying SSS (e.g., by using the MaxFilter software),
+files SHOULD be renamed with the corresponding label (e.g., `proc-sss`)
+and placed in a `derivatives` subfolder.
 
 Example:
 
@@ -88,8 +114,11 @@ sub-control01_ses-001_task-rest_run-01_proc-sss_meg.fif
 sub-control01_ses-001_task-rest_run-01_proc-sss_meg.json
 ```
 
+### Split files
+
 In the case of long data recordings that exceed a file size of 2Gb, the `.fif`
-files are conventionally split into multiple parts. For example:
+files are conventionally split into multiple parts.
+For example:
 
 ```Text
 some_file.fif
@@ -103,7 +132,7 @@ names with dedicated tools like [MNE](https://mne.tools), which will ensure
 that not only the file names, but also the internal file pointers will be
 updated.
 
-It is RECOMMENDED that `.fif` files with multiple parts use the `split-<index>`
+It is RECOMMENDED that FIFF files with multiple parts use the `split-<index>`
 entity to indicate each part.
 
 Example:
@@ -118,7 +147,7 @@ More information can be found under the following links:
 -   [Neuromag/Elekta/MEGIN data organization](http://www.fieldtriptoolbox.org/getting_started/neuromag)
 -   [BabyMEG](http://www.fieldtriptoolbox.org/getting_started/babysquid)
 
-### recording dates in `.fif` files
+### Recording dates in `.fif` files
 
 It is important to note that recording dates in `.fif` files are represented
 as `int32` format seconds since (or before) [*the Epoch*](https://en.wikipedia.org/wiki/Unix_time)

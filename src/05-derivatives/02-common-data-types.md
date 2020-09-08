@@ -183,9 +183,7 @@ be propagated to the JSON description of the derivative unless the processing
 makes them invalid (e.g., if a source 4D image is averaged to create a single
 static volume, a `RepetitionTime` property would no longer be relevant).
 
-[]: <> (################)
-[]: <> (Link definitions)
-[]: <> (################)
+<!-- Link Definitions -->
 
 [coordsys]: ../99-appendices/08-coordinate-systems.md#image-based-coordinate-systems
 [templates]: ../99-appendices/08-coordinate-systems.md#standard-template-identifiers

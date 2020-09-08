@@ -57,7 +57,7 @@ misunderstanding we clarify them here.
     due to different subject response or randomized nature of the stimuli). Run
     is a synonym of a data acquisition.
 
-1.  **`<index>`** - a numeric value, possibly prefixed with arbitrary number of
+1.  **`<index>`** - a nonnegative integer, possibly prefixed with arbitrary number of
     0s for consistent indentation, e.g., it is `01` in `run-01` following
     `run-<index>` specification.
 
@@ -99,8 +99,8 @@ A file name consists of a chain of *entities*, or key-value pairs, a *suffix* an
 Two prominent examples of entities are `subject` and `session`.
 
 For a data file that was collected in a given `session` from a given
-`subject`, the file name MUST begin with the string `sub-<label>_ses-<label>`. 
-If the `session` level is omitted in the folder structure, the file name MUST begin 
+`subject`, the file name MUST begin with the string `sub-<label>_ses-<label>`.
+If the `session` level is omitted in the folder structure, the file name MUST begin
 with the string `sub-<label>`, without `ses-<label>`.
 
 Note that `sub-<label>` corresponds to the `subject` entity because it has
@@ -134,8 +134,11 @@ See [Storage of derived datasets](#storage-of-derived-datasets) for more on
 organizing derivatives.
 
 Similar rules apply to source data, which is defined as data before
-harmonization, reconstruction, and/or file format conversion (for example, E-Prime event logs or
-DICOM files). This specification currently does not go into details of
+harmonization, reconstruction, and/or file format conversion (for example, E-Prime event logs or DICOM files).
+Storing actual source files with the data is preferred over links to
+external source repositories to maximize long term preservation,
+which would suffer if an external repository would not be available anymore.
+This specification currently does not go into the details of
 recommending a particular naming scheme for including different types of
 source data (raw event logs, parameter files, etc. before conversion to BIDS).
 However, in the case that these data are to be included:
@@ -173,7 +176,7 @@ In this example, where `sourcedata` and `derivatives` are not nested inside
 `rawdata`, **only the `rawdata` subfolder** needs to be a BIDS-compliant
 dataset.
 The subfolders of `derivatives` MAY be BIDS-compliant derivatives datasets
-(see [Non-compliant derivatives][#non-compliant-derivatives] for further discussion).
+(see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
 This specification does not prescribe anything about the contents of `sourcedata`
 folders in the above example - nor does it prescribe the `sourcedata`,
 `derivatives`, or `rawdata` folder names.
@@ -271,7 +274,7 @@ Any subject-specific derivatives should be housed within each subject’s direct
 if session-specific derivatives are generated, they should be deposited under a
 session subdirectory within the corresponding subject directory; and so on.
 
-### Non-compliant deriatives
+### Non-compliant derivatives
 
 Nothing in this specification should be interpreted to disallow the
 storage/distribution of non-compliant derivatives of BIDS datasets.
@@ -412,7 +415,7 @@ onset duration  response_time correct stop_trial  go_trial
 ```
 
 Tabular files MAY be optionally accompanied by a simple data dictionary
-in the form of a [JSON object](https://www.w3schools.com/js/js_json_objects.asp)
+in the form of a JSON [object](https://www.json.org/json-en.html)
 within a JSON file.
 The JSON files containing the data dictionaries MUST have the same name as
 their corresponding tabular files but with `.json` extensions.
@@ -646,9 +649,7 @@ Validation and parsing tools MAY treat the presence of non-standard files and
 directories as an error, so consult the details of these tools for mechanisms
 to suppress warnings or provide interpretations of your file names.
 
-[]: <> (################)
-[]: <> (Link definitions)
-[]: <> (################)
+<!-- Link Definitions -->
 
 [dataset-description]: 03-modality-agnostic-files.md#dataset-description
 [derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description

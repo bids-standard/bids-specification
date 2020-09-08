@@ -2,10 +2,10 @@
 
 ## Introduction
 
-To interpret a coordinate (x, y, z), it is required that you know relative to
-which origin the coordinates are expressed, you have to know the interpretation
-of the three axes, and you have to know the units in which the numbers are
-expressed. This information is sometimes called the coordinate system.
+To interpret a coordinate (x, y, z), it is required that you know (1) relative
+to which origin the coordinate is expressed, (2) the interpretation of the
+three axes, and (3) the units in which the numbers are expressed.
+This information is sometimes called the coordinate system.
 
 These letters help describe the coordinate system definition:
 
@@ -17,11 +17,14 @@ For example: `RAS` means that the first dimension (X) points towards the right
 hand side of the head, the second dimension (Y) points towards the Anterior
 aspect of the head, and the third dimension (Z) points towards the top of the
 head.
+The directions are considered to be from the subject's perspective.
+For example, in the `RAS` coordinate system, a point to the subject's left
+will have a negative `x` value.
 
 Besides coordinate systems, defined by their origin and direction of the axes,
 BIDS defines "spaces" as an artificial frame of reference, created to describe
 different anatomies in a unifying manner (see e.g.,
-[https://doi.org/10.1016/j.neuroimage.2012.01.024](https://www.sciencedirect.com/science/article/pii/S1053811912000419?via%3Dihub)).
+[https://doi.org/10.1016/j.neuroimage.2012.01.024](https://doi.org/10.1016/j.neuroimage.2012.01.024)).
 The "space" and all coordinates expressed in this space are by design a
 transformation of the real world geometry, and nearly always different from the
 individual subject space that it stems from. An example is the
@@ -42,20 +45,28 @@ different conventions used in specific software packages developed by different
 ## Coordinate Systems applicable to MEG, EEG, and iEEG
 
 Generally, across the MEG, EEG, and iEEG modalities, the first two pieces of
-information (origin, orientation) are specified in `XXXCoordinateSystem`, and
-the units are specified in `XXXCoordinateSystemUnits`.
+information for a coordinate system (origin and orientation) are specified in
+`<datatype>CoordinateSystem`.
+The third piece of information for a coordinate system (units) are specified in
+`<datatype>CoordinateSystemUnits`.
+Here, `<datatype>` can be one of `MEG`, `EEG`, or `iEEG`, depending on the
+modality that is being used.
 
-Allowed values for the `XXXCoordinateSystem` field come from a list of
-restricted keywords, as listed in the sections below. If no value from the list
-of restricted keywords fits, there is always the option to specify the value as
-follows:
+Allowed values for the `<datatype>CoordinateSystem` field come from a list of
+restricted keywords, as listed in the sections below.
+If no value from the list of restricted keywords fits, there is always the
+option to specify the value as follows:
 
--   `Other`: Use this for other coordinate systems and specify further details
-    in the `XXXCoordinateSystemDescription` field
+-   `Other`: Use this for other coordinate systems and specify further details
+    in the `<datatype>CoordinateSystemDescription` field
+
+**If you believe a specific coordinate system should be added to the list
+of restricted keywords for MEG, EEG, or iEEG, please open a new issue on the
+[bids-standard/bids-specification GitHub repository](https://github.com/bids-standard/bids-specification/issues/new/choose).**
 
 ## MEG Specific Coordinate Systems
 
-Restricted keywords for the `XXXCoordinateSystem` field in the
+Restricted keywords for the `<datatype>CoordinateSystem` field in the
 `coordinatesystem.json` file for MEG datasets:
 
 -   `CTF`: ALS orientation and the origin between the ears
@@ -70,10 +81,10 @@ detailed extensive descriptions of these EEG coordinate systems on the
 
 ## EEG Specific Coordinate Systems
 
-Restricted keywords for the `XXXCoordinateSystem` field in the
+Restricted keywords for the `<datatype>CoordinateSystem` field in the
 `coordsystem.json` file for EEG datasets:
 
--   `Captrak`: RAS orientation and the origin between the ears
+-   `CapTrak`: RAS orientation and the origin between the ears
 
 Note that the short descriptions above do not capture all details, There are
 detailed extensive descriptions of these EEG coordinate systems on the
@@ -81,7 +92,7 @@ detailed extensive descriptions of these EEG coordinate systems on the
 
 ## iEEG Specific Coordinate Systems
 
-Restricted keywords for the `XXXCoordinateSystem` field in the
+Restricted keywords for the `<datatype>CoordinateSystem` field in the
 `coordsystem.json` file for iEEG datasets:
 
 -   `Pixels`: If electrodes are localized in 2D space (only x and y are
@@ -103,11 +114,11 @@ Restricted keywords for the `XXXCoordinateSystem` field in the
 ## Image-based Coordinate Systems
 
 The transformation of the real world geometry to an artificial frame of
-reference is described in `XXXCoordinateSystem`.
+reference is described in `<datatype>CoordinateSystem`.
 Unless otherwise specified below, the origin is at the AC and the orientation of
 the axes is RAS.
-Unless specified explicitly in the sidecar file in the `XXXCoordinateSystemUnits` field,
-the units are assumed to be mm.
+Unless specified explicitly in the sidecar file in the
+`<datatype>CoordinateSystemUnits` field, the units are assumed to be mm.
 
 ### Standard template identifiers
 
@@ -166,8 +177,6 @@ Please note that `space-scanner` SHOULD NOT be used, it is mentioned in this spe
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | scanner           | The intrinsic coordinate system of the original image (the first entry of `RawSources`) after reconstruction and conversion to NIfTI or equivalent for the case of surfaces and dual volume/surface files.                                                            |
 
-[]: <> (################)
-[]: <> (Link definitions)
-[]: <> (################)
+<!-- Link Definitions -->
 
 [common file level metadata fields]: ../05-derivatives/02-common-data-types.md#common-file-level-metadata-fields
