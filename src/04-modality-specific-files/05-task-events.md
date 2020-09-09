@@ -167,7 +167,7 @@ The object supplied for `StimulusPresentation` SHOULD include the following key-
 | SoftwareName    | RECOMMENDED. Name of the software that was used to present the stimuli.                                                                                                                                                       |
 | SoftwareRRID    | RECOMMENDED. [Research Resource Identifier](https://scicrunch.org/resources) of the software that was used to present the stimuli. Examples: The RRID for Psychtoolbox is 'SCR_002881', and that of PsychoPy is 'SCR_006571'. |
 | SoftwareVersion | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                                    |
-| Code            | RECOMMENDED. DOI of the archive (for example on Zenodo, figshare, etc.) for the code that was used to present the stimuli. Alternatively this could be a URL to code on GitHub, GitLab, etc.                                  |
+| Code            | RECOMMENDED. URI of the code used to present the stimuli. Persistent identifiers such as DOIs are preferred. If multiple versions of code may be hosted at the same location, revision-specific URIs are recommended.     |
 
 The operating system description should include:
 -   type (Windows, MacOS, Linux),
