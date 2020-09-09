@@ -88,7 +88,7 @@ In the accompanying JSON sidecar, the `trial_type` column might look as follows:
 ```
 
 Note that all other columns SHOULD also be described but are omitted for the
-sake of example.
+sake of brevity.
 
 For multi-echo files, the `*_events.tsv` file is applicable to all echos of
 a particular run:
@@ -132,28 +132,28 @@ in the accompanying JSON sidecar as follows:
 ```JSON
 {
    "trial_type": {
-       "LongName":   "Emotion image type",
+       "LongName": "Emotion image type",
        "Descripton": "Type of emotional face from Karolinska database that is displayed",
        "Levels": {
           "afraid": "A face showing fear is displayed",
-          "angry":  "A face showing anger is displayed",
-		  "sad":    "A face showing sadness is displayed"
+          "angry": "A face showing anger is displayed",
+          "sad": "A face showing sadness is displayed"
         }
    },
    "identifier": {
-       "LongName": "Unique identifier from Karolinska (KDEF) database",
+       "LongName": "Karolinska (KDEF) database identifier",
        "Description": "ID from KDEF database used to identify the displayed image"
    }
 }
 ```
 
 Note that all other columns SHOULD also be described but are omitted for the
-sake of example.
+sake of brevity.
 
 ## Stimulus presentation details
 
-Specific fields related to stimulus presentation details SHOULD also be present
-in the accompanying JSON sidecar:
+It is RECOMMENDED to include details of the stimulus presentation software,
+when applicable:
 
 | Field name           | Description                                                                                                                                                                                                                                                        |
 |----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -203,7 +203,7 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
         "SoftwareName": "Psychtoolbox",
         "SoftwareRRID": "SCR_002881",
         "SoftwareVersion": "3.0.14",
-        "Code": "10.5281/zenodo.3581316"
+        "Code": "doi:10.5281/zenodo.3581316"
     }
 }
 ```
