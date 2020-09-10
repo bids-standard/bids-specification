@@ -203,7 +203,7 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
         "SoftwareName": "Psychtoolbox",
         "SoftwareRRID": "SCR_002881",
         "SoftwareVersion": "3.0.14",
-        "Code": "doi:10.5281/zenodo.3581316"
+        "Code": "doi:10.5281/zenodo.3361717"
     }
 }
 ```
