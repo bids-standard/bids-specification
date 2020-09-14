@@ -270,7 +270,7 @@ This section may be omitted if whole blood measurements of radioactivity were no
 | Description | REQUIRED. Radioactivity in whole blood samples.                                                                                      |
 | Units       | REQUIRED. Unit of  radioactivity measurements  in whole blood samples (e.g. "kBq/mL") |   
 
-### Example (`*_recording-discrete_blood.tsv`)
+### Example (`*_recording-blood_discrete.tsv`)
 ```JSON
 {
     "time": {
