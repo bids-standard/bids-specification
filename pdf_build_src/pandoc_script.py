@@ -36,8 +36,6 @@ def build_pdf(filename):
         '--include-in-header=./header_setup.tex',
         '-V documentclass=report',
         '-V linkcolor:blue',
-        '-V geometry:a4paper',
-        '-V geometry:margin=0.5cm',
         '--pdf-engine=xelatex',
         '--output={}'.format(filename),
     ]
