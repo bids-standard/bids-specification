@@ -544,6 +544,8 @@ For additional rules, see below:
 
 -   Frequency SHOULD be expressed in Hertz.
 
+-   Arbitrary/unitless units SHOULD be represented with the format `arbitrary`.
+
 Describing dates and timestamps:
 
 -   Date time information MUST be expressed in the following format
