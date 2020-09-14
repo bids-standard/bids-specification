@@ -426,13 +426,13 @@ Note that if a field name included in the data dictionary matches a column name 
 then that field MUST contain a description of the corresponding column,
 using an object containing the following fields:
 
-| Field name  | Definition                                                                                                                   |
-| :---------- | :--------------------------------------------------------------------------------------------------------------------------- |
-| LongName    | OPTIONAL. Long (unabbreviated) name of the column.                                                                           |
-| Description | RECOMMENDED. Description of the column.                                                                                      |
-| Levels      | RECOMMENDED. For categorical variables: a dictionary of possible values (keys) and their descriptions (values).              |
-| Units       | RECOMMENDED. Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
-| TermURL     | RECOMMENDED. URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
+| Field name  | Requirement level | Data type                                              | Definition                                                                                                      |
+| ----------- | ----------------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| LongName    | OPTIONAL          | [string][string]                                       | Long (unabbreviated) name of the column.                                                                        |
+| Description | RECOMMENDED       | [string][string]                                       | Description of the column.                                                                                      |
+| Levels      | RECOMMENDED       | [object][object] with `string: string` key-value pairs | For categorical variables: An object of possible values (keys) and their descriptions (values).                 |
+| Units       | RECOMMENDED       | [string][string]                                       | Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
+| TermURL     | RECOMMENDED       | [string][string]                                       | URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
 
 Please note that while both `Units` and `Levels` are RECOMMENDED, typically only one
 of these two fields would be specified for describing a single TSV file column.
@@ -653,3 +653,5 @@ to suppress warnings or provide interpretations of your file names.
 
 [dataset-description]: 03-modality-agnostic-files.md#dataset-description
 [derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description
+[string]: https://www.w3schools.com/js/js_json_syntax.asp
+[object]: https://www.w3schools.com/js/js_json_objects.asp
