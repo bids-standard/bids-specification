@@ -37,7 +37,7 @@ def build_pdf(filename):
         '-V documentclass=report',
         '-V linkcolor:blue',
         '-V geometry:a4paper',
-        '-V geometry:margin=2cm',
+        '-V geometry:margin=0.5cm',
         '--pdf-engine=xelatex',
         '--output={}'.format(filename),
     ]
