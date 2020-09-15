@@ -169,16 +169,20 @@ The object supplied for `StimulusPresentation` SHOULD include the following key-
 | SoftwareVersion | RECOMMENDED. Version of the software that was used to present the stimuli.                                                                                                                                                    |
 | Code            | RECOMMENDED. [URI][uri] of the code used to present the stimuli. Persistent identifiers such as DOIs are preferred. If multiple versions of code may be hosted at the same location, revision-specific URIs are recommended.  |
 
-The operating system description should include:
--   type (Windows, macOS, Linux),
--   distribution (if applicable: Ubuntu, Debian, CentOS, …)
--   the version number or equivalent code name
+The operating system description SHOULD include the following attributes:
+
+-   type (e.g., Windows, macOS, Linux)
+-   distribution (if applicable, e.g., Ubuntu, Debian, CentOS)
+-   the version number (e.g., 18.04.5)
 
 Examples:
--   Windows - 10
--   macOS - Catalina or macOS - 10.15
--   Linux - Ubuntu - Bionic Beaver
--   Linux - Ubuntu - 18.04.5 LTS
+
+-   Windows 10, Version 2004
+-   macOS 10.15.6
+-   Linux Ubuntu 18.04.5
+
+The amount of information supplied for the `OperatingSystem` SHOULD be sufficient
+to re-run the code under maximally similar conditions.
 
 The information related to stimulus presentation might be described
 in the accompanying JSON sidecar as follows (based on the example of the previous section):
@@ -199,7 +203,7 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
        "Description": "ID from KDEF database used to identify the displayed image"
    },
     "StimulusPresentation": {
-        "OperatingSystem": "Linux-Ubuntu 18.04.5 LTS",
+        "OperatingSystem": "Linux Ubuntu 18.04.5",
         "SoftwareName": "Psychtoolbox",
         "SoftwareRRID": "SCR_002881",
         "SoftwareVersion": "3.0.14",
