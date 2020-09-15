@@ -170,8 +170,8 @@ The object supplied for `StimulusPresentation` SHOULD include the following key-
 | Code            | RECOMMENDED. [URI][uri] of the code used to present the stimuli. Persistent identifiers such as DOIs are preferred. If multiple versions of code may be hosted at the same location, revision-specific URIs are recommended.  |
 
 The operating system description should include:
--   type (Windows, MacOS, Linux),
--   distribution (if applicable: Ubuntu, Debian)
+-   type (Windows, macOS, Linux),
+-   distribution (if applicable: Ubuntu, Debian, CentOS, …)
 -   the version number or equivalent code name
 
 Examples:
