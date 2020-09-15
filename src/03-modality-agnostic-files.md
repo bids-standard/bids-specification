@@ -14,20 +14,20 @@ Templates:
 The file `dataset_description.json` is a JSON file describing the dataset.
 Every dataset MUST include this file with the following fields:
 
-| **Field name**     |   **Definition**                                                                                                                                                                                                                                                   |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Name               | REQUIRED. Name of the dataset.                                                                                                                                                                                                                                     |
-| BIDSVersion        | REQUIRED. The version of the BIDS standard that was used.                                                                                                                                                                                                          |
-| HEDVersion         | RECOMMENDED if HED tags are used. The version of the HED schema used to validate HED tags for study.                                                                                                                                                               |
-| DatasetType        | RECOMMENDED. The interpretation of the dataset. MUST be one of `"raw"` or `"derivative"`. For backwards compatibility, the default value is `"raw"`.                                                                                                               |
-| License            | RECOMMENDED. The license for the dataset. The use of license name abbreviations is RECOMMENDED for specifying a license (see [Appendix II](./99-appendices/02-licenses.md)). The corresponding full license text MAY be specified in an additional `LICENSE` file. |
-| Authors            | OPTIONAL. List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                                                             |
-| Acknowledgements   | OPTIONAL. Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                                               |
-| HowToAcknowledge   | OPTIONAL. Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset.                               |
-| Funding            | OPTIONAL. List of sources of funding (grant numbers).                                                                                                                                                                                                              |
-| EthicsApprovals    | OPTIONAL. List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                                                |
-| ReferencesAndLinks | OPTIONAL. List of references to publication that contain information on the dataset, or links.                                                                                                                                                                     |
-| DatasetDOI         | OPTIONAL. The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                                                             |
+| **Key name**       | **Requirement level** | **Data type**            | **Definition**                                                                                                                                                                                                                                        |
+| ------------------ | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name               | REQUIRED              | [string][]               | Name of the dataset.                                                                                                                                                                                                                                  |
+| BIDSVersion        | REQUIRED              | [string][]               | The version of the BIDS standard that was used.                                                                                                                                                                                                       |
+| HEDVersion         | RECOMMENDED           | [string][]               | If HED tags are used: The version of the HED schema used to validate HED tags for study.                                                                                                                                                              |
+| DatasetType        | RECOMMENDED           | [string][]               | The interpretation of the dataset. MUST be one of `"raw"` or `"derivative"`. For backwards compatibility, the default value is `"raw"`.                                                                                                               |
+| License            | RECOMMENDED           | [string][]               | The license for the dataset. The use of license name abbreviations is RECOMMENDED for specifying a license (see [Appendix II](./99-appendices/02-licenses.md)). The corresponding full license text MAY be specified in an additional `LICENSE` file. |
+| Authors            | OPTIONAL              | [array][] of [strings][] | List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                                                          |
+| Acknowledgements   | OPTIONAL              | [string][]               | Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                                            |
+| HowToAcknowledge   | OPTIONAL              | [string][]               | Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset.                            |
+| Funding            | OPTIONAL              | [array][] of [strings][] | List of sources of funding (grant numbers).                                                                                                                                                                                                           |
+| EthicsApprovals    | OPTIONAL              | [array][] of [strings][] | List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                                             |
+| ReferencesAndLinks | OPTIONAL              | [array][] of [strings][] | List of references to publication that contain information on the dataset, or links.                                                                                                                                                                  |
+| DatasetDOI         | OPTIONAL              | [string][]               | The Document Object Identifier of the dataset (not the corresponding paper).                                                                                                                                                                          |
 
 Example:
 
@@ -69,21 +69,21 @@ In addition to the keys for raw BIDS datasets,
 derived BIDS datasets include the following REQUIRED and RECOMMENDED
 `dataset_description.json` keys:
 
-| **Key name**   | **Description**                                                                                                                                                              |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GeneratedBy    | REQUIRED. List of [objects][] with at least one element.                                                                                                                     |
-| SourceDatasets | RECOMMENDED. A list of [objects][] specifying the locations and relevant attributes of all source datasets. Valid fields in each object include `URL`, `DOI`, and `Version`. |
+| **Key name**   | **Requirement level** | **Data type**            | **Definition**                                                                                                                                                      |
+| -------------- | --------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GeneratedBy    | REQUIRED              | [array][] of [objects][] | Used to specify provenance of the derived dataset. See table below for contents of each object.                                                                     |
+| SourceDatasets | RECOMMENDED           | [array][] of [objects][] | Used to specify the locations and relevant attributes of all source datasets. Valid keys in each object include `URL`, `DOI`, and `Version` with [string][] values. |
 
 Each object in the `GeneratedBy` list includes the following REQUIRED, RECOMMENDED
 and OPTIONAL keys:
 
-| **Key name** | **Description**                                                                                                                                                                                              |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Name         | REQUIRED. Name of the pipeline or process that generated the outputs. Use `"Manual"` to indicate the derivatives were generated by hand, or adjusted manually after an initial run of an automated pipeline. |
-| Version      | RECOMMENDED. Version of the pipeline.                                                                                                                                                                        |
-| Description  | OPTIONAL. Plain-text description of the pipeline or process that generated the outputs. RECOMMENDED if `Name` is `"Manual"`.                                                                                 |
-| CodeURL      | OPTIONAL. URL where the code used to generate the derivatives may be found.                                                                                                                                  |
-| Container    | OPTIONAL. [Object][] specifying the location and relevant attributes of software container image used to produce the derivative. Valid fields in this object include `Type`, `Tag` and `URI`.                |
+| **Key name** | **Requirement level** | **Data type** | **Definition**                                                                                                                                                                                     |
+| ------------ | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name         | REQUIRED              | [string][]    | Name of the pipeline or process that generated the outputs. Use `"Manual"` to indicate the derivatives were generated by hand, or adjusted manually after an initial run of an automated pipeline. |
+| Version      | RECOMMENDED           | [string][]    | Version of the pipeline.                                                                                                                                                                           |
+| Description  | OPTIONAL              | [string][]    | Plain-text description of the pipeline or process that generated the outputs. RECOMMENDED if `Name` is `"Manual"`.                                                                                 |
+| CodeURL      | OPTIONAL              | [string][]    | URL where the code used to generate the derivatives may be found.                                                                                                                                  |
+| Container    | OPTIONAL              | [object][]    | Used to specify the location and relevant attributes of software container image used to produce the derivative. Valid keys in this object include `Type`, `Tag` and `URI` with [string][] values. |
 
 Example:
 
@@ -381,3 +381,6 @@ code organization of these scripts at the moment.
 
 [objects]: https://www.json.org/json-en.html
 [object]: https://www.json.org/json-en.html
+[string]: https://www.w3schools.com/js/js_json_syntax.asp
+[strings]: https://www.w3schools.com/js/js_json_syntax.asp
+[array]: https://www.w3schools.com/js/js_json_arrays.asp
