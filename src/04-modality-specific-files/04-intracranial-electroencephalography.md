@@ -67,7 +67,10 @@ additional meta information extracted from the manufacturer-specific data files
 in the sidecar JSON file. Other relevant files MAY be included alongside the
 original iEEG data in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
 
-Note the RecordingType, which depends on whether the data stream on disk is interrupted or not. Continuous data is by definition 1 segment without interruption. Epoched data consists of multiple segments that all have the same length (e.g., corresponding to trials) and that have gaps in between. Discontinuous data consists of multiple segments of different length, for example due to a pause in the acquisition.
+Note the RecordingType, which depends on whether the data stream on disk is interrupted or not.
+Continuous data is by definition 1 segment without interruption.
+Epoched data consists of multiple segments that all have the same length (e.g., corresponding to trials) and that have gaps in between.
+Discontinuous data consists of multiple segments of different length, for example due to a pause in the acquisition.
 
 ### Terminology: Electrodes vs. Channels
 
@@ -136,8 +139,8 @@ Whenever possible, please avoid using ad hoc wording.
 
 Specific iEEG fields SHOULD be present:
 
-| **Key name**                    | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                  |
-| ------------------------------- | --------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Key name**                    | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                                                                                                                                 |
+| ------------------------------- | --------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | DCOffsetCorrection              | RECOMMENDED           | [string][]                           | A description of the method (if any) used to correct for a DC offset. If the method used was subtracting the mean value for each channel, use "mean".                                                                                                                                                                           |
 | HardwareFilters                 | RECOMMENDED           | [object][] of [objects][] or `"n/a"` | [Object][] of temporal hardware filters applied, or `"n/a"` if the data is not available. Each key:value pair in the JSON object is a name of the filter and an object in which its parameters are defined as key:value pairs. E.g., `{"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dB/Octave"}}` |
 | ElectrodeManufacturer           | RECOMMENDED           | [string][]                           | Can be used if all electrodes are of the same manufacturer (e.g., AD-TECH, DIXI). If electrodes of different manufacturers are used, please use the corresponding table in the \_electrodes.tsv file.                                                                                                                           |
@@ -348,10 +351,10 @@ MUST be present:
 
 SHOULD be present:
 
-| **Column name**  | **Requirement level** | **Definition**                                                                                                                                             |
-| ---------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| material         | RECOMMENDED           | Material of the electrodes.                                                                                                                                |
-| manufacturer     | RECOMMENDED           | Recommended field to specify the manufacturer for each electrode. Can be used if electrodes were manufactured by more than one company.                    |
+| **Column name**  | **Requirement level** | **Definition**                                                                                                                                                |
+| ---------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| material         | RECOMMENDED           | Material of the electrodes.                                                                                                                                   |
+| manufacturer     | RECOMMENDED           | Recommended field to specify the manufacturer for each electrode. Can be used if electrodes were manufactured by more than one company.                       |
 | group            | RECOMMENDED           | RECOMMENDED field to specify the group that the electrode is a part of. Note that any group specified here should match a group specified in `_channels.tsv`. |
 | hemisphere       | RECOMMENDED           | RECOMMENDED field to specify the hemisphere in which the electrode is placed, one of `['L' or 'R']` (use capital).                                            |
 
