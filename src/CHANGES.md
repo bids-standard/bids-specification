@@ -11,6 +11,7 @@
 -   \[FIX] Fix link in Common principles [#583](https://github.com/bids-standard/bids-specification/pull/583) ([tsalo](https://github.com/tsalo))
 -   \[ENH] Specify how to share cross-talk and fine-calibration for Neuromag/Elekta/MEGIN data [#581](https://github.com/bids-standard/bids-specification/pull/581) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Specify echo and run indices are nonnegative integers in schema [#578](https://github.com/bids-standard/bids-specification/pull/578) ([tsalo](https://github.com/tsalo))
+-   \[ENH] add optional presentation software name, version, OS, and code to events.json [#573](https://github.com/bids-standard/bids-specification/pull/573) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] added PPG as an accepted channel type for EEG, MEG and iEEG [#570](https://github.com/bids-standard/bids-specification/pull/570) ([robertoostenveld](https://github.com/robertoostenveld))
 -   \[INFRA] Move entity definitions to a separate page [#568](https://github.com/bids-standard/bids-specification/pull/568) ([tsalo](https://github.com/tsalo))
 -   \[INFRA] enable pandoc emojis for the pdf build [#562](https://github.com/bids-standard/bids-specification/pull/562) ([sappelhoff](https://github.com/sappelhoff))
