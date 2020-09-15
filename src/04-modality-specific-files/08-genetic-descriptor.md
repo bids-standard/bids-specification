@@ -113,7 +113,6 @@ To ensure dataset description consistency, we recommend following [Multi-omics a
 }
 ```
 
-
 <!-- Link Definitions -->
 
 [object]: https://www.json.org/json-en.html
