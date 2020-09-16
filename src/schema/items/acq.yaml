@@ -17,4 +17,5 @@ description: |
   At what level of detail to make the distinction (e.g. just between RARE and
   FLASH, or between RARE, FLASH, and FLASHsubsampled) remains at the
   discretion of the researcher.
+# Entity-specific fields
 format: label

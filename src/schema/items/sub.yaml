@@ -3,4 +3,5 @@ name: Subject
 class: entity
 description: |
   A person or animal participating in the study.
+# Entity-specific fields
 format: label

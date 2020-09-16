@@ -7,4 +7,5 @@ description: |
   The label is the name of the contrast agent.
   The key `ContrastBolusIngredient` MAY be also be added in the JSON file,
   with the same label.
+# Entity-specific fields
 format: label

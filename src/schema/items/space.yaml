@@ -5,4 +5,5 @@ description: |
   The space label (`*[_space-<label>]_electrodes.tsv`) can be used
   to indicate the way in which electrode positions are interpreted.
   The space label needs to be taken from the list in Appendix VIII.
+# Entity-specific fields
 format: label

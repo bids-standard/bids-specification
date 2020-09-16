@@ -6,4 +6,5 @@ description: |
   numbers (other characters, including spaces and underscores, are not
   allowed).
   Those labels MUST be consistent across subjects and sessions.
+# Entity-specific fields
 format: label

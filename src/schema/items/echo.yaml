@@ -8,4 +8,5 @@ description: |
   Please note that the `<index>` denotes the number/index (in the form of a
   nonnegative integer) of the echo not the echo time value which needs to be
   stored in the field `EchoTime` of the separate JSON file.
+# Entity-specific fields
 format: index

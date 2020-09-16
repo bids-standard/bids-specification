@@ -6,4 +6,5 @@ description: |
   sampling frequencies).
   In such case use different labels.
   For example: `_recording-contrast`, `_recording-saturation`.
+# Entity-specific fields
 format: label

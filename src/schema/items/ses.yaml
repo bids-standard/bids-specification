@@ -16,4 +16,5 @@ description: |
   Defining multiple sessions is appropriate when several identical or similar
   data acquisitions are planned and performed on all -or most- subjects,
   often in the case of some intervention between sessions (e.g., training).
+# Entity-specific fields
 format: label

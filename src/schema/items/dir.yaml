@@ -4,4 +4,5 @@ class: entity
 description: |
   The `dir-<label>` key/value can be used to distinguish
   different phase-encoding directions.
+# Entity-specific fields
 format: label
