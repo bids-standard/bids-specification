@@ -1,0 +1,7 @@
+---
+name: Phase-Encoding Direction
+class: entity
+description: |
+  The `dir-<label>` key/value can be used to distinguish
+  different phase-encoding directions.
+format: label
