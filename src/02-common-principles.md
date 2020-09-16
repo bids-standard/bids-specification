@@ -33,12 +33,19 @@ misunderstanding we clarify them here.
     a brain scanning instrument was acquiring data according to particular
     scanning sequence/protocol.
 
-1.  **Data type** - a functional group of different types of data. In BIDS we
-    define eight data types: `func` (task based and resting state functional MRI),
-    `dwi` (diffusion weighted imaging), `fmap` (field inhomogeneity mapping data
-    such as field maps), `anat` (structural imaging such as T1, T2, etc.), `meg`
-    (magnetoencephalography), `eeg` (electroencephalography), `ieeg` (intracranial
-    electroencephalography), `beh` (behavioral).
+1.  **Data type** - a functional group of different types of data.
+    BIDS defines eight data types:
+    `func` (task based and resting state functional MRI),
+    `dwi` (diffusion weighted imaging),
+    `fmap` (field inhomogeneity mapping data such as field maps),
+    `anat` (structural imaging such as T1, T2, etc.),
+    `meg` (magnetoencephalography),
+    `eeg` (electroencephalography),
+    `ieeg` (intracranial electroencephalography),
+    `beh` (behavioral).
+    Data files are contained in a directory named for the data type.
+    In raw datasets, the data type directory is nested inside subject and
+    (optionally) session directories.
 
 1.  **Task** - a set of structured activities performed by the participant.
     Tasks are usually accompanied by stimuli and responses, and can greatly vary
@@ -56,6 +63,16 @@ misunderstanding we clarify them here.
     acquisition parameters and task (however events can change from run to run
     due to different subject response or randomized nature of the stimuli). Run
     is a synonym of a data acquisition.
+
+1.  **Modality** - the category of brain data recorded by a file.
+    For MRI data, different pulse sequences are considered distinct modalities,
+    such as `T1w`, `bold` or `dwi`.
+    For passive recording techniques, such as EEG, MEG or iEEG,
+    the technique is sufficiently uniform to define the modalities `eeg`,
+    `meg` and `ieeg`.
+    When applicable, the modality is indicated in the **suffix**.
+    The modality may overlap with, but should not be confused with
+    the **data type**.
 
 1.  **`<index>`** - a nonnegative integer, possibly prefixed with arbitrary number of
     0s for consistent indentation, e.g., it is `01` in `run-01` following
