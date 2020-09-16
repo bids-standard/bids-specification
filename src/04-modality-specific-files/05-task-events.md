@@ -76,13 +76,13 @@ In the accompanying JSON sidecar, the `trial_type` column might look as follows:
 
 ```JSON
 {
-   "trial_type": {
-       "LongName": "Event category",
-       "Description": "Indicator of type of action that is expected",
-       "Levels": {
-          "go": "A red square is displayed to indicate starting",
-          "stop": "A blue square is displayed to indicate stopping",
-       }
+    "trial_type": {
+        "LongName": "Event category",
+        "Description": "Indicator of type of action that is expected",
+        "Levels": {
+            "go": "A red square is displayed to indicate starting",
+            "stop": "A blue square is displayed to indicate stopping",
+        }
     }
 }
 ```
@@ -131,19 +131,19 @@ in the accompanying JSON sidecar as follows:
 
 ```JSON
 {
-   "trial_type": {
-       "LongName": "Emotion image type",
-       "Descripton": "Type of emotional face from Karolinska database that is displayed",
-       "Levels": {
-          "afraid": "A face showing fear is displayed",
-          "angry": "A face showing anger is displayed",
-          "sad": "A face showing sadness is displayed"
+    "trial_type": {
+        "LongName": "Emotion image type",
+        "Descripton": "Type of emotional face from Karolinska database that is displayed",
+        "Levels": {
+            "afraid": "A face showing fear is displayed",
+            "angry": "A face showing anger is displayed",
+            "sad": "A face showing sadness is displayed"
         }
-   },
-   "identifier": {
-       "LongName": "Karolinska (KDEF) database identifier",
-       "Description": "ID from KDEF database used to identify the displayed image"
-   }
+    },
+    "identifier": {
+        "LongName": "Karolinska (KDEF) database identifier",
+        "Description": "ID from KDEF database used to identify the displayed image"
+    }
 }
 ```
 
@@ -189,19 +189,19 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
 
 ```JSON
 {
-   "trial_type": {
-       "LongName":   "Emotion image type",
-       "Descripton": "Type of emotional face from Karolinska database that is displayed",
-       "Levels": {
-          "afraid": "A face showing fear is displayed",
-          "angry":  "A face showing anger is displayed",
-		  "sad":    "A face showing sadness is displayed"
+    "trial_type": {
+        "LongName":   "Emotion image type",
+        "Descripton": "Type of emotional face from Karolinska database that is displayed",
+        "Levels": {
+            "afraid": "A face showing fear is displayed",
+            "angry":  "A face showing anger is displayed",
+            "sad":    "A face showing sadness is displayed"
         }
-   },
-   "identifier": {
-       "LongName": "Unique identifier from Karolinska (KDEF) database",
-       "Description": "ID from KDEF database used to identify the displayed image"
-   },
+    },
+    "identifier": {
+        "LongName": "Unique identifier from Karolinska (KDEF) database",
+        "Description": "ID from KDEF database used to identify the displayed image"
+    },
     "StimulusPresentation": {
         "OperatingSystem": "Linux Ubuntu 18.04.5",
         "SoftwareName": "Psychtoolbox",

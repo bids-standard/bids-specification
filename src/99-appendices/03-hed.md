@@ -25,9 +25,9 @@ file to annotate events:
 Example: An `*_events.tsv` annotated using HED tags for individual events.
 
 ```Text
-onset	duration	HED
-1.1	n/a	Event/Category/Experimental stimulus, Event/Label/CrossFix,  Sensory presentation/Visual, Item/Object/2D Shape/Cross
-1.3	n/a	Event/Category/Participant response, Event/Label/ButtonPress, Action/Button press
+onset   duration    HED
+1.1 n/a Event/Category/Experimental stimulus, Event/Label/CrossFix,  Sensory presentation/Visual, Item/Object/2D Shape/Cross
+1.3 n/a Event/Category/Participant response, Event/Label/ButtonPress, Action/Button press
 ...
 ```
 
@@ -57,10 +57,10 @@ on three possible values: `Fixation`, `Button`, and `Target`.
 Example: An `*_events.tsv` containing the `mycodes` categorical column.
 
 ```Text
-onset	duration	mycodes
-1.1	n/a	Fixation
-1.3	n/a	Button
-1.8	n/a	Target
+onset   duration    mycodes
+1.1 n/a Fixation
+1.3 n/a Button
+1.8 n/a Target
 ...
 
 ```
@@ -76,22 +76,22 @@ Example: An accompanying `*_events.json` sidecar describing the `mycodes` catego
           "Fixation": "Fixation cross is displayed",
           "Target":   "Target image appears",
           "Button":   "Subject presses a button"
-       },	  
+       },     
        "HED": {
            "Fixation": "Event/Category/Experimental stimulus, Event/Label/CrossFix,
-		       Event/Description/A cross appears at screen center to serve as a fixation point,
-		       Sensory presentation/Visual, Item/Object/2D Shape/Cross,
-		       Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen,
-		       Attribute/Location/Screen/Center",
+               Event/Description/A cross appears at screen center to serve as a fixation point,
+               Sensory presentation/Visual, Item/Object/2D Shape/Cross,
+               Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen,
+               Attribute/Location/Screen/Center",
            "Target":   "Event/Label/TargetImage, Event/Category/Experimental stimulus,
-		       Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed.,
-		       Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target,
-		       Sensory presentation/Visual/Rendering type/Screen/2D),
-		       (Item/Natural scene/Arial/Satellite,
-		       Sensory presentation/Visual/Rendering type/Screen/2D)",
+               Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed.,
+               Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target,
+               Sensory presentation/Visual/Rendering type/Screen/2D),
+               (Item/Natural scene/Arial/Satellite,
+               Sensory presentation/Visual/Rendering type/Screen/2D)",
            "Button":   "Event/Category/Participant response, Event/Label/PressButton, 
-		       Event/Description/The participant presses the button as soon as the target is visible,
-		       Action/Button press"
+               Event/Description/The participant presses the button as soon as the target is visible,
+               Action/Button press"
         }
    }
 }
@@ -103,13 +103,13 @@ Each column of `*_events.tsv` containing non-categorical values usually represen
 example the `speed` of a stimulus object across the screen or the file name of the image file. These variables
 could be annotated in the HED column of `*_events.tsv`. However, that approach requires repeating the values
 appearing in the individual columns in the HED column. A better approach is to annotate the type of value
-contained in each of these columns in the `*_events.json` sidecar in a way similar to that used for categorical
-values. Value variables are annotated in a manner similar to categorical values, except that the HED string
-must contain exactly one `#`. Tools are responsible for substituting the actual column value for the `#` during
+contained in each of these columns in the `*_events.json` sidecar. Value variables are annotated in a manner 
+similar to categorical values, except that the HED string must contain exactly one `#` specifying a placeholder
+for the actual column values. Tools are responsible for substituting the actual column values for the `#` during
 analysis.
 
-Example: An `*_events.tsv` containing a `trial_type` categorical column two value
-columns:`response_time` and `stim_file`.
+Example: An `*_events.tsv` containing a categorical column (`trial_type`) and two value
+columns (`response_time` and `stim_file`).
 
 
 ```Text
@@ -130,32 +130,32 @@ Example: An accompanying `*_events.json` sidecar describing both categorical and
        },
        "HED": {
           "go": "Event/Category/Experimental stimulus, Event/Label/RedSquare,
-	      Event/Description/A red square is displayed to indicate starting,
-	      Sensory presentation/Visual, Item/Object/2D Shape/Square,
-	      Attribute/Visual/Color/Red, Attribute/Visual/Rendering type/Screen,
-	      Attribute/Location/Screen/Center",
-	      "stop": "Event/Category/Experimental stimulus, Event/Label/BlueSquare,
-	      Event/Description/A blue square is displayed to indicate stopping,
-	      Sensory presentation/Visual, Item/Object/2D Shape/Square,
-	      Attribute/Visual/Color/Blue, Attribute/Visual/Rendering type/Screen,
-	      Attribute/Location/Screen/Center",
+          Event/Description/A red square is displayed to indicate starting,
+          Sensory presentation/Visual, Item/Object/2D Shape/Square,
+          Attribute/Visual/Color/Red, Attribute/Visual/Rendering type/Screen,
+          Attribute/Location/Screen/Center",
+          "stop": "Event/Category/Experimental stimulus, Event/Label/BlueSquare,
+          Event/Description/A blue square is displayed to indicate stopping,
+          Sensory presentation/Visual, Item/Object/2D Shape/Square,
+          Attribute/Visual/Color/Blue, Attribute/Visual/Rendering type/Screen,
+          Attribute/Location/Screen/Center",
        }
-	},
-	"response_time": {
+   },
+   "response_time": {
        "LongName": "Reponse time after stimulus",
        "Description": "Time from stimulus presentation until subject presses button",
        "Units": "ms",
        "HED": {
           "response_time": "Attribute/Response start delay/# ms, Action/Button press"
        }
-	},
-	"stim_file": {
+   },
+   "stim_file": {
        "LongName": "Stimulus file name",
        "Description": "Relative path of the stimulus image file",
        "HED": {
           "stim_file": "Attribute/File/#"
        }
-	}
+   }
 }
 ```
 
@@ -171,7 +171,7 @@ form the union before analysis. Further, the [inheritance principle](../02-commo
 applies, so the data dictionaries can appear higher in the BIDS hierarchy. 
 
 You can should try to annotate in as much detail as possible. The HED path structure makes it easy
-for analysis tools to look at tags at different levels of detail, for example only consider 2D
+for analysis tools to extract tags at different levels of detail, for example only consider 2D
 shapes for stimuli, but not worry about color or shape details.  
 
 
