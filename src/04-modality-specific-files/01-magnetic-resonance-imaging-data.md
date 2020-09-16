@@ -2,7 +2,8 @@
 
 ## Common metadata fields
 
-MR Data described in sections 8.3.x share the following RECOMMENDED metadata
+MR Data described in the [Magnetic Resonance Imaging](./01-magnetic-resonance-imaging-data.md#magnetic-resonance-imaging)
+section share the following RECOMMENDED metadata
 fields (stored in sidecar JSON files). MRI acquisition parameters are divided
 into several categories based on
 ["A checklist for fMRI acquisition methods reporting in the literature"](https://thewinnower.com/papers/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature)
