@@ -544,7 +544,7 @@ For additional rules, see below:
 
 -   Frequency SHOULD be expressed in Hertz.
 
--   Arbitrary/unitless units SHOULD be represented with the format `arbitrary`.
+-   Arbitrary units SHOULD be indicated with the string `"arbitrary"`.
 
 Describing dates and timestamps:
 
