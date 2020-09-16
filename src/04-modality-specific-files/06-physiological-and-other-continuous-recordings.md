@@ -96,11 +96,11 @@ sub-control01/
 To store pulse or breathing measurements, or the scanner trigger signal, the
 following naming conventions SHOULD be used for the column names:
 
-| Column name | Definition                                           |
-| ----------- | ---------------------------------------------------- |
-| cardiac     | continuous pulse measurement                         |
-| respiratory | continuous breathing measurement                     |
-| trigger     | continuous measurement of the scanner trigger signal |
+| **Column name** | **Description**                                      |
+| --------------- | ---------------------------------------------------- |
+| cardiac         | continuous pulse measurement                         |
+| respiratory     | continuous breathing measurement                     |
+| trigger         | continuous measurement of the scanner trigger signal |
 
 For any other data to be specified in columns, the column names can be chosen
 as deemed appropriate by the researcher.

@@ -212,7 +212,7 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
-| **Column name** | **Requirement level** | **Definition**                                                                                                                                                         |
+| **Column name** | **Requirement level** | **Description**                                                                                                                                                        |
 | --------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name            | REQUIRED              | Channel name (e.g., FC1, Cz)                                                                                                                                           |
 | type            | REQUIRED              | Type of channel; MUST use the channel types listed below. Note that the type MUST be in upper-case.                                                                    |
@@ -220,7 +220,7 @@ MUST be present:
 
 SHOULD be present:
 
-| **Column name**    | **Requirement level** | **Definition**                                                                                                                                                                                                                                                  |
+| **Column name**    | **Requirement level** | **Description**                                                                                                                                                                                                                                                 |
 | ------------------ | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | description        | OPTIONAL              | Free-form text description of the channel, or other information of interest. See examples below.                                                                                                                                                                |
 | sampling_frequency | OPTIONAL              | Sampling rate of the channel in Hz.                                                                                                                                                                                                                             |
@@ -289,7 +289,7 @@ file MUST be specified as well**. The order of the required columns in the
 
 MUST be present:
 
-| **Column name** | **Requirement level** | **Definition**                      |
+| **Column name** | **Requirement level** | **Description**                     |
 | --------------- | --------------------- | ----------------------------------- |
 | name            | REQUIRED              | Name of the electrode.              |
 | x               | REQUIRED              | Recorded position along the x-axis. |
@@ -298,7 +298,7 @@ MUST be present:
 
 SHOULD be present:
 
-| **Column name** | **Requirement level** | **Definition**                                                  |
+| **Column name** | **Requirement level** | **Description**                                                 |
 | --------------- | --------------------- | --------------------------------------------------------------- |
 | type            | RECOMMENDED           | Type of the electrode (e.g., cup, ring, clip-on, wire, needle). |
 | material        | RECOMMENDED           | Material of the electrode  (e.g., Tin, Ag/AgCl, Gold).          |
@@ -381,22 +381,22 @@ Fields relating to the EEG electrode positions:
 
 Fields relating to the position of fiducials measured during an EEG session/run:
 
-| **Key name**                         | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                             |
-| ------------------------------------ | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| FiducialsDescription                 | OPTIONAL              | [string][]    | Free-form text description of how the fiducials such as vitamin-E capsules were placed relative to anatomical landmarks, and how the position of the fiducials were measured (e.g., both with Polhemus and with T1w MRI).   |
-| FiducialsCoordinates                 | RECOMMENDED           | [string][]    | Key:value pairs of the labels and 3-D digitized position of anatomical landmarks, interpreted following the `FiducialsCoordinateSystem` (e.g., `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). |
-| FiducialsCoordinateSystem            | RECOMMENDED           | [string][]    | Refers to the coordinate space to which the landmarks positions are to be interpreted - preferably the same as the `EEGCoordinateSystem`.                                                                                   |
-| FiducialsCoordinateUnits             | RECOMMENDED           | [string][]    | Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented. MUST be `m`, `cm`, or `mm`.                                                                              |
-| FiducialsCoordinateSystemDescription | RECOMMENDED           | [string][]    | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                      |
+| **Key name**                         | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                             |
+| ------------------------------------ | --------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FiducialsDescription                 | OPTIONAL              | [string][]               | Free-form text description of how the fiducials such as vitamin-E capsules were placed relative to anatomical landmarks, and how the position of the fiducials were measured (e.g., both with Polhemus and with T1w MRI).   |
+| FiducialsCoordinates                 | RECOMMENDED           | [object][] of [arrays][] | Key:value pairs of the labels and 3-D digitized position of anatomical landmarks, interpreted following the `FiducialsCoordinateSystem` (e.g., `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). |
+| FiducialsCoordinateSystem            | RECOMMENDED           | [string][]               | Refers to the coordinate space to which the landmarks positions are to be interpreted - preferably the same as the `EEGCoordinateSystem`.                                                                                   |
+| FiducialsCoordinateUnits             | RECOMMENDED           | [string][]               | Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented. MUST be `m`, `cm`, or `mm`.                                                                              |
+| FiducialsCoordinateSystemDescription | RECOMMENDED           | [string][]               | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                      |
 
 Fields relating to the position of anatomical landmark measured during an EEG session/run:
 
-| **Key name**                                  | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                      |
-| --------------------------------------------- | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| AnatomicalLandmarkCoordinates                 | RECOMMENDED           | [string][]    | Key:value pairs of the labels and 3-D digitized position of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem` (e.g., `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). |
-| AnatomicalLandmarkCoordinateSystem            | RECOMMENDED           | [string][]    | Refers to the coordinate space to which the landmarks positions are to be interpreted - preferably the same as the `EEGCoordinateSystem`.                                                                                            |
-| AnatomicalLandmarkCoordinateUnits             | RECOMMENDED           | [string][]    | Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented. MUST be `m`, `cm`, or `mm`.                                                                                       |
-| AnatomicalLandmarkCoordinateSystemDescription | RECOMMENDED           | [string][]    | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                               |
+| **Key name**                                  | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                      |
+| --------------------------------------------- | --------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| AnatomicalLandmarkCoordinates                 | RECOMMENDED           | [object][] of [arrays][] | Key:value pairs of the labels and 3-D digitized position of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem` (e.g., `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). |
+| AnatomicalLandmarkCoordinateSystem            | RECOMMENDED           | [string][]               | Refers to the coordinate space to which the landmarks positions are to be interpreted - preferably the same as the `EEGCoordinateSystem`.                                                                                            |
+| AnatomicalLandmarkCoordinateUnits             | RECOMMENDED           | [string][]               | Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented. MUST be `m`, `cm`, or `mm`.                                                                                       |
+| AnatomicalLandmarkCoordinateSystemDescription | RECOMMENDED           | [string][]               | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                               |
 
 If the position of anatomical landmarks is measured using the same system or
 device used to measure electrode positions, and if thereby the anatomical
@@ -456,3 +456,4 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 [number]: https://www.w3schools.com/js/js_json_datatypes.asp
 [integer]: https://www.w3schools.com/js/js_json_datatypes.asp
 [string]: https://www.w3schools.com/js/js_json_datatypes.asp
+[arrays]: https://www.w3schools.com/js/js_json_arrays.asp

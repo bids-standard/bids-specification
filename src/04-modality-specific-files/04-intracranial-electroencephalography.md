@@ -236,7 +236,7 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
-| **Column name**  | **Requirement level** | **Definition**                                                                                                                                                                                              |
+| **Column name**  | **Requirement level** | **Description**                                                                                                                                                                                             |
 | ---------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name             | REQUIRED              | Label of the channel. The label must correspond to \_electrodes.tsv name and all ieeg type channels are required to have a position. The reference channel name MAY be provided in the reference column.    |
 | type             | REQUIRED              | Type of channel, see below for adequate keywords in this field. Note that the type MUST be in upper case.                                                                                                   |
@@ -246,7 +246,7 @@ MUST be present:
 
 SHOULD be present:
 
-| **Column name**    | **Requirement level** | **Definition**                                                                                                                                                                                                                                                             |
+| **Column name**    | **Requirement level** | **Description**                                                                                                                                                                                                                                                            |
 | ------------------ | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | reference          | OPTIONAL              | Specification of the reference (e.g., 'mastoid', 'ElectrodeName01', 'intracranial', 'CAR', 'other', 'n/a'). If the channel is not an electrode channel (e.g., a microphone channel) use `n/a`.                                                                             |
 | group              | OPTIONAL              | Which group of channels (grid/strip/seeg/depth) this channel belongs to. This is relevant because one group has one cable-bundle and noise can be shared. This can be a name or number. Note that any groups specified in `_electrodes.tsv` must match those present here. |
@@ -341,7 +341,7 @@ listed below.
 
 MUST be present:
 
-| **Column name**  | **Requirement level** | **Definition**                                                                                                                   |
+| **Column name**  | **Requirement level** | **Description**                                                                                                                  |
 | ---------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | name             | REQUIRED              | Name of the electrode contact point.                                                                                             |
 | x                | REQUIRED              | X position. The positions of the center of each electrode in xyz space. Units are specified in `space-<label>_coordsystem.json`. |
@@ -351,7 +351,7 @@ MUST be present:
 
 SHOULD be present:
 
-| **Column name**  | **Requirement level** | **Definition**                                                                                                                                                |
+| **Column name**  | **Requirement level** | **Description**                                                                                                                                               |
 | ---------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | material         | RECOMMENDED           | Material of the electrodes.                                                                                                                                   |
 | manufacturer     | RECOMMENDED           | Recommended field to specify the manufacturer for each electrode. Can be used if electrodes were manufactured by more than one company.                       |
@@ -360,7 +360,7 @@ SHOULD be present:
 
 MAY be present:
 
-| **Column name** | **Requirement level** | **Definition**                                                                                                                                  |
+| **Column name** | **Requirement level** | **Description**                                                                                                                                 |
 | --------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | type            | OPTIONAL              | Optional type of the electrode, e.g., cup, ring, clip-on, wire, needle, ...                                                                     |
 | impedance       | OPTIONAL              | Impedance of the electrode, units MUST be in `kOhm`.                                                                                            |
