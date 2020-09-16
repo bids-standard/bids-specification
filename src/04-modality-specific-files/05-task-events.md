@@ -212,6 +212,10 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
 }
 ```
 
+Note: Events can also be documented in machine-actionable form using HED (Hierarchical Event Descriptor) tags.
+This type of documentation is particularly useful for datasets likely to be used in event-related analyses.
+See [Hierarchical Event Descriptors](../99-appendices/03-hed.md) for additional information and examples.
+
 <!-- Link Definitions -->
 
 [object]: https://www.json.org/json-en.html
