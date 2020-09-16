@@ -618,3 +618,5 @@ IntendedFor field in the JSON file should be used.
 [numbers]: https://www.w3schools.com/js/js_json_datatypes.asp
 [boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
+[arrays]: https://www.w3schools.com/js/js_json_arrays.asp
+[object]: https://www.json.org/json-en.html

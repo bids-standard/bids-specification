@@ -453,6 +453,7 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 <!-- Link Definitions -->
 
 [object]: https://www.json.org/json-en.html
+[objects]: https://www.json.org/json-en.html
 [number]: https://www.w3schools.com/js/js_json_datatypes.asp
 [integer]: https://www.w3schools.com/js/js_json_datatypes.asp
 [string]: https://www.w3schools.com/js/js_json_datatypes.asp
