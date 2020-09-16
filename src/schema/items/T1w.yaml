@@ -1,0 +1,17 @@
+---
+name: T1-weighted
+class: suffix
+description: |
+  T1-weighted MRI scan.
+# Suffix-specific fields
+extensions:
+  - .nii.gz
+  - .nii
+  - .json
+entities:
+  sub: required
+  ses: optional
+  run: optional
+  acq: optional
+  ce: optional
+  rec: optional
