@@ -253,6 +253,61 @@ def flatten_multiindexed_columns(df):
     return df
 
 
+def build_filename_format(schema, datatype):
+    entities = list(schema["entities"].keys())
+
+    paragraph = u""
+    # Parent folders
+    paragraph += "{}-{}/[{}-{}/]\n".format(
+        "sub",
+        "<" + schema['entities']["sub"]["format"] + ">",
+        "ses",
+        "<" + schema['entities']["ses"]["format"] + ">"
+    )
+    paragraph += "\t{}/\n".format(datatype)
+
+    # Unique filename patterns
+    for group in schema["datatypes"][datatype]:
+        string = "\t\t"
+        for ent in entities:
+            ent_format = "{}-<{}>".format(ent, schema['entities'][ent]["format"])
+            if ent in group["entities"]:
+                if group["entities"][ent] == "required":
+                    if len(string.strip()):
+                        string += "_" + ent_format
+                    else:
+                        string += ent_format
+                else:
+                    if len(string):
+                        string += "[_" + ent_format + "]"
+                    else:
+                        string += "[" + ent_format + "]"
+
+        # In cases of large numbers of suffixes,
+        # we use the "suffix" variable and expect a table later in the spec
+        if len(group["suffixes"]) > 4:
+            suffix = "_<suffix>"
+            string += suffix
+            strings = [string]
+        else:
+            strings = [string + "_" + suffix for suffix in group["suffixes"]]
+
+        # Add extensions
+        full_strings = []
+        for extension in group["extensions"]:
+            if extension == ".json":
+                continue
+            for string in strings:
+                new_string = string + extension
+                full_strings.append(new_string)
+        full_strings = sorted(full_strings)
+        paragraph += "\n".join(full_strings) + "\n"
+    paragraph = paragraph.rstrip()
+    codeblock = "```Text\n" + paragraph + "\n```"
+    codeblock = codeblock.expandtabs(4)
+    return codeblock
+
+
 def make_entity_table(schema_path, entities_file='09-entities.md'):
     """Produce entity table (markdown) based on schema.
     This only works if the top-level schema *directory* is provided.

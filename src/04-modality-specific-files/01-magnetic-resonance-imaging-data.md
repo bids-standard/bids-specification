@@ -111,6 +111,8 @@ whenever possible. See also
 
 Template:
 
+{{ make_filenames("anat") }}
+
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
@@ -197,6 +199,8 @@ Currently supported image contrasts include:
 | Phase | phase            | Phase information associated with magnitude information stored in BOLD contrast                      |
 
 Template:
+
+{{ make_filenames("func") }}
 
 ```Text
 sub-<label>/[ses-<label>/]
