@@ -55,7 +55,7 @@ def copy_images(root_path):
     # walk through the src directory to find subdirectories named 'images'
     # and copy contents to the 'images' directory in the duplicate src
     # directory
-    for root, dirs, files in os.walk(root_path):
+    for root, dirs, files in sorted(os.walk(root_path)):
         if 'images' in dirs:
             subdir_list.append(root)
 
@@ -112,7 +112,7 @@ def remove_internal_links(root_path, link_type):
         # regex that matches references sections within the same markdown
         primary_pattern = re.compile(r'\[([\w\s.\(\)`*/–]+)\]\(([#\w\-._\w]+)\)')
 
-    for root, dirs, files in os.walk(root_path):
+    for root, dirs, files in sorted(os.walk(root_path)):
         for file in files:
             if file.endswith(".md"):
                 with open(os.path.join(root, file), 'r') as markdown:
@@ -178,6 +178,13 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
         # Ignore number of dashes in the count of characters
         if i != 1:
             nb_of_chars.append([len(elem) for elem in row])
+
+    # sanity check: nb_of_chars is list of list, all nested lists must be of equal length
+    if not len(set([len(i) for i in nb_of_chars])) == 1:
+        print('ERROR for current table ... "nb_of_chars" is misaligned, see:\n')
+        print(nb_of_chars)
+        print('\nSkipping formatting of this table.\n')
+        return table
 
     # Convert the list to a numpy array and computes the maximum number of chars for each column
     nb_of_chars_arr = np.array(nb_of_chars)
@@ -285,7 +292,7 @@ def correct_tables(root_path, debug=False):
     .. [1] https://stackoverflow.com/a/21107911/5201771
     """
     exclude_files = ['index.md', '01-contributors.md']
-    for root, dirs, files in os.walk(root_path):
+    for root, dirs, files in sorted(os.walk(root_path)):
         for file in files:
             if file.endswith(".md") and file not in exclude_files:
                 print('Check tables in {}'.format(os.path.join(root, file)))
