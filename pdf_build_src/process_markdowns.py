@@ -86,13 +86,13 @@ def add_header():
     header = " ".join([title, version_number, build_date])
 
     # creating a header string with latest version number and date
-    header_string = (r"\chead{ " + header + " }")
+    header_string = (r"\fancyhead[L]{ " + header + " }")
 
     with open('header.tex', 'r') as file:
         data = file.readlines()
 
-    # now change the last but 2nd line, note that you have to add a newline
-    data[-2] = header_string+'\n'
+    # insert the header, note that you have to add a newline
+    data[4] = header_string+'\n'
 
     # re-write header.tex file with new header string
     with open('header.tex', 'w') as file:
