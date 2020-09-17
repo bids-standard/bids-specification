@@ -18,6 +18,9 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 ## Magnetic Resonance Imaging
 
+{{ make_entity_table(datatype=["func", "anat", "fmap"]) }}
+
+
 | Entity                                                                                         | Subject                             | Session                             | Task                                  | Acquisition                         | Contrast Enhancing Agent          | Reconstruction                      | Phase-Encoding Direction            | Run                                 | Corresponding Modality              | Echo                                  | Recording                                       |
 |------------------------------------------------------------------------------------------------|-------------------------------------|-------------------------------------|---------------------------------------|-------------------------------------|-----------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|---------------------------------------|-------------------------------------------------|
 | Format                                                                                         | [`sub-<label>`](09-entities.md#sub) | [`ses-<label>`](09-entities.md#ses) | [`task-<label>`](09-entities.md#task) | [`acq-<label>`](09-entities.md#acq) | [`ce-<label>`](09-entities.md#ce) | [`rec-<label>`](09-entities.md#rec) | [`dir-<label>`](09-entities.md#dir) | [`run-<index>`](09-entities.md#run) | [`mod-<label>`](09-entities.md#mod) | [`echo-<index>`](09-entities.md#echo) | [`recording-<label>`](09-entities.md#recording) |
@@ -30,6 +33,9 @@ while entity definitions are in [Appendix IX](09-entities.md).
 | func<br>(physio stim)                                                                          | REQUIRED                            | OPTIONAL                            | REQUIRED                              | OPTIONAL                            |                                   | OPTIONAL                            |                                     | OPTIONAL                            |                                     |                                       | OPTIONAL                                        |
 
 ## Encephalography (EEG, iEEG, and MEG)
+
+{{ make_entity_table(datatype=["meg", "ieeg", "eeg"]) }}
+
 
 | Entity                     | Subject                             | Session                             | Task                                  | Acquisition                         | Run                                 | Processed (on device)                 | Space                                   | Split                                   |
 |----------------------------|-------------------------------------|-------------------------------------|---------------------------------------|-------------------------------------|-------------------------------------|---------------------------------------|-----------------------------------------|-----------------------------------------|
@@ -45,6 +51,8 @@ while entity definitions are in [Appendix IX](09-entities.md).
 | photo<br>(meg eeg ieeg)    | REQUIRED                            | OPTIONAL                            |                                       | OPTIONAL                            |                                     |                                       |                                         |                                         |
 
 ## Behavioral Data
+
+{{ make_entity_table(datatype=["beh"]) }}
 
 | Entity               | Subject                             | Session                             | Task                                  | Acquisition                         | Run                                 | Recording                                       |
 |----------------------|-------------------------------------|-------------------------------------|---------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------------------|

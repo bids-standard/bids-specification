@@ -111,7 +111,7 @@ whenever possible. See also
 
 Template:
 
-{{ make_filenames("anat") }}
+{{ make_filename_template(datatype="anat") }}
 
 ```Text
 sub-<label>/[ses-<label>/]
@@ -200,7 +200,7 @@ Currently supported image contrasts include:
 
 Template:
 
-{{ make_filenames("func") }}
+{{ make_filename_template(datatype="func") }}
 
 ```Text
 sub-<label>/[ses-<label>/]
@@ -369,6 +369,8 @@ participant, task and run takes precedence.
 
 Template:
 
+{{ make_filename_template(datatype="dwi") }}
+
 ```Text
 sub-<label>/[ses-<label>/]
     dwi/
@@ -473,6 +475,8 @@ key/value pair corresponds to a custom label
 the user may use to distinguish different set of parameters.
 
 #### Case 1: Phase difference image and at least one magnitude image
+
+{{ make_filename_template(datatype="fmap") }}
 
 Template:
 
