@@ -22,24 +22,3 @@
     run: optional
     proc: optional
     split: optional
-# Second group
-- suffixes:
-    - headshape
-  extensions:
-    - .pos
-    - .txt
-  entities:
-    sub: required
-    ses: optional
-    acq: optional
-    space: optional
-- suffixes:
-    - markers
-  extensions:
-    - .json
-  entities:
-    sub: required
-    ses: optional
-    task: optional
-    acq: optional
-    space: optional

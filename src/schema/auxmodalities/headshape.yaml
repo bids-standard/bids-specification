@@ -1,0 +1,13 @@
+---
+- datatypes:
+    - meg
+  suffixes:
+    - headshape
+  extensions:
+    - .pos
+    - .txt
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+    space: optional
