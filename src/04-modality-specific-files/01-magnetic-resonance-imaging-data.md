@@ -611,6 +611,7 @@ IntendedFor field in the JSON file should be used.
 
 [deprecated]: https://en.wikipedia.org/wiki/Deprecation
 [string]: https://www.w3schools.com/js/js_json_datatypes.asp
+[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
 [integer]: https://www.w3schools.com/js/js_json_datatypes.asp
 [number]: https://www.w3schools.com/js/js_json_datatypes.asp
 [numbers]: https://www.w3schools.com/js/js_json_datatypes.asp
