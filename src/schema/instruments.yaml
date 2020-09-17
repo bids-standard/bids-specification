@@ -6,13 +6,10 @@ mri:
     - dwi
     - fmap
     - func
-eeg:
-  name: Electroencephalography
+bioamp:
+  name: Biopotential Amplification
   datatypes:
     - eeg
-ieeg:
-  name: Intracranial Electroencephalography
-  datatypes:
     - ieeg
 meg:
   name: Magnetoencephalography
