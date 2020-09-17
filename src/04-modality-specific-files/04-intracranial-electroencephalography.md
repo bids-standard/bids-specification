@@ -354,7 +354,7 @@ MUST be present:
 SHOULD be present:
 
 | **Column name**  | **Requirement level** | **Description**                                                                                                                  |
-| ---------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| ---------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | material         | RECOMMENDED           | Material of the electrodes.                                                                                                      |
 | manufacturer     | RECOMMENDED           | The manufacturer for each electrode. Can be used if electrodes were manufactured by more than one company.                       |
 | group            | RECOMMENDED           | The group that the electrode is a part of. Note that any group specified here should match a group specified in `_channels.tsv`. |
