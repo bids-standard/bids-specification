@@ -353,12 +353,12 @@ MUST be present:
 
 SHOULD be present:
 
-| **Column name**  | **Requirement level** | **Description**                                                                                                                                               |
-| ---------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| material         | RECOMMENDED           | Material of the electrodes.                                                                                                                                   |
-| manufacturer     | RECOMMENDED           | Recommended field to specify the manufacturer for each electrode. Can be used if electrodes were manufactured by more than one company.                       |
-| group            | RECOMMENDED           | RECOMMENDED field to specify the group that the electrode is a part of. Note that any group specified here should match a group specified in `_channels.tsv`. |
-| hemisphere       | RECOMMENDED           | RECOMMENDED field to specify the hemisphere in which the electrode is placed, one of `['L' or 'R']` (use capital).                                            |
+| **Column name**  | **Requirement level** | **Description**                                                                                                                  |
+| ---------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| material         | RECOMMENDED           | Material of the electrodes.                                                                                                      |
+| manufacturer     | RECOMMENDED           | The manufacturer for each electrode. Can be used if electrodes were manufactured by more than one company.                       |
+| group            | RECOMMENDED           | The group that the electrode is a part of. Note that any group specified here should match a group specified in `_channels.tsv`. |
+| hemisphere       | RECOMMENDED           | The hemisphere in which the electrode is placed, one of `['L' or 'R']` (use capital).                                            |
 
 MAY be present:
 
