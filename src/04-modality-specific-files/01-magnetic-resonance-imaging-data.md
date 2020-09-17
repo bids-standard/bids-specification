@@ -2,8 +2,7 @@
 
 ## Common metadata fields
 
-MR Data described in the [Magnetic Resonance Imaging](./01-magnetic-resonance-imaging-data.md#magnetic-resonance-imaging)
-section (this section) share the following RECOMMENDED metadata
+MR Data described in the following sections share the following RECOMMENDED metadata
 fields (stored in sidecar JSON files). MRI acquisition parameters are divided
 into several categories based on
 ["A checklist for fMRI acquisition methods reporting in the literature"](https://thewinnower.com/papers/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature)
@@ -63,7 +62,7 @@ so that it can be used as a mechanism for checking that a given scan was collect
 | EffectiveEchoSpacing           | RECOMMENDED           | [number][]    | The "effective" sampling interval, specified in seconds, between lines in the phase-encoding direction, defined based on the size of the reconstructed image in the phase direction. It is frequently, but incorrectly, referred to as "dwell time" (see `DwellTime` parameter below for actual dwell time). It is required for unwarping distortions using field maps. Note that beyond just in-plane acceleration, a variety of other manipulations to the phase encoding need to be accounted for properly, including partial fourier, phase oversampling, phase resolution, phase field-of-view and interpolation.<sup>2</sup> This parameter is REQUIRED if corresponding fieldmap data is present.                                                                                                                  |
 | TotalReadoutTime               | RECOMMENDED           | [number][]    | This is actually the "effective" total readout time , defined as the readout duration, specified in seconds, that would have generated data with the given level of distortion. It is NOT the actual, physical duration of the readout train. If `EffectiveEchoSpacing` has been properly computed, it is just `EffectiveEchoSpacing * (ReconMatrixPE - 1)`.<sup>3</sup> . This parameter is REQUIRED if corresponding "field/distortion" maps acquired with opposing phase encoding directions are present (see 8.9.4).                                                                                                                                                                                                                                                                                                  |
 
-<sup>2</sup>Conveniently, for Siemens' data, this value is easily obtained as
+<sup>2</sup>Conveniently, for Siemens data, this value is easily obtained as
 1/\[`BWPPPE` \* `ReconMatrixPE`\], where BWPPPE is the
 "`BandwidthPerPixelPhaseEncode` in DICOM tag (0019,1028) and ReconMatrixPE is
 the size of the actual reconstructed data in the phase direction (which is NOT
@@ -89,7 +88,6 @@ first "effective" echo and the center of the last "effective" echo.
 | **Key name**                | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                       |
 | --------------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | FlipAngle                   | RECOMMENDED           | [number][]    | Flip angle for the acquisition, specified in degrees. Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.                                                                                                                                                                                                              |
-| MultibandAccelerationFactor | RECOMMENDED           | [number][]    | The multiband factor, for multiband acquisitions.                                                                                                                                                                                                                                                                     |
 | NegativeContrast            | OPTIONAL              | [boolean][]   | `true` or `false` value specifying whether increasing voxel intensity (within sample voxels) denotes a decreased value with respect to the contrast suffix. This is commonly the case when Cerebral Blood Volume is estimated via usage of a contrast agent in conjunction with a T2\* weighted acquisition protocol. |
 
 #### Slice Acceleration

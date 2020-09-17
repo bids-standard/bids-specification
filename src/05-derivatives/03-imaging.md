@@ -131,13 +131,13 @@ and the `Atlas` metadata SHOULD be defined.
 
 JSON metadata fields:
 
-| **Key name** | **Requirement level**                              | **Data type**                                      | **Description**                                                                                                                   |
-| ------------ | -------------------------------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| RawSources   | REQUIRED                                           | [array][] of [strings][]                           | Same as defined in [Introduction][intro], but elevated from OPTIONAL to REQUIRED.                                                 |
-| Type         | RECOMMENDED                                        | [string][]                                         | Short identifier of the mask. Reserved values: `Brain` - brain mask, `Lesion` - lesion mask, `Face` - face mask, `ROI` - ROI mask |
-| Atlas        | OPTIONAL, RECOMMENDED if `label` entity is defined | [string][]                                         | Which atlas (if any) was used to generate the mask.                                                                               |
-| Resolution   | REQUIRED if `res` is present                       | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the resolution keyword.                                                                           |
-| Density      | REQUIRED if `den` is present                       | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the density keyword.                                                                              |
+| **Key name** | **Requirement level**                    | **Data type**                                      | **Description**                                                                                                                   |
+| ------------ | ---------------------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| RawSources   | REQUIRED                                 | [array][] of [strings][]                           | Same as defined in [Common data types][], but elevated from OPTIONAL to REQUIRED.                                                 |
+| Type         | RECOMMENDED                              | [string][]                                         | Short identifier of the mask. Reserved values: `Brain` - brain mask, `Lesion` - lesion mask, `Face` - face mask, `ROI` - ROI mask |
+| Atlas        | RECOMMENDED if `label` entity is defined | [string][]                                         | Which atlas (if any) was used to generate the mask.                                                                               |
+| Resolution   | REQUIRED if `res` is present             | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the resolution keyword.                                                                           |
+| Density      | REQUIRED if `den` is present             | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the density keyword.                                                                              |
 
 Examples:
 
@@ -403,7 +403,7 @@ index   name                abbreviation
 
 <!-- Link Definitions -->
 
-[intro]: 01-introduction.md
+[common data types]: 02-common-data-types.md
 [common_preproc]: 02-common-data-types.md#preprocessed-or-cleaned-data
 [object]: https://www.json.org/json-en.html
 [unspecified]: ../02-common-principles.md#unspecified-data
