@@ -209,7 +209,7 @@ def build_filename_format(schema, datatypes):
     )
 
     for datatype in datatypes:
-        paragraph += "\t{}/\n".format(datatypes)
+        paragraph += "\t{}/\n".format(datatype)
 
         # Unique filename patterns
         for group in schema["datatypes"][datatype]:
@@ -238,7 +238,8 @@ def build_filename_format(schema, datatypes):
                 string += suffix
                 strings = [string]
             else:
-                strings = [string + "_" + suffix for suffix in group["suffixes"]]
+                strings = [string + "_" + suffix for suffix in
+                           group["suffixes"]]
 
             # Add extensions
             full_strings = []

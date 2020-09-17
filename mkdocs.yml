@@ -17,7 +17,8 @@ plugins:
          - branch: /(?!^master$)/
            +extra_css:
              - css/watermark.css
-    - macros
+    - macros:
+        module_name: main
 docs_dir: 'src'
 use_directory_urls: false
 nav:
