@@ -19,6 +19,8 @@ context of the academic literature:
 
 Template:
 
+{{ make_filename_template(datatypes=["ieeg"]) }}
+
 ```Text
 sub-<label>/
   [ses-<label>]/

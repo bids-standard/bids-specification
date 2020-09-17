@@ -2,6 +2,8 @@
 
 Template:
 
+{{ make_filename_template(datatypes=["beh"]) }}
+
 ```Text
 sub-<label>/[ses-<label>/]
     beh/

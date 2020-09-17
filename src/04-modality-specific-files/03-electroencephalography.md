@@ -22,6 +22,8 @@ Further datasets are available from the [BIDS examples repository](https://githu
 
 Template:
 
+{{ make_filename_template(datatypes=["eeg"]) }}
+
 ```Text
 sub-<label>/
     [ses-<label>]/

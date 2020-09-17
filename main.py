@@ -29,12 +29,19 @@ def define_env(env):
         return codeblock
     env.macro(make_filename_template)
 
-    def make_entity_table(datatypes):
+    def make_entity_table(**kwargs):
         schema_path = utils.get_schema_path()
         schema_obj = schema.load_schema(schema_path)
-        table = schema.make_entity_table(schema_obj, datatypes=datatypes)
+        table = schema.make_entity_table(schema_obj, **kwargs)
         return table
     env.macro(make_entity_table)
+
+    def make_entity_definitions():
+        schema_path = utils.get_schema_path()
+        schema_obj = schema.load_schema(schema_path)
+        text = schema.make_entity_definitions(schema_obj)
+        return text
+    env.macro(make_entity_definitions)
 
     def make_metadata_table():
         return None

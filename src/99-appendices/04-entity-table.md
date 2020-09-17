@@ -18,7 +18,7 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 ## Magnetic Resonance Imaging
 
-{{ make_entity_table(datatypes=["func", "anat", "fmap"]) }}
+{{ make_entity_table(datatypes=["func", "anat", "fmap"], auxdatatypes=[]) }}
 
 
 | Entity                                                                                         | Subject                             | Session                             | Task                                  | Acquisition                         | Contrast Enhancing Agent          | Reconstruction                      | Phase-Encoding Direction            | Run                                 | Corresponding Modality              | Echo                                  | Recording                                       |
@@ -32,9 +32,9 @@ while entity definitions are in [Appendix IX](09-entities.md).
 | func<br>(bold cbv phase sbref events)                                                          | REQUIRED                            | OPTIONAL                            | REQUIRED                              | OPTIONAL                            | OPTIONAL                          | OPTIONAL                            | OPTIONAL                            | OPTIONAL                            |                                     | OPTIONAL                              |                                                 |
 | func<br>(physio stim)                                                                          | REQUIRED                            | OPTIONAL                            | REQUIRED                              | OPTIONAL                            |                                   | OPTIONAL                            |                                     | OPTIONAL                            |                                     |                                       | OPTIONAL                                        |
 
-## Encephalography (EEG, iEEG, and MEG)
+## Biopotential Amplification (EEG and iEEG)
 
-{{ make_entity_table(datatypes=["meg", "ieeg", "eeg"]) }}
+{{ make_entity_table(datatypes=["ieeg", "eeg"]) }}
 
 
 | Entity                     | Subject                             | Session                             | Task                                  | Acquisition                         | Run                                 | Processed (on device)                 | Space                                   | Split                                   |
@@ -50,9 +50,13 @@ while entity definitions are in [Appendix IX](09-entities.md).
 | events<br>(meg eeg ieeg)   | REQUIRED                            | OPTIONAL                            | REQUIRED                              |                                     | OPTIONAL                            |                                       |                                         |                                         |
 | photo<br>(meg eeg ieeg)    | REQUIRED                            | OPTIONAL                            |                                       | OPTIONAL                            |                                     |                                       |                                         |                                         |
 
+## Magnetoencephalography (MEG)
+
+{{ make_entity_table(datatypes=["meg"]) }}
+
 ## Behavioral Data
 
-{{ make_entity_table(datatypes=["beh"]) }}
+{{ make_entity_table(datatypes=["beh"], auxdatatypes=[]) }}
 
 | Entity               | Subject                             | Session                             | Task                                  | Acquisition                         | Run                                 | Recording                                       |
 |----------------------|-------------------------------------|-------------------------------------|---------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------------------|
