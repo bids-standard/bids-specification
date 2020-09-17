@@ -18,7 +18,7 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 ## Magnetic Resonance Imaging
 
-{{ make_entity_table(datatype=["func", "anat", "fmap"]) }}
+{{ make_entity_table(datatypes=["func", "anat", "fmap"]) }}
 
 
 | Entity                                                                                         | Subject                             | Session                             | Task                                  | Acquisition                         | Contrast Enhancing Agent          | Reconstruction                      | Phase-Encoding Direction            | Run                                 | Corresponding Modality              | Echo                                  | Recording                                       |
@@ -34,7 +34,7 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 ## Encephalography (EEG, iEEG, and MEG)
 
-{{ make_entity_table(datatype=["meg", "ieeg", "eeg"]) }}
+{{ make_entity_table(datatypes=["meg", "ieeg", "eeg"]) }}
 
 
 | Entity                     | Subject                             | Session                             | Task                                  | Acquisition                         | Run                                 | Processed (on device)                 | Space                                   | Split                                   |
@@ -52,7 +52,7 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 ## Behavioral Data
 
-{{ make_entity_table(datatype=["beh"]) }}
+{{ make_entity_table(datatypes=["beh"]) }}
 
 | Entity               | Subject                             | Session                             | Task                                  | Acquisition                         | Run                                 | Recording                                       |
 |----------------------|-------------------------------------|-------------------------------------|---------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------------------|

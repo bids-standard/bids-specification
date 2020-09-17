@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-import argparse
-from itertools import chain
 import logging
 import os
-from pathlib import Path
 import sys
+from copy import deepcopy
+from itertools import chain
+from pathlib import Path
 from warnings import warn
 
 import numpy as np
@@ -88,72 +88,6 @@ def _get_entry_name(path):
         return path.name
 
 
-def _get_parser():
-    """
-    Parses command line inputs for NiMARE
-
-    Returns
-    -------
-    parser.parse_args() : argparse dict
-    """
-    parser = argparse.ArgumentParser(prog='bids')
-    subparsers = parser.add_subparsers(help='BIDS workflows')
-    # show()
-    show_parser = subparsers.add_parser(
-        'show',
-        help=('Print out the schema'),
-    )
-    show_parser.set_defaults(func=show)
-    show_parser.add_argument(
-        'schema_path',
-        type=Path,
-        help=('Path to schema to show.')
-    )
-    # save_entity_table()
-    entitytable_parser = subparsers.add_parser(
-        'entitytable',
-        help=('Save entity table to file')
-    )
-    entitytable_parser.set_defaults(func=save_entity_table)
-    entitytable_parser.add_argument(
-        'schema_path',
-        type=Path,
-        help=('Path to schema to show.')
-    )
-    entitytable_parser.add_argument(
-        'out_file',
-        type=str,
-        help=('Output filename.')
-    )
-    entitytable_parser.add_argument(
-        '--entities_file',
-        type=str,
-        help=('File in which entities are described. '
-              'This is used for hyperlinks in the table, so the path to the '
-              'file should be considered from the location of out_file. '
-              'Default is "09-entities.md".'),
-        default='09-entities.md',
-        required=False,
-    )
-    # save_entities()
-    entities_parser = subparsers.add_parser(
-        'entities',
-        help=('Save entities to file')
-    )
-    entities_parser.set_defaults(func=save_entities)
-    entities_parser.add_argument(
-        'schema_path',
-        type=Path,
-        help=('Path to schema to show.')
-    )
-    entities_parser.add_argument(
-        'out_file',
-        type=str,
-        help=('Output filename.')
-    )
-    return parser
-
-
 def load_schema(schema_path):
     """The schema loader
 
@@ -186,6 +120,14 @@ def load_schema(schema_path):
         return {k: v for k, v in res.items() if v is not None}
     else:
         warn(f"{schema_path} is somehow nothing we can load")
+
+
+def filter_schema(schema, classes=None, entities=None, datatypes=None,
+                  suffixes=None, extensions=None):
+    """A simple filtering function. You can limit the schema to specific values.
+    """
+    new_schema = deepcopy(schema)
+    return new_schema
 
 
 def show(schema_path):
@@ -254,7 +196,7 @@ def flatten_multiindexed_columns(df):
     return df
 
 
-def build_filename_format(schema, datatype):
+def build_filename_format(schema, datatypes):
     entities = list(schema["entities"].keys())
 
     paragraph = u""
@@ -265,54 +207,56 @@ def build_filename_format(schema, datatype):
         "ses",
         "<" + schema['entities']["ses"]["format"] + ">"
     )
-    paragraph += "\t{}/\n".format(datatype)
 
-    # Unique filename patterns
-    for group in schema["datatypes"][datatype]:
-        string = "\t\t"
-        for ent in entities:
-            ent_format = "{}-<{}>".format(
-                ent,
-                schema['entities'][ent]["format"]
-            )
-            if ent in group["entities"]:
-                if group["entities"][ent] == "required":
-                    if len(string.strip()):
-                        string += "_" + ent_format
+    for datatype in datatypes:
+        paragraph += "\t{}/\n".format(datatypes)
+
+        # Unique filename patterns
+        for group in schema["datatypes"][datatype]:
+            string = "\t\t"
+            for ent in entities:
+                ent_format = "{}-<{}>".format(
+                    ent,
+                    schema['entities'][ent]["format"]
+                )
+                if ent in group["entities"]:
+                    if group["entities"][ent] == "required":
+                        if len(string.strip()):
+                            string += "_" + ent_format
+                        else:
+                            string += ent_format
                     else:
-                        string += ent_format
-                else:
-                    if len(string):
-                        string += "[_" + ent_format + "]"
-                    else:
-                        string += "[" + ent_format + "]"
+                        if len(string):
+                            string += "[_" + ent_format + "]"
+                        else:
+                            string += "[" + ent_format + "]"
 
-        # In cases of large numbers of suffixes,
-        # we use the "suffix" variable and expect a table later in the spec
-        if len(group["suffixes"]) > 4:
-            suffix = "_<suffix>"
-            string += suffix
-            strings = [string]
-        else:
-            strings = [string + "_" + suffix for suffix in group["suffixes"]]
+            # In cases of large numbers of suffixes,
+            # we use the "suffix" variable and expect a table later in the spec
+            if len(group["suffixes"]) > 4:
+                suffix = "_<suffix>"
+                string += suffix
+                strings = [string]
+            else:
+                strings = [string + "_" + suffix for suffix in group["suffixes"]]
 
-        # Add extensions
-        full_strings = []
-        for extension in group["extensions"]:
-            if extension == ".json":
-                continue
-            for string in strings:
-                new_string = string + extension
-                full_strings.append(new_string)
-        full_strings = sorted(full_strings)
-        paragraph += "\n".join(full_strings) + "\n"
+            # Add extensions
+            full_strings = []
+            for extension in group["extensions"]:
+                if extension == ".json":
+                    continue
+                for string in strings:
+                    new_string = string + extension
+                    full_strings.append(new_string)
+            full_strings = sorted(full_strings)
+            paragraph += "\n".join(full_strings) + "\n"
     paragraph = paragraph.rstrip()
     codeblock = "```Text\n" + paragraph + "\n```"
     codeblock = codeblock.expandtabs(4)
     return codeblock
 
 
-def make_entity_table(schema_path, entities_file='09-entities.md'):
+def make_entity_table(schema, tablefmt='github', **kwargs):
     """Produce entity table (markdown) based on schema.
     This only works if the top-level schema *directory* is provided.
 
@@ -331,7 +275,10 @@ def make_entity_table(schema_path, entities_file='09-entities.md'):
     table : pandas.DataFrame
         DataFrame of entity table, with two layers of column headers.
     """
-    schema = load_schema(schema_path)
+    from tabulate import tabulate
+    schema = filter_schema(schema, **kwargs)
+
+    ENTITIES_FILE = '09-entities.md'
 
     # prepare the table based on the schema
     # import pdb; pdb.set_trace()
@@ -344,7 +291,7 @@ def make_entity_table(schema_path, entities_file='09-entities.md'):
     for i, (entity, spec) in enumerate(schema['entities'].items()):
         header.append(spec["name"])
         formats.append(f'[`{entity}-<{spec["format"]}>`]'
-                       f'({entities_file}#{entity})')
+                       f'({ENTITIES_FILE}#{entity})')
         entity_to_col[entity] = i + 1
 
     # Go through data types
@@ -388,139 +335,10 @@ def make_entity_table(schema_path, entities_file='09-entities.md'):
     table = pd.DataFrame(data=table[1:], columns=cols)
     table = table.set_index(('Entity', 'Format'))
 
-    # Now we can split as needed, in the next function
-    return table
+    # Remove unnecessary columns
+    table = drop_unused_entities(table)
+    table = flatten_multiindexed_columns(table)
 
-
-def make_entity_table_markdown(schema_path, tablefmt='github',
-                               entities_file='09-entities.md'):
-    """
-    Create a group of tabulated entity tables from the schema.
-
-    This only works if the top-level schema *directory* is provided.
-
-    Parameters
-    ----------
-    schema_path : str
-        Path to schema.
-    tablefmt : {'github'}, optional
-        Format for tabulated table.
-    entities_file : str, optional
-        File in which entities are described.
-        This is used for hyperlinks in the table, so the path to the file
-        should be considered from the location of out_file.
-        Default is '09-entities.md'.
-
-    Returns
-    -------
-    out_tables : dict
-        Dictionary of tabulated entity tables, with table title as key.
-    """
-    from tabulate import tabulate
-    table = make_entity_table(schema_path, entities_file=entities_file)
-
-    # Split table
-    EG_DATATYPES = ['eeg', 'ieeg', 'meg', 'channels', 'electrodes', 'events',
-                    'photo']
-    MRI_DATATYPES = ['anat', 'func', 'fmap', 'dwi']
-    mri_table = table.loc[
-        table[('DataType', 'DataType')].isin(MRI_DATATYPES)
-    ]
-    eg_table = table.loc[
-        table[('DataType', 'DataType')].isin(EG_DATATYPES)
-    ]
-    beh_table = table[
-        ~table[('DataType', 'DataType')].isin(MRI_DATATYPES + EG_DATATYPES)
-    ]
-
-    out_tables = {}
-    titles = [
-        '## Magnetic Resonance Imaging',
-        '## Encephalography (EEG, iEEG, and MEG)',
-        '## Behavioral Data'
-    ]
-    tables = [mri_table, eg_table, beh_table]
-    for i, table in enumerate(tables):
-        title = titles[i]
-        table = drop_unused_entities(table)
-        table = flatten_multiindexed_columns(table)
-        # print it as markdown
-        table_str = tabulate(table, headers='keys', tablefmt=tablefmt)
-        out_tables[title] = table_str
-
-    return out_tables
-
-
-def save_entity_table(schema_path, out_file, entities_file='09-entities.md'):
-    """
-    Create entity table from schema path and then save the table to a markdown
-    file.
-
-    Parameters
-    ----------
-    schema_path : str
-        Path to folder containing schema.
-        Do not point to a specific file in the schema.
-    out_file : str
-        Output file for the entity table.
-    entities_file : str, optional
-        File in which entities are described.
-        This is used for hyperlinks in the table, so the path to the file
-        should be considered from the location of out_file.
-        Default is '09-entities.md'.
-    """
-    tables = make_entity_table_markdown(schema_path)
-
-    intro_text = """\
-<!--
-  This file is autogenerated based on the src/schema.  DO NOT EDIT DIRECTLY.
-  Follow https://github.com/bids-standard/bids-specification/blob/master/\
-    CONTRIBUTING.md#updating-the-schema
--->
-# Appendix IV: Entity table
-
-This section compiles the entities (key-value pairs) described throughout this
-specification, and establishes a common order within a filename. 
-For example, if a file has an acquisition and reconstruction label, the
-acquisition entity must precede the reconstruction entity.
-REQUIRED and OPTIONAL entities for a given file type are denoted.
-Entity formats indicate whether the value is alphanumeric
-(`<label>`) or numeric (`<index>`).
-
-A general introduction to entities is given in the section on
-[file name structure](../02-common-principles.md#file-name-structure),
-while entity definitions are in [Appendix IX]({entities_file}).
-""".format(entities_file=entities_file)
-
-    with open(out_file, 'w') as fo:
-        fo.write(intro_text)
-        fo.write('\n')
-        for i, (title, table) in enumerate(tables.items()):
-            fo.write(title)
-            fo.write('\n\n')
-            fo.write(table)
-            if i == len(tables) - 1:
-                fo.write('\n')
-            else:
-                fo.write('\n\n')
-
-
-def _main(argv=None):
-    """BIDS schema CLI entrypoint.
-
-    Examples
-    --------
-    >>> python bids_schema.py entitytable ../src/schema/ \
-    >>> ../src/99-appendices/04-entity-table.md
-
-    >>> python bids_schema.py entities ../src/schema/ \
-    >>> ../src/99-appendices/09-entities.md
-    """
-    options = _get_parser().parse_args(argv)
-    args = vars(options).copy()
-    args.pop('func')
-    options.func(**args)
-
-
-if __name__ == '__main__':
-    _main()
+    # Print it as markdown
+    table_str = tabulate(table, headers='keys', tablefmt=tablefmt)
+    return table_str

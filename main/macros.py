@@ -18,17 +18,20 @@ def define_env(env):
     """
 
     @env.macro
-    def make_filename_template(datatype):
+    def make_filename_template(datatypes):
         schema_path = utils.get_schema_path()
         schema_obj = schema.load_schema(schema_path)
-        codeblock = schema.build_filename_format(schema_obj, datatype=datatype)
+        codeblock = schema.build_filename_format(
+            schema_obj,
+            datatypes=datatypes
+        )
         return codeblock
 
     @env.macro
-    def make_entity_table(datatype):
+    def make_entity_table(datatypes):
         schema_path = utils.get_schema_path()
         schema_obj = schema.load_schema(schema_path)
-        table = schema.make_entity_table(schema_obj, datatype=datatype)
+        table = schema.make_entity_table(schema_obj, datatypes=datatypes)
         return table
 
     def make_metadata_table():
