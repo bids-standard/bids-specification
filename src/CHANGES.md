@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] Move MRI section headings up a level [#618](https://github.com/bids-standard/bids-specification/pull/618) ([tsalo](https://github.com/tsalo))
 -   \[INFRA] downgrade github-changelog-generator to 1.14.3 due to issue with 1.15.2 [#600](https://github.com/bids-standard/bids-specification/pull/600) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] tighter rules for sharing MEG cross-talk and fine-calibration .fif files [#598](https://github.com/bids-standard/bids-specification/pull/598) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Add tsalo as a BIDS maintainer [#597](https://github.com/bids-standard/bids-specification/pull/597) ([tsalo](https://github.com/tsalo))
