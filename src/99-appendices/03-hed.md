@@ -111,7 +111,6 @@ analysis.
 Example: An `*_events.tsv` containing a categorical column (`trial_type`) and two value
 columns (`response_time` and `stim_file`).
 
-
 ```Text
 onset  duration  trial_type  response_time stim_file
 1.2    0.6       go          1.435         images/red_square.jpg
@@ -169,7 +168,6 @@ applies, so the data dictionaries can appear higher in the BIDS hierarchy.
 You can should try to annotate in as much detail as possible. The HED path structure makes it easy
 for analysis tools to extract tags at different levels of detail, for example only consider 2D
 shapes for stimuli, but not worry about color or shape details.  
-
 
 ## HED schema and HED versions
 
