@@ -87,7 +87,7 @@ Example: An accompanying `*_events.json` sidecar describing the `mycodes` catego
                Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed.,
                Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target,
                Sensory presentation/Visual/Rendering type/Screen/2D),
-               (Item/Natural scene/Arial/Satellite,
+               (Item/Natural scene/Aerial/Satellite,
                Sensory presentation/Visual/Rendering type/Screen/2D)",
            "Button": "Event/Category/Participant response, Event/Label/PressButton,
                Event/Description/The participant presses the button as soon as the target is visible,
@@ -159,7 +159,7 @@ Example: An accompanying `*_events.json` sidecar describing both categorical and
 Most studies will have event categorical variables and value variables that are common across many
 of the datasets in the study. You should try to annotate these columns in a `*_events.json` sidecar
 as high in the study hierarchy as possible to avoid duplicate annotations. Annotations that can be
-placed in sidcars are preferred to those placed directly in the HED column, because they are simpler,
+placed in sidecars are preferred to those placed directly in the HED column, because they are simpler,
 more compact, and less prone to inconsistent annotation. Downstream tools should not distinguish
 between tags specified using the explicit HED column and the categorical specifications, but should
 form the union before analysis. Further, the [inheritance principle](../02-common-principles.md#the-inheritance-principle)
