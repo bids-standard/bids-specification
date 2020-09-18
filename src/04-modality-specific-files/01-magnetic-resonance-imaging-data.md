@@ -476,7 +476,7 @@ the user may use to distinguish different set of parameters.
 
 #### Case 1: Phase difference image and at least one magnitude image
 
-{{ make_filename_template(datatypes=["fmap"]) }}
+{{ make_filename_template(datatypes=["fmap"], suffixes=["phasediff", "magnitude1", "magnitude2"]) }}
 
 Template:
 
@@ -515,6 +515,8 @@ the shorter echo time and `EchoTime2` to the longer echo time. Similarly
 
 Template:
 
+{{ make_filename_template(datatypes=["fmap"], suffixes=["phase1", "phase2", "magnitude1", "magnitude2"]) }}
+
 ```Text
 sub-<label>/[ses-<label>/]
     fmap/
@@ -540,6 +542,8 @@ corresponding `EchoTime` values. For example:
 #### Case 3: A real fieldmap image
 
 Template:
+
+{{ make_filename_template(datatypes=["fmap"], suffixes=["fieldmap", "magnitude"]) }}
 
 ```Text
 sub-<label>/[ses-<label>/]
@@ -567,6 +571,8 @@ For example:
 #### Case 4: Multiple phase encoded directions ("pepolar")
 
 Template:
+
+{{ make_filename_template(datatypes=["fmap"], suffixes=["epi"]) }}
 
 ```Text
 sub-<label>/[ses-<label>/]

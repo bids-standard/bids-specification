@@ -209,6 +209,8 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 Template:
 
+{{ make_filename_template(datatypes=["ieeg"], auxdatatypes=["channels"]) }}
+
 ```Text
 sub-<label>/
     [ses-<label>]/
@@ -300,6 +302,8 @@ Example of free-form text for field `description`:
 
 Template:
 
+{{ make_filename_template(datatypes=["ieeg"], auxdatatypes=["electrodes"]) }}
+
 ```Text
 sub-<label>/
     [ses-<label>]/
@@ -378,6 +382,8 @@ H01   27  -42  -21  5      AdTech
 
 Template:
 
+{{ make_filename_template(datatypes=["ieeg"], auxdatatypes=["coordsystem"]) }}
+
 ```Text
 sub-<label>/
     [ses-<label>]/
@@ -445,6 +451,8 @@ Example:
 ## Photos of the electrode positions (`*_photo.jpg`)
 
 Template:
+
+{{ make_filename_template(datatypes=["ieeg"], auxdatatypes=["photo"]) }}
 
 ```Text
 sub-<label>/

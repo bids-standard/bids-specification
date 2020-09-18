@@ -192,6 +192,8 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 Template:
 
+{{ make_filename_template(datatypes=["eeg"], auxdatatypes=["channels"]) }}
+
 ```Text
 sub-<label>/
     [ses-<label>]/
@@ -275,6 +277,8 @@ UADC001  MISC   n/a     envelope of audio signal        good    n/a
 
 Template:
 
+{{ make_filename_template(datatypes=["eeg"], auxdatatypes=["electrodes"]) }}
+
 ```Text
 sub-<label>/
     [ses-<label>]/
@@ -325,6 +329,8 @@ the recording.
 ## Coordinate System JSON (`*_coordsystem.json`)
 
 Template:
+
+{{ make_filename_template(datatypes=["eeg"], auxdatatypes=["coordsystem"]) }}
 
 ```Text
 sub-<label>/
@@ -428,6 +434,8 @@ Example:
 Photos of the anatomical landmarks and/or fiducials.
 
 Template:
+
+{{ make_filename_template(datatypes=["eeg"], auxdatatypes=["photo"]) }}
 
 ```Text
 sub-<label>/

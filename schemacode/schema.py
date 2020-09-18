@@ -62,9 +62,11 @@ def load_schema(schema_path):
 
 
 def filter_schema(schema, **kwargs):
-    """A simple filtering function. You can limit the schema to specific values."""
+    """A simple filtering function. You can limit the schema to specific
+    values."""
     new_schema = deepcopy(schema)
     if isinstance(new_schema, dict):
+        # Reduce values in dict to only requested
         for k, v in kwargs.items():
             if k in new_schema.keys():
                 temp = deepcopy(new_schema[k])
@@ -73,10 +75,13 @@ def filter_schema(schema, **kwargs):
                 else:
                     temp = [i for i in temp if i in v]
                 new_schema[k] = temp
-            else:
-                for k2, v2 in new_schema.items():
-                    new_schema[k2] = filter_schema(new_schema, **kwargs)
 
+            for k2, v2 in new_schema.items():
+                new_schema[k2] = filter_schema(new_schema[k2], **kwargs)
+    elif isinstance(new_schema, list):
+        for i, item in enumerate(new_schema):
+            if isinstance(item, dict):
+                new_schema[i] = filter_schema(item, **kwargs)
     return new_schema
 
 
@@ -123,8 +128,9 @@ def flatten_multiindexed_columns(df):
     return df
 
 
-def build_filename_format(schema, datatypes):
+def build_filename_format(schema, **kwargs):
     """Create codeblocks containing example filename patterns for a given datatype."""
+    schema = filter_schema(schema, **kwargs)
     entities = list(schema["entities"].keys())
 
     paragraph = ""
@@ -136,7 +142,7 @@ def build_filename_format(schema, datatypes):
         "<" + schema["entities"]["ses"]["format"] + ">",
     )
 
-    for datatype in datatypes:
+    for datatype in schema["datatypes"].keys():
         paragraph += "\t{}/\n".format(datatype)
 
         # Unique filename patterns
@@ -169,8 +175,6 @@ def build_filename_format(schema, datatypes):
             full_strings = []
             extensions = utils.combine_extensions(group["extensions"])
             for extension in extensions:
-                if extension == ".json":
-                    continue
                 for string in strings:
                     new_string = string + extension
                     full_strings.append(new_string)

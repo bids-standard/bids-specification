@@ -14,7 +14,7 @@ context of the academic literature:
 
 Template:
 
-{{ make_filename_template(datatypes=["meg"]) }}
+{{ make_filename_template(datatypes=["meg"], auxdatatypes=[]) }}
 
 ```Text
 sub-<label>/
@@ -179,6 +179,8 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 Template:
 
+{{ make_filename_template(datatypes=["meg"], auxdatatypes=["channels"]) }}
+
 ```Text
 sub-<label>/
     [ses-<label>]/
@@ -277,6 +279,8 @@ UADC001 AUDIO V envelope of audio signal presented to participant
 
 Template:
 
+{{ make_filename_template(datatypes=["meg"], suffixes=["coordsystem"]) }}
+
 ```Text
 sub-<label>/
     [ses-<label>]/
@@ -367,6 +371,8 @@ Photos of the anatomical landmarks and/or head localization coils
 
 Template:
 
+{{ make_filename_template(datatypes=["meg"], auxdatatypes=["photo"]) }}
+
 ```Text
 sub-<label>/
     [ses-<label>]/
@@ -393,6 +399,8 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 ## Head shape and electrode description (`*_headshape.<ext>`)
 
 Template:
+
+{{ make_filename_template(datatypes=["meg"], auxdatatypes=["headshape"]) }}
 
 ```Text
 sub-<label>/
