@@ -6,7 +6,7 @@ Functions decorated in "define_env()" are callable throughout the
 specification and are run/rendered with the mkdocs plugin "macros".
 """
 import sys
-sys.path.append(".")
+sys.path.append("tools/")
 from schemacode import schema, utils
 
 
