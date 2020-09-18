@@ -20,7 +20,7 @@ HED subcategory should not be used to annotate events.
 
 There are several ways to associate HED annotations with events within the BIDS
 framework. The most direct way is to use the `HED` column of the `*_events.tsv`
-file to annotate events:  
+file to annotate events.  
 
 Example: An `*_events.tsv` annotated using HED tags for individual events.
 
