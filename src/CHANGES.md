@@ -2,10 +2,12 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] Move MRI section headings up a level [#618](https://github.com/bids-standard/bids-specification/pull/618) ([tsalo](https://github.com/tsalo))
 -   \[INFRA] downgrade github-changelog-generator to 1.14.3 due to issue with 1.15.2 [#600](https://github.com/bids-standard/bids-specification/pull/600) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] tighter rules for sharing MEG cross-talk and fine-calibration .fif files [#598](https://github.com/bids-standard/bids-specification/pull/598) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Add tsalo as a BIDS maintainer [#597](https://github.com/bids-standard/bids-specification/pull/597) ([tsalo](https://github.com/tsalo))
 -   \[INFRA] use --release-branch option in github-changelog-generator [#594](https://github.com/bids-standard/bids-specification/pull/594) ([sappelhoff](https://github.com/sappelhoff))
+-   \[ENH] Define "modality" and clarify "data type" [#592](https://github.com/bids-standard/bids-specification/pull/592) ([effigies](https://github.com/effigies))
 -   \[FIX] Adjust index definition to be nonnegative integer [#590](https://github.com/bids-standard/bids-specification/pull/590) ([nicholst](https://github.com/nicholst))
 -   \[MISC] fix links, make json object links consistent, fix pandoc rendering [#587](https://github.com/bids-standard/bids-specification/pull/587) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Fix link in Common principles [#583](https://github.com/bids-standard/bids-specification/pull/583) ([tsalo](https://github.com/tsalo))
