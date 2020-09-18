@@ -25,9 +25,9 @@ file to annotate events:
 Example: An `*_events.tsv` annotated using HED tags for individual events.
 
 ```Text
-onset   duration    HED
-1.1 n/a Event/Category/Experimental stimulus, Event/Label/CrossFix,  Sensory presentation/Visual, Item/Object/2D Shape/Cross
-1.3 n/a Event/Category/Participant response, Event/Label/ButtonPress, Action/Button press
+onset  duration  HED
+1.1    n/a       Event/Category/Experimental stimulus, Event/Label/CrossFix,  Sensory presentation/Visual, Item/Object/2D Shape/Cross
+1.3    n/a       Event/Category/Participant response, Event/Label/ButtonPress, Action/Button press
 ...
 ```
 
@@ -57,10 +57,10 @@ on three possible values: `Fixation`, `Button`, and `Target`.
 Example: An `*_events.tsv` containing the `mycodes` categorical column.
 
 ```Text
-onset   duration    mycodes
-1.1 n/a Fixation
-1.3 n/a Button
-1.8 n/a Target
+onset  duration  mycodes
+1.1    n/a       Fixation
+1.3    n/a       Button
+1.8    n/a       Target
 ...
 
 ```
@@ -113,9 +113,9 @@ columns (`response_time` and `stim_file`).
 
 
 ```Text
-onset duration  trial_type  response_time stim_file
-1.2 0.6 go  1.435 images/red_square.jpg
-5.6 0.6 stop  1.739 images/blue_square.jpg
+onset  duration  trial_type  response_time stim_file
+1.2    0.6       go          1.435         images/red_square.jpg
+5.6    0.6       stop        1.739         images/blue_square.jpg
 ```
 Example: An accompanying `*_events.json` sidecar describing both categorical and value columns. 
 
@@ -145,16 +145,12 @@ Example: An accompanying `*_events.json` sidecar describing both categorical and
        "LongName": "Reponse time after stimulus",
        "Description": "Time from stimulus presentation until subject presses button",
        "Units": "ms",
-       "HED": {
-          "response_time": "Attribute/Response start delay/# ms, Action/Button press"
-       }
+       "HED": "response_time": "Attribute/Response start delay/# ms, Action/Button press"
    },
    "stim_file": {
        "LongName": "Stimulus file name",
        "Description": "Relative path of the stimulus image file",
-       "HED": {
-          "stim_file": "Attribute/File/#"
-       }
+       "HED": "stim_file": "Attribute/File/#"
    }
 }
 ```
