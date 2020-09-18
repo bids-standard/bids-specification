@@ -26,7 +26,7 @@ by Ben Inglis:
 | MatrixCoilMode                | RECOMMENDED. (If used) A method for reducing the number of independent channels by combining in analog the signals from multiple coil elements. There are typically different default modes when using un-accelerated or accelerated (e.g. GRAPPA, SENSE) imaging                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | CoilCombinationMethod         | RECOMMENDED. Almost all fMRI studies using phased-array coils use root-sum-of-squares (rSOS) combination, but other methods exist. The image reconstruction is changed by the coil combination method (as for the matrix coil mode above), so anything non-standard should be reported                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-#### Sequence Specifics
+### Sequence Specifics
 
 | Field name                  | Definition                                                                                                                                                                                                                                                                     |
 | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -38,7 +38,7 @@ by Ben Inglis:
 | PulseSequenceDetails        | RECOMMENDED. Information beyond pulse sequence type that identifies the specific pulse sequence used (i.e. "Standard Siemens Sequence distributed with the VB17 software," "Siemens WIP ### version #.##," or "Sequence written by X using a version compiled on MM/DD/YYYY"). |
 | NonlinearGradientCorrection | RECOMMENDED. Boolean stating if the image saved has been corrected for gradient nonlinearities by the scanner sequence.                                                                                                                                                        |
 
-#### In-Plane Spatial Encoding
+### In-Plane Spatial Encoding
 
 | Field name                     | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -62,7 +62,7 @@ manipulations). See [here](https://lcni.uoregon.edu/kb-articles/kb-0003) and
 <sup>3</sup>We use the "FSL definition", i.e, the time between the center of the
 first "effective" echo and the center of the last "effective" echo.
 
-#### Timing Parameters
+### Timing Parameters
 
 | Field name             | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -72,7 +72,7 @@ first "effective" echo and the center of the last "effective" echo.
 | SliceEncodingDirection | RECOMMENDED. Possible values: `i`, `j`, `k`, `i-`, `j-`, `k-` (the axis of the NIfTI data along which slices were acquired, and the direction in which `SliceTiming` is defined with respect to). `i`, `j`, `k` identifiers correspond to the first, second and third axis of the data in the NIfTI file. A `-` sign indicates that the contents of `SliceTiming` are defined in reverse order - that is, the first entry corresponds to the slice with the largest index, and the final entry corresponds to slice index zero. When present, the axis defined by `SliceEncodingDirection` needs to be consistent with the ‘slice_dim’ field in the NIfTI header. When absent, the entries in `SliceTiming` must be in the order of increasing slice index as defined by the NIfTI header.                                                                                                                                                                                         |
 | DwellTime              | RECOMMENDED. Actual dwell time (in seconds) of the receiver per point in the readout direction, including any oversampling. For Siemens, this corresponds to DICOM field (0019,1018) (in ns). This value is necessary for the optional readout distortion correction of anatomicals in the HCP Pipelines. It also usefully provides a handle on the readout bandwidth, which isn’t captured in the other metadata tags. Not to be confused with `EffectiveEchoSpacing`, and the frequent mislabeling of echo spacing (which is spacing in the phase encoding direction) as "dwell time" (which is spacing in the readout direction).                                                                                                                                                                                                                                                                                                                                               |
 
-#### RF & Contrast
+### RF & Contrast
 
 | Field name                  | Definition                                                                                                                                                                                                                                                                                                                                |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -80,13 +80,13 @@ first "effective" echo and the center of the last "effective" echo.
 | MultibandAccelerationFactor | RECOMMENDED. The multiband factor, for multiband acquisitions.                                                                                                                                                                                                                                                                            |
 | NegativeContrast            | OPTIONAL. Boolean (`true` or `false`) value specifying whether increasing voxel intensity (within sample voxels) denotes a decreased value with respect to the contrast suffix. This is commonly the case when Cerebral Blood Volume is estimated via usage of a contrast agent in conjunction with a T2\* weighted acquisition protocol. |
 
-#### Slice Acceleration
+### Slice Acceleration
 
 | Field name                  | Definition                                                     |
 | ---------------------------- | ------------------------------------------------------------- |
 | MultibandAccelerationFactor | RECOMMENDED. The multiband factor, for multiband acquisitions. |
 
-#### Anatomical landmarks
+### Anatomical landmarks
 
 Useful for multimodal co-registration with MEG, (S)EEG, TMS, etc.
 
@@ -94,7 +94,7 @@ Useful for multimodal co-registration with MEG, (S)EEG, TMS, etc.
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | AnatomicalLandmarkCoordinates | RECOMMENDED. Key:value pairs of any number of additional anatomical landmarks and their coordinates in voxel units (where first voxel has index 0,0,0) relative to the associated anatomical MRI, (e.g. `{"AC": [127,119,149], "PC": [128,93,141], "IH": [131,114,206]}, or {"NAS": [127,213,139], "LPA": [52,113,96], "RPA": [202,113,91]}`). |
 
-#### Institution information
+### Institution information
 
 | Field name                  | Definition                                                                                                                                                                            |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -107,7 +107,7 @@ When adding additional metadata please use the CamelCase version of
 whenever possible. See also
 [recommendations on JSON files](../02-common-principles.md#keyvalue-files-dictionaries).
 
-### Anatomy imaging data
+## Anatomy imaging data
 
 Template:
 
@@ -186,7 +186,7 @@ Similarly, the OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec)
 key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
 
-### Task (including resting state) imaging data
+## Task (including resting state) imaging data
 
 Currently supported image contrasts include:
 
@@ -273,7 +273,7 @@ field EchoTime of the separate JSON file.
 Some meta information about the acquisition MUST be provided in an additional
 JSON file.
 
-#### Required fields
+### Required fields
 
 | Field name     | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 |----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -286,9 +286,9 @@ refers to a reconstruction of the object being imaged (e.g., brain or part of a
 brain). In case of multiple channels in a coil, the term "Volume" refers to a
 combined image rather than an image from each coil.
 
-#### Other RECOMMENDED metadata
+### Other RECOMMENDED metadata
 
-##### Timing Parameters
+#### Timing Parameters
 
 | Field name                        | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -317,7 +317,7 @@ sparse sequences.
 -   \[   \] --> has to be left empty
 -   empty cell --> can be specified but not required
 
-##### fMRI task information
+#### fMRI task information
 
 | Field name      | Definition                                                                                                                                                                                                 |
 | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -361,7 +361,7 @@ specified in the
 If both files are specified fields from the file corresponding to a particular
 participant, task and run takes precedence.
 
-### Diffusion imaging data
+## Diffusion imaging data
 
 Template:
 
@@ -434,7 +434,7 @@ JSON example:
 }
 ```
 
-### Fieldmap data
+## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
 current version of this standard considers four different scenarios. Please note
@@ -468,7 +468,7 @@ used. The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
 key/value pair corresponds to a custom label
 the user may use to distinguish different set of parameters.
 
-#### Case 1: Phase difference image and at least one magnitude image
+### Case 1: Phase difference image and at least one magnitude image
 
 Template:
 
@@ -503,7 +503,7 @@ the shorter echo time and `EchoTime2` to the longer echo time. Similarly
 }
 ```
 
-#### Case 2: Two phase images and two magnitude images
+### Case 2: Two phase images and two magnitude images
 
 Template:
 
@@ -529,7 +529,7 @@ corresponding `EchoTime` values. For example:
 }
 ```
 
-#### Case 3: A real fieldmap image
+### Case 3: A real fieldmap image
 
 Template:
 
@@ -556,7 +556,7 @@ For example:
 }
 ```
 
-#### Case 4: Multiple phase encoded directions ("pepolar")
+### Case 4: Multiple phase encoded directions ("pepolar")
 
 Template:
 
