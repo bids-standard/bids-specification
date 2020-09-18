@@ -100,7 +100,7 @@ Example: An accompanying `*_events.json` sidecar describing the `mycodes` catego
 ## Annotating events by value type
 
 Each column of `*_events.tsv` containing non-categorical values usually represents a particular type of data, for
-example the `speed` of a stimulus object across the screen or the file name of the image file. These variables
+example the `speed` of a stimulus object across the screen or the file name of the stimulus image. These variables
 could be annotated in the HED column of `*_events.tsv`. However, that approach requires repeating the values
 appearing in the individual columns in the HED column. A better approach is to annotate the type of value
 contained in each of these columns in the `*_events.json` sidecar. Value variables are annotated in a manner 
