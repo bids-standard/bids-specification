@@ -50,7 +50,7 @@ representing categorical values. Instead of tagging this information for each
 individual event, you can assign HED tags for each distinct categorical value 
 in an accompanying `*_events.json` sidecar and allow the analysis tools to make
 the association with individual event instances during analysis.  The column
-name in the `*_events.tsv` names the type of categorical variable. The following
+name in the `*_events.tsv` identifies the type of categorical variable. The following
 `*_events.tsv` file has one categorical variable called `mycodes` that takes 
 on three possible values: `Fixation`, `Button`, and `Target`.
 
@@ -74,8 +74,8 @@ Example: An accompanying `*_events.json` sidecar describing the `mycodes` catego
        "Description": "Main types of events that comprise a trial",
        "Levels": {
           "Fixation": "Fixation cross is displayed",
-          "Target":   "Target image appears",
-          "Button":   "Subject presses a button"
+          "Target": "Target image appears",
+          "Button": "Subject presses a button"
        },     
        "HED": {
            "Fixation": "Event/Category/Experimental stimulus, Event/Label/CrossFix,
@@ -83,13 +83,13 @@ Example: An accompanying `*_events.json` sidecar describing the `mycodes` catego
                Sensory presentation/Visual, Item/Object/2D Shape/Cross,
                Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen,
                Attribute/Location/Screen/Center",
-           "Target":   "Event/Label/TargetImage, Event/Category/Experimental stimulus,
+           "Target": "Event/Label/TargetImage, Event/Category/Experimental stimulus,
                Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed.,
                Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target,
                Sensory presentation/Visual/Rendering type/Screen/2D),
                (Item/Natural scene/Arial/Satellite,
                Sensory presentation/Visual/Rendering type/Screen/2D)",
-           "Button":   "Event/Category/Participant response, Event/Label/PressButton, 
+           "Button": "Event/Category/Participant response, Event/Label/PressButton, 
                Event/Description/The participant presses the button as soon as the target is visible,
                Action/Button press"
         }
