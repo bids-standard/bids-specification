@@ -282,7 +282,7 @@ sub-<label>/
 
 File that gives the location of EEG electrodes. Note that coordinates are
 expected in cartesian coordinates according to the `EEGCoordinateSystem` and
-`EEGCoordinateSystemUnits` fields in `*_coordsystem.json`. **If an
+`EEGCoordinateUnits` fields in `*_coordsystem.json`. **If an
 `*_electrodes.tsv` file is specified, a [`*_coordsystem.json`](#coordinate-system-json-_coordsystemjson)
 file MUST be specified as well**. The order of the required columns in the
 `*_electrodes.tsv` file MUST be as listed below.

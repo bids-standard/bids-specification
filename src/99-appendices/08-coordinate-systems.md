@@ -48,7 +48,7 @@ Generally, across the MEG, EEG, and iEEG modalities, the first two pieces of
 information for a coordinate system (origin and orientation) are specified in
 `<datatype>CoordinateSystem`.
 The third piece of information for a coordinate system (units) are specified in
-`<datatype>CoordinateSystemUnits`.
+`<datatype>CoordinateUnits`.
 Here, `<datatype>` can be one of `MEG`, `EEG`, or `iEEG`, depending on the
 modality that is being used.
 
@@ -118,7 +118,7 @@ reference is described in `<datatype>CoordinateSystem`.
 Unless otherwise specified below, the origin is at the AC and the orientation of
 the axes is RAS.
 Unless specified explicitly in the sidecar file in the
-`<datatype>CoordinateSystemUnits` field, the units are assumed to be mm.
+`<datatype>CoordinateUnits` field, the units are assumed to be mm.
 
 ### Standard template identifiers
 
