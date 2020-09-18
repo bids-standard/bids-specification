@@ -1,13 +1,13 @@
 ---
-sub:
+subject:
   name: Subject
-  altname: subject
+  entity: sub
   description: |
     A person or animal participating in the study.
   format: label
-ses:
+session:
   name: Session
-  altname: session
+  entity: ses
   description: |
     A logical grouping of neuroimaging and behavioral data consistent across
     subjects.
@@ -26,16 +26,16 @@ ses:
   format: label
 task:
   name: Task
-  altname: task
+  entity: task
   format: label
   description: |
     Each task has a unique label that MUST only consist of letters and/or
     numbers (other characters, including spaces and underscores, are not
     allowed).
     Those labels MUST be consistent across subjects and sessions.
-acq:
+acquisition:
   name: Acquisition
-  altname: acquisition
+  entity: acq
   description: |
     The `acq-<label>` key/value pair corresponds to a custom label the
     user MAY use to distinguish a different set of parameters used for
@@ -53,9 +53,9 @@ acq:
     FLASH, or between RARE, FLASH, and FLASHsubsampled) remains at the
     discretion of the researcher.
   format: label
-ce:
+ceagent:
   name: Contrast Enhancing Agent
-  altname: ceagent
+  entity: ce
   description: |
     The `ce-<label>` key/value can be used to distinguish
     sequences using different contrast enhanced images.
@@ -63,33 +63,33 @@ ce:
     The key `ContrastBolusIngredient` MAY be also be added in the JSON file,
     with the same label.
   format: label
-rec:
+reconstruction:
   name: Reconstruction
-  altname: reconstruction
+  entity: rec
   description: |
     The `rec-<label>` key/value can be used to distinguish
     different reconstruction algorithms (for example ones using motion
     correction).
   format: label
-dir:
+direction:
   name: Phase-Encoding Direction
-  altname: direction
+  entity: dir
   description: |
     The `dir-<label>` key/value can be used to distinguish
     different phase-encoding directions.
   format: label
 run:
   name: Run
-  altname: run
+  entity: run
   description: |
     If several scans of the same modality are acquired they MUST be indexed
     with a key-value pair: `_run-1`, `_run-2`, ..., `_run-<index>`
     (only nonnegative integers are allowed for the `<index>`).
     When there is only one scan of a given type the run key MAY be omitted.
   format: index
-mod:
+modality:
   name: Corresponding Modality
-  altname: modality
+  entity: mod
   description: |
     The `mod-<label>` key/value pair corresponds to modality label for defacing
     masks, e.g., T1w, inplaneT1, referenced by a defacemask image.
@@ -97,7 +97,7 @@ mod:
   format: label
 echo:
   name: Echo
-  altname: echo
+  entity: echo
   description: |
     Multi-echo data MUST be split into one file per echo.
     Each file shares the same name with the exception of the `_echo-<index>`
@@ -108,16 +108,16 @@ echo:
   format: index
 recording:
   name: Recording
-  altname: recording
+  entity: recording
   description: |
     More than one continuous recording file can be included (with different
     sampling frequencies).
     In such case use different labels.
     For example: `_recording-contrast`, `_recording-saturation`.
   format: label
-proc:
+processing:
   name: Processed (on device)
-  altname: ''
+  entity: proc
   description: |
     The proc label is analogous to rec for MR and denotes a variant of a file
     that was a result of particular processing performed on the device.
@@ -128,7 +128,7 @@ proc:
   format: label
 space:
   name: Space
-  altname: space
+  entity: space
   description: |
     The space label (`*[_space-<label>]_electrodes.tsv`) can be used
     to indicate the way in which electrode positions are interpreted.
@@ -136,7 +136,7 @@ space:
   format: label
 split:
   name: Split
-  altname: ''
+  entity: split
   description: |
     In the case of long data recordings that exceed a file size of 2Gb, the
     .fif files are conventionally split into multiple parts.
