@@ -145,12 +145,12 @@ Example: An accompanying `*_events.json` sidecar describing both categorical and
        "LongName": "Reponse time after stimulus",
        "Description": "Time from stimulus presentation until subject presses button",
        "Units": "ms",
-       "HED": "response_time": "Attribute/Response start delay/# ms, Action/Button press"
+       "HED": "Attribute/Response start delay/# ms, Action/Button press"
    },
    "stim_file": {
        "LongName": "Stimulus file name",
        "Description": "Relative path of the stimulus image file",
-       "HED": "stim_file": "Attribute/File/#"
+       "HED": "Attribute/File/#"
    }
 }
 ```
