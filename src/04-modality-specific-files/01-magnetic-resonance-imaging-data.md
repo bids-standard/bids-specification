@@ -173,9 +173,21 @@ sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the
 JSON file, with the same label.
 
-This entity is used to indicate which component of the complex representation of the MRI signal is represented in voxel data.
-The [`part-<label>`](../99-appendices/09-entities.md#part) key/value pair is associated with the DICOM tag `0008,9208`.
-Allowed label values for this entity are `phase`, `mag`, `real` and `imag`, which are typically used in `mag/phase` or `real/imag` pairs.
+Some meta information about the acquisition MAY be provided in an additional
+JSON file. See [Common metadata fields](#common-metadata-fields) for a
+list of terms and their definitions. There are also some OPTIONAL JSON
+fields specific to anatomical scans:
+
+| Field name              | Definition                                                                                                                                         |
+| -----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ContrastBolusIngredient | OPTIONAL. Active ingredient of agent. Values MUST be one of: IODINE, GADOLINIUM, CARBON DIOXIDE, BARIUM, XENON Corresponds to DICOM Tag 0018,1048. |
+
+The [`part-<label>`](../99-appendices/09-entities.md#part) key/value pair is
+used to indicate which component of the complex representation of the MRI
+signal is represented in voxel data.
+This entity is associated with the DICOM tag `0008,9208`.
+Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
+which are typically used in `mag/phase` or `real/imag` pairs.
 For example:
 
 ```Text
@@ -199,15 +211,6 @@ sub-01_part-phase_T1w.json
 ```
 
 When there is only a magnitude image of a given type, the `part` key MAY be omitted.
-
-Some meta information about the acquisition MAY be provided in an additional
-JSON file. See [Common metadata fields](#common-metadata-fields) for a
-list of terms and their definitions. There are also some OPTIONAL JSON
-fields specific to anatomical scans:
-
-| Field name              | Definition                                                                                                                                         |
-| -----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ContrastBolusIngredient | OPTIONAL. Active ingredient of agent. Values MUST be one of: IODINE, GADOLINIUM, CARBON DIOXIDE, BARIUM, XENON Corresponds to DICOM Tag 0018,1048. |
 
 Similarly, the OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec)
 key/value can be used to distinguish
