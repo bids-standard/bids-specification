@@ -465,5 +465,6 @@ sub-emptyroom/
 [numbers]: https://www.w3schools.com/js/js_json_datatypes.asp
 [integer]: https://www.w3schools.com/js/js_json_datatypes.asp
 [string]: https://www.w3schools.com/js/js_json_datatypes.asp
+[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
 [arrays]: https://www.w3schools.com/js/js_json_arrays.asp
