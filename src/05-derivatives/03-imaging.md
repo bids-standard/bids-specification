@@ -41,11 +41,11 @@ pipeline1/
 
 The following metadata JSON fields are defined for preprocessed images:
 
-| **Key name**  | **Description**                                                                                                                        |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| SkullStripped | REQUIRED. Boolean. Whether the volume was skull stripped (non-brain voxels set to zero) or not.                                        |
-| Resolution    | REQUIRED if `res` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the resolution keyword. |
-| Density       | REQUIRED if `den` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the density keyword.    |
+| **Key name**  | **Requirement level**         | **Data type**                                      | **Description**                                                              |
+| ------------- | ----------------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------- |
+| SkullStripped | REQUIRED                      | [boolean][]                                        | Whether the volume was skull stripped (non-brain voxels set to zero) or not. |
+| Resolution    | REQUIRED if `res` is present. | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the resolution keyword.                      |
+| Density       | REQUIRED if `den` is present. | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the density keyword.                         |
 
 Example JSON file corresponding to
 `pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_bold.json` above:
@@ -131,13 +131,13 @@ and the `Atlas` metadata SHOULD be defined.
 
 JSON metadata fields:
 
-| **Key name** | **Description**                                                                                                                                |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| RawSources   | Same as defined in [Introduction][intro], but elevated from OPTIONAL to REQUIRED                                                               |
-| Type         | RECOMMENDED. Short identifier of the mask. Reserved values: `Brain` - brain mask, `Lesion` - lesion mask, `Face` - face mask, `ROI` - ROI mask |
-| Atlas        | OPTIONAL. Which atlas (if any) was used to generate the mask. RECOMMENDED if `label` entity is defined.                                        |
-| Resolution   | REQUIRED if `res` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the resolution keyword.         |
-| Density      | REQUIRED if `den` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the density keyword.            |
+| **Key name** | **Requirement level**                    | **Data type**                                      | **Description**                                                                                                                   |
+| ------------ | ---------------------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| RawSources   | REQUIRED                                 | [array][] of [strings][]                           | Same as defined in [Common data types][], but elevated from OPTIONAL to REQUIRED.                                                 |
+| Type         | RECOMMENDED                              | [string][]                                         | Short identifier of the mask. Reserved values: `Brain` - brain mask, `Lesion` - lesion mask, `Face` - face mask, `ROI` - ROI mask |
+| Atlas        | RECOMMENDED if `label` entity is defined | [string][]                                         | Which atlas (if any) was used to generate the mask.                                                                               |
+| Resolution   | REQUIRED if `res` is present             | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the resolution keyword.                                                                           |
+| Density      | REQUIRED if `den` is present             | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the density keyword.                                                                              |
 
 Examples:
 
@@ -181,12 +181,12 @@ Probabilistic segmentations of surfaces are currently [unspecified][].
 
 The following metadata fields apply to all segmentation files:
 
-| **Key name** | **Description**                                                                                                                        |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
-| Manual       | OPTIONAL. Boolean. Indicates if the segmentation was performed manually or via an automated process                                    |
-| Atlas        | OPTIONAL. Which atlas (if any) was used to derive the segmentation.                                                                    |
-| Resolution   | REQUIRED if `res` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the resolution keyword. |
-| Density      | REQUIRED if `den` is present. String, or [object][] mapping labels to strings. Specifies the interpretation of the density keyword.    |
+| **Key name** | **Requirement level**        | **Data type**                                      | **Description**                                                                   |
+| ------------ | ---------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Manual       | OPTIONAL                     | [boolean][]                                        | Indicates if the segmentation was performed manually or via an automated process. |
+| Atlas        | OPTIONAL                     | [string][]                                         | Which atlas (if any) was used to derive the segmentation.                         |
+| Resolution   | REQUIRED if `res` is present | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the resolution keyword.                           |
+| Density      | REQUIRED if `den` is present | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the density keyword.                              |
 
 ### Discrete Segmentations
 
@@ -403,7 +403,12 @@ index   name                abbreviation
 
 <!-- Link Definitions -->
 
-[intro]: 01-introduction.md
+[common data types]: 02-common-data-types.md
 [common_preproc]: 02-common-data-types.md#preprocessed-or-cleaned-data
 [object]: https://www.json.org/json-en.html
 [unspecified]: ../02-common-principles.md#unspecified-data
+
+[string]: https://www.w3schools.com/js/js_json_syntax.asp
+[strings]: https://www.w3schools.com/js/js_json_syntax.asp
+[boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
+[array]: https://www.w3schools.com/js/js_json_arrays.asp
