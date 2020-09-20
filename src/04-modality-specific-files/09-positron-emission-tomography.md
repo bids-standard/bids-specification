@@ -51,7 +51,7 @@ In addition to the imaging data a _pet.json sidecar file needs to be provided. T
 
 ### PET sidecar JSON (`*_pet.json`)
 
-#### The "Info" section
+#### Information
 This section is mandatory and contains general information about the imaging experiment. Some of the fields are marked optional (MAY), e.g. anaesthesia; for those fields the BIDS validator will not throw an error even if they are not present. Note, although bodyweight is a recommended information in (Knudsen et al. 2020, JCBFM [1]), this consists of meta information at the participant level and should hence be part of the participants.tsv or session.tsv file in case of multiple measurements.
 | Field name | Definition                                                                                                                                                                                                                                                                                                                              |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -75,7 +75,7 @@ This section is mandatory and contains general information about the imaging exp
 | PharmaceuticalDoseTime | RECOMMENDED. Time of administration of pharmaceutical dose, relative to time zero (please see below). For an infusion, this should be a vector with two elements specifying the start and end of the infusion period. For more complex dose regimens, the regimen description should be complete enough to enable unambiguous interpretation of the DoseTime vector. Unit format of the specified pharmaceutical dose time should be seconds.|
 | Anaesthesia | MAY. Details of anaesthesia used, if any. |
 
-#### The "Radiochem" section
+#### Radiochemistry
 This section is mandatory and contains information regarding the radioactive material used in the experiment.
 
 | Field name | Definition                                                                                                                                                                                                                                                                                                                              |
@@ -101,7 +101,7 @@ This section is mandatory and contains information regarding the radioactive mat
 | PurityUnit | RECOMMENDED. Unit of the radiochemical purity (e.g. "percent"). | 
 
 
-#### The "Time" section
+#### Time
 This section is mandatory and contains timing information about the imaging experiment.
 
 | Field name | Definition                                                                                                                                                                                                                                                                                                                              | 
@@ -114,7 +114,7 @@ This section is mandatory and contains timing information about the imaging expe
 | ScanDate | RECOMMENDED. Date of scan in the default unit “yyyy:mm:dd”. |
 | InjectionEnd | RECOMMENDED. Time of end of injection with respect to TimeZero in the default unit seconds. | 
 
-#### The "Recon" section
+#### Reconstruction
 This optional section includes information about the image reconstruction. All reconstruction specific parameters that are not specified, but one wants to include, should go into the ReconMethodParameterVal field. 
 
 | Field name | Definition                                                                                                                                                                                                                                                                                                                               |
