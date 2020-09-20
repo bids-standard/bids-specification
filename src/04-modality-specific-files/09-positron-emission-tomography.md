@@ -18,7 +18,7 @@ Further PET datasets are available from [OpenNeuro](https://openneuro.org).
 
 ## PET recording data
 
-As specified above, this extension is relevant for PET imaging and its associated data, such as blood data. In addition, the extension is in accordance with the guidelines for reporting and sharing brain PET data (Knudsen et al. 2020, [1]). If you want to share structural magnetic resonance (MR) images with your PET data, please distribute them according to the original BIDS specification (https://bids-specification.readthedocs.io/en/stable). Please pay specific attention to the format the MR images are in, such as if they have been unwarped in order to correct for gradient non-linearities. There is a specific field in the MRI BIDS (https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/01-magnetic-resonance-imaging-data.html) called “NonlinearGradientCorrection” which indicates this. The reason for this is that the MRI needs to be corrected for nonlinear gradients in order to fit the accompanying PET scans for co-registration [1, 2]. In general, SI units must be used (we refer to https://bids-specification.readthedocs.io/en/stable/99-appendices/05-units.html) and we recommend to use the CMIXF style formatting for SI units e.g. "kBq/mL" rather than "kilobecquerel per ml". An overview of a common PET experiment (with blood data) can be seen in Figure 1, defined on a single time scale relative to a predefined “time zero” (which should be defined either to be scan start or injection time; please note an exception to this definition is possible if a pharmacological within-scan challenge is performed).
+As specified above, this extension is relevant for brain PET imaging and its associated data, such as blood data. In addition, the extension is in accordance with the guidelines for reporting and sharing brain PET data (Knudsen et al. 2020, [1]). If you want to share structural magnetic resonance (MR) images with your PET data, please distribute them according to the original BIDS specification (https://bids-specification.readthedocs.io/en/stable). Please pay specific attention to the format the MR images are in, such as if they have been unwarped in order to correct for gradient non-linearities. There is a specific field in the MRI BIDS (https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/01-magnetic-resonance-imaging-data.html) called “NonlinearGradientCorrection” which indicates this. The reason for this is that the MRI needs to be corrected for nonlinear gradients in order to fit the accompanying PET scans for co-registration [1, 2]. In general, SI units must be used (we refer to https://bids-specification.readthedocs.io/en/stable/99-appendices/05-units.html) and we recommend to use the CMIXF style formatting for SI units e.g. "kBq/mL" rather than "kilobecquerel per ml". An overview of a common PET experiment (with blood data) can be seen in Figure 1, defined on a single time scale relative to a predefined “time zero” (which should be defined either to be scan start or injection time; please note an exception to this definition is possible if a pharmacological within-scan challenge is performed).
 
 
 ![Figure 1](images/PET_scan_overview.png "Overview of PET recording data")
@@ -49,10 +49,10 @@ The run entity is used if one scan type/contrast is repeated multiple times with
 
 In addition to the imaging data a _pet.json sidecar file needs to be provided. The included metadata are divided into sections described below.
 
-### Sidecar JSON (`*_pet.json`)
+### PET sidecar JSON (`*_pet.json`)
 
 #### The "Info" section
-This section is mandatory and contains general information about the imaging experiment. Some of the fields are marked optional (MAY), e.g. anaesthesia; for those fields a BIDS PET validator will not throw an error even if they are not present. Note, although bodyweight is a recommended information in (Knudsen et al. 2020, JCBFM [1]), this consists of meta information at the participant level and should hence be part of the participants.tsv or session.tsv file in case of multiple measurements.
+This section is mandatory and contains general information about the imaging experiment. Some of the fields are marked optional (MAY), e.g. anaesthesia; for those fields the BIDS validator will not throw an error even if they are not present. Note, although bodyweight is a recommended information in (Knudsen et al. 2020, JCBFM [1]), this consists of meta information at the participant level and should hence be part of the participants.tsv or session.tsv file in case of multiple measurements.
 | Field name | Definition                                                                                                                                                                                                                                                                                                                              |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Manufacturer | REQUIRED. Scanner manufacturer (e.g. "Siemens").|
@@ -82,10 +82,10 @@ This section is mandatory and contains information regarding the radioactive mat
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | InjectedRadioactivity | REQUIRED. Total amount of radioactivity injected into the patient (e.g. 400). Corresponds to DICOM Tag (0018,1074) Radionuclide Total Dose. | 
 | InjectedRadioactivityUnit | REQUIRED. Unit format of the specified injected radioactivity (e.g. "MBq"). |
-| InjectedMass | REQUIRED. Total mass of radiolabeled compound injected into subject (e.g. 10). This can be derived as the ratio of the InjectedRadioactivity and MolarRadioactivity. |
-| InjectedMassUnit | REQUIRED. Unit format of the mass of compound injected (e.g. "ug" or "umol"). |
-| SpecificRadioactivity | REQUIRED. Specific activity of compound injected. |
-| SpecificRadioactivityUnit | REQUIRED. Unit format of specified specific radioactivity (e.g. "Bq/g"). |
+| InjectedMass | REQUIRED. Total mass of radiolabeled compound injected into subject (e.g. 10). This can be derived as the ratio of the InjectedRadioactivity and MolarRadioactivity. *Note this is not required for an FDG acquisition, since it is not available, and can be set to -1. |
+| InjectedMassUnit | REQUIRED. Unit format of the mass of compound injected (e.g. "ug" or "umol"). *Note this is not required for an FDG acquisition, since it is not available, and can be set to "-1". |
+| SpecificRadioactivity | REQUIRED. Specific activity of compound injected. *Note this is not required for an FDG acquisition, since it is not available, and can be set to -1. |
+| SpecificRadioactivityUnit | REQUIRED. Unit format of specified specific radioactivity (e.g. "Bq/g"). *Note this is not required for an FDG acquisition, since it is not available, and can be set to "-1". |
 | ModeOfAdministration | REQUIRED. Mode of administration of the injection (e.g. "bolus" or "infusion"). |
 | InjectedMassPerWeight | RECOMMENDED. Injected mass per kilogram bodyweight. |
 | InjectedMassPerWeightUnit | RECOMMENDED. Unit format of the injected mass per kilogram bodyweight (e.g. "ug/kg"). |
@@ -138,29 +138,6 @@ This optional section includes information about the image reconstruction. All r
 | RandomRate | RECOMMENDED. Random rate for each frame. |
 | SinglesRate | RECOMMENDED. Singles rate for each frame. |
 
-#### The "Blood" section
-In order to simplify a distinction between PET data acquired with and without blood measurements, we have added a specific section detailing blood measurements in the _pet.json. If blood data is available, meaning some of the “Avail” below with a given prefix are true, the following fields with the given prefix are required and at the same time we require the presence of a *_blood.tsv with a corresponding *_blood.json detailing the column content. If true, please see the section "Blood data (*_blood.tsv)".
-
-| Field name | Definition                                                                                                                                                                                                                                                                                                                              |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| PlasmaAvail | REQUIRED. Boolean that specifies if plasma measurements are available. If this is false, all of the plasma fields should be excluded. |
-| PlasmaFreeFraction | RECOMMENDED. Measured free fraction in plasma, i.e. concentration of free compound in plasma divided by total concentration of compound in plasma. |
-| PlasmaFreeFractionMethod | RECOMMENDED. Method used to estimate free fraction. |
-| MetaboliteAvail | REQUIRED. Boolean that specifies if metabolite measurements are available. If this is false, all of the metabolite fields should be excluded. |
-| MetaboliteMethod | REQUIRED. Method used to measure metabolites. |
-| MetaboliteRecoveryCorrectionApplied | REQUIRED. Metabolite recovery correction from the HPLC, for tracers where it changes with time postinjection. If “true” please include recovery fractions from the HPLC as a column in the table with blood data (*_blood.tsv). |
-| ContinuousBloodAvail | REQUIRED. Boolean that specifies if continuous blood measurements are available. If this is false, all of the continuous blood fields should be excluded. |
-| ContinuousBloodDispersionCorrected | REQUIRED. Boolean flag specifying whether the continuous blood data have been dispersion-corrected. |
-| ContinuousBloodWithdrawalRate | RECOMMENDED. The rate at which the blood was withdrawn from the subject. The unit of the specified withdrawal rate should be in mL/s. |
-| ContinuousBloodTubingType | RECOMMENDED. Description of the type of tubing used, ideally including the material and (internal) diameter. |
-| ContinuousBloodTubingLength | RECOMMENDED. The length of the blood tubing, from the subject to the detector in the default unit centimeter. |
-| ContinuousBloodDispersionConstant | RECOMMENDED. External dispersion time constant resulting from tubing in default unit seconds. |
-| DiscreteBloodAvail | REQUIRED. Boolean that specifies if discrete blood measurements are available. If this is false, all of the discrete blood fields should be excluded. |
-| DiscreteBloodHaematocrit | RECOMMENDED. Measured haematocrit, i.e. the volume of erythrocytes divided by the volume of whole blood. |
-| DiscreteBloodDensity | RECOMMENDED. Measured blood density. Unit of blood density should be in g/mL. |
-
-
-
 #### Example (`*_pet.json`)
 
 ```JSON
@@ -199,31 +176,52 @@ In order to simplify a distinction between PET data acquired with and without bl
 	"ReconMethodParameterUnit": ["none","none"],
 	"ReconMethodParameterValues": [16,10],
 	"ReconFilterType": "none",
-	"AttenuationCorrection": "[137Cs]transmission scan-based",
-	"PlasmaAvail": false,
-	"MetaboliteAvail": false,
-	"ContinuousBloodAvail": false,
-	"DiscreteBloodAvail": false
+	"AttenuationCorrection": "[137Cs]transmission scan-based"
 }
 ```
 
-## Blood data (`*_blood.tsv`)
-This section includes all data needed to perform blood analysis for PET data. The section may be omitted if blood measurements of radioactivity were not made. It contains the values and information regarding plasma samples, discrete blood samples, continuous blood samples from an autosampler, and metabolite fractions. All these measurements should be defined according to a single time-scale in relation to time zero defined by the PET data (Figure 1). Additionally, if blood and metabolite measurements were made one should always report radioactivity in plasma and corresponding parent fraction measurements, including fractions of radiometabolites. All definitions used below are in accordance with Innis et al. 2007 [3]. All method specific information related to the measurements can be stated in the field “description”. 
+## Blood recording data
+This section includes all data needed to perform blood analysis for PET data. The section may be omitted completely if blood measurements of radioactivity were not made. If blood measurements were made a *_blood.json file is expected that contains information about which blood data is available as well as some blood measurement details. Furthermore, depending on the information given in the *_blood.json file we expect .tsv files with corresponding .json files that contain the values and information regarding plasma samples,metabolite fractions, discrete blood samples and/or continuous blood samples from an autosampler. All these measurements should be defined according to a single time-scale in relation to time zero defined by the PET data (Figure 1). Additionally, if blood and metabolite measurements were made one should always report radioactivity in plasma and corresponding parent fraction measurements, including fractions of radiometabolites. All definitions used below are in accordance with Innis et al. 2007 [3]. All method specific information related to the measurements can be stated in the field “description”.
 
 Template:
 
 ```Text
 sub-<participant_label>/
-      [ses-<session_label>/]
-        pet/
-          sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>_blood.tsv
-          sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>_blood.json
+ 	[ses-<session_label>/]
+	pet/
+	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_blood.json
+	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>.tsv
+	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>.json
+
 ```
 
-Blood data belongs in the /pet folder along with the corresponding PET data. However, the blood data also follows the inheritance principle (https://bids-specification.readthedocs.io/en/stable/02-common-principles.html#the-inheritance-principle) and may be moved to an upper level folder if it does not change e.g. with multiple reconstructions. The blood data is most often recorded using an autosampler for continuous blood samples, or manually for discrete blood samples. Therefore, the recording key (recording-<label>) has two reserved values: continuous, for continuous whole blood data measurements (2.2.4); and discrete, for discrete blood data, including whole blood (2.2.4), plasma (2.2.2), parent fraction and metabolite fractions (2.2.3). Blood data will be stored in tabular *_.tsv files with a _blood suffix (https://bids-specification.readthedocs.io/en/stable/02-common-principles.html#tabular-files). 
-The first column in the *_.tsv file should be a time column (2.2.1), defined in relation to time zero defined by the _pet.json file. All other information relevant to the blood measurements are recommended, and can be added as an additional column. It is expected that all values are (if relevant) decay corrected to time zero. 
+Blood data belongs in the /pet folder along with the corresponding PET data. However, the blood data also follows the inheritance principle (https://bids-specification.readthedocs.io/en/stable/02-common-principles.html#the-inheritance-principle) and may be moved to an upper level folder if it does not change e.g. with multiple reconstructions. The blood data is most often recorded using an autosampler for continuous blood samples, or manually for discrete blood samples. Therefore, the recording key (recording-<label>) has two reserved values: blood_continuous, for continuous whole blood data measurements (2.2.5); and blood_discrete, for discrete blood data, including whole blood (2.2.5), plasma (2.2.3), parent fraction and metabolite fractions (2.2.4). The actual blood radioactivity data will be stored in tabular *.tsv files with the blood_continuousand blood_discrete suffix (https://bids-specification.readthedocs.io/en/stable/02-common-principles.html#tabular-files). 
+The first column in the *.tsv file should be a time column (see 2.2.1), defined in relation to time zero defined by the _pet.json file. All other information relevant to the blood measurements are recommended, and can be added as an additional column. It is expected that all values are (if relevant) decay corrected to time zero.
+
+## Blood sidecar JSON (`*_blood.json`)
+As stated above in order to simplify a distinction between PET data acquired with and without blood measurements, we have added a specific file detailing blood measurements called *_blood.json. If blood data is available, meaning some of the “Avail” below with a given prefix are true, the following fields with the given prefix are required and at the same time we require the presence of a *recording-blood_discrete.tsv or *recording-blood_continuous.tsv with a corresponding *recording-blood_discrete.json or *recording-blood_continuous.json detailing the column content. These are detailed in the next sections.
+
+| Field name | Definition                                                                                                                                                                                                                                                                                                                              |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| PlasmaAvail | REQUIRED. Boolean that specifies if plasma measurements are available. If this is false, all of the plasma fields should be excluded. |
+| PlasmaFreeFraction | RECOMMENDED. Measured free fraction in plasma, i.e. concentration of free compound in plasma divided by total concentration of compound in plasma. |
+| PlasmaFreeFractionMethod | RECOMMENDED. Method used to estimate free fraction. |
+| MetaboliteAvail | REQUIRED. Boolean that specifies if metabolite measurements are available. If this is false, all of the metabolite fields should be excluded. |
+| MetaboliteMethod | REQUIRED. Method used to measure metabolites. |
+| MetaboliteRecoveryCorrectionApplied | REQUIRED. Metabolite recovery correction from the HPLC, for tracers where it changes with time postinjection. If “true” please include recovery fractions from the HPLC as a column in the table with blood data (*_blood.tsv). |
+| ContinuousBloodAvail | REQUIRED. Boolean that specifies if continuous blood measurements are available. If this is false, all of the continuous blood fields should be excluded. |
+| ContinuousBloodDispersionCorrected | REQUIRED. Boolean flag specifying whether the continuous blood data have been dispersion-corrected. |
+| ContinuousBloodWithdrawalRate | RECOMMENDED. The rate at which the blood was withdrawn from the subject. The unit of the specified withdrawal rate should be in mL/s. |
+| ContinuousBloodTubingType | RECOMMENDED. Description of the type of tubing used, ideally including the material and (internal) diameter. |
+| ContinuousBloodTubingLength | RECOMMENDED. The length of the blood tubing, from the subject to the detector in the default unit centimeter. |
+| ContinuousBloodDispersionConstant | RECOMMENDED. External dispersion time constant resulting from tubing in default unit seconds. |
+| DiscreteBloodAvail | REQUIRED. Boolean that specifies if discrete blood measurements are available. If this is false, all of the discrete blood fields should be excluded. |
+| DiscreteBloodHaematocrit | RECOMMENDED. Measured haematocrit, i.e. the volume of erythrocytes divided by the volume of whole blood. |
+| DiscreteBloodDensity | RECOMMENDED. Measured blood density. Unit of blood density should be in g/mL. |
 
 ### Time
+If discrete samples e.g. using a COBRA counter are available, then time information as detailed below should be added to the *recording-blood_discrete.tsv and the values below should be added to the *recording-blood_discrete.json. If continuous samples e.g. using an Allogg autosampler are available, then time information as detailed below should be added to the *recording-blood_continous.tsv and the values below should be added to the *recording-blood_continous.json.
+
 
 | Field name  | Definition                                                                                                      |
 | :---------- | :-------------------------------------------------------------------------------------------------------------- |
@@ -231,8 +229,8 @@ The first column in the *_.tsv file should be a time column (2.2.1), defined in 
 | Description | REQUIRED. Time in relation to TimeZero defined by the *_pet.json. (e.g. 5)                                                                                      |
 | Units       | REQUIRED. Unit of time steps (e.g. "s") |   
 
-### The "Plasma" section
-This section may be omitted if discrete plasma measurements of radioactivity were not made. It contains information regarding discretely sampled plasma data.
+### Radioactivity in plasma
+This section may be omitted if plasma measurements of radioactivity were not made. It contains information regarding sampled plasma data. If plasma measurements are available by a discrete sampler e.g. using a COBRA counter, they should be added to the *recording-blood_discrete.tsv and the values below should be added to the *recording-blood_discrete.json. If plasma measurements are available by a continuous sampler e.g. using an Allogg autosampler, they should be added to the *recording-blood_continous.tsv and the values below should be added to the *recording-blood_continous.json.
 
 | Field name  | Definition                                                                                                      |
 | :---------- | :-------------------------------------------------------------------------------------------------------------- |
@@ -240,8 +238,10 @@ This section may be omitted if discrete plasma measurements of radioactivity wer
 | Description | REQUIRED. Radioactivity in plasma.                                                                                      |
 | Units       | REQUIRED. Unit of plasma radioactivity (e.g. "kBq/mL") |   
 
-### The "Metabolite" section
-This section may be omitted if metabolite measurements were not made. It may contain information regarding metabolite info, such as the following three column examples:
+### Metabolites
+This section may be omitted if metabolite measurements were not made. If metabolite measurements are available they should be added to the *recording-blood_discrete.tsv and the values below should be added to the *recording-blood_discrete.json.
+Hence, it may contain information regarding metabolite info, such as the following three column examples:
+
 
 | Field name  | Definition                                                                                                      |
 | :---------- | :-------------------------------------------------------------------------------------------------------------- |
@@ -261,8 +261,8 @@ This section may be omitted if metabolite measurements were not made. It may con
 | Description | REQUIRED. HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC).                                                                                     |
 | Units       | REQUIRED. Unit of recovery fractions (e.g. "unitless") |   
 
-### The "WholeBlood" section
-This section may be omitted if whole blood measurements of radioactivity were not made. It contains information regarding sampled whole blood data.
+### Radioactivity in whole blood
+This section may be omitted if whole blood measurements of radioactivity were not made. It contains information regarding sampled whole blood data. If whole blood measurements are available by a discrete sampler e.g. using a COBRA counter, they should be added to the *recording-blood_discrete.tsv and the values below should be added to the *recording-blood_discrete.json. If whole blood measurements are available by a continuous sampler e.g. using an Allogg autosampler, they should be added to the *recording-blood_continous.tsv and the values below should be added to the *recording-blood_continous.json.
 
 | Field name  | Definition                                                                                                      |
 | :---------- | :-------------------------------------------------------------------------------------------------------------- |
@@ -270,7 +270,17 @@ This section may be omitted if whole blood measurements of radioactivity were no
 | Description | REQUIRED. Radioactivity in whole blood samples.                                                                                      |
 | Units       | REQUIRED. Unit of  radioactivity measurements  in whole blood samples (e.g. "kBq/mL") |   
 
-### Example (`*_recording-blood_discrete.tsv`)
+### Example (`*_blood.json`)
+```JSON
+{
+	"PlasmaAvail": true,
+	"MetaboliteAvail": true,
+	"ContinuousBloodAvail": true,
+	"DiscreteBloodAvail": true
+}
+```
+
+### Example (`*_recording-blood_discrete.json`)
 ```JSON
 {
     "time": {
@@ -302,7 +312,23 @@ This section may be omitted if whole blood measurements of radioactivity were no
 
 ![Figure 2](images/blood_discrete_tsv.png "Screenshot of the discrete blood tsv file.")
 
-Figure 2: Caption of the corresponding _blood.tsv file. 
+Figure 2: Caption of the corresponding recording-blood_discrete.tsv file. 
+
+
+### Example (`*_recording-blood_continuous.json`)
+```JSON
+{
+"time": {
+        "Description": "Time in relation to time zero defined by the _pet.json",
+        "Units": "s"
+    },
+    "plasma_radioactivity": {
+        "Description": "Radioactivity in plasma samples. Measured using Allogg autosampler.", 
+        "Units": "kBq/mL"
+    }
+}
+```
+
 
 # Appendix: Useful resources
 This website is an extremely useful resource: http://www.turkupetcentre.net/petanalysis/quantification.html
