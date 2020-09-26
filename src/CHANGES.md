@@ -2,7 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
--   \[FIX] Accidentally swapped Neuromag/Elekta/MEGIN cross-talk & fine-calib filename extensions [#621](https://github.com/bids-standard/bids-specification/pull/621) ([hoechenberger](https://github.com/hoechenberger))
+-   \[FIX] Accidentally swapped Neuromag/Elekta/MEGIN cross-talk & fine-calibration filename extensions [#621](https://github.com/bids-standard/bids-specification/pull/621) ([hoechenberger](https://github.com/hoechenberger))
 -   \[INFRA] Move MRI section headings up a level [#618](https://github.com/bids-standard/bids-specification/pull/618) ([tsalo](https://github.com/tsalo))
 -   \[FIX] Clarify data types and requirement levels for all JSON files [#605](https://github.com/bids-standard/bids-specification/pull/605) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] downgrade github-changelog-generator to 1.14.3 due to issue with 1.15.2 [#600](https://github.com/bids-standard/bids-specification/pull/600) ([sappelhoff](https://github.com/sappelhoff))
