@@ -86,6 +86,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Peer Herholz 💬📖👀🔧✅📢
 -   Dora Hermes 📖💻✅🔍🤔
 -   Katja Heuer 🔧
+-   Richard Höchenberger 📖
 -   Chris Holdgraf 📖🤔
 -   Christopher J. Honey 📖
 -   Jean-Christophe Houde 📖
