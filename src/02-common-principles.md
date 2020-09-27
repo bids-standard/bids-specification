@@ -561,6 +561,8 @@ For additional rules, see below:
 
 -   Frequency SHOULD be expressed in Hertz.
 
+-   Arbitrary units SHOULD be indicated with the string `"arbitrary"`.
+
 Describing dates and timestamps:
 
 -   Date time information MUST be expressed in the following format
