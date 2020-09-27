@@ -312,7 +312,7 @@ sub-<label>/
 
 File that gives the location, size and other properties of iEEG electrodes. Note
 that coordinates are expected in cartesian coordinates according to the
-`iEEGCoordinateSystem` and `iEEGCoordinateSystemUnits` fields in
+`iEEGCoordinateSystem` and `iEEGCoordinateUnits` fields in
 `*_coordsystem.json`. If an `*_electrodes.tsv` file is specified, a
 `*_coordsystem.json` file MUST be specified as well.
 
