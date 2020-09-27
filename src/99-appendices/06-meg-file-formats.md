@@ -74,10 +74,12 @@ Both files are thus specific to the site of recording and may change in the
 process of regular system maintenance.
 
 In BIDS, the cross-talk and fine-calibration files are shared unmodified,
-but with BIDS file naming convention and by using the `acq` entity.
+including their original extensions (`.fif` for cross-talk and `.dat` for
+fine-calibration), but with BIDS file naming convention and by using the `acq`
+entity.
 
--   cross-talk file template: `sub-<label>[_ses-<label>]_acq-crosstalk_meg.dat`
--   fine-calibration file template: `sub-<label>[_ses-<label>]_acq-calibration_meg.fif`
+-   cross-talk file template: `sub-<label>[_ses-<label>]_acq-crosstalk_meg.fif`
+-   fine-calibration file template: `sub-<label>[_ses-<label>]_acq-calibration_meg.dat`
 
 Note that cross-talk files MUST be denoted using `acq-crosstalk` and
 fine-calibration files MUST be denoted using `acq-calibration`.
@@ -94,16 +96,16 @@ sub-01/
         sub-01_task-rest_meg.fif
         sub-01_task-rest_meg.json
         sub-01_task-rest_channels.tsv
-        sub-01_acq-crosstalk_meg.dat
-        sub-01_acq-calibration_meg.fif
+        sub-01_acq-crosstalk_meg.fif
+        sub-01_acq-calibration_meg.dat
 sub-02/
     meg/
         sub-02_coordsystem.json
         sub-02_task-rest_meg.fif
         sub-02_task-rest_meg.json
         sub-02_task-rest_channels.tsv
-        sub-02_acq-crosstalk_meg.dat
-        sub-02_acq-calibration_meg.fif
+        sub-02_acq-crosstalk_meg.fif
+        sub-02_acq-calibration_meg.dat
 ```
 
 #### Example with multiple sessions
@@ -117,8 +119,8 @@ sub-01/
             sub-01_ses-01_task-rest_run-01_meg.fif
             sub-01_ses-01_task-rest_run-01_meg.json
             sub-01_ses-01_task-rest_run-01_channels.tsv
-            sub-01_ses-01_acq-crosstalk_meg.dat
-            sub-01_ses-01_acq-calibration_meg.fif
+            sub-01_ses-01_acq-crosstalk_meg.fif
+            sub-01_ses-01_acq-calibration_meg.dat
     ses-02/
         sub-01_ses-02_scans.tsv
         meg/
@@ -126,8 +128,8 @@ sub-01/
             sub-01_ses-02_task-rest_run-01_meg.fif
             sub-01_ses-02_task-rest_run-01_meg.json
             sub-01_ses-02_task-rest_run-01_channels.tsv
-            sub-01_ses-02_acq-crosstalk_meg.dat
-            sub-01_ses-02_acq-calibration_meg.fif
+            sub-01_ses-02_acq-crosstalk_meg.fif
+            sub-01_ses-02_acq-calibration_meg.dat
 ```
 
 ### Sharing FIFF data after signal-space separation (SSS)
