@@ -411,7 +411,6 @@ however the user is free to choose any other label than `singleband` and
 For multiband acquisitions, one can also save the single-band reference image as
 type `sbref` (e.g. `dwi/sub-control01_sbref.nii[.gz]`.)
 
-
 ### REQUIRED gradient orientation information
 
 The bvec and bval files are in the
