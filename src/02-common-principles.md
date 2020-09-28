@@ -55,13 +55,15 @@ misunderstanding we clarify them here.
     subject performed multiple conceptually different behaviors (with different
     sets of instructions) they will be considered one (combined) task.
 
-1.  **Event** - something that happens or may be perceived as happening at a particular
-    moment during the recording.
-    Events are most commonly associated with sudden-onset sensory stimulus presentations
-    or with the distinct onset of a subject motor action.
-    Other events may include unplanned incidents,
-    changes in task instructions or experiment control parameters,
-    and noted data feature occurrences.
+1.  **Event** - something that happens or may be perceived by a test subject as happening
+    at a particular instant during the recording.
+    Events are most commonly associated with on- or offset of stimulus presentations,
+    or with the distinct marker of on- or offset of a subject's response or motor action.
+    Other events may include unplanned incidents
+    (e.g., sudden onset of noise and vibrations due to construction work, laboratory device malfunction),
+    changes in task instructions (e.g., switching the response hand),
+    or experiment control parameters (e.g., changing the stimulus presentation rate over experiment blocks),
+    and noted data feature occurrences (e.g., a recording electrode producing noise).
     In BIDS, each event has an onset time and duration.
     Note that not all tasks will have recorded events (for example, "resting state").
 
