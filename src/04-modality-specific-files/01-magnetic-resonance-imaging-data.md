@@ -30,15 +30,15 @@ Example for `ReceiveCoilActiveElements`:
 
 For Siemens, coil channels are typically not activated/selected individually,
 but rather in pre-defined selectable "groups" of individual channels,
-and the list of the "groups" of elements that are active/selected in any 
+and the list of the "groups" of elements that are active/selected in any
 given scan populates the `Coil String` entry in Siemens' private DICOM fields
-(for example, `HEA;HEP` for the Siemens standard 32 ch coil 
+(for example, `HEA;HEP` for the Siemens standard 32 ch coil
 when both the anterior and posterior groups are activated).
-This is a flexible field that can be used as most appropriate for a given 
+This is a flexible field that can be used as most appropriate for a given
 vendor and coil to define the "active" coil elements.
 Since individual scans can sometimes not have the intended coil elements selected,
-it is preferable for this field to be populated directly from the DICOM 
-for each individual scan, so that it can be used as a mechanism for checking 
+it is preferable for this field to be populated directly from the DICOM
+for each individual scan, so that it can be used as a mechanism for checking
 that a given scan was collected with the intended coil elements selected
 
 ### Sequence Specifics
@@ -102,9 +102,9 @@ first "effective" echo and the center of the last "effective" echo.
 
 Useful for multimodal co-registration with MEG, (S)EEG, TMS, etc.
 
-| **Key name**                  | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                           |
-|-------------------------------|-----------------------|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| AnatomicalLandmarkCoordinates | RECOMMENDED           | [object][] of [arrays][] | Key:value pairs of any number of additional anatomical landmarks and their coordinates in voxel units (where first voxel has index 0,0,0) relative to the associated anatomical MRI, (for example, `{"AC": [127,119,149], "PC": [128,93,141], "IH": [131,114,206]}, or {"NAS": [127,213,139], "LPA": [52,113,96], "RPA": [202,113,91]}`). |
+| **Key name**                  | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ----------------------------- | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AnatomicalLandmarkCoordinates | RECOMMENDED           | [object][] of [arrays][] | Key:value pairs of any number of additional anatomical landmarks and their coordinates in voxel units (where first voxel has index 0,0,0) relative to the associated anatomical MRI (for example, `{"AC": [127,119,149], "PC": [128,93,141], "IH": [131,114,206]}`, or `{"NAS": [127,213,139], "LPA": [52,113,96], "RPA": [202,113,91]}`). Each array MUST contain three numeric values corresponding to x, y, and z axis of the coordinate system in that exact order. |
 
 ### Institution information
 
