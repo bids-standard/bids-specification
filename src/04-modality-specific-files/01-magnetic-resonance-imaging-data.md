@@ -376,6 +376,13 @@ participant, task and run takes precedence.
 
 ## Diffusion imaging data
 
+Currently supported image modalities include:
+
+| **Name**              | `modality_label` | **Description**                                                                                                                                     |
+|---------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DWI                   | dwi              | Diffusion-weighted imaging contrast (specialized T2\* weighting)                                                                                     |
+| Single-Band Reference | sbref            | Single-band reference for one or more multi-band `dwi` images, only when no gradient informations needs to be stored (i.e., all volumes are *b = 0*) |
+
 Template:
 
 ```Text
@@ -389,28 +396,36 @@ sub-<label>/[ses-<label>/]
        sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_sbref.json
 ```
 
-Diffusion-weighted imaging data acquired for that participant. The OPTIONAL
-[`acq-<label>`](../99-appendices/09-entities.md#acq)
+Diffusion-weighted imaging data acquired for that participant.
+
+The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
 key/value pair corresponds to a custom label the user may use to
-distinguish different set of parameters. For example this should be used when a
-study includes two diffusion images - one single band and one multiband. In such
-case two files could have the following names:
+distinguish different sets of parameters.
+For example, this should be used when a study includes two diffusion
+images -- one single band and one multiband.
+In such case two files could have the following names:
 `sub-01_acq-singleband_dwi.nii.gz` and `sub-01_acq-multiband_dwi.nii.gz`,
 however the user is free to choose any other label than `singleband` and
-`multiband` as long as they are consistent across subjects and sessions. For
-multiband acquisitions, one can also save the single-band reference image as
-type `sbref` (for example, `dwi/sub-control01_sbref.nii[.gz]`) The bvec and bval files
-are in the [FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
+`multiband` as long as they are consistent across subjects and sessions.
+
+For multiband acquisitions, one can also save the single-band reference image as
+type `sbref` (e.g. `dwi/sub-control01_sbref.nii[.gz]`.)
+
+
+### REQUIRED gradient orientation information
+
+The bvec and bval files are in the
+[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT).
 The bvec files contain 3 rows with n space-delimited floating-point numbers
-(corresponding to the n volumes in the relevant NIfTI file). The first row
-contains the x elements, the second row contains the y elements and third row
-contains the z elements of a unit vector in the direction of the applied
-diffusion gradient, where the i-th elements in each row correspond together to
-the i-th volume with `[0,0,0]` for non-diffusion-weighted volumes. Inherent to
-the FSL format for bvec specification is the fact that the coordinate system of
-the bvecs is with respect to the participant, defined by the axes of the
-corresponding `dwi.nii` file, and not the magnet's coordinate system.
-Thus, any rotations applied to `dwi.nii` also need to be applied to the
+(corresponding to the n volumes in the relevant NIfTI file).
+The first row contains the *x* elements, the second row contains the *y* elements and
+the third row contains the *z* elements of a unit vector in the direction of the applied
+diffusion gradient, where the *i*-th elements in each row correspond together to
+the *i*-th volume, with `[0,0,0]` for non-diffusion-weighted volumes.
+Inherent to the FSL format for bvec specification is the fact that the coordinate system of
+the bvecs is with respect to the participant (i.e., defined by the axes of the
+corresponding dwi.nii file) and not the magnet's coordinate system, which means
+that any rotations applied to dwi.nii also need to be applied to the
 corresponding bvec file.
 
 bvec example:
@@ -434,6 +449,53 @@ bval example:
 `.bval` and `.bvec` files can be saved on any level of the directory structure
 and thus define those values for all sessions and/or subjects in one place (see
 Inheritance principle).
+
+## Multipart (split) DWI schemes
+
+Some MR schemes cannot be acquired directly by some scanner devices,
+requiring to generate several DWI runs that were originally meant to belong
+in a single one.
+For instance, some GE scanners cannot collect more than &asymp;160 volumes
+in a single run under fast-changing gradients, so acquiring *HCP-style*
+diffusion images will require splitting the DWI scheme in several runs.
+
+| **Key name**    | **Requirement level** | **Data type** | **Description**                                                                                                                                                                               |
+| --------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| MultipartID     | REQUIRED              | [string][]    | Unique identifier to prescribe DWI segments belonging in a single multipart run.                                                                                                              |
+
+JSON example:
+
+```JSON
+{
+  "PhaseEncodingDirection": "j-",
+  "TotalReadoutTime": 0.095,
+  "MultipartID": "dwi_protocol1"
+}
+```
+
+For instance, the above JSON sidecar defined for a set of files via the
+`sub-<label>_dwi.json` file would indicate that all the runs 1 through 4
+belong in the same unique image:
+
+```Text
+sub-<label>/[ses-<label>/]
+    dwi/
+       sub-<label>_run-1_dwi.nii.gz
+       sub-<label>_run-1_dwi.bval
+       sub-<label>_run-1_dwi.bvec
+       sub-<label>_run-2_dwi.nii.gz
+       sub-<label>_run-2_dwi.bval
+       sub-<label>_run-2_dwi.bvec
+       sub-<label>_run-3_dwi.nii.gz
+       sub-<label>_run-3_dwi.bval
+       sub-<label>_run-3_dwi.bvec
+       sub-<label>_run-4_dwi.nii.gz
+       sub-<label>_run-4_dwi.bval
+       sub-<label>_run-4_dwi.bvec
+       sub-<label>_dwi.json
+```
+
+## Other RECOMMENDED metadata
 
 See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms that can be included in the corresponding JSON file.
