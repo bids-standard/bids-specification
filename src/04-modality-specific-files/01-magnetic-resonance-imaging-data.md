@@ -376,12 +376,13 @@ participant, task and run takes precedence.
 
 ## Diffusion imaging data
 
+Diffusion-weighted imaging data acquired for a participant.
 Currently supported image modalities include:
 
-| **Name**              | `modality_label` | **Description**                                                                                                                                       |
-|---------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| DWI                   | dwi              | Diffusion-weighted imaging contrast (specialized T2\* weighting).                                                                                     |
-| Single-Band Reference | sbref            | Single-band reference for one or more multi-band `dwi` images, only when no gradient informations needs to be stored (i.e., all volumes are *b = 0*). |
+| **Name**              | `modality_label` | **Description**                                                   |
+|---------------------- | ---------------- | ----------------------------------------------------------------- |
+| DWI                   | dwi              | Diffusion-weighted imaging contrast (specialized T2\* weighting). |
+| Single-Band Reference | sbref            | Single-band reference for one or more multi-band `dwi` images.    |
 
 Template:
 
@@ -396,20 +397,23 @@ sub-<label>/[ses-<label>/]
        sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_sbref.json
 ```
 
-Diffusion-weighted imaging data acquired for that participant.
-
 The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
 key/value pair corresponds to a custom label the user may use to
 distinguish different sets of parameters.
-For example, this should be used when a study includes two diffusion
-images -- one single band and one multiband.
+
+### Combining multi- and single-band acquisitions
+
+The single-band reference image MAY be stored as type `sbref` (e.g.,
+`dwi/sub-control01_sbref.nii[.gz]`,) as long as the image has no corresponding
+gradient information (`.bval` and `.bvec` sidecar files) to be stored.
+
+Otherwise, if some gradient information is associated to the single-band diffusion
+image and a multi-band diffusion image also exists,  the `acq-<label>` key/value pair
+MUST be used to distinguish both images.
 In such case two files could have the following names:
 `sub-01_acq-singleband_dwi.nii.gz` and `sub-01_acq-multiband_dwi.nii.gz`,
 however the user is free to choose any other label than `singleband` and
 `multiband` as long as they are consistent across subjects and sessions.
-
-For multiband acquisitions, one can also save the single-band reference image as
-type `sbref` (e.g. `dwi/sub-control01_sbref.nii[.gz]`.)
 
 ### REQUIRED gradient orientation information
 
