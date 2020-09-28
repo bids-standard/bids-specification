@@ -378,10 +378,10 @@ participant, task and run takes precedence.
 
 Currently supported image modalities include:
 
-| **Name**              | `modality_label` | **Description**                                                                                                                                     |
-|---------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| DWI                   | dwi              | Diffusion-weighted imaging contrast (specialized T2\* weighting)                                                                                     |
-| Single-Band Reference | sbref            | Single-band reference for one or more multi-band `dwi` images, only when no gradient informations needs to be stored (i.e., all volumes are *b = 0*) |
+| **Name**              | `modality_label` | **Description**                                                                                                                                       |
+|---------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DWI                   | dwi              | Diffusion-weighted imaging contrast (specialized T2\* weighting).                                                                                     |
+| Single-Band Reference | sbref            | Single-band reference for one or more multi-band `dwi` images, only when no gradient informations needs to be stored (i.e., all volumes are *b = 0*). |
 
 Template:
 
@@ -450,7 +450,11 @@ bval example:
 and thus define those values for all sessions and/or subjects in one place (see
 Inheritance principle).
 
-## Multipart (split) DWI schemes
+As an exception to the [common principle](../02-common-principles.md#definitions)
+that parameters are constant across runs, the gradient table information (stored
+within the `.bval` and `.bvec` files) MAY change across DWI runs.
+
+### Multipart (split) DWI schemes
 
 Some MR schemes cannot be acquired directly by some scanner devices,
 requiring to generate several DWI runs that were originally meant to belong
@@ -459,9 +463,9 @@ For instance, some GE scanners cannot collect more than &asymp;160 volumes
 in a single run under fast-changing gradients, so acquiring *HCP-style*
 diffusion images will require splitting the DWI scheme in several runs.
 
-| **Key name**    | **Requirement level** | **Data type** | **Description**                                                                                                                                                                               |
-| --------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| MultipartID     | REQUIRED              | [string][]    | Unique identifier to prescribe DWI segments belonging in a single multipart run.                                                                                                              |
+| **Key name**    | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                      |
+| --------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| MultipartID     | REQUIRED              | [string][]    | Unique identifier (participant's level) to prescribe DWI segments belonging in a single dataset. Segments can be designated by any combination of `dir-<label>`, `acq-<label>` and/or `run-<index>` key/value pairs. |
 
 JSON example:
 
@@ -495,7 +499,7 @@ sub-<label>/[ses-<label>/]
        sub-<label>_dwi.json
 ```
 
-## Other RECOMMENDED metadata
+### Other RECOMMENDED metadata
 
 See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms that can be included in the corresponding JSON file.
