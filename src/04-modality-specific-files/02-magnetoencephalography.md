@@ -1,14 +1,10 @@
 # Magnetoencephalography
 
-Support for Magnetoencephalography (MEG) was developed as a [BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
-Please cite the following paper when referring to this part of the standard in
-context of the academic literature:
-
-> Niso Galan, J.G., Gorgolewski, K.J., Bock, E., Brooks, T.L., Flandin, G.,
-> Gramfort, A., Henson, R.N., Jas, M., Litvak, V., Moreau, J., Oostenveld, R.,
-> Schoffelen, J.-M., Tadel, F., Wexler, J., Baillet, S. (2018). **MEG-BIDS, the
-> brain imaging data structure extended to magnetoencephalography**. Scientific
-> data, 5. doi: [10.1038/sdata.2018.110](https://doi.org/10.1038/sdata.2018.110)
+Support for Magnetoencephalography (MEG) was developed as a
+[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../01-introduction.md#citing-bids)
+on how to appropriately credit this extension when referring to it in the
+context of the academic literature.
 
 ## MEG recording data
 
