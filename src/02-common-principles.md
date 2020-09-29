@@ -27,7 +27,7 @@ misunderstanding we clarify them here.
     by DWI the day after) those can be grouped in one session. Defining multiple
     sessions is appropriate when several identical or similar data acquisitions
     are planned and performed on all -or most- subjects, often in the case of
-    some intervention between sessions (e.g., training).
+    some intervention between sessions (for example, training).
 
 1.  **Data acquisition** - a continuous uninterrupted block of time during which
     a brain scanning instrument was acquiring data according to particular
@@ -57,7 +57,7 @@ misunderstanding we clarify them here.
 
 1.  **Event** - a stimulus or subject response recorded during a task. Each
     event has an onset time and duration. Note that not all tasks will have
-    recorded events (e.g., “resting state”).
+    recorded events (for example, “resting state”).
 
 1.  **Run** - an uninterrupted repetition of data acquisition that has the same
     acquisition parameters and task (however events can change from run to run
@@ -75,15 +75,15 @@ misunderstanding we clarify them here.
     the **data type**.
 
 1.  **`<index>`** - a nonnegative integer, possibly prefixed with arbitrary number of
-    0s for consistent indentation, e.g., it is `01` in `run-01` following
+    0s for consistent indentation, for example, it is `01` in `run-01` following
     `run-<index>` specification.
 
 1.  **`<label>`** - an alphanumeric value, possibly prefixed with arbitrary
-    number of 0s for consistent indentation, e.g., it is `rest` in `task-rest`
+    number of 0s for consistent indentation, for example, it is `rest` in `task-rest`
     following `task-<label>` specification.
 
 1.  **`suffix`** - an alphanumeric value, located after the `key-value_` pairs (thus after
-    the final `_`), right before the **File extension**, e.g., it is `eeg` in
+    the final `_`), right before the **File extension**, for example, it is `eeg` in
     `sub-05_task-matchingpennies_eeg.vhdr`.
 
 1.  **File extension** - a portion of the the file name after the left-most
@@ -218,8 +218,8 @@ Derivatives can be stored/distributed in two ways:
     under which it stores all of its outputs. Different components of a pipeline can,
     however, also be stored under different subfolders. There are few restrictions on
     the directory names; it is RECOMMENDED to use the format `<pipeline>-<variant>` in
-    cases where it is anticipated that the same pipeline will output more than one variant (e.g.,
-    `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
+    cases where it is anticipated that the same pipeline will output more than 
+    one variant (for example, `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
     subfolder name SHOULD be the `GeneratedBy.Name` field in
     `data_description.json`, optionally followed by a hyphen and a suffix (see
     [Derived dataset and pipeline description][derived-dataset-description]).
@@ -385,7 +385,7 @@ inherited by the `.json` file at the deeper level (but NOT vice versa!).
 
 **Try to avoid excessive amount of overrides.**  Do not specify a field
 value in the upper levels if lower levels have more or less even
-distribution of multiple possible values. E.g., if a field `X` has one
+distribution of multiple possible values. For example, if a field `X` has one
 value for all `ses-01/` and another for all `ses-02/` it better not to be
 defined at all in the `.json` at the upper level.
 
@@ -417,7 +417,7 @@ line listing the names of all columns (with the exception of
 Names MUST be separated with tabs.
 It is RECOMMENDED that the column names in the header of the TSV file are
 written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
-first letter in lower case (e.g., `variable_name`, not `Variable_name`).
+first letter in lower case (for example, `variable_name`, not `Variable_name`).
 String values containing tabs MUST be escaped using double
 quotes. Missing and non-applicable values MUST be coded as `n/a`. Numerical
 values MUST employ the dot (`.`) as decimal separator and MAY be specified
@@ -485,7 +485,7 @@ have built-in support for JSON syntax highlighting that aids manual creation of
 such files. An online editor for JSON with built-in validation is available at:
 [http://jsoneditoronline.org](http://jsoneditoronline.org).
 It is RECOMMENDED that keys in a JSON file are written in [CamelCase](https://en.wikipedia.org/wiki/Camel_case)
-with the first letter in upper case (e.g., `SamplingFrequency`, not
+with the first letter in upper case (for example, `SamplingFrequency`, not
 `samplingFrequency`). Note however, when a JSON file is used as an accompanying
 sidecar file for a [TSV file](#tabular-files), the keys linking a TSV column
 with their description in the JSON file need to follow the exact formatting
@@ -519,11 +519,11 @@ for more information.
 
 ## Participant names and other labels
 
-BIDS allows for custom user-defined `<label>`s and `<index>`es e.g.,
+BIDS allows for custom user-defined `<label>`s and `<index>`es for example,
 for naming of participants, sessions, acquisition schemes, etc. Note
 that they MUST consist only of allowed characters as described in
 [Definitions](02-common-principles.md#definitions) above. In `<index>`es
-we RECOMMEND using zero padding (e.g., `01` instead of `1` if you have more than
+we RECOMMEND using zero padding (for example, `01` instead of `1` if you have more than
 nine subjects) to make alphabetical sorting more intuitive. Note that
 zero padding SHOULD NOT be used to merely maintain uniqueness
 of `<index>`es.
@@ -599,7 +599,7 @@ Describing dates and timestamps:
 
 -   WARNING: The Neuromag/Elekta/MEGIN file format for MEG (`.fif`) does *not*
     support recording dates earlier than `1902` roughly.
-    Some analysis software packages (e.g., MNE-Python) handle their data as `.fif`
+    Some analysis software packages (for example, MNE-Python) handle their data as `.fif`
     internally and will break if recording dates are specified prior to `1902`,
     even if the original data format is not `.fif`.
     See [MEG-file-formats](./99-appendices/06-meg-file-formats.md#recording-dates-in-fif-files)
@@ -608,7 +608,7 @@ Describing dates and timestamps:
 -   Age SHOULD be given as the number of years since birth at the time of
     scanning (or first scan in case of multi session datasets). Using higher
     accuracy (weeks) should in general be avoided due to privacy protection,
-    unless when appropriate given the study goals, e.g., when scanning babies.
+    unless when appropriate given the study goals, for example, when scanning babies.
 
 ## Directory structure
 

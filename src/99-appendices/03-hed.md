@@ -55,7 +55,7 @@ The tags in the `HED` column of the `*_events.tsv` file are often specific to th
 while the common properties are represented by categorical values appearing in other columns.
 You may provide a `HED` column and multiple categorical columns to document your events.
 Each of these categorical columns should be documented in a corresponding `*_events.json` sidecar. 
-The column name (e.g., `mycodes`) is the dictionary key to this documentation, as illustrated by the following example.  
+The column name (for example, `mycodes`) is the dictionary key to this documentation, as illustrated by the following example.  
 
 Example:
 

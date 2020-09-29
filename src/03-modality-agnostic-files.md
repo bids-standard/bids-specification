@@ -213,7 +213,7 @@ It is RECOMMENDED to accompany each `participants.tsv` file with a sidecar
 the [section on tabular files](02-common-principles.md#tabular-files)).
 Such sidecar files are needed to interpret the data, especially so when
 optional columns are defined beyond `age`, `sex`, and `handedness`, such as
-`group` in this example, or when a different age unit is needed (e.g., gestational weeks).
+`group` in this example, or when a different age unit is needed (for example, gestational weeks).
 If no `units` is provided for age, it will be assumed to be in years relative to date of birth.
 
 `participants.json` example:

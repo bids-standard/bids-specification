@@ -41,7 +41,7 @@ and OPTIONAL columns:
 | trial_type      | OPTIONAL              | Primary categorisation of each trial to identify them as instances of the experimental conditions. For example: for a response inhibition task, it could take on values "go" and "no-go" to refer to response initiation and response inhibition experimental conditions.                                                                                                                                                                                              |
 | response_time   | OPTIONAL              | Response time measured in seconds. A negative response time can be used to represent preemptive responses and "n/a" denotes a missed response.                                                                                                                                                                                                                                                                                                                         |
 | stim_file       | OPTIONAL              | Represents the location of the stimulus file (image, video, sound etc.) presented at the given onset time. There are no restrictions on the file formats of the stimuli files, but they should be stored in the /stimuli folder (under the root folder of the dataset; with optional subfolders). The values under the stim_file column correspond to a path relative to "/stimuli". For example "images/cat03.jpg" will be translated to "/stimuli/images/cat03.jpg". |
-| value           | OPTIONAL              | Marker value associated with the event (e.g., the value of a TTL trigger that was recorded at the onset of the event).                                                                                                                                                                                                                                                                                                                                                 |
+| value           | OPTIONAL              | Marker value associated with the event (for example, the value of a TTL trigger that was recorded at the onset of the event).                                                                                                                                                                                                                                                                                                                                                 |
 | HED             | OPTIONAL              | Hierarchical Event Descriptor (HED) Tag. See [Appendix III](../99-appendices/03-hed.md) for details.                                                                                                                                                                                                                                                                                                                                                                   |
 
 <sup>5</sup> For example in case there is an in scanner training phase that
@@ -169,9 +169,9 @@ The object supplied for `StimulusPresentation` SHOULD include the following key-
 
 The operating system description SHOULD include the following attributes:
 
--   type (e.g., Windows, macOS, Linux)
--   distribution (if applicable, e.g., Ubuntu, Debian, CentOS)
--   the version number (e.g., 18.04.5)
+-   type (for example, Windows, macOS, Linux)
+-   distribution (if applicable, for example, Ubuntu, Debian, CentOS)
+-   the version number (for example, 18.04.5)
 
 Examples:
 

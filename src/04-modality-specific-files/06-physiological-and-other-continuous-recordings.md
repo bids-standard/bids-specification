@@ -53,7 +53,7 @@ Please note that, in contrast to other TSV files in BIDS, the TSV files specifie
 for phsyiological and other continuous recordings *do not* include a header
 line.
 Instead the name of columns are specified in the JSON file.
-This is to improve compatibility with existing software (e.g., FSL, PNM) as well
+This is to improve compatibility with existing software (for example, FSL, PNM) as well
 as to make support for other file formats possible in the future.
 
 Example `*_physio.tsv.gz`:

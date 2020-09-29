@@ -25,7 +25,7 @@ see the example further below):
 | -------------------- | --------------------- | -------------------------------------- | ------------------------------------------------------------------ |
 | Genetics.Dataset     | REQUIRED              | [string][]                             | URI where data can be retrieved.                                   |
 | Genetics.Database    | OPTIONAL              | [string][]                             | URI of database where the dataset is hosted.                       |
-| Genetics.Descriptors | OPTIONAL              | [string][] or [array][] of [strings][] | List of relevant descriptors (e.g., journal articles) for dataset. |
+| Genetics.Descriptors | OPTIONAL              | [string][] or [array][] of [strings][] | List of relevant descriptors (for example, journal articles) for dataset. |
 
 Example:
 
@@ -85,7 +85,7 @@ fields:
 | **Key name**       | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                              |
 | ------------------ | --------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | GeneticLevel       | REQUIRED              | [string][] or [array][] of [strings][] | Describes the level of analysis. Values MUST be one of `Genetic`, `Genomic`, `Epigenomic`, `Transcriptomic`, `Metabolomic`, or `Proteomic`.                                                                                                  |
-| AnalyticalApproach | OPTIONAL              | [string][] or [array][] of [strings][] | Methodology or methodologies used to analyse the GeneticLevel. Values MUST be taken from the [database of Genotypes and Phenotypes (dbGaP)][gapsolr] under /Study/Molecular Data Type (e.g., `SNP Genotypes (Array)` or `Methylation (CpG)`. |
+| AnalyticalApproach | OPTIONAL              | [string][] or [array][] of [strings][] | Methodology or methodologies used to analyse the GeneticLevel. Values MUST be taken from the [database of Genotypes and Phenotypes (dbGaP)][gapsolr] under /Study/Molecular Data Type (for example, `SNP Genotypes (Array)` or `Methylation (CpG)`. |
 | SampleOrigin       | REQUIRED              | [string][]                             | Describes from which tissue the genetic information was extracted. Values MUST be one of `blood`, `saliva`, `brain`, `csf`, `breast milk`, `bile`, `amniotic fluid`, `other biospecimen`.                                                    |
 | TissueOrigin       | OPTIONAL              | [string][]                             | Describes the type of tissue analyzed for SampleOrigin `brain`. Values MUST be one of `gray matter`, `white matter`, `csf`, `meninges`, `macrovascular` or `microvascular`.                                                                  |
 | BrainLocation      | OPTIONAL              | [string][]                             | Refers to the location in space of the `TissueOrigin`. Values may be an MNI coordinate, a label taken from the [Allen Brain Atlas][allen], or layer to refer to layer-specific gene expression, which can also tie up with laminar fMRI.     |
