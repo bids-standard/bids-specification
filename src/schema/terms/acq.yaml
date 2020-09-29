@@ -1,6 +1,5 @@
 ---
 name: Acquisition
-class: entity
 description: |
   The `acq-<label>` key/value pair corresponds to a custom label the
   user MAY use to distinguish a different set of parameters used for
@@ -17,5 +16,4 @@ description: |
   At what level of detail to make the distinction (e.g. just between RARE and
   FLASH, or between RARE, FLASH, and FLASHsubsampled) remains at the
   discretion of the researcher.
-# Entity-specific fields
-format: label
+

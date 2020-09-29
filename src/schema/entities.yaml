@@ -1,16 +1,30 @@
 ---
-# This file determines the order of entities in filenames.
-- sub
-- ses
-- task
-- acq
-- ce
-- rec
-- dir
-- run
-- mod
-- echo
-- recording
-- proc
-- space
-- split
+# Ordering and attributes of entities
+- sub:
+    format: label
+- ses:
+    format: label
+- task:
+    format: label
+- acq:
+    format: label
+- ce:
+    format: label
+- rec:
+    format: label
+- dir:
+    format: label
+- run:
+    format: index
+- mod:
+    format: label
+- echo:
+    format: index
+- recording:
+    format: label
+- proc:
+    format: label
+- space:
+    format: label
+- split:
+    format: index
