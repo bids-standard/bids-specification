@@ -6,10 +6,10 @@
     - func
     - beh
   suffixes:
-    - events
+    - physio
   extensions:
     - .json
-    - .tsv
+    - .tsv.gz
   entities:
     - matches: required
     - sub: required
