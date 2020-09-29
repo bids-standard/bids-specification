@@ -69,8 +69,10 @@ original iEEG data in the [`/sourcedata` directory](../02-common-principles.md#s
 
 Note the RecordingType, which depends on whether the data stream on disk is interrupted or not.
 Continuous data is by definition 1 segment without interruption.
-Epoched data consists of multiple segments that all have the same length (for example, corresponding to trials) and that have gaps in between.
-Discontinuous data consists of multiple segments of different length, for example due to a pause in the acquisition.
+Epoched data consists of multiple segments that all have the same length 
+(for example, corresponding to trials) and that have gaps in between.
+Discontinuous data consists of multiple segments of different length, 
+for example due to a pause in the acquisition.
 
 ### Terminology: Electrodes vs. Channels
 
@@ -428,7 +430,8 @@ upper left pixel and (N,0) corresponding to the lower left pixel.
 If electrode positions are known in multiple coordinate systems (for example, MRI, CT
 and MNI), these spaces can be distinguished by the optional [`space-<label>`](../99-appendices/09-entities.md#space)
 field, see the [`*_electrodes.tsv`-section](#electrode-description-_electrodestsv)
-for more information. Note that the [`space-<label>`](../99-appendices/09-entities.md#space) fields must correspond
+for more information. 
+Note that the [`space-<label>`](../99-appendices/09-entities.md#space) fields must correspond
 between `*_electrodes.tsv` and `*_coordsystem.json` if they refer to the same
 data.
 

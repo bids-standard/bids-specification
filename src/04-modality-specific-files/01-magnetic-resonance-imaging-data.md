@@ -30,12 +30,16 @@ Example for `ReceiveCoilActiveElements`:
 
 For Siemens, coil channels are typically not activated/selected individually,
 but rather in pre-defined selectable "groups" of individual channels,
-and the list of the "groups" of elements that are active/selected in any given scan populates the `Coil String` entry in Siemens' private DICOM fields
-(for example, `HEA;HEP` for the Siemens standard 32 ch coil when both the anterior and posterior groups are activated).
-This is a flexible field that can be used as most appropriate for a given vendor and coil to define the "active" coil elements.
+and the list of the "groups" of elements that are active/selected in any 
+given scan populates the `Coil String` entry in Siemens' private DICOM fields
+(for example, `HEA;HEP` for the Siemens standard 32 ch coil 
+when both the anterior and posterior groups are activated).
+This is a flexible field that can be used as most appropriate for a given 
+vendor and coil to define the "active" coil elements.
 Since individual scans can sometimes not have the intended coil elements selected,
-it is preferable for this field to be populated directly from the DICOM for each individual scan,
-so that it can be used as a mechanism for checking that a given scan was collected with the intended coil elements selected
+it is preferable for this field to be populated directly from the DICOM 
+for each individual scan, so that it can be used as a mechanism for checking 
+that a given scan was collected with the intended coil elements selected
 
 ### Sequence Specifics
 

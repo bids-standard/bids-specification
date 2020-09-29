@@ -214,14 +214,17 @@ Derivatives can be stored/distributed in two ways:
 
 1.  Under a `derivatives/` subfolder in the root of the source BIDS dataset
     folder to make a clear distinction between raw data and results of data
-    processing. A data processing pipeline will typically have a dedicated directory
-    under which it stores all of its outputs. Different components of a pipeline can,
-    however, also be stored under different subfolders. There are few restrictions on
-    the directory names; it is RECOMMENDED to use the format `<pipeline>-<variant>` in
-    cases where it is anticipated that the same pipeline will output more than 
-    one variant (for example, `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
-    subfolder name SHOULD be the `GeneratedBy.Name` field in
-    `data_description.json`, optionally followed by a hyphen and a suffix (see
+    processing. 
+    A data processing pipeline will typically have a dedicated directory
+    under which it stores all of its outputs. 
+    Different components of a pipeline can, however, also be stored under different 
+    subfolders. 
+    There are few restrictions on the directory names; it is RECOMMENDED to use 
+    the format `<pipeline>-<variant>` in cases where it is anticipated that 
+    the same pipeline will output more than one variant 
+    (for example, `AFNI-blurring`, `AFNI-noblurring`, etc.). 
+    For the sake of consistency, the subfolder name SHOULD be the `GeneratedBy.Name` 
+    field in `data_description.json`, optionally followed by a hyphen and a suffix (see
     [Derived dataset and pipeline description][derived-dataset-description]).
 
     Example of derivatives with one directory per pipeline:
