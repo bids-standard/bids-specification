@@ -1,4 +1,5 @@
 ---
+# Main group
 - suffixes:
     - eeg
   extensions:
@@ -10,6 +11,72 @@
     - .set
     - .fdt
     - .bdf
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    run: optional
+# Group 2
+- suffixes:
+    - channels
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    run: optional
+# Group 3
+- suffixes:
+    - electrodes
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+    run: optional
+# Group 4
+- suffixes:
+    - coordsystem
+  extensions:
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+# Group 5
+- suffixes:
+    - photo
+  extensions:
+    - .jpg
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+# Group 6
+- suffixes:
+    - events
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    run: optional
+# Group 7
+- suffixes:
+    - physio
+    - stim
+  extensions:
+    - .json
+    - .tsv.gz
   entities:
     sub: required
     ses: optional

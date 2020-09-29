@@ -1,5 +1,5 @@
 ---
-# First group
+# Main group
 - suffixes:
     - meg
   extensions:
@@ -22,3 +22,71 @@
     run: optional
     proc: optional
     split: optional
+# Group 2
+- suffixes:
+    - channels
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    run: optional
+    proc: optional
+# Group 3
+- suffixes:
+    - coordsystem
+  extensions:
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+# Group 4
+- suffixes:
+    - photo
+  extensions:
+    - .jpg
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+# Group 5
+- suffixes:
+    - headshape
+  extensions:
+    - .pos
+    - .txt
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+# Group 6
+- suffixes:
+    - events
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    run: optional
+    proc: optional
+# Group 7
+- suffixes:
+    - stim
+    - physio
+  extensions:
+    - .json
+    - .tsv.gz
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    run: optional
+    proc: optional
