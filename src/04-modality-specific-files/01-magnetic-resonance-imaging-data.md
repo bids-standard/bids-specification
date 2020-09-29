@@ -408,12 +408,12 @@ The single-band reference image MAY be stored as type `sbref` (e.g.,
 gradient information (`.bval` and `.bvec` sidecar files) to be stored.
 
 Otherwise, if some gradient information is associated to the single-band diffusion
-image and a multi-band diffusion image also exists,  the `acq-<label>` key/value pair
+image and a multi-band diffusion image also exists, the `acq-<label>` key/value pair
 MUST be used to distinguish both images.
-In such case two files could have the following names:
-`sub-01_acq-singleband_dwi.nii.gz` and `sub-01_acq-multiband_dwi.nii.gz`,
-however the user is free to choose any other label than `singleband` and
-`multiband` as long as they are consistent across subjects and sessions.
+In such a case, two files could have the following names:
+`sub-01_acq-singleband_dwi.nii.gz` and `sub-01_acq-multiband_dwi.nii.gz`.
+The user is free to choose any other label than `singleband` and
+`multiband`, as long as they are consistent across subjects and sessions.
 
 ### REQUIRED gradient orientation information
 
