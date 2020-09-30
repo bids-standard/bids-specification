@@ -397,9 +397,21 @@ sub-<label>/[ses-<label>/]
        sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_sbref.json
 ```
 
+If more than one run of the same acquisition and direction has been acquired, the
+[`run-<index>`](../99-appendices/09-entities.md#run) key/value pair MUST be used:
+`_run-1`, `_run-2`, `_run-3` etc.
+When there is only one scan of a given acquisition and direction, the run key MAY be
+omitted.
+The [`run-<index>`](../99-appendices/09-entities.md#run) key/value pair is RECOMMENDED
+to encode the splits of multipart DWI scans (see [below](#multipart-split-dwi-schemes).)
+
 The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
 key/value pair corresponds to a custom label the user may use to
 distinguish different sets of parameters.
+
+The OPTIONAL [`dir-<label>`](../99-appendices/09-entities.md#dir)
+key/value pair corresponds to a custom label the user may use to
+distinguish different sets of phase-encoding directions.
 
 ### Combining multi- and single-band acquisitions
 
@@ -417,21 +429,32 @@ The user is free to choose any other label than `singleband` and
 
 ### REQUIRED gradient orientation information
 
-The bvec and bval files are in the
-[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT).
-The bvec files contain 3 rows with n space-delimited floating-point numbers
-(corresponding to the n volumes in the relevant NIfTI file).
+The REQUIRED gradient orientation information corresponding to a DWI acquisition
+MUST be stored using `.bval` and `.bvec` pairs of files.
+The `.bval` and `.bvec` files can be saved on any level of the directory structure
+and thus define those values for all sessions and/or subjects in one place (see
+Inheritance principle).
+
+As an exception to the [common principles](../02-common-principles.md#definitions)
+that parameters are constant across runs, the gradient table information (stored
+within the `.bval` and `.bvec` files) MAY change across DWI runs.
+
+**Gradient orientation file formats** The `.bvec` and `.bval` files MUST follow the
+[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
+The `.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
+(corresponding to the *N* volumes in the corresponding NIfTI file.)
 The first row contains the *x* elements, the second row contains the *y* elements and
 the third row contains the *z* elements of a unit vector in the direction of the applied
 diffusion gradient, where the *i*-th elements in each row correspond together to
-the *i*-th volume, with `[0,0,0]` for non-diffusion-weighted volumes.
-Inherent to the FSL format for bvec specification is the fact that the coordinate system of
+the *i*-th volume, with `[0,0,0]` for *non-diffusion-weighted* (also called *b*=0 or *low-b*)
+volumes.
+Inherent to the FSL format for `.bvec` specification is the fact that the coordinate system of
 the bvecs is with respect to the participant (i.e., defined by the axes of the
 corresponding dwi.nii file) and not the magnet's coordinate system, which means
-that any rotations applied to dwi.nii also need to be applied to the
-corresponding bvec file.
+that any rotations applied to the DWI data also need to be applied to the
+corresponding `.bvec` file.
 
-bvec example:
+Example of `.bvec` file, with *N*=6, with two *b*=0 volumes in the beginning:
 
 ```Text
 0 0 0.021828 -0.015425 -0.70918 -0.2465
@@ -439,23 +462,14 @@ bvec example:
 0 0 -0.59636 0.97516 -0.70503 -0.96351
 ```
 
-The bval file contains the b-values (in s/mm<sup>2</sup>) corresponding to the
-volumes in the relevant NIfTI file), with 0 designating non-diffusion-weighted
-volumes, space-delimited.
+The `.bval` file contains the *b*-values (in s/mm<sup>2</sup>) corresponding to the
+volumes in the relevant NIfTI file), with 0 designating *b*=0 volumes, space-delimited.
 
-bval example:
+Example of `.bval` file, corresponding to the previous `.bvec` example:
 
 ```Text
 0 0 2000 2000 1000 1000
 ```
-
-`.bval` and `.bvec` files can be saved on any level of the directory structure
-and thus define those values for all sessions and/or subjects in one place (see
-Inheritance principle).
-
-As an exception to the [common principle](../02-common-principles.md#definitions)
-that parameters are constant across runs, the gradient table information (stored
-within the `.bval` and `.bvec` files) MAY change across DWI runs.
 
 ### Multipart (split) DWI schemes
 
@@ -465,41 +479,71 @@ in a single one.
 For instance, some GE scanners cannot collect more than &asymp;160 volumes
 in a single run under fast-changing gradients, so acquiring *HCP-style*
 diffusion images will require splitting the DWI scheme in several runs.
+Because researchers will generally optimize the data splits, these will likely
+not be directly concatenable anymore.
+BIDS permits defining arbitrary groupings of these multipart scans with the
+following metadata:
 
 | **Key name**    | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                      |
 | --------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| MultipartID     | REQUIRED              | [string][]    | Unique identifier (participant's level) to prescribe DWI segments belonging in a single dataset. Segments can be designated by any combination of `dir-<label>`, `acq-<label>` and/or `run-<index>` key/value pairs. |
+| MultipartID     | REQUIRED              | [string][]    | A unique (per participant) label tagging DWI runs that are part of a multipart scan.                                                                                                                                 |
 
 JSON example:
 
 ```JSON
 {
-  "PhaseEncodingDirection": "j-",
-  "TotalReadoutTime": 0.095,
-  "MultipartID": "dwi_protocol1"
+  "MultipartID": "dwi_1"
 }
 ```
 
-For instance, the above JSON sidecar defined for a set of files via the
-`sub-<label>_dwi.json` file would indicate that all the runs 1 through 4
-belong in the same unique image:
+For instance, if there are two phase-encoding directions (`AP`, `PA`), and
+two runs each, and the intent of the researcher is that all of them are
+part of a unique multipart scan, then they will tag all four runs with the
+same `MultipartID` (shown at the right-hand side of the file listing):
 
 ```Text
-sub-<label>/[ses-<label>/]
-    dwi/
-       sub-<label>_run-1_dwi.nii.gz
-       sub-<label>_run-1_dwi.bval
-       sub-<label>_run-1_dwi.bvec
-       sub-<label>_run-2_dwi.nii.gz
-       sub-<label>_run-2_dwi.bval
-       sub-<label>_run-2_dwi.bvec
-       sub-<label>_run-3_dwi.nii.gz
-       sub-<label>_run-3_dwi.bval
-       sub-<label>_run-3_dwi.bvec
-       sub-<label>_run-4_dwi.nii.gz
-       sub-<label>_run-4_dwi.bval
-       sub-<label>_run-4_dwi.bvec
-       sub-<label>_dwi.json
+sub-<label>/[ses-<label>/]     # MultipartID
+  dwi/
+    sub-1_dir-AP_run-1.nii.gz  # dwi_1
+    sub-1_dir-AP_run-2.nii.gz  # dwi_1
+    sub-1_dir-PA_run-1.nii.gz  # dwi_1
+    sub-1_dir-PA_run-2.nii.gz  # dwi_1
+```
+
+If, conversely, the resarcher wanted to store two multipart scans, one possibility
+is to combine matching phase-encoding directions:
+
+```Text
+sub-<label>/[ses-<label>/]     # MultipartID
+  dwi/
+    sub-1_dir-AP_run-1.nii.gz  # dwi_1
+    sub-1_dir-AP_run-2.nii.gz  # dwi_1
+    sub-1_dir-PA_run-1.nii.gz  # dwi_2
+    sub-1_dir-PA_run-2.nii.gz  # dwi_2
+```
+
+Alternatively, the researcher's intent could be combining opposed phase-encoding
+runs instead:
+
+```Text
+sub-<label>/[ses-<label>/]     # MultipartID
+  dwi/
+    sub-1_dir-AP_run-1.nii.gz  # dwi_1
+    sub-1_dir-AP_run-2.nii.gz  # dwi_2
+    sub-1_dir-PA_run-1.nii.gz  # dwi_1
+    sub-1_dir-PA_run-2.nii.gz  # dwi_2
+```
+
+The `MultipartID` metadata MAY be used with the
+[`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair, for example:
+
+```Text
+sub-<label>/[ses-<label>/]         # MultipartID
+  dwi/
+    sub-1_acq-shell1_run-1.nii.gz  # dwi_1
+    sub-1_acq-shell1_run-2.nii.gz  # dwi_2
+    sub-1_acq-shell2_run-1.nii.gz  # dwi_1
+    sub-1_acq-shell2_run-2.nii.gz  # dwi_2
 ```
 
 ### Other RECOMMENDED metadata
