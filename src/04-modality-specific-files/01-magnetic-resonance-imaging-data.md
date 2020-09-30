@@ -377,12 +377,12 @@ participant, task and run takes precedence.
 ## Diffusion imaging data
 
 Diffusion-weighted imaging data acquired for a participant.
-Currently supported image modalities include:
+Currently supported image types include:
 
-| **Name**              | `modality_label` | **Description**                                                   |
-|---------------------- | ---------------- | ----------------------------------------------------------------- |
-| DWI                   | dwi              | Diffusion-weighted imaging contrast (specialized T2\* weighting). |
-| Single-Band Reference | sbref            | Single-band reference for one or more multi-band `dwi` images.    |
+| **Name**              | `suffix` | **Description**                                                   |
+|---------------------- | -------- | ----------------------------------------------------------------- |
+| DWI                   | dwi      | Diffusion-weighted imaging contrast (specialized T2\* weighting). |
+| Single-Band Reference | sbref    | Single-band reference for one or more multi-band `dwi` images.    |
 
 Template:
 
