@@ -413,11 +413,11 @@ The OPTIONAL [`dir-<label>`](../99-appendices/09-entities.md#dir)
 key/value pair corresponds to a custom label the user may use to
 distinguish different sets of phase-encoding directions.
 
-### Combining multi- and single-band acquisitions
-
-The single-band reference image MAY be stored as type `sbref` (e.g.,
+**Combining multi- and single-band acquisitions**.
+The single-band reference image MAY be stored with suffix `sbref` (e.g.,
 `dwi/sub-control01_sbref.nii[.gz]`,) as long as the image has no corresponding
-gradient information (`.bval` and `.bvec` sidecar files) to be stored.
+[gradient information (`.bval` and `.bvec` sidecar files)](#required-gradient-orientation-information)
+to be stored.
 
 Otherwise, if some gradient information is associated to the single-band diffusion
 image and a multi-band diffusion image also exists, the `acq-<label>` key/value pair
@@ -502,48 +502,48 @@ part of a unique multipart scan, then they will tag all four runs with the
 same `MultipartID` (shown at the right-hand side of the file listing):
 
 ```Text
-sub-<label>/[ses-<label>/]     # MultipartID
+sub-<label>/[ses-<label>/]         # MultipartID
   dwi/
-    sub-1_dir-AP_run-1.nii.gz  # dwi_1
-    sub-1_dir-AP_run-2.nii.gz  # dwi_1
-    sub-1_dir-PA_run-1.nii.gz  # dwi_1
-    sub-1_dir-PA_run-2.nii.gz  # dwi_1
+    sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1
+    sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_1
+    sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_1
+    sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_1
 ```
 
 If, conversely, the resarcher wanted to store two multipart scans, one possibility
 is to combine matching phase-encoding directions:
 
 ```Text
-sub-<label>/[ses-<label>/]     # MultipartID
+sub-<label>/[ses-<label>/]         # MultipartID
   dwi/
-    sub-1_dir-AP_run-1.nii.gz  # dwi_1
-    sub-1_dir-AP_run-2.nii.gz  # dwi_1
-    sub-1_dir-PA_run-1.nii.gz  # dwi_2
-    sub-1_dir-PA_run-2.nii.gz  # dwi_2
+    sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1
+    sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_1
+    sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_2
+    sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_2
 ```
 
 Alternatively, the researcher's intent could be combining opposed phase-encoding
 runs instead:
 
 ```Text
-sub-<label>/[ses-<label>/]     # MultipartID
+sub-<label>/[ses-<label>/]         # MultipartID
   dwi/
-    sub-1_dir-AP_run-1.nii.gz  # dwi_1
-    sub-1_dir-AP_run-2.nii.gz  # dwi_2
-    sub-1_dir-PA_run-1.nii.gz  # dwi_1
-    sub-1_dir-PA_run-2.nii.gz  # dwi_2
+    sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1
+    sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_2
+    sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_1
+    sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_2
 ```
 
 The `MultipartID` metadata MAY be used with the
 [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair, for example:
 
 ```Text
-sub-<label>/[ses-<label>/]         # MultipartID
+sub-<label>/[ses-<label>/]             # MultipartID
   dwi/
-    sub-1_acq-shell1_run-1.nii.gz  # dwi_1
-    sub-1_acq-shell1_run-2.nii.gz  # dwi_2
-    sub-1_acq-shell2_run-1.nii.gz  # dwi_1
-    sub-1_acq-shell2_run-2.nii.gz  # dwi_2
+    sub-1_acq-shell1_run-1_dwi.nii.gz  # dwi_1
+    sub-1_acq-shell1_run-2_dwi.nii.gz  # dwi_2
+    sub-1_acq-shell2_run-1_dwi.nii.gz  # dwi_1
+    sub-1_acq-shell2_run-2_dwi.nii.gz  # dwi_2
 ```
 
 ### Other RECOMMENDED metadata
