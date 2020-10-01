@@ -57,7 +57,7 @@ that a given scan was collected with the intended coil elements selected
 | **Key name**                   | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 |--------------------------------|-----------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | NumberShots                    | RECOMMENDED           | [number][]    | The number of RF excitations need to reconstruct a slice or volume. Please mind that this is not the same as Echo Train Length which denotes the number of lines of k-space collected after an excitation.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ParallelReductionFactorInPlane | RECOMMENDED           | [number][]    | The parallel imaging (e.g, GRAPPA) factor. Use the denominator of the fraction of k-space encoded for each slice. For example, 2 means half of k-space is encoded. Corresponds to DICOM Tag 0018, 9069 `Parallel Reduction Factor In-plane`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ParallelReductionFactorInPlane | RECOMMENDED           | [number][]    | The parallel imaging (for instance, GRAPPA) factor. Use the denominator of the fraction of k-space encoded for each slice. For example, 2 means half of k-space is encoded. Corresponds to DICOM Tag 0018, 9069 `Parallel Reduction Factor In-plane`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | ParallelAcquisitionTechnique   | RECOMMENDED           | [string][]    | The type of parallel imaging used (for example GRAPPA, SENSE). Corresponds to DICOM Tag 0018, 9078 `Parallel Acquisition Technique`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | PartialFourier                 | RECOMMENDED           | [number][]    | The fraction of partial Fourier information collected. Corresponds to DICOM Tag 0018, 9081 `Partial Fourier`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | PartialFourierDirection        | RECOMMENDED           | [string][]    | The direction where only partial Fourier information was collected. Corresponds to DICOM Tag 0018, 9036 `Partial Fourier Direction`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -399,7 +399,7 @@ sub-<label>/[ses-<label>/]
 
 If more than one run of the same acquisition and direction has been acquired, the
 [`run-<index>`](../99-appendices/09-entities.md#run) key/value pair MUST be used:
-`_run-1`, `_run-2`, `_run-3` etc.
+`_run-1`, `_run-2`, `_run-3` (and so forth.)
 When there is only one scan of a given acquisition and direction, the run key MAY be
 omitted.
 The [`run-<index>`](../99-appendices/09-entities.md#run) key/value pair is RECOMMENDED
@@ -414,7 +414,7 @@ key/value pair corresponds to a custom label the user may use to
 distinguish different sets of phase-encoding directions.
 
 **Combining multi- and single-band acquisitions**.
-The single-band reference image MAY be stored with suffix `sbref` (e.g.,
+The single-band reference image MAY be stored with suffix `sbref` (for example,
 `dwi/sub-control01_sbref.nii[.gz]`,) as long as the image has no corresponding
 [gradient information (`.bval` and `.bvec` sidecar files)](#required-gradient-orientation-information)
 to be stored.
@@ -439,7 +439,7 @@ As an exception to the [common principles](../02-common-principles.md#definition
 that parameters are constant across runs, the gradient table information (stored
 within the `.bval` and `.bvec` files) MAY change across DWI runs.
 
-**Gradient orientation file formats** The `.bvec` and `.bval` files MUST follow the
+**Gradient orientation file formats**. The `.bvec` and `.bval` files MUST follow the
 [FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
 The `.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
 (corresponding to the *N* volumes in the corresponding NIfTI file.)
@@ -449,10 +449,10 @@ diffusion gradient, where the *i*-th elements in each row correspond together to
 the *i*-th volume, with `[0,0,0]` for *non-diffusion-weighted* (also called *b*=0 or *low-b*)
 volumes.
 Inherent to the FSL format for `.bvec` specification is the fact that the coordinate system of
-the bvecs is with respect to the participant (i.e., defined by the axes of the
-corresponding dwi.nii file) and not the magnet's coordinate system, which means
-that any rotations applied to the DWI data also need to be applied to the
-corresponding `.bvec` file.
+the bvecs is with respect to the participant (in other words, defined by the axes of the
+corresponding `_dwi` file) and not the magnet's coordinate system.
+The most relevant implication for this choice is that any rotations applied to the DWI data
+also need to be applied to the corresponding `.bvec` file.
 
 Example of `.bvec` file, with *N*=6, with two *b*=0 volumes in the beginning:
 
