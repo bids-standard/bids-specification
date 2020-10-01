@@ -91,6 +91,12 @@ misunderstanding we clarify them here.
     not have a file extension, but the file extension of `test.nii.gz` is `.nii.gz`.
     Note that the left-most period is included in the file extension.
 
+1.  **DEPRECATED** - A "deprecated" entity or metadata field SHOULD NOT be used in the
+    generation of new datasets.
+    It remains in the standard in order to preserve the interpretability of existing datasets.
+    Validating software SHOULD warn when deprecated practices are detected and provide a
+    suggestion for updating the dataset to preserve the curator's intent.
+
 ## Compulsory, optional, and additional data and metadata
 
 The following standard describes a way of arranging data and writing down
