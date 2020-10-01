@@ -520,6 +520,18 @@ for more information.
 }
 ```
 
+## Uniform Resource Indicator 
+
+Uniform Resource Indicator (URI) are a string referring to a resource and SHOULD
+have the form `<scheme>:[//<authority>]<path>[?<query>][#<fragment>]`, as specified 
+in [RFC 3986](https://tools.ietf.org/html/rfc3986). 
+This applies tp URLs and other common URIs include Digital Object Identifiers (DOIs), 
+which may be fully specified as `doi:<path>`, 
+for example, [doi:10.5281/zenodo.3686061](https://doi.org/10.5281/zenodo.3686061).
+A given resource may have multiple URIs.
+When selecting URIs to add to dataset metadata, it is important to consider 
+specificity and persistence.
+
 ## Participant names and other labels
 
 BIDS allows for custom user-defined `<label>`s and `<index>`es for example,
