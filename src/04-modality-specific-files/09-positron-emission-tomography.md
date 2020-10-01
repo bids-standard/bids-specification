@@ -234,7 +234,7 @@ This section may be omitted if plasma measurements of radioactivity were not mad
 
 | Field name  | Definition                                                                                                      |
 | :---------- | :-------------------------------------------------------------------------------------------------------------- |
-| ColumnName    | REQUIRED. Name of the column (e.g. "metabolite_parent_fraction".                                                                        |
+| ColumnName    | REQUIRED. Name of the column (e.g. "plasma_radioactivity".                                                                        |
 | Description | REQUIRED. Radioactivity in plasma.                                                                                      |
 | Units       | REQUIRED. Unit of plasma radioactivity (e.g. "kBq/mL") |   
 
@@ -245,7 +245,7 @@ Hence, it may contain information regarding metabolite info, such as the followi
 
 | Field name  | Definition                                                                                                      |
 | :---------- | :-------------------------------------------------------------------------------------------------------------- |
-| ColumnName    | REQUIRED. Name of the column (e.g. "plasma_radioactivity".                                                                        |
+| ColumnName    | REQUIRED. Name of the column (e.g. "metabolite_parent_fraction".                                                                        |
 | Description | REQUIRED. Parent fraction of the radiotracer (0-1).                                                                                      |
 | Units       | REQUIRED. Unit of parent fraction (e.g. "unitless") |  
 
