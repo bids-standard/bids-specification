@@ -4,6 +4,7 @@
 
 -   \[FIX] Accidentally swapped Neuromag/Elekta/MEGIN cross-talk & fine-calibration filename extensions [#621](https://github.com/bids-standard/bids-specification/pull/621) ([hoechenberger](https://github.com/hoechenberger))
 -   \[INFRA] Move MRI section headings up a level [#618](https://github.com/bids-standard/bids-specification/pull/618) ([tsalo](https://github.com/tsalo))
+-   SCHEMA: Declare entities by concept names, add entity field for filename components [#616](https://github.com/bids-standard/bids-specification/pull/616) ([effigies](https://github.com/effigies))
 -   \[FIX] Change wrong text references from \*CoordinateSystemUnits to \*CoordinateUnits [#614](https://github.com/bids-standard/bids-specification/pull/614) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Describe arbitrary units in Common Principles [#606](https://github.com/bids-standard/bids-specification/pull/606) ([tsalo](https://github.com/tsalo))
 -   \[FIX] Clarify data types and requirement levels for all JSON files [#605](https://github.com/bids-standard/bids-specification/pull/605) ([sappelhoff](https://github.com/sappelhoff))
