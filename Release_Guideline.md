@@ -17,7 +17,7 @@ backwards-incompatible changes, while minor and patch releases must be backwards
 ## Guidelines
 
 Once a decision for a release has been established, the rules of [decision-making](DECISION-MAKING.md)
-govern the mechanism of doing the release, *i.e.*, waiting 5 business days and obtaining
+govern the mechanism of doing the release, meaning, waiting 5 business days and obtaining
 the approval of at least one maintainer before merging.
 
 ### Minor (1.X.0) releases

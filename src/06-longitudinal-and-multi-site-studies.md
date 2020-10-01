@@ -108,5 +108,5 @@ which site each subjects comes from you can add a `site` column in the
 analyze all of the subjects together in one dataset. One caveat is that subjects
 from all sites will have to have unique labels. To enforce that and improve
 readability you can use a subject label prefix identifying the site. For example
-`sub-NUY001`, `sub-MIT002`, `sub-MPG002` etc. Remember that hyphens and
+`sub-NUY001`, `sub-MIT002`, `sub-MPG002` and so on. Remember that hyphens and
 underscores are not allowed in subject labels.

@@ -160,7 +160,7 @@ Format: `proc-<label>`
 Definition: The proc label is analogous to rec for MR and denotes a variant of a file
 that was a result of particular processing performed on the device.
 This is useful for files produced in particular by Elekta’s MaxFilter
-(for example, sss, tsss, trans, quat, mc, etc.), which some installations impose to
+(e.g. sss, tsss, trans, quat, mc, and so on), which some installations impose to
 be run on raw data because of active shielding software corrections before
 the MEG data can actually be exploited.
 

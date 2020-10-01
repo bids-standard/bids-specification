@@ -5,7 +5,7 @@ Legend (source:
 
 | Emoji | Represents                                                                        |
 |-------|---------------------------------------------------------------------------------- |
-| 💬    | Answering Questions (on the mailing list, NeuroStars, GitHub, or in person, etc.) |
+| 💬    | Answering Questions (on the mailing list, NeuroStars, GitHub, or in person, and so on) |
 | 🐛    | Bug reports                                                                       |
 | 📝    | Blogposts                                                                         |
 | 💻    | Code                                                                              |
@@ -18,7 +18,7 @@ Legend (source:
 | 💵    | Financial Support                                                                 |
 | 🔍    | Funding/Grant Finders                                                             |
 | 🤔    | Ideas & Planning                                                                  |
-| 🚇    | Infrastructure (hosting, build-tools, etc.)                                       |
+| 🚇    | Infrastructure (hosting, build-tools, and so on)                                       |
 | 🚧    | Maintenance of the BIDS standard                                                  |
 | 🧑‍🏫 | Mentoring new contributors                                                        |
 | 🔌    | Plugin/utility libraries                                                          |
@@ -29,7 +29,7 @@ Legend (source:
 | ⚠️    | Tests                                                                             |
 | ✅     | Tutorials                                                                         |
 | 📢    | Talks                                                                             |
-| 📓    | User testing (of new features, tools, etc.)                                       |
+| 📓    | User testing (of new features, tools, and so on)                                       |
 | 📹    | Videos                                                                            |
 
 The following individuals have contributed to the Brain Imaging Data Structure

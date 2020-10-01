@@ -38,7 +38,7 @@ misunderstanding we clarify them here.
     `func` (task based and resting state functional MRI),
     `dwi` (diffusion weighted imaging),
     `fmap` (field inhomogeneity mapping data such as field maps),
-    `anat` (structural imaging such as T1, T2, etc.),
+    `anat` (structural imaging such as T1, T2, and so on),
     `meg` (magnetoencephalography),
     `eeg` (electroencephalography),
     `ieeg` (intracranial electroencephalography),
@@ -173,7 +173,7 @@ external source repositories to maximize long term preservation,
 which would suffer if an external repository would not be available anymore.
 This specification currently does not go into the details of
 recommending a particular naming scheme for including different types of
-source data (raw event logs, parameter files, etc. before conversion to BIDS).
+source data (such as the raw event logs, parameter files and equivalent generated before conversion to BIDS).
 However, in the case that these data are to be included:
 
 1.  These data MUST be kept in separate `sourcedata` folder with a similar
@@ -230,17 +230,17 @@ Derivatives can be stored/distributed in two ways:
 
 1.  Under a `derivatives/` subfolder in the root of the source BIDS dataset
     folder to make a clear distinction between raw data and results of data
-    processing.
+    processing. 
     A data processing pipeline will typically have a dedicated directory
-    under which it stores all of its outputs.
-    Different components of a pipeline can, however, also be stored under different
-    subfolders.
-    There are few restrictions on the directory names; it is RECOMMENDED to use
-    the format `<pipeline>-<variant>` in cases where it is anticipated that
-    the same pipeline will output more than one variant
-    (for example, `AFNI-blurring`, `AFNI-noblurring`, etc.).
-    For the sake of consistency, the subfolder name SHOULD be the `GeneratedBy.Name`
-    field in `data_description.json`, optionally followed by a hyphen and a suffix (see
+    under which it stores all of its outputs. 
+    Different components of a pipeline can, however, also be stored under different 
+    subfolders. 
+    There are few restrictions on the directory names; it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where it is anticipated that the same pipeline 
+    will output more than one variant (for example, `AFNI-blurring`, 
+    `AFNI-noblurring`, and so on). 
+    For the sake of consistency, the subfolder name SHOULD be 
+    the `GeneratedBy.Name` field in `data_description.json`, 
+    optionally followed by a hyphen and a suffix (see
     [Derived dataset and pipeline description][derived-dataset-description]).
 
     Example of derivatives with one directory per pipeline:
@@ -264,7 +264,6 @@ Derivatives can be stored/distributed in two ways:
     <dataset>/derivatives/spm-preproc/sub-0001
     <dataset>/derivatives/spm-preproc/derivatives/spm-stats/sub-0001
     ```
-
 
 1.  As a standalone dataset independent of the source (raw or derived) BIDS
     dataset.
@@ -320,7 +319,7 @@ datasets and non-compliant derivatives.
 
 ## The Inheritance Principle
 
-Any metadata file (`.json`, `.bvec`, `.tsv`, etc.) may be defined at any
+Any metadata file (`.json`, `.bvec`, `.tsv` and so on) may be defined at any
 directory level, but no more than one applicable file may be defined at a given
 level (Example 1). The values from the top level are inherited by all lower
 levels unless they are overridden by a file at the lower level. For example,
@@ -331,9 +330,9 @@ within that specific series directory specifying the TR for that specific run.
 There is no notion of "unsetting" a key/value pair.
 Once a key/value pair is set in a given level in the dataset, lower down in
 the hierarchy that key/value pair will always have some assigned value.
-Files for a particular participant can exist only at participant level directory, i.e
-`/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any file that is not
-specific to a participant is to be declared only at top level of dataset for eg:
+Files for a particular participant can exist only at participant level directory, 
+that is `/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any file that is not
+specific to a participant is to be declared only at top level of dataset for example:
 `task-sist_bold.json` must be placed under `/dataset/task-sist_bold.json`
 
 Example 1: Two JSON files that are erroneously at the same level
@@ -428,7 +427,7 @@ NIfTI header.
 
 ### Tabular files
 
-Tabular data MUST be saved as tab delimited values (`.tsv`) files, i.e., CSV
+Tabular data MUST be saved as tab delimited values (`.tsv`) files, meaning CSV
 files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
 line listing the names of all columns (with the exception of
@@ -539,7 +538,7 @@ for more information.
 ## Participant names and other labels
 
 BIDS allows for custom user-defined `<label>`s and `<index>`es for example,
-for naming of participants, sessions, acquisition schemes, etc. Note
+for naming of participants, sessions, acquisition schemes, and so forth. Note
 that they MUST consist only of allowed characters as described in
 [Definitions](02-common-principles.md#definitions) above. In `<index>`es
 we RECOMMEND using zero padding (for example, `01` instead of `1` if you have more than
