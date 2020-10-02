@@ -65,7 +65,7 @@ For example:
 > Brain Imaging Data Structure (Gorgolewski, K., Auer, T., Calhoun, V. et al., 2016)
 > with the extension for EEG data (Pernet, C.R., Appelhoff, S., Gorgolewski, K.J. et al., 2019).
 
-### original publication
+### Original publication
 
 -   Gorgolewski, K.J., Auer, T., Calhoun, V.D., Craddock, R.C., Das, S., Duff,
     E.P., Flandin, G., Ghosh, S.S., Glatard, T., Halchenko, Y.O., Handwerker,
@@ -77,7 +77,7 @@ For example:
     Scientific Data, 3 (160044).
     [doi:10.1038/sdata.2016.44](https://doi.org/10.1038/sdata.2016.44)
 
-### datatype specific publications
+### Datatype specific publications
 
 #### EEG
 
