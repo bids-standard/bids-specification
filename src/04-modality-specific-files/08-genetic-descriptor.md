@@ -23,9 +23,10 @@ see the example further below):
 
 | **Key name**         | **Requirement level** | **Data type**                          | **Description**                                                    |
 | -------------------- | --------------------- | -------------------------------------- | ------------------------------------------------------------------ |
-| Genetics.Dataset     | REQUIRED              | [string][]                             | [URI](../02-common-principles.md#uniform-resource indicator) where data can be retrieved.                                   |
-| Genetics.Database    | OPTIONAL              | [string][]                             | [URI](../02-common-principles.md#uniform-resource indicator) of database where the dataset is hosted.                       |
-| Genetics.Descriptors | OPTIONAL              | [string][] or [array][] of [strings][] | List of relevant descriptors (for example, journal articles) for dataset using a valid [URI](../02-common-principles.md#uniform-resource indicator) when possible. |
+
+| Genetics.Dataset     | REQUIRED              | [string][]                             | [URI][uri] where data can be retrieved.                                   |
+| Genetics.Database    | OPTIONAL              | [string][]                             | [URI][uri] of database where the dataset is hosted.                       |
+| Genetics.Descriptors | OPTIONAL              | [string][] or [array][] of [strings][] | List of relevant descriptors (for example, journal articles) for dataset using a valid [URI][uri] when possible. |
 
 
 Example:
@@ -124,3 +125,4 @@ To ensure dataset description consistency, we recommend following [Multi-omics a
 [allen]: http://atlas.brain-map.org/atlas?atlas=265297125&plate=112360888&structure=4392&x=40348.15104166667&y=46928.75&zoom=-7&resolution=206.60&z=3
 [ontology]: http://obofoundry.org/ontology/cl.html
 [gapsolr]: https://www.ncbi.nlm.nih.gov/gap/advanced
+[uri]: ../02-common-principles.md#uniform-resource indicator

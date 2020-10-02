@@ -335,8 +335,8 @@ sparse sequences.
 | --------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Instructions    | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the scan. This is especially important in context of resting state fMRI and distinguishing between eyes open and eyes closed paradigms. |
 | TaskDescription | RECOMMENDED           | [string][]    | Longer description of the task.                                                                                                                                                               |
-| CogAtlasID      | RECOMMENDED           | [string][]    | [URI](../02-common-principles.md#uniform-resource indicator) of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.                                                                                                        |
-| CogPOID         | RECOMMENDED           | [string][]    | [URI](../02-common-principles.md#uniform-resource indicator) of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                 |
+| CogAtlasID      | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.                                                                                                        |
+| CogPOID         | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                 |
 
 See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms and their definitions.
@@ -621,3 +621,4 @@ IntendedFor field in the JSON file should be used.
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
 [arrays]: https://www.w3schools.com/js/js_json_arrays.asp
 [object]: https://www.json.org/json-en.html
+[uri]: ../02-common-principles.md#uniform-resource indicator
