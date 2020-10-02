@@ -28,7 +28,7 @@ sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.ds>
 
 CTF's data storage is therefore via directories containing multiple files. The
 files contained within a `.ds` directory are named such that they match the
-parent directory, but preserve the original file extension (e.g., `.meg4`,
+parent directory, but preserve the original file extension (for example, `.meg4`,
 `.res4`, etc.). The renaming of CTF datasets SHOULD be done with a specialized
 software such as the CTF newDs command-line application or
 [MNE-BIDS](https://github.com/mne-tools/mne-bids).
@@ -134,8 +134,8 @@ sub-01/
 
 ### Sharing FIFF data after signal-space separation (SSS)
 
-After applying SSS (e.g., by using the MaxFilter software),
-files SHOULD be renamed with the corresponding label (e.g., `proc-sss`)
+After applying SSS (for example, by using the MaxFilter software),
+files SHOULD be renamed with the corresponding label (for example, `proc-sss`)
 and placed in a `derivatives` subfolder.
 
 Example:
@@ -199,7 +199,7 @@ sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg>
 ```
 
 One SHOULD rename/create a father run specific directory and keep the original
-files for each run inside (e.g., `c,rfhp0.1Hz`, `config` and `hs_file`).
+files for each run inside (for example, `c,rfhp0.1Hz`, `config` and `hs_file`).
 
 Example:
 
@@ -303,7 +303,7 @@ header that contains detailed information about the data acquisition system,
 followed by binary data. The associated binary header file contains part of the
 information from the ASCII header, specifically the one needed to process data,
 plus other information on offline preprocessing performed after data acquisition
-(e.g., sensor position relative to subject’s head, head markers, stimulus
+(for example, sensor position relative to subject’s head, head markers, stimulus
 information).
 
 Example:
