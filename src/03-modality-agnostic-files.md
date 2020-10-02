@@ -15,7 +15,7 @@ The file `dataset_description.json` is a JSON file describing the dataset.
 Every dataset MUST include this file with the following fields:
 
 | **Key name**       | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                       |
-| ------------------ | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|--------------------|-----------------------|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name               | REQUIRED              | [string][]               | Name of the dataset.                                                                                                                                                                                                                                  |
 | BIDSVersion        | REQUIRED              | [string][]               | The version of the BIDS standard that was used.                                                                                                                                                                                                       |
 | HEDVersion         | RECOMMENDED           | [string][]               | If HED tags are used: The version of the HED schema used to validate HED tags for study.                                                                                                                                                              |
@@ -26,8 +26,8 @@ Every dataset MUST include this file with the following fields:
 | HowToAcknowledge   | OPTIONAL              | [string][]               | Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset.                            |
 | Funding            | OPTIONAL              | [array][] of [strings][] | List of sources of funding (grant numbers).                                                                                                                                                                                                           |
 | EthicsApprovals    | OPTIONAL              | [array][] of [strings][] | List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                                             |
-| ReferencesAndLinks | OPTIONAL              | [array][] of [strings][] | List of references to publication that contain information on the dataset, or [URI][uri].                                                                                                                                                                  |
-| DatasetDOI         | OPTIONAL              | [string][]               | The Document Object Identifier of the dataset (not the corresponding paper) expressed as a valid [URI][uri].                                                                                                                                                                          |
+| ReferencesAndLinks | OPTIONAL              | [array][] of [strings][] | List of references to publication that contain information on the dataset, or [URI][uri].                                                                                                                                                             |
+| DatasetDOI         | OPTIONAL              | [string][]               | The Document Object Identifier of the dataset (not the corresponding paper) expressed as a valid [URI][uri].                                                                                                                                          |
 
 Example:
 
@@ -69,20 +69,20 @@ In addition to the keys for raw BIDS datasets,
 derived BIDS datasets include the following REQUIRED and RECOMMENDED
 `dataset_description.json` keys:
 
-| **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                     |
-| -------------- | --------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GeneratedBy    | REQUIRED              | [array][] of [objects][] | Used to specify provenance of the derived dataset. See table below for contents of each object.                                                                     |
+| **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                       |
+|----------------|-----------------------|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| GeneratedBy    | REQUIRED              | [array][] of [objects][] | Used to specify provenance of the derived dataset. See table below for contents of each object.                                                                                                       |
 | SourceDatasets | RECOMMENDED           | [array][] of [objects][] | Used to specify the locations and relevant attributes of all source datasets. Valid keys in each object include `URL`, `DOI` (expressed as a valid [URI][uri]), and `Version` with [string][] values. |
 
 Each object in the `GeneratedBy` list includes the following REQUIRED, RECOMMENDED
 and OPTIONAL keys:
 
-| **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                    |
-| ------------ | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Name         | REQUIRED              | [string][]    | Name of the pipeline or process that generated the outputs. Use `"Manual"` to indicate the derivatives were generated by hand, or adjusted manually after an initial run of an automated pipeline. |
-| Version      | RECOMMENDED           | [string][]    | Version of the pipeline.                                                                                                                                                                           |
-| Description  | OPTIONAL              | [string][]    | Plain-text description of the pipeline or process that generated the outputs. RECOMMENDED if `Name` is `"Manual"`.                                                                                 |
-| CodeURL      | OPTIONAL              | [string][]    | URL where the code used to generate the derivatives may be found.                                                                                                                                  |
+| **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                           |
+|--------------|-----------------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name         | REQUIRED              | [string][]    | Name of the pipeline or process that generated the outputs. Use `"Manual"` to indicate the derivatives were generated by hand, or adjusted manually after an initial run of an automated pipeline.        |
+| Version      | RECOMMENDED           | [string][]    | Version of the pipeline.                                                                                                                                                                                  |
+| Description  | OPTIONAL              | [string][]    | Plain-text description of the pipeline or process that generated the outputs. RECOMMENDED if `Name` is `"Manual"`.                                                                                        |
+| CodeURL      | OPTIONAL              | [string][]    | URL where the code used to generate the derivatives may be found.                                                                                                                                         |
 | Container    | OPTIONAL              | [object][]    | Used to specify the location and relevant attributes of software container image used to produce the derivative. Valid keys in this object include `Type`, `Tag` and [`URI`][uri] with [string][] values. |
 
 Example:
@@ -213,9 +213,9 @@ It is RECOMMENDED to accompany each `participants.tsv` file with a sidecar
 the [section on tabular files](02-common-principles.md#tabular-files)).
 Such sidecar files are needed to interpret the data, especially so when
 optional columns are defined beyond `age`, `sex`, and `handedness`, such as
-`group` in this example, or when a different age unit is needed 
+`group` in this example, or when a different age unit is needed
 (for example, gestational weeks).
-If no `units` is provided for age, it will be assumed to be in years relative 
+If no `units` is provided for age, it will be assumed to be in years relative
 to date of birth.
 
 `participants.json` example:
@@ -386,4 +386,4 @@ code organization of these scripts at the moment.
 [string]: https://www.w3schools.com/js/js_json_syntax.asp
 [strings]: https://www.w3schools.com/js/js_json_syntax.asp
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
-[uri]: ../02-common-principles.md#uniform-resource indicator
+[uri]: ./02-common-principles.md#uniform-resource-indicator
