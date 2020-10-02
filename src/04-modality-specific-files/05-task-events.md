@@ -165,7 +165,7 @@ The object supplied for `StimulusPresentation` SHOULD include the following key-
 | SoftwareName    | RECOMMENDED           | [string][]    | Name of the software that was used to present the stimuli.                                                                                                                                                       |
 | SoftwareRRID    | RECOMMENDED           | [string][]    | [Research Resource Identifier](https://scicrunch.org/resources) of the software that was used to present the stimuli. Examples: The RRID for Psychtoolbox is 'SCR_002881', and that of PsychoPy is 'SCR_006571'. |
 | SoftwareVersion | RECOMMENDED           | [string][]    | Version of the software that was used to present the stimuli.                                                                                                                                                    |
-| Code            | RECOMMENDED           | [string][]    | [URI][uri] of the code used to present the stimuli. Persistent identifiers such as DOIs are preferred. If multiple versions of code may be hosted at the same location, revision-specific URIs are recommended.  |
+| Code            | RECOMMENDED           | [string][]    | [URI](../02-common-principles.md#uniform-resource indicator) of the code used to present the stimuli. Persistent identifiers such as DOIs are preferred. If multiple versions of code may be hosted at the same location, revision-specific URIs are recommended.  |
 
 The operating system description SHOULD include the following attributes:
 
@@ -215,4 +215,4 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
 [object]: https://www.json.org/json-en.html
 [string]: https://www.w3schools.com/js/js_json_datatypes.asp
 [strings]: https://www.w3schools.com/js/js_json_datatypes.asp
-[uri]: https://github.com/bids-standard/bids-starter-kit/wiki/Glossary#uri
+
