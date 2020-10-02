@@ -13,7 +13,7 @@ context of the academic literature:
 > Ramsey, N. F., Stolk, A., Swann, N. C., Tadel, F., Voytek, B., Wandell, B. A.,
 > Winawer, J., Whitaker, K., Zehl, L., Hermes, D. (2019). **iEEG-BIDS,
 > extending the Brain Imaging Data Structure specification to human intracranial
-> electrophysiology**. Scientific data, 6. [doi:10.1038/s41597-019-0105-7](https://doi.org/10.1038/s41597-019-0105-7)
+> electrophysiology**. Scientific data, 6. doi: [10.1038/s41597-019-0105-7](https://doi.org/10.1038/s41597-019-0105-7)
 
 ## iEEG recording data
 

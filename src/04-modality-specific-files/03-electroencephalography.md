@@ -7,7 +7,7 @@ context of the academic literature:
 > Pernet, C. R., Appelhoff, S., Gorgolewski, K.J., Flandin, G., Phillips, C.,
 > Delorme, A., Oostenveld, R. (2019). **EEG-BIDS, an extension to the brain
 > imaging data structure for electroencephalography**. Scientific data, 6.
-> [doi:10.1038/s41597-019-0104-8](https://doi.org/10.1038/s41597-019-0104-8)
+> doi: [10.1038/s41597-019-0104-8](https://doi.org/10.1038/s41597-019-0104-8)
 
 The following example EEG datasets have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
