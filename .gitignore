@@ -3,6 +3,8 @@ site/
 .idea
 venvs
 
+pdf_build_src/bids-spec.pdf
+
 # Python gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/
