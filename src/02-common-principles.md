@@ -62,7 +62,7 @@ misunderstanding we clarify them here.
     Other events may include unplanned incidents
     (e.g., sudden onset of noise and vibrations due to construction work, laboratory device malfunction),
     changes in task instructions (e.g., switching the response hand),
-    or experiment control parameters (e.g., changing the stimulus presentation rate over experiment blocks),
+    or experiment control parameters (e.g., changing the stimulus presentation rate over experimental blocks),
     and noted data feature occurrences (e.g., a recording electrode producing noise).
     In BIDS, each event has an onset time and duration.
     Note that not all tasks will have recorded events (for example, "resting state").
