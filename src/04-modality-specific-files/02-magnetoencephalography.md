@@ -8,7 +8,7 @@ context of the academic literature:
 > Gramfort, A., Henson, R.N., Jas, M., Litvak, V., Moreau, J., Oostenveld, R.,
 > Schoffelen, J.-M., Tadel, F., Wexler, J., Baillet, S. (2018). **MEG-BIDS, the
 > brain imaging data structure extended to magnetoencephalography**. Scientific
-> data, 5. doi: [10.1038/sdata.2018.110](https://doi.org/10.1038/sdata.2018.110)
+> data, 5. [doi:10.1038/sdata.2018.110](https://doi.org/10.1038/sdata.2018.110)
 
 ## MEG recording data
 

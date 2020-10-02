@@ -13,7 +13,7 @@ context of the academic literature:
 > Ramsey, N. F., Stolk, A., Swann, N. C., Tadel, F., Voytek, B., Wandell, B. A.,
 > Winawer, J., Whitaker, K., Zehl, L., Hermes, D. (2019). **iEEG-BIDS,
 > extending the Brain Imaging Data Structure specification to human intracranial
-> electrophysiology**. Scientific data, 6. doi: [10.1038/s41597-019-0105-7](https://doi.org/10.1038/s41597-019-0105-7)
+> electrophysiology**. Scientific data, 6. [doi:10.1038/s41597-019-0105-7](https://doi.org/10.1038/s41597-019-0105-7)
 
 ## iEEG recording data
 
@@ -493,8 +493,9 @@ JNeuroMeth 2010).
 
 Below is an example of a volume rendering of the cortical surface with a
 superimposed subdural electrode implantation. This map is often provided by the
+
 EEG technician and provided to the epileptologists (for example, see Burneo JG et al.
-2014 [https://doi.org/10.1016/j.clineuro.2014.03.020](https://doi.org/10.1016/j.clineuro.2014.03.020)).
+2014. [doi:10.1016/j.clineuro.2014.03.020](https://doi.org/10.1016/j.clineuro.2014.03.020)).
 
 ```Text
     sub-0002_ses-01_acq-render_photo.jpg
