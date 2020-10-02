@@ -86,7 +86,10 @@ def read_and_check_files(files):
 				  containing the offending line.
 	"""
     failing_files = {}
-    bad_latin = ["i.e.", "e.g.", "e.t.c.", " etc", " ie ", "et cetera"]
+    bad_latin = [
+        "i.e.", "i.e ", " ie ", 
+        "e.g.", "e.g ",  
+        "e.t.c.", " etc", "et cetera"]
 
     for filename in files:
         if os.path.basename(filename) in IGNORE_LIST:
