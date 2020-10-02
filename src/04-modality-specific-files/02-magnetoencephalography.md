@@ -400,7 +400,7 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 Template:
 
-{{ make_filename_template(datatypes=["meg"], auxdatatypes=["headshape"]) }}
+{{ make_filename_template(datatypes=["meg"], suffixes=["headshape"]) }}
 
 ```Text
 sub-<label>/

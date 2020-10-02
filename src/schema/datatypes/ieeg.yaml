@@ -12,8 +12,8 @@
     - .fdt
     - .nwb
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
+    acquisition: optional
     run: optional

@@ -9,7 +9,7 @@
     - .json
     - .tsv
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
     run: optional

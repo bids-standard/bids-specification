@@ -8,6 +8,6 @@
   extensions:
     - .jpg
   entities:
-    sub: required
-    ses: optional
-    acq: optional
+    subject: required
+    session: optional
+    acquisition: optional

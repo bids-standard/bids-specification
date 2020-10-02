@@ -5,6 +5,7 @@ from copy import deepcopy
 from itertools import chain
 from pathlib import Path
 from warnings import warn
+from pprint import pprint
 
 import numpy as np
 import pandas as pd
@@ -98,7 +99,7 @@ def make_entity_definitions(schema):
         text += "\n\n"
         text += "Full name: {}".format(entity_info["name"])
         text += "\n\n"
-        text += "Format: `{}-<{}>`".format(entity, entity_info["format"])
+        text += "Format: `{}-<{}>`".format(entity_info["entity"], entity_info["format"])
         text += "\n\n"
         text += "Definition: {}".format(entity_info["description"])
     return text
@@ -137,9 +138,9 @@ def build_filename_format(schema, **kwargs):
     # Parent folders
     paragraph += "{}-{}/[{}-{}/]\n".format(
         "sub",
-        "<" + schema["entities"]["sub"]["format"] + ">",
+        "<" + schema["entities"]["subject"]["format"] + ">",
         "ses",
-        "<" + schema["entities"]["ses"]["format"] + ">",
+        "<" + schema["entities"]["session"]["format"] + ">",
     )
 
     for datatype in schema["datatypes"].keys():
@@ -149,7 +150,8 @@ def build_filename_format(schema, **kwargs):
         for group in schema["datatypes"][datatype]:
             string = "\t\t"
             for ent in entities:
-                ent_format = "{}-<{}>".format(ent, schema["entities"][ent]["format"])
+                entity_shorthand = schema["entities"][ent]["entity"]
+                ent_format = "{}-<{}>".format(entity_shorthand, schema["entities"][ent]["format"])
                 if ent in group["entities"]:
                     if group["entities"][ent] == "required":
                         if len(string.strip()):
@@ -179,7 +181,8 @@ def build_filename_format(schema, **kwargs):
                     new_string = string + extension
                     full_strings.append(new_string)
             full_strings = sorted(full_strings)
-            paragraph += "\n".join(full_strings) + "\n"
+            if full_strings:
+                paragraph += "\n".join(full_strings) + "\n"
     paragraph = paragraph.rstrip()
     codeblock = "```Text\n" + paragraph + "\n```"
     codeblock = codeblock.expandtabs(4)
@@ -219,8 +222,10 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
     # Compose header and formats first
     for i, (entity, spec) in enumerate(schema["entities"].items()):
+        entity_shorthand = schema["entities"][entity]["entity"]
         header.append(spec["name"])
-        formats.append(f'[`{entity}-<{spec["format"]}>`]' f"({ENTITIES_FILE}#{entity})")
+        formats.append(f'[`{entity_shorthand}-<{spec["format"]}>`]'
+                       f"({ENTITIES_FILE}#{entity})")
         entity_to_col[entity] = i + 1
 
     # Go through data types

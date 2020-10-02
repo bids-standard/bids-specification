@@ -52,7 +52,7 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 ## Magnetoencephalography (MEG)
 
-{{ make_entity_table(datatypes=["meg"]) }}
+{{ make_entity_table(datatypes=["meg"], auxdatatypes=["channels", "events", "photo"]) }}
 
 ## Behavioral Data
 

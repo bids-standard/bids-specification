@@ -8,7 +8,7 @@
     - .json
     - .tsv
   entities:
-    sub: required
-    ses: optional
-    acq: optional
+    subject: required
+    session: optional
+    acquisition: optional
     space: optional

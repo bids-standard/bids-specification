@@ -15,12 +15,12 @@
     - .kdf
     - .mhd
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
+    acquisition: optional
     run: optional
-    proc: optional
+    processing: optional
     split: optional
 # Second group
 - suffixes:
@@ -29,17 +29,27 @@
     - .pos
     - .txt
   entities:
-    sub: required
-    ses: optional
-    acq: optional
+    subject: required
+    session: optional
+    acquisition: optional
     space: optional
+# Third group
 - suffixes:
     - markers
   extensions:
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: optional
-    acq: optional
+    acquisition: optional
     space: optional
+# Fourth
+- suffixes:
+    - coordsystem
+  extensions:
+    - .json
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
