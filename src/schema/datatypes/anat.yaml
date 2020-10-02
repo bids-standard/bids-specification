@@ -20,12 +20,12 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
 # Second group
 - suffixes:
     - defacemask
@@ -34,10 +34,10 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
-    mod: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    modality: optional

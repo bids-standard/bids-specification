@@ -1,5 +1,5 @@
 ---
-# Main group
+# First group
 - suffixes:
     - meg
   extensions:
@@ -15,78 +15,69 @@
     - .kdf
     - .mhd
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
+    acquisition: optional
     run: optional
-    proc: optional
+    processing: optional
     split: optional
-# Group 2
-- suffixes:
-    - channels
-  extensions:
-    - .json
-    - .tsv
-  entities:
-    sub: required
-    ses: optional
-    task: required
-    acq: optional
-    run: optional
-    proc: optional
-# Group 3
-- suffixes:
-    - coordsystem
-  extensions:
-    - .json
-  entities:
-    sub: required
-    ses: optional
-    acq: optional
-# Group 4
-- suffixes:
-    - photo
-  extensions:
-    - .jpg
-  entities:
-    sub: required
-    ses: optional
-    acq: optional
-# Group 5
+# Second group
 - suffixes:
     - headshape
   extensions:
     - .pos
     - .txt
   entities:
-    sub: required
-    ses: optional
-    acq: optional
-# Group 6
+    subject: required
+    session: optional
+    acquisition: optional
+# Third group
+- suffixes:
+    - markers
+  extensions:
+    - .json
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    space: optional
+# Fourth
+- suffixes:
+    - coordsystem
+  extensions:
+    - .json
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+- suffixes:
+    - channels
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    subject: required
+    session: optional
+    task: required
+    run: optional
+    processing: optional
 - suffixes:
     - events
   extensions:
     - .json
     - .tsv
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
     run: optional
-    proc: optional
-# Group 7
 - suffixes:
-    - stim
-    - physio
+    - photo
   extensions:
-    - .json
-    - .tsv.gz
+    - .jpg
   entities:
-    sub: required
-    ses: optional
-    task: required
-    acq: optional
-    run: optional
-    proc: optional
+    subject: required
+    session: optional
+    acquisition: optional

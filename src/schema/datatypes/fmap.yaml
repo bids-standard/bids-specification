@@ -13,9 +13,9 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
-    acq: optional
+    subject: required
+    session: optional
+    acquisition: optional
     run: optional
 # Second group
 - suffixes:
@@ -25,9 +25,9 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
-    acq: optional
-    ce: optional
-    dir: required
+    subject: required
+    session: optional
+    acquisition: optional
+    ceagent: optional
+    direction: required
     run: optional

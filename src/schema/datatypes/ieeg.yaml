@@ -12,75 +12,53 @@
     - .fdt
     - .nwb
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
+    acquisition: optional
     run: optional
-# Group 2
 - suffixes:
     - channels
   extensions:
     - .json
     - .tsv
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
     run: optional
-# Group 3
+- suffixes:
+    - coordsystem
+  extensions:
+    - .json
+  entities:
+    subject: required
+    session: optional
+    space: optional
 - suffixes:
     - electrodes
   extensions:
     - .json
     - .tsv
   entities:
-    sub: required
-    ses: optional
-    acq: optional
+    subject: required
+    session: optional
     space: optional
-# Group 4
-- suffixes:
-    - coordsystem
-  extensions:
-    - .json
-  entities:
-    sub: required
-    ses: optional
-    acq: optional
-    space: optional
-# Group 5
-- suffixes:
-    - photo
-  extensions:
-    - .jpg
-  entities:
-    sub: required
-    ses: optional
-    acq: optional
-# Group 6
 - suffixes:
     - events
   extensions:
     - .json
     - .tsv
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
     run: optional
-# Group 7
 - suffixes:
-    - physio
-    - stim
+    - photo
   extensions:
-    - .json
-    - .tsv.gz
+    - .jpg
   entities:
-    sub: required
-    ses: optional
-    task: required
-    acq: optional
-    run: optional
+    subject: required
+    session: optional
+    acquisition: optional
