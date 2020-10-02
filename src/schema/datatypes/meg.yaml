@@ -32,7 +32,6 @@
     subject: required
     session: optional
     acquisition: optional
-    space: optional
 # Third group
 - suffixes:
     - markers
@@ -49,6 +48,35 @@
     - coordsystem
   extensions:
     - .json
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+- suffixes:
+    - channels
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    subject: required
+    session: optional
+    task: required
+    run: optional
+    processing: optional
+- suffixes:
+    - events
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    subject: required
+    session: optional
+    task: required
+    run: optional
+- suffixes:
+    - photo
+  extensions:
+    - .jpg
   entities:
     subject: required
     session: optional

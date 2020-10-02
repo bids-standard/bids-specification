@@ -22,7 +22,7 @@ Further datasets are available from the [BIDS examples repository](https://githu
 
 Template:
 
-{{ make_filename_template(datatypes=["eeg"]) }}
+{{ make_filename_template(datatypes=["eeg"], suffixes=["eeg", "events"]) }}
 
 ```Text
 sub-<label>/
@@ -61,12 +61,12 @@ also encourage users to provide additional meta information extracted from the
 manufacturer specific data files in the sidecar JSON file. Other relevant files
 MAY be included alongside the original EEG data in `/sourcedata`.
 
-Note the RecordingType, which depends on whether the data stream on disk 
-is interrupted or not. 
-Continuous data is by definition 1 segment without interruption. 
-Epoched data consists of multiple segments that all have the same length 
-(for example, corresponding to trials) and that have gaps in between. 
-Discontinuous data consists of multiple segments of different length, 
+Note the RecordingType, which depends on whether the data stream on disk
+is interrupted or not.
+Continuous data is by definition 1 segment without interruption.
+Epoched data consists of multiple segments that all have the same length
+(for example, corresponding to trials) and that have gaps in between.
+Discontinuous data consists of multiple segments of different length,
 for example due to a pause in the acquisition.
 
 Note that for proper documentation of EEG recording metadata it is important to
@@ -198,7 +198,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 Template:
 
-{{ make_filename_template(datatypes=["eeg"], auxdatatypes=["channels"]) }}
+{{ make_filename_template(datatypes=["eeg"], suffixes=["channels"]) }}
 
 ```Text
 sub-<label>/
@@ -283,7 +283,7 @@ UADC001  MISC   n/a     envelope of audio signal        good    n/a
 
 Template:
 
-{{ make_filename_template(datatypes=["eeg"], auxdatatypes=["electrodes"]) }}
+{{ make_filename_template(datatypes=["eeg"], suffixes=["electrodes"]) }}
 
 ```Text
 sub-<label>/
@@ -336,7 +336,7 @@ the recording.
 
 Template:
 
-{{ make_filename_template(datatypes=["eeg"], auxdatatypes=["coordsystem"]) }}
+{{ make_filename_template(datatypes=["eeg"], suffixes=["coordsystem"]) }}
 
 ```Text
 sub-<label>/
@@ -441,7 +441,7 @@ Photos of the anatomical landmarks and/or fiducials.
 
 Template:
 
-{{ make_filename_template(datatypes=["eeg"], auxdatatypes=["photo"]) }}
+{{ make_filename_template(datatypes=["eeg"], suffixes=["photo"]) }}
 
 ```Text
 sub-<label>/

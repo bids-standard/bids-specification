@@ -14,7 +14,7 @@ context of the academic literature:
 
 Template:
 
-{{ make_filename_template(datatypes=["meg"], auxdatatypes=[]) }}
+{{ make_filename_template(datatypes=["meg"], suffixes=["meg", "markers", "events"]) }}
 
 ```Text
 sub-<label>/
@@ -179,7 +179,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 Template:
 
-{{ make_filename_template(datatypes=["meg"], auxdatatypes=["channels"]) }}
+{{ make_filename_template(datatypes=["meg"], suffixes=["channels"]) }}
 
 ```Text
 sub-<label>/
@@ -371,7 +371,7 @@ Photos of the anatomical landmarks and/or head localization coils
 
 Template:
 
-{{ make_filename_template(datatypes=["meg"], auxdatatypes=["photo"]) }}
+{{ make_filename_template(datatypes=["meg"], suffixes=["photo"]) }}
 
 ```Text
 sub-<label>/

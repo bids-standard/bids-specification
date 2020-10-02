@@ -2,10 +2,8 @@
 import logging
 import os
 from copy import deepcopy
-from itertools import chain
 from pathlib import Path
 from warnings import warn
-from pprint import pprint
 
 import numpy as np
 import pandas as pd
@@ -94,8 +92,9 @@ def make_entity_definitions(schema):
 
     text = ""
     for entity, entity_info in entities.items():
+        entity_shorthand = entity_info["entity"]
         text += "\n"
-        text += "## {}".format(entity)
+        text += "## {}".format(entity_shorthand)
         text += "\n\n"
         text += "Full name: {}".format(entity_info["name"])
         text += "\n\n"
@@ -225,21 +224,16 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         entity_shorthand = schema["entities"][entity]["entity"]
         header.append(spec["name"])
         formats.append(f'[`{entity_shorthand}-<{spec["format"]}>`]'
-                       f"({ENTITIES_FILE}#{entity})")
+                       f"({ENTITIES_FILE}#{entity_shorthand})")
         entity_to_col[entity] = i + 1
 
     # Go through data types
-    for dtype, specs in chain(
-        schema["datatypes"].items(), schema["auxdatatypes"].items()
-    ):
+    for dtype, dtype_specs in schema["datatypes"].items():
         dtype_rows = {}
 
         # each dtype could have multiple specs
-        for spec in specs:
-            # datatypes use suffixes, while
-            # for auxdatatypes we need to use datatypes
-            # TODO: RF to avoid this guesswork
-            suffixes = spec.get("datatypes") or spec.get("suffixes")
+        for spec in dtype_specs:
+            suffixes = spec.get("suffixes")
             # TODO: <br> is specific for html form
             suffixes_str = " ".join(suffixes) if suffixes else ""
             dtype_row = [dtype] + ([""] * len(entity_to_col))
