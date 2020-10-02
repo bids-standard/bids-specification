@@ -1,5 +1,4 @@
 ---
 name: Gzipped Nifti
-class: extension
 description: |
   A gzipped nifti file.

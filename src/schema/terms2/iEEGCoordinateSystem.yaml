@@ -1,4 +1,0 @@
----
-name: iEEGCoordinateSystem
-description: |
-  REQUIRED. Defines the coordinate system for the iEEG electrodes. See Appendix VIII for a list of restricted keywords. If positions correspond to pixel indices in a 2D image (of either a volume-rendering, surface-rendering, operative photo, or operative drawing), this must be Pixels. For more information, see the section on 2D coordinate systems

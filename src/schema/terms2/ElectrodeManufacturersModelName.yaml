@@ -1,4 +1,0 @@
----
-name: ElectrodeManufacturersModelName
-description: |
-  RECOMMENDED. If different electrode types are used, please use the corresponding table in the electrodes.tsv file.

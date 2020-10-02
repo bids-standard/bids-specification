@@ -1,0 +1,4 @@
+---
+name: HardcopyDeviceSoftwareVersion
+description: |
+  Manufacturer’s designation of the software of the device that created this Hardcopy Image (the printer). Corresponds to DICOM Tag 0018, 101A Hardcopy Device Software Version

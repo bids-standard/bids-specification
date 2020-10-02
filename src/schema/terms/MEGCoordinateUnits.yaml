@@ -1,0 +1,4 @@
+---
+name: MEGCoordinateUnits
+description: |
+  Units of the coordinates of MEGCoordinateSystem. MUST be m, cm, or mm.

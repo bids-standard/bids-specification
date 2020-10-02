@@ -1,4 +1,0 @@
----
-name: dimension
-description: |
-  OPTIONAL. Size of the group (grid/strip/probe) that this electrode belongs to. Must be of form [AxB] with the smallest dimension first (e.g., [1x8]).

@@ -1,0 +1,4 @@
+---
+name: TaskName
+description: |
+  Name of the task. No two tasks should have the same name. Task label (task-) included in the file name is derived from this field by removing all non alphanumeric ([a-zA-Z0-9]) characters. For example task name faces n-back will corresponds to task label facesnback. A RECOMMENDED convention is to name resting state task using labels beginning with rest.

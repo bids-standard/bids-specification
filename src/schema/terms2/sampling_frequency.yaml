@@ -1,4 +1,0 @@
----
-name: sampling_frequency
-description: |
-  OPTIONAL. Sampling rate of the channel in Hz.

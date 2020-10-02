@@ -1,0 +1,4 @@
+---
+name: EMGChannelCount
+description: |
+  Number of EMG channels.

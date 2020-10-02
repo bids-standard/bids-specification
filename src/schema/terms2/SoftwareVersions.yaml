@@ -1,4 +1,0 @@
----
-name: SoftwareVersions
-description: |
-  RECOMMENDED. Manufacturer’s designation of software version of the equipment that produced the composite instances. Corresponds to DICOM Tag 0018, 1020 Software Versions

@@ -1,4 +1,0 @@
----
-name: SoftwareFilters
-description: |
-  REQUIRED. List of temporal and/or spatial software filters applied, or ideally key:value pairs of pre-applied software filters and their parameter values: e.g., {SSS: {frame: head, badlimit: 7}}, {SpatialCompensation: {GradientOrder: Order of the gradient compensation}}. Write n/a if no software filters applied.

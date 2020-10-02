@@ -1,0 +1,4 @@
+---
+name: FiducialsCoordinateSystem
+description: |
+  Refers to the coordinate space to which the landmarks positions are to be interpreted - preferably the same as the EEGCoordinateSystem.

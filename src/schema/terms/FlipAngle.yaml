@@ -1,0 +1,4 @@
+---
+name: FlipAngle
+description: |
+  Flip angle for the acquisition, specified in degrees. Corresponds to: DICOM Tag 0018, 1314 Flip Angle.

@@ -1,0 +1,4 @@
+---
+name: DigitizedHeadPointsCoordinateSystem
+description: |
+  Defines the coordinate system for the digitized head points. See Appendix VIII: preferred names of Coordinate systems. If Other, provide definition of the coordinate system in DigitizedHeadPointsCoordinateSystemDescription.

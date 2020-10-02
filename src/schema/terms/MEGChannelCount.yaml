@@ -1,0 +1,4 @@
+---
+name: MEGChannelCount
+description: |
+  Number of MEG channels (e.g. 275)

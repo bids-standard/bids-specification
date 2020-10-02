@@ -1,0 +1,4 @@
+---
+name: status
+description: |
+  Data quality observed on the channel (good/bad). A channel is considered bad if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in [status_description].

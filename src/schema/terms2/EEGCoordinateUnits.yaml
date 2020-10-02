@@ -1,4 +1,0 @@
----
-name: EEGCoordinateUnits
-description: |
-  OPTIONAL. Units of the coordinates of EEGCoordinateSystem. MUST be m, cm, or mm.

@@ -1,4 +1,0 @@
----
-name: iEEGCoordinateUnits
-description: |
-  REQUIRED. Units of the electrodes.tsv, MUST be m, mm, cm or pixels.

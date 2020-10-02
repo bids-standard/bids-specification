@@ -1,4 +1,0 @@
----
-name: HeadCoilCoordinateSystem
-description: |
-  OPTIONAL. Defines the coordinate system for the coils. See Appendix VIII: preferred names of Coordinate systems. If Other, provide definition of the coordinate system in HeadCoilCoordinateSystemDescription.

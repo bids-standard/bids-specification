@@ -1,0 +1,4 @@
+---
+name: AssociatedEmptyRoom
+description: |
+  Relative path in BIDS folder structure to empty-room file associated with the subject's MEG recording. The path needs to use forward slashes instead of backward slashes (e.g. sub-emptyroom/ses-/meg/sub-emptyroom/ses-task-noise/run-meg.ds).

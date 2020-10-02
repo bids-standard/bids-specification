@@ -1,4 +1,0 @@
----
-name: AnatomicalLandmarkCoordinateSystem
-description: |
-  OPTIONAL. Defines the coordinate system for the anatomical landmarks. See Appendix VIII: preferred names of Coordinate systems. If Other, provide definition of the coordinate system in AnatomicalLandmarkCoordinateSystemDescription.

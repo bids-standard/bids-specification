@@ -1,4 +1,0 @@
----
-name: software_filters
-description: |
-  OPTIONAL. List of temporal and/or spatial software filters applied (e.g. SSS, SpatialCompensation). Note that parameters should be defined in the general MEG sidecar .json file. Indicate n/a in the absence of software filters applied.

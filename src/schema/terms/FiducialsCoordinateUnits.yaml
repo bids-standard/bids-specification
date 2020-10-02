@@ -1,0 +1,4 @@
+---
+name: FiducialsCoordinateUnits
+description: |
+  Units in which the coordinates that are listed in the field AnatomicalLandmarkCoordinateSystem are represented (e.g., mm, cm).

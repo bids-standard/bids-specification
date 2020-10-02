@@ -1,0 +1,4 @@
+---
+name: ECGChannelCount
+description: |
+  Number of ECG channels.

@@ -1,4 +1,0 @@
----
-name: duration
-description: |
-  REQUIRED. Duration of the event (measured from onset) in seconds. Must always be either zero or positive. A duration value of zero implies that the delta function or event is so short as to be effectively modeled as an impulse.

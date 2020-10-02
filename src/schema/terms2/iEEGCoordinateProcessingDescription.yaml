@@ -1,4 +1,0 @@
----
-name: iEEGCoordinateProcessingDescription
-description: |
-  RECOMMENDED. Has any post-processing (such as projection) been done on the electrode positions (e.g., surface_projection, none).

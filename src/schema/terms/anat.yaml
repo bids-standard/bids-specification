@@ -1,5 +1,4 @@
 ---
 name: Anatomical MRI
-class: datatype
 description: |
   Anatomical magnetic resonance imaging data.

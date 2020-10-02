@@ -1,0 +1,4 @@
+---
+name: MEGREFChannelCount
+description: |
+  Number of MEG reference channels (e.g. 23). For systems without such channels (e.g. Neuromag Vectorview), MEGREFChannelCount=0

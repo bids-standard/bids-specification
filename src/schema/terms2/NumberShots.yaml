@@ -1,4 +1,0 @@
----
-name: NumberShots
-description: |
-  RECOMMENDED. The number of RF excitations need to reconstruct a slice or volume. Please mind that this is not the same as Echo Train Length which denotes the number of lines of k-space collected after an excitation.

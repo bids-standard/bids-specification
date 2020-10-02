@@ -1,4 +1,0 @@
----
-name: RecordingType
-description: |
-  RECOMMENDED. Defines whether the recording is continuous or epoched; this latter limited to time windows about events of interest (e.g., stimulus presentations, subject responses etc.)

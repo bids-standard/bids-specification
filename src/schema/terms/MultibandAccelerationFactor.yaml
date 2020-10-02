@@ -1,0 +1,4 @@
+---
+name: MultibandAccelerationFactor
+description: |
+  The multiband factor, for multiband acquisitions.

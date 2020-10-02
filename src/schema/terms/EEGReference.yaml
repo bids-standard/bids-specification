@@ -1,0 +1,4 @@
+---
+name: EEGReference
+description: |
+  Description of the type of EEG reference used (e.g., M1 for left mastoid, average, or longitudinal bipolar).

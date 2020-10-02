@@ -1,4 +1,0 @@
----
-name: HeadCoilFrequency
-description: |
-  RECOMMENDED. List of frequencies (in Hz) used by the head localisation coils (HLC in CTF systems, HPI in Elekta, COH in BTi/4D) that track the subject’s head position in the MEG helmet (e.g. [293, 307, 314, 321])

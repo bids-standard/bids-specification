@@ -1,0 +1,4 @@
+---
+name: EEGPlacementScheme
+description: |
+  Placement scheme of EEG electrodes. Either the name of a standardized placement system (e.g., 10-20) or a list of standardized electrode names (e.g., [Cz, Pz]).

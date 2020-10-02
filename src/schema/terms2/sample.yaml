@@ -1,4 +1,0 @@
----
-name: sample
-description: |
-  OPTIONAL. Onset of the event according to the sampling scheme of the recorded modality (i.e., referring to the raw data file that the events.tsv file accompanies).

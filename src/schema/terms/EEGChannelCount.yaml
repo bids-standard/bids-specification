@@ -1,0 +1,4 @@
+---
+name: EEGChannelCount
+description: |
+  Number of EEG channels included in the recording (e.g., 128).

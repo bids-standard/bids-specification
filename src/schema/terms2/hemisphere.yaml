@@ -1,4 +1,0 @@
----
-name: hemisphere
-description: |
-  OPTIONAL. Optional field to specify the hemisphere in which the electrode is placed, one of [L or R] (use capital).

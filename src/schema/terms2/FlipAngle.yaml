@@ -1,4 +1,0 @@
----
-name: FlipAngle
-description: |
-  RECOMMENDED. Flip angle for the acquisition, specified in degrees. Corresponds to: DICOM Tag 0018, 1314 Flip Angle.

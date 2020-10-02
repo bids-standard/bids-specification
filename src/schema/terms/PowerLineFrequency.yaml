@@ -1,0 +1,4 @@
+---
+name: PowerLineFrequency
+description: |
+  Frequency (in Hz) of the power grid at the geographical location of the MEG instrument (i.e. 50 or 60)

@@ -1,0 +1,4 @@
+---
+name: EEGCoordinateSystem
+description: |
+  Describes how the coordinates of the EEG sensors are to be interpreted.

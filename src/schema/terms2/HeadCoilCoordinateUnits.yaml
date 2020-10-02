@@ -1,4 +1,0 @@
----
-name: HeadCoilCoordinateUnits
-description: |
-  OPTIONAL. Units of the coordinates of HeadCoilCoordinateSystem. MUST be m, cm, or mm.

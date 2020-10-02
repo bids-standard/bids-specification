@@ -1,0 +1,4 @@
+---
+name: CapManufacturersModelName
+description: |
+  Manufacturer's designation of the EEG cap model (e.g., M10)

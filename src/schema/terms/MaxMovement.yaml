@@ -1,0 +1,4 @@
+---
+name: MaxMovement
+description: |
+  Maximum head movement (in mm) detected during the recording, as measured by the head localisation coils (e.g., 4.8)

@@ -1,4 +1,0 @@
----
-name: StartTime
-description: |
-  REQUIRED. Start time in seconds in relation to the start of acquisition of the first data sample in the corresponding neural dataset (negative values are allowed).

@@ -1,4 +1,0 @@
----
-name: TriggerChannelCount
-description: |
-  RECOMMENDED. Number of channels for digital (TTL bit level) trigger.
