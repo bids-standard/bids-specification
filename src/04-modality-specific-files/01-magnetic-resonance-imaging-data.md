@@ -335,8 +335,8 @@ sparse sequences.
 | --------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Instructions    | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the scan. This is especially important in context of resting state fMRI and distinguishing between eyes open and eyes closed paradigms. |
 | TaskDescription | RECOMMENDED           | [string][]    | Longer description of the task.                                                                                                                                                               |
-| CogAtlasID      | RECOMMENDED           | [string][]    | URL of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.                                                                                                        |
-| CogPOID         | RECOMMENDED           | [string][]    | URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                 |
+| CogAtlasID      | RECOMMENDED           | [string][]    | [URI](../02-common-principles.md#uniform-resource indicator) of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.                                                                                                        |
+| CogPOID         | RECOMMENDED           | [string][]    | [URI](../02-common-principles.md#uniform-resource indicator) of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                 |
 
 See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms and their definitions.

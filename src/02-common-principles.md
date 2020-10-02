@@ -204,7 +204,7 @@ field in `dataset_description.json` of each subfolder of `derivatives` to:
 
 ```JSON
 {
-  "SourceDatasets": [ {"URL": "file://../../rawdata/"} ]
+  "SourceDatasets": [ {"URI": "file://../../rawdata/"} ]
 }
 ```
 
@@ -452,7 +452,7 @@ using an object containing the following fields:
 | Description  | RECOMMENDED           | [string][]                | Description of the column.                                                                                      |
 | Levels       | RECOMMENDED           | [object][] of [strings][] | For categorical variables: An object of possible values (keys) and their descriptions (values).                 |
 | Units        | RECOMMENDED           | [string][]                | Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
-| TermURL      | RECOMMENDED           | [string][]                | URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
+| TermURL      | RECOMMENDED           | [string][]                | [URI](../02-common-principles.md#uniform-resource indicator) pointing to a formal definition of this type of data in an ontology available on the web.                   |
 
 Please note that while both `Units` and `Levels` are RECOMMENDED, typically only one
 of these two fields would be specified for describing a single TSV file column.

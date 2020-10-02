@@ -21,11 +21,12 @@ Datasets linked to a genetic database entry include the following REQUIRED or OP
 `dataset_description.json` keys (a dot in the key name denotes a key in a sub-[object][],
 see the example further below):
 
-| **Key name**         | **Requirement level** | **Data type**                          | **Description**                                                           |
-|----------------------|-----------------------|----------------------------------------|---------------------------------------------------------------------------|
-| Genetics.Dataset     | REQUIRED              | [string][]                             | URI where data can be retrieved.                                          |
-| Genetics.Database    | OPTIONAL              | [string][]                             | URI of database where the dataset is hosted.                              |
-| Genetics.Descriptors | OPTIONAL              | [string][] or [array][] of [strings][] | List of relevant descriptors (for example, journal articles) for dataset. |
+| **Key name**         | **Requirement level** | **Data type**                          | **Description**                                                    |
+| -------------------- | --------------------- | -------------------------------------- | ------------------------------------------------------------------ |
+| Genetics.Dataset     | REQUIRED              | [string][]                             | [URI](../02-common-principles.md#uniform-resource indicator) where data can be retrieved.                                   |
+| Genetics.Database    | OPTIONAL              | [string][]                             | [URI](../02-common-principles.md#uniform-resource indicator) of database where the dataset is hosted.                       |
+| Genetics.Descriptors | OPTIONAL              | [string][] or [array][] of [strings][] | List of relevant descriptors (for example, journal articles) for dataset using a valid [URI](../02-common-principles.md#uniform-resource indicator) when possible. |
+
 
 Example:
 
@@ -39,7 +40,7 @@ Example:
   "Genetics": {
      "Dataset": "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001364.v1.p1",
      "Database": "https://www.ncbi.nlm.nih.gov/gap/",
-     "Descriptors": ["https://doi.org/10.1016/j.neuroimage.2013.05.041"]
+     "Descriptors": ["doi:10.1016/j.neuroimage.2013.05.041"]
      }
 }
 ```
