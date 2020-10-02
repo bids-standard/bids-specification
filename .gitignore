@@ -2,3 +2,4 @@ site/
 .DS_Store
 .idea
 venvs
+pdf_build_src/bids-spec.pdf

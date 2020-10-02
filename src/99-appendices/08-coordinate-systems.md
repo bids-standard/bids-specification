@@ -23,7 +23,7 @@ will have a negative `x` value.
 
 Besides coordinate systems, defined by their origin and direction of the axes,
 BIDS defines "spaces" as an artificial frame of reference, created to describe
-different anatomies in a unifying manner (see e.g.,
+different anatomies in a unifying manner (see for example,
 [https://doi.org/10.1016/j.neuroimage.2012.01.024](https://doi.org/10.1016/j.neuroimage.2012.01.024)).
 The "space" and all coordinates expressed in this space are by design a
 transformation of the real world geometry, and nearly always different from the
@@ -37,7 +37,7 @@ The coordinate systems below all relate to neuroscience and therefore to the
 head or brain coordinates. Please be aware that all data acquisition starts with
 "device coordinates" (scanner), which does not have to be identical to the
 initial "file format coordinates" (DICOM), which are again different from the
-"head" coordinates (e.g., NIFTI). Not only do device coordinate vary between
+"head" coordinates (for example, NIFTI). Not only do device coordinate vary between
 hardware manufacturers, but also the head coordinates differ, mostly due to
 different conventions used in specific software packages developed by different
 (commercial or academic) groups.
@@ -48,7 +48,7 @@ Generally, across the MEG, EEG, and iEEG modalities, the first two pieces of
 information for a coordinate system (origin and orientation) are specified in
 `<datatype>CoordinateSystem`.
 The third piece of information for a coordinate system (units) are specified in
-`<datatype>CoordinateSystemUnits`.
+`<datatype>CoordinateUnits`.
 Here, `<datatype>` can be one of `MEG`, `EEG`, or `iEEG`, depending on the
 modality that is being used.
 
@@ -118,7 +118,7 @@ reference is described in `<datatype>CoordinateSystem`.
 Unless otherwise specified below, the origin is at the AC and the orientation of
 the axes is RAS.
 Unless specified explicitly in the sidecar file in the
-`<datatype>CoordinateSystemUnits` field, the units are assumed to be mm.
+`<datatype>CoordinateUnits` field, the units are assumed to be mm.
 
 ### Standard template identifiers
 
