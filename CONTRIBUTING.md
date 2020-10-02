@@ -240,10 +240,6 @@ Here is a list of the files and subfolders of the schema, roughly in order of im
     Each datatype may support many suffixes.
     These suffixes are divided into groups based on what extensions and entities are allowed for each.
     Data types correspond to subfolders (for example, `anat`, `func`) in the BIDS structure.
-- `auxdatatypes/*.yaml`:
-    Auxiliary (not directly imaging or data-containing) data types supported by the specification.
-    Each auxiliary data type is associated with a set of data types, and these auxiliary data types are grouped based on what data types, extensions, and entities are allowed for each.
-    Examples of auxiliary data types include `channels`, `electrodes`, and `photo`.
 - `entities.yaml`:
     A list of entities (key/value pairs in folder and filenames) with associated descriptions and formatting rules.
     The order of the entities in the file determines the order in which entities must appear in filenames.
@@ -263,15 +259,22 @@ Here is a list of the files and subfolders of the schema, roughly in order of im
 
 The schema formalizes the rules described in the specification text, so you must ensure that any changes which impact the rules of the specification (including, but not limited to, adding new entities, suffixes, datatypes, modalities, etc.) are reflected in the schema as well.
 
-#### 2. Generate an updated entity table before pushing your changes
+#### 2. Ensure that changes to the schema are matched in auto-generated sections of the specification
 
-Run the Python script `tools/bids_schema.py`:
+The schema is used to generate a number of elements in the specification text, including:
+- Filename format templates
+- Entity tables
+- Entity definitions
 
-```bash
-python tools/bids_schema.py entity src/schema/ src/99-appendices/04-entity-table.md
-```
+As such, you need to ensure that the functions used throughout the specific to render these elements are appropriately referencing the schema; in essence, that, if your changes do impact how functions should be called, the function calls have been updated.
 
-#### 3. Push your changes
+#### 3. Render the specification with `mkdocs` to check your changes
+
+Run `mkdocs serve` and open `localhost:8000` to browse the rendered specification.
+Make sure that all filename format templates, entity tables, and entity definitions are correct
+and that the code that generates these elements is not broken by your changes.
+
+#### 4. Push your changes
 
 For more information on making general changes with a pull request, please review [Making a change with a pull request](#making-a-change-with-a-pull-request).
 
