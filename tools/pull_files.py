@@ -8,7 +8,7 @@ import argparse
 
 def parse_args():
     """Construct the command line interface for the script"""
-    DESCRIPTION = "Script to check for occurences of 'Lorem Ipsum' in Markdown files"
+    DESCRIPTION = "Script to pull changed files in a Pull Request using a GET resquest to the GitHub API."
     parser = argparse.ArgumentParser(description=DESCRIPTION)
 
     parser.add_argument(
@@ -31,7 +31,7 @@ def get_files_from_pr(pr_num):
         {list} -- List of modified filenames
     """
     files = []
-    pr_url = f"https://api.github.com/repos/alan-turing-institute/the-turing-way/pulls/{pr_num}/files"
+    pr_url = f"https://api.github.com/repos/bids-standard/bids-specification/pulls/{pr_num}/files"
     resp = requests.get(pr_url)
 
     for item in resp.json():
@@ -40,7 +40,7 @@ def get_files_from_pr(pr_num):
     return files
 
 
-def filter_files(pr_num, start_phrase="book/website"):
+def filter_files(pr_num, start_phrase="src"):
     """Filter modified files from a Pull Request by a start phrase
 
     Arguments:
@@ -48,7 +48,7 @@ def filter_files(pr_num, start_phrase="book/website"):
 
     Keyword Arguments:
         start_phrase {str} -- Start phrase to filter changed files by
-                              (default: {"book/website"})
+                              (default: {"src"})
 
     Returns:
         {list} -- List of filenames that begin with the desired start phrase
