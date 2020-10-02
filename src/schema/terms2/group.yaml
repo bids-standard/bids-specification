@@ -1,0 +1,4 @@
+---
+name: group
+description: |
+  OPTIONAL. Which group of channels (grid/strip/seeg/depth) this channel belongs to. This is relevant because one group has one cable-bundle and noise can be shared. This can be a name or number. Note that any groups specified in electrodes.tsv must match those present here.

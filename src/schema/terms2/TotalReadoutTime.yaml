@@ -1,0 +1,4 @@
+---
+name: TotalReadoutTime
+description: |
+  RECOMMENDED. This is actually the effective total readout time , defined as the readout duration, specified in seconds, that would have generated data with the given level of distortion. It is NOT the actual, physical duration of the readout train. If EffectiveEchoSpacing has been properly computed, it is just EffectiveEchoSpacing * (ReconMatrixPE - 1).3. This parameter is REQUIRED if corresponding field/distortion maps acquired with opposing phase encoding directions are present (see 8.9.4).

@@ -1,0 +1,4 @@
+---
+name: ElectrodeManufacturer
+description: |
+  RECOMMENDED. can be used if all electrodes are of the same manufacturer (e.g., AD-TECH, DIXI). If electrodes of different manufacturers are used, please use the corresponding table in the _electrodes.tsv file.

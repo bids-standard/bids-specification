@@ -1,0 +1,4 @@
+---
+name: CapManufacturer
+description: |
+  OPTIONAL. Manufacturer of the EEG cap (e.g. EasyCap)

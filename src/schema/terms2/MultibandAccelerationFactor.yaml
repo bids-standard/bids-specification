@@ -1,0 +1,4 @@
+---
+name: MultibandAccelerationFactor
+description: |
+  RECOMMENDED. The multiband factor, for multiband acquisitions.

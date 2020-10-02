@@ -1,0 +1,4 @@
+---
+name: reference
+description: |
+  OPTIONAL. Name of the reference electrode(s) (not needed when it is common to all channels, in that case it can be specified in * eeg.json as EEGReference).

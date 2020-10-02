@@ -1,0 +1,4 @@
+---
+name: low_cutoff
+description: |
+  OPTIONAL. Frequencies used for the high-pass filter applied to the channel in Hz. If no high-pass filter applied, use n/a.

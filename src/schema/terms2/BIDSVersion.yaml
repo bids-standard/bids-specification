@@ -1,0 +1,4 @@
+---
+name: BIDSVersion
+description: |
+  REQUIRED. The version of the BIDS standard that was used.

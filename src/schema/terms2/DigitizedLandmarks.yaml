@@ -1,0 +1,4 @@
+---
+name: DigitizedLandmarks
+description: |
+  REQUIRED. Boolean (true or false) value indicating whether anatomical landmark points (i.e. fiducials) are contained within this recording.

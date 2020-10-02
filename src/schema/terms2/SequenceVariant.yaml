@@ -1,0 +1,4 @@
+---
+name: SequenceVariant
+description: |
+  RECOMMENDED. Variant of the ScanningSequence. Corresponds to DICOM Tag 0018, 0021 Sequence Variant.

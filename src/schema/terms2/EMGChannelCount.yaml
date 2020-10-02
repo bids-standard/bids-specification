@@ -1,0 +1,4 @@
+---
+name: EMGChannelCount
+description: |
+  RECOMMENDED. Number of EMG channels.

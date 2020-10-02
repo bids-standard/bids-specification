@@ -1,0 +1,4 @@
+---
+name: EpochLength
+description: |
+  RECOMMENDED. Duration of individual epochs in seconds (e.g. 1) in case of epoched data

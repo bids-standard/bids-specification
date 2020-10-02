@@ -1,0 +1,4 @@
+---
+name: trial_type
+description: |
+  Primary categorisation of each trial to identify them as instances of the experimental conditions. For example: for a response inhibition task, it could take on values go and no-go to refer to response initiation and response inhibition experimental conditions.

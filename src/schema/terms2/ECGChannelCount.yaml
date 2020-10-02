@@ -1,0 +1,4 @@
+---
+name: ECGChannelCount
+description: |
+  RECOMMENDED. Number of ECG channels.

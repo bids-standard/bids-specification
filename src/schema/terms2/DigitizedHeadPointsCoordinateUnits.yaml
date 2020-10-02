@@ -1,0 +1,4 @@
+---
+name: DigitizedHeadPointsCoordinateUnits
+description: |
+  OPTIONAL. Units of the coordinates of DigitizedHeadPointsCoordinateSystem. MUST be m, cm, or mm.

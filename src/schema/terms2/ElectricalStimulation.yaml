@@ -1,0 +1,4 @@
+---
+name: ElectricalStimulation
+description: |
+  OPTIONAL. Boolean field to specify if electrical stimulation was done during the recording (options are true or false). Parameters for event-like stimulation should be specified in the events.tsv file (see example below).

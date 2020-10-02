@@ -1,0 +1,4 @@
+---
+name: PulseSequenceType
+description: |
+  RECOMMENDED. A general description of the pulse sequence used for the scan (i.e. MPRAGE, Gradient Echo EPI, Spin Echo EPI, Multiband gradient echo EPI).

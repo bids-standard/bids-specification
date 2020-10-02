@@ -1,0 +1,4 @@
+---
+name: MEGCoordinateSystem
+description: |
+  REQUIRED. Defines the coordinate system for the MEG sensors. See Appendix VIII: preferred names of Coordinate systems. If Other, provide definition of the coordinate system in [MEGCoordinateSystemDescription].

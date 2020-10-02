@@ -1,0 +1,4 @@
+---
+name: HardwareFilters
+description: |
+  RECOMMENDED. List of temporal hardware filters applied. Ideally key:value pairs of pre-applied hardware filters and their parameter values: e.g., {HardwareFilters: {Highpass RC filter: {Half amplitude cutoff (Hz): 0.0159, Roll-off: 6dB/Octave}}}. Write n/a if no hardware filters applied.

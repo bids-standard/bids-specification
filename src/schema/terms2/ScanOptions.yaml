@@ -1,0 +1,4 @@
+---
+name: ScanOptions
+description: |
+  RECOMMENDED. Parameters of ScanningSequence. Corresponds to DICOM Tag 0018, 0022 Scan Options.
