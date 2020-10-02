@@ -1,30 +1,44 @@
 ---
 # Ordering and attributes of entities
-- sub:
+- subject:
+    entity: sub
     format: label
-- ses:
+- session:
+    entity: ses
     format: label
 - task:
+    entity: task
     format: label
-- acq:
+- acquisition:
+    entity: acq
     format: label
-- ce:
+- ceagent:
+    entity: ce
     format: label
-- rec:
+- reconstruction:
+    entity: rec
     format: label
-- dir:
+- direction:
+    entity: dir
     format: label
 - run:
+    entity: run
     format: index
-- mod:
+- modality:
+    entity: mod
     format: label
 - echo:
+    entity: echo
     format: index
 - recording:
+    entity: recording
     format: label
-- proc:
+- processing:
+    entity: proc
     format: label
 - space:
+    entity: space
     format: label
 - split:
+    entity: split
     format: index

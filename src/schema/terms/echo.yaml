@@ -1,6 +1,5 @@
 ---
 name: Echo
-class: entity
 description: |
   Multi-echo data MUST be split into one file per echo.
   Each file shares the same name with the exception of the `_echo-<index>`
@@ -8,5 +7,3 @@ description: |
   Please note that the `<index>` denotes the number/index (in the form of a
   nonnegative integer) of the echo not the echo time value which needs to be
   stored in the field `EchoTime` of the separate JSON file.
-# Entity-specific fields
-format: index

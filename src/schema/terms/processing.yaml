@@ -1,6 +1,5 @@
 ---
 name: Processed (on device)
-class: entity
 description: |
   The proc label is analogous to rec for MR and denotes a variant of a file
   that was a result of particular processing performed on the device.
@@ -8,5 +7,3 @@ description: |
   (e.g. sss, tsss, trans, quat, mc, etc.), which some installations impose to
   be run on raw data because of active shielding software corrections before
   the MEG data can actually be exploited.
-# Entity-specific fields
-format: label

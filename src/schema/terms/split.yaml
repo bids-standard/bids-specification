@@ -1,6 +1,5 @@
 ---
 name: Split
-class: entity
 description: |
   In the case of long data recordings that exceed a file size of 2Gb, the
   .fif files are conventionally split into multiple parts.
@@ -13,5 +12,3 @@ description: |
   the file names, but also the internal file pointers will be updated.
   It is RECOMMENDED that .fif files with multiple parts use the
   `split-<index>` entity to indicate each part.
-# Entity-specific fields
-format: index
