@@ -211,7 +211,7 @@ sub-01_part-phase_T1w.json
 
 Phase images MAY be in radians or in arbitrary units.
 The sidecar JSON file MUST include the units of the `phase` image.
-The possible options are `rad` or `a.u.`.
+The possible options are `rad` or `arbitrary`.
 For example:
 
 sub-01_part-phase_T1w.json
