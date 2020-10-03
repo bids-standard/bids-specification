@@ -26,8 +26,8 @@ Every dataset MUST include this file with the following fields:
 | HowToAcknowledge   | OPTIONAL              | [string][]               | Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset.                            |
 | Funding            | OPTIONAL              | [array][] of [strings][] | List of sources of funding (grant numbers).                                                                                                                                                                                                           |
 | EthicsApprovals    | OPTIONAL              | [array][] of [strings][] | List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                                             |
-| ReferencesAndLinks | OPTIONAL              | [array][] of [strings][] | List of [URI][uri] references to publication(s) that contain information on the dataset.                                                                                                                                                              |
-| DatasetDOI         | OPTIONAL              | [string][]               | The Digital Object Identifier of the dataset (not the corresponding paper) expressed as a valid [URI][uri].                                                                                                                                           |
+| ReferencesAndLinks | OPTIONAL              | [array][] of [strings][] | List of references to publications that contain information on the dataset. A reference may be textual or a [URI][uri].                                                                                                                               |
+| DatasetDOI         | OPTIONAL              | [string][]               | The [Digital Object Identifier][uri] of the dataset (not the corresponding paper).                                                                                                                                                                    |
 
 Example:
 
@@ -69,10 +69,10 @@ In addition to the keys for raw BIDS datasets,
 derived BIDS datasets include the following REQUIRED and RECOMMENDED
 `dataset_description.json` keys:
 
-| **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                       |
-|----------------|-----------------------|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| GeneratedBy    | REQUIRED              | [array][] of [objects][] | Used to specify provenance of the derived dataset. See table below for contents of each object.                                                                                                       |
-| SourceDatasets | RECOMMENDED           | [array][] of [objects][] | Used to specify the locations and relevant attributes of all source datasets. Valid keys in each object include `URL`, `DOI` (expressed as a valid [URI][uri]), and `Version` with [string][] values. |
+| **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                      |                
+|----------------|-----------------------|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| GeneratedBy    | REQUIRED              | [array][] of [objects][] | Used to specify provenance of the derived dataset. See table below for contents of each object.                                                                                      |                
+| SourceDatasets | RECOMMENDED           | [array][] of [objects][] | Used to specify the locations and relevant attributes of all source datasets. Valid keys in each object include `URL`, `DOI` (see [URI][uri]), and `Version` with [string][] values. |
 
 Each object in the `GeneratedBy` list includes the following REQUIRED, RECOMMENDED
 and OPTIONAL keys:
