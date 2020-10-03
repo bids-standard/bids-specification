@@ -1,0 +1,5 @@
+---
+name: Source Datasets
+description: |
+  A list of [objects][object] specifying the locations and relevant attributes of all source datasets.
+  Valid fields in each object include `URL`, `DOI`, and `Version`.

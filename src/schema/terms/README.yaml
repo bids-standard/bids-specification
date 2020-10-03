@@ -1,0 +1,5 @@
+---
+name: License
+description: |
+  In addition a free form text file (`README`) describing the dataset in more details SHOULD be provided.
+  The `README` file MUST be either in ASCII or UTF-8 encoding.

@@ -1,0 +1,6 @@
+---
+name: DatasetType
+description: |
+  The interpretaton of the dataset.
+  MUST be one of "raw" or "derivative".
+  For backwards compatibility, the default value is "raw".

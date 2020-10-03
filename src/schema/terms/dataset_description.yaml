@@ -1,0 +1,5 @@
+---
+name: Dataset Description
+description: |
+  The file `dataset_description.json` is a JSON file describing the dataset.
+  Every dataset MUST include this file.
