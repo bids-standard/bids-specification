@@ -55,9 +55,17 @@ misunderstanding we clarify them here.
     subject performed multiple conceptually different behaviors (with different
     sets of instructions) they will be considered one (combined) task.
 
-1.  **Event** - a stimulus or subject response recorded during a task. Each
-    event has an onset time and duration. Note that not all tasks will have
-    recorded events (for example, “resting state”).
+1.  **Event** - something that happens or may be perceived by a test subject as happening
+    at a particular instant during the recording.
+    Events are most commonly associated with on- or offset of stimulus presentations,
+    or with the distinct marker of on- or offset of a subject's response or motor action.
+    Other events may include unplanned incidents
+    (e.g., sudden onset of noise and vibrations due to construction work, laboratory device malfunction),
+    changes in task instructions (for example, switching the response hand),
+    or experiment control parameters (for example, changing the stimulus presentation rate over experimental blocks),
+    and noted data feature occurrences (for example, a recording electrode producing noise).
+    In BIDS, each event has an onset time and duration.
+    Note that not all tasks will have recorded events (for example, "resting state").
 
 1.  **Run** - an uninterrupted repetition of data acquisition that has the same
     acquisition parameters and task (however events can change from run to run
@@ -214,16 +222,16 @@ Derivatives can be stored/distributed in two ways:
 
 1.  Under a `derivatives/` subfolder in the root of the source BIDS dataset
     folder to make a clear distinction between raw data and results of data
-    processing. 
+    processing.
     A data processing pipeline will typically have a dedicated directory
-    under which it stores all of its outputs. 
-    Different components of a pipeline can, however, also be stored under different 
-    subfolders. 
-    There are few restrictions on the directory names; it is RECOMMENDED to use 
-    the format `<pipeline>-<variant>` in cases where it is anticipated that 
-    the same pipeline will output more than one variant 
-    (for example, `AFNI-blurring`, `AFNI-noblurring`, etc.). 
-    For the sake of consistency, the subfolder name SHOULD be the `GeneratedBy.Name` 
+    under which it stores all of its outputs.
+    Different components of a pipeline can, however, also be stored under different
+    subfolders.
+    There are few restrictions on the directory names; it is RECOMMENDED to use
+    the format `<pipeline>-<variant>` in cases where it is anticipated that
+    the same pipeline will output more than one variant
+    (for example, `AFNI-blurring`, `AFNI-noblurring`, etc.).
+    For the sake of consistency, the subfolder name SHOULD be the `GeneratedBy.Name`
     field in `data_description.json`, optionally followed by a hyphen and a suffix (see
     [Derived dataset and pipeline description][derived-dataset-description]).
 
