@@ -50,7 +50,7 @@ categories, and often these categories are labeled with numerical codes or short
 This categorical information usually corresponds to one or more columns in `*_events.tsv`
 representing categorical values. 
 Instead of tagging this information for each individual event,
- you can assign HED tags for each distinct categorical value
+you can assign HED tags for each distinct categorical value
 in an accompanying `*_events.json` sidecar and allow the analysis tools to make
 the association with individual event instances during analysis.  
 The column name in the `*_events.tsv` identifies the type of categorical variable. 

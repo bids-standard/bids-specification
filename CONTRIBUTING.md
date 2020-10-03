@@ -239,7 +239,7 @@ Here is a list of the files and subfolders of the schema, roughly in order of im
     Data types supported by the specification.
     Each datatype may support many suffixes.
     These suffixes are divided into groups based on what extensions and entities are allowed for each.
-    Data types correspond to subfolders (e.g., `anat`, `func`) in the BIDS structure.
+    Data types correspond to subfolders (for example, `anat`, `func`) in the BIDS structure.
 - `auxdatatypes/*.yaml`:
     Auxiliary (not directly imaging or data-containing) data types supported by the specification.
     Each auxiliary data type is associated with a set of data types, and these auxiliary data types are grouped based on what data types, extensions, and entities are allowed for each.

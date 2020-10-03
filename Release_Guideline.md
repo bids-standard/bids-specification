@@ -32,7 +32,7 @@ Patch releases will generally be more frequent, and indicate less significant ch
 The following is a non-exhaustive set of justifications for a patch release:
 
 - A modality field has changed and the [bids-validator](https://github.com/bids-standard/bids-validator) has been updated to reflect this change.
-- Links or information in the specification are no longer accurate, *e.g.* if a BEP document is added or moved
+- Links or information in the specification are no longer accurate, for example if a BEP document is added or moved
 - The rendering of the [specification](https://bids-specification.readthedocs.io/en/stable/) has changed
 - A metadata field or file type is added at the request of a curator attempting to release BIDS-compliant data
 
