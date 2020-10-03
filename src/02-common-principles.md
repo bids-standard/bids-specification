@@ -520,18 +520,6 @@ for more information.
 }
 ```
 
-## Uniform Resource Indicator 
-
-A Uniform Resource Indicator (URI) is a string referring to a resource and SHOULD
-have the form `<scheme>:[//<authority>]<path>[?<query>][#<fragment>]`, as specified 
-in [RFC 3986](https://tools.ietf.org/html/rfc3986). 
-This applies to URLs and other common URIs, including Digital Object Identifiers (DOIs), 
-which may be fully specified as `doi:<path>`, 
-for example, [doi:10.5281/zenodo.3686061](https://doi.org/10.5281/zenodo.3686061).
-A given resource may have multiple URIs.
-When selecting URIs to add to dataset metadata, it is important to consider 
-specificity and persistence.
-
 ## Participant names and other labels
 
 BIDS allows for custom user-defined `<label>`s and `<index>`es for example,
@@ -547,6 +535,18 @@ Please note that a given label or index is distinct from the "prefix"
 it refers to. For example `sub-01` refers to the `sub` entity (a
 subject) with the label `01`. The `sub-` prefix is not part of the subject
 label, but must be included in file names (similarly to other key names).
+
+## Uniform Resource Indicator 
+
+A Uniform Resource Indicator (URI) is a string referring to a resource and SHOULD
+have the form `<scheme>:[//<authority>]<path>[?<query>][#<fragment>]`, as specified 
+in [RFC 3986](https://tools.ietf.org/html/rfc3986). 
+This applies to URLs and other common URIs, including Digital Object Identifiers (DOIs), 
+which may be fully specified as `doi:<path>`, 
+for example, [doi:10.5281/zenodo.3686061](https://doi.org/10.5281/zenodo.3686061).
+A given resource may have multiple URIs.
+When selecting URIs to add to dataset metadata, it is important to consider 
+specificity and persistence.
 
 ## Units
 
