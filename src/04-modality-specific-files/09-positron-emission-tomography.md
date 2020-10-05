@@ -38,7 +38,7 @@ please distribute them according to the original BIDS specification
 (https://bids-specification.readthedocs.io/en/stable).
 Please pay specific attention to the format the MR images are in,
 such as if they have been unwarped in order to correct for gradient non-linearities.
-There is a specific field in the MRI BIDS (https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/01-magnetic-resonance-imaging-data.html) called “NonlinearGradientCorrection”
+There is a specific field in the [MRI BIDS](./04-modality-specific-files/01-magnetic-resonance-imaging-data.md) called “NonlinearGradientCorrection”
 which indicates this.
 The reason for this is that the MRI needs to be corrected for nonlinear gradients
 in order to fit the accompanying PET scans for co-registration [1, 2].
@@ -103,7 +103,7 @@ and resting state BOLD fMRI data.
 In case of studies using combined PET/fMRI, subject-specific tasks may be carried out
 during the acquisition within the same session.
 Therefore, it is possible to specify `task-<label>` in accordance with the fMRI data.
-For more information please see https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#task-including-resting-state-imaging-data.
+For more information please see [task section](./04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 
 In case of studies with multiple acquisitions per subject using different tracers,
 the `acq-<label>` must be used to distinguish between different tracers.
@@ -116,7 +116,7 @@ The reconstruction key (`rec-<label>`) has four reserved values:
 `acstat`, for reconstructions with attenuation correction of static data;
 `nacdyn`, for reconstructions without attenuation correction of dynamic data;
 and `nacstat`, for reconstructions without attenuation correction of static data.
-Further details regarding reconstruction are in the _pet.json file.
+Further details regarding reconstruction are in the `_pet.json` file.
 In case of multiple reconstructions of the data with the same type,
 we allow for using a number after the `<label>` in order to distinguish, 
 for example `rec-acdyn1` and `rec-acdyn2`.
@@ -144,7 +144,7 @@ Some of the fields are marked optional (MAY), for example anaesthesia; for those
 the BIDS validator will not throw an error even if they are not present.
 Note, although bodyweight is a recommended information in (Knudsen et al. 2020, JCBFM [1]),
 this consists of meta information at the participant level and should hence
-be part of the participants.tsv or session.tsv file in case of multiple measurements.
+be part of the `participants.tsv` or `session.tsv` file in case of multiple measurements.
 
 | Field name                | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -310,7 +310,8 @@ sub-<participant_label>/
 ```
 
 Blood data belongs in the /pet folder along with the corresponding PET data.
-However, the blood data also follows the inheritance principle (https://bids-specification.readthedocs.io/en/stable/02-common-principles.html#the-inheritance-principle) and may be moved to an upper level folder
+However, the blood data also follows the [inheritance principle](../02-common-principles.md#the-inheritance-principle) 
+and may be moved to an upper level folder
 if it does not change, for example, with multiple reconstructions.
 The blood data is most often recorded using an autosampler for continuous blood samples,
 or manually for discrete blood samples.
@@ -322,8 +323,8 @@ whole blood (2.2.5),
 plasma (2.2.3),
 parent fraction and
 metabolite fractions (2.2.4).
-The actual blood radioactivity data will be stored in tabular `*.tsv` files
-with the `blood_continuous` and `blood_discrete` suffix (https://bids-specification.readthedocs.io/en/stable/02-common-principles.html#tabular-files).
+The actual blood radioactivity data will be stored in [tabular `*.tsv` files](../02-common-principles.md#tabular-files)
+with the `blood_continuous` and `blood_discrete` suffix.
 The first column in the `*.tsv` file should be a time column (see 2.2.1),
 defined in relation to time zero defined by the `_pet.json` file.
 All other information relevant to the blood measurements are recommended,
