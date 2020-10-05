@@ -13,7 +13,7 @@ from pull_files import filter_files
 
 HERE = os.getcwd()
 ABSOLUTE_HERE = os.path.dirname(HERE)
-IGNORE_LIST = [ "_config.yml", "style.md", "contributors-record.md"]
+IGNORE_LIST = ["CHANGES.md", "01-contributors.md"]
 
 
 def parse_args():

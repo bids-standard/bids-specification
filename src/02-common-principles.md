@@ -60,9 +60,11 @@ misunderstanding we clarify them here.
     Events are most commonly associated with on- or offset of stimulus presentations,
     or with the distinct marker of on- or offset of a subject's response or motor action.
     Other events may include unplanned incidents
-    (e.g., sudden onset of noise and vibrations due to construction work, laboratory device malfunction),
+    (for example, sudden onset of noise and vibrations due to construction work,
+    laboratory device malfunction),
     changes in task instructions (for example, switching the response hand),
-    or experiment control parameters (for example, changing the stimulus presentation rate over experimental blocks),
+    or experiment control parameters (for example,
+    changing the stimulus presentation rate over experimental blocks),
     and noted data feature occurrences (for example, a recording electrode producing noise).
     In BIDS, each event has an onset time and duration.
     Note that not all tasks will have recorded events (for example, "resting state").
