@@ -550,7 +550,8 @@ specificity and persistence.
 
 Several fields are designated for DOIs, for example, `DatasetDOI` in `dataset_description.json`.
 DOI values SHOULD be fully specified URIs such as `doi:10.18112/openneuro.ds000001.v1.0.0`.
-Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED].
+Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED][deprecated].
+
 ## Units
 
 All units SHOULD be specified as per [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
@@ -693,3 +694,4 @@ to suppress warnings or provide interpretations of your file names.
 [string]: https://www.w3schools.com/js/js_json_syntax.asp
 [strings]: https://www.w3schools.com/js/js_json_syntax.asp
 [object]: https://www.json.org/json-en.html
+[deprecated]: ./02-common-principles.md#definitions
