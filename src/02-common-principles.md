@@ -548,6 +548,9 @@ A given resource may have multiple URIs.
 When selecting URIs to add to dataset metadata, it is important to consider 
 specificity and persistence.
 
+Several fields are designated for DOIs, for example, `DatasetDOI` in `dataset_description.json`.
+DOI values SHOULD be fully specified URIs such as `doi:10.18112/openneuro.ds000001.v1.0.0`.
+Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED].
 ## Units
 
 All units SHOULD be specified as per [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
