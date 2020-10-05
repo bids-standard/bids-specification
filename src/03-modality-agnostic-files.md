@@ -27,7 +27,7 @@ Every dataset MUST include this file with the following fields:
 | Funding            | OPTIONAL              | [array][] of [strings][] | List of sources of funding (grant numbers).                                                                                                                                                                                                           |
 | EthicsApprovals    | OPTIONAL              | [array][] of [strings][] | List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                                             |
 | ReferencesAndLinks | OPTIONAL              | [array][] of [strings][] | List of references to publications that contain information on the dataset. A reference may be textual or a [URI][uri].                                                                                                                               |
-| DatasetDOI         | OPTIONAL              | [string][]               | The [Digital Object Identifier][uri] of the dataset (not the corresponding paper).                                                                                                                                                                    |
+| DatasetDOI         | OPTIONAL              | [string][]               | The Digital Object Identifier of the dataset (not the corresponding paper). DOIs SHOULD be expressed as a valid [URI][uri]; bare DOIs such as `10.0.2.3/dfjj.10` are [DEPRECATED][deprecated].                                                        |
 
 Example:
 
@@ -69,9 +69,9 @@ In addition to the keys for raw BIDS datasets,
 derived BIDS datasets include the following REQUIRED and RECOMMENDED
 `dataset_description.json` keys:
 
-| **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                      |                
+| **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                      |
 |----------------|-----------------------|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| GeneratedBy    | REQUIRED              | [array][] of [objects][] | Used to specify provenance of the derived dataset. See table below for contents of each object.                                                                                      |                
+| GeneratedBy    | REQUIRED              | [array][] of [objects][] | Used to specify provenance of the derived dataset. See table below for contents of each object.                                                                                      |
 | SourceDatasets | RECOMMENDED           | [array][] of [objects][] | Used to specify the locations and relevant attributes of all source datasets. Valid keys in each object include `URL`, `DOI` (see [URI][uri]), and `Version` with [string][] values. |
 
 Each object in the `GeneratedBy` list includes the following REQUIRED, RECOMMENDED
@@ -387,3 +387,4 @@ code organization of these scripts at the moment.
 [strings]: https://www.w3schools.com/js/js_json_syntax.asp
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
 [uri]: ./02-common-principles.md#uniform-resource-indicator
+[deprecated]: ./02-common-principles.md#definitions
