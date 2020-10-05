@@ -178,8 +178,9 @@ applies, so the data dictionaries can appear higher in the BIDS hierarchy.
 
 You should try to annotate in as much detail as possible. 
 The HED path structure makes it easy for analysis tools to extract tags 
-at different levels of detail, for example only consider 2D
-shapes for stimuli, but not worry about color or shape details.
+at different levels of detail: For example a user can consider extracting
+events associated with 2D shapes for stimuli, ignoring the particular
+color or shape details for the stimuli.
 
 ## HED schema and HED versions
 
