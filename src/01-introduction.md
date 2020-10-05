@@ -83,7 +83,8 @@ For example:
 
 -   Pernet, C. R., Appelhoff, S., Gorgolewski, K.J., Flandin, G., Phillips, C.,
     Delorme, A., Oostenveld, R. (2019).
-    **EEG-BIDS, an extension to the brain imaging data structure for electroencephalography**. Scientific data, 6 (103).
+    **EEG-BIDS, an extension to the brain imaging data structure for electroencephalography**.
+    Scientific data, 6 (103).
     [doi:10.1038/s41597-019-0104-8](https://doi.org/10.1038/s41597-019-0104-8)
 
 #### iEEG
@@ -109,6 +110,13 @@ For example:
     **MEG-BIDS, the brain imaging data structure extended to magnetoencephalography**.
     Scientific Data, 5 (180110).
     [doi:10.1038/sdata.2018.110](https://doi.org/10.1038/sdata.2018.110)
+
+#### Genetics
+
+-   Clara Moreau, Martineau Jean-Louis, Ross Blair, Christopher Markiewicz, Jessica Turner,
+    Vince Calhoun, Thomas Nichols, Cyril Pernet (2020).
+    **The genetics-BIDS extension: Easing the search for genetic data associated with human brain imaging**.
+    GigaScience (in press)
 
 ### Research Resource Identifier (RRID)
 
