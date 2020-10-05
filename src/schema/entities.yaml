@@ -22,7 +22,8 @@ session:
     those can be grouped in one session.
     Defining multiple sessions is appropriate when several identical or similar
     data acquisitions are planned and performed on all -or most- subjects,
-    often in the case of some intervention between sessions (for example, training).
+    often in the case of some intervention between sessions
+    (for example, training).
   format: label
 task:
   name: Task
