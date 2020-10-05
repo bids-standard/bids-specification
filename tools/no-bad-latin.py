@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# 
+# Detect Latin abbreviations that can be difficult for screenreaders and non-native English speakers
+#
+# This script initially adopted from The Turing Way from in October 2020.
+# https://github.com/alan-turing-institute/the-turing-way/blob/af98c94/tests/no-bad-latin.py
+
 import os
 import re
 import argparse
