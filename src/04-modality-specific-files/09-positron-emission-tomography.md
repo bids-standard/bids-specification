@@ -177,10 +177,10 @@ material used in the experiment.
 |-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | InjectedRadioactivity         | REQUIRED. Total amount of radioactivity injected into the patient (for example, 400). Corresponds to DICOM Tag (0018,1074) Radionuclide Total Dose.                                                                                                                              |
 | InjectedRadioactivityUnit     | REQUIRED. Unit format of the specified injected radioactivity (for example, "MBq").                                                                                                                                                                                              |
-| InjectedMass                  | REQUIRED. Total mass of radiolabeled compound injected into subject (for example, 10). This can be derived as the ratio of the InjectedRadioactivity and MolarRadioactivity. *Note this is not required for an FDG acquisition, since it is not available, and can be set to -1. |
-| InjectedMassUnit              | REQUIRED. Unit format of the mass of compound injected (for example, "ug" or "umol"). *Note this is not required for an FDG acquisition, since it is not available, and can be set to "-1".                                                                                      |
-| SpecificRadioactivity         | REQUIRED. Specific activity of compound injected. *Note this is not required for an FDG acquisition, since it is not available, and can be set to -1.                                                                                                                    |
-| SpecificRadioactivityUnit     | REQUIRED. Unit format of specified specific radioactivity (for example, "Bq/g"). *Note this is not required for an FDG acquisition, since it is not available, and can be set to "-1".                                                                                           |
+| InjectedMass                  | REQUIRED. Total mass of radiolabeled compound injected into subject (for example, 10). This can be derived as the ratio of the `InjectedRadioactivity` and `MolarRadioactivity`. *Note this is not required for an FDG acquisition, since it is not available, and can be set to -1. |
+| InjectedMassUnit              | REQUIRED. Unit format of the mass of compound injected (for example, "ug" or "umol"). **Note this is not required for an FDG acquisition, since it is not available, and can be set to "-1"**.                                                                                      |
+| SpecificRadioactivity         | REQUIRED. Specific activity of compound injected. **Note this is not required for an FDG acquisition, since it is not available, and can be set to -1**.                                                                                                                    |
+| SpecificRadioactivityUnit     | REQUIRED. Unit format of specified specific radioactivity (for example, "Bq/g"). **Note this is not required for an FDG acquisition, since it is not available, and can be set to "-1"**.                                                                                           |
 | ModeOfAdministration          | REQUIRED. Mode of administration of the injection (for example, "bolus" or "infusion").                                                                                                                                                                                          |
 | InjectedMassPerWeight         | RECOMMENDED. Injected mass per kilogram bodyweight.                                                                                                                                                                                                                      |
 | InjectedMassPerWeightUnit     | RECOMMENDED. Unit format of the injected mass per kilogram bodyweight (for example, "ug/kg").                                                                                                                                                                                    |
@@ -202,17 +202,18 @@ This section is mandatory and contains timing information about the imaging expe
 
 | Field name      | Definition                                                                                                                                                                      |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| TimeZero        | REQUIRED. Time zero to which all scan and/or blood measurements have been adjusted to, in the unit “hh:mm:ss”. This should be equal to InjectionStart or ScanStart.             |
-| ScanStart       | REQUIRED. Time of start of scan with respect to TimeZero in the default unit seconds.                                                                                           |
-| InjectionStart  | REQUIRED. Time of start of injection with respect to TimeZero in the default unit seconds. This corresponds to DICOM Tag (0018,1042) converted to seconds relative to timeZero. |
-| FrameTimesStart | REQUIRED. Start times for all frames relative to TimeZero in default unit seconds.                                                                                              |
+| TimeZero        | REQUIRED. Time zero to which all scan and/or blood measurements have been adjusted to, in the unit “hh:mm:ss”. This should be equal to `InjectionStart` or `ScanStart`.             |
+| ScanStart       | REQUIRED. Time of start of scan with respect to `TimeZero` in the default unit seconds.                                                                                           |
+| InjectionStart  | REQUIRED. Time of start of injection with respect to `TimeZero` in the default unit seconds. This corresponds to DICOM Tag (0018,1042) converted to seconds relative to `timeZero`. |
+| FrameTimesStart | REQUIRED. Start times for all frames relative to `TimeZero` in default unit seconds.                                                                                              |
 | FrameDuration   | REQUIRED. Time duration of each frame in default unit seconds. This corresponds to DICOM Tag (0018,1242) converted to seconds.                                                  |
 | ScanDate        | RECOMMENDED. Date of scan in the default unit “yyyy:mm:dd”.                                                                                                                     |
-| InjectionEnd    | RECOMMENDED. Time of end of injection with respect to TimeZero in the default unit seconds.                                                                                     |
+| InjectionEnd    | RECOMMENDED. Time of end of injection with respect to `TimeZero` in the default unit seconds.                                                                                     |
 
 #### Reconstruction
 
-This optional section includes information about the image reconstruction. All reconstruction specific parameters that are not specified, but one wants to include, should go into the ReconMethodParameterVal field.
+This optional section includes information about the image reconstruction. 
+All reconstruction specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterVal` field.
 
 | Field name                           | Definition                                                                                                                |
 |--------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
@@ -294,7 +295,7 @@ one should always report radioactivity in plasma and corresponding
 parent fraction measurements, including fractions of radiometabolites.
 All definitions used below are in accordance with Innis et al. 2007 [3].
 All method specific information related to the measurements can be stated
-in the field “description”.
+in the field `description`.
 
 Template:
 
@@ -302,9 +303,9 @@ Template:
 sub-<participant_label>/
  	[ses-<session_label>/]
 	pet/
-	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_`acq-<label>`][_`rec-<label>`][_run-<index>]_blood.json
-	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_`acq-<label>`][_`rec-<label>`][_run-<index>]_recording-<label>.tsv
-	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_`acq-<label>`][_`rec-<label>`][_run-<index>]_recording-<label>.json
+	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_blood.json
+	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>.tsv
+	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>.json
 
 ```
 
@@ -334,7 +335,7 @@ It is expected that all values are (if relevant) decay corrected to time zero.
 As stated above in order to simplify a distinction between PET data acquired
 with and without blood measurements, we have added a specific file detailing
 blood measurements called `*_blood.json`.
-If blood data is available, meaning some of the “Avail” below with a given prefix are true,
+If blood data is available, meaning some of the `*Avail` below with a given prefix are true,
 the following fields with the given prefix are required
 and at the same time we require the presence of a `*recording-blood_discrete.tsv`
 or `*recording-blood_continuous.tsv` with a corresponding `*recording-blood_discrete.json`
@@ -372,7 +373,7 @@ and the values below should be added to the `*recording-blood_continous.json`.
 | Field name  | Definition                                                                 |
 |:------------|:---------------------------------------------------------------------------|
 | ColumnName  | REQUIRED. Name of the column (for example, "time".                                 |
-| Description | REQUIRED. Time in relation to TimeZero defined by the `*_pet.json`. (for example, 5) |
+| Description | REQUIRED. Time in relation to `TimeZero` defined by the `*_pet.json`. (for example, 5) |
 | Units       | REQUIRED. Unit of time steps (for example, "s")                                    |
 
 ### Radioactivity in plasma
@@ -405,11 +406,15 @@ Hence, it may contain information regarding metabolite info, such as the followi
 | ColumnName  | REQUIRED. Name of the column (for example, "metabolite_parent_fraction".                             |
 | Description | REQUIRED. Parent fraction of the radiotracer (0-1).                                          |
 | Units       | REQUIRED. Unit of parent fraction (for example, "unitless")                                          |
+
 | Field name  | Definition                                                                                   |
+|:------------|:---------------------------------------------------------------------------------------------|
 | ColumnName  | REQUIRED. Name of the column (for example, "metabolite_polar_fraction".                              |
 | Description | REQUIRED. Polar metabolite fraction of the radiotracer (0-1).                                |
 | Units       | REQUIRED. Unit of polar metabolite fraction (for example, "unitless")                                |
+
 | Field name  | Definition                                                                                   |
+|:------------|:---------------------------------------------------------------------------------------------|
 | ColumnName  | REQUIRED. Name of the column (for example, "hplc_recovery_fractions".                                |
 | Description | REQUIRED. HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC). |
 | Units       | REQUIRED. Unit of recovery fractions (for example, "unitless")                                       |
@@ -427,9 +432,9 @@ and the values below should be added to the `*recording-blood_continous.json`.
 
 | Field name  | Definition                                                                            |
 |:------------|:--------------------------------------------------------------------------------------|
-| ColumnName  | REQUIRED. Name of the column (for example,"whole_blood_radioactivity".                       |
+| ColumnName  | REQUIRED. Name of the column (for example, "whole_blood_radioactivity".                       |
 | Description | REQUIRED. Radioactivity in whole blood samples.                                       |
-| Units       | REQUIRED. Unit of  radioactivity measurements  in whole blood samples (for example,, "kBq/mL") |
+| Units       | REQUIRED. Unit of radioactivity measurements in whole blood samples (for example, "kBq/mL") |
 
 ### Example (`*_blood.json`)
 
