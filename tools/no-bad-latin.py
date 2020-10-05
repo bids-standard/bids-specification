@@ -3,6 +3,7 @@
 # Detect Latin abbreviations that can be difficult for screenreaders and non-native English speakers
 #
 # This script initially adopted from The Turing Way from in October 2020.
+# doi:10.5281/zenodo.3233853
 # https://github.com/alan-turing-institute/the-turing-way/blob/af98c94/tests/no-bad-latin.py
 
 import os
