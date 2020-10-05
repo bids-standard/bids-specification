@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# 
+#
 # Detect Latin abbreviations that can be difficult for screenreaders and non-native English speakers
 #
 # This script initially adopted from The Turing Way from in October 2020.
@@ -95,9 +95,11 @@ def read_and_check_files(files):
 	"""
     failing_files = {}
     bad_latin = [
-        "i.e.", "i.e ", " ie ", 
-        "e.g.", "e.g ",  
-        "e.t.c.", " etc", "et cetera"]
+        # XXX Uncomment when cleared initially
+        # "i.e.", "i.e ", " ie ",
+        "e.g.", "e.g ",
+        # "e.t.c.", " etc", "et cetera"
+        ]
 
     for filename in files:
         if os.path.basename(filename) in IGNORE_LIST:
