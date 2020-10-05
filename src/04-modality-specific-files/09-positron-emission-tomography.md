@@ -50,12 +50,11 @@ defined on a single time scale relative to a predefined “time zero”
 please note an exception to this definition is possible if a pharmacological
 within-scan challenge is performed).
 
-
 ![Figure 1](images/PET_scan_overview.png "Overview of PET recording data")
 
 Figure 1: Overview of a common PET experiment, including blood measurements,
 and defined on a common time scale.
-Note, “time zero”can either be defined as time of injection or scan start,
+Note, “time zero” can either be defined as time of injection or scan start,
 and all the PET and blood data should be decay-corrected to this time point.
 Furthermore, although in this example tracer injection coincides with scan start,
 this is not always the case and hence we allow for the flexibility of specifying
@@ -72,21 +71,21 @@ sub-<participant_label>/
 ```
 
 PET data belongs in the /pet folder. PET imaging data SHOULD be stored in 4D
-(or 3D if only one volume was acquired) NifTI files with _pet suffix.
+(or 3D if only one volume was acquired) NifTI files with `_pet` suffix.
 Volumes should be stored in chronological order (the order they were acquired in).
 
 Multiple sessions (visits) are encoded by adding an extra layer of directories
-and file names in the form of ses-<label>.
+and file names in the form of `ses-<label>`.
 Session labels can consist only of alphanumeric characters [a-zA-Z0-9]
 and should be consistent across subjects.
 If numbers are used in session labels we recommend using zero padding
-(for example ses-01, ses-11 instead of ses-1, ses-11).
+(for example `ses-01`, `ses-11` instead of `ses-1`, `ses-11`).
 This makes results of alphabetical sorting more intuitive.
-The extra session layer (at least one /ses-<label> subfolder) should be added
+The extra session layer (at least one `ses-<label>` subfolder) should be added
 for all subjects if at least one subject in the dataset has more than one session.
 Skipping the session layer for only some subjects in the dataset is not allowed.
-If a /ses-<label> subfolder is included as part of the directory hierarchy,
-then the same ses-<label> tag must also be included as part of the file names themselves.
+If a `ses-<label>` subfolder is included as part of the directory hierarchy,
+then the same `ses-<label>` tag must also be included as part of the file names themselves.
 In general, we assume that a new session wrt PET starts with either a new injection
 (probably most common case) or with the subject being taken out of the scanner
 (same injection, but subject leaves the scanner and returns).
@@ -97,43 +96,43 @@ sessions acquired in other subjects.
 Similarly, in situations where different data types are obtained over several
 visits (for example, FDG PET on one day followed by amyloid PET a couple days after)
 those can be grouped in one session.
-Please see the difference with the run-<label> below.
+Please see the difference with the `run-<label>` below.
 
-With respect to the task-<label>, data is arranged in a similar way as task-based
+With respect to the `task-<label>`, data is arranged in a similar way as task-based
 and resting state BOLD fMRI data.
 In case of studies using combined PET/fMRI, subject-specific tasks may be carried out
 during the acquisition within the same session.
-Therefore, it is possible to specify task-<label> in accordance with the fMRI data.
+Therefore, it is possible to specify `task-<label>` in accordance with the fMRI data.
 For more information please see https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#task-including-resting-state-imaging-data.
 
 In case of studies with multiple acquisitions per subject using different tracers,
-the acq-<label> must be used to distinguish between different tracers.
+the `acq-<label>` must be used to distinguish between different tracers.
 Please keep in mind that the label used is arbitrary and each file requires
 a separate JSON sidecar with details of the tracer used (see below).
-Examples are acq-18FFDG for fludeoxyglucose, acq-11CPIB for Pittsburgh compound B, etc.
+Examples are `acq-18FFDG` for fludeoxyglucose, `acq-11CPIB` for Pittsburgh compound B, etc.
 
-The reconstruction key (rec-<label>) has four reserved values:
-acdyn, for reconstructions with attenuation correction of dynamic data;
-acstat, for reconstructions with attenuation correction of static data;
-nacdyn, for reconstructions without attenuation correction of dynamic data;
-and nacstat, for reconstructions without attenuation correction of static data.
+The reconstruction key (`rec-<label>`) has four reserved values:
+`acdyn`, for reconstructions with attenuation correction of dynamic data;
+`acstat`, for reconstructions with attenuation correction of static data;
+`nacdyn`, for reconstructions without attenuation correction of dynamic data;
+and `nacstat`, for reconstructions without attenuation correction of static data.
 Further details regarding reconstruction are in the _pet.json file.
 In case of multiple reconstructions of the data with the same type,
-we allow for using a number after the <label> in order to distinguish, 
-for example rec-acdyn1 and rec-acdyn2.
+we allow for using a number after the `<label>` in order to distinguish, 
+for example `rec-acdyn1` and `rec-acdyn2`.
 
 The run entity is used if one scan type/contrast is repeated multiple times
 within the same scan session/visit.
 If several scans of the same modality are acquired they MUST be indexed
-with a key-value pair: _run-1, _run-2, _run-3 etc. (only integers are allowed as run labels).
+with a key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only integers are allowed as run labels).
 When there is only one scan of a given type the run key MAY be omitted.
 An example of this would be two consecutive scans performed within the same session,
 for example two short FDG scans right after each other.
-It is our assumption that the run-<label> is used in PET for the cases
+It is our assumption that the `run-<label>` is used in PET for the cases
 where the subject does not leave the scanner.
-Otherwise, we refer to the ses-<label> definition.
+Otherwise, we refer to the `ses-<label>` definition.
 
-In addition to the imaging data a _pet.json sidecar file needs to be provided.
+In addition to the imaging data a `_pet.json` sidecar file needs to be provided.
 The included metadata are divided into sections described below.
 
 ### PET sidecar JSON (`*_pet.json`)
@@ -282,10 +281,10 @@ This optional section includes information about the image reconstruction. All r
 
 This section includes all data needed to perform blood analysis for PET data.
 The section may be omitted completely if blood measurements of radioactivity were not made.
-If blood measurements were made a *_blood.json file is expected that contains
+If blood measurements were made a `*_blood.json` file is expected that contains
 information about which blood data is available as well as some blood measurement details.
-Furthermore, depending on the information given in the *_blood.json file
-we expect .tsv files with corresponding .json files that contain the values
+Furthermore, depending on the information given in the `*_blood.json` file
+we expect `.tsv` files with corresponding .json files that contain the values
 and information regarding plasma samples, metabolite fractions,
 discrete blood samples and/or continuous blood samples from an autosampler.
 All these measurements should be defined according to a single time-scale
@@ -303,9 +302,9 @@ Template:
 sub-<participant_label>/
  	[ses-<session_label>/]
 	pet/
-	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_blood.json
-	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>.tsv
-	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>.json
+	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_`acq-<label>`][_`rec-<label>`][_run-<index>]_blood.json
+	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_`acq-<label>`][_`rec-<label>`][_run-<index>]_recording-<label>.tsv
+	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_`acq-<label>`][_`rec-<label>`][_run-<index>]_recording-<label>.json
 
 ```
 
@@ -314,18 +313,18 @@ However, the blood data also follows the inheritance principle (https://bids-spe
 if it does not change, for example, with multiple reconstructions.
 The blood data is most often recorded using an autosampler for continuous blood samples,
 or manually for discrete blood samples.
-Therefore, the recording key (recording-<label>) has two reserved values:
-blood_continuous,
+Therefore, the recording key (`recording-<label>`) has two reserved values:
+`blood_continuous`,
 for continuous whole blood data measurements (2.2.5);
-and blood_discrete, for discrete blood data, including
+and `blood_discrete`, for discrete blood data, including
 whole blood (2.2.5),
 plasma (2.2.3),
 parent fraction and
 metabolite fractions (2.2.4).
-The actual blood radioactivity data will be stored in tabular *.tsv files
-with the blood_continuousand blood_discrete suffix (https://bids-specification.readthedocs.io/en/stable/02-common-principles.html#tabular-files).
-The first column in the *.tsv file should be a time column (see 2.2.1),
-defined in relation to time zero defined by the _pet.json file.
+The actual blood radioactivity data will be stored in tabular `*.tsv` files
+with the `blood_continuous` and `blood_discrete` suffix (https://bids-specification.readthedocs.io/en/stable/02-common-principles.html#tabular-files).
+The first column in the `*.tsv` file should be a time column (see 2.2.1),
+defined in relation to time zero defined by the `_pet.json` file.
 All other information relevant to the blood measurements are recommended,
 and can be added as an additional column.
 It is expected that all values are (if relevant) decay corrected to time zero.
@@ -334,22 +333,22 @@ It is expected that all values are (if relevant) decay corrected to time zero.
 
 As stated above in order to simplify a distinction between PET data acquired
 with and without blood measurements, we have added a specific file detailing
-blood measurements called *_blood.json.
+blood measurements called `*_blood.json`.
 If blood data is available, meaning some of the “Avail” below with a given prefix are true,
 the following fields with the given prefix are required
-and at the same time we require the presence of a *recording-blood_discrete.tsv
-or *recording-blood_continuous.tsv with a corresponding *recording-blood_discrete.json
-or *recording-blood_continuous.json detailing the column content.
+and at the same time we require the presence of a `*recording-blood_discrete.tsv`
+or `*recording-blood_continuous.tsv` with a corresponding `*recording-blood_discrete.json`
+or `*recording-blood_continuous.json` detailing the column content.
 These are detailed in the next sections.
 
 | Field name                          | Definition                                                                                                                                                                                                                      |
 |-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | PlasmaAvail                         | REQUIRED. Boolean that specifies if plasma measurements are available. If this is false, all of the plasma fields should be excluded.                                                                                           |
-| PlasmaFreeFraction                  | RECOMMENDED. Measured free fraction in plasma, i.e. concentration of free compound in plasma divided by total concentration of compound in plasma.                                                                              |
+| PlasmaFreeFraction                  | RECOMMENDED. Measured free fraction in plasma, meaning the concentration of free compound in plasma divided by total concentration of compound in plasma.                                                                              |
 | PlasmaFreeFractionMethod            | RECOMMENDED. Method used to estimate free fraction.                                                                                                                                                                             |
 | MetaboliteAvail                     | REQUIRED. Boolean that specifies if metabolite measurements are available. If this is false, all of the metabolite fields should be excluded.                                                                                   |
 | MetaboliteMethod                    | REQUIRED. Method used to measure metabolites.                                                                                                                                                                                   |
-| MetaboliteRecoveryCorrectionApplied | REQUIRED. Metabolite recovery correction from the HPLC, for tracers where it changes with time postinjection. If “true” please include recovery fractions from the HPLC as a column in the table with blood data (*_blood.tsv). |
+| MetaboliteRecoveryCorrectionApplied | REQUIRED. Metabolite recovery correction from the HPLC, for tracers where it changes with time postinjection. If “true” please include recovery fractions from the HPLC as a column in the table with blood data (`*_blood.tsv`). |
 | ContinuousBloodAvail                | REQUIRED. Boolean that specifies if continuous blood measurements are available. If this is false, all of the continuous blood fields should be excluded.                                                                       |
 | ContinuousBloodDispersionCorrected  | REQUIRED. Boolean flag specifying whether the continuous blood data have been dispersion-corrected.                                                                                                                             |
 | ContinuousBloodWithdrawalRate       | RECOMMENDED. The rate at which the blood was withdrawn from the subject. The unit of the specified withdrawal rate should be in mL/s.                                                                                           |
@@ -357,23 +356,23 @@ These are detailed in the next sections.
 | ContinuousBloodTubingLength         | RECOMMENDED. The length of the blood tubing, from the subject to the detector in the default unit centimeter.                                                                                                                   |
 | ContinuousBloodDispersionConstant   | RECOMMENDED. External dispersion time constant resulting from tubing in default unit seconds.                                                                                                                                   |
 | DiscreteBloodAvail                  | REQUIRED. Boolean that specifies if discrete blood measurements are available. If this is false, all of the discrete blood fields should be excluded.                                                                           |
-| DiscreteBloodHaematocrit            | RECOMMENDED. Measured haematocrit, i.e. the volume of erythrocytes divided by the volume of whole blood.                                                                                                                        |
+| DiscreteBloodHaematocrit            | RECOMMENDED. Measured haematocrit, meaning the volume of erythrocytes divided by the volume of whole blood.                                                                                                                        |
 | DiscreteBloodDensity                | RECOMMENDED. Measured blood density. Unit of blood density should be in g/mL.                                                                                                                                                   |
 
 ### Time
 
 If discrete samples, for example, using a COBRA counter are available,
-then time information as detailed below should be added to the *recording-blood_discrete.tsv
-and the values below should be added to the *recording-blood_discrete.json.
+then time information as detailed below should be added to the `*recording-blood_discrete.tsv`
+and the values below should be added to the `*recording-blood_discrete.json`.
 If continuous samples, for example, using an Allogg autosampler are available,
-then time information as detailed below should be added to the *recording-blood_continous.tsv
-and the values below should be added to the *recording-blood_continous.json.
+then time information as detailed below should be added to the `*recording-blood_continous.tsv`
+and the values below should be added to the `*recording-blood_continous.json`.
 
 
 | Field name  | Definition                                                                 |
 |:------------|:---------------------------------------------------------------------------|
 | ColumnName  | REQUIRED. Name of the column (for example, "time".                                 |
-| Description | REQUIRED. Time in relation to TimeZero defined by the *_pet.json. (for example, 5) |
+| Description | REQUIRED. Time in relation to TimeZero defined by the `*_pet.json`. (for example, 5) |
 | Units       | REQUIRED. Unit of time steps (for example, "s")                                    |
 
 ### Radioactivity in plasma
@@ -381,11 +380,11 @@ and the values below should be added to the *recording-blood_continous.json.
 This section may be omitted if plasma measurements of radioactivity were not made.
 It contains information regarding sampled plasma data.
 If plasma measurements are available by a discrete sampler, for example, using a COBRA counter,
-they should be added to the *recording-blood_discrete.tsv
-and the values below should be added to the *recording-blood_discrete.json.
+they should be added to the `*recording-blood_discrete.tsv`
+and the values below should be added to the `*recording-blood_discrete.json`.
 If plasma measurements are available by a continuous sampler, for example, using an Allogg autosampler,
-they should be added to the *recording-blood_continous.tsv
-and the values below should be added to the *recording-blood_continous.json.
+they should be added to the `*recording-blood_continous.tsv`
+and the values below should be added to the `*recording-blood_continous.json`.
 
 | Field name  | Definition                                                 |
 |:------------|:-----------------------------------------------------------|
@@ -396,8 +395,8 @@ and the values below should be added to the *recording-blood_continous.json.
 ### Metabolites
 
 This section may be omitted if metabolite measurements were not made.
-If metabolite measurements are available they should be added to the *recording-blood_discrete.tsv
-and the values below should be added to the *recording-blood_discrete.json.
+If metabolite measurements are available they should be added to the `*recording-blood_discrete.tsv`
+and the values below should be added to the `*recording-blood_discrete.json`.
 Hence, it may contain information regarding metabolite info, such as the following three column examples:
 
 
@@ -420,11 +419,11 @@ Hence, it may contain information regarding metabolite info, such as the followi
 This section may be omitted if whole blood measurements of radioactivity were not made.
 It contains information regarding sampled whole blood data.
 If whole blood measurements are available by a discrete sampler, for example, using a COBRA counter,
-they should be added to the *recording-blood_discrete.tsv
-and the values below should be added to the *recording-blood_discrete.json.
+they should be added to the `*recording-blood_discrete.tsv`
+and the values below should be added to the `*recording-blood_discrete.json`.
 If whole blood measurements are available by a continuous sampler, for example, using an Allogg autosampler,
-they should be added to the *recording-blood_continous.tsv
-and the values below should be added to the *recording-blood_continous.json.
+they should be added to the `*recording-blood_continous.tsv`
+and the values below should be added to the `*recording-blood_continous.json`.
 
 | Field name  | Definition                                                                            |
 |:------------|:--------------------------------------------------------------------------------------|
@@ -476,7 +475,7 @@ and the values below should be added to the *recording-blood_continous.json.
 
 ![Figure 2](images/blood_discrete_tsv.png "Screenshot of the discrete blood tsv file.")
 
-Figure 2: Caption of the corresponding recording-blood_discrete.tsv file.
+Figure 2: Caption of the corresponding `recording-blood_discrete.tsv` file.
 
 
 ### Example (`*_recording-blood_continuous.json`)
