@@ -169,6 +169,6 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Jonathan Winawer 📖
 -   Gaël Varoquaux 📖
 -   Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
--   Lyuba Zehl 
+-   Lyuba Zehl 📖
 -   Melanie Ganz-Benjaminsen 📖🔣💻🤔📆🔍📢
 -   Martin Noergaard 📖🔣💻🤔📢
