@@ -235,9 +235,10 @@ Derivatives can be stored/distributed in two ways:
     under which it stores all of its outputs.
     Different components of a pipeline can, however, also be stored under different
     subfolders.
-    There are few restrictions on the directory names; it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where it is anticipated that the same pipeline
-    will output more than one variant (for example, `AFNI-blurring` and
-    `AFNI-noblurring`).
+    There are few restrictions on the directory names;
+    it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where
+    it is anticipated that the same pipeline will output more than one variant
+    (for example, `AFNI-blurring` and `AFNI-noblurring`).
     For the sake of consistency, the subfolder name SHOULD be
     the `GeneratedBy.Name` field in `data_description.json`,
     optionally followed by a hyphen and a suffix (see
