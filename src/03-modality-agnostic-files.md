@@ -161,7 +161,7 @@ participants.json
 ```
 
 The purpose of this RECOMMENDED file is to describe properties of participants
-such as age, sex, handedness and so forth.
+such as age, sex, handedness.
 In case of single-session studies, this file has one compulsory column
 `participant_id` that consists of `sub-<label>`, followed by a list of optional
 columns describing participants.
