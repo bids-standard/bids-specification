@@ -217,8 +217,8 @@ sub-<label>/[ses-<label>/]
         sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
 ```
 
-Imaging data acquired during functional imaging (that is, to imaging which supports
-rapid temporal repetition). This includes but is not limited to task based fMRI
+Functional imaging consists of techniques that support rapid temporal repetition.
+This includes but is not limited to task based fMRI
 as well as resting state fMRI, which is treated like any other task. For task
 based fMRI a corresponding task events file (see below) MUST be provided
 (please note that this file is not necessary for resting state scans). For
@@ -407,9 +407,9 @@ contains the z elements of a unit vector in the direction of the applied
 diffusion gradient, where the i-th elements in each row correspond together to
 the i-th volume with `[0,0,0]` for non-diffusion-weighted volumes. Inherent to
 the FSL format for bvec specification is the fact that the coordinate system of
-the bvecs is with respect to the participant (that is defined by the axes of the
-corresponding dwi.nii file) and not the magnet's coordinate system, which means
-that any rotations applied to dwi.nii also need to be applied to the
+the bvecs is with respect to the participant, defined by the axes of the
+corresponding `dwi.nii` file, and not the magnet's coordinate system.
+Thus, any rotations applied to `dwi.nii` also need to be applied to the
 corresponding bvec file.
 
 bvec example:
