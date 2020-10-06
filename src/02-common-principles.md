@@ -230,16 +230,16 @@ Derivatives can be stored/distributed in two ways:
 
 1.  Under a `derivatives/` subfolder in the root of the source BIDS dataset
     folder to make a clear distinction between raw data and results of data
-    processing. 
+    processing.
     A data processing pipeline will typically have a dedicated directory
-    under which it stores all of its outputs. 
-    Different components of a pipeline can, however, also be stored under different 
-    subfolders. 
-    There are few restrictions on the directory names; it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where it is anticipated that the same pipeline 
-    will output more than one variant (for example, `AFNI-blurring` and 
-    `AFNI-noblurring`). 
-    For the sake of consistency, the subfolder name SHOULD be 
-    the `GeneratedBy.Name` field in `data_description.json`, 
+    under which it stores all of its outputs.
+    Different components of a pipeline can, however, also be stored under different
+    subfolders.
+    There are few restrictions on the directory names; it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where it is anticipated that the same pipeline
+    will output more than one variant (for example, `AFNI-blurring` and
+    `AFNI-noblurring`).
+    For the sake of consistency, the subfolder name SHOULD be
+    the `GeneratedBy.Name` field in `data_description.json`,
     optionally followed by a hyphen and a suffix (see
     [Derived dataset and pipeline description][derived-dataset-description]).
 
@@ -330,7 +330,7 @@ within that specific series directory specifying the TR for that specific run.
 There is no notion of "unsetting" a key/value pair.
 Once a key/value pair is set in a given level in the dataset, lower down in
 the hierarchy that key/value pair will always have some assigned value.
-Files for a particular participant can exist only at participant level directory, 
+Files for a particular participant can exist only at participant level directory,
 that is, `/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any file that is not
 specific to a participant is to be declared only at top level of dataset for example:
 `task-sist_bold.json` must be placed under `/dataset/task-sist_bold.json`
@@ -538,11 +538,11 @@ for more information.
 ## Participant names and other labels
 
 BIDS allows for custom user-defined `<label>`s and `<index>`es for example,
-for naming of participants, sessions, acquisition schemes. 
+for naming of participants, sessions, acquisition schemes.
 Note that they MUST consist only of allowed characters as described in
-[Definitions](02-common-principles.md#definitions) above. 
-In `<index>`es we RECOMMEND using zero padding (for example, `01` instead of `1` 
-if you have more than nine subjects) to make alphabetical sorting more intuitive. 
+[Definitions](02-common-principles.md#definitions) above.
+In `<index>`es we RECOMMEND using zero padding (for example, `01` instead of `1`
+if you have more than nine subjects) to make alphabetical sorting more intuitive.
 Note that zero padding SHOULD NOT be used to merely maintain uniqueness
 of `<index>`es.
 

@@ -24,8 +24,8 @@ When two or more instances of a given derivative are provided with resolution
 or surface sampling density being the only difference between them, then the
 `res` (for *resolution* of regularly sampled N-D data) and/or `den` (for
 *density* of non-parametric surfaces) SHOULD be used to avoid name conflicts.
-Note that only files combining both regularly sampled (for example, gridded) 
-and surface sampled data (and their downstream derivatives) are allowed 
+Note that only files combining both regularly sampled (for example, gridded)
+and surface sampled data (and their downstream derivatives) are allowed
 to present both `res` and `den` entities simultaneously.
 
 Examples:
