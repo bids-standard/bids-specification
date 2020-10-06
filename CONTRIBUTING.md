@@ -170,7 +170,7 @@ Please go [here](https://squidfunk.github.io/mkdocs-material/) and install our t
 
 #### 4. In the terminal (command line) navigate to your local version of the specification
 
-This location will have the same files you see on our [main specification page](https://github.com/bids-standard/bids-specification). Note: A finder window may not show the hidden files (those that start with a period like this `.remarkrc`)
+This location will have the same files you see on our [main specification page](https://github.com/bids-standard/bids-specification). Note: A finder window may not show the hidden files (those that start with a period, like `.remarkrc`)
 
 #### 5. Ready to build!
 
@@ -205,7 +205,7 @@ Use one of the following prefixes in the title of your pull request:
     support for a new data type
   - `[FIX]` - fix of a typo or language clarification
   - `[INFRA]` - changes to the infrastructure automating the specification
-    release (for example building HTML docs)
+    release (for example, building HTML docs)
   - `[MISC]` - everything else including changes to the file listing
     contributors
 
@@ -261,7 +261,7 @@ Here is a list of the files and subfolders of the schema, roughly in order of im
 
 #### 1. Ensure that changes to the specification are matched in the schema
 
-The schema formalizes the rules described in the specification text, so you must ensure that any changes which impact the rules of the specification (including, but not limited to, adding new entities, suffixes, datatypes, modalities and so on) are reflected in the schema as well.
+The schema formalizes the rules described in the specification text, so you must ensure that any changes which impact the rules of the specification (including, but not limited to, adding new entities, suffixes, datatypes, modalities) are reflected in the schema as well.
 
 #### 2. Generate an updated entity table before pushing your changes
 

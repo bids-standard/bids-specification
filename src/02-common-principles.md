@@ -38,7 +38,7 @@ misunderstanding we clarify them here.
     `func` (task based and resting state functional MRI),
     `dwi` (diffusion weighted imaging),
     `fmap` (field inhomogeneity mapping data such as field maps),
-    `anat` (structural imaging such as T1, T2, and so on),
+    `anat` (structural imaging such as T1, T2, PD, and so on),
     `meg` (magnetoencephalography),
     `eeg` (electroencephalography),
     `ieeg` (intracranial electroencephalography),
@@ -173,7 +173,7 @@ external source repositories to maximize long term preservation,
 which would suffer if an external repository would not be available anymore.
 This specification currently does not go into the details of
 recommending a particular naming scheme for including different types of
-source data (such as the raw event logs, parameter files and equivalent generated before conversion to BIDS).
+source data (such as the raw event logs or parameter files, before conversion to BIDS).
 However, in the case that these data are to be included:
 
 1.  These data MUST be kept in separate `sourcedata` folder with a similar
@@ -319,7 +319,7 @@ datasets and non-compliant derivatives.
 
 ## The Inheritance Principle
 
-Any metadata file (`.json`, `.bvec`, `.tsv` and so on) may be defined at any
+Any metadata file (such as `.json`, `.bvec` or `.tsv`) may be defined at any
 directory level, but no more than one applicable file may be defined at a given
 level (Example 1). The values from the top level are inherited by all lower
 levels unless they are overridden by a file at the lower level. For example,
@@ -331,7 +331,7 @@ There is no notion of "unsetting" a key/value pair.
 Once a key/value pair is set in a given level in the dataset, lower down in
 the hierarchy that key/value pair will always have some assigned value.
 Files for a particular participant can exist only at participant level directory, 
-that is `/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any file that is not
+that is, `/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any file that is not
 specific to a participant is to be declared only at top level of dataset for example:
 `task-sist_bold.json` must be placed under `/dataset/task-sist_bold.json`
 
@@ -427,7 +427,7 @@ NIfTI header.
 
 ### Tabular files
 
-Tabular data MUST be saved as tab delimited values (`.tsv`) files, meaning CSV
+Tabular data MUST be saved as tab delimited values (`.tsv`) files, that is, CSV
 files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
 line listing the names of all columns (with the exception of
@@ -538,12 +538,12 @@ for more information.
 ## Participant names and other labels
 
 BIDS allows for custom user-defined `<label>`s and `<index>`es for example,
-for naming of participants, sessions, acquisition schemes, and so forth. Note
-that they MUST consist only of allowed characters as described in
-[Definitions](02-common-principles.md#definitions) above. In `<index>`es
-we RECOMMEND using zero padding (for example, `01` instead of `1` if you have more than
-nine subjects) to make alphabetical sorting more intuitive. Note that
-zero padding SHOULD NOT be used to merely maintain uniqueness
+for naming of participants, sessions, acquisition schemes. 
+Note that they MUST consist only of allowed characters as described in
+[Definitions](02-common-principles.md#definitions) above. 
+In `<index>`es we RECOMMEND using zero padding (for example, `01` instead of `1` 
+if you have more than nine subjects) to make alphabetical sorting more intuitive. 
+Note that zero padding SHOULD NOT be used to merely maintain uniqueness
 of `<index>`es.
 
 Please note that a given label or index is distinct from the "prefix"

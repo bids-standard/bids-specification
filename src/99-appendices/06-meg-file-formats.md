@@ -29,8 +29,9 @@ sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg.ds>
 CTF's data storage is therefore via directories containing multiple files. The
 files contained within a `.ds` directory are named such that they match the
 parent directory, but preserve the original file extension (for example, `.meg4`,
-`.res4`, and so on). The renaming of CTF datasets SHOULD be done with a specialized
-software such as the CTF newDs command-line application or
+`.res4`). 
+The renaming of CTF datasets SHOULD be done with a specialized software 
+such as the CTF newDs command-line application or
 [MNE-BIDS](https://github.com/mne-tools/mne-bids).
 
 Example:
