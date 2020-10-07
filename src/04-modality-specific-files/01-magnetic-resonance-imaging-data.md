@@ -489,6 +489,13 @@ order.
 | deltam                  | The deltaM image is a perfusion-weighted image, which is formed by the subtraction of label from control images (`control` - `label`). These subtractions are averaged over multiple repeats, but can also be kept as individual subtractions, if perfusion time-courses are of interest. This is a derivative that can be regarded as raw data, when the raw data needed to derive deltaM is not available.     |
 | cbf                  | The quantified cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0 image or the M0 scalar value, which is then scaled into physiological units (`mL/100g/min`). This is a derivative that can be regarded as raw data when the raw data needed to derive CBF is not available.       |
 
+Formally, `deltam` and `cbf` are derivatives (images calculated from raw data), and should therefore be stored in the `derivatives` folder. However, for some ASL sequences (e.g. 
+the GE product sequence or the Philips product sequence with ‘ASLSourceImage’ set to off), these images are provided as raw data, instead of the `control` and `label` images. 
+Therefore, those derivatives are included in the current BIDS extension, but should only be stored as ASL data in the `rawdata` folder in case the raw images are not available. 
+It is always required to store the raw images when available (i.e. unsubtracted `control` and `label` images). The storage of the volumes follows the hierarchy in order of 
+preference: 1) `control`/`label`/`m0scan`, 2) `deltam`/`m0scan`, 3) `cbf`[/`m0scan`]. Additionally, when `cbf` is stored as raw data, the units need to be specified in the `sub-
+<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json`.
+
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
