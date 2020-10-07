@@ -483,6 +483,7 @@ order.
 
 | asl volume name                    | Definition    |
 |---------------------------------- | -----------------------------------------------------|
+| control                  | A control image is acquired in the exact same way as the label image, except for the modification in the ASL-preparation pulse. In the control images, this pulse effectively leads to no labeling of blood, i.e. the blood and tissue having identically aligned magnetization. It is important for both control and label images to be scaled identically. If no background suppression or pre-saturation pulses were applied, this image can be used as M0. Note that for FAIR PASL, the control volume is referred to as slice selective volume (see [https://www.ncbi.nlm.nih.gov/pubmed/7500865](https://www.ncbi.nlm.nih.gov/pubmed/7500865)).   |
 
 ## Fieldmap data
 
