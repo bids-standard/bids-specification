@@ -539,6 +539,7 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
+|  LabelingType                | REQUIRED            | [string][]    | `PASL` (pulsed ASL), `CASL` (continuous ASL), `PCASL` (pseudo-continuous ASL). Note that `PCASL` is a modification of `CASL`, and uses the same quantification                                                                                    |
 
 ### (P)CASL-specific fields
 
