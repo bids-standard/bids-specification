@@ -541,8 +541,7 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
 |  LabelingType                | REQUIRED            | [string][]    | `PASL` (pulsed ASL), `CASL` (continuous ASL), `PCASL` (pseudo-continuous ASL). Note that `PCASL` is a modification of `CASL`, and uses the same quantification                                                                                    |
 |  PostLabelingDelay                 | REQUIRED            | [number][] or [array][] of [numbers][]   | This is the time, in seconds, after the middle of the labeling pulse (for `PASL`) or the end of labeling (for `(P)CASL`) until the middle of the excitation pulse applied to the imaging slab. More specifically, in case of 2D multi-slice, this is the time, in seconds, to the excitation of the first slice. In the case of 3D, this is the time, in seconds, to the excitation of the 3D volume. For a single-PLD time series, this is a single scalar value which has been used for all volumes, whereas in case of multi-PLD and Look-Locker, this is a vector of PLDs for which the PLD of each volume (i.e. each `control` and `label`), or of the first slice in case of 2D, is given separately, in the order of acquisition. Any image within the time-series without a PLD is indicated by a zero (e.g. a `m0scan`). Based on DICOM Tag 0018,9079 `Inversion Times` and 0018,0082 `InversionTime`. |
-
-
+|  BackgroundSuppression                | REQUIRED            | [boolean][]           | Boolean indicating if background suppression has been used                           |
 
 ### (P)CASL-specific fields
 
