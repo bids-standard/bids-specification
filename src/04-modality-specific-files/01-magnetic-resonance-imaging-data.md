@@ -548,6 +548,7 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
+|  LabelingDuration                 | REQUIRED            | [number][] or [array][] of [numbers][]         | Total duration, in seconds, of the labeling pulse train. This corresponds to the temporal width of the labeling bolus for (P)CASL. Specify either one value for total time-series or provide a vector of different values for each volume in case of sequential acquisitions with varying labeling duration. For PASL, the parameters of bolus saturation timing and bolus width are given in `BolusCutOff fields`, and the `LabelingDuration` field is set to zero or not provided. Note that in case a vector is provided and a `m0scan` is acquired within the ASL series, `LabelingDuration` also needs to be provided for the `m0scan` (preferably zero), to keep the length of the vector equal to the number of volumes. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration` |
 
 ### PASL-specific fields
 
