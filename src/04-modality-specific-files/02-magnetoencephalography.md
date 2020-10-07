@@ -58,7 +58,7 @@ more examples.
 The [`proc-<label>`](../99-appendices/09-entities.md#proc) entity is analogous to [`rec-<label>`](../99-appendices/09-entities.md#proc) for MR and denotes a variant of a file
 that was a result of particular processing performed on the device. This is
 useful for files produced in particular by Elekta’s MaxFilter (for example, sss, tsss,
-trans, quat, mc, etc.), which some installations impose to be run on raw data
+trans, quat, mc), which some installations impose to be run on raw data
 because of active shielding software corrections before the MEG data can
 actually be exploited.
 
@@ -92,10 +92,10 @@ Specific MEG fields MUST be present:
 | **Key name**        | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                                                                                                                                                                           |
 |---------------------|-----------------------|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | SamplingFrequency   | REQUIRED              | [number][]                           | Sampling frequency (in Hz) of all the data in the recording, regardless of their type (for example, 2400).                                                                                                                                                                                                                                                                |
-| PowerLineFrequency  | REQUIRED              | [number][] or `"n/a"`                | Frequency (in Hz) of the power grid at the geographical location of the MEG instrument (i.e., 50 or 60).                                                                                                                                                                                                                                                                  |
+| PowerLineFrequency  | REQUIRED              | [number][] or `"n/a"`                | Frequency (in Hz) of the power grid at the geographical location of the MEG instrument (for example, 50 or 60).                                                                                                                                                                                                                                                           |
 | DewarPosition       | REQUIRED              | [string][]                           | Position of the dewar during the MEG scan: `upright`, `supine` or `degrees` of angle from vertical: for example on CTF systems, upright=15°, supine=90°.                                                                                                                                                                                                                  |
 | SoftwareFilters     | REQUIRED              | [object][] of [objects][] or `"n/a"` | [Object][] of temporal software filters applied, or `"n/a"` if the data is not available. Each key:value pair in the JSON object is a name of the filter and an object in which its parameters are defined as key:value pairs (for example, `{"SSS": {"frame": "head", "badlimit": 7}, "SpatialCompensation": {"GradientOrder": "Order of the gradient compensation"}}`). |
-| DigitizedLandmarks  | REQUIRED              | [boolean][]                          | `true` or `false` value indicating whether anatomical landmark points (i.e., fiducials) are contained within this recording.                                                                                                                                                                                                                                              |
+| DigitizedLandmarks  | REQUIRED              | [boolean][]                          | `true` or `false` value indicating whether anatomical landmark points (fiducials) are contained within this recording.                                                                                                                                                                                                                                                    |
 | DigitizedHeadPoints | REQUIRED              | [boolean][]                          | `true` or `false` value indicating whether head points outlining the scalp/face surface are contained within this recording.                                                                                                                                                                                                                                              |
 
 SHOULD be present:
@@ -113,7 +113,7 @@ SHOULD be present:
 | MiscChannelCount           | RECOMMENDED           | [integer][]                            | Number of miscellaneous analog channels for auxiliary signals.                                                                                                                                                                                                                                                                           |
 | TriggerChannelCount        | RECOMMENDED           | [integer][]                            | Number of channels for digital (TTL bit level) triggers.                                                                                                                                                                                                                                                                                 |
 | RecordingDuration          | RECOMMENDED           | [number][]                             | Length of the recording in seconds (for example, 3600).                                                                                                                                                                                                                                                                                  |
-| RecordingType              | RECOMMENDED           | [string][]                             | Defines whether the recording is `"continuous"`, `"discontinuous"` or `"epoched"`, where `"epoched"` is limited to time windows about events of interest (for example, stimulus presentations, subject responses etc.).                                                                                                                  |
+| RecordingType              | RECOMMENDED           | [string][]                             | Defines whether the recording is `"continuous"`, `"discontinuous"` or `"epoched"`, where `"epoched"` is limited to time windows about events of interest (for example, stimulus presentations or subject responses).                                                                                                                     |
 | EpochLength                | RECOMMENDED           | [number][]                             | Duration of individual epochs in seconds (for example, 1) in case of epoched data.                                                                                                                                                                                                                                                       |
 | ContinuousHeadLocalization | RECOMMENDED           | [boolean][]                            | `true` or `false` value indicating whether continuous head localisation was performed.                                                                                                                                                                                                                                                   |
 | HeadCoilFrequency          | RECOMMENDED           | [number][] or [array][] of [numbers][] | List of frequencies (in Hz) used by the head localisation coils (‘HLC’ in CTF systems, ‘HPI’ in Elekta, ‘COH’ in BTi/4D) that track the subject’s head position in the MEG helmet (for example, `[293, 307, 314, 321]`).                                                                                                                 |
@@ -342,7 +342,7 @@ This may result in some variability in their 3-D digitization from session to
 session, even for the same participant. The solution would be to use only one
 T1w file and populate the `AnatomicalLandmarkCoordinates` field with
 session-specific labels for example, "NAS-session1": `[127,213,139]`,"NAS-session2":
-`[123,220,142]`, etc.
+`[123,220,142]`.
 
 Fiducials information:
 
@@ -432,7 +432,7 @@ named `sub-emptyroom`.
 The label for the [`task-<label>`](../99-appendices/09-entities.md#task) entity in the empty-room recording SHOULD be
 set to `noise`.
 If a [`session-<label>`](../99-appendices/09-entities.md#ses) entity is present, its label SHOULD be the date of the
-empty-room recording in the format `YYYYMMDD`, i.e., `ses-YYYYMMDD`.
+empty-room recording in the format `YYYYMMDD`, that is `ses-YYYYMMDD`.
 The `scans.tsv` file containing the date and time of the acquisition SHOULD
 also be included.
 The rationale is that this naming scheme will allow users to easily retrieve the

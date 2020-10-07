@@ -161,7 +161,7 @@ participants.json
 ```
 
 The purpose of this RECOMMENDED file is to describe properties of participants
-such as age, sex, handedness etc.
+such as age, sex, handedness.
 In case of single-session studies, this file has one compulsory column
 `participant_id` that consists of `sub-<label>`, followed by a list of optional
 columns describing participants.
@@ -196,7 +196,7 @@ for them:
     -   for "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`,
         `AMBIDEXTROUS`, `Ambidextrous`
 
-Throughout BIDS you can indicate missing values with `n/a` (i.e., "not
+Throughout BIDS you can indicate missing values with `n/a` (for "not
 available").
 
 `participants.tsv` example:
@@ -343,7 +343,7 @@ If acquisition time is included it should be under `acq_time` header.
 Acquisition time refers to when the first data point in each run was acquired.
 Datetime should be expressed as described in [Units](./02-common-principles.md#units).
 For anonymization purposes all dates within one subject should be shifted by a
-randomly chosen (but consistent across all runs etc.) number of days.
+randomly chosen (but consistent across all recordings) number of days.
 This way relative timing would be preserved, but chances of identifying a
 person based on the date and time of their scan would be decreased.
 Dates that are shifted for anonymization purposes SHOULD be set to the year 1925

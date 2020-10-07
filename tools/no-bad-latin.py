@@ -13,7 +13,7 @@ from pull_files import filter_files
 
 HERE = os.getcwd()
 ABSOLUTE_HERE = os.path.dirname(HERE)
-IGNORE_LIST = ["CHANGES.md", "01-contributors.md"]
+IGNORE_LIST = ["CHANGES.md", "01-contributors.md", "pregh-changes.md"]
 
 
 def parse_args():
@@ -95,10 +95,9 @@ def read_and_check_files(files):
 	"""
     failing_files = {}
     bad_latin = [
-        # XXX Uncomment when cleared initially
-        # "i.e.", "i.e ", " ie ",
+        "i.e.", "i.e ", " ie ",
         "e.g.", "e.g ",
-        # "e.t.c.", " etc", "et cetera"
+        "e.t.c.", " etc", "et cetera"
         ]
 
     for filename in files:

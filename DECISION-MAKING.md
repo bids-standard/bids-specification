@@ -142,7 +142,7 @@ and heavily depends on [GitHub Pull Request Review system](https://help.github.c
    merged so if you think the PR needs your attention, please review it
    promptly or request more time via Request changes.
 1. Releases are triggered the same way as any other change - via a PR.
-1. PRs MUST be merged using the "Create a merge commit" option in GitHub (i.e.,
+1. PRs MUST be merged using the "Create a merge commit" option in GitHub (by using
    the "merge pull request" option). This is necessary for our automatic
    changelog generator to do its work reliably. See the [GitHub help page](https://help.github.com/en/articles/about-merge-methods-on-github)
    for information on merge methods. See the changelog generator implementation
