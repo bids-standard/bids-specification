@@ -487,6 +487,7 @@ order.
 | label                  | A label image is produced with proximal labeling of inflowing arterial blood, i.e. blood has inverted magnetization when compared to tissue. Note that for FAIR PASL, the label volume is referred to as non-selective (see [https://www.ncbi.nlm.nih.gov/pubmed/7500865](https://www.ncbi.nlm.nih.gov/pubmed/7500865)).    |
 | m0scan                  | A M0 image is a calibration or reference image, used to estimate the M0 of blood. It is usually weighted toward the M0 of tissue, and is required especially when ASL is acquired with background suppression and/or pre-saturation pulses.    |
 | deltam                  | The deltaM image is a perfusion-weighted image, which is formed by the subtraction of label from control images (`control` - `label`). These subtractions are averaged over multiple repeats, but can also be kept as individual subtractions, if perfusion time-courses are of interest. This is a derivative that can be regarded as raw data, when the raw data needed to derive deltaM is not available.     |
+| cbf                  | The quantified cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0 image or the M0 scalar value, which is then scaled into physiological units (`mL/100g/min`). This is a derivative that can be regarded as raw data when the raw data needed to derive CBF is not available.       |
 
 ## Fieldmap data
 
