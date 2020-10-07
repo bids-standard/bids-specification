@@ -468,6 +468,11 @@ in the original acquisition order, and be joined by two ancillary files: `sub-<l
 <label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`. Beware that the DICOM images exported from the scanner may be sorted in a different order than the 
 acquisition order. In this case, they should be sorted in the acquisition order.
 
+The responsibility of applying any scale slope defined in the DICOM header lies within the DCM2BIDS conversion, not in the image processing stage. Any conversion of DICOM data 
+to NIfTI, both for ASL as M0, should apply the scale-slope information provided by the vendor, without any residual scale factors. Thus, the raw BIDS NIfTIs should not contain 
+any scaled data, and no scaling factors should be stored in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json`,`sub-<label>[_ses-<label>][_acq-
+<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.json` or NIfTI header. 
+
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
