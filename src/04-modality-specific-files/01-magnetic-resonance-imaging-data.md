@@ -562,6 +562,8 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
 |  BolusCutOffFlag                    | REQUIRED for `PASL` but OPTIONAL for `(P)CASL`  | [boolean][]    | Boolean, indicating if a bolus cut-off technique is used. Corresponds to DICOM Tag 0018,925C `ASL Bolus Cut-off Flag`|
+|  PASLType                     | RECOMMENDED  | [string][]    | For `PASL`, the type of the labeling pulse of the PASL labeling, such as FAIR, EPISTAR, and PICORE |
+
 
 ### Other recommended asl-related fields
 
