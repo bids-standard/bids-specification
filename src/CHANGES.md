@@ -4,9 +4,13 @@
 
 -   \[INFRA] set up github action to detect latin phrases [#636](https://github.com/bids-standard/bids-specification/pull/636) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] Add a definition for "deprecation" [#634](https://github.com/bids-standard/bids-specification/pull/634) ([sappelhoff](https://github.com/sappelhoff))
+-   \[MISC] consolidate BIDS citations in introduction [#630](https://github.com/bids-standard/bids-specification/pull/630) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] URI "definition" and recommendation [#629](https://github.com/bids-standard/bids-specification/pull/629) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[FIX] change remaining latin expressions (etc and i.e.) [#628](https://github.com/bids-standard/bids-specification/pull/628) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] replace "e.g.," by "for example" [#626](https://github.com/bids-standard/bids-specification/pull/626) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] arrays of 3D coordinates MUST supply numeric values in x, y, z order [#623](https://github.com/bids-standard/bids-specification/pull/623) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Accidentally swapped Neuromag/Elekta/MEGIN cross-talk & fine-calibration filename extensions [#621](https://github.com/bids-standard/bids-specification/pull/621) ([hoechenberger](https://github.com/hoechenberger))
+-   \[FIX] improve HED documentation [#619](https://github.com/bids-standard/bids-specification/pull/619) ([VisLab](https://github.com/VisLab))
 -   \[INFRA] Move MRI section headings up a level [#618](https://github.com/bids-standard/bids-specification/pull/618) ([tsalo](https://github.com/tsalo))
 -   SCHEMA: Declare entities by concept names, add entity field for filename components [#616](https://github.com/bids-standard/bids-specification/pull/616) ([effigies](https://github.com/effigies))
 -   \[FIX] Change wrong text references from \*CoordinateSystemUnits to \*CoordinateUnits [#614](https://github.com/bids-standard/bids-specification/pull/614) ([sappelhoff](https://github.com/sappelhoff))
