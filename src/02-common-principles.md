@@ -552,6 +552,22 @@ it refers to. For example `sub-01` refers to the `sub` entity (a
 subject) with the label `01`. The `sub-` prefix is not part of the subject
 label, but must be included in file names (similarly to other key names).
 
+## Uniform Resource Indicator 
+
+A Uniform Resource Indicator (URI) is a string referring to a resource and SHOULD
+have the form `<scheme>:[//<authority>]<path>[?<query>][#<fragment>]`, as specified 
+in [RFC 3986](https://tools.ietf.org/html/rfc3986). 
+This applies to URLs and other common URIs, including Digital Object Identifiers (DOIs), 
+which may be fully specified as `doi:<path>`, 
+for example, [doi:10.5281/zenodo.3686061](https://doi.org/10.5281/zenodo.3686061).
+A given resource may have multiple URIs.
+When selecting URIs to add to dataset metadata, it is important to consider 
+specificity and persistence.
+
+Several fields are designated for DOIs, for example, `DatasetDOI` in `dataset_description.json`.
+DOI values SHOULD be fully specified URIs such as `doi:10.18112/openneuro.ds000001.v1.0.0`.
+Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED][deprecated].
+
 ## Units
 
 All units SHOULD be specified as per [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)
@@ -694,3 +710,4 @@ to suppress warnings or provide interpretations of your file names.
 [string]: https://www.w3schools.com/js/js_json_syntax.asp
 [strings]: https://www.w3schools.com/js/js_json_syntax.asp
 [object]: https://www.json.org/json-en.html
+[deprecated]: ./02-common-principles.md#definitions

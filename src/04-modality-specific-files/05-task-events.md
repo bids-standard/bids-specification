@@ -219,4 +219,4 @@ See [Hierarchical Event Descriptors](../99-appendices/03-hed.md) for additional 
 [object]: https://www.json.org/json-en.html
 [string]: https://www.w3schools.com/js/js_json_datatypes.asp
 [strings]: https://www.w3schools.com/js/js_json_datatypes.asp
-[uri]: https://github.com/bids-standard/bids-starter-kit/wiki/Glossary#uri
+[uri]: ../02-common-principles.md#uniform-resource-indicator

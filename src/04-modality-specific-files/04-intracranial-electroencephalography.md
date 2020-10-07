@@ -69,9 +69,9 @@ original iEEG data in the [`/sourcedata` directory](../02-common-principles.md#s
 
 Note the RecordingType, which depends on whether the data stream on disk is interrupted or not.
 Continuous data is by definition 1 segment without interruption.
-Epoched data consists of multiple segments that all have the same length 
+Epoched data consists of multiple segments that all have the same length
 (for example, corresponding to trials) and that have gaps in between.
-Discontinuous data consists of multiple segments of different length, 
+Discontinuous data consists of multiple segments of different length,
 for example due to a pause in the acquisition.
 
 ### Terminology: Electrodes vs. Channels
@@ -128,8 +128,8 @@ Whenever possible, please avoid using ad hoc wording.
 | SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer's designation of the acquisition software.                                                                                                                                                          |
 | TaskDescription        | RECOMMENDED           | [string][]    | Longer description of the task.                                                                                                                                                                                  |
 | Instructions           | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the recording. This is especially important in context of resting state and distinguishing between eyes open and eyes closed paradigms.                    |
-| CogAtlasID             | RECOMMENDED           | [string][]    | URL of the corresponding [Cognitive Atlas Task](http://www.cognitiveatlas.org/) term.                                                                                                                            |
-| CogPOID                | RECOMMENDED           | [string][]    | URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                                    |
+| CogAtlasID             | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [Cognitive Atlas Task](http://www.cognitiveatlas.org/) term.                                                                                                                     |
+| CogPOID                | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                             |
 | DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset. |
 
  Specific iEEG fields MUST be present:
@@ -430,7 +430,7 @@ upper left pixel and (N,0) corresponding to the lower left pixel.
 If electrode positions are known in multiple coordinate systems (for example, MRI, CT
 and MNI), these spaces can be distinguished by the optional [`space-<label>`](../99-appendices/09-entities.md#space)
 field, see the [`*_electrodes.tsv`-section](#electrode-description-_electrodestsv)
-for more information. 
+for more information.
 Note that the [`space-<label>`](../99-appendices/09-entities.md#space) fields must correspond
 between `*_electrodes.tsv` and `*_coordsystem.json` if they refer to the same
 data.
@@ -493,8 +493,9 @@ JNeuroMeth 2010).
 
 Below is an example of a volume rendering of the cortical surface with a
 superimposed subdural electrode implantation. This map is often provided by the
+
 EEG technician and provided to the epileptologists (for example, see Burneo JG et al.
-2014 [https://doi.org/10.1016/j.clineuro.2014.03.020](https://doi.org/10.1016/j.clineuro.2014.03.020)).
+2014. [doi:10.1016/j.clineuro.2014.03.020](https://doi.org/10.1016/j.clineuro.2014.03.020)).
 
 ```Text
     sub-0002_ses-01_acq-render_photo.jpg
@@ -534,3 +535,4 @@ onset duration trial_type             electrical_stimulation_type electrical_sti
 [integer]: https://www.w3schools.com/js/js_json_datatypes.asp
 [string]: https://www.w3schools.com/js/js_json_datatypes.asp
 [boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
+[uri]: ../02-common-principles.md#uniform-resource-indicator
