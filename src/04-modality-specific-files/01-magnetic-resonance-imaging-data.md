@@ -473,6 +473,10 @@ to NIfTI, both for ASL as M0, should apply the scale-slope information provided 
 any scaled data, and no scaling factors should be stored in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json`,`sub-<label>[_ses-<label>][_acq-
 <label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.json` or NIfTI header. 
 
+Multi-PLD sequences consist of time-series, for which the acquisition parameters can differ. Therefore, some parameters can either only be allowed as a scalar (e.g. 
+`Manufacturer`), or both as a scalar and a vector with the same length as the number of volumes (e.g. `PostLabelingDelay` and `BackgroundSuppressionPulseTime`), described in 
+`sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`. Vectors of different lengths are never allowed to avoid confusion.
+
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
