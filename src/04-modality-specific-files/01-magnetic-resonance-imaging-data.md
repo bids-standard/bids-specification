@@ -481,6 +481,9 @@ Generally, five types of volumes might be acquired: `control`, `label`, `m0scan`
 noted that there are different ways to acquire `control` and `label` volumes, and thus the naming of `control` and `label` within BIDS only serves to specify the subtraction 
 order.
 
+| asl volume name                    | Definition    |
+|---------------------------------- | -----------------------------------------------------|
+
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
