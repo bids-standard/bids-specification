@@ -552,6 +552,7 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 |  PCASLType                 | RECOMMENDED             | [string][]         | For `PCASL`, this contains the type of the `control` pulse: `balanced` or `unbalanced`  |
 |  CASLType                  | RECOMMENDED             | [string][]         |  For `CASL`. It describes if a separate coil is used for labeling: `single-coil` or `double-coil`  |
 |  LabelingPulseAverageGradient                   | RECOMMENDED             | [number][]         |  For `PCASL`, the average labeling gradient, in millitesla per meter. Based on COBIDAS |
+|  LabelingPulseMaximumGradient                  | RECOMMENDED             | [number][]         | For `(P)CASL`, the maximum amplitude of the labeling gradient, in millitesla per meter. Based on COBIDAS  |
 
 ### PASL-specific fields
 
