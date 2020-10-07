@@ -501,6 +501,19 @@ The `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcont
 acquired separately, with or without phase encoding direction, or a labeling plane image should not be specified in this `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>]
 [_run-<index>]_aslcontext.tsv`.
 
+`sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` example 1:
+
+```Text
+volume_type
+m0scan
+control
+label
+control
+label
+control
+label
+```
+
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
