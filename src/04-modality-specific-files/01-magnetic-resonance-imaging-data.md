@@ -496,6 +496,11 @@ It is always required to store the raw images when available (i.e. unsubtracted 
 preference: 1) `control`/`label`/`m0scan`, 2) `deltam`/`m0scan`, 3) `cbf`[/`m0scan`]. Additionally, when `cbf` is stored as raw data, the units need to be specified in the `sub-
 <label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json`.
 
+The `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` lists the original acquisition order of the `sub-<label>[_ses-<label>][_acq-<label>]
+[_rec-<label>][_run-<index>]_asl.nii[.gz]`, containing one or more of the five ASL volumes. In contrast, the acquisition order for all other separately acquired images, e.g. M0 
+acquired separately, with or without phase encoding direction, or a labeling plane image should not be specified in this `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>]
+[_run-<index>]_aslcontext.tsv`.
+
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
