@@ -564,8 +564,9 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 |  BolusCutOffFlag                    | REQUIRED for `PASL` but OPTIONAL for `(P)CASL`  | [boolean][]    | Boolean, indicating if a bolus cut-off technique is used. Corresponds to DICOM Tag 0018,925C `ASL Bolus Cut-off Flag`|
 |  PASLType                     | RECOMMENDED  | [string][]    | For `PASL`, the type of the labeling pulse of the PASL labeling, such as FAIR, EPISTAR, and PICORE |
 |  LabelingSlabThickness                      | RECOMMENDED  | [number][]    | For `PASL`, the thickness of the labeling slab in millimeters. For non-selective FAIR a zero is entered. Corresponds to DICOM Tag 0018,9254 `ASL Slab Thickness` and based on COBIDAS |
-|  BolusCutOffTimingSequence                       | OPTIONAL, but REQUIRED if `BolusCutOffFlag` is `true`  | [array][] of [numbers][]    | Array, specifying the timing after labeling, in seconds, of the start of the bolus cut off saturation pulses. Corresponds to DICOM Tag 0018,925D `ASL Bolus Cut-off Timing Sequence |
+|  BolusCutOffTimingSequence                       | OPTIONAL, but REQUIRED if `BolusCutOffFlag` is `true`  | [array][] of [numbers][]    | Array, specifying the timing after labeling, in seconds, of the start of the bolus cut off saturation pulses. Corresponds to DICOM Tag 0018,925D `ASL Bolus Cut-off Timing Sequence` |
 |  BolusCutOffDelayTime                        | OPTIONAL, but RECOMMENDED if `BolusCutOffFlag` is `true`  | [number][]    | For `PASL`, duration, in seconds, of the bolus cut off saturation pulse. Set to zero when a single QUIPSS(II) pulse is used, a vector starting with zero when multiple QUIPSS(II) pulses are used, or a single value corresponding to the total duration of the saturation period for Q2TIPS. Based on DICOM Tag 0018,925F `ASL Bolus Cut-off Delay Time` |
+|  BolusCutOffTechnique                         | OPTIONAL, but RECOMMENDED if `BolusCutOffFlag` is `true`  | [string][]    | For `PASL`, name of the technique used (e.g. Q2TIPS, QUIPSS, QUIPSSII). Corresponds to DICOM Tag 0018,925E `ASL Bolus Cut-off Technique` |
 
 ### Other recommended asl-related fields
 
