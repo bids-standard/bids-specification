@@ -26,7 +26,7 @@ BIDS governance.
 
 | Name                                                                           | Time commitment | Scope                 |
 |--------------------------------------------------------------------------------|-----------------|-----------------------|
-| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         |                       |
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         | Lead Maintainer       |
 | Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |                       |
 | Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | 5h/week         | Community development |
 | Taylor Salo ([@tsalo](https://github.com/tsalo))                               | 3h/week         | MRI                   |
@@ -98,7 +98,7 @@ and heavily depends on [GitHub Pull Request Review system](https://help.github.c
    1. Does not feature "WIP" in the title (Work in Progress).
    1. Passes all automated tests.
    1. Is not proposing a new release or has been approved by at least one
-      Maintainer (i.e., PRs proposing new releases need to be approved by at
+      Maintainer (that is, PRs proposing new releases need to be approved by at
       least one Maintainer).
 1. A Maintainer can merge any PR - even if it's not eligible to merge according
    to Rule 4.

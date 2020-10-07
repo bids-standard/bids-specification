@@ -57,7 +57,7 @@ When referring to BIDS in context of academic literature, please cite one or
 more of the publications listed below.
 We RECOMMEND that you cite the original publication on BIDS and *additionally*
 the publication regarding the datatype you were using
-(e.g., EEG, MEG, iEEG, if available).
+(for example, EEG, MEG, iEEG, if available).
 
 For example:
 
