@@ -522,6 +522,15 @@ deltam
 m0scan
 ```
 
+The `m0scan`, used as a calibration image, should be converted in the original acquisition order. Currently both the acquisition of the `m0scan` within the asl time series, as 
+well as acquiring it separately is equally valid. In the first case, the `m0scan` should be included in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-
+<index>]_asl.nii[.gz]`, its position within the time series should be specified in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`. When 
+the `m0scan` is acquired separately, or when acquired with reversed phase encoding (fieldmap: pepolar), a separate `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-
+<label>][_run-<index>]_m0scan.nii[.gz]` and `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.json` should be provided, including the M0-
+specific JSON fields. In this case, the `m0scan` should not be included in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`. 
+Alternatively, the average `control` image or a fixed value can be used for calibration. In any case, the calibration approach utilised should be specified in the M0 field of 
+the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json`.
+
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
