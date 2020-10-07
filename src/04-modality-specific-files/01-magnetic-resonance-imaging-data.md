@@ -554,6 +554,7 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 |  LabelingPulseAverageGradient                   | RECOMMENDED             | [number][]         |  For `PCASL`, the average labeling gradient, in millitesla per meter. Based on COBIDAS |
 |  LabelingPulseMaximumGradient                  | RECOMMENDED             | [number][]         | For `(P)CASL`, the maximum amplitude of the labeling gradient, in millitesla per meter. Based on COBIDAS  |
 |  LabelingPulseAverageB1                   | RECOMMENDED             | [number][]         | For `(P)CASL`, the average B1-field strength of the RF labeling pulses, in microtesla. As an alternative, `LabelingPulseFlipAngle` can be provided. Based on COBIDAS  |
+|  LabelingPulseDuration                    | RECOMMENDED             | [number][]         | For `PCASL`, duration, in seconds, of the individual labeling pulses  |
 
 ### PASL-specific fields
 
