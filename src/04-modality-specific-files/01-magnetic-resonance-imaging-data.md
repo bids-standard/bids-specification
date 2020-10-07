@@ -462,6 +462,9 @@ sub-<label>/[ses-<label>/]
        [sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.[jpeg|png]]
 ```
 
+The current ASL extension defaults to single-post labeling delay (PLD) ASL-data, for the quantification of brain perfusion, and multi-PLD data, for both Pulsed ASL (PASL), 
+Pseudocontinuous ASL (PCASL) and Continuous ASL (CASL) approaches. 
+
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
