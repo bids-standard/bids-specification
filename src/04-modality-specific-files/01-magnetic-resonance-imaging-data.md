@@ -463,7 +463,10 @@ sub-<label>/[ses-<label>/]
 ```
 
 The current ASL extension defaults to single-post labeling delay (PLD) ASL-data, for the quantification of brain perfusion, and multi-PLD data, for both Pulsed ASL (PASL), 
-Pseudocontinuous ASL (PCASL) and Continuous ASL (CASL) approaches. 
+Pseudocontinuous ASL (PCASL) and Continuous ASL (CASL) approaches. Upon the conversion of DICOM to BIDS, all separate ASL timeseries should be stored as a separate 4D NIfTI file 
+in the original acquisition order, and be joined by two ancillary files: `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json` and `sub-<label>[_ses-
+<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`. Beware that the DICOM images exported from the scanner may be sorted in a different order than the 
+acquisition order. In this case, they should be sorted in the acquisition order.
 
 ## Fieldmap data
 
