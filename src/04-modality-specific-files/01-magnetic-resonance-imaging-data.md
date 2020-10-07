@@ -537,6 +537,9 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 
 ### Required fields
 
+| Field name     | Definition     |
+|----------------|------------------|
+
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
