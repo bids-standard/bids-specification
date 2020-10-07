@@ -537,8 +537,9 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 
 ### Required fields
 
-| Field name     | Definition     |
-|----------------|------------------|
+| **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
+|-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
+
 
 ## Fieldmap data
 
