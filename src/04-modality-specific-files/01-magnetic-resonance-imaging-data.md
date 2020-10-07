@@ -477,6 +477,10 @@ Multi-PLD sequences consist of time-series, for which the acquisition parameters
 `Manufacturer`), or both as a scalar and a vector with the same length as the number of volumes (e.g. `PostLabelingDelay` and `BackgroundSuppressionPulseTime`), described in 
 `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`. Vectors of different lengths are never allowed to avoid confusion.
 
+Generally, five types of volumes might be acquired: `control`, `label`, `m0scan`, `deltam` and `cbf`, based on DICOM Tag ASL Context (0018,9257) `ASL Context`. It should be 
+noted that there are different ways to acquire `control` and `label` volumes, and thus the naming of `control` and `label` within BIDS only serves to specify the subtraction 
+order.
+
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
