@@ -514,6 +514,14 @@ control
 label
 ```
 
+`sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` example 2, in case no raw data (`control` and `label`) is available:
+
+```Text
+volume_type
+deltam
+m0scan
+```
+
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
