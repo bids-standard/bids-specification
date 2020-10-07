@@ -1,19 +1,10 @@
 # Intracranial Electroencephalography
 
-Support for Intracranial Electroencephalography (iEEG) was developed as a [BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
-Please cite the following paper when referring to this part of the standard in
-context of the academic literature:
-
-> Holdgraf, C., Appelhoff, S., Bickel, S., Bouchard, K., D'Ambrosio, S.,
-> David, O., Devinsky, O., Dichter, B., Flinker, A., Foster, B. L.,
-> Gorgolewski, K. J., Groen, I., Groppe, D., Gunduz, A., Hamilton, L.,
-> Honey, C. J., Jas, M., Knight, R., Lauchaux, J.-P., Lau, J. C.,
-> Lee-Messer, C., Lundstrom, B. N., Miller, K. J., Ojemann, J. G.,
-> Oostenveld, R., Petridou, N., Piantoni, G., Pigorini, A., Pouratian, N.,
-> Ramsey, N. F., Stolk, A., Swann, N. C., Tadel, F., Voytek, B., Wandell, B. A.,
-> Winawer, J., Whitaker, K., Zehl, L., Hermes, D. (2019). **iEEG-BIDS,
-> extending the Brain Imaging Data Structure specification to human intracranial
-> electrophysiology**. Scientific data, 6. doi: [10.1038/s41597-019-0105-7](https://doi.org/10.1038/s41597-019-0105-7)
+Support Intracranial Electroencephalography (iEEG) was developed as a
+[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../01-introduction.md#citing-bids)
+on how to appropriately credit this extension when referring to it in the
+context of the academic literature.
 
 ## iEEG recording data
 

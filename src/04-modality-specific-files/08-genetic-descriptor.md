@@ -1,9 +1,10 @@
 # Genetic Descriptor
 
-Support for genetic descriptors was developed as a [BIDS Extension
-Proposal](../07-extensions.md#bids-extension-proposals).
-The extension was primarily developed by Cyril Pernet and Clara Moreau with
-contributions from Tom Nichols and Jessica Turner.
+Support genetic descriptors was developed as a
+[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../01-introduction.md#citing-bids)
+on how to appropriately credit this extension when referring to it in the
+context of the academic literature.
 
 Genetic data are typically stored in dedicated repositories,
 separate from imaging data.

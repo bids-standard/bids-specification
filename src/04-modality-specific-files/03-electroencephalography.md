@@ -1,13 +1,10 @@
 # Electroencephalography
 
-Support for Electroencephalography (EEG) was developed as a [BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
-Please cite the following paper when referring to this part of the standard in
-context of the academic literature:
-
-> Pernet, C. R., Appelhoff, S., Gorgolewski, K.J., Flandin, G., Phillips, C.,
-> Delorme, A., Oostenveld, R. (2019). **EEG-BIDS, an extension to the brain
-> imaging data structure for electroencephalography**. Scientific data, 6.
-> doi: [10.1038/s41597-019-0104-8](https://doi.org/10.1038/s41597-019-0104-8)
+Support for Electroencephalography (EEG) was developed as a
+[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../01-introduction.md#citing-bids)
+on how to appropriately credit this extension when referring to it in the
+context of the academic literature.
 
 The following example EEG datasets have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
