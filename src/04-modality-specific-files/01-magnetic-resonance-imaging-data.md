@@ -535,6 +535,8 @@ It is recommended to specify as much labeling information as possible for qualit
 orientation, labeling slab distance and labeling slab thickness, and the labeling efficiency. An anonymized screenshot of the planning of the labeling plane for each session, 
 saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.[jpeg|png]]`, can clarify exact positioning and is recommended.
 
+### Required fields
+
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
