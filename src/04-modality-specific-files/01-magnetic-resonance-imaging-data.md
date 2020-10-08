@@ -573,6 +573,7 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
 |  VascularCrushing           | RECOMMENDED  | [boolean][]  | Boolean value, indicating if an ASL Crusher Method has been used. Corresponds to DICOM Tag 0018,9259 `ASL Crusher Flag` |
+|  AcquisitionVoxelSize            | RECOMMENDED  | [array][] of [numbers][]   | A vector of length 3, in millimeters. This parameter denotes the original acquisition voxel size, excluding any inter-slice gaps and before any interpolation or resampling within reconstruction or image processing. Any point spread function effects (e.g. due to T2-blurring) that would decrease the effective resolution are not considered here |
 
 ### m0scan-specific fields
 
