@@ -578,6 +578,7 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 |  BackgroundSuppressionNumberPulses    | OPTIONAL, but RECOMMENDED if `BackgroundSuppression` is `true`RECOMMENDED  | [number][]  | The number of background suppression pulses used. Note that this excludes any effect of background suppression pulses applied before the labeling |
 |  BackgroundSuppressionPulseTime     | OPTIONAL, but RECOMMENDED if `BackgroundSuppression` is `true`  | [array][] of [numbers][]   | Array containing timing, in seconds, of the background suppression pulses before the start of the readout. In case of multi-PLD with different background suppression pulse times, only the pulse time of the first PLD should be defined |
 |  VascularCrushingVenc   | OPTIONAL, but RECOMMENDED if `VascularCrushing` is `true`  | [number][] or [array][] of [numbers][] | The crusher gradient strength, in centimeter per second. Specify either one value for the total time-series, or provide a vector, for example when using QUASAR, using the value zero to identify volumes for which `VascularCrushing` was turned off. Corresponds to DICOM Tag 0018,925A `ASL Crusher Flow Limit` |
+|  LabelingOrientation          | RECOMMENDED  | [string][]  | Orientation of the labeling plane or slab. The direction cosines of a normal vector perpendicular to the ASL labeling slab with respect to the patient. Corresponds to DICOM Tag 0018,9255 `ASL Slab Orientation`|
 
 ### m0scan-specific metadata fields
 
