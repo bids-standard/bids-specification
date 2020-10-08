@@ -581,6 +581,7 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 |  LabelingOrientation          | RECOMMENDED  | [array][] of [numbers][]    | Orientation of the labeling plane or slab. The direction cosines of a normal vector perpendicular to the ASL labeling slab with respect to the patient. Corresponds to DICOM Tag 0018,9255 `ASL Slab Orientation`|
 |  LabelingDistance    | RECOMMENDED  | [number][]  | Distance of the center of the labeling slab to the center of the imaging slab, in millimeter. For `(P)CASL`, this is the center of the labeling plane; for `PASL` the leading edge of the labeling slab. If the labeling is performed inferior/caudal to the isocenter, this scalar should be negative, otherwise it should be positive. Based on DICOM macro C.8.13.5.14 |
 |  LabelingLocationDescription     | OPTIONAL   | [string][]  | Free text for information of the labeling slab orientation that cannot be captured by the other fields. Preferably includes a link to an anonymized image containing a screenshot of labeling plane planning `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.[jpeg/png]`. Please provide as much information as possible on how the planning was performed. Based on DICOM macro C.8.13.5.14 and COBIDAS |
+|  LookLocker    | OPTIONAL   | [boolean][]  | Boolean value, indicating if a LookLocker sequence was used |
 
 ### m0scan-specific metadata fields
 
