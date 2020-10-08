@@ -446,8 +446,8 @@ exponent. TSV files MUST be in UTF-8 encoding.
 Example:
 
 ```Text
-onset duration  response_time correct stop_trial  go_trial
-200 200 0 n/a n/a n/a
+onset	duration	response_time	correct	stop_trial	go_trial
+200	200	0	n/a	n/a	n/a
 ```
 
 Tabular files MAY be optionally accompanied by a simple data dictionary
