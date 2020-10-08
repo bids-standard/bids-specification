@@ -450,6 +450,10 @@ onset	duration	response_time	correct	stop_trial	go_trial
 200	200	0	n/a	n/a	n/a
 ```
 
+**Note**: TSV examples in the document can be re-formatted using
+spaces instead of tabs for human readability, and have tabs replaced
+with spaces by used for rendering HTML or PDF.
+
 Tabular files MAY be optionally accompanied by a simple data dictionary
 in the form of a JSON [object](https://www.json.org/json-en.html)
 within a JSON file.
