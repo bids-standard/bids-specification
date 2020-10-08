@@ -591,6 +591,8 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 |  IntendedFor      | REQUIRED    | [string][]  | One or more filenames with paths relative to the subject subfolder, with forward slashes, referring to ASL timeseries for which it is intended    |
 |  AcquisitionVoxelSize       | RECOMMENDED     | [array][] of [numbers][]  | A vector of length 3, in millimeters. This parameter denotes the original acquisition voxel size, excluding any inter-slice gaps and before any interpolation or resampling within reconstruction or image processing. Any point spread function effects (e.g. due to T2-blurring) that would decrease the effective resolution are not considered here   |
 
+The following table recapitulates the field dependencies. If Source field (column 1) contains the Value specified in column 2, then the Requirements in column 4 are imposed on the Dependent fields in column 3.
+
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
