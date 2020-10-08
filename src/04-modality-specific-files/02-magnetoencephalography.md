@@ -67,8 +67,8 @@ it SHOULD be stored separately under a new `/eeg` data type
 If however EEG is recorded simultaneously **with the same MEG system**,
 it MAY be stored under the `/meg` data type.
 In that case, it SHOULD have the same sampling frequency as MEG (see `SamplingFrequency` field below).
-Furthermore, the EEG sensor coordinates SHOULD be specified using MEG specific coordinate
-systems (see coordinates section below and [Appendix VIII](../99-appendices/08-coordinate-systems.md)).
+Furthermore, the EEG sensor coordinates SHOULD be specified using MEG-specific coordinate
+systems (see [coordinates section](#coordinate-system-json-coordsystemjson) below and [Appendix VIII](../99-appendices/08-coordinate-systems.md)).
 
 ### Sidecar JSON (`*_meg.json`)
 
