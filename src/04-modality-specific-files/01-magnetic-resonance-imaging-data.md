@@ -770,7 +770,7 @@ encoding directions) of the corresponding sequence. Please rely only on the JSON
 file to obtain scanning parameters. \_epi files can be a 3D or 4D - in the
 latter case all timepoints share the same scanning parameters. To indicate which
 run is intended to be used with which functional or diffusion scan the
-IntendedFor field in the JSON file should be used.
+IntendedFor field in the JSON file is required.
 
 <!-- Link Definitions -->
 
