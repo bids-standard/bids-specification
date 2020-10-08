@@ -535,7 +535,7 @@ It is recommended to specify as much labeling information as possible for qualit
 orientation, labeling slab distance and labeling slab thickness, and the labeling efficiency. An anonymized screenshot of the planning of the labeling plane for each session, 
 saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.[jpeg|png]]`, can clarify exact positioning and is recommended.
 
-### Required fields
+### Required metadata fields
 
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
@@ -544,7 +544,7 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 |  BackgroundSuppression                | REQUIRED            | [boolean][]           | Boolean indicating if background suppression has been used                           |
 |  M0               | REQUIRED            | [string][] or [number][] or [boolean][]           | Location of `m0scan`, or information on M0 approach used, which can be either (depending on the data-type): Numerical: a single numerical whole-brain M0 value (e.g. obtained from the CSF in another sequence); SeparateFile: `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.nii[.gz]`; WithinASL: Boolean (`true` or `false`) value: `true` referring to a `m0scan` within the time series and defined within the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`; `false` referring to the use of the (average) `control` image for M0 calibration, in case background suppression or pre-saturation pulses were not applied       |
 
-### (P)CASL-specific fields
+### (P)CASL-specific metadata fields
 
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
@@ -557,7 +557,7 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 |  LabelingPulseDuration                    | RECOMMENDED             | [number][]         | For `PCASL`, duration, in seconds, of the individual labeling pulses  |
 |  LabelingPulseInterval                     | RECOMMENDED             | [number][]         | For `PCASL`. Time delay, in seconds, between the peaks of the individual labeling pulses |
 
-### PASL-specific fields
+### PASL-specific metadata fields
 
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
@@ -568,14 +568,14 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 |  BolusCutOffDelayTime           | OPTIONAL, but RECOMMENDED if `BolusCutOffFlag` is `true`  | [number][]    | For `PASL`, duration, in seconds, of the bolus cut off saturation pulse. Set to zero when a single QUIPSS(II) pulse is used, a vector starting with zero when multiple QUIPSS(II) pulses are used, or a single value corresponding to the total duration of the saturation period for Q2TIPS. Based on DICOM Tag 0018,925F `ASL Bolus Cut-off Delay Time` |
 |  BolusCutOffTechnique         | OPTIONAL, but RECOMMENDED if `BolusCutOffFlag` is `true`  | [string][]    | For `PASL`, name of the technique used (e.g. Q2TIPS, QUIPSS, QUIPSSII). Corresponds to DICOM Tag 0018,925E `ASL Bolus Cut-off Technique` |
 
-### Other recommended asl-related fields
+### Other recommended/optional asl-related metadata fields
 
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
 |  VascularCrushing           | RECOMMENDED  | [boolean][]  | Boolean value, indicating if an ASL Crusher Method has been used. Corresponds to DICOM Tag 0018,9259 `ASL Crusher Flag` |
 |  AcquisitionVoxelSize            | RECOMMENDED  | [array][] of [numbers][]   | A vector of length 3, in millimeters. This parameter denotes the original acquisition voxel size, excluding any inter-slice gaps and before any interpolation or resampling within reconstruction or image processing. Any point spread function effects (e.g. due to T2-blurring) that would decrease the effective resolution are not considered here |
 
-### m0scan-specific fields
+### m0scan-specific metadata fields
 
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
