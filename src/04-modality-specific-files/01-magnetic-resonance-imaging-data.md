@@ -743,7 +743,7 @@ sub-<label>/[ses-<label>/]
 ```
 
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
-EPI scans with different phase encoding directions to estimate the underlying
+EPI scans or `m0scan`'s in case of arterial spin labeling, with different phase encoding directions to estimate the underlying
 inhomogeneity/deformation map. Examples of tools using this kind of images are
 FSL TOPUP, AFNI 3dqwarp and SPM. In such a case, the phase encoding direction is
 specified in the corresponding JSON file as one of: `i`, `j`, `k`, `i-`, `j-`,
