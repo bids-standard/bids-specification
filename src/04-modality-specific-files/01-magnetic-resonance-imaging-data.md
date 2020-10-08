@@ -588,6 +588,8 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
+|  IntendedFor      | REQUIRED    | [string][]  | One or more filenames with paths relative to the subject subfolder, with forward slashes, referring to ASL timeseries for which it is intended    |
+
 
 ## Fieldmap data
 
