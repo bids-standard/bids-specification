@@ -1,6 +1,8 @@
 #!/bin/sh
 # Shell script that runs process_markdowns.py and pandoc_script.py in sequence to build the pdf document
 
+set -eu
+
 # prepare the copied src directory
 python3 process_markdowns.py
 
