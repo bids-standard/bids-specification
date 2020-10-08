@@ -602,6 +602,11 @@ The following table recapitulates the field dependencies. If Source field (colum
 | BolusCutOffFlag | true/false | BolusCutOffTimingSequence|  [X] / []|  
 | `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`|cbf| Units             |[X] | 
 
+**Legend**
+
+-   \[ X ] --> has to be filled
+-   \[   \] --> has to be left empty
+
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
