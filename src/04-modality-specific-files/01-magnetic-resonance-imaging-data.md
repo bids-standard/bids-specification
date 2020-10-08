@@ -593,6 +593,15 @@ saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_l
 
 The following table recapitulates the field dependencies. If Source field (column 1) contains the Value specified in column 2, then the Requirements in column 4 are imposed on the Dependent fields in column 3.
 
+|Source field          | Value| Dependent field| Requirements| 
+| -------- | :------------: | :---------: | :-----------------: | 
+| PulseSequenceType|2D / 3D|SliceTiming|[X] / [] |
+| LookLocker | true    |   FlipAngle  | [X]  |
+| M0 | true | `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` |   Contains m0scan   |
+| LabelingType | PASL | BolusCutOffFlag | [X]| 
+| BolusCutOffFlag | true/false | BolusCutOffTimingSequence|  [X] / []|  
+| `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`|cbf| Units             |[X] | 
+
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms. The
