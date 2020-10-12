@@ -490,24 +490,23 @@ The `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcont
 
 `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` example 1:
 
-```Text
-volume_type
-m0scan
-control
-label
-control
-label
-control
-label
-```
+| **volume_type**                    |
+|----------------------------------  |
+| m0scan |
+| control |
+| label |
+| control |
+| label |
+| control |
+| label |
+
 
 `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` example 2, in case no raw data (`control` and `label`) are available:
 
-```Text
-volume_type
-deltam
-m0scan
-```
+| **volume_type**                    |
+|----------------------------------  |
+| deltam |
+| m0scan |
 
 The `m0scan`, used as a calibration image, should be converted in the original acquisition order. Currently both the acquisition of the `m0scan` within the asl time series, as 
 well as acquiring it separately is equally valid. In the first case, the `m0scan` should be included in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-
@@ -541,24 +540,24 @@ It is recommended to specify the labeling-plane planning through: location descr
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
 |  LabelingDuration                 | REQUIRED            | [number][] or [array][] of [numbers][]         | Total duration of the labeling pulse train, in seconds, corresponding to the temporal width of the labeling bolus for (P)CASL. Specify either one value for total time-series or provide a vector of different values for each volume in case of sequential acquisitions with varying labeling duration. For PASL, the parameters of bolus saturation timing and bolus width are given in `BolusCutOff fields`, and the `LabelingDuration` field is set to zero or not provided. In the case that an array of numbers is provided and `m0scan` is acquired within the ASL timeseries, `LabelingDuration` gets a value of 0 at the location of the `m0scan` to keep the length of the vector equal to the number of volumes. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`. |
-|  PCASLType                 | RECOMMENDED             | [array][] of [strings][]         | For `PCASL`, this contains the type of the `control` pulse: `balanced` or `unbalanced`.  |
-|  CASLType                  | RECOMMENDED             | [array][] of [strings][]         |  For `CASL`, this describes if a separate coil is used for labeling: `single-coil` or `double-coil`.  |
-|  LabelingPulseAverageGradient                   | RECOMMENDED             | [number][]         |  For `PCASL`, the average labeling gradient, in milliteslas per meter. Based on COBIDAS. |
-|  LabelingPulseMaximumGradient                  | RECOMMENDED             | [number][]         | For `(P)CASL`, the maximum amplitude of the labeling gradient, in milliteslas per meter. Based on COBIDAS.  |
-|  LabelingPulseAverageB1                   | RECOMMENDED             | [number][]         | For `(P)CASL`, the average B1-field strength of the RF labeling pulses, in microteslas. As an alternative, `LabelingPulseFlipAngle` can be provided. Based on COBIDAS.  |
+|  PCASLType                 | RECOMMENDED             | [array][] of [strings][]         | Type of the `control` pulse: `balanced` or `unbalanced`.  |
+|  CASLType                  | RECOMMENDED             | [array][] of [strings][]         |  Describes if a separate coil is used for labeling: `single-coil` or `double-coil`.  |
+|  LabelingPulseAverageGradient                   | RECOMMENDED             | [number][]         |  The average labeling gradient, in milliteslas per meter. Based on COBIDAS. |
+|  LabelingPulseMaximumGradient                  | RECOMMENDED             | [number][]         | The maximum amplitude of the labeling gradient, in milliteslas per meter. Based on COBIDAS.  |
+|  LabelingPulseAverageB1                   | RECOMMENDED             | [number][]         | The average B1-field strength of the RF labeling pulses, in microteslas. As an alternative, `LabelingPulseFlipAngle` can be provided. Based on COBIDAS.  |
 |  LabelingPulseDuration                    | RECOMMENDED             | [number][]         | Duration of the individual labeling pulses, in seconds. |
-|  LabelingPulseInterval                     | RECOMMENDED             | [number][]         | For `PCASL`. Delay between the peaks of the individual labeling pulses, in seconds. |
+| LabelingPulseFlipAngle | RECOMMENDED  | The flip angle of a single labeling pulse, in degrees, which can be given as an alternative to `LabelingPulseAverageB1`. |
+|  LabelingPulseInterval                     | RECOMMENDED             | [number][]         | Delay between the peaks of the individual labeling pulses, in seconds. |
 
 ### PASL-specific metadata fields
 
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
-|  BolusCutOffFlag                    | REQUIRED for `PASL`, OPTIONAL for `(P)CASL`  | [boolean][]    | Boolean indicating if a bolus cut-off technique was applied. Corresponds to DICOM Tag 0018,925C `ASL Bolus Cut-off Flag`. |
-|  PASLType                     | RECOMMENDED  | [string][]    | For `PASL`, the type of the labeling pulse of the PASL labeling, such as FAIR, EPISTAR, and PICORE |
-|  LabelingSlabThickness                      | RECOMMENDED  | [number][]    | For `PASL`, the thickness of the labeling slab in millimeters. For non-selective FAIR a zero is entered. Corresponds to DICOM Tag 0018,9254 `ASL Slab Thickness` and based on COBIDAS |
-|  BolusCutOffTimingSequence      | OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`  | [array][] of [numbers][]  |  The duration between the end of the labeling and the start of the bolus cut-off saturation pulses, in seconds. Corresponds to DICOM Tag 0018,925D `ASL Bolus Cut-off Timing Sequence`. |
-|  BolusCutOffDelayTime           | OPTIONAL, RECOMMENDED if `BolusCutOffFlag` is `true`  | [number][]    | For `PASL`, duration of the bolus cut-off saturation pulse, in seconds. Set to zero when a single QUIPSS(II) pulse is used, a vector starting with zero when multiple QUIPSS(II) pulses are used, or a single value corresponding to the total duration of the saturation period for Q2TIPS. Based on DICOM Tag 0018,925F `ASL Bolus Cut-off Delay Time`. |
-|  BolusCutOffTechnique         | OPTIONAL, RECOMMENDED if `BolusCutOffFlag` is `true`  | [string][]    | For `PASL`, name of the technique used (e.g. Q2TIPS, QUIPSS, QUIPSSII). Corresponds to DICOM Tag 0018,925E `ASL Bolus Cut-off Technique` |
+|  BolusCutOffFlag                    | REQUIRED   | [boolean][]    | Boolean indicating if a bolus cut-off technique was applied. Corresponds to DICOM Tag 0018,925C `ASL Bolus Cut-off Flag`. |
+|  PASLType                     | RECOMMENDED  | [string][]    | Type of the labeling pulse of the PASL labeling, e.g. FAIR, EPISTAR, or PICORE. |
+|  LabelingSlabThickness                      | RECOMMENDED  | [number][]    | Thickness of the labeling slab in millimeters. For non-selective FAIR a zero is entered. Corresponds to DICOM Tag 0018,9254 `ASL Slab Thickness` and based on COBIDAS. |
+|  BolusCutOffDelayTime           | OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`  | [number][]    | Duration between the end of the labeling and the start of the bolus cut-off saturation pulses, in seconds. Set to zero when a single QUIPSS(II) pulse is used, a vector starting with zero when multiple QUIPSS(II) pulses are used, or a single value corresponding to the total duration of the saturation period for Q2TIPS. Based on DICOM Tag 0018,925F `ASL Bolus Cut-off Delay Time`. |
+|  BolusCutOffTechnique         | OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`  | [string][]    | Name of the technique used (e.g. Q2TIPS, QUIPSS, QUIPSSII). Corresponds to DICOM Tag 0018,925E `ASL Bolus Cut-off Technique`. |
 
 ### Other recommended/optional asl-related metadata fields
 
