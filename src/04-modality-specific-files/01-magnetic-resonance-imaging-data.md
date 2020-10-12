@@ -486,9 +486,7 @@ deltaM and or ‘cbf’ images are provided instead of the `control` and `label`
 `cbf`[/`m0scan`]. When `cbf` is stored as raw data, its units need to be specified in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json` as well.
 
 The `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` lists the original acquisition order of the `sub-<label>[_ses-<label>][_acq-<label>]
-[_rec-<label>][_run-<index>]_asl.nii[.gz]`, containing one or more of the five ASL volumes. In contrast, the acquisition order for all other separately acquired images, e.g. M0 
-acquired separately, with or without phase encoding direction, or a labeling plane image should not be specified in this `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>]
-[_run-<index>]_aslcontext.tsv`.
+[_rec-<label>][_run-<index>]_asl.nii[.gz]`, containing one or more of the five ASL volumes, excluding the volumes stored in other NIfTI files.
 
 `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` example 1:
 
@@ -503,7 +501,7 @@ control
 label
 ```
 
-`sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` example 2, in case no raw data (`control` and `label`) is available:
+`sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` example 2, in case no raw data (`control` and `label`) are available:
 
 ```Text
 volume_type
