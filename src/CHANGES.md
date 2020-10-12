@@ -2,6 +2,8 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] minor robustness enhancements to pdf build shell script  [#642](https://github.com/bids-standard/bids-specification/pull/642) ([yarikoptic](https://github.com/yarikoptic))
+-   \[FIX] consistent CoordinateSystem fields for ephys [#641](https://github.com/bids-standard/bids-specification/pull/641) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] set up github action to detect latin phrases [#636](https://github.com/bids-standard/bids-specification/pull/636) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] Add a definition for "deprecation" [#634](https://github.com/bids-standard/bids-specification/pull/634) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] consolidate BIDS citations in introduction [#630](https://github.com/bids-standard/bids-specification/pull/630) ([sappelhoff](https://github.com/sappelhoff))
@@ -12,7 +14,7 @@
 -   \[FIX] Accidentally swapped Neuromag/Elekta/MEGIN cross-talk & fine-calibration filename extensions [#621](https://github.com/bids-standard/bids-specification/pull/621) ([hoechenberger](https://github.com/hoechenberger))
 -   \[FIX] improve HED documentation [#619](https://github.com/bids-standard/bids-specification/pull/619) ([VisLab](https://github.com/VisLab))
 -   \[INFRA] Move MRI section headings up a level [#618](https://github.com/bids-standard/bids-specification/pull/618) ([tsalo](https://github.com/tsalo))
--   SCHEMA: Declare entities by concept names, add entity field for filename components [#616](https://github.com/bids-standard/bids-specification/pull/616) ([effigies](https://github.com/effigies))
+-   \[INFRA] SCHEMA: Declare entities by concept names, add entity field for filename components [#616](https://github.com/bids-standard/bids-specification/pull/616) ([effigies](https://github.com/effigies))
 -   \[FIX] Change wrong text references from \*CoordinateSystemUnits to \*CoordinateUnits [#614](https://github.com/bids-standard/bids-specification/pull/614) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Describe arbitrary units in Common Principles [#606](https://github.com/bids-standard/bids-specification/pull/606) ([tsalo](https://github.com/tsalo))
 -   \[FIX] Clarify data types and requirement levels for all JSON files [#605](https://github.com/bids-standard/bids-specification/pull/605) ([sappelhoff](https://github.com/sappelhoff))
