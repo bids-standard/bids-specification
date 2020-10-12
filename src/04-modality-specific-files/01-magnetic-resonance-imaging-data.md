@@ -733,17 +733,12 @@ sub-<label>/[ses-<label>/]
         sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.json
 ```
 
-The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
-EPI scans or `m0scan`'s in case of arterial spin labeling, with different phase encoding directions to estimate the underlying
-inhomogeneity/deformation map. Examples of tools using this kind of images are
-FSL TOPUP, AFNI 3dqwarp and SPM. In such a case, the phase encoding direction is
-specified in the corresponding JSON file as one of: `i`, `j`, `k`, `i-`, `j-`,
-`k-`. For these differentially phase encoded sequences, one also needs to
-specify the Total Readout Time defined as the time (in seconds) from the center
-of the first echo to the center of the last echo (aka "FSL definition" - see
-[here](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup/Faq#How_do_I_know_what_phase-encode_vectors_to_put_into_my_--datain_text_file.3F) and
-[here](https://lcni.uoregon.edu/kb-articles/kb-0003) how to calculate it). For
-example
+The phase-encoding polarity (PEpolar) technique combines two or more EPI scans, with different phase encoding directions to estimate the underlying inhomogeneity/deformation 
+map. In the case of arterial spin labeling, this usually concerns two ‘m0scans’. Examples of tools using this kind of images are FSL TOPUP, AFNI 3dqwarp and SPM. In such a case, 
+the phase encoding direction is specified in the corresponding JSON file as one of: `i`, `j`, `k`, `i-`, `j-`,`k-`. For these differentially phase encoded sequences, one also 
+needs to specify the Total Readout Time defined as the time (in seconds) from the center of the first echo to the center of the last echo (aka "FSL definition" - see [here]
+(https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup/Faq#How_do_I_know_what_phase-encode_vectors_to_put_into_my_--datain_text_file.3F) and [here](https://lcni.uoregon.edu/kb-
+articles/kb-0003) how to calculate it). For example
 
 ```JSON
 {
