@@ -518,11 +518,8 @@ specific JSON fields. In this case, the `m0scan` should not be included in the `
 Alternatively, the average `control` image or a fixed value can be used for calibration. In any case, the calibration approach utilised should be specified in the M0 field of 
 the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json`.
 
-It is recommended to specify as much labeling information as possible for quality control, such as: a description of the location of the labeling slab, the labeling slab 
-orientation, labeling slab distance and labeling slab thickness, and the labeling efficiency. An anonymized screenshot of the planning of the labeling plane for each session, 
-saved as `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.[jpeg|png]]`, can clarify exact positioning and is recommended.
-
-Arterial Spin Labeling has specific requirements and instructions for several common metadata fields, which are included in the following tables.
+It is recommended to specify the labeling-plane planning through: location description, plane orientation and distance, and an anonymized screenshot of the planning saved as
+`[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.[jpeg|png]]`.
 
 ### Required metadata fields
 
