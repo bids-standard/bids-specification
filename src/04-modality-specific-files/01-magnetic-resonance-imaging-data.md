@@ -447,7 +447,7 @@ JSON example:
 }
 ```
 
-## Arterial Spin Labeling data
+## Arterial Spin Labeling perfusion data
 
 Template:
 
@@ -462,20 +462,11 @@ sub-<label>/[ses-<label>/]
        [sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.[jpeg|png]]
 ```
 
-The current ASL extension defaults to single-post labeling delay (PLD) ASL-data, for the quantification of brain perfusion, and multi-PLD data, for both Pulsed ASL (PASL), 
-Pseudocontinuous ASL (PCASL) and Continuous ASL (CASL) approaches. Upon the conversion of DICOM to BIDS, all separate ASL timeseries should be stored as a separate 4D NIfTI file 
-in the original acquisition order, and be joined by two ancillary files: `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json` and `sub-<label>[_ses-
-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`. Beware that the DICOM images exported from the scanner may be sorted in a different order than the 
-acquisition order. In this case, they should be sorted in the acquisition order.
-
-The responsibility of applying any scale slope defined in the DICOM header lies within the DCM2BIDS conversion, not in the image processing stage. Any conversion of DICOM data 
-to NIfTI, both for ASL as M0, should apply the scale-slope information provided by the vendor, without any residual scale factors. Thus, the raw BIDS NIfTIs should not contain 
-any scaled data, and no scaling factors should be stored in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json`,`sub-<label>[_ses-<label>][_acq-
-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.json` or NIfTI header. 
-
-Multi-PLD sequences consist of time-series, for which the acquisition parameters can differ. Therefore, some parameters can either only be allowed as a scalar (e.g. 
-`Manufacturer`), or both as a scalar and a vector with the same length as the number of volumes (e.g. `PostLabelingDelay` and `BackgroundSuppressionPulseTime`), described in 
-`sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`. Vectors of different lengths are never allowed to avoid confusion.
+All separate ASL timeseries should be stored as a 4D NIfTI file in the original acquisition order, accompanied by two ancillary files: `sub-<label>[_ses-<label>][_acq-<label>]
+[_rec-<label>][_run-<index>]_asl.json` and `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`. The raw BIDS NIfTIs should  contain 
+appropriately scaled data and no scaling factors should be stored in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json`,`sub-<label>[_ses-
+<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.json` or in the NIfTI header. Some numeric parameters are only allowed as a number (e.g. 
+`LabelingDistance`), or both as a number or an array of numbers with the same length as the number of volumes (e.g. `PostLabelingDelay`). 
 
 Generally, five types of volumes might be acquired: `control`, `label`, `m0scan`, `deltam` and `cbf`, based on DICOM Tag ASL Context (0018,9257) `ASL Context`. It should be 
 noted that there are different ways to acquire `control` and `label` volumes, and thus the naming of `control` and `label` within BIDS only serves to specify the subtraction 
