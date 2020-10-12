@@ -472,9 +472,9 @@ Generally, five types of volumes might be acquired: `control`, `label`, `m0scan`
 noted that there are different ways to acquire `control` and `label` volumes, and thus the naming of `control` and `label` within BIDS only serves to specify the subtraction 
 order.
 
-| asl volume name                    | Definition    |
+| volume_type                   | Definition    |
 |---------------------------------- | -----------------------------------------------------|
-| control                  | The control image is acquired in the exact same way as the label image, except for the modification in the ASL-preparation pulse. In the control images, this pulse effectively leads to no labeling of blood, i.e. the blood and tissue have identically aligned magnetization. Note that for FAIR PASL, the control volume is referred to as the slice selective volume (see [https://www.ncbi.nlm.nih.gov/pubmed/7500865](https://www.ncbi.nlm.nih.gov/pubmed/7500865)).   |
+| control                  | The control image is acquired in the exact same way as the label image, except for the difference in the ASL labeling pulses leading to no labeling of blood, i.e. the blood effectively has the same magnetization compared to the tissue magnetization. Note that for FAIR PASL, the control volume is referred to as the slice selective volume (see [https://www.ncbi.nlm.nih.gov/pubmed/7500865](https://www.ncbi.nlm.nih.gov/pubmed/7500865)).    |
 | label                  | The label image is acquired in the exact same way as the control image, except that the inflowing arterial blood is proximally labeled, i.e. the blood magnetization is inverted when compared to the tissue magnetization. Note that for FAIR PASL, the label volume is referred to as the non-slice-selective volume (see [https://www.ncbi.nlm.nih.gov/pubmed/7500865](https://www.ncbi.nlm.nih.gov/pubmed/7500865)).       
 | m0scan                  | The M0 image is a calibration or reference image, used to estimate the M0 of blood.                          |
 | deltam                  | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.      |
@@ -517,7 +517,7 @@ Alternatively, the average `control` image or a fixed value can be used for cali
 the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json`.
 
 It is recommended to specify the labeling-plane planning through: location description, plane orientation and distance, and an anonymized screenshot of the planning saved as
-`[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.[jpeg|png]]`.
+`[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.jpg]`.
 
 ### Required metadata fields
 
@@ -535,10 +535,10 @@ It is recommended to specify the labeling-plane planning through: location descr
 | VolumeTiming   | REQUIRED, mutually exclusive with `RepetitionTime`  | [array][] of [numbers][] | The time at which each volume was acquired during the acquisition. The list must have the same length as the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`, and the values must be non-negative and monotonically increasing. If `VolumeTiming` is defined, this requires acquisition time (TA) be defined via either `SliceTiming` or `AcquisitionDuration` be defined.  |
 
 ### (P)CASL-specific metadata fields
-
+These fields can only be used when ‘LabelingType’ is ‘PCASL’ or ‘CASL’.
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
-|  LabelingDuration                 | REQUIRED            | [number][] or [array][] of [numbers][]         | Total duration of the labeling pulse train, in seconds, corresponding to the temporal width of the labeling bolus for (P)CASL. Specify either one value for total time-series or provide a vector of different values for each volume in case of sequential acquisitions with varying labeling duration. For PASL, the parameters of bolus saturation timing and bolus width are given in `BolusCutOff fields`, and the `LabelingDuration` field is set to zero or not provided. In the case that an array of numbers is provided and `m0scan` is acquired within the ASL timeseries, `LabelingDuration` gets a value of 0 at the location of the `m0scan` to keep the length of the vector equal to the number of volumes. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`. |
+|  LabelingDuration                 | REQUIRED            | [number][] or [array][] of [numbers][]         | Total duration of the labeling pulse train, in seconds, corresponding to the temporal width of the labeling bolus for (P)CASL. Specify either one value for total time-series or provide a vector of different values for each volume in case of sequential acquisitions with varying labeling duration. In the case that an array of numbers is provided and `m0scan` is acquired within the ASL timeseries, `LabelingDuration` gets a value of 0 at the location of the `m0scan` to keep the length of the vector equal to the number of volumes. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration` |
 |  PCASLType                 | RECOMMENDED             | [array][] of [strings][]         | Type of the `control` pulse: `balanced` or `unbalanced`.  |
 |  CASLType                  | RECOMMENDED             | [array][] of [strings][]         |  Describes if a separate coil is used for labeling: `single-coil` or `double-coil`.  |
 |  LabelingPulseAverageGradient                   | RECOMMENDED             | [number][]         |  The average labeling gradient, in milliteslas per meter. Based on COBIDAS. |
@@ -549,13 +549,13 @@ It is recommended to specify the labeling-plane planning through: location descr
 |  LabelingPulseInterval                     | RECOMMENDED             | [number][]         | Delay between the peaks of the individual labeling pulses, in seconds. |
 
 ### PASL-specific metadata fields
-
+These fields can only be used when ‘LabelingType’ is ‘PASL’.
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
 |  BolusCutOffFlag                    | REQUIRED   | [boolean][]    | Boolean indicating if a bolus cut-off technique was applied. Corresponds to DICOM Tag 0018,925C `ASL Bolus Cut-off Flag`. |
 |  PASLType                     | RECOMMENDED  | [string][]    | Type of the labeling pulse of the PASL labeling, e.g. FAIR, EPISTAR, or PICORE. |
 |  LabelingSlabThickness                      | RECOMMENDED  | [number][]    | Thickness of the labeling slab in millimeters. For non-selective FAIR a zero is entered. Corresponds to DICOM Tag 0018,9254 `ASL Slab Thickness` and based on COBIDAS. |
-|  BolusCutOffDelayTime           | OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`  | [number][]    | Duration between the end of the labeling and the start of the bolus cut-off saturation pulses, in seconds. Set to zero when a single QUIPSS(II) pulse is used, a vector starting with zero when multiple QUIPSS(II) pulses are used, or a single value corresponding to the total duration of the saturation period for Q2TIPS. Based on DICOM Tag 0018,925F `ASL Bolus Cut-off Delay Time`. |
+|  BolusCutOffDelayTime           | OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`  | [number][]    | Duration between the end of the labeling and the start of the bolus cut-off saturation pulse(s), in seconds. This can be a number or array of numbers, depending on the number of bolus cut-off saturation pulses. For Q2TIPS, only the values for the first and last bolus cut-off saturation pulses are provided. Based on DICOM Tag 0018,925F `ASL Bolus Cut-off Delay Time`. |
 |  BolusCutOffTechnique         | OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`  | [string][]    | Name of the technique used (e.g. Q2TIPS, QUIPSS, QUIPSSII). Corresponds to DICOM Tag 0018,925E `ASL Bolus Cut-off Technique`. |
 
 ### Other recommended/optional asl-related metadata fields
