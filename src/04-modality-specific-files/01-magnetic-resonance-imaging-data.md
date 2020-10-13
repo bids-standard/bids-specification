@@ -462,31 +462,32 @@ sub-<label>/[ses-<label>/]
        [sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.[jpeg|png]]
 ```
 
-All separate ASL timeseries should be stored as a 4D NIfTI file in the original acquisition order, accompanied by two ancillary files: `sub-<label>[_ses-<label>][_acq-<label>]
+The complete  ASL timeseries should be stored as a 4D NIfTI file in the original acquisition order, accompanied by two ancillary files: `sub-<label>[_ses-<label>][_acq-<label>]
 [_rec-<label>][_run-<index>]_asl.json` and `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`. The raw BIDS NIfTIs should  contain 
-appropriately scaled data and no scaling factors should be stored in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json`,`sub-<label>[_ses-
-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.json` or in the NIfTI header. Some numeric parameters are only allowed as a number (e.g. 
-`LabelingDistance`), or both as a number or an array of numbers with the same length as the number of volumes (e.g. `PostLabelingDelay`). 
+appropriately scaled data and no scaling factors should be stored in the ancillary files or in the NIfTI header. 
 
-Generally, five types of volumes might be acquired: `control`, `label`, `m0scan`, `deltam` and `cbf`, based on DICOM Tag ASL Context (0018,9257) `ASL Context`. It should be 
-noted that there are different ways to acquire `control` and `label` volumes, and thus the naming of `control` and `label` within BIDS only serves to specify the subtraction 
-order.
+The ‘m0scan’ can either be stored as a separate NIfTI file or inside the 4D ASL timeseries NIfTI file, depending on whether it was acquired within the ASL timeseries or as a 
+separate scan. It can also be stored under `fmap/sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]`, when the pepolar approach is 
+used.
+
+The `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` lists the original acquisition order of the `sub-<label>[_ses-<label>][_acq-<label>]
+[_rec-<label>][_run-<index>]_asl.nii[.gz]`, containing one or more of the five ASL volumes specified in the table below, based on DICOM Tag ASL Context (0018,9257) `ASL 
+Context`. Note that the volume_types `control` and `label` within BIDS do not discriminate between types of labeling but only serve to specify the magnetization direction of the 
+blood and thus the ASL subtraction order.
 
 | volume_type                   | Definition    |
 |---------------------------------- | -----------------------------------------------------|
-| control                  | The control image is acquired in the exact same way as the label image, except for the difference in the ASL labeling pulses leading to no labeling of blood, i.e. the blood effectively has the same magnetization compared to the tissue magnetization. Note that for FAIR PASL, the control volume is referred to as the slice selective volume (see [https://www.ncbi.nlm.nih.gov/pubmed/7500865](https://www.ncbi.nlm.nih.gov/pubmed/7500865)).    |
-| label                  | The label image is acquired in the exact same way as the control image, except that the inflowing arterial blood is proximally labeled, i.e. the blood magnetization is inverted when compared to the tissue magnetization. Note that for FAIR PASL, the label volume is referred to as the non-slice-selective volume (see [https://www.ncbi.nlm.nih.gov/pubmed/7500865](https://www.ncbi.nlm.nih.gov/pubmed/7500865)).       
+| control                  | The control image is acquired in the exact same way as the label image, except that the blood effectively has the same magnetization direction as the tissue magnetization.  |
+| label                  |The label image is acquired in the exact same way as the control image, except that the the blood magnetization is inverted when compared to the tissue magnetization.  |
 | m0scan                  | The M0 image is a calibration or reference image, used to estimate the M0 of blood.                          |
 | deltam                  | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.      |
 | cbf                  | The quantified cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0 image or the M0 scalar value, which is then scaled into physiological units (`mL/100g/min`).      |
 
-Formally, `deltam` and `cbf` are derivatives. However, for some ASL sequences (e.g. the GE product sequence or the Philips product sequence with ‘ASLSourceImage’ set to off), 
-deltaM and or ‘cbf’ images are provided instead of the `control` and `label` images. These derivatives should only be stored as ASL data in the `rawdata` folder in case the 
-‘control’ and ‘label’  images are not available. The storage of the data follows the following order of preference: 1) `control`/`label`/`m0scan`, 2) `deltam`/`m0scan`, 3) 
-`cbf`[/`m0scan`]. When `cbf` is stored as raw data, its units need to be specified in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json` as well.
+For FAIR PASL, the control and label volumes are the slice-selective and non-slice-selective volumes, respectively (see [here](https://www.ncbi.nlm.nih.gov/pubmed/7500865)).
 
-The `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` lists the original acquisition order of the `sub-<label>[_ses-<label>][_acq-<label>]
-[_rec-<label>][_run-<index>]_asl.nii[.gz]`, containing one or more of the five ASL volumes, excluding the volumes stored in other NIfTI files.
+If the raw control and label images are not available, its derivative `deltam` should be stored as raw data instead, (e.g. the GE product sequence or the Philips product 
+sequence with ‘ASLSourceImage’ set to off). If the ‘deltam’ is not available, ‘cbf’ should be stored as raw data instead. When `cbf` is stored as raw data, its units need to be 
+specified in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json` as well.
 
 `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` example 1:
 
@@ -500,26 +501,17 @@ The `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcont
 | control |
 | label |
 
-`sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` example 2, in case no raw data (`control` and `label`) are available:
+`sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` example 2:
 
 | **volume_type**                    |
 |----------------------------------  |
 | deltam |
 | m0scan |
 
-The `m0scan`, used as a calibration image, should be converted in the original acquisition order. Currently both the acquisition of the `m0scan` within the asl time series, as 
-well as acquiring it separately is equally valid. In the first case, the `m0scan` should be included in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-
-<index>]_asl.nii[.gz]`, its position within the time series should be specified in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`. When 
-the `m0scan` is acquired separately, or when acquired with reversed phase encoding (fieldmap: pepolar), a separate `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-
-<label>][_run-<index>]_m0scan.nii[.gz]` and `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.json` should be provided, including the M0-
-specific JSON fields. In this case, the `m0scan` should not be included in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`. 
-Alternatively, the average `control` image or a fixed value can be used for calibration. In any case, the calibration approach utilised should be specified in the M0 field of 
-the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json`.
-
 It is recommended to specify the labeling-plane planning through: location description, plane orientation and distance, and an anonymized screenshot of the planning saved as
 `[sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.jpg]`.
 
-### Required metadata fields
+### ASL fields applicable to all labeling types
 
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
@@ -533,6 +525,18 @@ It is recommended to specify the labeling-plane planning through: location descr
 | SliceTiming            | RECOMMENDED, but REQUIRED in case of a 2D acquisition, or when VolumeTiming is defined    | [array][] of [numbers][] | The time at which each slice was acquired within each volume (frame) of the acquisition with respect to the beginning of volume acquisition (i.e. after the PostLabelingDelay. In case of 3D, a zero is entered. The length of this vector should be equal to the number of 2D slices, with the first time being zero (i.e. effectively equal to the PostLabelingDelay). Slice timing is not slice order -- rather, it is a list of times containing the time (in seconds) of each slice acquisition in relation to the beginning of volume acquisition. The list goes through the slices along the slice axis in the slice encoding dimension (see below). Note that to ensure the proper interpretation of the `SliceTiming` field, it is important to check if the OPTIONAL `SliceEncodingDirection` exists. In particular, if `SliceEncodingDirection` is negative, the entries in `SliceTiming` are defined in reverse order with respect to the slice axis, such that the final entry in the `SliceTiming` list is the time of acquisition of slice 0.  |
 | RepetitionTime | REQUIRED, mutually exclusive with `VolumeTiming`      | [number][]     | The time in seconds between the acquisition start of one volume and the acquisition start of the subsequent volume.  A single value valid for all volumes in the series is given, as an alternative for variable times, use the VolumeTiming field instead. This definition includes time between scans in case of sparse acquisition schemes. This value needs to be consistent with the `pixdim[4]` field (after accounting for units stored in `xyzt_units` field) in the NIfTI header. This field is derived from DICOM Tag 0018, 0080. |                                  
 | VolumeTiming   | REQUIRED, mutually exclusive with `RepetitionTime`  | [array][] of [numbers][] | The time at which each volume was acquired during the acquisition. The list must have the same length as the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`, and the values must be non-negative and monotonically increasing. If `VolumeTiming` is defined, this requires acquisition time (TA) be defined via either `SliceTiming` or `AcquisitionDuration` be defined.  |
+|  VascularCrushing           | RECOMMENDED  | [boolean][]  | Boolean indicating if Vascular Crushing was applied. Corresponds to DICOM Tag 0018,9259 `ASL Crusher Flag`. |
+|  AcquisitionVoxelSize            | RECOMMENDED  | [array][] of [numbers][]   |A vector with a length of 3, in millimeters. This parameter denotes the original acquisition voxel size, excluding any inter-slice gaps and before any interpolation or resampling within reconstruction or image processing. Any point spread function effects (e.g. due to T2-blurring) that would decrease the effective resolution are not considered here.  |
+| FlipAngle       | RECOMMENDED, REQUIRED for ASL-sequences that use a Look-Locker readout and/or multiple flip angles (e.g. (turbo-)QUASAR)       | [number][] or [array][] of [numbers][]   | Flip angle for the acquisition, specified in degrees, either as a scalar value or an array of numbers, with the length corresponding to the number of volumes. Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`. |
+|  TotalAcquiredVolumes            | OPTIONAL, but RECOMMENDED when not all 3D volumes are provided by the scanner  | [array][] of [numbers][]  | The original number of 3D volumes acquired for each volume defined in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`. |
+|  BackgroundSuppressionNumberPulses    | OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`RECOMMENDED  | [number][]  | The number of background suppression pulses used. Note that this excludes any effect of background suppression pulses applied before the labeling. |
+|  BackgroundSuppressionPulseTime     | OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`  | [array][] of [numbers][]   | Array containing timing, in seconds, of the background suppression pulses before the start of the readout. In case of multi-PLD with different background suppression pulse times, only the pulse time of the first PLD should be defined. |
+|  VascularCrushingVenc   | OPTIONAL, RECOMMENDED if `VascularCrushing` is `true`  | [number][] or [array][] of [numbers][] | The crusher gradient strength, in centimeters per second. Specify either one value for the total time-series, or provide a vector, for example when using QUASAR, using the value zero to identify volumes for which `VascularCrushing` was turned off. Corresponds to DICOM Tag 0018,925A `ASL Crusher Flow Limit`. |
+|  LabelingOrientation          | RECOMMENDED  | [array][] of [numbers][]    | Orientation of the labeling plane or slab. The direction cosines of a normal vector perpendicular to the ASL labeling slab with respect to the patient. Corresponds to DICOM Tag 0018,9255 `ASL Slab Orientation`.|
+|  LabelingDistance    | RECOMMENDED  | [number][]  | Distance from the center of the imaging slab to the leading edge of the labeling slab (PASL) or the center of the labeling plane (CASL/PCASL), in millimeters. If the labeling is performed inferior to the isocenter, this scalar should be negative. Based on DICOM macro C.8.13.5.14. |
+|  LabelingLocationDescription     | OPTIONAL   | Description of the location of the labeling slab that cannot be captured by the other fields. May include a link to an anonymized image containing a screenshot of labeling plane planning `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.[jpeg/png]`. Based on DICOM macro C.8.13.5.14 and COBIDAS.  |
+| LookLocker  | OPTIONAL | [boolean][]  | Boolean value, indicating  if a Look-Locker readout was used.| 
+|  LabelingEfficiency     | OPTIONAL   | [number][]  | Labeling efficiency, specified as a scalar between 0 and 1. |
 
 ### (P)CASL-specific metadata fields
 These fields can only be used when ‘LabelingType’ is ‘PCASL’ or ‘CASL’.
@@ -557,23 +561,6 @@ These fields can only be used when ‘LabelingType’ is ‘PASL’.
 |  LabelingSlabThickness                      | RECOMMENDED  | [number][]    | Thickness of the labeling slab in millimeters. For non-selective FAIR a zero is entered. Corresponds to DICOM Tag 0018,9254 `ASL Slab Thickness` and based on COBIDAS. |
 |  BolusCutOffDelayTime           | OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`  | [number][]    | Duration between the end of the labeling and the start of the bolus cut-off saturation pulse(s), in seconds. This can be a number or array of numbers, depending on the number of bolus cut-off saturation pulses. For Q2TIPS, only the values for the first and last bolus cut-off saturation pulses are provided. Based on DICOM Tag 0018,925F `ASL Bolus Cut-off Delay Time`. |
 |  BolusCutOffTechnique         | OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`  | [string][]    | Name of the technique used (e.g. Q2TIPS, QUIPSS, QUIPSSII). Corresponds to DICOM Tag 0018,925E `ASL Bolus Cut-off Technique`. |
-
-### Other recommended/optional asl-related metadata fields
-
-| **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
-|-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
-|  VascularCrushing           | RECOMMENDED  | [boolean][]  | Boolean indicating if Vascular Crushing was applied. Corresponds to DICOM Tag 0018,9259 `ASL Crusher Flag`. |
-|  AcquisitionVoxelSize            | RECOMMENDED  | [array][] of [numbers][]   |A vector with a length of 3, in millimeters. This parameter denotes the original acquisition voxel size, excluding any inter-slice gaps and before any interpolation or resampling within reconstruction or image processing. Any point spread function effects (e.g. due to T2-blurring) that would decrease the effective resolution are not considered here.  |
-| FlipAngle       | RECOMMENDED, REQUIRED for ASL-sequences that use a Look-Locker readout and/or multiple flip angles (e.g. (turbo-)QUASAR)       | [number][] or [array][] of [numbers][]   | Flip angle for the acquisition, specified in degrees, either as a scalar value or an array of numbers, with the length corresponding to the number of volumes. Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`. |
-|  TotalAcquiredVolumes            | OPTIONAL, but RECOMMENDED when not all 3D volumes are provided by the scanner  | [array][] of [numbers][]  | The original number of 3D volumes acquired for each volume defined in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`. |
-|  BackgroundSuppressionNumberPulses    | OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`RECOMMENDED  | [number][]  | The number of background suppression pulses used. Note that this excludes any effect of background suppression pulses applied before the labeling. |
-|  BackgroundSuppressionPulseTime     | OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`  | [array][] of [numbers][]   | Array containing timing, in seconds, of the background suppression pulses before the start of the readout. In case of multi-PLD with different background suppression pulse times, only the pulse time of the first PLD should be defined. |
-|  VascularCrushingVenc   | OPTIONAL, RECOMMENDED if `VascularCrushing` is `true`  | [number][] or [array][] of [numbers][] | The crusher gradient strength, in centimeters per second. Specify either one value for the total time-series, or provide a vector, for example when using QUASAR, using the value zero to identify volumes for which `VascularCrushing` was turned off. Corresponds to DICOM Tag 0018,925A `ASL Crusher Flow Limit`. |
-|  LabelingOrientation          | RECOMMENDED  | [array][] of [numbers][]    | Orientation of the labeling plane or slab. The direction cosines of a normal vector perpendicular to the ASL labeling slab with respect to the patient. Corresponds to DICOM Tag 0018,9255 `ASL Slab Orientation`.|
-|  LabelingDistance    | RECOMMENDED  | [number][]  | Distance from the center of the imaging slab to the leading edge of the labeling slab (PASL) or the center of the labeling plane (CASL/PCASL), in millimeters. If the labeling is performed inferior to the isocenter, this scalar should be negative. Based on DICOM macro C.8.13.5.14. |
-|  LabelingLocationDescription     | OPTIONAL   | Description of the location of the labeling slab that cannot be captured by the other fields. May include a link to an anonymized image containing a screenshot of labeling plane planning `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.[jpeg/png]`. Based on DICOM macro C.8.13.5.14 and COBIDAS.  |
-| LookLocker  | OPTIONAL | [boolean][]  | Boolean value, indicating  if a Look-Locker readout was used.| 
-|  LabelingEfficiency     | OPTIONAL   | [number][]  | Labeling efficiency, specified as a scalar between 0 and 1. |
 
 ### m0scan-specific metadata fields
 
