@@ -478,7 +478,7 @@ blood and thus the ASL subtraction order.
 | volume_type                   | Definition    |
 |---------------------------------- | -----------------------------------------------------|
 | control                  | The control image is acquired in the exact same way as the label image, except that the blood effectively has the same magnetization direction as the tissue magnetization.  |
-| label                  |The label image is acquired in the exact same way as the control image, except that the the blood magnetization is inverted when compared to the tissue magnetization.  |
+| label                  |The label image is acquired in the exact same way as the control image, except that the blood magnetization is inverted when compared to the tissue magnetization.  |
 | m0scan                  | The M0 image is a calibration or reference image, used to estimate the M0 of blood.                          |
 | deltam                  | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.      |
 | cbf                  | The quantified cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0 image or the M0 scalar value, which is then scaled into physiological units (`mL/100g/min`).      |
