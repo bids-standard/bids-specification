@@ -470,10 +470,10 @@ The ‘m0scan’ can either be stored as a separate NIfTI file or inside the 4D 
 separate scan. It can also be stored under `fmap/sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]`, when the pepolar approach is 
 used.
 
-The `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` lists the original acquisition order of the `sub-<label>[_ses-<label>][_acq-<label>]
-[_rec-<label>][_run-<index>]_asl.nii[.gz]`, containing one or more of the five ASL volumes specified in the table below, based on DICOM Tag ASL Context (0018,9257) `ASL 
-Context`. Note that the volume_types `control` and `label` within BIDS do not discriminate between types of labeling but only serve to specify the magnetization direction of the 
-blood and thus the ASL subtraction order.
+The `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` lists the volume_type for each volume in the `sub-<label>[_ses-<label>][_acq-<label>]
+[_rec-<label>][_run-<index>]_asl.nii[.gz]`, corresponding to the volume_types specified in the table below, based on DICOM Tag ASL Context (0018,9257) `ASL Context`. Note that 
+the volume_types `control` and `label` within BIDS do not discriminate between types of labeling but only serve to specify the magnetization direction of the blood and thus the 
+ASL subtraction order.
 
 | volume_type                   | Definition    |
 |---------------------------------- | -----------------------------------------------------|
