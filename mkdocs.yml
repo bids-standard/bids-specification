@@ -1,4 +1,4 @@
-site_name: Brain Imaging Data Structure v1.4.1-dev
+site_name: Brain Imaging Data Structure v1.4.1
 theme:
     name: material
     custom_dir: theme_customizations/
