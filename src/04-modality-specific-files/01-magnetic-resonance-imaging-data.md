@@ -415,7 +415,7 @@ distinguish different sets of phase-encoding directions.
 
 **Combining multi- and single-band acquisitions**.
 The single-band reference image MAY be stored with suffix `sbref` (for example,
-`dwi/sub-control01_sbref.nii[.gz]`,) as long as the image has no corresponding
+`dwi/sub-control01_sbref.nii[.gz]`) as long as the image has no corresponding
 [gradient information (`.bval` and `.bvec` sidecar files)](#required-gradient-orientation-information)
 to be stored.
 
