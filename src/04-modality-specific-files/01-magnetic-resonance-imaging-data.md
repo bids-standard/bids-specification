@@ -467,7 +467,7 @@ files: `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.
 [_rec-<label>][_run-<index>]_aslcontext.tsv`. The raw BIDS NIfTIs should contain appropriately scaled data and no scaling factors 
 should be stored in the ancillary files or in the NIfTI header. 
 
-The ‘m0scan’ can either be stored as a separate NIfTI file or inside the 4D ASL time-series NIfTI file, depending on whether it 
+The `m0scan` can either be stored as a separate NIfTI file or inside the 4D ASL time-series NIfTI file, depending on whether it 
 was acquired within the ASL time-series or as a separate scan. These and other M0 options are specified in the required M0 field. 
 It can also be stored under `fmap/sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]`, 
 when the pepolar approach is used.
@@ -486,8 +486,8 @@ blood and thus the ASL subtraction order.
 | deltam                  | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.  |
 | cbf                  | The quantified cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, scaled into physiological units (`mL/100g/min`).      |
 
-If the raw control and label images are not available, their derivative `deltam` should be stored as raw data instead. If the 
-‘deltam’ is not available, ‘cbf’ should be stored as raw data instead. When `cbf` is stored as raw data, its units need to be 
+If the raw `control` and `label` images are not available, their derivative `deltam` should be stored as raw data instead. If the 
+`deltam` is not available, `cbf` should be stored as raw data instead. When `cbf` is stored as raw data, its units need to be 
 specified in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json` as well.
 
 `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv` example 1:
@@ -509,8 +509,7 @@ specified in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<in
 | deltam |
 | m0scan |
 
-### Metadata fields applicable to both `(P)CASL` and `PASL` 
-
+### Metadata fields applicable to both (P)CASL and PASL 
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
 |  LabelingType                | REQUIRED            | [array][] of [strings][]    | `CASL` , `PCASL` , `PASL`.  |
@@ -536,7 +535,7 @@ specified in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<in
 | LookLocker  | OPTIONAL | [boolean][]  | Boolean indicating if a Look-Locker readout is used.| 
 |  LabelingEfficiency     | OPTIONAL   | [number][]  | Labeling efficiency, specified as a scalar between zero and one. |
 
-### `(P)CASL`-specific metadata fields
+### (P)CASL-specific metadata fields
 These fields can only be used when `LabelingType` is `CASL` or `PCASL`.
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
@@ -550,7 +549,7 @@ These fields can only be used when `LabelingType` is `CASL` or `PCASL`.
 | LabelingPulseFlipAngle | RECOMMENDED  | [number][]         | The flip angle of a single labeling pulse, in degrees, which can be given as an alternative to `LabelingPulseAverageB1`. |
 |  LabelingPulseInterval                     | RECOMMENDED             | [number][]         | Delay between the peaks of the individual labeling pulses, in seconds. |
 
-### `PASL`-specific metadata fields
+### PASL-specific metadata fields
 These fields can only be used when `LabelingType` is `PASL`.
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
@@ -560,7 +559,7 @@ These fields can only be used when `LabelingType` is `PASL`.
 |  BolusCutOffDelayTime           | OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`  | [number][]    | Duration between the end of the labeling and the start of the bolus cut-off saturation pulse(s), in seconds. This can be a number or array of numbers, depending on the number of bolus cut-off saturation pulses. For Q2TIPS, only the values for the first and last bolus cut-off saturation pulses are provided. Based on DICOM Tag 0018,925F `ASL Bolus Cut-off Delay Time`. |
 |  BolusCutOffTechnique         | OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`  | [string][]    | Name of the technique used (e.g. Q2TIPS, QUIPSS, QUIPSSII). Corresponds to DICOM Tag 0018,925E `ASL Bolus Cut-off Technique`. |
 
-### `m0scan`-specific metadata fields
+### m0scan-specific metadata fields
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
 |  IntendedFor      | REQUIRED    | [string][]  | One or more filenames with paths relative to the subject subfolder, with forward slashes, referring to ASL timeseries for which the m0scan is intended.    |
