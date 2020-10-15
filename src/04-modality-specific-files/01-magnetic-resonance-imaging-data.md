@@ -510,7 +510,7 @@ sub-<label>/[ses-<label>/]         # MultipartID
     sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_1
 ```
 
-If, conversely, the resarcher wanted to store two multipart scans, one possibility
+If, conversely, the researcher wanted to store two multipart scans, one possibility
 is to combine matching phase-encoding directions:
 
 ```Text
