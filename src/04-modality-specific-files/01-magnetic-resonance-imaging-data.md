@@ -480,7 +480,7 @@ For instance, some GE scanners cannot collect more than &asymp;160 volumes
 in a single run under fast-changing gradients, so acquiring *HCP-style*
 diffusion images will require splitting the DWI scheme in several runs.
 Because researchers will generally optimize the data splits, these will likely
-not be directly concatenable anymore.
+not be able to be directly concatenated.
 BIDS permits defining arbitrary groupings of these multipart scans with the
 following metadata:
 
