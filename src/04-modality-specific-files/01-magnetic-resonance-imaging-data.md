@@ -450,8 +450,9 @@ diffusion gradient, where the *i*-th elements in each row correspond together to
 the *i*-th volume, with `[0,0,0]` for *non-diffusion-weighted* (also called *b*=0 or *low-b*)
 volumes.
 Following the FSL format for the `[*_]dwi.bvec` specification, the coordinate system of
-the *b* vectors MUST be defined with respect to the participant (in other words, defined
-by the axes of the corresponding `_dwi` NIfTI file) and not the magnet's coordinate system.
+the *b* vectors MUST be defined with respect to the coordinate system defined by
+the header of the corresponding `_dwi` NIfTI file and not the scanner's device
+coordinate system (see [Coordinate systems](../99-appendices/08-coordinate-systems.md)).
 The most relevant implication for this choice is that any rotations applied to the DWI data
 also need to be applied to the *b* vectors in the `[*_]dwi.bvec` file.
 
