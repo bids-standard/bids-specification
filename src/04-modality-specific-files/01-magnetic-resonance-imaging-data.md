@@ -576,6 +576,8 @@ The following table recapitulates the ASL field dependencies. If Source field (c
 | BolusCutOffFlag | true/false | BolusCutOffDelayTime|  [X] / []|  
 | BolusCutOffFlag | true/false | BolusCutOffTechnique|  [X] / []|  
 | `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`|cbf| Units             |[X] | 
+| RepetitionTime / VolumeTiming | [X] / []   | VolumeTiming / RepetitionTime | [] / [X] |
+| VolumeTiming | [X]  |AcquisitionDuration | [X] |
 
 **Legend**
 
