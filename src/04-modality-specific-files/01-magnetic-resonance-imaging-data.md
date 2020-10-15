@@ -416,7 +416,7 @@ distinguish different sets of phase-encoding directions.
 **Combining multi- and single-band acquisitions**.
 The single-band reference image MAY be stored with suffix `sbref` (for example,
 `dwi/sub-control01_sbref.nii[.gz]`) as long as the image has no corresponding
-[gradient information (`.bval` and `.bvec` sidecar files)](#required-gradient-orientation-information)
+[gradient information (`[*_]dwi.bval` and `[*_]dwi.bvec` sidecar files)](#required-gradient-orientation-information)
 to be stored.
 
 Otherwise, if some gradient information is associated to the single-band diffusion
@@ -430,31 +430,32 @@ The user is free to choose any other label than `singleband` and
 ### REQUIRED gradient orientation information
 
 The REQUIRED gradient orientation information corresponding to a DWI acquisition
-MUST be stored using `.bval` and `.bvec` pairs of files.
-The `.bval` and `.bvec` files can be saved on any level of the directory structure
+MUST be stored using `[*_]dwi.bval` and `[*_]dwi.bvec` pairs of files.
+The `[*_]dwi.bval` and `[*_]dwi.bvec` files MAY be saved on any level of the directory structure
 and thus define those values for all sessions and/or subjects in one place (see
-Inheritance principle).
+[the inheritance principle](../02-common-principles.md#the-inheritance-principle)).
 
 As an exception to the [common principles](../02-common-principles.md#definitions)
 that parameters are constant across runs, the gradient table information (stored
-within the `.bval` and `.bvec` files) MAY change across DWI runs.
+within the `[*_]dwi.bval` and `[*_]dwi.bvec` files) MAY change across DWI runs.
 
-**Gradient orientation file formats**. The `.bvec` and `.bval` files MUST follow the
+**Gradient orientation file formats**.
+The `[*_]dwi.bval` and `[*_]dwi.bvec` files MUST follow the
 [FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
-The `.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
+The `[*_]dwi.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
 (corresponding to the *N* volumes in the corresponding NIfTI file.)
 The first row contains the *x* elements, the second row contains the *y* elements and
 the third row contains the *z* elements of a unit vector in the direction of the applied
 diffusion gradient, where the *i*-th elements in each row correspond together to
 the *i*-th volume, with `[0,0,0]` for *non-diffusion-weighted* (also called *b*=0 or *low-b*)
 volumes.
-Inherent to the FSL format for `.bvec` specification is the fact that the coordinate system of
-the bvecs is with respect to the participant (in other words, defined by the axes of the
-corresponding `_dwi` file) and not the magnet's coordinate system.
+Following the FSL format for the `[*_]dwi.bvec` specification, the coordinate system of
+the *b* vectors MUST be defined with respect to the participant (in other words, defined
+by the axes of the corresponding `_dwi` NIfTI file) and not the magnet's coordinate system.
 The most relevant implication for this choice is that any rotations applied to the DWI data
-also need to be applied to the corresponding `.bvec` file.
+also need to be applied to the *b* vectors in the `[*_]dwi.bvec` file.
 
-Example of `.bvec` file, with *N*=6, with two *b*=0 volumes in the beginning:
+Example of `[*_]dwi.bvec` file, with *N*=6, with two *b*=0 volumes in the beginning:
 
 ```Text
 0 0 0.021828 -0.015425 -0.70918 -0.2465
@@ -462,10 +463,10 @@ Example of `.bvec` file, with *N*=6, with two *b*=0 volumes in the beginning:
 0 0 -0.59636 0.97516 -0.70503 -0.96351
 ```
 
-The `.bval` file contains the *b*-values (in s/mm<sup>2</sup>) corresponding to the
+The `[*_]dwi.bval` file contains the *b*-values (in s/mm<sup>2</sup>) corresponding to the
 volumes in the relevant NIfTI file), with 0 designating *b*=0 volumes, space-delimited.
 
-Example of `.bval` file, corresponding to the previous `.bvec` example:
+Example of `[*_]dwi.bval` file, corresponding to the previous `[*_]dwi.bvec` example:
 
 ```Text
 0 0 2000 2000 1000 1000
