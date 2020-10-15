@@ -548,7 +548,7 @@ sub-<label>/[ses-<label>/]             # MultipartID
 
 ### Other RECOMMENDED metadata
 
-At minimum, the `PhaseEncodingDirection` and `TotalReadoutTime` metadata
+The `PhaseEncodingDirection` and `TotalReadoutTime` metadata
 fields are RECOMMENDED to enable the correction of geometrical distortions
 with [fieldmap information](#fieldmap-data).
 See [Common metadata fields](#common-metadata-fields) for a list of
