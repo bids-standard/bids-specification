@@ -133,8 +133,10 @@ space:
   name: Space
   entity: space
   description: |
-    The space label (`*[_space-<label>]_electrodes.tsv`) can be used
-    to indicate the way in which electrode positions are interpreted.
+    The space entity can be used to indicate
+    the way in which electrode positions are interpreted
+    (for EEG/MEG/iEEG data) or
+    the spatial reference to which a file has been aligned (for MRI data).
     The space label needs to be taken from the list in Appendix VIII.
   format: label
 split:
@@ -153,3 +155,28 @@ split:
     It is RECOMMENDED that .fif files with multiple parts use the
     `split-<index>` entity to indicate each part.
   format: index
+res:
+  name: Resolution
+  entity: res
+  description: |
+    Resolution of regularly sampled N-D data.
+  format: label
+den:
+  name: Density
+  entity: den
+  description: |
+    Density of non-parametric surfaces.
+  format: label
+label:
+  name: Label
+  entity: label
+  description: |
+    Tissue-type label, following a prescribed vocabulary.
+  format: label
+desc:
+  name: Description
+  entity: desc
+  description: |
+    When necessary to distinguish two files that do not otherwise have a
+    distinguishing entity, the `_desc-<label>` keyword-value SHOULD be used.
+  format: label
