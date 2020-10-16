@@ -236,7 +236,7 @@ Currently supported image contrasts include:
 |---------- | ---------------- | ---------------------------------------------------------------------------------------------------- |
 | BOLD      | bold             | Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)                                   |
 | CBV       | cbv              | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images) |
-| Phase     | phase            | Phase information associated with magnitude information stored in BOLD contrast                      |
+| Phase     | phase            | Phase information associated with magnitude information stored in BOLD contrast. [Deprecated](../02-common-principles.md#definitions).         |
 
 Template:
 
