@@ -175,6 +175,13 @@ def build_filename_format(schema, **kwargs):
             # Add extensions
             full_strings = []
             extensions = utils.combine_extensions(group["extensions"])
+            if len(extensions) > 5:
+                # Combine exts when there are many, but keep JSON separate
+                if ".json" in extensions:
+                    extensions = [".<extension>", ".json"]
+                else:
+                    extensions = [".<extension>"]
+
             for extension in extensions:
                 for string in strings:
                     new_string = string + extension
