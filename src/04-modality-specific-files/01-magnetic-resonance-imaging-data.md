@@ -316,8 +316,9 @@ field EchoTime of the separate JSON file.
 
 Complex-valued data MUST be split into one file for each data type.
 For BOLD data, there are separate suffixes for magnitude (`_bold`) and phase
-(`_phase`) data, but the `_phase` suffix is considered a legacy suffix
-(i.e., still supported in the specification, but to be deprecated later).
+(`_phase`) data, but the `_phase` suffix is [deprecated](../02-common-principles#Definitions).
+Newly generated datasets SHOULD NOT use the `_phase` suffix, and the suffix will be removed
+from the specification in the next major release.
 For backwards compatibility, `_phase` is considered equivalent to `_part-phase_bold`.
 When the `_phase` suffix is not used, each file shares the same
 name with the exception of the `part-<mag|phase>` or `part-<real|imag>` key/value.
