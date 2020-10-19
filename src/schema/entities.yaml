@@ -159,19 +159,23 @@ res:
   name: Resolution
   entity: res
   description: |
-    Resolution of regularly sampled N-D data.
+    Resolution of regularly sampled N-dimensional data.
+    MUST have a corresponding `Resolution` metadata field to provide interpretation.
   format: label
 den:
   name: Density
   entity: den
   description: |
     Density of non-parametric surfaces.
+    MUST have a corresponding `Density` metadata field to provide interpretation.
   format: label
 label:
   name: Label
   entity: label
   description: |
     Tissue-type label, following a prescribed vocabulary.
+    Applies to binary masks and probabilistic/partial volume segmentations that describe
+    a single tissue type.
   format: label
 desc:
   name: Description
