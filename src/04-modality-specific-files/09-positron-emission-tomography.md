@@ -86,7 +86,7 @@ for all subjects if at least one subject in the dataset has more than one sessio
 Skipping the session layer for only some subjects in the dataset is not allowed.
 If a `ses-<label>` subfolder is included as part of the directory hierarchy,
 then the same `ses-<label>` tag must also be included as part of the file names themselves.
-In general, we assume that a new session wrt PET starts with either a new injection
+In general, we assume that a new session with respect to PET starts with either a new injection
 (probably most common case) or with the subject being taken out of the scanner
 (same injection, but subject leaves the scanner and returns).
 However, for example, if a subject has to leave the scanner room and
