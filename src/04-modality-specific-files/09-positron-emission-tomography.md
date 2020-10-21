@@ -295,7 +295,7 @@ one should always report radioactivity in plasma and corresponding
 parent fraction measurements, including fractions of radiometabolites.
 All definitions used below are in accordance with Innis et al. 2007 [3].
 All method specific information related to the measurements can be stated
-in the field `description`.
+in the field `Description`.
 
 Template:
 
