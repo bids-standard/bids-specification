@@ -144,7 +144,7 @@ Some of the fields are marked optional (MAY), for example anaesthesia; for those
 the BIDS validator will not throw an error even if they are not present.
 Note, although bodyweight is a recommended information in (Knudsen et al. 2020, JCBFM [1]),
 this consists of meta information at the participant level and should hence
-be part of the participants.tsv or session.tsv file in case of multiple measurements.
+be part of the `participants.tsv` or `session.tsv` file in case of multiple measurements.
 
 | Field name                | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
