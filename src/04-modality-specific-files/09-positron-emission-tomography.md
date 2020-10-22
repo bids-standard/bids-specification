@@ -18,7 +18,7 @@ context of the academic literature:
 The following example PET datasets have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
--   Single dynamic scan (pet, mri, blood):
+-   One subject single dynamic scan (pet, mri, blood):
 	[`pet_example1`](https://www.dropbox.com/sh/dmjmaxfswatptpm/AACw31cTyChLA1kwM4Vhqueja?dl=0)
 -   Single dynamic scan (pet, mri):
 	[`pet_example2`](https://www.dropbox.com/sh/i95a71rpq2unks7/AACby5XcYQp9vcwgx3cNXBhza?dl=0)
