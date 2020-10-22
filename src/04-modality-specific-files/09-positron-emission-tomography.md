@@ -403,7 +403,7 @@ Hence, it may contain information regarding metabolite info, such as the followi
 
 | Field name  | Definition                                                               |
 |:------------|:-------------------------------------------------------------------------|
-| ColumnName  | REQUIRED. Name of the column (for example, "metabolite_parent_fraction". |
+| ColumnName  | REQUIRED. Name of the column (for example, "metabolite_parent_fraction"). |
 | Description | REQUIRED. Parent fraction of the radiotracer (0-1).                      |
 | Units       | REQUIRED. Unit of parent fraction (for example, "unitless")              |
 
