@@ -33,7 +33,9 @@ As specified above, this extension is relevant for brain PET imaging
 and its associated data, such as blood data.
 In addition, the extension is in accordance with the guidelines for reporting
 and sharing brain PET data (Knudsen et al. 2020, [1]).
-If you want to share structural magnetic resonance (MR) images with your PET data,
+
+*Shared MRI data along with PET:*
+To share structural magnetic resonance (MR) images with your PET data,
 please distribute them according to the original BIDS specification
 (https://bids-specification.readthedocs.io/en/stable).
 Please pay specific attention to the format the MR images are in,
