@@ -409,7 +409,7 @@ Hence, it may contain information regarding metabolite info, such as the followi
 
 | Field name  | Definition                                                              |
 |:------------|:------------------------------------------------------------------------|
-| ColumnName  | REQUIRED. Name of the column (for example, "metabolite_polar_fraction". |
+| ColumnName  | REQUIRED. Name of the column (for example, "metabolite_polar_fraction)". |
 | Description | REQUIRED. Polar metabolite fraction of the radiotracer (0-1).           |
 | Units       | REQUIRED. Unit of polar metabolite fraction (for example, "unitless")   |
 
