@@ -432,7 +432,7 @@ and the values below should be added to the `*recording-blood_continous.json`.
 
 | Field name  | Definition                                                                                  |
 |:------------|:--------------------------------------------------------------------------------------------|
-| ColumnName  | REQUIRED. Name of the column (for example, "whole_blood_radioactivity".                     |
+| ColumnName  | REQUIRED. Name of the column (for example, "whole_blood_radioactivity)".                     |
 | Description | REQUIRED. Radioactivity in whole blood samples.                                             |
 | Units       | REQUIRED. Unit of radioactivity measurements in whole blood samples (for example, "kBq/mL") |
 
