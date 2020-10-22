@@ -85,6 +85,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Iris Groen 📖
 -   David Groppe 📖
 -   Aysegul Gunduz 📖
+-   Matthias Günther 📖
 -   Yaroslav O. Halchenko 📖📢🔧💬🐛
 -   Liberty Hamilton 📖
 -   Tom Hampshire 📖
