@@ -36,7 +36,7 @@ and sharing brain PET data (Knudsen et al. 2020, [1]).
 
 *Shared MRI data along with PET:*
 To share structural magnetic resonance (MR) images with your PET data,
-please distribute them according to the original BIDS specification
+please follow the original BIDS specification
 (https://bids-specification.readthedocs.io/en/stable).
 Please pay specific attention to the format the MR images are in,
 such as if they have been unwarped in order to correct for gradient non-linearities.
