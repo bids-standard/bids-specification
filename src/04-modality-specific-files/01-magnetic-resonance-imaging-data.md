@@ -121,6 +121,24 @@ Useful for multimodal co-registration with MEG, (S)EEG, TMS, and so on.
 | ----------------------------- | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | AnatomicalLandmarkCoordinates | RECOMMENDED           | [object][] of [arrays][] | Key:value pairs of any number of additional anatomical landmarks and their coordinates in voxel units (where first voxel has index 0,0,0) relative to the associated anatomical MRI (for example, `{"AC": [127,119,149], "PC": [128,93,141], "IH": [131,114,206]}`, or `{"NAS": [127,213,139], "LPA": [52,113,96], "RPA": [202,113,91]}`). Each array MUST contain three numeric values corresponding to x, y, and z axis of the coordinate system in that exact order. |
 
+### Echo-Planar Imaging and *B<sub>0</sub>* mapping
+
+Echo-Planar Imaging (EPI) schemes typically used in the acquisition of
+diffusion and functional MRI may also be *intended for* estimating the
+*B<sub>0</sub>* field nonuniformity inside the scanner (in other words,
+*mapping the field*,) without the acquisition of additional MRI schemes
+such as gradient-recalled echo (GRE) sequences that are stored under the
+`fmap/` folder of the BIDS structure.
+
+The modality labels `dwi` (under `dwi/`), `bold`, and `sbref` (under `func/`)
+and any modality under `fmap/` are allowed to encode the MR protocol intent for
+fieldmap estimation using the following metadata:
+
+| **Key name**                | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| --------------------------- | --------------------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| B0FieldIdentifier           | OPTIONAL              | [string][]                            | The presence of this key states that this particular 3D or 4D image MAY be used for fieldmap estimation purposes. The `B0FieldIdentifier` MUST be a unique string within one participant's tree, shared only by the images meant to be used as inputs for the estimation of a particular instance of the *B<sub>0</sub> field* estimation.                                                                                                                           |
+| B0FieldSource               | OPTIONAL              | [string][] or [array][] of [string][] | At least one existing `B0FieldIdentifier` defined by other images in the participant's tree. This field states the *B<sub>0</sub> field* estimation designated by the `B0FieldIdentifier` that may be used to correct the dataset for distortions caused by B<sub>0</sub> inhomogeneities. `B0FieldSource` and `B0FieldIdentifier` are mutually exclusive. When a list of identifiers is given, the estimated fieldmap may be averaged across the different sources. |
+
 ### Institution information
 
 | **Key name**                | **Requirement level** | **Data type** | **Description**                                                                                                                                                          |
@@ -468,7 +486,8 @@ sub-control01/
    "PhaseEncodingDirection": "j",
    "InstitutionName": "Stanford University",
    "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
-   "DeviceSerialNumber": "11035"
+   "DeviceSerialNumber": "11035",
+   "B0FieldSource": ["phasediff_fmap0", "pepolar_fmap0"]
 }
 ```
 
@@ -656,7 +675,8 @@ JSON example:
 ```JSON
 {
   "PhaseEncodingDirection": "j-",
-  "TotalReadoutTime": 0.095
+  "TotalReadoutTime": 0.095,
+  "B0FieldSource": ["phasediff_fmap0", "pepolar_fmap0"]
 }
 ```
 
@@ -954,8 +974,15 @@ are REQUIRED for these field mapping sequences.
 Fieldmaps are typically acquired with the purpose of correcting one or more EPI
 scans under `func/` or `dwi/` for distortions derived from *B<sub>0</sub>*
 nonuniformity.
-This linking between fieldmaps and their targetted data MAY be encoded with the
-`IntendedFor` metadata.
+
+#### Using `B0FieldIdentifier` metadata
+
+The general purpose `B0FieldIdentifier` MRI metadata is RECOMMENDED for the
+prescription of the B<sub>0</sub> field estimation intent of the original acquisition
+protocol.
+This encoding fully overrides the `IntendedFor` approach (see below).
+However, the `IntendedFor` encoding is permitted and RECOMMENDED in combination
+with the `B0FieldIdentifier` to maintain compatibility with outdated software.
 
 #### Using `IntendedFor` metadata
 
