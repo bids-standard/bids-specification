@@ -484,7 +484,7 @@ blood and thus the ASL subtraction order.
 | label                  |The label image is acquired in the exact same way as the control image, except that the blood magnetization flowing into the imaging region has been inverted. |
 | m0scan                  | The M0 image is a calibration image, used to estimate the equilibruim magnetization of blood.        |
 | deltam                  | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.  |
-| cbf                  | The quantified cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, scaled into physiological units (`mL/100g/min`).      |
+| cbf                  | The cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, quantified into `mL/100g/min` (see also      |
 
 If the raw `control` and `label` images are not available, their derivative `deltam` should be stored as raw data instead. If the 
 `deltam` is not available, `cbf` should be stored as raw data instead. When `cbf` is stored as raw data, its units need to be 
@@ -562,7 +562,7 @@ These fields can only be used when `LabelingType` is `PASL`.
 ### m0scan-specific metadata fields
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
-|  IntendedFor      | REQUIRED    | [string][]  | One or more filenames with paths relative to the subject subfolder, with forward slashes, referring to ASL timeseries for which the m0scan is intended.    |
+|  IntendedFor      | REQUIRED    | [string][] or [array][] of [strings][] | One or more filenames with paths relative to the subject subfolder, with forward slashes, referring to ASL timeseries for which the m0scan is intended.    |
 |  AcquisitionVoxelSize       | RECOMMENDED     | [array][] of [numbers][]  | An array of numbers with a length of 3, in millimeters. This parameter denotes the original acquisition voxel size, excluding any inter-slice gaps and before any interpolation or resampling within reconstruction or image processing. Any point spread function effects (e.g. due to T2-blurring) that would decrease the effective resolution are not considered here. |
 
 The following table recapitulates the ASL field dependencies. If Source field (column 1) contains the Value specified in column 2, then the Requirements in column 4 are imposed on the Dependent fields in column 3.
