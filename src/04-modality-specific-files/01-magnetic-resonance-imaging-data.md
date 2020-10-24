@@ -710,13 +710,11 @@ sub-<label>/[ses-<label>/]
         sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_epi.json
 ```
 
-The REQUIRED [`dir-<label>`](../99-appendices/09-entities.md#dir) key/value pair
-can be set to arbitrary alphanumeric label (`[a-zA-Z0-9]+` for
-example `dir-LR` or `dir-AP`) that can help users to distinguish between different
-files, but should not be used to infer any scanning parameters (such as phase
-encoding directions) of the corresponding sequence.
-It is RECOMMENDED to only rely on the JSON sidecar metadata described in the following
-to obtain the scanning parameters.
+The [`dir-<label>`](../99-appendices/09-entities.md#dir) key/value pair is
+distinguish between different phase-encoding directions is REQUIRED for these
+files, and SHOULD NOT be used to replace the required `PhaseEncodingDirection`
+(nor any other acquisition parameter, as prescribed by the
+[common principles](../02-common-principles.md#file-name-structure).)
 
 Required fields:
 

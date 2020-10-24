@@ -149,6 +149,11 @@ data from subject `01`.
 The suffix `eeg` and the extension `.edf` depend on the imaging modality and
 the data format and indicate further details of the file's contents.
 
+Key-value pairs SHOULD NOT be used to encode scanning parameters of the
+corresponding data.
+For instance, in echo-planar imaging MRI, the [`dir-<label>`](./99-appendices/09-entities.md#dir)
+MAY NOT be used as a replacement for the `PhaseEncodingDirection` metadata.
+
 A summary of all entities in BIDS and the order in which they MUST be
 specified is available in the [entity table](./99-appendices/04-entity-table.md)
 in the appendix.
@@ -552,16 +557,16 @@ it refers to. For example `sub-01` refers to the `sub` entity (a
 subject) with the label `01`. The `sub-` prefix is not part of the subject
 label, but must be included in file names (similarly to other key names).
 
-## Uniform Resource Indicator 
+## Uniform Resource Indicator
 
 A Uniform Resource Indicator (URI) is a string referring to a resource and SHOULD
-have the form `<scheme>:[//<authority>]<path>[?<query>][#<fragment>]`, as specified 
-in [RFC 3986](https://tools.ietf.org/html/rfc3986). 
-This applies to URLs and other common URIs, including Digital Object Identifiers (DOIs), 
-which may be fully specified as `doi:<path>`, 
+have the form `<scheme>:[//<authority>]<path>[?<query>][#<fragment>]`, as specified
+in [RFC 3986](https://tools.ietf.org/html/rfc3986).
+This applies to URLs and other common URIs, including Digital Object Identifiers (DOIs),
+which may be fully specified as `doi:<path>`,
 for example, [doi:10.5281/zenodo.3686061](https://doi.org/10.5281/zenodo.3686061).
 A given resource may have multiple URIs.
-When selecting URIs to add to dataset metadata, it is important to consider 
+When selecting URIs to add to dataset metadata, it is important to consider
 specificity and persistence.
 
 Several fields are designated for DOIs, for example, `DatasetDOI` in `dataset_description.json`.
