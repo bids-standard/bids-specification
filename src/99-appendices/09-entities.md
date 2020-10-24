@@ -179,6 +179,9 @@ the way in which electrode positions are interpreted
 the spatial reference to which a file has been aligned (for MRI data).
 The space label needs to be taken from the list in Appendix VIII.
 
+For EEG/MEG/iEEG data, this entity can be applied to raw data, but
+for other data types, it is restricted to derivative data.
+
 ## split
 
 Full name: Split
@@ -203,7 +206,11 @@ Full name: Resolution
 
 Format: `res-<label>`
 
-Definition: Resolution of regularly sampled N-D data.
+Definition: Resolution of regularly sampled N-dimensional data.
+MUST have a corresponding `Resolution` metadata field to provide
+interpretation.
+
+This entity is only applicable to derivative data.
 
 ## den
 
@@ -212,6 +219,10 @@ Full name: Density
 Format: `den-<label>`
 
 Definition: Density of non-parametric surfaces.
+MUST have a corresponding `Density` metadata field to provide
+interpretation.
+
+This entity is only applicable to derivative data.
 
 ## label
 
@@ -220,6 +231,10 @@ Full name: Label
 Format: `label-<label>`
 
 Definition: Tissue-type label, following a prescribed vocabulary.
+Applies to binary masks and probabilistic/partial volume segmentations
+that describe a single tissue type.
+
+This entity is only applicable to derivative data.
 
 ## desc
 
@@ -229,3 +244,5 @@ Format: `desc-<label>`
 
 Definition: When necessary to distinguish two files that do not otherwise have a
 distinguishing entity, the `_desc-<label>` keyword-value SHOULD be used.
+
+This entity is only applicable to derivative data.
