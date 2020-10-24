@@ -568,9 +568,15 @@ JSON example:
 ## Fieldmap data
 
 Data acquired to correct for B0 inhomogeneities can come in different forms.
-The current version of this standard considers four different scenarios.
+The current version of this standard considers four different scenarios:
+
+ 1. [Phase-difference map](#case-1-phase-difference-map-and-at-least-one-magnitude-image)
+ 1. [Two phase maps](#case-2-two-phase-maps-and-two-magnitude-images)
+ 1. [Direct *field mapping*](#case-3-direct-field-mapping)
+ 1. ["*PEpolar*" fieldmaps](#case-4-multiple-phase-encoded-directions-pepolar)
+
 These four different types of field mapping strategies can be encoded
-using the following image types:
+as described [below](#types-of-fieldmaps), using the following image types:
 
 | **Name**         | `suffix`         | **Description**                                                                                                                                                                                                      |
 | ---------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
