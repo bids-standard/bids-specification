@@ -50,6 +50,11 @@ for a single recording.
 Both `some_file.fif` and `some_file-1.fif` would belong to a single recording.
 In BIDS, the [`split`](../99-appendices/09-entities.md#split) entity is RECOMMENDED to deal with split files.
 
+Another manufacturer specific detail pertains to the KIT/Yokogawa/Ricoh sytem,
+which saves the MEG sensor coil positions in two separate files (`.sqd`, `,mrk`).
+For these files, the `*_markers` suffix MUST be used.
+For example: `sub-01_task-nback_markers.sqd`
+
 Please refer to [Appendix VI](../99-appendices/06-meg-file-formats.md)
 for general information on how to deal with such manufacturer specifics and to see more examples.
 
