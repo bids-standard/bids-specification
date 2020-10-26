@@ -537,6 +537,7 @@ specified in the `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<in
 
 ### (P)CASL-specific metadata fields
 These fields can only be used when `LabelingType` is `CASL` or `PCASL`.
+
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
 |  LabelingDuration                 | REQUIRED            | [number][] or [array][] of [numbers][]         | Total duration of the labeling pulse train, in seconds, corresponding to the temporal width of the labeling bolus for `(P)CASL`. Specify either one number for total time-series or provide an array of numbers of different values for each volume in case of sequential acquisitions with varying labeling duration. In the case that an array of numbers is provided, its length should be equal to the number of volumes specified in  `sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv`. An `m0scan` acquired within the ASL time-series, gets a value of zero. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`. |
@@ -551,6 +552,7 @@ These fields can only be used when `LabelingType` is `CASL` or `PCASL`.
 
 ### PASL-specific metadata fields
 These fields can only be used when `LabelingType` is `PASL`.
+
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
 |  BolusCutOffFlag                    | REQUIRED   | [boolean][]    | Boolean indicating if a bolus cut-off technique is used. Corresponds to DICOM Tag 0018,925C `ASL Bolus Cut-off Flag`. |
