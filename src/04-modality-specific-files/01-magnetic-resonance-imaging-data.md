@@ -490,28 +490,28 @@ specified in the `*_asl.json` as well.
 
 `*_aslcontext.tsv` example 1:
 
-| **volume_type**                    |
-|----------------------------------  |
-| m0scan |
-| control |
-| label |
-| control |
-| label |
-| control |
-| label |
+| **volume_type** |
+|-----------------|
+| m0scan          |
+| control         |
+| label           |
+| control         |
+| label           |
+| control         |
+| label           |
 
 `*_aslcontext.tsv` example 2:
 
-| **volume_type**                    |
-|----------------------------------  |
-| deltam |
-| m0scan |
+| **volume_type** |
+|-----------------|
+| deltam          |
+| m0scan          |
 
 ### Metadata fields applicable to both (P)CASL and PASL 
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
-|  LabelingType                | REQUIRED            | [string][]    | `CASL` , `PCASL` , `PASL`.  |
-|  PostLabelingDelay                 | REQUIRED            | [number][] or [array][] of [numbers][]   | This is the time, in seconds, after the the end of the labeling (for `(P)CASL`) or middle of the labeling pulse (for `PASL`) until the middle of the excitation pulse applied to the imaging slab (for 3D acquisition) or first slice (for 2D acquisition).  Can be a number (for a single-PLD time series) or an array of numbers (for multi-PLD and Look-Locker). In the latter case, the array of numbers contains the PLD of each volume, namely each `control` and `label`, in the acquisition order. Any image within the time-series without a PLD, for example an `m0scan`, is indicated by a zero. Based on DICOM Tags 0018,9079 `Inversion Times` and 0018,0082 `InversionTime`. |
+|  LabelingType    | REQUIRED            | [string][]    | `CASL` , `PCASL` , `PASL`.  |
+|  PostLabelingDelay    | REQUIRED            | [number][] or [array][] of [numbers][]   | This is the time, in seconds, after the the end of the labeling (for `(P)CASL`) or middle of the labeling pulse (for `PASL`) until the middle of the excitation pulse applied to the imaging slab (for 3D acquisition) or first slice (for 2D acquisition).  Can be a number (for a single-PLD time series) or an array of numbers (for multi-PLD and Look-Locker). In the latter case, the array of numbers contains the PLD of each volume, namely each `control` and `label`, in the acquisition order. Any image within the time-series without a PLD, for example an `m0scan`, is indicated by a zero. Based on DICOM Tags 0018,9079 `Inversion Times` and 0018,0082 `InversionTime`. |
 |  BackgroundSuppression                | REQUIRED            | [boolean][]           | Boolean indicating if background suppression is used.                 |
 |  M0               | REQUIRED            | [number][] or [string][] or [boolean][]           | Describes the available M0 information or the location of an `m0scan` file, as either: *Numerical*: a single numerical whole-brain M0 value, for example obtained from CSF in another sequence; *SeparateFile*: `*_m0scan.nii[.gz]`; *Within ASL time-series*: *Boolean: `true`* referring to an `m0scan` within the time-series (as defined within the `*_aslcontext.tsv`); *`false`* referring to the use of the (average) `control` image for M0 calibration.    |
 | MagneticFieldStrength         | REQUIRED          | [number][]    | Nominal field strength of MR magnet in Tesla. Corresponds to DICOM Tag 0018,0087 `Magnetic Field Strength`|
@@ -531,14 +531,14 @@ specified in the `*_asl.json` as well.
 |  LabelingDistance    | RECOMMENDED  | [number][]  | Distance from the center of the imaging slab to the center of the labeling plane (`(P)CASL`) or the leading edge of the labeling slab (`PASL`), in millimeters. If the labeling is performed inferior to the isocenter, this number should be negative. Based on DICOM macro C.8.13.5.14. |
 |  LabelingLocationDescription     | RECOMMENDED   | [string][]    | Description of the location of the labeling plane (`(P)CASL`) or the labeling slab (`PASL`) that cannot be captured by fields ‘LabelingOrientation’ or ‘LabelingDistance’. May include a link to an anonymized screenshot of the planning of the labeling slab/plane with respect to the imaging slab or slices `*_labeling.jpg`. Based on DICOM macro C.8.13.5.14.  |
 | LookLocker  | OPTIONAL | [boolean][]  | Boolean indicating if a Look-Locker readout is used.| 
-|  LabelingEfficiency     | OPTIONAL   | [number][]  | Labeling efficiency, specified as a number between zero and one. |
+| LabelingEfficiency     | OPTIONAL   | [number][]  | Labeling efficiency, specified as a number between zero and one. |
 
 ### (P)CASL-specific metadata fields
 These fields can only be used when `LabelingType` is `CASL` or `PCASL`.
 
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                   |
 |-------------------------------|-----------------------|---------------|------------------------------------------------------------------------------------------|
-|  LabelingDuration                 | REQUIRED            | [number][] or [array][] of [numbers][]         | Total duration of the labeling pulse train, in seconds, corresponding to the temporal width of the labeling bolus for `(P)CASL`. Specify either one number for total time-series or provide an array of numbers of different values for each volume in case of sequential acquisitions with varying labeling duration. In the case that an array of numbers is provided, its length should be equal to the number of volumes specified in  `*_aslcontext.tsv`. An `m0scan` acquired within the ASL time-series, gets a value of zero. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`. |
+| LabelingDuration                 | REQUIRED            | [number][] or [array][] of [numbers][]         | Total duration of the labeling pulse train, in seconds, corresponding to the temporal width of the labeling bolus for `(P)CASL`. Specify either one number for total time-series or provide an array of numbers of different values for each volume in case of sequential acquisitions with varying labeling duration. In the case that an array of numbers is provided, its length should be equal to the number of volumes specified in  `*_aslcontext.tsv`. An `m0scan` acquired within the ASL time-series, gets a value of zero. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`. |
 |  PCASLType                 | RECOMMENDED             | [string][]         |  Type the gradient pulses used in the `control` condition: `balanced` or `unbalanced`.    |
 |  CASLType                  | RECOMMENDED             | [string][]         |  Describes if a separate coil is used for labeling: `single-coil` or `double-coil`. |
 |  LabelingPulseAverageGradient                   | RECOMMENDED             | [number][]         |  The average labeling gradient, in milliteslas per meter. |
