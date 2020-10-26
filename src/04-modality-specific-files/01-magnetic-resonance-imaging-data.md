@@ -484,7 +484,7 @@ blood and thus the ASL subtraction order.
 | label                  |The label image is acquired in the exact same way as the control image, except that the blood magnetization flowing into the imaging region has been inverted. |
 | m0scan                  | The M0 image is a calibration image, used to estimate the equilibruim magnetization of blood.        |
 | deltam                  | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.  |
-| cbf                  | The cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, quantified into `mL/100g/min` (See also <https://pubmed.ncbi.nlm.nih.gov/24715426/>).     |
+| cbf                  | The cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, quantified into `mL/100g/min` (See also [doi:10.1002/mrm.25197](https://doi.org/10.1002/mrm.25197)).     |
 
 If the raw `control` and `label` images are not available, their derivative `deltam` should be stored as raw data instead. If the 
 `deltam` is not available, `cbf` should be stored as raw data instead. When `cbf` is stored as raw data, its units need to be 
