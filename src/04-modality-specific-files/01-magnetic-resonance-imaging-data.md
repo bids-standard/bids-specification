@@ -135,10 +135,10 @@ Anatomical (structural) data acquired for that participant. Currently supported
 modalities include:
 
 | **Name**           | `modality_label` | **Description**                                                                                                                                   |
-| ------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+|--------------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
 | T1 weighted        | T1w              |                                                                                                                                                   |
 | T2 weighted        | T2w              |                                                                                                                                                   |
-| T1 Rho map | T1rho            | Quantitative T1rho brain imaging <br> <https://www.ncbi.nlm.nih.gov/pubmed/24474423> <br> <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/> |
+| T1 Rho map         | T1rho            | Quantitative T1rho brain imaging <br> <https://www.ncbi.nlm.nih.gov/pubmed/24474423> <br> <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/> |
 | T1 map             | T1map            | quantitative T1 map                                                                                                                               |
 | T2 map             | T2map            | quantitative T2 map                                                                                                                               |
 | T2\*               | T2star           | High resolution T2\* image                                                                                                                        |
