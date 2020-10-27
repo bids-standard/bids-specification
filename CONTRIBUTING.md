@@ -361,6 +361,12 @@ The decision-making rules are outlined in [DECISION-MAKING.md](DECISION-MAKING.m
 
 BIDS follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification, so we welcome and recognize all contributions from documentation to testing to code development. You can see a list of current contributors in the [BIDS specification](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md).
 
+If you have made any type of contributions to the BIDS specifications, 
+you can either make a change to the [contributors document](./src/99-appendices/01-contributors.md) 
+and commit as part of a pull request 
+or you can edit this [page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors) of the specification WIKI.
+The WIKI is then synced with the specification with evert new release of the specifications.
+
 ## Thank you!
 
 You're awesome.
