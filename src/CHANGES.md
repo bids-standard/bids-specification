@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] add remi as maintainer [#657](https://github.com/bids-standard/bids-specification/pull/657) ([Remi-Gau](https://github.com/Remi-Gau))
 -   ENH: Update genetics-BIDS citation [#646](https://github.com/bids-standard/bids-specification/pull/646) ([effigies](https://github.com/effigies))
 -   \[ENH] Add "multipart DWI" acquisitions and refactor DWI specifications [#624](https://github.com/bids-standard/bids-specification/pull/624) ([oesteban](https://github.com/oesteban))
 
