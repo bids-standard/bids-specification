@@ -76,7 +76,8 @@ PET data belongs in the /pet folder. PET imaging data SHOULD be stored in 4D
 (or 3D if only one volume was acquired) NifTI files with `_pet` suffix.
 Volumes should be stored in chronological order (the order they were acquired in).
 
-Multiple sessions (visits) are encoded by adding an extra layer of directories
+Following the BIDS Common Principles (https://bids-specification.readthedocs.io/en/stable/02-common-principles.html), here we summarize how different labels are organized for PET data. Please, check the Common Principles section for further details.
+**Sessions**: Multiple sessions (visits) are encoded by adding an extra layer of directories
 and file names in the form of `ses-<label>`.
 Session labels can consist only of alphanumeric characters [a-zA-Z0-9]
 and should be consistent across subjects.
