@@ -44,7 +44,7 @@ There is a specific field in the MRI BIDS (https://bids-specification.readthedoc
 which indicates this.
 The reason for this is that the MRI needs to be corrected for nonlinear gradients
 in order to fit the accompanying PET scans for co-registration [1, 2].
-In general, SI units must be used (we refer to https://bids-specification.readthedocs.io/en/stable/99-appendices/05-units.html) and we recommend to use the CMIXF style formatting for SI units, for example, "kBq/mL"
+**Units**: In general, SI units must be used (we refer to https://bids-specification.readthedocs.io/en/stable/99-appendices/05-units.html) and we recommend to use the CMIXF style formatting for SI units, for example, "kBq/mL"
 rather than "kilobecquerel per ml".
 An overview of a common PET experiment (with blood data) can be seen in Figure 1,
 defined on a single time scale relative to a predefined “time zero”
