@@ -108,7 +108,7 @@ during the acquisition within the same session.
 Therefore, it is possible to specify `task-<label>` in accordance with the fMRI data.
 For more information please see https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#task-including-resting-state-imaging-data.
 
-In case of studies with multiple acquisitions per subject using different tracers,
+**Acquisition:** In case of studies with multiple acquisitions per subject using different tracers,
 the `acq-<label>` must be used to distinguish between different tracers.
 Please keep in mind that the label used is arbitrary and each file requires
 a separate JSON sidecar with details of the tracer used (see below).
