@@ -114,7 +114,7 @@ Please keep in mind that the label used is arbitrary and each file requires
 a separate JSON sidecar with details of the tracer used (see below).
 Examples are `acq-18FFDG` for fludeoxyglucose, `acq-11CPIB` for Pittsburgh compound B, etc.
 
-The reconstruction key (`rec-<label>`) has four reserved values:
+**Reconstruction:** The reconstruction key (`rec-<label>`) has four reserved values:
 `acdyn`, for reconstructions with attenuation correction of dynamic data;
 `acstat`, for reconstructions with attenuation correction of static data;
 `nacdyn`, for reconstructions without attenuation correction of dynamic data;
