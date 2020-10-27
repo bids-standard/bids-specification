@@ -607,7 +607,7 @@ sub-<label>/[ses-<label>/]
         sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.nii[.gz]
         sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.json
         sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude1.nii[.gz]
-        [sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude2.nii[.gz]]
+        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude2.nii[.gz]  # OPTIONAL
 ```
 
 where `_magnitude1` image corresponds to the shorter echo time and the OPTIONAL
