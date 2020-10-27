@@ -116,7 +116,7 @@ Examples are `acq-18FFDG` for fludeoxyglucose, `acq-11CPIB` for Pittsburgh compo
 
 **Reconstruction:** The reconstruction key (`rec-<label>`) has four reserved values:
 - `acdyn`, for reconstructions with attenuation correction of dynamic data;
-`acstat`, for reconstructions with attenuation correction of static data;
+- `acstat`, for reconstructions with attenuation correction of static data;
 `nacdyn`, for reconstructions without attenuation correction of dynamic data;
 and `nacstat`, for reconstructions without attenuation correction of static data.
 Further details regarding reconstruction are in the _pet.json file.
