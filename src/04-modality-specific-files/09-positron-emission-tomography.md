@@ -392,7 +392,7 @@ and the values below should be added to the `*recording-blood_continous.json`.
 
 | Field name  | Definition                                                         |
 |:------------|:-------------------------------------------------------------------|
-| ColumnName  | REQUIRED. Name of the column (for example, "plasma_radioactivity". |
+| ColumnName  | REQUIRED. Name of the column (for example, "plasma_radioactivity"). |
 | Description | REQUIRED. Radioactivity in plasma.                                 |
 | Units       | REQUIRED. Unit of plasma radioactivity (for example, "kBq/mL")     |
 
