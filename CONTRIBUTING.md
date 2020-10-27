@@ -224,6 +224,27 @@ GitHub has a [nice introduction](https://help.github.com/articles/github-flow/) 
 ## Example pull request
 <img align="center" src="https://i.imgur.com/s8yELfK.png" alt="Example-Contribution" width="800"/>
 
+## Accepting suggestion from a review
+
+When others are making [suggestions to your pull request](#suggesting-text), you have the possibility to accept directly the changes suggested during the review through the github interface. This can often be faster and more convenient than make the changes locally and then pushing those changes to update your pull request. Moreover it gives the opportunity to give credit to the reviewers for their contribution.
+
+To do this, you must click on the `Files changed` tab at the top of the page of a pull request.
+
+![BIDS_pr_files_changed](commenting_images/BIDS_pr_files_changed.png "BIDS_pr_files_changed")
+
+From there you can browse the different files changed and the 'diff' for each of them (what line was changed and what the change consist of). You can also see comments and directly change suggestions made by reviewers. 
+
+You can add each suggestion one by one or group them together in a batch.
+
+![BIDS_pr_accept_comment](commenting_images/BIDS_pr_accept_comment.png "BIDS_pr_accept_comment")
+
+If you decide to batch the suggestions to add several of them at once, you must scroll back to the top of the 'Files changed' page and the `commit suggestions` button will let you add all those suggestions as a single commit.
+
+![BIDS_pr_commit_batch](commenting_images/BIDS_pr_commit_batch.png "BIDS_pr_commit_batch")
+
+Once those suggestions are committed the commit information should mention the reviewer as a co-author.
+
+![BIDS_pr_reviewer_credit](commenting_images/BIDS_pr_reviewer_credit.png "BIDS_pr_reviewer_credit")
 
 ## Updating the schema
 
