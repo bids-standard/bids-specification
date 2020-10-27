@@ -589,7 +589,7 @@ as described [below](#types-of-fieldmaps), using the following image types:
 Two OPTIONAL key/value pairs following more general rules of the specification
 are allowed across all the four scenarios:
 
-  - The OPTIONAL [`run-<index>`](../99-appendices/09-entities.md#run) key/value pair correspond to a one-base index
+  - The OPTIONAL [`run-<index>`](../99-appendices/09-entities.md#run) key/value pair corresponds to a one-based index
     to distinguish multiple fieldmaps with the same parameters.
 
   - The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair corresponds to a custom label
@@ -696,7 +696,7 @@ For example:
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
 EPI scans with different phase encoding directions to estimate the underlying
 inhomogeneity/deformation map.
-These `_epi.nii[.gz]` files can be a 3D or 4D --
+These `_epi.nii[.gz]` files can be 3D or 4D --
 in the latter case, all timepoints share the same scanning parameters.
 Examples of software tools using these kinds of images are FSL TOPUP,
 AFNI `3dqwarp`, and SPM.
@@ -710,11 +710,11 @@ sub-<label>/[ses-<label>/]
         sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_epi.json
 ```
 
-The [`dir-<label>`](../99-appendices/09-entities.md#dir) key/value pair is
+The [`dir-<label>`](../99-appendices/09-entities.md#dir) key/value pair used to
 distinguish between different phase-encoding directions is REQUIRED for these
 files, and SHOULD NOT be used to replace the required `PhaseEncodingDirection`
 (nor any other acquisition parameter, as prescribed by the
-[common principles](../02-common-principles.md#file-name-structure).)
+[common principles](../02-common-principles.md#file-name-structure)).
 
 Required fields:
 

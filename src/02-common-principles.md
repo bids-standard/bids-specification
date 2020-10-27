@@ -149,10 +149,10 @@ data from subject `01`.
 The suffix `eeg` and the extension `.edf` depend on the imaging modality and
 the data format and indicate further details of the file's contents.
 
-Key-value pairs SHOULD NOT be used to encode scanning parameters of the
-corresponding data.
-For instance, in echo-planar imaging MRI, the [`dir-<label>`](./99-appendices/09-entities.md#dir)
-MAY NOT be used as a replacement for the `PhaseEncodingDirection` metadata.
+Certain key-value pairs are used to distinguish files with different scanning parameters.
+In these cases, the key-value pair SHOULD NOT be used as a replacement for a corresponding metadata field.
+The associated field MUST still be present in the file's metadata.
+For instance, in echo-planar imaging MRI, the [`dir-<label>`](./99-appendices/09-entities.md#dir) entity MAY be used to distinguish files with different phase-encoding directions, but the file's metadata sidecars MUST still include the `PhaseEncodingDirection` field.
 
 A summary of all entities in BIDS and the order in which they MUST be
 specified is available in the [entity table](./99-appendices/04-entity-table.md)
