@@ -101,7 +101,7 @@ visits (for example, FDG PET on one day followed by amyloid PET a couple days af
 those can be grouped in one session.
 Please see the difference with the `run-<label>` below.
 
-With respect to the `task-<label>`, data is arranged in a similar way as task-based
+**Task:** With respect to the `task-<label>`, data is arranged in a similar way as task-based
 and resting state BOLD fMRI data.
 In case of studies using combined PET/fMRI, subject-specific tasks may be carried out
 during the acquisition within the same session.
