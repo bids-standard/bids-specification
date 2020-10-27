@@ -753,7 +753,7 @@ For example:
 ```JSON
 {
    "IntendedFor": [
-   	    "ses-pre/func/sub-01_ses-pre_task-motor_run-1_bold.nii.gz",
+        "ses-pre/func/sub-01_ses-pre_task-motor_run-1_bold.nii.gz",
         "ses-pre/func/sub-01_ses-pre_task-motor_run-2_bold.nii.gz"
     ]
 }
