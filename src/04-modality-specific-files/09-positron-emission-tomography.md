@@ -325,7 +325,8 @@ whole blood (2.2.5),
 plasma (2.2.3),
 parent fraction and
 metabolite fractions (2.2.4).
-The actual blood radioactivity data will be stored in [tabular `*.tsv` files](../02-common-principles.md#tabular-files)
+
+**`*.tsv`:** The actual blood radioactivity data will be stored in [tabular `*.tsv` files](../02-common-principles.md#tabular-files)
 with the `blood_continuous` and `blood_discrete` suffix.
 The first column in the `*.tsv` file should be a time column (see 2.2.1),
 defined in relation to time zero defined by the `_pet.json` file.
