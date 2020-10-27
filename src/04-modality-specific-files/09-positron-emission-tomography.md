@@ -375,7 +375,7 @@ and the values below should be added to the `*recording-blood_continous.json`.
 
 | Field name  | Definition                                                                             |
 |:------------|:---------------------------------------------------------------------------------------|
-| ColumnName  | REQUIRED. Name of the column (for example, "time".                                     |
+| ColumnName  | REQUIRED. Name of the column (for example, "time").                                     |
 | Description | REQUIRED. Time in relation to `TimeZero` defined by the `*_pet.json`. (for example, 5) |
 | Units       | REQUIRED. Unit of time steps (for example, "s")                                        |
 
