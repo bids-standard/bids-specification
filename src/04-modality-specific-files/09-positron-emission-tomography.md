@@ -285,7 +285,7 @@ All reconstruction specific parameters that are not specified, but one wants to 
 
 This section includes all data needed to perform blood analysis for PET data.
 The section may be omitted completely if blood measurements of radioactivity were not made.
-If blood measurements were made a `*_blood.json` file is expected that contains
+**`*_blood.json`:** If blood measurements were made a `*_blood.json` file is expected that contains
 information about which blood data is available as well as some blood measurement details.
 Furthermore, depending on the information given in the `*_blood.json` file
 we expect `.tsv` files with corresponding .json files that contain the values
