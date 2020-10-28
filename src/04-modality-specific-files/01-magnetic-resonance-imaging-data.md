@@ -126,7 +126,7 @@ Useful for multimodal co-registration with MEG, (S)EEG, TMS, and so on.
 Echo-Planar Imaging (EPI) schemes typically used in the acquisition of
 diffusion and functional MRI may also be *intended for* estimating the
 *B<sub>0</sub>* field nonuniformity inside the scanner (in other words,
-*mapping the field*,) without the acquisition of additional MRI schemes
+*mapping the field*) without the acquisition of additional MRI schemes
 such as gradient-recalled echo (GRE) sequences that are stored under the
 `fmap/` folder of the BIDS structure.
 
@@ -134,10 +134,10 @@ The modality labels `dwi` (under `dwi/`), `bold`, and `sbref` (under `func/`)
 and any modality under `fmap/` are allowed to encode the MR protocol intent for
 fieldmap estimation using the following metadata:
 
-| **Key name**                | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| --------------------------- | --------------------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| B0FieldIdentifier           | OPTIONAL              | [string][]                            | The presence of this key states that this particular 3D or 4D image MAY be used for fieldmap estimation purposes. The `B0FieldIdentifier` MUST be a unique string within one participant's tree, shared only by the images meant to be used as inputs for the estimation of a particular instance of the *B<sub>0</sub> field* estimation.                                                                                                                           |
-| B0FieldSource               | OPTIONAL              | [string][] or [array][] of [string][] | At least one existing `B0FieldIdentifier` defined by other images in the participant's tree. This field states the *B<sub>0</sub> field* estimation designated by the `B0FieldIdentifier` that may be used to correct the dataset for distortions caused by B<sub>0</sub> inhomogeneities. `B0FieldSource` and `B0FieldIdentifier` are mutually exclusive. When a list of identifiers is given, the estimated fieldmap may be averaged across the different sources. |
+| **Key name**                | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| --------------------------- | --------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| B0FieldIdentifier           | OPTIONAL              | [string][]                            | The presence of this key states that this particular 3D or 4D image MAY be used for fieldmap estimation purposes. The `B0FieldIdentifier` MUST be a unique string within one participant's tree, shared only by the images meant to be used as inputs for the estimation of a particular instance of the *B<sub>0</sub> field* estimation.                                                                                                                          |
+| B0FieldSource               | OPTIONAL              | [string][] or [array][] of [string][] | At least one existing `B0FieldIdentifier` defined by other images in the participant's tree. This field states the *B<sub>0</sub> field* estimation designated by the `B0FieldIdentifier` that may be used to correct the dataset for distortions caused by B<sub>0</sub> inhomogeneities. `B0FieldSource` and `B0FieldIdentifier` are mutually exclusive.                                                                                                          |
 
 ### Institution information
 
@@ -980,9 +980,10 @@ nonuniformity.
 The general purpose `B0FieldIdentifier` MRI metadata is RECOMMENDED for the
 prescription of the B<sub>0</sub> field estimation intent of the original acquisition
 protocol.
-This encoding fully overrides the `IntendedFor` approach (see below).
-However, the `IntendedFor` encoding is permitted and RECOMMENDED in combination
-with the `B0FieldIdentifier` to maintain compatibility with outdated software.
+`B0FieldIdentifier` and `B0FieldSource` duplicate the capabilities of
+the original `IntendedFor` approach while permitting more complex use cases.
+It is RECOMMENDED to use both approaches to maintain compatibility with
+tools that support older datasets.
 
 #### Using `IntendedFor` metadata
 
@@ -991,7 +992,7 @@ filling the `IntendedFor` field in the corresponding JSON file.
 
 | **Key name** | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                                                                                 |
 | ------------ | --------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IntendedFor  | RECOMMENDED           | [string][] or [array][] of [string][] | Contains one or more filenames with paths relative to the participant subfolder. The path needs to use forward slashes instead of backward slashes. This field is OPTIONAL, and in case the fieldmaps do not correspond to any particular scans, it does not have to be filled. |
+| IntendedFor  | OPTIONAL              | [string][] or [array][] of [string][] | Contains one or more filenames with paths relative to the participant subfolder. The path needs to use forward slashes instead of backward slashes. This field is OPTIONAL, and in case the fieldmaps do not correspond to any particular scans, it does not have to be filled. |
 
 For example:
 
