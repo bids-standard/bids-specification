@@ -174,7 +174,7 @@ parameter changes they declare SHOULD NOT invalidate the definition of the accom
 suffix. For example, the use of the `echo` entity along with the `T1w` suffix casts doubt on
 the validity of the identified contrast weighting.  
 Provided the conditions above are satisfied, any suffix (e.g. `bold`) can identify a parametrically linked file collection, although certain suffixes are exclusive for this purpose (e.g., `MP2RAGE`).
-All the use cases concerning this convention are RECOMMENDED to be included in the [file collections]() appendix for clarity. This convention is mainly intended for but not
+All the use cases concerning this convention are RECOMMENDED to be included in the [file collections](./99-appendices/10-file-collections.md) appendix for clarity. This convention is mainly intended for but not
 limited to MRI modalities.
 
 ## Source vs. raw vs. derived data
