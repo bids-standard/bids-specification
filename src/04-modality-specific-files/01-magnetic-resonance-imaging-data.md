@@ -754,9 +754,9 @@ This linking between fieldmaps and their targetted data MAY be encoded with the
 Fieldmap data MAY be linked to the specific scan(s) it was acquired for by
 filling the `IntendedFor` field in the corresponding JSON file.
 
-| **Key name** | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                                                                                |
-| ------------ | --------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| IntendedFor  | RECOMMENDED           | [string][] or [array][] of [string][] | Contains one or more filenames with paths relative to the participant subfolder. The path needs to use forward slashes instead of backward slashes. This field is OPTIONAL, and in case the fieldmaps do not correspond to any particular scans, it MAY NOT be filled.         |
+| **Key name** | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                                                                                 |
+| ------------ | --------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| IntendedFor  | RECOMMENDED           | [string][] or [array][] of [string][] | Contains one or more filenames with paths relative to the participant subfolder. The path needs to use forward slashes instead of backward slashes. This field is OPTIONAL, and in case the fieldmaps do not correspond to any particular scans, it does not have to be filled. |
 
 For example:
 
