@@ -455,6 +455,7 @@ are occasionally formatted using space characters instead of tabs to improve
 human readability.
 Directly copying and then pasting these examples from the specification
 for use in new BIDS datasets can lead to errors and is discouraged.
+
 Tabular files MAY be optionally accompanied by a simple data dictionary
 in the form of a JSON [object](https://www.json.org/json-en.html)
 within a JSON file.
