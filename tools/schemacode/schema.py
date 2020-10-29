@@ -135,19 +135,19 @@ def build_filename_format(schema, **kwargs):
 
     paragraph = ""
     # Parent folders
-    paragraph += "{}-{}/[{}-{}/]\n".format(
-        "sub",
-        "<" + schema["entities"]["subject"]["format"] + ">",
-        "ses",
-        "<" + schema["entities"]["session"]["format"] + ">",
+    paragraph += "{}-<{}>/\n\t[{}-<{}>/]\n".format(
+        schema["entities"]["subject"]["entity"],
+        schema["entities"]["subject"]["format"],
+        schema["entities"]["session"]["entity"],
+        schema["entities"]["session"]["format"],
     )
 
     for datatype in schema["datatypes"].keys():
-        paragraph += "\t{}/\n".format(datatype)
+        paragraph += "\t\t{}/\n".format(datatype)
 
         # Unique filename patterns
         for group in schema["datatypes"][datatype]:
-            string = "\t\t"
+            string = "\t\t\t"
             for ent in entities:
                 entity_shorthand = schema["entities"][ent]["entity"]
                 ent_format = "{}-<{}>".format(entity_shorthand, schema["entities"][ent]["format"])
