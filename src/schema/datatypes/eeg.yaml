@@ -37,7 +37,7 @@
 - suffixes:
     - electrodes
   extensions:
-    - .json
+    # No json, since electrodes.tsv uses coordsystem.json for metadata
     - .tsv
   entities:
     subject: required
