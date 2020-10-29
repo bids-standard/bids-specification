@@ -6,6 +6,6 @@
     ["lint-emphasis-marker", "consistent"],
     ["lint-maximum-line-length", false],
     ["lint-maximum-heading-length", false],
-    ["no-shortcut-reference-link", false]
+    ["lint-no-shortcut-reference-link", false]
   ]
 }
