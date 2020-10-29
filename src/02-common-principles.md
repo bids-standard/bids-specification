@@ -450,10 +450,11 @@ onset	duration	response_time	correct	stop_trial	go_trial
 200	200	0	n/a	n/a	n/a
 ```
 
-**Note**: TSV examples in the document can be re-formatted using
-spaces instead of tabs for human readability, and have tabs replaced
-with spaces by used for rendering HTML or PDF.
-
+**Note**: The TSV examples in this document (like the one above this note)
+are occasionally formatted using space characters instead of tabs to improve
+human readability.
+Directly copying and then pasting these examples from the specification
+for use in new BIDS datasets can lead to errors and is discouraged.
 Tabular files MAY be optionally accompanied by a simple data dictionary
 in the form of a JSON [object](https://www.json.org/json-en.html)
 within a JSON file.
