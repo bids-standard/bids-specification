@@ -20,7 +20,6 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 {{ make_entity_table(datatypes=["func", "anat", "fmap"], auxdatatypes=[]) }}
 
-
 | Entity                                                                                         | Subject                             | Session                             | Task                                  | Acquisition                         | Contrast Enhancing Agent          | Reconstruction                      | Phase-Encoding Direction            | Run                                 | Corresponding Modality              | Echo                                  | Recording                                       |
 |------------------------------------------------------------------------------------------------|-------------------------------------|-------------------------------------|---------------------------------------|-------------------------------------|-----------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|---------------------------------------|-------------------------------------------------|
 | Format                                                                                         | [`sub-<label>`](09-entities.md#sub) | [`ses-<label>`](09-entities.md#ses) | [`task-<label>`](09-entities.md#task) | [`acq-<label>`](09-entities.md#acq) | [`ce-<label>`](09-entities.md#ce) | [`rec-<label>`](09-entities.md#rec) | [`dir-<label>`](09-entities.md#dir) | [`run-<index>`](09-entities.md#run) | [`mod-<label>`](09-entities.md#mod) | [`echo-<index>`](09-entities.md#echo) | [`recording-<label>`](09-entities.md#recording) |
@@ -35,7 +34,6 @@ while entity definitions are in [Appendix IX](09-entities.md).
 ## Biopotential Amplification (EEG and iEEG)
 
 {{ make_entity_table(datatypes=["ieeg", "eeg"]) }}
-
 
 | Entity                     | Subject                             | Session                             | Task                                  | Acquisition                         | Run                                 | Processed (on device)                 | Space                                   | Split                                   |
 |----------------------------|-------------------------------------|-------------------------------------|---------------------------------------|-------------------------------------|-------------------------------------|---------------------------------------|-----------------------------------------|-----------------------------------------|
