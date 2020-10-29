@@ -116,7 +116,7 @@ For example:
 -   Clara Moreau, Martineau Jean-Louis, Ross Blair, Christopher Markiewicz, Jessica Turner,
     Vince Calhoun, Thomas Nichols, Cyril Pernet (2020).
     **The genetics-BIDS extension: Easing the search for genetic data associated with human brain imaging**.
-    GigaScience (in press)
+    GigaScience, 9 (10). [doi:10.1093/gigascience/giaa104](https://doi.org/10.1093/gigascience/giaa104)
 
 ### Research Resource Identifier (RRID)
 

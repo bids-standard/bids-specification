@@ -57,7 +57,7 @@ that a given scan was collected with the intended coil elements selected
 | **Key name**                   | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 |--------------------------------|-----------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | NumberShots                    | RECOMMENDED           | [number][]    | The number of RF excitations need to reconstruct a slice or volume. Please mind that this is not the same as Echo Train Length which denotes the number of lines of k-space collected after an excitation.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ParallelReductionFactorInPlane | RECOMMENDED           | [number][]    | The parallel imaging (e.g, GRAPPA) factor. Use the denominator of the fraction of k-space encoded for each slice. For example, 2 means half of k-space is encoded. Corresponds to DICOM Tag 0018, 9069 `Parallel Reduction Factor In-plane`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ParallelReductionFactorInPlane | RECOMMENDED           | [number][]    | The parallel imaging (for instance, GRAPPA) factor. Use the denominator of the fraction of k-space encoded for each slice. For example, 2 means half of k-space is encoded. Corresponds to DICOM Tag 0018, 9069 `Parallel Reduction Factor In-plane`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | ParallelAcquisitionTechnique   | RECOMMENDED           | [string][]    | The type of parallel imaging used (for example GRAPPA, SENSE). Corresponds to DICOM Tag 0018, 9078 `Parallel Acquisition Technique`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | PartialFourier                 | RECOMMENDED           | [number][]    | The fraction of partial Fourier information collected. Corresponds to DICOM Tag 0018, 9081 `Partial Fourier`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | PartialFourierDirection        | RECOMMENDED           | [string][]    | The direction where only partial Fourier information was collected. Corresponds to DICOM Tag 0018, 9036 `Partial Fourier Direction`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -376,6 +376,14 @@ participant, task and run takes precedence.
 
 ## Diffusion imaging data
 
+Diffusion-weighted imaging data acquired for a participant.
+Currently supported image types include:
+
+| **Name**              | `suffix` | **Description**                                                   |
+|---------------------- | -------- | ----------------------------------------------------------------- |
+| DWI                   | dwi      | Diffusion-weighted imaging contrast (specialized T2\* weighting). |
+| Single-Band Reference | sbref    | Single-band reference for one or more multi-band `dwi` images.    |
+
 {{ make_filename_template(datatypes=["dwi"]) }}
 
 ```Text
@@ -389,31 +397,66 @@ sub-<label>/[ses-<label>/]
        sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_sbref.json
 ```
 
-Diffusion-weighted imaging data acquired for that participant. The OPTIONAL
-[`acq-<label>`](../99-appendices/09-entities.md#acq)
-key/value pair corresponds to a custom label the user may use to
-distinguish different set of parameters. For example this should be used when a
-study includes two diffusion images - one single band and one multiband. In such
-case two files could have the following names:
-`sub-01_acq-singleband_dwi.nii.gz` and `sub-01_acq-multiband_dwi.nii.gz`,
-however the user is free to choose any other label than `singleband` and
-`multiband` as long as they are consistent across subjects and sessions. For
-multiband acquisitions, one can also save the single-band reference image as
-type `sbref` (for example, `dwi/sub-control01_sbref.nii[.gz]`) The bvec and bval files
-are in the [FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
-The bvec files contain 3 rows with n space-delimited floating-point numbers
-(corresponding to the n volumes in the relevant NIfTI file). The first row
-contains the x elements, the second row contains the y elements and third row
-contains the z elements of a unit vector in the direction of the applied
-diffusion gradient, where the i-th elements in each row correspond together to
-the i-th volume with `[0,0,0]` for non-diffusion-weighted volumes. Inherent to
-the FSL format for bvec specification is the fact that the coordinate system of
-the bvecs is with respect to the participant, defined by the axes of the
-corresponding `dwi.nii` file, and not the magnet's coordinate system.
-Thus, any rotations applied to `dwi.nii` also need to be applied to the
-corresponding bvec file.
+If more than one run of the same acquisition and direction has been acquired, the
+[`run-<index>`](../99-appendices/09-entities.md#run) key/value pair MUST be used:
+`_run-1`, `_run-2`, `_run-3` (and so forth.)
+When there is only one scan of a given acquisition and direction, the run key MAY be
+omitted.
+The [`run-<index>`](../99-appendices/09-entities.md#run) key/value pair is RECOMMENDED
+to encode the splits of multipart DWI scans (see [below](#multipart-split-dwi-schemes).)
 
-bvec example:
+The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
+key/value pair corresponds to a custom label the user may use to
+distinguish different sets of parameters.
+
+The OPTIONAL [`dir-<label>`](../99-appendices/09-entities.md#dir)
+key/value pair corresponds to a custom label the user may use to
+distinguish different sets of phase-encoding directions.
+
+**Combining multi- and single-band acquisitions**.
+The single-band reference image MAY be stored with suffix `sbref` (for example,
+`dwi/sub-control01_sbref.nii[.gz]`) as long as the image has no corresponding
+[gradient information (`[*_]dwi.bval` and `[*_]dwi.bvec` sidecar files)](#required-gradient-orientation-information)
+to be stored.
+
+Otherwise, if some gradient information is associated to the single-band diffusion
+image and a multi-band diffusion image also exists, the `acq-<label>` key/value pair
+MUST be used to distinguish both images.
+In such a case, two files could have the following names:
+`sub-01_acq-singleband_dwi.nii.gz` and `sub-01_acq-multiband_dwi.nii.gz`.
+The user is free to choose any other label than `singleband` and
+`multiband`, as long as they are consistent across subjects and sessions.
+
+### REQUIRED gradient orientation information
+
+The REQUIRED gradient orientation information corresponding to a DWI acquisition
+MUST be stored using `[*_]dwi.bval` and `[*_]dwi.bvec` pairs of files.
+The `[*_]dwi.bval` and `[*_]dwi.bvec` files MAY be saved on any level of the directory structure
+and thus define those values for all sessions and/or subjects in one place (see
+[the inheritance principle](../02-common-principles.md#the-inheritance-principle)).
+
+As an exception to the [common principles](../02-common-principles.md#definitions)
+that parameters are constant across runs, the gradient table information (stored
+within the `[*_]dwi.bval` and `[*_]dwi.bvec` files) MAY change across DWI runs.
+
+**Gradient orientation file formats**.
+The `[*_]dwi.bval` and `[*_]dwi.bvec` files MUST follow the
+[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
+The `[*_]dwi.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
+(corresponding to the *N* volumes in the corresponding NIfTI file.)
+The first row contains the *x* elements, the second row contains the *y* elements and
+the third row contains the *z* elements of a unit vector in the direction of the applied
+diffusion gradient, where the *i*-th elements in each row correspond together to
+the *i*-th volume, with `[0,0,0]` for *non-diffusion-weighted* (also called *b*=0 or *low-b*)
+volumes.
+Following the FSL format for the `[*_]dwi.bvec` specification, the coordinate system of
+the *b* vectors MUST be defined with respect to the coordinate system defined by
+the header of the corresponding `_dwi` NIfTI file and not the scanner's device
+coordinate system (see [Coordinate systems](../99-appendices/08-coordinate-systems.md)).
+The most relevant implication for this choice is that any rotations applied to the DWI data
+also need to be applied to the *b* vectors in the `[*_]dwi.bvec` file.
+
+Example of `[*_]dwi.bvec` file, with *N*=6, with two *b*=0 volumes in the beginning:
 
 ```Text
 0 0 0.021828 -0.015425 -0.70918 -0.2465
@@ -421,20 +464,95 @@ bvec example:
 0 0 -0.59636 0.97516 -0.70503 -0.96351
 ```
 
-The bval file contains the b-values (in s/mm<sup>2</sup>) corresponding to the
-volumes in the relevant NIfTI file), with 0 designating non-diffusion-weighted
-volumes, space-delimited.
+The `[*_]dwi.bval` file contains the *b*-values (in s/mm<sup>2</sup>) corresponding to the
+volumes in the relevant NIfTI file), with 0 designating *b*=0 volumes, space-delimited.
 
-bval example:
+Example of `[*_]dwi.bval` file, corresponding to the previous `[*_]dwi.bvec` example:
 
 ```Text
 0 0 2000 2000 1000 1000
 ```
 
-`.bval` and `.bvec` files can be saved on any level of the directory structure
-and thus define those values for all sessions and/or subjects in one place (see
-Inheritance principle).
+### Multipart (split) DWI schemes
 
+Some MR schemes cannot be acquired directly by some scanner devices,
+requiring to generate several DWI runs that were originally meant to belong
+in a single one.
+For instance, some GE scanners cannot collect more than &asymp;160 volumes
+in a single run under fast-changing gradients, so acquiring *HCP-style*
+diffusion images will require splitting the DWI scheme in several runs.
+Because researchers will generally optimize the data splits, these will likely
+not be able to be directly concatenated.
+BIDS permits defining arbitrary groupings of these multipart scans with the
+following metadata:
+
+| **Key name**    | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                      |
+| --------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| MultipartID     | REQUIRED              | [string][]    | A unique (per participant) label tagging DWI runs that are part of a multipart scan.                                                                                                                                 |
+
+JSON example:
+
+```JSON
+{
+  "MultipartID": "dwi_1"
+}
+```
+
+For instance, if there are two phase-encoding directions (`AP`, `PA`), and
+two runs each, and the intent of the researcher is that all of them are
+part of a unique multipart scan, then they will tag all four runs with the
+same `MultipartID` (shown at the right-hand side of the file listing):
+
+```Text
+sub-<label>/[ses-<label>/]         # MultipartID
+  dwi/
+    sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1
+    sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_1
+    sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_1
+    sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_1
+```
+
+If, conversely, the researcher wanted to store two multipart scans, one possibility
+is to combine matching phase-encoding directions:
+
+```Text
+sub-<label>/[ses-<label>/]         # MultipartID
+  dwi/
+    sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1
+    sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_1
+    sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_2
+    sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_2
+```
+
+Alternatively, the researcher's intent could be combining opposed phase-encoding
+runs instead:
+
+```Text
+sub-<label>/[ses-<label>/]         # MultipartID
+  dwi/
+    sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1
+    sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_2
+    sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_1
+    sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_2
+```
+
+The `MultipartID` metadata MAY be used with the
+[`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair, for example:
+
+```Text
+sub-<label>/[ses-<label>/]             # MultipartID
+  dwi/
+    sub-1_acq-shell1_run-1_dwi.nii.gz  # dwi_1
+    sub-1_acq-shell1_run-2_dwi.nii.gz  # dwi_2
+    sub-1_acq-shell2_run-1_dwi.nii.gz  # dwi_1
+    sub-1_acq-shell2_run-2_dwi.nii.gz  # dwi_2
+```
+
+### Other RECOMMENDED metadata
+
+The `PhaseEncodingDirection` and `TotalReadoutTime` metadata
+fields are RECOMMENDED to enable the correction of geometrical distortions
+with [fieldmap information](#fieldmap-data).
 See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms that can be included in the corresponding JSON file.
 
