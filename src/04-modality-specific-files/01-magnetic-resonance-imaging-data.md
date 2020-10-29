@@ -122,8 +122,6 @@ whenever possible. See also
 
 ## Anatomy imaging data
 
-Template:
-
 {{ make_filename_template(datatypes=["anat"]) }}
 
 ```Text
@@ -210,8 +208,6 @@ Currently supported image contrasts include:
 | BOLD      | bold             | Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)                                   |
 | CBV       | cbv              | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images) |
 | Phase     | phase            | Phase information associated with magnitude information stored in BOLD contrast                      |
-
-Template:
 
 {{ make_filename_template(datatypes=["func"]) }}
 
@@ -380,8 +376,6 @@ participant, task and run takes precedence.
 
 ## Diffusion imaging data
 
-Template:
-
 {{ make_filename_template(datatypes=["dwi"]) }}
 
 ```Text
@@ -491,8 +485,6 @@ the user may use to distinguish different set of parameters.
 
 {{ make_filename_template(datatypes=["fmap"], suffixes=["phasediff", "magnitude1", "magnitude2"]) }}
 
-Template:
-
 ```Text
 sub-<label>/[ses-<label>/]
     fmap/
@@ -526,8 +518,6 @@ the shorter echo time and `EchoTime2` to the longer echo time. Similarly
 
 ### Case 2: Two phase images and two magnitude images
 
-Template:
-
 {{ make_filename_template(datatypes=["fmap"], suffixes=["phase1", "phase2", "magnitude1", "magnitude2"]) }}
 
 ```Text
@@ -553,8 +543,6 @@ corresponding `EchoTime` values. For example:
 ```
 
 ### Case 3: A real fieldmap image
-
-Template:
 
 {{ make_filename_template(datatypes=["fmap"], suffixes=["fieldmap", "magnitude"]) }}
 
@@ -582,8 +570,6 @@ For example:
 ```
 
 ### Case 4: Multiple phase encoded directions ("pepolar")
-
-Template:
 
 {{ make_filename_template(datatypes=["fmap"], suffixes=["epi"]) }}
 

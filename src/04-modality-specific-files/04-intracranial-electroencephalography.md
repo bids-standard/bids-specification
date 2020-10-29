@@ -8,8 +8,6 @@ context of the academic literature.
 
 ## iEEG recording data
 
-Template:
-
 {{ make_filename_template(datatypes=["ieeg"], suffixes=["ieeg", "events"]) }}
 
 ```Text
@@ -205,8 +203,6 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 ## Channels description (`*_channels.tsv`)
 
-Template:
-
 {{ make_filename_template(datatypes=["ieeg"], suffixes=["channels"]) }}
 
 ```Text
@@ -298,8 +294,6 @@ Example of free-form text for field `description`:
 
 ## Electrode description (`*_electrodes.tsv`)
 
-Template:
-
 {{ make_filename_template(datatypes=["ieeg"], suffixes=["electrodes"]) }}
 
 ```Text
@@ -378,8 +372,6 @@ H01   27  -42  -21  5      AdTech
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
-Template:
-
 {{ make_filename_template(datatypes=["ieeg"], suffixes=["coordsystem"]) }}
 
 ```Text
@@ -448,8 +440,6 @@ Example:
 ```
 
 ## Photos of the electrode positions (`*_photo.jpg`)
-
-Template:
 
 {{ make_filename_template(datatypes=["ieeg"], suffixes=["photo"]) }}
 

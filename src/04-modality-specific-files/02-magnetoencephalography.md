@@ -8,8 +8,6 @@ context of the academic literature.
 
 ## MEG recording data
 
-Template:
-
 {{ make_filename_template(datatypes=["meg"], suffixes=["meg", "markers", "events"]) }}
 
 ```Text
@@ -182,8 +180,6 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 ## Channels description (`*_channels.tsv`)
 
-Template:
-
 {{ make_filename_template(datatypes=["meg"], suffixes=["channels"]) }}
 
 ```Text
@@ -282,8 +278,6 @@ UADC001 AUDIO V envelope of audio signal presented to participant
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
-Template:
-
 {{ make_filename_template(datatypes=["meg"], suffixes=["coordsystem"]) }}
 
 ```Text
@@ -374,8 +368,6 @@ or:
 Photos of the anatomical landmarks and/or head localization coils
 (`*_photo.jpg`)
 
-Template:
-
 {{ make_filename_template(datatypes=["meg"], suffixes=["photo"]) }}
 
 ```Text
@@ -402,8 +394,6 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
 
 ## Head shape and electrode description (`*_headshape.<ext>`)
-
-Template:
 
 {{ make_filename_template(datatypes=["meg"], suffixes=["headshape"]) }}
 

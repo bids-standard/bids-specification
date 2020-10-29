@@ -17,8 +17,6 @@ Further datasets are available from the [BIDS examples repository](https://githu
 
 ## EEG recording data
 
-Template:
-
 {{ make_filename_template(datatypes=["eeg"], suffixes=["eeg", "events"]) }}
 
 ```Text
@@ -192,8 +190,6 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 ## Channels description (`*_channels.tsv`)
 
-Template:
-
 {{ make_filename_template(datatypes=["eeg"], suffixes=["channels"]) }}
 
 ```Text
@@ -277,8 +273,6 @@ UADC001  MISC   n/a     envelope of audio signal        good    n/a
 
 ## Electrodes description (`*_electrodes.tsv`)
 
-Template:
-
 {{ make_filename_template(datatypes=["eeg"], suffixes=["electrodes"]) }}
 
 ```Text
@@ -329,8 +323,6 @@ electrode position recording device, or repeated digitization before and after
 the recording.
 
 ## Coordinate System JSON (`*_coordsystem.json`)
-
-Template:
 
 {{ make_filename_template(datatypes=["eeg"], suffixes=["coordsystem"]) }}
 
@@ -434,8 +426,6 @@ Example:
 ## Landmark photos (`*_photo.jpg`)
 
 Photos of the anatomical landmarks and/or fiducials.
-
-Template:
 
 {{ make_filename_template(datatypes=["eeg"], suffixes=["photo"]) }}
 

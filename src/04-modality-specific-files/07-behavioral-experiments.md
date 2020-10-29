@@ -1,7 +1,5 @@
 # Behavioral experiments (with no neural recordings)
 
-Template:
-
 {{ make_filename_template(datatypes=["beh"]) }}
 
 ```Text

@@ -190,7 +190,7 @@ def build_filename_format(schema, **kwargs):
             if full_strings:
                 paragraph += "\n".join(full_strings) + "\n"
     paragraph = paragraph.rstrip()
-    codeblock = "```Text\n" + paragraph + "\n```"
+    codeblock = "Template:\n```Text\n" + paragraph + "\n```"
     codeblock = codeblock.expandtabs(4)
     return codeblock
 
