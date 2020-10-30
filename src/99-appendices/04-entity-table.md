@@ -18,7 +18,7 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 ## Magnetic Resonance Imaging
 
-{{ make_entity_table(datatypes=["func", "anat", "fmap"], auxdatatypes=[]) }}
+{{ MACROS___make_entity_table(datatypes=["func", "anat", "fmap"], auxdatatypes=[]) }}
 
 | Entity                                                                                         | Subject                             | Session                             | Task                                  | Acquisition                         | Contrast Enhancing Agent          | Reconstruction                      | Phase-Encoding Direction            | Run                                 | Corresponding Modality              | Echo                                  | Recording                                       |
 |------------------------------------------------------------------------------------------------|-------------------------------------|-------------------------------------|---------------------------------------|-------------------------------------|-----------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|---------------------------------------|-------------------------------------------------|
@@ -33,7 +33,7 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 ## Biopotential Amplification (EEG and iEEG)
 
-{{ make_entity_table(datatypes=["ieeg", "eeg"]) }}
+{{ MACROS___make_entity_table(datatypes=["ieeg", "eeg"]) }}
 
 | Entity                     | Subject                             | Session                             | Task                                  | Acquisition                         | Run                                 | Processed (on device)                 | Space                                   | Split                                   |
 |----------------------------|-------------------------------------|-------------------------------------|---------------------------------------|-------------------------------------|-------------------------------------|---------------------------------------|-----------------------------------------|-----------------------------------------|
@@ -50,11 +50,11 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 ## Magnetoencephalography (MEG)
 
-{{ make_entity_table(datatypes=["meg"], auxdatatypes=["channels", "events", "photo"]) }}
+{{ MACROS___make_entity_table(datatypes=["meg"], auxdatatypes=["channels", "events", "photo"]) }}
 
 ## Behavioral Data
 
-{{ make_entity_table(datatypes=["beh"], auxdatatypes=[]) }}
+{{ MACROS___make_entity_table(datatypes=["beh"], auxdatatypes=[]) }}
 
 | Entity               | Subject                             | Session                             | Task                                  | Acquisition                         | Run                                 | Recording                                       |
 |----------------------|-------------------------------------|-------------------------------------|---------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------------------|

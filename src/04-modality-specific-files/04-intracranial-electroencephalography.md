@@ -8,7 +8,7 @@ context of the academic literature.
 
 ## iEEG recording data
 
-{{ make_filename_template(datatypes=["ieeg"], suffixes=["ieeg", "events"]) }}
+{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["ieeg", "events"]) }}
 
 ```Text
 sub-<label>/
@@ -203,7 +203,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 ## Channels description (`*_channels.tsv`)
 
-{{ make_filename_template(datatypes=["ieeg"], suffixes=["channels"]) }}
+{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["channels"]) }}
 
 ```Text
 sub-<label>/
@@ -294,7 +294,7 @@ Example of free-form text for field `description`:
 
 ## Electrode description (`*_electrodes.tsv`)
 
-{{ make_filename_template(datatypes=["ieeg"], suffixes=["electrodes"]) }}
+{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["electrodes"]) }}
 
 ```Text
 sub-<label>/
@@ -372,7 +372,7 @@ H01   27  -42  -21  5      AdTech
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
-{{ make_filename_template(datatypes=["ieeg"], suffixes=["coordsystem"]) }}
+{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["coordsystem"]) }}
 
 ```Text
 sub-<label>/
@@ -441,7 +441,7 @@ Example:
 
 ## Photos of the electrode positions (`*_photo.jpg`)
 
-{{ make_filename_template(datatypes=["ieeg"], suffixes=["photo"]) }}
+{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["photo"]) }}
 
 ```Text
 sub-<label>/

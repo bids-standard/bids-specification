@@ -1,5 +1,4 @@
-"""
-Utility functions for the bids-specification schema.
+"""Utility functions for the bids-specification schema.
 """
 import logging
 import os.path as op
@@ -8,20 +7,28 @@ import numpy as np
 
 
 def get_schema_path():
+    """Get the path to the schema folder.
+
+    Returns
+    -------
+    str
+        Absolute path to the folder containing schema-related files.
+    """
     return op.abspath(
-        op.join(
-            op.dirname(op.dirname(op.dirname(__file__))),
-            "src",
-            "schema"
-        ) + op.sep
+        op.join(op.dirname(op.dirname(op.dirname(__file__))), "src", "schema") + op.sep
     )
 
 
 def combine_extensions(lst):
-    """
+    """Combine extensions with their compressed versions in a list.
+
     This is a basic solution to combining extensions with their
     compressed versions in a list. Something more robust could
     be written in the future.
+
+    Parameters
+    ----------
+    lst : list of str
     """
     new_lst = []
     # First, sort by length
@@ -43,11 +50,31 @@ def combine_extensions(lst):
 
 
 def get_logger(name=None):
-    """Return a logger to use"""
+    """Return a logger to use.
+
+    Parameters
+    ----------
+    name : None or str, optional
+        Name of the logger. Defaults to None.
+
+    Returns
+    -------
+    logging.Logger
+        logger object.
+    """
     return logging.getLogger("bids-schema" + (".%s" % name if name else ""))
 
 
 def set_logger_level(lgr, level):
+    """Set the logger level.
+
+    Parameters
+    ----------
+    lgr : logging.Logger
+        logger object for which to change the level.
+    level : int or str
+        The desired level for the logger.
+    """
     if isinstance(level, int):
         pass
     elif level.isnumeric():
@@ -64,6 +91,17 @@ def drop_unused_entities(df):
     """Remove columns from a dataframe where all values in the column are NaNs.
     For entity tables, this limits each table to only entities thare are used
     within the modality.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        DataFrame containing entities and datatypes/suffixes.
+        Rows are datatype/suffix combinations and columns are entities.
+
+    Returns
+    -------
+    df : pandas.DataFrame
+        DataFrame with columns associated with unused entities removed.
     """
     df = df.replace("", np.nan).dropna(axis=1, how="all").fillna("")
     return df
@@ -71,8 +109,20 @@ def drop_unused_entities(df):
 
 def flatten_multiindexed_columns(df):
     """Remove multi-indexing of multi-indexed column headers.
+
     The first layer is the "DataType", while the second layer is the "Format".
     This second layer will become a new row.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        DataFrame with two header levels: "Datatype" and "Format".
+
+    Returns
+    -------
+    df : pandas.DataFrame
+        DataFrame with the second header level ("Format") converted to a
+        normal row.
     """
     # Flatten multi-index
     vals = df.index.tolist()

@@ -8,7 +8,7 @@ context of the academic literature.
 
 ## MEG recording data
 
-{{ make_filename_template(datatypes=["meg"], suffixes=["meg", "markers", "events"]) }}
+{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["meg", "markers", "events"]) }}
 
 ```Text
 sub-<label>/
@@ -180,7 +180,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 ## Channels description (`*_channels.tsv`)
 
-{{ make_filename_template(datatypes=["meg"], suffixes=["channels"]) }}
+{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["channels"]) }}
 
 ```Text
 sub-<label>/
@@ -278,7 +278,7 @@ UADC001 AUDIO V envelope of audio signal presented to participant
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
-{{ make_filename_template(datatypes=["meg"], suffixes=["coordsystem"]) }}
+{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["coordsystem"]) }}
 
 ```Text
 sub-<label>/
@@ -368,7 +368,7 @@ or:
 Photos of the anatomical landmarks and/or head localization coils
 (`*_photo.jpg`)
 
-{{ make_filename_template(datatypes=["meg"], suffixes=["photo"]) }}
+{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["photo"]) }}
 
 ```Text
 sub-<label>/
@@ -395,7 +395,7 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ## Head shape and electrode description (`*_headshape.<ext>`)
 
-{{ make_filename_template(datatypes=["meg"], suffixes=["headshape"]) }}
+{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["headshape"]) }}
 
 ```Text
 sub-<label>/

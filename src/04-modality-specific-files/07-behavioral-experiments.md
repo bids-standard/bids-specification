@@ -1,6 +1,6 @@
 # Behavioral experiments (with no neural recordings)
 
-{{ make_filename_template(datatypes=["beh"]) }}
+{{ MACROS___make_filename_template(datatypes=["beh"]) }}
 
 ```Text
 sub-<label>/[ses-<label>/]

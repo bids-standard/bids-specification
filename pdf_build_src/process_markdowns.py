@@ -16,7 +16,7 @@ from datetime import datetime
 import numpy as np
 
 sys.path.append("../tools/")
-from schemacode.macros import *
+from schemacode import macros
 
 
 def run_shell_cmd(command):
@@ -414,23 +414,49 @@ def edit_titlepage():
 
 
 def process_macros(duplicated_src_dir_path):
-    for root, dirs, files in os.walk(duplicated_src_dir_path, topdown=False):
+    """Search for mkdocs macros in the specification, run the embedded
+    functions, and replace the macros with their outputs.
+
+    Parameters
+    ----------
+    duplicated_src_dir_path : str
+        Location of the files from the specification.
+
+    Notes
+    -----
+    Macros are embedded snippets of Python code that are run as part of the
+    mkdocs build, when generating the website version of the specification.
+
+    Warning
+    -------
+    This function searches specifically for the mkdocs macros plugin's
+    delimiters ("{{" and "}}"). Therefore, those characters should not be used
+    in the specification for any purposes other than running macros.
+    """
+    for root, dirs, files in os.walk(duplicated_src_dir_path):
         for name in files:
-            if not name.endswith(".md"):
+            # Only edit markdown files
+            if not name.lower().endswith(".md"):
                 continue
 
             filename = os.path.join(root, name)
             with open(filename, "r") as fo:
                 contents = fo.read()
 
+            # Replace code snippets in the text with their outputs
             matches = re.findall("({{.*?}})", contents)
-            replacements = {}
             for m in matches:
+                # Remove macro delimiters to get *just* the function call
                 function_string = m.strip("{} ")
-                replacements[m] = eval(function_string)
-
-            for old, new in replacements.items():
-                contents = contents.replace(old, new)
+                # Replace prefix with module name
+                function_string = function_string.replace(
+                    "MACROS___",
+                    "macros."
+                )
+                # Run the function to get the output
+                new = eval(function_string)
+                # Replace the code snippet with the function output
+                contents = contents.replace(m, new)
 
             with open(filename, "w") as fo:
                 fo.write(contents)

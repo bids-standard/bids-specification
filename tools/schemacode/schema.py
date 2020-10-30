@@ -1,11 +1,11 @@
-#!/usr/bin/env python3
+"""Schema loading- and processing-related functions.
+"""
 import logging
 import os
 from copy import deepcopy
 from pathlib import Path
 from warnings import warn
 
-import numpy as np
 import pandas as pd
 import yaml
 
@@ -27,11 +27,11 @@ def _get_entry_name(path):
 
 
 def load_schema(schema_path):
-    """The schema loader
+    """Load the schema into a dictionary.
 
-    It allows for schema, like BIDS itself, to be specified in
+    This function allows the schema, like BIDS itself, to be specified in
     a hierarchy of directories and files.
-    File (having .yaml stripped) and directory names become keys
+    File names (minus extensions) and directory names become keys
     in the associative array (dict) of entries composed from content
     of files and entire directories.
 
@@ -61,8 +61,32 @@ def load_schema(schema_path):
 
 
 def filter_schema(schema, **kwargs):
-    """A simple filtering function. You can limit the schema to specific
-    values."""
+    """Filter the schema based on a set of keyword arguments.
+
+    Parameters
+    ----------
+    schema : dict
+        The schema object, which is a dictionary with nested dictionaries and
+        lists stored within it.
+    kwargs : dict
+        Keyword arguments used to filter the schema.
+        Example kwargs that may be used include: "suffixes", "datatypes",
+        "extensions".
+
+    Returns
+    -------
+    new_schema : dict
+        The filtered version of the schema.
+
+    Notes
+    -----
+    This function calls itself recursively, in order to apply filters at
+    arbitrary depth.
+
+    Warning
+    -------
+    This function employs a *very* simple filter. It is very limited.
+    """
     new_schema = deepcopy(schema)
     if isinstance(new_schema, dict):
         # Reduce values in dict to only requested
@@ -70,8 +94,9 @@ def filter_schema(schema, **kwargs):
             if k in new_schema.keys():
                 filtered_item = deepcopy(new_schema[k])
                 if isinstance(filtered_item, dict):
-                    filtered_item = {k1: v1 for k1, v1 in filtered_item.items()
-                                     if k1 in v}
+                    filtered_item = {
+                        k1: v1 for k1, v1 in filtered_item.items() if k1 in v
+                    }
                 else:
                     filtered_item = [i for i in filtered_item if i in v]
                 new_schema[k] = filtered_item
@@ -87,8 +112,22 @@ def filter_schema(schema, **kwargs):
 
 
 def make_entity_definitions(schema):
-    """Save entity definitions to a markdown file.
+    """Generate definitions and other relevant information for entities in the
+    specification.
+
     Each entity gets its own heading.
+
+    Parameters
+    ----------
+    schema : dict
+        The schema object, which is a dictionary with nested dictionaries and
+        lists stored within it.
+
+    Returns
+    -------
+    text : str
+        A string containing descriptions and some formatting
+        information about the entities in the schema.
     """
     entities = schema["entities"]
 
@@ -109,6 +148,22 @@ def make_entity_definitions(schema):
 def make_filename_template(schema, **kwargs):
     """Create codeblocks containing example filename patterns for a given
     datatype.
+
+    Parameters
+    ----------
+    schema : dict
+        The schema object, which is a dictionary with nested dictionaries and
+        lists stored within it.
+    kwargs : dict
+        Keyword arguments used to filter the schema.
+        Example kwargs that may be used include: "suffixes", "datatypes",
+        "extensions".
+
+    Returns
+    -------
+    codeblock : str
+        A multiline string containing the filename templates for file types
+        in the schema, after filtering.
     """
     schema = filter_schema(schema, **kwargs)
     entities = list(schema["entities"].keys())
@@ -130,8 +185,7 @@ def make_filename_template(schema, **kwargs):
             string = "\t\t\t"
             for ent in entities:
                 ent_format = "{}-<{}>".format(
-                    schema["entities"][ent]["entity"],
-                    schema["entities"][ent]["format"]
+                    schema["entities"][ent]["entity"], schema["entities"][ent]["format"]
                 )
                 if ent in group["entities"]:
                     if group["entities"][ent] == "required":
@@ -216,8 +270,10 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     for i, (entity, spec) in enumerate(schema["entities"].items()):
         entity_shorthand = schema["entities"][entity]["entity"]
         header.append(spec["name"])
-        formats.append(f'[`{entity_shorthand}-<{spec["format"]}>`]'
-                       f"({ENTITIES_FILE}#{entity_shorthand})")
+        formats.append(
+            f'[`{entity_shorthand}-<{spec["format"]}>`]'
+            f"({ENTITIES_FILE}#{entity_shorthand})"
+        )
         entity_to_col[entity] = i + 1
 
     # Go through data types

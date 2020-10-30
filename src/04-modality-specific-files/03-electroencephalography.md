@@ -17,7 +17,7 @@ Further datasets are available from the [BIDS examples repository](https://githu
 
 ## EEG recording data
 
-{{ make_filename_template(datatypes=["eeg"], suffixes=["eeg", "events"]) }}
+{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["eeg", "events"]) }}
 
 ```Text
 sub-<label>/
@@ -190,7 +190,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 ## Channels description (`*_channels.tsv`)
 
-{{ make_filename_template(datatypes=["eeg"], suffixes=["channels"]) }}
+{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["channels"]) }}
 
 ```Text
 sub-<label>/
@@ -273,7 +273,7 @@ UADC001  MISC   n/a     envelope of audio signal        good    n/a
 
 ## Electrodes description (`*_electrodes.tsv`)
 
-{{ make_filename_template(datatypes=["eeg"], suffixes=["electrodes"]) }}
+{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["electrodes"]) }}
 
 ```Text
 sub-<label>/
@@ -324,7 +324,7 @@ the recording.
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
-{{ make_filename_template(datatypes=["eeg"], suffixes=["coordsystem"]) }}
+{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["coordsystem"]) }}
 
 ```Text
 sub-<label>/
@@ -427,7 +427,7 @@ Example:
 
 Photos of the anatomical landmarks and/or fiducials.
 
-{{ make_filename_template(datatypes=["eeg"], suffixes=["photo"]) }}
+{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["photo"]) }}
 
 ```Text
 sub-<label>/

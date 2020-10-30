@@ -122,7 +122,7 @@ whenever possible. See also
 
 ## Anatomy imaging data
 
-{{ make_filename_template(datatypes=["anat"]) }}
+{{ MACROS___make_filename_template(datatypes=["anat"]) }}
 
 ```Text
 sub-<label>/[ses-<label>/]
@@ -209,7 +209,7 @@ Currently supported image contrasts include:
 | CBV       | cbv              | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images) |
 | Phase     | phase            | Phase information associated with magnitude information stored in BOLD contrast                      |
 
-{{ make_filename_template(datatypes=["func"]) }}
+{{ MACROS___make_filename_template(datatypes=["func"]) }}
 
 ```Text
 sub-<label>/[ses-<label>/]
@@ -384,7 +384,7 @@ Currently supported image types include:
 | DWI                   | dwi      | Diffusion-weighted imaging contrast (specialized T2\* weighting). |
 | Single-Band Reference | sbref    | Single-band reference for one or more multi-band `dwi` images.    |
 
-{{ make_filename_template(datatypes=["dwi"]) }}
+{{ MACROS___make_filename_template(datatypes=["dwi"]) }}
 
 ```Text
 sub-<label>/[ses-<label>/]
@@ -601,7 +601,7 @@ the user may use to distinguish different set of parameters.
 
 ### Case 1: Phase difference image and at least one magnitude image
 
-{{ make_filename_template(datatypes=["fmap"], suffixes=["phasediff", "magnitude1", "magnitude2"]) }}
+{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["phasediff", "magnitude1", "magnitude2"]) }}
 
 ```Text
 sub-<label>/[ses-<label>/]
@@ -636,7 +636,7 @@ the shorter echo time and `EchoTime2` to the longer echo time. Similarly
 
 ### Case 2: Two phase images and two magnitude images
 
-{{ make_filename_template(datatypes=["fmap"], suffixes=["phase1", "phase2", "magnitude1", "magnitude2"]) }}
+{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["phase1", "phase2", "magnitude1", "magnitude2"]) }}
 
 ```Text
 sub-<label>/[ses-<label>/]
@@ -662,7 +662,7 @@ corresponding `EchoTime` values. For example:
 
 ### Case 3: A real fieldmap image
 
-{{ make_filename_template(datatypes=["fmap"], suffixes=["fieldmap", "magnitude"]) }}
+{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["fieldmap", "magnitude"]) }}
 
 ```Text
 sub-<label>/[ses-<label>/]
@@ -689,7 +689,7 @@ For example:
 
 ### Case 4: Multiple phase encoded directions ("pepolar")
 
-{{ make_filename_template(datatypes=["fmap"], suffixes=["epi"]) }}
+{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["epi"]) }}
 
 ```Text
 sub-<label>/[ses-<label>/]
