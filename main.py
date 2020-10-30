@@ -7,7 +7,7 @@ specification and are run/rendered with the mkdocs plugin "macros".
 """
 import sys
 sys.path.append("tools/")
-from schemacode import schema, utils
+from schemacode import macros
 
 
 def define_env(env):
@@ -17,28 +17,9 @@ def define_env(env):
     - variables: the dictionary that contains the environment variables
     - macro: a decorator function, to declare a macro.
     """
-    env.variables['schemapath'] = utils.get_schema_path()
-
-    @env.macro
-    def make_filename_template(**kwargs):
-        schema_path = utils.get_schema_path()
-        schema_obj = schema.load_schema(schema_path)
-        codeblock = schema.build_filename_format(schema_obj, **kwargs)
-        return codeblock
-
-    @env.macro
-    def make_entity_table(**kwargs):
-        schema_path = utils.get_schema_path()
-        schema_obj = schema.load_schema(schema_path)
-        table = schema.make_entity_table(schema_obj, **kwargs)
-        return table
-
-    @env.macro
-    def make_entity_definitions():
-        schema_path = utils.get_schema_path()
-        schema_obj = schema.load_schema(schema_path)
-        text = schema.make_entity_definitions(schema_obj)
-        return text
+    env.macro(macros.make_filename_template, 'make_filename_template')
+    env.macro(macros.make_entity_table, 'make_entity_table')
+    env.macro(macros.make_entity_definitions, 'make_entity_definitions')
 
     @env.macro
     def make_metadata_table():
