@@ -10,9 +10,13 @@ well.
 import os
 import re
 import subprocess
+import sys
 from datetime import datetime
 
 import numpy as np
+
+sys.path.append("../tools/")
+from schemacode.macros import *
 
 
 def run_shell_cmd(command):
@@ -410,11 +414,6 @@ def edit_titlepage():
 
 
 def process_macros(duplicated_src_dir_path):
-    import sys
-    sys.path.append("../tools/")
-    from schemacode.macros import *
-
-    import os
     for root, dirs, files in os.walk(duplicated_src_dir_path, topdown=False):
         for name in files:
             if not name.endswith(".md"):
