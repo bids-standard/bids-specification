@@ -47,9 +47,9 @@ jobs:
       - checkout:
           path: ~/bids-specification
       - run:
-          name: install numpy
+          name: install dependencies
           command: |
-            pip3 install numpy
+            pip3 install -r ../requirements.txt
       - run:
           name: install font that works with unicode emojis
           command: apt-get update && apt-get install -y fonts-symbola
