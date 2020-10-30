@@ -429,7 +429,7 @@ def process_macros(duplicated_src_dir_path):
                 function_string = m.strip("{} ")
                 replacements[m] = eval(function_string)
 
-            for old, new in replacements:
+            for old, new in replacements.items():
                 contents = contents.replace(old, new)
 
             with open(filename, "w") as fo:
