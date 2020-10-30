@@ -4,6 +4,8 @@ Utility functions for the bids-specification schema.
 import logging
 import os.path as op
 
+import numpy as np
+
 
 def get_schema_path():
     return op.abspath(
@@ -56,3 +58,27 @@ def set_logger_level(lgr, level):
         lgr.warning("Do not know how to treat loglevel %s" % level)
         return
     lgr.setLevel(level)
+
+
+def drop_unused_entities(df):
+    """Remove columns from a dataframe where all values in the column are NaNs.
+    For entity tables, this limits each table to only entities thare are used
+    within the modality.
+    """
+    df = df.replace("", np.nan).dropna(axis=1, how="all").fillna("")
+    return df
+
+
+def flatten_multiindexed_columns(df):
+    """Remove multi-indexing of multi-indexed column headers.
+    The first layer is the "DataType", while the second layer is the "Format".
+    This second layer will become a new row.
+    """
+    # Flatten multi-index
+    vals = df.index.tolist()
+    df.loc["Format"] = df.columns.get_level_values(1)
+    df.columns = df.columns.get_level_values(0)
+    df = df.loc[["Format"] + vals]
+    df.index.name = "Entity"
+    df = df.drop(columns=["DataType"])
+    return df

@@ -68,15 +68,17 @@ def filter_schema(schema, **kwargs):
         # Reduce values in dict to only requested
         for k, v in kwargs.items():
             if k in new_schema.keys():
-                temp = deepcopy(new_schema[k])
-                if isinstance(temp, dict):
-                    temp = {k1: v1 for k1, v1 in temp.items() if k1 in v}
+                filtered_item = deepcopy(new_schema[k])
+                if isinstance(filtered_item, dict):
+                    filtered_item = {k1: v1 for k1, v1 in filtered_item.items()
+                                     if k1 in v}
                 else:
-                    temp = [i for i in temp if i in v]
-                new_schema[k] = temp
+                    filtered_item = [i for i in filtered_item if i in v]
+                new_schema[k] = filtered_item
 
             for k2, v2 in new_schema.items():
                 new_schema[k2] = filter_schema(new_schema[k2], **kwargs)
+
     elif isinstance(new_schema, list):
         for i, item in enumerate(new_schema):
             if isinstance(item, dict):
@@ -104,32 +106,10 @@ def make_entity_definitions(schema):
     return text
 
 
-def drop_unused_entities(df):
-    """Remove columns from a dataframe where all values in the column are NaNs.
-    For entity tables, this limits each table to only entities thare are used
-    within the modality.
+def make_filename_template(schema, **kwargs):
+    """Create codeblocks containing example filename patterns for a given
+    datatype.
     """
-    df = df.replace("", np.nan).dropna(axis=1, how="all").fillna("")
-    return df
-
-
-def flatten_multiindexed_columns(df):
-    """Remove multi-indexing of multi-indexed column headers.
-    The first layer is the "DataType", while the second layer is the "Format".
-    This second layer will become a new row.
-    """
-    # Flatten multi-index
-    vals = df.index.tolist()
-    df.loc["Format"] = df.columns.get_level_values(1)
-    df.columns = df.columns.get_level_values(0)
-    df = df.loc[["Format"] + vals]
-    df.index.name = "Entity"
-    df = df.drop(columns=["DataType"])
-    return df
-
-
-def build_filename_format(schema, **kwargs):
-    """Create codeblocks containing example filename patterns for a given datatype."""
     schema = filter_schema(schema, **kwargs)
     entities = list(schema["entities"].keys())
 
@@ -149,23 +129,27 @@ def build_filename_format(schema, **kwargs):
         for group in schema["datatypes"][datatype]:
             string = "\t\t\t"
             for ent in entities:
-                entity_shorthand = schema["entities"][ent]["entity"]
-                ent_format = "{}-<{}>".format(entity_shorthand, schema["entities"][ent]["format"])
+                ent_format = "{}-<{}>".format(
+                    schema["entities"][ent]["entity"],
+                    schema["entities"][ent]["format"]
+                )
                 if ent in group["entities"]:
                     if group["entities"][ent] == "required":
                         if len(string.strip()):
                             string += "_" + ent_format
                         else:
+                            # Only the first entity doesn't need an underscore
                             string += ent_format
                     else:
-                        if len(string):
+                        if len(string.strip()):
                             string += "[_" + ent_format + "]"
                         else:
+                            # Only the first entity doesn't need an underscore
                             string += "[" + ent_format + "]"
 
             # In cases of large numbers of suffixes,
             # we use the "suffix" variable and expect a table later in the spec
-            if len(group["suffixes"]) > 4:
+            if len(group["suffixes"]) > 5:
                 suffix = "_<suffix>"
                 string += suffix
                 strings = [string]
@@ -186,9 +170,11 @@ def build_filename_format(schema, **kwargs):
                 for string in strings:
                     new_string = string + extension
                     full_strings.append(new_string)
+
             full_strings = sorted(full_strings)
             if full_strings:
                 paragraph += "\n".join(full_strings) + "\n"
+
     paragraph = paragraph.rstrip()
     codeblock = "Template:\n```Text\n" + paragraph + "\n```"
     codeblock = codeblock.expandtabs(4)
@@ -210,8 +196,8 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
     Returns
     -------
-    table : pandas.DataFrame
-        DataFrame of entity table, with two layers of column headers.
+    table_str : str
+        Markdown string containing the table.
     """
     from tabulate import tabulate
 
@@ -271,8 +257,8 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     table = table.set_index(("Entity", "Format"))
 
     # Remove unnecessary columns
-    table = drop_unused_entities(table)
-    table = flatten_multiindexed_columns(table)
+    table = utils.drop_unused_entities(table)
+    table = utils.flatten_multiindexed_columns(table)
 
     # Print it as markdown
     table_str = tabulate(table, headers="keys", tablefmt=tablefmt)
