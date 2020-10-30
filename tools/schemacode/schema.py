@@ -212,7 +212,10 @@ def make_filename_template(schema, **kwargs):
 
             # Add extensions
             full_strings = []
-            extensions = utils.combine_extensions(group["extensions"])
+            extensions = group["extensions"]
+            extensions = [ext if ext != "*" else ".<extension>" for ext in
+                          extensions]
+            extensions = utils.combine_extensions(extensions)
             if len(extensions) > 5:
                 # Combine exts when there are many, but keep JSON separate
                 if ".json" in extensions:

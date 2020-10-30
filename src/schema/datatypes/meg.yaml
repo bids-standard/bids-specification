@@ -26,8 +26,7 @@
 - suffixes:
     - headshape
   extensions:
-    - .pos
-    - .txt
+    - "*"
   entities:
     subject: required
     session: optional
@@ -36,7 +35,8 @@
 - suffixes:
     - markers
   extensions:
-    - .json
+    - .sqd
+    - .mrk
   entities:
     subject: required
     session: optional

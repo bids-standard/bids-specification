@@ -43,7 +43,7 @@
     subject: required
     session: optional
     acquisition: optional
-    run: optional
+    space: optional
 - suffixes:
     - events
   extensions:

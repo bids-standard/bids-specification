@@ -44,6 +44,7 @@
     subject: required
     session: optional
     space: optional
+    acquisition: optional
 - suffixes:
     - events
   extensions:
