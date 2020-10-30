@@ -409,6 +409,34 @@ def edit_titlepage():
         data = file.writelines(data)
 
 
+def process_macros(duplicated_src_dir_path):
+    import sys
+    sys.path.append("../tools/")
+    from schemacode.macros import *
+
+    import os
+    for root, dirs, files in os.walk(duplicated_src_dir_path, topdown=False):
+        for name in files:
+            if not name.endswith(".md"):
+                continue
+
+            filename = os.path.join(root, name)
+            with open(filename, "r") as fo:
+                contents = fo.read()
+
+            matches = re.findall("({{.*?}})", contents)
+            replacements = {}
+            for m in matches:
+                function_string = m.strip("{} ")
+                replacements[m] = eval(function_string)
+
+            for old, new in replacements:
+                contents = contents.replace(old, new)
+
+            with open(filename, "w") as fo:
+                fo.write(contents)
+
+
 if __name__ == '__main__':
 
     duplicated_src_dir_path = 'src_copy/src'
@@ -416,27 +444,30 @@ if __name__ == '__main__':
     # Step 1: make a copy of the src directory in the current directory
     copy_src()
 
-    # Step 2: copy BIDS_logo to images directory of the src_copy directory
+    # Step 2: run mkdocs macros embedded in markdown files
+    process_macros(duplicated_src_dir_path)
+
+    # Step 3: copy BIDS_logo to images directory of the src_copy directory
     copy_bids_logo()
 
-    # Step 3: copy images from subdirectories of src_copy directory
+    # Step 4: copy images from subdirectories of src_copy directory
     copy_images(duplicated_src_dir_path)
     subprocess.call("mv src_copy/src/images/images/* src_copy/src/images/",
                     shell=True)
 
-    # Step 4: extract the latest version number, date and title
+    # Step 5: extract the latest version number, date and title
     extract_header_string()
     add_header()
 
     edit_titlepage()
 
-    # Step 5: modify changelog to be a level 1 heading to facilitate section
+    # Step 6: modify changelog to be a level 1 heading to facilitate section
     # separation
     modify_changelog()
 
-    # Step 6: remove all internal links
+    # Step 7: remove all internal links
     remove_internal_links(duplicated_src_dir_path, 'cross')
     remove_internal_links(duplicated_src_dir_path, 'same')
 
-    # Step 7: correct number of dashes and fences alignment for rendering tables in PDF
+    # Step 8: correct number of dashes and fences alignment for rendering tables in PDF
     correct_tables(duplicated_src_dir_path)
