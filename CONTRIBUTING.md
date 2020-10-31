@@ -285,7 +285,7 @@ A member of the BIDS Specification team will review your changes to confirm that
 they can be merged into the main codebase.
 
 A [review](https://help.github.com/articles/about-pull-request-reviews/) will
-probably consist of a few questions to help clarify the work you've done. 
+usually consist of a few questions to help clarify the work you've done. 
 Keep an eye on your GitHub notifications and be prepared to join in that
 conversation.
 
