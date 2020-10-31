@@ -278,7 +278,8 @@ Use one of the following prefixes in the title of your pull request:
     contributors
 
 If you are opening a pull request to obtain early feedback, but the changes are
-not ready to be merged (a.k.a. Work in Progress pull request) please use a
+not ready to be merged (also known as a "work in progress" pull request, sometimes abbreviated by `WIP`)
+please use a
 [draft pull request](https://github.blog/2019-02-14-introducing-draft-pull-requests/).
 
 A member of the BIDS Specification team will review your changes to confirm that
