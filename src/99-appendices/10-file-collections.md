@@ -1,7 +1,7 @@
 # Appendix X: File collections
 
-To give context to the use of [parametrically linked file collections](./02-common-principles.md#file-name-structure), applications appealing to this common
-principle are listed by descriptive tables under their respective modalities.
+To give context to the use of [entity-linked file collections](./02-common-principles.md#file-name-structure), applications concerned with this
+common principle are listed by descriptive tables under their respective modalities.
 
 ## Magnetic Resonance Imaging 
 
