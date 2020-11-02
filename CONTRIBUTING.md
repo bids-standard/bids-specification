@@ -96,7 +96,7 @@ overall project's goals and immediate next steps.
 The current list of labels are
 [here](https://github.com/bids-standard/bids-specification/labels) and include:
 
--   [![Help wanted](https://img.shields.io/badge/-help%20wanted-159818.svg)](https://github.com/bids-standard/bids-specification/labels/community)
+-   [![Help wanted](https://img.shields.io/badge/-help%20wanted-159818.svg)](https://github.com/bids-standard/bids-specification/labels/help%20wanted)
     _These issues contain a task that a member of the team has determined we
     need additional help with._
 
