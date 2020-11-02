@@ -153,19 +153,20 @@ A summary of all entities in BIDS and the order in which they MUST be
 specified is available in the [entity table](./99-appendices/04-entity-table.md)
 in the appendix.
 
-### Parametrically linked file collections
+### Entity-linked file collections
 
 A set of files that are related to each other based on a repetitive acquisition of
-sequential data by changing acquisition parameters one (or multiple) at a time.
-The suffix serves as an identifier for these collections, holding a logical grouping
-of constituent files. 
+sequential data by changing acquisition parameters one (or multiple) at a time and/or by
+being inherent components of the same data. The suffix serves as an identifier for these
+collections, holding a logical grouping of constituent files.
 Within each collection, files MUST be distinguished from each other by at least one 
 entity (e.g., `echo`) that corresponds to an altered acquisition parameter (e.g., 
-`EchoTime`). Note that these entities MUST be described by the specification and the
-parameter changes they declare SHOULD NOT invalidate the definition of the accompanying
-suffix. For example, the use of the `echo` entity along with the `T1w` suffix casts doubt on
-the validity of the identified contrast weighting.  
-Provided the conditions above are satisfied, any suffix (e.g. `bold`) can identify a parametrically linked file collection, although certain suffixes are exclusive for this purpose (e.g., `MP2RAGE`).
+`EchoTime`) or that defines a component relationship (e.g., `part`). Note that these entities 
+MUST be described by the specification and the parameter changes they declare SHOULD NOT invalidate
+the definition of the accompanying suffix. For example, the use of the `echo` entity along with the 
+`T1w` suffix casts doubt on the validity of the identified contrast weighting.  
+Provided the conditions above are satisfied, any suffix (e.g. `bold`) can identify an entity-linked file 
+collection, although certain suffixes are exclusive for this purpose (e.g., `MP2RAGE`).
 All the use cases concerning this convention are RECOMMENDED to be included in the [file collections](./99-appendices/10-file-collections.md) appendix for clarity. This convention is mainly intended for but not
 limited to MRI modalities.
 
