@@ -446,9 +446,15 @@ exponent. TSV files MUST be in UTF-8 encoding.
 Example:
 
 ```Text
-onset duration  response_time correct stop_trial  go_trial
-200 200 0 n/a n/a n/a
+onset	duration	response_time	correct	stop_trial	go_trial
+200	200	0	n/a	n/a	n/a
 ```
+
+**Note**: The TSV examples in this document (like the one above this note)
+are occasionally formatted using space characters instead of tabs to improve
+human readability.
+Directly copying and then pasting these examples from the specification
+for use in new BIDS datasets can lead to errors and is discouraged.
 
 Tabular files MAY be optionally accompanied by a simple data dictionary
 in the form of a JSON [object](https://www.json.org/json-en.html)
