@@ -454,9 +454,9 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     perf/
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asl.json
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv
+       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_asl.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_asl.json
+       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_aslcontext.tsv
        [sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.nii[.gz]]
        [sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.json]
        [sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.jpg]
