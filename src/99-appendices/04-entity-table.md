@@ -18,7 +18,7 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 ## Magnetic Resonance Imaging
 
-{{ MACROS___make_entity_table(datatypes=["func", "anat", "fmap"], auxdatatypes=[]) }}
+{{ MACROS___make_entity_table(datatypes=["anat", "dwi", "func", "fmap"], auxdatatypes=[]) }}
 
 | Entity                                                                                         | Subject                             | Session                             | Task                                  | Acquisition                         | Contrast Enhancing Agent          | Reconstruction                      | Phase-Encoding Direction            | Run                                 | Corresponding Modality              | Echo                                  | Recording                                       |
 |------------------------------------------------------------------------------------------------|-------------------------------------|-------------------------------------|---------------------------------------|-------------------------------------|-----------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|---------------------------------------|-------------------------------------------------|
