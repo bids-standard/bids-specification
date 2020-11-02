@@ -471,7 +471,7 @@ was acquired within the ASL time-series or as a separate scan. These and other M
 It can also be stored under `fmap/sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]`, 
 when the pepolar approach is used.
 
-The `*_aslcontext.tsv` lists the volume_type for each volume in the `*_asl.nii[.gz]`, corresponding to the volume_types 
+The `*_aslcontext.tsv` lists the volume_type for each volume in a single column, in the `*_asl.nii[.gz]`, corresponding to the volume_types 
 specified in the table below, based on DICOM Tag (0018,9257) `ASL Context`. Note that the volume_types `control` and 
 `label` within BIDS do not discriminate between types of labeling, but only serve to specify the magnetization state of the 
 blood and thus the ASL subtraction order.
@@ -488,7 +488,7 @@ If the raw `control` and `label` images are not available, their derivative `del
 `deltam` is not available, `cbf` should be stored as raw data instead. When `cbf` is stored as raw data, its units need to be 
 specified in the `*_asl.json` as well.
 
-`*_aslcontext.tsv` example 1:
+`*_aslcontext.tsv` example:
 
 | **volume_type** |
 |-----------------|
@@ -500,12 +500,6 @@ specified in the `*_asl.json` as well.
 | control         |
 | label           |
 
-`*_aslcontext.tsv` example 2:
-
-| **volume_type** |
-|-----------------|
-| deltam          |
-| m0scan          |
 
 ### Metadata fields applicable to both (P)CASL and PASL 
 | **Key name**                      | **Requirement level**                                                                                                           | **Data type**                           | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
