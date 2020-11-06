@@ -77,8 +77,9 @@ direction:
   name: Phase-Encoding Direction
   entity: dir
   description: |
-    The `dir-<label>` key/value can be used to distinguish
-    different phase-encoding directions.
+    The `dir-<label>` key/value can be set to an arbitrary alphanumeric label
+    (for example, `dir-LR` or `dir-AP`) to distinguish different phase-encoding
+    directions.
   format: label
 run:
   name: Run

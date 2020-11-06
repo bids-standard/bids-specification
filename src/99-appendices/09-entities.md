@@ -103,8 +103,8 @@ Full name: Phase-Encoding Direction
 
 Format: `dir-<label>`
 
-Definition: The `dir-<label>` key/value can be used to distinguish
-different phase-encoding directions.
+Definition: The `dir-<label>` key/value can be set to an arbitrary alphanumeric label
+(for example, `dir-LR` or `dir-AP`) to distinguish different phase-encoding directions.
 
 ## run
 
