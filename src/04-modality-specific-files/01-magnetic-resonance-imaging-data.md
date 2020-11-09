@@ -457,9 +457,9 @@ sub-<label>/[ses-<label>/]
        sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_asl.nii[.gz]
        sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_asl.json
        sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_aslcontext.tsv
-       [sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.nii[.gz]]
-       [sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.json]
-       [sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.jpg]
+       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.json
+       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.jpg
 ```
 
 The complete ASL timeseries should be stored as a 4D NIfTI file in the original acquisition order, accompanied by two ancillary 
