@@ -463,7 +463,7 @@ sub-<label>/[ses-<label>/]
 ```
 
 The complete ASL time series should be stored as a 4D NIfTI file in the original acquisition order, accompanied by two ancillary 
-files: `*_asl.json` and `*_aslcontext.tsv`. The `*_asl.nii.gz` and `*_m0.nii.gz` should contain appropriately scaled data and no scaling factors 
+files: `*_asl.json` and `*_aslcontext.tsv`. The `*_asl.nii.gz` and `*_m0scan.nii.gz` should contain appropriately scaled data and no scaling factors 
 should be stored in the ancillary files or in the NIfTI header. 
 
 The `m0scan` can either be stored inside the 4D ASL time-series NIfTI file or as a separate NIfTI file, depending on whether it 
