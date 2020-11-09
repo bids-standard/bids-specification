@@ -483,15 +483,15 @@ the magnetization state of the blood and thus the ASL subtraction order.
 | deltam          | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.                                                                                    |
 | cbf             | The cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, quantified into `mL/100g/min` (See also [doi:10.1002/mrm.25197](https://doi.org/10.1002/mrm.25197)). |
 
-If the `control` and `label` images are not available, their derivative `deltam` should be stored within the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv` 
-instead. If the `deltam` is not available, `cbf` should be stored within the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`. When `cbf` is stored within the 
-`*_asl.nii[.gz]`, its units need to be specified in the `*_asl.json` as well.
+If the `control` and `label` images are not available, their derivative `deltam` should be stored within the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv` instead. If 
+the `deltam` is not available, `cbf` should be stored within the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`. When `cbf` is stored within the `*_asl.nii[.gz]`, its 
+units need to be specified in the `*_asl.json` as well. See below examples of these cases, in order of decreasing preference.
 
-### Case 1: `*_asl.nii[.gz]` consists of volume_types `control` and `label` 
+### Case 1: `*_asl.nii[.gz]` consists of volume_types `control`, `label`
 
 In most cases, the ASL timeseries, provided by the scanner, consist of a series of `control` and `label`, and optionally `m0scan`, volumes. In this case, only the `control`, 
-`label`, and optionally `m0scan` volumes should be stored in the `*_asl.json`, and the exact volume_type series should be specified in the `*_aslcontext.tsv`. In this case, 
-optional `deltam` or `cbf` volumes should be stored and specified as derivative. Example of `*_aslcontext.tsv`:
+`label`, and optionally `m0scan` volumes should be stored in the `*_asl.json`, and the exact volume_type series should be specified in the `*_aslcontext.tsv`. The optional 
+`deltam` or `cbf` volumes should be stored and specified as derivative. Example of `*_aslcontext.tsv`:
 
 | volume_type |
 |-------------|
@@ -499,28 +499,28 @@ optional `deltam` or `cbf` volumes should be stored and specified as derivative.
 | label       |
 | control     |
 | label       |
-| m0scan      |
+| [m0scan]    |
 
-### Case 2: `*_asl.nii[.gz]` consists of volume_types `deltam`, when the scanner does not export `control` or `label` volumes
+### Case 2: `*_asl.nii[.gz]` consists of volume_types `deltam` (scanner does not export `control` or `label` volumes)
  
-In some cases, `control` and `label` volumes are lacking within the acquired ASL timeseries, and only a `deltam`, and optionally a `m0scan`, volume is provided by the scanner. 
-In this case, the `deltam` should be included in the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`. An optional `cbf` volume should be stored and specified as 
-derivative. Example of `*_aslcontext.tsv`:
+In some cases, `control` and `label` volumes are lacking within the acquired ASL timeseries, but the intermediate `deltam` - and optionally a `m0scan` - volume is 
+reconstructed/exported by the scanner. In this case, the `deltam` should be included in the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`. An optional `cbf` volume 
+should be stored and specified as derivative. Example of `*_aslcontext.tsv`:
 
 | volume_type |
 |-------------|
 | deltam      |
-| m0scan      |
+| [m0scan]    |
 
-### Case 3: `*_asl.nii[.gz]` consists of volume_type `cbf`, when scanner does not export `control`, `label`, or `deltaM` volumes
+### Case 3: `*_asl.nii[.gz]` consists of volume_type `cbf` (scanner does not export `control`, `label`, or `deltaM` volumes) 
 
-In some cases, `control` and `label`, as well as `deltam`, volumes are lacking within the acquired ASL timeseries, and only a `cbf`, and optionally a `m0scan`, volume is 
-provided by the scanner. Only in this case, the `cbf` should be included in the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`. Example of `*_aslcontext.tsv`:
+If `control` and `label` or intermediate ASL volumes are not reconstructed or exported, but a pre-calculated `cbf` - and optionally a `m0scan` - volume is provided by the
+scanner, the `cbf` should be included in the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`. Example of `*_aslcontext.tsv`:
 
 | volume_type |
 |-------------|
 | cbf         |
-| m0scan      |
+| [m0scan]    |
 
 ### Metadata fields applicable to both (P)CASL and PASL 
 | **Key name**                      | **Requirement level**                                                                                                           | **Data type**                           | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
