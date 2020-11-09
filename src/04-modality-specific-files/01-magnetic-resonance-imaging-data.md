@@ -471,6 +471,7 @@ was acquired within the ASL time-series or as a separate scan. These and other M
 It can also be stored under `fmap/sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]`, 
 when the pepolar approach is used.
 
+### `*_aslcontext.tsv`
 The `*_aslcontext.tsv` lists the volume_type for each volume in a single column, in the `*_asl.nii[.gz]`, corresponding to the volume_types specified in the table below, based 
 on DICOM Tag (0018,9257) `ASL Context`. Note that the volume_types `control` and  `label` within BIDS do not discriminate between types of labeling, but only serve to specify 
 the magnetization state of the blood and thus the ASL subtraction order.
