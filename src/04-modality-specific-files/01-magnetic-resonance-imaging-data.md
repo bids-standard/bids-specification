@@ -578,8 +578,8 @@ The following table recapitulates the ASL field dependencies. If Source field (c
 
 **Legend**
 
--   \[ X ] --> has to be filled
--   \[   \] --> has to be left empty
+-   \[ X ] --> MUST be defined
+-   \[   \] --> MUST NOT be defined
 
 ## Fieldmap data
 
