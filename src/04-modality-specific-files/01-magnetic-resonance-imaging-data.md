@@ -107,6 +107,16 @@ Useful for multimodal co-registration with MEG, (S)EEG, TMS, and so on.
 | ----------------------------- | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | AnatomicalLandmarkCoordinates | RECOMMENDED           | [object][] of [arrays][] | Key:value pairs of any number of additional anatomical landmarks and their coordinates in voxel units (where first voxel has index 0,0,0) relative to the associated anatomical MRI (for example, `{"AC": [127,119,149], "PC": [128,93,141], "IH": [131,114,206]}`, or `{"NAS": [127,213,139], "LPA": [52,113,96], "RPA": [202,113,91]}`). Each array MUST contain three numeric values corresponding to x, y, and z axis of the coordinate system in that exact order. |
 
+### Curation details
+
+These keys allow dataset curators to indicate modifications made to imaging data
+for the purposes of preserving privacy.
+
+| **Key name**  | **Requirement level** | **Data type** | **Description**                                                                         |
+| ------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------- |
+| Defaced       | RECOMMENDED           | [boolean][]   | Indicates whether the image has been defaced as part of the dataset preparation.        |
+| SkullStripped | RECOMMENDED           | [boolean][]   | Indicates whether the image has been skull-stripped as part of the dataset preparation. |
+
 ### Institution information
 
 | **Key name**                | **Requirement level** | **Data type** | **Description**                                                                                                                                                          |
