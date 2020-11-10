@@ -75,7 +75,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Adeen Flinker 📖
 -   Brett L. Foster 📖
 -   Ana Fouto 📓
--   Remi Gau 📖💻
+-   Remi Gau 📖💻💬📢🐛💻🚇👀🔧🤔
 -   Satrajit S. Ghosh 📖💻
 -   Tristan Glatard 📖💻
 -   Mathias Goncalves 💻🔧📢
