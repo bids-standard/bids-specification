@@ -231,11 +231,11 @@ More about the 4D neuroimaging/BTi data organization at:
 
 ## KIT/Yokogawa/Ricoh
 
-Each experimental run on a KIT/Yokogawa/Ricoh system yields a raw
-(`.sqd`, `.con`) file with its associated marker coil file(s) (`.sqd`, `.mrk`),
-which contains coil positions in the acquisition system’s native space.
-Head points and marker points in head space are acquired using third-party
-hardware.
+Each experimental run on a KIT/Yokogawa/Ricoh system yields a raw file with either
+`.sqd` or `.con` extension,
+and with its associated marker coil file(s) with either `.sqd` or `.mrk` extension.
+The marker coil file(s) contain coil positions in the *acquisition system's native space*.
+Head points and marker points in *head space* are acquired using third-party hardware.
 
 Example:
 
@@ -253,7 +253,18 @@ sub-control01/
             sub-control01_ses-001_task-rest_run-01_meg.<con,sqd>
 ```
 
-If there are files with multiple marker coils, the marker files must have the
+To understand why both `.sqd` and `.con`, as well as both `.sqd` and `.mrk` are valid
+extensions, we provide a brief historical perspective on the evolution of the data format:
+The original extension for KIT/Yokogawa/Ricoh continuous data was `.sqd`.
+This was later modernized to `.con` (to denote "continuous").
+However, to preserve backwards compatibility, `.sqd` is still a valid extension for the raw, continuous data file.
+The original extension for KIT/Yokogawa/Ricoh marker files was `.sqd` as well.
+That lead to the ambiguous situation where both the raw data and the marker file(s) could end on `.sqd`.
+To distinguish between continuous data and marker file(s), the internal header of the files needed to be read first.
+For this reason, the marker file extension was later modernized to `.mrk` to better disambiguate files.
+However again, to preserve backwards compatibility, `.sqd` is still a valid extension for the marker file(s).
+
+If there are multiple files with marker coils, the marker files must have the
 `acq-<label>` parameter and no more that two marker files may be associated with
 one raw data file.
 While the acquisition parameter can take any value, it is RECOMMENDED that if

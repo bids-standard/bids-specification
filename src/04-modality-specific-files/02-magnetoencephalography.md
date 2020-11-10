@@ -36,27 +36,36 @@ without the need to parse files in proprietary data format. Other relevant files
 MAY be included alongside the MEG data; examples are provided below.
 
 This template is for MEG data of any kind, including but not limited to
-task-based, resting-state, and noise recordings. If multiple Tasks were
-performed within a single Run, the task description can be set to
-`task-multitask`. The \_meg.json SHOULD contain details on the Tasks.
+task-based, resting-state, and noise recordings.
+If multiple *Tasks* were performed within a single *Run*,
+the task description can be set to `task-multitask`.
+The `*_meg.json` file SHOULD contain details on the *Tasks*.
 
 Some manufacturers' data storage conventions use folders which contain data
-files of various nature: for example, CTF's `.ds` format, or BTi/4D.
+files of various nature: for example, CTF's `.ds` format, or BTi/4D's data folder.
 Yet other manufacturers split their files once they exceed a certain size
-limit. For example Neuromag/Elekta/Megin, which can produce several files
-for a single recording. Both `some_file.fif` and `some_file-1.fif` would
-belong to a single recording. In BIDS, the [`split`](../99-appendices/09-entities.md#split) entity is RECOMMENDED to
-deal with split files.
-Please refer to [Appendix VI](../99-appendices/06-meg-file-formats.md) for
-general information on how to deal with such manufacturer specifics and to see
-more examples.
+limit.
+For example Neuromag/Elekta/Megin, which can produce several files
+for a single recording.
+Both `some_file.fif` and `some_file-1.fif` would belong to a single recording.
+In BIDS, the [`split`](../99-appendices/09-entities.md#split) entity is RECOMMENDED to deal with split files.
 
-The [`proc-<label>`](../99-appendices/09-entities.md#proc) entity is analogous to [`rec-<label>`](../99-appendices/09-entities.md#proc) for MR and denotes a variant of a file
-that was a result of particular processing performed on the device. This is
-useful for files produced in particular by Elekta’s MaxFilter (for example, sss, tsss,
-trans, quat, mc), which some installations impose to be run on raw data
-because of active shielding software corrections before the MEG data can
-actually be exploited.
+Another manufacturer-specific detail pertains to the KIT/Yokogawa/Ricoh sytem,
+which saves the MEG sensor coil positions in a separate file with two possible filename extensions  (`.sqd`, `.mrk`).
+For these files, the `markers` suffix MUST be used.
+For example: `sub-01_task-nback_markers.sqd`
+
+Please refer to [Appendix VI](../99-appendices/06-meg-file-formats.md)
+for general information on how to deal with such manufacturer specifics and to see more examples.
+
+The [`proc-<label>`](../99-appendices/09-entities.md#proc) entity is analogous to the
+[`rec-<label>`](../99-appendices/09-entities.md#rec) entity for MRI,
+and denotes a variant of a file that was a result of particular processing performed on the device.
+This is useful for files produced in particular by Elekta's MaxFilter
+(for example, sss, tsss, trans, quat, mc),
+which some installations impose to be run on raw data prior to analysis.
+Such processing steps are needed for example because of active shielding software corrections
+that have to be performed to before the MEG data can actually be exploited.
 
 ### Recording EEG simultaneously with MEG
 
