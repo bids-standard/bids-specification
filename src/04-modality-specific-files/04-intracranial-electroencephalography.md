@@ -300,7 +300,7 @@ Template:
 sub-<label>/
     [ses-<label>]/
       ieeg/
-         sub-<label>[_ses-<label>][_space-<label>]_electrodes.tsv
+         sub-<label>[_ses-<label>][_acq-<label>][_space-<label>]_electrodes.tsv
 ```
 
 File that gives the location, size and other properties of iEEG electrodes. Note
