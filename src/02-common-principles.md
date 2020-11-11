@@ -149,6 +149,14 @@ data from subject `01`.
 The suffix `eeg` and the extension `.edf` depend on the imaging modality and
 the data format and indicate further details of the file's contents.
 
+In cases where entities duplicate metadata,
+the presence of an entity should not be used as a replacement for
+the corresponding metadata field.
+For instance, in echo-planar imaging MRI,
+the [`dir-<label>`](./99-appendices/09-entities.md#dir) entity MAY be used
+to distinguish files with different phase-encoding directions,
+but the file's `PhaseEncodingDirection` can only be specified as metadata.
+
 A summary of all entities in BIDS and the order in which they MUST be
 specified is available in the [entity table](./99-appendices/04-entity-table.md)
 in the appendix.
@@ -446,9 +454,15 @@ exponent. TSV files MUST be in UTF-8 encoding.
 Example:
 
 ```Text
-onset duration  response_time correct stop_trial  go_trial
-200 200 0 n/a n/a n/a
+onset	duration	response_time	correct	stop_trial	go_trial
+200	200	0	n/a	n/a	n/a
 ```
+
+**Note**: The TSV examples in this document (like the one above this note)
+are occasionally formatted using space characters instead of tabs to improve
+human readability.
+Directly copying and then pasting these examples from the specification
+for use in new BIDS datasets can lead to errors and is discouraged.
 
 Tabular files MAY be optionally accompanied by a simple data dictionary
 in the form of a JSON [object](https://www.json.org/json-en.html)
@@ -552,16 +566,16 @@ it refers to. For example `sub-01` refers to the `sub` entity (a
 subject) with the label `01`. The `sub-` prefix is not part of the subject
 label, but must be included in file names (similarly to other key names).
 
-## Uniform Resource Indicator 
+## Uniform Resource Indicator
 
 A Uniform Resource Indicator (URI) is a string referring to a resource and SHOULD
-have the form `<scheme>:[//<authority>]<path>[?<query>][#<fragment>]`, as specified 
-in [RFC 3986](https://tools.ietf.org/html/rfc3986). 
-This applies to URLs and other common URIs, including Digital Object Identifiers (DOIs), 
-which may be fully specified as `doi:<path>`, 
+have the form `<scheme>:[//<authority>]<path>[?<query>][#<fragment>]`, as specified
+in [RFC 3986](https://tools.ietf.org/html/rfc3986).
+This applies to URLs and other common URIs, including Digital Object Identifiers (DOIs),
+which may be fully specified as `doi:<path>`,
 for example, [doi:10.5281/zenodo.3686061](https://doi.org/10.5281/zenodo.3686061).
 A given resource may have multiple URIs.
-When selecting URIs to add to dataset metadata, it is important to consider 
+When selecting URIs to add to dataset metadata, it is important to consider
 specificity and persistence.
 
 Several fields are designated for DOIs, for example, `DatasetDOI` in `dataset_description.json`.

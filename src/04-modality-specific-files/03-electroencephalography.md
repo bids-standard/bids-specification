@@ -123,6 +123,7 @@ Specific EEG fields MUST be present:
 | SamplingFrequency  | REQUIRED              | [number][]                           | Sampling frequency (in Hz) of all the data in the recording, regardless of their type (for example, 2400).                                                                                                                                                                                                                                                      |
 | PowerLineFrequency | REQUIRED              | [number][] or `"n/a"`                | Frequency (in Hz) of the power grid at the geographical location of the EEG instrument (for example, 50 or 60).                                                                                                                                                                                                                                                 |
 | SoftwareFilters    | REQUIRED              | [object][] of [objects][] or `"n/a"` | [Object][] of temporal software filters applied, or `"n/a"` if the data is not available. Each key:value pair in the JSON object is a name of the filter and an object in which its parameters are defined as key:value pairs. For example, `{"Anti-aliasing filter": {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`.                          |
+
 SHOULD be present:
 
 | **Key name**               | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                                                                                                                                        |
@@ -279,7 +280,7 @@ Template:
 sub-<label>/
     [ses-<label>]/
       eeg/
-        [sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_electrodes.tsv]
+        sub-<label>[_ses-<label>][_acq-<label>][_space-<label>]_electrodes.tsv
 ```
 
 File that gives the location of EEG electrodes. Note that coordinates are

@@ -2,7 +2,14 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] Added white space after table [#660](https://github.com/bids-standard/bids-specification/pull/660) ([robertoostenveld](https://github.com/robertoostenveld))
+-   \[MISC] add remi as maintainer [#657](https://github.com/bids-standard/bids-specification/pull/657) ([Remi-Gau](https://github.com/Remi-Gau))
+-   update Contributing with info on how to respond to reviews [#655](https://github.com/bids-standard/bids-specification/pull/655) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[FIX] add paragraph on MEG specific "markers" suffix in MEG spec [#653](https://github.com/bids-standard/bids-specification/pull/653) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Rewrite the MRI/fieldmaps subsection for consistency with the rest of specs [#651](https://github.com/bids-standard/bids-specification/pull/651) ([oesteban](https://github.com/oesteban))
+-   \[FIX] Fixing template string on electrodes for eeg and ieeg. [#650](https://github.com/bids-standard/bids-specification/pull/650) ([adam2392](https://github.com/adam2392))
 -   ENH: Update genetics-BIDS citation [#646](https://github.com/bids-standard/bids-specification/pull/646) ([effigies](https://github.com/effigies))
+-   \[MISC] add brief note that TSV example in the spec may currently use either tab or space characters [#643](https://github.com/bids-standard/bids-specification/pull/643) ([yarikoptic](https://github.com/yarikoptic))
 -   \[ENH] Add "multipart DWI" acquisitions and refactor DWI specifications [#624](https://github.com/bids-standard/bids-specification/pull/624) ([oesteban](https://github.com/oesteban))
 
 ## [v1.4.1](https://github.com/bids-standard/bids-specification/tree/v1.4.1) (2020-10-13)
