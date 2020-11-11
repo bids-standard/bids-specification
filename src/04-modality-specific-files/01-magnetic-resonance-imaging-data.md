@@ -621,7 +621,7 @@ In most cases, the ASL timeseries, provided by the scanner, consist of a series 
 | [m0scan]    |
 
 #### Case 2: `*_asl.nii[.gz]` consists of volume_types `deltam` (scanner does not export `control` or `label` volumes)
- 
+
 In some cases, `control` and `label` volumes are lacking within the acquired ASL timeseries, but the intermediate `deltam` - and optionally a `m0scan` - volume is 
 reconstructed/exported by the scanner. In this case, the `deltam` should be included in the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`. An optional `cbf` volume 
 should be stored and specified as derivative. Example of `*_aslcontext.tsv`:
@@ -861,7 +861,7 @@ for details on the `IntendedFor` field.
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
 EPI scans with different phase encoding directions to estimate the distortion
 map corresponding to the nonuniformities of the *B<sub>0</sub>* field.
-These `_epi.nii[.gz]` files can be 3D or 4D --
+These `_epi.nii[.gz]` - or _m0scan.nii[.gz] for arterial spin labeling perfusion data - files can be 3D or 4D --
 in the latter case, all timepoints share the same scanning parameters.
 Examples of software tools using these kinds of images are FSL TOPUP,
 AFNI `3dqwarp`, and SPM.
