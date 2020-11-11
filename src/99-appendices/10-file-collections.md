@@ -3,7 +3,7 @@
 To give context to the use of [entity-linked file collections](./02-common-principles.md#file-name-structure), applications concerned with this
 common principle are listed by descriptive tables under their respective modalities.
 
-Please note that the tables in this appendix catolog applications where the use of 
+Note that the tables in this appendix catolog applications where the use of 
 a file collection is REQUIRED.
 
 Please keep this list of linking entities up-to-date with the file collections included
