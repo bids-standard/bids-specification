@@ -103,8 +103,8 @@ Full name: Phase-Encoding Direction
 
 Format: `dir-<label>`
 
-Definition: The `dir-<label>` key/value can be used to distinguish
-different phase-encoding directions.
+Definition: The `dir-<label>` key/value can be set to an arbitrary alphanumeric label
+(for example, `dir-LR` or `dir-AP`) to distinguish different phase-encoding directions.
 
 ## run
 
@@ -180,7 +180,7 @@ Format: `proc-<label>`
 Definition: The proc label is analogous to rec for MR and denotes a variant of a file
 that was a result of particular processing performed on the device.
 This is useful for files produced in particular by Elekta’s MaxFilter
-(for example, sss, tsss, trans, quat, mc, etc.), which some installations impose to
+(for example, sss, tsss, trans, quat or mc), which some installations impose to
 be run on raw data because of active shielding software corrections before
 the MEG data can actually be exploited.
 
