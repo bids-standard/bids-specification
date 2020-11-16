@@ -111,7 +111,7 @@ echo:
   format: index
 flip:
   name: Flip Angle
-  entity: flip 
+  entity: flip
   description: |
     If constituents of an entity-linked file collection differ as a function of
     `FlipAngle` acquisition parameter, the `_flip-<index>` key/value pair MUST
