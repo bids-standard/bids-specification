@@ -136,12 +136,13 @@ Full name: Echo
 
 Format: `echo-<index>`
 
-Definition: If constituents of an entity-linked file collection differ as a
-function of `EchoTime` acquisition parameter, the `_echo-<index>` key/value
-pair MUST be used to distinguish individual files.
-Please note that the `<index>` denotes the number/index (in the form of a
-nonnegative integer) of the echo not the echo time value which needs to be
-stored in the field `EchoTime` of the separate JSON file.
+Definition: If files belonging to an entity-linked file collection are acquired at different
+echo times, the `_echo-<index>` key/value pair MUST be used to distinguish
+individual files.
+This entity represents the `EchoTime` metadata field. Please note that the `<index>`
+denotes the number/index (in the form of a nonnegative integer), not the
+`EchoTime` value which needs to be stored in the field `EchoTime` of the separate
+JSON file.
 
 ## flip
 
@@ -149,12 +150,12 @@ Full name: Flip Angle
 
 Format: `flip-<index>`
 
-Definition: If constituents of an entity-linked file collection differ as a function of
-`FlipAngle` acquisition parameter, the `_flip-<index>` key/value pair MUST
-be used to distinguish individual files.
-Please note that the `<index>` denotes the number/index (in the form of a
-nonnegative integer), not the `FlipAngle` value which needs to be stored in
-the field `FlipAngle` of the separate JSON file.
+Definition: If files belonging to an entity-linked file collection are acquired at different
+flip angles, the `_flip-<index>` key/value pair MUST be used to distinguish
+individual files.
+This entity represents the `FlipAngle` metadata field. Please note that the `<index>`
+denotes the number/index (in the form of a nonnegative integer), not the `FlipAngle`
+value which needs to be stored in the field `FlipAngle` of the separate JSON file.
 
 ## recording
 
