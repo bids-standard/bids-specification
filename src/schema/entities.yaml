@@ -117,6 +117,7 @@ recording:
   format: label
 part:
   name: Part
+  entity: part
   description: |
     This entity is used to indicate which component of the complex
     representation of the MRI signal is represented in voxel data.
