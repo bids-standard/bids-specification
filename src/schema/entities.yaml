@@ -119,7 +119,7 @@ flip:
     Please note that the `<index>` denotes the number/index (in the form of a
     nonnegative integer), not the `FlipAngle` value which needs to be stored in
     the field `FlipAngle` of the separate JSON file.
-  format: index  
+  format: index
 recording:
   name: Recording
   entity: recording
