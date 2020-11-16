@@ -232,11 +232,11 @@ different reconstruction algorithms (for example ones using motion correction).
 
 Currently supported image contrasts include:
 
-| **Name**  | `contrast_label` | **Description**                                                                                                                                                                                                     |
+| **Name**  | `suffix` | **Description**                                                                                                                                                                                                     |
 |---------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | BOLD      | bold             | Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)                                                                                                                                                  |
 | CBV       | cbv              | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images)                                                                                                                |
-| Phase     | phase            | Phase information associated with magnitude information stored in BOLD contrast. [Deprecated](../02-common-principles.md#definitions). [`part-phase`](../99-appendices/09-entities.md#part) should be used instead. |
+| Phase     | phase            | [DEPRECATED](../02-common-principles.md#definitions). Phase information associated with magnitude information stored in BOLD contrast. This suffix should be replaced by the [`part-phase`](../99-appendices/09-entities.md#part) in conjunction with the `bold` suffix. |
 
 Template:
 
@@ -244,7 +244,6 @@ Template:
 sub-<label>/[ses-<label>/]
     func/
         sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<label>]_bold.nii[.gz]
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_phase.nii[.gz]
         sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<label>]_cbv.nii[.gz]
         sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<label>]_sbref.nii[.gz]
 ```
