@@ -17,7 +17,7 @@ each is given in the [Entity Table](04-entity-table.md).
 
 Full name: Subject
 
-Format: `subject-<label>`
+Format: `sub-<label>`
 
 Definition: A person or animal participating in the study.
 
@@ -25,7 +25,7 @@ Definition: A person or animal participating in the study.
 
 Full name: Session
 
-Format: `session-<label>`
+Format: `ses-<label>`
 
 Definition: A logical grouping of neuroimaging and behavioral data consistent across
 subjects.
@@ -58,7 +58,7 @@ Those labels MUST be consistent across subjects and sessions.
 
 Full name: Acquisition
 
-Format: `acquisition-<label>`
+Format: `acq-<label>`
 
 Definition: The `acq-<label>` key/value pair corresponds to a custom label the
 user MAY use to distinguish a different set of parameters used for
@@ -81,7 +81,7 @@ remains at the discretion of the researcher.
 
 Full name: Contrast Enhancing Agent
 
-Format: `ceagent-<label>`
+Format: `ce-<label>`
 
 Definition: The `ce-<label>` key/value can be used to distinguish
 sequences using different contrast enhanced images.
@@ -93,7 +93,7 @@ with the same label.
 
 Full name: Reconstruction
 
-Format: `reconstruction-<label>`
+Format: `rec-<label>`
 
 Definition: The `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion
@@ -103,7 +103,7 @@ correction).
 
 Full name: Phase-Encoding Direction
 
-Format: `direction-<label>`
+Format: `dir-<label>`
 
 Definition: The `dir-<label>` key/value can be set to an arbitrary alphanumeric label
 (for example, `dir-LR` or `dir-AP`) to distinguish different phase-encoding
@@ -124,7 +124,7 @@ When there is only one scan of a given type the run key MAY be omitted.
 
 Full name: Corresponding Modality
 
-Format: `modality-<label>`
+Format: `mod-<label>`
 
 Definition: The `mod-<label>` key/value pair corresponds to modality label for defacing
 masks, for example, T1w, inplaneT1, referenced by a defacemask image.
@@ -171,7 +171,7 @@ For example: `_recording-contrast`, `_recording-saturation`.
 
 Full name: Processed (on device)
 
-Format: `processing-<label>`
+Format: `proc-<label>`
 
 Definition: The proc label is analogous to rec for MR and denotes a variant of a file
 that was a result of particular processing performed on the device.
