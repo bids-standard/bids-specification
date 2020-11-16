@@ -117,8 +117,8 @@ flip:
     `FlipAngle` acquisition parameter, the `_flip-<index>` key/value pair MUST
     be used to distinguish individual files.
     Please note that the `<index>` denotes the number/index (in the form of a
-    nonnegative integer), not the `FlipAngle` value which needs to be stored in 
-    the field `FlipAngle` of the separate JSON file. 
+    nonnegative integer), not the `FlipAngle` value which needs to be stored in
+    the field `FlipAngle` of the separate JSON file.
   format: index  
 recording:
   name: Recording

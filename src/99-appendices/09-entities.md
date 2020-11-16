@@ -17,7 +17,7 @@ each is given in the [Entity Table](04-entity-table.md).
 
 Full name: Subject
 
-Format: `sub-<label>`
+Format: `subject-<label>`
 
 Definition: A person or animal participating in the study.
 
@@ -25,7 +25,7 @@ Definition: A person or animal participating in the study.
 
 Full name: Session
 
-Format: `ses-<label>`
+Format: `session-<label>`
 
 Definition: A logical grouping of neuroimaging and behavioral data consistent across
 subjects.
@@ -58,7 +58,7 @@ Those labels MUST be consistent across subjects and sessions.
 
 Full name: Acquisition
 
-Format: `acq-<label>`
+Format: `acquisition-<label>`
 
 Definition: The `acq-<label>` key/value pair corresponds to a custom label the
 user MAY use to distinguish a different set of parameters used for
@@ -81,7 +81,7 @@ remains at the discretion of the researcher.
 
 Full name: Contrast Enhancing Agent
 
-Format: `ce-<label>`
+Format: `ceagent-<label>`
 
 Definition: The `ce-<label>` key/value can be used to distinguish
 sequences using different contrast enhanced images.
@@ -93,7 +93,7 @@ with the same label.
 
 Full name: Reconstruction
 
-Format: `rec-<label>`
+Format: `reconstruction-<label>`
 
 Definition: The `rec-<label>` key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion
@@ -103,10 +103,11 @@ correction).
 
 Full name: Phase-Encoding Direction
 
-Format: `dir-<label>`
+Format: `direction-<label>`
 
 Definition: The `dir-<label>` key/value can be set to an arbitrary alphanumeric label
-(for example, `dir-LR` or `dir-AP`) to distinguish different phase-encoding directions.
+(for example, `dir-LR` or `dir-AP`) to distinguish different phase-encoding
+directions.
 
 ## run
 
@@ -123,7 +124,7 @@ When there is only one scan of a given type the run key MAY be omitted.
 
 Full name: Corresponding Modality
 
-Format: `mod-<label>`
+Format: `modality-<label>`
 
 Definition: The `mod-<label>` key/value pair corresponds to modality label for defacing
 masks, for example, T1w, inplaneT1, referenced by a defacemask image.
@@ -135,12 +136,25 @@ Full name: Echo
 
 Format: `echo-<index>`
 
-Definition: Multi-echo data MUST be split into one file per echo.
-Each file shares the same name with the exception of the `_echo-<index>`
-key/value.
+Definition: If constituents of an entity-linked file collection differ as a
+function of `EchoTime` acquisition parameter, the `_echo-<index>` key/value
+pair MUST be used to distinguish individual files.
 Please note that the `<index>` denotes the number/index (in the form of a
 nonnegative integer) of the echo not the echo time value which needs to be
 stored in the field `EchoTime` of the separate JSON file.
+
+## flip
+
+Full name: Flip Angle
+
+Format: `flip-<index>`
+
+Definition: If constituents of an entity-linked file collection differ as a function of
+`FlipAngle` acquisition parameter, the `_flip-<index>` key/value pair MUST
+be used to distinguish individual files.
+Please note that the `<index>` denotes the number/index (in the form of a
+nonnegative integer), not the `FlipAngle` value which needs to be stored in
+the field `FlipAngle` of the separate JSON file.
 
 ## recording
 
@@ -157,7 +171,7 @@ For example: `_recording-contrast`, `_recording-saturation`.
 
 Full name: Processed (on device)
 
-Format: `proc-<label>`
+Format: `processing-<label>`
 
 Definition: The proc label is analogous to rec for MR and denotes a variant of a file
 that was a result of particular processing performed on the device.
