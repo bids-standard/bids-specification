@@ -165,7 +165,8 @@ representation of the MRI signal is represented in voxel data.
 The `part-<label>` key/value pair is associated with the DICOM tag
 `0008,9208`.
 Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
-which are typically used in `mag/phase` or `real/imag` pairs.
+which are typically used in `part-mag`/`part-phase` or
+`part-real`/`part-imag` pairs of files.
 
 Phase images MAY be in radians or in arbitrary units.
 The sidecar JSON file MUST include the units of the `phase` image.

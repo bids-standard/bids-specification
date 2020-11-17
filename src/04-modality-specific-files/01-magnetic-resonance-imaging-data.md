@@ -200,7 +200,8 @@ used to indicate which component of the complex representation of the MRI
 signal is represented in voxel data.
 This entity is associated with the DICOM tag `0008,9208`.
 Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
-which are typically used in `mag/phase` or `real/imag` pairs.
+which are typically used in `part-mag`/`part-phase` or `part-real`/`part-imag`
+pairs of files.
 For example:
 
 ```Text
