@@ -642,7 +642,7 @@ should be stored in the ancillary files or in the NIfTI header.
 The `m0scan` can either be stored inside the 4D ASL time-series NIfTI file or as a separate NIfTI file, depending on whether it 
 was acquired within the ASL time-series or as a separate scan. These and other M0 options are specified in the required `M0` field of the `*_asl.json` file. 
 It can also be stored under `fmap/sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]`, 
-when the pepolar approach is used.
+when the [pepolar approach](https://bids-specification.readthedocs.io/en/latest/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#case-4-multiple-phase-encoded-directions-pepolar) is used.
 
 ### `*_aslcontext.tsv`
 The `*_aslcontext.tsv` lists the volume_type for each volume in a single column, in the `*_asl.nii[.gz]`, corresponding to the volume_types specified in the table below, based 
