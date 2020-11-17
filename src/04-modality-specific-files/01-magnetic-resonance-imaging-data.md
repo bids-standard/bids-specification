@@ -667,7 +667,7 @@ In most cases, the ASL timeseries, provided by the scanner, consist of a series 
 `label`, and optionally `m0scan` volumes should be stored in the `*_asl.json`, and the exact volume_type series should be specified in the `*_aslcontext.tsv`. The optional 
 `deltam` or `cbf` volumes should be stored and specified as derivative. Example of `*_aslcontext.tsv`:
 
-```
+```Text
 volume_type
 control
 label
@@ -682,7 +682,7 @@ In some cases, `control` and `label` volumes are lacking within the acquired ASL
 reconstructed/exported by the scanner. In this case, the `deltam` should be included in the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`. An optional `cbf` volume 
 should be stored and specified as derivative. Example of `*_aslcontext.tsv`:
 
-```
+```Text
 volume_type
 deltam
 m0scan
@@ -693,7 +693,7 @@ m0scan
 If `control` and `label` or intermediate ASL volumes are not reconstructed or exported, but a pre-calculated `cbf` - and optionally a `m0scan` - volume is provided by the
 scanner, the `cbf` should be included in the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`. Example of `*_aslcontext.tsv`:
 
-```
+```Text
 volume_type
 cbf
 m0scan
