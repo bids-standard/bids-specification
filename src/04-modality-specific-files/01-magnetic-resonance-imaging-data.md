@@ -764,17 +764,17 @@ Some common metadata fields are required for the `*_m0scan.json`: `RepetitionTim
 
 The following table recapitulates the ASL field dependencies. If Source field (column 1) contains the Value specified in column 2, then the Requirements in column 4 are imposed on the Dependent fields in column 3.
 
-| **Source field**              | **Value**                       | **Dependent field**           | **Requirements**              |
-|-------------------------------|---------------------------------|-------------------------------|-------------------------------|
-| PulseSequenceType             | 2D acquisition / 3D acquisition | SliceTiming                   | \[X\] / \[\]                  |
-| LookLocker                    | true                            | FlipAngle                     | \[X\]                         |
-| M0                            | true / false                    | `*_aslcontext.tsv`            | Contains `m0scan` / `control` |
-| LabelingType                  | PASL                            | BolusCutOffFlag               | \[X\]                         |
-| BolusCutOffFlag               | true / false                    | BolusCutOffDelayTime          | \[X\] / \[\]                  |
-| BolusCutOffFlag               | true / false                    | BolusCutOffTechnique          | \[X\] / \[\]                  |
-| `*_aslcontext.tsv`            | cbf                             | Units                         | \[X\]                         |
-| RepetitionTime / VolumeTiming | \[X\] / \[\]                    | VolumeTiming / RepetitionTime | \[\] / \[X\]                  |
-| VolumeTiming                  | \[X\]                           | AcquisitionDuration           | \[X\]                         |
+| **Source field**              | **Value**    | **Dependent field**           | **Requirements**              |
+|-------------------------------|--------------|-------------------------------|-------------------------------|
+| MRAcquisitionType             | 2D / 3D      | SliceTiming                   | \[X\] / \[\]                  |
+| LookLocker                    | true         | FlipAngle                     | \[X\]                         |
+| M0                            | true / false | `*_aslcontext.tsv`            | Contains `m0scan` / `control` |
+| LabelingType                  | PASL         | BolusCutOffFlag               | \[X\]                         |
+| BolusCutOffFlag               | true / false | BolusCutOffDelayTime          | \[X\] / \[\]                  |
+| BolusCutOffFlag               | true / false | BolusCutOffTechnique          | \[X\] / \[\]                  |
+| `*_aslcontext.tsv`            | cbf          | Units                         | \[X\]                         |
+| RepetitionTime / VolumeTiming | \[X\] / \[\] | VolumeTiming / RepetitionTime | \[X\] / \[\]                  |
+| VolumeTiming                  | \[X\]        | AcquisitionDuration           | \[X\]                         |
 
 **Legend**
 
