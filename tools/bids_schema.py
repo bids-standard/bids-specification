@@ -224,7 +224,8 @@ each is given in the [Entity Table](04-entity-table.md).
             fo.write('\n\n')
             fo.write('Full name: {}'.format(entity_info['name']))
             fo.write('\n\n')
-            fo.write('Format: `{}-<{}>`'.format(entity, entity_info['format']))
+            fo.write('Format: `{}-<{}>`'.format(entity_info['entity'],
+                                                entity_info['format']))
             fo.write('\n\n')
             fo.write('Definition: {}'.format(entity_info['description']))
 
