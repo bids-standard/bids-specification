@@ -134,9 +134,14 @@ space:
   name: Space
   entity: space
   description: |
-    The space label (`*[_space-<label>]_electrodes.tsv`) can be used
-    to indicate the way in which electrode positions are interpreted.
+    The space entity can be used to indicate
+    the way in which electrode positions are interpreted
+    (for EEG/MEG/iEEG data) or
+    the spatial reference to which a file has been aligned (for MRI data).
     The space label needs to be taken from the list in Appendix VIII.
+
+    For EEG/MEG/iEEG data, this entity can be applied to raw data, but
+    for other data types, it is restricted to derivative data.
   format: label
 split:
   name: Split
@@ -154,3 +159,42 @@ split:
     It is RECOMMENDED that .fif files with multiple parts use the
     `split-<index>` entity to indicate each part.
   format: index
+res:
+  name: Resolution
+  entity: res
+  description: |
+    Resolution of regularly sampled N-dimensional data.
+    MUST have a corresponding `Resolution` metadata field to provide
+    interpretation.
+
+    This entity is only applicable to derivative data.
+  format: label
+den:
+  name: Density
+  entity: den
+  description: |
+    Density of non-parametric surfaces.
+    MUST have a corresponding `Density` metadata field to provide
+    interpretation.
+
+    This entity is only applicable to derivative data.
+  format: label
+label:
+  name: Label
+  entity: label
+  description: |
+    Tissue-type label, following a prescribed vocabulary.
+    Applies to binary masks and probabilistic/partial volume segmentations
+    that describe a single tissue type.
+
+    This entity is only applicable to derivative data.
+  format: label
+desc:
+  name: Description
+  entity: desc
+  description: |
+    When necessary to distinguish two files that do not otherwise have a
+    distinguishing entity, the `_desc-<label>` keyword-value SHOULD be used.
+
+    This entity is only applicable to derivative data.
+  format: label
