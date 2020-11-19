@@ -292,7 +292,7 @@ As an example, consider the contents of a file called
 {
   "MeasurementToolMetadata": {
     "Description": "Adult ADHD Clinical Diagnostic Scale V1.2",
-    "TermURL": "http://www.cognitiveatlas.org/task/id/trm_5586ff878155d"
+    "TermURL": "https://www.cognitiveatlas.org/task/id/trm_5586ff878155d"
   },
   "adhd_b": {
     "Description": "B. CHILDHOOD ONSET OF ADHD (PRIOR TO AGE 7)",

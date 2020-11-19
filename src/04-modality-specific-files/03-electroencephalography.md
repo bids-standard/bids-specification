@@ -111,7 +111,7 @@ Whenever possible, please avoid using ad hoc wording.
 | SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer's designation of the acquisition software.                                                                                                                                                                                                                            |
 | TaskDescription        | RECOMMENDED           | [string][]    | Description of the task.                                                                                                                                                                                                                                                           |
 | Instructions           | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the scan. This is not only important for behavioral or cognitive tasks but also in resting state paradigms (for example, to distinguish between eyes open and eyes closed).                                                  |
-| CogAtlasID             | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) term that describes the task (for example, Resting State with eyes closed "[http://www.cognitiveatlas.org/task/id/trm_54e69c642d89b](http://www.cognitiveatlas.org/task/id/trm_54e69c642d89b)"). |
+| CogAtlasID             | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) term that describes the task (for example, Resting State with eyes closed "[https://www.cognitiveatlas.org/task/id/trm_54e69c642d89b](https://www.cognitiveatlas.org/task/id/trm_54e69c642d89b)"). |
 | CogPOID                | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task (for example, Rest "[http://wiki.cogpo.org/index.php?title=Rest](http://wiki.cogpo.org/index.php?title=Rest)") .                                                                       |
 | DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.                                                                   |
 
@@ -363,10 +363,10 @@ triangulate the position of other LED-lit electrodes on a research subject's
 head.
 
 -   For more information on the definition of anatomical landmarks, please visit:
-    [http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
+    [https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined](https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined)
 
 -   For more information on coordinate systems for coregistration, please visit:
-    [http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](http://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
+    [https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
 
 General fields:
 
