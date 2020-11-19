@@ -701,7 +701,9 @@ m0scan
 
 ### `*_asl.json` file
 
-Depending on the method used for ASL acquisition ((P)CASL or PASL) different metadata fields are applicable.
+Depending on the method used for ASL acquisition ((P)CASL or PASL) different metadata fields are applicable. Additionally, some common metadata fields are required for the 
+`*_asl.json`: `MagneticFieldStrength`, `MRAcquisitionType`, `EchoTime`, `SliceTiming` in case `MRAcquisitionType` is defined as 2D, `RepetitionTime` or `VolumeTiming`, and 
+`FlipAngle`.
 
 #### Common metadata fields applicable to both (P)CASL and PASL 
 | **Key name**                      | **Requirement level**                                                                                                           | **Data type**                           | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
@@ -754,6 +756,10 @@ These fields can only be used when `LabelingType` is `PASL`.
 | BolusCutOffTechnique  | OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true` | [string][]                             | Name of the technique used, for example Q2TIPS, QUIPSS, QUIPSSII. Corresponds to DICOM Tag 0018,925E `ASL Bolus Cut-off Technique`.                                                                                                                                                                                                                                                                                                                     |
 
 ### `m0scan` metadata fields
+
+Some common metadata fields are required for the `*_m0scan.json`: `MagneticFieldStrength`, `MRAcquisitionType`, `EchoTime`, `SliceTiming` in case `MRAcquisitionType` is defined 
+as 2D, `RepetitionTime` or `VolumeTiming`, and `FlipAngle`.
+
 | **Key name**         | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                   |
 |----------------------|-----------------------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | IntendedFor          | REQUIRED              | [string][] or [array][] of [strings][] | One or more filenames with paths relative to the subject subfolder, with forward slashes, referring to ASL time series for which the m0scan is intended.AcquisitionVoxelSize                                                                                                                                                                                                      |
