@@ -757,8 +757,7 @@ These fields can only be used when `LabelingType` is `PASL`.
 
 ### `m0scan` metadata fields
 
-Some common metadata fields are required for the `*_m0scan.json`: `MagneticFieldStrength`, `MRAcquisitionType`, `EchoTime`, `SliceTiming` in case `MRAcquisitionType` is defined 
-as 2D, `RepetitionTime` or `VolumeTiming`, and `FlipAngle`.
+Some common metadata fields are required for the `*_m0scan.json`: `EchoTime`, `RepetitionTime` or `VolumeTiming`, and `FlipAngle`.
 
 | **Key name**         | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                   |
 |----------------------|-----------------------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
