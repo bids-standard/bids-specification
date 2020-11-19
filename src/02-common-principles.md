@@ -513,9 +513,10 @@ Example:
 
 JavaScript Object Notation (JSON) files MUST be used for storing key/value
 pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
-format can be found here: [https://www.json.org/](https://www.json.org/). Several editors
-have built-in support for JSON syntax highlighting that aids manual creation of
-such files. An online editor for JSON with built-in validation is available at:
+format can be found at [https://www.json.org/](https://www.json.org/).
+Several editors have built-in support for JSON syntax highlighting that aids
+manual creation of such files.
+An online editor for JSON with built-in validation is available at
 [https://jsoneditoronline.org](https://jsoneditoronline.org).
 It is RECOMMENDED that keys in a JSON file are written in [CamelCase](https://en.wikipedia.org/wiki/Camel_case)
 with the first letter in upper case (for example, `SamplingFrequency`, not
