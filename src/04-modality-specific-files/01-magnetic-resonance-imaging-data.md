@@ -757,7 +757,7 @@ These fields can only be used when `LabelingType` is `PASL`.
 
 ### `m0scan` metadata fields
 
-Some common metadata fields are required for the `*_m0scan.json`: `EchoTime`, `RepetitionTime` or `VolumeTiming`, and `FlipAngle`.
+Some common metadata fields are required for the `*_m0scan.json`: `RepetitionTime` or `VolumeTiming`.
 
 | **Key name**         | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                   |
 |----------------------|-----------------------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
