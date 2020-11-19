@@ -14,8 +14,8 @@ Template:
 sub-<label>/
     [ses-<label>]/
       meg/
-        sub-<label>[_ses-<label>]_task-<label>[_run-<index>][_proc-<label>]_meg.<manufacturer_specific_extension>
-        [sub-<label>[_ses-<label>]_task-<label>[_run-<index>][_proc-<label>]_meg.json]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<acquisition>][_run-<index>][_proc-<label>]_meg.<manufacturer_specific_extension>
+        [sub-<label>[_ses-<label>]_task-<label>[_acq-<acquisition>][_run-<index>][_proc-<label>]_meg.json]
 ```
 
 Unprocessed MEG data MUST be stored in the native file format of the MEG
