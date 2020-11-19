@@ -703,7 +703,7 @@ m0scan
 
 Depending on the method used for ASL acquisition ((P)CASL or PASL) different metadata fields are applicable. Additionally, some common metadata fields are required for the 
 `*_asl.json`: `MagneticFieldStrength`, `MRAcquisitionType`, `EchoTime`, `SliceTiming` in case `MRAcquisitionType` is defined as 2D, `RepetitionTime` or `VolumeTiming`, and 
-`FlipAngle`.
+`FlipAngle` in case `LookLocker` is `true`.
 
 #### Common metadata fields applicable to both (P)CASL and PASL 
 | **Key name**                      | **Requirement level**                                                                                                           | **Data type**                           | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
