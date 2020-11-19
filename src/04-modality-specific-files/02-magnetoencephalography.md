@@ -195,7 +195,7 @@ Template:
 sub-<label>/
     [ses-<label>]/
       meg/
-        [sub-<label>[_ses-<label>]_task-<label>[_run-<index>][_proc-<label>]_channels.tsv]
+        [sub-<label>[_ses-<label>]_task-<label>[_acq-<acquisition>][_run-<index>][_proc-<label>]_channels.tsv]
 ```
 
 This file is RECOMMENDED as it provides easily searchable information across

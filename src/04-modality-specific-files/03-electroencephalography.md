@@ -197,7 +197,7 @@ Template:
 sub-<label>/
     [ses-<label>]/
       eeg/
-        [sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_channels.tsv]
+        [sub-<label>[_ses-<label>]_task-<label>[_acq-<acquisition>][_run-<index>]_channels.tsv]
 ```
 
 This file is RECOMMENDED as it provides easily searchable information across
