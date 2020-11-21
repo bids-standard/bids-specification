@@ -4,8 +4,11 @@ MarkDown format for the specification text.
 Functions decorated in "define_env()" are callable throughout the
 specification and are run/rendered with the mkdocs plugin "macros".
 """
+import os
 import sys
-sys.path.append("tools/")
+
+schemacode_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(schemacode_path)
 from schemacode import macros
 
 
@@ -21,6 +24,7 @@ def define_env(env):
     -----
     "variables" are the dictionary that contains the environment variables
     "macro" is a decorator function, to declare a macro.
+
     Macro aliases must start with "MACROS___", for compatibility with the PDF
     build code.
     """
