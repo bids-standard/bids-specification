@@ -177,7 +177,9 @@ the definition of the accompanying suffix. For example, the use of the `echo` en
 `T1w` suffix casts doubt on the validity of the identified contrast weighting.  
 Provided the conditions above are satisfied, any suffix (e.g. `bold`) can identify an entity-linked file 
 collection, although certain suffixes are exclusive for this purpose (e.g., `MP2RAGE`).
-All the use cases concerning this convention MUST to be included in the [file collections](./99-appendices/10-file-collections.md) appendix. This convention is mainly intended for but not
+Use cases concerning this convention are compiled in the
+[file collections](./99-appendices/10-file-collections.md) appendix.
+This convention is mainly intended for but not
 limited to MRI modalities.
 
 ## Source vs. raw vs. derived data
