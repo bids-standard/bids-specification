@@ -165,7 +165,8 @@ in the appendix.
 
 A set of files that are related to each other based on a repetitive acquisition of
 sequential data by changing acquisition parameters one (or multiple) at a time and/or by
-being inherent components of the same data. The suffix serves as an identifier for these
+being inherent components of the same data.
+The suffix serves as an identifier for these
 collections, holding a logical grouping of constituent files.
 Within each collection, files MUST be distinguished from each other by at least one 
 entity (e.g., `echo`) that corresponds to an altered acquisition parameter (e.g., 
