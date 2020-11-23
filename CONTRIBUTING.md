@@ -20,6 +20,7 @@ Jump to the following sections:
 -   [Understanding issues](#understanding-issues)
 -   [Writing in markdown](#writing-in-markdown)
 -   [Fixing Remark errors from Travis](#fixing-travis-remark-errors)
+-   [## Adding a figure to the specifications](#adding-a-figure-to-the-specifications)
 -   [Making a change with a pull request](#making-a-change-with-a-pull-request)
 -   [Example pull request](#example-pull-request)
 -   [Commenting on a pull request](#commenting-on-a-pull-request)
@@ -232,6 +233,29 @@ mv flagged_file_fixed.md flagged_file.md
 git add flagged_file.md
 git commit -m 'STY: Fixed Markdown style'
 ```
+
+## Adding a figure to the specifications
+
+> A figure is worth a 1000 words! 
+
+If you think that a figure or a picture can help summarize several aspects or notions of the 
+specifications, do not hesitate to make a suggestion by showing a draft in a Github issue.
+
+You can then submit your image in a pull request.
+
+Images should be added to an `images` folder that is at the same level as the Markdown file
+where your image will be added. For example if you want to add a figure `figure01.png` to 
+`src/05-derivatives/01-introduction.md` then your image should go 
+`src/05-derivatives/images/figure01.png`.
+
+Figures can be inserted in a Markdown like this:
+
+```markdown
+![ ](relative_path_to_file "alternative name")
+```
+
+If you are adding a figure (and not picture) make sure to also join a vector format 
+of that figure (ideally as an `.svg` file).
 
 ## Making a change with a pull request
 
