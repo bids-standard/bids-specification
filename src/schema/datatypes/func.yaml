@@ -27,13 +27,13 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
-    ce: optional
-    rec: optional
-    dir: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
     run: optional
     echo: optional
 # Third group
