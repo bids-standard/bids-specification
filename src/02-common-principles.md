@@ -169,8 +169,9 @@ being inherent components of the same data.
 The suffix serves as an identifier for these
 collections, holding a logical grouping of constituent files.
 Within each collection, files MUST be distinguished from each other by at least one 
-entity (e.g., `echo`) that corresponds to an altered acquisition parameter (e.g., 
-`EchoTime`) or that defines a component relationship (e.g., `part`). Note that these entities 
+entity (for example, `echo`) that corresponds to an altered acquisition parameter
+(`EchoTime`) or that defines a component relationship (for example, `part`).
+Note that these entities 
 MUST be described by the specification and the parameter changes they declare SHOULD NOT invalidate
 the definition of the accompanying suffix. For example, the use of the `echo` entity along with the 
 `T1w` suffix casts doubt on the validity of the identified contrast weighting.  
