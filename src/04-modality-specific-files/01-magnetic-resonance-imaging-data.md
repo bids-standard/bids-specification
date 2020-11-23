@@ -381,9 +381,9 @@ sparse sequences.
 
 **Legend**
 
--   \[ X ] --> has to be filled
--   \[   \] --> has to be left empty
--   empty cell --> can be specified but not required
+-   \[ X ] --> MUST be defined
+-   \[  \] --> MUST NOT be defined
+-   empty cell --> MAY be specified
 
 #### fMRI task information
 
