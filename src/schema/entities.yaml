@@ -132,6 +132,17 @@ inv:
     denotes the number/index (in the form of a nonnegative integer), not the `InversionTime`
     value which needs to be stored in the field `InversionTime` of the separate JSON file.
   format: index
+mt:
+  name: Magnetization Transfer
+  entity: mt
+  description: |
+    If files belonging to an entity-linked file collection are acquired at different
+    magnetization transfer (MT) states, the `_mt-<label>` key/value pair MUST be used to 
+    distinguish individual files.
+    This entity represents the `MTState` metadata field. Allowed label values for this 
+    entity are `on` and `off`, for images acquired in presence and absence of an MT pulse,
+    respectively.
+  format: label
 recording:
   name: Recording
   entity: recording
