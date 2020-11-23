@@ -56,7 +56,8 @@ Example:
     "Alzheimer A., & Kraepelin, E. (2015). Neural correlates of presenile dementia in humans. Journal of Neuroscientific Data, 2, 234001. doi:1920.8/jndata.2015.7"
   ],
   "DatasetDOI": "doi:10.0.2.3/dfjj.10",
-  "HEDVersion": "7.1.1"
+  "HEDVersion": "7.1.1",
+  "Preregistration": "doi:10.1038/s41598-018-30701-5"
 }
 ```
 
