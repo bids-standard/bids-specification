@@ -37,7 +37,7 @@ ecosystem (in alphabetical order).
 If you contributed to the BIDS ecosystem and your name is not listed, please add it.
 
 -   Fidel Alfaro Almagro 💬📖💡🔌
--   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️📢✅🔧🔌📝
+-   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️📢✅🔧🔌📝🚧🔣
 -   Tibor Auer 💬📖💡🔧📢
 -   Sylvain Baillet 📖🔍
 -   Arshitha Basavaraj 📖🚇💻
@@ -63,11 +63,11 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Eric A. Earl 🤔
 -   Anders Eklund 📖📢💻
 -   Oscar Esteban 📖🔧🤔💬💻
--   Franklin W. Feingold 📋📝✅💬🤔🎨📢👀🚇
+-   Franklin W. Feingold 📋📝✅💬🤔🎨📢👀🚇🖋📆
 -   Guillaume Flandin 📖💻
 -   Adeen Flinker 📖
 -   Brett L. Foster 📖
--   Remi Gau 📖💻
+-   Remi Gau 📖💻💬📢🐛💻🚇👀🔧🤔
 -   Satrajit S. Ghosh 📖💻
 -   Tristan Glatard 📖💻
 -   Mathias Goncalves 💻🔧📢
@@ -86,6 +86,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Peer Herholz 💬📖👀🔧✅📢
 -   Dora Hermes 📖💻✅🔍🤔
 -   Katja Heuer 🔧
+-   Richard Höchenberger 📖
 -   Chris Holdgraf 📖🤔
 -   Christopher J. Honey 📖
 -   Jean-Christophe Houde 📖
@@ -121,7 +122,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   National Institute of Mental Health 💵
 -   Mikael Naveau 🐛
 -   B. Nolan Nichols 📖
--   Thomas E. Nichols 📖📢🔧
+-   Thomas E. Nichols 📖📢🔧👀🚧
 -   Dylan Nielson 📖💻🔧
 -   Guiomar Niso 📖💡📢
 -   Michael P. Notter 💬📝✅📢📖
@@ -161,6 +162,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Sébastien Tourbier 🤔👀📢🐛💻📖
 -   William Triplett 📖
 -   Jessica A. Turner 📖
+-   Max A. van den Boom 💻👀📖
 -   Bradley Voytek 📖
 -   Brian A. Wandell 📖
 -   Joseph Wexler 📖💡
@@ -169,3 +171,5 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Gaël Varoquaux 📖
 -   Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
 -   Lyuba Zehl 📖
+-   Melanie Ganz-Benjaminsen 📖🔣💻🤔📆🔍📢
+-   Martin Noergaard 📖🔣💻🤔📢

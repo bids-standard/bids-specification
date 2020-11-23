@@ -23,8 +23,9 @@ will have a negative `x` value.
 
 Besides coordinate systems, defined by their origin and direction of the axes,
 BIDS defines "spaces" as an artificial frame of reference, created to describe
-different anatomies in a unifying manner (see e.g.,
-[https://doi.org/10.1016/j.neuroimage.2012.01.024](https://doi.org/10.1016/j.neuroimage.2012.01.024)).
+different anatomies in a unifying manner (see for example,
+[doi:10.1016/j.neuroimage.2012.01.024](https://doi.org/10.1016/j.neuroimage.2012.01.024)).
+
 The "space" and all coordinates expressed in this space are by design a
 transformation of the real world geometry, and nearly always different from the
 individual subject space that it stems from. An example is the
@@ -37,7 +38,7 @@ The coordinate systems below all relate to neuroscience and therefore to the
 head or brain coordinates. Please be aware that all data acquisition starts with
 "device coordinates" (scanner), which does not have to be identical to the
 initial "file format coordinates" (DICOM), which are again different from the
-"head" coordinates (e.g., NIFTI). Not only do device coordinate vary between
+"head" coordinates (for example, NIFTI). Not only do device coordinate vary between
 hardware manufacturers, but also the head coordinates differ, mostly due to
 different conventions used in specific software packages developed by different
 (commercial or academic) groups.
@@ -48,7 +49,7 @@ Generally, across the MEG, EEG, and iEEG modalities, the first two pieces of
 information for a coordinate system (origin and orientation) are specified in
 `<datatype>CoordinateSystem`.
 The third piece of information for a coordinate system (units) are specified in
-`<datatype>CoordinateSystemUnits`.
+`<datatype>CoordinateUnits`.
 Here, `<datatype>` can be one of `MEG`, `EEG`, or `iEEG`, depending on the
 modality that is being used.
 
@@ -118,7 +119,7 @@ reference is described in `<datatype>CoordinateSystem`.
 Unless otherwise specified below, the origin is at the AC and the orientation of
 the axes is RAS.
 Unless specified explicitly in the sidecar file in the
-`<datatype>CoordinateSystemUnits` field, the units are assumed to be mm.
+`<datatype>CoordinateUnits` field, the units are assumed to be mm.
 
 ### Standard template identifiers
 
@@ -135,7 +136,7 @@ Unless specified explicitly in the sidecar file in the
 | MNI152Lin                           | Also known as ICBM (version with linear coregistration) [http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152Lin](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152Lin)                                                                                                                                                                                                                                                                                                                                             |
 | MNI152NLin2009\[a-c\]\[Sym\|Asym\]  | Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009). It comes in either three different flavours each in symmetric or asymmetric version. [http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009)                                                                                                                                                                                                                 |
 | MNI152NLin6Sym                      | Also known as symmetric ICBM 6th generation (non-linear coregistration). Used by SPM99 - SPM8. [http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin6](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin6)                                                                                                                                                                                                                                                                                                  |
-| MNI152NLin6ASym                     | A variation of `MNI152NLin6Sym` built by A. Janke that is released as the *MNI template* of FSL. Volumetric templates included with [HCP-Pipelines](https://github.com/Washington-University/HCPpipelines/tree/master/global/templates) correspond to this template too. See [10.1016/j.neuroimage.2012.01.024](https://doi.org/10.1016/j.neuroimage.2012.01.024).                                                                                                                                                     |
+| MNI152NLin6ASym                     | A variation of `MNI152NLin6Sym` built by A. Janke that is released as the *MNI template* of FSL. Volumetric templates included with [HCP-Pipelines](https://github.com/Washington-University/HCPpipelines/tree/master/global/templates) correspond to this template too. See [doi:10.1016/j.neuroimage.2012.01.024](https://doi.org/10.1016/j.neuroimage.2012.01.024).                                                                                                                                                 |
 | MNI305                              | Also known as avg305.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | NIHPD                               | Pediatric templates generated from the NIHPD sample. Available for different age groups (4.5–18.5 y.o., 4.5–8.5 y.o., 7–11 y.o., 7.5–13.5 y.o., 10–14 y.o., 13–18.5 y.o. This template also comes in either -symmetric or -asymmetric flavor. [http://www.bic.mni.mcgill.ca/ServicesAtlases/NIHPD-obj1](http://www.bic.mni.mcgill.ca/ServicesAtlases/NIHPD-obj1)                                                                                                                                                       |
 | OASIS30AntsOASISAnts                | [https://figshare.com/articles/ANTs_ANTsR_Brain_Templates/915436](https://figshare.com/articles/ANTs_ANTsR_Brain_Templates/915436)                                                                                                                                                                                                                                                                                                                                                                                     |

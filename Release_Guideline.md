@@ -17,7 +17,7 @@ backwards-incompatible changes, while minor and patch releases must be backwards
 ## Guidelines
 
 Once a decision for a release has been established, the rules of [decision-making](DECISION-MAKING.md)
-govern the mechanism of doing the release, *i.e.*, waiting 5 business days and obtaining
+govern the mechanism of doing the release, meaning, waiting 5 business days and obtaining
 the approval of at least one maintainer before merging.
 
 ### Minor (1.X.0) releases
@@ -32,7 +32,7 @@ Patch releases will generally be more frequent, and indicate less significant ch
 The following is a non-exhaustive set of justifications for a patch release:
 
 - A modality field has changed and the [bids-validator](https://github.com/bids-standard/bids-validator) has been updated to reflect this change.
-- Links or information in the specification are no longer accurate, *e.g.* if a BEP document is added or moved
+- Links or information in the specification are no longer accurate, for example if a BEP document is added or moved
 - The rendering of the [specification](https://bids-specification.readthedocs.io/en/stable/) has changed
 - A metadata field or file type is added at the request of a curator attempting to release BIDS-compliant data
 

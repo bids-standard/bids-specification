@@ -3,7 +3,6 @@
 - suffixes:
     - bold
     - cbv
-    - phase
     - sbref
   extensions:
     - .nii.gz
@@ -19,7 +18,25 @@
     dir: optional
     run: optional
     echo: optional
+    part: optional
 # Second group
+- suffixes:
+    - phase
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    task: required
+    acq: optional
+    ce: optional
+    rec: optional
+    dir: optional
+    run: optional
+    echo: optional
+# Third group
 - suffixes:
     - events
   extensions:
@@ -35,7 +52,7 @@
     dir: optional
     run: optional
     echo: optional
-# Third group
+# Fourth group
 - suffixes:
     - physio
     - stim

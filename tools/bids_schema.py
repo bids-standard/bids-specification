@@ -220,11 +220,11 @@ each is given in the [Entity Table](04-entity-table.md).
         fo.write(intro_text)
         for entity, entity_info in entities.items():
             fo.write('\n')
-            fo.write('## {}'.format(entity))
+            fo.write('## {}'.format(entity_info['entity']))
             fo.write('\n\n')
             fo.write('Full name: {}'.format(entity_info['name']))
             fo.write('\n\n')
-            fo.write('Format: `{}-<{}>`'.format(entity, entity_info['format']))
+            fo.write('Format: `{}-<{}>`'.format(entity_info['entity'], entity_info['format']))
             fo.write('\n\n')
             fo.write('Definition: {}'.format(entity_info['description']))
 
@@ -284,9 +284,9 @@ def make_entity_table(schema_path, entities_file='09-entities.md'):
     # Compose header and formats first
     for i, (entity, spec) in enumerate(schema['entities'].items()):
         header.append(spec["name"])
-        formats.append(f'[`{entity}-<{spec["format"]}>`]'
-                       f'({entities_file}#{entity})')
-        entity_to_col[entity] = i + 1
+        formats.append(f'[`{spec["entity"]}-<{spec["format"]}>`]'
+                       f'({entities_file}#{spec["entity"]})')
+        entity_to_col[spec["entity"]] = i + 1
 
     # Go through data types
     for dtype, specs in chain(schema['datatypes'].items(),
