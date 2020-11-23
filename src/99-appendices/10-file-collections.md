@@ -6,8 +6,11 @@ common principle are listed by descriptive tables under their respective modalit
 Note that the tables in this appendix catolog applications where the use of 
 a file collection is REQUIRED.
 
-Please keep this list of linking entities up-to-date with the file collections included
-in this appendix:
+Certain entitites interlink the files in a file collection through a metadata field.
+Unlike other common entities (e.g. `run`), they require an iteration over different
+values of the metadata fields they represent.
+Please keep the following list of linking entities up-to-date with the file collections
+included in this appendix:
 
 * Magnetic Resonance Imaging 
     * [`echo`](./99-appendices/09-entities.md#echo) 
