@@ -14,6 +14,7 @@
     acq: optional
     dir: optional
     run: optional
+    part: optional
 # Second group
 - suffixes:
     - sbref
@@ -27,3 +28,4 @@
     acq: optional
     dir: optional
     run: optional
+    part: optional

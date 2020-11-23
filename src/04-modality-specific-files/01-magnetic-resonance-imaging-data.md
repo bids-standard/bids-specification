@@ -127,7 +127,7 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>]_<modality_label>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_part-<label>]_<modality_label>.nii[.gz]
         sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
 ```
 
@@ -195,6 +195,37 @@ fields specific to anatomical scans:
 | ----------------------- | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | ContrastBolusIngredient | OPTIONAL              | [string][]    | Active ingredient of agent. Values MUST be one of: IODINE, GADOLINIUM, CARBON DIOXIDE, BARIUM, XENON Corresponds to DICOM Tag 0018,1048. |
 
+The [`part-<label>`](../99-appendices/09-entities.md#part) key/value pair is
+used to indicate which component of the complex representation of the MRI
+signal is represented in voxel data.
+This entity is associated with the DICOM tag `0008,9208`.
+Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
+which are typically used in `part-mag`/`part-phase` or `part-real`/`part-imag`
+pairs of files.
+For example:
+
+```Text
+sub-01_part-mag_T1w.nii.gz
+sub-01_part-mag_T1w.json
+sub-01_part-phase_T1w.nii.gz
+sub-01_part-phase_T1w.json
+```
+
+Phase images MAY be in radians or in arbitrary units.
+The sidecar JSON file MUST include the units of the `phase` image.
+The possible options are `rad` or `arbitrary`.
+For example:
+
+sub-01_part-phase_T1w.json
+
+```Text
+{
+   "Units": "rad"
+}
+```
+
+When there is only a magnitude image of a given type, the `part` key MAY be omitted.
+
 Similarly, the OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec)
 key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
@@ -203,19 +234,20 @@ different reconstruction algorithms (for example ones using motion correction).
 
 Currently supported image contrasts include:
 
-| **Name**  | `contrast_label` | **Description**                                                                                      |
-|---------- | ---------------- | ---------------------------------------------------------------------------------------------------- |
-| BOLD      | bold             | Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)                                   |
-| CBV       | cbv              | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images) |
-| Phase     | phase            | Phase information associated with magnitude information stored in BOLD contrast                      |
+| **Name**  | `suffix` | **Description**                                                                                                                                                                                                                                                          |
+|---------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| BOLD      | bold     | Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)                                                                                                                                                                                                       |
+| CBV       | cbv      | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images)                                                                                                                                                                     |
+| Phase     | phase    | [DEPRECATED](../02-common-principles.md#definitions). Phase information associated with magnitude information stored in BOLD contrast. This suffix should be replaced by the [`part-phase`](../99-appendices/09-entities.md#part) in conjunction with the `bold` suffix. |
 
 Template:
 
 ```Text
 sub-<label>/[ses-<label>/]
     func/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_<contrast_label>.nii[.gz]
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>]_sbref.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<label>]_bold.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<label>]_cbv.nii[.gz]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<label>]_sbref.nii[.gz]
 ```
 
 Functional imaging consists of techniques that support rapid temporal repetition.
@@ -283,7 +315,30 @@ Please note that the `<index>` denotes the number/index (in the form of a
 nonnegative integer) of the echo not the echo time value which needs to be stored in the
 field EchoTime of the separate JSON file.
 
-Some meta information about the acquisition MUST be provided in an additional
+Complex-valued data MUST be split into one file for each data type.
+For BOLD data, there are separate suffixes for magnitude (`_bold`) and phase
+(`_phase`) data, but the `_phase` suffix is [deprecated](../02-common-principles.md#definitions).
+Newly generated datasets SHOULD NOT use the `_phase` suffix, and the suffix will be removed
+from the specification in the next major release.
+For backwards compatibility, `_phase` is considered equivalent to `_part-phase_bold`.
+When the `_phase` suffix is not used, each file shares the same
+name with the exception of the `part-<mag|phase>` or `part-<real|imag>` key/value.
+For example:
+
+```Text
+sub-01/
+   func/
+      sub-01_task-cuedSGT_part-mag_bold.nii.gz
+      sub-01_task-cuedSGT_part-mag_bold.json
+      sub-01_task-cuedSGT_part-phase_bold.nii.gz
+      sub-01_task-cuedSGT_part-phase_bold.json
+      sub-01_task-cuedSGT_part-mag_sbref.nii.gz
+      sub-01_task-cuedSGT_part-mag_sbref.json
+      sub-01_task-cuedSGT_part-phase_sbref.nii.gz
+      sub-01_task-cuedSGT_part-phase_sbref.json
+```
+
+Some meta information about the acquisition MUST be provided in an additional
 JSON file.
 
 ### Required fields
@@ -389,12 +444,12 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     dwi/
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.bval
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.bvec
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_dwi.json
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_sbref.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>]_sbref.json
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_dwi.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_dwi.bval
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_dwi.bvec
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_dwi.json
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_sbref.nii[.gz]
+       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_sbref.json
 ```
 
 If more than one run of the same acquisition and direction has been acquired, the
