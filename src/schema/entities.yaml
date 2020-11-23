@@ -121,6 +121,17 @@ flip:
     denotes the number/index (in the form of a nonnegative integer), not the `FlipAngle`
     value which needs to be stored in the field `FlipAngle` of the separate JSON file.
   format: index
+inv:
+  name: Inversion Time
+  entity: inv
+  description: |
+    If files belonging to an entity-linked file collection are acquired at different
+    inversion times, the `_inv-<index>` key/value pair MUST be used to distinguish
+    individual files.
+    This entity represents the `InversionTime` metadata field. Please note that the `<index>`
+    denotes the number/index (in the form of a nonnegative integer), not the `InversionTime`
+    value which needs to be stored in the field `InversionTime` of the separate JSON file.
+  format: index
 recording:
   name: Recording
   entity: recording
