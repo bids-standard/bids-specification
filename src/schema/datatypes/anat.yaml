@@ -26,6 +26,7 @@
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    part: optional
 # Second group
 - suffixes:
     - defacemask

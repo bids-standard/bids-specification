@@ -102,12 +102,24 @@ echo:
   name: Echo
   entity: echo
   description: |
-    Multi-echo data MUST be split into one file per echo.
-    Each file shares the same name with the exception of the `_echo-<index>`
-    key/value.
-    Please note that the `<index>` denotes the number/index (in the form of a
-    nonnegative integer) of the echo not the echo time value which needs to be
-    stored in the field `EchoTime` of the separate JSON file.
+    If files belonging to an entity-linked file collection are acquired at different
+    echo times, the `_echo-<index>` key/value pair MUST be used to distinguish
+    individual files.
+    This entity represents the `EchoTime` metadata field. Please note that the `<index>`
+    denotes the number/index (in the form of a nonnegative integer), not the
+    `EchoTime` value which needs to be stored in the field `EchoTime` of the separate
+    JSON file.
+  format: index
+flip:
+  name: Flip Angle
+  entity: flip
+  description: |
+    If files belonging to an entity-linked file collection are acquired at different
+    flip angles, the `_flip-<index>` key/value pair MUST be used to distinguish
+    individual files.
+    This entity represents the `FlipAngle` metadata field. Please note that the `<index>`
+    denotes the number/index (in the form of a nonnegative integer), not the `FlipAngle`
+    value which needs to be stored in the field `FlipAngle` of the separate JSON file.
   format: index
 recording:
   name: Recording
@@ -117,6 +129,25 @@ recording:
     sampling frequencies).
     In such case use different labels.
     For example: `_recording-contrast`, `_recording-saturation`.
+  format: label
+part:
+  name: Part
+  entity: part
+  description: |
+    This entity is used to indicate which component of the complex
+    representation of the MRI signal is represented in voxel data.
+    The `part-<label>` key/value pair is associated with the DICOM tag
+    `0008,9208`.
+    Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
+    which are typically used in `part-mag`/`part-phase` or
+    `part-real`/`part-imag` pairs of files.
+
+    Phase images MAY be in radians or in arbitrary units.
+    The sidecar JSON file MUST include the units of the `phase` image.
+    The possible options are `rad` or `arbitrary`.
+
+    When there is only a magnitude image of a given type, the `part` key MAY be
+    omitted.
   format: label
 processing:
   name: Processed (on device)
