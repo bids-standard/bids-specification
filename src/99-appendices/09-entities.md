@@ -157,6 +157,32 @@ This entity represents the `FlipAngle` metadata field. Please note that the `<in
 denotes the number/index (in the form of a nonnegative integer), not the `FlipAngle`
 value which needs to be stored in the field `FlipAngle` of the separate JSON file.
 
+## inv
+
+Full name: Inversion Time
+
+Format: `inv-<index>`
+
+Definition: If files belonging to an entity-linked file collection are acquired at different
+inversion times, the `_inv-<index>` key/value pair MUST be used to distinguish
+individual files.
+This entity represents the `InversionTime` metadata field. Please note that the `<index>`
+denotes the number/index (in the form of a nonnegative integer), not the `InversionTime`
+value which needs to be stored in the field `InversionTime` of the separate JSON file.
+
+## mt
+
+Full name: Magnetization Transfer
+
+Format: `mt-<label>`
+
+Definition: If files belonging to an entity-linked file collection are acquired at different
+magnetization transfer (MT) states, the `_mt-<label>` key/value pair MUST be used to 
+distinguish individual files.
+This entity represents the `MTState` metadata field. Allowed label values for this 
+entity are `on` and `off`, for images acquired in presence and absence of an MT pulse,
+respectively.
+
 ## recording
 
 Full name: Recording
