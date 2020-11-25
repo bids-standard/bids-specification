@@ -57,7 +57,7 @@ Example:
   ],
   "DatasetDOI": "doi:10.0.2.3/dfjj.10",
   "HEDVersion": "7.1.1",
-  "Preregistration": "doi:10.1038/s41598-018-30701-5"
+  "Preregistration": "https://osf.io/uf9gh"
 }
 ```
 
