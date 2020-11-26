@@ -429,7 +429,7 @@ acquisition parameters available in DICOM files, we RECOMMEND that users provide
 additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
 Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://github.com/rordenlab/dcm2niix)
-and [dicm2nii](http://www.mathworks.com/matlabcentral/fileexchange/42997-dicom-to-nifti-converter/content/dicm2nii.m)
+and [dicm2nii](https://www.mathworks.com/matlabcentral/fileexchange/42997-xiangruili-dicm2nii)
 DICOM to NIfTI converters. The [BIDS-validator](https://github.com/bids-standard/bids-validator)
 will check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
@@ -504,7 +504,7 @@ Example:
   "bmi": {
     "LongName": "Body mass index",
     "Units": "kg/m^2",
-    "TermURL": "http://purl.bioontology.org/ontology/SNOMEDCT/60621009"
+    "TermURL": "https://purl.bioontology.org/ontology/SNOMEDCT/60621009"
   }
 }
 ```
@@ -513,10 +513,11 @@ Example:
 
 JavaScript Object Notation (JSON) files MUST be used for storing key/value
 pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
-format can be found here: [http://json.org/](http://json.org/). Several editors
-have built-in support for JSON syntax highlighting that aids manual creation of
-such files. An online editor for JSON with built-in validation is available at:
-[http://jsoneditoronline.org](http://jsoneditoronline.org).
+format can be found at [https://www.json.org/](https://www.json.org/).
+Several editors have built-in support for JSON syntax highlighting that aids
+manual creation of such files.
+An online editor for JSON with built-in validation is available at
+[https://jsoneditoronline.org](https://jsoneditoronline.org).
 It is RECOMMENDED that keys in a JSON file are written in [CamelCase](https://en.wikipedia.org/wiki/Camel_case)
 with the first letter in upper case (for example, `SamplingFrequency`, not
 `samplingFrequency`). Note however, when a JSON file is used as an accompanying
