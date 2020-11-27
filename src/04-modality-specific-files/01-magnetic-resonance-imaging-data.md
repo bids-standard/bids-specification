@@ -766,15 +766,17 @@ The common metadata field `RepetitionTimePreparation` is required for the `*_m0s
 
 The following table recapitulates the ASL field dependencies. If Source field (column 1) contains the Value specified in column 2, then the Requirements in column 4 are imposed on the Dependent fields in column 3.
 
-| **Source field**         | **Value**    | **Dependent field**  | **Requirements**              |
-|--------------------------|--------------|----------------------|-------------------------------|
-| MRAcquisitionType        | 2D / 3D      | SliceTiming          | \[X\] / \[\]                  |
-| LookLocker               | true         | FlipAngle            | \[X\]                         |
-| M0                       | true / false | `*_aslcontext.tsv`   | Contains `m0scan` / `control` |
-| ArterialSpinLabelingType | PASL         | BolusCutOffFlag      | \[X\]                         |
-| BolusCutOffFlag          | true / false | BolusCutOffDelayTime | \[X\] / \[\]                  |
-| BolusCutOffFlag          | true / false | BolusCutOffTechnique | \[X\] / \[\]                  |
-| `*_aslcontext.tsv`       | cbf          | Units                | \[X\]                         |
+| **Source field**         | **Value**    | **Dependent field**  | **Requirements**                             |
+|--------------------------|--------------|----------------------|----------------------------------------------|
+| MRAcquisitionType        | 2D / 3D      | SliceTiming          | \[X\] / \[\]                                 |
+| LookLocker               | true         | FlipAngle            | \[X\]                                        |
+| ArterialSpinLabelingType | PASL         | BolusCutOffFlag      | \[X\]                                        |
+| BolusCutOffFlag          | true / false | BolusCutOffDelayTime | \[X\] / \[\]                                 |
+| BolusCutOffFlag          | true / false | BolusCutOffTechnique | \[X\] / \[\]                                 |
+| M0Type                   | Separate     | */perf/              | contains *_m0scan.nii[.gz] and *_m0scan.json |
+| M0Type                   | Included     | *_aslcontext.tsv     | contains m0scan                              |
+| M0Type                   | Estimate     | M0Estimate           | \[X\]                                        |
+| `*_aslcontext.tsv`       | cbf          | Units                | \[X\]                                        |
 
 **Legend**
 
