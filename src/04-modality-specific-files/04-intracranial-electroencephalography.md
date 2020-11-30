@@ -1,19 +1,10 @@
 # Intracranial Electroencephalography
 
-Support for Intracranial Electroencephalography (iEEG) was developed as a [BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
-Please cite the following paper when referring to this part of the standard in
-context of the academic literature:
-
-> Holdgraf, C., Appelhoff, S., Bickel, S., Bouchard, K., D'Ambrosio, S.,
-> David, O., Devinsky, O., Dichter, B., Flinker, A., Foster, B. L.,
-> Gorgolewski, K. J., Groen, I., Groppe, D., Gunduz, A., Hamilton, L.,
-> Honey, C. J., Jas, M., Knight, R., Lauchaux, J.-P., Lau, J. C.,
-> Lee-Messer, C., Lundstrom, B. N., Miller, K. J., Ojemann, J. G.,
-> Oostenveld, R., Petridou, N., Piantoni, G., Pigorini, A., Pouratian, N.,
-> Ramsey, N. F., Stolk, A., Swann, N. C., Tadel, F., Voytek, B., Wandell, B. A.,
-> Winawer, J., Whitaker, K., Zehl, L., Hermes, D. (2019). **iEEG-BIDS,
-> extending the Brain Imaging Data Structure specification to human intracranial
-> electrophysiology**. Scientific data, 6. doi: [10.1038/s41597-019-0105-7](https://doi.org/10.1038/s41597-019-0105-7)
+Support Intracranial Electroencephalography (iEEG) was developed as a
+[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../01-introduction.md#citing-bids)
+on how to appropriately credit this extension when referring to it in the
+context of the academic literature.
 
 ## iEEG recording data
 
@@ -23,8 +14,8 @@ Template:
 sub-<label>/
   [ses-<label>]/
     ieeg/
-      sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_ieeg.<manufacturer_specific_extension>
-      sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_ieeg.json
+      sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_ieeg.<manufacturer_specific_extension>
+      sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_ieeg.json
 ```
 
 The iEEG community uses a variety of formats for storing raw data, and there is
@@ -69,9 +60,9 @@ original iEEG data in the [`/sourcedata` directory](../02-common-principles.md#s
 
 Note the RecordingType, which depends on whether the data stream on disk is interrupted or not.
 Continuous data is by definition 1 segment without interruption.
-Epoched data consists of multiple segments that all have the same length 
+Epoched data consists of multiple segments that all have the same length
 (for example, corresponding to trials) and that have gaps in between.
-Discontinuous data consists of multiple segments of different length, 
+Discontinuous data consists of multiple segments of different length,
 for example due to a pause in the acquisition.
 
 ### Terminology: Electrodes vs. Channels
@@ -86,14 +77,14 @@ following short definitions:
 -   Electrode = A single point of contact between the acquisition system and the
     recording site (for example, scalp, neural tissue, ...). Multiple electrodes can be
     organized as arrays, grids, leads, strips, probes, shafts, caps (for EEG),
-    etc.
+    and so forth.
 
 -   Channel = A single analog-to-digital converter in the recording system that
     regularly samples the value of a transducer, which results in the signal
     being represented as a time series in the digitized data. This can be
     connected to two electrodes (to measure the potential difference between
     them), a magnetic field or magnetic gradient sensor, temperature sensor,
-    accelerometer, etc.
+    accelerometer, and so forth.
 
 Although the _reference_ and _ground_ electrodes are often referred to as
 channels, they are in most common iEEG systems not recorded by themselves.
@@ -128,8 +119,8 @@ Whenever possible, please avoid using ad hoc wording.
 | SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer's designation of the acquisition software.                                                                                                                                                          |
 | TaskDescription        | RECOMMENDED           | [string][]    | Longer description of the task.                                                                                                                                                                                  |
 | Instructions           | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the recording. This is especially important in context of resting state and distinguishing between eyes open and eyes closed paradigms.                    |
-| CogAtlasID             | RECOMMENDED           | [string][]    | URL of the corresponding [Cognitive Atlas Task](http://www.cognitiveatlas.org/) term.                                                                                                                            |
-| CogPOID                | RECOMMENDED           | [string][]    | URL of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                                    |
+| CogAtlasID             | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [Cognitive Atlas Task](https://www.cognitiveatlas.org/) term.                                                                                                                    |
+| CogPOID                | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                             |
 | DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset. |
 
  Specific iEEG fields MUST be present:
@@ -138,7 +129,7 @@ Whenever possible, please avoid using ad hoc wording.
 |--------------------|-----------------------|--------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | iEEGReference      | REQUIRED              | [string][]                           | General description of the reference scheme used and (when applicable) of location of the reference electrode in the raw recordings (for example, "left mastoid", "bipolar", "T01" for electrode with name T01, "intracranial electrode on top of a grid, not included with data", "upside down electrode"). If different channels have a different reference, this field should have a general description and the channel specific reference should be defined in the channels.tsv file. |
 | SamplingFrequency  | REQUIRED              | [number][]                           | Sampling frequency (in Hz) of all the iEEG channels in the recording (for example, 2400). All other channels should have frequency specified as well in the `channels.tsv` file.                                                                                                                                                                                                                                                                                                           |
-| PowerLineFrequency | REQUIRED              | [number][] or `"n/a"`                | Frequency (in Hz) of the power grid where the iEEG recording was done (i.e., 50 or 60).                                                                                                                                                                                                                                                                                                                                                                                                    |
+| PowerLineFrequency | REQUIRED              | [number][] or `"n/a"`                | Frequency (in Hz) of the power grid where the iEEG recording was done (for example, 50 or 60).                                                                                                                                                                                                                                                                                                                                                                                             |
 | SoftwareFilters    | REQUIRED              | [object][] of [objects][] or `"n/a"` | Temporal software filters applied, or `"n/a"` if the data is not available. Each key:value pair in the JSON object is a name of the filter and an object in which its parameters are defined as key:value pairs. For example, `{"HighPass": {"HalfAmplitudeCutOffHz": 1, "RollOff": "6dB/Octave"}}`                                                                                                                                                                                        |
 
 Specific iEEG fields SHOULD be present:
@@ -158,7 +149,7 @@ Specific iEEG fields SHOULD be present:
 | MiscChannelCount                | RECOMMENDED           | [integer][]                          | Number of miscellaneous analog channels for auxiliary signals.                                                                                                                                                                                                                                                                         |
 | TriggerChannelCount             | RECOMMENDED           | [integer][]                          | Number of channels for digital (TTL bit level) triggers.                                                                                                                                                                                                                                                                               |
 | RecordingDuration               | RECOMMENDED           | [number][]                           | Length of the recording in seconds (for example, 3600).                                                                                                                                                                                                                                                                                |
-| RecordingType                   | RECOMMENDED           | [string][]                           | Defines whether the recording is `"continuous"`, `"discontinuous"` or `"epoched"`, where `"epoched"` is limited to time windows about events of interest (for example, stimulus presentations, subject responses etc.)                                                                                                                 |
+| RecordingType                   | RECOMMENDED           | [string][]                           | Defines whether the recording is `"continuous"`, `"discontinuous"` or `"epoched"`, where `"epoched"` is limited to time windows about events of interest (for example, stimulus presentations or subject responses)                                                                                                                    |
 | EpochLength                     | RECOMMENDED           | [number][]                           | Duration of individual epochs in seconds (for example, 1) in case of epoched data. If recording was continuous or discontinuous, leave out the field.                                                                                                                                                                                  |
 | iEEGGround                      | RECOMMENDED           | [string][]                           | Description of the location of the ground electrode ("placed on right mastoid (M2)").                                                                                                                                                                                                                                                  |
 | iEEGPlacementScheme             | RECOMMENDED           | [string][]                           | Freeform description of the placement of the iEEG electrodes. Left/right/bilateral/depth/surface (for example, "left frontal grid and bilateral hippocampal depth" or "surface strip and STN depth" or "clinical indication bitemporal, bilateral temporal strips and left grid").                                                     |
@@ -170,7 +161,7 @@ Specific iEEG fields MAY be present:
 | **Key name**                    | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                         |
 |---------------------------------|-----------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ElectricalStimulation           | OPTIONAL              | [boolean][]   | Boolean field to specify if electrical stimulation was done during the recording (options are "true" or "false"). Parameters for event-like stimulation should be specified in the events.tsv file (see example below). |
-| ElectricalStimulationParameters | OPTIONAL              | [string][]    | Free form description of stimulation parameters, such as frequency, shape etc. Specific onsets can be specified in the events.tsv file. Specific shapes can be described here in freeform text.                         |
+| ElectricalStimulationParameters | OPTIONAL              | [string][]    | Free form description of stimulation parameters, such as frequency or shape. Specific onsets can be specified in the events.tsv file. Specific shapes can be described here in freeform text.                           |
 
 Example:
 
@@ -218,7 +209,7 @@ Template:
 sub-<label>/
     [ses-<label>]/
       ieeg/
-        [sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_channels.tsv]
+        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_channels.tsv]
 ```
 
 A channel represents one time series recorded with the recording system (for
@@ -255,7 +246,7 @@ SHOULD be present:
 | reference          | OPTIONAL              | Specification of the reference (for example, 'mastoid', 'ElectrodeName01', 'intracranial', 'CAR', 'other', 'n/a'). If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.                                                               |
 | group              | OPTIONAL              | Which group of channels (grid/strip/seeg/depth) this channel belongs to. This is relevant because one group has one cable-bundle and noise can be shared. This can be a name or number. Note that any groups specified in `_electrodes.tsv` must match those present here. |
 | sampling_frequency | OPTIONAL              | Sampling rate of the channel in Hz.                                                                                                                                                                                                                                        |
-| description        | OPTIONAL              | Brief free-text description of the channel, or other information of interest (for example, position (for example, "left lateral temporal surface", etc.).                                                                                                                  |
+| description        | OPTIONAL              | Brief free-text description of the channel, or other information of interest (for example, position (for example, "left lateral temporal surface")).                                                                                                                       |
 | notch              | OPTIONAL              | Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use n/a.                                                                                                                                                                  |
 | status             | OPTIONAL              | Data quality observed on the channel (good/bad). A channel is considered bad if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in `[status_description]`.                                                                |
 | status_description | OPTIONAL              | Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `[status]`.                                                                                                               |
@@ -309,7 +300,7 @@ Template:
 sub-<label>/
     [ses-<label>]/
       ieeg/
-         sub-<label>[_ses-<label>][_space-<label>]_electrodes.tsv
+         sub-<label>[_ses-<label>][_acq-<label>][_space-<label>]_electrodes.tsv
 ```
 
 File that gives the location, size and other properties of iEEG electrodes. Note
@@ -402,13 +393,13 @@ General fields:
 
 Fields relating to the iEEG electrode positions:
 
-| **Key name**                        | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|-------------------------------------|-----------------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| iEEGCoordinateSystem                | REQUIRED              | [string][]    | Defines the coordinate system for the iEEG electrodes. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords. If positions correspond to pixel indices in a 2D image (of either a volume-rendering, surface-rendering, operative photo, or operative drawing), this must be "Pixels". For more information, see the section on [2D coordinate systems](#allowed-2d-coordinate-systems) |
-| iEEGCoordinateUnits                 | REQUIRED              | [string][]    | Units of the \_electrodes.tsv, MUST be "m", "mm", "cm" or "pixels".                                                                                                                                                                                                                                                                                                                                                               |
-| iEEGCoordinateSystemDescription     | RECOMMENDED           | [string][]    | Freeform text description or link to document describing the iEEG coordinate system system in detail (for example, "Coordinate system with the origin at anterior commissure (AC), negative y-axis going through the posterior commissure (PC), z-axis going to a mid-hemisperic point which lies superior to the AC-PC line, x-axis going to the right").                                                                        |
-| iEEGCoordinateProcessingDescription | RECOMMENDED           | [string][]    | Has any post-processing (such as projection) been done on the electrode positions (for example, "surface_projection", "none").                                                                                                                                                                                                                                                                                                    |
-| iEEGCoordinateProcessingReference   | RECOMMENDED           | [string][]    | A reference to a paper that defines in more detail the method used to localize the electrodes and to post-process the electrode positions. .                                                                                                                                                                                                                                                                                      |
+| **Key name**                        | **Requirement level**                                          | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ----------------------------------- | -------------------------------------------------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| iEEGCoordinateSystem                | REQUIRED                                                       | [string][]    | Defines the coordinate system for the iEEG sensors. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords for coordinate systems. If `Other`, provide definition of the coordinate system in `iEEGCoordinateSystemDescription`. If positions correspond to pixel indices in a 2D image (of either a volume-rendering, surface-rendering, operative photo, or operative drawing), this must be "Pixels". For more information, see the section on [2D coordinate systems](#allowed-2d-coordinate-systems) |
+| iEEGCoordinateUnits                 | REQUIRED                                                       | [string][]    | Units of the \_electrodes.tsv, MUST be "m", "mm", "cm" or "pixels".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| iEEGCoordinateSystemDescription     | RECOMMENDED, but REQUIRED if `iEEGCoordinateSystem` is `Other` | [string][]    | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                                                                                                                                                                                                                                                                                              |
+| iEEGCoordinateProcessingDescription | RECOMMENDED                                                    | [string][]    | Has any post-processing (such as projection) been done on the electrode positions (for example, "surface_projection", "none").                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| iEEGCoordinateProcessingReference   | RECOMMENDED                                                    | [string][]    | A reference to a paper that defines in more detail the method used to localize the electrodes and to post-process the electrode positions. .                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 ### Recommended 3D coordinate systems
 
@@ -430,7 +421,7 @@ upper left pixel and (N,0) corresponding to the lower left pixel.
 If electrode positions are known in multiple coordinate systems (for example, MRI, CT
 and MNI), these spaces can be distinguished by the optional [`space-<label>`](../99-appendices/09-entities.md#space)
 field, see the [`*_electrodes.tsv`-section](#electrode-description-_electrodestsv)
-for more information. 
+for more information.
 Note that the [`space-<label>`](../99-appendices/09-entities.md#space) fields must correspond
 between `*_electrodes.tsv` and `*_coordsystem.json` if they refer to the same
 data.
@@ -493,8 +484,9 @@ JNeuroMeth 2010).
 
 Below is an example of a volume rendering of the cortical surface with a
 superimposed subdural electrode implantation. This map is often provided by the
+
 EEG technician and provided to the epileptologists (for example, see Burneo JG et al.
-2014 [https://doi.org/10.1016/j.clineuro.2014.03.020](https://doi.org/10.1016/j.clineuro.2014.03.020)).
+2014. [doi:10.1016/j.clineuro.2014.03.020](https://doi.org/10.1016/j.clineuro.2014.03.020)).
 
 ```Text
     sub-0002_ses-01_acq-render_photo.jpg
@@ -534,3 +526,4 @@ onset duration trial_type             electrical_stimulation_type electrical_sti
 [integer]: https://www.w3schools.com/js/js_json_datatypes.asp
 [string]: https://www.w3schools.com/js/js_json_datatypes.asp
 [boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
+[uri]: ../02-common-principles.md#uniform-resource-indicator

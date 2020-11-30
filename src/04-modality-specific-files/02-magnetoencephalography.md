@@ -1,14 +1,10 @@
 # Magnetoencephalography
 
-Support for Magnetoencephalography (MEG) was developed as a [BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
-Please cite the following paper when referring to this part of the standard in
-context of the academic literature:
-
-> Niso Galan, J.G., Gorgolewski, K.J., Bock, E., Brooks, T.L., Flandin, G.,
-> Gramfort, A., Henson, R.N., Jas, M., Litvak, V., Moreau, J., Oostenveld, R.,
-> Schoffelen, J.-M., Tadel, F., Wexler, J., Baillet, S. (2018). **MEG-BIDS, the
-> brain imaging data structure extended to magnetoencephalography**. Scientific
-> data, 5. doi: [10.1038/sdata.2018.110](https://doi.org/10.1038/sdata.2018.110)
+Support for Magnetoencephalography (MEG) was developed as a
+[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../01-introduction.md#citing-bids)
+on how to appropriately credit this extension when referring to it in the
+context of the academic literature.
 
 ## MEG recording data
 
@@ -18,8 +14,8 @@ Template:
 sub-<label>/
     [ses-<label>]/
       meg/
-        sub-<label>[_ses-<label>]_task-<label>[_run-<index>][_proc-<label>]_meg.<manufacturer_specific_extension>
-        [sub-<label>[_ses-<label>]_task-<label>[_run-<index>][_proc-<label>]_meg.json]
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_meg.<manufacturer_specific_extension>
+        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_meg.json]
 ```
 
 Unprocessed MEG data MUST be stored in the native file format of the MEG
@@ -40,27 +36,48 @@ without the need to parse files in proprietary data format. Other relevant files
 MAY be included alongside the MEG data; examples are provided below.
 
 This template is for MEG data of any kind, including but not limited to
-task-based, resting-state, and noise recordings. If multiple Tasks were
-performed within a single Run, the task description can be set to
-`task-multitask`. The \_meg.json SHOULD contain details on the Tasks.
+task-based, resting-state, and noise recordings.
+If multiple *Tasks* were performed within a single *Run*,
+the task description can be set to `task-multitask`.
+The `*_meg.json` file SHOULD contain details on the *Tasks*.
 
 Some manufacturers' data storage conventions use folders which contain data
-files of various nature: for example, CTF's `.ds` format, or BTi/4D.
+files of various nature: for example, CTF's `.ds` format, or BTi/4D's data folder.
 Yet other manufacturers split their files once they exceed a certain size
-limit. For example Neuromag/Elekta/Megin, which can produce several files
-for a single recording. Both `some_file.fif` and `some_file-1.fif` would
-belong to a single recording. In BIDS, the [`split`](../99-appendices/09-entities.md#split) entity is RECOMMENDED to
-deal with split files.
-Please refer to [Appendix VI](../99-appendices/06-meg-file-formats.md) for
-general information on how to deal with such manufacturer specifics and to see
-more examples.
+limit.
+For example Neuromag/Elekta/Megin, which can produce several files
+for a single recording.
+Both `some_file.fif` and `some_file-1.fif` would belong to a single recording.
+In BIDS, the [`split`](../99-appendices/09-entities.md#split) entity is RECOMMENDED to deal with split files.
 
-The [`proc-<label>`](../99-appendices/09-entities.md#proc) entity is analogous to [`rec-<label>`](../99-appendices/09-entities.md#proc) for MR and denotes a variant of a file
-that was a result of particular processing performed on the device. This is
-useful for files produced in particular by Elekta’s MaxFilter (for example, sss, tsss,
-trans, quat, mc, etc.), which some installations impose to be run on raw data
-because of active shielding software corrections before the MEG data can
-actually be exploited.
+Another manufacturer-specific detail pertains to the KIT/Yokogawa/Ricoh sytem,
+which saves the MEG sensor coil positions in a separate file with two possible filename extensions  (`.sqd`, `.mrk`).
+For these files, the `markers` suffix MUST be used.
+For example: `sub-01_task-nback_markers.sqd`
+
+Please refer to [Appendix VI](../99-appendices/06-meg-file-formats.md)
+for general information on how to deal with such manufacturer specifics and to see more examples.
+
+The [`proc-<label>`](../99-appendices/09-entities.md#proc) entity is analogous to the
+[`rec-<label>`](../99-appendices/09-entities.md#rec) entity for MRI,
+and denotes a variant of a file that was a result of particular processing performed on the device.
+This is useful for files produced in particular by Elekta's MaxFilter
+(for example, sss, tsss, trans, quat, mc),
+which some installations impose to be run on raw data prior to analysis.
+Such processing steps are needed for example because of active shielding software corrections
+that have to be performed to before the MEG data can actually be exploited.
+
+### Recording EEG simultaneously with MEG
+
+Note that if EEG is recorded with a separate amplifier,
+it SHOULD be stored separately under a new `/eeg` data type
+(see [the EEG specification](03-electroencephalography.md)).
+
+If however EEG is recorded simultaneously **with the same MEG system**,
+it MAY be stored under the `/meg` data type.
+In that case, it SHOULD have the same sampling frequency as MEG (see `SamplingFrequency` field below).
+Furthermore, the EEG sensor coordinates SHOULD be specified using MEG-specific coordinate
+systems (see [coordinates section](#coordinate-system-json-_coordsystemjson) below and [Appendix VIII](../99-appendices/08-coordinate-systems.md)).
 
 ### Sidecar JSON (`*_meg.json`)
 
@@ -74,28 +91,28 @@ SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad-hoc wording.
 
-| **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                             |
-|------------------------|-----------------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| InstitutionName        | RECOMMENDED           | [string][]    | The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                               |
-| InstitutionAddress     | RECOMMENDED           | [string][]    | The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                            |
-| Manufacturer           | RECOMMENDED           | [string][]    | Manufacturer of the MEG system (`CTF`, `Elekta/Neuromag`, `BTi/4D`, `KIT/Yokogawa`, `ITAB`, `KRISS`, `Other`). See [Appendix VII](../99-appendices/07-meg-systems.md) with preferred names.                                                                                 |
-| ManufacturersModelName | RECOMMENDED           | [string][]    | Manufacturer’s designation of the MEG scanner model (for example, `CTF-275`). See [Appendix VII](../99-appendices/07-meg-systems.md) with preferred names.                                                                                                                  |
-| SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                                     |
-| TaskDescription        | RECOMMENDED           | [string][]    | Description of the task.                                                                                                                                                                                                                                                    |
-| Instructions           | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the scan. This is not only important for behavioral or cognitive tasks but also in resting state paradigms (for example, to distinguish between eyes open and eyes closed).                                           |
-| CogAtlasID             | RECOMMENDED           | [string][]    | URL of the corresponding [Cognitive Atlas](http://www.cognitiveatlas.org/) term that describes the task (for example, Resting State with eyes closed "[http://www.cognitiveatlas.org/task/id/trm_54e69c642d89b](http://www.cognitiveatlas.org/task/id/trm_54e69c642d89b)"). |
-| CogPOID                | RECOMMENDED           | [string][]    | URL of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task (for example, Rest "[http://wiki.cogpo.org/index.php?title=Rest](http://wiki.cogpo.org/index.php?title=Rest)").                                                                        |
-| DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.                                                            |
+| **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                       |
+|------------------------|-----------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| InstitutionName        | RECOMMENDED           | [string][]    | The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                                         |
+| InstitutionAddress     | RECOMMENDED           | [string][]    | The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                                                                      |
+| Manufacturer           | RECOMMENDED           | [string][]    | Manufacturer of the MEG system (`CTF`, `Elekta/Neuromag`, `BTi/4D`, `KIT/Yokogawa`, `ITAB`, `KRISS`, `Other`). See [Appendix VII](../99-appendices/07-meg-systems.md) with preferred names.                                                                                           |
+| ManufacturersModelName | RECOMMENDED           | [string][]    | Manufacturer’s designation of the MEG scanner model (for example, `CTF-275`). See [Appendix VII](../99-appendices/07-meg-systems.md) with preferred names.                                                                                                                            |
+| SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer’s designation of the acquisition software.                                                                                                                                                                                                                               |
+| TaskDescription        | RECOMMENDED           | [string][]    | Description of the task.                                                                                                                                                                                                                                                              |
+| Instructions           | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the scan. This is not only important for behavioral or cognitive tasks but also in resting state paradigms (for example, to distinguish between eyes open and eyes closed).                                                     |
+| CogAtlasID             | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) term that describes the task (for example, Resting State with eyes closed "[https://www.cognitiveatlas.org/task/id/trm_54e69c642d89b](https://www.cognitiveatlas.org/task/id/trm_54e69c642d89b)"). |
+| CogPOID                | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task (for example, Rest "[http://wiki.cogpo.org/index.php?title=Rest](http://wiki.cogpo.org/index.php?title=Rest)").                                                                           |
+| DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.                                                                      |
 
 Specific MEG fields MUST be present:
 
 | **Key name**        | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                                                                                                                                                                           |
 |---------------------|-----------------------|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | SamplingFrequency   | REQUIRED              | [number][]                           | Sampling frequency (in Hz) of all the data in the recording, regardless of their type (for example, 2400).                                                                                                                                                                                                                                                                |
-| PowerLineFrequency  | REQUIRED              | [number][] or `"n/a"`                | Frequency (in Hz) of the power grid at the geographical location of the MEG instrument (i.e., 50 or 60).                                                                                                                                                                                                                                                                  |
+| PowerLineFrequency  | REQUIRED              | [number][] or `"n/a"`                | Frequency (in Hz) of the power grid at the geographical location of the MEG instrument (for example, 50 or 60).                                                                                                                                                                                                                                                           |
 | DewarPosition       | REQUIRED              | [string][]                           | Position of the dewar during the MEG scan: `upright`, `supine` or `degrees` of angle from vertical: for example on CTF systems, upright=15°, supine=90°.                                                                                                                                                                                                                  |
 | SoftwareFilters     | REQUIRED              | [object][] of [objects][] or `"n/a"` | [Object][] of temporal software filters applied, or `"n/a"` if the data is not available. Each key:value pair in the JSON object is a name of the filter and an object in which its parameters are defined as key:value pairs (for example, `{"SSS": {"frame": "head", "badlimit": 7}, "SpatialCompensation": {"GradientOrder": "Order of the gradient compensation"}}`). |
-| DigitizedLandmarks  | REQUIRED              | [boolean][]                          | `true` or `false` value indicating whether anatomical landmark points (i.e., fiducials) are contained within this recording.                                                                                                                                                                                                                                              |
+| DigitizedLandmarks  | REQUIRED              | [boolean][]                          | `true` or `false` value indicating whether anatomical landmark points (fiducials) are contained within this recording.                                                                                                                                                                                                                                                    |
 | DigitizedHeadPoints | REQUIRED              | [boolean][]                          | `true` or `false` value indicating whether head points outlining the scalp/face surface are contained within this recording.                                                                                                                                                                                                                                              |
 
 SHOULD be present:
@@ -113,7 +130,7 @@ SHOULD be present:
 | MiscChannelCount           | RECOMMENDED           | [integer][]                            | Number of miscellaneous analog channels for auxiliary signals.                                                                                                                                                                                                                                                                           |
 | TriggerChannelCount        | RECOMMENDED           | [integer][]                            | Number of channels for digital (TTL bit level) triggers.                                                                                                                                                                                                                                                                                 |
 | RecordingDuration          | RECOMMENDED           | [number][]                             | Length of the recording in seconds (for example, 3600).                                                                                                                                                                                                                                                                                  |
-| RecordingType              | RECOMMENDED           | [string][]                             | Defines whether the recording is `"continuous"`, `"discontinuous"` or `"epoched"`, where `"epoched"` is limited to time windows about events of interest (for example, stimulus presentations, subject responses etc.).                                                                                                                  |
+| RecordingType              | RECOMMENDED           | [string][]                             | Defines whether the recording is `"continuous"`, `"discontinuous"` or `"epoched"`, where `"epoched"` is limited to time windows about events of interest (for example, stimulus presentations or subject responses).                                                                                                                     |
 | EpochLength                | RECOMMENDED           | [number][]                             | Duration of individual epochs in seconds (for example, 1) in case of epoched data.                                                                                                                                                                                                                                                       |
 | ContinuousHeadLocalization | RECOMMENDED           | [boolean][]                            | `true` or `false` value indicating whether continuous head localisation was performed.                                                                                                                                                                                                                                                   |
 | HeadCoilFrequency          | RECOMMENDED           | [number][] or [array][] of [numbers][] | List of frequencies (in Hz) used by the head localisation coils (‘HLC’ in CTF systems, ‘HPI’ in Elekta, ‘COH’ in BTi/4D) that track the subject’s head position in the MEG helmet (for example, `[293, 307, 314, 321]`).                                                                                                                 |
@@ -122,7 +139,9 @@ SHOULD be present:
 | AssociatedEmptyRoom        | RECOMMENDED           | [string][]                             | Relative path in BIDS folder structure to empty-room file associated with the subject’s MEG recording. The path needs to use forward slashes instead of backward slashes (for example, `sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds`).                                                                              |
 | HardwareFilters            | RECOMMENDED           | [object][] of [objects][] or `"n/a"`   | [Object][] of temporal hardware filters applied, or `"n/a"` if the data is not available. Each key:value pair in the JSON object is a name of the filter and an object in which its parameters are defined as key:value pairs (for example, `{"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dB/Octave"}}`). |
 
-Specific EEG fields (if recorded with MEG) SHOULD be present:
+Specific EEG fields
+(if recorded with MEG, see [Recording EEG simultaneously with MEG](#recording-eeg-simultaneously-with-meg)
+SHOULD be present:
 
 | **Key name**              | **Requirement level** | **Data type** | **Description**                                                                                                                                                                        |
 |---------------------------|-----------------------|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -130,11 +149,6 @@ Specific EEG fields (if recorded with MEG) SHOULD be present:
 | CapManufacturer           | OPTIONAL              | [string][]    | Manufacturer of the EEG cap (for example, `EasyCap`).                                                                                                                                  |
 | CapManufacturersModelName | OPTIONAL              | [string][]    | Manufacturer’s designation of the EEG cap model (for example, `M10`).                                                                                                                  |
 | EEGReference              | OPTIONAL              | [string][]    | Description of the type of EEG reference used (for example, `M1` for left mastoid, `average`, or `longitudinal bipolar`).                                                              |
-
-By construct, EEG when recorded simultaneously with the same MEG system SHOULD
-have the same `SamplingFrequency` as MEG. Note that if EEG is recorded with a
-separate amplifier, it should be stored separately under a new `/eeg` data type
-(see [the EEG specification](03-electroencephalography.md)).
 
 Example:
 
@@ -181,7 +195,7 @@ Template:
 sub-<label>/
     [ses-<label>]/
       meg/
-        [sub-<label>[_ses-<label>]_task-<label>[_run-<index>][_proc-<label>]_channels.tsv]
+        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_channels.tsv]
 ```
 
 This file is RECOMMENDED as it provides easily searchable information across
@@ -287,47 +301,47 @@ EEG, head localization coils, and anatomical landmarks.
 
 MEG and EEG sensors:
 
-| **Key name**                   | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                        |
-| ------------------------------ | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| MEGCoordinateSystem            | REQUIRED              | [string][]    | Defines the coordinate system for the MEG sensors. See [Appendix VIII](../99-appendices/08-coordinate-systems.md): preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in `MEGCoordinateSystemDescription`. |
-| MEGCoordinateUnits             | REQUIRED              | [string][]    | Units of the coordinates of `MEGCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                         |
-| MEGCoordinateSystemDescription | OPTIONAL              | [string][]    | Freeform text description or link to document describing the MEG coordinate system system in detail.                                                                                                                                                   |
-| EEGCoordinateSystem            | OPTIONAL              | [string][]    | Describes how the coordinates of the EEG sensors are to be interpreted.                                                                                                                                                                                |
-| EEGCoordinateUnits             | OPTIONAL              | [string][]    | Units of the coordinates of `EEGCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                         |
-| EEGCoordinateSystemDescription | OPTIONAL              | [string][]    | Freeform text description or link to document describing the EEG coordinate system system in detail.                                                                                                                                                   |
+| **Key name**                   | **Requirement level**                                      | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------------------------------ | ---------------------------------------------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| MEGCoordinateSystem            | REQUIRED                                                   | [string][]    | Defines the coordinate system for the MEG sensors. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords for coordinate systems. If `Other`, provide definition of the coordinate system in `MEGCoordinateSystemDescription`.                                                                                                                                        |
+| MEGCoordinateUnits             | REQUIRED                                                   | [string][]    | Units of the coordinates of `MEGCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                                                                                                                                                                  |
+| MEGCoordinateSystemDescription | OPTIONAL, but REQUIRED if `MEGCoordinateSystem` is `Other` | [string][]    | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                                                                                                                                                          |
+| EEGCoordinateSystem            | OPTIONAL                                                   | [string][]    | See [Recording EEG simultaneously with MEG](#recording-eeg-simultaneously-with-meg). Preferably the same as the `MEGCoordinateSystem`. Defines the coordinate system for the EEG sensors. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords for coordinate systems. If `Other`, provide definition of the coordinate system in `EEGCoordinateSystemDescription`. |
+| EEGCoordinateUnits             | OPTIONAL                                                   | [string][]    | Units of the coordinates of `EEGCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                                                                                                                                                                  |
+| EEGCoordinateSystemDescription | OPTIONAL, but REQUIRED if `EEGCoordinateSystem` is `Other` | [string][]    | See [Recording EEG simultaneously with MEG](#recording-eeg-simultaneously-with-meg). Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                                                                     |
 
 Head localization coils:
 
-| **Key name**                        | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|-------------------------------------|-----------------------|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| HeadCoilCoordinates                 | OPTIONAL              | [object][] of [arrays][] | Key:value pairs describing head localization coil labels and their coordinates, interpreted following the `HeadCoilCoordinateSystem`, for example, {`NAS`: `[12.7,21.3,13.9]`, `LPA`: `[5.2,11.3,9.6]`, `RPA`: `[20.2,11.3,9.1]`}. Note that coils are not always placed at locations that have a known anatomical name (for example, for Elekta, Yokogawa systems); in that case generic labels can be used (for example, {`coil1`: `[12.2,21.3,12.3]`, `coil2`: `[6.7,12.3,8.6]`, `coil3`: `[21.9,11.0,8.1]`}). |
-| HeadCoilCoordinateSystem            | OPTIONAL              | [string][]               | Defines the coordinate system for the coils. See [Appendix VIII](../99-appendices/08-coordinate-systems.md): preferred names of Coordinate systems. If "Other", provide definition of the coordinate system in `HeadCoilCoordinateSystemDescription`.                                                                                                                                                                                                                                                             |
-| HeadCoilCoordinateUnits             | OPTIONAL              | [string][]               | Units of the coordinates of `HeadCoilCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| HeadCoilCoordinateSystemDescription | OPTIONAL              | [string][]               | Freeform text description or link to document describing the Head Coil coordinate system system in detail.                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **Key name**                        | **Requirement level**                                           | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ----------------------------------- | --------------------------------------------------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| HeadCoilCoordinates                 | OPTIONAL                                                        | [object][] of [arrays][] | Key:value pairs describing head localization coil labels and their coordinates, interpreted following the `HeadCoilCoordinateSystem` (for example, `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). Note that coils are not always placed at locations that have a known anatomical name (for example, for Elekta, Yokogawa systems); in that case generic labels can be used (for example, `{"coil1": [12.2,21.3,12.3], "coil2": [6.7,12.3,8.6], "coil3": [21.9,11.0,8.1]}`). Each array MUST contain three numeric values corresponding to x, y, and z axis of the coordinate system in that exact order. |
+| HeadCoilCoordinateSystem            | OPTIONAL                                                        | [string][]               | Defines the coordinate system for the head coils. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords for coordinate systems. If `Other`, provide definition of the coordinate system in `HeadCoilCoordinateSystemDescription`.                                                                                                                                                                                                                                                                                                                                                            |
+| HeadCoilCoordinateUnits             | OPTIONAL                                                        | [string][]               | Units of the coordinates of `HeadCoilCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| HeadCoilCoordinateSystemDescription | OPTIONAL, but REQUIRED if `HeadCoilCoordinateSystem` is `Other` | [string][]               | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 Digitized head points:
 
-| **Key name**                                   | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                     |
-|------------------------------------------------|-----------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| DigitizedHeadPoints                            | OPTIONAL              | [string][]    | Relative path to the file containing the locations of digitized head points collected during the session (for example, `sub-01_headshape.pos`). RECOMMENDED for all MEG systems, especially for CTF and BTi/4D. For Elekta/Neuromag the head points will be stored in the fif file. |
-| DigitizedHeadPointsCoordinateSystem            | OPTIONAL              | [string][]    | Defines the coordinate system for the digitized head points. See [Appendix VIII](../99-appendices/08-coordinate-systems.md): preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in `DigitizedHeadPointsCoordinateSystemDescription`.    |
-| DigitizedHeadPointsCoordinateUnits             | OPTIONAL              | [string][]    | Units of the coordinates of `DigitizedHeadPointsCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                      |
-| DigitizedHeadPointsCoordinateSystemDescription | OPTIONAL              | [string][]    | Freeform text description or link to document describing the Digitized head Points coordinate system system in detail.                                                                                                                                                              |
+| **Key name**                                   | **Requirement level**                                                      | **Data type** | **Description**                                                                                                                                                                                                                                                                                    |
+| ---------------------------------------------- | -------------------------------------------------------------------------- | ------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DigitizedHeadPoints                            | OPTIONAL                                                                   | [string][]    | Relative path to the file containing the locations of digitized head points collected during the session (for example, `sub-01_headshape.pos`). RECOMMENDED for all MEG systems, especially for CTF and BTi/4D. For Elekta/Neuromag the head points will be stored in the fif file.                |
+| DigitizedHeadPointsCoordinateSystem            | OPTIONAL                                                                   | [string][]    | Defines the coordinate system for the digitized head points. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords for coordinate systems. If `Other`, provide definition of the coordinate system in `DigitizedHeadPointsCoordinateSystemDescription`. |
+| DigitizedHeadPointsCoordinateUnits             | OPTIONAL                                                                   | [string][]    | Units of the coordinates of `DigitizedHeadPointsCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                                     |
+| DigitizedHeadPointsCoordinateSystemDescription | OPTIONAL, but REQUIRED if `DigitizedHeadPointsCoordinateSystem` is `Other` | [string][]    | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                                             |
 
 Anatomical MRI:
 
 | **Key name** | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                    |
-|--------------|-----------------------|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------ | --------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | IntendedFor  | OPTIONAL              | [string][] or [array][] of [strings][] | Path or list of path relative to the subject subfolder pointing to the structural MRI, possibly of different types if a list is specified, to be used with the MEG recording. The path(s) need(s) to use forward slashes instead of backward slashes (for example, `ses-/anat/sub-01_T1w.nii.gz`). |
 
 Anatomical landmarks:
 
-| **Key name**                                  | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                |
-|-----------------------------------------------|-----------------------|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| AnatomicalLandmarkCoordinates                 | OPTIONAL              | [object][] of [arrays][] | Key:value pairs of the labels and 3-D digitized locations of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem`, for example, {"NAS": `[12.7,21.3,13.9]`, "LPA": `[5.2,11.3,9.6]`, "RPA": `[20.2,11.3,9.1]`}.                                |
-| AnatomicalLandmarkCoordinateSystem            | OPTIONAL              | [string][]               | Defines the coordinate system for the anatomical landmarks. See [Appendix VIII](../99-appendices/08-coordinate-systems.md): preferred names of Coordinate systems. If `Other`, provide definition of the coordinate system in `AnatomicalLandmarkCoordinateSystemDescription`. |
-| AnatomicalLandmarkCoordinateUnits             | OPTIONAL              | [string][]               | Units of the coordinates of `AnatomicalLandmarkCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                  |
-| AnatomicalLandmarkCoordinateSystemDescription | OPTIONAL              | [string][]               | Freeform text description or link to document describing the Head Coil coordinate system system in detail.                                                                                                                                                                     |
+| **Key name**                                  | **Requirement level**                                                     | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                          |
+| --------------------------------------------- | ------------------------------------------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| AnatomicalLandmarkCoordinates                 | OPTIONAL                                                                  | [object][] of [arrays][] | Key:value pairs of the labels and 3-D digitized locations of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem` (for example, `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`. Each array MUST contain three numeric values corresponding to x, y, and z axis of the coordinate system in that exact order. |
+| AnatomicalLandmarkCoordinateSystem            | OPTIONAL                                                                  | [string][]               | Defines the coordinate system for the anatomical landmarks. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords for coordinate systems. If `Other`, provide definition of the coordinate system in `AnatomicalLandmarkCoordinateSystemDescription`.                                                                         |
+| AnatomicalLandmarkCoordinateUnits             | OPTIONAL                                                                  | [string][]               | Units of the coordinates of `AnatomicalLandmarkCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                                                                                                            |
+| AnatomicalLandmarkCoordinateSystemDescription | OPTIONAL, but REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `Other` | [string][]               | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                                                                                                                   |
 
 It is also RECOMMENDED that the MRI voxel coordinates of the actual anatomical
 landmarks for co-registration of MEG with structural MRI are stored in the
@@ -342,7 +356,7 @@ This may result in some variability in their 3-D digitization from session to
 session, even for the same participant. The solution would be to use only one
 T1w file and populate the `AnatomicalLandmarkCoordinates` field with
 session-specific labels for example, "NAS-session1": `[127,213,139]`,"NAS-session2":
-`[123,220,142]`, etc.
+`[123,220,142]`.
 
 Fiducials information:
 
@@ -432,7 +446,7 @@ named `sub-emptyroom`.
 The label for the [`task-<label>`](../99-appendices/09-entities.md#task) entity in the empty-room recording SHOULD be
 set to `noise`.
 If a [`session-<label>`](../99-appendices/09-entities.md#ses) entity is present, its label SHOULD be the date of the
-empty-room recording in the format `YYYYMMDD`, i.e., `ses-YYYYMMDD`.
+empty-room recording in the format `YYYYMMDD`, that is `ses-YYYYMMDD`.
 The `scans.tsv` file containing the date and time of the acquisition SHOULD
 also be included.
 The rationale is that this naming scheme will allow users to easily retrieve the
@@ -468,3 +482,4 @@ sub-emptyroom/
 [strings]: https://www.w3schools.com/js/js_json_datatypes.asp
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
 [arrays]: https://www.w3schools.com/js/js_json_arrays.asp
+[uri]: ../02-common-principles.md#uniform-resource-indicator
