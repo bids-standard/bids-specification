@@ -2,6 +2,11 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] use RFC 2119 language in legend of the "volume timing" table [#678](https://github.com/bids-standard/bids-specification/pull/678) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[FIX] Add OPTIONAL acq entity to channels.tsv, events.tsv to match electrophysiological acquisitions [#677](https://github.com/bids-standard/bids-specification/pull/677) ([sappelhoff](https://github.com/sappelhoff))
+-   \[MISC] Update all links to use HTTPS whenever possible. [#676](https://github.com/bids-standard/bids-specification/pull/676) ([gllmflndn](https://github.com/gllmflndn))
+-   \[INFRA] Relax line length limit for linting YAML files [#673](https://github.com/bids-standard/bids-specification/pull/673) ([effigies](https://github.com/effigies))
+-   \[ENH] BEP001 - New entity: flip [#672](https://github.com/bids-standard/bids-specification/pull/672) ([agahkarakuzu](https://github.com/agahkarakuzu))
 -   \[FIX] Added white space after table [#660](https://github.com/bids-standard/bids-specification/pull/660) ([robertoostenveld](https://github.com/robertoostenveld))
 -   \[MISC] add remi as maintainer [#657](https://github.com/bids-standard/bids-specification/pull/657) ([Remi-Gau](https://github.com/Remi-Gau))
 -   update Contributing with info on how to respond to reviews [#655](https://github.com/bids-standard/bids-specification/pull/655) ([Remi-Gau](https://github.com/Remi-Gau))
@@ -9,8 +14,10 @@
 -   \[FIX] Rewrite the MRI/fieldmaps subsection for consistency with the rest of specs [#651](https://github.com/bids-standard/bids-specification/pull/651) ([oesteban](https://github.com/oesteban))
 -   \[FIX] Fixing template string on electrodes for eeg and ieeg. [#650](https://github.com/bids-standard/bids-specification/pull/650) ([adam2392](https://github.com/adam2392))
 -   ENH: Update genetics-BIDS citation [#646](https://github.com/bids-standard/bids-specification/pull/646) ([effigies](https://github.com/effigies))
+-   \[SCHEMA] Add derivatives entities to the schema [#645](https://github.com/bids-standard/bids-specification/pull/645) ([tsalo](https://github.com/tsalo))
 -   \[MISC] add brief note that TSV example in the spec may currently use either tab or space characters [#643](https://github.com/bids-standard/bids-specification/pull/643) ([yarikoptic](https://github.com/yarikoptic))
 -   \[ENH] Add "multipart DWI" acquisitions and refactor DWI specifications [#624](https://github.com/bids-standard/bids-specification/pull/624) ([oesteban](https://github.com/oesteban))
+-   \[ENH] Add part entity for complex-valued data [#424](https://github.com/bids-standard/bids-specification/pull/424) ([tsalo](https://github.com/tsalo))
 
 ## [v1.4.1](https://github.com/bids-standard/bids-specification/tree/v1.4.1) (2020-10-13)
 
