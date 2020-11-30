@@ -23,8 +23,8 @@ Template:
 sub-<label>/
     [ses-<label>]/
       eeg/
-        sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_eeg.<manufacturer_specific_extension>
-        sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_eeg.json
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_eeg.<manufacturer_specific_extension>
+        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_eeg.json
 ```
 
 The EEG community uses a variety of formats for storing raw data, and there is
@@ -197,7 +197,7 @@ Template:
 sub-<label>/
     [ses-<label>]/
       eeg/
-        [sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_channels.tsv]
+        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_channels.tsv]
 ```
 
 This file is RECOMMENDED as it provides easily searchable information across
