@@ -111,6 +111,18 @@ For example:
     Scientific Data, 5 (180110).
     [doi:10.1038/sdata.2018.110](https://doi.org/10.1038/sdata.2018.110)
 
+#### PET
+
+-   Knudsen GM, Ganz M, Appelhoff S, Boellaard R, Bormans G, Carson RE, Catana C,
+    Doudet D, Gee AD, Greve DN, Gunn RN, Halldin C, Herscovitch P, Huang H, Keller SH,
+    Lammertsma AA, Lanzenberger R, Liow JS, Lohith TG, Lubberink M, Lyoo CH, Mann JJ,
+    Matheson GJ, Nichols TE, Nørgaard M, Ogden T, Parsey R, Pike VW, Price J, Rizzo G,
+    Rosa-Neto P, Schain M, Scott PJH, Searle G, Slifstein M, Suhara T, Talbot PS,
+    Thomas A, Veronese M, Wong DF, Yaqub M, Zanderigo F, Zoghbi S, Innis RB. (2020).
+    **Guidelines for Content and Format of PET Brain Data in Publications and in Archives: A Consensus Paper**.
+    Journal of Cerebral Blood Flow and Metabolism, 2020 Aug; 40(8): 1576-1585.
+    [doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433)
+
 #### Genetics
 
 -   Clara Moreau, Martineau Jean-Louis, Ross Blair, Christopher Markiewicz, Jessica Turner,
