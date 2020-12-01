@@ -1,7 +1,8 @@
 # Appendix X: File collections
 
-To give context to the use of [entity-linked file collections](../02-common-principles.md#file-name-structure), applications concerned with this
-common principle are listed by descriptive tables under their respective modalities.
+To give context to the use of [entity-linked file collections](../02-common-principles.md#file-name-structure),
+applications concerned with this common principle are listed by descriptive tables
+under their respective modalities.
 
 Note that the tables in this appendix catalog applications where the use of
 a file collection is REQUIRED.
