@@ -180,8 +180,7 @@ Provided the conditions above are satisfied, any suffix (such as `bold`) can ide
 collection, although certain suffixes are exclusive for this purpose (for example, `MP2RAGE`).
 Use cases concerning this convention are compiled in the
 [file collections](./99-appendices/10-file-collections.md) appendix.
-This convention is mainly intended for but not
-limited to MRI modalities.
+This convention is mainly intended for but not limited to MRI modalities.
 
 ## Source vs. raw vs. derived data
 
