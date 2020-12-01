@@ -36,7 +36,10 @@ The following individuals have contributed to the Brain Imaging Data Structure
 ecosystem (in alphabetical order).
 If you contributed to the BIDS ecosystem and your name is not listed, please add it.
 
+-   Eric Achten 📖🔣📓
+-   Azeez Adebimpe 📖
 -   Fidel Alfaro Almagro 💬📖💡🔌
+-   David Alsop 📖
 -   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️📢✅🔧🔌📝🚧🔣
 -   Tibor Auer 💬📖💡🔧📢
 -   Sylvain Baillet 📖🔍
@@ -48,8 +51,12 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Teon L. Brooks 📖💻⚠️💬👀🤔🔧🐛📢
 -   Suyash Bhogawar 📖💡⚠️🔧💬
 -   Vince D. Calhoun 📖
+-   Marco Castellaro 💬🐛💻📖💡⚠️📢🚇
+-   Michael Chappell 📖🔣📆
+-   Patricia Clement 💬🐛💻📖🔣💡📋🤔📆⚠️📢
 -   Alexander L. Cohen 🐛💻📖💬
 -   R. Cameron Craddock 📖📢
+-   Martin Craig 🔣
 -   Sasha D'Ambrosio 📖
 -   Samir Das 📖
 -   Olivier David 📖
@@ -67,6 +74,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Guillaume Flandin 📖💻
 -   Adeen Flinker 📖
 -   Brett L. Foster 📖
+-   Ana Fouto 📓
 -   Remi Gau 📖💻💬📢🐛💻🚇👀🔧🤔
 -   Satrajit S. Ghosh 📖💻
 -   Tristan Glatard 📖💻
@@ -77,27 +85,34 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Iris Groen 📖
 -   David Groppe 📖
 -   Aysegul Gunduz 📖
+-   Matthias Günther 📖
 -   Yaroslav O. Halchenko 📖📢🔧💬🐛
 -   Liberty Hamilton 📖
+-   Tom Hampshire 📖
 -   Daniel A. Handwerker 📖
 -   Michael Hanke 📖🤔🔧🐛📢
 -   Michael P. Harms 📖⚠️🔧
 -   Richard N. Henson 📖
 -   Peer Herholz 💬📖👀🔧✅📢
 -   Dora Hermes 📖💻✅🔍🤔
+-   Luis Hernandez-Garcia 📖📓
 -   Katja Heuer 🔧
 -   Richard Höchenberger 📖
 -   Chris Holdgraf 📖🤔
 -   Christopher J. Honey 📖
 -   Jean-Christophe Houde 📖
 -   International Neuroinformatics Coordinating Facility 💵📋
+-   Andrew Jahn 📓
 -   Andrew Janke 📖💻
 -   Mainak Jas 📖💻
 -   Alexander Jones 💻🐛
+-   Tamás Józsa 📓
 -   David Keator 📖
 -   James Kent 💬💻
 -   Gregory Kiar 📖💻🎨🔧
+-   Thomas Kirk 📖
 -   Robert Knight 📖
+-   Joost Kuijer 📖
 -   Jean-Philippe Lachaux 📖
 -   Marc Lalancette 📖
 -   Pamela LaMontagne 📖💡
@@ -118,7 +133,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Zachary Michael 📖
 -   Ezequiel Mikulan 📖💻
 -   Michael P. Milham 💡🔍
--   Henk Mutsaerts 📖
+-   Henk Mutsaerts 💬🐛💻📖💡📋🤔📆📢📓
 -   National Institute of Mental Health 💵
 -   Mikael Naveau 🐛
 -   B. Nolan Nichols 📖
@@ -127,13 +142,17 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Guiomar Niso 📖💡📢
 -   Michael P. Notter 💬📝✅📢📖
 -   Jeffrey G. Ojemann 📖
+-   Thomas Okell 📖
+-   Aaron Oliver-Taylor 📖
 -   Robert Oostenveld 📖🔧📢💡✅⚠️🤔
 -   Dimitri Papadopoulos Orfanos 📖💡🤔💬
 -   Patrick Park 📖💡💬
+-   Maurice Pasternak 📓
 -   Dianne Patterson 📖
 -   John Pellman 📖
 -   Cyril Pernet 💬📝📖🎨💡📋🤔📢
 -   Franco Pestilli 📖💻🎨💡🤔👀🔧
+-   Jan Petr 💬🐛💻📖🔣💡📋🤔📆⚠️📢
 -   Natalia Petridou 📖
 -   Dmitry Petrov 📖💻
 -   Christophe Phillips 📖
@@ -149,6 +168,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Kay Robbins 💻📖🐛
 -   Alex Rockhill 📖🔧
 -   Ariel Rokem 📖
+-   Chris Rorden 📖💻
 -   Taylor Salo 💬📖🔌
 -   Matt Sanderson 📖💻
 -   Gunnar Schaefer 📖
@@ -158,11 +178,14 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Arjen Stolk 📖
 -   Nicole C. Swann 📖
 -   François Tadel 📖🔌💡
+-   David Thomas 📖🔣
 -   Roberto Toro 🔧
 -   Sébastien Tourbier 🤔👀📢🐛💻📖
 -   William Triplett 📖
 -   Jessica A. Turner 📖
+-   Pieter Vandemaele 📖💻
 -   Max A. van den Boom 💻👀📖
+-   Matthias Van Osch 📖
 -   Bradley Voytek 📖
 -   Brian A. Wandell 📖
 -   Joseph Wexler 📖💡
