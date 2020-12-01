@@ -172,10 +172,10 @@ collections, holding a logical grouping of constituent files.
 Within each collection, files MUST be distinguished from each other by at least one 
 entity (for example, `echo`) that corresponds to an altered acquisition parameter
 (`EchoTime`) or that defines a component relationship (for example, `part`).
-Note that these entities 
-MUST be described by the specification and the parameter changes they declare SHOULD NOT invalidate
-the definition of the accompanying suffix. For example, the use of the `echo` entity along with the 
-`T1w` suffix casts doubt on the validity of the identified contrast weighting.  
+Note that these entities MUST be described by the specification and
+the parameter changes they declare MUST NOT invalidate the definition of the accompanying suffix.
+For example, the use of the `echo` entity along with the `T1w` suffix casts doubt on
+the validity of the identified contrast weighting.  
 Provided the conditions above are satisfied, any suffix (such as `bold`) can identify an entity-linked file 
 collection, although certain suffixes are exclusive for this purpose (for example, `MP2RAGE`).
 Use cases concerning this convention are compiled in the
