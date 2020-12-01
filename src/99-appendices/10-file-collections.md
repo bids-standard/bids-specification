@@ -14,10 +14,10 @@ included in this appendix:
 
 * Magnetic Resonance Imaging
     * [`echo`](./09-entities.md#echo)
-    * `flip` (to be added)
-    * `inv`  (to be added)
-    * `mt`   (to be added)
-    * `part` (to be added)
+    * [`flip`](./09-entities.md#flip)
+    * [`inv`](./09-entities.md#inv)
+    * [`mt`](./09-entities.md#mt)
+    * [`part`](./09-entities.md#part)
 
 ## Magnetic Resonance Imaging
 
