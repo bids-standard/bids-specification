@@ -11,7 +11,7 @@ jobs:
             pip install -r requirements.txt
       - run:
           name: generate docs
-          command: mkdocs build --clean --verbose
+          command: mkdocs build --clean --strict --verbose
       - persist_to_workspace:
           root: .
           paths: site
