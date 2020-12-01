@@ -167,8 +167,8 @@ An entity-linked file collection is a set of files that are related to each othe
 based on a repetitive acquisition of sequential data
 by changing acquisition parameters one (or multiple) at a time
 or by being inherent components of the same data.
-The suffix serves as an identifier for these
-collections, holding a logical grouping of constituent files.
+Entity-linked collections are identified by a common suffix,
+indicating the group of files that should be considered a logical unit.
 Within each collection, files MUST be distinguished from each other by at least one 
 entity (for example, `echo`) that corresponds to an altered acquisition parameter
 (`EchoTime`) or that defines a component relationship (for example, `part`).
