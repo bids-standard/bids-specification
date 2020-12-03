@@ -24,6 +24,14 @@ included in this appendix:
 
 ### Anatomy imaging data
 
+Template:
+
+```Text
+sub-<label>/[ses-<label>/]
+    anat/
+        sub-<label>[_ses-<label>][_acq-<label>][_echo-<index>][_flip-<index>][_inv-<index>][_mt-<label>][_part-<label>]_<suffix>.nii[.gz]
+```
+
 | Suffix  | Linking entities      | Application                                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 |---------|-----------------------|--------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | VFA     | flip                  | Variable flip angle                        | The VFA method involves at least two spoiled gradient echo (SPGR) of steady-state free precession (SSFP) images acquired at different flip angles. Depending on the provided metadata fields and the sequence type, data may be eligible for DESPOT1, DESPOT2 and their variants ([Deoni et al. 2005](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.20314)).                                                                                           |
@@ -36,6 +44,12 @@ included in this appendix:
 | MPM     | flip, mt, echo, part  | Multi-parametric mapping                   | The MPM approaches (a.k.a hMRI) involves the acquisition of highly-similar anatomical images that differ in terms of application of a magnetization transfer RF pulse (MTon or MToff), flip angle and (optionally) echo time and magnitue/phase parts ([Weiskopf et al. 2013](https://www.frontiersin.org/articles/10.3389/fnins.2013.00095/full)). See [here](https://owncloud.gwdg.de/index.php/s/iv2TOQwGy4FGDDZ) for suggested MPM acquisition protocols. |
 
 ### Fieldmap data
+
+```Text
+sub-<label>/[ses-<label>/]
+    fmap/
+        sub-<label>[_ses-<label>][_acq-<label>][_echo-<index>][_flip-<index>][_inv-<index>][_mt-<label>][_part-<label>]_<suffix>.nii[.gz]
+```
 
 | Suffix | Meta-data relevant entity    | Application                        | Description                                                                                                                                                                                                                                                                                                                                                                       |
 | ------ | ---------------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
