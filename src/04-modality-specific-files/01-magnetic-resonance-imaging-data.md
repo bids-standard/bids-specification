@@ -159,7 +159,7 @@ a functional (task) image.                                                      
 | Inplane T2                                 | inplaneT2        | T2 weighted structural image matched to 
 a functional (task) image.                                                                                  |
 | PD and T2 weighted images                  | PDT2             | PDw and T2w images acquired using a dual 
-echo FSE sequence through view sharing process (Johnson et al. 1994)](https://pubmed.ncbi.nlm.nih.gov/8010268/).                                      |
+echo FSE sequence through view sharing process ([Johnson et al. 1994](https://pubmed.ncbi.nlm.nih.gov/8010268/)).                                      |
 
 If the structural images included in the dataset were defaced (to protect
 identity of participants) one MAY provide the binary mask that was used to
