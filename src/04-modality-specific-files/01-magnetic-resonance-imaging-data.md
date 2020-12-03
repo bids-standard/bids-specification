@@ -277,12 +277,12 @@ recommended metadata fields, and the application specific entity or
 metadata requirement levels of [file collections](../99-appendices/10-file-collections.html) that can generate
 them, visit the [qMRI appendix](../99-appendices/11-qmri.html).
 
-### Legacy suffixes (to be deprecated)
+### Deprecated suffixes
 
 Some suffixes that were available in versions of the specification prior to
-1.5.0. have been identified as legacy suffixes. The legacy suffixes generate
-inconsistencies and/or ambiguities with additional suffixes added in version
-1.5.0 and so are therefore not recommended for use in new datasets.
+1.5.0. have been deprecated. These suffixes generate inconsistencies and/or 
+ambiguities with additional suffixes added in version 1.5.0. Therefore, they
+are not recommended for use in new datasets.
 They are, however, still valid suffixes, to maintain backwards compatibility.
 
 The following suffixes are valid, but SHOULD NOT be used for new BIDS compatible
