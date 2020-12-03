@@ -9,6 +9,21 @@
     - inplaneT1
     - inplaneT2
     - PDT2
+    - angio
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    run: optional
+    acq: optional
+    ce: optional
+    rec: optional
+    part: optional
+# Second group
+- suffixes:
     - T1map
     - T2map
     - T2starmap
@@ -28,7 +43,6 @@
     - RB1map
     - S0map
     - M0map
-    - angio
   extensions:
     - .nii.gz
     - .nii
@@ -41,7 +55,7 @@
     ce: optional
     rec: optional
     part: optional
-# Second group
+# Third group
 - suffixes:
     - defacemask
   extensions:
