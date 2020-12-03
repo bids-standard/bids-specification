@@ -54,7 +54,6 @@
     acq: optional
     ce: optional
     rec: optional
-    part: optional
 # Third group
 - suffixes:
     - defacemask
