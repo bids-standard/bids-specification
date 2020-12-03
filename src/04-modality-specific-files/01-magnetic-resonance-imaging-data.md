@@ -139,7 +139,7 @@ Template:
 sub-<label>/[ses-<label>/]
     anat/
         sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_part-<label>]_<suffix>.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
 ```
 
 Anatomical (structural) data acquired for that participant. Currently supported
