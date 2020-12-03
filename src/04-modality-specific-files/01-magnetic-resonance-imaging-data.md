@@ -133,29 +133,28 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_part-<label>]_<modality_label>.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_part-<label>]_<suffix>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<suffix>]_defacemask.nii[.gz]
 ```
 
 Anatomical (structural) data acquired for that participant. Currently supported
-modalities include:
+non-parametric structural MR images include:
 
-| **Name**           | `modality_label` | **Description**                                                                                                                                   |
-| ------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| T1 weighted        | T1w              |                                                                                                                                                   |
-| T2 weighted        | T2w              |                                                                                                                                                   |
-| T1 Rho map         | T1rho            | Quantitative T1rho brain imaging <br> <https://www.ncbi.nlm.nih.gov/pubmed/24474423> <br> <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4346383/> |
-| T1 map             | T1map            | quantitative T1 map                                                                                                                               |
-| T2 map             | T2map            | quantitative T2 map                                                                                                                               |
-| T2\*               | T2star           | High resolution T2\* image                                                                                                                        |
-| FLAIR              | FLAIR            |                                                                                                                                                   |
-| FLASH              | FLASH            |                                                                                                                                                   |
-| Proton density     | PD               |                                                                                                                                                   |
-| Proton density map | PDmap            |                                                                                                                                                   |
-| Combined PD/T2     | PDT2             |                                                                                                                                                   |
-| Inplane T1         | inplaneT1        | T1-weighted anatomical image matched to functional acquisition                                                                                    |
-| Inplane T2         | inplaneT2        | T2-weighted anatomical image matched to functional acquisition                                                                                    |
-| Angiography        | angio            |                                                                                                                                                   |
+| **Name**                                   | `suffix`         | **Description**                                                                                                                                   |
+| ------------------------------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| T1 weighted images                         | T1w              | Structural images with predominant T1 contribution.                                                                                               |
+| T2 weighted images                         | T2w              | Structural images with predominant T2 contribution.                                                                                               |
+| Proton density (PD) weighted images        | PDw              | Structural images with predominant PD contribution.                                                                                               |
+| T2star weighted images                     | T2starw          | Structural images with predominant T2star contribution.                                                                                               |
+| Fluid attenuated inversion recovery images | FLAIR            | Structural images with predominant T2 
+contribution (a.k.a T2-FLAIR), in which signal from fluids (e.g., CSF) is nulled out by adjusting inversion 
+time, coupled with notably long repetition and echo times.                                                  |
+| Inplane T1                                 | inplaneT1        | T1 weighted structural image matched to 
+a functional (task) image.                                                                                  |
+| Inplane T2                                 | inplaneT2        | T2 weighted structural image matched to 
+a functional (task) image.                                                                                  |
+| PD and T2 weighted images                  | PDT2             | PDw and T2w images acquired using a dual 
+echo FSE sequence through view sharing process (Johnson et al. 1994)](https://pubmed.ncbi.nlm.nih.gov/8010268/).                                      |
 
 If the structural images included in the dataset were defaced (to protect
 identity of participants) one MAY provide the binary mask that was used to
@@ -237,6 +236,23 @@ When there is only a magnitude image of a given type, the `part` key MAY be omit
 Similarly, the OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec)
 key/value can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
+
+### Legacy suffixes (to be deprecated)
+
+Some suffixes that were available in versions of the specification prior to
+1.5.0. have been identified as legacy suffixes. The legacy suffixes generate
+inconsistencies and/or ambiguities with additional suffixes added in version
+1.5.0 and so are therefore not recommended for use in new datasets.
+They are, however, still valid suffixes, to maintain backwards compatibility.
+
+The following suffixes are valid, but SHOULD NOT be used for new BIDS compatible
+datasets (created after version 1.5.0.):
+
+| **Name**           | `modality_label` | **Reason to deprecate**                                                                                                                           |
+| ------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| T2\*               | T2star           | Ambiguous, may refer to a parametric image or to a conventional image. **Change:** Replaced by `T2starw` or `T2starmap`.                          |
+| FLASH              | FLASH            | FLASH (Fast-Low-Angle-Shot) is a vendor specific implementation for spoiled  gradient echo acquisition. It is commonly used for rapid anatomical imaging and also for many different qMRI applications. When used for a single file, it does not convey any information about the image contrast. When used in a file collection, it may result in conflicts across filenames of different applications. **Change:** Removed from suffixes|
+| Proton density     | PD               | Ambiguous, may refer to a parametric image or to a conventional image. **Change:** Replaced by `PDw` or `PDmap`.                                  |
 
 ## Task (including resting state) imaging data
 
