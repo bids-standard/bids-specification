@@ -3,17 +3,31 @@
 - suffixes:
     - T1w
     - T2w
-    - T1rho
-    - T1map
-    - T2map
-    - T2star
+    - PDw
+    - T2starw
     - FLAIR
-    - FLASH
-    - PD
-    - PDmap
-    - PDT2
     - inplaneT1
     - inplaneT2
+    - PDT2
+    - T1map
+    - T2map
+    - T2starmap
+    - R1map
+    - R2map
+    - R2starmap
+    - PDmap
+    - MTRmap
+    - MTsat
+    - UNIT1
+    - T1rho
+    - MWFmap
+    - MTVmap
+    - PDT2map
+    - Chimap
+    - TB1map
+    - RB1map
+    - S0map
+    - M0map
     - angio
   extensions:
     - .nii.gz
