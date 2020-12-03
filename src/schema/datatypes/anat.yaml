@@ -69,3 +69,105 @@
     ce: optional
     rec: optional
     mod: optional
+# Fourth group
+- suffixes:
+    - MESE
+    - MEGRE
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    run: optional
+    acq: optional
+    ce: optional
+    rec: optional
+    echo: required
+    part: optional
+# Fifth group
+- suffixes:
+    - VFA
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    run: optional
+    acq: optional
+    ce: optional
+    rec: optional
+    flip: required
+    part: optional
+# Sixth group
+- suffixes:
+    - IRT1
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    run: optional
+    acq: optional
+    ce: optional
+    rec: optional
+    inv: required
+    part: optional
+# Seventh group
+- suffixes:
+    - MP2RAGE
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    run: optional
+    acq: optional
+    ce: optional
+    rec: optional
+    echo: optional
+    flip: required
+    inv: required
+    part: optional
+# Eighth group
+- suffixes:
+    - MPM
+    - MTS
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    run: optional
+    acq: optional
+    ce: optional
+    rec: optional
+    echo: optional
+    flip: required
+    mt: required
+    part: optional
+# Nineth group
+- suffixes:
+    - MTR
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    run: optional
+    acq: optional
+    ce: optional
+    rec: optional
+    mt: required
+    part: optional

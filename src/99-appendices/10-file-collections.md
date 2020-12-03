@@ -29,7 +29,7 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_echo-<index>][_flip-<index>][_inv-<index>][_mt-<label>][_part-<label>]_<suffix>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>][_flip-<index>][_inv-<index>][_mt-<label>][_part-<label>]_<suffix>.nii[.gz]
 ```
 
 | Suffix  | Linking entities      | Application                                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
@@ -48,7 +48,7 @@ sub-<label>/[ses-<label>/]
 ```Text
 sub-<label>/[ses-<label>/]
     fmap/
-        sub-<label>[_ses-<label>][_acq-<label>][_echo-<index>][_flip-<index>][_inv-<index>][_mt-<label>][_part-<label>]_<suffix>.nii[.gz]
+        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_echo-<index>][_flip-<index>][_inv-<index>][_mt-<label>][_part-<label>]_<suffix>.nii[.gz]
 ```
 
 | Suffix | Meta-data relevant entity    | Application                        | Description                                                                                                                                                                                                                                                                                                                                                                       |
