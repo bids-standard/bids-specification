@@ -207,7 +207,7 @@ This section is mandatory and contains timing information about the imaging expe
 #### Reconstruction
 
 This optional section includes information about the image reconstruction.
-If there are further parameters, that are not specified here, they should go into the `ReconMethodParameterVal` field. 
+If there are further parameters, that are not specified here, they should go into the `ReconMethodParameterVal` field.
 
 | Field name                           | Definition                                                                                                                |
 |--------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
@@ -398,19 +398,19 @@ Hence, it may contain information regarding metabolite info, such as the followi
 |:------------|:-------------------------------------------------------------------------|
 | ColumnName  | REQUIRED. Name of the column (for example, "metabolite_parent_fraction"). |
 | Description | REQUIRED. Parent fraction of the radiotracer (0-1).                      |
-| Units       | REQUIRED. Unit of parent fraction (for example, "unitless")              |
+| Units       | REQUIRED. Unit of parent fraction (for example, "arbitrary")              |
 
 | Field name  | Definition                                                              |
 |:------------|:------------------------------------------------------------------------|
 | ColumnName  | REQUIRED. Name of the column (for example, "metabolite_polar_fraction)". |
 | Description | REQUIRED. Polar metabolite fraction of the radiotracer (0-1).           |
-| Units       | REQUIRED. Unit of polar metabolite fraction (for example, "unitless")   |
+| Units       | REQUIRED. Unit of polar metabolite fraction (for example, "arbitrary")   |
 
 | Field name  | Definition                                                                                   |
 |:------------|:---------------------------------------------------------------------------------------------|
 | ColumnName  | REQUIRED. Name of the column (for example, "hplc_recovery_fractions".                        |
 | Description | REQUIRED. HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC). |
-| Units       | REQUIRED. Unit of recovery fractions (for example, "unitless")                               |
+| Units       | REQUIRED. Unit of recovery fractions (for example, "arbitrary")                               |
 
 ### Radioactivity in whole blood
 
@@ -458,15 +458,15 @@ and the values below should be added to the `*recording-blood_continous.json`.
     },
     "metabolite_parent_fraction": {
         "Description": "Parent fraction of the radiotracer.",
-        "Units": "unitless"
+        "Units": "arbitrary"
     },
     "metabolite_polar_fraction": {
         "Description": "Polar metabolite fraction of the radiotracer.",
-        "Units": "unitless"
+        "Units": "arbitrary"
     },
     "metabolite_lipophilic_fraction": {
         "Description": "Lipophilic metabolite fraction of the radiotracer.",
-        "Units": "unitless"
+        "Units": "arbitrary"
     }
 }
 ```
