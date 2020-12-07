@@ -25,6 +25,16 @@ and its associated data, such as blood data.
 In addition, the extension is in accordance with the guidelines for reporting
 and sharing brain PET data (Knudsen et al. 2020, [1]).
 
+Template:
+
+```Text
+sub-<participant_label>/
+      [ses-<session_label>/]
+        pet/
+        sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.nii[.gz]
+        sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.json
+```
+
 **Shared MRI data along with PET:**
 To share structural magnetic resonance (MR) images with your PET data,
 please follow the original BIDS specification
@@ -52,16 +62,6 @@ and all the PET and blood data should be decay-corrected to this time point.
 Furthermore, although in this example tracer injection coincides with scan start,
 this is not always the case and hence we allow for the flexibility of specifying
 either time of injection or scan start as “time zero”.
-
-Template:
-
-```Text
-sub-<participant_label>/
-      [ses-<session_label>/]
-        pet/
-        sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.nii[.gz]
-        sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.json
-```
 
 PET data belong to the `pet` directory. PET imaging data SHOULD be stored in 4D
 (or 3D if only one volume was acquired) NIfTI files with `_pet` suffix.
