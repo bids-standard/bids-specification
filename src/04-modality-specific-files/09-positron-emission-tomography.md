@@ -110,7 +110,7 @@ Examples are `acq-18FFDG` for fludeoxyglucose, `acq-11CPIB` for Pittsburgh compo
 - `acstat`, for reconstructions with attenuation correction of static data;
 - `nacdyn`, for reconstructions without attenuation correction of dynamic data;
 - `nacstat`, for reconstructions without attenuation correction of static data.
-Further details regarding reconstruction are in the _pet.json file.
+Further details regarding reconstruction are in the `_pet.json` file.
 In case of multiple reconstructions of the data with the same type,
 we allow for using a number after the `<label>` in order to distinguish,
 for example `rec-acdyn1` and `rec-acdyn2`.
