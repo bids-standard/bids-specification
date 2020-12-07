@@ -134,7 +134,7 @@ The included metadata are divided into sections described below.
 #### Information
 
 This section is mandatory and contains general information about the imaging experiment.
-Some of the fields are marked optional (MAY), for example anaesthesia; for those fields
+Some of the fields are marked OPTIONAL, for example anaesthesia; for those fields
 the BIDS validator will not throw an error even if they are not present.
 Note, although bodyweight is a recommended information in (Knudsen et al. 2020, JCBFM [1]),
 this consists of meta information at the participant level and should hence
