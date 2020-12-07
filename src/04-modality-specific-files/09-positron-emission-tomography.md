@@ -1,19 +1,10 @@
 # Positron Emission Tomography
 
-Support for Positron Emission Tomography (PET) was developed as a [BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
-Please cite the following paper when referring to this part of the standard in
-context of the academic literature:
-
-> Knudsen GM, Ganz M, Appelhoff S, Boellaard R, Bormans G, Carson RE, Catana C,
-> Doudet D, Gee AD, Greve DN, Gunn RN, Halldin C, Herscovitch P, Huang H, Keller SH,
-> Lammertsma AA, Lanzenberger R, Liow JS, Lohith TG, Lubberink M, Lyoo CH, Mann JJ,
-> Matheson GJ, Nichols TE, Nørgaard M, Ogden T, Parsey R, Pike VW, Price J, Rizzo G,
-> Rosa-Neto P, Schain M, Scott PJH, Searle G, Slifstein M, Suhara T, Talbot PS,
-> Thomas A, Veronese M, Wong DF, Yaqub M, Zanderigo F, Zoghbi S, Innis RB.
-> Guidelines for Content and Format of PET Brain Data in Publications
-> and in Archives: A Consensus Paper.
-> Journal of Cerebral Blood Flow and Metabolism, 2020 Aug;40(8):1576-1585.
-> doi: [10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433)
+Support for Positron Emission Tomography (PET) was developed as a
+[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../01-introduction.md#citing-bids)
+on how to appropriately credit this extension when referring to it in the
+context of the academic literature.
 
 The following example PET datasets have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
