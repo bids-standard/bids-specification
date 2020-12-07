@@ -64,7 +64,7 @@ sub-<participant_label>/
 ```
 
 PET data belong to the `pet` directory. PET imaging data SHOULD be stored in 4D
-(or 3D if only one volume was acquired) NifTI files with `_pet` suffix.
+(or 3D if only one volume was acquired) NIfTI files with `_pet` suffix.
 Volumes should be stored in chronological order (the order they were acquired in).
 
 Following the BIDS Common Principles (https://bids-specification.readthedocs.io/en/stable/02-common-principles.html), here we summarize how different labels are organized for PET data. Please, check the Common Principles section for further details.
