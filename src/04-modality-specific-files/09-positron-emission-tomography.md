@@ -63,7 +63,7 @@ sub-<participant_label>/
         sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.json
 ```
 
-PET data belongs in the /pet folder. PET imaging data SHOULD be stored in 4D
+PET data belong to the `pet` directory. PET imaging data SHOULD be stored in 4D
 (or 3D if only one volume was acquired) NifTI files with `_pet` suffix.
 Volumes should be stored in chronological order (the order they were acquired in).
 
