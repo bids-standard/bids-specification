@@ -18,10 +18,10 @@ jobs:
       with:
         node-version: 10
     - name: Install dependencies
-      run: npm install --global `cat npm-requirements.txt`
-    - name: Run style checks
       run: |
         export NODE_PATH=/usr/local/lib/node_modules
-        remark src/*.md src/*/*.md --frail
+        npm install --global `cat npm-requirements.txt`
+    - name: Run style checks
+      run: remark src/*.md src/*/*.md --frail
 
 
