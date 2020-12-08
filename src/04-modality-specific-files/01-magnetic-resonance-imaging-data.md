@@ -163,7 +163,7 @@ For example, `sub-01_mod-T1w_defacemask.nii.gz`.
 If several scans of the same modality are acquired they MUST be indexed with the
 [`run-<index>`](../99-appendices/09-entities.md#run) key-value pair:
 `_run-1`, `_run-2`, `_run-3`, and so on (only nonnegative integers are allowed as
-run labels). When there is only one scan of a given type the run key MAY be
+run labels). If however these scans of the same modality contain different labels (e.g. `_acq-`, `_ce-`, `_desc-`) then the run label and indexing are optional, unless the labels are the same. When there is only one scan of a given type the run key MAY be
 omitted. Please note that diffusion imaging data is stored elsewhere (see
 below).
 
