@@ -143,15 +143,6 @@ mt:
     entity are `on` and `off`, for images acquired in presence and absence of an MT pulse,
     respectively.
   format: label
-recording:
-  name: Recording
-  entity: recording
-  description: |
-    More than one continuous recording file can be included (with different
-    sampling frequencies).
-    In such case use different labels.
-    For example: `_recording-contrast`, `_recording-saturation`.
-  format: label
 part:
   name: Part
   entity: part
@@ -170,6 +161,15 @@ part:
 
     When there is only a magnitude image of a given type, the `part` key MAY be
     omitted.
+  format: label
+recording:
+  name: Recording
+  entity: recording
+  description: |
+    More than one continuous recording file can be included (with different
+    sampling frequencies).
+    In such case use different labels.
+    For example: `_recording-contrast`, `_recording-saturation`.
   format: label
 processing:
   name: Processed (on device)
