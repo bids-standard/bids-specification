@@ -73,6 +73,7 @@
     session: optional
     task: required
     run: optional
+    acq: optional
 - suffixes:
     - photo
   extensions:
