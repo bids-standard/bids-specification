@@ -413,9 +413,9 @@ and the parallel imaging acceleration factor in PE direction.
 
 ### Radiofrequency (RF) field mapping
 
-General note:
+General notes:
 
-Some RF file collections call for the use of special notations that cannot be resolved by
+* Some RF file collections call for the use of special notations that cannot be resolved by
 by entities that can generalize to other applications. Instead of introducing an entity
 that is exclusive to a single application, method developers who commonly use these file
 collections for the `MPM` application reached the consensus on the use of `acq` entity to
