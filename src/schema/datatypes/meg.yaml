@@ -61,6 +61,7 @@
     subject: required
     session: optional
     task: required
+    acquisition: optional
     run: optional
     processing: optional
 - suffixes:
@@ -72,8 +73,8 @@
     subject: required
     session: optional
     task: required
+    acquisition: optional
     run: optional
-    acq: optional
 - suffixes:
     - photo
   extensions:

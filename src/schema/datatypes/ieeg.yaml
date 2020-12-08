@@ -26,6 +26,7 @@
     subject: required
     session: optional
     task: required
+    acquisition: optional
     run: optional
 - suffixes:
     - coordsystem
@@ -54,8 +55,8 @@
     subject: required
     session: optional
     task: required
+    acquisition: optional
     run: optional
-    acq: optional
 - suffixes:
     - photo
   extensions:
