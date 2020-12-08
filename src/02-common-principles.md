@@ -161,6 +161,28 @@ A summary of all entities in BIDS and the order in which they MUST be
 specified is available in the [entity table](./99-appendices/04-entity-table.md)
 in the appendix.
 
+### Entity-linked file collections
+
+An entity-linked file collection is a set of files that are related to each other
+based on a repetitive acquisition of sequential data
+by changing acquisition parameters one (or multiple) at a time
+or by being inherent components of the same data.
+Entity-linked collections are identified by a common suffix,
+indicating the group of files that should be considered a logical unit.
+Within each collection, files MUST be distinguished from each other by at least one 
+entity (for example, `echo`) that corresponds to an altered acquisition parameter
+(`EchoTime`) or that defines a component relationship (for example, `part`).
+Note that these entities MUST be described by the specification and
+the parameter changes they declare MUST NOT invalidate the definition of the accompanying suffix.
+For example, the use of the `echo` entity along with the `T1w` suffix casts doubt on
+the validity of the identified contrast weighting.  
+Provided the conditions above are satisfied,
+any suffix (such as `bold`) can identify an entity-linked file collection,
+although certain suffixes are exclusive for this purpose (for example, `MP2RAGE`).
+Use cases concerning this convention are compiled in the
+[file collections](./99-appendices/10-file-collections.md) appendix.
+This convention is mainly intended for but not limited to MRI modalities.
+
 ## Source vs. raw vs. derived data
 
 BIDS was originally designed to describe and apply consistent naming conventions
@@ -429,7 +451,7 @@ acquisition parameters available in DICOM files, we RECOMMEND that users provide
 additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
 Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://github.com/rordenlab/dcm2niix)
-and [dicm2nii](http://www.mathworks.com/matlabcentral/fileexchange/42997-dicom-to-nifti-converter/content/dicm2nii.m)
+and [dicm2nii](https://www.mathworks.com/matlabcentral/fileexchange/42997-xiangruili-dicm2nii)
 DICOM to NIfTI converters. The [BIDS-validator](https://github.com/bids-standard/bids-validator)
 will check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
@@ -504,7 +526,7 @@ Example:
   "bmi": {
     "LongName": "Body mass index",
     "Units": "kg/m^2",
-    "TermURL": "http://purl.bioontology.org/ontology/SNOMEDCT/60621009"
+    "TermURL": "https://purl.bioontology.org/ontology/SNOMEDCT/60621009"
   }
 }
 ```
@@ -513,10 +535,11 @@ Example:
 
 JavaScript Object Notation (JSON) files MUST be used for storing key/value
 pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
-format can be found here: [http://json.org/](http://json.org/). Several editors
-have built-in support for JSON syntax highlighting that aids manual creation of
-such files. An online editor for JSON with built-in validation is available at:
-[http://jsoneditoronline.org](http://jsoneditoronline.org).
+format can be found at [https://www.json.org/](https://www.json.org/).
+Several editors have built-in support for JSON syntax highlighting that aids
+manual creation of such files.
+An online editor for JSON with built-in validation is available at
+[https://jsoneditoronline.org](https://jsoneditoronline.org).
 It is RECOMMENDED that keys in a JSON file are written in [CamelCase](https://en.wikipedia.org/wiki/Camel_case)
 with the first letter in upper case (for example, `SamplingFrequency`, not
 `samplingFrequency`). Note however, when a JSON file is used as an accompanying

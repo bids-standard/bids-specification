@@ -49,7 +49,7 @@ sub-control01/
 ```
 
 To learn more about CTF’s data organization:
-[http://www.fieldtriptoolbox.org/getting_started/ctf](http://www.fieldtriptoolbox.org/getting_started/ctf)
+[https://www.fieldtriptoolbox.org/getting_started/ctf](https://www.fieldtriptoolbox.org/getting_started/ctf)
 
 ## Neuromag/Elekta/MEGIN
 
@@ -176,8 +176,8 @@ sub-control01_ses-001_task-rest_run-01_split-02_meg.fif
 
 More information can be found under the following links:
 
--   [Neuromag/Elekta/MEGIN data organization](http://www.fieldtriptoolbox.org/getting_started/neuromag)
--   [BabyMEG](http://www.fieldtriptoolbox.org/getting_started/babysquid)
+-   [Neuromag/Elekta/MEGIN data organization](https://www.fieldtriptoolbox.org/getting_started/neuromag)
+-   [BabyMEG](https://www.fieldtriptoolbox.org/getting_started/babysquid)
 
 ### Recording dates in `.fif` files
 
@@ -227,7 +227,7 @@ sub-control01_ses-001_task-rest_run-01_meg/
 ```
 
 More about the 4D neuroimaging/BTi data organization at:
-[http://www.fieldtriptoolbox.org/getting_started/bti](http://www.fieldtriptoolbox.org/getting_started/bti)
+[https://www.fieldtriptoolbox.org/getting_started/bti](https://www.fieldtriptoolbox.org/getting_started/bti)
 
 ## KIT/Yokogawa/Ricoh
 
@@ -272,7 +272,7 @@ the two marker measurements occur before and after the raw data acquisition,
 `pre` and `post` are used to differentiate the two situations.
 
 More about the KIT/Yokogawa/Ricoh data organization at:
-[http://www.fieldtriptoolbox.org/getting_started/yokogawa](http://www.fieldtriptoolbox.org/getting_started/yokogawa)
+[https://www.fieldtriptoolbox.org/getting_started/yokogawa](https://www.fieldtriptoolbox.org/getting_started/yokogawa)
 
 ## KRISS
 

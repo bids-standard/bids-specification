@@ -14,8 +14,8 @@ context of the academic literature.
 sub-<label>/
   [ses-<label>]/
     ieeg/
-      sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_ieeg.<manufacturer_specific_extension>
-      sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_ieeg.json
+      sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_ieeg.<manufacturer_specific_extension>
+      sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_ieeg.json
 ```
 
 The iEEG community uses a variety of formats for storing raw data, and there is
@@ -119,7 +119,7 @@ Whenever possible, please avoid using ad hoc wording.
 | SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer's designation of the acquisition software.                                                                                                                                                          |
 | TaskDescription        | RECOMMENDED           | [string][]    | Longer description of the task.                                                                                                                                                                                  |
 | Instructions           | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the recording. This is especially important in context of resting state and distinguishing between eyes open and eyes closed paradigms.                    |
-| CogAtlasID             | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [Cognitive Atlas Task](http://www.cognitiveatlas.org/) term.                                                                                                                     |
+| CogAtlasID             | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [Cognitive Atlas Task](https://www.cognitiveatlas.org/) term.                                                                                                                    |
 | CogPOID                | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                             |
 | DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset. |
 
@@ -209,7 +209,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 sub-<label>/
     [ses-<label>]/
       ieeg/
-        [sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_channels.tsv]
+        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_channels.tsv]
 ```
 
 A channel represents one time series recorded with the recording system (for

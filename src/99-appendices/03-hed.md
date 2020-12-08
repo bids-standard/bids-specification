@@ -10,9 +10,9 @@ Each level of a hierarchical tag is delimited with a forward slash (`/`).
 A HED string contains one or more HED tags separated by commas (`,`).
 Parentheses (brackets, `()`) group tags and enable specification of multiple items
 and their attributes in a single **HED string** (see section 2.4 in
-[HED Tagging Strategy Guide](http://www.hedtags.org/downloads/HED%20Tagging%20Strategy%20Guide.pdf)).
+[HED Tagging Strategy Guide](https://www.hedtags.org/downloads/HED%20Tagging%20Strategy%20Guide.pdf)).
 For more information about HED and tools available to validate and match HED
-strings, please visit [www.hedtags.org](http://www.hedtags.org).
+strings, please visit [www.hedtags.org](https://www.hedtags.org).
 Since dedicated fields already exist for the overall task classification in the
 sidecar JSON files (`CogAtlasID` and `CogPOID`), HED tags from the `Paradigm`
 HED subcategory should not be used to annotate events.

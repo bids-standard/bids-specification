@@ -121,7 +121,7 @@ To ensure dataset description consistency, we recommend following [Multi-omics a
 [strings]: https://www.w3schools.com/js/js_json_syntax.asp
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
 
-[allen]: http://atlas.brain-map.org/atlas?atlas=265297125&plate=112360888&structure=4392&x=40348.15104166667&y=46928.75&zoom=-7&resolution=206.60&z=3
+[allen]: https://atlas.brain-map.org/atlas?atlas=265297125&plate=112360888&structure=4392&x=40348.15104166667&y=46928.75&zoom=-7&resolution=206.60&z=3
 [ontology]: http://obofoundry.org/ontology/cl.html
 [gapsolr]: https://www.ncbi.nlm.nih.gov/gap/advanced
 [uri]: ../02-common-principles.md#uniform-resource-indicator
