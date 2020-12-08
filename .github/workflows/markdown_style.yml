@@ -19,6 +19,8 @@ jobs:
         node-version: 10
     - name: Install dependencies
       run: npm install --global `cat npm-requirements.txt`
+    - name: Update PATH
+      run: echo "$HOME/.nodenv/bin" >> $GITHUB_PATH
     - name: Run style checks
       run: remark src/*.md src/*/*.md --frail
 
