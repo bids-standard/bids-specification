@@ -19,11 +19,8 @@ jobs:
         node-version: 10
     - name: Install dependencies
       run: npm install `cat npm-requirements.txt`
-    - name: Checks
-      run: |
-        ls -l ./node_modules
-        npm bin
     - name: Run style checks
-      run: ./node_modules/.bin/remark src/*.md src/*/*.md --frail
+      # try npx: https://stackoverflow.com/a/45164863/5201771
+      run: npx remark src/*.md src/*/*.md --frail
 
 
