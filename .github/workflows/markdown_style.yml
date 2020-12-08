@@ -20,7 +20,7 @@ jobs:
     - name: Install dependencies
       run: npm install --global `cat npm-requirements.txt`
     - name: Update PATH
-      run: echo "$HOME/.nodenv/bin" >> $GITHUB_PATH
+      run: export NODE_PATH=/usr/local/lib/node_modules
     - name: Run style checks
       run: remark src/*.md src/*/*.md --frail
 
