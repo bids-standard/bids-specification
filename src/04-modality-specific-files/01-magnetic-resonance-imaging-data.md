@@ -648,9 +648,11 @@ The complete ASL time series should be stored as a 4D NIfTI file in the original
 accompanied by two ancillary files: `*_asl.json` and `*_aslcontext.tsv`. 
 
 ### `*_aslcontext.tsv`
-The `*_aslcontext.tsv` lists the volume_type for each volume in a single column, in the `*_asl.nii[.gz]`, corresponding to the volume_types specified in the table below, based 
-on DICOM Tag (0018,9257) `ASL Context`. Note that the volume_types `control` and  `label` within BIDS only serve to specify the magnetization state of the blood and thus the ASL 
-subtraction order.
+The `*_aslcontext.tsv` table consists of a single column of labels identifying the
+`volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
+Volume types are defined in the following table, based on DICOM Tag (0018,9257) `ASL Context`.
+Note that the volume_types `control` and  `label` within BIDS only serve
+to specify the magnetization state of the blood and thus the ASL subtraction order.
 
 | **volume_type** | **Definition**                                                                                                                                                                         |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
