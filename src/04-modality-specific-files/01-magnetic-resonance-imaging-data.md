@@ -730,7 +730,7 @@ when the [pepolar approach](#case-4-multiple-phase-encoded-directions-pepolar) i
 
 Depending on the method used for ASL acquisition ((P)CASL or PASL)
 different metadata fields are applicable.
-Additionally, some common metadata fields are required for the `*_asl.json`:
+Additionally, some common metadata fields are REQUIRED for the `*_asl.json`:
 `MagneticFieldStrength`, `MRAcquisitionType`, `EchoTime`,
 `SliceTiming` in case `MRAcquisitionType` is defined as 2D,
 `RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
@@ -783,7 +783,7 @@ These fields can only be used when `ArterialSpinLabelingType` is `PASL`.
 
 ### `m0scan` metadata fields
 
-Some common metadata fields are required for the `*_m0scan.json`: `EchoTime`, `RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
+Some common metadata fields are REQUIRED for the `*_m0scan.json`: `EchoTime`, `RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
 
 | **Key name**         | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                   |
 |----------------------|-----------------------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
