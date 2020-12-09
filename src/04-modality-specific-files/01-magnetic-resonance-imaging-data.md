@@ -766,7 +766,7 @@ These fields can only be used when `ArterialSpinLabelingType` is `PASL`.
 
 ### `m0scan` metadata fields
 
-The common metadata field `RepetitionTimePreparation` is required for the `*_m0scan.json`.
+Some common metadata fields are required for the `*_m0scan.json`: `EchoTime`, `RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
 
 | **Key name**         | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                   |
 |----------------------|-----------------------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
