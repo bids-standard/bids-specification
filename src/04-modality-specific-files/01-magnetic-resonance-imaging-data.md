@@ -653,7 +653,7 @@ The `*_aslcontext.tsv` table consists of a single column of labels identifying t
 Volume types are defined in the following table, based on DICOM Tag (0018,9257) `ASL Context`.
 Note that the volume_types `control` and  `label` within BIDS only serve
 to specify the magnetization state of the blood and thus the ASL subtraction order.
-See [Appendix XI](../99-appendices/11-arterial-spin-labeling.md#which-image-is-control-and-which-is-label) with more information on `control` and  `label`. 
+See [Appendix XI](../99-appendices/11-arterial-spin-labeling.md#which-image-is-control-and-which-is-label) for more information on `control` and  `label`. 
 
 | **volume_type** | **Definition**                                                                                                                                                                         |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -735,6 +735,7 @@ Additionally, some common metadata fields are REQUIRED for the `*_asl.json`:
 `MagneticFieldStrength`, `MRAcquisitionType`, `EchoTime`,
 `SliceTiming` in case `MRAcquisitionType` is defined as 2D,
 `RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
+See [Appendix XI](../99-appendices/11-arterial-spin-labeling.md#summary-image-of-the-most-common-asl-sequences) for more information on the most common ASL sequences. 
 
 #### Common metadata fields applicable to both (P)CASL and PASL 
 | **Key name**                      | **Requirement level**                                                         | **Data type**                           | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
