@@ -719,10 +719,12 @@ The `*_asl.nii.gz` and `*_m0scan.nii.gz` should contain appropriately scaled dat
 NIfTI headers.
 
 ### M0
-The `m0scan` can either be stored inside the 4D ASL time-series NIfTI file or as a separate NIfTI file, depending on whether it 
-was acquired within the ASL time-series or as a separate scan. These and other M0 options are specified in the required `M0Type` field of the `*_asl.json` file. 
+The `m0scan` can either be stored inside the 4D ASL time-series NIfTI file
+or as a separate NIfTI file,
+depending on whether it was acquired within the ASL time-series or as a separate scan.
+These and other M0 options are specified in the REQUIRED `M0Type` field of the `*_asl.json` file. 
 It can also be stored under `fmap/sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]`, 
-when the [pepolar approach](https://bids-specification.readthedocs.io/en/latest/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#case-4-multiple-phase-encoded-directions-pepolar) is used.
+when the [pepolar approach](#case-4-multiple-phase-encoded-directions-pepolar) is used.
 
 ### `*_asl.json` file
 
