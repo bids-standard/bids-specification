@@ -792,7 +792,9 @@ Some common metadata fields are REQUIRED for the `*_m0scan.json`: `EchoTime`, `R
 | IntendedFor          | REQUIRED              | [string][] or [array][] of [strings][] | One or more filenames with paths relative to the subject subfolder, with forward slashes, referring to ASL time series for which the `*_m0scan.nii[.gz]` is intended.                                                                                                                                                                                                             |
 | AcquisitionVoxelSize | RECOMMENDED           | [array][] of [numbers][]               | An array of numbers with a length of 3, in millimeters. This parameter denotes the original acquisition voxel size, excluding any inter-slice gaps and before any interpolation or resampling within reconstruction or image processing. Any point spread function effects, for example due to T2-blurring, that would decrease the effective resolution are not considered here. |
 
-The following table recapitulates the ASL field dependencies. If Source field (column 1) contains the Value specified in column 2, then the Requirements in column 4 are imposed on the Dependent fields in column 3.
+The following table recapitulates the ASL field dependencies. If Source field (column 1) contains the Value specified in column 2, then the Requirements in column 4 are
+imposed on the Dependent fields in column 3. See [Appendix XI](../99-appendices/11-arterial-spin-labeling.md#flowchart-based-on-dependency-table) for this information in the 
+form of flowcharts.
 
 | **Source field**         | **Value**    | **Dependent field**  | **Requirements**                             |
 |--------------------------|--------------|----------------------|----------------------------------------------|
