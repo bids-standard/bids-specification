@@ -703,8 +703,10 @@ m0scan
 
 #### Case 3: `*_asl.nii[.gz]` consists of volume_type `cbf` (scanner does not export `control`, `label`, or `deltaM` volumes) 
 
-If `control` and `label` or intermediate ASL volumes are not reconstructed or exported, but a pre-calculated `cbf` - and optionally a `m0scan` - volume is provided by the
-scanner, the `cbf` should be included in the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`. Example of `*_aslcontext.tsv`:
+If `control` and `label` or intermediate ASL volumes are not reconstructed or exported,
+but a pre-calculated `cbf` - and optionally a `m0scan` - volume is provided by the scanner,
+the `cbf` should be included in the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`.
+Example of `*_aslcontext.tsv`:
 
 ```Text
 volume_type
