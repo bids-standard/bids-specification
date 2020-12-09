@@ -644,8 +644,8 @@ sub-<label>/[ses-<label>/]
        sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.jpg
 ```
 
-The complete ASL time series should be stored as a 4D NIfTI file in the original acquisition order, accompanied by two ancillary 
-files: `*_asl.json` and `*_aslcontext.tsv`. 
+The complete ASL time series should be stored as a 4D NIfTI file in the original acquisition order,
+accompanied by two ancillary files: `*_asl.json` and `*_aslcontext.tsv`. 
 
 ### `*_aslcontext.tsv`
 The `*_aslcontext.tsv` lists the volume_type for each volume in a single column, in the `*_asl.nii[.gz]`, corresponding to the volume_types specified in the table below, based 
