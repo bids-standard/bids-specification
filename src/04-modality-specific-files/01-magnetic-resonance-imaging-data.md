@@ -688,9 +688,12 @@ m0scan
 
 #### Case 2: `*_asl.nii[.gz]` consists of volume_types `deltam` (scanner does not export `control` or `label` volumes)
 
-In some cases, `control` and `label` volumes are lacking within the acquired ASL timeseries, but the intermediate `deltam` - and optionally a `m0scan` - volume is 
-reconstructed/exported by the scanner. In this case, the `deltam` should be included in the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`. An optional `cbf` volume 
-should be stored and specified as derivative. Example of `*_aslcontext.tsv`:
+In some cases, `control` and `label` volumes are lacking within the acquired ASL timeseries,
+but the intermediate `deltam` - and optionally an `m0scan` -
+volume is reconstructed/exported by the scanner.
+In this case, the `deltam` should be included in the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`.
+An optional `cbf` volume should be stored and specified as derivative.
+Example of `*_aslcontext.tsv`:
 
 ```Text
 volume_type
