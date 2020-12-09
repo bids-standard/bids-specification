@@ -728,9 +728,12 @@ when the [pepolar approach](#case-4-multiple-phase-encoded-directions-pepolar) i
 
 ### `*_asl.json` file
 
-Depending on the method used for ASL acquisition ((P)CASL or PASL) different metadata fields are applicable. Additionally, some common metadata fields are required for the 
-`*_asl.json`: `MagneticFieldStrength`, `MRAcquisitionType`, `EchoTime`, `SliceTiming` in case `MRAcquisitionType` is defined as 2D, `RepetitionTimePreparation`, and 
-`FlipAngle` in case `LookLocker` is `true`.
+Depending on the method used for ASL acquisition ((P)CASL or PASL)
+different metadata fields are applicable.
+Additionally, some common metadata fields are required for the `*_asl.json`:
+`MagneticFieldStrength`, `MRAcquisitionType`, `EchoTime`,
+`SliceTiming` in case `MRAcquisitionType` is defined as 2D,
+`RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
 
 #### Common metadata fields applicable to both (P)CASL and PASL 
 | **Key name**                      | **Requirement level**                                                         | **Data type**                           | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
