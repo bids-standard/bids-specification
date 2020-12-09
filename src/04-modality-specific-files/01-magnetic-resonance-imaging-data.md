@@ -662,9 +662,14 @@ to specify the magnetization state of the blood and thus the ASL subtraction ord
 | deltam          | The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.                                                                                    |
 | cbf             | The cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0, quantified into `mL/100g/min` (See also [doi:10.1002/mrm.25197](https://doi.org/10.1002/mrm.25197)). |
 
-If the `control` and `label` images are not available, their derivative `deltam` should be stored within the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv` instead. If 
-the `deltam` is not available, `cbf` should be stored within the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`. When `cbf` is stored within the `*_asl.nii[.gz]`, its 
-units need to be specified in the `*_asl.json` as well. See below examples of these cases, in order of decreasing preference.
+If the `control` and `label` images are not available,
+their derivative `deltam` should be stored within the `*_asl.nii[.gz]`
+and specified in the `*_aslcontext.tsv` instead.
+If the `deltam` is not available,
+`cbf` should be stored within the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`.
+When `cbf` is stored within the `*_asl.nii[.gz]`,
+its units need to be specified in the `*_asl.json` as well.
+See below examples of these cases, in order of decreasing preference.
 
 #### Case 1: `*_asl.nii[.gz]` consists of volume_types `control`, `label`
 
