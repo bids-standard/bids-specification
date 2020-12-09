@@ -779,6 +779,7 @@ The following table recapitulates the ASL field dependencies. If Source field (c
 |--------------------------|--------------|----------------------|----------------------------------------------|
 | MRAcquisitionType        | 2D / 3D      | SliceTiming          | \[X\] / \[\]                                 |
 | LookLocker               | true         | FlipAngle            | \[X\]                                        |
+| ArterialSpinLabelingType | PCASL / PASL | LabelingDuration     | \[X\] / \[\]                                 |
 | ArterialSpinLabelingType | PASL         | BolusCutOffFlag      | \[X\]                                        |
 | BolusCutOffFlag          | true / false | BolusCutOffDelayTime | \[X\] / \[\]                                 |
 | BolusCutOffFlag          | true / false | BolusCutOffTechnique | \[X\] / \[\]                                 |
