@@ -645,7 +645,7 @@ sub-<label>/[ses-<label>/]
 ```
 
 The complete ASL time series should be stored as a 4D NIfTI file in the original acquisition order,
-accompanied by two ancillary files: `*_asl.json` and `*_aslcontext.tsv`. 
+accompanied by two ancillary files: `*_asl.json` and `*_aslcontext.tsv`.
 
 ### `*_aslcontext.tsv`
 The `*_aslcontext.tsv` table consists of a single column of labels identifying the
@@ -653,7 +653,7 @@ The `*_aslcontext.tsv` table consists of a single column of labels identifying t
 Volume types are defined in the following table, based on DICOM Tag (0018,9257) `ASL Context`.
 Note that the volume_types `control` and  `label` within BIDS only serve
 to specify the magnetization state of the blood and thus the ASL subtraction order.
-See [Appendix XI](../99-appendices/11-arterial-spin-labeling.md#which-image-is-control-and-which-is-label) for more information on `control` and  `label`. 
+See [Appendix XI](../99-appendices/11-arterial-spin-labeling.md#which-image-is-control-and-which-is-label) for more information on `control` and  `label`.
 
 | **volume_type** | **Definition**                                                                                                                                                                         |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -674,8 +674,8 @@ See below examples of these cases, in order of decreasing preference.
 
 #### Case 1: `*_asl.nii[.gz]` consists of volume_types `control`, `label`
 
-In most cases, the ASL timeseries, provided by the scanner, consist of a series of `control` and `label`, and optionally `m0scan`, volumes. In this case, only the `control`, 
-`label`, and optionally `m0scan` volumes should be stored in the `*_asl.json`, and the exact volume_type series should be specified in the `*_aslcontext.tsv`. The optional 
+In most cases, the ASL timeseries, provided by the scanner, consist of a series of `control` and `label`, and optionally `m0scan`, volumes. In this case, only the `control`,
+`label`, and optionally `m0scan` volumes should be stored in the `*_asl.json`, and the exact volume_type series should be specified in the `*_aslcontext.tsv`. The optional
 `deltam` or `cbf` volumes should be stored and specified as derivative. Example of `*_aslcontext.tsv`:
 
 ```Text
@@ -702,7 +702,7 @@ deltam
 m0scan
 ```
 
-#### Case 3: `*_asl.nii[.gz]` consists of volume_type `cbf` (scanner does not export `control`, `label`, or `deltaM` volumes) 
+#### Case 3: `*_asl.nii[.gz]` consists of volume_type `cbf` (scanner does not export `control`, `label`, or `deltaM` volumes)
 
 If `control` and `label` or intermediate ASL volumes are not reconstructed or exported,
 but a pre-calculated `cbf` - and optionally a `m0scan` - volume is provided by the scanner,
@@ -716,15 +716,15 @@ m0scan
 ```
 
 ### Scaling
-The `*_asl.nii.gz` and `*_m0scan.nii.gz` should contain appropriately scaled data, and no additional scaling factors are allowed other than the scale slope in the respective 
+The `*_asl.nii.gz` and `*_m0scan.nii.gz` should contain appropriately scaled data, and no additional scaling factors are allowed other than the scale slope in the respective
 NIfTI headers.
 
 ### M0
 The `m0scan` can either be stored inside the 4D ASL time-series NIfTI file
 or as a separate NIfTI file,
 depending on whether it was acquired within the ASL time-series or as a separate scan.
-These and other M0 options are specified in the REQUIRED `M0Type` field of the `*_asl.json` file. 
-It can also be stored under `fmap/sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]`, 
+These and other M0 options are specified in the REQUIRED `M0Type` field of the `*_asl.json` file.
+It can also be stored under `fmap/sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]`,
 when the [pepolar approach](#case-4-multiple-phase-encoded-directions-pepolar) is used.
 
 ### `*_asl.json` file
@@ -735,9 +735,9 @@ Additionally, some common metadata fields are REQUIRED for the `*_asl.json`:
 `MagneticFieldStrength`, `MRAcquisitionType`, `EchoTime`,
 `SliceTiming` in case `MRAcquisitionType` is defined as 2D,
 `RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
-See [Appendix XI](../99-appendices/11-arterial-spin-labeling.md#summary-image-of-the-most-common-asl-sequences) for more information on the most common ASL sequences. 
+See [Appendix XI](../99-appendices/11-arterial-spin-labeling.md#summary-image-of-the-most-common-asl-sequences) for more information on the most common ASL sequences.
 
-#### Common metadata fields applicable to both (P)CASL and PASL 
+#### Common metadata fields applicable to both (P)CASL and PASL
 | **Key name**                      | **Requirement level**                                                         | **Data type**                           | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 |-----------------------------------|-------------------------------------------------------------------------------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ArterialSpinLabelingType          | REQUIRED                                                                      | [string][]                              | `CASL`, `PCASL`, `PASL`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -760,17 +760,17 @@ See [Appendix XI](../99-appendices/11-arterial-spin-labeling.md#summary-image-of
 #### (P)CASL-specific metadata fields
 These fields can only be used when `ArterialSpinLabelingType` is `CASL` or `PCASL`. See [Appendix XI](../99-appendices/11-arterial-spin-labeling.md#pcasl-sequence) for more information on the (P)CASL sequence and the Labeling Pulse fields.
 
-| **Key name**                 | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|------------------------------|-----------------------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| LabelingDuration             | REQUIRED              | [number][] or [array][] of [numbers][] | Total duration of the labeling pulse train, in seconds, corresponding to the temporal width of the labeling bolus for `(P)CASL`. Specify either one number for total time-series or provide an array of numbers of different values for each volume in case of sequential acquisitions with varying labeling duration. In the case that an array of numbers is provided, its length should be equal to the number of volumes specified in `*_aslcontext.tsv`. An `m0scan` acquired within the ASL time-series, gets a value of zero. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`. |
+| **Key name**                 | **Requirement level**                            | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|------------------------------|--------------------------------------------------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| LabelingDuration             | REQUIRED                                         | [number][] or [array][] of [numbers][] | Total duration of the labeling pulse train, in seconds, corresponding to the temporal width of the labeling bolus for `(P)CASL`. Specify either one number for total time-series or provide an array of numbers of different values for each volume in case of sequential acquisitions with varying labeling duration. In the case that an array of numbers is provided, its length should be equal to the number of volumes specified in `*_aslcontext.tsv`. An `m0scan` acquired within the ASL time-series, gets a value of zero. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`. |
 | PCASLType                    | RECOMMENDED if ArterialSpinLabelingType is PCASL | [string][]                             | Type the gradient pulses used in the `control` condition: `balanced` or `unbalanced`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | CASLType                     | RECOMMENDED if ArterialSpinLabelingType is CASL  | [string][]                             | Describes if a separate coil is used for labeling: `single-coil` or `double-coil`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| LabelingPulseAverageGradient | RECOMMENDED           | [number][]                             | The average labeling gradient, in milliteslas per meter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| LabelingPulseMaximumGradient | RECOMMENDED           | [number][]                             | The maximum amplitude of the gradient switched on during the application of the labeling RF pulse(s), in milliteslas per meter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| LabelingPulseAverageB1       | RECOMMENDED           | [number][]                             | The average B1-field strength of the RF labeling pulses, in microteslas. As an alternative, `LabelingPulseFlipAngle` can be provided.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| LabelingPulseDuration        | RECOMMENDED           | [number][]                             | Duration of the individual labeling pulses, in milliseconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| LabelingPulseFlipAngle       | RECOMMENDED           | [number][]                             | The flip angle of a single labeling pulse, in degrees, which can be given as an alternative to `LabelingPulseAverageB1`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| LabelingPulseInterval        | RECOMMENDED           | [number][]                             | Delay between the peaks of the individual labeling pulses, in milliseconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| LabelingPulseAverageGradient | RECOMMENDED                                      | [number][]                             | The average labeling gradient, in milliteslas per meter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| LabelingPulseMaximumGradient | RECOMMENDED                                      | [number][]                             | The maximum amplitude of the gradient switched on during the application of the labeling RF pulse(s), in milliteslas per meter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| LabelingPulseAverageB1       | RECOMMENDED                                      | [number][]                             | The average B1-field strength of the RF labeling pulses, in microteslas. As an alternative, `LabelingPulseFlipAngle` can be provided.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| LabelingPulseDuration        | RECOMMENDED                                      | [number][]                             | Duration of the individual labeling pulses, in milliseconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| LabelingPulseFlipAngle       | RECOMMENDED                                      | [number][]                             | The flip angle of a single labeling pulse, in degrees, which can be given as an alternative to `LabelingPulseAverageB1`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| LabelingPulseInterval        | RECOMMENDED                                      | [number][]                             | Delay between the peaks of the individual labeling pulses, in milliseconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 #### PASL-specific metadata fields
 These fields can only be used when `ArterialSpinLabelingType` is `PASL`. See [Appendix XI](../99-appendices/11-arterial-spin-labeling.md#pasl-sequence) for more information on the PASL sequence and the BolusCutOff fields.
@@ -793,21 +793,21 @@ Some common metadata fields are REQUIRED for the `*_m0scan.json`: `EchoTime`, `R
 | AcquisitionVoxelSize | RECOMMENDED           | [array][] of [numbers][]               | An array of numbers with a length of 3, in millimeters. This parameter denotes the original acquisition voxel size, excluding any inter-slice gaps and before any interpolation or resampling within reconstruction or image processing. Any point spread function effects, for example due to T2-blurring, that would decrease the effective resolution are not considered here. |
 
 The following table recapitulates the ASL field dependencies. If Source field (column 1) contains the Value specified in column 2, then the Requirements in column 4 are
-imposed on the Dependent fields in column 3. See [Appendix XI](../99-appendices/11-arterial-spin-labeling.md#flowchart-based-on-dependency-table) for this information in the 
+imposed on the Dependent fields in column 3. See [Appendix XI](../99-appendices/11-arterial-spin-labeling.md#flowchart-based-on-dependency-table) for this information in the
 form of flowcharts.
 
-| **Source field**         | **Value**    | **Dependent field**  | **Requirements**                             |
-|--------------------------|--------------|----------------------|----------------------------------------------|
-| MRAcquisitionType        | 2D / 3D      | SliceTiming          | \[X\] / \[\]                                 |
-| LookLocker               | true         | FlipAngle            | \[X\]                                        |
-| ArterialSpinLabelingType | PCASL        | LabelingDuration     | \[X\]                                        |
-| ArterialSpinLabelingType | PASL         | BolusCutOffFlag      | \[X\]                                        |
-| BolusCutOffFlag          | true / false | BolusCutOffDelayTime | \[X\] / \[\]                                 |
-| BolusCutOffFlag          | true / false | BolusCutOffTechnique | \[X\] / \[\]                                 |
-| M0Type                   | Separate     | */perf/              | contains *_m0scan.nii[.gz] and *_m0scan.json |
-| M0Type                   | Included     | *_aslcontext.tsv     | contains m0scan                              |
-| M0Type                   | Estimate     | M0Estimate           | \[X\]                                        |
-| `*_aslcontext.tsv`       | cbf          | Units                | \[X\]                                        |
+| **Source field**         | **Value**    | **Dependent field**  | **Requirements**                                 |
+|--------------------------|--------------|----------------------|--------------------------------------------------|
+| MRAcquisitionType        | 2D / 3D      | SliceTiming          | \[X\] / \[\]                                     |
+| LookLocker               | true         | FlipAngle            | \[X\]                                            |
+| ArterialSpinLabelingType | PCASL        | LabelingDuration     | \[X\]                                            |
+| ArterialSpinLabelingType | PASL         | BolusCutOffFlag      | \[X\]                                            |
+| BolusCutOffFlag          | true / false | BolusCutOffDelayTime | \[X\] / \[\]                                     |
+| BolusCutOffFlag          | true / false | BolusCutOffTechnique | \[X\] / \[\]                                     |
+| M0Type                   | Separate     | */perf/              | contains `*_m0scan.nii[.gz]` and `*_m0scan.json` |
+| M0Type                   | Included     | *_aslcontext.tsv     | contains m0scan                                  |
+| M0Type                   | Estimate     | M0Estimate           | \[X\]                                            |
+| `*_aslcontext.tsv`       | cbf          | Units                | \[X\]                                            |
 
 **Legend**
 
