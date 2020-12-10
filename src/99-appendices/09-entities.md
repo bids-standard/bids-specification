@@ -177,22 +177,11 @@ Full name: Magnetization Transfer
 Format: `mt-<label>`
 
 Definition: If files belonging to an entity-linked file collection are acquired at different
-magnetization transfer (MT) states, the `_mt-<label>` key/value pair MUST be used to 
+magnetization transfer (MT) states, the `_mt-<label>` key/value pair MUST be used to
 distinguish individual files.
-This entity represents the `MTState` metadata field. Allowed label values for this 
+This entity represents the `MTState` metadata field. Allowed label values for this
 entity are `on` and `off`, for images acquired in presence and absence of an MT pulse,
 respectively.
-
-## recording
-
-Full name: Recording
-
-Format: `recording-<label>`
-
-Definition: More than one continuous recording file can be included (with different
-sampling frequencies).
-In such case use different labels.
-For example: `_recording-contrast`, `_recording-saturation`.
 
 ## part
 
@@ -214,6 +203,17 @@ The possible options are `rad` or `arbitrary`.
 
 When there is only a magnitude image of a given type, the `part` key MAY be
 omitted.
+
+## recording
+
+Full name: Recording
+
+Format: `recording-<label>`
+
+Definition: More than one continuous recording file can be included (with different
+sampling frequencies).
+In such case use different labels.
+For example: `_recording-contrast`, `_recording-saturation`.
 
 ## proc
 
