@@ -8,6 +8,52 @@ The `control` and `label` images are acquired with identical acquisition paramet
 in the `label` image compared to the `control` image. In case of doubt, an easy rule of thumb is that the `deltaM`=`control`-`label` subtraction should result in a perfusion-
 weighted image with a positive sign. For example, in the case of FAIR this would be selective inversion (`control`) and non-selective inversion (`label`).
 
+## `*_aslcontext.tsv`: three possible cases
+
+See below examples of the three `*_aslcontext.tsv` cases, in order of decreasing preference.
+
+#### Case 1: `*_asl.nii[.gz]` consists of volume_types `control`, `label`
+
+In most cases, the ASL timeseries, provided by the scanner, consist of a series of `control` and `label`, and optionally `m0scan`, volumes. 
+In this case, only the `control`, `label`, and optionally `m0scan` volumes should be stored in the `*_asl.nii[.gz]`, 
+and the exact volume_type series should be specified in the `*_aslcontext.tsv`. Example of `*_aslcontext.tsv`:
+
+```Text
+volume_type
+control
+label
+control
+label
+m0scan
+```
+
+#### Case 2: `*_asl.nii[.gz]` consists of volume_types `deltam` (scanner does not export `control` or `label` volumes)
+
+In some cases, `control` and `label` volumes are lacking within the acquired ASL timeseries,
+but the intermediate `deltam` - and optionally an `m0scan` -
+volume is reconstructed/exported by the scanner.
+In this case, the `deltam` should be included in the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`.
+Example of `*_aslcontext.tsv`:
+
+```Text
+volume_type
+deltam
+m0scan
+```
+
+#### Case 3: `*_asl.nii[.gz]` consists of volume_type `cbf` (scanner does not export `control`, `label`, or `deltaM` volumes)
+
+If `control` and `label` or intermediate ASL volumes are not reconstructed or exported,
+but a pre-calculated `cbf` - and optionally a `m0scan` - volume is provided by the scanner,
+the `cbf` should be included in the `*_asl.nii[.gz]` and specified in the `*_aslcontext.tsv`.
+Example of `*_aslcontext.tsv`:
+
+```Text
+volume_type
+cbf
+m0scan
+```
+
 ## Summary Image of the most common ASL sequences
 
 The following images illustrate the main BIDS metadata fields for three `ArterialSpinLabelingType`'s: `CASL`, `PCASL`, and `PASL`. Images are courtesy of, and adapted with
