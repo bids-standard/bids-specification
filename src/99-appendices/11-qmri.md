@@ -308,7 +308,7 @@ define the flavor of the application (fourth column) along with the conditional 
 required metadata field (second column).
 
 A derived qMRI application becomes avaiable if all the optional metadata fields
-listed for the respective file collection suffix is provided for the data. In addition,
+listed for the respective file collection suffix are provided for the data. In addition,
 conditional rules based on the value of a given required metada field can be set
 for the description of a derived qMRI application. Note that the value of this
 required metadata is fixed across constituent images of a file collection and defined
@@ -469,9 +469,10 @@ entity MUST index the images as follows:
 #### `TB1AFI` specific notes
 
 This method calculates a B1<sup>+</sup> map from two images acquired at two
-interleaved excitation repetition times (TR). Note that there is not an entity 
-for the TR and its definition depends on the modality (`functional` or `anatomical`)
-in the specification. 
+interleaved excitation repetition times (TR). Note that there is no entity 
+for the TR that can be used to label the files corresponding to the two
+repetition times and the definition of repetition time depends on the modality
+(`functional` or `anatomical`) in the specification. 
 
 Therefore, to properly identify constituents of this particular method, values of 
 the `acq` entity SHOULD begin with either `tr1` (lower TR) or `tr2` (higher TR) 
