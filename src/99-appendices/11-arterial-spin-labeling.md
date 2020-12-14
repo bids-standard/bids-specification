@@ -12,7 +12,7 @@ weighted image with a positive sign. For example, in the case of FAIR this would
 
 See below examples of the three `*_aslcontext.tsv` cases, in order of decreasing preference.
 
-#### Case 1: `*_asl.nii[.gz]` consists of volume_types `control`, `label`
+### Case 1: `*_asl.nii[.gz]` consists of volume_types `control`, `label`
 
 In most cases, the ASL timeseries, provided by the scanner, consist of a series of `control` and `label`, and optionally `m0scan`, volumes. 
 In this case, only the `control`, `label`, and optionally `m0scan` volumes should be stored in the `*_asl.nii[.gz]`, 
@@ -27,7 +27,7 @@ label
 m0scan
 ```
 
-#### Case 2: `*_asl.nii[.gz]` consists of volume_types `deltam` (scanner does not export `control` or `label` volumes)
+### Case 2: `*_asl.nii[.gz]` consists of volume_types `deltam` (scanner does not export `control` or `label` volumes)
 
 In some cases, `control` and `label` volumes are lacking within the acquired ASL timeseries,
 but the intermediate `deltam` - and optionally an `m0scan` -
@@ -41,7 +41,7 @@ deltam
 m0scan
 ```
 
-#### Case 3: `*_asl.nii[.gz]` consists of volume_type `cbf` (scanner does not export `control`, `label`, or `deltaM` volumes)
+### Case 3: `*_asl.nii[.gz]` consists of volume_type `cbf` (scanner does not export `control`, `label`, or `deltaM` volumes)
 
 If `control` and `label` or intermediate ASL volumes are not reconstructed or exported,
 but a pre-calculated `cbf` - and optionally a `m0scan` - volume is provided by the scanner,
