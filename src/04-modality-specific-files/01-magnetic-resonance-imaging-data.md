@@ -169,12 +169,15 @@ If several scans of the same modality are acquired they MUST be indexed with the
 [`run-<index>`](../99-appendices/09-entities.md#run) key-value pair:
 `_run-1`, `_run-2`, `_run-3`, and so on (only nonnegative integers are allowed as
 run labels).
-If however these scans of the same modality contain different labels
-(for example `_acq-`, `_ce-`, `_desc-`) then the run label and indexing are optional,
-unless the labels are the same.
-When there is only one scan of a given type the run key MAY be
-omitted. Please note that diffusion imaging data is stored elsewhere (see
-below).
+If several scans with the same acquisition parameters are acquired in the same session,
+they MUST be indexed with the [`run-<index>`](../99-appendices/09-entities.md#run) entity:
+`_run-1`, `_run-2`, `_run-3`, and so on (only nonnegative integers are allowed as
+run labels).
+
+If different entities apply,
+such as a different session indicated by [`ses-<label>`](../99-appendices/09-entities.md#ses),
+or different acquisition parameters indicated by [`acq-<label>`](../99-appendices/09-entities.md#acq),
+then `run` is not needed to distinguish the scans and MAY be omitted.
 
 The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
 key/value pair corresponds to a custom label the user
