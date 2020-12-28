@@ -20,7 +20,7 @@ Jump to the following sections:
 -   [Understanding issues](#understanding-issues)
 -   [Writing in markdown](#writing-in-markdown)
 -   [Fixing Remark errors from Travis](#fixing-travis-remark-errors)
--   [## Adding a figure to the specifications](#adding-a-figure-to-the-specifications)
+-   [Adding a figure to the specifications](#adding-a-figure-to-the-specifications)
 -   [Making a change with a pull request](#making-a-change-with-a-pull-request)
 -   [Example pull request](#example-pull-request)
 -   [Commenting on a pull request](#commenting-on-a-pull-request)
@@ -239,20 +239,22 @@ git commit -m 'STY: Fixed Markdown style'
 > A figure is worth a 1000 words! 
 
 If you think that a figure or a picture can help summarize several aspects or notions of the 
-specifications, do not hesitate to make a suggestion by showing a draft in a Github issue.
-You can then submit your image in a pull request.
+specification, do not hesitate to make a suggestion by showing a draft in a GitHub issue.
+
+After discussion and approval by the community, you can then submit your image
+in a pull request.
 
 Images should be added to an `images` folder that is at the same level as the Markdown file
 where your image will be added. For example if you want to add a figure `figure01.png` to 
-`src/05-derivatives/01-introduction.md` then your image should go 
+`src/05-derivatives/01-introduction.md` then your image should go to
 `src/05-derivatives/images/figure01.png`.
 
-Figures can be inserted in a Markdown like this:
+Figures can be inserted in a Markdown like this (see also
+[Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#images)):
 
 ```markdown
-![ ](relative_path_to_file "alternative name")
+![text to show if image does not load](relative_path_to_file "text to show when hovering over image")
 ```
-
 ### Recommendations for figures
 
 1. Try to keep the file size of your figure relatively small (inferior to 500 Ko) 
