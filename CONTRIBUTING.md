@@ -240,7 +240,6 @@ git commit -m 'STY: Fixed Markdown style'
 
 If you think that a figure or a picture can help summarize several aspects or notions of the 
 specifications, do not hesitate to make a suggestion by showing a draft in a Github issue.
-
 You can then submit your image in a pull request.
 
 Images should be added to an `images` folder that is at the same level as the Markdown file
@@ -254,8 +253,22 @@ Figures can be inserted in a Markdown like this:
 ![ ](relative_path_to_file "alternative name")
 ```
 
-If you are adding a figure (and not picture) make sure to also join a vector format 
-of that figure (ideally as an `.svg` file).
+### Recommendations for figures
+
+1. Try to keep the file size of your figure relatively small (inferior to 500 Ko) 
+to keep the repository light and reduce the load time of the specs 
+for people who do not necessarily have broad-band internet.
+
+1. Figures in the main part of the specification should aim to be for very "comprehensive" 
+but "smaller" figures can find their home in the appendices or the BIDS-starter-kit.
+
+1. If you are adding a figure (and not picture) make sure to also join a vector format 
+of that figure (ideally as an `.svg` file) as this makes it easier to edit it in the
+future.
+
+1. Try to include a README file that details where the figure / image came from 
+and how it can be reproduced. Preferably with a link to the file that generated the figure
+if relevant.
 
 ## Making a change with a pull request
 
