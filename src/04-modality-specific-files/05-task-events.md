@@ -40,7 +40,7 @@ and OPTIONAL columns:
 | sample          | OPTIONAL              | Onset of the event according to the sampling scheme of the recorded modality (that is, referring to the raw data file that the `events.tsv` file accompanies).                                                                                                                                                                                                                                                                                                                       |
 | trial_type      | OPTIONAL              | Primary categorisation of each trial to identify them as instances of the experimental conditions. For example: for a response inhibition task, it could take on values "go" and "no-go" to refer to response initiation and response inhibition experimental conditions.                                                                                                                                                                                                            |
 | response_time   | OPTIONAL              | Response time measured in seconds. A negative response time can be used to represent preemptive responses and "n/a" denotes a missed response.                                                                                                                                                                                                                                                                                                                                       |
-| stim_file       | OPTIONAL              | Represents the location of the stimulus file (such as an image, video, or audio file) presented at the given onset time. There are no restrictions on the file formats of the stimuli files, but they should be stored in the /stimuli folder (under the root folder of the dataset; with optional subfolders). The values under the stim_file column correspond to a path relative to "/stimuli". For example "images/cat03.jpg" will be translated to "/stimuli/images/cat03.jpg". |
+| value           | OPTIONAL              | ???? | Marker value associated with the event (for example, the value of a TTL trigger that was recorded at the onset of the event).                                                                                                                                                                                                                                                                                                                                                        |
 | value           | OPTIONAL              | Marker value associated with the event (for example, the value of a TTL trigger that was recorded at the onset of the event).                                                                                                                                                                                                                                                                                                                                                        |
 | HED             | OPTIONAL              | Hierarchical Event Descriptor (HED) Tag. See [Appendix III](../99-appendices/03-hed.md) for details.                                                                                                                                                                                                                                                                                                                                                                                 |
 
@@ -100,7 +100,28 @@ sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
 sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
 ```
 
-## Stimuli databases
+Note: Events can also be documented in machine-actionable form using HED (Hierarchical Event Descriptor) tags.
+## Stimuli
+
+Additional information about the stimuli can be added in the `*_events.tsv` 
+and `*_events.json` files.
+
+This can be done:
+
+- either by adding the stimulus files in a `/stimuli` folder 
+(under the root folder of the dataset; with optional subfolders) AND using a 
+`stim_file` column in `*_events.tsv` mentioning which stimulus file was used 
+for a given event,
+- or by reference to a stimuli database.
+
+
+
+| **Column name** | **Requirement level** | **Data type**             |**Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|-----------------|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+| stim_file       | OPTIONAL              | [string][] | Represents the location of the stimulus file (such as an image, video, or audio file) presented at the given onset time. There are no restrictions on the file formats of the stimuli files, but they should be stored in the `/stimuli` folder. The values under the stim_file column correspond to a path relative to "/stimuli". For example "images/cat03.jpg" will be translated to "/stimuli/images/cat03.jpg". |
+
+### Stimuli databases
 
 References to existing databases can also be encoded using additional columns.
 The following example includes references to the
@@ -148,7 +169,7 @@ in the accompanying JSON sidecar as follows:
 Note that all other columns SHOULD also be described but are omitted for the
 sake of brevity.
 
-## Stimulus presentation details
+### Stimulus presentation details
 
 It is RECOMMENDED to include details of the stimulus presentation software,
 when applicable:
