@@ -2,10 +2,10 @@
 
 Quantitative MRI (qMRI) is a collection of methods aiming at generating parametric
 maps that can characterize underlying tissue properties. Unlike that of conventional
-MR images (e.g., `T1w`, `T2w`), intensity values of quantitative maps are not represented
+MR images (for example, `T1w`, `T2w`), intensity values of quantitative maps are not represented
 in an arbitrary grayscale range. Instead, these maps are represented either in absolute 
-physical units (e.g., `seconds` for `T1map`), or within an application dependent range of
-arbitrary units (e.g., myelin water fraction `MWFmap` in brain).
+physical units (for example, `seconds` for `T1map`), or within an application dependent range of
+arbitrary units (for example, myelin water fraction `MWFmap` in brain).
 
 ## Organization of qMRI data in BIDS
 
@@ -32,7 +32,7 @@ The common concept of [entity-linked file collections](../02-common-principles.m
 application by creating logical groups of input files through `suffix` and certain entities
 representing acquisition parameters (`echo`, `flip`,`inv`, `mt`) or file parts (`part`).
 
-If a qMRI file collection is intended for creating structural quantitative maps (e.g., `T1map`),
+If a qMRI file collection is intended for creating structural quantitative maps (for example, `T1map`),
 files belonging to that collection are stored in the `anat` subfolder. Below is an example 
 file collection for `MP2RAGE`: 
 
@@ -137,7 +137,7 @@ Explanation of the table:
 * The metadata fields listed in the REQUIRED column are needed to perform a minimum viable
 qMRI processing for the corresponding `file collection`.
 * Note that some of the metadata fields may be constant across different files in a file
-collection, yet still required as an input (e.g. `NumberShots` in `MP2AGE`). Such metadata
+collection, yet still required as an input (for example, `NumberShots` in `MP2AGE`). Such metadata
 fields MUST be provided in the accompanying json files.
 * The metadata fields listed in the OPTIONAL column can be used to form different flavors
 of an existing file collection suffix, despensing with the need for introducing a new
@@ -227,7 +227,7 @@ is RECOMMENDED to include additional metadata fields listed in the following tab
 | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | `BasedOn`                       | List of files in a file collection to generate the map. Fieldmaps are also listed, if involved in the processing.            |
 | `EstimationReference`           | Reference to the study/studies on which the implementation is based.                                                         |
-| `EstimationAlgorithm`           | Type of algoritm used to perform fitting (e.g. linear, non-linear, LM etc.)                                                  |
+| `EstimationAlgorithm`           | Type of algoritm used to perform fitting (for example, linear, non-linear, LM etc.)                                                  |
 | `Units`                         | Units of the maps, in accordance with the BIDS specification.                                                                |
 
 Example:
@@ -276,10 +276,10 @@ sub-01_T1map.json
 ## Deriving the intended qMRI application from an ambiguous file collection
 
 Certain file colleciton suffixes may refer to a generic data collection regime such 
-as variable flip angle (VFA), rather than a more specific acquisition, e.g.,
+as variable flip angle (VFA), rather than a more specific acquisition, for example,
 magnetization prepared two gradient echoes (MP2RAGE). Such generic acquisitions
 can serve as a basis to derive various qMRI applications by changes to the acquisition
-sequence (e.g. readout) type or by varying additional scan parameters.
+sequence (for example, readout) type or by varying additional scan parameters.
 
 If such an inheritance relationship is applicable between an already existing file
 collection and a new qMRI application to be included in the specification, the inheritor
@@ -334,7 +334,7 @@ introduce a new suffix:
 
 * All qMRI-relevant file collection suffixes are capitalized.
 * Unless the pulse sequence is exclusively associated with a specific qMRI application
-(e.g. `MP2RAGE`), sequence names are not used as suffixes.
+(for example, `MP2RAGE`), sequence names are not used as suffixes.
 * File collection suffixes for qMRI applications attain a clear description
 of the qMRI method that they relate to in the [file collections appendix]((../99-appendices/10-file-collections.md#magnetic-resonance-imaging)).
 Hyperlinks to example applications and reference method articles are encouraged
@@ -406,7 +406,7 @@ Further information about other `MP2RAGE` qMRI protocol fields can be found [her
 
 Calculation of `before` and `after` entries for `NumberShots` metadata field of `TB1SRGE`
 is more involved than that of `MP2RAGE`. The formula can be found [here](https://github.com/JosePMarques/MP2RAGE-related-scripts/blob/a405df30ac2c617d29d8b1b16025aaa911e86370/DemoForR1Correction.m#L17), which requires 
-information about `BaseResolution` (i.e. image matrix size in PE direction), partial Fourier
+information about `BaseResolution` (that is, image matrix size in PE direction), partial Fourier
 fraction in the PE direction, number of reference lines for parallel imaging acceleration
 and the parallel imaging acceleration factor in PE direction.
 
@@ -437,7 +437,7 @@ At each `FlipAngle`, the `TB1EPI` suffix lists two images acquired at two echo t
 The first echo is a spin echo (SE) formed by the pulses alpha-2alpha. However, the 
 second echo in this method is generated in a different fashion compared to a typical
 MESE acquisition. The second echo is a stimulated echo (STE) that is formed by an 
-additional alpha pulse (i.e., alpha-2alpha-alpha).
+additional alpha pulse (that is, alpha-2alpha-alpha).
 
 The `FlipAngle` value corresponds to the nominal flip angle value of the STE pulse.
 The nominal FA value of the SE pulse is twice this value.
