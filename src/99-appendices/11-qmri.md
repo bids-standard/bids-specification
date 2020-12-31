@@ -36,7 +36,7 @@ If a qMRI file collection is intended for creating structural quantitative maps 
 files belonging to that collection are stored in the `anat` subfolder. Below is an example 
 file collection for `MP2RAGE`: 
 
-```
+```text
 └── sub-01/
      └── anat/
          ├── sub-01_inv-1_part-mag_MP2RAGE.nii.gz
@@ -52,7 +52,7 @@ maps. As these images do not convey substantial structural information, respecti
 of RF fieldmaps are stored in the `fmap` subfolder. Below is an example file collection for RF transmit
 field map `TB1EPI`:
 
-```
+```text
 └── sub-01/
      └── fmap/
          ├── sub-01_fa-1_echo-1_TB1EPI.nii.gz
@@ -73,7 +73,7 @@ Regardless of how they are obtained (pre- or post-generated), qMRI maps are stor
 `derivatives` folder. For example a `T1map` can be generated from an `MP2RAGE` file collection
 using either options. If the map is post-generated:
 
-```
+```text
  ds-example/
  └── derivatives/
      └── qMRI-software-name/
@@ -87,7 +87,7 @@ using either options. If the map is post-generated:
 
 If the map is pre-generated, for example, by a Siemens scanner:
 
-```
+```text
  ds-example/
  └── derivatives/
      └── Siemens/
@@ -165,7 +165,7 @@ As qMRI maps are stored as derivatives, they are subjected to the metadata requi
 
 An example `dataset_description.json` for a qMRI map derivatives folder: 
 
-```
+```text
  ds-example/
  └── derivatives/
      └── qMRLab/
@@ -178,9 +178,9 @@ An example `dataset_description.json` for a qMRI map derivatives folder:
                  └── sub-01_M0map.json
 ```
 
+dataset_description.json:
 
-```
-dataset_description.json: 
+```text
 {
   "Name": "qMRLab Outputs",
   "BIDSVersion": "1.5.0",
@@ -232,13 +232,14 @@ is RECOMMENDED to include additional metadata fields listed in the following tab
 
 Example:
 
-```Text
+```text
 sub-01_T1map.nii.gz
 sub-01_T1map.json
 ```
 
-```
-sub-01_T1map.json
+sub-01_T1map.json:
+
+```text
 {
 
 <<Parameter injected by the software/pipeline>>
@@ -389,7 +390,7 @@ Formula:
 If NumberShots is an array of numbers such that `"NumberShots": [before, after]`, the values of
 `before` and `after` are calculated as follows ([reference](https://github.com/JosePMarques/MP2RAGE-related-scripts/blob/a405df30ac2c617d29d8b1b16025aaa911e86370/func/bids_T1B1correct.m#L16)):
 
-```
+```text
 before = SlicesPerSlab*(SlicePartialFourier - 0.5)
 after  = SlicesPerSlab/2
 ```
@@ -453,7 +454,7 @@ files:
 To properly identify constituents of this particular method, values of the `echo`
 entity MUST index the images as follows:  
 
-```
+```text
 └── sub-01/
      └── fmap/
          ├── sub-01_echo-1_flip-1_TB1EPI.nii.gz (SE)
@@ -484,7 +485,7 @@ and MAY be followed by freeform entries:
 |`_acq-tr1Test`|`_acq-tr2Test`|Acquisition `Test`|
 |`_acq-tr1Retest`|`_acq-tr2Retest`|Acquisition `Retest`|
 
-```
+```text
 └── sub-01/
      └── fmap/
          ├── sub-01_acq-tr1_TB1AFI.nii.gz
@@ -509,7 +510,7 @@ by freeform entries:
 |`_acq-anatTest`|`_acq-fampTest`|Acquisition `Test`|
 |`_acq-anatRetest`|`_acq-fampRetest`|Acquisition `Retest`|
 
-```
+```text
 └── sub-01/
      └── fmap/
          ├── sub-01_acq-anat_TB1TFL.nii.gz 
@@ -537,7 +538,7 @@ entries:
 |`_acq-bodyPDw`|`_acq-headPDw`|`PDw` for `MPM`|
 |`_acq-bodyT1w`|`_acq-headT1w`|`T1w` for `MPM`|
 
-```
+```text
 └── sub-01/
      └── fmap/
          ├── sub-01_acq-body_RB1COR.nii.gz (Body coil)
