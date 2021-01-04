@@ -58,8 +58,13 @@ restricted keywords, as listed in the sections below.
 If no value from the list of restricted keywords fits, there is always the
 option to specify the value as follows:
 
--   `Other`: Use this for other coordinate systems and specify further details
-    in the `<datatype>CoordinateSystemDescription` field
+-   `Other`: Use this value for other coordinate systems and specify all
+    required details in the `<datatype>CoordinateSystemDescription` field
+-   `Image`: Use this value in conjunction with the `IntendedFor` field.
+    For example, if all coordinates you supply are to be interpreted with
+    respect to a specific anatomical T1w image, specify `<datatype>CoordinateSystem`
+    as `Image`, and `IndendedFor` with the path to that image in the
+    BIDS dataset.
 
 **If you believe a specific coordinate system should be added to the list
 of restricted keywords for MEG, EEG, or iEEG, please open a new issue on the
