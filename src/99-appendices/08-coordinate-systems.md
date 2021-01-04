@@ -92,6 +92,17 @@ Restricted keywords for the `<datatype>CoordinateSystem` field in the
 
 -   `CapTrak`: RAS orientation and the origin between the ears
 
+In the case that EEG was recorded simultaneously with MEG,
+the restricted keywords for
+[MEG specific coordinate systems](#meg-specific-coordinate-systems)
+can also be applied to EEG:
+
+-   `CTF`
+-   `ElektaNeuromag`
+-   `4DBti`
+-   `KitYokogawa`
+-   `ChietiItab`
+
 Note that the short descriptions above do not capture all details, There are
 detailed extensive descriptions of these EEG coordinate systems on the
 [FieldTrip toolbox web page](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined).
