@@ -72,7 +72,7 @@ Below is an example file collection for RF transmit field map `TB1EPI`:
          └── sub-01_fa-2_echo-2_TB1EPI.json
 ```
 
-Please visit the [file collections appendix](../99-appendices/10-file-collections.md#magnetic-resonance-imaging) to see the list of currently supported qMRI applications.
+Please visit the [file collections appendix](./10-file-collections.md#magnetic-resonance-imaging) to see the list of currently supported qMRI applications.
 
 ### Quantitative maps are derivatives
 
@@ -169,7 +169,7 @@ Explanation of the table:
 ### Meta-data requirements for qMRI maps
 
 As qMRI maps are stored as derivatives, they are subjected to the metadata requirements of
-[derived datasets](03-modality-agnostic-files.html#derived-dataset-and-pipeline-description).
+[derived datasets](../03-modality-agnostic-files.md#derived-dataset-and-pipeline-description).
 
 An example `dataset_description.json` for a qMRI map derivatives folder:
 
@@ -441,7 +441,7 @@ The `flip` and `echo` entities MUST be used to distinguish images with this suff
 The use of `flip` follows the default convention. However, this suffix defines a
 specific use case for the `echo` entity:
 
-| `echo-1`             |`echo-2`                     |
+| `echo-1`             | `echo-2`                    |
 | -------------------- | --------------------------- |
 | Lower `EchoTime`     | Higher `EchoTime`           |
 | Spin Echo (SE) image | Stimulated Echo (STE) image |
@@ -514,7 +514,7 @@ The first image appears like an anatomical image and the second output is a scal
 To properly identify files of this particular file collection,
 values of the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be followed by freeform entries:
 
-| Anatomical (like) image |Scaled FA map      |Use case              |
+| Anatomical (like) image | Scaled FA map     | Use case             |
 | ----------------------- | ----------------- | -------------------- |
 | `_acq-anat`             | `_acq-famp`       | Single acquisition   |
 | `_acq-anatTest`         | `_acq-fampTest`   | Acquisition `Test`   |
