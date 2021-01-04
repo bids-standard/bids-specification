@@ -410,7 +410,7 @@ See this [reference](https://github.com/JosePMarques/MP2RAGE-related-scripts/blo
 
 ##### Other metadata fields
 
-The value of the `RepetitionTimeExcitation` is not commonly found in the DICOM files.
+The value of the `RepetitionTimeExcitation` field is not commonly found in the DICOM files.
 When accessible, the value of `EchoSpacing` corresponds to this metadata.
 When not accessible, `2 X EchoTime` can be used as a surrogate.
 
