@@ -335,7 +335,7 @@ column of [the priority levels table](#Method-specific-priority-levels-for-qMRI-
 
 ## Introducing a new qMRI file collection
 
-If a qMRI application can not be interpreted as subset of an already existing suffix
+If a qMRI application cannot be interpreted as a subtype of an already existing suffix
 of a qMRI-related file collection, we RECOMMEND adhering to the following principles to
 introduce a new suffix:
 
