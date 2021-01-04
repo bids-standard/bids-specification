@@ -2,7 +2,7 @@
 
 Quantitative MRI (qMRI) is a collection of methods aiming at generating parametric maps
 that can characterize underlying tissue properties.
-Unlike that of conventional MR images (for example, `T1w`, `T2w`),
+Unlike those of conventional MR images (for example, `T1w` or `T2w`),
 intensity values of quantitative maps are not represented in an arbitrary grayscale range.
 Instead, these maps are represented either in absolute physical units
 (for example, `seconds` for `T1map`),
