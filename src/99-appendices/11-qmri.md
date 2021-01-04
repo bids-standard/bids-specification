@@ -306,7 +306,7 @@ This approach aims at:
 | MP2RAGE                    |                                   | `EchoTime` (`echo`)                        | MP2RAGE-ME                                  |
 | MPM                        |                                   | `EchoTime` (`echo`)                        | MPM-ME                                      |
 
-<sup>*</sup> (`entity`/`fixed`) denotes whether the OPTIONAL metadata that forms a new
+In this table, (`entity`/`fixed`) denotes whether the OPTIONAL metadata that forms a new
 flavor of qMRI applicaiton for the respective suffix varies across files of a file collection
 (which calls for using a linking entity) or fixed. If former is the case, the entity is to be
 added to the files in that file collection. Note that this addition MUST be allowed by the
