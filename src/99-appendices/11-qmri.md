@@ -299,14 +299,14 @@ This approach aims at:
 -   providing qMRI-focused BIDS applications with a set of meta-data driven rules to infer possible fitting options,
 -   keeping an inheritance track of the qMRI methods described within the specification.
 
-| **File-collection suffix** | **If REQUIRED metadata == Value** | **OPTIONAL metadata [`entity`/`fixed`]**   | **Derived application name (NOT a suffix)** |
+| **File-collection suffix** | **If REQUIRED metadata == Value** | **OPTIONAL metadata (`entity`/`fixed`)**   | **Derived application name (NOT a suffix)** |
 |----------------------------|-----------------------------------|--------------------------------------------|---------------------------------------------|
 | VFA                        | `PulseSequenceType` == `SPGR`     |                                            | DESPOT1                                     |
-| VFA                        | `PulseSequenceType` == `SSFP`     | `SpoilingRFPhaseIncrement` [`fixed`]       | DESPOT2                                     |
-| MP2RAGE                    |                                   | `EchoTime` [`echo`]                        | MP2RAGE-ME                                  |
-| MPM                        |                                   | `EchoTime` [`echo`]                        | MPM-ME                                      |
+| VFA                        | `PulseSequenceType` == `SSFP`     | `SpoilingRFPhaseIncrement` (`fixed`)       | DESPOT2                                     |
+| MP2RAGE                    |                                   | `EchoTime` (`echo`)                        | MP2RAGE-ME                                  |
+| MPM                        |                                   | `EchoTime` (`echo`)                        | MPM-ME                                      |
 
-<sup>*</sup> [`entity`/`fixed`] denotes whether the OPTIONAL metadata that forms a new
+<sup>*</sup> (`entity`/`fixed`) denotes whether the OPTIONAL metadata that forms a new
 flavor of qMRI applicaiton for the respective suffix varies across files of a file colleciton
 (which calls for using a linking entity) or fixed. If former is the case, the entity is to be
 added to the files in that file collection. Note that this addition MUST be allowed by the
