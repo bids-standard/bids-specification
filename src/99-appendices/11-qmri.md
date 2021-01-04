@@ -419,7 +419,8 @@ Further information about other `MP2RAGE` qMRI protocol fields can be found [her
 #### `TB1SRGE` specific notes
 
 Calculation of `before` and `after` entries for `NumberShots` metadata field of `TB1SRGE` is more involved than that of `MP2RAGE`.
-The formula can be found [here](https://github.com/JosePMarques/MP2RAGE-related-scripts/blob/a405df30ac2c617d29d8b1b16025aaa911e86370/DemoForR1Correction.m#L17),
+The formula can be found in a
+[reference implementation](https://github.com/JosePMarques/MP2RAGE-related-scripts/blob/a405df30ac2c617d29d8b1b16025aaa911e86370/DemoForR1Correction.m#L17),
 which requires information about `BaseResolution` (that is, image matrix size in PE direction),
 partial Fourier fraction in the PE direction, number of reference lines for parallel imaging acceleration,
 and the parallel imaging acceleration factor in PE direction.
