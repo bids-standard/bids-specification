@@ -14,6 +14,7 @@ and non-selective inversion (`label`).
 
 ## `*_aslcontext.tsv`: three possible cases
 
+The `*_aslcontext.tsv` table consists of a single column of labels identifying the `volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file. 
 See below examples of the three `*_aslcontext.tsv` cases, in order of decreasing preference.
 
 ### Case 1: `*_asl.nii[.gz]` consists of volume_types `control`, `label`
