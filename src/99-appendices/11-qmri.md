@@ -388,7 +388,7 @@ If an additional `UNIT1` image is calculated offline, then the output is to be s
 
 Note that type of `NumberShots` field can be either a `number` or an `array of numbers`.
 
--   If a single `number` is to be provided, this should correspond to the number of `SlicesPerSlab` or `ReconMatrixPE`.
+-   If a single `number` is provided, this should correspond to the number of `SlicesPerSlab` or `ReconMatrixPE`.
     However, in this case, `SlicePartialFourier` or `PartialFourierPE` fraction is needed
     to calculate the number of partitions `before` and `after` of the k-space center to calculate a T1 map.
 
