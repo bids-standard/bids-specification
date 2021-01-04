@@ -414,7 +414,8 @@ The value of the `RepetitionTimeExcitation` field is not commonly found in the D
 When accessible, the value of `EchoSpacing` corresponds to this metadata.
 When not accessible, `2 X EchoTime` can be used as a surrogate.
 
-Further information about other `MP2RAGE` qMRI protocol fields can be found [here](https://qmrlab.readthedocs.io/en/master/protocols.html#mp2rage).
+Further information about other `MP2RAGE` qMRI protocol fields can be found in the
+[qMRLab documentation](https://qmrlab.readthedocs.io/en/master/protocols.html#mp2rage).
 
 #### `TB1SRGE` specific notes
 
