@@ -60,6 +60,7 @@ option to specify the value as follows:
 
 -   `Other`: Use this value for other coordinate systems and specify all
     required details in the `<datatype>CoordinateSystemDescription` field
+
 -   `Image`: Use this value in conjunction with the `IntendedFor` field.
     For example, if all coordinates you supply are to be interpreted with
     respect to a specific anatomical T1w image, specify `<datatype>CoordinateSystem`
