@@ -80,6 +80,7 @@ Restricted keywords for the `<datatype>CoordinateSystem` field in the
 -   `4DBti`: ALS orientation and the origin between the ears
 -   `KitYokogawa`: ALS orientation and the origin between the ears
 -   `ChietiItab`: RAS orientation and the origin between the ears
+-   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
 
 Note that the short descriptions above do not capture all details, There are
 detailed extensive descriptions of these EEG coordinate systems on the
@@ -91,6 +92,7 @@ Restricted keywords for the `<datatype>CoordinateSystem` field in the
 `coordsystem.json` file for EEG datasets:
 
 -   `CapTrak`: RAS orientation and the origin between the ears
+-   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
 
 In the case that EEG was recorded simultaneously with MEG,
 the restricted keywords for
@@ -127,6 +129,9 @@ Restricted keywords for the `<datatype>CoordinateSystem` field in the
     individual's anatomical scan. For more information, see the
     [ACPC site](https://www.fieldtriptoolbox.org/faq/acpc/) on the FieldTrip
     toolbox wiki.
+
+-   Any keyword from the list of
+    [Standard template identifiers](#standard-template-identifiers)
 
 ## Image-based Coordinate Systems
 
