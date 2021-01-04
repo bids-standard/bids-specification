@@ -264,14 +264,14 @@ sub-01_T1map.json:
 
 <<Parameters that are constant across files in the (parent) file collection>>
 
-"MagneticFieldStrength”: "3”,
-"Manufacturer”: "Siemens”,
-"ManufacturerModelName”: "TrioTim”,
-"InstitutionName”: "xxx”,
-"PulseSequenceType”: "SPGR”,
-"PulseSequenceDetails”: "Information beyond the sequence type that identifies
+"MagneticFieldStrength": "3",
+"Manufacturer": "Siemens",
+"ManufacturerModelName": "TrioTim",
+"InstitutionName": "xxx",
+"PulseSequenceType": "SPGR",
+"PulseSequenceDetails": "Information beyond the sequence type that identifies
  specific pulse sequence used (VB version, if not standard, Siemens WIP XXX
- ersion ### sequence written by xx using a version compiled on mm/dd/yyyy/)”,
+ ersion ### sequence written by xx using a version compiled on mm/dd/yyyy/)",
 "RepetitionTimeExcitation": "35",
 "EchoTime": "2.86",
 "SliceThickness": "5",
