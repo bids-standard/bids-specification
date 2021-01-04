@@ -285,7 +285,7 @@ sub-01_T1map.json:
 
 ## Deriving the intended qMRI application from an ambiguous file collection
 
-Certain file colleciton suffixes may refer to a generic data collection regime such as variable flip angle (VFA),
+Certain file collection suffixes may refer to a generic data collection regime such as variable flip angle (VFA),
 rather than a more specific acquisition, for example, magnetization prepared two gradient echoes (MP2RAGE).
 Such generic acquisitions can serve as a basis to derive various qMRI applications by changes to the acquisition sequence
 (for example, readout) type or by varying additional scan parameters.
@@ -307,7 +307,7 @@ This approach aims at:
 | MPM                        |                                   | `EchoTime` (`echo`)                        | MPM-ME                                      |
 
 <sup>*</sup> (`entity`/`fixed`) denotes whether the OPTIONAL metadata that forms a new
-flavor of qMRI applicaiton for the respective suffix varies across files of a file colleciton
+flavor of qMRI applicaiton for the respective suffix varies across files of a file collection
 (which calls for using a linking entity) or fixed. If former is the case, the entity is to be
 added to the files in that file collection. Note that this addition MUST be allowed by the
 priority levels given for that suffix in the [`entity table`](./04-entity-table.md). If latter (`fixed`) is the case,
