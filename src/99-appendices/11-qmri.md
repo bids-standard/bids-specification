@@ -1,30 +1,37 @@
 # Appendix XI: Quantitative MRI
 
-Quantitative MRI (qMRI) is a collection of methods aiming at generating parametric
-maps that can characterize underlying tissue properties. Unlike that of conventional
-MR images (for example, `T1w`, `T2w`), intensity values of quantitative maps are not represented
-in an arbitrary grayscale range. Instead, these maps are represented either in absolute 
-physical units (for example, `seconds` for `T1map`), or within an application dependent range of
-arbitrary units (for example, myelin water fraction `MWFmap` in brain).
+Quantitative MRI (qMRI) is a collection of methods aiming at generating parametric maps
+that can characterize underlying tissue properties.
+Unlike that of conventional MR images (for example, `T1w`, `T2w`),
+intensity values of quantitative maps are not represented in an arbitrary grayscale range.
+Instead, these maps are represented either in absolute physical units
+(for example, `seconds` for `T1map`),
+or within an application dependent range of arbitrary units
+(for example, myelin water fraction `MWFmap` in brain).
 
 ## Organization of qMRI data in BIDS
 
-Unlike conventional MR images, quantitative maps are not immediate products of the
-image reconstruction step (from k-space data to structural images).
+Unlike conventional MR images, quantitative maps are not immediate products of the image reconstruction step
+(from k-space data to structural images).
 Intensity values of qMRI maps are calculated by fitting a collection of parametrically
-linked images to a biophysical model or to an MRI signal representation. This processing
-is typically carried out in the image domain.
+linked images to a biophysical model or to an MRI signal representation.
+This processing is typically carried out in the image domain.
 There are two main ways to obtain a quantitative map:
 
-1. Pre-generated qMRI maps: The qMRI maps are generated right after the reconstruction
-of required input images and made available to the user at the scanner console.
-The acquisition scenarios may include (a) vendor pipelines or (b) open-source pipelines
-deployed at the scanner site.
+1.  Pre-generated qMRI maps: The qMRI maps are generated right after the reconstruction
+    of required input images and made available to the user at the scanner console.
+    The acquisition scenarios may include (a) vendor pipelines or (b) open-source pipelines
+    deployed at the scanner site.
 
-2. Post-generated qMRI maps: The qMRI maps are generated from a collection of input
-data after they are exported from the scanner site. This type of processing is commonly
-carried out using an open-source software such as [hMRI toolbox](https://github.com/hMRI-group/hMRI-toolbox), [mrQ](https://github.com/mezera/mrQ), [PyQMRI](https://github.com/IMTtugraz/PyQMRI), [qmap](https://www.medphysics.wisc.edu/~samsonov/qmap/doc/qmap.html),
-[qMRLab](https://github.com/qmrlab/qmrlab) and [QUIT](https://github.com/spinicist/QUIT).
+2.  Post-generated qMRI maps: The qMRI maps are generated from a collection of input
+    data after they are exported from the scanner site.
+    This type of processing is commonly carried out using an open-source software such as
+    [hMRI toolbox](https://github.com/hMRI-group/hMRI-toolbox),
+    [mrQ](https://github.com/mezera/mrQ),
+    [PyQMRI](https://github.com/IMTtugraz/PyQMRI),
+    [qmap](https://www.medphysics.wisc.edu/~samsonov/qmap/doc/qmap.html),
+    [qMRLab](https://github.com/qmrlab/qmrlab),
+    and [QUIT](https://github.com/spinicist/QUIT).
 
 ### Inputs are file collections
 
@@ -33,8 +40,8 @@ application by creating logical groups of input files through `suffix` and certa
 representing acquisition parameters (`echo`, `flip`,`inv`, `mt`) or file parts (`part`).
 
 If a qMRI file collection is intended for creating structural quantitative maps (for example, `T1map`),
-files belonging to that collection are stored in the `anat` subfolder. Below is an example 
-file collection for `MP2RAGE`: 
+files belonging to that collection are stored in the `anat` subfolder.
+Below is an example file collection for `MP2RAGE`:
 
 ```text
 └── sub-01/
@@ -47,10 +54,10 @@ file collection for `MP2RAGE`:
          └── sub-01_inv-2_MP2RAGE.json
 ```
 
-Commonly, RF fieldmaps (`B1+` and `B1-` maps) are used for the correction of structural quantitative
-maps. As these images do not convey substantial structural information, respective file collections
-of RF fieldmaps are stored in the `fmap` subfolder. Below is an example file collection for RF transmit
-field map `TB1EPI`:
+Commonly, RF fieldmaps (`B1+` and `B1-` maps) are used for the correction of structural quantitative maps.
+As these images do not convey substantial structural information,
+respective file collections of RF fieldmaps are stored in the `fmap` subfolder.
+Below is an example file collection for RF transmit field map `TB1EPI`:
 
 ```text
 └── sub-01/
@@ -67,11 +74,12 @@ field map `TB1EPI`:
 
 Please visit the [file collections appendix](../99-appendices/10-file-collections.md#magnetic-resonance-imaging) to see the list of currently supported qMRI applications.
 
-### Quantitative maps are derivatives 
+### Quantitative maps are derivatives
 
-Regardless of how they are obtained (pre- or post-generated), qMRI maps are stored in the
-`derivatives` folder. For example a `T1map` can be generated from an `MP2RAGE` file collection
-using either options. If the map is post-generated:
+Regardless of how they are obtained (pre- or post-generated), qMRI maps are stored in the `derivatives` folder.
+For example a `T1map` can be generated from an `MP2RAGE` file collection using either options.
+
+If the map is post-generated:
 
 ```text
  ds-example/
@@ -99,10 +107,9 @@ If the map is pre-generated, for example, by a Siemens scanner:
                  └── sub-01_UNIT1.json
 ```
 
-Note: Even though the process from which pre-generated qMRI maps are obtained (vendor pipelines)
-is not known, vendors generally allow exporting of the corresponding input data. It is
-RECOMMENDED to share them along with the vendor outputs, whenever possible for a qMRI method
-supported by BIDS.
+Note: Even though the process from which pre-generated qMRI maps are obtained (vendor pipelines) is not known,
+vendors generally allow exporting of the corresponding input data.
+It is RECOMMENDED to share them along with the vendor outputs, whenever possible for a qMRI method supported by BIDS.
 
 ### Example datasets
 
@@ -110,9 +117,9 @@ You can find example file collections and qMRI maps organized according to BIDS 
 
 ## Metadata requirements for qMRI data
 
-The table of required entities for qMRI file collections are provided in the [entity table](../99-appendices/04-entity-table.md). However,
-viability of a qMRI file collection is determined not only by the naming and organization of the
-input files, but also by which metadata fields are provided in accompanying json files.
+The table of required entities for qMRI file collections are provided in the [entity table](../99-appendices/04-entity-table.md).
+However, viability of a qMRI file collection is determined not only by the naming and organization of the input files,
+but also by which metadata fields are provided in accompanying json files.
 
 ### Method-specific priority levels for qMRI file collections
 
@@ -134,15 +141,16 @@ organization of `UNIT1` image.
 
 Explanation of the table:
 
-* The metadata fields listed in the REQUIRED column are needed to perform a minimum viable
-qMRI processing for the corresponding `file collection`.
-* Note that some of the metadata fields may be constant across different files in a file
-collection, yet still required as an input (for example, `NumberShots` in `MP2AGE`). Such metadata
-fields MUST be provided in the accompanying json files.
-* The metadata fields listed in the OPTIONAL column can be used to form different flavors
-of an existing file collection suffix, despensing with the need for introducing a new
-suffix. See [deriving the intended qMRI application from an ambiguos file collection](#Deriving-the-intended-qMRI-application-from-an-ambiguous-file-collection) section
-for details.
+*   The metadata fields listed in the REQUIRED column are needed to perform a minimum viable qMRI processing for the corresponding `file collection`.
+
+*   Note that some of the metadata fields may be constant across different files in a file collection,
+    yet still required as an input (for example, `NumberShots` in `MP2AGE`).
+    Such metadata fields MUST be provided in the accompanying json files.
+
+*   The metadata fields listed in the OPTIONAL column can be used to form different flavors of an existing file collection suffix,
+    dispensing with the need for introducing a new suffix.
+    See [deriving the intended qMRI application from an ambiguos file collection](#Deriving-the-intended-qMRI-application-from-an-ambiguous-file-collection)
+    for details.
 
 #### Field maps
 
@@ -160,10 +168,10 @@ for details.
 
 ### Meta-data requirements for qMRI maps
 
-As qMRI maps are stored as derivatives, they are subjected to the metadata requirements of 
+As qMRI maps are stored as derivatives, they are subjected to the metadata requirements of
 [derived datasets](03-modality-agnostic-files.html#derived-dataset-and-pipeline-description).
 
-An example `dataset_description.json` for a qMRI map derivatives folder: 
+An example `dataset_description.json` for a qMRI map derivatives folder:
 
 ```text
  ds-example/
@@ -178,7 +186,7 @@ An example `dataset_description.json` for a qMRI map derivatives folder:
                  └── sub-01_M0map.json
 ```
 
-dataset_description.json:
+`dataset_description.json`:
 
 ```text
 {
@@ -209,19 +217,17 @@ dataset_description.json:
 }
 ```
 
-In addition to the metadata fields provided in the `dataset_description.json`, qMRI maps
-are RECOMMENDED to be accompanied by sidecar JSON files that contain further information
-about the quantified maps. Although this may not be the generic case for common derivative
-outputs, a proper interpretation of qMRI maps may critically depend on some metadata
-fields. For example, without the information of `MagneticFieldStrength`, white-matter T1
-values in a `T1map` become elusive.
+In addition to the metadata fields provided in the `dataset_description.json`,
+qMRI maps are RECOMMENDED to be accompanied by sidecar JSON files that contain further information about the quantified maps.
+Although this may not be the generic case for common derivative outputs,
+a proper interpretation of qMRI maps may critically depend on some metadata fields.
+For example, without the information of `MagneticFieldStrength`, white-matter T1 values in a `T1map` become elusive.
 
-* All the acquisition parameters that are constant across the files in a file collection
-are RECOMMENDED to be added to the sidecar json of the qMRI maps.
-* Relevant acquisition parameters that vary across files in a qMRI file collection are
-RECOMMENDED to be added to the sidecar json of the qMRI map **`in array form`**.
-* The JSON file accompanying a qMRI map which is obtained by using open-source software
-is RECOMMENDED to include additional metadata fields listed in the following table:
+*   All the acquisition parameters that are constant across the files in a file collection are RECOMMENDED to be added to the sidecar json of the qMRI maps.
+
+*   Relevant acquisition parameters that vary across files in a qMRI file collection are RECOMMENDED to be added to the sidecar json of the qMRI map **in array form**.
+
+*   The JSON file accompanying a qMRI map which is obtained by using open-source software is RECOMMENDED to include additional metadata fields listed in the following table:
 
 | **Field name**                  | **Definition**                                                                                                               |
 | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
@@ -276,21 +282,21 @@ sub-01_T1map.json:
 
 ## Deriving the intended qMRI application from an ambiguous file collection
 
-Certain file colleciton suffixes may refer to a generic data collection regime such 
-as variable flip angle (VFA), rather than a more specific acquisition, for example,
-magnetization prepared two gradient echoes (MP2RAGE). Such generic acquisitions
-can serve as a basis to derive various qMRI applications by changes to the acquisition
-sequence (for example, readout) type or by varying additional scan parameters.
+Certain file colleciton suffixes may refer to a generic data collection regime such as variable flip angle (VFA),
+rather than a more specific acquisition, for example, magnetization prepared two gradient echoes (MP2RAGE).
+Such generic acquisitions can serve as a basis to derive various qMRI applications by changes to the acquisition sequence
+(for example, readout) type or by varying additional scan parameters.
 
-If such an inheritance relationship is applicable between an already existing file
-collection and a new qMRI application to be included in the specification, the inheritor
-qMRI method is listed in the table below instead of introducing a new file collection suffix.
+If such an inheritance relationship is applicable between an already existing file collection
+and a new qMRI application to be included in the specification,
+the inheritor qMRI method is listed in the table below instead of introducing a new file collection suffix.
 This approach aims at:
 
-* preventing the list of available suffixes from over-proliferation,
-* providing qMRI-focused BIDS applications with a set of meta-data driven rules to infer 
-possible fitting options,
-* keeping an inheritance track of the qMRI methods described within the specification.
+*   preventing the list of available suffixes from over-proliferation,
+
+*   providing qMRI-focused BIDS applications with a set of meta-data driven rules to infer possible fitting options,
+
+*   keeping an inheritance track of the qMRI methods described within the specification.
 
 | **File-collection suffix** | **If REQUIRED metadata == Value** | **OPTIONAL metadata [`entity`/`fixed`]**   | **Derived application name (NOT a suffix)** |
 |----------------------------|-----------------------------------|--------------------------------------------|---------------------------------------------|
@@ -318,7 +324,7 @@ in [this section](#Method-specific-priority-levels-for-qMRI-file-collections).
 For example, if the optional metadata field of `PulseSequenceType` is SPGR
 for a collection of anatomical images listed by the `VFA` suffix, the data
 qualifies for `DESPOT1` T1 fitting. For the same suffix, if the `PulseSequenceType`
-metadata field has the value of `SSFP`, and the `SpoilingRFPhaseIncrement` is 
+metadata field has the value of `SSFP`, and the `SpoilingRFPhaseIncrement` is
 provided as a metadata field, then the dataset becomes eligible for `DESPOT2`
 T2 fitting application.
 
@@ -329,20 +335,25 @@ column of [the priority levels table](#Method-specific-priority-levels-for-qMRI-
 ## Introducing a new qMRI file collection
 
 If a qMRI application can not be interpreted as subset of an already existing suffix
-of a qMRI-related file collection, we RECOMMEND adhering to the following principles to 
+of a qMRI-related file collection, we RECOMMEND adhering to the following principles to
 introduce a new suffix:
 
-* All qMRI-relevant file collection suffixes are capitalized.
-* Unless the pulse sequence is exclusively associated with a specific qMRI application
-(for example, `MP2RAGE`), sequence names are not used as suffixes.
-* File collection suffixes for qMRI applications attain a clear description
-of the qMRI method that they relate to in the [file collections appendix]((../99-appendices/10-file-collections.md#magnetic-resonance-imaging)).
-* Hyperlinks to example applications and reference method articles are encouraged
-whenever possible.
-* If it is possible to derive a qMRI application from an already existing file collection
-suffix by defining a set of logical conditions over the metadata fields, the tables of
-[deriving the intended qMRI application from an ambiguous file collection](#Deriving-the-intended-qMRI-application-from-an-ambiguous-file-collection) and the
-[anatomy data priority levels](#Anatomy-imaging-data) sections are extended instead of introducing a new suffix.
+*   All qMRI-relevant file collection suffixes are capitalized.
+
+*   Unless the pulse sequence is exclusively associated with a specific qMRI application
+    (for example, `MP2RAGE`), sequence names are not used as suffixes.
+
+*   File collection suffixes for qMRI applications attain a clear description of the qMRI method that they relate to in the
+    [file collections appendix]((../99-appendices/10-file-collections.md#magnetic-resonance-imaging)).
+
+*   Hyperlinks to example applications and reference method articles are encouraged whenever possible.
+
+*   If it is possible to derive a qMRI application from an already existing file collection suffix
+    by defining a set of logical conditions over the metadata fields, the tables of the
+    [deriving the intended qMRI application from an ambiguous file collection](#Deriving-the-intended-qMRI-application-from-an-ambiguous-file-collection)
+    and the
+    [anatomy data priority levels](#Anatomy-imaging-data)
+    sections are extended instead of introducing a new suffix.
 
 ## Application-specific notes for qMRI file collections
 
@@ -350,10 +361,10 @@ suffix by defining a set of logical conditions over the metadata fields, the tab
 
 General notes:
 
-* Some BIDS metadata field values are calculated based on the values of other metadata fields
-that are not listed as required fields. These fields include: `NumberShots`. The calculation of
-the values may depend on the type of the acquisition. These acquisitions include: `MP2RAGE` and 
-`TB1SRGE`. 
+*   Some BIDS metadata field values are calculated based on the values of other metadata fields that are not listed as required fields.
+    These fields include: `NumberShots`.
+    The calculation of the values may depend on the type of the acquisition.
+    These acquisitions include: `MP2RAGE` and `TB1SRGE`.
 
 #### `MP2RAGE` specific notes
 
@@ -367,46 +378,49 @@ see the relevant discussion [here](https://github.com/qMRLab/qMRLab/issues/255).
 
 Therefore, the `UNIT1` image provided by the scanner is RECOMMENDED to be stored under the `anat`
 raw dataset directory along with the `MP2RAGE` file collection and to be used as the primary input
-for quantifying a `T1map`. 
+for quantifying a `T1map`.
 
-If an additional `UNIT1` image is calculated offline, then the output is to be stored in the 
+If an additional `UNIT1` image is calculated offline, then the output is to be stored in the
 `derivatives` folder with neccesary provenance information.
 
-##### `NumberShots` metadata field 
+##### `NumberShots` metadata field
 
 Note that type of `NumberShots` field can be either a `number` or an `array of numbers`.
 
-* If a single `number` is to be provided, this should correspond to the number of `SlicesPerSlab` or 
-`ReconMatrixPE`. However, in this case, `SlicePartialFourier` or `PartialFourierPE` fraction is needed
-to calculate the number of partitions `before` and `after` of the k-space center to calculate a T1 map.
-* If `before/after` calculation is performed during the BIDS conversion of the `MP2RAGE` data, then
-then the value of `NumberShots` metadata field can be given as a 1X2 array, with first entry corresponding
-to `before` and the second to the `after`.
+*   If a single `number` is to be provided, this should correspond to the number of `SlicesPerSlab` or `ReconMatrixPE`.
+    However, in this case, `SlicePartialFourier` or `PartialFourierPE` fraction is needed
+    to calculate the number of partitions `before` and `after` of the k-space center to calculate a T1 map.
+
+*   If `before/after` calculation is performed during the BIDS conversion of the `MP2RAGE` data,
+    then the value of `NumberShots` metadata field can be given as a 1X2 array,
+    with first entry corresponding to `before` and the second to the `after`.
 
 Formula:
 
-If NumberShots is an array of numbers such that `"NumberShots": [before, after]`, the values of
-`before` and `after` are calculated as follows ([reference](https://github.com/JosePMarques/MP2RAGE-related-scripts/blob/a405df30ac2c617d29d8b1b16025aaa911e86370/func/bids_T1B1correct.m#L16)):
+If NumberShots is an array of numbers such that `"NumberShots": [before, after]`,
+the values of `before` and `after` are calculated as follows:
 
 ```text
 before = SlicesPerSlab*(SlicePartialFourier - 0.5)
 after  = SlicesPerSlab/2
 ```
 
+See this [reference](https://github.com/JosePMarques/MP2RAGE-related-scripts/blob/a405df30ac2c617d29d8b1b16025aaa911e86370/func/bids_T1B1correct.m#L16).
+
 ##### Other metadata fields
 
-The value of the `RepetitionTimeExcitation` is not commonly found in the DICOM files. When
-accessible, the value of `EchoSpacing` corresponds to this metadata. When not accessible,
-`2 X EchoTime` can be used as a surrogate.
+The value of the `RepetitionTimeExcitation` is not commonly found in the DICOM files.
+When accessible, the value of `EchoSpacing` corresponds to this metadata.
+When not accessible, `2 X EchoTime` can be used as a surrogate.
 
 Further information about other `MP2RAGE` qMRI protocol fields can be found [here](https://qmrlab.readthedocs.io/en/master/protocols.html#mp2rage).
 
 #### `TB1SRGE` specific notes
 
-Calculation of `before` and `after` entries for `NumberShots` metadata field of `TB1SRGE`
-is more involved than that of `MP2RAGE`. The formula can be found [here](https://github.com/JosePMarques/MP2RAGE-related-scripts/blob/a405df30ac2c617d29d8b1b16025aaa911e86370/DemoForR1Correction.m#L17), which requires 
-information about `BaseResolution` (that is, image matrix size in PE direction), partial Fourier
-fraction in the PE direction, number of reference lines for parallel imaging acceleration
+Calculation of `before` and `after` entries for `NumberShots` metadata field of `TB1SRGE` is more involved than that of `MP2RAGE`.
+The formula can be found [here](https://github.com/JosePMarques/MP2RAGE-related-scripts/blob/a405df30ac2c617d29d8b1b16025aaa911e86370/DemoForR1Correction.m#L17),
+which requires information about `BaseResolution` (that is, image matrix size in PE direction),
+partial Fourier fraction in the PE direction, number of reference lines for parallel imaging acceleration,
 and the parallel imaging acceleration factor in PE direction.
 
 
@@ -414,12 +428,12 @@ and the parallel imaging acceleration factor in PE direction.
 
 General notes:
 
-* Some RF file collections call for the use of special notations that cannot be resolved by
-by entities that can generalize to other applications. Instead of introducing an entity
-that is exclusive to a single application, method developers who commonly use these file
-collections for the `MPM` application reached the consensus on the use of `acq` entity to
-distinguish individual files. These suffixes include: `TB1AFI`, `TB1TFL`, `TB1RMF` and
-`RB1COR`.
+*   Some RF file collections call for the use of special notations that cannot be resolved by
+    by entities that can generalize to other applications.
+    Instead of introducing an entity that is exclusive to a single application,
+    method developers who commonly use these file collections for the `MPM` application reached
+    the consensus on the use of `acq` entity to distinguish individual files.
+    These suffixes include: `TB1AFI`, `TB1TFL`, `TB1RMF`, and `RB1COR`.
 
 #### `TB1EPI` specific notes
 
@@ -427,30 +441,30 @@ The `flip` and `echo` entities MUST be used to distinguish images with this suff
 The use of `flip` follows the default convention. However, this suffix defines a
 specific use case for the `echo` entity:
 
-|`echo-1`|`echo-2`|
-|:--|:----|
-|Lower `EchoTime` | Higher `EchoTime`                  |
-|Spin Echo (SE) image|Stimulated Echo (STE) image|
+| `echo-1`             |`echo-2`                     |
+| -------------------- | --------------------------- |
+| Lower `EchoTime`     | Higher `EchoTime`           |
+| Spin Echo (SE) image | Stimulated Echo (STE) image |
 
 At each `FlipAngle`, the `TB1EPI` suffix lists two images acquired at two echo times.
-The first echo is a spin echo (SE) formed by the pulses alpha-2alpha. However, the 
+The first echo is a spin echo (SE) formed by the pulses alpha-2alpha. However, the
 second echo in this method is generated in a different fashion compared to a typical
-MESE acquisition. The second echo is a stimulated echo (STE) that is formed by an 
+MESE acquisition. The second echo is a stimulated echo (STE) that is formed by an
 additional alpha pulse (that is, alpha-2alpha-alpha).
 
 The `FlipAngle` value corresponds to the nominal flip angle value of the STE pulse.
 The nominal FA value of the SE pulse is twice this value.
 
-Note that the following metadata fields MUST be defined in the accompanying JSON 
+Note that the following metadata fields MUST be defined in the accompanying JSON
 files:
 
-| Field name         | Definition |
-| :----------------- | :--------- |
-| `TotalReadoutTime` |   The effective readout length defined as `EffectiveEchoSpacing * PEReconMatrix`, with `EffectiveEchoSpacing = TrueEchoSpacing / PEacceleration`         |
-| `MixingTime`       |  Time interval between the SE and STE pulses          |
+| Field name         | Definition                                                                                                                                      |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `TotalReadoutTime` |  The effective readout length defined as `EffectiveEchoSpacing * PEReconMatrix`, with `EffectiveEchoSpacing = TrueEchoSpacing / PEacceleration` |
+| `MixingTime`       |  Time interval between the SE and STE pulses                                                                                                    |
 
 To properly identify constituents of this particular method, values of the `echo`
-entity MUST index the images as follows:  
+entity MUST index the images as follows:
 
 ```text
 └── sub-01/
@@ -467,21 +481,20 @@ entity MUST index the images as follows:
 
 #### `TB1AFI` specific notes
 
-This method calculates a B1<sup>+</sup> map from two images acquired at two
-interleaved excitation repetition times (TR). Note that there is no entity 
-for the TR that can be used to label the files corresponding to the two
+This method calculates a B1<sup>+</sup> map from two images acquired at two interleaved excitation repetition times (TR).
+Note that there is no entity for the TR that can be used to label the files corresponding to the two
 repetition times and the definition of repetition time depends on the modality
-(`functional` or `anatomical`) in the specification. 
+(`functional` or `anatomical`) in the specification.
 
-Therefore, to properly identify constituents of this particular method, values of 
-the `acq` entity SHOULD begin with either `tr1` (lower TR) or `tr2` (higher TR) 
-and MAY be followed by freeform entries:  
+Therefore, to properly identify constituents of this particular method,
+values of the `acq` entity SHOULD begin with either `tr1` (lower TR) or `tr2` (higher TR)
+and MAY be followed by freeform entries:
 
-|First `TR`|Second `TR`|Use case|
-|:--|:----| :----| 
-|`_acq-tr1`|`_acq-tr2`|Single acquisition|
-|`_acq-tr1Test`|`_acq-tr2Test`|Acquisition `Test`|
-|`_acq-tr1Retest`|`_acq-tr2Retest`|Acquisition `Retest`|
+| First `TR`       | Second `TR`      | Use case             |
+| ---------------- | ---------------- | -------------------- |
+| `_acq-tr1`       | `_acq-tr2`       | Single acquisition   |
+| `_acq-tr1Test`   | `_acq-tr2Test`   | Acquisition `Test`   |
+| `_acq-tr1Retest` | `_acq-tr2Retest` | Acquisition `Retest` |
 
 ```text
 └── sub-01/
@@ -494,30 +507,29 @@ and MAY be followed by freeform entries:
 
 #### `TB1TFL` and `TB1RMF` specific notes
 
-These suffixes describe two outputs generated by Siemens `tfl_b1_map` and `rf_map`
-product sequences, respectively. Both sequences output two images. The first image
-appears like an anatomical image and the second output is a scaled flip angle map.
+These suffixes describe two outputs generated by Siemens `tfl_b1_map` and `rf_map` product sequences, respectively.
+Both sequences output two images.
+The first image appears like an anatomical image and the second output is a scaled flip angle map.
 
-To properly identify files of this particular file collection, values of 
-the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be followed 
-by freeform entries:
+To properly identify files of this particular file collection,
+values of the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be followed by freeform entries:
 
-|Anatomical (like) image|Scaled FA map|Use case|
-|:--|:----| :----| 
-|`_acq-anat`|`_acq-famp`|Single acquisition|
-|`_acq-anatTest`|`_acq-fampTest`|Acquisition `Test`|
-|`_acq-anatRetest`|`_acq-fampRetest`|Acquisition `Retest`|
+| Anatomical (like) image |Scaled FA map      |Use case              |
+| ----------------------- | ----------------- | -------------------- |
+| `_acq-anat`             | `_acq-famp`       | Single acquisition   |
+| `_acq-anatTest`         | `_acq-fampTest`   | Acquisition `Test`   |
+| `_acq-anatRetest`       | `_acq-fampRetest` | Acquisition `Retest` |
 
 ```text
 └── sub-01/
      └── fmap/
-         ├── sub-01_acq-anat_TB1TFL.nii.gz 
+         ├── sub-01_acq-anat_TB1TFL.nii.gz
          ├── sub-01_acq-anat_TB1TFL.json
          ├── sub-01_acq-famp_TB1TFL.nii.gz
          └── sub-01_acq-famp_TB1TFL.json
 ```
 
-The example above applies to the `TB1RFM` suffix as well. 
+The example above applies to the `TB1RFM` suffix as well.
 
 #### `RB1COR` specific notes
 
@@ -527,14 +539,14 @@ with identical acquisition parameters.
 
 To properly identify constituents of this particular method, values of the `acq`
 entity SHOULD begin with either `body` or `head` and MAY be followed by freeform
-entries:  
+entries:
 
-|Body coil|Head coil|Use case|
-|:--|:----| :----| 
-|`_acq-body`|`_acq-head`|Single acquisition|
-|`_acq-bodyMTw`|`_acq-headMTw`|`MTw` for `MPM`|
-|`_acq-bodyPDw`|`_acq-headPDw`|`PDw` for `MPM`|
-|`_acq-bodyT1w`|`_acq-headT1w`|`T1w` for `MPM`|
+| Body coil      | Head coil      | Use case           |
+| -------------- | -------------- | ------------------ |
+| `_acq-body`    | `_acq-head`    | Single acquisition |
+| `_acq-bodyMTw` | `_acq-headMTw` | `MTw` for `MPM`    |
+| `_acq-bodyPDw` | `_acq-headPDw` | `PDw` for `MPM`    |
+| `_acq-bodyT1w` | `_acq-headT1w` | `T1w` for `MPM`    |
 
 ```text
 └── sub-01/
