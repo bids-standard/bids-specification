@@ -117,7 +117,7 @@ You can find example file collections and qMRI maps organized according to BIDS 
 
 ## Metadata requirements for qMRI data
 
-The table of required entities for qMRI file collections are provided in the [entity table](../99-appendices/04-entity-table.md).
+The table of required entities for qMRI file collections are provided in the [entity table](./04-entity-table.md).
 However, viability of a qMRI file collection is determined not only by the naming and organization of the input files,
 but also by which metadata fields are provided in accompanying json files.
 
@@ -310,7 +310,7 @@ This approach aims at:
 flavor of qMRI applicaiton for the respective suffix varies across files of a file colleciton
 (which calls for using a linking entity) or fixed. If former is the case, the entity is to be
 added to the files in that file collection. Note that this addition MUST be allowed by the
-priority levels given for that suffix in the [`entity table`](../99-appendices/04-entity-table.md). If latter (`fixed`) is the case,
+priority levels given for that suffix in the [`entity table`](./04-entity-table.md). If latter (`fixed`) is the case,
 filenames will remain the same; however, the optional metadata (third column) may
 define the flavor of the application (fourth column) along with the conditional value of a
 required metadata field (second column).
