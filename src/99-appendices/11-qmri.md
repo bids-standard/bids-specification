@@ -375,7 +375,7 @@ Although the `UNIT1` image is provided as an output by the acquisition sequence,
 as an input to offline calculation of a `T1map` using a dictionary lookup approach. However,
 `complex` data is needed for an accurate calculation of the `UNIT1` image, which is not commonly
 provided by the stock sequence. Instead, the `magnitude` and `phase` images are exported. Please
-see the relevant discussion [here](https://github.com/qMRLab/qMRLab/issues/255).
+see the relevant discussion at [qMRLab issue #255](https://github.com/qMRLab/qMRLab/issues/255).
 
 Therefore, the `UNIT1` image provided by the scanner is RECOMMENDED to be stored under the `anat`
 raw dataset directory along with the `MP2RAGE` file collection and to be used as the primary input
