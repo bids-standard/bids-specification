@@ -406,7 +406,7 @@ before = SlicesPerSlab*(SlicePartialFourier - 0.5)
 after  = SlicesPerSlab/2
 ```
 
-See this [reference](https://github.com/JosePMarques/MP2RAGE-related-scripts/blob/a405df30ac2c617d29d8b1b16025aaa911e86370/func/bids_T1B1correct.m#L16).
+See this [reference implementation](https://github.com/JosePMarques/MP2RAGE-related-scripts/blob/a405df30ac2c617d29d8b1b16025aaa911e86370/func/bids_T1B1correct.m#L16).
 
 ##### Other metadata fields
 
