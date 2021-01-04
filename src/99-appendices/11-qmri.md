@@ -23,7 +23,7 @@ There are two main ways to obtain a quantitative map:
     The acquisition scenarios may include (a) vendor pipelines or (b) open-source pipelines
     deployed at the scanner site.
 
-2.  Post-generated qMRI maps: The qMRI maps are generated from a collection of input
+1.  Post-generated qMRI maps: The qMRI maps are generated from a collection of input
     data after they are exported from the scanner site.
     This type of processing is commonly carried out using an open-source software such as
     [hMRI toolbox](https://github.com/hMRI-group/hMRI-toolbox),
@@ -141,13 +141,13 @@ organization of `UNIT1` image.
 
 Explanation of the table:
 
-*   The metadata fields listed in the REQUIRED column are needed to perform a minimum viable qMRI processing for the corresponding `file collection`.
+-   The metadata fields listed in the REQUIRED column are needed to perform a minimum viable qMRI processing for the corresponding `file collection`.
 
-*   Note that some of the metadata fields may be constant across different files in a file collection,
+-   Note that some of the metadata fields may be constant across different files in a file collection,
     yet still required as an input (for example, `NumberShots` in `MP2AGE`).
     Such metadata fields MUST be provided in the accompanying json files.
 
-*   The metadata fields listed in the OPTIONAL column can be used to form different flavors of an existing file collection suffix,
+-   The metadata fields listed in the OPTIONAL column can be used to form different flavors of an existing file collection suffix,
     dispensing with the need for introducing a new suffix.
     See [deriving the intended qMRI application from an ambiguos file collection](#Deriving-the-intended-qMRI-application-from-an-ambiguous-file-collection)
     for details.
@@ -223,11 +223,14 @@ Although this may not be the generic case for common derivative outputs,
 a proper interpretation of qMRI maps may critically depend on some metadata fields.
 For example, without the information of `MagneticFieldStrength`, white-matter T1 values in a `T1map` become elusive.
 
-*   All the acquisition parameters that are constant across the files in a file collection are RECOMMENDED to be added to the sidecar json of the qMRI maps.
+-   All the acquisition parameters that are constant across the files in a file collection are RECOMMENDED
+    to be added to the sidecar json of the qMRI maps.
 
-*   Relevant acquisition parameters that vary across files in a qMRI file collection are RECOMMENDED to be added to the sidecar json of the qMRI map **in array form**.
+-   Relevant acquisition parameters that vary across files in a qMRI file collection are RECOMMENDED
+    to be added to the sidecar json of the qMRI map **in array form**.
 
-*   The JSON file accompanying a qMRI map which is obtained by using open-source software is RECOMMENDED to include additional metadata fields listed in the following table:
+-   The JSON file accompanying a qMRI map which is obtained by using open-source software is RECOMMENDED
+    to include additional metadata fields listed in the following table:
 
 | **Field name**                  | **Definition**                                                                                                               |
 | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
@@ -292,11 +295,9 @@ and a new qMRI application to be included in the specification,
 the inheritor qMRI method is listed in the table below instead of introducing a new file collection suffix.
 This approach aims at:
 
-*   preventing the list of available suffixes from over-proliferation,
-
-*   providing qMRI-focused BIDS applications with a set of meta-data driven rules to infer possible fitting options,
-
-*   keeping an inheritance track of the qMRI methods described within the specification.
+-   preventing the list of available suffixes from over-proliferation,
+-   providing qMRI-focused BIDS applications with a set of meta-data driven rules to infer possible fitting options,
+-   keeping an inheritance track of the qMRI methods described within the specification.
 
 | **File-collection suffix** | **If REQUIRED metadata == Value** | **OPTIONAL metadata [`entity`/`fixed`]**   | **Derived application name (NOT a suffix)** |
 |----------------------------|-----------------------------------|--------------------------------------------|---------------------------------------------|
@@ -338,17 +339,17 @@ If a qMRI application can not be interpreted as subset of an already existing su
 of a qMRI-related file collection, we RECOMMEND adhering to the following principles to
 introduce a new suffix:
 
-*   All qMRI-relevant file collection suffixes are capitalized.
+-   All qMRI-relevant file collection suffixes are capitalized.
 
-*   Unless the pulse sequence is exclusively associated with a specific qMRI application
+-   Unless the pulse sequence is exclusively associated with a specific qMRI application
     (for example, `MP2RAGE`), sequence names are not used as suffixes.
 
-*   File collection suffixes for qMRI applications attain a clear description of the qMRI method that they relate to in the
+-   File collection suffixes for qMRI applications attain a clear description of the qMRI method that they relate to in the
     [file collections appendix]((../99-appendices/10-file-collections.md#magnetic-resonance-imaging)).
 
-*   Hyperlinks to example applications and reference method articles are encouraged whenever possible.
+-   Hyperlinks to example applications and reference method articles are encouraged whenever possible.
 
-*   If it is possible to derive a qMRI application from an already existing file collection suffix
+-   If it is possible to derive a qMRI application from an already existing file collection suffix
     by defining a set of logical conditions over the metadata fields, the tables of the
     [deriving the intended qMRI application from an ambiguous file collection](#Deriving-the-intended-qMRI-application-from-an-ambiguous-file-collection)
     and the
@@ -361,7 +362,7 @@ introduce a new suffix:
 
 General notes:
 
-*   Some BIDS metadata field values are calculated based on the values of other metadata fields that are not listed as required fields.
+-   Some BIDS metadata field values are calculated based on the values of other metadata fields that are not listed as required fields.
     These fields include: `NumberShots`.
     The calculation of the values may depend on the type of the acquisition.
     These acquisitions include: `MP2RAGE` and `TB1SRGE`.
@@ -387,11 +388,11 @@ If an additional `UNIT1` image is calculated offline, then the output is to be s
 
 Note that type of `NumberShots` field can be either a `number` or an `array of numbers`.
 
-*   If a single `number` is to be provided, this should correspond to the number of `SlicesPerSlab` or `ReconMatrixPE`.
+-   If a single `number` is to be provided, this should correspond to the number of `SlicesPerSlab` or `ReconMatrixPE`.
     However, in this case, `SlicePartialFourier` or `PartialFourierPE` fraction is needed
     to calculate the number of partitions `before` and `after` of the k-space center to calculate a T1 map.
 
-*   If `before/after` calculation is performed during the BIDS conversion of the `MP2RAGE` data,
+-   If `before/after` calculation is performed during the BIDS conversion of the `MP2RAGE` data,
     then the value of `NumberShots` metadata field can be given as a 1X2 array,
     with first entry corresponding to `before` and the second to the `after`.
 
@@ -423,12 +424,11 @@ which requires information about `BaseResolution` (that is, image matrix size in
 partial Fourier fraction in the PE direction, number of reference lines for parallel imaging acceleration,
 and the parallel imaging acceleration factor in PE direction.
 
-
 ### Radiofrequency (RF) field mapping
 
 General notes:
 
-*   Some RF file collections call for the use of special notations that cannot be resolved by
+-   Some RF file collections call for the use of special notations that cannot be resolved by
     by entities that can generalize to other applications.
     Instead of introducing an entity that is exclusive to a single application,
     method developers who commonly use these file collections for the `MPM` application reached
