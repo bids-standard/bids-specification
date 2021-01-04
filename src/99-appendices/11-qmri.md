@@ -428,14 +428,12 @@ and the parallel imaging acceleration factor in PE direction.
 
 ### Radiofrequency (RF) field mapping
 
-General notes:
-
--   Some RF file collections call for the use of special notations that cannot be resolved by
-    by entities that can generalize to other applications.
-    Instead of introducing an entity that is exclusive to a single application,
-    method developers who commonly use these file collections for the `MPM` application reached
-    the consensus on the use of `acq` entity to distinguish individual files.
-    These suffixes include: `TB1AFI`, `TB1TFL`, `TB1RMF`, and `RB1COR`.
+Some RF file collections call for the use of special notations that cannot be resolved by
+by entities that can generalize to other applications.
+Instead of introducing an entity that is exclusive to a single application,
+method developers who commonly use these file collections for the `MPM` application reached
+the consensus on the use of `acq` entity to distinguish individual files.
+These suffixes include: `TB1AFI`, `TB1TFL`, `TB1RMF`, and `RB1COR`.
 
 #### `TB1EPI` specific notes
 
