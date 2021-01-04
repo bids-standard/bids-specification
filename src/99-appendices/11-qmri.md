@@ -386,7 +386,7 @@ If an additional `UNIT1` image is calculated offline, then the output is to be s
 
 ##### `NumberShots` metadata field
 
-Note that type of `NumberShots` field can be either a `number` or an `array of numbers`.
+Note that the type of `NumberShots` field can be either a `number` or an `array of numbers`.
 
 -   If a single `number` is provided, this should correspond to the number of `SlicesPerSlab` or `ReconMatrixPE`.
     However, in this case, `SlicePartialFourier` or `PartialFourierPE` fraction is needed
