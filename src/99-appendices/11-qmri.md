@@ -320,7 +320,7 @@ listed for the respective file collection suffix are provided for the data. In a
 conditional rules based on the value of a given required metada field can be set
 for the description of a derived qMRI application. Note that the value of this
 required metadata is fixed across constituent images of a file collection and defined
-in [this section](#Method-specific-priority-levels-for-qMRI-file-collections).
+in [Method-specific priority levels for qMRI file collections](#Method-specific-priority-levels-for-qMRI-file-collections).
 
 For example, if the optional metadata field of `PulseSequenceType` is SPGR
 for a collection of anatomical images listed by the `VFA` suffix, the data
