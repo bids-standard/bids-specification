@@ -343,20 +343,21 @@ Anatomical landmarks:
 | AnatomicalLandmarkCoordinateUnits             | OPTIONAL                                                                  | [string][]               | Units of the coordinates of `AnatomicalLandmarkCoordinateSystem`. MUST be `m`, `cm`, or `mm`.                                                                                                                                                                                                                                                                            |
 | AnatomicalLandmarkCoordinateSystemDescription | OPTIONAL, but REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `Other` | [string][]               | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                                                                                                                   |
 
-It is also RECOMMENDED that the MRI voxel coordinates of the actual anatomical
+It is also RECOMMENDED that the MRI coordinates of the actual anatomical
 landmarks for co-registration of MEG with structural MRI are stored in the
 `AnatomicalLandmarkCoordinates` field in the JSON sidecar of the corresponding
-T1w MRI anatomical data of the subject seen in the MEG session (see
-[here](01-magnetic-resonance-imaging-data.md#anatomy-imaging-data) ) - for
-example: `sub-01/ses-mri/anat/sub-01_ses-mri_acq-mprage_T1w.json`
+T1w MRI anatomical data of the subject seen in the MEG session
+(see [Anatomy Imaging Data](01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)).
+
+For example: `sub-01/ses-mri/anat/sub-01_ses-mri_acq-mprage_T1w.json`
 
 In principle, these locations are those of absolute anatomical markers. However,
 the marking of NAS, LPA and RPA is more ambiguous than that of for example, AC and PC.
 This may result in some variability in their 3-D digitization from session to
 session, even for the same participant. The solution would be to use only one
 T1w file and populate the `AnatomicalLandmarkCoordinates` field with
-session-specific labels for example, "NAS-session1": `[127,213,139]`,"NAS-session2":
-`[123,220,142]`.
+session-specific labels for example, "NAS-session1": `[11.9,21.3,13.9]`,"NAS-session2":
+`[12.7,21.5,13.7]`.
 
 Fiducials information:
 
