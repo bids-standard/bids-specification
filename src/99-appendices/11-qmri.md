@@ -37,7 +37,7 @@ There are two main ways to obtain a quantitative map:
 
 The common concept of [entity-linked file collections](../02-common-principles.md#entity-linked-file-collections) enables the description of a qMRI
 application by creating logical groups of input files through `suffix` and certain entities
-representing acquisition parameters (`echo`, `flip`,`inv`, `mt`) or file parts (`part`).
+representing acquisition parameters (`echo`, `flip`, `inv`, `mt`) or file parts (`part`).
 
 If a qMRI file collection is intended for creating structural quantitative maps (for example, `T1map`),
 files belonging to that collection are stored in the `anat` subfolder.
