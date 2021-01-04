@@ -345,7 +345,7 @@ introduce a new suffix:
     (for example, `MP2RAGE`), sequence names are not used as suffixes.
 
 -   File collection suffixes for qMRI applications attain a clear description of the qMRI method that they relate to in the
-    [file collections appendix]((../99-appendices/10-file-collections.md#magnetic-resonance-imaging)).
+    [file collections appendix](./10-file-collections.md#magnetic-resonance-imaging).
 
 -   Hyperlinks to example applications and reference method articles are encouraged whenever possible.
 
