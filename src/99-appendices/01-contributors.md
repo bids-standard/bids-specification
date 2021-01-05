@@ -38,7 +38,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 
 -   Fidel Alfaro Almagro 💬📖💡🔌
 -   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️📢✅🔧🔌📝🚧🔣
--   Tibor Auer 💬📖💡🔧📢
+-   Tibor Auer 💬🐛📖💡🤔🔧📢
 -   Sylvain Baillet 📖🔍
 -   Arshitha Basavaraj 📖🚇💻
 -   Stephan Bickel 📖
