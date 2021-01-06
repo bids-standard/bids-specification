@@ -1,19 +1,10 @@
 # Positron Emission Tomography
 
-Support for Positron Emission Tomography (PET) was developed as a [BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
-Please cite the following paper when referring to this part of the standard in
-context of the academic literature:
-
-> Knudsen GM, Ganz M, Appelhoff S, Boellaard R, Bormans G, Carson RE, Catana C,
-> Doudet D, Gee AD, Greve DN, Gunn RN, Halldin C, Herscovitch P, Huang H, Keller SH,
-> Lammertsma AA, Lanzenberger R, Liow JS, Lohith TG, Lubberink M, Lyoo CH, Mann JJ,
-> Matheson GJ, Nichols TE, Nørgaard M, Ogden T, Parsey R, Pike VW, Price J, Rizzo G,
-> Rosa-Neto P, Schain M, Scott PJH, Searle G, Slifstein M, Suhara T, Talbot PS,
-> Thomas A, Veronese M, Wong DF, Yaqub M, Zanderigo F, Zoghbi S, Innis RB.
-> Guidelines for Content and Format of PET Brain Data in Publications
-> and in Archives: A Consensus Paper.
-> Journal of Cerebral Blood Flow and Metabolism, 2020 Aug;40(8):1576-1585.
-> doi: [10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433)
+Support for Positron Emission Tomography (PET) was developed as a
+[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../01-introduction.md#citing-bids)
+on how to appropriately credit this extension when referring to it in the
+context of the academic literature.
 
 The following example PET datasets have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
@@ -33,6 +24,16 @@ As specified above, this extension is relevant for brain PET imaging
 and its associated data, such as blood data.
 In addition, the extension is in accordance with the guidelines for reporting
 and sharing brain PET data (Knudsen et al. 2020, [doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433)).
+
+Template:
+
+```Text
+sub-<participant_label>/
+      [ses-<session_label>/]
+        pet/
+        sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.nii[.gz]
+        sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.json
+```
 
 **Shared MRI data along with PET:**
 To share structural magnetic resonance (MR) images with your PET data,
@@ -59,18 +60,8 @@ Furthermore, although in this example tracer injection coincides with scan start
 this is not always the case and hence we allow for the flexibility of specifying
 either time of injection or scan start as “time zero”.
 
-Template:
-
-```Text
-sub-<participant_label>/
-      [ses-<session_label>/]
-        pet/
-        sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.nii[.gz]
-        sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.json
-```
-
-PET data belongs in the /pet folder. PET imaging data SHOULD be stored in 4D
-(or 3D if only one volume was acquired) NifTI files with `_pet` suffix.
+PET data belong to the `pet` directory. PET imaging data SHOULD be stored in 4D
+(or 3D if only one volume was acquired) NIfTI files with `_pet` suffix.
 Volumes should be stored in chronological order (the order they were acquired in).
 
 Following the [BIDS Common Principles](https://bids-specification.readthedocs.io/en/stable/02-common-principles.html), here we summarize how different labels are organized for PET data. Please, check the Common Principles section for further details.
@@ -116,7 +107,7 @@ Examples are `acq-18FFDG` for fludeoxyglucose, `acq-11CPIB` for Pittsburgh compo
 - `acstat`, for reconstructions with attenuation correction of static data;
 - `nacdyn`, for reconstructions without attenuation correction of dynamic data;
 - `nacstat`, for reconstructions without attenuation correction of static data.
-Further details regarding reconstruction are in the _pet.json file.
+Further details regarding reconstruction are in the `_pet.json` file.
 In case of multiple reconstructions of the data with the same type,
 we allow for using a number after the `<label>` in order to distinguish,
 for example `recon-acdyn1` and `recon-acdyn2`.
@@ -140,6 +131,7 @@ The included metadata are divided into sections described below.
 #### Information
 
 This section is mandatory and contains general information about the imaging experiment.
+
 Some of the fields are marked optional (MAY), for example anaesthesia; for those fields
 the [BIDS validator](https://github.com/bids-standard/bids-validator) will not throw an error even if they are not present.
 Note, although bodyweight is a recommended information in (Knudsen et al. 2020, [doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433)),
@@ -168,6 +160,7 @@ PharmaceuticalDoseRegimen | RECOMMENDED | [string][] | Details of the pharmaceut
 PharmaceuticalDoseTime | RECOMMENDED | [number][] or [array][] of [numbers][]. | Time of administration of pharmaceutical dose, relative to time zero (please see below). For an infusion, this should be a vector with two elements specifying the start and end of the infusion period. For more complex dose regimens, the regimen description should be complete enough to enable unambiguous interpretation of the DoseTime vector. Unit format of the specified pharmaceutical dose time should be seconds. |
 Anaesthesia | MAY | [string][] | Details of anaesthesia used, if any.|
 
+
 #### Radiochemistry
 
 This section is mandatory and contains information regarding the radioactive
@@ -195,6 +188,7 @@ material used in the experiment.
 | Purity                        | RECOMMENDED | [number][] | Purity of the radiolabeled compound (for example, 90).                                                                                                                                                                                                                  |
 | PurityUnit                    | RECOMMENDED | [string][] | Unit of the radiochemical purity (for example, "percent").                                                                                                           
 
+
 #### Time
 
 This section is mandatory and contains timing information about the imaging experiment. We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization ([LINK](https://bids-specification.readthedocs.io/en/stable/02-common-principles.html)). 
@@ -212,6 +206,7 @@ This section is mandatory and contains timing information about the imaging expe
 #### Reconstruction
 
 This optional section includes information about the image reconstruction.
+
 All reconstruction specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
 
 | **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -234,6 +229,7 @@ All reconstruction specific parameters that are not specified, but one wants to 
 | PromptRate                           | RECOMMENDED | [array][] of [numbers][] | Prompt rate for each frame.                                                                                  |
 | RandomRate                           | RECOMMENDED | [array][] of [numbers][] | Random rate for each frame.                                                                                  |
 | SinglesRate                          | RECOMMENDED | [array][] of [numbers][] | Singles rate for each frame.                                                                                 |
+
 
 #### Example (`*_pet.json`)
 
@@ -372,6 +368,7 @@ Hence, it may contain information regarding metabolite info, such as the followi
 | metabolite_polar_fraction     | Polar metabolite fraction of the radiotracer (0-1) | Unit of polar metabolite fraction (for example, "unitless")                   | 
 | hplc_recovery_fractions        | HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC) | Unit of recovery fractions (for example, "unitless") |       |
 
+
 ### Radioactivity in whole blood
 
 This section may be omitted if whole blood measurements of radioactivity were not made.
@@ -410,11 +407,15 @@ and the values below should be added to the `*recording-autosampler_blood.json`.
     },
     "metabolite_parent_fraction": {
         "Description": "Parent fraction of the radiotracer.",
-        "Units": "unitless"
+        "Units": "arbitrary"
     },
     "metabolite_polar_fraction": {
         "Description": "Polar metabolite fraction of the radiotracer.",
-        "Units": "unitless"
+        "Units": "arbitrary"
+    },
+    "metabolite_lipophilic_fraction": {
+        "Description": "Lipophilic metabolite fraction of the radiotracer.",
+        "Units": "arbitrary"
     }
 }
 ```
