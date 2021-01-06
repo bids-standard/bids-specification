@@ -32,19 +32,16 @@ Further PET datasets are available from [OpenNeuro](https://openneuro.org).
 As specified above, this extension is relevant for brain PET imaging
 and its associated data, such as blood data.
 In addition, the extension is in accordance with the guidelines for reporting
-and sharing brain PET data (Knudsen et al. 2020, [1]).
+and sharing brain PET data (Knudsen et al. 2020, [doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433)).
 
 **Shared MRI data along with PET:**
 To share structural magnetic resonance (MR) images with your PET data,
 please follow the original BIDS specification
-(https://bids-specification.readthedocs.io/en/stable).
-Please pay specific attention to the format the MR images are in,
-such as if they have been unwarped in order to correct for gradient non-linearities.
-There is a specific field in the MRI BIDS (https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/01-magnetic-resonance-imaging-data.html) called “NonlinearGradientCorrection”
-which indicates this.
-The reason for this is that the MRI needs to be corrected for nonlinear gradients
-in order to fit the accompanying PET scans for co-registration [1, 2].
-**Units**: In general, SI units must be used (we refer to https://bids-specification.readthedocs.io/en/stable/99-appendices/05-units.html) and we recommend to use the CMIXF style formatting for SI units, for example, "kBq/mL"
+([LINK](https://bids-specification.readthedocs.io/en/stable)).
+Please pay specific attention to whether the MR images have been unwarped to correct for gradient non-linearities. This should be specified in a specific field of the MRI-BIDS .json file named "NonLinearGradientCorrection". For more information please see the appendix regarding cross modality correspondence
+ ([LINK](../99-appendices/10-cross-modality-correspondence.md)).
+
+**Units**: In general, SI units must be used (we refer to [LINK](https://bids-specification.readthedocs.io/en/stable/99-appendices/05-units.html)) and we recommend to use the CMIXF style formatting for SI units, for example, "kBq/mL"
 rather than "kilobecquerel per ml".
 An overview of a common PET experiment (with blood data) can be seen in Figure 1,
 defined on a single time scale relative to a predefined “time zero”
@@ -52,7 +49,7 @@ defined on a single time scale relative to a predefined “time zero”
 please note an exception to this definition is possible if a pharmacological
 within-scan challenge is performed).
 
-![Figure 1](images/PET_scan_overview.png "Overview of PET recording data")
+![Figure 1](images/PET_scan_overview.svg "Overview of PET recording data")
 
 Figure 1: Overview of a common PET experiment, including blood measurements,
 and defined on a common time scale.
@@ -76,7 +73,7 @@ PET data belongs in the /pet folder. PET imaging data SHOULD be stored in 4D
 (or 3D if only one volume was acquired) NifTI files with `_pet` suffix.
 Volumes should be stored in chronological order (the order they were acquired in).
 
-Following the BIDS Common Principles (https://bids-specification.readthedocs.io/en/stable/02-common-principles.html), here we summarize how different labels are organized for PET data. Please, check the Common Principles section for further details.
+Following the [BIDS Common Principles](https://bids-specification.readthedocs.io/en/stable/02-common-principles.html), here we summarize how different labels are organized for PET data. Please, check the Common Principles section for further details.
 **Sessions**: Multiple sessions (visits) are encoded by adding an extra layer of directories
 and file names in the form of `ses-<label>`.
 Session labels can consist only of alphanumeric characters [a-zA-Z0-9]
@@ -106,7 +103,7 @@ and resting state BOLD fMRI data.
 In case of studies using combined PET/fMRI, subject-specific tasks may be carried out
 during the acquisition within the same session.
 Therefore, it is possible to specify `task-<label>` in accordance with the fMRI data.
-For more information please see https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#task-including-resting-state-imaging-data.
+For more information please see the [BIDS specification for MRI](https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#task-including-resting-state-imaging-data).
 
 **Acquisition:** In case of studies with multiple acquisitions per subject using different tracers,
 the `acq-<label>` must be used to distinguish between different tracers.
@@ -114,7 +111,7 @@ Please keep in mind that the label used is arbitrary and each file requires
 a separate JSON sidecar with details of the tracer used (see below).
 Examples are `acq-18FFDG` for fludeoxyglucose, `acq-11CPIB` for Pittsburgh compound B, etc.
 
-**Reconstruction:** The reconstruction key (`rec-<label>`) has four reserved values:
+**Reconstruction:** The reconstruction key (`recon-<label>`) has four reserved values:
 - `acdyn`, for reconstructions with attenuation correction of dynamic data;
 - `acstat`, for reconstructions with attenuation correction of static data;
 - `nacdyn`, for reconstructions without attenuation correction of dynamic data;
@@ -122,9 +119,9 @@ Examples are `acq-18FFDG` for fludeoxyglucose, `acq-11CPIB` for Pittsburgh compo
 Further details regarding reconstruction are in the _pet.json file.
 In case of multiple reconstructions of the data with the same type,
 we allow for using a number after the `<label>` in order to distinguish,
-for example `rec-acdyn1` and `rec-acdyn2`.
+for example `recon-acdyn1` and `recon-acdyn2`.
 
-The run entity is used if one scan type/contrast is repeated multiple times
+**Run:** The run entity is used if one scan type/contrast is repeated multiple times
 within the same scan session/visit.
 If several scans of the same modality are acquired they MUST be indexed
 with a key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only integers are allowed as run labels).
@@ -135,7 +132,7 @@ It is our assumption that the `run-<label>` is used in PET for the cases
 where the subject does not leave the scanner.
 Otherwise, we refer to the `ses-<label>` definition.
 
-In addition to the imaging data a `_pet.json` sidecar file needs to be provided.
+In addition to the imaging data (*.nii) a `_pet.json` sidecar file needs to be provided.
 The included metadata are divided into sections described below.
 
 ### PET sidecar JSON (`*_pet.json`)
@@ -144,100 +141,99 @@ The included metadata are divided into sections described below.
 
 This section is mandatory and contains general information about the imaging experiment.
 Some of the fields are marked optional (MAY), for example anaesthesia; for those fields
-the BIDS validator will not throw an error even if they are not present.
-Note, although bodyweight is a recommended information in (Knudsen et al. 2020, JCBFM [1]),
+the [BIDS validator](https://github.com/bids-standard/bids-validator) will not throw an error even if they are not present.
+Note, although bodyweight is a recommended information in (Knudsen et al. 2020, [doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433)),
 this consists of meta information at the participant level and should hence
 be part of the `participants.tsv` or `session.tsv` file in case of multiple measurements.
 
-| Field name                | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Manufacturer              | REQUIRED. Scanner manufacturer (for example, "Siemens").                                                                                                                                                                                                                                                                                                                                                                                      |
-| ManufacturersModelName    | REQUIRED. PET scanner model name (for example, "mMR Biograph").                                                                                                                                                                                                                                                                                                                                                                               |
-| Unit                      | REQUIRED. Unit of the image file; please see BIDS main spec section 6. SI unit for radioactivity (Becquerel) should be used (for example, "Bq/mL"). Corresponds to DICOM Tag 0054, 1001 Units.                                                                                                                                                                                                                                                |
-| TracerName                | REQUIRED. Name of the tracer compound used (for example, "CIMBI-36")                                                                                                                                                                                                                                                                                                                                                                          |
-| TracerRadionuclide        | REQUIRED. Radioisotope labelling tracer (for example, "C11").                                                                                                                                                                                                                                                                                                                                                                                 |
-| InstitutionName           | RECOMMENDED. The name of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0080 InstitutionName.                                                                                                                                                                                                                                                                               |
-| InstitutionAddress        | RECOMMENDED. The address of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0081 InstitutionAddress.                                                                                                                                                                                                                                                                         |
-| InstitutionDepartmentName | RECOMMENDED. The department in the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1040 Institutional Department Name.                                                                                                                                                                                                                                                           |
-| BodyPart                  | RECOMMENDED. Name of the organ / body region scanned.                                                                                                                                                                                                                                                                                                                                                                                         |
-| TracerRadLex              | RECOMMENDED. ID of the tracer compound from the RadLex Ontology.                                                                                                                                                                                                                                                                                                                                                                              |
-| TracerSNOMED              | RECOMMENDED. ID of the tracer compound from the SNOMED Ontology (subclass of Radioactive isotope).                                                                                                                                                                                                                                                                                                                                            |
-| TracerMolecularWeight     | RECOMMENDED. Accurate molecular weight of the tracer used.                                                                                                                                                                                                                                                                                                                                                                                    |
-| TracerMolecularWeightUnit | RECOMMENDED. Unit of the molecular weights measurement (for example, "g/mol").                                                                                                                                                                                                                                                                                                                                                                |
-| PharmaceuticalName        | RECOMMENDED. Name of pharmaceutical coadministered with tracer.                                                                                                                                                                                                                                                                                                                                                                               |
-| PharmaceuticalDoseAmount  | RECOMMENDED. Dose amount of pharmaceutical coadministered with tracer.                                                                                                                                                                                                                                                                                                                                                                        |
-| PharmaceuticalDoseUnit    | RECOMMENDED. Unit format relating to pharmaceutical dose (for example, "mg" or "mg/kg").                                                                                                                                                                                                                                                                                                                                                      |
-| PharmaceuticalDoseRegimen | RECOMMENDED. Details of the pharmaceutical dose regimen. Either adequate description or short-code relating to regimen documented elsewhere (for example, "single oral bolus").                                                                                                                                                                                                                                                               |
-| PharmaceuticalDoseTime    | RECOMMENDED. Time of administration of pharmaceutical dose, relative to time zero (please see below). For an infusion, this should be a vector with two elements specifying the start and end of the infusion period. For more complex dose regimens, the regimen description should be complete enough to enable unambiguous interpretation of the DoseTime vector. Unit format of the specified pharmaceutical dose time should be seconds. |
-| Anaesthesia               | MAY. Details of anaesthesia used, if any.                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| -------------- | --------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Manufacturer | REQUIRED              | [string][]               | Scanner manufacturer (for example, "Siemens"). |
+| ManufacturersModelName    | REQUIRED | [string][] | PET scanner model name (for example, "mMR Biograph").|
+Unit | REQUIRED | [string][] | Unit of the image file; please see BIDS main spec section 6. SI unit for radioactivity (Becquerel) should be used (for example, "Bq/mL"). Corresponds to DICOM Tag 0054, 1001 Units. |                                                     
+TracerName | REQUIRED | [string][] | Name of the tracer compound used (for example, "CIMBI-36") |
+TracerRadionuclide | REQUIRED | [string][] | Radioisotope labelling tracer (for example, "C11"). |
+InstitutionName | RECOMMENDED | [string][] | The name of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0080 InstitutionName. |
+InstitutionAddress | RECOMMENDED | [string][] | The address of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0081 InstitutionAddress. |
+InstitutionDepartmentName | RECOMMENDED | [string][] | The department in the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1040 Institutional Department Name. |
+BodyPart | RECOMMENDED | [string][] | Body part of the organ / body region scanned. Corresponds to DICOM Tag 0018, 0015 Body Part Examined|        
+TracerRadLex | RECOMMENDED | [string][] | ID of the tracer compound from the RadLex Ontology. | 
+TracerSNOMED | RECOMMENDED | [string][] | ID of the tracer compound from the SNOMED Ontology (subclass of Radioactive isotope). | 
+TracerMolecularWeight | RECOMMENDED | [number][] | Accurate molecular weight of the tracer used. | 
+TracerMolecularWeightUnit | RECOMMENDED | [string][] | Unit of the molecular weights measurement (for example, "g/mol"). | 
+PharmaceuticalName | RECOMMENDED | [string][] | Name of pharmaceutical coadministered with tracer. |
+PharmaceuticalDoseAmount | RECOMMENDED | [number][] or [array][] of [numbers][] | Dose amount of pharmaceutical coadministered with tracer. | 
+PharmaceuticalDoseUnit | RECOMMENDED | [string][] | Unit format relating to pharmaceutical dose (for example, "mg" or "mg/kg"). | 
+PharmaceuticalDoseRegimen | RECOMMENDED | [string][] | Details of the pharmaceutical dose regimen. Either adequate description or short-code relating to regimen documented elsewhere (for example, "single oral bolus"). |  
+PharmaceuticalDoseTime | RECOMMENDED | [number][] or [array][] of [numbers][]. | Time of administration of pharmaceutical dose, relative to time zero (please see below). For an infusion, this should be a vector with two elements specifying the start and end of the infusion period. For more complex dose regimens, the regimen description should be complete enough to enable unambiguous interpretation of the DoseTime vector. Unit format of the specified pharmaceutical dose time should be seconds. |
+Anaesthesia | MAY | [string][] | Details of anaesthesia used, if any.|
 
 #### Radiochemistry
 
 This section is mandatory and contains information regarding the radioactive
 material used in the experiment.
 
-| Field name                    | Definition                                                                                                                                                                                                                                                                           |
-|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| InjectedRadioactivity         | REQUIRED. Total amount of radioactivity injected into the patient (for example, 400). Corresponds to DICOM Tag (0018,1074) Radionuclide Total Dose.                                                                                                                                  |
-| InjectedRadioactivityUnit     | REQUIRED. Unit format of the specified injected radioactivity (for example, "MBq").                                                                                                                                                                                                  |
-| InjectedMass                  | REQUIRED. Total mass of radiolabeled compound injected into subject (for example, 10). This can be derived as the ratio of the `InjectedRadioactivity` and `MolarRadioactivity`. **Note for an FDG acquisition this is not available and should be set to -1.** |
-| InjectedMassUnit              | REQUIRED. Unit format of the mass of compound injected (for example, "ug" or "umol"). **Note this is not required for an FDG acquisition, since it is not available, and can be set to "-1"**.                                                                                       |
-| SpecificRadioactivity         | REQUIRED. Specific activity of compound injected. **Note this is not required for an FDG acquisition, since it is not available, and can be set to -1**.                                                                                                                             |
-| SpecificRadioactivityUnit     | REQUIRED. Unit format of specified specific radioactivity (for example, "Bq/g"). **Note this is not required for an FDG acquisition, since it is not available, and can be set to "-1"**.                                                                                            |
-| ModeOfAdministration          | REQUIRED. Mode of administration of the injection (for example, "bolus" or "infusion").                                                                                                                                                                                              |
-| InjectedMassPerWeight         | RECOMMENDED. Injected mass per kilogram bodyweight.                                                                                                                                                                                                                                  |
-| InjectedMassPerWeightUnit     | RECOMMENDED. Unit format of the injected mass per kilogram bodyweight (for example, "ug/kg").                                                                                                                                                                                        |
-| SpecificRadioactivityMeasTime | RECOMMENDED. Time to which specific radioactivity measurement above applies in the default unit "hh:mm:ss".                                                                                                                                                                          |
-| MolarActivity                 | RECOMMENDED. Molar activity of compound injected. Corresponds to DICOM Tag (0018,1077) Radiopharmaceutical Specific Activity.                                                                                                                                                        |
-| MolarActivityUnit             | RECOMMENDED. Unit of the specified molar radioactivity (for example, "Bq/g").                                                                                                                                                                                                        |
-| MolarActivityMeasTime         | RECOMMENDED. Time to which molar radioactivity measurement above applies in the default unit "hh:mm:ss".                                                                                                                                                                             |
-| InfusionSpeed                 | RECOMMENDED. If given, infusion speed.                                                                                                                                                                                                                                               |
-| InfusionSpeedUnit             | RECOMMENDED. Unit of infusion speed (for example, "mL/s").                                                                                                                                                                                                                           |
-| InjectedVolume                | RECOMMENDED. Injected volume of the radiotracer.                                                                                                                                                                                                                                     |
-| InjectedVolumeUnit            | RECOMMENDED. Unit of the injected volume of the radiotracer (for example, "mL").                                                                                                                                                                                                     |
-| Purity                        | RECOMMENDED. Purity of the radiolabeled compound (for example, 90).                                                                                                                                                                                                                  |
-| PurityUnit                    | RECOMMENDED. Unit of the radiochemical purity (for example, "percent").                                                                                                                                                                                                              |
-
+| **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| -------------- | --------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| InjectedRadioactivity         | REQUIRED | [number][] | Total amount of radioactivity injected into the patient (for example, 400). Corresponds to DICOM Tag (0018,1074) Radionuclide Total Dose.                                                                                                                                  |
+| InjectedRadioactivityUnit     | REQUIRED | [string][] | Unit format of the specified injected radioactivity (for example, "MBq").                                                                                                                                                                                                  |
+| InjectedMass | REQUIRED | [number][] | Total mass of radiolabeled compound injected into subject (for example, 10). This can be derived as the ratio of the `InjectedRadioactivity` and `MolarRadioactivity`. **Note for an FDG acquisition this is not available and should be set to -1.** |
+| InjectedMassUnit              | REQUIRED | [string][] | Unit format of the mass of compound injected (for example, "ug" or "umol"). **Note this is not required for an FDG acquisition, since it is not available, and can be set to "-1"**.                                                                                       |
+| SpecificRadioactivity         | REQUIRED | [number][] | Specific activity of compound injected. **Note this is not required for an FDG acquisition, since it is not available, and can be set to -1**.                                                                                                                             |
+| SpecificRadioactivityUnit     | REQUIRED | [string][] | Unit format of specified specific radioactivity (for example, "Bq/g"). **Note this is not required for an FDG acquisition, since it is not available, and can be set to "-1"**.                                                                                            |
+| ModeOfAdministration          | REQUIRED | [string][] | Mode of administration of the injection (for example, "bolus" or "infusion").                                                                                                                                                                                              |
+| InjectedMassPerWeight         | RECOMMENDED | [number][] | Injected mass per kilogram bodyweight.                                                                                                                                                                                                                                  |
+| InjectedMassPerWeightUnit     | RECOMMENDED | [string][] | Unit format of the injected mass per kilogram bodyweight (for example, "ug/kg").                                                                                                                                                                                        |
+| SpecificRadioactivityMeasTime | RECOMMENDED | [string][] | Time to which specific radioactivity measurement above applies in the default unit "hh:mm:ss".                                                                                                                                                                          |
+| MolarActivity                 | RECOMMENDED | [number][] | Molar activity of compound injected. Corresponds to DICOM Tag (0018,1077) Radiopharmaceutical Specific Activity.                                                                                                                                                        |
+| MolarActivityUnit             | RECOMMENDED | [string][] | Unit of the specified molar radioactivity (for example, "Bq/g").                                                                                                                                                                                                        |
+| MolarActivityMeasTime         | RECOMMENDED | [string][] | Time to which molar radioactivity measurement above applies in the default unit "hh:mm:ss".                                                                                                                                                                             |
+| InfusionSpeed                 | RECOMMENDED | [number][] | If given, infusion speed.                                                                                                                                                                                                                                               |
+| InfusionSpeedUnit             | RECOMMENDED | [string][] | Unit of infusion speed (for example, "mL/s").                                                                                                                                                                                                                           |
+| InjectedVolume                | RECOMMENDED | [number][] | Injected volume of the radiotracer.                                                                                                                                                                                                                                     |
+| InjectedVolumeUnit            | RECOMMENDED | [string][] | Unit of the injected volume of the radiotracer (for example, "mL").                                                                                                                                                                                                     |
+| Purity                        | RECOMMENDED | [number][] | Purity of the radiolabeled compound (for example, 90).                                                                                                                                                                                                                  |
+| PurityUnit                    | RECOMMENDED | [string][] | Unit of the radiochemical purity (for example, "percent").                                                                                                           
 
 #### Time
 
-This section is mandatory and contains timing information about the imaging experiment.
+This section is mandatory and contains timing information about the imaging experiment. We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization ([LINK](https://bids-specification.readthedocs.io/en/stable/02-common-principles.html)). 
 
-| Field name      | Definition                                                                                                                                                                          |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| TimeZero        | REQUIRED. Time zero to which all scan and/or blood measurements have been adjusted to, in the unit “hh:mm:ss”. This should be equal to `InjectionStart` or `ScanStart`.             |
-| ScanStart       | REQUIRED. Time of start of scan with respect to `TimeZero` in the default unit seconds.                                                                                             |
-| InjectionStart  | REQUIRED. Time of start of injection with respect to `TimeZero` in the default unit seconds. This corresponds to DICOM Tag (0018,1042) converted to seconds relative to `timeZero`. |
-| FrameTimesStart | REQUIRED. Start times for all frames relative to `TimeZero` in default unit seconds.                                                                                                |
-| FrameDuration   | REQUIRED. Time duration of each frame in default unit seconds. This corresponds to DICOM Tag (0018,1242) converted to seconds.                                                      |
-| ScanDate        | RECOMMENDED. Date of scan in the default unit “yyyy:mm:dd”.                                                                                                                         |
-| InjectionEnd    | RECOMMENDED. Time of end of injection with respect to `TimeZero` in the default unit seconds.                                                                                       |
+| **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| -------------- | --------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| TimeZero        | REQUIRED | [string][] | Time zero to which all scan and/or blood measurements have been adjusted to, in the unit “hh:mm:ss”. This should be equal to `InjectionStart` or `ScanStart`.             |
+| ScanStart       | REQUIRED | [number][] | Time of start of scan with respect to `TimeZero` in the default unit seconds.                                                                                             |
+| InjectionStart  | REQUIRED | [number][] | Time of start of injection with respect to `TimeZero` in the default unit seconds. This corresponds to DICOM Tag (0018,1042) converted to seconds relative to `timeZero`. |
+| FrameTimesStart | REQUIRED | [array][] of [numbers][] | Start times for all frames relative to `TimeZero` in default unit seconds.                                                                                                |
+| FrameDuration   | REQUIRED | [array][] of [numbers][] | Time duration of each frame in default unit seconds. This corresponds to DICOM Tag (0018,1242) converted to seconds.                                                      |
+| ScanDate        | RECOMMENDED | [string][] | Date of scan in the default unit “yyyy:mm:dd”.                                                                                                                         |
+| InjectionEnd    | RECOMMENDED | [number][] | Time of end of injection with respect to `TimeZero` in the default unit seconds.                                                                                       |
 
 #### Reconstruction
 
 This optional section includes information about the image reconstruction.
-All reconstruction specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterVal` field.
+All reconstruction specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
 
-| Field name                           | Definition                                                                                                                |
-|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| AcquisitionMode                      | REQUIRED. Type of acquisition of the PET data (for example, "list mode")                                                  |
-| ImageDecayCorrected                  | REQUIRED. Boolean flag specifying whether the image data have been decay-corrected.                                       |
-| ImageDecayCorrectionTime             | REQUIRED. Point in time from which the decay correction was applied with respect to TimeZero in the default unit seconds. |
-| ReconMethodName                      | REQUIRED. Reconstruction method or algorithm (for example, "3d-op-osem").                                                 |
-| ReconMethodParameterLabels           | REQUIRED. Names of reconstruction parameters (for example, ["subsets", "iterations"])                                     |
-| ReconMethodParameterUnit             | REQUIRED. Unit of reconstruction parameters (for example, ["none", "none"]).                                              |
-| ReconMethodParameterValues           | REQUIRED. Values of reconstruction parameters (for example, [21, 3])                                                      |
-| ReconFilterType                      | REQUIRED. Type of post-recon smoothing (for example, ["Shepp"])                                                           |
-| ReconFilterSize                      | REQUIRED. Kernel size of post-recon filter (FWHM).                                                                        |
-| AttenuationCorrection                | REQUIRED. Short description of the attenuation correction method used.                                                    |
-| ReconMethodImplementationVersion     | RECOMMENDED. Identification for the software used, such as name and version.                                              |
-| AttenuationCorrectionMethodReference | RECOMMENDED. Reference paper for the attenuation correction method used.                                                  |
-| ScaleFactor                          | RECOMMENDED. Scale factor for each frame (for example, []).                                                               |
-| ScatterFraction                      | RECOMMENDED. Scatter fraction for each frame (for example, []).                                                           |
-| DecayCorrectionFactor                | RECOMMENDED. Decay correction factor for each frame.                                                                      |
-| PromptRate                           | RECOMMENDED. Prompt rate for each frame.                                                                                  |
-| RandomRate                           | RECOMMENDED. Random rate for each frame.                                                                                  |
-| SinglesRate                          | RECOMMENDED. Singles rate for each frame.                                                                                 |
+| **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| -------------- | --------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AcquisitionMode                      | REQUIRED | [string][] | Type of acquisition of the PET data (for example, "list mode")                                                  |
+| ImageDecayCorrected                  | REQUIRED | [boolean][] | Boolean flag specifying whether the image data have been decay-corrected.                                       |
+| ImageDecayCorrectionTime             | REQUIRED | [number][] | Point in time from which the decay correction was applied with respect to TimeZero in the default unit seconds. |
+| ReconMethodName                      | REQUIRED | [string][] | Reconstruction method or algorithm (for example, "3d-op-osem").                                                 |
+| ReconMethodParameterLabels           | REQUIRED | [array][] of [strings][] | Names of reconstruction parameters (for example, ["subsets", "iterations"])                                     |
+| ReconMethodParameterUnit             | REQUIRED | [array][] of [strings][] | Unit of reconstruction parameters (for example, ["none", "none"]).                                              |
+| ReconMethodParameterValues           | REQUIRED | [array][] of [numbers][] | Values of reconstruction parameters (for example, [21, 3])                                                      |
+| ReconFilterType                      | REQUIRED | [string][] or [array][] of [strings][] | Type of post-recon smoothing (for example, ["Shepp"])                                                           |
+| ReconFilterSize                      | REQUIRED | [number][] or [array][] of [numbers][] | Kernel size of post-recon filter (FWHM).                                                                        |
+| AttenuationCorrection                | REQUIRED | [string][] | Short description of the attenuation correction method used.                                                    |
+| ReconMethodImplementationVersion     | RECOMMENDED | [string][] | Identification for the software used, such as name and version.                                              |
+| AttenuationCorrectionMethodReference | RECOMMENDED | [string][] | Reference paper for the attenuation correction method used.                                                  |
+| ScaleFactor                          | RECOMMENDED | [array][] of [numbers][] | Scale factor for each frame.                                                               |
+| ScatterFraction                      | RECOMMENDED | [array][] of [numbers][] | Scatter fraction for each frame.                                                           |
+| DecayCorrectionFactor                | RECOMMENDED | [array][] of [numbers][] | Decay correction factor for each frame.                                                                      |
+| PromptRate                           | RECOMMENDED | [array][] of [numbers][] | Prompt rate for each frame.                                                                                  |
+| RandomRate                           | RECOMMENDED | [array][] of [numbers][] | Random rate for each frame.                                                                                  |
+| SinglesRate                          | RECOMMENDED | [array][] of [numbers][] | Singles rate for each frame.                                                                                 |
 
 #### Example (`*_pet.json`)
 
@@ -285,20 +281,6 @@ All reconstruction specific parameters that are not specified, but one wants to 
 
 This section includes all data needed to perform blood analysis for PET data.
 The section may be omitted completely if blood measurements of radioactivity were not made.
-**`*_blood.json`:** If blood measurements were made a `*_blood.json` file is expected that contains
-information about which blood data is available as well as some blood measurement details.
-Furthermore, depending on the information given in the `*_blood.json` file
-we expect `.tsv` files with corresponding .json files that contain the values
-and information regarding plasma samples, metabolite fractions,
-discrete blood samples and/or continuous blood samples from an autosampler.
-All these measurements should be defined according to a single time-scale
-in relation to time zero defined by the PET data (Figure 1).
-Additionally, if blood and metabolite measurements were made
-one should always report radioactivity in plasma and corresponding
-parent fraction measurements, including fractions of radiometabolites.
-All definitions used below are in accordance with Innis et al. 2007 [3].
-All method specific information related to the measurements can be stated
-in the field `Description`.
 
 Template:
 
@@ -306,9 +288,8 @@ Template:
 sub-<participant_label>/
  	[ses-<session_label>/]
 	pet/
-	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_blood.json
-	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>.tsv
-	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>.json
+	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>_blood.tsv
+	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>_blood.json
 
 ```
 
@@ -318,141 +299,103 @@ if it does not change, for example, with multiple reconstructions.
 The blood data is most often recorded using an autosampler for continuous blood samples,
 or manually for discrete blood samples.
 Therefore, the recording key (`recording-<label>`) has two reserved values:
-`blood_continuous`,
-for continuous whole blood data measurements (2.2.5);
-and `blood_discrete`, for discrete blood data, including
-whole blood (2.2.5),
-plasma (2.2.3),
-parent fraction and
-metabolite fractions (2.2.4).
+`autosampler`,
+for continuous blood data measurements;
+and `manual`, for discrete blood data.
+All blood measurements should be reported according to a single time-scale
+in relation to time zero defined by the PET data (Figure 1).
+All definitions used below are in accordance with Innis et al. 2007 ([doi:10.1038/sj.jcbfm.9600493](https://doi.org/10.1038/sj.jcbfm.9600493)).
 
-**`*.tsv`:** The actual blood radioactivity data will be stored in [tabular `*.tsv` files](../02-common-principles.md#tabular-files)
-with the `blood_continuous` and `blood_discrete` suffix.
-The first column in the `*.tsv` file should be a time column (see 2.2.1),
-defined in relation to time zero defined by the `_pet.json` file.
-All other information relevant to the blood measurements are recommended,
-and can be added as an additional column.
-It is expected that all values are (if relevant) decay corrected to time zero.
 
-## Blood sidecar JSON (`*_blood.json`)
+## Blood sidecar JSON (`*recording-(manual|autosampler)_blood.json`)
 
-As stated above in order to simplify a distinction between PET data acquired
-with and without blood measurements, we have added a specific file detailing
-blood measurements called `*_blood.json`.
-If blood data is available, meaning some of the `*Avail` below with a given prefix are true,
-the following fields with the given prefix are required
-and at the same time we require the presence of a `*recording-blood_discrete.tsv`
-or `*recording-blood_continuous.tsv` with a corresponding `*recording-blood_discrete.json`
-or `*recording-blood_continuous.json` detailing the column content.
-These are detailed in the next sections.
+If blood measurements were made a `*recording-<label>_blood.json` file is expected that contains
+information about which blood data (plasma, whole blood, and metabolites) is available as well as some blood measurement details.
+These are detailed in the next sections. Different fields are customary depending on if manual or automatic blood sampling is carried out. 
 
-| Field name                          | Definition                                                                                                                                                                                                                        |
-|-------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| PlasmaAvail                         | REQUIRED. Boolean that specifies if plasma measurements are available. If this is false, all of the plasma fields should be excluded.                                                                                             |
-| PlasmaFreeFraction                  | RECOMMENDED. Measured free fraction in plasma, meaning the concentration of free compound in plasma divided by total concentration of compound in plasma.                                                                         |
-| PlasmaFreeFractionMethod            | RECOMMENDED. Method used to estimate free fraction.                                                                                                                                                                               |
-| MetaboliteAvail                     | REQUIRED. Boolean that specifies if metabolite measurements are available. If this is false, all of the metabolite fields should be excluded.                                                                                     |
-| MetaboliteMethod                    | REQUIRED. Method used to measure metabolites.                                                                                                                                                                                     |
-| MetaboliteRecoveryCorrectionApplied | REQUIRED. Metabolite recovery correction from the HPLC, for tracers where it changes with time postinjection. If “true” please include recovery fractions from the HPLC as a column in the table with blood data (`*_blood.tsv`). |
-| ContinuousBloodAvail                | REQUIRED. Boolean that specifies if continuous blood measurements are available. If this is false, all of the continuous blood fields should be excluded.                                                                         |
-| ContinuousBloodDispersionCorrected  | REQUIRED. Boolean flag specifying whether the continuous blood data have been dispersion-corrected.                                                                                                                               |
-| ContinuousBloodWithdrawalRate       | RECOMMENDED. The rate at which the blood was withdrawn from the subject. The unit of the specified withdrawal rate should be in mL/s.                                                                                             |
-| ContinuousBloodTubingType           | RECOMMENDED. Description of the type of tubing used, ideally including the material and (internal) diameter.                                                                                                                      |
-| ContinuousBloodTubingLength         | RECOMMENDED. The length of the blood tubing, from the subject to the detector in the default unit centimeter.                                                                                                                     |
-| ContinuousBloodDispersionConstant   | RECOMMENDED. External dispersion time constant resulting from tubing in default unit seconds.                                                                                                                                     |
-| DiscreteBloodAvail                  | REQUIRED. Boolean that specifies if discrete blood measurements are available. If this is false, all of the discrete blood fields should be excluded.                                                                             |
-| DiscreteBloodHaematocrit            | RECOMMENDED. Measured haematocrit, meaning the volume of erythrocytes divided by the volume of whole blood.                                                                                                                       |
-| DiscreteBloodDensity                | RECOMMENDED. Measured blood density. Unit of blood density should be in g/mL.                                                                                                                                                     |
+| **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| -------------- | --------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PlasmaAvail                         | REQUIRED | [boolean][] | Boolean that specifies if plasma measurements are available. If this is false, all of the plasma fields should be excluded.                                                                                             |
+| PlasmaFreeFraction                  | RECOMMENDED | [number][] | Measured free fraction in plasma, meaning the concentration of free compound in plasma divided by total concentration of compound in plasma.                                                                        |
+| PlasmaFreeFractionMethod            | RECOMMENDED | [string][] | Method used to estimate free fraction. |
+| WholeBloodAvail | REQUIRED | [boolean][] | Boolean that specifies if whole blood measurements are available. |
+| MetaboliteAvail                     | REQUIRED | [boolean][] | Boolean that specifies if metabolite measurements are available. If this is false, all of the metabolite fields should be excluded.                                                                                     |
+| MetaboliteMethod                    | REQUIRED | [string][] | Method used to measure metabolites.                                         |
+| MetaboliteRecoveryCorrectionApplied | REQUIRED | [boolean][] | Metabolite recovery correction from the HPLC, for tracers where it changes with time postinjection. If “true” please include a column named "metabolite_recovery_fractions" in the table with blood data (`*_blood.tsv`) of recovery fractions from the HPLC. |
+| DispersionCorrected  | REQUIRED | [boolean][] | Boolean flag specifying whether the blood data have been dispersion-corrected. NOTE: not customary for manual samples, and hence should be set to false.                                                                                                                             |
+| WithdrawalRate       | RECOMMENDED | [number][] | The rate at which the blood was withdrawn from the subject. The unit of the specified withdrawal rate should be in mL/s.                                                                                             |
+| TubingType           | RECOMMENDED | [string][] | Description of the type of tubing used, ideally including the material and (internal) diameter.                                                                                                                      |
+| TubingLength         | RECOMMENDED | [number][] | The length of the blood tubing, from the subject to the detector in the default unit centimeter.                                                                                                              |
+| DispersionConstant   | RECOMMENDED | [number][] | External dispersion time constant resulting from tubing in default unit seconds.                                                                                                                                                                             |
+| Haematocrit            | RECOMMENDED | [number][] | Measured haematocrit, meaning the volume of erythrocytes divided by the volume of whole blood.                                                                                                                       |
+| BloodDensity                | RECOMMENDED | [number][] | Measured blood density. Unit of blood density should be in g/mL.                                                                                                                                                     |
 
 ### Time
 
-If discrete samples, for example, using a COBRA counter are available,
-then time information as detailed below should be added to the `*recording-blood_discrete.tsv`
-and the values below should be added to the `*recording-blood_discrete.json`.
-If continuous samples, for example, using an Allogg autosampler are available,
-then time information as detailed below should be added to the `*recording-blood_continous.tsv`
-and the values below should be added to the `*recording-blood_continous.json`.
+If manual blood samples, for example, using a COBRA counter are available,
+then time information as detailed below should be added to the `*recording-manual_blood.tsv`
+and the values below should be added to the `*recording-manual_blood.json`.
+If blood samples using an autosampler, for example, using an Allogg autosampler are available,
+then time information as detailed below should be added to the `*recording-autosampler_blood.tsv`
+and the values below should be added to the `*recording-autosampler_blood.json`.
 
-| Field name  | Definition                                                                             |
-|:------------|:---------------------------------------------------------------------------------------|
-| ColumnName  | REQUIRED. Name of the column (for example, "time").                                     |
-| Description | REQUIRED. Time in relation to `TimeZero` defined by the `*_pet.json`. (for example, 5) |
-| Units       | REQUIRED. Unit of time steps (for example, "s")                                        |
+| **Column name** | **Description** | **Units**                                      |
+| --------------- | ---------------------------------------------------- | ---------- | 
+| time | Time in relation to `TimeZero` defined by the `*_pet.json`. (for example, 5) | Unit of time steps (for example, "s") |       |                           |
 
 ### Radioactivity in plasma
 
 This section may be omitted if plasma measurements of radioactivity were not made.
 It contains information regarding sampled plasma data.
-If plasma measurements are available by a discrete sampler, for example, using a COBRA counter,
-they should be added to the `*recording-blood_discrete.tsv`
+If plasma measurements are available by manual sampling, they should be added to the `*recording-blood_discrete.tsv`
 and the values below should be added to the `*recording-blood_discrete.json`.
-If plasma measurements are available by a continuous sampler, for example, using an Allogg autosampler,
-they should be added to the `*recording-blood_continous.tsv`
+If plasma measurements are available by an autosampler, they should be added to the `*recording-blood_continous.tsv`
 and the values below should be added to the `*recording-blood_continous.json`.
 
-| Field name  | Definition                                                         |
-|:------------|:-------------------------------------------------------------------|
-| ColumnName  | REQUIRED. Name of the column (for example, "plasma_radioactivity"). |
-| Description | REQUIRED. Radioactivity in plasma.                                 |
-| Units       | REQUIRED. Unit of plasma radioactivity (for example, "kBq/mL")     |
+| **Column name** | **Description** | **Units**                                      |
+| --------------- | ---------------------------------------------------- | ---------- | 
+| plasma_radioactivity | Radioactivity in plasma | Unit of parent fraction (for example, "unitless") |       |
 
 ### Metabolites
 
 This section may be omitted if metabolite measurements were not made.
-If metabolite measurements are available they should be added to the `*recording-blood_discrete.tsv`
+If metabolite measurements are available by manual sampling
+they should be added to the `*recording-blood_discrete.tsv`
 and the values below should be added to the `*recording-blood_discrete.json`.
+If metabolite measurements are available by an autosampler they should be added to the `*recording-blood_continous.tsv`
+and the values below should be added to the `*recording-blood_continous.json`.
 Hence, it may contain information regarding metabolite info, such as the following three column examples:
 
-| Field name  | Definition                                                               |
-|:------------|:-------------------------------------------------------------------------|
-| ColumnName  | REQUIRED. Name of the column (for example, "metabolite_parent_fraction"). |
-| Description | REQUIRED. Parent fraction of the radiotracer (0-1).                      |
-| Units       | REQUIRED. Unit of parent fraction (for example, "unitless")              |
-
-| Field name  | Definition                                                              |
-|:------------|:------------------------------------------------------------------------|
-| ColumnName  | REQUIRED. Name of the column (for example, "metabolite_polar_fraction)". |
-| Description | REQUIRED. Polar metabolite fraction of the radiotracer (0-1).           |
-| Units       | REQUIRED. Unit of polar metabolite fraction (for example, "unitless")   |
-
-| Field name  | Definition                                                                                   |
-|:------------|:---------------------------------------------------------------------------------------------|
-| ColumnName  | REQUIRED. Name of the column (for example, "hplc_recovery_fractions".                        |
-| Description | REQUIRED. HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC). |
-| Units       | REQUIRED. Unit of recovery fractions (for example, "unitless")                               |
+| **Column name** | **Description** | **Units**                                      |
+| --------------- | ---------------------------------------------------- | ---------- | 
+| metabolite_parent_fraction | Parent fraction of the radiotracer (0-1) | Unit of parent fraction (for example, "unitless")
+| metabolite_polar_fraction     | Polar metabolite fraction of the radiotracer (0-1) | Unit of polar metabolite fraction (for example, "unitless")                   | 
+| hplc_recovery_fractions        | HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC) | Unit of recovery fractions (for example, "unitless") |       |
 
 ### Radioactivity in whole blood
 
 This section may be omitted if whole blood measurements of radioactivity were not made.
 It contains information regarding sampled whole blood data.
-If whole blood measurements are available by a discrete sampler, for example, using a COBRA counter,
-they should be added to the `*recording-blood_discrete.tsv`
-and the values below should be added to the `*recording-blood_discrete.json`.
-If whole blood measurements are available by a continuous sampler, for example, using an Allogg autosampler,
-they should be added to the `*recording-blood_continous.tsv`
-and the values below should be added to the `*recording-blood_continous.json`.
+If whole blood measurements are available by manual sampling they should be added to the `*recording-manual_blood.tsv`
+and the values below should be added to the `*recording-manual_blood.json`.
+If whole blood measurements are available by an autosampler, they should be added to the `*recording-autosampler_blood.tsv`
+and the values below should be added to the `*recording-autosampler_blood.json`.
 
-| Field name  | Definition                                                                                  |
-|:------------|:--------------------------------------------------------------------------------------------|
-| ColumnName  | REQUIRED. Name of the column (for example, "whole_blood_radioactivity)".                     |
-| Description | REQUIRED. Radioactivity in whole blood samples.                                             |
-| Units       | REQUIRED. Unit of radioactivity measurements in whole blood samples (for example, "kBq/mL") |
+| **Column name** | **Description** | **Units**                                      |
+| --------------- | ---------------------------------------------------- | ---------- | 
+| whole_blood_radioactivity | Radioactivity in whole blood samples | Unit of radioactivity measurements in whole blood samples (for example, "kBq/mL")  |       |                           |
 
-### Example (`*_blood.json`)
+### Example (`*_recording-manual_blood.json`)
 
 ```JSON
 {
 	"PlasmaAvail": true,
+	"WholeBloodAvail": true,
 	"MetaboliteAvail": true,
-	"ContinuousBloodAvail": true,
-	"DiscreteBloodAvail": true
-}
-```
+	"MetaboliteMethod": "",
+	"MetaboliteRecoveryCorrectionApplied": false,
+	"DispersionCorrected": false,
 
-### Example (`*_recording-blood_discrete.json`)
-
-```JSON
-{
     "time": {
         "Description": "Time in relation to time zero defined by the _pet.json",
         "Units": "s"
@@ -472,45 +415,22 @@ and the values below should be added to the `*recording-blood_continous.json`.
     "metabolite_polar_fraction": {
         "Description": "Polar metabolite fraction of the radiotracer.",
         "Units": "unitless"
-    },
-    "metabolite_lipophilic_fraction": {
-        "Description": "Lipophilic metabolite fraction of the radiotracer.",
-        "Units": "unitless"
     }
 }
 ```
 
-![Figure 2](images/blood_discrete_tsv.png "Screenshot of the discrete blood tsv file.")
-
-Figure 2: Caption of the corresponding `recording-blood_discrete.tsv` file.
-
-
-### Example (`*_recording-blood_continuous.json`)
-
-```JSON
-{
-"time": {
-        "Description": "Time in relation to time zero defined by the _pet.json",
-        "Units": "s"
-    },
-    "plasma_radioactivity": {
-        "Description": "Radioactivity in plasma samples. Measured using Allogg autosampler.",
-        "Units": "kBq/mL"
-    }
-}
+### Example (`*_recording-manual_blood.tsv`)
+```Text
+time plasma_radioactivity whole_blood_radioactivity metabolite_parent_fraction metabolite_polar_fraction
+0    0    0    1    0    
+145    43.31    33.79    0.5749    0.1336
+292    48.96    37.42    0.3149    0.2746
+602    39.84    32.05    0.1469    0.3548
+1248    37.38    31.52    0.073    0.444
+1785    36.40    28.83    0.078    0.429
+2390    33.13    26.32    0.061    0.453
+3059    30.83    25.22    0.049    0.473
+4196    27.28    21.98    0.036    0.503
+5407    22.70    19.49    0.032    0.523
+7193    19.71    15.70    0.02    0.559
 ```
-
-# Appendix: Useful resources
-
-This website is an extremely useful resource: http://www.turkupetcentre.net/petanalysis/quantification.html
-
-An extensive resource for background knowledge on kinetic modeling
-can be found here: https://nru.dk/index.php/misc/category/3-pet-kinetic-course
-
-# References
-
-[1] Knudsen, G. M., Ganz, M., Appelhoff, S., Boellaard, R., Bormans, G., Carson, R. E., … Innis, R.B. (2020). Guidelines for the content and format of PET brain data in publications and archives : A consensus paper. Journal of Cerebral Blood Flow and Metabolism. https://doi.org/10.1177/0271678X20905433
-
-[2] Nørgaard, M., Ganz, M., Svarer, C., Frokjaer, V. G., Greve, D. N., Strother, S. C., & Knudsen, G. M. (2019). Optimization of preprocessing strategies in Positron Emission Tomography (PET) neuroimaging: A [11C]DASB PET study. NeuroImage, 199(October 2019), 466–479. https://doi.org/10.1016/j.neuroimage.2019.05.055
-
-[3] Innis, R. B., Cunningham, V. J., Delforge, J., Fujita, M., Gjedde, A., Gunn, R. N., … Carson, R. (2007). Consensus nomenclature for in vivo imaging of reversibly binding radioligands. Journal of Cerebral Blood Flow and Metabolism, 1–7. https://doi.org/10.1038/sj.jcbfm.9600493
