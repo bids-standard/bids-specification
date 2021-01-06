@@ -149,7 +149,7 @@ Explanation of the table:
 
 -   The metadata fields listed in the OPTIONAL column can be used to form different flavors of an existing file collection suffix,
     dispensing with the need for introducing a new suffix.
-    See [deriving the intended qMRI application from an ambiguos file collection](#Deriving-the-intended-qMRI-application-from-an-ambiguous-file-collection)
+    See [deriving the intended qMRI application from an ambiguous file collection](#deriving-the-intended-qmri-application-from-an-ambiguous-file-collection)
     for details.
 
 #### Field maps
@@ -320,7 +320,7 @@ listed for the respective file collection suffix are provided for the data. In a
 conditional rules based on the value of a given required metada field can be set
 for the description of a derived qMRI application. Note that the value of this
 required metadata is fixed across constituent images of a file collection and defined
-in [Method-specific priority levels for qMRI file collections](#Method-specific-priority-levels-for-qMRI-file-collections).
+in [Method-specific priority levels for qMRI file collections](#method-specific-priority-levels-for-qmri-file-collections).
 
 For example, if the optional metadata field of `PulseSequenceType` is SPGR
 for a collection of anatomical images listed by the `VFA` suffix, the data
@@ -330,8 +330,8 @@ provided as a metadata field, then the dataset becomes eligible for `DESPOT2`
 T2 fitting application.
 
 Please note that optional metadata fields listed in the [deriving the intended qMRI
-application from an ambiguous file collection table](#Deriving-the-intended-qMRI-application-from-an-ambiguous-file-collection) are included in the optional (third)
-column of [the priority levels table](#Method-specific-priority-levels-for-qMRI-file-collections) for the consistency of this appendix.
+application from an ambiguous file collection table](#deriving-the-intended-qmri-application-from-an-ambiguous-file-collection) are included in the optional (third)
+column of [the priority levels table](#method-specific-priority-levels-for-qmri-file-collections) for the consistency of this appendix.
 
 ## Introducing a new qMRI file collection
 
@@ -351,9 +351,9 @@ introduce a new suffix:
 
 -   If it is possible to derive a qMRI application from an already existing file collection suffix
     by defining a set of logical conditions over the metadata fields, the tables of the
-    [deriving the intended qMRI application from an ambiguous file collection](#Deriving-the-intended-qMRI-application-from-an-ambiguous-file-collection)
+    [deriving the intended qMRI application from an ambiguous file collection](#deriving-the-intended-qmri-application-from-an-ambiguous-file-collection)
     and the
-    [anatomy data priority levels](#Anatomy-imaging-data)
+    [anatomy data priority levels](#anatomy-imaging-data)
     sections are extended instead of introducing a new suffix.
 
 ## Application-specific notes for qMRI file collections
