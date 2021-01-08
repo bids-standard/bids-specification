@@ -166,7 +166,7 @@ Explanation of the table:
 
 <sup>*</sup> Please see TB1SRGE-specific notes for the calculation of `NumberShots`.
 
-### Meta-data requirements for qMRI maps
+### Metadata requirements for qMRI maps
 
 As qMRI maps are stored as derivatives, they are subjected to the metadata requirements of
 [derived datasets](../03-modality-agnostic-files.md#derived-dataset-and-pipeline-description).
