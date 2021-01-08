@@ -144,7 +144,7 @@ Explanation of the table:
 -   The metadata fields listed in the REQUIRED column are needed to perform a minimum viable qMRI processing for the corresponding `file collection`.
 
 -   Note that some of the metadata fields may be constant across different files in a file collection,
-    yet still required as an input (for example, `NumberShots` in `MP2AGE`).
+    yet still required as an input (for example, `NumberShots` in `MP2RAGE`).
     Such metadata fields MUST be provided in the accompanying JSON files.
 
 -   The metadata fields listed in the OPTIONAL column can be used to form different flavors of an existing file collection suffix,
