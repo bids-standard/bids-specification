@@ -636,12 +636,12 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     perf/
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_asl.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_asl.json
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_aslcontext.tsv
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.json
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_labeling.jpg
+       sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_asl.nii[.gz]
+       sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_asl.json
+       sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_aslcontext.tsv
+       sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.nii[.gz]
+       sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.json
+       sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_rec-<label>][_run-<index>]_labeling.jpg
 ```
 
 The complete ASL time series should be stored as a 4D NIfTI file in the original acquisition order,
@@ -682,7 +682,7 @@ The `m0scan` can either be stored inside the 4D ASL time-series NIfTI file
 or as a separate NIfTI file,
 depending on whether it was acquired within the ASL time-series or as a separate scan.
 These and other M0 options are specified in the REQUIRED `M0Type` field of the `*_asl.json` file.
-It can also be stored under `fmap/sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]`,
+It can also be stored under `perf/sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]`,
 when the [pepolar approach](#case-4-multiple-phase-encoded-directions-pepolar) is used.
 
 ### `*_asl.json` file
