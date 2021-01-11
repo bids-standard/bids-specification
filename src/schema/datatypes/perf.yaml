@@ -1,25 +1,7 @@
 ---
 # First group
 - suffixes:
-    - phasediff
-    - phase1
-    - phase2
-    - magnitude1
-    - magnitude2
-    - magnitude
-    - fieldmap
-  extensions:
-    - .nii.gz
-    - .nii
-    - .json
-  entities:
-    sub: required
-    ses: optional
-    acq: optional
-    run: optional
-# Second group
-- suffixes:
-    - epi
+    - asl
     - m0scan
   extensions:
     - .nii.gz
@@ -29,6 +11,30 @@
     sub: required
     ses: optional
     acq: optional
-    ce: optional
-    dir: required
+    rec: optional
+    dir: optional
+    run: optional
+# Second group
+- suffixes:
+    - aslcontext
+  extensions:
+    - .tsv
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+    rec: optional
+    dir: optional
+    run: optional
+# Third group
+- suffixes:
+    - labeling
+  extensions:
+    - .jpg
+  entities:
+    sub: required
+    ses: optional
+    acq: optional
+    rec: optional
     run: optional
