@@ -1,4 +1,4 @@
-# Appendix X: Cross modality correspondence
+# Appendix XIII: Cross modality correspondence
 
 ## PET-MRI correspondence
 
