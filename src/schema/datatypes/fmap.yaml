@@ -39,12 +39,12 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
     flip: required
     part: optional
 # Fourth group
@@ -55,12 +55,12 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
     echo: required
     flip: required
     part: optional

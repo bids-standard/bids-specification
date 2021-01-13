@@ -48,12 +48,12 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
 # Third group
 - suffixes:
     - defacemask
