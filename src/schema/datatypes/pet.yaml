@@ -1,29 +1,29 @@
 ---
 # First group
 - suffixes:
-- pet
-extensions:
-- .nii.gz
-- .nii
-- .json
-entities:
-sub: required
-ses: optional
-task: optional
-acq: optional
-rec: optional
-run: optional
+    - pet
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    task: optional
+    acq: optional
+    rec: optional
+    run: optional
 # Second group
 - suffixes:
-- blood
-extensions:
-- .tsv
-- .json
-entities:
-sub: required
-ses: optional
-task: optional
-acq: optional
-rec: optional
-run: optional
-recording: optional
+    - blood
+  extensions:
+    - .tsv
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    task: optional
+    acq: optional
+    rec: optional
+    run: optional
+    recording: optional
