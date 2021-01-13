@@ -25,7 +25,8 @@ However, BIDS was initially developed in the context of MRI,
 so some terminology may be unfamiliar to researchers from each field.
 This section adds clarifications to
 [Common Principles - Definitions](../02-common-principles.md#definitions)
-for the PET context.
+for the PET context, and introduces the term "time zero" which is currently
+specific to PET.
 
 1.  **Session** - In most cases, a new session with respect to PET corresponds
     to a visit to the scanning site, and starts with a new injection.
@@ -39,6 +40,24 @@ for the PET context.
     bathroom.
     While leaving the scanner would interrupt an MR acquisition, in PET this
     disruption is more appropriately considered missing data during a run.
+
+1.  **Time zero** - A reference point in time, to which all timestamps pertaining
+    to a recording are relative.
+    Time zero will most commonly be the time of injection of a radioisotope, or
+    the time at which the first scan of an acquisition is begun.
+    If a pharmacological within-scan challenge is performed,
+    another time zero may be more convenient.
+
+An overview of a common PET experiment (with blood data) can be seen in Figure 1,
+defined on a single time scale relative to a predefined “time zero”.
+
+![Figure 1](images/PET_scan_overview.svg "Overview of PET recording data")
+
+Figure 1: Overview of a common PET experiment, including blood measurements,
+and defined on a common time scale.
+Note, “time zero” can either be defined as time of injection or scan start,
+and all the PET and blood data should be decay-corrected to this time point.
+In this example, tracer injection coincides with scan start.
 
 ## PET recording data
 
@@ -61,21 +80,6 @@ Please pay specific attention to whether the MR images have been unwarped to cor
 
 **Units**: In general, SI units must be used (we refer to [LINK](https://bids-specification.readthedocs.io/en/stable/99-appendices/05-units.html)) and we recommend to use the CMIXF style formatting for SI units, for example, "kBq/mL"
 rather than "kilobecquerel per ml".
-An overview of a common PET experiment (with blood data) can be seen in Figure 1,
-defined on a single time scale relative to a predefined “time zero”
-(which should be defined either to be scan start or injection time;
-please note an exception to this definition is possible if a pharmacological
-within-scan challenge is performed).
-
-![Figure 1](images/PET_scan_overview.svg "Overview of PET recording data")
-
-Figure 1: Overview of a common PET experiment, including blood measurements,
-and defined on a common time scale.
-Note, “time zero” can either be defined as time of injection or scan start,
-and all the PET and blood data should be decay-corrected to this time point.
-Furthermore, although in this example tracer injection coincides with scan start,
-this is not always the case and hence we allow for the flexibility of specifying
-either time of injection or scan start as “time zero”.
 
 PET data belong to the `pet` directory. PET imaging data SHOULD be stored in 4D
 (or 3D if only one volume was acquired) NIfTI files with `_pet` suffix.
