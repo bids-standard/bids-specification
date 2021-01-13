@@ -18,6 +18,28 @@ and can be used for practical guidance when curating a new dataset.
 
 Further PET datasets are available from [OpenNeuro](https://openneuro.org).
 
+## Terminology and conventions
+
+PET-BIDS is fully consistent with the BIDS specification as a whole.
+However, BIDS was initially developed in the context of MRI,
+so some terminology may be unfamiliar to researchers from each field.
+This section adds clarifications to
+[Common Principles - Definitions](../02-common-principles.md#definitions)
+for the PET context.
+
+1.  **Session** - In most cases, a new session with respect to PET corresponds
+    to a visit to the scanning site, and starts with a new injection.
+    In situations where different data types are obtained over several visits
+    (for example, FDG PET on one day followed by amyloid PET a couple days after)
+    these scans may be grouped into the same session.
+    In other datasets, a subject leaving the scanner and returning under the same
+    injection may be logically considered separate sessions.
+
+1.  **Run** - In PET, it is common for subjects to leave the scanner to use the
+    bathroom.
+    While leaving the scanner would interrupt an MR acquisition, in PET this
+    disruption is more appropriately considered missing data during a run.
+
 ## PET recording data
 
 Template:
@@ -59,31 +81,6 @@ PET data belong to the `pet` directory. PET imaging data SHOULD be stored in 4D
 (or 3D if only one volume was acquired) NIfTI files with `_pet` suffix.
 Volumes should be stored in chronological order (the order they were acquired in).
 
-Following the [BIDS Common Principles](https://bids-specification.readthedocs.io/en/stable/02-common-principles.html), here we summarize how different labels are organized for PET data. Please, check the Common Principles section for further details.
-**Sessions**: Multiple sessions (visits) are encoded by adding an extra layer of directories
-and file names in the form of `ses-<label>`.
-Session labels can consist only of alphanumeric characters [a-zA-Z0-9]
-and should be consistent across subjects.
-If numbers are used in session labels we recommend using zero padding
-(for example, `ses-01`, `ses-11` instead of `ses-1`, `ses-11`).
-This makes results of alphabetical sorting more intuitive.
-The extra session layer (at least one `ses-<label>` subfolder) should be added
-for all subjects if at least one subject in the dataset has more than one session.
-Skipping the session layer for only some subjects in the dataset is not allowed.
-If a `ses-<label>` subfolder is included as part of the directory hierarchy,
-then the same `ses-<label>` tag must also be included as part of the file names themselves.
-In general, we assume that a new session with respect to PET starts with either a new injection
-(probably most common case) or with the subject being taken out of the scanner
-(same injection, but subject leaves the scanner and returns).
-However, for example, if a subject has to leave the scanner room and
-then be re-positioned on the scanner bed, for example, to use the bathroom,
-the set of PET acquisitions will still be considered as a session and match
-sessions acquired in other subjects.
-Similarly, in situations where different data types are obtained over several
-visits (for example, FDG PET on one day followed by amyloid PET a couple days after)
-those can be grouped in one session.
-Please see the difference with the `run-<label>` below.
-
 **Task:** With respect to the `task-<label>`, data is arranged in a similar way as task-based
 and resting state BOLD fMRI data.
 In case of studies using combined PET/fMRI, subject-specific tasks may be carried out
@@ -107,18 +104,7 @@ In case of multiple reconstructions of the data with the same type,
 we allow for using a number after the `<label>` in order to distinguish,
 for example `recon-acdyn1` and `recon-acdyn2`.
 
-**Run:** The run entity is used if one scan type/contrast is repeated multiple times
-within the same scan session/visit.
-If several scans of the same modality are acquired they MUST be indexed
-with a key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only integers are allowed as run labels).
-When there is only one scan of a given type the run key MAY be omitted.
-An example of this would be two consecutive scans performed within the same session,
-for example two short FDG scans right after each other.
-It is our assumption that the `run-<label>` is used in PET for the cases
-where the subject does not leave the scanner.
-Otherwise, we refer to the `ses-<label>` definition.
-
-In addition to the imaging data (*.nii) a `_pet.json` sidecar file needs to be provided.
+In addition to the imaging data (`*.nii`) a `_pet.json` sidecar file needs to be provided.
 The included metadata are divided into sections described below.
 
 ### PET sidecar JSON (`*_pet.json`)

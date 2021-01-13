@@ -28,6 +28,9 @@ misunderstanding we clarify them here.
     sessions is appropriate when several identical or similar data acquisitions
     are planned and performed on all -or most- subjects, often in the case of
     some intervention between sessions (for example, training).
+    In the [PET](04-modality-specific-files/09-positron-emission-tomography.md)
+    context, a session may also indicate a group of related scans,
+    taken in one or more visits.
 
 1.  **Data acquisition** - a continuous uninterrupted block of time during which
     a brain scanning instrument was acquiring data according to particular
@@ -73,6 +76,13 @@ misunderstanding we clarify them here.
     acquisition parameters and task (however events can change from run to run
     due to different subject response or randomized nature of the stimuli). Run
     is a synonym of a data acquisition.
+    Note that "uninterrupted" may look different by modality due to the nature of the
+    recording.
+    For example, in [MRI](04-modality-specific-files/01-magnetic-resonance-imaging-data.md),
+    if a subject leaves the scanner, the acquisition must be restarted.
+    In [PET](04-modality-specific-files/09-positron-emission-tomography.md),
+    the start of acquisition is at injection, so a subject may leave and re-enter the
+    scanner without interrupting the scan.
 
 1.  **Modality** - the category of brain data recorded by a file.
     For MRI data, different pulse sequences are considered distinct modalities,
