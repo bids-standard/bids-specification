@@ -20,6 +20,7 @@ Jump to the following sections:
 -   [Understanding issues](#understanding-issues)
 -   [Writing in markdown](#writing-in-markdown)
 -   [Fixing Remark errors from Travis](#fixing-travis-remark-errors)
+-   [Adding a figure to the specifications](#adding-a-figure-to-the-specifications)
 -   [Making a change with a pull request](#making-a-change-with-a-pull-request)
 -   [Example pull request](#example-pull-request)
 -   [Commenting on a pull request](#commenting-on-a-pull-request)
@@ -232,6 +233,44 @@ mv flagged_file_fixed.md flagged_file.md
 git add flagged_file.md
 git commit -m 'STY: Fixed Markdown style'
 ```
+
+## Adding a figure to the specifications
+
+> A figure is worth a 1000 words! 
+
+If you think that a figure or a picture can help summarize several aspects or notions of the 
+specification, do not hesitate to make a suggestion by showing a draft in a GitHub issue.
+
+After discussion and approval by the community, you can then submit your image
+in a pull request.
+
+Images should be added to an `images` folder that is at the same level as the Markdown file
+where your image will be added. For example if you want to add a figure `figure01.png` to 
+`src/05-derivatives/01-introduction.md` then your image should go to
+`src/05-derivatives/images/figure01.png`.
+
+Figures can be inserted in a Markdown like this (see also
+[Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#images)):
+
+```markdown
+![text to show if image does not load](relative_path_to_file "text to show when hovering over image")
+```
+### Recommendations for figures
+
+1. Try to keep the file size of your figure relatively small (smaller than 500 Kb) 
+to keep the repository light and reduce the load time of the specs 
+for people who do not necessarily have broad-band internet.
+
+1. Figures in the main part of the specification should aim to be very "comprehensive" 
+but "smaller" figures can find their home in the appendices or the BIDS-starter-kit.
+
+1. If you are adding a figure (and not picture) make sure to also supply a vector format 
+of that figure (ideally as an `.svg` file) as this makes it easier to edit it in the
+future.
+
+1. Try to include a README file that details where the figure / image came from 
+and how it can be reproduced. Preferably with a link to the file that generated the figure
+if relevant.
 
 ## Making a change with a pull request
 
