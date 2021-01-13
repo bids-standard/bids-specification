@@ -64,11 +64,10 @@ In this example, tracer injection coincides with scan start.
 Template:
 
 ```Text
-sub-<participant_label>/
-      [ses-<session_label>/]
-        pet/
-        sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.nii[.gz]
-        sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.json
+sub-<label>/[ses-<label>/]
+    pet/
+        sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.nii[.gz]
+        sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.json
 ```
 
 **Shared MRI data along with PET:**
