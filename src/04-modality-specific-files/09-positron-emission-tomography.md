@@ -20,11 +20,6 @@ Further PET datasets are available from [OpenNeuro](https://openneuro.org).
 
 ## PET recording data
 
-As specified above, this extension is relevant for brain PET imaging
-and its associated data, such as blood data.
-In addition, the extension is in accordance with the guidelines for reporting
-and sharing brain PET data (Knudsen et al. 2020, [doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433)).
-
 Template:
 
 ```Text
