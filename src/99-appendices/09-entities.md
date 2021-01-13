@@ -157,16 +157,31 @@ This entity represents the `FlipAngle` metadata field. Please note that the `<in
 denotes the number/index (in the form of a nonnegative integer), not the `FlipAngle`
 value which needs to be stored in the field `FlipAngle` of the separate JSON file.
 
-## recording
+## inv
 
-Full name: Recording
+Full name: Inversion Time
 
-Format: `recording-<label>`
+Format: `inv-<index>`
 
-Definition: More than one continuous recording file can be included (with different
-sampling frequencies).
-In such case use different labels.
-For example: `_recording-contrast`, `_recording-saturation`.
+Definition: If files belonging to an entity-linked file collection are acquired at different
+inversion times, the `_inv-<index>` key/value pair MUST be used to distinguish
+individual files.
+This entity represents the `InversionTime` metadata field. Please note that the `<index>`
+denotes the number/index (in the form of a nonnegative integer), not the `InversionTime`
+value which needs to be stored in the field `InversionTime` of the separate JSON file.
+
+## mt
+
+Full name: Magnetization Transfer
+
+Format: `mt-<label>`
+
+Definition: If files belonging to an entity-linked file collection are acquired at different
+magnetization transfer (MT) states, the `_mt-<label>` key/value pair MUST be used to
+distinguish individual files.
+This entity represents the `MTState` metadata field. Allowed label values for this
+entity are `on` and `off`, for images acquired in presence and absence of an MT pulse,
+respectively.
 
 ## part
 
@@ -188,6 +203,17 @@ The possible options are `rad` or `arbitrary`.
 
 When there is only a magnitude image of a given type, the `part` key MAY be
 omitted.
+
+## recording
+
+Full name: Recording
+
+Format: `recording-<label>`
+
+Definition: More than one continuous recording file can be included (with different
+sampling frequencies).
+In such case use different labels.
+For example: `_recording-contrast`, `_recording-saturation`.
 
 ## proc
 

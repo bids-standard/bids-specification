@@ -2,11 +2,15 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] Move part entity to before recording entity [#692](https://github.com/bids-standard/bids-specification/pull/692) ([tsalo](https://github.com/tsalo))
+-   \[ENH] BEP001 - Entity-linked file collections [#688](https://github.com/bids-standard/bids-specification/pull/688) ([effigies](https://github.com/effigies))
+-   \[ENH] BEP001 - New entities: inv & mt [#681](https://github.com/bids-standard/bids-specification/pull/681) ([agahkarakuzu](https://github.com/agahkarakuzu))
 -   \[MISC] use RFC 2119 language in legend of the "volume timing" table [#678](https://github.com/bids-standard/bids-specification/pull/678) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] Add OPTIONAL acq entity to channels.tsv, events.tsv to match electrophysiological acquisitions [#677](https://github.com/bids-standard/bids-specification/pull/677) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Update all links to use HTTPS whenever possible. [#676](https://github.com/bids-standard/bids-specification/pull/676) ([gllmflndn](https://github.com/gllmflndn))
 -   \[INFRA] Relax line length limit for linting YAML files [#673](https://github.com/bids-standard/bids-specification/pull/673) ([effigies](https://github.com/effigies))
 -   \[ENH] BEP001 - New entity: flip [#672](https://github.com/bids-standard/bids-specification/pull/672) ([agahkarakuzu](https://github.com/agahkarakuzu))
+-   \[ENH] BEP001 - RepetitionTimeExcitation and RepetitionTimePreparation [#671](https://github.com/bids-standard/bids-specification/pull/671) ([agahkarakuzu](https://github.com/agahkarakuzu))
 -   \[FIX] Added white space after table [#660](https://github.com/bids-standard/bids-specification/pull/660) ([robertoostenveld](https://github.com/robertoostenveld))
 -   \[MISC] add remi as maintainer [#657](https://github.com/bids-standard/bids-specification/pull/657) ([Remi-Gau](https://github.com/Remi-Gau))
 -   update Contributing with info on how to respond to reviews [#655](https://github.com/bids-standard/bids-specification/pull/655) ([Remi-Gau](https://github.com/Remi-Gau))

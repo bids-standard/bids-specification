@@ -50,6 +50,8 @@ nav:
         - MEG systems: 99-appendices/07-meg-systems.md
         - Coordinate systems: 99-appendices/08-coordinate-systems.md
         - Entities: 99-appendices/09-entities.md
+        - File collections: 99-appendices/10-file-collections.md
+        - Quantitative MRI: 99-appendices/11-qmri.md
       - Changelog: CHANGES.md
     - The BIDS Starter Kit:
       - GitHub repository: https://github.com/bids-standard/bids-starter-kit
