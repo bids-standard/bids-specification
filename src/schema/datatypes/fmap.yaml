@@ -32,3 +32,36 @@
     ce: optional
     dir: required
     run: optional
+# Third group
+- suffixes:
+    - TB1DAM
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    run: optional
+    acq: optional
+    ce: optional
+    rec: optional
+    flip: required
+    part: optional
+# Fourth group
+- suffixes:
+    - TB1EPI
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    sub: required
+    ses: optional
+    run: optional
+    acq: optional
+    ce: optional
+    rec: optional
+    echo: required
+    flip: required
+    part: optional
