@@ -10,11 +10,13 @@ The following example PET datasets have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
 -   One subject single dynamic scan (pet, mri, blood):
-	[`pet_example1`](https://www.dropbox.com/sh/dmjmaxfswatptpm/AACw31cTyChLA1kwM4Vhqueja?dl=0)
+    [`pet_example1`](https://www.dropbox.com/sh/dmjmaxfswatptpm/AACw31cTyChLA1kwM4Vhqueja?dl=0)
+
 -   One subject single dynamic scan (pet, mri):
-	[`pet_example2`](https://www.dropbox.com/sh/i95a71rpq2unks7/AACby5XcYQp9vcwgx3cNXBhza?dl=0)
+    [`pet_example2`](https://www.dropbox.com/sh/i95a71rpq2unks7/AACby5XcYQp9vcwgx3cNXBhza?dl=0)
+
 -   One subject single dynamic scan (pet, blood):
-	[`pet_example3`](https://www.dropbox.com/sh/i0c3iq50id4s0d3/AABSjaczHM1SQnMRvh3fc7fna?dl=0)
+    [`pet_example3`](https://www.dropbox.com/sh/i0c3iq50id4s0d3/AABSjaczHM1SQnMRvh3fc7fna?dl=0)
 
 Further PET datasets are available from [OpenNeuro](https://openneuro.org).
 
@@ -97,10 +99,12 @@ If only one run was acquired the `run-<index>` can be omitted.
 The OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec) entity
 is used to indicate the reconstruction method used for the image,
 with four reserved values:
-- `acdyn`, for reconstructions with attenuation correction of dynamic data;
-- `acstat`, for reconstructions with attenuation correction of static data;
-- `nacdyn`, for reconstructions without attenuation correction of dynamic data;
-- `nacstat`, for reconstructions without attenuation correction of static data.
+
+  - `acdyn`, for reconstructions with attenuation correction of dynamic data;
+  - `acstat`, for reconstructions with attenuation correction of static data;
+  - `nacdyn`, for reconstructions without attenuation correction of dynamic data;
+  - `nacstat`, for reconstructions without attenuation correction of static data.
+
 Further details regarding reconstruction are in the `_pet.json` file.
 If multiple reconstructions of the data are made with the same type,
 a number MAY be appended to the label,
