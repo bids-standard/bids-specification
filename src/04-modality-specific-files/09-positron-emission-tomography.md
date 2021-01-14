@@ -117,9 +117,6 @@ please follow the original BIDS specification
 Please pay specific attention to whether the MR images have been unwarped to correct for gradient non-linearities. This should be specified in a specific field of the MRI-BIDS .json file named "NonLinearGradientCorrection". For more information please see the appendix regarding cross modality correspondence
  ([LINK](../99-appendices/13-cross-modality-correspondence.md)).
 
-**Units**: In general, SI units must be used (we refer to [LINK](https://bids-specification.readthedocs.io/en/stable/99-appendices/05-units.html)) and we recommend to use the CMIXF style formatting for SI units, for example, "kBq/mL"
-rather than "kilobecquerel per ml".
-
 **Task:** With respect to the `task-<label>`, data is arranged in a similar way as task-based
 and resting state BOLD fMRI data.
 In case of studies using combined PET/fMRI, subject-specific tasks may be carried out
