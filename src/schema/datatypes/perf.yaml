@@ -29,7 +29,7 @@
     run: optional
 # Third group
 - suffixes:
-    - labeling
+    - asllabeling
   extensions:
     - .jpg
   entities:
