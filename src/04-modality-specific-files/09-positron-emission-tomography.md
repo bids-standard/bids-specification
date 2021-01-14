@@ -111,18 +111,19 @@ a number MAY be appended to the label,
 for example `recon-acdyn1` and `recon-acdyn2`.
 
 **Shared MRI data along with PET:**
-To share structural magnetic resonance (MR) images with your PET data,
-please follow the original BIDS specification
-([LINK](https://bids-specification.readthedocs.io/en/stable)).
-Please pay specific attention to whether the MR images have been unwarped to correct for gradient non-linearities. This should be specified in a specific field of the MRI-BIDS .json file named "NonLinearGradientCorrection". For more information please see the appendix regarding cross modality correspondence
- ([LINK](../99-appendices/13-cross-modality-correspondence.md)).
-
-**Task:** With respect to the `task-<label>`, data is arranged in a similar way as task-based
-and resting state BOLD fMRI data.
-In case of studies using combined PET/fMRI, subject-specific tasks may be carried out
-during the acquisition within the same session.
-Therefore, it is possible to specify `task-<label>` in accordance with the fMRI data.
-For more information please see the [BIDS specification for MRI](https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#task-including-resting-state-imaging-data).
+PET and MRI images may be aggregated in the same dataset.
+When analyzing MRI and PET data together,
+it is essential to specify whether MR images have been corrected for gradient non-linearities,
+using the `NonLinearGradientCorrection` metadata field
+(see [Sequence Specifics](./01-magnetic-resonance-imaging-data.md#sequence-specifics)),
+which is REQUIRED for all MR data if PET data is also present in the dataset
+(see also [PET-MRI correspondence](../99-appendices/13-cross-modality-correspondence.md#pet-mri-correspondence)).
+In the case of studies using combined PET/fMRI,
+subject-specific tasks may be carried out during the acquisition within the same session.
+If the same task is recorded with both modalities,
+the same `task-<label>` entity SHOULD be used.
+For further details, see
+[Task (including resting state) imaging data](./01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 
 In addition to the imaging data (`*.nii`) a `_pet.json` sidecar file needs to be provided.
 The included metadata are divided into sections described below.
