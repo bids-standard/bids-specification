@@ -50,8 +50,16 @@ information for a coordinate system (origin and orientation) are specified in
 `<datatype>CoordinateSystem`.
 The third piece of information for a coordinate system (units) are specified in
 `<datatype>CoordinateUnits`.
-Here, `<datatype>` can be one of `MEG`, `EEG`, or `iEEG`, depending on the
-modality that is being used.
+Here, `<datatype>` can be one of the following, depending on the data that
+is supposed to be documented:
+
+-   `MEG`
+-   `EEG`
+-   `iEEG`
+-   `Fiducials`
+-   `AnatomicalLandmark`
+-   `HeadCoil`
+-   `DigitizedHeadPoints`
 
 Allowed values for the `<datatype>CoordinateSystem` field come from a list of
 restricted keywords, as listed in the sections below.
