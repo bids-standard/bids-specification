@@ -70,6 +70,42 @@ sub-<label>/[ses-<label>/]
         sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.json
 ```
 
+PET data belong in the `pet` directory.
+PET imaging data SHOULD be stored in 4D (or 3D, if only one volume was acquired)
+NIfTI files with the `_pet` suffix.
+Volumes MUST be stored in chronological order (the order they were acquired in).
+
+The OPTIONAL [`task-<label>`](../99-appendices/09-entities.md#task) is used to
+indicate a task subjects were asked to perform in the scanner.
+Those labels MUST be consistent across subjects and sessions.
+
+The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity is used to
+indicate the tracer used.
+This entity is OPTIONAL if only one tracer is used in the study,
+but REQUIRED to distinguish between tracers if multiple are used.
+The label used is arbitrary and each file requires a separate JSON sidecar
+with details of the tracer used (see below).
+Examples are `acq-18FFDG` for fludeoxyglucose or `acq-11CPIB` for Pittsburgh compound B.
+Other labels are permitted, as long as they are consistent across subjects and sessions
+and consist only of the legal label characters.
+
+If more than one run of the same task and acquisition (tracer) are acquired during
+the same session, the [`run-<index>`](../99-appendices/09-entities.md#run) entity MUST be used:
+`_run-1`, `_run-2`, `_run-3`, and so on.
+If only one run was acquired the `run-<index>` can be omitted.
+
+The OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec) entity
+is used to indicate the reconstruction method used for the image,
+with four reserved values:
+- `acdyn`, for reconstructions with attenuation correction of dynamic data;
+- `acstat`, for reconstructions with attenuation correction of static data;
+- `nacdyn`, for reconstructions without attenuation correction of dynamic data;
+- `nacstat`, for reconstructions without attenuation correction of static data.
+Further details regarding reconstruction are in the `_pet.json` file.
+If multiple reconstructions of the data are made with the same type,
+a number MAY be appended to the label,
+for example `recon-acdyn1` and `recon-acdyn2`.
+
 **Shared MRI data along with PET:**
 To share structural magnetic resonance (MR) images with your PET data,
 please follow the original BIDS specification
@@ -80,32 +116,12 @@ Please pay specific attention to whether the MR images have been unwarped to cor
 **Units**: In general, SI units must be used (we refer to [LINK](https://bids-specification.readthedocs.io/en/stable/99-appendices/05-units.html)) and we recommend to use the CMIXF style formatting for SI units, for example, "kBq/mL"
 rather than "kilobecquerel per ml".
 
-PET data belong to the `pet` directory. PET imaging data SHOULD be stored in 4D
-(or 3D if only one volume was acquired) NIfTI files with `_pet` suffix.
-Volumes should be stored in chronological order (the order they were acquired in).
-
 **Task:** With respect to the `task-<label>`, data is arranged in a similar way as task-based
 and resting state BOLD fMRI data.
 In case of studies using combined PET/fMRI, subject-specific tasks may be carried out
 during the acquisition within the same session.
 Therefore, it is possible to specify `task-<label>` in accordance with the fMRI data.
 For more information please see the [BIDS specification for MRI](https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#task-including-resting-state-imaging-data).
-
-**Acquisition:** In case of studies with multiple acquisitions per subject using different tracers,
-the `acq-<label>` must be used to distinguish between different tracers.
-Please keep in mind that the label used is arbitrary and each file requires
-a separate JSON sidecar with details of the tracer used (see below).
-Examples are `acq-18FFDG` for fludeoxyglucose, `acq-11CPIB` for Pittsburgh compound B, etc.
-
-**Reconstruction:** The reconstruction key (`recon-<label>`) has four reserved values:
-- `acdyn`, for reconstructions with attenuation correction of dynamic data;
-- `acstat`, for reconstructions with attenuation correction of static data;
-- `nacdyn`, for reconstructions without attenuation correction of dynamic data;
-- `nacstat`, for reconstructions without attenuation correction of static data.
-Further details regarding reconstruction are in the `_pet.json` file.
-In case of multiple reconstructions of the data with the same type,
-we allow for using a number after the `<label>` in order to distinguish,
-for example `recon-acdyn1` and `recon-acdyn2`.
 
 In addition to the imaging data (`*.nii`) a `_pet.json` sidecar file needs to be provided.
 The included metadata are divided into sections described below.
