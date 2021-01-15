@@ -363,7 +363,7 @@ def make_entity_table_markdown(schema_path, tablefmt='github',
     # Split table
     EG_DATATYPES = ['eeg', 'ieeg', 'meg', 'channels', 'electrodes', 'events',
                     'photo']
-    MRI_DATATYPES = ['anat', 'func', 'fmap', 'dwi']
+    MRI_DATATYPES = ['anat', 'func', 'fmap', 'dwi', 'perf']
     mri_table = table.loc[
         table[('DataType', 'DataType')].isin(MRI_DATATYPES)
     ]
