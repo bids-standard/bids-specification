@@ -52,6 +52,7 @@ nav:
         - Entities: 99-appendices/09-entities.md
         - File collections: 99-appendices/10-file-collections.md
         - Quantitative MRI: 99-appendices/11-qmri.md
+        - Arterial Spin Labeling: 99-appendices/12-arterial-spin-labeling.md
         - Cross modality correspondence: 99-appendices/13-cross-modality-correspondence.md
       - Changelog: CHANGES.md
     - The BIDS Starter Kit:
