@@ -63,6 +63,14 @@ is supposed to be documented:
 
 Allowed values for the `<datatype>CoordinateSystem` field come from a list of
 restricted keywords, as listed in the sections below.
+
+Note that `Fiducials`, `AnatomicalLandmark`, `HeadCoil`, and `DigitizedHeadPoints`
+datatypes share the restricted keywords with the data modality they are shared with.
+For example, if a `AnatomicalLandmark` field is shared as part of an EEG dataset,
+the EEG specific coordinate systems apply.
+However, if it is shared as part of an MEG dataset,
+the EEG specific coordinate systems apply.
+
 If no value from the list of restricted keywords fits, there is always the
 option to specify the value as follows:
 
@@ -91,8 +99,15 @@ Restricted keywords for the `<datatype>CoordinateSystem` field in the
 -   `ChietiItab`: RAS orientation and the origin between the ears
 -   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
 
+In the case that MEG was recorded simultaneously with EEG,
+the restricted keywords for
+[EEG specific coordinate systems](#eeg-specific-coordinate-systems)
+can also be applied to MEG:
+
+-   `CapTrak`: RAS orientation and the origin between the ears
+
 Note that the short descriptions above do not capture all details, There are
-detailed extensive descriptions of these EEG coordinate systems on the
+detailed extensive descriptions of these coordinate systems on the
 [FieldTrip toolbox web page](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
 
 ## EEG Specific Coordinate Systems
@@ -115,7 +130,7 @@ can also be applied to EEG:
 -   `ChietiItab`
 
 Note that the short descriptions above do not capture all details, There are
-detailed extensive descriptions of these EEG coordinate systems on the
+detailed extensive descriptions of these coordinate systems on the
 [FieldTrip toolbox web page](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined).
 
 ## iEEG Specific Coordinate Systems
