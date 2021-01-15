@@ -6,6 +6,7 @@ mri:
     - dwi
     - fmap
     - func
+    - perf
 eeg:
   name: Electroencephalography
   datatypes:
