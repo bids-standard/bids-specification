@@ -10,11 +10,11 @@ The following example PET datasets have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
 -   One subject single dynamic scan (pet, mri, blood):
-	[`pet_example1`](https://www.dropbox.com/sh/dmjmaxfswatptpm/AACw31cTyChLA1kwM4Vhqueja?dl=0)
+	[`pet_example1`](https://www.dropbox.com/sh/1wpmmilq18mjquq/AABmA1o4vZMmBuGK1Io3vwf3a?dl=0)
 -   One subject single dynamic scan (pet, mri):
-	[`pet_example2`](https://www.dropbox.com/sh/i95a71rpq2unks7/AACby5XcYQp9vcwgx3cNXBhza?dl=0)
+	[`pet_example2`](https://www.dropbox.com/sh/33adqfaq3kkn58z/AADF5ZbMp6YOs2lOZgnLxZpaa?dl=0)
 -   One subject single dynamic scan (pet, blood):
-	[`pet_example3`](https://www.dropbox.com/sh/i0c3iq50id4s0d3/AABSjaczHM1SQnMRvh3fc7fna?dl=0)
+	[`pet_example3`](https://www.dropbox.com/sh/6egwsy442caribr/AABw6GrfvBQClbgie5Gaa6WLa?dl=0)
 
 Further PET datasets are available from [OpenNeuro](https://openneuro.org).
 
