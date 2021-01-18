@@ -36,10 +36,9 @@ specific to PET.
     (for example, FDG PET on one day followed by amyloid PET a couple days after)
     these scans may be grouped into the same session.
     In other datasets, a subject leaving the scanner and returning under the same
-    injection may be logically considered separate sessions.
+    injection may be considered separate sessions.
 
-1.  **Run** - In PET, it is common for subjects to leave the scanner to use the
-    bathroom.
+1.  **Run** - In PET, subjects may have to leave the scanner to use the bathroom.
     While leaving the scanner would interrupt an MR acquisition, in PET this
     disruption is more appropriately considered missing data during a run.
 
@@ -106,7 +105,7 @@ with four reserved values:
   - `nacstat`, for reconstructions without attenuation correction of static data.
 
 Further details regarding reconstruction are in the `_pet.json` file.
-If multiple reconstructions of the data are made with the same type,
+If multiple reconstructions of the data are made with the same type of reconstruction,
 a number MAY be appended to the label,
 for example `recon-acdyn1` and `recon-acdyn2`.
 
