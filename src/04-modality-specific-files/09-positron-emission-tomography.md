@@ -181,6 +181,8 @@ material used in the experiment.
 | MolarActivityUnit             | RECOMMENDED           | [string][]    | Unit of the specified molar radioactivity (for example, "Bq/g").                                                                                                                                                                                      |
 | MolarActivityMeasTime         | RECOMMENDED           | [string][]    | Time to which molar radioactivity measurement above applies in the default unit "hh:mm:ss".                                                                                                                                                           |
 | InfusionSpeed                 | RECOMMENDED           | [number][]    | If given, infusion speed.                                                                                                                                                                                                                             |
+| InfusionSpeedUnit                 | RECOMMENDED           | [string][]    | Unit of infusion speed (for example, "mL/s"). 
+| 
 | InjectedVolumeUnit            | RECOMMENDED           | [string][]    | Unit of the injected volume of the radiotracer (for example, "mL").                                                                                                                                                                                   |
 | Purity                        | RECOMMENDED           | [number][]    | Purity of the radiolabeled compound (for example, 90).                                                                                                                                                                                                |
 
