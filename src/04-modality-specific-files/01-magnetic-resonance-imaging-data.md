@@ -683,6 +683,8 @@ JSON example:
 
 ## Arterial Spin Labeling perfusion data
 
+{{ MACROS___make_filename_template(datatypes=["perf"]) }}
+
 Template:
 
 ```Text

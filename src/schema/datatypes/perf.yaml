@@ -8,11 +8,11 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
-    acq: optional
-    rec: optional
-    dir: optional
+    subject: required
+    session: optional
+    acquisition: optional
+    reconstruction: optional
+    direction: optional
     run: optional
 # Second group
 - suffixes:
@@ -21,11 +21,11 @@
     - .tsv
     - .json
   entities:
-    sub: required
-    ses: optional
-    acq: optional
-    rec: optional
-    dir: optional
+    subject: required
+    session: optional
+    acquisition: optional
+    reconstruction: optional
+    direction: optional
     run: optional
 # Third group
 - suffixes:
@@ -33,8 +33,8 @@
   extensions:
     - .jpg
   entities:
-    sub: required
-    ses: optional
-    acq: optional
-    rec: optional
+    subject: required
+    session: optional
+    acquisition: optional
+    reconstruction: optional
     run: optional
