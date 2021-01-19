@@ -184,7 +184,7 @@ material used in the experiment.
 | InfusionSpeedUnit                 | RECOMMENDED           | [string][]    | Unit of infusion speed (for example, "mL/s"). 
 | 
 | InjectedVolumeUnit            | RECOMMENDED           | [string][]    | Unit of the injected volume of the radiotracer (for example, "mL").                                                                                                                                                                                   |
-| Purity                        | RECOMMENDED           | [number][]    | Purity of the radiolabeled compound (for example, 90).                                                                                                                                                                                                |
+| Purity                        | RECOMMENDED           | [number][]    | Purity of the radiolabeled compound (between 0 and 100%).                                                                                                                                                                                                |
 
 #### Time
 
