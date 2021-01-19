@@ -345,7 +345,7 @@ and the values below should be added to the `*recording-blood_continous.json`.
 
 | **Column name**      | **Description**         | **Units**                                         |
 | -------------------- | ----------------------- | ------------------------------------------------- |
-| plasma_radioactivity | Radioactivity in plasma | Unit of parent fraction (for example, "unitless") |
+| plasma_radioactivity | Radioactivity in plasma | Unit of plasma radioactivity (for example, "kBq/mL") |
 
 ### Metabolites
 
