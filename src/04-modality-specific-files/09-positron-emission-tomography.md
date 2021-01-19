@@ -10,45 +10,47 @@ The following example PET datasets have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
 -   One subject single dynamic scan (pet, mri, blood):
-	[`pet_example1`](https://www.dropbox.com/sh/1wpmmilq18mjquq/AABmA1o4vZMmBuGK1Io3vwf3a?dl=0)
+    [`pet_example1`](https://www.dropbox.com/sh/1wpmmilq18mjquq/AABmA1o4vZMmBuGK1Io3vwf3a?dl=0)
+
 -   One subject single dynamic scan (pet, mri):
-	[`pet_example2`](https://www.dropbox.com/sh/33adqfaq3kkn58z/AADF5ZbMp6YOs2lOZgnLxZpaa?dl=0)
+    [`pet_example2`](https://www.dropbox.com/sh/33adqfaq3kkn58z/AADF5ZbMp6YOs2lOZgnLxZpaa?dl=0)
+
 -   One subject single dynamic scan (pet, blood):
-	[`pet_example3`](https://www.dropbox.com/sh/6egwsy442caribr/AABw6GrfvBQClbgie5Gaa6WLa?dl=0)
+    [`pet_example3`](https://www.dropbox.com/sh/6egwsy442caribr/AABw6GrfvBQClbgie5Gaa6WLa?dl=0)
 
 Further PET datasets are available from [OpenNeuro](https://openneuro.org).
 
-## PET recording data
+## Terminology and conventions
 
-As specified above, this extension is relevant for brain PET imaging
-and its associated data, such as blood data.
-In addition, the extension is in accordance with the guidelines for reporting
-and sharing brain PET data (Knudsen et al. 2020, [doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433)).
+PET-BIDS is fully consistent with the BIDS specification as a whole.
+However, BIDS was initially developed in the context of MRI,
+so some terminology may be unfamiliar to researchers from each field.
+This section adds clarifications to
+[Common Principles - Definitions](../02-common-principles.md#definitions)
+for the PET context, and introduces the term "time zero" which is currently
+specific to PET.
 
-Template:
+1.  **Session** - In most cases, a new session with respect to PET corresponds
+    to a visit to the scanning site, and starts with a new injection.
+    In situations where different data types are obtained over several visits
+    (for example, FDG PET on one day followed by amyloid PET a couple days after)
+    these scans may be grouped into the same session.
+    In other datasets, a subject leaving the scanner and returning under the same
+    injection may be considered separate sessions.
 
-```Text
-sub-<participant_label>/
-      [ses-<session_label>/]
-        pet/
-        sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.nii[.gz]
-        sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.json
-```
+1.  **Run** - In PET, subjects may have to leave the scanner to use the bathroom.
+    While leaving the scanner would interrupt an MR acquisition, in PET this
+    disruption is more appropriately considered missing data during a run.
 
-**Shared MRI data along with PET:**
-To share structural magnetic resonance (MR) images with your PET data,
-please follow the original BIDS specification
-([LINK](https://bids-specification.readthedocs.io/en/stable)).
-Please pay specific attention to whether the MR images have been unwarped to correct for gradient non-linearities. This should be specified in a specific field of the MRI-BIDS .json file named "NonLinearGradientCorrection". For more information please see the appendix regarding cross modality correspondence
- ([LINK](../99-appendices/13-cross-modality-correspondence.md)).
+1.  **Time zero** - A reference point in time, to which all timestamps pertaining
+    to a recording are relative.
+    Time zero will most commonly be the time of injection of a radioisotope, or
+    the time at which the first scan of an acquisition is begun.
+    If a pharmacological within-scan challenge is performed,
+    another time zero may be more convenient.
 
-**Units**: In general, SI units must be used (we refer to [LINK](https://bids-specification.readthedocs.io/en/stable/99-appendices/05-units.html)) and we recommend to use the CMIXF style formatting for SI units, for example, "kBq/mL"
-rather than "kilobecquerel per ml".
 An overview of a common PET experiment (with blood data) can be seen in Figure 1,
-defined on a single time scale relative to a predefined “time zero”
-(which should be defined either to be scan start or injection time;
-please note an exception to this definition is possible if a pharmacological
-within-scan challenge is performed).
+defined on a single time scale relative to a predefined “time zero”.
 
 ![Figure 1](images/PET_scan_overview.svg "Overview of PET recording data")
 
@@ -56,74 +58,73 @@ Figure 1: Overview of a common PET experiment, including blood measurements,
 and defined on a common time scale.
 Note, “time zero” can either be defined as time of injection or scan start,
 and all the PET and blood data should be decay-corrected to this time point.
-Furthermore, although in this example tracer injection coincides with scan start,
-this is not always the case and hence we allow for the flexibility of specifying
-either time of injection or scan start as “time zero”.
+In this example, tracer injection coincides with scan start.
 
-PET data belong to the `pet` directory. PET imaging data SHOULD be stored in 4D
-(or 3D if only one volume was acquired) NIfTI files with `_pet` suffix.
-Volumes should be stored in chronological order (the order they were acquired in).
+## PET recording data
 
-Following the [BIDS Common Principles](https://bids-specification.readthedocs.io/en/stable/02-common-principles.html), here we summarize how different labels are organized for PET data. Please, check the Common Principles section for further details.
-**Sessions**: Multiple sessions (visits) are encoded by adding an extra layer of directories
-and file names in the form of `ses-<label>`.
-Session labels can consist only of alphanumeric characters [a-zA-Z0-9]
-and should be consistent across subjects.
-If numbers are used in session labels we recommend using zero padding
-(for example, `ses-01`, `ses-11` instead of `ses-1`, `ses-11`).
-This makes results of alphabetical sorting more intuitive.
-The extra session layer (at least one `ses-<label>` subfolder) should be added
-for all subjects if at least one subject in the dataset has more than one session.
-Skipping the session layer for only some subjects in the dataset is not allowed.
-If a `ses-<label>` subfolder is included as part of the directory hierarchy,
-then the same `ses-<label>` tag must also be included as part of the file names themselves.
-In general, we assume that a new session with respect to PET starts with either a new injection
-(probably most common case) or with the subject being taken out of the scanner
-(same injection, but subject leaves the scanner and returns).
-However, for example, if a subject has to leave the scanner room and
-then be re-positioned on the scanner bed, for example, to use the bathroom,
-the set of PET acquisitions will still be considered as a session and match
-sessions acquired in other subjects.
-Similarly, in situations where different data types are obtained over several
-visits (for example, FDG PET on one day followed by amyloid PET a couple days after)
-those can be grouped in one session.
-Please see the difference with the `run-<label>` below.
+Template:
 
-**Task:** With respect to the `task-<label>`, data is arranged in a similar way as task-based
-and resting state BOLD fMRI data.
-In case of studies using combined PET/fMRI, subject-specific tasks may be carried out
-during the acquisition within the same session.
-Therefore, it is possible to specify `task-<label>` in accordance with the fMRI data.
-For more information please see the [BIDS specification for MRI](https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#task-including-resting-state-imaging-data).
+```Text
+sub-<label>/[ses-<label>/]
+    pet/
+        sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.nii[.gz]
+        sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.json
+```
 
-**Acquisition:** In case of studies with multiple acquisitions per subject using different tracers,
-the `acq-<label>` must be used to distinguish between different tracers.
-Please keep in mind that the label used is arbitrary and each file requires
-a separate JSON sidecar with details of the tracer used (see below).
-Examples are `acq-18FFDG` for fludeoxyglucose, `acq-11CPIB` for Pittsburgh compound B, etc.
+PET data belong in the `pet` directory.
+PET imaging data SHOULD be stored in 4D (or 3D, if only one volume was acquired)
+NIfTI files with the `_pet` suffix.
+Volumes MUST be stored in chronological order (the order they were acquired in).
 
-**Reconstruction:** The reconstruction key (`recon-<label>`) has four reserved values:
-- `acdyn`, for reconstructions with attenuation correction of dynamic data;
-- `acstat`, for reconstructions with attenuation correction of static data;
-- `nacdyn`, for reconstructions without attenuation correction of dynamic data;
-- `nacstat`, for reconstructions without attenuation correction of static data.
+The OPTIONAL [`task-<label>`](../99-appendices/09-entities.md#task) is used to
+indicate a task subjects were asked to perform in the scanner.
+Those labels MUST be consistent across subjects and sessions.
+
+The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity is used to
+indicate the tracer used.
+This entity is OPTIONAL if only one tracer is used in the study,
+but REQUIRED to distinguish between tracers if multiple are used.
+The label used is arbitrary and each file requires a separate JSON sidecar
+with details of the tracer used (see below).
+Examples are `acq-18FFDG` for fludeoxyglucose or `acq-11CPIB` for Pittsburgh compound B.
+Other labels are permitted, as long as they are consistent across subjects and sessions
+and consist only of the legal label characters.
+
+If more than one run of the same task and acquisition (tracer) are acquired during
+the same session, the [`run-<index>`](../99-appendices/09-entities.md#run) entity MUST be used:
+`_run-1`, `_run-2`, `_run-3`, and so on.
+If only one run was acquired the `run-<index>` can be omitted.
+
+The OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec) entity
+is used to indicate the reconstruction method used for the image,
+with four reserved values:
+
+  - `acdyn`, for reconstructions with attenuation correction of dynamic data;
+  - `acstat`, for reconstructions with attenuation correction of static data;
+  - `nacdyn`, for reconstructions without attenuation correction of dynamic data;
+  - `nacstat`, for reconstructions without attenuation correction of static data.
+
 Further details regarding reconstruction are in the `_pet.json` file.
-In case of multiple reconstructions of the data with the same type,
-we allow for using a number after the `<label>` in order to distinguish,
+If multiple reconstructions of the data are made with the same type of reconstruction,
+a number MAY be appended to the label,
 for example `recon-acdyn1` and `recon-acdyn2`.
 
-**Run:** The run entity is used if one scan type/contrast is repeated multiple times
-within the same scan session/visit.
-If several scans of the same modality are acquired they MUST be indexed
-with a key-value pair: `_run-1`, `_run-2`, `_run-3` etc. (only integers are allowed as run labels).
-When there is only one scan of a given type the run key MAY be omitted.
-An example of this would be two consecutive scans performed within the same session,
-for example two short FDG scans right after each other.
-It is our assumption that the `run-<label>` is used in PET for the cases
-where the subject does not leave the scanner.
-Otherwise, we refer to the `ses-<label>` definition.
+**Shared MRI data along with PET:**
+PET and MRI images may be aggregated in the same dataset.
+When analyzing MRI and PET data together,
+it is essential to specify whether MR images have been corrected for gradient non-linearities,
+using the `NonLinearGradientCorrection` metadata field
+(see [Sequence Specifics](./01-magnetic-resonance-imaging-data.md#sequence-specifics)),
+which is REQUIRED for all MR data if PET data is also present in the dataset
+(see also [PET-MRI correspondence](../99-appendices/13-cross-modality-correspondence.md#pet-mri-correspondence)).
+In the case of studies using combined PET/fMRI,
+subject-specific tasks may be carried out during the acquisition within the same session.
+If the same task is recorded with both modalities,
+the same `task-<label>` entity SHOULD be used.
+For further details, see
+[Task (including resting state) imaging data](./01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 
-In addition to the imaging data (*.nii) a `_pet.json` sidecar file needs to be provided.
+In addition to the imaging data (`*.nii`) a `_pet.json` sidecar file needs to be provided.
 The included metadata are divided into sections described below.
 
 ### PET sidecar JSON (`*_pet.json`)
