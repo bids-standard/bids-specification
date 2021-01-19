@@ -80,7 +80,7 @@ misunderstanding we clarify them here.
     recording.
     For example, in [MRI](04-modality-specific-files/01-magnetic-resonance-imaging-data.md),
     if a subject leaves the scanner, the acquisition must be restarted.
-    For some types of [PET](04-modality-specific-files/09-positron-emission-tomography.md),
+    For some types of [PET](04-modality-specific-files/09-positron-emission-tomography.md) acquisitions,
     a subject may leave and re-enter the scanner without interrupting the scan.
 
 1.  **Modality** - the category of brain data recorded by a file.
