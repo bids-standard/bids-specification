@@ -10,13 +10,13 @@ The following example PET datasets have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
 -   One subject single dynamic scan (pet, mri, blood):
-    [`pet_example1`](https://www.dropbox.com/sh/dmjmaxfswatptpm/AACw31cTyChLA1kwM4Vhqueja?dl=0)
+    [`pet_example1`](https://www.dropbox.com/sh/1wpmmilq18mjquq/AABmA1o4vZMmBuGK1Io3vwf3a?dl=0)
 
 -   One subject single dynamic scan (pet, mri):
-    [`pet_example2`](https://www.dropbox.com/sh/i95a71rpq2unks7/AACby5XcYQp9vcwgx3cNXBhza?dl=0)
+    [`pet_example2`](https://www.dropbox.com/sh/33adqfaq3kkn58z/AADF5ZbMp6YOs2lOZgnLxZpaa?dl=0)
 
 -   One subject single dynamic scan (pet, blood):
-    [`pet_example3`](https://www.dropbox.com/sh/i0c3iq50id4s0d3/AABSjaczHM1SQnMRvh3fc7fna?dl=0)
+    [`pet_example3`](https://www.dropbox.com/sh/6egwsy442caribr/AABw6GrfvBQClbgie5Gaa6WLa?dl=0)
 
 Further PET datasets are available from [OpenNeuro](https://openneuro.org).
 
@@ -182,8 +182,10 @@ material used in the experiment.
 | MolarActivityUnit             | RECOMMENDED           | [string][]    | Unit of the specified molar radioactivity (for example, "Bq/g").                                                                                                                                                                                      |
 | MolarActivityMeasTime         | RECOMMENDED           | [string][]    | Time to which molar radioactivity measurement above applies in the default unit "hh:mm:ss".                                                                                                                                                           |
 | InfusionSpeed                 | RECOMMENDED           | [number][]    | If given, infusion speed.                                                                                                                                                                                                                             |
+| InfusionSpeedUnit                 | RECOMMENDED           | [string][]    | Unit of infusion speed (for example, "mL/s"). 
+| 
 | InjectedVolumeUnit            | RECOMMENDED           | [string][]    | Unit of the injected volume of the radiotracer (for example, "mL").                                                                                                                                                                                   |
-| Purity                        | RECOMMENDED           | [number][]    | Purity of the radiolabeled compound (for example, 90).                                                                                                                                                                                                |
+| Purity                        | RECOMMENDED           | [number][]    | Purity of the radiolabeled compound (between 0 and 100%).                                                                                                                                                                                                |
 
 #### Time
 
@@ -287,7 +289,7 @@ sub-<participant_label>/
 Blood data belongs in the /pet folder along with the corresponding PET data.
 However, the blood data also follows the [inheritance principle](../02-common-principles.md#the-inheritance-principle) and may be moved to an upper level folder
 if it does not change, for example, with multiple reconstructions.
-The blood data is most often recorded using an autosampler for continuous blood samples,
+The blood data is often recorded using an autosampler for continuous blood samples,
 or manually for discrete blood samples.
 Therefore, the recording key (`recording-<label>`) has two reserved values:
 `autosampler`,
@@ -306,7 +308,7 @@ These are detailed in the next sections. Different fields are customary dependin
 | **Key name**                        | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                               |
 | ----------------------------------- | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | PlasmaAvail                         | REQUIRED              | [boolean][]   | Boolean that specifies if plasma measurements are available. If this is false, all of the plasma fields should be excluded.                                                                                                                                   |
-| PlasmaFreeFraction                  | RECOMMENDED           | [number][]    | Measured free fraction in plasma, meaning the concentration of free compound in plasma divided by total concentration of compound in plasma.                                                                                                                  |
+| PlasmaFreeFraction                  | RECOMMENDED           | [number][]    | Measured free fraction in plasma, meaning the concentration of free compound in plasma divided by total concentration of compound in plasma (Units: 0-100%).                                                                                                                  |
 | PlasmaFreeFractionMethod            | RECOMMENDED           | [string][]    | Method used to estimate free fraction.                                                                                                                                                                                                                        |
 | WholeBloodAvail                     | REQUIRED              | [boolean][]   | Boolean that specifies if whole blood measurements are available.                                                                                                                                                                                             |
 | MetaboliteAvail                     | REQUIRED              | [boolean][]   | Boolean that specifies if metabolite measurements are available. If this is false, all of the metabolite fields should be excluded.                                                                                                                           |
@@ -315,7 +317,7 @@ These are detailed in the next sections. Different fields are customary dependin
 | DispersionCorrected                 | REQUIRED              | [boolean][]   | Boolean flag specifying whether the blood data have been dispersion-corrected. NOTE: not customary for manual samples, and hence should be set to false.                                                                                                      |
 | WithdrawalRate                      | RECOMMENDED           | [number][]    | The rate at which the blood was withdrawn from the subject. The unit of the specified withdrawal rate should be in mL/s.                                                                                                                                      |
 | TubingType                          | RECOMMENDED           | [string][]    | Description of the type of tubing used, ideally including the material and (internal) diameter.                                                                                                                                                               |
-| TubingLength                        | RECOMMENDED           | [number][]    | The length of the blood tubing, from the subject to the detector in the default unit centimeter.                                                                                                                                                              |
+| TubingLength                        | RECOMMENDED           | [number][]    | The length of the blood tubing, from the subject to the detector in meters.                                                                                                                                                              |
 | DispersionConstant                  | RECOMMENDED           | [number][]    | External dispersion time constant resulting from tubing in default unit seconds.                                                                                                                                                                              |
 | Haematocrit                         | RECOMMENDED           | [number][]    | Measured haematocrit, meaning the volume of erythrocytes divided by the volume of whole blood.                                                                                                                                                                |
 | BloodDensity                        | RECOMMENDED           | [number][]    | Measured blood density. Unit of blood density should be in g/mL.                                                                                                                                                                                              |
@@ -323,37 +325,37 @@ These are detailed in the next sections. Different fields are customary dependin
 ### Time
 
 If manual blood samples, for example, using a COBRA counter are available,
-then time information as detailed below should be added to the `*recording-manual_blood.tsv`
-and the values below should be added to the `*recording-manual_blood.json`.
+then time information as detailed below should be added to the `*_recording-manual_blood.tsv`
+and the values below should be added to the `*_recording-manual_blood.json`.
 If blood samples using an autosampler, for example, using an Allogg autosampler are available,
-then time information as detailed below should be added to the `*recording-autosampler_blood.tsv`
-and the values below should be added to the `*recording-autosampler_blood.json`.
+then time information as detailed below should be added to the `*_recording-autosampler_blood.tsv`
+and the values below should be added to the `*_recording-autosampler_blood.json`.
 
 | **Column name** | **Description**                                                              | **Units**                             |
 | --------------- | ---------------------------------------------------------------------------- | ------------------------------------- |
-| time            | Time in relation to `TimeZero` defined by the `*_pet.json`. (for example, 5) | Unit of time steps (for example, "s") |
+| time            | Time in relation to `TimeZero` defined by the `*_pet.json`. (for example, 5) | Unit of time steps in seconds |
 
 ### Radioactivity in plasma
 
 This section may be omitted if plasma measurements of radioactivity were not made.
 It contains information regarding sampled plasma data.
-If plasma measurements are available by manual sampling, they should be added to the `*recording-blood_discrete.tsv`
-and the values below should be added to the `*recording-blood_discrete.json`.
-If plasma measurements are available by an autosampler, they should be added to the `*recording-blood_continous.tsv`
-and the values below should be added to the `*recording-blood_continous.json`.
+If plasma measurements are available by manual sampling, they should be added to the `*_recording-blood_discrete.tsv`
+and the values below should be added to the `*_recording-blood_discrete.json`.
+If plasma measurements are available by an autosampler, they should be added to the `*_recording-blood_continous.tsv`
+and the values below should be added to the `*_recording-blood_continous.json`.
 
 | **Column name**      | **Description**         | **Units**                                         |
 | -------------------- | ----------------------- | ------------------------------------------------- |
-| plasma_radioactivity | Radioactivity in plasma | Unit of parent fraction (for example, "unitless") |
+| plasma_radioactivity | Radioactivity in plasma | Unit of plasma radioactivity (for example, "kBq/mL") |
 
 ### Metabolites
 
 This section may be omitted if metabolite measurements were not made.
 If metabolite measurements are available by manual sampling
-they should be added to the `*recording-blood_discrete.tsv`
-and the values below should be added to the `*recording-blood_discrete.json`.
-If metabolite measurements are available by an autosampler they should be added to the `*recording-blood_continous.tsv`
-and the values below should be added to the `*recording-blood_continous.json`.
+they should be added to the `*_recording-blood_discrete.tsv`
+and the values below should be added to the `*_recording-blood_discrete.json`.
+If metabolite measurements are available by an autosampler they should be added to the `*_recording-blood_continous.tsv`
+and the values below should be added to the `*_recording-blood_continous.json`.
 Hence, it may contain information regarding metabolite info, such as the following three column examples:
 
 | **Column name**            | **Description**                                                                   | **Units**                                                   |
@@ -366,10 +368,10 @@ Hence, it may contain information regarding metabolite info, such as the followi
 
 This section may be omitted if whole blood measurements of radioactivity were not made.
 It contains information regarding sampled whole blood data.
-If whole blood measurements are available by manual sampling they should be added to the `*recording-manual_blood.tsv`
-and the values below should be added to the `*recording-manual_blood.json`.
-If whole blood measurements are available by an autosampler, they should be added to the `*recording-autosampler_blood.tsv`
-and the values below should be added to the `*recording-autosampler_blood.json`.
+If whole blood measurements are available by manual sampling they should be added to the `*_recording-manual_blood.tsv`
+and the values below should be added to the `*_recording-manual_blood.json`.
+If whole blood measurements are available by an autosampler, they should be added to the `*_recording-autosampler_blood.tsv`
+and the values below should be added to the `*_recording-autosampler_blood.json`.
 
 | **Column name**           | **Description**                      | **Units**                                                                         |
 | ------------------------- | ------------------------------------ | --------------------------------------------------------------------------------- |
