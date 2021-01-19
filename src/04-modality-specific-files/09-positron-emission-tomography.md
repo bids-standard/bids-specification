@@ -324,11 +324,11 @@ These are detailed in the next sections. Different fields are customary dependin
 ### Time
 
 If manual blood samples, for example, using a COBRA counter are available,
-then time information as detailed below should be added to the `*recording-manual_blood.tsv`
-and the values below should be added to the `*recording-manual_blood.json`.
+then time information as detailed below should be added to the `*_recording-manual_blood.tsv`
+and the values below should be added to the `*_recording-manual_blood.json`.
 If blood samples using an autosampler, for example, using an Allogg autosampler are available,
-then time information as detailed below should be added to the `*recording-autosampler_blood.tsv`
-and the values below should be added to the `*recording-autosampler_blood.json`.
+then time information as detailed below should be added to the `*_recording-autosampler_blood.tsv`
+and the values below should be added to the `*_recording-autosampler_blood.json`.
 
 | **Column name** | **Description**                                                              | **Units**                             |
 | --------------- | ---------------------------------------------------------------------------- | ------------------------------------- |
@@ -338,10 +338,10 @@ and the values below should be added to the `*recording-autosampler_blood.json`.
 
 This section may be omitted if plasma measurements of radioactivity were not made.
 It contains information regarding sampled plasma data.
-If plasma measurements are available by manual sampling, they should be added to the `*recording-blood_discrete.tsv`
-and the values below should be added to the `*recording-blood_discrete.json`.
-If plasma measurements are available by an autosampler, they should be added to the `*recording-blood_continous.tsv`
-and the values below should be added to the `*recording-blood_continous.json`.
+If plasma measurements are available by manual sampling, they should be added to the `*_recording-blood_discrete.tsv`
+and the values below should be added to the `*_recording-blood_discrete.json`.
+If plasma measurements are available by an autosampler, they should be added to the `*_recording-blood_continous.tsv`
+and the values below should be added to the `*_recording-blood_continous.json`.
 
 | **Column name**      | **Description**         | **Units**                                         |
 | -------------------- | ----------------------- | ------------------------------------------------- |
@@ -351,10 +351,10 @@ and the values below should be added to the `*recording-blood_continous.json`.
 
 This section may be omitted if metabolite measurements were not made.
 If metabolite measurements are available by manual sampling
-they should be added to the `*recording-blood_discrete.tsv`
-and the values below should be added to the `*recording-blood_discrete.json`.
-If metabolite measurements are available by an autosampler they should be added to the `*recording-blood_continous.tsv`
-and the values below should be added to the `*recording-blood_continous.json`.
+they should be added to the `*_recording-blood_discrete.tsv`
+and the values below should be added to the `*_recording-blood_discrete.json`.
+If metabolite measurements are available by an autosampler they should be added to the `*_recording-blood_continous.tsv`
+and the values below should be added to the `*_recording-blood_continous.json`.
 Hence, it may contain information regarding metabolite info, such as the following three column examples:
 
 | **Column name**            | **Description**                                                                   | **Units**                                                   |
@@ -367,10 +367,10 @@ Hence, it may contain information regarding metabolite info, such as the followi
 
 This section may be omitted if whole blood measurements of radioactivity were not made.
 It contains information regarding sampled whole blood data.
-If whole blood measurements are available by manual sampling they should be added to the `*recording-manual_blood.tsv`
-and the values below should be added to the `*recording-manual_blood.json`.
-If whole blood measurements are available by an autosampler, they should be added to the `*recording-autosampler_blood.tsv`
-and the values below should be added to the `*recording-autosampler_blood.json`.
+If whole blood measurements are available by manual sampling they should be added to the `*_recording-manual_blood.tsv`
+and the values below should be added to the `*_recording-manual_blood.json`.
+If whole blood measurements are available by an autosampler, they should be added to the `*_recording-autosampler_blood.tsv`
+and the values below should be added to the `*_recording-autosampler_blood.json`.
 
 | **Column name**           | **Description**                      | **Units**                                                                         |
 | ------------------------- | ------------------------------------ | --------------------------------------------------------------------------------- |
