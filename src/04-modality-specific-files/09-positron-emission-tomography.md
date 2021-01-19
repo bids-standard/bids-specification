@@ -332,7 +332,7 @@ and the values below should be added to the `*recording-autosampler_blood.json`.
 
 | **Column name** | **Description**                                                              | **Units**                             |
 | --------------- | ---------------------------------------------------------------------------- | ------------------------------------- |
-| time            | Time in relation to `TimeZero` defined by the `*_pet.json`. (for example, 5) | Unit of time steps (for example, "s") |
+| time            | Time in relation to `TimeZero` defined by the `*_pet.json`. (for example, 5) | Unit of time steps in seconds |
 
 ### Radioactivity in plasma
 
