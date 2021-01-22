@@ -121,7 +121,7 @@ flip:
     denotes the number/index (in the form of a nonnegative integer), not the `FlipAngle`
     value which needs to be stored in the field `FlipAngle` of the separate JSON file.
   format: index
-inv:
+inversion:
   name: Inversion Time
   entity: inv
   description: |
@@ -212,7 +212,7 @@ split:
     It is RECOMMENDED that .fif files with multiple parts use the
     `split-<index>` entity to indicate each part.
   format: index
-res:
+resolution:
   name: Resolution
   entity: res
   description: |
@@ -222,7 +222,7 @@ res:
 
     This entity is only applicable to derivative data.
   format: label
-den:
+density:
   name: Density
   entity: den
   description: |
@@ -242,7 +242,7 @@ label:
 
     This entity is only applicable to derivative data.
   format: label
-desc:
+description:
   name: Description
   entity: desc
   description: |
