@@ -301,7 +301,7 @@ All definitions used below are in accordance with Innis et al. 2007 ([doi:10.103
 
 ## Blood sidecar JSON (`*_recording-(manual|autosampler)_blood.json`)
 
-If blood measurements were made a `*recording-<label>_blood.json` file is expected that contains
+If blood measurements were made a `*_recording-<label>_blood.json` file is expected that contains
 information about which blood data (plasma, whole blood, and metabolites) is available as well as some blood measurement details.
 These are detailed in the next sections. Different fields are customary depending on if manual or automatic blood sampling is carried out.
 
