@@ -120,7 +120,7 @@ which is REQUIRED for all MR data if PET data is also present in the dataset
 In the case of studies using combined PET/fMRI,
 subject-specific tasks may be carried out during the acquisition within the same session.
 If the same task is recorded with both modalities,
-the same `task-<label>` entity SHOULD be used.
+the same [`task-<label>`](../99-appendices/09-entities.md#task) entity SHOULD be used.
 For further details, see
 [Task (including resting state) imaging data](./01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 
