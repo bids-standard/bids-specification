@@ -26,4 +26,4 @@
     acq: optional
     rec: optional
     run: optional
-    recording: optional
+    recording: required
