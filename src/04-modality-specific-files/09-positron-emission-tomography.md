@@ -242,7 +242,7 @@ All reconstruction specific parameters that are not specified, but one wants to 
 	"TracerRadionuclide": "C11",
 	"TracerMolecularWeight": 380.28,
 	"TracerMolecularWeightUnit": "g/mol",
-	"TracerInjectionType": "bolus",
+	
 	"InjectedRadioactivity": 573,
 	"InjectedRadioActivityUnit": "MBq",
 	"InjectedMass": 0.62,
