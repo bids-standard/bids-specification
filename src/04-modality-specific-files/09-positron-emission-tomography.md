@@ -203,7 +203,7 @@ This section is mandatory and contains timing information about the imaging expe
 
 #### Reconstruction
 
-This optional section includes information about the image reconstruction.
+This section is mandatory and contains information about the image reconstruction.
 
 All reconstruction specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
 
