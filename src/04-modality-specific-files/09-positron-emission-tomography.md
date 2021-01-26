@@ -352,7 +352,7 @@ and the values below should be added to the `*_recording-blood_continous.json`.
 
 This section may be omitted if metabolite measurements were not made.
 If metabolite measurements are available by manual sampling
-they should be added to the `*_recording-blood_discrete.tsv`
+they should be added to the `*_recording-manual_blood.tsv`
 and the values below should be added to the `*_recording-blood_discrete.json`.
 If metabolite measurements are available by an autosampler they should be added to the `*_recording-blood_continous.tsv`
 and the values below should be added to the `*_recording-blood_continous.json`.
