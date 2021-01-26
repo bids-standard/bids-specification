@@ -107,7 +107,7 @@ with four reserved values:
 Further details regarding reconstruction are in the `_pet.json` file.
 If multiple reconstructions of the data are made with the same type of reconstruction,
 a number MAY be appended to the label,
-for example `recon-acdyn1` and `recon-acdyn2`.
+for example `rec-acdyn1` and `rec-acdyn2`.
 
 **Shared MRI data along with PET:**
 PET and MRI images may be aggregated in the same dataset.
