@@ -286,7 +286,7 @@ sub-<participant_label>/
 
 ```
 
-Blood data belongs in the /pet folder along with the corresponding PET data.
+Blood data belongs in the `pet/` folder along with the corresponding PET data.
 However, the blood data also follows the [inheritance principle](../02-common-principles.md#the-inheritance-principle) and may be moved to an upper level folder
 if it does not change, for example, with multiple reconstructions.
 The blood data is often recorded using an autosampler for continuous blood samples,
