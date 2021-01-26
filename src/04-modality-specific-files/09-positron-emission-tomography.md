@@ -189,7 +189,7 @@ material used in the experiment.
 
 #### Time
 
-This section is mandatory and contains timing information about the imaging experiment. We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization ([LINK](https://bids-specification.readthedocs.io/en/stable/02-common-principles.html)).
+This section is mandatory and contains timing information about the imaging experiment. We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see the [units section](../02-common-principles.md#units).
 
 | **Key name**    | **Requirement level** | **Data type**            | **Description**                                                                                                                                                           |
 | --------------- | --------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
