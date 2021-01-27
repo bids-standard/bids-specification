@@ -38,7 +38,7 @@
 - suffixes:
     - electrodes
   extensions:
-     - .json
+    - .json
     - .tsv
   entities:
     subject: required
