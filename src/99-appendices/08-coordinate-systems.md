@@ -51,7 +51,7 @@ information for a coordinate system (origin and orientation) are specified in
 The third piece of information for a coordinate system (units) are specified in
 `<CoordSysType>CoordinateUnits`.
 Here, `<CoordSysType>` can be one of of the following,
-depending on the data that is supposed to be codumented:
+depending on the data that is supposed to be documented:
 
 -   `MEG`
 -   `EEG`
