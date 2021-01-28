@@ -94,7 +94,7 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 -   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
 
 Note that the short descriptions above do not capture all details, There are
-detailed extensive descriptions of these EEG coordinate systems on the
+detailed extensive descriptions of these coordinate systems on the
 [FieldTrip toolbox web page](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
 
 ## EEG Specific Coordinate Systems
@@ -117,7 +117,7 @@ can also be applied to EEG:
 -   `ChietiItab`
 
 Note that the short descriptions above do not capture all details, There are
-detailed extensive descriptions of these EEG coordinate systems on the
+detailed extensive descriptions of these coordinate systems on the
 [FieldTrip toolbox web page](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined).
 
 ## iEEG Specific Coordinate Systems
