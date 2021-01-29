@@ -132,7 +132,7 @@ inversion:
     denotes the number/index (in the form of a nonnegative integer), not the `InversionTime`
     value which needs to be stored in the field `InversionTime` of the separate JSON file.
   format: index
-mt:
+mtransfer:
   name: Magnetization Transfer
   entity: mt
   description: |
