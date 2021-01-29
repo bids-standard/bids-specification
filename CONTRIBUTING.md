@@ -511,6 +511,10 @@ Run `mkdocs serve` and open `localhost:8000` to browse the rendered specificatio
 Make sure that all filename format templates, entity tables, and entity definitions are correct
 and that the code that generates these elements is not broken by your changes.
 
+While the continuous integration run on pull requests by the repository will render the specification,
+it is crucial to manually review the rendered changes to ensure that the code not only successfully runs,
+but also that the rendered changes appear as expected.
+
 #### 4. Push your changes
 
 For more information on making general changes with a pull request, please
