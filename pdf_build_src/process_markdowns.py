@@ -15,7 +15,7 @@ from datetime import datetime
 
 import numpy as np
 
-sys.path.append("../tools/")
+sys.path.append("../tools/__init__.py")
 from schemacode import macros
 
 
