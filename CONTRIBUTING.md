@@ -502,7 +502,8 @@ The schema is used to generate a number of elements in the specification text, i
 - Entity tables
 - Entity definitions
 
-As such, you need to ensure that the functions used throughout the specific to render these elements are appropriately referencing the schema; in essence, that, if your changes do impact how functions should be called, the function calls have been updated.
+As such, you need to ensure that the functions used throughout the specification to render these elements are appropriately referencing the schema.
+In essence, please make sure, if your changes do impact how functions should be called, that you also update how the function are called.
 
 #### 3. Render the specification with `mkdocs` to check your changes
 
