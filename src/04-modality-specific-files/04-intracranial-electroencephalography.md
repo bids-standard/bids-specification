@@ -415,7 +415,7 @@ then the positions in this file MUST correspond to the locations expressed
 in pixels on the photo/drawing/rendering of the electrodes on the brain.
 In this case, `iEEGCoordinateSystem` MUST be defined as `"Pixels"`,
 and `iEEGCoordinateUnits` MUST be defined as `"pixels"`
-(note the capitalization).
+(note the difference in capitalization).
 Furthermore, the coordinates MUST be (row,column) pairs,
 with (0,0) corresponding to the upper left pixel and (N,0) corresponding to the lower left pixel.
 

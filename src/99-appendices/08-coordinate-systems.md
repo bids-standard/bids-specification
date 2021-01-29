@@ -65,7 +65,7 @@ Allowed values for the `<CoordSysType>CoordinateSystem` field come from a list o
 restricted keywords, as listed in the sections below.
 
 Note that `Fiducials`, `AnatomicalLandmark`, `HeadCoil`, and `DigitizedHeadPoints`
-`CoordSysTypes` share the restricted keywords with the data modality they are shared with.
+`CoordSysType`s share the restricted keywords with the data modality they are shared with.
 For example, if an `AnatomicalLandmark` field is shared as part of an EEG dataset,
 the EEG-specific coordinate systems apply.
 However, if it is shared as part of an MEG dataset,
