@@ -96,7 +96,7 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 In the case that MEG was recorded simultaneously with EEG,
 the restricted keywords for
 [EEG specific coordinate systems](#eeg-specific-coordinate-systems)
-can also be applied to EEG:
+can also be applied to MEG:
 
 -   `CapTrak`
 
