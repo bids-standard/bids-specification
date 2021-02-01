@@ -79,6 +79,7 @@ option to specify the value as follows:
     respect to a specific anatomical T1w image, specify `<datatype>CoordinateSystem`
     as `Image`, and `IndendedFor` with the path to that image in the
     BIDS dataset.
+
 -   `Other`: Use this for other coordinate systems and specify all
     required details in the `<CoordSysType>CoordinateSystemDescription` field
 
