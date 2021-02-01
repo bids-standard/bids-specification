@@ -346,9 +346,10 @@ Anatomical landmarks:
 It is also RECOMMENDED that the MRI voxel coordinates of the actual anatomical
 landmarks for co-registration of MEG with structural MRI are stored in the
 `AnatomicalLandmarkCoordinates` field in the JSON sidecar of the corresponding
-T1w MRI anatomical data of the subject seen in the MEG session (see
-[here](01-magnetic-resonance-imaging-data.md#anatomy-imaging-data) ) - for
-example: `sub-01/ses-mri/anat/sub-01_ses-mri_acq-mprage_T1w.json`
+T1w MRI anatomical data of the subject seen in the MEG session
+(see [Anatomy Imaging Data](01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)).
+
+For example: `sub-01/ses-mri/anat/sub-01_ses-mri_acq-mprage_T1w.json`
 
 In principle, these locations are those of absolute anatomical markers. However,
 the marking of NAS, LPA and RPA is more ambiguous than that of for example, AC and PC.

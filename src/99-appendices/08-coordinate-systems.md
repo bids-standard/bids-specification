@@ -47,19 +47,35 @@ different conventions used in specific software packages developed by different
 
 Generally, across the MEG, EEG, and iEEG modalities, the first two pieces of
 information for a coordinate system (origin and orientation) are specified in
-`<datatype>CoordinateSystem`.
+`<CoordSysType>CoordinateSystem`.
 The third piece of information for a coordinate system (units) are specified in
-`<datatype>CoordinateUnits`.
-Here, `<datatype>` can be one of `MEG`, `EEG`, or `iEEG`, depending on the
-modality that is being used.
+`<CoordSysType>CoordinateUnits`.
+Here, `<CoordSysType>` can be one of of the following,
+depending on the data that is supposed to be documented:
 
-Allowed values for the `<datatype>CoordinateSystem` field come from a list of
+-   `MEG`
+-   `EEG`
+-   `iEEG`
+-   `Fiducials`
+-   `AnatomicalLandmark`
+-   `HeadCoil`
+-   `DigitizedHeadPoints`
+
+Allowed values for the `<CoordSysType>CoordinateSystem` field come from a list of
 restricted keywords, as listed in the sections below.
+
+Note that `Fiducials`, `AnatomicalLandmark`, `HeadCoil`, and `DigitizedHeadPoints`
+`CoordSysType`s share the restricted keywords with the data modality they are shared with.
+For example, if an `AnatomicalLandmark` field is shared as part of an EEG dataset,
+the EEG-specific coordinate systems apply.
+However, if it is shared as part of an MEG dataset,
+the MEG-specific coordinate systems apply.
+
 If no value from the list of restricted keywords fits, there is always the
 option to specify the value as follows:
 
--   `Other`: Use this for other coordinate systems and specify further details
-    in the `<datatype>CoordinateSystemDescription` field
+-   `Other`: Use this for other coordinate systems and specify all
+    required details in the `<CoordSysType>CoordinateSystemDescription` field
 
 **If you believe a specific coordinate system should be added to the list
 of restricted keywords for MEG, EEG, or iEEG, please open a new issue on the
@@ -67,7 +83,7 @@ of restricted keywords for MEG, EEG, or iEEG, please open a new issue on the
 
 ## MEG Specific Coordinate Systems
 
-Restricted keywords for the `<datatype>CoordinateSystem` field in the
+Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 `coordinatesystem.json` file for MEG datasets:
 
 -   `CTF`: ALS orientation and the origin between the ears
@@ -75,25 +91,38 @@ Restricted keywords for the `<datatype>CoordinateSystem` field in the
 -   `4DBti`: ALS orientation and the origin between the ears
 -   `KitYokogawa`: ALS orientation and the origin between the ears
 -   `ChietiItab`: RAS orientation and the origin between the ears
+-   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
 
 Note that the short descriptions above do not capture all details, There are
-detailed extensive descriptions of these EEG coordinate systems on the
+detailed extensive descriptions of these coordinate systems on the
 [FieldTrip toolbox web page](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
 
 ## EEG Specific Coordinate Systems
 
-Restricted keywords for the `<datatype>CoordinateSystem` field in the
+Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 `coordsystem.json` file for EEG datasets:
 
 -   `CapTrak`: RAS orientation and the origin between the ears
+-   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
+
+In the case that EEG was recorded simultaneously with MEG,
+the restricted keywords for
+[MEG specific coordinate systems](#meg-specific-coordinate-systems)
+can also be applied to EEG:
+
+-   `CTF`
+-   `ElektaNeuromag`
+-   `4DBti`
+-   `KitYokogawa`
+-   `ChietiItab`
 
 Note that the short descriptions above do not capture all details, There are
-detailed extensive descriptions of these EEG coordinate systems on the
+detailed extensive descriptions of these coordinate systems on the
 [FieldTrip toolbox web page](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined).
 
 ## iEEG Specific Coordinate Systems
 
-Restricted keywords for the `<datatype>CoordinateSystem` field in the
+Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 `coordsystem.json` file for iEEG datasets:
 
 -   `Pixels`: If electrodes are localized in 2D space (only x and y are
@@ -112,14 +141,17 @@ Restricted keywords for the `<datatype>CoordinateSystem` field in the
     [ACPC site](https://www.fieldtriptoolbox.org/faq/acpc/) on the FieldTrip
     toolbox wiki.
 
+-   Any keyword from the list of
+    [Standard template identifiers](#standard-template-identifiers)
+
 ## Image-based Coordinate Systems
 
 The transformation of the real world geometry to an artificial frame of
-reference is described in `<datatype>CoordinateSystem`.
+reference is described in `<CoordSysType>CoordinateSystem`.
 Unless otherwise specified below, the origin is at the AC and the orientation of
 the axes is RAS.
 Unless specified explicitly in the sidecar file in the
-`<datatype>CoordinateUnits` field, the units are assumed to be mm.
+`<CoordSysType>CoordinateUnits` field, the units are assumed to be mm.
 
 ### Standard template identifiers
 
