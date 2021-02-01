@@ -103,7 +103,7 @@ the restricted keywords for
 [EEG specific coordinate systems](#eeg-specific-coordinate-systems)
 can also be applied to MEG:
 
--   `CapTrak`: RAS orientation and the origin between the ears
+-   `CapTrak`
 
 Note that the short descriptions above do not capture all details, There are
 detailed extensive descriptions of these coordinate systems on the
