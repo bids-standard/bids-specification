@@ -93,6 +93,13 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 -   `ChietiItab`: RAS orientation and the origin between the ears
 -   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
 
+In the case that MEG was recorded simultaneously with EEG,
+the restricted keywords for
+[EEG specific coordinate systems](#eeg-specific-coordinate-systems)
+can also be applied to EEG:
+
+-   `CapTrak`
+
 Note that the short descriptions above do not capture all details, There are
 detailed extensive descriptions of these coordinate systems on the
 [FieldTrip toolbox web page](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
