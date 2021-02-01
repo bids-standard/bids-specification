@@ -47,11 +47,11 @@ different conventions used in specific software packages developed by different
 
 Generally, across the MEG, EEG, and iEEG modalities, the first two pieces of
 information for a coordinate system (origin and orientation) are specified in
-`<datatype>CoordinateSystem`.
+`<CoordSysType>CoordinateSystem`.
 The third piece of information for a coordinate system (units) are specified in
-`<datatype>CoordinateUnits`.
-Here, `<datatype>` can be one of the following, depending on the data that
-is supposed to be documented:
+`<CoordSysType>CoordinateUnits`.
+Here, `<CoordSysType>` can be one of of the following,
+depending on the data that is supposed to be documented:
 
 -   `MEG`
 -   `EEG`
@@ -61,27 +61,26 @@ is supposed to be documented:
 -   `HeadCoil`
 -   `DigitizedHeadPoints`
 
-Allowed values for the `<datatype>CoordinateSystem` field come from a list of
+Allowed values for the `<CoordSysType>CoordinateSystem` field come from a list of
 restricted keywords, as listed in the sections below.
 
 Note that `Fiducials`, `AnatomicalLandmark`, `HeadCoil`, and `DigitizedHeadPoints`
-datatypes share the restricted keywords with the data modality they are shared with.
-For example, if a `AnatomicalLandmark` field is shared as part of an EEG dataset,
-the EEG specific coordinate systems apply.
+`CoordSysType`s share the restricted keywords with the data modality they are shared with.
+For example, if an `AnatomicalLandmark` field is shared as part of an EEG dataset,
+the EEG-specific coordinate systems apply.
 However, if it is shared as part of an MEG dataset,
-the EEG specific coordinate systems apply.
+the MEG-specific coordinate systems apply.
 
 If no value from the list of restricted keywords fits, there is always the
 option to specify the value as follows:
-
--   `Other`: Use this value for other coordinate systems and specify all
-    required details in the `<datatype>CoordinateSystemDescription` field
 
 -   `Image`: Use this value in conjunction with the `IntendedFor` field.
     For example, if all coordinates you supply are to be interpreted with
     respect to a specific anatomical T1w image, specify `<datatype>CoordinateSystem`
     as `Image`, and `IndendedFor` with the path to that image in the
     BIDS dataset.
+-   `Other`: Use this for other coordinate systems and specify all
+    required details in the `<CoordSysType>CoordinateSystemDescription` field
 
 **If you believe a specific coordinate system should be added to the list
 of restricted keywords for MEG, EEG, or iEEG, please open a new issue on the
@@ -89,7 +88,7 @@ of restricted keywords for MEG, EEG, or iEEG, please open a new issue on the
 
 ## MEG Specific Coordinate Systems
 
-Restricted keywords for the `<datatype>CoordinateSystem` field in the
+Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 `coordinatesystem.json` file for MEG datasets:
 
 -   `CTF`: ALS orientation and the origin between the ears
@@ -112,7 +111,7 @@ detailed extensive descriptions of these coordinate systems on the
 
 ## EEG Specific Coordinate Systems
 
-Restricted keywords for the `<datatype>CoordinateSystem` field in the
+Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 `coordsystem.json` file for EEG datasets:
 
 -   `CapTrak`: RAS orientation and the origin between the ears
@@ -135,7 +134,7 @@ detailed extensive descriptions of these coordinate systems on the
 
 ## iEEG Specific Coordinate Systems
 
-Restricted keywords for the `<datatype>CoordinateSystem` field in the
+Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 `coordsystem.json` file for iEEG datasets:
 
 -   `Pixels`: If electrodes are localized in 2D space (only x and y are
@@ -160,11 +159,11 @@ Restricted keywords for the `<datatype>CoordinateSystem` field in the
 ## Image-based Coordinate Systems
 
 The transformation of the real world geometry to an artificial frame of
-reference is described in `<datatype>CoordinateSystem`.
+reference is described in `<CoordSysType>CoordinateSystem`.
 Unless otherwise specified below, the origin is at the AC and the orientation of
 the axes is RAS.
 Unless specified explicitly in the sidecar file in the
-`<datatype>CoordinateUnits` field, the units are assumed to be mm.
+`<CoordSysType>CoordinateUnits` field, the units are assumed to be mm.
 
 ### Standard template identifiers
 
