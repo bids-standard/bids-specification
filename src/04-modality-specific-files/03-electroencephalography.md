@@ -19,14 +19,6 @@ Further datasets are available from the [BIDS examples repository](https://githu
 
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["eeg", "events"]) }}
 
-```Text
-sub-<label>/
-    [ses-<label>]/
-      eeg/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_eeg.<manufacturer_specific_extension>
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_eeg.json
-```
-
 The EEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, EEG data MUST be
 stored in one of the following formats:
@@ -193,13 +185,6 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["channels"]) }}
 
-```Text
-sub-<label>/
-    [ses-<label>]/
-      eeg/
-        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_channels.tsv]
-```
-
 This file is RECOMMENDED as it provides easily searchable information across
 BIDS datasets for for example, general curation, response to queries or batch
 analysis.
@@ -276,13 +261,6 @@ UADC001  MISC   n/a     envelope of audio signal        good    n/a
 
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["electrodes"]) }}
 
-```Text
-sub-<label>/
-    [ses-<label>]/
-      eeg/
-        sub-<label>[_ses-<label>][_acq-<label>][_space-<label>]_electrodes.tsv
-```
-
 File that gives the location of EEG electrodes. Note that coordinates are
 expected in cartesian coordinates according to the `EEGCoordinateSystem` and
 `EEGCoordinateUnits` fields in `*_coordsystem.json`. **If an
@@ -326,13 +304,6 @@ the recording.
 ## Coordinate System JSON (`*_coordsystem.json`)
 
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["coordsystem"]) }}
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      eeg/
-        [sub-<label>[_ses-<label>][_acq-<label>]_coordsystem.json]
-```
 
 A `*_coordsystem.json` file is used to specify the fiducials, the location of
 anatomical landmarks, and the coordinate system and units in which the position
@@ -429,13 +400,6 @@ Example:
 Photos of the anatomical landmarks and/or fiducials.
 
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["photo"]) }}
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      eeg/
-        [sub-<label>[_ses-<label>][_acq-<label>]_photo.jpg]
-```
 
 Photos of the anatomical landmarks and/or fiducials are OPTIONAL.
 Please note that the photos may need to be cropped or blurred to conceal

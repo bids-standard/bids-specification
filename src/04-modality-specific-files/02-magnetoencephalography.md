@@ -10,14 +10,6 @@ context of the academic literature.
 
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["meg", "markers", "events"]) }}
 
-```Text
-sub-<label>/
-    [ses-<label>]/
-      meg/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_meg.<manufacturer_specific_extension>
-        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_meg.json]
-```
-
 Unprocessed MEG data MUST be stored in the native file format of the MEG
 instrument with which the data was collected.
 With the MEG specification of BIDS, we wish to promote the adoption of good
@@ -191,13 +183,6 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["channels"]) }}
 
-```Text
-sub-<label>/
-    [ses-<label>]/
-      meg/
-        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_channels.tsv]
-```
-
 This file is RECOMMENDED as it provides easily searchable information across
 BIDS datasets for for example, general curation, response to queries or batch
 analysis.
@@ -289,13 +274,6 @@ UADC001 AUDIO V envelope of audio signal presented to participant
 
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["coordsystem"]) }}
 
-```Text
-sub-<label>/
-    [ses-<label>]/
-      meg/
-        [sub-<label>[_ses-<label>][_acq-<label>]_coordsystem.json]
-```
-
 OPTIONAL. A JSON document specifying the coordinate system(s) used for the MEG,
 EEG, head localization coils, and anatomical landmarks.
 
@@ -379,13 +357,6 @@ Photos of the anatomical landmarks and/or head localization coils
 
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["photo"]) }}
 
-```Text
-sub-<label>/
-    [ses-<label>]/
-      meg/
-        [sub-<label>[_ses-<label>][_acq-<label>]_photo.jpg]
-```
-
 Photos of the anatomical landmarks and/or head localization coils on the
 subject’s head are RECOMMENDED. If the coils are not placed at the location of
 actual anatomical landmarks, these latter may be marked with a piece of felt-tip
@@ -405,13 +376,6 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 ## Head shape and electrode description (`*_headshape.<ext>`)
 
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["headshape"]) }}
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      meg/
-        [sub-<label>[_ses-<label>][_acq-<label>]_headshape.<manufacturer_specific_extension>]
-```
 
 This file is RECOMMENDED.
 
