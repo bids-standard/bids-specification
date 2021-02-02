@@ -5,14 +5,14 @@
 _We're so excited you're here and want to contribute._
 
 We hope that these guidelines are designed to make it as easy as possible to get
-involved. 
-If you have any questions that aren't discussed below, please let us know 
+involved.
+If you have any questions that aren't discussed below, please let us know
 by [opening an issue](#understanding-issues).
 
 ## Table of contents
 
-Been here before? 
-Already know what you're looking for in this guide? 
+Been here before?
+Already know what you're looking for in this guide?
 Jump to the following sections:
 
 -   [Joining the BIDS community](#joining-the-community)
@@ -34,14 +34,14 @@ BIDS - the [Brain Imaging Data Structure](https://bids.neuroimaging.io/) - is a
 growing community of neuroimaging enthusiasts, and we want to make our resources
 accessible to and engaging for as many researchers as possible.
 
-How do you know that you're a member of the BIDS community? 
-You're here! 
-You know that BIDS exists! 
-You're officially a member of the community. 
+How do you know that you're a member of the BIDS community?
+You're here!
+You know that BIDS exists!
+You're officially a member of the community.
 It's THAT easy! Welcome!
 
 Most of our discussions take place here in
-[GitHub issues](#understanding-issues). 
+[GitHub issues](#understanding-issues).
 We also have a
 [bids-discussion](https://groups.google.com/forum/#!forum/bids-discussion)
 Google Group, although this is largely now an archive of previous conversations.
@@ -68,10 +68,10 @@ worked with them in the past, but the BIDS Specification maintainers are here to
 help you figure out any of the jargon or confusing instructions you encounter!
 
 In order to contribute via GitHub you'll need to set up a free account and sign
-in. 
+in.
 Here are some
 [instructions](https://help.github.com/articles/signing-up-for-a-new-github-account/)
-to help you get going. 
+to help you get going.
 Remember that you can ask us any questions you need to along the way.
 
 ## Understanding issues
@@ -84,9 +84,9 @@ The following outlines how BIDS developers think about communicating through
 issues.
 
 **Issues** are individual pieces of work that need to be completed or decisions
-that need to be made to move the project forwards. 
-A general guideline: if you find yourself tempted to write a great big issue 
-that is difficult to describe as one unit of work, please consider splitting it 
+that need to be made to move the project forwards.
+A general guideline: if you find yourself tempted to write a great big issue
+that is difficult to describe as one unit of work, please consider splitting it
 into two or more issues.
 
 Issues are assigned [labels](#issue-labels) which explain how they relate to the
@@ -107,15 +107,15 @@ The current list of labels are
 -   [![Opinions wanted](https://img.shields.io/badge/-opinions%20wanted-84b6eb.svg)](https://github.com/bids-standard/bids-specification/labels/opinions%20wanted)
     _These issues hold discussions where we're especially eager for feedback._
 
-    Ongoing discussions benefit from broad feedback. 
-    This label is used to highlight issues where decisions are being considered, 
+    Ongoing discussions benefit from broad feedback.
+    This label is used to highlight issues where decisions are being considered,
     so please join the conversation!
 
 -   [![Community](https://img.shields.io/badge/-community-%23ddcc5f.svg)](https://github.com/bids-standard/bids-specification/labels/community)
     _These issues are related to building and supporting the BIDS community._
 
     In addition to the specification itself, we are dedicated to creating a
-    healthy community. 
+    healthy community.
     These issues highlight pieces of work or discussions
     around how we can support our members and make it easier to contribute.
 
@@ -129,15 +129,15 @@ You can validate your changes against the guide using
 [standalone command line tool](https://github.com/remarkjs/remark/tree/master/packages/remark-cli)
 as well as
 [a plugin for various text editors](https://github.com/remarkjs/remark-lint#editor-integrations).
-Remark preserves consistent markdown styling across the contributions. 
+Remark preserves consistent markdown styling across the contributions.
 Please ensure before submitting a contribution that you do not have any linter errors
-in your text editor. 
-You can also use [prettier](https://github.com/prettier/prettier) to 
-automatically correct some of the style issues that might be found 
+in your text editor.
+You can also use [prettier](https://github.com/prettier/prettier) to
+automatically correct some of the style issues that might be found
 in the proposed changes.
 
 We have deployed a continuous integrator ([circle CI](https://circleci.com/)) to
-further allow for integrating changes continuously. 
+further allow for integrating changes continuously.
 The CI is testing that the changes are inline with our standard styling.
 
 GitHub has a helpful page on
@@ -145,7 +145,7 @@ GitHub has a helpful page on
 
 ## Building the specification using mkdocs
 
-We are using mkdocs to render our specification. 
+We are using mkdocs to render our specification.
 Please follow these instructions if you would like to build the specification locally.
 
 #### 1. Install mkdocs
@@ -161,7 +161,7 @@ download"
 #### 3. Install our theme
 
 Please go [here](https://squidfunk.github.io/mkdocs-material/) and install our
-theme - material. 
+theme - material.
 The terminal command is `pip install mkdocs-material`
 
 #### 4. In the terminal (command line) navigate to your local version of the specification
@@ -173,23 +173,23 @@ period, like `.remarkrc`)
 
 #### 5. Ready to build!
 
-Using the terminal (command line) please enter `mkdocs serve`. 
-This will allow you to see a local version of the specification. 
-The local address will be `http://127.0.0.1:8000`. 
+Using the terminal (command line) please enter `mkdocs serve`.
+This will allow you to see a local version of the specification.
+The local address will be `http://127.0.0.1:8000`.
 You may enter that into your browser and this will bring up the specification!
 
 ## Fixing Travis Remark errors
 
 We use a linter called [Remarkjs](https://github.com/remarkjs/remark-lint) to
-ensure all of our Markdown documents are consistent and well-styled. 
-This commonly produces errors, which are flagged by [Travis CI](https://travis-ci.org/), 
-a continuous integration service. 
+ensure all of our Markdown documents are consistent and well-styled.
+This commonly produces errors, which are flagged by [Travis CI](https://travis-ci.org/),
+a continuous integration service.
 When Travis returns an error, use the following process to resolve the issue:
 
 #### 1. Install NodeJS / npm
 
 We use a markdown linter written in Javascript. To run command Javascript tools
-on the command line, please [download and install](https://nodejs.org/en/download/) 
+on the command line, please [download and install](https://nodejs.org/en/download/)
 NodeJS.
 
 #### 2. Install Remark-CLI and our style guide
@@ -224,7 +224,7 @@ Please confirm this has fixed the file. To do this, please run this:
 remark flagged_file_fixed.md --frail
 ```
 
-This command will indicate whether this file now conforms to the style guide. 
+This command will indicate whether this file now conforms to the style guide.
 If it passes, replace `flagged_file.md` with the contents of
 `flagged_file_fixed.md`, add and commit the change:
 
@@ -285,7 +285,7 @@ the same page with the goal of the work you're going to carry out.
 
 #### 2. [Fork](https://help.github.com/articles/fork-a-repo/) [this repository](https://github.com/bids-standard/bids-specification) to your profile
 
-This is now your own unique copy of the BIDS Specification. 
+This is now your own unique copy of the BIDS Specification.
 Changes here won't affect anyone else's work, so it's a safe space to explore edits to the
 specification!
 
@@ -296,8 +296,8 @@ with the master repository, otherwise you can end up with lots of dreaded
 
 #### 3. Make the changes you've discussed
 
-Try to keep the changes focused. 
-If you submit a large amount of work in all in one go it will be much more work 
+Try to keep the changes focused.
+If you submit a large amount of work in all in one go it will be much more work
 for whomever is reviewing your pull request.
 Please detail the changes you are attempting to make.
 
@@ -325,13 +325,13 @@ A member of the BIDS Specification team will review your changes to confirm that
 they can be merged into the main codebase.
 
 A [review](https://help.github.com/articles/about-pull-request-reviews/) will
-usually consist of a few questions to help clarify the work you've done. 
+usually consist of a few questions to help clarify the work you've done.
 Keep an eye on your GitHub notifications and be prepared to join in that
 conversation.
 
 You can update your [fork](https://help.github.com/articles/about-forks/) of the
 BIDS Specification and the pull request will automatically update with those
-commits. 
+commits.
 You don't need to submit a new pull request when you make a change in
 response to a review.
 
@@ -346,7 +346,7 @@ have any questions.
 ## Commenting on a pull request
 
 Our primary method of adding to or enhancing BIDS occurs in the form of
-[pull requests](https://help.github.com/articles/about-pull-requests/). 
+[pull requests](https://help.github.com/articles/about-pull-requests/).
 BIDS Extension Proposals
 ([BEPs](https://docs.google.com/document/d/1pWmEEY-1-WuwBPNy5tDAxVJYQ9Een4hZJM06tQZg8X4/))
 are submitted as pull requests, and commenting on pull requests is an important
@@ -372,8 +372,8 @@ In this example we will be navigating to our
 ### Pull request description
 
 Upon opening the pull request we see a detailed description of what this pull
-request is seeking to address. 
-Descriptions are important for reviewers and the community to gain context into 
+request is seeking to address.
+Descriptions are important for reviewers and the community to gain context into
 what the pull request is achieving.
 
 ![BIDS-pr](commenting_images/BIDS_pr.png "BIDS_pr")
@@ -388,11 +388,11 @@ comments and questions.
 ### Specific comments on a pull request
 
 The proposed changes to the text of the specification can be seen in the "Files
-changed" tab. 
+changed" tab.
 Proposed additions are displayed on a green background with a `+`
-before each added line. 
-Proposed deletions are displayed on a red background with a `-` before each removed line. 
-To comment on a specific line, hover over it, and click the blue plus sign (pictured below). 
+before each added line.
+Proposed deletions are displayed on a red background with a `-` before each removed line.
+To comment on a specific line, hover over it, and click the blue plus sign (pictured below).
 Multiple lines can be selected by clicking and dragging the plus sign.
 
 ![BIDS-specific-comment](commenting_images/BIDS_file_comment.png "BIDS-specific-comment")
@@ -458,45 +458,33 @@ reviewer as a co-author.
 ## Updating the schema
 
 Portions of the BIDS specification are defined using YAML files, in order to
-make the specification machine-readable. 
-Currently, the only portion of the specification that relies on this schema is 
+make the specification machine-readable.
+Currently, the only portion of the specification that relies on this schema is
 the Entity Table, but any changes to the specification should be mirrored in the schema.
 
 ### The format of the schema
 
 The schema reflects the files and objects in the specification, as well as
-associations between these objects. 
+associations between these objects.
 Here is a list of the files and subfolders of the schema, roughly in order of importance:
 
--   `datatypes/*.yaml`: Data types supported by the specification. Each datatype
-    may support many suffixes. 
-    These suffixes are divided into groups based on what extensions and entities 
-    are allowed for each. 
+- `datatypes/*.yaml`:
+    Data types supported by the specification.
+    Each datatype may support many suffixes.
+    These suffixes are divided into groups based on what extensions and entities are allowed for each.
     Data types correspond to subfolders (for example, `anat`, `func`) in the BIDS structure.
--   `auxdatatypes/*.yaml`: Auxiliary (not directly imaging or data-containing)
-    data types supported by the specification. 
-    Each auxiliary data type is associated with a set of data types, 
-    and these auxiliary data types are grouped based on what data types, 
-    extensions, and entities are allowed for each. 
-    Examples of auxiliary data types include `channels`, `electrodes`, and
-    `photo`.
--   `entities.yaml`: A list of entities (key/value pairs in folder and
-    filenames) with associated descriptions and formatting rules. 
-    The order of the entities in the file determines the order in which entities 
-    must appear in filenames.
--   `top_level_files.yaml`: Modality-agnostic files stored at the top level of a
-    BIDS dataset. 
-    The schema specifies whether these files are required or optional, 
-    as well as acceptable extensions for each.
--   `modalities.yaml`: Modalities supported by the specification, along with a
-    list of associated data types. 
-    Modalities are not reflected directly in the BIDS structure, 
-    but data types are modality-specific.
--   `associated_data.yaml`: Folders that are commonly contained within the same
-    folder as a BIDS dataset, but which do not follow the BIDS structure
-    internally, such as `code` or `sourcedata`. 
-    The schema specifies which folders are accepted and whether they are required 
-    or optional.
+- `entities.yaml`:
+    A list of entities (key/value pairs in folder and filenames) with associated descriptions and formatting rules.
+    The order of the entities in the file determines the order in which entities must appear in filenames.
+- `top_level_files.yaml`:
+    Modality-agnostic files stored at the top level of a BIDS dataset.
+    The schema specifies whether these files are required or optional, as well as acceptable extensions for each.
+- `modalities.yaml`:
+    Modalities supported by the specification, along with a list of associated data types.
+    Modalities are not reflected directly in the BIDS structure, but data types are modality-specific.
+- `associated_data.yaml`:
+    Folders that are commonly contained within the same folder as a BIDS dataset, but which do not follow the BIDS structure internally, such as `code` or `sourcedata`.
+    The schema specifies which folders are accepted and whether they are required or optional.
 
 ### Making a change to the schema
 
@@ -507,15 +495,27 @@ ensure that any changes which impact the rules of the specification (including,
 but not limited to, adding new entities, suffixes, datatypes, modalities) are
 reflected in the schema as well.
 
-#### 2. Generate an updated entity table before pushing your changes
+#### 2. Ensure that changes to the schema are matched in auto-generated sections of the specification
 
-Run the Python script `tools/bids_schema.py`:
+The schema is used to generate a number of elements in the specification text, including:
+- Filename format templates
+- Entity tables
+- Entity definitions
 
-```bash
-python tools/bids_schema.py entity src/schema/ src/99-appendices/04-entity-table.md
-```
+As such, you need to ensure that the functions used throughout the specification to render these elements are appropriately referencing the schema.
+In essence, please make sure, if your changes do impact how functions should be called, that you also update how the function are called.
 
-#### 3. Push your changes
+#### 3. Render the specification with `mkdocs` to check your changes
+
+Run `mkdocs serve` and open `localhost:8000` to browse the rendered specification.
+Make sure that all filename format templates, entity tables, and entity definitions are correct
+and that the code that generates these elements is not broken by your changes.
+
+While the continuous integration run on pull requests by the repository will render the specification,
+it is crucial to manually review the rendered changes to ensure that the code not only successfully runs,
+but also that the rendered changes appear as expected.
+
+#### 4. Push your changes
 
 For more information on making general changes with a pull request, please
 review
@@ -531,7 +531,7 @@ The decision-making rules are outlined in
 BIDS follows the
 [all-contributors](https://github.com/kentcdodds/all-contributors)
 specification, so we welcome and recognize all contributions from documentation
-to testing to code development. 
+to testing to code development.
 You can see a list of current contributors in the
 [BIDS specification](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md).
 
@@ -540,7 +540,7 @@ either make a change to the
 [contributors document](./src/99-appendices/01-contributors.md) and commit as
 part of a pull request or you can edit this
 [page](https://github.com/bids-standard/bids-specification/wiki/Recent-Contributors)
-of the specification WIKI. 
+of the specification WIKI.
 The WIKI is then synced with the specification with evert new release of the specifications.
 
 ## Thank you!

@@ -8,15 +8,7 @@ context of the academic literature.
 
 ## MEG recording data
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      meg/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_meg.<manufacturer_specific_extension>
-        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_meg.json]
-```
+{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["meg", "markers", "events"]) }}
 
 Unprocessed MEG data MUST be stored in the native file format of the MEG
 instrument with which the data was collected.
@@ -189,14 +181,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 ## Channels description (`*_channels.tsv`)
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      meg/
-        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>][_proc-<label>]_channels.tsv]
-```
+{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["channels"]) }}
 
 This file is RECOMMENDED as it provides easily searchable information across
 BIDS datasets for for example, general curation, response to queries or batch
@@ -287,14 +272,7 @@ UADC001 AUDIO V envelope of audio signal presented to participant
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      meg/
-        [sub-<label>[_ses-<label>][_acq-<label>]_coordsystem.json]
-```
+{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["coordsystem"]) }}
 
 OPTIONAL. A JSON document specifying the coordinate system(s) used for the MEG,
 EEG, head localization coils, and anatomical landmarks.
@@ -378,14 +356,7 @@ or:
 Photos of the anatomical landmarks and/or head localization coils
 (`*_photo.jpg`)
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      meg/
-        [sub-<label>[_ses-<label>][_acq-<label>]_photo.jpg]
-```
+{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["photo"]) }}
 
 Photos of the anatomical landmarks and/or head localization coils on the
 subject’s head are RECOMMENDED. If the coils are not placed at the location of
@@ -405,14 +376,7 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ## Head shape and electrode description (`*_headshape.<ext>`)
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      meg/
-        [sub-<label>[_ses-<label>][_acq-<label>]_headshape.<manufacturer_specific_extension>]
-```
+{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["headshape"]) }}
 
 This file is RECOMMENDED.
 

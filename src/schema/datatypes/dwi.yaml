@@ -9,10 +9,10 @@
     - .bvec
     - .bval
   entities:
-    sub: required
-    ses: optional
-    acq: optional
-    dir: optional
+    subject: required
+    session: optional
+    acquisition: optional
+    direction: optional
     run: optional
     part: optional
 # Second group
@@ -23,9 +23,9 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
-    acq: optional
-    dir: optional
+    subject: required
+    session: optional
+    acquisition: optional
+    direction: optional
     run: optional
     part: optional

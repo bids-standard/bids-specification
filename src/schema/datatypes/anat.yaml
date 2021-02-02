@@ -15,12 +15,12 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
     part: optional
 # Second group
 - suffixes:
@@ -48,12 +48,12 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
 # Third group
 - suffixes:
     - defacemask
@@ -62,13 +62,13 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
-    mod: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    modality: optional
 # Fourth group
 - suffixes:
     - MESE
@@ -78,12 +78,12 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
     echo: required
     part: optional
 # Fifth group
@@ -94,12 +94,12 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
     flip: required
     part: optional
 # Sixth group
@@ -110,12 +110,12 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
     inv: required
     part: optional
 # Seventh group
@@ -126,12 +126,12 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
     echo: optional
     flip: required
     inv: required
@@ -145,12 +145,12 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
     echo: optional
     flip: required
     mt: required
@@ -163,11 +163,11 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
     mt: required
     part: optional

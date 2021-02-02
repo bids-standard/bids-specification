@@ -12,8 +12,56 @@
     - .fdt
     - .nwb
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
+    acquisition: optional
     run: optional
+- suffixes:
+    - channels
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+- suffixes:
+    - coordsystem
+  extensions:
+    - .json
+  entities:
+    subject: required
+    session: optional
+    space: optional
+- suffixes:
+    - electrodes
+  extensions:
+    # No json, since electrodes.tsv uses coordsystem.json for metadata
+    - .tsv
+  entities:
+    subject: required
+    session: optional
+    space: optional
+    acquisition: optional
+- suffixes:
+    - events
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+- suffixes:
+    - photo
+  extensions:
+    - .jpg
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional

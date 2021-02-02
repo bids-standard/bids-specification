@@ -9,13 +9,13 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
-    ce: optional
-    rec: optional
-    dir: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
     run: optional
     echo: optional
     part: optional
@@ -27,13 +27,13 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
-    ce: optional
-    rec: optional
-    dir: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
     run: optional
     echo: optional
 # Third group
@@ -43,13 +43,13 @@
     - .tsv
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
-    ce: optional
-    rec: optional
-    dir: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
     run: optional
     echo: optional
 # Fourth group
@@ -60,10 +60,10 @@
     - .tsv.gz
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
-    rec: optional
+    acquisition: optional
+    reconstruction: optional
     run: optional
     recording: optional

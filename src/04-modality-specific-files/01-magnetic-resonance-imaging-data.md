@@ -135,14 +135,7 @@ whenever possible. See also
 
 ## Anatomy imaging data
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_part-<label>]_<suffix>.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
-```
+{{ MACROS___make_filename_template(datatypes=["anat"]) }}
 
 Anatomical (structural) data acquired for that participant. Currently supported
 non-parametric structural MR images include:
@@ -301,15 +294,7 @@ Currently supported image contrasts include:
 | CBV       | cbv      | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images)                                                                                                                                                                     |
 | Phase     | phase    | [DEPRECATED](../02-common-principles.md#definitions). Phase information associated with magnitude information stored in BOLD contrast. This suffix should be replaced by the [`part-phase`](../99-appendices/09-entities.md#part) in conjunction with the `bold` suffix. |
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    func/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<label>]_bold.nii[.gz]
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<label>]_cbv.nii[.gz]
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<label>]_sbref.nii[.gz]
-```
+{{ MACROS___make_filename_template(datatypes=["func"]) }}
 
 Functional imaging consists of techniques that support rapid temporal repetition.
 This includes but is not limited to task based fMRI
@@ -500,18 +485,7 @@ Currently supported image types include:
 | DWI                   | dwi      | Diffusion-weighted imaging contrast (specialized T2\* weighting). |
 | Single-Band Reference | sbref    | Single-band reference for one or more multi-band `dwi` images.    |
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    dwi/
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_dwi.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_dwi.bval
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_dwi.bvec
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_dwi.json
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_sbref.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_sbref.json
-```
+{{ MACROS___make_filename_template(datatypes=["dwi"]) }}
 
 If more than one run of the same acquisition and direction has been acquired, the
 [`run-<index>`](../99-appendices/09-entities.md#run) key/value pair MUST be used:
@@ -683,18 +657,7 @@ JSON example:
 
 ## Arterial Spin Labeling perfusion data
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    perf/
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_asl.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_asl.json
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_aslcontext.tsv
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.json
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asllabeling.jpg
-```
+{{ MACROS___make_filename_template(datatypes=["perf"]) }}
 
 The complete ASL time series should be stored as a 4D NIfTI file in the original acquisition order,
 accompanied by two ancillary files: `*_asl.json` and `*_aslcontext.tsv`.
@@ -858,16 +821,7 @@ are allowed across all the four scenarios:
 
 #### Case 1: Phase-difference map and at least one magnitude image
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    fmap/
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.json
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude1.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude2.nii[.gz]  # OPTIONAL
-```
+{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["phasediff", "magnitude1", "magnitude2"]) }}
 
 where
 the REQUIRED `_phasediff` image corresponds to the phase-drift map between echo times,
@@ -899,18 +853,7 @@ Similar to case 1, but instead of a precomputed phase-difference map, two
 separate phase images and two magnitude images corresponding to first and
 second echos are available.
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    fmap/
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase1.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase1.json
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude1.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude2.nii[.gz]
-```
+{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["phase1", "phase2", "magnitude1", "magnitude2"]) }}
 
 Required fields:
 
@@ -931,15 +874,7 @@ For example, `sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json`
 In some cases (for example GE), the scanner software will directly reconstruct a
 *B<sub>0</sub>* field map along with a magnitude image used for anatomical reference.
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    fmap/
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_fieldmap.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_fieldmap.json
-```
+{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["fieldmap", "magnitude"]) }}
 
 Required fields:
 
@@ -968,16 +903,7 @@ in the latter case, all timepoints share the same scanning parameters.
 Examples of software tools using these kinds of images are FSL TOPUP,
 AFNI `3dqwarp`, and SPM.
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    fmap/
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_epi.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_epi.json
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.json
-```
+{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["epi"]) }}
 
 The [`dir-<label>`](../99-appendices/09-entities.md#dir) entity is REQUIRED
 for these files.

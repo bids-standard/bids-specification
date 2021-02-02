@@ -8,15 +8,7 @@ context of the academic literature.
 
 ## iEEG recording data
 
-Template:
-
-```Text
-sub-<label>/
-  [ses-<label>]/
-    ieeg/
-      sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_ieeg.<manufacturer_specific_extension>
-      sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_ieeg.json
-```
+{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["ieeg", "events"]) }}
 
 The iEEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, iEEG data MUST be
@@ -203,14 +195,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 ## Channels description (`*_channels.tsv`)
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      ieeg/
-        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_channels.tsv]
-```
+{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["channels"]) }}
 
 A channel represents one time series recorded with the recording system (for
 example, there can be a bipolar channel, recorded from two electrodes or contact
@@ -294,14 +279,7 @@ Example of free-form text for field `description`:
 
 ## Electrode description (`*_electrodes.tsv`)
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      ieeg/
-         sub-<label>[_ses-<label>][_acq-<label>][_space-<label>]_electrodes.tsv
-```
+{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["electrodes"]) }}
 
 File that gives the location, size and other properties of iEEG electrodes. Note
 that coordinates are expected in cartesian coordinates according to the
@@ -372,14 +350,7 @@ H01   27  -42  -21  5      AdTech
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      ieeg/
-         sub-<label>[_ses-<label>][_space-<label>]_coordsystem.json
-```
+{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["coordsystem"]) }}
 
 This `_coordsystem.json` file contains the coordinate system in which electrode
 positions are expressed. The associated MRI, CT, X-Ray, or operative photo can
@@ -444,14 +415,7 @@ Example:
 
 ## Photos of the electrode positions (`*_photo.jpg`)
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      ieeg/
-         sub-<label>[_ses-<label>][_acq-<label]_photo.json
-```
+{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["photo"]) }}
 
 These can include photos of the electrodes on the brain surface, photos of
 anatomical features or landmarks (such as sulcal structure), and fiducials. Photos
