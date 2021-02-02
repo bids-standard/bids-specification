@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   ENH: Harmonize CoordinateSystem details for MRI, MEG, EEG, iEEG [#717](https://github.com/bids-standard/bids-specification/pull/717) ([sappelhoff](https://github.com/sappelhoff))
 -   SCHEMA: Update entity YAML keys [#714](https://github.com/bids-standard/bids-specification/pull/714) ([effigies](https://github.com/effigies))
 -   \[MISC] Added full names for some contributors in .mailmap file [#705](https://github.com/bids-standard/bids-specification/pull/705) ([yarikoptic](https://github.com/yarikoptic))
 -   \[INFRA] Migrate md and yml checks from travis to GH actions [#693](https://github.com/bids-standard/bids-specification/pull/693) ([sappelhoff](https://github.com/sappelhoff))
@@ -27,6 +28,7 @@
 -   \[SCHEMA] Add derivatives entities to the schema [#645](https://github.com/bids-standard/bids-specification/pull/645) ([tsalo](https://github.com/tsalo))
 -   \[MISC] add brief note that TSV example in the spec may currently use either tab or space characters [#643](https://github.com/bids-standard/bids-specification/pull/643) ([yarikoptic](https://github.com/yarikoptic))
 -   \[ENH] Add "multipart DWI" acquisitions and refactor DWI specifications [#624](https://github.com/bids-standard/bids-specification/pull/624) ([oesteban](https://github.com/oesteban))
+-   \[SCHEMA] Render schema elements in text [#610](https://github.com/bids-standard/bids-specification/pull/610) ([tsalo](https://github.com/tsalo))
 -   \[ENH] Add part entity for complex-valued data [#424](https://github.com/bids-standard/bids-specification/pull/424) ([tsalo](https://github.com/tsalo))
 
 ## [v1.4.1](https://github.com/bids-standard/bids-specification/tree/v1.4.1) (2020-10-13)
