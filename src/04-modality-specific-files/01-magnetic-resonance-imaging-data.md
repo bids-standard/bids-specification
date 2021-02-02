@@ -160,10 +160,6 @@ key/value pair corresponds to modality suffix,
 such as T1w or inplaneT1, referenced by the defacemask image.
 For example, `sub-01_mod-T1w_defacemask.nii.gz`.
 
-If several scans of the same modality are acquired they MUST be indexed with the
-[`run-<index>`](../99-appendices/09-entities.md#run) key-value pair:
-`_run-1`, `_run-2`, `_run-3`, and so on (only nonnegative integers are allowed as
-run labels).
 If several scans with the same acquisition parameters are acquired in the same session,
 they MUST be indexed with the [`run-<index>`](../99-appendices/09-entities.md#run) entity:
 `_run-1`, `_run-2`, `_run-3`, and so on (only nonnegative integers are allowed as
@@ -171,7 +167,8 @@ run labels).
 
 If different entities apply,
 such as a different session indicated by [`ses-<label>`](../99-appendices/09-entities.md#ses),
-or different acquisition parameters indicated by [`acq-<label>`](../99-appendices/09-entities.md#acq),
+or different acquisition parameters indicated by
+[`acq-<label>`](../99-appendices/09-entities.md#acq),
 then `run` is not needed to distinguish the scans and MAY be omitted.
 
 The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
