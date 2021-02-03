@@ -116,7 +116,7 @@
     acquisition: optional
     ceagent: optional
     reconstruction: optional
-    inv: required
+    inversion: required
     part: optional
 # Seventh group
 - suffixes:
@@ -134,7 +134,7 @@
     reconstruction: optional
     echo: optional
     flip: required
-    inv: required
+    inversion: required
     part: optional
 # Eighth group
 - suffixes:
@@ -153,7 +153,7 @@
     reconstruction: optional
     echo: optional
     flip: required
-    mt: required
+    mtransfer: required
     part: optional
 # Nineth group
 - suffixes:
@@ -169,5 +169,5 @@
     acquisition: optional
     ceagent: optional
     reconstruction: optional
-    mt: required
+    mtransfer: required
     part: optional
