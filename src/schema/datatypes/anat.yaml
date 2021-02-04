@@ -133,7 +133,7 @@
     ceagent: optional
     reconstruction: optional
     echo: optional
-    flip: required
+    flip: optional
     inversion: required
     part: optional
 # Eighth group
