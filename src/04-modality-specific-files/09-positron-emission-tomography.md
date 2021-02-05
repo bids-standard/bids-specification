@@ -198,7 +198,7 @@ This section is mandatory and contains timing information about the imaging expe
 | InjectionStart  | REQUIRED              | [number][]               | Time of start of injection with respect to `TimeZero` in the default unit seconds. This corresponds to DICOM Tag (0018,1042) converted to seconds relative to `TimeZero`. |
 | FrameTimesStart | REQUIRED              | [array][] of [numbers][] | Start times for all frames relative to `TimeZero` in default unit seconds.                                                                                                |
 | FrameDuration   | REQUIRED              | [array][] of [numbers][] | Time duration of each frame in default unit seconds. This corresponds to DICOM Tag (0018,1242) converted to seconds.                                                      |
-| ScanDate        | RECOMMENDED           | [string][]               | Date of scan in the default unit "yyyy:mm:dd".                                                                                                                            |
+| ScanDate        | RECOMMENDED           | [string][]               | Date of scan in the default unit `"YYYY-MM-DD[Z]"`, with the Z indicator being optional for indicating UTC timezone (see the [units section](../02-common-principles.md#units)).                                                                                                                            |
 | InjectionEnd    | RECOMMENDED           | [number][]               | Time of end of injection with respect to `TimeZero` in the default unit seconds.                                                                                          |
 
 #### Reconstruction
