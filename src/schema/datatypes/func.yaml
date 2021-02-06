@@ -51,7 +51,6 @@
     reconstruction: optional
     direction: optional
     run: optional
-    echo: optional
 # Fourth group
 - suffixes:
     - physio
