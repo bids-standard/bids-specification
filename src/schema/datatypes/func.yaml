@@ -63,6 +63,8 @@
     session: optional
     task: required
     acquisition: optional
+    ceagent: optional
     reconstruction: optional
+    direction: optional
     run: optional
     recording: optional
