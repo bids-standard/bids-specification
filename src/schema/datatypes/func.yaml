@@ -1,5 +1,5 @@
 ---
-# First group
+# Func
 - suffixes:
     - bold
     - cbv
@@ -19,9 +19,9 @@
     run: optional
     echo: optional
     part: optional
-# Second group
+# Phase (deprecated)
 - suffixes:
-    - phase
+    - phase  # deprecated
   extensions:
     - .nii.gz
     - .nii
@@ -36,7 +36,7 @@
     direction: optional
     run: optional
     echo: optional
-# Third group
+# Events
 - suffixes:
     - events
   extensions:
@@ -51,7 +51,7 @@
     reconstruction: optional
     direction: optional
     run: optional
-# Fourth group
+# Timeseries
 - suffixes:
     - physio
     - stim

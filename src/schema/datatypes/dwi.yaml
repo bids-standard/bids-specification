@@ -1,5 +1,5 @@
 ---
-# First group
+# DWI
 - suffixes:
     - dwi
   extensions:
@@ -15,7 +15,7 @@
     direction: optional
     run: optional
     part: optional
-# Second group
+# Single-band reference images
 - suffixes:
     - sbref
   extensions:
