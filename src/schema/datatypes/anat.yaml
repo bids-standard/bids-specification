@@ -1,5 +1,5 @@
 ---
-# First group
+# Nonparametric
 - suffixes:
     - T1w
     - T2w
@@ -25,7 +25,7 @@
     ceagent: optional
     reconstruction: optional
     part: optional
-# Second group
+# Parametric
 - suffixes:
     - T1map
     - T2map
@@ -57,7 +57,7 @@
     acquisition: optional
     ceagent: optional
     reconstruction: optional
-# Third group
+# Defacemask
 - suffixes:
     - defacemask
   extensions:
@@ -72,7 +72,7 @@
     ceagent: optional
     reconstruction: optional
     modality: optional
-# Fourth group
+# Multi-echo
 - suffixes:
     - MESE
     - MEGRE
@@ -89,7 +89,7 @@
     reconstruction: optional
     echo: required
     part: optional
-# Fifth group
+# Multi-flip
 - suffixes:
     - VFA
   extensions:
@@ -105,7 +105,7 @@
     reconstruction: optional
     flip: required
     part: optional
-# Sixth group
+# Multi-inv
 - suffixes:
     - IRT1
   extensions:
@@ -121,7 +121,7 @@
     reconstruction: optional
     inversion: required
     part: optional
-# Seventh group
+# MP2RAGE
 - suffixes:
     - MP2RAGE
   extensions:
@@ -139,7 +139,7 @@
     flip: optional
     inversion: required
     part: optional
-# Eighth group
+# VFA+MT
 - suffixes:
     - MPM
     - MTS
@@ -158,7 +158,7 @@
     flip: required
     mtransfer: required
     part: optional
-# Nineth group
+# MTR
 - suffixes:
     - MTR
   extensions:
