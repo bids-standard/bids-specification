@@ -10,6 +10,9 @@
     - inplaneT2
     - PDT2
     - angio
+    - T2star  # deprecated
+    - FLASH  # deprecated
+    - PD  # deprecated
   extensions:
     - .nii.gz
     - .nii
