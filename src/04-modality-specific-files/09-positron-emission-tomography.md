@@ -195,7 +195,7 @@ which we divide into several categories:
 | InjectionStart  | REQUIRED              | [number][]               | Time of start of injection with respect to `TimeZero` in the default unit seconds. This corresponds to DICOM Tag (0018,1042) converted to seconds relative to `TimeZero`. |
 | FrameTimesStart | REQUIRED              | [array][] of [numbers][] | Start times for all frames relative to `TimeZero` in default unit seconds.                                                                                                |
 | FrameDuration   | REQUIRED              | [array][] of [numbers][] | Time duration of each frame in default unit seconds. This corresponds to DICOM Tag (0018,1242) converted to seconds.                                                      |
-| ScanDate        | RECOMMENDED           | [string][]               | Date of scan in the default unit `"YYYY-MM-DD[Z]"`, with the Z indicator being optional for indicating UTC timezone (see the [units section](../02-common-principles.md#units)).                                                                                                                            |
+| ScanDate        | RECOMMENDED           | [string][]               | Date of scan in the default unit `"YYYY-MM-DD[Z]"`, with the Z indicator being optional for indicating UTC timezone (see [Units](../02-common-principles.md#units)).      |
 | InjectionEnd    | RECOMMENDED           | [number][]               | Time of end of injection with respect to `TimeZero` in the default unit seconds.                                                                                          |
 
 We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see the [units section](../02-common-principles.md#units).
@@ -276,7 +276,7 @@ If recorded once per participant, these data SHOULD be included in the
 
 For example:
 
-```
+```Text
 participant_id body_weight
 sub-01 58
 sub-02 96
@@ -288,7 +288,7 @@ If multiple measurements are made, these data SHOULD be included in the
 
 For example:
 
-```
+```Text
 session_id body_weight
 ses-01 58
 ses-02 59
@@ -315,8 +315,6 @@ All blood measurements should be reported according to a single time-scale
 in relation to time zero defined by the PET data (Figure 1).
 All definitions used below are in accordance with
 Innis et al. 2007 ([doi:10.1038/sj.jcbfm.9600493](https://doi.org/10.1038/sj.jcbfm.9600493)).
-
-
 
 ## Blood sidecar JSON (`*_recording-(manual|autosampler)_blood.json`)
 
