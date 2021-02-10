@@ -400,12 +400,12 @@ and the values below should be added to the `*_recording-autosampler_blood.json`
 
 ```JSON
 {
-	"PlasmaAvail": true,
-	"WholeBloodAvail": true,
-	"MetaboliteAvail": true,
-	"MetaboliteMethod": "",
-	"MetaboliteRecoveryCorrectionApplied": false,
-	"DispersionCorrected": false,
+    "PlasmaAvail": true,
+    "WholeBloodAvail": true,
+    "MetaboliteAvail": true,
+    "MetaboliteMethod": "",
+    "MetaboliteRecoveryCorrectionApplied": false,
+    "DispersionCorrected": false,
 
     "time": {
         "Description": "Time in relation to time zero defined by the _pet.json",
