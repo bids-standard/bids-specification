@@ -301,16 +301,22 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     pet/
-	sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>_blood.tsv
-	sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>_blood.json
+	sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_rec-<label>][_run-<index>][_recording-<label>]_blood.tsv
+	sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_rec-<label>][_run-<index>][_recording-<label>]_blood.json
 
 ```
 
-If collected, blood measurements of radioactivity should be stored in the `pet/`
-directory along with the corresponding PET data.
-The REQUIRED `recording` entity may have the value `autosampler`,
-if an autosampler is used to record continuous blood samples,
-or `manual`, if manual measurements were taken.
+If collected, blood measurements of radioactivity are be stored in
+[Tabular files](../02-common-principles.md#tabular-files) and located in
+the `pet/` directory along with the corresponding PET data.
+
+The OPTIONAL `recording` entity is used to distinguish sampling methods.
+For example, if an autosampler is used to record continuous blood samples,
+and manual measurements are also taken,
+then the files may have recording labels `autosampler` and `manual`,
+respectively.
+If multiple recording methods are used on the same PET acquisition,
+the `recording` entity MUST be used to distinguish them.
 All blood measurements should be reported according to a single time-scale
 in relation to time zero defined by the PET data (Figure 1).
 All definitions used below are in accordance with
