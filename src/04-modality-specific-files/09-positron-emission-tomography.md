@@ -296,9 +296,6 @@ ses-02 59
 
 ## Blood recording data
 
-This section includes all data needed to perform blood analysis for PET data.
-The section may be omitted completely if blood measurements of radioactivity were not made.
-
 Template:
 
 ```Text
@@ -309,18 +306,17 @@ sub-<label>/[ses-<label>/]
 
 ```
 
-Blood data belongs in the `pet/` folder along with the corresponding PET data.
-However, the blood data also follows the [inheritance principle](../02-common-principles.md#the-inheritance-principle) and may be moved to an upper level folder
-if it does not change, for example, with multiple reconstructions.
-The blood data is often recorded using an autosampler for continuous blood samples,
-or manually for discrete blood samples.
-Therefore, the recording key (`recording-<label>`) has two reserved values:
-`autosampler`,
-for continuous blood data measurements;
-and `manual`, for discrete blood data.
+If collected, blood measurements of radioactivity should be stored in the `pet/`
+directory along with the corresponding PET data.
+The REQUIRED `recording` entity may have the value `autosampler`,
+if an autosampler is used to record continuous blood samples,
+or `manual`, if manual measurements were taken.
 All blood measurements should be reported according to a single time-scale
 in relation to time zero defined by the PET data (Figure 1).
-All definitions used below are in accordance with Innis et al. 2007 ([doi:10.1038/sj.jcbfm.9600493](https://doi.org/10.1038/sj.jcbfm.9600493)).
+All definitions used below are in accordance with
+Innis et al. 2007 ([doi:10.1038/sj.jcbfm.9600493](https://doi.org/10.1038/sj.jcbfm.9600493)).
+
+
 
 ## Blood sidecar JSON (`*_recording-(manual|autosampler)_blood.json`)
 
