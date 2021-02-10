@@ -302,11 +302,10 @@ The section may be omitted completely if blood measurements of radioactivity wer
 Template:
 
 ```Text
-sub-<participant_label>/
- 	[ses-<session_label>/]
-	pet/
-	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>_blood.tsv
-	sub-<participant_label>[_ses-<session_label>][_task-<task_label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>_blood.json
+sub-<label>/[ses-<label>/]
+    pet/
+	sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>_blood.tsv
+	sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_rec-<label>][_run-<index>]_recording-<label>_blood.json
 
 ```
 
