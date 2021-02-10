@@ -529,7 +529,7 @@ values of the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be 
          └── sub-01_acq-famp_TB1TFL.json
 ```
 
-The example above applies to the `TB1RFM` suffix as well.
+The example above applies to the `TB1RMF` suffix as well.
 
 #### `RB1COR` specific notes
 
