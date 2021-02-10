@@ -2,6 +2,11 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   FIX: Add deprecated anatomical MRI suffixes back into schema [#725](https://github.com/bids-standard/bids-specification/pull/725) ([tsalo](https://github.com/tsalo))
+-   FIX: Correct schema irregularities for func datatype [#724](https://github.com/bids-standard/bids-specification/pull/724) ([tsalo](https://github.com/tsalo))
+-   FIX: Make flip optional for MP2RAGE [#722](https://github.com/bids-standard/bids-specification/pull/722) ([tsalo](https://github.com/tsalo))
+-   FIX: Correct entity names in YAML files [#720](https://github.com/bids-standard/bids-specification/pull/720) ([tsalo](https://github.com/tsalo))
+-   ENH: Clarify run indexing information for MRI acquisitions [#719](https://github.com/bids-standard/bids-specification/pull/719) ([effigies](https://github.com/effigies))
 -   ENH: Harmonize CoordinateSystem details for MRI, MEG, EEG, iEEG [#717](https://github.com/bids-standard/bids-specification/pull/717) ([sappelhoff](https://github.com/sappelhoff))
 -   SCHEMA: Update entity YAML keys [#714](https://github.com/bids-standard/bids-specification/pull/714) ([effigies](https://github.com/effigies))
 -   \[MISC] Added full names for some contributors in .mailmap file [#705](https://github.com/bids-standard/bids-specification/pull/705) ([yarikoptic](https://github.com/yarikoptic))
