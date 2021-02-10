@@ -265,6 +265,35 @@ All reconstruction-specific parameters that are not specified, but one wants to 
 }
 ```
 
+### Recommended patient data
+
+Knudsen et al. 2020
+([doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433))
+recommends recording participant body weight.
+If recorded once per participant, these data SHOULD be included in the
+[Participants file](../03-modality-agnostic-files.md#participants-file) or as
+[Phenotypic and assessment data](../03-modality-agnostic-files.md#phenotypic-and-assessment-data).
+
+For example:
+
+```
+participant_id body_weight
+sub-01 58
+sub-02 96
+sub-03 72
+```
+
+If multiple measurements are made, these data SHOULD be included in the
+[Sessions file](../06-longitudinal-and-multi-site-studies.md#sessions-file).
+
+For example:
+
+```
+session_id body_weight
+ses-01 58
+ses-02 59
+```
+
 ## Blood recording data
 
 This section includes all data needed to perform blood analysis for PET data.
