@@ -128,47 +128,31 @@ For further details, see
 In addition to the imaging data (`*.nii`) a `_pet.json` sidecar file MUST be provided.
 The included metadata are divided into sections described below.
 
-### PET sidecar JSON (`*_pet.json`)
+### PET metadata
 
-#### Information
+PET data MUST be described by metadata fields, stored in sidecar JSON files.
+These fields are derived from the recommendations in
+Knudsen et al. 2020, [doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433),
+which we divide into several categories:
 
-This section is mandatory and contains general information about the imaging experiment.
+#### Scanner Hardware
 
-Some of the fields are marked optional (MAY), for example anaesthesia; for those fields
-the [BIDS validator](https://github.com/bids-standard/bids-validator) will not throw an error, even if they are not present.
-Note, although bodyweight is a recommended information in (Knudsen et al. 2020, [doi:10.1177/0271678X20905433](https://doi.org/10.1177/0271678X20905433)),
-this consists of meta information at the participant level and should hence
-be part of the `participants.tsv`, or in case of multiple measurements of the `session.tsv` file.
-
-| **Key name**              | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ------------------------- | --------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Manufacturer              | REQUIRED              | [string][]                             | Scanner manufacturer (for example, `"Siemens"`).                                                                                                                                                                                                                                                                                                                                                                                 |
-| ManufacturersModelName    | REQUIRED              | [string][]                             | PET scanner model name (for example, `"mMR Biograph"`).                                                                                                                                                                                                                                                                                                                                                                          |
-| Unit                      | REQUIRED              | [string][]                             | Unit of the image file; please see BIDS main spec section 6. SI unit for radioactivity (Becquerel) should be used (for example, `"Bq/mL"`). Corresponds to DICOM Tag 0054, 1001 Units.                                                                                                                                                                                                                                           |
-| TracerName                | REQUIRED              | [string][]                             | Name of the tracer compound used (for example, `"CIMBI-36"`)                                                                                                                                                                                                                                                                                                                                                                     |
-| TracerRadionuclide        | REQUIRED              | [string][]                             | Radioisotope labelling tracer (for example, `"C11"`).                                                                                                                                                                                                                                                                                                                                                                            |
-| InstitutionName           | RECOMMENDED           | [string][]                             | The name of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0080 InstitutionName.                                                                                                                                                                                                                                                                               |
-| InstitutionAddress        | RECOMMENDED           | [string][]                             | The address of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0081 InstitutionAddress.                                                                                                                                                                                                                                                                         |
-| InstitutionDepartmentName | RECOMMENDED           | [string][]                             | The department in the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1040 Institutional Department Name.                                                                                                                                                                                                                                                           |
-| BodyPart                  | RECOMMENDED           | [string][]                             | Body part of the organ / body region scanned. Corresponds to DICOM Tag 0018, 0015 Body Part Examined                                                                                                                                                                                                                                                                                                                             |
-| TracerRadLex              | RECOMMENDED           | [string][]                             | ID of the tracer compound from the RadLex Ontology.                                                                                                                                                                                                                                                                                                                                                                              |
-| TracerSNOMED              | RECOMMENDED           | [string][]                             | ID of the tracer compound from the SNOMED Ontology (subclass of Radioactive isotope).                                                                                                                                                                                                                                                                                                                                            |
-| TracerMolecularWeight     | RECOMMENDED           | [number][]                             | Accurate molecular weight of the tracer used.                                                                                                                                                                                                                                                                                                                                                                                    |
-| TracerMolecularWeightUnit | RECOMMENDED           | [string][]                             | Unit of the molecular weights measurement (for example, `"g/mol"`).                                                                                                                                                                                                                                                                                                                                                              |
-| PharmaceuticalName        | RECOMMENDED           | [string][]                             | Name of pharmaceutical coadministered with tracer.                                                                                                                                                                                                                                                                                                                                                                               |
-| PharmaceuticalDoseAmount  | RECOMMENDED           | [number][] or [array][] of [numbers][] | Dose amount of pharmaceutical coadministered with tracer.                                                                                                                                                                                                                                                                                                                                                                        |
-| PharmaceuticalDoseUnit    | RECOMMENDED           | [string][]                             | Unit format relating to pharmaceutical dose (for example, `"mg"` or `"mg/kg"`).                                                                                                                                                                                                                                                                                                                                                  |
-| PharmaceuticalDoseRegimen | RECOMMENDED           | [string][]                             | Details of the pharmaceutical dose regimen. Either adequate description or short-code relating to regimen documented elsewhere (for example, `"single oral bolus"`).                                                                                                                                                                                                                                                             |
-| PharmaceuticalDoseTime    | RECOMMENDED           | [number][] or [array][] of [numbers][] | Time of administration of pharmaceutical dose, relative to time zero (please see below). For an infusion, this should be a vector with two elements specifying the start and end of the infusion period. For more complex dose regimens, the regimen description should be complete enough to enable unambiguous interpretation of the DoseTime vector. Unit format of the specified pharmaceutical dose time should be seconds. |
-| Anaesthesia               | OPTIONAL              | [string][]                             | Details of anaesthesia used, if any.                                                                                                                                                                                                                                                                                                                                                                                             |
+| **Key name**              | **Requirement level** | **Data type** | **Description**                                                                                                                                                                        |
+| ------------------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Manufacturer              | REQUIRED              | [string][]    | Scanner manufacturer (for example, `"Siemens"`).                                                                                                                                       |
+| ManufacturersModelName    | REQUIRED              | [string][]    | PET scanner model name (for example, `"mMR Biograph"`).                                                                                                                                |
+| Unit                      | REQUIRED              | [string][]    | Unit of the image file; please see BIDS main spec section 6. SI unit for radioactivity (Becquerel) should be used (for example, `"Bq/mL"`). Corresponds to DICOM Tag 0054, 1001 Units. |
+| InstitutionName           | RECOMMENDED           | [string][]    | The name of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0080 InstitutionName.                                     |
+| InstitutionAddress        | RECOMMENDED           | [string][]    | The address of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0081 InstitutionAddress.                               |
+| InstitutionDepartmentName | RECOMMENDED           | [string][]    | The department in the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1040 Institutional Department Name.                 |
+| BodyPart                  | RECOMMENDED           | [string][]    | Body part of the organ / body region scanned. Corresponds to DICOM Tag 0018, 0015 Body Part Examined                                                                                   |
 
 #### Radiochemistry
 
-This section is mandatory and contains information regarding the radioactive
-material used in the experiment.
-
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                            |
-| ----------------------------- | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ - |
+| ----------------------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| TracerName                    | REQUIRED              | [string][]    | Name of the tracer compound used (for example, `"CIMBI-36"`)                                                                                                                                                                                                               |
+| TracerRadionuclide            | REQUIRED              | [string][]    | Radioisotope labelling tracer (for example, `"C11"`).                                                                                                                                                                                                                      |
 | InjectedRadioactivity         | REQUIRED              | [number][]    | Total amount of radioactivity injected into the patient (for example, 400). Corresponds to DICOM Tag (0018,1074) Radionuclide Total Dose.                                                                                                                                  |
 | InjectedRadioactivityUnit     | REQUIRED              | [string][]    | Unit format of the specified injected radioactivity (for example, `"MBq"`).                                                                                                                                                                                                |
 | InjectedMass                  | REQUIRED              | [number][]    | Total mass of radiolabeled compound injected into subject (for example, 10). This can be derived as the ratio of the `InjectedRadioactivity` and `MolarRadioactivity`. **For those tracers in which injected mass is not available (for example FDG) can be set to "n/a"** |
@@ -176,6 +160,10 @@ material used in the experiment.
 | SpecificRadioactivity         | REQUIRED              | [number][]    | Specific activity of compound injected. **Note this is not required for an FDG acquisition, since it is not available, and SHOULD be set to -1**.                                                                                                                          |
 | SpecificRadioactivityUnit     | REQUIRED              | [string][]    | Unit format of specified specific radioactivity (for example, "Bq/g"). **Note this is not required for an FDG acquisition, since it is not available, and SHOULD be set to "-1"**.                                                                                         |
 | ModeOfAdministration          | REQUIRED              | [string][]    | Mode of administration of the injection (for example, "bolus" or "infusion").                                                                                                                                                                                              |
+| TracerRadLex                  | RECOMMENDED           | [string][]    | ID of the tracer compound from the RadLex Ontology.                                                                                                                                                                                                                        |
+| TracerSNOMED                  | RECOMMENDED           | [string][]    | ID of the tracer compound from the SNOMED Ontology (subclass of Radioactive isotope).                                                                                                                                                                                      |
+| TracerMolecularWeight         | RECOMMENDED           | [number][]    | Accurate molecular weight of the tracer used.                                                                                                                                                                                                                              |
+| TracerMolecularWeightUnit     | RECOMMENDED           | [string][]    | Unit of the molecular weights measurement (for example, `"g/mol"`).                                                                                                                                                                                                        |
 | InjectedMassPerWeight         | RECOMMENDED           | [number][]    | Injected mass per kilogram bodyweight.                                                                                                                                                                                                                                     |
 | InjectedMassPerWeightUnit     | RECOMMENDED           | [string][]    | Unit format of the injected mass per kilogram bodyweight (for example, "ug/kg").                                                                                                                                                                                           |
 | SpecificRadioactivityMeasTime | RECOMMENDED           | [string][]    | Time to which specific radioactivity measurement above applies in the default unit "hh:mm:ss".                                                                                                                                                                             |
@@ -187,9 +175,18 @@ material used in the experiment.
 | InjectedVolumeUnit            | RECOMMENDED           | [string][]    | Unit of the injected volume of the radiotracer (for example, "mL").                                                                                                                                                                                                        |
 | Purity                        | RECOMMENDED           | [number][]    | Purity of the radiolabeled compound (between 0 and 100%).                                                                                                                                                                                                                  |
 
-#### Time
+#### Pharmaceuticals
 
-This section is mandatory and contains timing information about the imaging experiment. We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see the [units section](../02-common-principles.md#units).
+| **Key name**              | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------------------- | --------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PharmaceuticalName        | RECOMMENDED           | [string][]                             | Name of pharmaceutical coadministered with tracer.                                                                                                                                                                                                                                                                                                                                                                               |
+| PharmaceuticalDoseAmount  | RECOMMENDED           | [number][] or [array][] of [numbers][] | Dose amount of pharmaceutical coadministered with tracer.                                                                                                                                                                                                                                                                                                                                                                        |
+| PharmaceuticalDoseUnit    | RECOMMENDED           | [string][]                             | Unit format relating to pharmaceutical dose (for example, `"mg"` or `"mg/kg"`).                                                                                                                                                                                                                                                                                                                                                  |
+| PharmaceuticalDoseRegimen | RECOMMENDED           | [string][]                             | Details of the pharmaceutical dose regimen. Either adequate description or short-code relating to regimen documented elsewhere (for example, `"single oral bolus"`).                                                                                                                                                                                                                                                             |
+| PharmaceuticalDoseTime    | RECOMMENDED           | [number][] or [array][] of [numbers][] | Time of administration of pharmaceutical dose, relative to time zero (please see below). For an infusion, this should be a vector with two elements specifying the start and end of the infusion period. For more complex dose regimens, the regimen description should be complete enough to enable unambiguous interpretation of the DoseTime vector. Unit format of the specified pharmaceutical dose time should be seconds. |
+| Anaesthesia               | OPTIONAL              | [string][]                             | Details of anaesthesia used, if any.                                                                                                                                                                                                                                                                                                                                                                                             |
+
+#### Time
 
 | **Key name**    | **Requirement level** | **Data type**            | **Description**                                                                                                                                                           |
 | --------------- | --------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -201,11 +198,9 @@ This section is mandatory and contains timing information about the imaging expe
 | ScanDate        | RECOMMENDED           | [string][]               | Date of scan in the default unit `"YYYY-MM-DD[Z]"`, with the Z indicator being optional for indicating UTC timezone (see the [units section](../02-common-principles.md#units)).                                                                                                                            |
 | InjectionEnd    | RECOMMENDED           | [number][]               | Time of end of injection with respect to `TimeZero` in the default unit seconds.                                                                                          |
 
+We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see the [units section](../02-common-principles.md#units).
+
 #### Reconstruction
-
-This section is mandatory and contains information about the image reconstruction.
-
-All reconstruction specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
 
 | **Key name**                         | **Requirement level** | **Data type**                          | **Description**                                                                                                 |
 | ------------------------------------ | --------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
@@ -228,45 +223,45 @@ All reconstruction specific parameters that are not specified, but one wants to 
 | RandomRate                           | RECOMMENDED           | [array][] of [numbers][]               | Random rate for each frame.                                                                                     |
 | SinglesRate                          | RECOMMENDED           | [array][] of [numbers][]               | Singles rate for each frame.                                                                                    |
 
+All reconstruction-specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
+
 #### Example (`*_pet.json`)
 
 ```JSON
 {
-	"Manufacturer": "Siemens",
-	"ManufacturersModelName": "High-Resolution Research Tomograph (HRRT, CTI/Siemens)",
-	"BodyPart": "Brain",
-	"BodyWeight": 21,
-	"BodyWeightUnit": "kg",
-	"Unit": "Bq/mL",
-	"TracerName": "CIMBI-36",
-	"TracerRadionuclide": "C11",
-	"TracerMolecularWeight": 380.28,
-	"TracerMolecularWeightUnit": "g/mol",
+  "Manufacturer": "Siemens",
+  "ManufacturersModelName": "High-Resolution Research Tomograph (HRRT, CTI/Siemens)",
+  "BodyPart": "Brain",
+  "Unit": "Bq/mL",
+  "TracerName": "CIMBI-36",
+  "TracerRadionuclide": "C11",
+  "TracerMolecularWeight": 380.28,
+  "TracerMolecularWeightUnit": "g/mol",
 
-	"InjectedRadioactivity": 573,
-	"InjectedRadioActivityUnit": "MBq",
-	"InjectedMass": 0.62,
-	"InjectedMassUnit": "ug",
-	"SpecificRadioactivity": 929.6,
-	"SpecificRadioactivityUnit": "MBq/ug",
-	"ModeOfAdministration": "bolus",
-	"MolarActivity": 353.51,
-	"MolarActivityUnit": "GBq/umol",
-	"MolarActivityMeasTime": "13:04:42",
-	"TimeZero": "13:04:42",
-	"ScanStart": 0,
-	"InjectionStart": 0,
-	"FrameTimesStart": [0, 10, 20, 30, 40, 50, 60, 80, 100, 120, 140, 160, 180, 240, 300, 360, 420, 480, 540, 660, 780, 900, 1020, 1140, 1260, 1380, 1500, 1800, 2100, 2400, 2700, 3000, 3300, 3600, 3900, 4200, 4500, 4800, 5100, 5400, 5700, 6000, 6300, 6600, 6900],
-	"FrameDuration": [10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 60, 60, 60, 60, 60, 60, 120, 120, 120, 120, 120, 120, 120, 120, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
-	"AcquisitionMode": "list mode",
-	"ImageDecayCorrected": true,
-	"ImageDecayCorrectionTime": 0,
-	"ReconMethodName": "3D-OSEM-PSF",
-	"ReconMethodParameterLabels": ["subsets","iterations"],
-	"ReconMethodParameterUnit": ["none","none"],
-	"ReconMethodParameterValues": [16,10],
-	"ReconFilterType": "none",
-	"AttenuationCorrection": "[137Cs]transmission scan-based"
+  "InjectedRadioactivity": 573,
+  "InjectedRadioActivityUnit": "MBq",
+  "InjectedMass": 0.62,
+  "InjectedMassUnit": "ug",
+  "SpecificRadioactivity": 929.6,
+  "SpecificRadioactivityUnit": "MBq/ug",
+  "ModeOfAdministration": "bolus",
+  "MolarActivity": 353.51,
+  "MolarActivityUnit": "GBq/umol",
+  "MolarActivityMeasTime": "13:04:42",
+  "TimeZero": "13:04:42",
+  "ScanStart": 0,
+  "InjectionStart": 0,
+  "FrameTimesStart": [0, 10, 20, 30, 40, 50, 60, 80, 100, 120, 140, 160, 180, 240, 300, 360, 420, 480, 540, 660, 780, 900, 1020, 1140, 1260, 1380, 1500, 1800, 2100, 2400, 2700, 3000, 3300, 3600, 3900, 4200, 4500, 4800, 5100, 5400, 5700, 6000, 6300, 6600, 6900],
+  "FrameDuration": [10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 60, 60, 60, 60, 60, 60, 120, 120, 120, 120, 120, 120, 120, 120, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
+  "AcquisitionMode": "list mode",
+  "ImageDecayCorrected": true,
+  "ImageDecayCorrectionTime": 0,
+  "ReconMethodName": "3D-OSEM-PSF",
+  "ReconMethodParameterLabels": ["subsets","iterations"],
+  "ReconMethodParameterUnit": ["none","none"],
+  "ReconMethodParameterValues": [16,10],
+  "ReconFilterType": "none",
+  "AttenuationCorrection": "[137Cs]transmission scan-based"
 }
 ```
 
