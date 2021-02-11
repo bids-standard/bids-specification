@@ -106,3 +106,18 @@
     flip: required
     inversion: required
     part: optional
+# Parametric
+- suffixes:
+    - TB1map
+    - RB1map
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    subject: required
+    session: optional
+    run: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
