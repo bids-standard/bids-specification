@@ -52,7 +52,7 @@ specific to PET.
 An overview of a common PET experiment (with blood data) can be seen in Figure 1,
 defined on a single time scale relative to a predefined "time zero".
 
-![Figure 1](images/PET_scan_overview.svg "Overview of PET recording data")
+![Figure 1](images/PET_scan_overview.png "Overview of PET recording data")
 
 Figure 1: Overview of a common PET experiment, including blood measurements,
 and defined on a common time scale.
