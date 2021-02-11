@@ -322,85 +322,50 @@ in relation to time zero defined by the PET data (Figure 1).
 All definitions used below are in accordance with
 Innis et al. 2007 ([doi:10.1038/sj.jcbfm.9600493](https://doi.org/10.1038/sj.jcbfm.9600493)).
 
-## Blood sidecar JSON (`*_recording-(manual|autosampler)_blood.json`)
+Some metadata about the recording MUST be provided in an additional JSON
+file.
 
-If blood measurements were made a `*_recording-<label>_blood.json` file is expected that contains
-information about which blood data (plasma, whole blood, and metabolites) is available as well as some blood measurement details.
-These are detailed in the next sections. Different fields are customary depending on if manual or automatic blood sampling is carried out.
+| **Key name**        | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                               |
+| ------------------- | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PlasmaAvail         | REQUIRED              | [boolean][]   | Boolean that specifies if plasma measurements are available.                                                                                                                                                  |
+| MetaboliteAvail     | REQUIRED              | [boolean][]   | Boolean that specifies if metabolite measurements are available. If `true`, the `metabolite parent_fraction` and `metabolite_polar_fraction` columns MUST be present in the corresponding `*_blood.tsv` file. |
+| WholeBloodAvail     | REQUIRED              | [boolean][]   | Boolean that specifies if whole blood measurements are available. If `true`, the `whole_blood_radioactivity` column MUST be present in the corresponding `*_blood.tsv` file.                                  |
+| DispersionCorrected | REQUIRED              | [boolean][]   | Boolean flag specifying whether the blood data have been dispersion-corrected. NOTE: not customary for manual samples, and hence should be set to false.                                                      |
+| WithdrawalRate      | RECOMMENDED           | [number][]    | The rate at which the blood was withdrawn from the subject. The unit of the specified withdrawal rate should be in mL/s.                                                                                      |
+| TubingType          | RECOMMENDED           | [string][]    | Description of the type of tubing used, ideally including the material and (internal) diameter.                                                                                                               |
+| TubingLength        | RECOMMENDED           | [number][]    | The length of the blood tubing, from the subject to the detector in meters.                                                                                                                                   |
+| DispersionConstant  | RECOMMENDED           | [number][]    | External dispersion time constant resulting from tubing in default unit seconds.                                                                                                                              |
+| Haematocrit         | RECOMMENDED           | [number][]    | Measured haematocrit, meaning the volume of erythrocytes divided by the volume of whole blood.                                                                                                                |
+| BloodDensity        | RECOMMENDED           | [number][]    | Measured blood density. Unit of blood density should be in g/mL.                                                                                                                                              |
 
-| **Key name**                        | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                               |
-| ----------------------------------- | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PlasmaAvail                         | REQUIRED              | [boolean][]   | Boolean that specifies if plasma measurements are available. If this is false, all of the plasma fields should be excluded.                                                                                                                                   |
-| PlasmaFreeFraction                  | RECOMMENDED           | [number][]    | Measured free fraction in plasma, meaning the concentration of free compound in plasma divided by total concentration of compound in plasma (Units: 0-100%).                                                                                                  |
-| PlasmaFreeFractionMethod            | RECOMMENDED           | [string][]    | Method used to estimate free fraction.                                                                                                                                                                                                                        |
-| WholeBloodAvail                     | REQUIRED              | [boolean][]   | Boolean that specifies if whole blood measurements are available.                                                                                                                                                                                             |
-| MetaboliteAvail                     | REQUIRED              | [boolean][]   | Boolean that specifies if metabolite measurements are available. If this is false, all of the metabolite fields should be excluded.                                                                                                                           |
-| MetaboliteMethod                    | REQUIRED              | [string][]    | Method used to measure metabolites.                                                                                                                                                                                                                           |
-| MetaboliteRecoveryCorrectionApplied | REQUIRED              | [boolean][]   | Metabolite recovery correction from the HPLC, for tracers where it changes with time postinjection. If `true` please include a column named "metabolite_recovery_fractions" in the table with blood data (`*_blood.tsv`) of recovery fractions from the HPLC. |
-| DispersionCorrected                 | REQUIRED              | [boolean][]   | Boolean flag specifying whether the blood data have been dispersion-corrected. NOTE: not customary for manual samples, and hence should be set to false.                                                                                                      |
-| WithdrawalRate                      | RECOMMENDED           | [number][]    | The rate at which the blood was withdrawn from the subject. The unit of the specified withdrawal rate should be in mL/s.                                                                                                                                      |
-| TubingType                          | RECOMMENDED           | [string][]    | Description of the type of tubing used, ideally including the material and (internal) diameter.                                                                                                                                                               |
-| TubingLength                        | RECOMMENDED           | [number][]    | The length of the blood tubing, from the subject to the detector in meters.                                                                                                                                                                                   |
-| DispersionConstant                  | RECOMMENDED           | [number][]    | External dispersion time constant resulting from tubing in default unit seconds.                                                                                                                                                                              |
-| Haematocrit                         | RECOMMENDED           | [number][]    | Measured haematocrit, meaning the volume of erythrocytes divided by the volume of whole blood.                                                                                                                                                                |
-| BloodDensity                        | RECOMMENDED           | [number][]    | Measured blood density. Unit of blood density should be in g/mL.                                                                                                                                                                                              |
+The following metadata SHOULD or MUST be provided if corresponding flags are `true`.
 
-### Time
+| **Key name**                        | **Requirement level**                   | **Data type** | **Description**                                                                                                                                                                                                    |
+| ----------------------------------- | --------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| PlasmaFreeFraction                  | RECOMMENDED if `PlasmaAvail` is `true`  | [number][]    | Measured free fraction in plasma, meaning the concentration of free compound in plasma divided by total concentration of compound in plasma (Units: 0-100%).                                                       |
+| PlasmaFreeFractionMethod            | RECOMMENDED if `PlasmaAvail` is `true`  | [string][]    | Method used to estimate free fraction.                                                                                                                                                                             |
+| MetaboliteMethod                    | REQUIRED if `MetaboliteAvail` is `true` | [string][]    | Method used to measure metabolites.                                                                                                                                                                                |
+| MetaboliteRecoveryCorrectionApplied | REQUIRED if `MetaboliteAvail` is `true` | [boolean][]   | Metabolite recovery correction from the HPLC, for tracers where it changes with time postinjection. If `true`, the `metabolite_recovery_fractions` column MUST be present in the corresponding `*_blood.tsv` file. |
 
-If manual blood samples, for example, using a COBRA counter are available,
-then time information as detailed below should be added to the `*_recording-manual_blood.tsv`
-and the values below should be added to the `*_recording-manual_blood.json`.
-If blood samples using an autosampler, for example, using an Allogg autosampler are available,
-then time information as detailed below should be added to the `*_recording-autosampler_blood.tsv`
-and the values below should be added to the `*_recording-autosampler_blood.json`.
+The following columns are defined for `_blood.tsv` files:
 
-| **Column name** | **Description**                                                              | **Units**                             |
-| --------------- | ---------------------------------------------------------------------------- | ------------------------------------- |
-| time            | Time in relation to `TimeZero` defined by the `*_pet.json`. (for example, 5) | Unit of time steps in seconds         |
+| **Column name**              | **Requirement level**                                       | **Description**                                                                   | **Units**                                                                         |
+| ---------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `time`                       | REQUIRED                                                    | Time in relation to `TimeZero` defined by the `*_pet.json`. (for example, 5)      | Seconds                                                                           |
+| `plasma_radioactivity`       | REQUIRED if `PlasmaAvail` is `true`                         | Radioactivity in plasma                                                           | Unit of plasma radioactivity (for example, "kBq/mL")                              |
+| `metabolite_parent_fraction` | REQUIRED if `MetaboliteAvail` is `true`                     | Parent fraction of the radiotracer (0-1)                                          | Unit of parent fraction (for example, "unitless")                                 |
+| `metabolite_polar_fraction`  | RECOMMENDED if `MetaboliteAvail` is `true`                  | Polar metabolite fraction of the radiotracer (0-1)                                | Unit of polar metabolite fraction (for example, "unitless")                       |
+| `hplc_recovery_fractions`    | REQUIRED if `MetaboliteRecoveryCorrectionApplied` is `true` | HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC) | Unit of recovery fractions (for example, "unitless")                              |
+| `whole_blood_radioactivity`  | REQUIRED if `WholeBloodAvail` is `true`                     | Radioactivity in whole blood samples                                              | Unit of radioactivity measurements in whole blood samples (for example, "kBq/mL") |
 
-### Radioactivity in plasma
+As with all [tabular files](../02-common-principles.md#tabular-files),
+additional columns MAY be defined in `_blood.json`.
+For clarity, it is RECOMMENDED to include the above column definitions in `_blood.json`,
+as shown in the following example.
 
-This section may be omitted if plasma measurements of radioactivity were not made.
-It contains information regarding sampled plasma data.
-If plasma measurements are available by manual sampling, they should be added to the `*_recording-manual_blood.tsv`
-and the values below should be added to the `*_recording-manual_blood.json`.
-If plasma measurements are available by an autosampler, they should be added to the `*_recording-autosampler_blood.tsv`
-and the values below should be added to the `*_recording-autosampler_blood.json`.
+### Example blood data
 
-| **Column name**      | **Description**         | **Units**                                            |
-| -------------------- | ----------------------- | ---------------------------------------------------- |
-| plasma_radioactivity | Radioactivity in plasma | Unit of plasma radioactivity (for example, "kBq/mL") |
-
-### Metabolites
-
-This section may be omitted if metabolite measurements were not made.
-If metabolite measurements are available by manual sampling
-they should be added to the `*_recording-manual_blood.tsv`
-and the values below should be added to the `*_recording-manual_blood.json`.
-If metabolite measurements are available by an autosampler they should be added to the `*_recording-autosampler_blood.tsv`
-and the values below should be added to the `*_recording-autosampler_blood.json`.
-Hence, it may contain information regarding metabolite info, such as the following three column examples:
-
-| **Column name**            | **Description**                                                                   | **Units**                                                   |
-| -------------------------- | --------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| metabolite_parent_fraction | Parent fraction of the radiotracer (0-1)                                          | Unit of parent fraction (for example, "unitless")           |
-| metabolite_polar_fraction  | Polar metabolite fraction of the radiotracer (0-1)                                | Unit of polar metabolite fraction (for example, "unitless") |
-| hplc_recovery_fractions    | HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC) | Unit of recovery fractions (for example, "unitless")        |
-
-### Radioactivity in whole blood
-
-This section may be omitted if whole blood measurements of radioactivity were not made.
-It contains information regarding sampled whole blood data.
-If whole blood measurements are available by manual sampling they should be added to the `*_recording-manual_blood.tsv`
-and the values below should be added to the `*_recording-manual_blood.json`.
-If whole blood measurements are available by an autosampler, they should be added to the `*_recording-autosampler_blood.tsv`
-and the values below should be added to the `*_recording-autosampler_blood.json`.
-
-| **Column name**           | **Description**                      | **Units**                                                                         |
-| ------------------------- | ------------------------------------ | --------------------------------------------------------------------------------- |
-| whole_blood_radioactivity | Radioactivity in whole blood samples | Unit of radioactivity measurements in whole blood samples (for example, "kBq/mL") |
-
-### Example (`*_recording-manual_blood.json`)
+**`*_recording-manual_blood.json`**:
 
 ```JSON
 {
@@ -438,7 +403,7 @@ and the values below should be added to the `*_recording-autosampler_blood.json`
 }
 ```
 
-### Example (`*_recording-manual_blood.tsv`)
+**`*_recording-manual_blood.tsv`**:
 
 ```Text
 time plasma_radioactivity whole_blood_radioactivity metabolite_parent_fraction metabolite_polar_fraction
