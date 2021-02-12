@@ -125,18 +125,18 @@ but also by which metadata fields are provided in accompanying json files.
 
 #### Anatomy imaging data
 
-| **File collection**  | **REQUIRED metadata**                                                                                                        | **OPTIONAL metadata**      |
-|----------------------|------------------------------------------------------------------------------------------------------------------------------|----------------------------|
-| VFA                  | `FlipAngle`, `PulseSequenceType`, `RepetitionTimeExcitation`                                                                 | `SpoilingRFPhaseIncrement` |
-| IRT1                 | `InversionTime`                                                                                                              |                            |
-| MP2RAGE<sup>*</sup>  | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
-| MESE                 | `EchoTime`                                                                                                                   |                            |
-| MEGRE                | `EchoTime`                                                                                                                   |                            |
-| MTR                  | `MTState`                                                                                                                    |                            |
-| MTS                  | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           |                            |
-| MPM                  | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           | `EchoTime`                 |
+| **File collection**   | **REQUIRED metadata**                                                                                                        | **OPTIONAL metadata**      |
+|-----------------------|------------------------------------------------------------------------------------------------------------------------------|----------------------------|
+| VFA                   | `FlipAngle`, `PulseSequenceType`, `RepetitionTimeExcitation`                                                                 | `SpoilingRFPhaseIncrement` |
+| IRT1                  | `InversionTime`                                                                                                              |                            |
+| MP2RAGE<sup>\*</sup>  | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
+| MESE                  | `EchoTime`                                                                                                                   |                            |
+| MEGRE                 | `EchoTime`                                                                                                                   |                            |
+| MTR                   | `MTState`                                                                                                                    |                            |
+| MTS                   | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           |                            |
+| MPM                   | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           | `EchoTime`                 |
 
-<sup>*</sup> Please see MP2RAGE-specific notes for the calculation of `NumberShots` and regarding the
+<sup>\*</sup> Please see MP2RAGE-specific notes for the calculation of `NumberShots` and regarding the
 organization of `UNIT1` image.
 
 Explanation of the table:
@@ -154,17 +154,17 @@ Explanation of the table:
 
 #### Field maps
 
-| **File collection**     | **REQUIRED metadata**                                                                                |
-|-------------------------|------------------------------------------------------------------------------------------------------|
-| TB1DAM                  | `FlipAngle`                                                                                          |
-| TB1EPI                  | `EchoTime`, `FlipAngle`, `TotalReadoutTime`, `MixingTime`                                            |
-| TB1AFI                  | `RepetitionTime`                                                                                     |
-| TB1TFL                  |                                                                                                      |
-| TB1RFM                  |                                                                                                      |
-| TB1SRGE<sup>*</sup>     | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots` |
-| RB1COR                  |                                                                                                      |
+| **File collection**  | **REQUIRED metadata**                                                                                |
+|----------------------|------------------------------------------------------------------------------------------------------|
+| TB1DAM               | `FlipAngle`                                                                                          |
+| TB1EPI               | `EchoTime`, `FlipAngle`, `TotalReadoutTime`, `MixingTime`                                            |
+| TB1AFI               | `RepetitionTime`                                                                                     |
+| TB1TFL               |                                                                                                      |
+| TB1RFM               |                                                                                                      |
+| TB1SRGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots` |
+| RB1COR               |                                                                                                      |
 
-<sup>*</sup> Please see TB1SRGE-specific notes for the calculation of `NumberShots`.
+<sup>\*</sup> Please see TB1SRGE-specific notes for the calculation of `NumberShots`.
 
 ### Metadata requirements for qMRI maps
 
