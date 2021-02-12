@@ -62,14 +62,14 @@ Below is an example file collection for RF transmit field map `TB1EPI`:
 ```text
 └── sub-01/
      └── fmap/
-         ├── sub-01_flip-1_echo-1_TB1EPI.nii.gz
-         ├── sub-01_flip-1_echo-1_TB1EPI.json
-         ├── sub-01_flip-1_echo-2_TB1EPI.nii.gz
-         ├── sub-01_flip-1_echo-2_TB1EPI.json
-         ├── sub-01_flip-2_echo-1_TB1EPI.nii.gz
-         ├── sub-01_flip-2_echo-1_TB1EPI.json
-         ├── sub-01_flip-2_echo-2_TB1EPI.nii.gz
-         └── sub-01_flip-2_echo-2_TB1EPI.json
+         ├── sub-01_echo-1_flip-1_TB1EPI.nii.gz
+         ├── sub-01_echo-1_flip-1_TB1EPI.json
+         ├── sub-01_echo-2_flip-1_TB1EPI.nii.gz
+         ├── sub-01_echo-2_flip-1_TB1EPI.json
+         ├── sub-01_echo-1_flip-2_TB1EPI.nii.gz
+         ├── sub-01_echo-1_flip-2_TB1EPI.json
+         ├── sub-01_echo-2_flip-2_TB1EPI.nii.gz
+         └── sub-01_echo-2_flip-2_TB1EPI.json
 ```
 
 Please visit the [file collections appendix](./10-file-collections.md#magnetic-resonance-imaging) to see the list of currently supported qMRI applications.
