@@ -71,7 +71,7 @@
 - suffixes:
     - TB1AFI
     - TB1TFL
-    - TB1RMF
+    - TB1RFM
     - RB1COR
   extensions:
     - .nii.gz
