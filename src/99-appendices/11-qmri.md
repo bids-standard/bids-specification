@@ -514,11 +514,11 @@ The first image appears like an anatomical image and the second output is a scal
 To properly identify files of this particular file collection,
 values of the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be followed by freeform entries:
 
-| Anatomical (like) image | Scaled FA map     | Use case             |
-| ----------------------- | ----------------- | -------------------- |
-| `_acq-anat`             | `_acq-famp`       | Single acquisition   |
-| `_acq-anatTest`         | `_acq-fampTest`   | Acquisition `Test`   |
-| `_acq-anatRetest`       | `_acq-fampRetest` | Acquisition `Retest` |
+| Anatomical (like) image | Scaled flip angle map     | Use case             |
+| ----------------------- | ------------------------- | -------------------- |
+| `_acq-anat`             | `_acq-famp`               | Single acquisition   |
+| `_acq-anatTest`         | `_acq-fampTest`           | Acquisition `Test`   |
+| `_acq-anatRetest`       | `_acq-fampRetest`         | Acquisition `Retest` |
 
 ```text
 └── sub-01/
