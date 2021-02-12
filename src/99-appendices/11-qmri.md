@@ -62,14 +62,14 @@ Below is an example file collection for RF transmit field map `TB1EPI`:
 ```text
 └── sub-01/
      └── fmap/
-         ├── sub-01_fa-1_echo-1_TB1EPI.nii.gz
-         ├── sub-01_fa-1_echo-1_TB1EPI.json
-         ├── sub-01_fa-1_echo-2_TB1EPI.nii.gz
-         ├── sub-01_fa-1_echo-2_TB1EPI.json
-         ├── sub-01_fa-2_echo-1_TB1EPI.nii.gz
-         ├── sub-01_fa-2_echo-1_TB1EPI.json
-         ├── sub-01_fa-2_echo-2_TB1EPI.nii.gz
-         └── sub-01_fa-2_echo-2_TB1EPI.json
+         ├── sub-01_flip-1_echo-1_TB1EPI.nii.gz
+         ├── sub-01_flip-1_echo-1_TB1EPI.json
+         ├── sub-01_flip-1_echo-2_TB1EPI.nii.gz
+         ├── sub-01_flip-1_echo-2_TB1EPI.json
+         ├── sub-01_flip-2_echo-1_TB1EPI.nii.gz
+         ├── sub-01_flip-2_echo-1_TB1EPI.json
+         ├── sub-01_flip-2_echo-2_TB1EPI.nii.gz
+         └── sub-01_flip-2_echo-2_TB1EPI.json
 ```
 
 Please visit the [file collections appendix](./10-file-collections.md#magnetic-resonance-imaging) to see the list of currently supported qMRI applications.
@@ -253,10 +253,10 @@ sub-01_T1map.json:
 
 <<Parameter injected by the software/pipeline>>
 
-"BasedOn":["anat/sub-01_fa-1_VFA.nii.gz",
-           "anat/sub-01_fa-2_VFA.nii.gz",
-           "anat/sub-01_fa-3_VFA.nii.gz",
-           "anat/sub-01_fa-4_VFA.nii.gz",
+"BasedOn":["anat/sub-01_flip-1_VFA.nii.gz",
+           "anat/sub-01_flip-2_VFA.nii.gz",
+           "anat/sub-01_flip-3_VFA.nii.gz",
+           "anat/sub-01_flip-4_VFA.nii.gz",
            "fmap/sub-01_TB1map.nii.gz"],
 "EstimationPaper":"Deoni et. al.MRM, 2015",
 "EstimationAlgorithm":"Linear",
