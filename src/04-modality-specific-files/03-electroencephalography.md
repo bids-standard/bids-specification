@@ -194,7 +194,12 @@ To avoid confusion, the channels SHOULD be listed in the order they
 appear in the EEG data file.
 Any number of additional columns may be added to provide additional information
 about the channels.
+
 Note that electrode positions SHOULD NOT be added to this file, but to [`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-_electrodestsv).
+Furthermore, the entried in `*_electrodes.tsv` and `*_channels.tsv` do not have to match exactly,
+as for example in the case of recording a single `EOG` channel from a bipolar referencing scheme
+of two electrodes.
+That is, in most cases `*_electrodes.tsv` will have more entries than `*_channels.tsv`.
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
