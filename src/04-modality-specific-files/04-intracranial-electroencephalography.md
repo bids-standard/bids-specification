@@ -288,9 +288,8 @@ that coordinates are expected in cartesian coordinates according to the
 `*_coordsystem.json` file MUST be specified as well.
 
 The optional [`space-<label>`](../99-appendices/09-entities.md#space) entity (`*[_space-<label>]_electrodes.tsv`) can be used to
-indicate the way in which electrode positions are interpreted. The space label
-needs to be taken from the list in
-[Appendix VIII](../99-appendices/08-coordinate-systems.md)
+indicate the way in which electrode positions are interpreted.
+The space `<label>` MUST be taken from the list in [Appendix VIII](../99-appendices/08-coordinate-systems.md)
 
 For examples:
 

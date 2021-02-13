@@ -197,7 +197,8 @@ space:
     the way in which electrode positions are interpreted
     (for EEG/MEG/iEEG data) or
     the spatial reference to which a file has been aligned (for MRI data).
-    The space label needs to be taken from the list in Appendix VIII.
+    The space label MUST be taken from the list in
+    [Appendix VIII](../99-appendices/08-coordinate-systems.md)
 
     For EEG/MEG/iEEG data, this entity can be applied to raw data, but
     for other data types, it is restricted to derivative data.
