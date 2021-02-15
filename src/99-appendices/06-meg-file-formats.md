@@ -167,6 +167,8 @@ updated.
 It is RECOMMENDED that FIFF files with multiple parts use the `split-<index>`
 entity to indicate each part.
 
+Split files SHOULD be listed as separate recordings in the `scans.tsv` file.
+
 Example:
 
 ```Text

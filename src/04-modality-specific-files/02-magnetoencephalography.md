@@ -40,7 +40,7 @@ limit.
 For example Neuromag/Elekta/Megin, which can produce several files
 for a single recording.
 Both `some_file.fif` and `some_file-1.fif` would belong to a single recording.
-In BIDS, the [`split`](../99-appendices/09-entities.md#split) entity is RECOMMENDED to deal with split files.
+In BIDS, the [`split`](../99-appendices/09-entities.md#split) entity is RECOMMENDED to deal with split files. Split files SHOULD be listed as separate recordings in the `scans.tsv` file.
 
 Another manufacturer-specific detail pertains to the KIT/Yokogawa/Ricoh sytem,
 which saves the MEG sensor coil positions in a separate file with two possible filename extensions  (`.sqd`, `.mrk`).
