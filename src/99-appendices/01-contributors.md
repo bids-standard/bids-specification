@@ -196,3 +196,4 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Lyuba Zehl 📖
 -   Melanie Ganz-Benjaminsen 📖🔣💻🤔📆🔍📢
 -   Martin Noergaard 📖🔣💻🤔📢
+-   Eduard Ort 📖
