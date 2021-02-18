@@ -338,7 +338,7 @@ file.
 | TubingLength        | RECOMMENDED           | [number][]    | The length of the blood tubing, from the subject to the detector in meters.                                                                                                                                   |
 | DispersionConstant  | RECOMMENDED           | [number][]    | External dispersion time constant resulting from tubing in default unit seconds.                                                                                                                              |
 | Haematocrit         | RECOMMENDED           | [number][]    | Measured haematocrit, meaning the volume of erythrocytes divided by the volume of whole blood.                                                                                                                |
-| BloodDensity        | RECOMMENDED           | [number][]    | Measured blood density. Unit of blood density should be in g/mL.                                                                                                                                              |
+| BloodDensity        | RECOMMENDED           | [number][]    | Measured blood density. Unit of blood density should be in `"g/mL"`.                                                                                                                                              |
 
 The following metadata SHOULD or MUST be provided if corresponding flags are `true`.
 
