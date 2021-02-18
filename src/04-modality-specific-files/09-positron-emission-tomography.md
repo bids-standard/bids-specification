@@ -80,7 +80,7 @@ The OPTIONAL [`task-<label>`](../99-appendices/09-entities.md#task) is used to
 indicate a task subjects were asked to perform in the scanner.
 Those labels MUST be consistent across subjects and sessions.
 
-The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity is used to
+The [`trc-<label>`](../99-appendices/09-entities.md#trc) entity is used to
 indicate the tracer used.
 This entity is OPTIONAL if only one tracer is used in the study,
 but REQUIRED to distinguish between tracers if multiple are used.
