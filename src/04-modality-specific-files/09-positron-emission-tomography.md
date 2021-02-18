@@ -200,7 +200,7 @@ which we divide into several categories:
 | ScanDate        | RECOMMENDED           | [string][]               | Date of scan in the default unit `"YYYY-MM-DD[Z]"`, with the Z indicator being optional for indicating UTC timezone (see [Units](../02-common-principles.md#units)).      |
 | InjectionEnd    | RECOMMENDED           | [number][]               | Time of end of injection with respect to `TimeZero` in the default unit seconds.                                                                                          |
 
-We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see the [units section](../02-common-principles.md#units).
+We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see the [units section](../02-common-principles.md#units)).
 
 #### Reconstruction
 
