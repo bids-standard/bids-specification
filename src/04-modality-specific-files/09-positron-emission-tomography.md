@@ -303,7 +303,7 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     pet/
-	sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_rec-<label>][_run-<index>][_recording-<label>]_blood.tsv
+	sub-<label>[_ses-<label>][_task-<label>][_trc-<label>][_rec-<label>][_run-<index>][_recording-<label>]_blood.tsv
 	sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_rec-<label>][_run-<index>][_recording-<label>]_blood.json
 
 ```
