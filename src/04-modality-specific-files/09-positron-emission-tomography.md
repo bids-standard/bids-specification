@@ -221,7 +221,7 @@ We refer to the common principles for the standards for describing dates and tim
 | ScaleFactor                          | RECOMMENDED           | [array][] of [numbers][]               | Scale factor for each frame.                                                                                    |
 | ScatterFraction                      | RECOMMENDED           | [array][] of [numbers][]               | Scatter fraction for each frame (Units: 0-100%).                                                                                |
 | DecayCorrectionFactor                | RECOMMENDED           | [array][] of [numbers][]               | Decay correction factor for each frame.                                                                         |
-| PromptRate                           | RECOMMENDED           | [array][] of [numbers][]               | Prompt rate for each frame.                                                                                     |
+| PromptRate                           | RECOMMENDED           | [array][] of [numbers][]               | Prompt rate for each frame (same units as `Unit´, e.g. `"Bq/mL"`).                                                                                     |
 | RandomRate                           | RECOMMENDED           | [array][] of [numbers][]               | Random rate for each frame (same units as `Unit´, e.g. `"Bq/mL"`).                                                                                     |
 | SinglesRate                          | RECOMMENDED           | [array][] of [numbers][]               | Singles rate for each frame.                                                                                    |
 
