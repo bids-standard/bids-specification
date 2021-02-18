@@ -162,9 +162,9 @@ participants.json
 
 The purpose of this RECOMMENDED file is to describe properties of participants
 such as age, sex, handedness.
-In case of single-session studies, this file has one compulsory column
-`participant_id` that consists of `sub-<label>`, followed by a list of optional
-columns describing participants.
+In case of single-session studies, this file MUST contain the column
+`participant_id` that MUST consist of `sub-<label>` identifying each row for a
+participant, followed by a list of optional columns describing participants.
 Each participant MUST be described by one and only one row.
 
 Commonly used *optional* columns in `participant.tsv` files are `age`, `sex`,
