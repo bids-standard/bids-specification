@@ -67,7 +67,7 @@ Template:
 ```Text
 sub-<label>/[ses-<label>/]
     pet/
-        sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.nii[.gz]
+        sub-<label>[_ses-<label>][_task-<label>][_trc-<label>][_rec-<label>][_run-<index>]_pet.nii[.gz]
         sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_rec-<label>][_run-<index>]_pet.json
 ```
 
