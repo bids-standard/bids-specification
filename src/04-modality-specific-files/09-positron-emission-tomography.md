@@ -220,7 +220,7 @@ We refer to the common principles for the standards for describing dates and tim
 | ScatterFraction                      | RECOMMENDED           | [array][] of [numbers][]               | Scatter fraction for each frame.                                                                                |
 | DecayCorrectionFactor                | RECOMMENDED           | [array][] of [numbers][]               | Decay correction factor for each frame.                                                                         |
 | PromptRate                           | RECOMMENDED           | [array][] of [numbers][]               | Prompt rate for each frame.                                                                                     |
-| RandomRate                           | RECOMMENDED           | [array][] of [numbers][]               | Random rate for each frame.                                                                                     |
+| RandomRate                           | RECOMMENDED           | [array][] of [numbers][]               | Random rate for each frame (same units as `Unit´, e.g. `"Bq/mL"`).                                                                                     |
 | SinglesRate                          | RECOMMENDED           | [array][] of [numbers][]               | Singles rate for each frame.                                                                                    |
 
 All reconstruction-specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
