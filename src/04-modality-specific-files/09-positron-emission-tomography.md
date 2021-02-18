@@ -86,7 +86,7 @@ This entity is OPTIONAL if only one tracer is used in the study,
 but REQUIRED to distinguish between tracers if multiple are used.
 The label used is arbitrary and each file requires a separate JSON sidecar
 with details of the tracer used (see below).
-Examples are `acq-18FFDG` for fludeoxyglucose or `acq-11CPIB` for Pittsburgh compound B.
+Examples are `trc-18FFDG` for fludeoxyglucose or `trc-11CPIB` for Pittsburgh compound B.
 Other labels are permitted, as long as they are consistent across subjects and sessions
 and consist only of the legal label characters.
 
