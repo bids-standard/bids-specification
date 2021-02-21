@@ -143,6 +143,86 @@ The CI is testing that the changes are inline with our standard styling.
 GitHub has a helpful page on
 [getting started with writing and formatting on GitHub](https://help.github.com/articles/getting-started-with-writing-and-formatting-on-github).
 
+### Style guide
+
+There certain style rules we are trying to follow in the way the specifications are written.
+
+Many of those styling issues can fixed automatically using a linter: see 
+the section[Fixing Remark errors from Travis](#fixing-travis-remark-errors).
+
+Some others need to fixed manually:
+
+- Do not use latin abbreviations like `"e.g"`, `"i.e"`, `"etc"` that can be extra confusing
+  to some readers and try to replace them by common english equivalent 
+  (`"for example"`, `"that is"`, `"and so on"`).
+
+#### Soft rules
+
+We are also trying to follow certain "soft rules" in the way we format the specifications in markdown.
+
+Those rules are sometimes for internal consistency in terms of styling and aesthetics,
+but they several of them are also there because they help the workflow of 
+tracking changes, reviewing them on Github and making suggestions.
+
+They are "soft" rules because they will not be a reason to reject a contribution 
+but if they are followed they will definitely make the lives of many people easier.
+
+- Start every sentence on a new line. 
+  This then makes it easier to track with git where a change happened in the text.
+
+- Similarly try to use "hard word wrapping": if a sentence gets long and extends
+  a line length beyond 80-100, continue the sentence on the next line.
+
+**Example**
+
+Don't do this:
+
+```markdown
+Unprocessed MEG data MUST be stored in the native file format of the MEG instrument with which the data was collected. With the MEG specification of BIDS, we wish to promote the adoption of good practices in the management of scientific data.
+```
+
+But do this:
+
+```markdown
+Unprocessed MEG data MUST be stored in the native file format of the MEG instrument 
+with which the data was collected. 
+With the MEG specification of BIDS, we wish to promote the adoption of good practices 
+in the management of scientific data.
+```
+
+- when providing a string example for json field for a specific key name make sure that this
+  example appears with double quotes as it would in the real json file.
+
+**Example**
+
+Don't do this:
+
+```markdown
+| **Key name** | **Description**                                          |
+|--------------|----------------------------------------------------------|
+| Manufacturer | Manufacturer of the equipment, for example (`Siemens`)   |
+```
+
+That would look like this:
+
+| **Key name** | **Description**                                          |
+|--------------|----------------------------------------------------------|
+| Manufacturer | Manufacturer of the equipment, for example (`Siemens`)   |
+
+But do this instead:
+
+```markdown
+| **Key name** | **Description**                                          |
+|--------------|----------------------------------------------------------|
+| Manufacturer | Manufacturer of the equipment, for example (`"Siemens"`) |
+```
+
+That would look like this:
+
+| **Key name** | **Description**                                          |
+|--------------|----------------------------------------------------------|
+| Manufacturer | Manufacturer of the equipment, for example (`"Siemens"`) | 
+
 ## Building the specification using mkdocs
 
 We are using mkdocs to render our specification.
