@@ -108,7 +108,9 @@ See [Hierarchical Event Descriptors](../99-appendices/03-hed.md) for additional 
 Additional information about the stimuli can be added in the `*_events.tsv` 
 and `*_events.json` files.
 
-This can be done by using a /stimuli folder or by reference to a stimuli database.
+This can be done by using a `/stimuli` folder or by reference to a stimuli database.
+
+### Stimuli folder
 
 The stimulus files can be added in a `/stimuli` folder 
 (under the root folder of the dataset; with optional subfolders) AND using a 
