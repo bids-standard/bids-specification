@@ -25,7 +25,7 @@ Jump to the following sections:
 -   [Example pull request](#example-pull-request)
 -   [Commenting on a pull request](#commenting-on-a-pull-request)
 -   [Accepting suggestion from a review](#accepting-suggestion-from-a-review)
--   [Updating the specification schema](#updating-the-schema)
+-   [Making a change to the BIDS-schema](#making-a-change-to-the-BIDS-schema)
 -   [Recognizing contributions](#recognizing-contributions)
 
 ## Joining the community
@@ -575,47 +575,19 @@ reviewer as a co-author.
 
 ![BIDS_pr_reviewer_credit](commenting_images/BIDS_pr_reviewer_credit.png "BIDS_pr_reviewer_credit")
 
-## Updating the schema
+## Making a change to the BIDS-schema
 
-Portions of the BIDS specification are defined using YAML files, in order to
-make the specification machine-readable.
-Currently, the only portion of the specification that relies on this schema is
-the Entity Table, but any changes to the specification should be mirrored in the schema.
-
-### The format of the schema
-
-The schema reflects the files and objects in the specification, as well as
-associations between these objects.
-Here is a list of the files and subfolders of the schema, roughly in order of importance:
-
-- `datatypes/*.yaml`:
-    Data types supported by the specification.
-    Each datatype may support many suffixes.
-    These suffixes are divided into groups based on what extensions and entities are allowed for each.
-    Data types correspond to subfolders (for example, `anat`, `func`) in the BIDS structure.
-- `entities.yaml`:
-    A list of entities (key/value pairs in folder and filenames) with associated descriptions and formatting rules.
-    The order of the entities in the file determines the order in which entities must appear in filenames.
-- `top_level_files.yaml`:
-    Modality-agnostic files stored at the top level of a BIDS dataset.
-    The schema specifies whether these files are required or optional, as well as acceptable extensions for each.
-- `modalities.yaml`:
-    Modalities supported by the specification, along with a list of associated data types.
-    Modalities are not reflected directly in the BIDS structure, but data types are modality-specific.
-- `associated_data.yaml`:
-    Folders that are commonly contained within the same folder as a BIDS dataset, but which do not follow the BIDS structure internally, such as `code` or `sourcedata`.
-    The schema specifies which folders are accepted and whether they are required or optional.
-
-### Making a change to the schema
-
-#### 1. Ensure that changes to the specification are matched in the schema
+Several aspects of the specification are defined in a set of YAML files in the 
+`src/schema` folder. The content of those files is described in a dedicated 
+[README file](./src/schema/README.md)
+### 1. Ensure that changes to the specification are matched in the schema
 
 The schema formalizes the rules described in the specification text, so you must
 ensure that any changes which impact the rules of the specification (including,
 but not limited to, adding new entities, suffixes, datatypes, modalities) are
 reflected in the schema as well.
 
-#### 2. Ensure that changes to the schema are matched in auto-generated sections of the specification
+### 2. Ensure that changes to the schema are matched in auto-generated sections of the specification
 
 The schema is used to generate a number of elements in the specification text, including:
 - Filename format templates
@@ -625,7 +597,7 @@ The schema is used to generate a number of elements in the specification text, i
 As such, you need to ensure that the functions used throughout the specification to render these elements are appropriately referencing the schema.
 In essence, please make sure, if your changes do impact how functions should be called, that you also update how the function are called.
 
-#### 3. Render the specification with `mkdocs` to check your changes
+### 3. Render the specification with `mkdocs` to check your changes
 
 Run `mkdocs serve` and open `localhost:8000` to browse the rendered specification.
 Make sure that all filename format templates, entity tables, and entity definitions are correct
@@ -635,7 +607,7 @@ While the continuous integration run on pull requests by the repository will ren
 it is crucial to manually review the rendered changes to ensure that the code not only successfully runs,
 but also that the rendered changes appear as expected.
 
-#### 4. Push your changes
+### 4. Push your changes
 
 For more information on making general changes with a pull request, please
 review
