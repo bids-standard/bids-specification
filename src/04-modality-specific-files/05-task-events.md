@@ -1,16 +1,28 @@
 # Task events
 
+The purpose of this file is to describe timing and other properties of events
+recorded during a run.
+Events MAY be either stimuli presented to the participant or participant responses.
+A single event file MAY include any combination of stimuli and response events.
+Events MAY overlap in time.
+Please mind that this does not imply that only so called "event related" study designs
+are supported (in contrast to "block" designs) - each "block of events" can be
+represented by an individual row in the `_events.tsv` file (with a long
+duration).
+
 Template:
 
 ```Text
 sub-<label>/[ses-<label>]
-    func/
+    <data_type>/
         <matches>_events.tsv
         <matches>_events.json
 ```
 
 Where `<matches>` corresponds to task file name. For example:
 `sub-control01_task-nback`.
+
+Each task events file REQUIRES a corresponding task imaging data file.
 It is also possible to have a single `_events.tsv` file describing events
 for all participants and runs (see
 [Inheritance Principle](../02-common-principles.md#the-inheritance-principle)).
@@ -18,18 +30,6 @@ As with all other tabular data, `_events.tsv` files MAY be accompanied by a JSON
 file describing the columns in detail (see
 [Tabular Files](../02-common-principles.md#tabular-files)).
 
-The purpose of this file is to describe timing and other properties of events
-recorded during the scan.
-Events MAY be either stimuli presented to the participant or participant responses.
-A single event file MAY include any combination of stimuli and response events.
-Events MAY overlap in time.
-Please mind that this does not imply that only so called "event related" study designs
-are supported (in contrast to "block" designs) - each "block of events" can be
-represented by an individual row in the \_events.tsv file (with a long
-duration).
-Each task events file REQUIRES a corresponding task imaging data file
-(but a single events file MAY be shared by multiple imaging data files - see
-[Inheritance Principle](../02-common-principles.md#the-inheritance-principle)).
 The tabular files consists of one row per event and a set of REQUIRED
 and OPTIONAL columns:
 
