@@ -148,7 +148,7 @@ Examples of preprocessing:
  -  Time-domain filtered EEG data
  -  MaxFilter (for example, SSS) cleaned MEG data
 
-The `space` keyword is recomended to distinguish files with different underlying
+The `space` keyword is recommended to distinguish files with different underlying
 coordinate systems or registered to different reference maps.
 See [Spatial references](#spatial-references) for details.
 The `desc` (description) keyword is a general purpose field with freeform values,

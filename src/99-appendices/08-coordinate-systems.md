@@ -28,17 +28,20 @@ different anatomies in a unifying manner (see for example,
 
 The "space" and all coordinates expressed in this space are by design a
 transformation of the real world geometry, and nearly always different from the
-individual subject space that it stems from. An example is the
+individual subject space that it stems from. 
+An example is the
 Talairach-Tournoux space, which is constructed by piecewise linear scaling of an
 individual's brain to that of the Talairach-Tournoux 1988 atlas. In the
 Talairach-Tournoux space, the origin of the coordinate system is at the AC and
 units are expressed in mm.
 
 The coordinate systems below all relate to neuroscience and therefore to the
-head or brain coordinates. Please be aware that all data acquisition starts with
+head or brain coordinates. 
+$Please be aware that all data acquisition starts with
 "device coordinates" (scanner), which does not have to be identical to the
 initial "file format coordinates" (DICOM), which are again different from the
-"head" coordinates (for example, NIFTI). Not only do device coordinate vary between
+"head" coordinates (for example, NIFTI). 
+Not only do device coordinate vary between
 hardware manufacturers, but also the head coordinates differ, mostly due to
 different conventions used in specific software packages developed by different
 (commercial or academic) groups.
@@ -100,7 +103,7 @@ can also be applied to MEG:
 
 -   `CapTrak`
 
-Note that the short descriptions above do not capture all details, There are
+Note that the short descriptions above do not capture all details, there are
 detailed extensive descriptions of these coordinate systems on the
 [FieldTrip toolbox web page](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
 
