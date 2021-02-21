@@ -148,30 +148,54 @@ GitHub has a helpful page on
 We are using mkdocs to render our specification.
 Please follow these instructions if you would like to build the specification locally.
 
-#### 1. Install mkdocs
+#### 1. Install mkdocs, the material theme and the required extensions
 
-To begin please follow [this link](https://www.mkdocs.org/#installation) to
-install mkdocs locally.
+In the following links, you can find more information about
+
+- [mkdocs](https://www.mkdocs.org/#installation) and how to install it locally,
+- [about the material them](https://squidfunk.github.io/mkdocs-material/) we use.
+
+You will also need several other mkdocs plugins (like `branchcustomization` or `macros`).
+
+To install all of this make sure you have a recent version of python on your computer. 
+You can follow [those instructions](http://handbook.datalad.org/en/latest/intro/installation.html#python-3-all-operating-systems) to help you set it up.
+
+An easy way to install the correct version of mkdocs and all the other required extensions 
+is to use the `requirements.txt` file contained in this repository, 
+by using the following command:
+
+```bash
+pip install -r requirements.txt
+```
+
+However this will also install some other packages you might not want to have (like `numpy`). 
+So if you only want to install what you need to build the specification, 
+use the following command:
+
+```bash
+pip install \
+ mkdocs \
+ mkdocs-material \
+ pymdown-extensions \
+ mkdocs-branchcustomization-plugin \
+ mkdocs-macros-plugin \
+ tabulate
+```
 
 #### 2. Download the BIDS specification [repository](https://github.com/bids-standard/bids-specification/tree/master) onto your computer
 
 This can be done by clicking the green button on the right titled "Clone or
-download"
+download" 
+or use [this link](https://github.com/bids-standard/bids-specification/archive/master.zip)
 
-#### 3. Install our theme
-
-Please go [here](https://squidfunk.github.io/mkdocs-material/) and install our
-theme - material.
-The terminal command is `pip install mkdocs-material`
-
-#### 4. In the terminal (command line) navigate to your local version of the specification
+#### 3. In the terminal (command line) navigate to your local version of the specification
 
 This location will have the same files you see on our
 [main specification page](https://github.com/bids-standard/bids-specification).
 Note: A finder window may not show the hidden files (those that start with a
 period, like `.remarkrc`)
 
-#### 5. Ready to build!
+#### 4. Ready to build!
 
 Using the terminal (command line) please enter `mkdocs serve`.
 This will allow you to see a local version of the specification.
