@@ -340,7 +340,7 @@ imaging acquisition sequence (each *run* file) within one session.
 Each neural recording file should be described by at most one row.
 Relative paths to files should be used under a compulsory `filename` header.
 Exceptions are runs that consist of multiple parts (e.g. `echo-`, `part-`, `split-`).
-Each part that appears as a separate file in the respective subdirectory has to be
+All parts that appear as separate files in the respective subdirectory have to be
 separately listed on one row each.
 The relative path in the `filename` header should include the field that specifies the parts.
 If acquisition time is included it should be listed under the `acq_time` header.
