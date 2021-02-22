@@ -339,8 +339,8 @@ The purpose of this file is to describe timing and other properties of each
 imaging acquisition sequence (each *run* file) within one session.
 Each neural recording file should be described by at most one row.
 Relative paths to files should be used under a compulsory `filename` header.
-Exceptions are runs that consist of multiple parts
-(e.g. runs that include one of these fields: `echo`, `part`, `split`).
+Exceptions are runs that consist of multiple parts.
+For example runs that include the `echo-`, `part-`, or `split-` fields.
 All parts that appear as separate files in the respective subdirectory have to be
 separately listed on one row each.
 The relative path in the `filename` header should include the field that specifies the parts.
