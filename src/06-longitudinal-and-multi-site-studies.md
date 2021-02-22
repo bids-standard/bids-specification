@@ -6,7 +6,7 @@ only of alphanumeric characters `[a-zA-Z0-9]` and SHOULD be consistent across
 subjects. If numbers are used in session labels we RECOMMEND using zero padding
 (for example `ses-01`, `ses-11` instead of `ses-1`, `ses-11`). This makes
 results of alphabetical sorting more intuitive. Acquisition time of session can
-be defined in the [sessions file](#sessions-File).
+be defined in the [sessions file](#sessions-file).
 
 The extra session layer (at least one `/ses-<label>` subfolder) SHOULD
 be added for all subjects if at least one subject in the dataset has more than
