@@ -1,18 +1,17 @@
 # Longitudinal and multi-site studies
 
 Multiple sessions (visits) are encoded by adding an extra layer of directories
-and file names in the form of `ses-<label>`. Session label can consist
-only of alphanumeric characters `[a-zA-Z0-9]` and should be consistent across
-subjects. If numbers are used in session labels we recommend using zero padding
+and file names in the form of `ses-<label>`. Session label MUST consist
+only of alphanumeric characters `[a-zA-Z0-9]` and SHOULD be consistent across
+subjects. If numbers are used in session labels we RECOMMEND using zero padding
 (for example `ses-01`, `ses-11` instead of `ses-1`, `ses-11`). This makes
 results of alphabetical sorting more intuitive. Acquisition time of session can
-be defined in the sessions file (see below for details).
+be defined in the [sessions file](#sessions-File).
 
-The extra session layer (at least one `/ses-<label>` subfolder) should
+The extra session layer (at least one `/ses-<label>` subfolder) SHOULD
 be added for all subjects if at least one subject in the dataset has more than
-one session. Skipping the session layer for only some subjects in the dataset is
-not allowed. If a `/ses-<label>` subfolder is included as part of the
-directory hierarchy, then the same `ses-<label>` tag must also be
+one session. If a `/ses-<label>` subfolder is included as part of the
+directory hierarchy, then the same `ses-<label>` tag MUST also be
 included as part of the file names themselves.
 
 ```Text
@@ -71,11 +70,11 @@ sub-<label>/
 Optional: Yes
 
 In case of multiple sessions there is an option of adding additional
-participant key files describing variables changing between sessions. In such
-case one file per participant should be added. These files need to include
+``sessions.tsv`` files describing variables changing between sessions. In such
+case one file per participant should be added. These files MUST include
 compulsory `session_id` column and describe each session by one and only one
-row. Column names in per participant key files have to be different from group
-level participant key column names.
+row. Column names in per ``sessions.tsv`` files MUST be different from group
+level participant key column names in the ``participants.tsv`` file.
 
 `_sessions.tsv` example:
 
