@@ -152,17 +152,17 @@ the section[Fixing Remark errors from Travis](#fixing-travis-remark-errors).
 
 Some others need to fixed manually:
 
-- Do not use latin abbreviations like `"e.g"`, `"i.e"`, `"etc"` that can be extra confusing
-  to some readers and try to replace them by common english equivalent 
-  (`"for example"`, `"that is"`, `"and so on"`).
+- Do not use Latin abbreviations like `"e.g"`, `"i.e"`, `"etc"` that can be confusing
+  to some readers and try to replace them by common English equivalents such as 
+  `"for example"`, `"that is"`, `"and so on"`.
 
 #### Soft rules
 
-We are also trying to follow certain "soft rules" in the way we format the specifications in markdown.
+We are following certain "soft rules" in the way we format the specifications in markdown.
 
 Those rules are sometimes for internal consistency in terms of styling and aesthetics,
-but they several of them are also there because they help the workflow of 
-tracking changes, reviewing them on Github and making suggestions.
+but several of them are also there because they help the workflow of 
+tracking changes, reviewing them on GitHub and, making code suggestions.
 
 They are "soft" rules because they will not be a reason to reject a contribution 
 but if they are followed they will definitely make the lives of many people easier.
@@ -190,8 +190,8 @@ With the MEG specification of BIDS, we wish to promote the adoption of good prac
 in the management of scientific data.
 ```
 
-- when providing a string example for json field for a specific key name make sure that this
-  example appears with double quotes as it would in the real json file.
+- when providing a string example for a specific JSON key name make sure that this
+  example appears with double quotes as it would in the real JSON file.
 
 **Example**
 
@@ -235,10 +235,10 @@ In the following links, you can find more information about
 - [mkdocs](https://www.mkdocs.org/#installation) and how to install it locally,
 - [about the material them](https://squidfunk.github.io/mkdocs-material/) we use.
 
-You will also need several other mkdocs plugins (like `branchcustomization` or `macros`).
+You will also need several other mkdocs plugins (like `branchcustomization` and `macros`).
 
-To install all of this make sure you have a recent version of python on your computer. 
-You can follow [those instructions](http://handbook.datalad.org/en/latest/intro/installation.html#python-3-all-operating-systems) to help you set it up.
+To install all of this make sure you have a recent version of Python on your computer. 
+The [DataLad Handbook(http://handbook.datalad.org/en/latest/intro/installation.html#python-3-all-operating-systems) provides helpful instructions for setting up Python.
 
 An easy way to install the correct version of mkdocs and all the other required extensions 
 is to use the `requirements.txt` file contained in this repository, 
