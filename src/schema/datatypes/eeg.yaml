@@ -35,6 +35,7 @@
     subject: required
     session: optional
     acquisition: optional
+    space: optional
 - suffixes:
     - electrodes
   extensions:
