@@ -372,8 +372,8 @@ Example `_scans.tsv`:
 filename	acq_time
 func/sub-control01_task-nback_bold.nii.gz	1877-06-15T13:45:30
 func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33
-meg/sub-01_task-rest_split-01_meg.nii.gz 1877-01-10T12:15:27
-meg/sub-01_task-rest_split-02_meg.nii.gz 1877-01-10T12:15:27
+meg/sub-01_task-rest_split-01_meg.nii.gz 1877-06-15T13:15:27
+meg/sub-01_task-rest_split-02_meg.nii.gz 1877-06-15T13:15:27
 ```
 
 ## Code
