@@ -346,7 +346,7 @@ separately listed on one row each.
 The relative path in the `filename` header should include the field that specifies the parts.
 If acquisition time is included it should be listed under the `acq_time` header.
 Acquisition time refers to when the first data point in each run was acquired.
-If a `_scans.tsv` file is provided and includes the `acq_time` header, the acqusition times
+If a `_scans.tsv` file is provided and includes the `acq_time` header, the acquisition times
 MUST be identical for all parts of that recording. Specifically, all parts MUST point to
 the time the first data point of a run was recorded.
 Datetime should be expressed as described in [Units](./02-common-principles.md#units).
