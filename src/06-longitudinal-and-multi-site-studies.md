@@ -1,7 +1,7 @@
 # Longitudinal and multi-site studies
 
 Multiple sessions (visits) are encoded by adding an extra layer of directories
-and file names in the form of `ses-<label>`. Session label MUST consist
+and file names in the form of `ses-<label>`. Session labels MUST consist
 only of alphanumeric characters `[a-zA-Z0-9]` and SHOULD be consistent across
 subjects. If numbers are used in session labels we RECOMMEND using zero padding
 (for example `ses-01`, `ses-11` instead of `ses-1`, `ses-11`). This makes
@@ -70,11 +70,11 @@ sub-<label>/
 Optional: Yes
 
 In case of multiple sessions there is an option of adding additional
-``sessions.tsv`` files describing variables changing between sessions. In such
-case one file per participant should be added. These files MUST include
-compulsory `session_id` column and describe each session by one and only one
-row. Column names in per ``sessions.tsv`` files MUST be different from group
-level participant key column names in the ``participants.tsv`` file.
+`sessions.tsv` files describing variables changing between sessions. In such
+case one file per participant SHOULD be added. These files MUST include a
+`session_id` column and describe each session by one and only one row.
+Column names in `sessions.tsv` files MUST be different from group
+level participant key column names in the `participants.tsv` file.
 
 `_sessions.tsv` example:
 
