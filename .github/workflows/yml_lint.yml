@@ -14,4 +14,7 @@ jobs:
     - name: Install dependencies
       run: pip install yamllint
     - name: Lint yml files in src/schema
-      run: yamllint -f standard src/schema/
+      # for config, see:
+      # https://yamllint.readthedocs.io/en/stable/configuration.html#custom-configuration-without-a-config-file
+      run: |
+        yamllint -f standard src/schema/ -d "{extends: relaxed, rules: {line-length: {max: 120}}}"
