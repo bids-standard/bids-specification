@@ -74,7 +74,7 @@ In case of multiple sessions there is an option of adding additional
 case one file per participant SHOULD be added. These files MUST include a
 `session_id` column and describe each session by one and only one row.
 Column names in `sessions.tsv` files MUST be different from group
-level participant key column names in the `participants.tsv` file.
+level participant key column names in the [`participants.tsv` file](./03-modality-agnostic-files.md).
 
 `_sessions.tsv` example:
 
