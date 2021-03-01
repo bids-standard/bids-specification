@@ -289,7 +289,11 @@ that coordinates are expected in cartesian coordinates according to the
 
 The optional [`space-<label>`](../99-appendices/09-entities.md#space) entity (`*[_space-<label>]_electrodes.tsv`) can be used to
 indicate the way in which electrode positions are interpreted.
-The space `<label>` MUST be taken from the list in [Appendix VIII](../99-appendices/08-coordinate-systems.md)
+The space `<label>` MUST be taken from one of the modality specific lists in
+[Appendix VIII](../99-appendices/08-coordinate-systems.md).
+For example for iEEG data, the restricted keywords listed under
+[iEEG Specific Coordinate Systems](../99-appendices/08-coordinate-systems.md#ieeg-specific-coordinate-systems)
+are acceptable for `<label>`.
 
 For examples:
 
