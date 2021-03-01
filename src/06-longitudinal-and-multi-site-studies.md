@@ -11,7 +11,7 @@ be defined in the [sessions file](#sessions-file).
 The extra session layer (at least one `/ses-<label>` subfolder) SHOULD
 be added for all subjects if at least one subject in the dataset has more than
 one session. If a `/ses-<label>` subfolder is included as part of the
-directory hierarchy, then the same [`ses-<label>`](../99-appendices/09-entities.md#ses) key/value pair MUST also be
+directory hierarchy, then the same [`ses-<label>`](./99-appendices/09-entities.md#ses) key/value pair MUST also be
 included as part of the file names themselves.
 
 ```Text
