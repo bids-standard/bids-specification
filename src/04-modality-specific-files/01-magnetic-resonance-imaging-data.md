@@ -135,14 +135,7 @@ whenever possible. See also
 
 ## Anatomy imaging data
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    anat/
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_part-<label>]_<suffix>.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>][_rec-<label>][_run-<index>][_mod-<label>]_defacemask.nii[.gz]
-```
+{{ MACROS___make_filename_template(datatypes=["anat"]) }}
 
 Anatomical (structural) data acquired for that participant. Currently supported
 non-parametric structural MR images include:
@@ -167,12 +160,16 @@ key/value pair corresponds to modality suffix,
 such as T1w or inplaneT1, referenced by the defacemask image.
 For example, `sub-01_mod-T1w_defacemask.nii.gz`.
 
-If several scans of the same modality are acquired they MUST be indexed with the
-[`run-<index>`](../99-appendices/09-entities.md#run) key-value pair:
+If several scans with the same acquisition parameters are acquired in the same session,
+they MUST be indexed with the [`run-<index>`](../99-appendices/09-entities.md#run) entity:
 `_run-1`, `_run-2`, `_run-3`, and so on (only nonnegative integers are allowed as
-run labels). When there is only one scan of a given type the run key MAY be
-omitted. Please note that diffusion imaging data is stored elsewhere (see
-below).
+run labels).
+
+If different entities apply,
+such as a different session indicated by [`ses-<label>`](../99-appendices/09-entities.md#ses),
+or different acquisition parameters indicated by
+[`acq-<label>`](../99-appendices/09-entities.md#acq),
+then `run` is not needed to distinguish the scans and MAY be omitted.
 
 The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
 key/value pair corresponds to a custom label the user
@@ -301,15 +298,7 @@ Currently supported image contrasts include:
 | CBV       | cbv      | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images)                                                                                                                                                                     |
 | Phase     | phase    | [DEPRECATED](../02-common-principles.md#definitions). Phase information associated with magnitude information stored in BOLD contrast. This suffix should be replaced by the [`part-phase`](../99-appendices/09-entities.md#part) in conjunction with the `bold` suffix. |
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    func/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<label>]_bold.nii[.gz]
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<label>]_cbv.nii[.gz]
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_ce-<label>][_dir-<label>][_rec-<label>][_run-<index>][_echo-<index>][_part-<label>]_sbref.nii[.gz]
-```
+{{ MACROS___make_filename_template(datatypes=["func"]) }}
 
 Functional imaging consists of techniques that support rapid temporal repetition.
 This includes but is not limited to task based fMRI
@@ -500,18 +489,7 @@ Currently supported image types include:
 | DWI                   | dwi      | Diffusion-weighted imaging contrast (specialized T2\* weighting). |
 | Single-Band Reference | sbref    | Single-band reference for one or more multi-band `dwi` images.    |
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    dwi/
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_dwi.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_dwi.bval
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_dwi.bvec
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_dwi.json
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_sbref.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_dir-<label>][_run-<index>][_part-<label>]_sbref.json
-```
+{{ MACROS___make_filename_template(datatypes=["dwi"]) }}
 
 If more than one run of the same acquisition and direction has been acquired, the
 [`run-<index>`](../99-appendices/09-entities.md#run) key/value pair MUST be used:
@@ -683,18 +661,7 @@ JSON example:
 
 ## Arterial Spin Labeling perfusion data
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    perf/
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_asl.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_asl.json
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_aslcontext.tsv
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_dir-<label>][_run-<index>]_m0scan.json
-       sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_asllabeling.jpg
-```
+{{ MACROS___make_filename_template(datatypes=["perf"]) }}
 
 The complete ASL time series should be stored as a 4D NIfTI file in the original acquisition order,
 accompanied by two ancillary files: `*_asl.json` and `*_aslcontext.tsv`.
@@ -748,24 +715,24 @@ Additionally, some common metadata fields are REQUIRED for the `*_asl.json`:
 See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#summary-image-of-the-most-common-asl-sequences) for more information on the most common ASL sequences.
 
 #### Common metadata fields applicable to both (P)CASL and PASL
-| **Key name**                      | **Requirement level**                                                         | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-|-----------------------------------|-------------------------------------------------------------------------------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ArterialSpinLabelingType          | REQUIRED                                                                      | [string][]                             | `CASL`, `PCASL`, `PASL`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| PostLabelingDelay                 | REQUIRED                                                                      | [number][] or [array][] of [numbers][] | This is the postlabeling delay (PLD) time, in seconds, after the end of the labeling (for `(P)CASL`) or middle of the labeling pulse (for `PASL`) until the middle of the excitation pulse applied to the imaging slab (for 3D acquisition) or first slice (for 2D acquisition).  Can be a number (for a single-PLD time series) or an array of numbers (for multi-PLD and Look-Locker). In the latter case, the array of numbers contains the PLD of each volume, namely each `control` and `label`, in the acquisition order. Any image within the time-series without a PLD, for example an `m0scan`, is indicated by a zero. Based on DICOM Tags 0018,9079 `Inversion Times` and 0018,0082 `InversionTime`. |
-| BackgroundSuppression             | REQUIRED                                                                      | [boolean][]                            | Boolean indicating if background suppression is used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| M0Type                            | REQUIRED                                                                      | [string][]                             | Describes the presence of M0 information, as either: `Separate` when a separate `*_m0scan.nii[.gz]` is present, `Included` when an m0scan volume is contained within the current `*_asl.nii[.gz]`, `Estimate` when a single whole-brain M0 value is provided, or `Absent` when no specific M0 information is present.                                                                                                                                                                                                                                                                                                                                                                                           |
-| VascularCrushing                  | RECOMMENDED                                                                   | [boolean][]                            | Boolean indicating if Vascular Crushing is used. Corresponds to DICOM Tag 0018,9259 `ASL Crusher Flag`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| AcquisitionVoxelSize              | RECOMMENDED                                                                   | [array][] of [numbers][]               | An array of numbers with a length of 3, in millimeters. This parameter denotes the original acquisition voxel size, excluding any inter-slice gaps and before any interpolation or resampling within reconstruction or image processing. Any point spread function effects, for example due to T2-blurring, that would decrease the effective resolution are not considered here.                                                                                                                                                                                                                                                                                                                               |
-| M0Estimate                        | OPTIONAL, but REQUIRED when `M0Type` is defined as `Estimate`                 | [number][]                             | A single numerical whole-brain M0 value (referring to the M0 of blood), only if obtained externally (for example retrieved from CSF in a separate measurement).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| TotalAcquiredVolumes              | OPTIONAL, but RECOMMENDED when not all 3D volumes are provided by the scanner | [array][] of [numbers][]               | The original number of 3D volumes acquired for each volume defined in the `*_aslcontext.tsv`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| BackgroundSuppressionNumberPulses | OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`                    | [number][]                             | The number of background suppression pulses used. Note that this excludes any effect of background suppression pulses applied before the labeling.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| BackgroundSuppressionPulseTime    | OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`                    | [array][] of [numbers][]               | Array of numbers containing timing, in seconds, of the background suppression pulses with respect to the start of the labeling. In case of multi-PLD with different background suppression pulse times, only the pulse time of the first PLD should be defined.                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| VascularCrushingVENC              | OPTIONAL, RECOMMENDED if `VascularCrushing` is `true`                         | [number][] or [array][] of [numbers][] | The crusher gradient strength, in centimeters per second. Specify either one number for the total time-series, or provide an array of numbers, for example when using QUASAR, using the value zero to identify volumes for which `VascularCrushing` was turned off. Corresponds to DICOM Tag 0018,925A `ASL Crusher Flow Limit`.                                                                                                                                                                                                                                                                                                                                                                                |
-| LabelingOrientation               | RECOMMENDED                                                                   | [array][] of [numbers][]               | Orientation of the labeling plane (`(P)CASL`) or slab (`PASL`). The direction cosines of a normal vector perpendicular to the ASL labeling slab or plane with respect to the patient. Corresponds to DICOM Tag 0018,9255 `ASL Slab Orientation`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| LabelingDistance                  | RECOMMENDED                                                                   | [number][]                             | Distance from the center of the imaging slab to the center of the labeling plane (`(P)CASL`) or the leading edge of the labeling slab (`PASL`), in millimeters. If the labeling is performed inferior to the isocenter, this number should be negative. Based on DICOM macro C.8.13.5.14.                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| LabelingLocationDescription       | RECOMMENDED                                                                   | [string][]                             | Description of the location of the labeling plane (`(P)CASL`) or the labeling slab (`PASL`) that cannot be captured by fields ‘LabelingOrientation’ or ‘LabelingDistance’. May include a link to an anonymized screenshot of the planning of the labeling slab/plane with respect to the imaging slab or slices `*_asllabeling.jpg`. Based on DICOM macro C.8.13.5.14.                                                                                                                                                                                                                                                                                                                                          |
-| LookLocker                        | OPTIONAL                                                                      | [boolean][]                            | Boolean indicating if a Look-Locker readout is used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| LabelingEfficiency                | OPTIONAL                                                                      | [number][]                             | Labeling efficiency, specified as a number between zero and one, only if obtained externally (for example phase-contrast based).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Key name**                      | **Requirement level**                                         | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|-----------------------------------|---------------------------------------------------------------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ArterialSpinLabelingType          | REQUIRED                                                      | [string][]                             | `CASL`, `PCASL`, `PASL`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| PostLabelingDelay                 | REQUIRED                                                      | [number][] or [array][] of [numbers][] | This is the postlabeling delay (PLD) time, in seconds, after the end of the labeling (for `(P)CASL`) or middle of the labeling pulse (for `PASL`) until the middle of the excitation pulse applied to the imaging slab (for 3D acquisition) or first slice (for 2D acquisition).  Can be a number (for a single-PLD time series) or an array of numbers (for multi-PLD and Look-Locker). In the latter case, the array of numbers contains the PLD of each volume, namely each `control` and `label`, in the acquisition order. Any image within the time-series without a PLD, for example an `m0scan`, is indicated by a zero. Based on DICOM Tags 0018,9079 `Inversion Times` and 0018,0082 `InversionTime`. |
+| BackgroundSuppression             | REQUIRED                                                      | [boolean][]                            | Boolean indicating if background suppression is used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| M0Type                            | REQUIRED                                                      | [string][]                             | Describes the presence of M0 information, as either: `Separate` when a separate `*_m0scan.nii[.gz]` is present, `Included` when an m0scan volume is contained within the current `*_asl.nii[.gz]`, `Estimate` when a single whole-brain M0 value is provided, or `Absent` when no specific M0 information is present.                                                                                                                                                                                                                                                                                                                                                                                           |
+| TotalAcquiredPairs                | REQUIRED                                                      | [number][]                             | The total number of acquired `control`-`label` pairs. A single pair consists of a single `control` and a single `label` image.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| VascularCrushing                  | RECOMMENDED                                                   | [boolean][]                            | Boolean indicating if Vascular Crushing is used. Corresponds to DICOM Tag 0018,9259 `ASL Crusher Flag`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| AcquisitionVoxelSize              | RECOMMENDED                                                   | [array][] of [numbers][]               | An array of numbers with a length of 3, in millimeters. This parameter denotes the original acquisition voxel size, excluding any inter-slice gaps and before any interpolation or resampling within reconstruction or image processing. Any point spread function effects, for example due to T2-blurring, that would decrease the effective resolution are not considered here.                                                                                                                                                                                                                                                                                                                               |
+| M0Estimate                        | OPTIONAL, but REQUIRED when `M0Type` is defined as `Estimate` | [number][]                             | A single numerical whole-brain M0 value (referring to the M0 of blood), only if obtained externally (for example retrieved from CSF in a separate measurement).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| BackgroundSuppressionNumberPulses | OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`    | [number][]                             | The number of background suppression pulses used. Note that this excludes any effect of background suppression pulses applied before the labeling.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| BackgroundSuppressionPulseTime    | OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`    | [array][] of [numbers][]               | Array of numbers containing timing, in seconds, of the background suppression pulses with respect to the start of the labeling. In case of multi-PLD with different background suppression pulse times, only the pulse time of the first PLD should be defined.                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| VascularCrushingVENC              | OPTIONAL, RECOMMENDED if `VascularCrushing` is `true`         | [number][] or [array][] of [numbers][] | The crusher gradient strength, in centimeters per second. Specify either one number for the total time-series, or provide an array of numbers, for example when using QUASAR, using the value zero to identify volumes for which `VascularCrushing` was turned off. Corresponds to DICOM Tag 0018,925A `ASL Crusher Flow Limit`.                                                                                                                                                                                                                                                                                                                                                                                |
+| LabelingOrientation               | RECOMMENDED                                                   | [array][] of [numbers][]               | Orientation of the labeling plane (`(P)CASL`) or slab (`PASL`). The direction cosines of a normal vector perpendicular to the ASL labeling slab or plane with respect to the patient. Corresponds to DICOM Tag 0018,9255 `ASL Slab Orientation`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| LabelingDistance                  | RECOMMENDED                                                   | [number][]                             | Distance from the center of the imaging slab to the center of the labeling plane (`(P)CASL`) or the leading edge of the labeling slab (`PASL`), in millimeters. If the labeling is performed inferior to the isocenter, this number should be negative. Based on DICOM macro C.8.13.5.14.                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| LabelingLocationDescription       | RECOMMENDED                                                   | [string][]                             | Description of the location of the labeling plane (`(P)CASL`) or the labeling slab (`PASL`) that cannot be captured by fields ‘LabelingOrientation’ or ‘LabelingDistance’. May include a link to an anonymized screenshot of the planning of the labeling slab/plane with respect to the imaging slab or slices `*_asllabeling.jpg`. Based on DICOM macro C.8.13.5.14.                                                                                                                                                                                                                                                                                                                                          |
+| LookLocker                        | OPTIONAL                                                      | [boolean][]                            | Boolean indicating if a Look-Locker readout is used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| LabelingEfficiency                | OPTIONAL                                                      | [number][]                             | Labeling efficiency, specified as a number between zero and one, only if obtained externally (for example phase-contrast based).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 #### (P)CASL-specific metadata fields
 These fields can only be used when `ArterialSpinLabelingType` is `CASL` or `PCASL`. See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#pcasl-sequence) for more information on the (P)CASL sequence and the Labeling Pulse fields.
@@ -858,16 +825,7 @@ are allowed across all the four scenarios:
 
 #### Case 1: Phase-difference map and at least one magnitude image
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    fmap/
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.json
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude1.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude2.nii[.gz]  # OPTIONAL
-```
+{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["phasediff", "magnitude1", "magnitude2"]) }}
 
 where
 the REQUIRED `_phasediff` image corresponds to the phase-drift map between echo times,
@@ -899,18 +857,7 @@ Similar to case 1, but instead of a precomputed phase-difference map, two
 separate phase images and two magnitude images corresponding to first and
 second echos are available.
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    fmap/
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase1.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase1.json
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude1.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude2.nii[.gz]
-```
+{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["phase1", "phase2", "magnitude1", "magnitude2"]) }}
 
 Required fields:
 
@@ -931,15 +878,7 @@ For example, `sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json`
 In some cases (for example GE), the scanner software will directly reconstruct a
 *B<sub>0</sub>* field map along with a magnitude image used for anatomical reference.
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    fmap/
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_magnitude.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_fieldmap.nii[.gz]
-       sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_fieldmap.json
-```
+{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["fieldmap", "magnitude"]) }}
 
 Required fields:
 
@@ -968,16 +907,7 @@ in the latter case, all timepoints share the same scanning parameters.
 Examples of software tools using these kinds of images are FSL TOPUP,
 AFNI `3dqwarp`, and SPM.
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    fmap/
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_epi.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_epi.json
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.nii[.gz]
-        sub-<label>[_ses-<label>][_acq-<label>][_ce-<label>]_dir-<label>[_run-<index>]_m0scan.json
-```
+{{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["epi"]) }}
 
 The [`dir-<label>`](../99-appendices/09-entities.md#dir) entity is REQUIRED
 for these files.

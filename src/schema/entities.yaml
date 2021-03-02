@@ -85,10 +85,16 @@ run:
   name: Run
   entity: run
   description: |
-    If several scans of the same modality are acquired they MUST be indexed
-    with a key-value pair: `_run-1`, `_run-2`, ..., `_run-<index>`
-    (only nonnegative integers are allowed for the `<index>`).
-    When there is only one scan of a given type the run key MAY be omitted.
+    If several scans with the same acquisition parameters are acquired in the same session,
+    they MUST be indexed with the [`run-<index>`](../99-appendices/09-entities.md#run) entity:
+    `_run-1`, `_run-2`, `_run-3`, and so on (only nonnegative integers are allowed as
+    run labels).
+
+    If different entities apply,
+    such as a different session indicated by [`ses-<label>`](../99-appendices/09-entities.md#ses),
+    or different acquisition parameters indicated by
+    [`acq-<label>`](../99-appendices/09-entities.md#acq),
+    then `run` is not needed to distinguish the scans and MAY be omitted.
   format: index
 modality:
   name: Corresponding Modality
@@ -121,7 +127,7 @@ flip:
     denotes the number/index (in the form of a nonnegative integer), not the `FlipAngle`
     value which needs to be stored in the field `FlipAngle` of the separate JSON file.
   format: index
-inv:
+inversion:
   name: Inversion Time
   entity: inv
   description: |
@@ -132,7 +138,7 @@ inv:
     denotes the number/index (in the form of a nonnegative integer), not the `InversionTime`
     value which needs to be stored in the field `InversionTime` of the separate JSON file.
   format: index
-mt:
+mtransfer:
   name: Magnetization Transfer
   entity: mt
   description: |
@@ -207,12 +213,13 @@ split:
     convention.
 
     Instead of a simple renaming, files should be read in and saved under their
-    new names with dedicated tools like MNE, which will ensure that not only
-    the file names, but also the internal file pointers will be updated.
+    new names with dedicated tools like [MNE-Python](https://mne.tools/),
+    which will ensure that not only the file names, but also the internal file
+    pointers will be updated.
     It is RECOMMENDED that .fif files with multiple parts use the
     `split-<index>` entity to indicate each part.
   format: index
-res:
+resolution:
   name: Resolution
   entity: res
   description: |
@@ -222,7 +229,7 @@ res:
 
     This entity is only applicable to derivative data.
   format: label
-den:
+density:
   name: Density
   entity: den
   description: |
@@ -242,7 +249,7 @@ label:
 
     This entity is only applicable to derivative data.
   format: label
-desc:
+description:
   name: Description
   entity: desc
   description: |

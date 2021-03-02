@@ -1,4 +1,4 @@
-site_name: Brain Imaging Data Structure v1.5.0-dev
+site_name: Brain Imaging Data Structure v1.6.0-dev
 theme:
     name: material
     custom_dir: theme_customizations/
@@ -17,6 +17,8 @@ plugins:
          - branch: /(?!^master$)/
            +extra_css:
              - css/watermark.css
+    - macros:
+        module_name: tools/mkdocs_macros_bidsschema/main
 docs_dir: 'src'
 use_directory_urls: false
 nav:

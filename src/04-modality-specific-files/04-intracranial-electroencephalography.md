@@ -8,15 +8,7 @@ context of the academic literature.
 
 ## iEEG recording data
 
-Template:
-
-```Text
-sub-<label>/
-  [ses-<label>]/
-    ieeg/
-      sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_ieeg.<manufacturer_specific_extension>
-      sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_ieeg.json
-```
+{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["ieeg", "events"]) }}
 
 The iEEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, iEEG data MUST be
@@ -203,14 +195,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 ## Channels description (`*_channels.tsv`)
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      ieeg/
-        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_channels.tsv]
-```
+{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["channels"]) }}
 
 A channel represents one time series recorded with the recording system (for
 example, there can be a bipolar channel, recorded from two electrodes or contact
@@ -294,14 +279,7 @@ Example of free-form text for field `description`:
 
 ## Electrode description (`*_electrodes.tsv`)
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      ieeg/
-         sub-<label>[_ses-<label>][_acq-<label>][_space-<label>]_electrodes.tsv
-```
+{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["electrodes"]) }}
 
 File that gives the location, size and other properties of iEEG electrodes. Note
 that coordinates are expected in cartesian coordinates according to the
@@ -372,14 +350,7 @@ H01   27  -42  -21  5      AdTech
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      ieeg/
-         sub-<label>[_ses-<label>][_space-<label>]_coordsystem.json
-```
+{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["coordsystem"]) }}
 
 This `_coordsystem.json` file contains the coordinate system in which electrode
 positions are expressed. The associated MRI, CT, X-Ray, or operative photo can
@@ -393,13 +364,13 @@ General fields:
 
 Fields relating to the iEEG electrode positions:
 
-| **Key name**                        | **Requirement level**                                          | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ----------------------------------- | -------------------------------------------------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| iEEGCoordinateSystem                | REQUIRED                                                       | [string][]    | Defines the coordinate system for the iEEG sensors. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords for coordinate systems. If `Other`, provide definition of the coordinate system in `iEEGCoordinateSystemDescription`. If positions correspond to pixel indices in a 2D image (of either a volume-rendering, surface-rendering, operative photo, or operative drawing), this must be "Pixels". For more information, see the section on [2D coordinate systems](#allowed-2d-coordinate-systems) |
-| iEEGCoordinateUnits                 | REQUIRED                                                       | [string][]    | Units of the \_electrodes.tsv, MUST be "m", "mm", "cm" or "pixels".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| iEEGCoordinateSystemDescription     | RECOMMENDED, but REQUIRED if `iEEGCoordinateSystem` is `Other` | [string][]    | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                                                                                                                                                                                                                                                                                              |
-| iEEGCoordinateProcessingDescription | RECOMMENDED                                                    | [string][]    | Has any post-processing (such as projection) been done on the electrode positions (for example, "surface_projection", "none").                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| iEEGCoordinateProcessingReference   | RECOMMENDED                                                    | [string][]    | A reference to a paper that defines in more detail the method used to localize the electrodes and to post-process the electrode positions. .                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **Key name**                        | **Requirement level**                                          | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ----------------------------------- | -------------------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| iEEGCoordinateSystem                | REQUIRED                                                       | [string][]    | Defines the coordinate system for the iEEG sensors. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords for coordinate systems. If `"Other"`, provide definition of the coordinate system in `iEEGCoordinateSystemDescription`. If positions correspond to pixel indices in a 2D image (of either a volume-rendering, surface-rendering, operative photo, or operative drawing), this MUST be `"Pixels"`. For more information, see the section on [2D coordinate systems](#allowed-2d-coordinate-systems) |
+| iEEGCoordinateUnits                 | REQUIRED                                                       | [string][]    | Units of the `*_electrodes.tsv`, MUST be `"m"`, `"mm"`, `"cm"` or `"pixels"`. MUST be `"pixels"` if `iEEGCoordinateSystem` is `Pixels`.                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| iEEGCoordinateSystemDescription     | RECOMMENDED, but REQUIRED if `iEEGCoordinateSystem` is `Other` | [string][]    | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                                                                                                                                                                                                                                                                                                  |
+| iEEGCoordinateProcessingDescription | RECOMMENDED                                                    | [string][]    | Has any post-processing (such as projection) been done on the electrode positions (for example, "surface_projection", "none").                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| iEEGCoordinateProcessingReference   | RECOMMENDED                                                    | [string][]    | A reference to a paper that defines in more detail the method used to localize the electrodes and to post-process the electrode positions. .                                                                                                                                                                                                                                                                                                                                                                                                            |
 
 ### Recommended 3D coordinate systems
 
@@ -410,11 +381,14 @@ about preferred names of coordinate systems, such as ACPC).
 
 ### Allowed 2D coordinate systems
 
-If electrodes are localized in 2D space (only x and y are specified and z is
-n/a), then the positions in this file must correspond to the locations expressed
-in pixels on the photo/drawing/rendering of the electrodes on the brain. In this
-case, coordinates must be (row,column) pairs, with (0,0) corresponding to the
-upper left pixel and (N,0) corresponding to the lower left pixel.
+If electrodes are localized in 2D space (only x and y are specified and z is `"n/a"`),
+then the positions in this file MUST correspond to the locations expressed
+in pixels on the photo/drawing/rendering of the electrodes on the brain.
+In this case, `iEEGCoordinateSystem` MUST be defined as `"Pixels"`,
+and `iEEGCoordinateUnits` MUST be defined as `"pixels"`
+(note the difference in capitalization).
+Furthermore, the coordinates MUST be (row,column) pairs,
+with (0,0) corresponding to the upper left pixel and (N,0) corresponding to the lower left pixel.
 
 ### Multiple coordinate systems
 
@@ -441,14 +415,7 @@ Example:
 
 ## Photos of the electrode positions (`*_photo.jpg`)
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      ieeg/
-         sub-<label>[_ses-<label>][_acq-<label]_photo.json
-```
+{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["photo"]) }}
 
 These can include photos of the electrodes on the brain surface, photos of
 anatomical features or landmarks (such as sulcal structure), and fiducials. Photos
