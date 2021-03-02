@@ -35,17 +35,18 @@
   entities:
     subject: required
     session: optional
+    acquisition: optional
     space: optional
 - suffixes:
     - electrodes
   extensions:
-    # No json, since electrodes.tsv uses coordsystem.json for metadata
+    - .json
     - .tsv
   entities:
     subject: required
     session: optional
-    space: optional
     acquisition: optional
+    space: optional
 - suffixes:
     - events
   extensions:

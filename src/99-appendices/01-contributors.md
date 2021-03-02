@@ -41,12 +41,13 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Fidel Alfaro Almagro 💬📖💡🔌
 -   David Alsop 📖
 -   Stefan Appelhoff 📖💬🤔🐛💡💻👀⚠️📢✅🔧🔌📝🚧🔣
--   Tibor Auer 💬📖💡🔧📢
+-   Tibor Auer 💬📖💡🔧📢🐛🤔
 -   Sylvain Baillet 📖🔍
 -   Arshitha Basavaraj 📖🚇💻
 -   Stephan Bickel 📖
 -   Elizabeth Bock 📖💡
 -   Kristofer Bouchard 📖
+-   Mathieu Boudreau 💬🤔📢
 -   Eric Bridgeford 📖🔧
 -   Teon L. Brooks 📖💻⚠️💬👀🤔🔧🐛📢
 -   Suyash Bhogawar 📖💡⚠️🔧💬
@@ -75,8 +76,10 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Adeen Flinker 📖
 -   Brett L. Foster 📖
 -   Ana Fouto 📓
+-   Melanie Ganz-Benjaminsen 📖🔣💻🤔📆🔍📢
 -   Remi Gau 📖💻💬📢🐛💻🚇👀🔧🤔
 -   Satrajit S. Ghosh 📖💻
+-   Ashley G. Gillman 📖
 -   Tristan Glatard 📖💻
 -   Mathias Goncalves 💻🔧📢
 -   Krzysztof J. Gorgolewski 📖💻💬🤔🔍📢📝💡🔌
@@ -107,6 +110,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Mainak Jas 📖💻
 -   Alexander Jones 💻🐛
 -   Tamás Józsa 📓
+-   Agah Karakuzu 💬📖🔣🤔
 -   David Keator 📖
 -   James Kent 💬💻
 -   Gregory Kiar 📖💻🎨🔧
@@ -121,13 +125,14 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Laura and John Arnold Foundation 💵
 -   Christopher Lee-Messer 📖
 -   Jon Haitz Legarreta 💻📖
+-   Dan Levitas 📖
 -   Adam Li 📖💻
 -   Xiangrui Li 📖💻
 -   Vladimir Litvak 📖
 -   Brian N. Lundstrom 📖
 -   Dan Lurie 🤔📖🔧🔌💻💬
 -   Camille Maumet 📖
--   Christopher J. Markiewicz 💬🐛💻📖🎨💡🤔🔌👀🔧📢
+-   Christopher J. Markiewicz 💬🐛💻📖🎨💡🤔🔌👀🔧📢🔣📋🚧
 -   Kai J. Miller 📖
 -   Jeremy Moreau 📖💡
 -   Zachary Michael 📖
@@ -139,13 +144,15 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   B. Nolan Nichols 📖
 -   Thomas E. Nichols 📖📢🔧👀🚧
 -   Dylan Nielson 📖💻🔧
--   Guiomar Niso 📖💡📢
+-   Guiomar Niso 🤔🎨🔍👀📋📝🔧🐛💻🔣✅💬📖💡📢
+-   Martin Noergaard 📖🔣💻🤔📢
 -   Michael P. Notter 💬📝✅📢📖
 -   Jeffrey G. Ojemann 📖
 -   Thomas Okell 📖
 -   Aaron Oliver-Taylor 📖
--   Robert Oostenveld 📖🔧📢💡✅⚠️🤔
+-   Robert Oostenveld 📖🔧📢💡✅⚠️🤔💬🐛📝💻🖋🔣🎨📋🚇👀📓📹
 -   Dimitri Papadopoulos Orfanos 📖💡🤔💬
+-   Eduard Ort 📖
 -   Patrick Park 📖💡💬
 -   Maurice Pasternak 📓
 -   Dianne Patterson 📖
@@ -185,6 +192,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Jessica A. Turner 📖
 -   Pieter Vandemaele 📖💻
 -   Max A. van den Boom 💻👀📖
+-   Wietske van der Zwaag 🔣💬 
 -   Matthias Van Osch 📖
 -   Bradley Voytek 📖
 -   Brian A. Wandell 📖
@@ -194,5 +202,3 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Gaël Varoquaux 📖
 -   Tal Yarkoni 💻📖🤔🔍🔌👀📢🐛🎨
 -   Lyuba Zehl 📖
--   Melanie Ganz-Benjaminsen 📖🔣💻🤔📆🔍📢
--   Martin Noergaard 📖🔣💻🤔📢
