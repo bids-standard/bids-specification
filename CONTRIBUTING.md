@@ -145,10 +145,10 @@ GitHub has a helpful page on
 
 ### Style guide
 
-There certain style rules we are trying to follow in the way the specifications are written.
+There are certain style rules we are trying to follow in the way the specifications are written.
 
 Many of those styling issues can fixed automatically using a linter: see 
-the section[Fixing Remark errors from Travis](#fixing-travis-remark-errors).
+the section [Fixing Remark errors from Travis](#fixing-travis-remark-errors).
 
 Some others need to fixed manually:
 
@@ -158,11 +158,11 @@ Some others need to fixed manually:
 
 #### Soft rules
 
-We are following certain "soft rules" in the way we format the specifications in markdown.
+We follow certain "soft rules" in the way we format the specification in markdown.
 
-Those rules are sometimes for internal consistency in terms of styling and aesthetics,
+These rules are sometimes for internal consistency in terms of styling and aesthetics,
 but several of them are also there because they help the workflow of 
-tracking changes, reviewing them on GitHub and, making code suggestions.
+tracking changes, reviewing them on GitHub, and making code suggestions.
 
 They are "soft" rules because they will not be a reason to reject a contribution 
 but if they are followed they will definitely make the lives of many people easier.
@@ -171,7 +171,7 @@ but if they are followed they will definitely make the lives of many people easi
   This then makes it easier to track with git where a change happened in the text.
 
 - Similarly try to use "hard word wrapping": if a sentence gets long and extends
-  a line length beyond 80-100, continue the sentence on the next line.
+  a line length beyond 80-100 characters, continue the sentence on the next line.
 
 **Example**
 
@@ -233,12 +233,12 @@ Please follow these instructions if you would like to build the specification lo
 In the following links, you can find more information about
 
 - [mkdocs](https://www.mkdocs.org/#installation) and how to install it locally,
-- [about the material them](https://squidfunk.github.io/mkdocs-material/) we use.
+- [the material theme](https://squidfunk.github.io/mkdocs-material/) we use.
 
-You will also need several other mkdocs plugins (like `branchcustomization` and `macros`).
+You will also need several other mkdocs plugins, like `branchcustomization` and `macros`.
 
 To install all of this make sure you have a recent version of Python on your computer. 
-The [DataLad Handbook(http://handbook.datalad.org/en/latest/intro/installation.html#python-3-all-operating-systems) provides helpful instructions for setting up Python.
+The [DataLad Handbook](http://handbook.datalad.org/en/latest/intro/installation.html#python-3-all-operating-systems) provides helpful instructions for setting up Python.
 
 An easy way to install the correct version of mkdocs and all the other required extensions 
 is to use the `requirements.txt` file contained in this repository, 
@@ -266,7 +266,7 @@ pip install \
 
 This can be done by clicking the green button on the right titled "Clone or
 download" 
-or use [this link](https://github.com/bids-standard/bids-specification/archive/master.zip)
+or using [this link](https://github.com/bids-standard/bids-specification/archive/master.zip).
 
 #### 3. In the terminal (command line) navigate to your local version of the specification
 
