@@ -337,19 +337,20 @@ Optional: Yes
 
 The purpose of this file is to describe timing and other properties of each
 imaging acquisition sequence (each *run* file) within one session.
-Each neural recording file should be described by at most one row.
+
+Each neural recording *file* SHOULD be described by exactly one row.
+Some recordings consist of multiple parts, that span several files,
+for example through `echo-`, `part-`, or `split-` entities.
+Such recordings MUST be documented with one row per file.
+
 Relative paths to files should be used under a compulsory `filename` header.
-Exceptions are runs that consist of multiple parts.
-For example runs that include the `echo-`, `part-`, or `split-` fields.
-All parts that appear as separate files in the respective subdirectory have to be
-separately listed on one row each.
-The relative path in the `filename` header should include the field that specifies the parts.
+
 If acquisition time is included it should be listed under the `acq_time` header.
 Acquisition time refers to when the first data point in each run was acquired.
-If a `_scans.tsv` file is provided and includes the `acq_time` header, the acqusition times
-MUST be identical for all parts of that recording. Specifically, all parts MUST point to
-the time the first data point of a run was recorded.
+If this header is provided, the acqusition times of all files that belong to a
+recording MUST be identical.
 Datetime should be expressed as described in [Units](./02-common-principles.md#units).
+
 For anonymization purposes all dates within one subject should be shifted by a
 randomly chosen (but consistent across all recordings) number of days.
 This way relative timing would be preserved, but chances of identifying a
@@ -372,8 +373,8 @@ Example `_scans.tsv`:
 filename	acq_time
 func/sub-control01_task-nback_bold.nii.gz	1877-06-15T13:45:30
 func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33
-meg/sub-01_task-rest_split-01_meg.nii.gz 1877-06-15T12:15:27
-meg/sub-01_task-rest_split-02_meg.nii.gz 1877-06-15T12:15:27
+meg/sub-01_task-rest_split-01_meg.nii.gz	1877-06-15T12:15:27
+meg/sub-01_task-rest_split-02_meg.nii.gz	1877-06-15T12:15:27
 ```
 
 ## Code
