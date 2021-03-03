@@ -339,7 +339,7 @@ The purpose of this file is to describe timing and other properties of each
 imaging acquisition sequence (each *run* file) within one session.
 
 Each neural recording *file* SHOULD be described by exactly one row.
-Some recordings consist of multiple parts, that span several files,
+Some recordings consist of multiple parts, that span several files, 
 for example through `echo-`, `part-`, or `split-` entities.
 Such recordings MUST be documented with one row per file.
 
