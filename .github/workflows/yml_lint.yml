@@ -17,4 +17,4 @@ jobs:
       # for config, see:
       # https://yamllint.readthedocs.io/en/stable/configuration.html#custom-configuration-without-a-config-file
       run: |
-        yamllint -f standard src/schema/ -d "{extends: relaxed, rules: {line-length: {max: 120}}}"
+        yamllint -f standard src/schema/ -c .yamllint.yml
