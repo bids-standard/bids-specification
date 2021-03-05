@@ -92,8 +92,8 @@ jobs:
             echo "Commit or Release, do nothing"
           fi
       - persist_to_workspace:
-        root: .
-        paths: src
+          root: .
+          paths: src
 
   # Run remark on the auto generated changes.md file
   remark:
