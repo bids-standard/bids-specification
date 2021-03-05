@@ -15,4 +15,4 @@ jobs:
       run: npm install `cat npm-requirements.txt`
     - name: Run style checks
       # try npx: https://stackoverflow.com/a/45164863/5201771
-      run: npx remark src/*.md src/*/*.md --frail
+      run: npx remark src/*.md src/*/*.md --frail --rc-path .remarkrc
