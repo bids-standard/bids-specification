@@ -5,6 +5,11 @@ venvs
 
 pdf_build_src/bids-spec.pdf
 
+# JS/NPM
+package-lock.json
+package.json
+node_modules/
+
 # Python gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/
