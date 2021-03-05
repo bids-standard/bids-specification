@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Shell script that runs process_markdowns.py and pandoc_script.py in sequence to build the pdf document
 
 set -eu
