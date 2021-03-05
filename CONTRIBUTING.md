@@ -143,35 +143,139 @@ The CI is testing that the changes are inline with our standard styling.
 GitHub has a helpful page on
 [getting started with writing and formatting on GitHub](https://help.github.com/articles/getting-started-with-writing-and-formatting-on-github).
 
+### Style guide
+
+There are certain style rules we are trying to follow in the way the specifications are written.
+
+Many of those styling issues can fixed automatically using a linter: see 
+the section [Fixing Remark errors from Travis](#fixing-travis-remark-errors).
+
+Some others need to fixed manually:
+
+- Do not use Latin abbreviations like `"e.g"`, `"i.e"`, `"etc"` that can be confusing
+  to some readers and try to replace them by common English equivalents such as 
+  `"for example"`, `"that is"`, `"and so on"`.
+
+#### Soft rules
+
+We follow certain "soft rules" in the way we format the specification in markdown.
+
+These rules are sometimes for internal consistency in terms of styling and aesthetics,
+but several of them are also there because they help the workflow of 
+tracking changes, reviewing them on GitHub, and making code suggestions.
+
+They are "soft" rules because they will not be a reason to reject a contribution 
+but if they are followed they will definitely make the lives of many people easier.
+
+- Start every sentence on a new line. 
+  This then makes it easier to track with git where a change happened in the text.
+
+- Similarly try to use "hard word wrapping": if a sentence gets long and extends
+  a line length beyond 80-100 characters, continue the sentence on the next line.
+
+**Example**
+
+Don't do this:
+
+```markdown
+Unprocessed MEG data MUST be stored in the native file format of the MEG instrument with which the data was collected. With the MEG specification of BIDS, we wish to promote the adoption of good practices in the management of scientific data.
+```
+
+But do this:
+
+```markdown
+Unprocessed MEG data MUST be stored in the native file format of the MEG instrument 
+with which the data was collected. 
+With the MEG specification of BIDS, we wish to promote the adoption of good practices 
+in the management of scientific data.
+```
+
+- when providing a string example for a specific JSON key name make sure that this
+  example appears with double quotes as it would in the real JSON file.
+
+**Example**
+
+Don't do this:
+
+```markdown
+| **Key name** | **Description**                                          |
+|--------------|----------------------------------------------------------|
+| Manufacturer | Manufacturer of the equipment, for example (`Siemens`)   |
+```
+
+That would look like this:
+
+| **Key name** | **Description**                                          |
+|--------------|----------------------------------------------------------|
+| Manufacturer | Manufacturer of the equipment, for example (`Siemens`)   |
+
+But do this instead:
+
+```markdown
+| **Key name** | **Description**                                          |
+|--------------|----------------------------------------------------------|
+| Manufacturer | Manufacturer of the equipment, for example (`"Siemens"`) |
+```
+
+That would look like this:
+
+| **Key name** | **Description**                                          |
+|--------------|----------------------------------------------------------|
+| Manufacturer | Manufacturer of the equipment, for example (`"Siemens"`) | 
+
 ## Building the specification using mkdocs
 
 We are using mkdocs to render our specification.
 Please follow these instructions if you would like to build the specification locally.
 
-#### 1. Install mkdocs
+#### 1. Install mkdocs, the material theme and the required extensions
 
-To begin please follow [this link](https://www.mkdocs.org/#installation) to
-install mkdocs locally.
+In the following links, you can find more information about
+
+- [mkdocs](https://www.mkdocs.org/#installation) and how to install it locally,
+- [the material theme](https://squidfunk.github.io/mkdocs-material/) we use.
+
+You will also need several other mkdocs plugins, like `branchcustomization` and `macros`.
+
+To install all of this make sure you have a recent version of Python on your computer. 
+The [DataLad Handbook](http://handbook.datalad.org/en/latest/intro/installation.html#python-3-all-operating-systems) provides helpful instructions for setting up Python.
+
+An easy way to install the correct version of mkdocs and all the other required extensions 
+is to use the `requirements.txt` file contained in this repository, 
+by using the following command:
+
+```bash
+pip install -r requirements.txt
+```
+
+However this will also install some other packages you might not want to have (like `numpy`). 
+So if you only want to install what you need to build the specification, 
+use the following command:
+
+```bash
+pip install \
+ mkdocs \
+ mkdocs-material \
+ pymdown-extensions \
+ mkdocs-branchcustomization-plugin \
+ mkdocs-macros-plugin \
+ tabulate
+```
 
 #### 2. Download the BIDS specification [repository](https://github.com/bids-standard/bids-specification/tree/master) onto your computer
 
 This can be done by clicking the green button on the right titled "Clone or
-download"
+download" 
+or using [this link](https://github.com/bids-standard/bids-specification/archive/master.zip).
 
-#### 3. Install our theme
-
-Please go [here](https://squidfunk.github.io/mkdocs-material/) and install our
-theme - material.
-The terminal command is `pip install mkdocs-material`
-
-#### 4. In the terminal (command line) navigate to your local version of the specification
+#### 3. In the terminal (command line) navigate to your local version of the specification
 
 This location will have the same files you see on our
 [main specification page](https://github.com/bids-standard/bids-specification).
 Note: A finder window may not show the hidden files (those that start with a
 period, like `.remarkrc`)
 
-#### 5. Ready to build!
+#### 4. Ready to build!
 
 Using the terminal (command line) please enter `mkdocs serve`.
 This will allow you to see a local version of the specification.
