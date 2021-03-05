@@ -132,9 +132,6 @@ as well as
 Remark preserves consistent markdown styling across the contributions.
 Please ensure before submitting a contribution that you do not have any linter errors
 in your text editor.
-You can also use [prettier](https://github.com/prettier/prettier) to
-automatically correct some of the style issues that might be found
-in the proposed changes.
 
 We have deployed a continuous integrator ([circle CI](https://circleci.com/)) to
 further allow for integrating changes continuously.
