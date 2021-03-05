@@ -347,7 +347,7 @@ Relative paths to files should be used under a compulsory `filename` header.
 
 If acquisition time is included it should be listed under the `acq_time` header.
 Acquisition time refers to when the first data point in each run was acquired.
-Furthermore, if this header is provided, the acqusition times of all files that 
+Furthermore, if this header is provided, the acquisition times of all files that 
 belong to a recording MUST be identical.
 
 Datetime should be expressed as described in [Units](./02-common-principles.md#units).
