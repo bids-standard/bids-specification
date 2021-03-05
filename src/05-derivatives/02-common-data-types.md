@@ -142,11 +142,11 @@ cannot be considered preprocessed or cleaned data.
 
 Examples of preprocessing:
 
- -  Motion-corrected, temporally denoised, and transformed to MNI space BOLD series
- -  Inhomogeneity corrected and skull stripped T1w files
- -  Motion-corrected DWI files
- -  Time-domain filtered EEG data
- -  MaxFilter (for example, SSS) cleaned MEG data
+-   Motion-corrected, temporally denoised, and transformed to MNI space BOLD series
+-   Inhomogeneity corrected and skull stripped T1w files
+-   Motion-corrected DWI files
+-   Time-domain filtered EEG data
+-   MaxFilter (for example, SSS) cleaned MEG data
 
 The `space` keyword is recommended to distinguish files with different underlying
 coordinate systems or registered to different reference maps.

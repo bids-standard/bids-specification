@@ -282,8 +282,8 @@ In addition to the column description, a section describing the measurement tool
 (as a whole) MAY be added under the name `MeasurementToolMetadata`.
 This section consists of two keys:
 
-  - `Description`: A free text description of the measurement tool
-  - `TermURL`: A URL to an entity in an ontology corresponding to this tool.
+-   `Description`: A free text description of the measurement tool
+-   `TermURL`: A URL to an entity in an ontology corresponding to this tool.
 
 As an example, consider the contents of a file called
 `phenotype/acds_adult.json`:
