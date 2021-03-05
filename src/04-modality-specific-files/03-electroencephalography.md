@@ -194,7 +194,14 @@ To avoid confusion, the channels SHOULD be listed in the order they
 appear in the EEG data file.
 Any number of additional columns may be added to provide additional information
 about the channels.
+
 Note that electrode positions SHOULD NOT be added to this file, but to [`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-_electrodestsv).
+Furthermore, the entries in `*_electrodes.tsv` and `*_channels.tsv` do not have to match exactly,
+as for example in the case of recording a single `EOG` channel from a bipolar referencing scheme
+of two electrodes, or a data channel originating from an auxilliary, non-electrode device.
+That is, in most cases `*_electrodes.tsv` will have more entries than `*_channels.tsv`.
+See the examples for `*_channels.tsv` below, and for `*_electrodes.tsv` in
+["Electrodes description"](./03-electroencephalography.md#electrodes-description-_electrodestsv).
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
@@ -247,14 +254,16 @@ Example of free-form text for field `description`
 
 -   n/a, stimulus, response, skin conductance, battery status
 
-Example:
+### Example `channels.tsv`
+
+See also the corresponding [`electrodes.tsv` example](#example-electrodestsv).
 
 ```Text
-name     type   units   description                     status  status_description
-VEOG     VEOG   uV      n/a                             good    n/a
-FDI      EMG    uV      left first dorsal interosseous  good    n/a
-Cz       EEG    uV      n/a                             bad     high frequency noise
-UADC001  MISC   n/a     envelope of audio signal        good    n/a
+name     type  units  description                     reference     status  status_description
+VEOG     VEOG  uV     left eye                        VEOG-, VEOG+  good    n/a
+FDI      EMG   uV     left first dorsal interosseous  FDI-, FDI+    good    n/a
+Cz       EEG   uV     n/a                             REF           bad     high frequency noise
+UADC001  MISC  n/a    envelope of audio signal        n/a           good    n/a
 ```
 
 ## Electrodes description (`*_electrodes.tsv`)
@@ -285,15 +294,19 @@ SHOULD be present:
 | material        | RECOMMENDED           | Material of the electrode  (for example, Tin, Ag/AgCl, Gold).          |
 | impedance       | RECOMMENDED           | Impedance of the electrode, units MUST be in `kOhm`.                   |
 
-Example:
+### Example `electrodes.tsv`
+
+See also the corresponding [`electrodes.tsv` example](#example-channelstsv).
 
 ```Text
-name  x         y        z         type      material
-A1    -0.0707   0.0000   -0.0707   clip-on   Ag/AgCl
-F3    -0.0567   0.0677   0.0469    cup       Ag/AgCl
-Fz    0.0000    0.0714   0.0699    cup       Ag/AgCl
-REF   -0.0742   -0.0200  -0.0100   cup       Ag/AgCl
-GND   0.0742    -0.0200  -0.0100   cup       Ag/AgCl
+name   x        y	       z        type     material
+VEOG+  n/a      n/a      n/a      cup      Ag/AgCl
+VEOG-  n/a      n/a      n/a      cup      Ag/AgCl
+FDI+   n/a      n/a      n/a      cup      Ag/AgCl
+FDI-   n/a      n/a      n/a      cup      Ag/AgCl
+GND    -0.0707  0.0000   -0.0707  clip-on  Ag/AgCl
+Cz     0.0000   0.0714   0.0699   cup      Ag/AgCl
+REF    -0.0742  -0.0200  -0.0100  cup      Ag/AgCl
 ```
 
 The [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair can be used to indicate acquisition of the same data. For
