@@ -12,7 +12,6 @@ jobs:
       with:
         node-version: 14
     - name: Install dependencies
-      run: npm install `cat npm-requirements.txt`
+      run: npm install --global `cat npm-requirements.txt`
     - name: Run style checks
-      # try npx: https://stackoverflow.com/a/45164863/5201771
-      run: npx remark src/*.md src/*/*.md --frail --rc-path .remarkrc
+      run: remark src/*.md src/*/*.md --frail --rc-path .remarkrc
