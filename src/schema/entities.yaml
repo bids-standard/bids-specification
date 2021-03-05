@@ -218,8 +218,8 @@ split:
     pointers will be updated.
     It is RECOMMENDED that .fif files with multiple parts use the
     `split-<index>` entity to indicate each part.
-    If there are split files and the optional `scans.tsv` is provided, remember to list all parts
-    of the split file in `scans.tsv` and that the entries for the `acq_time` column in `scans.tsv`
+    If there are split files and the optional `scans.tsv` is provided, remember to list the
+    files separately in `scans.tsv` and that the entries for the `acq_time` column in `scans.tsv`
     MUST be identical, as described in
     [Scans file](../03-modality-agnostic-files.md#scans-file).
   format: index
