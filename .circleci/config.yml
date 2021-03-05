@@ -60,7 +60,7 @@ jobs:
       - store_artifacts:
           path: bids-spec.pdf
 
-# Auto changelog collector
+  # Auto changelog collector
   github-changelog-generator:
     docker:
       - image: ferrarimarco/github-changelog-generator:1.14.3
@@ -73,17 +73,29 @@ jobs:
         working_directory: ~/build
         command: |
           if (git log -1 --pretty=%s | grep Merge*) && (! git log -1 --pretty=%b | grep REL:) ; then
-            github_changelog_generator --user bids-standard --project bids-specification --token ${CHANGE_TOKEN} --output ~/build/CHANGES.md --base ~/build/src/pregh-changes.md --header-label "# Changelog" --no-issues --no-issues-wo-labels --no-filter-by-milestone --no-compare-link --pr-label "" --release-branch master
+            github_changelog_generator \
+              --user bids-standard \
+              --project bids-specification \
+              --token ${CHANGE_TOKEN} \
+              --output ~/build/CHANGES.md \
+              --base ~/build/src/pregh-changes.md \
+              --header-label "# Changelog" \
+              --no-issues \
+              --no-issues-wo-labels \
+              --no-filter-by-milestone \
+              --no-compare-link \
+              --pr-label "" \
+              --release-branch master
             cat ~/build/CHANGES.md
             mv ~/build/CHANGES.md ~/build/src/CHANGES.md
           else
             echo "Commit or Release, do nothing"
           fi
       - persist_to_workspace:
-             root: .
-             paths: src
+        root: .
+        paths: src
 
-# Run remark on the auto generated changes.md file
+  # Run remark on the auto generated changes.md file
   remark:
     docker:
       - image: node:latest
@@ -112,7 +124,7 @@ jobs:
           root: ~/project/src
           paths: tmp
 
-# Push built changelog to repo
+  # Push built changelog to repo
   Changelog-bot:
     working_directory: ~/build
     docker:
@@ -147,30 +159,30 @@ workflows:
     jobs:
       - build_docs
       - linkchecker:
-          requires:
-            - build_docs
+        requires:
+          - build_docs
       - github-changelog-generator:
-          filters:
-               branches:
-                   only: master
+        filters:
+        branches:
+        only: master
       - remark:
-          requires:
-               - github-changelog-generator
-          filters:
-               branches:
-                   only: master
+        requires:
+          - github-changelog-generator
+        filters:
+        branches:
+        only: master
       - Changelog-bot:
-          requires:
-               - remark
-          filters:
-               branches:
-                   only: master
+        requires:
+          - remark
+        filters:
+        branches:
+        only: master
       # Ensure that build_docs_pdf always runs last, so that we can use the CircleCI API link for the "latest" artifact
       # https://circleci.com/api/v1.1/project/github/bids-standard/bids-specification/latest/artifacts/0/bids-spec.pdf?branch=master
       - build_docs_pdf:
-          requires:
-               - build_docs
-               - linkchecker
-               - github-changelog-generator
-               - remark
-               - Changelog-bot
+        requires:
+          - build_docs
+          - linkchecker
+          - github-changelog-generator
+          - remark
+          - Changelog-bot
