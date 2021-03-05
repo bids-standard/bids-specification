@@ -12,8 +12,7 @@ jobs:
       with:
         node-version: 14
     - name: Install dependencies
-      run: npm install --global `cat npm-requirements.txt`
+      run: npm install --save-dev `cat npm-requirements.txt`
     - name: Run style checks
       run: |
-        export PATH="$HOME/.nodenv/bin:$PATH"
-        remark src/*.md src/*/*.md --frail --rc-path .remarkrc
+        npx remark src/*.md src/*/*.md --frail --rc-path .remarkrc
