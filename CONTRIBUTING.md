@@ -19,7 +19,7 @@ Jump to the following sections:
 -   [Contributing through GitHub](#contributing-through-github)
 -   [Understanding issues](#understanding-issues)
 -   [Writing in markdown](#writing-in-markdown)
--   [Fixing Remark errors from Travis](#fixing-travis-remark-errors)
+-   [Fixing markdown style errors](#fixing-markdown-style-errors)
 -   [Adding a figure to the specifications](#adding-a-figure-to-the-specifications)
 -   [Making a change with a pull request](#making-a-change-with-a-pull-request)
 -   [Example pull request](#example-pull-request)
@@ -282,21 +282,21 @@ This will allow you to see a local version of the specification.
 The local address will be `http://127.0.0.1:8000`.
 You may enter that into your browser and this will bring up the specification!
 
-## Fixing Travis Remark errors
+## Fixing markdown style errors
 
 We use a linter called [Remarkjs](https://github.com/remarkjs/remark-lint) to
 ensure all of our Markdown documents are consistent and well-styled.
-This commonly produces errors, which are flagged by [Travis CI](https://travis-ci.org/),
+This commonly produces errors, which are flagged by [GitHub Actions](https://github.com/features/actions),
 a continuous integration service.
-When Travis returns an error, use the following process to resolve the issue:
+When GitHub Actions returns an error, use the following process to resolve the issue:
 
-#### 1. Install NodeJS / npm
+### 1. Install NodeJS / npm
 
 We use a markdown linter written in Javascript. To run command Javascript tools
 on the command line, please [download and install](https://nodejs.org/en/download/)
 NodeJS.
 
-#### 2. Install Remark-CLI and our style guide
+### 2. Install Remark-CLI and our style guide
 
 Remark-CLI can be installed via [npm](https://www.npmjs.com/), which is part of
 the NodeJS distribution.
@@ -304,35 +304,43 @@ the NodeJS distribution.
 To install the packages we use for our style guide, the following command will
 work on most command lines:
 
-```
+```shell
 npm install `cat npm-requirements.txt`
 ```
 
 The equivalent command on PowerShell is:
 
-```
+```shell
 npm install @(cat npm-requirements.txt)
 ```
 
-#### 3. Fix the flagged document
+### 3. Find documents that are failing the check
+
+Run the following from the root directory of `bids-specification`:
+
+```shell
+npx remark ./src/*.md ./src/*/*.md
+```
+
+### 4. Fix the flagged document
 
 Please go to the directory where the flagged file is and run remark like this:
 
-```
-remark flagged_file.md -o flagged_file_fixed.md
+```shell
+npx remark flagged_file.md -o flagged_file_fixed.md
 ```
 
 Please confirm this has fixed the file. To do this, please run this:
 
-```
-remark flagged_file_fixed.md --frail
+```shell
+npx remark flagged_file_fixed.md --frail
 ```
 
 This command will indicate whether this file now conforms to the style guide.
 If it passes, replace `flagged_file.md` with the contents of
 `flagged_file_fixed.md`, add and commit the change:
 
-```
+```shell
 mv flagged_file_fixed.md flagged_file.md
 git add flagged_file.md
 git commit -m 'STY: Fixed Markdown style'
@@ -340,16 +348,16 @@ git commit -m 'STY: Fixed Markdown style'
 
 ## Adding a figure to the specifications
 
-> A figure is worth a 1000 words! 
+> A figure is worth a 1000 words!
 
-If you think that a figure or a picture can help summarize several aspects or notions of the 
+If you think that a figure or a picture can help summarize several aspects or notions of the
 specification, do not hesitate to make a suggestion by showing a draft in a GitHub issue.
 
 After discussion and approval by the community, you can then submit your image
 in a pull request.
 
 Images should be added to an `images` folder that is at the same level as the Markdown file
-where your image will be added. For example if you want to add a figure `figure01.png` to 
+where your image will be added. For example if you want to add a figure `figure01.png` to
 `src/05-derivatives/01-introduction.md` then your image should go to
 `src/05-derivatives/images/figure01.png`.
 
@@ -361,18 +369,18 @@ Figures can be inserted in a Markdown like this (see also
 ```
 ### Recommendations for figures
 
-1. Try to keep the file size of your figure relatively small (smaller than 500 Kb) 
-to keep the repository light and reduce the load time of the specs 
+1. Try to keep the file size of your figure relatively small (smaller than 500 Kb)
+to keep the repository light and reduce the load time of the specs
 for people who do not necessarily have broad-band internet.
 
-1. Figures in the main part of the specification should aim to be very "comprehensive" 
+1. Figures in the main part of the specification should aim to be very "comprehensive"
 but "smaller" figures can find their home in the appendices or the BIDS-starter-kit.
 
-1. If you are adding a figure (and not picture) make sure to also supply a vector format 
+1. If you are adding a figure (and not picture) make sure to also supply a vector format
 of that figure (ideally as an `.svg` file) as this makes it easier to edit it in the
 future.
 
-1. Try to include a README file that details where the figure / image came from 
+1. Try to include a README file that details where the figure / image came from
 and how it can be reproduced. Preferably with a link to the file that generated the figure
 if relevant.
 
