@@ -14,4 +14,6 @@ jobs:
     - name: Install dependencies
       run: npm install --global `cat npm-requirements.txt`
     - name: Run style checks
-      run: remark src/*.md src/*/*.md --frail --rc-path .remarkrc
+      run: |
+        export PATH="$HOME/.nodenv/bin:$PATH"
+        remark src/*.md src/*/*.md --frail --rc-path .remarkrc
