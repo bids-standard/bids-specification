@@ -115,7 +115,7 @@ Whenever possible, please avoid using ad hoc wording.
 | CogPOID                | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                             |
 | DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset. |
 
- Specific iEEG fields MUST be present:
+Specific iEEG fields MUST be present:
 
 | **Key name**       | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | ------------------ | --------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -492,9 +492,15 @@ onset duration trial_type             electrical_stimulation_type electrical_sti
 <!-- Link Definitions -->
 
 [object]: https://www.json.org/json-en.html
+
 [objects]: https://www.json.org/json-en.html
+
 [number]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [integer]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [string]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [uri]: ../02-common-principles.md#uniform-resource-indicator

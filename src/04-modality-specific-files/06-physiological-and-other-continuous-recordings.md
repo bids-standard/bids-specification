@@ -130,5 +130,7 @@ sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
 <!-- Link Definitions -->
 
 [number]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [strings]: https://www.w3schools.com/js/js_json_syntax.asp
+
 [array]: https://www.w3schools.com/js/js_json_arrays.asp

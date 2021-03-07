@@ -123,6 +123,7 @@ onset  duration  trial_type  response_time stim_file
 1.2    0.6       go          1.435         images/red_square.jpg
 5.6    0.6       stop        1.739         images/blue_square.jpg
 ```
+
 Example: An accompanying `*_events.json` sidecar describing both categorical and value columns.
 
 ```JSON
