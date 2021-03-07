@@ -343,6 +343,17 @@ git add flagged_file.md
 git commit -m 'STY: Fixed Markdown style'
 ```
 
+NOTE: 
+
+Using `remark` to fix some linting errors might introduce some additional changes:
+
+- changing unordered list from using `-` to using `*`
+- changing ordered list from using `1.` to actually using the number of the item
+- changes literal hyperlinks URLs from `[URL](URL)` to `<URL>`
+- in some instances, it will "escape" all `_` and `&` with a `\` in all the URLs.
+
+You might have to revert those or use [interactive staging](https://git-scm.com/book/en/v2/Git-Tools-Interactive-Staging) to make sure you only commit the right chunks of code.
+
 ## Adding a figure to the specifications
 
 > A figure is worth a 1000 words!
