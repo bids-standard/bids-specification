@@ -28,7 +28,7 @@ different anatomies in a unifying manner (see for example,
 
 The "space" and all coordinates expressed in this space are by design a
 transformation of the real world geometry, and nearly always different from the
-individual subject space that it stems from. 
+individual subject space that it stems from.
 An example is the
 Talairach-Tournoux space, which is constructed by piecewise linear scaling of an
 individual's brain to that of the Talairach-Tournoux 1988 atlas. In the
@@ -36,11 +36,11 @@ Talairach-Tournoux space, the origin of the coordinate system is at the AC and
 units are expressed in mm.
 
 The coordinate systems below all relate to neuroscience and therefore to the
-head or brain coordinates. 
+head or brain coordinates.
 $Please be aware that all data acquisition starts with
 "device coordinates" (scanner), which does not have to be identical to the
 initial "file format coordinates" (DICOM), which are again different from the
-"head" coordinates (for example, NIFTI). 
+"head" coordinates (for example, NIFTI).
 Not only do device coordinate vary between
 hardware manufacturers, but also the head coordinates differ, mostly due to
 different conventions used in specific software packages developed by different
@@ -220,4 +220,5 @@ Please note that `space-scanner` SHOULD NOT be used, it is mentioned in this spe
 <!-- Link Definitions -->
 
 [common file level metadata fields]: ../05-derivatives/02-common-data-types.md#common-file-level-metadata-fields
+
 [deprecated]: ../02-common-principles.md#definitions

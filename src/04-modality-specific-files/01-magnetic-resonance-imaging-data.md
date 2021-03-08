@@ -803,10 +803,10 @@ form of flowcharts.
 Data acquired to correct for *B<sub>0</sub>* inhomogeneities can come in different forms.
 The current version of this standard considers four different scenarios:
 
- 1. [Phase-difference map](#case-1-phase-difference-map-and-at-least-one-magnitude-image)
- 1. [Two phase maps](#case-2-two-phase-maps-and-two-magnitude-images)
- 1. [Direct *field mapping*](#case-3-direct-field-mapping)
- 1. ["*PEpolar*" fieldmaps](#case-4-multiple-phase-encoded-directions-pepolar)
+ 1.  [Phase-difference map](#case-1-phase-difference-map-and-at-least-one-magnitude-image)
+ 1.  [Two phase maps](#case-2-two-phase-maps-and-two-magnitude-images)
+ 1.  [Direct *field mapping*](#case-3-direct-field-mapping)
+ 1.  ["*PEpolar*" fieldmaps](#case-4-multiple-phase-encoded-directions-pepolar)
 
 These four different types of field mapping strategies can be encoded
 using the following image types:
@@ -822,10 +822,10 @@ using the following image types:
 Two OPTIONAL entities, following more general rules of the specification,
 are allowed across all the four scenarios:
 
-  - The OPTIONAL [`run-<index>`](../99-appendices/09-entities.md#run) key/value pair corresponds to a one-based index
+-   The OPTIONAL [`run-<index>`](../99-appendices/09-entities.md#run) key/value pair corresponds to a one-based index
     to distinguish multiple fieldmaps with the same parameters.
 
-  - The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair corresponds to a custom label
+-   The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair corresponds to a custom label
     the user may use to distinguish different set of parameters.
 
 ### Types of fieldmaps
@@ -980,13 +980,23 @@ For example:
 <!-- Link Definitions -->
 
 [deprecated]: ../02-common-principles.md#definitions
+
 [string]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [strings]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [integer]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [number]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [numbers]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
+
 [arrays]: https://www.w3schools.com/js/js_json_arrays.asp
+
 [object]: https://www.json.org/json-en.html
+
 [uri]: ../02-common-principles.md#uniform-resource-indicator

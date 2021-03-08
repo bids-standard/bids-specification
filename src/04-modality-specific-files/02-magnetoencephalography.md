@@ -438,13 +438,23 @@ sub-emptyroom/
 <!-- Link Definitions -->
 
 [object]: https://www.json.org/json-en.html
+
 [objects]: https://www.json.org/json-en.html
+
 [boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [number]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [numbers]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [integer]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [string]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [strings]: https://www.w3schools.com/js/js_json_datatypes.asp
+
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
+
 [arrays]: https://www.w3schools.com/js/js_json_arrays.asp
+
 [uri]: ../02-common-principles.md#uniform-resource-indicator

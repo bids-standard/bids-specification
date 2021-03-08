@@ -72,5 +72,7 @@ in [Derived dataset and pipeline description][derived-dataset-description].
 <!-- Link Definitions -->
 
 [definitions]: ../02-common-principles.md#definitions
+
 [storage]: ../02-common-principles.md#storage-of-derived-datasets
+
 [derived-dataset-description]: ../03-modality-agnostic-files.md#derived-dataset-and-pipeline-description

@@ -743,8 +743,13 @@ to suppress warnings or provide interpretations of your file names.
 <!-- Link Definitions -->
 
 [dataset-description]: 03-modality-agnostic-files.md#dataset-description
+
 [derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description
+
 [string]: https://www.w3schools.com/js/js_json_syntax.asp
+
 [strings]: https://www.w3schools.com/js/js_json_syntax.asp
+
 [object]: https://www.json.org/json-en.html
+
 [deprecated]: ./02-common-principles.md#definitions
