@@ -11,6 +11,7 @@
     session: optional
     task: optional
     acquisition: optional
+    tracer: optional
     reconstruction: optional
     run: optional
 # Second group
@@ -24,6 +25,7 @@
     session: optional
     task: optional
     acquisition: optional
+    tracer: optional
     reconstruction: optional
     run: optional
     recording: required

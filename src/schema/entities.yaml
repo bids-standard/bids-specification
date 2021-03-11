@@ -65,6 +65,13 @@ ceagent:
     The key `ContrastBolusIngredient` MAY be also be added in the JSON file,
     with the same label.
   format: label
+tracer:
+  name: Tracer
+  entity: trc
+  description: |
+    The `trc-<label>` key/value can be used to distinguish
+    sequences using different tracers.
+  format: label
 reconstruction:
   name: Reconstruction
   entity: rec
