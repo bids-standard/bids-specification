@@ -62,7 +62,7 @@ ceagent:
     The `ce-<label>` key/value can be used to distinguish
     sequences using different contrast enhanced images.
     The label is the name of the contrast agent.
-    The key `ContrastBolusIngredient` MAY be also be added in the JSON file,
+    The key `ContrastBolusIngredient` MAY also be added in the JSON file,
     with the same label.
   format: label
 tracer:
@@ -71,6 +71,8 @@ tracer:
   description: |
     The `trc-<label>` key/value can be used to distinguish
     sequences using different tracers.
+    The key `TracerName` MUST also be included in the associated JSON file,
+    although the label may be different.
   format: label
 reconstruction:
   name: Reconstruction
