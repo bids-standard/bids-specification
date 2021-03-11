@@ -1,5 +1,5 @@
 ---
-# First group
+# DWI
 - suffixes:
     - dwi
   extensions:
@@ -9,13 +9,13 @@
     - .bvec
     - .bval
   entities:
-    sub: required
-    ses: optional
-    acq: optional
-    dir: optional
+    subject: required
+    session: optional
+    acquisition: optional
+    direction: optional
     run: optional
     part: optional
-# Second group
+# Single-band reference images
 - suffixes:
     - sbref
   extensions:
@@ -23,9 +23,9 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
-    acq: optional
-    dir: optional
+    subject: required
+    session: optional
+    acquisition: optional
+    direction: optional
     run: optional
     part: optional

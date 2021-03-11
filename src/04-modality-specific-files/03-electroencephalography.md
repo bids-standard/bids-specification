@@ -17,15 +17,7 @@ Further datasets are available from the [BIDS examples repository](https://githu
 
 ## EEG recording data
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      eeg/
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_eeg.<manufacturer_specific_extension>
-        sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_eeg.json
-```
+{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["eeg", "events"]) }}
 
 The EEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, EEG data MUST be
@@ -191,14 +183,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 ## Channels description (`*_channels.tsv`)
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      eeg/
-        [sub-<label>[_ses-<label>]_task-<label>[_acq-<label>][_run-<index>]_channels.tsv]
-```
+{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["channels"]) }}
 
 This file is RECOMMENDED as it provides easily searchable information across
 BIDS datasets for for example, general curation, response to queries or batch
@@ -274,14 +259,7 @@ UADC001  MISC   n/a     envelope of audio signal        good    n/a
 
 ## Electrodes description (`*_electrodes.tsv`)
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      eeg/
-        sub-<label>[_ses-<label>][_acq-<label>][_space-<label>]_electrodes.tsv
-```
+{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["electrodes"]) }}
 
 File that gives the location of EEG electrodes. Note that coordinates are
 expected in cartesian coordinates according to the `EEGCoordinateSystem` and
@@ -325,14 +303,7 @@ the recording.
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      eeg/
-        [sub-<label>[_ses-<label>][_acq-<label>]_coordsystem.json]
-```
+{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["coordsystem"]) }}
 
 A `*_coordsystem.json` file is used to specify the fiducials, the location of
 anatomical landmarks, and the coordinate system and units in which the position
@@ -428,14 +399,7 @@ Example:
 
 Photos of the anatomical landmarks and/or fiducials.
 
-Template:
-
-```Text
-sub-<label>/
-    [ses-<label>]/
-      eeg/
-        [sub-<label>[_ses-<label>][_acq-<label>]_photo.jpg]
-```
+{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["photo"]) }}
 
 Photos of the anatomical landmarks and/or fiducials are OPTIONAL.
 Please note that the photos may need to be cropped or blurred to conceal

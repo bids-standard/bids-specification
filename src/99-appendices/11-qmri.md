@@ -62,14 +62,14 @@ Below is an example file collection for RF transmit field map `TB1EPI`:
 ```text
 └── sub-01/
      └── fmap/
-         ├── sub-01_fa-1_echo-1_TB1EPI.nii.gz
-         ├── sub-01_fa-1_echo-1_TB1EPI.json
-         ├── sub-01_fa-1_echo-2_TB1EPI.nii.gz
-         ├── sub-01_fa-1_echo-2_TB1EPI.json
-         ├── sub-01_fa-2_echo-1_TB1EPI.nii.gz
-         ├── sub-01_fa-2_echo-1_TB1EPI.json
-         ├── sub-01_fa-2_echo-2_TB1EPI.nii.gz
-         └── sub-01_fa-2_echo-2_TB1EPI.json
+         ├── sub-01_echo-1_flip-1_TB1EPI.nii.gz
+         ├── sub-01_echo-1_flip-1_TB1EPI.json
+         ├── sub-01_echo-2_flip-1_TB1EPI.nii.gz
+         ├── sub-01_echo-2_flip-1_TB1EPI.json
+         ├── sub-01_echo-1_flip-2_TB1EPI.nii.gz
+         ├── sub-01_echo-1_flip-2_TB1EPI.json
+         ├── sub-01_echo-2_flip-2_TB1EPI.nii.gz
+         └── sub-01_echo-2_flip-2_TB1EPI.json
 ```
 
 Please visit the [file collections appendix](./10-file-collections.md#magnetic-resonance-imaging) to see the list of currently supported qMRI applications.
@@ -125,18 +125,18 @@ but also by which metadata fields are provided in accompanying json files.
 
 #### Anatomy imaging data
 
-| **File collection**  | **REQUIRED metadata**                                                                                                        | **OPTIONAL metadata**      |
-|----------------------|------------------------------------------------------------------------------------------------------------------------------|----------------------------|
-| VFA                  | `FlipAngle`, `PulseSequenceType`, `RepetitionTimeExcitation`                                                                 | `SpoilingRFPhaseIncrement` |
-| IRT1                 | `InversionTime`                                                                                                              |                            |
-| MP2RAGE<sup>*</sup>  | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
-| MESE                 | `EchoTime`                                                                                                                   |                            |
-| MEGRE                | `EchoTime`                                                                                                                   |                            |
-| MTR                  | `MTState`                                                                                                                    |                            |
-| MTS                  | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           |                            |
-| MPM                  | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           | `EchoTime`                 |
+| **File collection**   | **REQUIRED metadata**                                                                                                        | **OPTIONAL metadata**      |
+|-----------------------|------------------------------------------------------------------------------------------------------------------------------|----------------------------|
+| VFA                   | `FlipAngle`, `PulseSequenceType`, `RepetitionTimeExcitation`                                                                 | `SpoilingRFPhaseIncrement` |
+| IRT1                  | `InversionTime`                                                                                                              |                            |
+| MP2RAGE<sup>\*</sup>  | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
+| MESE                  | `EchoTime`                                                                                                                   |                            |
+| MEGRE                 | `EchoTime`                                                                                                                   |                            |
+| MTR                   | `MTState`                                                                                                                    |                            |
+| MTS                   | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           |                            |
+| MPM                   | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           | `EchoTime`                 |
 
-<sup>*</sup> Please see MP2RAGE-specific notes for the calculation of `NumberShots` and regarding the
+<sup>\*</sup> Please see MP2RAGE-specific notes for the calculation of `NumberShots` and regarding the
 organization of `UNIT1` image.
 
 Explanation of the table:
@@ -154,17 +154,17 @@ Explanation of the table:
 
 #### Field maps
 
-| **File collection**     | **REQUIRED metadata**                                                                                |
-|-------------------------|------------------------------------------------------------------------------------------------------|
-| TB1DAM                  | `FlipAngle`                                                                                          |
-| TB1EPI                  | `EchoTime`, `FlipAngle`, `TotalReadoutTime`, `MixingTime`                                            |
-| TB1AFI                  | `RepetitionTime`                                                                                     |
-| TB1TFL                  |                                                                                                      |
-| TB1RMF                  |                                                                                                      |
-| TB1SRGE<sup>*</sup>     | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots` |
-| RB1COR                  |                                                                                                      |
+| **File collection**  | **REQUIRED metadata**                                                                                |
+|----------------------|------------------------------------------------------------------------------------------------------|
+| TB1DAM               | `FlipAngle`                                                                                          |
+| TB1EPI               | `EchoTime`, `FlipAngle`, `TotalReadoutTime`, `MixingTime`                                            |
+| TB1AFI               | `RepetitionTime`                                                                                     |
+| TB1TFL               |                                                                                                      |
+| TB1RFM               |                                                                                                      |
+| TB1SRGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots` |
+| RB1COR               |                                                                                                      |
 
-<sup>*</sup> Please see TB1SRGE-specific notes for the calculation of `NumberShots`.
+<sup>\*</sup> Please see TB1SRGE-specific notes for the calculation of `NumberShots`.
 
 ### Metadata requirements for qMRI maps
 
@@ -253,10 +253,10 @@ sub-01_T1map.json:
 
 <<Parameter injected by the software/pipeline>>
 
-"BasedOn":["anat/sub-01_fa-1_VFA.nii.gz",
-           "anat/sub-01_fa-2_VFA.nii.gz",
-           "anat/sub-01_fa-3_VFA.nii.gz",
-           "anat/sub-01_fa-4_VFA.nii.gz",
+"BasedOn":["anat/sub-01_flip-1_VFA.nii.gz",
+           "anat/sub-01_flip-2_VFA.nii.gz",
+           "anat/sub-01_flip-3_VFA.nii.gz",
+           "anat/sub-01_flip-4_VFA.nii.gz",
            "fmap/sub-01_TB1map.nii.gz"],
 "EstimationPaper":"Deoni et. al.MRM, 2015",
 "EstimationAlgorithm":"Linear",
@@ -433,7 +433,7 @@ by entities that can generalize to other applications.
 Instead of introducing an entity that is exclusive to a single application,
 method developers who commonly use these file collections for the `MPM` application reached
 the consensus on the use of `acq` entity to distinguish individual files.
-These suffixes include: `TB1AFI`, `TB1TFL`, `TB1RMF`, and `RB1COR`.
+These suffixes include: `TB1AFI`, `TB1TFL`, `TB1RFM`, and `RB1COR`.
 
 #### `TB1EPI` specific notes
 
@@ -505,7 +505,7 @@ and MAY be followed by freeform entries:
          └── sub-01_acq-tr2_TB1AFI.json
 ```
 
-#### `TB1TFL` and `TB1RMF` specific notes
+#### `TB1TFL` and `TB1RFM` specific notes
 
 These suffixes describe two outputs generated by Siemens `tfl_b1_map` and `rf_map` product sequences, respectively.
 Both sequences output two images.
@@ -514,11 +514,11 @@ The first image appears like an anatomical image and the second output is a scal
 To properly identify files of this particular file collection,
 values of the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be followed by freeform entries:
 
-| Anatomical (like) image | Scaled FA map     | Use case             |
-| ----------------------- | ----------------- | -------------------- |
-| `_acq-anat`             | `_acq-famp`       | Single acquisition   |
-| `_acq-anatTest`         | `_acq-fampTest`   | Acquisition `Test`   |
-| `_acq-anatRetest`       | `_acq-fampRetest` | Acquisition `Retest` |
+| Anatomical (like) image | Scaled flip angle map     | Use case             |
+| ----------------------- | ------------------------- | -------------------- |
+| `_acq-anat`             | `_acq-famp`               | Single acquisition   |
+| `_acq-anatTest`         | `_acq-fampTest`           | Acquisition `Test`   |
+| `_acq-anatRetest`       | `_acq-fampRetest`         | Acquisition `Retest` |
 
 ```text
 └── sub-01/

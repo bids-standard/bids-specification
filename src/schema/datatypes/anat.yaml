@@ -1,5 +1,5 @@
 ---
-# First group
+# Nonparametric
 - suffixes:
     - T1w
     - T2w
@@ -10,19 +10,22 @@
     - inplaneT2
     - PDT2
     - angio
+    - T2star  # deprecated
+    - FLASH  # deprecated
+    - PD  # deprecated
   extensions:
     - .nii.gz
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
     part: optional
-# Second group
+# Parametric
 - suffixes:
     - T1map
     - T2map
@@ -39,8 +42,6 @@
     - MTVmap
     - PDT2map
     - Chimap
-    - TB1map
-    - RB1map
     - S0map
     - M0map
   extensions:
@@ -48,13 +49,13 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
-# Third group
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+# Defacemask
 - suffixes:
     - defacemask
   extensions:
@@ -62,14 +63,14 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
-    mod: optional
-# Fourth group
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    modality: optional
+# Multi-echo
 - suffixes:
     - MESE
     - MEGRE
@@ -78,15 +79,15 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
     echo: required
     part: optional
-# Fifth group
+# Multi-flip
 - suffixes:
     - VFA
   extensions:
@@ -94,15 +95,15 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
     flip: required
     part: optional
-# Sixth group
+# Multi-inv
 - suffixes:
     - IRT1
   extensions:
@@ -110,15 +111,15 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
-    inv: required
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    inversion: required
     part: optional
-# Seventh group
+# MP2RAGE
 - suffixes:
     - MP2RAGE
   extensions:
@@ -126,17 +127,17 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
     echo: optional
-    flip: required
-    inv: required
+    flip: optional
+    inversion: required
     part: optional
-# Eighth group
+# VFA+MT
 - suffixes:
     - MPM
     - MTS
@@ -145,17 +146,17 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
     echo: optional
     flip: required
-    mt: required
+    mtransfer: required
     part: optional
-# Nineth group
+# MTR
 - suffixes:
     - MTR
   extensions:
@@ -163,11 +164,11 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     run: optional
-    acq: optional
-    ce: optional
-    rec: optional
-    mt: required
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    mtransfer: required
     part: optional
