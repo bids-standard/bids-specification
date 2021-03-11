@@ -7,11 +7,11 @@
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: optional
-    acq: optional
-    rec: optional
+    acquisition: optional
+    reconstruction: optional
     run: optional
 # Second group
 - suffixes:
@@ -20,10 +20,10 @@
     - .tsv
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: optional
-    acq: optional
-    rec: optional
+    acquisition: optional
+    reconstruction: optional
     run: optional
     recording: required
