@@ -62,14 +62,7 @@ In this example, tracer injection coincides with scan start.
 
 ## PET recording data
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    pet/
-        sub-<label>[_ses-<label>][_task-<label>][_trc-<label>][_rec-<label>][_run-<index>]_pet.nii[.gz]
-        sub-<label>[_ses-<label>][_task-<label>][_trc-<label>][_rec-<label>][_run-<index>]_pet.json
-```
+{{ MACROS___make_filename_template(datatypes=["pet"], suffixes=["pet"]) }}
 
 PET data MUST be stored in the `pet` directory.
 PET imaging data SHOULD be stored in 4D (or 3D, if only one volume was acquired)
@@ -298,15 +291,7 @@ ses-02 59
 
 ## Blood recording data
 
-Template:
-
-```Text
-sub-<label>/[ses-<label>/]
-    pet/
-	sub-<label>[_ses-<label>][_task-<label>][_trc-<label>][_rec-<label>][_run-<index>][_recording-<label>]_blood.tsv
-	sub-<label>[_ses-<label>][_task-<label>][_trc-<label>][_rec-<label>][_run-<index>][_recording-<label>]_blood.json
-
-```
+{{ MACROS___make_filename_template(datatypes=["pet"], suffixes=["blood"]) }}
 
 If collected, blood measurements of radioactivity are be stored in
 [Tabular files](../02-common-principles.md#tabular-files) and located in
