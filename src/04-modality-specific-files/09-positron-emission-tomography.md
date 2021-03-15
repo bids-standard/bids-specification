@@ -92,10 +92,10 @@ The OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec) entity
 is used to indicate the reconstruction method used for the image,
 with four reserved values:
 
-    - `acdyn`, for reconstructions with attenuation correction of dynamic data;
-    - `acstat`, for reconstructions with attenuation correction of static data;
-    - `nacdyn`, for reconstructions without attenuation correction of dynamic data;
-    - `nacstat`, for reconstructions without attenuation correction of static data.
+-   `acdyn`, for reconstructions with attenuation correction of dynamic data;
+-   `acstat`, for reconstructions with attenuation correction of static data;
+-   `nacdyn`, for reconstructions without attenuation correction of dynamic data;
+-   `nacstat`, for reconstructions without attenuation correction of static data.
 
 Further details regarding reconstruction are in the `_pet.json` file.
 If multiple reconstructions of the data are made with the same type of reconstruction,
