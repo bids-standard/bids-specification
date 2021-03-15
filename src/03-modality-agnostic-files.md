@@ -162,9 +162,9 @@ participants.json
 
 The purpose of this RECOMMENDED file is to describe properties of participants
 such as age, sex, handedness.
-In case of single-session studies, this file has one compulsory column
-`participant_id` that consists of `sub-<label>`, followed by a list of optional
-columns describing participants.
+If this file exists, it MUST contain the column `participant_id`,
+which MUST consist of `sub-<label>` values identifying one row for each participant,
+followed by a list of optional columns describing participants.
 Each participant MUST be described by one and only one row.
 
 Commonly used *optional* columns in `participant.tsv` files are `age`, `sex`,
@@ -282,8 +282,8 @@ In addition to the column description, a section describing the measurement tool
 (as a whole) MAY be added under the name `MeasurementToolMetadata`.
 This section consists of two keys:
 
-  - `Description`: A free text description of the measurement tool
-  - `TermURL`: A URL to an entity in an ontology corresponding to this tool.
+-   `Description`: A free text description of the measurement tool
+-   `TermURL`: A URL to an entity in an ontology corresponding to this tool.
 
 As an example, consider the contents of a file called
 `phenotype/acds_adult.json`:
@@ -382,9 +382,15 @@ code organization of these scripts at the moment.
 <!-- Link Definitions -->
 
 [objects]: https://www.json.org/json-en.html
+
 [object]: https://www.json.org/json-en.html
+
 [string]: https://www.w3schools.com/js/js_json_syntax.asp
+
 [strings]: https://www.w3schools.com/js/js_json_syntax.asp
+
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
+
 [uri]: ./02-common-principles.md#uniform-resource-indicator
+
 [deprecated]: ./02-common-principles.md#definitions

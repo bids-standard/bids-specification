@@ -17,4 +17,5 @@ obtained from participants and any institutional limitations on distribution.
 <!-- Link Definitions -->
 
 [pddl]: https://opendatacommons.org/licenses/pddl/
-[cc0]:https://creativecommons.org/publicdomain/zero/1.0/
+
+[cc0]: https://creativecommons.org/publicdomain/zero/1.0/
