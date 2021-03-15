@@ -142,13 +142,13 @@ cannot be considered preprocessed or cleaned data.
 
 Examples of preprocessing:
 
- -  Motion-corrected, temporally denoised, and transformed to MNI space BOLD series
- -  Inhomogeneity corrected and skull stripped T1w files
- -  Motion-corrected DWI files
- -  Time-domain filtered EEG data
- -  MaxFilter (for example, SSS) cleaned MEG data
+-   Motion-corrected, temporally denoised, and transformed to MNI space BOLD series
+-   Inhomogeneity corrected and skull stripped T1w files
+-   Motion-corrected DWI files
+-   Time-domain filtered EEG data
+-   MaxFilter (for example, SSS) cleaned MEG data
 
-The `space` keyword is recomended to distinguish files with different underlying
+The `space` keyword is recommended to distinguish files with different underlying
 coordinate systems or registered to different reference maps.
 See [Spatial references](#spatial-references) for details.
 The `desc` (description) keyword is a general purpose field with freeform values,
@@ -186,8 +186,13 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 <!-- Link Definitions -->
 
 [coordsys]: ../99-appendices/08-coordinate-systems.md#image-based-coordinate-systems
+
 [templates]: ../99-appendices/08-coordinate-systems.md#standard-template-identifiers
+
 [object]: https://www.json.org/json-en.html
+
 [string]: https://www.w3schools.com/js/js_json_syntax.asp
+
 [strings]: https://www.w3schools.com/js/js_json_syntax.asp
+
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
