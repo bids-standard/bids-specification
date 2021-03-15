@@ -151,6 +151,11 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
     [ACPC site](https://www.fieldtriptoolbox.org/faq/acpc/) on the FieldTrip
     toolbox wiki.
 
+-   `fsnative`: The origin of the coordinate system is at the center of
+    isotropic 1 mm 256x256x256 volume in RAS orientation. This corresponds
+    to electrode coordinates localized on the subject-specific ``T1.mgz``
+    FreeSurfer file.
+
 -   Any keyword from the list of
     [Standard template identifiers](#standard-template-identifiers)
 
