@@ -56,7 +56,7 @@ defined on a single time scale relative to a predefined "time zero".
 
 Figure 1: Overview of a common PET experiment, including blood measurements,
 and defined on a common time scale.
-Note, "time zero" is often defined as time of injection or scan start, but if a pharmaceutical challenge is carried out during the scan, this timepoint may also be chosen as time zero. The injected dose, the PET data, and blood data should all be decay-corrected to time zero, but because the time of injection not always coincides with scan start, the PET data may not always be decay-corrected to the time of injection. If this is not the case, this may be indicated in the reconstruction section (`ImageDecayCorrected` and `ImageDecayCorrectionTime`). In the example in the figure, tracer injection coincides with scan start. 
+Note, "time zero" is often defined as time of injection or scan start, but if a pharmaceutical challenge is carried out during the scan, this timepoint may also be chosen as time zero. The injected dose, the PET data, and blood data should all be decay-corrected to time zero, but because the time of injection not always coincides with scan start, the PET data may not always be decay-corrected to the time of injection. If this is not the case, this may be indicated in the reconstruction section (`ImageDecayCorrected` and `ImageDecayCorrectionTime`). In the example in the figure, tracer injection coincides with scan start.
 and all the PET and blood data should be decay-corrected to this time point.
 In this example, tracer injection coincides with scan start.
 
@@ -92,10 +92,10 @@ The OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec) entity
 is used to indicate the reconstruction method used for the image,
 with four reserved values:
 
-  - `acdyn`, for reconstructions with attenuation correction of dynamic data;
-  - `acstat`, for reconstructions with attenuation correction of static data;
-  - `nacdyn`, for reconstructions without attenuation correction of dynamic data;
-  - `nacstat`, for reconstructions without attenuation correction of static data.
+    - `acdyn`, for reconstructions with attenuation correction of dynamic data;
+    - `acstat`, for reconstructions with attenuation correction of static data;
+    - `nacdyn`, for reconstructions without attenuation correction of dynamic data;
+    - `nacstat`, for reconstructions without attenuation correction of static data.
 
 Further details regarding reconstruction are in the `_pet.json` file.
 If multiple reconstructions of the data are made with the same type of reconstruction,
