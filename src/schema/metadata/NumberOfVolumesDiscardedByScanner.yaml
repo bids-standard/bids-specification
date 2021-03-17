@@ -10,5 +10,5 @@ description: |
   refer to the beginning of the acquisition of the first volume in the c
   orresponding imaging file - independent of the value of
   `NumberOfVolumesDiscardedByScanner` field.
-data_type: integer
-unit: none
+type: integer
+minimum: 0

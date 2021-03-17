@@ -2,5 +2,5 @@ key_name: CogAtlasID
 description: |
   [URI][uri] of the corresponding
   [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.
-data_type: URI
-unit: none
+type: string
+format: uri

@@ -12,7 +12,11 @@ description: |
   is indicated by a zero.
   Based on DICOM Tags 0018,9079 `Inversion Times` and 0018,0082
   `InversionTime`.
-data_type:
-  - number
-  - array of numbers
+anyOf:
+  - type: number
+    exclusiveMinimum: 0
+  - type: array
+    items:
+      type: number
+      exclusiveMinimum: 0
 unit: seconds

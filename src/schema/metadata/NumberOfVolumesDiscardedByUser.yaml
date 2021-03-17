@@ -7,5 +7,5 @@ description: |
   refer to the beginning of the acquisition of the first volume in the
   corresponding imaging file - independent of the value of
   `NumberOfVolumesDiscardedByUser` field.
-data_type: integer
-unit: none
+type: integer
+minimum: 0

@@ -8,5 +8,8 @@ description: |
   This field is mutually exclusive with `RepetitionTime` and `DelayTime`.
   If defined, this requires acquisition time (TA) be defined via either
   `SliceTiming` or `AcquisitionDuration` be defined.
-data_type: array of numbers
+type: array
+items:
+  type: number
+  minItems: 1
 unit: seconds

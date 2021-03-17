@@ -1,9 +1,8 @@
 key_name: ArterialSpinLabelingType
 description: |
   `"CASL"`, `"PCASL"`, `"PASL"`.
-data_type: string
-unit: none
-levels:
+type: string
+enum:
   - CASL
   - PCASL
   - PASL

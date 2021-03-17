@@ -8,5 +8,4 @@ description: |
   `facesnback`.
   A RECOMMENDED convention is to name resting state task using labels beginning
   with `rest`.
-data_type: string
-unit: none
+type: string

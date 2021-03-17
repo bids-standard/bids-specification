@@ -13,5 +13,6 @@ description: |
   This value MUST be consistent with the 'pixdim[4]' field (after accounting
   for units stored in 'xyzt_units' field) in the NIfTI header.
   This field is mutually exclusive with VolumeTiming.
-data_type: number
+type: number
+exclusiveMinimum: 0
 unit: seconds
