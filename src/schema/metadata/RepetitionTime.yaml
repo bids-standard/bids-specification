@@ -1,3 +1,4 @@
+---
 key_name: RepetitionTime
 description: |
   The time in seconds between the beginning of an acquisition of one volume

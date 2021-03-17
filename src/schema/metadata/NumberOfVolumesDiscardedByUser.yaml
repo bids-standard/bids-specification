@@ -1,3 +1,4 @@
+---
 key_name: NumberOfVolumesDiscardedByUser
 description: |
   Number of volumes ("dummy scans") discarded by the user before including the
