@@ -1,0 +1,6 @@
+---
+key_name: ContinuousHeadLocalization
+description: |
+  `true` or `false` value indicating whether continuous head localisation
+  was performed.
+type: boolean

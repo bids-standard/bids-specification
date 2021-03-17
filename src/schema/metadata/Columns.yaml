@@ -1,0 +1,8 @@
+---
+key_name: Columns
+description: |
+  Names of columns in file.
+type: array
+items:
+  type: string
+  minLength: 1
