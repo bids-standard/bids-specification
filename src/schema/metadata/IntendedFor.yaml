@@ -1,0 +1,14 @@
+---
+key_name: IntendedFor
+description: |
+  Contains one or more filenames with paths relative to the participant subfolder.
+  The path needs to use forward slashes instead of backward slashes.
+  This field is OPTIONAL, and in case the fieldmaps do not correspond to any
+  particular scans, it does not have to be filled.
+anyOf:
+  - type: string
+    minLength: 1
+  - type: array
+    items:
+      type: string
+      minLength: 1

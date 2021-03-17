@@ -456,6 +456,15 @@ sparse sequences.
 
 #### fMRI task information
 
+{{ MACROS___make_metadata_table(
+   {
+      "Instructions": "RECOMMENDED",
+      "TaskDescription": "RECOMMENDED",
+      "CogAtlasID": "RECOMMENDED",
+      "CogPOID": "RECOMMENDED",
+   }
+) }}
+
 | **Key name**    | **Requirement level** | **Data type** | **Description**                                                                                                                                                                               |
 | --------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Instructions    | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the scan. This is especially important in context of resting state fMRI and distinguishing between eyes open and eyes closed paradigms. |
