@@ -14,7 +14,9 @@ from . import utils
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
-utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
+utils.set_logger_level(
+    lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO)
+)
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 BIDS_SCHEMA = Path(__file__).parent.parent / "src" / "schema"
@@ -140,7 +142,9 @@ def make_entity_definitions(schema):
         text += "\n\n"
         text += "Full name: {}".format(entity_info["name"])
         text += "\n\n"
-        text += "Format: `{}-<{}>`".format(entity_info["entity"], entity_info["format"])
+        text += "Format: `{}-<{}>`".format(
+            entity_info["entity"], entity_info["format"]
+        )
         text += "\n\n"
         text += "Definition: {}".format(entity_info["description"])
     return text
@@ -186,7 +190,8 @@ def make_filename_template(schema, **kwargs):
             string = "\t\t\t"
             for ent in entities:
                 ent_format = "{}-<{}>".format(
-                    schema["entities"][ent]["entity"], schema["entities"][ent]["format"]
+                    schema["entities"][ent]["entity"],
+                    schema["entities"][ent]["format"],
                 )
                 if ent in group["entities"]:
                     if group["entities"][ent] == "required":
@@ -209,13 +214,16 @@ def make_filename_template(schema, **kwargs):
                 string += suffix
                 strings = [string]
             else:
-                strings = [string + "_" + suffix for suffix in group["suffixes"]]
+                strings = [
+                    string + "_" + suffix for suffix in group["suffixes"]
+                ]
 
             # Add extensions
             full_strings = []
             extensions = group["extensions"]
-            extensions = [ext if ext != "*" else ".<extension>" for ext in
-                          extensions]
+            extensions = [
+                ext if ext != "*" else ".<extension>" for ext in extensions
+            ]
             extensions = utils.combine_extensions(extensions)
             if len(extensions) > 5:
                 # Combine exts when there are many, but keep JSON separate
@@ -304,7 +312,9 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
                 dtype_rows[suffixes_str] = dtype_row
 
         # Reformat first column
-        dtype_rows = {dtype + "<br>({})".format(k): v for k, v in dtype_rows.items()}
+        dtype_rows = {
+            dtype + "<br>({})".format(k): v for k, v in dtype_rows.items()
+        }
         dtype_rows = [[k] + v for k, v in dtype_rows.items()]
         table += dtype_rows
 
@@ -323,19 +333,44 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     return table_str
 
 
+def _get_link(string):
+    dict_ = {
+        "array": "[array](https://www.w3schools.com/js/js_json_arrays.asp)",
+        "string": (
+            "[string](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
+        "number": (
+            "[number](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
+        "object": "[object](https://www.json.org/json-en.html)",
+        "integer": (
+            "[integer](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
+        "boolean": (
+            "[boolean](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
+    }
+    string = dict_.get(string, string)
+    return string
+
+
 def _resolve_metadata_type(definition):
     if "type" in definition.keys():
-        string = definition["type"]
-        if ("items" in definition.keys()) and ("type" in definition["items"].keys()):
-            string += " of " + definition["items"]["type"]
+        string = _get_link(definition["type"])
+        if ("items" in definition.keys()) and (
+            "type" in definition["items"].keys()
+        ):
+            string += " of " + _get_link(definition["items"]["type"])
     elif "anyOf" in definition.keys():
         string = ""
         n_types = len(definition["anyOf"])
         for i_type, subdict in enumerate(definition["anyOf"]):
-            subtype = subdict["type"]
+            subtype = _get_link(subdict["type"])
             string += subtype
-            if ("items" in subdict.keys()) and ("type" in subdict["items"].keys()):
-                string += " of " + subdict["items"]["type"]
+            if ("items" in subdict.keys()) and (
+                "type" in subdict["items"].keys()
+            ):
+                string += " of " + _get_link(subdict["items"]["type"])
 
             if i_type < (n_types - 1):
                 string += " or "
@@ -360,12 +395,19 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
     df.index.name = "**Key name**"
     for field in retained_fields:
         line = [
-            field_info[field],
+            field_info[field].replace(
+                "DEPRECATED",
+                (
+                    "[DEPRECATED]"
+                    "(http://localhost:8000/"
+                    "02-common-principles.html#definitions)"
+                ),
+            ),
             _resolve_metadata_type(metadata_schema[field]),
-            metadata_schema[field]["description"],
+            metadata_schema[field]["description"].replace("\n", " "),
         ]
         df.loc[field] = line
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
-    return df
+    return table_str

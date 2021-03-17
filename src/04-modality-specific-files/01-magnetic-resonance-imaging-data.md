@@ -10,6 +10,24 @@ by Ben Inglis:
 
 ### Scanner Hardware
 
+{{ MACROS___make_metadata_table(
+   {
+      "Manufacturer": "RECOMMENDED",
+      "ManufacturersModelName": "RECOMMENDED",
+      "DeviceSerialNumber": "RECOMMENDED",
+      "StationName": "RECOMMENDED",
+      "SoftwareVersions": "RECOMMENDED",
+      "HardcopyDeviceSoftwareVersion": "DEPRECATED",
+      "MagneticFieldStrength": "RECOMMENDED, but REQUIRED for Arterial Spin Labeling",
+      "ReceiveCoilName": "RECOMMENDED",
+      "ReceiveCoilActiveElements": "RECOMMENDED",
+      "GradientSetType": "RECOMMENDED",
+      "MRTransmitCoilSequence": "RECOMMENDED",
+      "MatrixCoilMode": "RECOMMENDED",
+      "CoilCombinationMethod": "RECOMMENDED",
+   }
+) }}
+
 | **Key name**                  | **Requirement level**                                | **Data type** | **Description**                                                                                                                                                                                                                                                           |
 | ----------------------------- | ---------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Manufacturer                  | RECOMMENDED                                          | [string][]    | Manufacturer of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0070 `Manufacturer`                                                                                                                                                   |

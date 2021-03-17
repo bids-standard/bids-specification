@@ -63,7 +63,7 @@ def make_entity_definitions():
     return text
 
 
-def make_metadata_table(field_names):
+def make_metadata_table(field_info):
     """Generate a markdown table of metadata field information.
 
     Parameters
@@ -84,5 +84,5 @@ def make_metadata_table(field_names):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = schema.make_metadata_table(schema_obj)
+    table = schema.make_metadata_table(schema_obj, field_info)
     return table
