@@ -16,8 +16,9 @@ description: |
 anyOf:
   - type: number
     exclusiveMinimum: 0
+    unit: s
   - type: array
     items:
       type: number
       exclusiveMinimum: 0
-unit: seconds
+      unit: s

@@ -16,4 +16,4 @@ description: |
   This field is mutually exclusive with VolumeTiming.
 type: number
 exclusiveMinimum: 0
-unit: seconds
+unit: s
