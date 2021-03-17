@@ -84,6 +84,25 @@ and/or files (like `events.tsv`) are fully omitted *when they are unavailable or
 instead of specified with an `n/a` value, or included as an empty file
 (for example an empty `events.tsv` file with only the headers included).
 
+### Metadata conflicts
+
+BIDS specifies that metadata be stored in human-readable formats such as
+TSV (see [Tabular files](#tabular-files)) or
+JSON (see [Key/value files](#keyvalue-files-dictionaries)).
+In some cases, this duplicates metadata contained in a data file.
+
+In cases of conflict, the BIDS metadata is considered authoritative.
+If BIDS metadata is defined,
+format-specific metadata MUST NOT conflict to the extent permitted by the format.
+
+If an exact representation of the BIDS metadata is possible in the format,
+then the metadata SHOULD be duplicated inside the data file.
+If an exact representation of the BIDS metadata is not possible in the format,
+then the closest possible approximation of the BIDS metadata SHOULD be used.
+Special null or undefined values MAY be used when available.
+If the format-specific metadata field is defined,
+the BIDS metadata SHOULD also be defined.
+
 ## Filesystem structure
 
 Data for each subject are placed in subdirectories named "`sub-<label>`",
