@@ -130,16 +130,16 @@ specification.
 BIDS specifies that metadata be stored in human-readable formats such as
 TSV (see [Tabular files](#tabular-files)) or
 JSON (see [Key/value files](#keyvalue-files-dictionaries)).
-In some cases, this duplicates metadata internal to the imaging file.
+In some cases, this duplicates metadata internal to the data file.
 
 In cases of conflict, the BIDS metadata is considered authoritative.
 If BIDS metadata is defined,
 format-specific metadata MUST NOT conflict to the extent permitted by the format.
 
 If an exact representation of the BIDS metadata is possible in the format,
-then the metadata SHOULD be duplicated inside the imaging file.
+then the metadata SHOULD be duplicated inside the data file.
 If an exact representation of BIDS metadata is not possible in the format,
-then the imaging file metadata SHOULD be undefined
+then the data file metadata SHOULD be undefined
 or set to the closest possible approximation of the BIDS metadata.
 If the format-specific metadata field is defined,
 the BIDS metadata SHOULD also be defined.
