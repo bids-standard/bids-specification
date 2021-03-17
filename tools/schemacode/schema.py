@@ -8,6 +8,7 @@ from warnings import warn
 
 import pandas as pd
 import yaml
+from tabulate import tabulate
 
 from . import utils
 
@@ -256,8 +257,6 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     table_str : str
         Markdown string containing the table.
     """
-    from tabulate import tabulate
-
     schema = filter_schema(schema, **kwargs)
 
     ENTITIES_FILE = "09-entities.md"
@@ -322,3 +321,51 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     # Print it as markdown
     table_str = tabulate(table, headers="keys", tablefmt=tablefmt)
     return table_str
+
+
+def _resolve_metadata_type(definition):
+    if "type" in definition.keys():
+        string = definition["type"]
+        if ("items" in definition.keys()) and ("type" in definition["items"].keys()):
+            string += " of " + definition["items"]["type"]
+    elif "anyOf" in definition.keys():
+        string = ""
+        n_types = len(definition["anyOf"])
+        for i_type, subdict in enumerate(definition["anyOf"]):
+            subtype = subdict["type"]
+            string += subtype
+            if ("items" in subdict.keys()) and ("type" in subdict["items"].keys()):
+                string += " of " + subdict["items"]["type"]
+
+            if i_type < (n_types - 1):
+                string += " or "
+
+    return string
+
+
+def make_metadata_table(schema, field_info, tablefmt="github"):
+    """Produce metadata table (markdown) based on requested fields."""
+    fields = list(field_info.keys())
+    # The filter function doesn't work here.
+    metadata_schema = schema["metadata"]
+    retained_fields = [f for f in fields if f in metadata_schema.keys()]
+    dropped_fields = [f for f in fields if f not in metadata_schema.keys()]
+    if dropped_fields:
+        print("Warning: Fields dropped: {}".format(", ".join(dropped_fields)))
+
+    df = pd.DataFrame(
+        index=retained_fields,
+        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+    )
+    df.index.name = "**Key name**"
+    for field in retained_fields:
+        line = [
+            field_info[field],
+            _resolve_metadata_type(metadata_schema[field]),
+            metadata_schema[field]["description"],
+        ]
+        df.loc[field] = line
+
+    # Print it as markdown
+    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    return df
