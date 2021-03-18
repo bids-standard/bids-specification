@@ -1,0 +1,22 @@
+---
+key_name: EEGCoordinateSystem
+description: |
+  See
+  [Recording EEG simultaneously with MEG]
+  (https://bids-specification.readthedocs.io/en/stable/
+  04-modality-specific-files/02-magnetoencephalography.html#
+  recording-eeg-simultaneously-with-meg).
+  Preferably the same as the `MEGCoordinateSystem`.
+  Defines the coordinate system for the EEG sensors.
+  See
+  [Appendix VIII]
+  (https://bids-specification.readthedocs.io/en/stable/99-appendices/
+  08-coordinate-systems.html)
+  for a list of restricted keywords for coordinate systems.
+  If `Other`, provide definition of the coordinate system in
+  `EEGCoordinateSystemDescription`.
+anyOf:
+- $ref: common_definitions.json#/definitions/MEGCoordSys
+- $ref: common_definitions.json#/definitions/EEGCoordSys
+- $ref: common_definitions.json#/definitions/StandardTemplateCoordSys
+- $ref: common_definitions.json#/definitions/StandardTemplateDeprecatedCoordSys
