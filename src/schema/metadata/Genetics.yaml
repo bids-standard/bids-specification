@@ -1,0 +1,18 @@
+---
+key_name: Genetics
+description: |
+  An object containing information about the genetics descriptor.
+type: object
+properties:
+  Database:
+    type: string
+    format: uri
+  Dataset:
+    type: string
+    format: uri
+  Descriptors:
+    items:
+      type: string
+    type:
+      - array
+      - string
