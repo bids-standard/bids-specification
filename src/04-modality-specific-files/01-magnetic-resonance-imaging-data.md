@@ -854,6 +854,27 @@ See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#summary-i
 
 #### Common metadata fields applicable to both (P)CASL and PASL
 
+{{ MACROS___make_metadata_table(
+   {
+      "ArterialSpinLabelingType": "REQUIRED",
+      "PostLabelingDelay": "REQUIRED",
+      "BackgroundSuppression": "REQUIRED",
+      "M0Type": "REQUIRED",
+      "TotalAcquiredPairs": "REQUIRED",
+      "VascularCrushing": "RECOMMENDED",
+      "AcquisitionVoxelSize": "RECOMMENDED",
+      "M0Estimate": "OPTIONAL, but REQUIRED when `M0Type` is defined as `Estimate`",
+      "BackgroundSuppressionNumberPulses": "OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`",
+      "BackgroundSuppressionPulseTime": "OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`",
+      "VascularCrushingVENC": "OPTIONAL, RECOMMENDED if `VascularCrushing` is `true`",
+      "LabelingOrientation": "RECOMMENDED",
+      "LabelingDistance": "RECOMMENDED",
+      "LabelingLocationDescription": "RECOMMENDED",
+      "LookLocker": "OPTIONAL",
+      "LabelingEfficiency": "OPTIONAL",
+   }
+) }}
+
 | **Key name**                      | **Requirement level**                                         | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | --------------------------------- | ------------------------------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ArterialSpinLabelingType          | REQUIRED                                                      | [string][]                             | `"CASL"`, `"PCASL"`, `"PASL"`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -877,6 +898,20 @@ See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#summary-i
 
 These fields can only be used when `ArterialSpinLabelingType` is `"CASL"` or `"PCASL"`. See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#pcasl-sequence) for more information on the (P)CASL sequence and the Labeling Pulse fields.
 
+{{ MACROS___make_metadata_table(
+   {
+      "LabelingDuration": "REQUIRED",
+      "PCASLType": 'RECOMMENDED if `ArterialSpinLabelingType` is `"PCASL"`',
+      "CASLType": 'RECOMMENDED if `ArterialSpinLabelingType` is `"CASL"`',
+      "LabelingPulseAverageGradient": "RECOMMENDED",
+      "LabelingPulseMaximumGradient": "RECOMMENDED",
+      "LabelingPulseAverageB1": "RECOMMENDED",
+      "LabelingPulseDuration": "RECOMMENDED",
+      "LabelingPulseFlipAngle": "RECOMMENDED",
+      "LabelingPulseInterval": "RECOMMENDED",
+   }
+) }}
+
 | **Key name**                 | **Requirement level**                                  | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | ---------------------------- | ------------------------------------------------------ | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | LabelingDuration             | REQUIRED                                               | [number][] or [array][] of [numbers][] | Total duration of the labeling pulse train, in seconds, corresponding to the temporal width of the labeling bolus for `"PCASL"` or `"CASL"`. In case all control-label volumes (or deltam or CBF) have the same `LabelingDuration`, a scalar must be specified. In case the control-label volumes (or deltam or cbf) have a different `LabelingDuration`, an array of numbers must be specified, for which any `m0scan` in the timeseries has a `LabelingDuration` of zero. In case an array of numbers is provided, its length should be equal to the number of volumes specified in `*_aslcontext.tsv`. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`. |
@@ -893,6 +928,16 @@ These fields can only be used when `ArterialSpinLabelingType` is `"CASL"` or `"P
 
 These fields can only be used when `ArterialSpinLabelingType` is `PASL`. See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#pasl-sequence) for more information on the PASL sequence and the BolusCutOff fields.
 
+{{ MACROS___make_metadata_table(
+   {
+      "BolusCutOffFlag": "REQUIRED",
+      "PASLType": "RECOMMENDED",
+      "LabelingSlabThickness": "RECOMMENDED",
+      "BolusCutOffDelayTime": "OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`",
+      "BolusCutOffTechnique": "OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`",
+   }
+) }}
+
 | **Key name**          | **Requirement level**                             | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | --------------------- | ------------------------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | BolusCutOffFlag       | REQUIRED                                          | [boolean][]                            | Boolean indicating if a bolus cut-off technique is used. Corresponds to DICOM Tag 0018,925C `ASL Bolus Cut-off Flag`.                                                                                                                                                                                                                                                                                                                                   |
@@ -904,6 +949,13 @@ These fields can only be used when `ArterialSpinLabelingType` is `PASL`. See [Ap
 ### `m0scan` metadata fields
 
 Some common metadata fields are REQUIRED for the `*_m0scan.json`: `EchoTime`, `RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
+
+{{ MACROS___make_metadata_table(
+   {
+      "IntendedFor": "REQUIRED",
+      "AcquisitionVoxelSize": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**         | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                   |
 | -------------------- | --------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -975,6 +1027,13 @@ the OPTIONAL `_magnitude2` image to the longer echo time.
 
 Required fields:
 
+{{ MACROS___make_metadata_table(
+   {
+      "EchoTime1": "REQUIRED",
+      "EchoTime2": "REQUIRED",
+   }
+) }}
+
 | **Key name** | **Requirement level** | **Data type** | **Description**                                             |
 | ------------ | --------------------- | ------------- | ----------------------------------------------------------- |
 | EchoTime1    | REQUIRED              | [number][]    | The time (in seconds) when the first (shorter) echo occurs. |
@@ -1003,6 +1062,12 @@ second echos are available.
 
 Required fields:
 
+{{ MACROS___make_metadata_table(
+   {
+      "EchoTime": "REQUIRED",
+   }
+) }}
+
 | **Key name** | **Requirement level** | **Data type** | **Description**                                                                   |
 | ------------ | --------------------- | ------------- | --------------------------------------------------------------------------------- |
 | EchoTime     | REQUIRED              | [number][]    | The time (in seconds) when the echo corresponding to this phase map was acquired. |
@@ -1023,6 +1088,12 @@ In some cases (for example GE), the scanner software will directly reconstruct a
 {{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["fieldmap", "magnitude"]) }}
 
 Required fields:
+
+{{ MACROS___make_metadata_table(
+   {
+      "Units": "REQUIRED",
+   }
+) }}
 
 | **Key name** | **Requirement level** | **Data type** | **Description**                                                                          |
 | ------------ | --------------------- | ------------- | ---------------------------------------------------------------------------------------- |
@@ -1060,6 +1131,13 @@ the REQUIRED `PhaseEncodingDirection` metadata field
 
 Required fields:
 
+{{ MACROS___make_metadata_table(
+   {
+      "PhaseEncodingDirection": "REQUIRED",
+      "TotalReadoutTime": "REQUIRED",
+   }
+) }}
+
 | **Key name**           | **Requirement level** | **Data type** | **Description**                                                              |
 | ---------------------- | --------------------- | ------------- | ---------------------------------------------------------------------------- |
 | PhaseEncodingDirection | REQUIRED              | [string][]    | See [in-plane spatial encoding](#in-plane-spatial-encoding) table of fields. |
@@ -1095,6 +1173,12 @@ This linking between fieldmaps and their targetted data MAY be encoded with the
 
 Fieldmap data MAY be linked to the specific scan(s) it was acquired for by
 filling the `IntendedFor` field in the corresponding JSON file.
+
+{{ MACROS___make_metadata_table(
+   {
+      "IntendedFor": "RECOMMENDED",
+   }
+) }}
 
 | **Key name** | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                                                                                 |
 | ------------ | --------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
