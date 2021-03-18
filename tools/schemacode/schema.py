@@ -366,7 +366,9 @@ def _resolve_metadata_type(definition):
         n_types = len(definition["anyOf"])
 
         # A hack to deal with $ref in the current schema
-        if any(["type" not in subdict.keys() for subdict in definition["anyOf"]]):
+        if any(
+            ["type" not in subdict.keys() for subdict in definition["anyOf"]]
+        ):
             print(f"Type is missing for {definition['key_name']}")
             return "unknown"
 
