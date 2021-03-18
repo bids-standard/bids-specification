@@ -10,6 +10,14 @@ JSON file is also REQUIRED.
 Each derivative type defines their own set of fields, but all of them
 share the following (non-required) ones:
 
+{{ MACROS___make_metadata_table(
+   {
+      "Description": "RECOMMENDED",
+      "Sources": "OPTIONAL",
+      "RawSources": "OPTIONAL",
+   }
+) }}
+
 | **Key name** | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | ------------ | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Description  | RECOMMENDED           | [string][]               | Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
@@ -70,6 +78,12 @@ The `space` entity may take any value in [Image-Based Coordinate Systems][coords
 
 If the `space` entity is omitted, or the space is not in the [Standard template
 identifiers][templates] table, then the `SpatialReference` metadata is REQUIRED.
+
+{ MACROS___make_metadata_table(
+   {
+      "SpatialReference": "RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise.",
+   }
+) }}
 
 | **Key name**     | **Requirement level**                                                                                                                     | **Data type**            | **Description**                                                                                                                                                                                    |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

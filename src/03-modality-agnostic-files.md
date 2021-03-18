@@ -14,6 +14,23 @@ Templates:
 The file `dataset_description.json` is a JSON file describing the dataset.
 Every dataset MUST include this file with the following fields:
 
+{{ MACROS___make_metadata_table(
+   {
+      "Name": "REQUIRED",
+      "BIDSVersion": "REQUIRED",
+      "HEDVersion": "RECOMMENDED",
+      "DatasetType": "RECOMMENDED",
+      "License": "RECOMMENDED",
+      "Authors": "OPTIONAL",
+      "Acknowledgements": "OPTIONAL",
+      "HowToAcknowledge": "OPTIONAL",
+      "Funding": "OPTIONAL",
+      "EthicsApprovals": "OPTIONAL",
+      "ReferencesAndLinks": "OPTIONAL",
+      "DatasetDOI": "OPTIONAL",
+   }
+) }}
+
 | **Key name**       | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                       |
 |--------------------|-----------------------|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name               | REQUIRED              | [string][]               | Name of the dataset.                                                                                                                                                                                                                                  |
@@ -68,6 +85,13 @@ top level of the a derived dataset:
 In addition to the keys for raw BIDS datasets,
 derived BIDS datasets include the following REQUIRED and RECOMMENDED
 `dataset_description.json` keys:
+
+{{ MACROS___make_metadata_table(
+   {
+      "GeneratedBy": "REQUIRED",
+      "SourceDatasets": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                      |
 |----------------|-----------------------|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -339,7 +363,7 @@ The purpose of this file is to describe timing and other properties of each
 imaging acquisition sequence (each *run* file) within one session.
 
 Each neural recording *file* SHOULD be described by exactly one row.
-Some recordings consist of multiple parts, that span several files, 
+Some recordings consist of multiple parts, that span several files,
 for example through `echo-`, `part-`, or `split-` entities.
 Such recordings MUST be documented with one row per file.
 
@@ -347,7 +371,7 @@ Relative paths to files should be used under a compulsory `filename` header.
 
 If acquisition time is included it should be listed under the `acq_time` header.
 Acquisition time refers to when the first data point in each run was acquired.
-Furthermore, if this header is provided, the acquisition times of all files that 
+Furthermore, if this header is provided, the acquisition times of all files that
 belong to a recording MUST be identical.
 
 Datetime should be expressed as described in [Units](./02-common-principles.md#units).
