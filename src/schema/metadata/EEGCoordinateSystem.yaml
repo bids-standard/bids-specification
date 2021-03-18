@@ -20,4 +20,4 @@ anyOf:
   - $ref: common_definitions.json#/definitions/EEGCoordSys
   - $ref: common_definitions.json#/definitions/StandardTemplateCoordSys
   - $ref: |
-    common_definitions.json#/definitions/StandardTemplateDeprecatedCoordSys
+      common_definitions.json#/definitions/StandardTemplateDeprecatedCoordSys

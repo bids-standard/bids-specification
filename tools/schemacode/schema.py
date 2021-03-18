@@ -364,6 +364,12 @@ def _resolve_metadata_type(definition):
     elif "anyOf" in definition.keys():
         string = ""
         n_types = len(definition["anyOf"])
+
+        # A hack to deal with $ref in the current schema
+        if any(["type" not in subdict.keys() for subdict in definition["anyOf"]]):
+            print(f"Type is missing for {definition['key_name']}")
+            return "unknown"
+
         for i_type, subdict in enumerate(definition["anyOf"]):
             subtype = _get_link(subdict["type"])
             string += subtype
@@ -374,6 +380,10 @@ def _resolve_metadata_type(definition):
 
             if i_type < (n_types - 1):
                 string += " or "
+    else:
+        # A hack to deal with $ref in the current schema
+        print(f"Type could not be inferred for {definition['key_name']}")
+        string = "unknown"
 
     return string
 
