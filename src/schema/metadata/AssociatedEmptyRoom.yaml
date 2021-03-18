@@ -7,9 +7,9 @@ description: |
   (for example,
   "sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds").
 anyOf:
-- type: array
-  items:
-    type: string
+  - type: array
+    items:
+      type: string
+      minLength: 1
+  - type: string
     minLength: 1
-- type: string
-  minLength: 1

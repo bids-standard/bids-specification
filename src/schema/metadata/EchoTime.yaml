@@ -22,11 +22,11 @@ description: |
   arterial-spin-labeling-perfusion-data)
   or variable echo time fMRI sequences.
 anyOf:
-- type: number
-  unit: s
-  exclusiveMinimum: 0
-- type: array
-  items:
-    type: number
+  - type: number
     unit: s
     exclusiveMinimum: 0
+  - type: array
+    items:
+      type: number
+      unit: s
+      exclusiveMinimum: 0

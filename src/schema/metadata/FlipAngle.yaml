@@ -19,9 +19,9 @@ description: |
   arterial-spin-labeling-perfusion-data)
   or variable flip angle fMRI sequences.
 anyOf:
-- type: number
-  unit: degree
-- type: array
-  items:
-    type: number
+  - type: number
     unit: degree
+  - type: array
+    items:
+      type: number
+      unit: degree

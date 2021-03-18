@@ -5,5 +5,5 @@ description: |
   `single-coil` or `double-coil`.
 type: string
 enum:
-- single-coil
-- double-coil
+  - single-coil
+  - double-coil
