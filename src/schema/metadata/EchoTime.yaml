@@ -6,19 +6,13 @@ description: |
   (please note that the DICOM term is in milliseconds not seconds).
   The data type number may apply to files from any MRI modality concerned with
   a single value for this field, or to the files in a
-  [file collection]
-  (https://bids-specification.readthedocs.io/en/stable/99-appendices/
-  10-file-collections.html)
+  [file collection](/99-appendices/10-file-collections.md)
   where the value of this field is iterated using the
-  [echo entity]
-  (https://bids-specification.readthedocs.io/en/stable/99-appendices/
-  09-entities.html#echo).
+  [echo entity](/99-appendices/09-entities.md#echo).
   The data type array provides a value for each volume in a 4D dataset and
   should only be used when the volume timing is critical for interpretation
   of the data, such as in
-  [ASL]
-  (https://bids-specification.readthedocs.io/en/stable/
-  04-modality-specific-files/01-magnetic-resonance-imaging-data.html#
+  [ASL](/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#
   arterial-spin-labeling-perfusion-data)
   or variable echo time fMRI sequences.
 anyOf:

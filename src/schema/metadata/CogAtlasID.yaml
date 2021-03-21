@@ -1,8 +1,7 @@
 ---
 key_name: CogAtlasID
 description: |
-  [URI](https://bids-specification.readthedocs.io/en/stable/
-  02-common-principles.html#uniform-resource-indicator)
+  [URI](/02-common-principles.md#uniform-resource-indicator)
   of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/)
   Task term.
 type: string

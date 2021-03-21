@@ -4,9 +4,7 @@ description: |
   Defines the coordinate system for the fiducials.
   Preferably the same as the `EEGCoordinateSystem`.
   See
-  [Appendix VIII]
-  (https://bids-specification.readthedocs.io/en/stable/99-appendices/
-  08-coordinate-systems.html)
+  [Appendix VIII](/99-appendices/08-coordinate-systems.md)
   for a list of restricted keywords for coordinate systems.
   If `Other`, provide definition of the coordinate system in
   `FiducialsCoordinateSystemDescription`.
