@@ -1,0 +1,6 @@
+---
+key_name: Genetics.Database
+description: |
+  [URI][uri] of database where the dataset is hosted.
+type: string
+format: uri

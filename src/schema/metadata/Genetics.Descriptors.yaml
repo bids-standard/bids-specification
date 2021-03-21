@@ -1,0 +1,8 @@
+---
+key_name: Genetics.Descriptors
+description: |
+  List of relevant descriptors (for example, journal articles) for dataset
+  using a valid [URI][uri] when possible.
+type: array
+items:
+  type: string

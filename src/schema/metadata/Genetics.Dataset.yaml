@@ -1,0 +1,6 @@
+---
+key_name: Genetics.Dataset
+description: |
+  [URI][uri] where data can be retrieved.
+type: string
+format: uri
