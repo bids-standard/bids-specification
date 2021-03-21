@@ -1,0 +1,9 @@
+---
+key_name: Density
+description: |
+  Specifies the interpretation of the density keyword.
+anyOf:
+  - type: string
+  - type: object
+    additionalProperties:
+      type: string
