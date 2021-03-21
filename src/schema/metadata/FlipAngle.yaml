@@ -21,7 +21,13 @@ description: |
 anyOf:
   - type: number
     unit: degree
+    exclusiveMinimum: 0
+    # The inclusiveMaximum should be checked
+    inclusiveMaximum: 360
   - type: array
     items:
       type: number
       unit: degree
+      exclusiveMinimum: 0
+      # The inclusiveMaximum should be checked
+      inclusiveMaximum: 360

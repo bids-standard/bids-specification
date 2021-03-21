@@ -7,3 +7,4 @@ type: number
 exclusiveMinimum: 0
 # The inclusiveMaximum should be checked
 inclusiveMaximum: 360
+unit: degree
