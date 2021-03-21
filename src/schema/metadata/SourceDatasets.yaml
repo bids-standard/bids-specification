@@ -1,0 +1,17 @@
+---
+key_name: SourceDatasets
+description: |
+  Used to specify the locations and relevant attributes of all source datasets.
+  Valid keys in each object include `URL`, `DOI` (see [URI][uri]), and
+  `Version` with [string][] values.
+type: array
+items:
+  type: object
+  properties:
+    URL:
+      type: string
+      format: uri
+    DOI:
+      type: string
+    Version:
+      type: string
