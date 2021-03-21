@@ -158,10 +158,10 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 
 -   `fsnativetkr`: The subject-specific FreeSurfer T1w space. The origin of
     the coordinate system is at the center of isotropic 1 mm 256x256x256
-    volume (i.e. center is 128, 128, 128) in RAS orientation. This
-    corresponds to FreeSurfer's surface RAS coordinates. The difference
-    between this coordinate system and ``fsnative`` is the origin
-    definition.
+    volume (that is the voxel center is at slices (128, 128, 128)) in RAS
+    orientation. This corresponds to FreeSurfer's surface RAS coordinates.
+    The difference between this coordinate system and ``fsnative`` is the
+    origin definition.
 
 -   Any keyword from the list of
     [Standard template identifiers](#standard-template-identifiers)
