@@ -1,0 +1,9 @@
+---
+key_name: LabelingPulseFlipAngle
+description: |
+  The flip angle of a single labeling pulse, in degrees,
+  which can be given as an alternative to `LabelingPulseAverageB1`.
+type: number
+exclusiveMinimum: 0
+# The inclusiveMaximum should be checked
+inclusiveMaximum: 360
