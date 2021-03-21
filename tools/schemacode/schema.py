@@ -360,7 +360,15 @@ def _resolve_metadata_type(definition):
         if ("items" in definition.keys()) and (
             "type" in definition["items"].keys()
         ):
+            # Items within arrays
             string += " of " + _get_link(definition["items"]["type"])
+        elif ("additionalProperties" in definition.keys()) and (
+            "type" in definition["additionalProperties"].keys()
+        ):
+            # Values within objects
+            string += " of " + _get_link(
+                definition["additionalProperties"]["type"]
+            )
     elif "anyOf" in definition.keys():
         string = ""
         n_types = len(definition["anyOf"])
@@ -409,11 +417,7 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
         line = [
             field_info[field].replace(
                 "DEPRECATED",
-                (
-                    "[DEPRECATED]"
-                    "(http://localhost:8000/"
-                    "02-common-principles.html#definitions)"
-                ),
+                "[DEPRECATED](/02-common-principles.html#definitions)",
             ),
             _resolve_metadata_type(metadata_schema[field]),
             metadata_schema[field]["description"].replace("\n", " "),
