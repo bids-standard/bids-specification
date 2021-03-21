@@ -1,0 +1,7 @@
+---
+key_name: iEEGCoordinateProcessingDescription
+description: |
+  Has any post-processing (such as projection) been done on the electrode
+  positions (for example, `"surface_projection"`, `"none"`).
+type: string
+minLength: 1
