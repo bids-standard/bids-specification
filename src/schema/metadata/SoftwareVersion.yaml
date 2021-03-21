@@ -1,0 +1,5 @@
+---
+key_name: SoftwareVersion
+description: |
+  Version of the software that was used to present the stimuli.
+type: string

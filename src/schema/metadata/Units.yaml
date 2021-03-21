@@ -1,0 +1,7 @@
+---
+key_name: Units
+description: |
+  Measurement units.
+  SI units in CMIXF formatting are RECOMMENDED
+  (see [Units](./02-common-principles.md#units)).
+type: string
