@@ -9,7 +9,7 @@ description: |
   after the k-space center is sampled.
   Please see
   [`NumberShots` metadata field]
-  (/99-appendices/11-qmri.md#numbershots-metadata-field)
+  (/99-appendices/11-qmri.html#numbershots-metadata-field)
   in the qMRI appendix for corresponding calculations.
 anyOf:
   - type: number
