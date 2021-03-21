@@ -9,5 +9,5 @@ description: |
   that do not have the `SliceTiming` field set to allowed for accurate
   calculation of "acquisition time".
   This field is mutually exclusive with `VolumeTiming`.
-data_type: number
+type: number
 unit: s

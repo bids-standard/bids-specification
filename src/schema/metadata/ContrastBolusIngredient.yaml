@@ -5,7 +5,7 @@ description: |
   Values MUST be one of: `"IODINE"`, `"GADOLINIUM"`, `"CARBON DIOXIDE"`,
   `"BARIUM"`, `"XENON"`.
   Corresponds to DICOM Tag 0018,1048.
-data_type: string
+type: string
 enum:
   - IODINE
   - GADOLINIUM

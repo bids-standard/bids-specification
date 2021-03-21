@@ -11,5 +11,5 @@ description: |
   Not to be confused with `EffectiveEchoSpacing`, and the frequent mislabeling
   of echo spacing (which is spacing in the phase encoding direction) as
   "dwell time" (which is spacing in the readout direction).
-data_type: number
+type: number
 unit: s
