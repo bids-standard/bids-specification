@@ -1,0 +1,5 @@
+---
+key_name: Description
+description: |
+  Description of the column.
+data_type: string
