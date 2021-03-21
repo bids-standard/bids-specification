@@ -13,7 +13,6 @@ description: |
   For more information, see the section on
   [2D coordinate systems](#allowed-2d-coordinate-systems).
 anyOf:
-  - $ref: common_definitions.json#/definitions/iEEGCoordSys
-  - $ref: common_definitions.json#/definitions/StandardTemplateCoordSys
-  - $ref: |
-      common_definitions.json#/definitions/StandardTemplateDeprecatedCoordSys
+  - $ref: _iEEGCoordSys.yaml
+  - $ref: _StandardTemplateCoordSys.yaml
+  - $ref: _StandardTemplateDeprecatedCoordSys.yaml

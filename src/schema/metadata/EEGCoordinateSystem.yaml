@@ -16,8 +16,7 @@ description: |
   If `Other`, provide definition of the coordinate system in
   `EEGCoordinateSystemDescription`.
 anyOf:
-  - $ref: common_definitions.json#/definitions/MEGCoordSys
-  - $ref: common_definitions.json#/definitions/EEGCoordSys
-  - $ref: common_definitions.json#/definitions/StandardTemplateCoordSys
-  - $ref: |
-      common_definitions.json#/definitions/StandardTemplateDeprecatedCoordSys
+  - $ref: _MEGCoordSys.yaml
+  - $ref: _EEGCoordSys.yaml
+  - $ref: _StandardTemplateCoordSys.yaml
+  - $ref: _StandardTemplateDeprecatedCoordSys.yaml
