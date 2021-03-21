@@ -10,11 +10,11 @@ description: |
   should only be used when the volume timing is critical for interpretation of
   the data, such as in [ASL](#arterial-spin-labeling-perfusion-data).
 anyOf:
-- type: number
-  Minimum: 0
-  unit: s
-- type: array
-  items:
-    type: number
+  - type: number
     Minimum: 0
     unit: s
+  - type: array
+    items:
+      type: number
+      Minimum: 0
+      unit: s

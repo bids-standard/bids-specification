@@ -9,8 +9,8 @@ description: |
   "SpatialCompensation":
   {"GradientOrder": "Order of the gradient compensation"}}`).
 anyOf:
-- type: object
-  additionalProperties:
-    type: object
-- type: string
-  pattern: ^n/a$
+  - type: object
+    additionalProperties:
+      type: object
+  - type: string
+    pattern: ^n/a$

@@ -14,11 +14,11 @@ description: |
   `*_aslcontext.tsv`.
   Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`.
 anyOf:
-- type: number
-  Minimum: 0
-  unit: s
-- type: array
-  items:
-    type: number
-    unit: s
+  - type: number
     Minimum: 0
+    unit: s
+  - type: array
+    items:
+      type: number
+      unit: s
+      Minimum: 0
