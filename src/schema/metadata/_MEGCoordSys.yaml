@@ -3,9 +3,9 @@ key_name: MEGCoordSys
 description: ''
 type: string
 enum:
-- CTF
-- ElektaNeuromag
-- 4DBti
-- KitYokogawa
-- ChietiItab
-- Other
+  - CTF
+  - ElektaNeuromag
+  - 4DBti
+  - KitYokogawa
+  - ChietiItab
+  - Other

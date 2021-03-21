@@ -3,5 +3,5 @@ key_name: EEGCoordSys
 description: ''
 type: string
 enum:
-- CapTrak
-- Other
+  - CapTrak
+  - Other

@@ -3,7 +3,7 @@ key_name: CoordUnits
 description: ''
 type: string
 enum:
-- m
-- mm
-- cm
-- n/a
+  - m
+  - mm
+  - cm
+  - n/a
