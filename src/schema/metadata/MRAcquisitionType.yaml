@@ -1,0 +1,10 @@
+---
+key_name: MRAcquisitionType
+description: |
+  Possible values: `2D` or `3D`.
+  Type of sequence readout.
+  Corresponds to DICOM Tag 0018,0023 `MR Acquisition Type`.
+type: string
+enum:
+  - 2D
+  - 3D

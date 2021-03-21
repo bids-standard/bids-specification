@@ -1,0 +1,14 @@
+---
+key_name: MEGCoordinateSystem
+description: |
+  Defines the coordinate system for the MEG sensors.
+  See [Appendix VIII](../99-appendices/08-coordinate-systems.md)
+  for a list of restricted keywords for coordinate systems.
+  If `"Other"`, provide definition of the coordinate system in
+  `MEGCoordinateSystemDescription`.
+anyOf:
+  - $ref: common_definitions.json#/definitions/MEGCoordSys
+  - $ref: common_definitions.json#/definitions/EEGCoordSys
+  - $ref: common_definitions.json#/definitions/StandardTemplateCoordSys
+  - $ref: |
+      common_definitions.json#/definitions/StandardTemplateDeprecatedCoordSys
