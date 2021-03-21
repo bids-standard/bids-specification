@@ -1,0 +1,8 @@
+---
+key_name: iEEGCoordSys
+description: ''
+type: string
+enum:
+- Pixels
+- ACPC
+- Other
