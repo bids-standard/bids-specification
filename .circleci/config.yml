@@ -176,17 +176,14 @@ jobs:
       - run:
           name: where am i
           command: |
-            sudo apt-get install tree
             pwd
             ls
-            tree . -L 2
       - checkout
       - run:
           name: where am i
           command: |
             pwd
             ls
-            tree . -L 2
       - attach_workspace:
           at: ~/build
       - run:
@@ -194,7 +191,6 @@ jobs:
           command: |
             pwd
             ls
-            tree . -L 2
       - run:
           name: install remark and extensions
           command: npm install `cat npm-requirements.txt`
@@ -215,7 +211,6 @@ jobs:
           command: |
             pwd
             ls
-            tree . -L 2
       - persist_to_workspace:
           root: ~/project/src
           paths: tmp
