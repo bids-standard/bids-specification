@@ -63,10 +63,8 @@ jobs:
       - run:
           name: where am i
           command: |
-            sudo apt-get install tree
             pwd
             ls
-            tree . -L 2
       # checkout code to default ~/project
       - checkout
       - run:
@@ -74,7 +72,6 @@ jobs:
           command: |
             pwd
             ls
-            tree . -L 2
       - run:
           name: install dependencies
           command: |
@@ -85,7 +82,6 @@ jobs:
           command: |
             pwd
             ls
-            tree . -L 2
       - run:
           name: install font that works with unicode emojis
           command: apt-get update && apt-get install -y fonts-symbola
