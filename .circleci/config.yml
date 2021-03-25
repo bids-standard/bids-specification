@@ -170,6 +170,8 @@ jobs:
             git status
             if (git log -1 --pretty=%s | grep Merge*) && (! git log -1 --pretty=%b | grep REL:) ; then
               cat ~/changelog_build/CHANGES.md
+              npx remark ~/changelog_build/CHANGES.md --frail --rc-path .remarkrc --output
+              sed -i 's/*   /-   /' ~/changelog_build/CHANGES.md
               npx remark ~/changelog_build/CHANGES.md --frail --rc-path .remarkrc
             else
               echo "Commit or Release, do nothing"
