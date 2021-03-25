@@ -4,42 +4,18 @@ jobs:
     docker:
       - image: circleci/python:3.8
     steps:
-      - run:
-          name: where am i
-          command: |
-            sudo apt-get install tree
-            pwd
-            ls
-            tree . -L 2
+      # checkout code to default ~/project
       - checkout
-      - run:
-          name: where am i
-          command: |
-            pwd
-            ls
-            tree . -L 2
       - run:
           name: install dependencies
           command: |
             python -m pip install --upgrade pip
             pip install -r requirements.txt
       - run:
-          name: where am i
-          command: |
-            pwd
-            ls
-            tree . -L 2
-      - run:
           name: generate docs
           command: mkdocs build --clean --strict --verbose
-      - run:
-          name: where am i
-          command: |
-            pwd
-            ls
-            tree . -L 2
       - persist_to_workspace:
-          # the mkdocs build outputs are in ./site
+          # the mkdocs build outputs are in ~/project/site
           root: .
           paths: site
 
@@ -53,8 +29,8 @@ jobs:
             pwd
             ls
       - attach_workspace:
-          # mkdocs build outputs will be in ~/build/site
-          at: ~/build
+          # mkdocs build outputs will be in ~/project/site
+          at: ~/project
       - run:
           name: where am i
           command: |
@@ -65,18 +41,18 @@ jobs:
           command: |
             git status
             if (! git log -1 --pretty=%b | grep REL:) ; then
-            chmod a+rX -R ~
-            linkchecker -t 1 ~/build/site/
-            # check external separately by pointing to all *html so no
-            # failures for local file:/// -- yoh found no better way,
-            linkchecker -t 1 --check-extern \
-              --ignore-url 'file:///.*' \
-              --ignore-url https://fonts.gstatic.com \
-              --ignore-url "https://github.com/bids-standard/bids-specification/(pull|tree)/.*" \
-              --ignore-url "https://github.com/[^/]*" \
-              ~/build/site/*html ~/build/site/*/*.html
+              chmod a+rX -R ~
+              linkchecker -t 1 ~/project/site/
+              # check external separately by pointing to all *html so no
+              # failures for local file:/// -- yoh found no better way,
+              linkchecker -t 1 --check-extern \
+                --ignore-url 'file:///.*' \
+                --ignore-url https://fonts.gstatic.com \
+                --ignore-url "https://github.com/bids-standard/bids-specification/(pull|tree)/.*" \
+                --ignore-url "https://github.com/[^/]*" \
+                ~/project/site/*html ~/project/site/*/*.html
             else
-            echo "Release PR - do nothing"
+              echo "Release PR - do nothing"
             fi
 
   build_docs_pdf:
@@ -91,6 +67,7 @@ jobs:
             pwd
             ls
             tree . -L 2
+      # checkout code to default ~/project
       - checkout
       - run:
           name: where am i
@@ -229,6 +206,7 @@ jobs:
       - run:
           name: where am i
           command: |
+            sudo apt update
             sudo apt-get install tree
             pwd
             ls
