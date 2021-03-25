@@ -23,23 +23,12 @@ jobs:
     docker:
       - image: yarikoptic/linkchecker:9.4.0.anchorfix1-1
     steps:
-      - run:
-          name: where am i
-          command: |
-            pwd
-            ls
       - attach_workspace:
           # mkdocs build outputs will be in ~/project/site
           at: ~/project
       - run:
-          name: where am i
-          command: |
-            pwd
-            ls
-      - run:
           name: check links
           command: |
-            git status
             if (! git log -1 --pretty=%b | grep REL:) ; then
               chmod a+rX -R ~
               linkchecker -t 1 ~/project/site/
@@ -169,7 +158,8 @@ jobs:
             pwd
             ls
       - attach_workspace:
-          at: ~/changelog_build
+          # the freshly built CHANGES.md will be in ~/changelog_build/CHANGES.md
+          at: ~/.
       - run:
           name: where am i
           command: |
@@ -220,7 +210,8 @@ jobs:
             ls
             tree . -L 2
       - attach_workspace:
-          at: ~/changelog_build
+          # the freshly built CHANGES.md will be in ~/changelog_build/CHANGES.md
+          at: ~/.
       - run:
           name: where am i
           command: |
