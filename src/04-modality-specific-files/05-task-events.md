@@ -104,7 +104,7 @@ sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
 
 References to existing databases can also be encoded using additional columns.
 The following example includes references to the
-[Karolinska Directed Emotional Faces (KDEF) database](https://www.emotionlab.se/resources/kdef).
+[Karolinska Directed Emotional Faces (KDEF) database](https://www.google.com).
 
 Example:
 
