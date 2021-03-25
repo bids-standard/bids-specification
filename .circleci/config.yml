@@ -4,16 +4,41 @@ jobs:
     docker:
       - image: circleci/python:3.8
     steps:
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - checkout
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - run:
           name: install dependencies
           command: |
             python -m pip install --upgrade pip
             pip install -r requirements.txt
       - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
+      - run:
           name: generate docs
           command: mkdocs build --clean --strict --verbose
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - persist_to_workspace:
+          # the mkdocs build outputs are in ./site
           root: .
           paths: site
 
@@ -21,8 +46,21 @@ jobs:
     docker:
       - image: yarikoptic/linkchecker:9.4.0.anchorfix1-1
     steps:
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - attach_workspace:
+          # mkdocs build outputs will be in ~/build/site
           at: ~/build
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - run:
           name: check links
           command: |
@@ -46,13 +84,30 @@ jobs:
     docker:
       - image: danteev/texlive:latest
     steps:
-      - checkout:
-          path: ~/bids-specification
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
+      - checkout
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - run:
           name: install dependencies
           command: |
             python -m pip install --upgrade pip
             pip install -r ../requirements.txt
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - run:
           name: install font that works with unicode emojis
           command: apt-get update && apt-get install -y fonts-symbola
@@ -69,10 +124,23 @@ jobs:
     steps:
       - setup_remote_docker:
           version: 18.06.0-ce
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - checkout
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - run:
           name: Build changelog
           working_directory: ~/build
+          # $CHANGE_TOKEN is generated via the GitHub web UI, and then securely stored within CircleCI web UI
           command: |
             if (git log -1 --pretty=%s | grep Merge*) && (! git log -1 --pretty=%b | grep REL:) ; then
               github_changelog_generator \
@@ -93,6 +161,12 @@ jobs:
             else
               echo "Commit or Release, do nothing"
             fi
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - persist_to_workspace:
           root: .
           paths: src
@@ -102,9 +176,27 @@ jobs:
     docker:
       - image: node:latest
     steps:
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - checkout
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - attach_workspace:
           at: ~/build
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - run:
           name: install remark and extensions
           command: npm install `cat npm-requirements.txt`
@@ -120,6 +212,12 @@ jobs:
               echo "Commit or Release, do nothing"
               touch ~/project/src/tmp/empty.txt
             fi
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - persist_to_workspace:
           root: ~/project/src
           paths: tmp
@@ -132,9 +230,27 @@ jobs:
     steps:
       - setup_remote_docker:
           version: 17.11.0-ce
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - checkout
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - attach_workspace:
           at: ~/build
+      - run:
+          name: where am i
+          command: |
+            pwd
+            ls
+            tree . -L 2
       - deploy:
           name: Changelog deployment
           working_directory: ~/build
