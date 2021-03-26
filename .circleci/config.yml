@@ -27,8 +27,14 @@ jobs:
           # mkdocs build outputs will be in ~/project/site
           at: ~/project
       - run:
+          name: install git
+          command: |
+            apt update -y
+            apt install git-all -y
+      - run:
           name: check links
           command: |
+            git status
             if (! git log -1 --pretty=%b | grep REL:) ; then
               chmod a+rX -R ~
               linkchecker -t 1 ~/project/site/
