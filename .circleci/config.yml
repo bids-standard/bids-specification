@@ -71,8 +71,9 @@ jobs:
           command: |
             cd ~/project/pdf_build_src
             bash build_pdf.sh
+            mv ~/project/pdf_build_src/bids-spec.pdf ./bids-spec.pdf
       - store_artifacts:
-          path: ~/project/pdf_build_src/bids-spec.pdf
+          path: bids-spec.pdf
 
   # Auto changelog collector
   github-changelog-generator:
