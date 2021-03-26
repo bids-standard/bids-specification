@@ -71,7 +71,7 @@ jobs:
           command: |
             cd ~/project/pdf_build_src
             bash build_pdf.sh
-            mv ~/project/pdf_build_src/bids-spec.pdf ./bids-spec.pdf
+            mv ~/project/pdf_build_src/bids-spec.pdf ~/project/bids-spec.pdf
       - store_artifacts:
           path: bids-spec.pdf
 
