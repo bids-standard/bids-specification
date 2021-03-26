@@ -125,6 +125,25 @@ The solutions will change from case to case and publicly available datasets will
 be reviewed to include common data types in the future releases of the BIDS
 specification.
 
+### Metadata conflicts
+
+BIDS specifies that metadata be stored in human-readable formats such as
+TSV (see [Tabular files](#tabular-files)) or
+JSON (see [Key/value files](#keyvalue-files-dictionaries)).
+In some cases, this duplicates metadata contained in a data file.
+
+In cases of conflict, the BIDS metadata is considered authoritative.
+If BIDS metadata is defined,
+format-specific metadata MUST NOT conflict to the extent permitted by the format.
+
+If an exact representation of the BIDS metadata is possible in the format,
+then the metadata SHOULD be duplicated inside the data file.
+If an exact representation of the BIDS metadata is not possible in the format,
+then the closest possible approximation of the BIDS metadata SHOULD be used.
+Special null or undefined values MAY be used when available.
+If the format-specific metadata field is defined,
+the BIDS metadata SHOULD also be defined.
+
 ## File name structure
 
 A file name consists of a chain of *entities*, or key-value pairs, a *suffix* and an
