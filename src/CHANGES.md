@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] install git in linkchecker job [#767](https://github.com/bids-standard/bids-specification/pull/767) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] Fix CircleCI workflows [#764](https://github.com/bids-standard/bids-specification/pull/764) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] do not run remark on auto CHANGES [#755](https://github.com/bids-standard/bids-specification/pull/755) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Mix up (typo) between ficiduals and landmarks in EEG spec [#754](https://github.com/bids-standard/bids-specification/pull/754) ([rob-luke](https://github.com/rob-luke))
