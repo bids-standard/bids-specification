@@ -579,7 +579,8 @@ reviewer as a co-author.
 
 Several aspects of the specification are defined in a set of YAML files in the 
 `src/schema` folder. The content of those files is described in a dedicated 
-[README file](./src/schema/README.md)
+[README file](./src/schema/README.md).
+
 ### 1. Ensure that changes to the specification are matched in the schema
 
 The schema formalizes the rules described in the specification text, so you must

@@ -22,6 +22,7 @@ of the schema, roughly in order of importance:
     filenames) with associated descriptions and formatting rules. The order of
     the entities in the file determines the order in which entities must appear
     in filenames.
+
 -   `top_level_files.yaml`: Modality-agnostic files stored at the top level of a
     BIDS dataset. The schema specifies whether these files are required or
     optional, as well as acceptable extensions for each.
