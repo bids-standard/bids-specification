@@ -54,10 +54,29 @@
 # Timeseries
 - suffixes:
     - physio
+  extensions:
+    - .tsv.gz
+    - .json
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
+    run: optional
+    recording: optional
+# Stimuli
+- suffixes:
     - stim
   extensions:
     - .tsv.gz
     - .json
+    - .mp3
+    - .mp4
+    - .mkv
+    - .avi
   entities:
     subject: required
     session: optional
