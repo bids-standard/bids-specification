@@ -40,9 +40,21 @@ def build_pdf(filename):
         '--output={}'.format(filename),
     ]
 
+    # location of this file: This is also the working directory when
+    # the pdf is being built using `cd build_pdf_src` and then
+    # `bash build_pdf.sh`
+    root = pathlib.Path(__file__).parent.absolute()
+
+    # Resources are searched relative to the working directory, but
+    # we can add additional search paths using <path>:<another path>, ...
+    # When in one of the 99-appendices/ files there is a reference to
+    # "../04-modality-specific-files/images/...", then we need to use
+    # 99-appendices/ as a resource-path so that the relative files can
+    # be found.
+    cmd += [f'--resource-path=.:{str(root / "99-appendices")}']
+
     # Add input files to command
     # The filenames in `markdown_list` will ensure correct order when sorted
-    root = pathlib.Path(__file__).parent.absolute()
     cmd += [str(root / index_page)]
     cmd += [str(root / i) for i in sorted(markdown_list)]
 
