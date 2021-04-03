@@ -437,7 +437,7 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
     retained_fields = [f for f in fields if f in metadata_schema.keys()]
     dropped_fields = [f for f in fields if f not in metadata_schema.keys()]
     if dropped_fields:
-        print("Warning: Fields dropped: {}".format(", ".join(dropped_fields)))
+        print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
 
     df = pd.DataFrame(
         index=retained_fields,

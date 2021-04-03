@@ -11,8 +11,8 @@ properties:
     type: string
     format: uri
   Descriptors:
-    items:
-      type: string
-    type:
-      - array
-      - string
+    anyOf:
+      - type: string
+      - type: array
+        items:
+          type: string
