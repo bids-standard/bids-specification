@@ -8,7 +8,7 @@ description: |
   The data type array is applicable for specifying this parameter before and
   after the k-space center is sampled.
   Please see
-  [`NumberShots` metadata field]
+  [`NumberShots` metadata field]\
   (/99-appendices/11-qmri.html#numbershots-metadata-field)
   in the qMRI appendix for corresponding calculations.
 anyOf:

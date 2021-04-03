@@ -2,8 +2,8 @@
 key_name: EEGCoordinateSystemDescription
 description: |
   See
-  [Recording EEG simultaneously with MEG]
-  (/04-modality-specific-files/02-magnetoencephalography.html#
+  [Recording EEG simultaneously with MEG]\
+  (/04-modality-specific-files/02-magnetoencephalography.html#\
   recording-eeg-simultaneously-with-meg).
   Free-form text description of the coordinate system.
   May also include a link to a documentation page or paper describing

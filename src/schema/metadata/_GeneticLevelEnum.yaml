@@ -1,0 +1,11 @@
+---
+key_name: GeneticLevelEnum
+description: ''
+type: string
+enum:
+  - Genetic
+  - Genomic
+  - Epigenomic
+  - Transcriptomic
+  - Metabolomic
+  - Proteomic

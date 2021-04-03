@@ -12,7 +12,7 @@ description: |
   The data type array provides a value for each volume in a 4D dataset and
   should only be used when the volume timing is critical for interpretation
   of the data, such as in
-  [ASL](/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#
+  [ASL](/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#\
   arterial-spin-labeling-perfusion-data)
   or variable echo time fMRI sequences.
 anyOf:
