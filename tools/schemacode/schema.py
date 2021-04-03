@@ -5,6 +5,7 @@ import os
 from copy import deepcopy
 from pathlib import Path
 from warnings import warn
+from pprint import pprint
 
 import pandas as pd
 import yaml
@@ -29,6 +30,24 @@ def _get_entry_name(path):
         return path.name
 
 
+def search_structure(struct, path):
+    if isinstance(struct, dict):
+        for k, v in struct.items():
+            if k == "$ref":
+                with open(os.path.join(path, v), "r") as fo:
+                    temp = yaml.load(fo, Loader=yaml.SafeLoader)
+                struct = temp
+
+            if isinstance(v, (dict, list)):
+                v = search_structure(v, path)
+                struct[k] = v
+    elif isinstance(struct, list):
+        for i, item in enumerate(struct):
+            struct[i] = search_structure(item, path)
+
+    return struct
+
+
 def load_schema(schema_path):
     """Load the schema into a dictionary.
 
@@ -50,8 +69,12 @@ def load_schema(schema_path):
     """
     schema_path = Path(schema_path)
     if schema_path.is_file() and (schema_path.suffix == ".yaml"):
+        base_path = os.path.dirname(schema_path.absolute())
         with open(schema_path) as f:
-            return yaml.load(f, Loader=yaml.SafeLoader)
+            dict_ = yaml.load(f, Loader=yaml.SafeLoader)
+            if "$ref" in str(dict_):
+                dict_ = search_structure(dict_, base_path)
+            return dict_
     elif schema_path.is_dir():
         # iterate through files and subdirectories
         res = {
@@ -336,18 +359,32 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 def _get_link(string):
     dict_ = {
         "array": "[array](https://www.w3schools.com/js/js_json_arrays.asp)",
+        "arrays": "[arrays](https://www.w3schools.com/js/js_json_arrays.asp)",
         "string": (
             "[string](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
+        "strings": (
+            "[strings](https://www.w3schools.com/js/js_json_datatypes.asp)"
         ),
         "number": (
             "[number](https://www.w3schools.com/js/js_json_datatypes.asp)"
         ),
+        "numbers": (
+            "[numbers](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
         "object": "[object](https://www.json.org/json-en.html)",
+        "objects": "[objects](https://www.json.org/json-en.html)",
         "integer": (
             "[integer](https://www.w3schools.com/js/js_json_datatypes.asp)"
         ),
+        "integers": (
+            "[integers](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
         "boolean": (
             "[boolean](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
+        "booleans": (
+            "[booleans](https://www.w3schools.com/js/js_json_datatypes.asp)"
         ),
     }
     string = dict_.get(string, string)
@@ -361,24 +398,17 @@ def _resolve_metadata_type(definition):
             "type" in definition["items"].keys()
         ):
             # Items within arrays
-            string += " of " + _get_link(definition["items"]["type"])
+            string += " of " + _get_link(definition["items"]["type"] + "s")
         elif ("additionalProperties" in definition.keys()) and (
             "type" in definition["additionalProperties"].keys()
         ):
             # Values within objects
             string += " of " + _get_link(
-                definition["additionalProperties"]["type"]
+                definition["additionalProperties"]["type"] + "s"
             )
     elif "anyOf" in definition.keys():
         string = ""
         n_types = len(definition["anyOf"])
-
-        # A hack to deal with $ref in the current schema
-        if any(
-            ["type" not in subdict.keys() for subdict in definition["anyOf"]]
-        ):
-            print(f"Type is missing for {definition['key_name']}")
-            return "unknown"
 
         for i_type, subdict in enumerate(definition["anyOf"]):
             subtype = _get_link(subdict["type"])
@@ -386,13 +416,14 @@ def _resolve_metadata_type(definition):
             if ("items" in subdict.keys()) and (
                 "type" in subdict["items"].keys()
             ):
-                string += " of " + _get_link(subdict["items"]["type"])
+                string += " of " + _get_link(subdict["items"]["type"] + "s")
 
             if i_type < (n_types - 1):
                 string += " or "
     else:
         # A hack to deal with $ref in the current schema
         print(f"Type could not be inferred for {definition['key_name']}")
+        pprint(definition)
         string = "unknown"
 
     return string
@@ -414,13 +445,21 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
     )
     df.index.name = "**Key name**"
     for field in retained_fields:
+        temp = metadata_schema[field]["description"]
+        # A backslash before a newline means continue a string
+        temp = temp.replace("\\\n", "")
+        # Two newlines should be respected
+        temp = temp.replace("\n\n", "<br>")
+        # Otherwise a newline corresponds to a space
+        temp = temp.replace("\n", " ")
+
         line = [
             field_info[field].replace(
                 "DEPRECATED",
                 "[DEPRECATED](/02-common-principles.html#definitions)",
             ),
             _resolve_metadata_type(metadata_schema[field]),
-            metadata_schema[field]["description"].replace("\n", " "),
+            temp,
         ]
         df.loc[field] = line
 
