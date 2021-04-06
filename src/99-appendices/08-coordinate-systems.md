@@ -154,15 +154,16 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 -   `fsnative`: The subject-specific FreeSurfer T1w space. This corresponds to
     the original scanner image after it is re-sampled and re-scaled
     to an isotropic 1 mm 256x256x256 volume in RAS orientation. The origin
-    is wherever the original origin of the ``orig.mgz`` file is. One SHOULD
+    is wherever the original origin of the ``orig.mgz`` file is. One MUST
     align the origin to the ``ACPC`` before using this coordinate system.
 
 -   `fsnativetkr`: The subject-specific FreeSurfer T1w space. The origin of
     the coordinate system is at the center of isotropic 1 mm 256x256x256
     volume (that is the voxel center is at slices (128, 128, 128)) in RAS
-    orientation. This corresponds to FreeSurfer's surface RAS coordinates.
+    orientation. This corresponds to FreeSurfer's surface RAS coordinates. One MUST
+    align the origin to the ``ACPC`` before using this coordinate system.
     The difference between this coordinate system and ``fsnative`` is the
-    origin definition.
+    origin definition in voxels.
 
 -   Any keyword from the list of
     [Standard template identifiers](#standard-template-identifiers)
