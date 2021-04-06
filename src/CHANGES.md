@@ -8,6 +8,7 @@
 -   \[FIX] Mix up (typo) between ficiduals and landmarks in EEG spec [#754](https://github.com/bids-standard/bids-specification/pull/754) ([rob-luke](https://github.com/rob-luke))
 -   \[INFRA] updating remark, CIs, contributor docs [#745](https://github.com/bids-standard/bids-specification/pull/745) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] schema for i/eeg coordsys+elecs: sub-ses-acq-space are allowed entities [#743](https://github.com/bids-standard/bids-specification/pull/743) ([sappelhoff](https://github.com/sappelhoff))
+-   \[DOC] move schema documentation into the schema folder [#740](https://github.com/bids-standard/bids-specification/pull/740) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[MISC] standardize string examples format in tables [#739](https://github.com/bids-standard/bids-specification/pull/739) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[MISC] Clarify participant_id in participants.tsv file if it exists [#738](https://github.com/bids-standard/bids-specification/pull/738) ([adam2392](https://github.com/adam2392))
 -   \[FIX] split MEG files should be listed separately in scans.tsv [#735](https://github.com/bids-standard/bids-specification/pull/735) ([eort](https://github.com/eort))
