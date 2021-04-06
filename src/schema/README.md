@@ -169,12 +169,12 @@ of the schema, roughly in order of importance:
     The target file (`_ReferenceFile.yaml` in this case) MUST be located in
     the same folder as the metadata YAML file, and MUST contain all information
     that would be used to describe the field's data type otherwise.
-    The filename MUST start with an underscore (`_`), and the contents
-    MUST NOT contain fields unrelated to the data type, such as `key_name`
-    and `description`.
 
     Here is an example of a reference file:
     ```yaml
+    key_name: _ReferenceFile
+    description: |
+        Description of "_ReferenceFile".
     type: string
     enum:
         - PossibleValue1

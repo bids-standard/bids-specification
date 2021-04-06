@@ -392,8 +392,10 @@ def _get_link(string):
 
 
 def _resolve_metadata_type(definition):
+    """Generate string of metadata type from dictionary."""
     if "type" in definition.keys():
         string = _get_link(definition["type"])
+
         if ("items" in definition.keys()) and (
             "type" in definition["items"].keys()
         ):
@@ -406,20 +408,19 @@ def _resolve_metadata_type(definition):
             string += " of " + _get_link(
                 definition["additionalProperties"]["type"] + "s"
             )
+
     elif "anyOf" in definition.keys():
         string = ""
         n_types = len(definition["anyOf"])
 
         for i_type, subdict in enumerate(definition["anyOf"]):
-            subtype = _get_link(subdict["type"])
-            string += subtype
-            if ("items" in subdict.keys()) and (
-                "type" in subdict["items"].keys()
-            ):
-                string += " of " + _get_link(subdict["items"]["type"] + "s")
+            substring = _resolve_metadata_type(subdict)
 
             if i_type < (n_types - 1):
-                string += " or "
+                string += substring + " or "
+            else:
+                string += substring
+
     else:
         # A hack to deal with $ref in the current schema
         print(f"Type could not be inferred for {definition['key_name']}")
@@ -434,6 +435,7 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
     fields = list(field_info.keys())
     # The filter function doesn't work here.
     metadata_schema = schema["metadata"]
+
     retained_fields = [f for f in fields if f in metadata_schema.keys()]
     dropped_fields = [f for f in fields if f not in metadata_schema.keys()]
     if dropped_fields:

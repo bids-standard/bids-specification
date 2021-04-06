@@ -5,14 +5,8 @@ description: |
 type: object
 properties:
   Database:
-    type: string
-    format: uri
+    $ref: Genetics.Database.yaml
   Dataset:
-    type: string
-    format: uri
+    $ref: Genetics.Dataset.yaml
   Descriptors:
-    anyOf:
-      - type: string
-      - type: array
-        items:
-          type: string
+    $ref: Genetics.Descriptors.yaml
