@@ -1,6 +1,4 @@
 ---
-key_name: MEGCoordSys
-description: ''
 type: string
 enum:
   - CTF

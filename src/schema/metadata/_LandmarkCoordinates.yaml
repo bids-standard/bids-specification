@@ -1,6 +1,4 @@
 ---
-key_name: LandmarkCoordinates
-description: ''
 type: object
 additionalProperties:
   type: array

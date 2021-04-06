@@ -1,6 +1,4 @@
 ---
-key_name: StandardTemplateCoordSys
-description: ''
 type: string
 enum:
   - ICBM452AirSpace

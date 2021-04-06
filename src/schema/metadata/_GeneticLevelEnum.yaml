@@ -1,6 +1,4 @@
 ---
-key_name: GeneticLevelEnum
-description: ''
 type: string
 enum:
   - Genetic

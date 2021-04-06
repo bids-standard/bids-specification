@@ -1,6 +1,4 @@
 ---
-key_name: CoordUnits
-description: ''
 type: string
 enum:
   - m

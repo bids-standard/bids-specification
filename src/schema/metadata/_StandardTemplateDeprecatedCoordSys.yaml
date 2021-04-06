@@ -1,6 +1,4 @@
 ---
-key_name: StandardTemplateDeprecatedCoordSys
-description: ''
 type: string
 enum:
   - fsaverage3
