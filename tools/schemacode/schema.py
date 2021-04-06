@@ -31,16 +31,26 @@ def _get_entry_name(path):
 
 
 def search_structure(struct, path):
-    if isinstance(struct, dict):
-        for k, v in struct.items():
-            if k == "$ref":
-                with open(os.path.join(path, v), "r") as fo:
-                    temp = yaml.load(fo, Loader=yaml.SafeLoader)
-                struct = temp
+    """Recursively search a dictionary-like object for $ref keys.
 
+    Each $ref key is replaced with the contents of the referenced file.
+    """
+    if isinstance(struct, dict):
+        if "$ref" in struct.keys():
+            with open(os.path.join(path, struct["$ref"]), "r") as fo:
+                temp = yaml.load(fo, Loader=yaml.SafeLoader)
+
+            struct.pop("$ref")
+
+            for k_temp, v_temp in temp.items():
+                if k_temp not in struct.keys():
+                    struct[k_temp] = v_temp
+
+        for k, v in struct.items():
             if isinstance(v, (dict, list)):
                 v = search_structure(v, path)
                 struct[k] = v
+
     elif isinstance(struct, list):
         for i, item in enumerate(struct):
             struct[i] = search_structure(item, path)
@@ -447,23 +457,22 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
     )
     df.index.name = "**Key name**"
     for field in retained_fields:
-        temp = metadata_schema[field]["description"]
-        # A backslash before a newline means continue a string
-        temp = temp.replace("\\\n", "")
-        # Two newlines should be respected
-        temp = temp.replace("\n\n", "<br>")
-        # Otherwise a newline corresponds to a space
-        temp = temp.replace("\n", " ")
+        requirement_info = field_info[field].replace(
+            "DEPRECATED",
+            "[DEPRECATED](/02-common-principles.html#definitions)",
+        )
 
-        line = [
-            field_info[field].replace(
-                "DEPRECATED",
-                "[DEPRECATED](/02-common-principles.html#definitions)",
-            ),
-            _resolve_metadata_type(metadata_schema[field]),
-            temp,
-        ]
-        df.loc[field] = line
+        type_string = _resolve_metadata_type(metadata_schema[field])
+
+        description = metadata_schema[field]["description"]
+        # A backslash before a newline means continue a string
+        description = description.replace("\\\n", "")
+        # Two newlines should be respected
+        description = description.replace("\n\n", "<br>")
+        # Otherwise a newline corresponds to a space
+        description = description.replace("\n", " ")
+
+        df.loc[field] = [requirement_info, type_string, description]
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
