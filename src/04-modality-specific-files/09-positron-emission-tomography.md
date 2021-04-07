@@ -130,6 +130,18 @@ which we divide into several categories:
 
 #### Scanner Hardware
 
+{{ MACROS___make_metadata_table(
+   {
+      "Manufacturer": "REQUIRED",
+      "ManufacturersModelName": "REQUIRED",
+      "Unit": "REQUIRED",
+      "InstitutionName": "RECOMMENDED",
+      "InstitutionAddress": "RECOMMENDED",
+      "InstitutionDepartmentName": "RECOMMENDED",
+      "BodyPart": "RECOMMENDED",
+   }
+) }}
+
 | **Key name**              | **Requirement level** | **Data type** | **Description**                                                                                                                                                                        |
 | ------------------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Manufacturer              | REQUIRED              | [string][]    | Scanner manufacturer (for example, `"Siemens"`).                                                                                                                                       |
@@ -141,6 +153,36 @@ which we divide into several categories:
 | BodyPart                  | RECOMMENDED           | [string][]    | Body part of the organ / body region scanned. Corresponds to DICOM Tag 0018, 0015 Body Part Examined                                                                                   |
 
 #### Radiochemistry
+
+{{ MACROS___make_metadata_table(
+   {
+      "TracerName": "REQUIRED",
+      "TracerRadionuclide": "REQUIRED",
+      "InjectedRadioactivity": "REQUIRED",
+      "InjectedRadioactivityUnit": "REQUIRED",
+      "InjectedMass": "REQUIRED",
+      "InjectedMassUnit": "REQUIRED",
+      "SpecificRadioactivity": "REQUIRED",
+      "SpecificRadioactivityUnit": "REQUIRED",
+      "ModeOfAdministration": "REQUIRED",
+      "TracerRadLex": "RECOMMENDED",
+      "TracerSNOMED": "RECOMMENDED",
+      "TracerMolecularWeight": "RECOMMENDED",
+      "TracerMolecularWeightUnit": "RECOMMENDED",
+      "InjectedMassPerWeight": "RECOMMENDED",
+      "InjectedMassPerWeightUnit": "RECOMMENDED",
+      "SpecificRadioactivityMeasTime": "RECOMMENDED",
+      "MolarActivity": "RECOMMENDED",
+      "MolarActivityUnit": "RECOMMENDED",
+      "MolarActivityMeasTime": "RECOMMENDED",
+      "InfusionRadioactivity": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
+      "InfusionStart": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
+      "InfusionSpeed": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
+      "InfusionSpeedUnit": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
+      "InjectedVolume": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
+      "Purity": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**                  | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                |
 | ----------------------------- | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -172,6 +214,17 @@ which we divide into several categories:
 
 #### Pharmaceuticals
 
+{{ MACROS___make_metadata_table(
+   {
+      "PharmaceuticalName": "RECOMMENDED",
+      "PharmaceuticalDoseAmount": "RECOMMENDED",
+      "PharmaceuticalDoseUnit": "RECOMMENDED",
+      "PharmaceuticalDoseRegimen": "RECOMMENDED",
+      "PharmaceuticalDoseTime": "RECOMMENDED",
+      "Anaesthesia": "OPTIONAL",
+   }
+) }}
+
 | **Key name**              | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | ------------------------- | --------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | PharmaceuticalName        | RECOMMENDED           | [string][]                             | Name of pharmaceutical coadministered with tracer.                                                                                                                                                                                                                                                                                                                                                                               |
@@ -182,6 +235,18 @@ which we divide into several categories:
 | Anaesthesia               | OPTIONAL              | [string][]                             | Details of anaesthesia used, if any.                                                                                                                                                                                                                                                                                                                                                                                             |
 
 #### Time
+
+{{ MACROS___make_metadata_table(
+   {
+      "TimeZero": "REQUIRED",
+      "ScanStart": "REQUIRED",
+      "InjectionStart": "REQUIRED",
+      "FrameTimesStart": "REQUIRED",
+      "FrameDuration": "REQUIRED",
+      "ScanDate": "RECOMMENDED",
+      "InjectionEnd": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**    | **Requirement level** | **Data type**            | **Description**                                                                                                                                                           |
 | --------------- | --------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -196,6 +261,29 @@ which we divide into several categories:
 We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see the [units section](../02-common-principles.md#units)).
 
 #### Reconstruction
+
+{{ MACROS___make_metadata_table(
+   {
+      "AcquisitionMode": "REQUIRED",
+      "ImageDecayCorrected": "REQUIRED",
+      "ImageDecayCorrectionTime": "REQUIRED",
+      "ReconMethodName": "REQUIRED",
+      "ReconMethodParameterLabels": "REQUIRED",
+      "ReconMethodParameterUnit": "REQUIRED",
+      "ReconMethodParameterValues": "REQUIRED",
+      "ReconFilterType": "REQUIRED",
+      "ReconFilterSize": "REQUIRED",
+      "AttenuationCorrection": "REQUIRED",
+      "ReconMethodImplementationVersion": "RECOMMENDED",
+      "AttenuationCorrectionMethodReference": "RECOMMENDED",
+      "ScaleFactor": "RECOMMENDED",
+      "ScatterFraction": "RECOMMENDED",
+      "DecayCorrectionFactor": "RECOMMENDED",
+      "PromptRate": "RECOMMENDED",
+      "RandomRate": "RECOMMENDED",
+      "SinglesRate": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**                         | **Requirement level** | **Data type**                          | **Description**                                                                                                 |
 | ------------------------------------ | --------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
@@ -311,6 +399,21 @@ Innis et al. 2007 ([doi:10.1038/sj.jcbfm.9600493](https://doi.org/10.1038/sj.jcb
 Some metadata about the recording MUST be provided in an additional JSON
 file.
 
+{{ MACROS___make_metadata_table(
+   {
+      "PlasmaAvail": "REQUIRED",
+      "MetaboliteAvail": "REQUIRED",
+      "WholeBloodAvail": "REQUIRED",
+      "DispersionCorrected": "REQUIRED",
+      "WithdrawalRate": "RECOMMENDED",
+      "TubingType": "RECOMMENDED",
+      "TubingLength": "RECOMMENDED",
+      "DispersionConstant": "RECOMMENDED",
+      "Haematocrit": "RECOMMENDED",
+      "BloodDensity": "RECOMMENDED",
+   }
+) }}
+
 | **Key name**        | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                               |
 | ------------------- | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | PlasmaAvail         | REQUIRED              | [boolean][]   | Boolean that specifies if plasma measurements are available.                                                                                                                                                  |
@@ -325,6 +428,15 @@ file.
 | BloodDensity        | RECOMMENDED           | [number][]    | Measured blood density. Unit of blood density should be in `"g/mL"`.                                                                                                                                          |
 
 The following metadata SHOULD or MUST be provided if corresponding flags are `true`.
+
+{{ MACROS___make_metadata_table(
+   {
+      "PlasmaFreeFraction": "RECOMMENDED if `PlasmaAvail` is `true`",
+      "PlasmaFreeFractionMethod": "RECOMMENDED if `PlasmaAvail` is `true`",
+      "MetaboliteMethod": "REQUIRED if `MetaboliteAvail` is `true`",
+      "MetaboliteRecoveryCorrectionApplied": "REQUIRED if `MetaboliteAvail` is `true`",
+   }
+) }}
 
 | **Key name**                        | **Requirement level**                   | **Data type** | **Description**                                                                                                                                                                                                    |
 | ----------------------------------- | --------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
