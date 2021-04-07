@@ -1,5 +1,7 @@
 ---
-description: null
 key_name: SinglesRate
-type: null
-unit: null
+description: |
+  Singles rate for each frame (same units as `Unit`, for example, `"Bq/mL"`).
+type: array
+items:
+  type: number
