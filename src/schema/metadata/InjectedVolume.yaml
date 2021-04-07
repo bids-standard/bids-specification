@@ -1,5 +1,6 @@
 ---
-description: null
 key_name: InjectedVolume
-type: null
-unit: null
+description: |
+  Injected volume of the radiotracer in the unit `"mL"`.
+type: number
+unit: mL

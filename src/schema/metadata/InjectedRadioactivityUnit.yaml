@@ -1,5 +1,5 @@
 ---
-description: null
 key_name: InjectedRadioactivityUnit
-type: null
-unit: null
+description: |
+  Unit format of the specified injected radioactivity (for example, `"MBq"`).
+type: string
