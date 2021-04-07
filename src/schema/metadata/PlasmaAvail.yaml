@@ -1,5 +1,5 @@
 ---
-description: null
 key_name: PlasmaAvail
-type: null
-unit: null
+description: |
+  Boolean that specifies if plasma measurements are available.
+type: boolean

@@ -1,5 +1,5 @@
 ---
-description: null
 key_name: PlasmaFreeFractionMethod
-type: null
-unit: null
+description: |
+  Method used to estimate free fraction.
+type: string

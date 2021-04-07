@@ -1,5 +1,9 @@
 ---
-description: null
 key_name: PlasmaFreeFraction
-type: null
-unit: null
+description: |
+  Measured free fraction in plasma, meaning the concentration of free compound
+  in plasma divided by total concentration of compound in plasma
+  (Units: 0-100%).
+type: number
+Minimum: 0
+inclusiveMaximum: 100
