@@ -361,7 +361,6 @@ as shown in the following example.
     "MetaboliteMethod": "",
     "MetaboliteRecoveryCorrectionApplied": false,
     "DispersionCorrected": false,
-
     "time": {
         "Description": "Time in relation to time zero defined by the _pet.json",
         "Units": "s"
