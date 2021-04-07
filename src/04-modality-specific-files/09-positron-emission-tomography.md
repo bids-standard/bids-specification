@@ -358,7 +358,7 @@ as shown in the following example.
     "PlasmaAvail": true,
     "WholeBloodAvail": true,
     "MetaboliteAvail": true,
-    "MetaboliteMethod": "",
+    "MetaboliteMethod": "HPLC",
     "MetaboliteRecoveryCorrectionApplied": false,
     "DispersionCorrected": false,
     "time": {
