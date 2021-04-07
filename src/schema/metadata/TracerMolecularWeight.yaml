@@ -1,5 +1,5 @@
 ---
-description: null
 key_name: TracerMolecularWeight
-type: null
-unit: null
+description: |
+  Accurate molecular weight of the tracer used.
+type: number

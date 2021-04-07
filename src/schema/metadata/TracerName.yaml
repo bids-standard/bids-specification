@@ -1,5 +1,5 @@
 ---
-description: null
 key_name: TracerName
-type: null
-unit: null
+description: |
+  Name of the tracer compound used (for example, `"CIMBI-36"`)
+type: string

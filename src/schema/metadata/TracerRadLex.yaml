@@ -1,5 +1,5 @@
 ---
-description: null
 key_name: TracerRadLex
-type: null
-unit: null
+description: |
+  ID of the tracer compound from the RadLex Ontology.
+type: string

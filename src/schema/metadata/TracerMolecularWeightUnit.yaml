@@ -1,5 +1,5 @@
 ---
-description: null
 key_name: TracerMolecularWeightUnit
-type: null
-unit: null
+description: |
+  Unit of the molecular weights measurement (for example, `"g/mol"`).
+type: string
