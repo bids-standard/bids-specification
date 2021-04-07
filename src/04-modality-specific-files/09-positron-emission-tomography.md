@@ -47,8 +47,15 @@ defined on a single time scale relative to a predefined "time zero".
 
 Figure 1: Overview of a common PET experiment, including blood measurements,
 and defined on a common time scale.
-Note, "time zero" is often defined as time of injection or scan start, but if a pharmaceutical challenge is carried out during the scan, this timepoint may also be chosen as time zero. The injected dose, the PET data, and blood data should all be decay-corrected to time zero, but because the time of injection not always coincides with scan start, the PET data may not always be decay-corrected to the time of injection. If this is not the case, this may be indicated in the reconstruction section (`ImageDecayCorrected` and `ImageDecayCorrectionTime`). In the example in the figure, tracer injection coincides with scan start.
-and all the PET and blood data should be decay-corrected to this time point.
+Note, "time zero" is often defined as time of injection or scan start,
+but if a pharmaceutical challenge is carried out during the scan,
+this time point may also be chosen as time zero.
+The injected dose, the PET data, and blood data should all be decay-corrected to time zero,
+but because the time of injection does not always coincide with scan start,
+the PET data may not always be decay-corrected to the time of injection.
+If this is not the case, this may be indicated in the reconstruction section
+(`ImageDecayCorrected` and `ImageDecayCorrectionTime`).
+In the example in the figure, tracer injection coincides with scan start.
 In this example, tracer injection coincides with scan start.
 
 ## PET recording data
