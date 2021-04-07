@@ -1,5 +1,9 @@
 ---
-description: null
 key_name: FrameDuration
-type: null
-unit: null
+description: |
+  Time duration of each frame in default unit seconds.
+  This corresponds to DICOM Tag (0018,1242) converted to seconds.
+type: array
+items:
+  type: number
+unit: s
