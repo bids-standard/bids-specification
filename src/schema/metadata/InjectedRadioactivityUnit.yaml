@@ -3,3 +3,4 @@ key_name: InjectedRadioactivityUnit
 description: |
   Unit format of the specified injected radioactivity (for example, `"MBq"`).
 type: string
+format: unit

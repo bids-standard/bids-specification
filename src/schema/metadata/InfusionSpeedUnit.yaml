@@ -3,3 +3,4 @@ key_name: InfusionSpeedUnit
 description: |
   Unit of infusion speed (for example, `"mL/s"`).
 type: string
+format: unit

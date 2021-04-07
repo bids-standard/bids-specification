@@ -6,3 +6,4 @@ description: |
   (for example, `"Bq/mL"`).
   Corresponds to DICOM Tag 0054, 1001 Units.
 type: string
+format: unit

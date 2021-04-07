@@ -4,3 +4,4 @@ description: |
   Unit format of the injected mass per kilogram bodyweight
   (for example, `"ug/kg"`).
 type: string
+format: unit

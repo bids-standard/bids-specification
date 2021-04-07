@@ -3,3 +3,4 @@ key_name: TracerMolecularWeightUnit
 description: |
   Unit of the molecular weights measurement (for example, `"g/mol"`).
 type: string
+format: unit

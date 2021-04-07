@@ -5,4 +5,8 @@ description: |
   `"umol"`).
   **Note this is not required for an FDG acquisition, since it is not available,
   and SHOULD be set to `"n/a"`**.
-type: string
+anyOf:
+  - type: string
+    format: unit
+  - type: string
+    pattern: ^n/a$
