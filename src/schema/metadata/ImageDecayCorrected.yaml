@@ -1,5 +1,5 @@
 ---
-description: null
 key_name: ImageDecayCorrected
-type: null
-unit: null
+description: |
+  Boolean flag specifying whether the image data have been decay-corrected.
+type: boolean

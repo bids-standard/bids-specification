@@ -1,5 +1,5 @@
 ---
-description: null
 key_name: InfusionSpeed
-type: null
-unit: null
+description: |
+  If given, infusion speed.
+type: number
