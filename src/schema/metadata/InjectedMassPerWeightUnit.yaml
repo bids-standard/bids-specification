@@ -1,5 +1,6 @@
 ---
-description: null
 key_name: InjectedMassPerWeightUnit
-type: null
-unit: null
+description: |
+  Unit format of the injected mass per kilogram bodyweight
+  (for example, `"ug/kg"`).
+type: string

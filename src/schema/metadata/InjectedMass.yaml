@@ -1,5 +1,12 @@
 ---
-description: null
 key_name: InjectedMass
-type: null
-unit: null
+description: |
+  Total mass of radiolabeled compound injected into subject (for example, 10).
+  This can be derived as the ratio of the `InjectedRadioactivity` and
+  `MolarRadioactivity`.
+  **For those tracers in which injected mass is not available (for example FDG)
+  can be set to `"n/a"`)**.
+anyOf:
+  - type: number
+  - type: string
+    pattern: ^n/a$

@@ -1,5 +1,5 @@
 ---
-description: null
 key_name: InjectedMassPerWeight
-type: null
-unit: null
+description: |
+  Injected mass per kilogram bodyweight.
+type: number
