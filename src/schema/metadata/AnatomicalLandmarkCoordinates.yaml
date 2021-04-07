@@ -10,9 +10,9 @@ description: |
   Each array MUST contain three numeric values corresponding to x, y, and z
   axis of the coordinate system in that exact order.
 type: object
-  additionalProperties:
-    type: array
-    items:
-      type: number
-    minItems: 3
-    maxItems: 3
+additionalProperties:
+  type: array
+  items:
+    type: number
+  minItems: 3
+  maxItems: 3
