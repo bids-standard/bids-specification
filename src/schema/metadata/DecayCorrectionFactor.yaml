@@ -1,5 +1,7 @@
 ---
-description: null
 key_name: DecayCorrectionFactor
-type: null
-unit: null
+description: |
+  Decay correction factor for each frame.
+type: array
+items:
+  type: number

@@ -1,5 +1,6 @@
 ---
-description: null
 key_name: BloodDensity
-type: null
-unit: null
+description: |
+  Measured blood density. Unit of blood density should be in `"g/mL"`.
+type: number
+unit: g/mL

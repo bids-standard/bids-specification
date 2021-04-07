@@ -1,5 +1,5 @@
 ---
-description: null
 key_name: AttenuationCorrectionMethodReference
-type: null
-unit: null
+description: |
+  Reference paper for the attenuation correction method used.
+type: string

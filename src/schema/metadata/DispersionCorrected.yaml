@@ -1,5 +1,6 @@
 ---
-description: null
 key_name: DispersionCorrected
-type: null
-unit: null
+description: |
+  Boolean flag specifying whether the blood data have been dispersion-corrected.
+  NOTE: not customary for manual samples, and hence should be set to false.
+type: boolean

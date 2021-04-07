@@ -1,5 +1,5 @@
 ---
-description: null
 key_name: AttenuationCorrection
-type: null
-unit: null
+description: |
+  Short description of the attenuation correction method used.
+type: string

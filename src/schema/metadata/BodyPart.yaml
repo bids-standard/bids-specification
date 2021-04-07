@@ -1,5 +1,6 @@
 ---
-description: null
 key_name: BodyPart
-type: null
-unit: null
+description: |
+  Body part of the organ / body region scanned.
+  Corresponds to DICOM Tag 0018, 0015 Body Part Examined.
+type: string
