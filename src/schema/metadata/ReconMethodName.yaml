@@ -1,5 +1,5 @@
 ---
-description: null
 key_name: ReconMethodName
-type: null
-unit: null
+description: |
+  Reconstruction method or algorithm (for example, `"3d-op-osem"`).
+type: string

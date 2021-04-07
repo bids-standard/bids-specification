@@ -1,5 +1,7 @@
 ---
-description: null
 key_name: ReconMethodParameterLabels
-type: null
-unit: null
+description: |
+  Names of reconstruction parameters (for example, `["subsets", "iterations"]`)
+type: array
+items:
+  type: string

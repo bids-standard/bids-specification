@@ -1,5 +1,9 @@
 ---
-description: null
 key_name: ReconFilterType
-type: null
-unit: null
+description: |
+  Type of post-recon smoothing (for example, `["Shepp"]`)
+anyOf:
+  - type: string
+  - type: array
+    items:
+      type: string

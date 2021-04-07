@@ -1,5 +1,5 @@
 ---
-description: null
 key_name: ReconMethodImplementationVersion
-type: null
-unit: null
+description: |
+  Identification for the software used, such as name and version.
+type: string
