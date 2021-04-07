@@ -69,8 +69,8 @@ of the schema, roughly in order of importance:
         `format` defines the format for the string at the same level as `type`.
         Valid values for `format` include: `uri` (uniform resource
         identifiers), `date` (date-times), `unit` (standard units),
-        `relative_dataset` (relative paths from dataset root),
-        `relative_participant` (relative paths from participant folder).
+        `dataset_relative` (relative paths from dataset root),
+        `participant_relative` (relative paths from participant folder).
         `enum` defines a list of valid values for the field.
         Here is an example of a field with a restricted set of possible values:
         ```yaml
