@@ -332,7 +332,7 @@ The following metadata SHOULD or MUST be provided if corresponding flags are `tr
 | PlasmaFreeFraction                  | RECOMMENDED if `PlasmaAvail` is `true`  | [number][]    | Measured free fraction in plasma, meaning the concentration of free compound in plasma divided by total concentration of compound in plasma (Units: 0-100%).                                                       |
 | PlasmaFreeFractionMethod            | RECOMMENDED if `PlasmaAvail` is `true`  | [string][]    | Method used to estimate free fraction.                                                                                                                                                                             |
 | MetaboliteMethod                    | REQUIRED if `MetaboliteAvail` is `true` | [string][]    | Method used to measure metabolites.                                                                                                                                                                                |
-| MetaboliteRecoveryCorrectionApplied | REQUIRED if `MetaboliteAvail` is `true` | [boolean][]   | Metabolite recovery correction from the HPLC, for tracers where it changes with time postinjection. If `true`, the `metabolite_recovery_fractions` column MUST be present in the corresponding `*_blood.tsv` file. |
+| MetaboliteRecoveryCorrectionApplied | REQUIRED if `MetaboliteAvail` is `true` | [boolean][]   | Metabolite recovery correction from the HPLC, for tracers where it changes with time postinjection. If `true`, the `hplc_recovery_fractions` column MUST be present in the corresponding `*_blood.tsv` file. |
 
 The following columns are defined for `_blood.tsv` files:
 
