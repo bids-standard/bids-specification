@@ -137,7 +137,7 @@ which we divide into several categories:
       "Unit": "REQUIRED",
       "InstitutionName": "RECOMMENDED",
       "InstitutionAddress": "RECOMMENDED",
-      "InstitutionDepartmentName": "RECOMMENDED",
+      "InstitutionalDepartmentName": "RECOMMENDED",
       "BodyPart": "RECOMMENDED",
    }
 ) }}
@@ -149,7 +149,7 @@ which we divide into several categories:
 | Unit                      | REQUIRED              | [string][]    | Unit of the image file; please see BIDS main spec section 6. SI unit for radioactivity (Becquerel) should be used (for example, `"Bq/mL"`). Corresponds to DICOM Tag 0054, 1001 Units. |
 | InstitutionName           | RECOMMENDED           | [string][]    | The name of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0080 InstitutionName.                                     |
 | InstitutionAddress        | RECOMMENDED           | [string][]    | The address of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0081 InstitutionAddress.                               |
-| InstitutionDepartmentName | RECOMMENDED           | [string][]    | The department in the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1040 Institutional Department Name.                 |
+| InstitutionalDepartmentName | RECOMMENDED           | [string][]    | The department in the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1040 Institutional Department Name.                 |
 | BodyPart                  | RECOMMENDED           | [string][]    | Body part of the organ / body region scanned. Corresponds to DICOM Tag 0018, 0015 Body Part Examined                                                                                   |
 
 #### Radiochemistry
