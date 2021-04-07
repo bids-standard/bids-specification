@@ -1,5 +1,8 @@
 ---
-description: null
 key_name: Unit
-type: null
-unit: null
+description: |
+  Unit of the image file; please see BIDS main spec section 6.
+  SI unit for radioactivity (Becquerel) should be used
+  (for example, `"Bq/mL"`).
+  Corresponds to DICOM Tag 0054, 1001 Units.
+type: string
