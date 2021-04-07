@@ -1,5 +1,9 @@
 ---
-description: null
 key_name: PharmaceuticalDoseAmount
-type: null
-unit: null
+description: |
+  Dose amount of pharmaceutical coadministered with tracer.
+anyOf:
+  - type: number
+  - type: array
+    items:
+      type: number

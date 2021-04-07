@@ -1,5 +1,6 @@
 ---
-description: null
 key_name: PharmaceuticalDoseUnit
-type: null
-unit: null
+description: |
+  Unit format relating to pharmaceutical dose
+  (for example, `"mg"` or `"mg/kg"`).
+type: string
