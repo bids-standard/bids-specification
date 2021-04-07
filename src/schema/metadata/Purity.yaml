@@ -1,5 +1,7 @@
 ---
-description: null
 key_name: Purity
-type: null
-unit: null
+description: |
+  Purity of the radiolabeled compound (between 0 and 100%).
+type: number
+Minimum: 0
+inclusiveMaximum: 0

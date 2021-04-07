@@ -68,7 +68,7 @@ of the schema, roughly in order of importance:
         `pattern` defines a regular expression for valid string names.
         `format` defines the format for the string at the same level as `type`.
         Valid values for `format` include: `uri` (uniform resource
-        identifiers).
+        identifiers), `date` (date-times).
         `enum` defines a list of valid values for the field.
         Here is an example of a field with a restricted set of possible values:
         ```yaml
