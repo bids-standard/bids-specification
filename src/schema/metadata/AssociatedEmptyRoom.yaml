@@ -11,5 +11,7 @@ anyOf:
     items:
       type: string
       minLength: 1
+      format: dataset_relative
   - type: string
     minLength: 1
+    format: dataset_relative

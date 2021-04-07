@@ -8,7 +8,9 @@ description: |
 anyOf:
   - type: string
     minLength: 1
+    format: participant_relative
   - type: array
     items:
       type: string
       minLength: 1
+      format: participant_relative

@@ -6,3 +6,4 @@ description: |
 type: array
 items:
   type: string
+  format: dataset_relative
