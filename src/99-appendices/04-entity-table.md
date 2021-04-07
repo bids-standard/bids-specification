@@ -29,6 +29,10 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 {{ MACROS___make_entity_table(datatypes=["meg"], auxdatatypes=["channels", "events", "photo"]) }}
 
+## Positron Emission Tomography (PET)
+
+{{ MACROS___make_entity_table(datatypes=["pet"]) }}
+
 ## Behavioral Data
 
 {{ MACROS___make_entity_table(datatypes=["beh"], auxdatatypes=[]) }}
