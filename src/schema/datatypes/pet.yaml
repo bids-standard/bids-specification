@@ -13,7 +13,7 @@
     tracer: optional
     reconstruction: optional
     run: optional
-# Second group
+# Blood recordings
 - suffixes:
     - blood
   extensions:
