@@ -1,5 +1,6 @@
 ---
-description: null
 key_name: ModeOfAdministration
-type: null
-unit: null
+description: |
+  Mode of administration of the injection
+  (for example, `"bolus"`, `"infusion"`, or `"bolus-infusion"`).
+type: string

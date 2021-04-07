@@ -1,5 +1,5 @@
 ---
-description: null
 key_name: MetaboliteMethod
-type: null
-unit: null
+description: |
+  Method used to measure metabolites.
+type: string
