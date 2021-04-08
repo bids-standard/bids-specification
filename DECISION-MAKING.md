@@ -86,7 +86,7 @@ and heavily depends on [GitHub Pull Request Review system](https://help.github.c
    Request (PR) to the Repository.
 1. Anyone can open a PR (this action is not limited to Contributors).
 1. PRs adding new Contributors must also add their GitHub names to the
-   [CODEOWNERS](CODEOWNERS) file.
+   [CODEOWNERS](./CODEOWNERS) file.
 1. A PR is eligible to be merged if and only if these conditions are met:
    1. The last commit is at least 5 working days old to allow the community to
       evaluate it.
@@ -138,7 +138,7 @@ and heavily depends on [GitHub Pull Request Review system](https://help.github.c
 1. To facilitate triage of incoming PR you can subscribe to
    notifications for new PRs proposing changes to specific files. To do this
    add your GitHub name next to the file you want to subscribe to in the
-   [CODEOWNERS](CODEOWNERS). This way you will be ask to review each relevant
+   [CODEOWNERS](./CODEOWNERS). This way you will be ask to review each relevant
    PR. Please mind that lack of your review will not prevent the PR from being
    merged so if you think the PR needs your attention, please review it
    promptly or request more time via Request changes.
