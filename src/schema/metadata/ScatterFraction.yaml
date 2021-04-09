@@ -3,5 +3,5 @@ key_name: ScatterFraction
 description: |
   Scatter fraction for each frame (Units: 0-100%).
 type: number
-inclusiveMaximum: 100
 minimum: 0
+maximum: 100

@@ -5,6 +5,6 @@ description: |
   which can be given as an alternative to `LabelingPulseAverageB1`.
 type: number
 exclusiveMinimum: 0
-# The inclusiveMaximum should be checked
-inclusiveMaximum: 360
+# The maximum should be checked
+maximum: 360
 unit: degree

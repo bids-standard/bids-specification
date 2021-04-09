@@ -5,5 +5,5 @@ description: |
   in plasma divided by total concentration of compound in plasma
   (Units: 0-100%).
 type: number
-inclusiveMaximum: 100
 minimum: 0
+maximum: 100

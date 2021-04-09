@@ -3,5 +3,5 @@ key_name: Purity
 description: |
   Purity of the radiolabeled compound (between 0 and 100%).
 type: number
-inclusiveMaximum: 0
 minimum: 0
+maximum: 100
