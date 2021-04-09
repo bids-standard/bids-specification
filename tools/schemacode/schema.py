@@ -457,14 +457,21 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
     )
     df.index.name = "**Key name**"
     for field in retained_fields:
-        requirement_info = field_info[field].replace(
+        requirement_info = field_info[field]
+        description_addendum = ""
+        if isinstance(requirement_info, tuple):
+            requirement_info, description_addendum = requirement_info
+
+        requirement_info.replace(
             "DEPRECATED",
             "[DEPRECATED](/02-common-principles.html#definitions)",
         )
 
         type_string = _resolve_metadata_type(metadata_schema[field])
 
-        description = metadata_schema[field]["description"]
+        description = (
+            metadata_schema[field]["description"] + " " + description_addendum
+        )
         # A backslash before a newline means continue a string
         description = description.replace("\\\n", "")
         # Two newlines should be respected
