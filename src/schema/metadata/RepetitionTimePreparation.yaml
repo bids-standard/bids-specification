@@ -11,10 +11,10 @@ description: |
   the data, such as in [ASL](#arterial-spin-labeling-perfusion-data).
 anyOf:
   - type: number
-    Minimum: 0
+    minimum: 0
     unit: s
   - type: array
     items:
       type: number
-      Minimum: 0
+      minimum: 0
       unit: s

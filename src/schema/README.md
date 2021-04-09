@@ -87,8 +87,8 @@ of the schema, roughly in order of importance:
 
     -   `integer`: If `type` is `integer`, then there MAY be any of the
         following fields at the same level as `type`: `unit`,
-        `exclusiveMinimum`, `inclusiveMinimum`, `exclusiveMaximum`,
-        `inclusiveMaximum`, `minimum`.
+        `minimum` (inclusive minimum), `maximum` (inclusive maximum),
+        `exclusiveMinimum`, `exclusiveMaximum`.
         Here is an example of a field with a minimum value of 0:
         ```yaml
         key_name: ExampleField
@@ -99,8 +99,9 @@ of the schema, roughly in order of importance:
         ```
 
     -   `number`: If `type` is `number`, then there MAY be any of the following
-        fields at the same level as `type`: `unit`, `exclusiveMinimum`,
-        `inclusiveMinimum`, `exclusiveMaximum`, `inclusiveMaximum`, `minimum`.
+        fields at the same level as `type`: `unit`,
+        `minimum` (inclusive minimum), `maximum` (inclusive maximum),
+        `exclusiveMinimum`, `exclusiveMaximum`.
         Here is an example of a field with a minimum of 0, in units of
         kilometers per second:
         ```yaml

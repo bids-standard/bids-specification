@@ -11,10 +11,10 @@ description: |
   Based on DICOM Tag 0018,925F `ASL Bolus Cut-off Delay Time`.
 anyOf:
   - type: number
-    Minimum: 0
+    minimum: 0
     unit: s
   - type: array
     items:
       type: number
       unit: s
-      Minimum: 0
+      minimum: 0

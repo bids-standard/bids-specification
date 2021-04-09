@@ -14,10 +14,10 @@ description: |
   [task imaging data](#task-including-resting-state-imaging-data) section.
 anyOf:
   - type: number
-    Minimum: 0
+    minimum: 0
     unit: s
   - type: array
     items:
       type: number
-      Minimum: 0
+      minimum: 0
       unit: s

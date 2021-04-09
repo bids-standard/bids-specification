@@ -15,10 +15,10 @@ description: |
   Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`.
 anyOf:
   - type: number
-    Minimum: 0
+    minimum: 0
     unit: s
   - type: array
     items:
       type: number
       unit: s
-      Minimum: 0
+      minimum: 0
