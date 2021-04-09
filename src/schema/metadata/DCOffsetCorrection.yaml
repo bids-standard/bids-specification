@@ -5,4 +5,3 @@ description: |
   If the method used was subtracting the mean value for each channel,
   use "mean".
 type: string
-minLength: 1

@@ -12,5 +12,4 @@ description: |
 type: array
 items:
   type: number
-  minItems: 1
   unit: s

@@ -51,6 +51,7 @@ of the schema, roughly in order of importance:
         describing data types for the field itself apply to `items`.
         Additionally, there may be any of the following fields at the same level
         as `type`: `minItems`, `maxItems`.
+        The minimum number of items (`minItems`) defaults to 1.
         Here is an example of a field that MUST have three `integer` items:
         ```yaml
         key_name: ExampleField
@@ -72,6 +73,7 @@ of the schema, roughly in order of importance:
         `dataset_relative` (relative paths from dataset root),
         `participant_relative` (relative paths from participant folder).
         `enum` defines a list of valid values for the field.
+        The minimum string length (`minLength`) defaults to 1.
         Here is an example of a field with a restricted set of possible values:
         ```yaml
         key_name: ExampleField

@@ -5,4 +5,3 @@ description: |
   instances.
   Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
 type: string
-minLength: 1

@@ -4,7 +4,6 @@ description: |
   Used to specify provenance of the derived dataset.
   See table below for contents of each object.
 type: array
-minItems: 1
 items:
   type: object
   properties:
