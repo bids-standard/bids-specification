@@ -1,6 +1,7 @@
 ---
 key_name: Genetics.Dataset
 description: |
-  [URI][uri] where data can be retrieved.
+  [URI](/02-common-principles.html#uniform-resource-indicator)
+  where data can be retrieved.
 type: string
 format: uri

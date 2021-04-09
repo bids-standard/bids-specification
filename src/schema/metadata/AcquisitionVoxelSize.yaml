@@ -8,6 +8,8 @@ description: |
   Any point spread function effects, for example due to T2-blurring,
   that would decrease the effective resolution are not considered here.
 type: array
+minItems: 3
+maxItems: 3
 items:
   type: number
   exclusiveMinimum: 0

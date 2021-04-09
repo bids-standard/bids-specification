@@ -1,7 +1,8 @@
 ---
 key_name: SoftwareFilters
 description: |
-  [Object][] of temporal software filters applied, or `"n/a"` if the data is
+  [Object](https://www.json.org/json-en.html)
+  of temporal software filters applied, or `"n/a"` if the data is
   not available.
   Each key:value pair in the JSON object is a name of the filter and an object
   in which its parameters are defined as key:value pairs

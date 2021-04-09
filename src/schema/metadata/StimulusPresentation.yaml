@@ -1,7 +1,8 @@
 ---
 key_name: StimulusPresentation
 description: |
-  [Object][] containing key value pairs related to the software used to present
+  [Object](https://www.json.org/json-en.html)
+  containing key value pairs related to the software used to present
   the stimuli during the experiment, specifically:
   `OperatingSystem`, `SoftwareName`, `SoftwareRRID`, `SoftwareVersion` and
   `Code`.
