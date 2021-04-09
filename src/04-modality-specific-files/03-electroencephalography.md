@@ -407,7 +407,11 @@ General fields:
 
 {{ MACROS___make_metadata_table(
    {
-      "IntendedFor": "OPTIONAL",
+      "IntendedFor": (
+         "OPTIONAL",
+         "This identifies the MRI or CT scan associated with the electrodes, "
+         "landmarks, and fiducials.",
+      )
    }
 ) }}
 

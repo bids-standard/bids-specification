@@ -952,7 +952,10 @@ Some common metadata fields are REQUIRED for the `*_m0scan.json`: `EchoTime`, `R
 
 {{ MACROS___make_metadata_table(
    {
-      "IntendedFor": "REQUIRED",
+      "IntendedFor": (
+         "REQUIRED",
+         "This is used to refer to the ASL time series for which the `*_m0scan.nii[.gz]` is intended."
+      ),
       "AcquisitionVoxelSize": "RECOMMENDED",
    }
 ) }}
@@ -1176,7 +1179,11 @@ filling the `IntendedFor` field in the corresponding JSON file.
 
 {{ MACROS___make_metadata_table(
    {
-      "IntendedFor": "RECOMMENDED",
+      "IntendedFor": (
+         "RECOMMENDED",
+         "This field is OPTIONAL, and in case the fieldmaps do not correspond "
+         "to any particular scans, it does not have to be filled.",
+      ),
    }
 ) }}
 

@@ -409,7 +409,12 @@ Anatomical MRI:
 
 {{ MACROS___make_metadata_table(
    {
-      "IntendedFor": "OPTIONAL",
+      "IntendedFor": (
+         "OPTIONAL",
+         "This is used to identify the structural MRI(s), "
+         "possibly of different types if a list is specified, "
+         "to be used with the MEG recording.",
+      )
    }
 ) }}
 
