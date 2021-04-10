@@ -1,3 +1,7 @@
 ---
-name:
-description:
+name: True transverse relaxation time image
+description: |
+  In seconds (s).
+  T2 maps are REQUIRED to use this suffix regardless of the method used to
+  generate them.
+unit: s
