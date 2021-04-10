@@ -1,0 +1,15 @@
+---
+name: onset
+description: |
+  Onset (in seconds) of the event measured from the beginning of the acquisition
+  of the first volume in the corresponding task imaging data file.
+  If any acquired scans have been discarded before forming the imaging data file,
+  ensure that a time of 0 corresponds to the first image stored.
+  In other words negative numbers in "onset" are allowed (see below).
+
+  For example in case there is an in scanner training phase that begins before
+  the scanning sequence has started events from this sequence should have
+  negative onset time counting down to the beginning of the acquisition of the
+  first volume.
+type: number
+unit: s
