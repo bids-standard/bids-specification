@@ -1,0 +1,6 @@
+---
+name:
+description: |
+  Hierarchical Event Descriptor (HED) Tag.
+  See [Appendix III](/99-appendices/03-hed.html) for details.
+type: string

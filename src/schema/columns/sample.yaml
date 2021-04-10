@@ -1,0 +1,7 @@
+---
+name: sample
+description: |
+  Onset of the event according to the sampling scheme of the recorded modality
+  (that is, referring to the raw data file that the `events.tsv` file
+  accompanies).
+type: integer

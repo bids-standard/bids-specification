@@ -1,0 +1,6 @@
+---
+name: value
+description: |
+  Marker value associated with the event (for example, the value of a TTL
+  trigger that was recorded at the onset of the event).
+type: number
