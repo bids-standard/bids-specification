@@ -1,3 +1,4 @@
 ---
-name:
-description:
+name: Events
+description: |
+  Event timing information from a behavioral task.
