@@ -1,5 +1,5 @@
 ---
-key_name: StimulusPresentation
+name: StimulusPresentation
 description: |
   [Object](https://www.json.org/json-en.html)
   containing key value pairs related to the software used to present

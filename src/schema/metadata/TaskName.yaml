@@ -1,5 +1,5 @@
 ---
-key_name: TaskName
+name: TaskName
 description: |
   Name of the task.
   No two tasks should have the same name.

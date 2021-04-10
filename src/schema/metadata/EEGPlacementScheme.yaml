@@ -1,5 +1,5 @@
 ---
-key_name: EEGPlacementScheme
+name: EEGPlacementScheme
 description: |
   Placement scheme of EEG electrodes.
   Either the name of a standardized placement system (for example, "10-20")

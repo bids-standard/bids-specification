@@ -1,5 +1,5 @@
 ---
-key_name: ReconMethodParameterLabels
+name: ReconMethodParameterLabels
 description: |
   Names of reconstruction parameters (for example, `["subsets", "iterations"]`)
 type: array

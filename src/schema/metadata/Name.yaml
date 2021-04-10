@@ -1,5 +1,5 @@
 ---
-key_name: Name
+name: Name
 description: |
   Name of the dataset.
 type: string

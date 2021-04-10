@@ -1,5 +1,5 @@
 ---
-key_name: LabelingPulseDuration
+name: LabelingPulseDuration
 description: |
   Duration of the individual labeling pulses, in milliseconds.
 type: number

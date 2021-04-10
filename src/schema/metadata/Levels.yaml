@@ -1,5 +1,5 @@
 ---
-key_name: Levels
+name: Levels
 description: |
   For categorical variables: An object of possible values (keys) and their
   descriptions (values).

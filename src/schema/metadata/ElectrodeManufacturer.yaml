@@ -1,5 +1,5 @@
 ---
-key_name: ElectrodeManufacturer
+name: ElectrodeManufacturer
 description: |
   Can be used if all electrodes are of the same manufacturer
   (for example, AD-TECH, DIXI).

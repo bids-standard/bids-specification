@@ -1,5 +1,5 @@
 ---
-key_name: LabelingSlabThickness
+name: LabelingSlabThickness
 description: |
   Thickness of the labeling slab in millimeters.
   For non-selective FAIR a zero is entered.

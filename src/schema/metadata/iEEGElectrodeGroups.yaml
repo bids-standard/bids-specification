@@ -1,5 +1,5 @@
 ---
-key_name: iEEGElectrodeGroups
+name: iEEGElectrodeGroups
 description: |
   Field to describe the way electrodes are grouped into strips, grids or depth
   probes.

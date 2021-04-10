@@ -1,5 +1,5 @@
 ---
-key_name: iEEGCoordinateSystem
+name: iEEGCoordinateSystem
 description: |
   Defines the coordinate system for the iEEG sensors.
   See

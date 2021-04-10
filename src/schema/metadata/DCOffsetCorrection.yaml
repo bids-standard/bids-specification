@@ -1,5 +1,5 @@
 ---
-key_name: DCOffsetCorrection
+name: DCOffsetCorrection
 description: |
   A description of the method (if any) used to correct for a DC offset.
   If the method used was subtracting the mean value for each channel,

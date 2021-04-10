@@ -1,5 +1,5 @@
 ---
-key_name: ScaleFactor
+name: ScaleFactor
 description: |
   Scale factor for each frame.
 type: array

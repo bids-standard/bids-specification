@@ -1,5 +1,5 @@
 ---
-key_name: InfusionRadioactivity
+name: InfusionRadioactivity
 description: |
   Amount of radioactivity infused into the patient.
   This value must be less than or equal to the total injected radioactivity

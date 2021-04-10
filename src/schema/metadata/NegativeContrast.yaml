@@ -1,5 +1,5 @@
 ---
-key_name: NegativeContrast
+name: NegativeContrast
 description: |
   `true` or `false` value specifying whether increasing voxel intensity
   (within sample voxels) denotes a decreased value with respect to the

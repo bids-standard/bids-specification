@@ -1,5 +1,5 @@
 ---
-key_name: EthicsApprovals
+name: EthicsApprovals
 description: |
   List of ethics committee approvals of the research protocols and/or
   protocol identifiers.

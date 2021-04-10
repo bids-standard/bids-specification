@@ -1,5 +1,5 @@
 ---
-key_name: StationName
+name: StationName
 description: |
   Institution defined name of the machine that produced the composite
   instances.

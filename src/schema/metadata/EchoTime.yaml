@@ -1,5 +1,5 @@
 ---
-key_name: EchoTime
+name: EchoTime
 description: |
   The echo time (TE) for the acquisition, specified in seconds.
   Corresponds to DICOM Tag 0018, 0081 `Echo Time`

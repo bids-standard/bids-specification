@@ -1,5 +1,5 @@
 ---
-key_name: SEEGChannelCount
+name: SEEGChannelCount
 description: |
   Number of SEEG channels.
 type: integer

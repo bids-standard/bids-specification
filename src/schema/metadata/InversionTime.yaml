@@ -1,5 +1,5 @@
 ---
-key_name: InversionTime
+name: InversionTime
 description: |
   The inversion time (TI) for the acquisition, specified in seconds.
   Inversion time is the time after the middle of inverting RF pulse to middle

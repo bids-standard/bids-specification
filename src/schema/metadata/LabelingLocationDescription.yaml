@@ -1,5 +1,5 @@
 ---
-key_name: LabelingLocationDescription
+name: LabelingLocationDescription
 description: |
   Description of the location of the labeling plane (`"CASL"` or `"PCASL"`) or
   the labeling slab (`"PASL"`) that cannot be captured by fields

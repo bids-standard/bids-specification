@@ -1,5 +1,5 @@
 ---
-key_name: MetaboliteMethod
+name: MetaboliteMethod
 description: |
   Method used to measure metabolites.
 type: string

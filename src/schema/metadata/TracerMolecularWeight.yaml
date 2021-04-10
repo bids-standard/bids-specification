@@ -1,5 +1,5 @@
 ---
-key_name: TracerMolecularWeight
+name: TracerMolecularWeight
 description: |
   Accurate molecular weight of the tracer used.
 type: number

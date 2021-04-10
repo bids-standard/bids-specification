@@ -1,5 +1,5 @@
 ---
-key_name: IntendedFor
+name: IntendedFor
 description: |
   The paths to files for which the associated file is intended to be used.
   Contains one or more filenames with paths relative to the participant

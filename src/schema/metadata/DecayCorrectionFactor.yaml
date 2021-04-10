@@ -1,5 +1,5 @@
 ---
-key_name: DecayCorrectionFactor
+name: DecayCorrectionFactor
 description: |
   Decay correction factor for each frame.
 type: array

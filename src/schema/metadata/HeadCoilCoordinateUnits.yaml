@@ -1,5 +1,5 @@
 ---
-key_name: HeadCoilCoordinateUnits
+name: HeadCoilCoordinateUnits
 description: |
   Units of the coordinates of `HeadCoilCoordinateSystem`.
   MUST be `"m"`, `"cm"`, or `"mm"`.

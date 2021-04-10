@@ -1,5 +1,5 @@
 ---
-key_name: PharmaceuticalDoseTime
+name: PharmaceuticalDoseTime
 description: |
   Time of administration of pharmaceutical dose, relative to time zero
   (please see below).

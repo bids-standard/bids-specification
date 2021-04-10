@@ -1,5 +1,5 @@
 ---
-key_name: LabelingOrientation
+name: LabelingOrientation
 description: |
   Orientation of the labeling plane (`(P)CASL`) or slab (`PASL`).
   The direction cosines of a normal vector perpendicular to the ASL labeling

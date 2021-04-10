@@ -1,5 +1,5 @@
 ---
-key_name: EEGReference
+name: EEGReference
 description: |
   General description of the reference scheme used and (when applicable) of
   location of the reference electrode in the raw recordings

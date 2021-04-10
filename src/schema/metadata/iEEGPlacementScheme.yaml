@@ -1,5 +1,5 @@
 ---
-key_name: iEEGPlacementScheme
+name: iEEGPlacementScheme
 description: |
   Freeform description of the placement of the iEEG electrodes.
   Left/right/bilateral/depth/surface

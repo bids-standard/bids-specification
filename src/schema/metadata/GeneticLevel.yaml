@@ -1,5 +1,5 @@
 ---
-key_name: GeneticLevel
+name: GeneticLevel
 description: |
   Describes the level of analysis.
   Values MUST be one of `"Genetic"`, `"Genomic"`, `"Epigenomic"`,

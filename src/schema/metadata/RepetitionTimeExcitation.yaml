@@ -1,5 +1,5 @@
 ---
-key_name: RepetitionTimeExcitation
+name: RepetitionTimeExcitation
 description: |
   The interval, in seconds, between two successive excitations.
   The DICOM tag that best refers to this parameter is

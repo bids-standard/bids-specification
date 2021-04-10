@@ -1,5 +1,5 @@
 ---
-key_name: CASLType
+name: CASLType
 description: |
   Describes if a separate coil is used for labeling:
   `single-coil` or `double-coil`.

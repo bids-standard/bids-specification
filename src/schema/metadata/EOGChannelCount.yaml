@@ -1,5 +1,5 @@
 ---
-key_name: EOGChannelCount
+name: EOGChannelCount
 description: |
   Number of EOG channels.
 type: integer

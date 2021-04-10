@@ -1,5 +1,5 @@
 ---
-key_name: Type
+name: Type
 description: |
   Short identifier of the mask.
   Reserved values: `Brain` - brain mask, `Lesion` - lesion mask,

@@ -1,5 +1,5 @@
 ---
-key_name: SliceTiming
+name: SliceTiming
 description: |
   The time at which each slice was acquired within each volume (frame) of the
   acquisition.

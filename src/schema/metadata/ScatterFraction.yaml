@@ -1,5 +1,5 @@
 ---
-key_name: ScatterFraction
+name: ScatterFraction
 description: |
   Scatter fraction for each frame (Units: 0-100%).
 type: number

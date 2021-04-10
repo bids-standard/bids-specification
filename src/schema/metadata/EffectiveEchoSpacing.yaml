@@ -1,5 +1,5 @@
 ---
-key_name: EffectiveEchoSpacing
+name: EffectiveEchoSpacing
 description: |
   The "effective" sampling interval, specified in seconds,
   between lines in the phase-encoding direction,

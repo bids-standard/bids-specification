@@ -1,5 +1,5 @@
 ---
-key_name: PhaseEncodingDirection
+name: PhaseEncodingDirection
 description: |
   See [in-plane spatial encoding](#in-plane-spatial-encoding) table of fields.
 type: string

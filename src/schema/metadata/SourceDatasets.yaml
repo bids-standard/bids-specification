@@ -1,5 +1,5 @@
 ---
-key_name: SourceDatasets
+name: SourceDatasets
 description: |
   Used to specify the locations and relevant attributes of all source datasets.
   Valid keys in each object include `URL`, `DOI` (see

@@ -1,5 +1,5 @@
 ---
-key_name: BodyPart
+name: BodyPart
 description: |
   Body part of the organ / body region scanned.
   Corresponds to DICOM Tag 0018, 0015 Body Part Examined.

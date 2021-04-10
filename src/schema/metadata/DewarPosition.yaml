@@ -1,5 +1,5 @@
 ---
-key_name: DewarPosition
+name: DewarPosition
 description: |
   Position of the dewar during the MEG scan:
   `upright`, `supine` or `degrees` of angle from vertical:

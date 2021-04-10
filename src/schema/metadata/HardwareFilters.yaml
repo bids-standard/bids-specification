@@ -1,5 +1,5 @@
 ---
-key_name: HardwareFilters
+name: HardwareFilters
 description: |
   Object of temporal hardware filters applied, or "n/a" if the data is not
   available. Each key:value pair in the JSON object is a name of the filter and

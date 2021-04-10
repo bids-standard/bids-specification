@@ -1,5 +1,5 @@
 ---
-key_name: ReconMethodParameterUnit
+name: ReconMethodParameterUnit
 description: |
   Unit of reconstruction parameters (for example, `["none", "none"]`).
 type: array

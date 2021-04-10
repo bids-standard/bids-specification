@@ -1,5 +1,5 @@
 ---
-key_name: ReconMethodParameterValues
+name: ReconMethodParameterValues
 description: |
   Values of reconstruction parameters (for example, `[21, 3]`)
 type: array

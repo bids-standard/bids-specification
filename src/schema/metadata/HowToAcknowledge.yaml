@@ -1,5 +1,5 @@
 ---
-key_name: HowToAcknowledge
+name: HowToAcknowledge
 description: |
   Text containing instructions on how researchers using this dataset should
   acknowledge the original authors.

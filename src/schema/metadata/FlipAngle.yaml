@@ -1,5 +1,5 @@
 ---
-key_name: FlipAngle
+name: FlipAngle
 description: |
   Flip angle (FA) for the acquisition, specified in degrees.
   Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.

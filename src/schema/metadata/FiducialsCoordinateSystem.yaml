@@ -1,5 +1,5 @@
 ---
-key_name: FiducialsCoordinateSystem
+name: FiducialsCoordinateSystem
 description: |
   Defines the coordinate system for the fiducials.
   Preferably the same as the `EEGCoordinateSystem`.

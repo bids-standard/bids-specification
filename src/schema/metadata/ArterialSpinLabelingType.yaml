@@ -1,5 +1,5 @@
 ---
-key_name: ArterialSpinLabelingType
+name: ArterialSpinLabelingType
 description: |
   `"CASL"`, `"PCASL"`, `"PASL"`.
 type: string

@@ -1,5 +1,5 @@
 ---
-key_name: LabelingEfficiency
+name: LabelingEfficiency
 description: |
   Labeling efficiency, specified as a number between zero and one,
   only if obtained externally (for example phase-contrast based).

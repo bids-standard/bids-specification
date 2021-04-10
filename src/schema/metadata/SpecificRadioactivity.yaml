@@ -1,5 +1,5 @@
 ---
-key_name: SpecificRadioactivity
+name: SpecificRadioactivity
 description: |
   Specific activity of compound injected.
   **Note this is not required for an FDG acquisition, since it is not available,

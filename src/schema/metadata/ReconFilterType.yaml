@@ -1,5 +1,5 @@
 ---
-key_name: ReconFilterType
+name: ReconFilterType
 description: |
   Type of post-recon smoothing (for example, `["Shepp"]`)
 anyOf:

@@ -1,5 +1,5 @@
 ---
-key_name: ImageDecayCorrectionTime
+name: ImageDecayCorrectionTime
 description: |
   Point in time from which the decay correction was applied with respect to
   TimeZero in the default unit seconds.

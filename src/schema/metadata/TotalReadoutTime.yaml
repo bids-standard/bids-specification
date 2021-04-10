@@ -1,5 +1,5 @@
 ---
-key_name: TotalReadoutTime
+name: TotalReadoutTime
 description: |
   This is actually the "effective" total readout time,
   defined as the readout duration, specified in seconds,

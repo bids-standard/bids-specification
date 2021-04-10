@@ -1,5 +1,5 @@
 ---
-key_name: FrameDuration
+name: FrameDuration
 description: |
   Time duration of each frame in default unit seconds.
   This corresponds to DICOM Tag (0018,1242) converted to seconds.

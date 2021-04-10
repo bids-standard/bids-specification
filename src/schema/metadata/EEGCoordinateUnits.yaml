@@ -1,5 +1,5 @@
 ---
-key_name: EEGCoordinateUnits
+name: EEGCoordinateUnits
 description: |
   Units of the coordinates of `EEGCoordinateSystem`.
   MUST be `"m"`, `"cm"`, or `"mm"`.

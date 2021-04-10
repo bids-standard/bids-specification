@@ -1,5 +1,5 @@
 ---
-key_name: TaskDescription
+name: TaskDescription
 description: |
   Longer description of the task.
 type: string

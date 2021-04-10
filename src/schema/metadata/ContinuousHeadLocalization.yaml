@@ -1,5 +1,5 @@
 ---
-key_name: ContinuousHeadLocalization
+name: ContinuousHeadLocalization
 description: |
   `true` or `false` value indicating whether continuous head localisation
   was performed.

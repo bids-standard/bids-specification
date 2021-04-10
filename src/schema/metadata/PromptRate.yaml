@@ -1,5 +1,5 @@
 ---
-key_name: PromptRate
+name: PromptRate
 description: |
   Prompt rate for each frame (same units as `Unit`, for example, `"Bq/mL"`).
 type: array

@@ -1,5 +1,5 @@
 ---
-key_name: HeadCoilCoordinateSystem
+name: HeadCoilCoordinateSystem
 description: |
   Defines the coordinate system for the head coils.
   See

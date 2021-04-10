@@ -1,5 +1,5 @@
 ---
-key_name: RepetitionTimePreparation
+name: RepetitionTimePreparation
 description: |
   The interval, in seconds, that it takes a preparation pulse block to
   re-appear at the beginning of the succeeding (essentially identical) pulse

@@ -1,5 +1,5 @@
 ---
-key_name: LabelingDistance
+name: LabelingDistance
 description: |
   Distance from the center of the imaging slab to the center of the labeling
   plane (`(P)CASL`) or the leading edge of the labeling slab (`PASL`),

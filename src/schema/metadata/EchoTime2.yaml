@@ -1,5 +1,5 @@
 ---
-key_name: EchoTime2
+name: EchoTime2
 description: |
   The time (in seconds) when the second (longer) echo occurs.
 type: number

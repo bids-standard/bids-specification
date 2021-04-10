@@ -1,5 +1,5 @@
 ---
-key_name: Genetics
+name: Genetics
 description: |
   An object containing information about the genetics descriptor.
 type: object

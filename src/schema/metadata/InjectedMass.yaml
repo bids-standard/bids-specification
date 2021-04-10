@@ -1,5 +1,5 @@
 ---
-key_name: InjectedMass
+name: InjectedMass
 description: |
   Total mass of radiolabeled compound injected into subject (for example, 10).
   This can be derived as the ratio of the `InjectedRadioactivity` and

@@ -1,5 +1,5 @@
 ---
-key_name: SinglesRate
+name: SinglesRate
 description: |
   Singles rate for each frame (same units as `Unit`, for example, `"Bq/mL"`).
 type: array

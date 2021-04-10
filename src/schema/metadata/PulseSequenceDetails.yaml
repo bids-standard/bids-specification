@@ -1,5 +1,5 @@
 ---
-key_name: PulseSequenceDetails
+name: PulseSequenceDetails
 description: |
   Information beyond pulse sequence type that identifies the specific pulse
   sequence used (for example,

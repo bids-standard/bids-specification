@@ -1,5 +1,5 @@
 ---
-key_name: Columns
+name: Columns
 description: |
   Names of columns in file.
 type: array

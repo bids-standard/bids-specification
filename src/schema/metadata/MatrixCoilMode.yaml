@@ -1,5 +1,5 @@
 ---
-key_name: MatrixCoilMode
+name: MatrixCoilMode
 description: |
   (If used)
   A method for reducing the number of independent channels by combining in

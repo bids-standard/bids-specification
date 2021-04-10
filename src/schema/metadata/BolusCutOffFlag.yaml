@@ -1,5 +1,5 @@
 ---
-key_name: BolusCutOffFlag
+name: BolusCutOffFlag
 description: |
   Boolean indicating if a bolus cut-off technique is used.
   Corresponds to DICOM Tag 0018,925C `ASL Bolus Cut-off Flag`.

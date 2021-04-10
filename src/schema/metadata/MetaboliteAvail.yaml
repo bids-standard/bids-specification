@@ -1,5 +1,5 @@
 ---
-key_name: MetaboliteAvail
+name: MetaboliteAvail
 description: |
   Boolean that specifies if metabolite measurements are available.
   If `true`, the `metabolite_parent_fraction` column MUST be present in the

@@ -1,5 +1,5 @@
 ---
-key_name: InjectedMassUnit
+name: InjectedMassUnit
 description: |
   Unit format of the mass of compound injected (for example, `"ug"` or
   `"umol"`).

@@ -1,5 +1,5 @@
 ---
-key_name: DigitizedHeadPointsCoordinateUnits
+name: DigitizedHeadPointsCoordinateUnits
 description: |
   Units of the coordinates of `DigitizedHeadPointsCoordinateSystem`.
   MUST be `"m"`, `"cm"`, or `"mm"`.

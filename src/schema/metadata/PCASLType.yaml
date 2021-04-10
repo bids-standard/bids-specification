@@ -1,5 +1,5 @@
 ---
-key_name: PCASLType
+name: PCASLType
 description: |
   Type the gradient pulses used in the `"control"` condition:
   `"balanced"` or `"unbalanced"`.

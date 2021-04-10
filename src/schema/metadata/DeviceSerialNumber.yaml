@@ -1,5 +1,5 @@
 ---
-key_name: DeviceSerialNumber
+name: DeviceSerialNumber
 description: |
   The serial number of the equipment that produced the composite instances.
   Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`.

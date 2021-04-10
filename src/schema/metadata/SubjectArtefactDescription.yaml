@@ -1,5 +1,5 @@
 ---
-key_name: SubjectArtefactDescription
+name: SubjectArtefactDescription
 description: |
   Freeform description of the observed subject artefact and its possible cause
   (for example, `"Vagus Nerve Stimulator"`, `"non-removable implant"`).

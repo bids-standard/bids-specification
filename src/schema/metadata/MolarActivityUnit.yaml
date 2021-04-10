@@ -1,5 +1,5 @@
 ---
-key_name: MolarActivityUnit
+name: MolarActivityUnit
 description: |
   Unit of the specified molar radioactivity (for example, `"GBq/umol"`).
 type: string

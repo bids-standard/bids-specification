@@ -1,5 +1,5 @@
 ---
-key_name: DwellTime
+name: DwellTime
 description: |
   Actual dwell time (in seconds) of the receiver per point in the readout
   direction, including any oversampling.

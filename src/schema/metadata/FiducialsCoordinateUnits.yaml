@@ -1,5 +1,5 @@
 ---
-key_name: FiducialsCoordinateUnits
+name: FiducialsCoordinateUnits
 description: |
   Units in which the coordinates that are  listed in the field
   `FiducialsCoordinateSystem` are represented.

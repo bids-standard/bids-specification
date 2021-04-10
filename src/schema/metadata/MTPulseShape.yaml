@@ -1,5 +1,5 @@
 ---
-key_name: MTPulseShape
+name: MTPulseShape
 description: |
   Shape of the magnetization transfer RF pulse waveform.
   Accepted values: `"HARD"`, `"GAUSSIAN"`,

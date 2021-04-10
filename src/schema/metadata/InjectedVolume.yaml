@@ -1,5 +1,5 @@
 ---
-key_name: InjectedVolume
+name: InjectedVolume
 description: |
   Injected volume of the radiotracer in the unit `"mL"`.
 type: number

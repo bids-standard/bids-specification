@@ -1,5 +1,5 @@
 ---
-key_name: Units
+name: Units
 description: |
   Measurement units.
   SI units in CMIXF formatting are RECOMMENDED

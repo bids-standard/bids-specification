@@ -1,5 +1,5 @@
 ---
-key_name: EEGChannelCount
+name: EEGChannelCount
 description: |
   Number of EEG channels recorded simultaneously (for example, 21).
 type: integer

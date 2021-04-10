@@ -1,5 +1,5 @@
 ---
-key_name: HardcopyDeviceSoftwareVersion
+name: HardcopyDeviceSoftwareVersion
 description: |
   Manufacturer's designation of the software of the device that created this
   Hardcopy Image (the printer).

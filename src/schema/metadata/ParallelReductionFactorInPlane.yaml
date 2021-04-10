@@ -1,5 +1,5 @@
 ---
-key_name: ParallelReductionFactorInPlane
+name: ParallelReductionFactorInPlane
 description: |
   The parallel imaging (for instance, GRAPPA) factor.
   Use the denominator of the fraction of k-space encoded for each slice.

@@ -1,5 +1,5 @@
 ---
-key_name: InjectionStart
+name: InjectionStart
 description: |
   Time of start of injection with respect to `TimeZero` in the default unit
   seconds.

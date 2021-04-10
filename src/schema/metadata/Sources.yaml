@@ -1,5 +1,5 @@
 ---
-key_name: Sources
+name: Sources
 description: |
   A list of files with the paths specified relative to dataset root;
   these files were directly used in the creation of this derivative data file.

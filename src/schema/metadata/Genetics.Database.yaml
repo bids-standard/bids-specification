@@ -1,5 +1,5 @@
 ---
-key_name: Genetics.Database
+name: Genetics.Database
 description: |
   [URI](/02-common-principles.html#uniform-resource-indicator)
   of database where the dataset is hosted.

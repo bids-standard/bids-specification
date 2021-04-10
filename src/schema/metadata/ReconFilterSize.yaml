@@ -1,5 +1,5 @@
 ---
-key_name: ReconFilterSize
+name: ReconFilterSize
 description: |
   Kernel size of post-recon filter (FWHM) in default units `"mm"`.
 anyOf:

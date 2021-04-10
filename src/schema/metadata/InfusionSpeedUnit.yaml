@@ -1,5 +1,5 @@
 ---
-key_name: InfusionSpeedUnit
+name: InfusionSpeedUnit
 description: |
   Unit of infusion speed (for example, `"mL/s"`).
 type: string

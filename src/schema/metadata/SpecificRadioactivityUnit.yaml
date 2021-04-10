@@ -1,5 +1,5 @@
 ---
-key_name: SpecificRadioactivityUnit
+name: SpecificRadioactivityUnit
 description: |
   Unit format of specified specific radioactivity (for example, `"Bq/g"`).
   **Note this is not required for an FDG acquisition, since it is not available,

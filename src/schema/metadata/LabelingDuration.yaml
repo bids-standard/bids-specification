@@ -1,5 +1,5 @@
 ---
-key_name: LabelingDuration
+name: LabelingDuration
 description: |
   Total duration of the labeling pulse train, in seconds,
   corresponding to the temporal width of the labeling bolus for

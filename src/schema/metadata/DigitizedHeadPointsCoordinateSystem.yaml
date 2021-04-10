@@ -1,5 +1,5 @@
 ---
-key_name: DigitizedHeadPointsCoordinateSystem
+name: DigitizedHeadPointsCoordinateSystem
 description: |
   Defines the coordinate system for the digitized head points.
   See

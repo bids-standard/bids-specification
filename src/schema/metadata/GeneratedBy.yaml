@@ -1,5 +1,5 @@
 ---
-key_name: GeneratedBy
+name: GeneratedBy
 description: |
   Used to specify provenance of the derived dataset.
   See table below for contents of each object.

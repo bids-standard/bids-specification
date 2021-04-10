@@ -1,5 +1,5 @@
 ---
-key_name: PharmaceuticalName
+name: PharmaceuticalName
 description: |
   Name of pharmaceutical coadministered with tracer.
 type: string

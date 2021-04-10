@@ -1,5 +1,5 @@
 ---
-key_name: NumberOfVolumesDiscardedByScanner
+name: NumberOfVolumesDiscardedByScanner
 description: |
   Number of volumes ("dummy scans") discarded by the scanner
   (as opposed to those discarded by the user post hoc)

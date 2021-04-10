@@ -1,5 +1,5 @@
 ---
-key_name: M0Type
+name: M0Type
 description: |
   Describes the presence of M0 information, as either:
   `"Separate"` when a separate `*_m0scan.nii[.gz]` is present,

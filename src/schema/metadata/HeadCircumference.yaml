@@ -1,5 +1,5 @@
 ---
-key_name: HeadCircumference
+name: HeadCircumference
 description: |
   Circumference of the participants head, expressed in cm (for example, 58).
 type: number

@@ -1,5 +1,5 @@
 ---
-key_name: InjectedMassPerWeightUnit
+name: InjectedMassPerWeightUnit
 description: |
   Unit format of the injected mass per kilogram bodyweight
   (for example, `"ug/kg"`).

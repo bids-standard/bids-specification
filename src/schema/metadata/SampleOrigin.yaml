@@ -1,5 +1,5 @@
 ---
-key_name: SampleOrigin
+name: SampleOrigin
 description: |
   Describes from which tissue the genetic information was extracted.
   Values MUST be one of `"blood"`, `"saliva"`, `"brain"`, `"csf"`,

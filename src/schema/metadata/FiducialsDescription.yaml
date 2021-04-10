@@ -1,5 +1,5 @@
 ---
-key_name: FiducialsDescription
+name: FiducialsDescription
 description: |
   Free-form text description of how the fiducials such as vitamin-E capsules
   were placed relative to anatomical landmarks,

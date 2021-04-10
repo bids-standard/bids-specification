@@ -1,5 +1,5 @@
 ---
-key_name: M0Estimate
+name: M0Estimate
 description: |
   A single numerical whole-brain M0 value (referring to the M0 of blood),
   only if obtained externally

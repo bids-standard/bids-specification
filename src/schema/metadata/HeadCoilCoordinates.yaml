@@ -1,5 +1,5 @@
 ---
-key_name: HeadCoilCoordinates
+name: HeadCoilCoordinates
 description: |
   Key:value pairs describing head localization coil labels and their
   coordinates, interpreted following the `HeadCoilCoordinateSystem`

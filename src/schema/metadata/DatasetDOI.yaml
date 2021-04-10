@@ -1,5 +1,5 @@
 ---
-key_name: DatasetDOI
+name: DatasetDOI
 description: |
   The Digital Object Identifier of the dataset (not the corresponding paper).
   DOIs SHOULD be expressed as a valid

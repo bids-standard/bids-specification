@@ -1,5 +1,5 @@
 ---
-key_name: InfusionSpeed
+name: InfusionSpeed
 description: |
   If given, infusion speed.
 type: number

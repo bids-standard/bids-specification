@@ -1,5 +1,5 @@
 ---
-key_name: LookLocker
+name: LookLocker
 description: |
   Boolean indicating if a Look-Locker readout is used.
 type: boolean

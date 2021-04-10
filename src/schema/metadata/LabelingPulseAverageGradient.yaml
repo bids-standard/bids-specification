@@ -1,5 +1,5 @@
 ---
-key_name: LabelingPulseAverageGradient
+name: LabelingPulseAverageGradient
 description: |
   The average labeling gradient, in milliteslas per meter.
 type: number

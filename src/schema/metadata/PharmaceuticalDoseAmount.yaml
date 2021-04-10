@@ -1,5 +1,5 @@
 ---
-key_name: PharmaceuticalDoseAmount
+name: PharmaceuticalDoseAmount
 description: |
   Dose amount of pharmaceutical coadministered with tracer.
 anyOf:

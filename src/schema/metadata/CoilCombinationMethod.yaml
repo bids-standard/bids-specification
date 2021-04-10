@@ -1,5 +1,5 @@
 ---
-key_name: CoilCombinationMethod
+name: CoilCombinationMethod
 description: |
   Almost all fMRI studies using phased-array coils use root-sum-of-squares
   (rSOS) combination, but other methods exist.

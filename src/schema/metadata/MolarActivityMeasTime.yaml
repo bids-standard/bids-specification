@@ -1,5 +1,5 @@
 ---
-key_name: MolarActivityMeasTime
+name: MolarActivityMeasTime
 description: |
   Time to which molar radioactivity measurement above applies in the default
   unit `"hh:mm:ss"`.

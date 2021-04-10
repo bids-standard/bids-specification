@@ -1,5 +1,5 @@
 ---
-key_name: LabelingPulseFlipAngle
+name: LabelingPulseFlipAngle
 description: |
   The flip angle of a single labeling pulse, in degrees,
   which can be given as an alternative to `LabelingPulseAverageB1`.

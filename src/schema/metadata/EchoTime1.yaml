@@ -1,5 +1,5 @@
 ---
-key_name: EchoTime1
+name: EchoTime1
 description: |
   The time (in seconds) when the first (shorter) echo occurs.
 type: number

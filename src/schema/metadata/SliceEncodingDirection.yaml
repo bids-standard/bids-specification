@@ -1,5 +1,5 @@
 ---
-key_name: SliceEncodingDirection
+name: SliceEncodingDirection
 description: |
   Possible values: `"i"`, `"j"`, `"k"`, `"i-"`, `"j-"`, `"k-"`
   (the axis of the NIfTI data along which slices were acquired,

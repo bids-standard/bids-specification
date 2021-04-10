@@ -1,5 +1,5 @@
 ---
-key_name: ReceiveCoilActiveElements
+name: ReceiveCoilActiveElements
 description: |
   Information describing the active/selected elements of the receiver coil.
   This doesn't correspond to a tag in the DICOM ontology.

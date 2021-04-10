@@ -37,7 +37,7 @@ of the schema, roughly in order of importance:
     folders are accepted and whether they are required or optional.
 
 -   `metadata/*.yaml`: Valid fields for sidecar metadata json files.
-    These files contain, at minimum, the following fields: `key_name`,
+    These files contain, at minimum, the following fields: `name`,
     `description`, and a set of fields for describing the field's data type.
 
     The data types include `type`, which MUST have a value of
@@ -54,7 +54,7 @@ of the schema, roughly in order of importance:
         The minimum number of items (`minItems`) defaults to 1.
         Here is an example of a field that MUST have three `integer` items:
         ```yaml
-        key_name: ExampleField
+        name: ExampleField
         description: |
             The description of "ExampleField".
         type: array
@@ -76,7 +76,7 @@ of the schema, roughly in order of importance:
         The minimum string length (`minLength`) defaults to 1.
         Here is an example of a field with a restricted set of possible values:
         ```yaml
-        key_name: ExampleField
+        name: ExampleField
         description: |
             The description of "ExampleField".
         type: string
@@ -91,7 +91,7 @@ of the schema, roughly in order of importance:
         `exclusiveMinimum`, `exclusiveMaximum`.
         Here is an example of a field with a minimum value of 0:
         ```yaml
-        key_name: ExampleField
+        name: ExampleField
         description: |
             The description of "ExampleField".
         type: integer
@@ -105,7 +105,7 @@ of the schema, roughly in order of importance:
         Here is an example of a field with a minimum of 0, in units of
         kilometers per second:
         ```yaml
-        key_name: ExampleField
+        name: ExampleField
         description: |
             The description of "ExampleField".
         type: number
@@ -125,7 +125,7 @@ of the schema, roughly in order of importance:
         with one optional field named "OptionalField" that MUST be a `string`
         and any number of additional optional fields that MUST be `number`s.
         ```yaml
-        key_name: ExampleField
+        name: ExampleField
         description: |
             The description of "ExampleField".
         type: object
@@ -139,7 +139,7 @@ of the schema, roughly in order of importance:
     -   `boolean`: If `type` is `boolean`, then the field's value MUST be one
         of: `"true"`, `"false"`. Here is an example:
         ```yaml
-        key_name: ExampleField
+        name: ExampleField
         description: |
             The description of "ExampleField".
         type: boolean
@@ -151,7 +151,7 @@ of the schema, roughly in order of importance:
     descriptions MUST be defined.
     Here is an example of one such case:
     ```yaml
-    key_name: ExampleField
+    name: ExampleField
     description: |
         The description of "ExampleField".
     anyOf:
@@ -166,7 +166,7 @@ of the schema, roughly in order of importance:
     file, with the `$ref` keyword.
     Here is an example of a field definition using `$ref`:
     ```yaml
-    key_name: ExampleField
+    name: ExampleField
     description: |
         The description of "ExampleField".
     $ref: _ReferenceFile.yaml
@@ -177,7 +177,7 @@ of the schema, roughly in order of importance:
 
     Here is an example of a reference file:
     ```yaml
-    key_name: _ReferenceFile
+    name: _ReferenceFile
     description: |
         Description of "_ReferenceFile".
     type: string
@@ -189,7 +189,7 @@ of the schema, roughly in order of importance:
     The result of including `$ref` makes the `ExampleField` above equivalent
     to the following format:
     ```yaml
-    key_name: ExampleField
+    name: ExampleField
     description: |
         The description of "ExampleField".
     type: string

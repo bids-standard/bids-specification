@@ -1,5 +1,5 @@
 ---
-key_name: MEGCoordinateSystem
+name: MEGCoordinateSystem
 description: |
   Defines the coordinate system for the MEG sensors.
   See [Appendix VIII](/99-appendices/08-coordinate-systems.html)

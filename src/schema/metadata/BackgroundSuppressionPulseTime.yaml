@@ -1,5 +1,5 @@
 ---
-key_name: BackgroundSuppressionPulseTime
+name: BackgroundSuppressionPulseTime
 description: |
   Array of numbers containing timing, in seconds,
   of the background suppression pulses with respect to the start of the

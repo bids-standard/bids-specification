@@ -1,5 +1,5 @@
 ---
-key_name: Funding
+name: Funding
 description: |
   List of sources of funding (grant numbers).
 type: array

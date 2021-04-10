@@ -1,5 +1,5 @@
 ---
-key_name: SoftwareFilters
+name: SoftwareFilters
 description: |
   [Object](https://www.json.org/json-en.html)
   of temporal software filters applied, or `"n/a"` if the data is

@@ -1,5 +1,5 @@
 ---
-key_name: Density
+name: Density
 description: |
   Specifies the interpretation of the density keyword.
 anyOf:

@@ -1,5 +1,5 @@
 ---
-key_name: ElectricalStimulation
+name: ElectricalStimulation
 description: |
   Boolean field to specify if electrical stimulation was done during the
   recording (options are "true" or "false"). Parameters for event-like

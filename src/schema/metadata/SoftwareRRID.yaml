@@ -1,5 +1,5 @@
 ---
-key_name: SoftwareRRID
+name: SoftwareRRID
 description: |
   [Research Resource Identifier](https://scicrunch.org/resources) of the
   software that was used to present the stimuli.

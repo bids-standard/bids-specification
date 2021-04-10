@@ -1,5 +1,5 @@
 ---
-key_name: PostLabelingDelay
+name: PostLabelingDelay
 description: |
   This is the postlabeling delay (PLD) time, in seconds, after the end of the
   labeling (for `"CASL"` or `"PCASL"`) or middle of the labeling pulse

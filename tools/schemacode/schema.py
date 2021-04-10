@@ -433,7 +433,7 @@ def _resolve_metadata_type(definition):
 
     else:
         # A hack to deal with $ref in the current schema
-        print(f"Type could not be inferred for {definition['key_name']}")
+        print(f"Type could not be inferred for {definition['name']}")
         pprint(definition)
         string = "unknown"
 

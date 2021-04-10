@@ -1,5 +1,5 @@
 ---
-key_name: VascularCrushingVENC
+name: VascularCrushingVENC
 description: |
   The crusher gradient strength, in centimeters per second.
   Specify either one number for the total time-series, or provide an array of

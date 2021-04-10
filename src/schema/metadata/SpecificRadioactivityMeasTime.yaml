@@ -1,5 +1,5 @@
 ---
-key_name: SpecificRadioactivityMeasTime
+name: SpecificRadioactivityMeasTime
 description: |
   Time to which specific radioactivity measurement above applies in the default
   unit `"hh:mm:ss"`.

@@ -1,5 +1,5 @@
 ---
-key_name: HeadCoilFrequency
+name: HeadCoilFrequency
 description: |
   List of frequencies (in Hz) used by the head localisation coils
   ('HLC' in CTF systems, 'HPI' in Elekta, 'COH' in BTi/4D)

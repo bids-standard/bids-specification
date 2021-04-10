@@ -1,5 +1,5 @@
 ---
-key_name: BrainLocation
+name: BrainLocation
 description: |
   Refers to the location in space of the `TissueOrigin`.
   Values may be an MNI coordinate,

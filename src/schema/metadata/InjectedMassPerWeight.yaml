@@ -1,5 +1,5 @@
 ---
-key_name: InjectedMassPerWeight
+name: InjectedMassPerWeight
 description: |
   Injected mass per kilogram bodyweight.
 type: number

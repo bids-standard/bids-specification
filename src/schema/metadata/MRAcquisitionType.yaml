@@ -1,5 +1,5 @@
 ---
-key_name: MRAcquisitionType
+name: MRAcquisitionType
 description: |
   Possible values: `"2D"` or `"3D"`.
   Type of sequence readout.

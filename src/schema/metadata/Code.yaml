@@ -1,5 +1,5 @@
 ---
-key_name: Code
+name: Code
 description: |
   [URI](/02-common-principles.html#uniform-resource-indicator)
   of the code used to present the stimuli.

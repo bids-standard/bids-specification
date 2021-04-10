@@ -1,5 +1,5 @@
 ---
-key_name: RepetitionTime
+name: RepetitionTime
 description: |
   The time in seconds between the beginning of an acquisition of one volume
   and the beginning of acquisition of the volume following it (TR).

@@ -1,5 +1,5 @@
 ---
-key_name: RecordingType
+name: RecordingType
 description: |
   Defines whether the recording is `"continuous"`, `"discontinuous"` or
   `"epoched"`, where `"epoched"` is limited to time windows about events of

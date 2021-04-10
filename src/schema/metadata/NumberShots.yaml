@@ -1,5 +1,5 @@
 ---
-key_name: NumberShots
+name: NumberShots
 description: |
   The number of RF excitations needed to reconstruct a slice or volume
   (may be referred to as partition).

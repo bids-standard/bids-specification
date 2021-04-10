@@ -1,5 +1,5 @@
 ---
-key_name: iEEGGround
+name: iEEGGround
 description: |
   Description of the location of the ground electrode
   (`"placed on right mastoid (M2)"`).

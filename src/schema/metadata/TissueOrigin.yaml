@@ -1,5 +1,5 @@
 ---
-key_name: TissueOrigin
+name: TissueOrigin
 description: |
   Describes the type of tissue analyzed for `SampleOrigin` `brain`.
   Values MUST be one of `"gray matter"`, `"white matter"`, `"csf"`,

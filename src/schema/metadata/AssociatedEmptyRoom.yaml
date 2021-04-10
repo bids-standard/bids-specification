@@ -1,5 +1,5 @@
 ---
-key_name: AssociatedEmptyRoom
+name: AssociatedEmptyRoom
 description: |
   Relative path in BIDS folder structure to empty-room file associated with
   the subject’s MEG recording.

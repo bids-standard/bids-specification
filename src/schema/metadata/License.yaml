@@ -1,5 +1,5 @@
 ---
-key_name: License
+name: License
 description: |
   The license for the dataset.
   The use of license name abbreviations is RECOMMENDED for specifying a license

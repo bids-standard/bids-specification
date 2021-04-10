@@ -1,5 +1,5 @@
 ---
-key_name: TimeZero
+name: TimeZero
 description: |
   Time zero to which all scan and/or blood measurements have been adjusted to,
   in the unit "hh:mm:ss".

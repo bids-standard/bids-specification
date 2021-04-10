@@ -1,5 +1,5 @@
 ---
-key_name: EEGCoordinateSystem
+name: EEGCoordinateSystem
 description: |
   See
   [Recording EEG simultaneously with MEG]\

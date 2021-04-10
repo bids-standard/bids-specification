@@ -1,5 +1,5 @@
 ---
-key_name: MixingTime
+name: MixingTime
 description: |
   In the context of a stimulated- and spin-echo 3D EPI sequence for B1+ mapping,
   corresponds to the interval between spin- and stimulated-echo pulses.

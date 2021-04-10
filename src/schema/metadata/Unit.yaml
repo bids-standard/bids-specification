@@ -1,5 +1,5 @@
 ---
-key_name: Unit
+name: Unit
 description: |
   Unit of the image file; please see BIDS main spec section 6.
   SI unit for radioactivity (Becquerel) should be used

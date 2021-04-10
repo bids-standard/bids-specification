@@ -1,5 +1,5 @@
 ---
-key_name: AcquisitionVoxelSize
+name: AcquisitionVoxelSize
 description: |
   An array of numbers with a length of 3, in millimeters.
   This parameter denotes the original acquisition voxel size,

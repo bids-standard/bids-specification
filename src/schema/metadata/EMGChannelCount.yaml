@@ -1,5 +1,5 @@
 ---
-key_name: EMGChannelCount
+name: EMGChannelCount
 description: |
   Number of EMG channels.
 type: integer

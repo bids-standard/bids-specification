@@ -1,5 +1,5 @@
 ---
-key_name: MetaboliteRecoveryCorrectionApplied
+name: MetaboliteRecoveryCorrectionApplied
 description: |
   Metabolite recovery correction from the HPLC, for tracers where it changes
   with time postinjection.

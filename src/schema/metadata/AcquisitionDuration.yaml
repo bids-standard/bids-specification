@@ -1,5 +1,5 @@
 ---
-key_name: AcquisitionDuration
+name: AcquisitionDuration
 description: |
   Duration (in seconds) of volume acquisition.
   Corresponds to DICOM Tag 0018,9073 Acquisition Duration.

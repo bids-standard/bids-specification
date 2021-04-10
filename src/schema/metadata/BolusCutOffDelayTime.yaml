@@ -1,5 +1,5 @@
 ---
-key_name: BolusCutOffDelayTime
+name: BolusCutOffDelayTime
 description: |
   Duration between the end of the labeling and the start of the bolus cut-off
   saturation pulse(s), in seconds.

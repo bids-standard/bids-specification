@@ -1,5 +1,5 @@
 ---
-key_name: BolusCutOffTechnique
+name: BolusCutOffTechnique
 description: |
   Name of the technique used, for example Q2TIPS, QUIPSS, QUIPSSII.
   Corresponds to DICOM Tag 0018,925E `ASL Bolus Cut-off Technique`.

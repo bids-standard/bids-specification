@@ -1,5 +1,5 @@
 ---
-key_name: DigitizedLandmarks
+name: DigitizedLandmarks
 description: |
   `true` or `false` value indicating whether anatomical landmark points
   (fiducials) are contained within this recording.
