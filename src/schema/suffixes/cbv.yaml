@@ -1,3 +1,4 @@
 ---
-name:
-description:
+name: CBV
+description: |
+  Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images)
