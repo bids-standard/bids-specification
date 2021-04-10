@@ -1,3 +1,4 @@
 ---
-name:
-description:
+name: Diffusion-weighted image
+description: |
+  Diffusion-weighted imaging contrast (specialized T2\* weighting).
