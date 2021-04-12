@@ -134,7 +134,7 @@ which we divide into several categories:
 | --------------------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Manufacturer                | REQUIRED              | [string][]    | Scanner manufacturer (for example, `"Siemens"`).                                                                                                                                       |
 | ManufacturersModelName      | REQUIRED              | [string][]    | PET scanner model name (for example, `"mMR Biograph"`).                                                                                                                                |
-| Unit                        | REQUIRED              | [string][]    | Unit of the image file; please see BIDS main spec section 6. SI unit for radioactivity (Becquerel) should be used (for example, `"Bq/mL"`). Corresponds to DICOM Tag 0054, 1001 Units. |
+| Units                       | REQUIRED              | [string][]    | Unit of the image file; please see BIDS main spec section 6. SI unit for radioactivity (Becquerel) should be used (for example, `"Bq/mL"`). Corresponds to DICOM Tag 0054, 1001 Units. |
 | InstitutionName             | RECOMMENDED           | [string][]    | The name of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0080 InstitutionName.                                     |
 | InstitutionAddress          | RECOMMENDED           | [string][]    | The address of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0081 InstitutionAddress.                               |
 | InstitutionalDepartmentName | RECOMMENDED           | [string][]    | The department in the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1040 Institutional Department Name.                 |
@@ -227,7 +227,7 @@ All reconstruction-specific parameters that are not specified, but one wants to 
   "Manufacturer": "Siemens",
   "ManufacturersModelName": "High-Resolution Research Tomograph (HRRT, CTI/Siemens)",
   "BodyPart": "Brain",
-  "Unit": "Bq/mL",
+  "Units": "Bq/mL",
   "TracerName": "CIMBI-36",
   "TracerRadionuclide": "C11",
   "TracerMolecularWeight": 380.28,
