@@ -98,8 +98,19 @@ Whenever possible, please avoid using ad-hoc wording.
    {
       "InstitutionName": "RECOMMENDED",
       "InstitutionAddress": "RECOMMENDED",
-      "Manufacturer": "RECOMMENDED",
-      "ManufacturersModelName": "RECOMMENDED",
+      "Manufacturer": (
+         "RECOMMENDED",
+         "For MEG scanners, this must be one of: "
+         '`"CTF"`, `"Elekta/Neuromag"`, `"BTi/4D"`, `"KIT/Yokogawa"`, '
+         '`"ITAB"`, `"KRISS"`, `"Other"`. '
+         "See [Appendix VII](/99-appendices/07-meg-systems.html) for "
+         "preferred names.",
+      ),
+      "ManufacturersModelName": (
+         "RECOMMENDED",
+         "See [Appendix VII](/99-appendices/07-meg-systems.html) for "
+         "preferred names.",
+      ),
       "SoftwareVersions": "RECOMMENDED",
       "TaskDescription": "RECOMMENDED",
       "Instructions": "RECOMMENDED",
@@ -354,9 +365,16 @@ MEG and EEG sensors:
       "MEGCoordinateSystem": "REQUIRED",
       "MEGCoordinateUnits": "REQUIRED",
       "MEGCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `MEGCoordinateSystem` is `Other`",
-      "EEGCoordinateSystem": "OPTIONAL",
+      "EEGCoordinateSystem": (
+         "OPTIONAL",
+         "See [Recording EEG simultaneously with MEG](/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg). "
+         "Preferably the same as the `MEGCoordinateSystem`.",
+      ),
       "EEGCoordinateUnits": "OPTIONAL",
-      "EEGCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `EEGCoordinateSystem` is `Other`",
+      "EEGCoordinateSystemDescription": (
+         "OPTIONAL, but REQUIRED if `EEGCoordinateSystem` is `Other`",
+         "See [Recording EEG simultaneously with MEG](/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg).",
+      ),
    }
 ) }}
 

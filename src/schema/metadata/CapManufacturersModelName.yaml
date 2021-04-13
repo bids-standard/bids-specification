@@ -2,5 +2,5 @@
 name: CapManufacturersModelName
 description: |
   Manufacturer's designation of the EEG cap model
-  (for example, "actiCAP 64 Ch Standard-2").
+  (for example, `"actiCAP 64 Ch Standard-2"`).
 type: string

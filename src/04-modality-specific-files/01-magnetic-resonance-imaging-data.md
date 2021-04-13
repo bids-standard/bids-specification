@@ -116,9 +116,22 @@ that a given scan was collected with the intended coil elements selected
       "ParallelAcquisitionTechnique": "RECOMMENDED",
       "PartialFourier": "RECOMMENDED",
       "PartialFourierDirection": "RECOMMENDED",
-      "PhaseEncodingDirection": "RECOMMENDED",
-      "EffectiveEchoSpacing": "RECOMMENDED",
-      "TotalReadoutTime": "RECOMMENDED",
+      "PhaseEncodingDirection": (
+         "RECOMMENDED",
+         "This parameter is REQUIRED if corresponding fieldmap data is present "
+         "or when using multiple runs with different phase encoding directions "
+         "(which can be later used for field inhomogeneity correction).",
+      ),
+      "EffectiveEchoSpacing": (
+         "RECOMMENDED",
+         "This parameter is REQUIRED if corresponding fieldmap data is present.",
+      ),
+      "TotalReadoutTime": (
+         "RECOMMENDED",
+         "This parameter is REQUIRED if corresponding 'field/distortion' maps "
+         "acquired with opposing phase encoding directions are present "
+         "(see 8.9.4).",
+      ),
       "MixingTime": "RECOMMENDED",
    }
 ) }}
@@ -1094,7 +1107,11 @@ Required fields:
 
 {{ MACROS___make_metadata_table(
    {
-      "Units": "REQUIRED",
+      "Units": (
+         "REQUIRED",
+         'Fieldmaps must be in units of Hertz (`"Hz"`), '
+         'radians per second (`"rad/s"`), or Teslas (`"T"`).',
+      ),
    }
 ) }}
 

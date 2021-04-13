@@ -11,7 +11,6 @@ description: |
   a variety of other manipulations to the phase encoding need to be accounted
   for properly, including partial fourier, phase oversampling,
   phase resolution, phase field-of-view and interpolation.
-  This parameter is REQUIRED if corresponding fieldmap data is present.
 type: number
 exclusiveMinimum: 0
 unit: s
