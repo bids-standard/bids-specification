@@ -1,0 +1,7 @@
+---
+name: HeadCircumference
+description: |
+  Circumference of the participants head, expressed in cm (for example, 58).
+type: number
+exclusiveMinimum: 0
+unit: cm

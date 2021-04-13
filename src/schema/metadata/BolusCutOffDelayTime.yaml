@@ -1,0 +1,20 @@
+---
+name: BolusCutOffDelayTime
+description: |
+  Duration between the end of the labeling and the start of the bolus cut-off
+  saturation pulse(s), in seconds.
+  This can be a number or array of numbers, of which the values must be
+  non-negative and monotonically increasing, depending on the number of bolus
+  cut-off saturation pulses.
+  For Q2TIPS, only the values for the first and last bolus cut-off saturation
+  pulses are provided.
+  Based on DICOM Tag 0018,925F `ASL Bolus Cut-off Delay Time`.
+anyOf:
+  - type: number
+    minimum: 0
+    unit: s
+  - type: array
+    items:
+      type: number
+      unit: s
+      minimum: 0

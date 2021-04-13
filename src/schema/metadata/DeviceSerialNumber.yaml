@@ -1,0 +1,8 @@
+---
+name: DeviceSerialNumber
+description: |
+  The serial number of the equipment that produced the composite instances.
+  Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`.
+  A pseudonym can also be used to prevent the equipment from being
+  identifiable, so long as each pseudonym is unique within the dataset.
+type: string

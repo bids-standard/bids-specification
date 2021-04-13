@@ -1,0 +1,9 @@
+---
+name: PulseSequenceDetails
+description: |
+  Information beyond pulse sequence type that identifies the specific pulse
+  sequence used (for example,
+  `"Standard Siemens Sequence distributed with the VB17 software"`,
+  `"Siemens WIP ### version #.##,"` or
+  `"Sequence written by X using a version compiled on MM/DD/YYYY"`).
+type: string

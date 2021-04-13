@@ -1,0 +1,7 @@
+---
+name: ReconMethodParameterLabels
+description: |
+  Names of reconstruction parameters (for example, `["subsets", "iterations"]`)
+type: array
+items:
+  type: string

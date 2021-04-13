@@ -1,0 +1,11 @@
+---
+name: GeneticLevel
+description: |
+  Describes the level of analysis.
+  Values MUST be one of `"Genetic"`, `"Genomic"`, `"Epigenomic"`,
+  `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.
+anyOf:
+  - type: array
+    items:
+      $ref: _GeneticLevelEnum.yaml
+  - $ref: _GeneticLevelEnum.yaml

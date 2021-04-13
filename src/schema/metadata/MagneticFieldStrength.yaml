@@ -1,0 +1,6 @@
+---
+name: MagneticFieldStrength
+description: |
+  Nominal field strength of MR magnet in Tesla.
+  Corresponds to DICOM Tag 0018,0087 `Magnetic Field Strength`
+type: number

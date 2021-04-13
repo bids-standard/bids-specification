@@ -1,0 +1,7 @@
+---
+name: InstitutionName
+description: |
+  The name of the institution in charge of the equipment that produced the
+  composite instances.
+  Corresponds to DICOM Tag 0008, 0080 `InstitutionName`.
+type: string

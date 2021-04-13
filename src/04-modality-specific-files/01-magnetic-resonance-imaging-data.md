@@ -10,6 +10,24 @@ by Ben Inglis:
 
 ### Scanner Hardware
 
+{{ MACROS___make_metadata_table(
+   {
+      "Manufacturer": "RECOMMENDED",
+      "ManufacturersModelName": "RECOMMENDED",
+      "DeviceSerialNumber": "RECOMMENDED",
+      "StationName": "RECOMMENDED",
+      "SoftwareVersions": "RECOMMENDED",
+      "HardcopyDeviceSoftwareVersion": "DEPRECATED",
+      "MagneticFieldStrength": "RECOMMENDED, but REQUIRED for Arterial Spin Labeling",
+      "ReceiveCoilName": "RECOMMENDED",
+      "ReceiveCoilActiveElements": "RECOMMENDED",
+      "GradientSetType": "RECOMMENDED",
+      "MRTransmitCoilSequence": "RECOMMENDED",
+      "MatrixCoilMode": "RECOMMENDED",
+      "CoilCombinationMethod": "RECOMMENDED",
+   }
+) }}
+
 | **Key name**                  | **Requirement level**                                | **Data type** | **Description**                                                                                                                                                                                                                                                           |
 | ----------------------------- | ---------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Manufacturer                  | RECOMMENDED                                          | [string][]    | Manufacturer of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0070 `Manufacturer`                                                                                                                                                   |
@@ -43,6 +61,30 @@ that a given scan was collected with the intended coil elements selected
 
 ### Sequence Specifics
 
+{{ MACROS___make_metadata_table(
+   {
+      "PulseSequenceType": "RECOMMENDED",
+      "ScanningSequence": "RECOMMENDED",
+      "SequenceVariant": "RECOMMENDED",
+      "ScanOptions": "RECOMMENDED",
+      "SequenceName": "RECOMMENDED",
+      "PulseSequenceDetails": "RECOMMENDED",
+      "NonlinearGradientCorrection": "RECOMMENDED, but REQUIRED if [PET](./09-positron-emission-tomography.md) data are present",
+      "MRAcquisitionType": "RECOMMENDED, but REQUIRED for Arterial Spin Labeling",
+      "MTState": "RECOMMENDED",
+      "MTOffsetFrequency": "RECOMMENDED if the MTstate is `True`.",
+      "MTPulseBandwidth": "RECOMMENDED if the MTstate is `True`.",
+      "MTNumberOfPulses": "RECOMMENDED if the MTstate is `True`.",
+      "MTPulseShape": "RECOMMENDED if the MTstate is `True`.",
+      "MTPulseDuration": "RECOMMENDED if the MTstate is `True`.",
+      "SpoilingState": "RECOMMENDED",
+      "SpoilingType": "RECOMMENDED if the SpoilingState is `True`.",
+      "SpoilingRFPhaseIncrement": 'RECOMMENDED if the SpoilingType is `"RF"` or `"COMBINED"`.',
+      "SpoilingGradientMoment": 'RECOMMENDED if the SpoilingType is `"GRADIENT"` or `"COMBINED"`.',
+      "SpoilingGradientDuration": 'RECOMMENDED if the SpoilingType is `"GRADIENT"` or `"COMBINED"`.',
+   }
+) }}
+
 | **Key name**                | **Requirement level**                                                                     | **Data type**                          | **Description**                                                                                                                                                                                                                                                                 |
 | --------------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | PulseSequenceType           | RECOMMENDED                                                                               | [string][]                             | A general description of the pulse sequence used for the scan (for example, `"MPRAGE"`, `"Gradient Echo EPI"`, `"Spin Echo EPI"`, `"Multiband gradient echo EPI"`).                                                                                                             |
@@ -66,6 +108,20 @@ that a given scan was collected with the intended coil elements selected
 | SpoilingGradientDuration    | RECOMMENDED if the SpoilingType is `"GRADIENT"` or `"COMBINED"`.                          | [number][]                             | The duration of the spoiler gradient lobe in seconds. The duration of a trapezoidal lobe is defined as the summation of ramp-up and plateau times.                                                                                                                              |
 
 ### In-Plane Spatial Encoding
+
+{{ MACROS___make_metadata_table(
+   {
+      "NumberShots": "RECOMMENDED",
+      "ParallelReductionFactorInPlane": "RECOMMENDED",
+      "ParallelAcquisitionTechnique": "RECOMMENDED",
+      "PartialFourier": "RECOMMENDED",
+      "PartialFourierDirection": "RECOMMENDED",
+      "PhaseEncodingDirection": "RECOMMENDED",
+      "EffectiveEchoSpacing": "RECOMMENDED",
+      "TotalReadoutTime": "RECOMMENDED",
+      "MixingTime": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**                   | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ------------------------------ | --------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -92,6 +148,16 @@ and the center of the last "effective" echo, sometimes called the "FSL definitio
 
 ### Timing Parameters
 
+{{ MACROS___make_metadata_table(
+   {
+      "EchoTime": "RECOMMENDED, but REQUIRED if corresponding fieldmap data is present, or the data comes from a multi echo sequence or Arterial Spin Labeling",
+      "InversionTime": "RECOMMENDED",
+      "SliceTiming": "RECOMMENDED, but REQUIRED for sparse sequences that do not have the `DelayTime` field set, and Arterial Spin Labeling with `MRAcquisitionType` set on `2D`.",
+      "SliceEncodingDirection": "RECOMMENDED",
+      "DwellTime": "RECOMMENDED",
+   }
+) }}
+
 | **Key name**           | **Requirement level**                                                                                                                                       | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | EchoTime               | RECOMMENDED, but REQUIRED if corresponding fieldmap data is present, or the data comes from a multi echo sequence or Arterial Spin Labeling                 | [number][] or [array][] of [numbers][] | The echo time (TE) for the acquisition, specified in seconds. Corresponds to DICOM Tag 0018, 0081 Echo Time (please note that the DICOM term is in milliseconds not seconds). The data type number may apply to files from any MRI modality concerned with a single value for this field, or to the files in a [file collection](../99-appendices/10-file-collections.md) where the value of this field is iterated using the [echo entity](../99-appendices/09-entities.md#echo). The data type array provides a value for each volume in a 4D dataset and should only be used when the volume timing is critical for interpretation of the data, such as in [ASL](#arterial-spin-labeling-perfusion-data) or variable echo time fMRI sequences.                                                                                               |
@@ -102,12 +168,25 @@ and the center of the last "effective" echo, sometimes called the "FSL definitio
 
 ### RF & Contrast
 
+{{ MACROS___make_metadata_table(
+   {
+      "FlipAngle": "RECOMMENDED, but REQUIRED if `LookLocker` is set `true`",
+      "NegativeContrast": "OPTIONAL",
+   }
+) }}
+
 | **Key name**     | **Requirement level**                                   | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | ---------------- | ------------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | FlipAngle        | RECOMMENDED, but REQUIRED if `LookLocker` is set `true` | [number][] or [array][] of [numbers][] | Flip angle (FA) for the acquisition, specified in degrees. Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`. The data type number may apply to files from any MRI modality concerned with a single value for this field, or to the files in a [file collection](../99-appendices/10-file-collections.md) where the value of this field is iterated using the [flip entity](../99-appendices/09-entities.md#flip). The data type array provides a value for each volume in a 4D dataset and should only be used when the volume timing is critical for interpretation of the data, such as in [ASL](#arterial-spin-labeling-perfusion-data) or variable flip angle fMRI sequences. |
 | NegativeContrast | OPTIONAL                                                | [boolean][]                            | `true` or `false` value specifying whether increasing voxel intensity (within sample voxels) denotes a decreased value with respect to the contrast suffix. This is commonly the case when Cerebral Blood Volume is estimated via usage of a contrast agent in conjunction with a T2\* weighted acquisition protocol.                                                                                                                                                                                                                                                                                                                                                              |
 
 ### Slice Acceleration
+
+{{ MACROS___make_metadata_table(
+   {
+      "MultibandAccelerationFactor": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**                | **Requirement level** | **Data type** | **Description**                                   |
 | --------------------------- | --------------------- | ------------- | ------------------------------------------------- |
@@ -117,11 +196,25 @@ and the center of the last "effective" echo, sometimes called the "FSL definitio
 
 Useful for multimodal co-registration with MEG, (S)EEG, TMS, and so on.
 
+{{ MACROS___make_metadata_table(
+   {
+      "AnatomicalLandmarkCoordinates": "RECOMMENDED",
+   }
+) }}
+
 | **Key name**                  | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ----------------------------- | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | AnatomicalLandmarkCoordinates | RECOMMENDED           | [object][] of [arrays][] | Key:value pairs of any number of additional anatomical landmarks and their coordinates in voxel units (where first voxel has index 0,0,0) relative to the associated anatomical MRI (for example, `{"AC": [127,119,149], "PC": [128,93,141], "IH": [131,114,206]}`, or `{"NAS": [127,213,139], "LPA": [52,113,96], "RPA": [202,113,91]}`). Each array MUST contain three numeric values corresponding to x, y, and z axis of the coordinate system in that exact order. |
 
 ### Institution information
+
+{{ MACROS___make_metadata_table(
+   {
+      "InstitutionName": "RECOMMENDED",
+      "InstitutionAddress": "RECOMMENDED",
+      "InstitutionalDepartmentName": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**                | **Requirement level** | **Data type** | **Description**                                                                                                                                                          |
 | --------------------------- | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -196,6 +289,14 @@ Some meta information about the acquisition MAY be provided in an additional
 JSON file. See [Common metadata fields](#common-metadata-fields) for a
 list of terms and their definitions. There are also some OPTIONAL JSON
 fields specific to anatomical scans:
+
+{{ MACROS___make_metadata_table(
+   {
+      "ContrastBolusIngredient": "OPTIONAL",
+      "RepetitionTimeExcitation": "OPTIONAL",
+      "RepetitionTimePreparation": "OPTIONAL",
+   }
+) }}
 
 | **Key name**              | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ------------------------- | --------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -394,6 +495,14 @@ JSON file.
 
 ### Required fields
 
+{{ MACROS___make_metadata_table(
+   {
+      "RepetitionTime": "REQUIRED",
+      "VolumeTiming": "REQUIRED",
+      "TaskName": "REQUIRED",
+   }
+) }}
+
 | **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | -------------- | --------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | RepetitionTime | REQUIRED              | [number][]               | The time in seconds between the beginning of an acquisition of one volume and the beginning of acquisition of the volume following it (TR). When used in the context of functional acquisitions this parameter best corresponds to [DICOM Tag 0020,0110](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0020,0110)): the "time delta between images in a dynamic of functional set of images" but may also be found in [DICOM Tag 0018, 0080](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080)): "the period of time in msec between the beginning of a pulse sequence and the beginning of the succeeding (essentially identical) pulse sequence". This definition includes time between scans (when no data has been acquired) in case of sparse acquisition schemes. This value MUST be consistent with the '`pixdim[4]`' field (after accounting for units stored in '`xyzt_units`' field) in the NIfTI header. This field is mutually exclusive with `VolumeTiming`. |
@@ -408,6 +517,16 @@ combined image rather than an image from each coil.
 ### Other RECOMMENDED metadata
 
 #### Timing Parameters
+
+{{ MACROS___make_metadata_table(
+   {
+      "NumberOfVolumesDiscardedByScanner": "RECOMMENDED",
+      "NumberOfVolumesDiscardedByUser": "RECOMMENDED",
+      "DelayTime": "RECOMMENDED",
+      "AcquisitionDuration": 'RECOMMENDED, but REQUIRED for sequences that are described with the `VolumeTiming` field and that do not have the `SliceTiming` field set to allow for accurate calculation of "acquisition time"',
+      "DelayAfterTrigger": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**                      | **Requirement level**                                                                                                                                                                             | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -437,6 +556,15 @@ sparse sequences.
 -   empty cell --> MAY be specified
 
 #### fMRI task information
+
+{{ MACROS___make_metadata_table(
+   {
+      "Instructions": "RECOMMENDED",
+      "TaskDescription": "RECOMMENDED",
+      "CogAtlasID": "RECOMMENDED",
+      "CogPOID": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**    | **Requirement level** | **Data type** | **Description**                                                                                                                                                                               |
 | --------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -581,6 +709,12 @@ not be able to be directly concatenated.
 BIDS permits defining arbitrary groupings of these multipart scans with the
 following metadata:
 
+{{ MACROS___make_metadata_table(
+   {
+      "MultipartID": "REQUIRED",
+   }
+) }}
+
 | **Key name** | **Requirement level** | **Data type** | **Description**                                                                      |
 | ------------ | --------------------- | ------------- | ------------------------------------------------------------------------------------ |
 | MultipartID  | REQUIRED              | [string][]    | A unique (per participant) label tagging DWI runs that are part of a multipart scan. |
@@ -720,6 +854,27 @@ See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#summary-i
 
 #### Common metadata fields applicable to both (P)CASL and PASL
 
+{{ MACROS___make_metadata_table(
+   {
+      "ArterialSpinLabelingType": "REQUIRED",
+      "PostLabelingDelay": "REQUIRED",
+      "BackgroundSuppression": "REQUIRED",
+      "M0Type": "REQUIRED",
+      "TotalAcquiredPairs": "REQUIRED",
+      "VascularCrushing": "RECOMMENDED",
+      "AcquisitionVoxelSize": "RECOMMENDED",
+      "M0Estimate": "OPTIONAL, but REQUIRED when `M0Type` is defined as `Estimate`",
+      "BackgroundSuppressionNumberPulses": "OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`",
+      "BackgroundSuppressionPulseTime": "OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`",
+      "VascularCrushingVENC": "OPTIONAL, RECOMMENDED if `VascularCrushing` is `true`",
+      "LabelingOrientation": "RECOMMENDED",
+      "LabelingDistance": "RECOMMENDED",
+      "LabelingLocationDescription": "RECOMMENDED",
+      "LookLocker": "OPTIONAL",
+      "LabelingEfficiency": "OPTIONAL",
+   }
+) }}
+
 | **Key name**                      | **Requirement level**                                         | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | --------------------------------- | ------------------------------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ArterialSpinLabelingType          | REQUIRED                                                      | [string][]                             | `"CASL"`, `"PCASL"`, `"PASL"`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -743,6 +898,20 @@ See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#summary-i
 
 These fields can only be used when `ArterialSpinLabelingType` is `"CASL"` or `"PCASL"`. See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#pcasl-sequence) for more information on the (P)CASL sequence and the Labeling Pulse fields.
 
+{{ MACROS___make_metadata_table(
+   {
+      "LabelingDuration": "REQUIRED",
+      "PCASLType": 'RECOMMENDED if `ArterialSpinLabelingType` is `"PCASL"`',
+      "CASLType": 'RECOMMENDED if `ArterialSpinLabelingType` is `"CASL"`',
+      "LabelingPulseAverageGradient": "RECOMMENDED",
+      "LabelingPulseMaximumGradient": "RECOMMENDED",
+      "LabelingPulseAverageB1": "RECOMMENDED",
+      "LabelingPulseDuration": "RECOMMENDED",
+      "LabelingPulseFlipAngle": "RECOMMENDED",
+      "LabelingPulseInterval": "RECOMMENDED",
+   }
+) }}
+
 | **Key name**                 | **Requirement level**                                  | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | ---------------------------- | ------------------------------------------------------ | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | LabelingDuration             | REQUIRED                                               | [number][] or [array][] of [numbers][] | Total duration of the labeling pulse train, in seconds, corresponding to the temporal width of the labeling bolus for `"PCASL"` or `"CASL"`. In case all control-label volumes (or deltam or CBF) have the same `LabelingDuration`, a scalar must be specified. In case the control-label volumes (or deltam or cbf) have a different `LabelingDuration`, an array of numbers must be specified, for which any `m0scan` in the timeseries has a `LabelingDuration` of zero. In case an array of numbers is provided, its length should be equal to the number of volumes specified in `*_aslcontext.tsv`. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`. |
@@ -759,6 +928,16 @@ These fields can only be used when `ArterialSpinLabelingType` is `"CASL"` or `"P
 
 These fields can only be used when `ArterialSpinLabelingType` is `PASL`. See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#pasl-sequence) for more information on the PASL sequence and the BolusCutOff fields.
 
+{{ MACROS___make_metadata_table(
+   {
+      "BolusCutOffFlag": "REQUIRED",
+      "PASLType": "RECOMMENDED",
+      "LabelingSlabThickness": "RECOMMENDED",
+      "BolusCutOffDelayTime": "OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`",
+      "BolusCutOffTechnique": "OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`",
+   }
+) }}
+
 | **Key name**          | **Requirement level**                             | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | --------------------- | ------------------------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | BolusCutOffFlag       | REQUIRED                                          | [boolean][]                            | Boolean indicating if a bolus cut-off technique is used. Corresponds to DICOM Tag 0018,925C `ASL Bolus Cut-off Flag`.                                                                                                                                                                                                                                                                                                                                   |
@@ -770,6 +949,16 @@ These fields can only be used when `ArterialSpinLabelingType` is `PASL`. See [Ap
 ### `m0scan` metadata fields
 
 Some common metadata fields are REQUIRED for the `*_m0scan.json`: `EchoTime`, `RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
+
+{{ MACROS___make_metadata_table(
+   {
+      "IntendedFor": (
+         "REQUIRED",
+         "This is used to refer to the ASL time series for which the `*_m0scan.nii[.gz]` is intended."
+      ),
+      "AcquisitionVoxelSize": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**         | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                   |
 | -------------------- | --------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -841,6 +1030,13 @@ the OPTIONAL `_magnitude2` image to the longer echo time.
 
 Required fields:
 
+{{ MACROS___make_metadata_table(
+   {
+      "EchoTime1": "REQUIRED",
+      "EchoTime2": "REQUIRED",
+   }
+) }}
+
 | **Key name** | **Requirement level** | **Data type** | **Description**                                             |
 | ------------ | --------------------- | ------------- | ----------------------------------------------------------- |
 | EchoTime1    | REQUIRED              | [number][]    | The time (in seconds) when the first (shorter) echo occurs. |
@@ -869,6 +1065,12 @@ second echos are available.
 
 Required fields:
 
+{{ MACROS___make_metadata_table(
+   {
+      "EchoTime": "REQUIRED",
+   }
+) }}
+
 | **Key name** | **Requirement level** | **Data type** | **Description**                                                                   |
 | ------------ | --------------------- | ------------- | --------------------------------------------------------------------------------- |
 | EchoTime     | REQUIRED              | [number][]    | The time (in seconds) when the echo corresponding to this phase map was acquired. |
@@ -889,6 +1091,12 @@ In some cases (for example GE), the scanner software will directly reconstruct a
 {{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["fieldmap", "magnitude"]) }}
 
 Required fields:
+
+{{ MACROS___make_metadata_table(
+   {
+      "Units": "REQUIRED",
+   }
+) }}
 
 | **Key name** | **Requirement level** | **Data type** | **Description**                                                                          |
 | ------------ | --------------------- | ------------- | ---------------------------------------------------------------------------------------- |
@@ -926,6 +1134,13 @@ the REQUIRED `PhaseEncodingDirection` metadata field
 
 Required fields:
 
+{{ MACROS___make_metadata_table(
+   {
+      "PhaseEncodingDirection": "REQUIRED",
+      "TotalReadoutTime": "REQUIRED",
+   }
+) }}
+
 | **Key name**           | **Requirement level** | **Data type** | **Description**                                                              |
 | ---------------------- | --------------------- | ------------- | ---------------------------------------------------------------------------- |
 | PhaseEncodingDirection | REQUIRED              | [string][]    | See [in-plane spatial encoding](#in-plane-spatial-encoding) table of fields. |
@@ -961,6 +1176,16 @@ This linking between fieldmaps and their targetted data MAY be encoded with the
 
 Fieldmap data MAY be linked to the specific scan(s) it was acquired for by
 filling the `IntendedFor` field in the corresponding JSON file.
+
+{{ MACROS___make_metadata_table(
+   {
+      "IntendedFor": (
+         "RECOMMENDED",
+         "This field is OPTIONAL, and in case the fieldmaps do not correspond "
+         "to any particular scans, it does not have to be filled.",
+      ),
+   }
+) }}
 
 | **Key name** | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                                                                                 |
 | ------------ | --------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

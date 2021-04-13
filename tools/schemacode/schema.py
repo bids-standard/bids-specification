@@ -5,15 +5,19 @@ import os
 from copy import deepcopy
 from pathlib import Path
 from warnings import warn
+from pprint import pprint
 
 import pandas as pd
 import yaml
+from tabulate import tabulate
 
 from . import utils
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
-utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
+utils.set_logger_level(
+    lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO)
+)
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 BIDS_SCHEMA = Path(__file__).parent.parent / "src" / "schema"
@@ -24,6 +28,34 @@ def _get_entry_name(path):
         return path.name[:-5]  # no .yaml
     else:
         return path.name
+
+
+def search_structure(struct, path):
+    """Recursively search a dictionary-like object for $ref keys.
+
+    Each $ref key is replaced with the contents of the referenced file.
+    """
+    if isinstance(struct, dict):
+        if "$ref" in struct.keys():
+            with open(os.path.join(path, struct["$ref"]), "r") as fo:
+                temp = yaml.load(fo, Loader=yaml.SafeLoader)
+
+            struct.pop("$ref")
+
+            for k_temp, v_temp in temp.items():
+                if k_temp not in struct.keys():
+                    struct[k_temp] = v_temp
+
+        for k, v in struct.items():
+            if isinstance(v, (dict, list)):
+                v = search_structure(v, path)
+                struct[k] = v
+
+    elif isinstance(struct, list):
+        for i, item in enumerate(struct):
+            struct[i] = search_structure(item, path)
+
+    return struct
 
 
 def load_schema(schema_path):
@@ -47,8 +79,12 @@ def load_schema(schema_path):
     """
     schema_path = Path(schema_path)
     if schema_path.is_file() and (schema_path.suffix == ".yaml"):
+        base_path = os.path.dirname(schema_path.absolute())
         with open(schema_path) as f:
-            return yaml.load(f, Loader=yaml.SafeLoader)
+            dict_ = yaml.load(f, Loader=yaml.SafeLoader)
+            if "$ref" in str(dict_):
+                dict_ = search_structure(dict_, base_path)
+            return dict_
     elif schema_path.is_dir():
         # iterate through files and subdirectories
         res = {
@@ -139,7 +175,9 @@ def make_entity_definitions(schema):
         text += "\n\n"
         text += "Full name: {}".format(entity_info["name"])
         text += "\n\n"
-        text += "Format: `{}-<{}>`".format(entity_info["entity"], entity_info["format"])
+        text += "Format: `{}-<{}>`".format(
+            entity_info["entity"], entity_info["format"]
+        )
         text += "\n\n"
         text += "Definition: {}".format(entity_info["description"])
     return text
@@ -185,7 +223,8 @@ def make_filename_template(schema, **kwargs):
             string = "\t\t\t"
             for ent in entities:
                 ent_format = "{}-<{}>".format(
-                    schema["entities"][ent]["entity"], schema["entities"][ent]["format"]
+                    schema["entities"][ent]["entity"],
+                    schema["entities"][ent]["format"],
                 )
                 if ent in group["entities"]:
                     if group["entities"][ent] == "required":
@@ -208,13 +247,16 @@ def make_filename_template(schema, **kwargs):
                 string += suffix
                 strings = [string]
             else:
-                strings = [string + "_" + suffix for suffix in group["suffixes"]]
+                strings = [
+                    string + "_" + suffix for suffix in group["suffixes"]
+                ]
 
             # Add extensions
             full_strings = []
             extensions = group["extensions"]
-            extensions = [ext if ext != "*" else ".<extension>" for ext in
-                          extensions]
+            extensions = [
+                ext if ext != "*" else ".<extension>" for ext in extensions
+            ]
             extensions = utils.combine_extensions(extensions)
             if len(extensions) > 5:
                 # Combine exts when there are many, but keep JSON separate
@@ -256,8 +298,6 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     table_str : str
         Markdown string containing the table.
     """
-    from tabulate import tabulate
-
     schema = filter_schema(schema, **kwargs)
 
     ENTITIES_FILE = "09-entities.md"
@@ -305,7 +345,9 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
                 dtype_rows[suffixes_str] = dtype_row
 
         # Reformat first column
-        dtype_rows = {dtype + "<br>({})".format(k): v for k, v in dtype_rows.items()}
+        dtype_rows = {
+            dtype + "<br>({})".format(k): v for k, v in dtype_rows.items()
+        }
         dtype_rows = [[k] + v for k, v in dtype_rows.items()]
         table += dtype_rows
 
@@ -321,4 +363,124 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
     # Print it as markdown
     table_str = tabulate(table, headers="keys", tablefmt=tablefmt)
+    return table_str
+
+
+def _get_link(string):
+    dict_ = {
+        "array": "[array](https://www.w3schools.com/js/js_json_arrays.asp)",
+        "arrays": "[arrays](https://www.w3schools.com/js/js_json_arrays.asp)",
+        "string": (
+            "[string](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
+        "strings": (
+            "[strings](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
+        "number": (
+            "[number](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
+        "numbers": (
+            "[numbers](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
+        "object": "[object](https://www.json.org/json-en.html)",
+        "objects": "[objects](https://www.json.org/json-en.html)",
+        "integer": (
+            "[integer](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
+        "integers": (
+            "[integers](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
+        "boolean": (
+            "[boolean](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
+        "booleans": (
+            "[booleans](https://www.w3schools.com/js/js_json_datatypes.asp)"
+        ),
+    }
+    string = dict_.get(string, string)
+    return string
+
+
+def _resolve_metadata_type(definition):
+    """Generate string of metadata type from dictionary."""
+    if "type" in definition.keys():
+        string = _get_link(definition["type"])
+
+        if ("items" in definition.keys()) and (
+            "type" in definition["items"].keys()
+        ):
+            # Items within arrays
+            string += " of " + _get_link(definition["items"]["type"] + "s")
+        elif ("additionalProperties" in definition.keys()) and (
+            "type" in definition["additionalProperties"].keys()
+        ):
+            # Values within objects
+            string += " of " + _get_link(
+                definition["additionalProperties"]["type"] + "s"
+            )
+
+    elif "anyOf" in definition.keys():
+        string = ""
+        n_types = len(definition["anyOf"])
+
+        for i_type, subdict in enumerate(definition["anyOf"]):
+            substring = _resolve_metadata_type(subdict)
+
+            if i_type < (n_types - 1):
+                string += substring + " or "
+            else:
+                string += substring
+
+    else:
+        # A hack to deal with $ref in the current schema
+        print(f"Type could not be inferred for {definition['name']}")
+        pprint(definition)
+        string = "unknown"
+
+    return string
+
+
+def make_metadata_table(schema, field_info, tablefmt="github"):
+    """Produce metadata table (markdown) based on requested fields."""
+    fields = list(field_info.keys())
+    # The filter function doesn't work here.
+    metadata_schema = schema["metadata"]
+
+    retained_fields = [f for f in fields if f in metadata_schema.keys()]
+    dropped_fields = [f for f in fields if f not in metadata_schema.keys()]
+    if dropped_fields:
+        print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
+
+    df = pd.DataFrame(
+        index=retained_fields,
+        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+    )
+    df.index.name = "**Key name**"
+    for field in retained_fields:
+        requirement_info = field_info[field]
+        description_addendum = ""
+        if isinstance(requirement_info, tuple):
+            requirement_info, description_addendum = requirement_info
+
+        requirement_info.replace(
+            "DEPRECATED",
+            "[DEPRECATED](/02-common-principles.html#definitions)",
+        )
+
+        type_string = _resolve_metadata_type(metadata_schema[field])
+
+        description = (
+            metadata_schema[field]["description"] + " " + description_addendum
+        )
+        # A backslash before a newline means continue a string
+        description = description.replace("\\\n", "")
+        # Two newlines should be respected
+        description = description.replace("\n\n", "<br>")
+        # Otherwise a newline corresponds to a space
+        description = description.replace("\n", " ")
+
+        df.loc[field] = [requirement_info, type_string, description]
+
+    # Print it as markdown
+    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
     return table_str

@@ -1,0 +1,6 @@
+---
+name: MTPulseBandwidth
+description: |
+  The excitation bandwidth of the magnetization transfer pulse in Hertz (Hz).
+type: number
+unit: Hz

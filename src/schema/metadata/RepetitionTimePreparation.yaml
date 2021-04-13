@@ -1,0 +1,20 @@
+---
+name: RepetitionTimePreparation
+description: |
+  The interval, in seconds, that it takes a preparation pulse block to
+  re-appear at the beginning of the succeeding (essentially identical) pulse
+  sequence block.
+  The data type number may apply to files from any MRI modality concerned with
+  a single value for this field.
+  The data type array provides a value for each volume in a 4D dataset and
+  should only be used when the volume timing is critical for interpretation of
+  the data, such as in [ASL](#arterial-spin-labeling-perfusion-data).
+anyOf:
+  - type: number
+    minimum: 0
+    unit: s
+  - type: array
+    items:
+      type: number
+      minimum: 0
+      unit: s

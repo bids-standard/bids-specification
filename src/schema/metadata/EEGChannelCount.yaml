@@ -1,0 +1,6 @@
+---
+name: EEGChannelCount
+description: |
+  Number of EEG channels recorded simultaneously (for example, 21).
+type: integer
+minimum: 0

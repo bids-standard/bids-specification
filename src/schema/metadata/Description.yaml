@@ -1,0 +1,5 @@
+---
+name: Description
+description: |
+  Description of the column.
+type: string

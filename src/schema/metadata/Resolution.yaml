@@ -1,0 +1,9 @@
+---
+name: Resolution
+description: |
+  Specifies the interpretation of the resolution keyword.
+anyOf:
+  - type: string
+  - type: object
+    additionalProperties:
+      type: string

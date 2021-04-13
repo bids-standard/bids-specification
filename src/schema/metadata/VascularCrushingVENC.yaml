@@ -1,0 +1,15 @@
+---
+name: VascularCrushingVENC
+description: |
+  The crusher gradient strength, in centimeters per second.
+  Specify either one number for the total time-series, or provide an array of
+  numbers, for example when using QUASAR, using the value zero to identify
+  volumes for which `VascularCrushing` was turned off.
+  Corresponds to DICOM Tag 0018,925A `ASL Crusher Flow Limit`.
+anyOf:
+  - type: number
+    unit: cm/s
+  - type: array
+    items:
+      type: number
+      unit: cm/s

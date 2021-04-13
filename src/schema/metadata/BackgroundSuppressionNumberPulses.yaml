@@ -1,0 +1,8 @@
+---
+name: BackgroundSuppressionNumberPulses
+description: |
+  The number of background suppression pulses used.
+  Note that this excludes any effect of background suppression pulses applied
+  before the labeling.
+type: integer
+minimum: 0

@@ -1,0 +1,8 @@
+---
+name: ReceiveCoilActiveElements
+description: |
+  Information describing the active/selected elements of the receiver coil.
+  This doesn't correspond to a tag in the DICOM ontology.
+  The vendor-defined terminology for active coil elements can go in this field.
+  See an example below the table.
+type: string

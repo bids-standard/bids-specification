@@ -1,0 +1,7 @@
+---
+name: SamplingFrequency
+description: |
+  Sampling frequency (in Hz) of all the data in the recording,
+  regardless of their type (for example, 2400).
+type: number
+unit: Hz

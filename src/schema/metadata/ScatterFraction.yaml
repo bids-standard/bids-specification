@@ -1,0 +1,7 @@
+---
+name: ScatterFraction
+description: |
+  Scatter fraction for each frame (Units: 0-100%).
+type: number
+minimum: 0
+maximum: 100

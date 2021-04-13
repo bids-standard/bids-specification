@@ -1,0 +1,24 @@
+---
+name: PostLabelingDelay
+description: |
+  This is the postlabeling delay (PLD) time, in seconds, after the end of the
+  labeling (for `"CASL"` or `"PCASL"`) or middle of the labeling pulse
+  (for `"PASL"`) until the middle of the excitation pulse applied to the
+  imaging slab (for 3D acquisition) or first slice (for 2D acquisition).
+  Can be a number (for a single-PLD time series) or an array of numbers
+  (for multi-PLD and Look-Locker).
+  In the latter case, the array of numbers contains the PLD of each volume,
+  namely each `control` and `label`, in the acquisition order.
+  Any image within the time-series without a PLD, for example an `m0scan`,
+  is indicated by a zero.
+  Based on DICOM Tags 0018,9079 `Inversion Times` and 0018,0082
+  `InversionTime`.
+anyOf:
+  - type: number
+    exclusiveMinimum: 0
+    unit: s
+  - type: array
+    items:
+      type: number
+      exclusiveMinimum: 0
+      unit: s

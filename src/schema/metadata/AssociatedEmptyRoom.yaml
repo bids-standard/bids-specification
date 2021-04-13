@@ -1,0 +1,15 @@
+---
+name: AssociatedEmptyRoom
+description: |
+  Relative path in BIDS folder structure to empty-room file associated with
+  the subject’s MEG recording.
+  The path needs to use forward slashes instead of backward slashes
+  (for example,
+  "sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds").
+anyOf:
+  - type: array
+    items:
+      type: string
+      format: dataset_relative
+  - type: string
+    format: dataset_relative

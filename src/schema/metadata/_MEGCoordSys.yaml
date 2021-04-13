@@ -1,0 +1,9 @@
+---
+type: string
+enum:
+  - CTF
+  - ElektaNeuromag
+  - 4DBti
+  - KitYokogawa
+  - ChietiItab
+  - Other

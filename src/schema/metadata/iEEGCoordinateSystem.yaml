@@ -1,0 +1,18 @@
+---
+name: iEEGCoordinateSystem
+description: |
+  Defines the coordinate system for the iEEG sensors.
+  See
+  [Appendix VIII](/99-appendices/08-coordinate-systems.html)
+  for a list of restricted keywords for coordinate systems.
+  If `"Other"`, provide definition of the coordinate system in
+  `iEEGCoordinateSystemDescription`.
+  If positions correspond to pixel indices in a 2D image
+  (of either a volume-rendering, surface-rendering, operative photo, or
+  operative drawing), this MUST be `"Pixels"`.
+  For more information, see the section on
+  [2D coordinate systems](#allowed-2d-coordinate-systems).
+anyOf:
+  - $ref: _iEEGCoordSys.yaml
+  - $ref: _StandardTemplateCoordSys.yaml
+  - $ref: _StandardTemplateDeprecatedCoordSys.yaml

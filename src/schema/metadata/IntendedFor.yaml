@@ -1,0 +1,15 @@
+---
+name: IntendedFor
+description: |
+  The paths to files for which the associated file is intended to be used.
+  Contains one or more filenames with paths relative to the participant
+  subfolder.
+  Path need to use forward slashes instead of backward slashes,
+  regardless of operating system.
+anyOf:
+  - type: string
+    format: participant_relative
+  - type: array
+    items:
+      type: string
+      format: participant_relative

@@ -1,0 +1,14 @@
+---
+name: AnatomicalLandmarkCoordinateSystem
+description: |
+  Defines the coordinate system for the anatomical landmarks.
+  Preferably the same as the `EEGCoordinateSystem`.
+  See [Appendix VIII](/99-appendices/08-coordinate-systems.html)
+  for a list of restricted keywords for coordinate systems.
+  If `Other`, provide definition of the coordinate system in
+  `AnatomicalLandmarkCoordinateSystemDescription`.
+anyOf:
+  - $ref: _MEGCoordSys.yaml
+  - $ref: _EEGCoordSys.yaml
+  - $ref: _StandardTemplateCoordSys.yaml
+  - $ref: _StandardTemplateDeprecatedCoordSys.yaml

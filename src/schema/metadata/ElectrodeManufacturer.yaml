@@ -1,0 +1,8 @@
+---
+name: ElectrodeManufacturer
+description: |
+  Can be used if all electrodes are of the same manufacturer
+  (for example, AD-TECH, DIXI).
+  If electrodes of different manufacturers are used,
+  please use the corresponding table in the `_electrodes.tsv` file.
+type: string
