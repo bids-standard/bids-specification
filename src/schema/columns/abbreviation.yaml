@@ -1,5 +1,5 @@
 ---
-name:
-description:
-type:
-unit:
+name: abbreviation
+description: |
+  The unique label abbreviation
+type: string

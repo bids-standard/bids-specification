@@ -1,5 +1,5 @@
 ---
-name:
-description:
-type:
-unit:
+name: cardiac
+description: |
+  continuous pulse measurement
+type: number

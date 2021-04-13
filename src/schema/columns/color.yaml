@@ -1,5 +1,6 @@
 ---
-name:
-description:
-type:
-unit:
+name: color
+description: |
+  Hexadecimal. Label color for visualization.
+type: string
+unit: hexadecimal
