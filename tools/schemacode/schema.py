@@ -441,7 +441,29 @@ def _resolve_metadata_type(definition):
 
 
 def make_metadata_table(schema, field_info, tablefmt="github"):
-    """Produce metadata table (markdown) based on requested fields."""
+    """Produce metadata table (markdown) based on requested fields.
+
+    Parameters
+    ----------
+    schema : dict
+        The BIDS schema.
+    field_info : dict of strings or tuples
+        A dictionary mapping metadata keys to requirement levels in the
+        rendered metadata table.
+        The dictionary values may be strings, in which case the string
+        is the requirement level information, or two-item tuples of strings,
+        in which case the first string is the requirement level information
+        and the second string is additional table-specific information
+        about the metadata field that will be appended to the field's base
+        definition from the schema.
+    tablefmt : string, optional
+        The target table format. The default is "github" (GitHub format).
+
+    Returns
+    -------
+    table_str : str
+        The tabulated table as a Markdown string.
+    """
     fields = list(field_info.keys())
     # The filter function doesn't work here.
     metadata_schema = schema["metadata"]
