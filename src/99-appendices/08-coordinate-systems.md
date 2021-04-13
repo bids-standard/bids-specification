@@ -153,8 +153,7 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 
 -   `fsnative`: The subject-specific FreeSurfer T1w space. This corresponds to
     the original scanner image after it is re-sampled and re-scaled
-    to an isotropic 1 mm 256x256x256 volume in RAS orientation. The origin
-    is wherever the original origin of the ``orig.mgz`` file is. The origin MUST be the Anterior Commissure.
+    to an isotropic 1 mm 256x256x256 volume in RAS orientation. The origin MUST be the Anterior Commissure.
 
 -   `fsnativetkr`: The subject-specific FreeSurfer T1w space. The origin of
     the coordinate system is at the center of isotropic 1 mm 256x256x256
