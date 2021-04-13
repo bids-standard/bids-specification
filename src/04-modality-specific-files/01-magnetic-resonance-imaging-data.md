@@ -141,6 +141,21 @@ whenever possible. See also
 Anatomical (structural) data acquired for that participant. Currently supported
 non-parametric structural MR images include:
 
+{{ MACROS__make_suffix_table(
+      [
+         "T1w",
+         "T2w",
+         "PDw",
+         "T2starw",
+         "FLAIR",
+         "inplaneT1",
+         "inplaneT2",
+         "PDT2",
+         "UNIT1",
+      ]
+   )
+}}
+
 | **Name**                                     | `suffix`  | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | -------------------------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | T1 weighted images                           | T1w       | In arbitrary units (arbitrary). The contrast of these images is mainly determined by spatial variations in the longitudinal relaxation time of the imaged specimen. In spin-echo sequences this contrast is achieved at relatively short repetition and echo times. To achieve this weighting in gradient-echo images, again, short repetition and echo times are selected; however, at relatively large flip angles. Another common approach to increase T1 weighting in gradient-echo images is to add an inversion preparation block to the beginning of the imaging sequence (for example, `TurboFLASH` or `MP-RAGE`). |
@@ -241,6 +256,30 @@ different reconstruction algorithms (for example ones using motion correction).
 Structural MR images whose intensity is represented in a non-arbitrary scale
 constitute parametric maps. Currently supported parametric maps include:
 
+{{ MACROS__make_suffix_table(
+      [
+         "T1map",
+         "R1map",
+         "T2map",
+         "R2map",
+         "T2starmap",
+         "R2starmap",
+         "PDmap",
+         "MTRmap",
+         "MTsat",
+         "T1rho",
+         "MWFmap",
+         "MTVmap",
+         "PDT2map",
+         "Chimap",
+         "TB1map",
+         "RB1map",
+         "S0map",
+         "M0map",
+      ]
+   )
+}}
+
 | **Name**                                | `suffix`  | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | --------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Longitudinal relaxation time map        | T1map     | In seconds (s). T1 maps are REQUIRED to use this suffix regardless of the method used to generate them. See [this interactive book on T1 mapping](https://qmrlab.org/t1_book/intro) for further reading on T1-mapping.                                                                                                                                                                                                                                                                                            |
@@ -283,6 +322,15 @@ They are, however, still valid suffixes, to maintain backwards compatibility.
 The following suffixes are valid, but SHOULD NOT be used for new BIDS compatible
 datasets (created after version 1.5.0.):
 
+{{ MACROS__make_suffix_table(
+      [
+         "T2star",
+         "FLASH",
+         "PD",
+      ]
+   )
+}}
+
 | **Name**       | `suffix` | **Reason to deprecate**                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | -------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | T2\*           | T2star   | Ambiguous, may refer to a parametric image or to a conventional image. **Change:** Replaced by `T2starw` or `T2starmap`.                                                                                                                                                                                                                                                                                                                   |
@@ -292,6 +340,15 @@ datasets (created after version 1.5.0.):
 ## Task (including resting state) imaging data
 
 Currently supported image contrasts include:
+
+{{ MACROS__make_suffix_table(
+      [
+         "bold",
+         "cbv",
+         "phase",
+      ]
+   )
+}}
 
 | **Name** | `suffix` | **Description**                                                                                                                                                                                                                                                          |
 | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -484,6 +541,14 @@ participant, task and run takes precedence.
 
 Diffusion-weighted imaging data acquired for a participant.
 Currently supported image types include:
+
+{{ MACROS__make_suffix_table(
+      [
+         "dwi",
+         "sbref",
+      ]
+   )
+}}
 
 | **Name**              | `suffix` | **Description**                                                   |
 | --------------------- | -------- | ----------------------------------------------------------------- |
@@ -810,6 +875,20 @@ The current version of this standard considers four different scenarios:
 
 These four different types of field mapping strategies can be encoded
 using the following image types:
+
+{{ MACROS__make_suffix_table(
+      [
+         "magnitude",
+         "magnitude1",
+         "magnitude2",
+         "phase1",
+         "phase2",
+         "phasediff",
+         "fieldmap",
+         "epi",
+      ]
+   )
+}}
 
 | **Name**         | `suffix`        | **Description**                                                                                                                                                                                   |
 | ---------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
