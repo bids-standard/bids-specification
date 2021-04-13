@@ -1,5 +1,5 @@
 ---
-name: InjectedRadioactivityUnit
+name: InjectedRadioactivityUnits
 description: |
   Unit format of the specified injected radioactivity (for example, `"MBq"`).
 type: string

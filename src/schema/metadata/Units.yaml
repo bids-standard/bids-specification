@@ -1,7 +1,7 @@
 ---
 name: Units
 description: |
-  Measurement units.
+  Measurement units for the associated file.
   SI units in CMIXF formatting are RECOMMENDED
   (see [Units](/02-common-principles.html#units)).
 type: string
