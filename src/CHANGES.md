@@ -15,6 +15,7 @@
 -   \[MISC] Clarify participant_id in participants.tsv file if it exists [#738](https://github.com/bids-standard/bids-specification/pull/738) ([adam2392](https://github.com/adam2392))
 -   \[FIX] split MEG files should be listed separately in scans.tsv [#735](https://github.com/bids-standard/bids-specification/pull/735) ([eort](https://github.com/eort))
 -   \[FIX] 1) Clarify appropriate labels for space entity, 2) Clarify channels+electrodes do not have to match [#734](https://github.com/bids-standard/bids-specification/pull/734) ([sappelhoff](https://github.com/sappelhoff))
+-   \[MISC] refactor stimuli mentioning sections in the events page [#697](https://github.com/bids-standard/bids-specification/pull/697) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] Bep 009: Positron Emission Tomography [#633](https://github.com/bids-standard/bids-specification/pull/633) ([melanieganz](https://github.com/melanieganz))
 
 ## [v1.5.0](https://github.com/bids-standard/bids-specification/tree/v1.5.0) (2021-02-23)
