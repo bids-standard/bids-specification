@@ -118,11 +118,11 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 
 -   `EEGLAB`: ALS orientation and the origin exactly between LPA and RPA.
     For more information, see the
-    [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-hj-coordinate-system).
+    [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-coordinate-system).
 
 -   `EEGLAB-HJ`: ALS orientation and the origin exactly between LHJ and RHJ.
     For more information, see the
-    [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-coordinate-system).
+    [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-hj-coordinate-system).
 
 -   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
 
