@@ -102,6 +102,7 @@ the restricted keywords for
 can also be applied to MEG:
 
 -   `CapTrak`
+-   `EEGLAB`
 
 Note that the short descriptions above do not capture all details, there are
 detailed extensive descriptions of these coordinate systems on the
@@ -112,7 +113,11 @@ detailed extensive descriptions of these coordinate systems on the
 Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 `coordsystem.json` file for EEG datasets:
 
--   `CapTrak`: RAS orientation and the origin between the ears
+-   `CapTrak`: RAS orientation and the origin approximately between LPA and RPA
+-   `EEGLAB`: ALS orientation and the origin exactly between LPA and RPA.
+    For more information, see the
+    [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-coordinate-system).
+
 -   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
 
 In the case that EEG was recorded simultaneously with MEG,
