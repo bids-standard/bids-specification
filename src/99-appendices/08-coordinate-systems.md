@@ -103,6 +103,7 @@ can also be applied to MEG:
 
 -   `CapTrak`
 -   `EEGLAB`
+-   `EEGLAB-HJ`
 
 Note that the short descriptions above do not capture all details, there are
 detailed extensive descriptions of these coordinate systems on the
@@ -116,6 +117,10 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 -   `CapTrak`: RAS orientation and the origin approximately between LPA and RPA
 
 -   `EEGLAB`: ALS orientation and the origin exactly between LPA and RPA.
+    For more information, see the
+    [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-hj-coordinate-system).
+
+-   `EEGLAB-HJ`: ALS orientation and the origin exactly between LHJ and RHJ.
     For more information, see the
     [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-coordinate-system).
 
