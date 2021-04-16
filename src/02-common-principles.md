@@ -515,6 +515,7 @@ using an object containing the following fields:
 | Levels       | RECOMMENDED           | [object][] of [strings][] | For categorical variables: An object of possible values (keys) and their descriptions (values).                 |
 | Units        | RECOMMENDED           | [string][]                | Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
 | TermURL      | RECOMMENDED           | [string][]                | URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
+| HED          | OPTIONAL              | [object][] of [strings][] | Hierarchical Event Descriptor (HED) information, see: [Appendix III](./99-appendices/03-hed.md) for details.    |
 
 Please note that while both `Units` and `Levels` are RECOMMENDED, typically only one
 of these two fields would be specified for describing a single TSV file column.
