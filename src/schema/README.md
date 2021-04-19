@@ -35,3 +35,10 @@ of the schema, roughly in order of importance:
     folder as a BIDS dataset, but which do not follow the BIDS structure
     internally, such as `code` or `sourcedata`. The schema specifies which
     folders are accepted and whether they are required or optional.
+
+-   `suffixes/*.yaml`: Suffixes supported by the specification.
+    Each suffix schema file contains, at minimum, `name` and `description`
+    fields. Additionally, it may have a `unit` field defining possible
+    units for data associated with that suffix, as well as fields
+    defining the range or types of values which are allowed for the data,
+    such as `minValue` and `maxValue`.
