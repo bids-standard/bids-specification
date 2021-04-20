@@ -208,6 +208,8 @@ def make_filename_template(schema, **kwargs):
                 string += suffix
                 strings = [string]
             else:
+                # This produces an empty list when there are no retained
+                # suffixes due to bugs in filter_schema.
                 strings = [string + "_" + suffix for suffix in group["suffixes"]]
 
             # Add extensions
