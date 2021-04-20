@@ -260,7 +260,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
     schema = filter_schema(schema, **kwargs)
 
-    ENTITIES_FILE = "09-entities.md"
+    ENTITIES_FILE = "/99-appendices/09-entities.html"
 
     # prepare the table based on the schema
     # import pdb; pdb.set_trace()
