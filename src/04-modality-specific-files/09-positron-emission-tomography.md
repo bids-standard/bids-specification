@@ -62,6 +62,8 @@ In this example, tracer injection coincides with scan start.
 
 {{ MACROS___make_filename_template(datatypes=["pet"], suffixes=["pet", "events"]) }}
 
+{{ MACROS___make_entity_table(datatypes=["pet"], suffixes=["pet", "events"]) }}
+
 PET data MUST be stored in the `pet` directory.
 PET imaging data SHOULD be stored in 4D (or 3D, if only one volume was acquired)
 NIfTI files with the `_pet` suffix.
@@ -291,6 +293,8 @@ ses-02 59
 ## Blood recording data
 
 {{ MACROS___make_filename_template(datatypes=["pet"], suffixes=["blood"]) }}
+
+{{ MACROS___make_entity_table(datatypes=["pet"], suffixes=["blood"]) }}
 
 If collected, blood measurements of radioactivity are be stored in
 [Tabular files](../02-common-principles.md#tabular-files) and located in

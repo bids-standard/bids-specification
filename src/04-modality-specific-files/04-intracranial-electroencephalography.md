@@ -10,6 +10,8 @@ context of the academic literature.
 
 {{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["ieeg", "events"]) }}
 
+{{ MACROS___make_entity_table(datatypes=["ieeg"], suffixes=["ieeg", "events"]) }}
+
 The iEEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, iEEG data MUST be
 stored in one of the following formats:
@@ -197,6 +199,8 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 {{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["channels"]) }}
 
+{{ MACROS___make_entity_table(datatypes=["ieeg"], suffixes=["channels"]) }}
+
 A channel represents one time series recorded with the recording system (for
 example, there can be a bipolar channel, recorded from two electrodes or contact
 points on the tissue).
@@ -282,6 +286,8 @@ Example of free-form text for field `description`:
 
 {{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["electrodes"]) }}
 
+{{ MACROS___make_entity_table(datatypes=["ieeg"], suffixes=["electrodes"]) }}
+
 File that gives the location, size and other properties of iEEG electrodes. Note
 that coordinates are expected in cartesian coordinates according to the
 `iEEGCoordinateSystem` and `iEEGCoordinateUnits` fields in
@@ -356,6 +362,8 @@ H01   27  -42  -21  5      AdTech
 
 {{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["coordsystem"]) }}
 
+{{ MACROS___make_entity_table(datatypes=["ieeg"], suffixes=["coordsystem"]) }}
+
 This `_coordsystem.json` file contains the coordinate system in which electrode
 positions are expressed. The associated MRI, CT, X-Ray, or operative photo can
 also be specified.
@@ -420,6 +428,8 @@ Example:
 ## Photos of the electrode positions (`*_photo.jpg`)
 
 {{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["photo"]) }}
+
+{{ MACROS___make_entity_table(datatypes=["ieeg"], suffixes=["photo"]) }}
 
 These can include photos of the electrodes on the brain surface, photos of
 anatomical features or landmarks (such as sulcal structure), and fiducials. Photos

@@ -2,6 +2,8 @@
 
 {{ MACROS___make_filename_template(datatypes=["beh"]) }}
 
+{{ MACROS___make_entity_table(datatypes=["beh"]) }}
+
 In addition to logs from behavioral experiments performed alongside imaging data
 acquisitions, one can also include data from experiments performed with no neural
 recordings.

@@ -10,6 +10,8 @@ context of the academic literature.
 
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["meg", "markers", "events"]) }}
 
+{{ MACROS___make_entity_table(datatypes=["meg"], suffixes=["meg", "markers", "events"]) }}
+
 Unprocessed MEG data MUST be stored in the native file format of the MEG
 instrument with which the data was collected.
 With the MEG specification of BIDS, we wish to promote the adoption of good
@@ -188,6 +190,8 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["channels"]) }}
 
+{{ MACROS___make_entity_table(datatypes=["meg"], suffixes=["channels"]) }}
+
 This file is RECOMMENDED as it provides easily searchable information across
 BIDS datasets for for example, general curation, response to queries or batch
 analysis.
@@ -279,6 +283,8 @@ UADC001 AUDIO V envelope of audio signal presented to participant
 
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["coordsystem"]) }}
 
+{{ MACROS___make_entity_table(datatypes=["meg"], suffixes=["coordsystem"]) }}
+
 OPTIONAL. A JSON document specifying the coordinate system(s) used for the MEG,
 EEG, head localization coils, and anatomical landmarks.
 
@@ -363,6 +369,8 @@ Photos of the anatomical landmarks and/or head localization coils
 
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["photo"]) }}
 
+{{ MACROS___make_entity_table(datatypes=["meg"], suffixes=["photo"]) }}
+
 Photos of the anatomical landmarks and/or head localization coils on the
 subject’s head are RECOMMENDED. If the coils are not placed at the location of
 actual anatomical landmarks, these latter may be marked with a piece of felt-tip
@@ -382,6 +390,8 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 ## Head shape and electrode description (`*_headshape.<ext>`)
 
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["headshape"]) }}
+
+{{ MACROS___make_entity_table(datatypes=["meg"], suffixes=["headshape"]) }}
 
 This file is RECOMMENDED.
 

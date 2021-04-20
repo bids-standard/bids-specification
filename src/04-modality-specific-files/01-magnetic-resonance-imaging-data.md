@@ -138,6 +138,8 @@ whenever possible. See also
 
 {{ MACROS___make_filename_template(datatypes=["anat"]) }}
 
+{{ MACROS___make_entity_table(datatypes=["anat"]) }}
+
 Anatomical (structural) data acquired for that participant. Currently supported
 non-parametric structural MR images include:
 
@@ -300,6 +302,8 @@ Currently supported image contrasts include:
 | Phase    | phase    | [DEPRECATED](../02-common-principles.md#definitions). Phase information associated with magnitude information stored in BOLD contrast. This suffix should be replaced by the [`part-phase`](../99-appendices/09-entities.md#part) in conjunction with the `bold` suffix. |
 
 {{ MACROS___make_filename_template(datatypes=["func"]) }}
+
+{{ MACROS___make_entity_table(datatypes=["func"]) }}
 
 Functional imaging consists of techniques that support rapid temporal repetition.
 This includes but is not limited to task based fMRI
@@ -492,6 +496,8 @@ Currently supported image types include:
 
 {{ MACROS___make_filename_template(datatypes=["dwi"]) }}
 
+{{ MACROS___make_entity_table(datatypes=["dwi"]) }}
+
 If more than one run of the same acquisition and direction has been acquired, the
 [`run-<index>`](../99-appendices/09-entities.md#run) key/value pair MUST be used:
 `_run-1`, `_run-2`, `_run-3` (and so forth.)
@@ -664,6 +670,8 @@ JSON example:
 
 {{ MACROS___make_filename_template(datatypes=["perf"]) }}
 
+{{ MACROS___make_entity_table(datatypes=["perf"]) }}
+
 The complete ASL time series should be stored as a 4D NIfTI file in the original acquisition order,
 accompanied by two ancillary files: `*_asl.json` and `*_aslcontext.tsv`.
 
@@ -834,6 +842,8 @@ are allowed across all the four scenarios:
 
 {{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["phasediff", "magnitude1", "magnitude2"]) }}
 
+{{ MACROS___make_entity_table(datatypes=["fmap"], suffixes=["phasediff", "magnitude1", "magnitude2"]) }}
+
 where
 the REQUIRED `_phasediff` image corresponds to the phase-drift map between echo times,
 the REQUIRED `_magnitude1` image corresponds to the shorter echo time, and
@@ -867,6 +877,8 @@ second echos are available.
 
 {{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["phase1", "phase2", "magnitude1", "magnitude2"]) }}
 
+{{ MACROS___make_entity_table(datatypes=["fmap"], suffixes=["phase1", "phase2", "magnitude1", "magnitude2"]) }}
+
 Required fields:
 
 | **Key name** | **Requirement level** | **Data type** | **Description**                                                                   |
@@ -887,6 +899,8 @@ In some cases (for example GE), the scanner software will directly reconstruct a
 *B<sub>0</sub>* field map along with a magnitude image used for anatomical reference.
 
 {{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["fieldmap", "magnitude"]) }}
+
+{{ MACROS___make_entity_table(datatypes=["fmap"], suffixes=["fieldmap", "magnitude"]) }}
 
 Required fields:
 
@@ -917,6 +931,8 @@ Examples of software tools using these kinds of images are FSL TOPUP,
 AFNI `3dqwarp`, and SPM.
 
 {{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["epi"]) }}
+
+{{ MACROS___make_entity_table(datatypes=["fmap"], suffixes=["epi"]) }}
 
 The [`dir-<label>`](../99-appendices/09-entities.md#dir) entity is REQUIRED
 for these files.
