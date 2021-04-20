@@ -7,5 +7,6 @@
     ["lint-maximum-line-length", false],
     ["lint-maximum-heading-length", false],
     ["lint-no-shortcut-reference-link", false]
+    ["lint-no-trailing-spaces"]
   ]
 }
