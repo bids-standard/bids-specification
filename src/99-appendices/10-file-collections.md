@@ -5,7 +5,7 @@ Here, some concrete use-cases of [entity-linked file collections](../02-common-p
 The tables in this appendix catalog applications where the use of
 a file collection is REQUIRED.
 
-Certain entitites interlink the files in a file collection through a metadata field.
+Certain entities interlink the files in a file collection through a metadata field.
 Unlike other common entities (for example `run`), they require an iteration over different
 values of the metadata fields they represent.
 Please keep the following list of linking entities up-to-date with the file collections
