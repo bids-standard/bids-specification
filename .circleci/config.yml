@@ -37,7 +37,7 @@ jobs:
           name: check links
           command: |
             git status
-            if (! git log -1 --pretty=%b | grep REL:) ; then
+            if (! git log -1 --pretty=oneline | grep REL:) ; then
               chmod a+rX -R ~
               linkchecker -t 1 ~/project/site/
               # check external separately by pointing to all *html so no
