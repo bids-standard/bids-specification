@@ -55,7 +55,6 @@ but because the time of injection does not always coincide with scan start,
 the PET data may not always be decay-corrected to the time of injection.
 If this is not the case, this may be indicated in the reconstruction section
 (`ImageDecayCorrected` and `ImageDecayCorrectionTime`).
-In the example in the figure, tracer injection coincides with scan start.
 In this example, tracer injection coincides with scan start.
 
 ## PET recording data
