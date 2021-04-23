@@ -511,9 +511,8 @@ distinguish different sets of phase-encoding directions.
 **Combining multi- and single-band acquisitions**.
 The single-band reference image MAY be stored with suffix `sbref` (for example,
 `dwi/sub-control01_sbref.nii[.gz]`) as long as the image has no corresponding
-[gradient information (`[*_]dwi.bval` and `[*_]dwi.bvec` sidecar files)](#required-gradient-orientation-information)
+[gradient information](#required-gradient-strength-and-orientation-information)
 to be stored.
-
 Otherwise, if some gradient information is associated to the single-band diffusion
 image and a multi-band diffusion image also exists, the `acq-<label>` key/value pair
 MUST be used to distinguish both images.
