@@ -525,6 +525,11 @@ The user is free to choose any other label than `singleband` and
 
 The gradient strength and orientation information corresponding to a DWI acquisition
 is REQUIRED, and therefore, MUST be stored in the structure.
+The gradient strength and orientation information stored in the structure MUST correspond
+to "*effective*" values (as in, the actual orientations and strengths applied by the scanner),
+rather than the "*requested*" values (as in, the original gradient table design that is
+configured into the scanner's MR protocol settings).
+
 The RECOMMENDED way to store gradient information is a `[*_]dwi.tsv` file corresponding
 to one or more DWI files.
 The format of this TSV file, and associated metadata, are described below.
