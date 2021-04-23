@@ -1,4 +1,5 @@
 ---
 name: Magnetization Transfer Ratio
 description: |
-  MTR
+  This method is to calculate a semi-quantitative magnetization transfer ratio
+  map.
