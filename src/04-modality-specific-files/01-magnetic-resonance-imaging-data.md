@@ -555,7 +555,7 @@ In other words, the number of rows in the TSV file and the size of the last dime
 data array in the corresponding DWI file(s) MUST be the same.
 
 Rows corresponding to *b = 0* s/mm<sup>2</sup> strengths MUST contain four zeros.
-Correspondingly, the components of the *b*-vector corresponding to a nonzero gradient strength
+Correspondingly, the components of the *b*-vector associated with a nonzero gradient strength
 (*b* &#62; 0) MUST represent a unit-norm vector.
 
 Scanner devices may store the *b*-vectors with reference to the acquired voxel or the
@@ -571,6 +571,7 @@ We will refer to this format as *RAS+b* in the following.
 
 It is RECOMMENDED to store the gradient table information in the original coordinate system
 stored by the scanner (therefore, unchanged).
+
 It is RECOMMENDED to maintain the column ordering as described above (thus, either `I J K b`
 or `R A S b`).
 
@@ -583,9 +584,10 @@ R	A	S	b
 -0.0509541	0.0617551	-0.99679	1000
 ```
 
-**Legacy `.bvec` \& `.bval` specification of gradient information**.
+**Legacy `.bvec` & `.bval` specification of gradient information**.
 The `[*_]dwi.bval` and `[*_]dwi.bvec` files MUST follow the
-[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
+[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT).
+
 The `[*_]dwi.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
 (corresponding to the *N* volumes in the corresponding NIfTI file.)
 The first row contains the *x* elements, the second row contains the *y* elements and
