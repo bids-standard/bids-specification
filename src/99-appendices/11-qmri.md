@@ -232,6 +232,15 @@ For example, without the information of `MagneticFieldStrength`, white-matter T1
 -   The JSON file accompanying a qMRI map which is obtained by using open-source software is RECOMMENDED
     to include additional metadata fields listed in the following table:
 
+{{ MACROS___make_metadata_table(
+   {
+      "BasedOn": "RECOMMENDED",
+      "EstimationReference": "RECOMMENDED",
+      "EstimationAlgorithm": "RECOMMENDED",
+      "Units": "RECOMMENDED",
+   }
+) }}
+
 | **Field name**                  | **Definition**                                                                                                               |
 | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | `BasedOn`                       | List of files in a file collection to generate the map. Fieldmaps are also listed, if involved in the processing.            |

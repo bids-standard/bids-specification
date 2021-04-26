@@ -1,0 +1,12 @@
+---
+name: BasedOn
+description: |
+  List of files in a file collection to generate the map.
+  Fieldmaps are also listed, if involved in the processing.
+anyOf:
+  - type: string
+    format: participant_relative
+  - type: array
+    items:
+      type: string
+      format: participant_relative
