@@ -9,4 +9,5 @@ anyOf:
   - type: string
     format: unit
   - type: string
-    pattern: ^n/a$
+    enum:
+      - n/a

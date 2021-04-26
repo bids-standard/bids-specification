@@ -8,4 +8,5 @@ anyOf:
     exclusiveMinimum: 0
     unit: Hz
   - type: string
-    pattern: ^n/a$
+    enum:
+      - n/a

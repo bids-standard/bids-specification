@@ -11,4 +11,5 @@ anyOf:
     additionalProperties:
       type: object
   - type: string
-    pattern: ^n/a$
+    enum:
+      - n/a

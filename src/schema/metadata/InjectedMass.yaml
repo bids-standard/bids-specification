@@ -9,4 +9,5 @@ description: |
 anyOf:
   - type: number
   - type: string
-    pattern: ^n/a$
+    enum:
+      - n/a
