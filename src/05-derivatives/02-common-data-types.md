@@ -82,7 +82,7 @@ The `space` entity may take any value in [Image-Based Coordinate Systems][coords
 If the `space` entity is omitted, or the space is not in the [Standard template
 identifiers][templates] table, then the `SpatialReference` metadata is REQUIRED.
 
-{ MACROS___make_metadata_table(
+{{ MACROS___make_metadata_table(
    {
       "SpatialReference": "RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise.",
    }
