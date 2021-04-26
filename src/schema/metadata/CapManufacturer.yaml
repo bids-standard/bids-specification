@@ -1,5 +1,5 @@
 ---
 name: CapManufacturer
 description: |
-  Name of the cap manufacturer (for example, "EasyCap").
+  Name of the cap manufacturer (for example, `"EasyCap"`).
 type: string
