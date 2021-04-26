@@ -420,16 +420,13 @@ def _resolve_metadata_type(definition):
             )
 
     elif "anyOf" in definition.keys():
-        string = ""
-        n_types = len(definition["anyOf"])
-
+        substrings = []
         for i_type, subdict in enumerate(definition["anyOf"]):
             substring = _resolve_metadata_type(subdict)
+            substrings.append(substring)
 
-            if i_type < (n_types - 1):
-                string += substring + " or "
-            else:
-                string += substring
+        substrings = sorted(list(set(substrings)))
+        string = " or ".join(substrings)
 
     else:
         # A hack to deal with $ref in the current schema
