@@ -6,3 +6,4 @@ description: |
   Examples: The RRID for Psychtoolbox is 'SCR_002881',
   and that of PsychoPy is 'SCR_006571'.
 type: string
+pattern: .+_.+

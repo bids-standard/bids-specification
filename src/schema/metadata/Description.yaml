@@ -1,5 +1,5 @@
 ---
 name: Description
 description: |
-  Description of the column.
+  Free-form natural language description.
 type: string

@@ -510,11 +510,14 @@ using an object containing the following fields:
 
 {{ MACROS___make_metadata_table(
    {
-      "LongName": "OPTIONAL",
-      "Description": "RECOMMENDED",
-      "Levels": "RECOMMENDED",
-      "Units": "RECOMMENDED",
-      "TermURL": "RECOMMENDED",
+        "LongName": "OPTIONAL",
+        "Description": (
+            "RECOMMENDED",
+            "The description of the column.",
+        ),
+        "Levels": "RECOMMENDED",
+        "Units": "RECOMMENDED",
+        "TermURL": "RECOMMENDED",
    }
 ) }}
 

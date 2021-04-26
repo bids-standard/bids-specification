@@ -12,9 +12,12 @@ share the following (non-required) ones:
 
 {{ MACROS___make_metadata_table(
    {
-      "Description": "RECOMMENDED",
-      "Sources": "OPTIONAL",
-      "RawSources": "OPTIONAL",
+        "Description": (
+            "RECOMMENDED",
+            "This describes the nature of the file.",
+        ),
+        "Sources": "OPTIONAL",
+        "RawSources": "OPTIONAL",
    }
 ) }}
 

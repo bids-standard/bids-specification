@@ -1,8 +1,7 @@
 ---
 name: StimulusPresentation
 description: |
-  [Object](https://www.json.org/json-en.html)
-  containing key value pairs related to the software used to present
+  Object containing key value pairs related to the software used to present
   the stimuli during the experiment, specifically:
   `OperatingSystem`, `SoftwareName`, `SoftwareRRID`, `SoftwareVersion` and
   `Code`.
@@ -10,14 +9,12 @@ description: |
 type: object
 properties:
   OperatingSystem:
-    type: string
+    $ref: OperatingSystem.yaml
   SoftwareName:
-    type: string
+    $ref: SoftwareName.yaml
   SoftwareRRID:
-    type: string
-    pattern: .+_.+
+    $ref: SoftwareRRID.yaml
   SoftwareVersion:
-    type: string
+    $ref: SoftwareVersion.yaml
   Code:
-    type: string
-    format: uri
+    $ref: Code.yaml
