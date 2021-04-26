@@ -406,11 +406,20 @@ def _resolve_metadata_type(definition):
     if "type" in definition.keys():
         string = _get_link(definition["type"])
 
-        if ("items" in definition.keys()) and (
+        if (
+            ("enum" in definition.keys())
+            and (len(definition["enum"]) == 1)
+            and (definition["enum"][0] == "n/a")
+        ):
+            # Special string case of n/a
+            string = '`"n/a"`'
+
+        elif ("items" in definition.keys()) and (
             "type" in definition["items"].keys()
         ):
             # Items within arrays
             string += " of " + _get_link(definition["items"]["type"] + "s")
+
         elif ("additionalProperties" in definition.keys()) and (
             "type" in definition["additionalProperties"].keys()
         ):
