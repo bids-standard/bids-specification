@@ -400,7 +400,7 @@ def _resolve_metadata_type(definition):
     if "type" in definition.keys():
         string = _get_link(definition["type"])
 
-        if defintion.get("enum") == ["n/a"]:
+        if definition.get("enum") == ["n/a"]:
             # Special string case of n/a
             string = '`"n/a"`'
 
