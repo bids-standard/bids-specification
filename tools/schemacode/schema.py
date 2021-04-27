@@ -36,24 +36,18 @@ def search_structure(struct, path):
     Each $ref key is replaced with the contents of the referenced file.
     """
     if isinstance(struct, dict):
-        if "$ref" in struct.keys():
+        if "$ref" in struct:
             with open(os.path.join(path, struct["$ref"]), "r") as fo:
-                temp = yaml.load(fo, Loader=yaml.SafeLoader)
+                template = yaml.load(fo, Loader=yaml.SafeLoader)
 
             struct.pop("$ref")
+            # Result is template object with local overrides
+            struct = {**template, **struct}
 
-            for k_temp, v_temp in temp.items():
-                if k_temp not in struct.keys():
-                    struct[k_temp] = v_temp
-
-        for k, v in struct.items():
-            if isinstance(v, (dict, list)):
-                v = search_structure(v, path)
-                struct[k] = v
+        struct = {key: search_structure(val, path) for key, val in struct.items()}
 
     elif isinstance(struct, list):
-        for i, item in enumerate(struct):
-            struct[i] = search_structure(item, path)
+        struct = [search_structure(item, path) for item in struct]
 
     return struct
 
@@ -406,36 +400,25 @@ def _resolve_metadata_type(definition):
     if "type" in definition.keys():
         string = _get_link(definition["type"])
 
-        if (
-            ("enum" in definition.keys())
-            and (len(definition["enum"]) == 1)
-            and (definition["enum"][0] == "n/a")
-        ):
+        if defintion.get("enum") == ["n/a"]:
             # Special string case of n/a
             string = '`"n/a"`'
 
-        elif ("items" in definition.keys()) and (
-            "type" in definition["items"].keys()
-        ):
+        elif "type" in definition.get("items", {}):
             # Items within arrays
             string += " of " + _get_link(definition["items"]["type"] + "s")
 
-        elif ("additionalProperties" in definition.keys()) and (
-            "type" in definition["additionalProperties"].keys()
-        ):
+        elif "type" in definition.get("additionalProperties", {}):
             # Values within objects
             string += " of " + _get_link(
                 definition["additionalProperties"]["type"] + "s"
             )
 
-    elif "anyOf" in definition.keys():
-        substrings = []
-        for i_type, subdict in enumerate(definition["anyOf"]):
-            substring = _resolve_metadata_type(subdict)
-            substrings.append(substring)
+    elif "anyOf" in definition:
+        substrings = {_resolve_metadata_type(subdict)
+                      for subdict in definition["anyOf"]}
 
-        substrings = sorted(list(set(substrings)))
-        string = " or ".join(substrings)
+        string = " or ".join(sorted(substrings))
 
     else:
         # A hack to deal with $ref in the current schema
