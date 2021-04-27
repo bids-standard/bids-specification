@@ -75,9 +75,10 @@ def load_schema(schema_path):
     if schema_path.is_file() and (schema_path.suffix == ".yaml"):
         base_path = os.path.dirname(schema_path.absolute())
         with open(schema_path) as f:
-            dict_ = yaml.load(f, Loader=yaml.SafeLoader)
-            if "$ref" in str(dict_):
-                dict_ = dereference_yaml(dict_, base_path)
+            dict_ = dereference_yaml(
+                yaml.load(f, Loader=yaml.SafeLoader),
+                base_path
+            )
             return dict_
     elif schema_path.is_dir():
         # iterate through files and subdirectories
