@@ -30,7 +30,7 @@ def _get_entry_name(path):
         return path.name
 
 
-def search_structure(struct, path):
+def dereference_yaml(struct, path):
     """Recursively search a dictionary-like object for $ref keys.
 
     Each $ref key is replaced with the contents of the referenced file.
@@ -44,10 +44,10 @@ def search_structure(struct, path):
             # Result is template object with local overrides
             struct = {**template, **struct}
 
-        struct = {key: search_structure(val, path) for key, val in struct.items()}
+        struct = {key: dereference_yaml(val, path) for key, val in struct.items()}
 
     elif isinstance(struct, list):
-        struct = [search_structure(item, path) for item in struct]
+        struct = [dereference_yaml(item, path) for item in struct]
 
     return struct
 
@@ -77,7 +77,7 @@ def load_schema(schema_path):
         with open(schema_path) as f:
             dict_ = yaml.load(f, Loader=yaml.SafeLoader)
             if "$ref" in str(dict_):
-                dict_ = search_structure(dict_, base_path)
+                dict_ = dereference_yaml(dict_, base_path)
             return dict_
     elif schema_path.is_dir():
         # iterate through files and subdirectories
