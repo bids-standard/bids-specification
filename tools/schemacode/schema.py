@@ -474,7 +474,7 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
         if isinstance(requirement_info, tuple):
             requirement_info, description_addendum = requirement_info
 
-        requirement_info.replace(
+        requirement_info = requirement_info.replace(
             "DEPRECATED",
             "[DEPRECATED](/02-common-principles.html#definitions)",
         )
