@@ -80,9 +80,9 @@ option to specify the value as follows:
 -   `Other`: Use this for other coordinate systems and specify all
     required details in the `<CoordSysType>CoordinateSystemDescription` field
 
-**If you believe a specific coordinate system should be added to the list
+If you believe a specific coordinate system should be added to the list
 of restricted keywords for MEG, EEG, or iEEG, please open a new issue on the
-[bids-standard/bids-specification GitHub repository](https://github.com/bids-standard/bids-specification/issues/new/choose).**
+[bids-standard/bids-specification GitHub repository](https://github.com/bids-standard/bids-specification/issues/new/choose).
 
 Note that the short descriptions below may not capture all details.
 For detailed descriptions of the coordinate systems below, please see the
@@ -99,8 +99,8 @@ to define coordinate systems that capture digitized sensor positions.
 
 More information can be obtained from the FieldTrip webpage.
 
-- [FAQ: LPA and RPA](https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined/)
-- [FAQ: Beyond LPA and RPA](https://www.fieldtriptoolbox.org/faq/how_should_i_report_the_positions_of_the_fiducial_points_on_the_head/)
+-   [FAQ: LPA and RPA](https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined/)
+-   [FAQ: Beyond LPA and RPA](https://www.fieldtriptoolbox.org/faq/how_should_i_report_the_positions_of_the_fiducial_points_on_the_head/)
 
 ### MEG Specific Coordinate Systems
 
