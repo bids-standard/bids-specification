@@ -23,3 +23,7 @@ beh:
   name: Behavioral experiments
   datatypes:
     - beh
+pet:
+  name: Positron Emission Tomography
+  datatypes:
+    - pet

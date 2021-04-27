@@ -47,7 +47,7 @@ remember to list all files separately in `scans.tsv` and that the entries for th
 `acq_time` column in `scans.tsv` MUST all be identical, as described in
 [Scans file](../03-modality-agnostic-files.md#scans-file).
 
-Another manufacturer-specific detail pertains to the KIT/Yokogawa/Ricoh sytem,
+Another manufacturer-specific detail pertains to the KIT/Yokogawa/Ricoh system,
 which saves the MEG sensor coil positions in a separate file with two possible filename extensions  (`.sqd`, `.mrk`).
 For these files, the `markers` suffix MUST be used.
 For example: `sub-01_task-nback_markers.sqd`

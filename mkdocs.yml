@@ -1,4 +1,4 @@
-site_name: Brain Imaging Data Structure v1.6.0-dev
+site_name: Brain Imaging Data Structure v1.6.1-dev
 theme:
     name: material
     custom_dir: theme_customizations/
@@ -35,6 +35,7 @@ nav:
         - Physiological and other continuous recordings: 04-modality-specific-files/06-physiological-and-other-continuous-recordings.md
         - Behavioral experiments (with no neural recordings): 04-modality-specific-files/07-behavioral-experiments.md
         - Genetic Descriptor: 04-modality-specific-files/08-genetic-descriptor.md
+        - Positron Emission Tomography: 04-modality-specific-files/09-positron-emission-tomography.md
       - Derivatives:
         - BIDS Derivatives: 05-derivatives/01-introduction.md
         - Common data types and metadata: 05-derivatives/02-common-data-types.md
@@ -54,6 +55,7 @@ nav:
         - File collections: 99-appendices/10-file-collections.md
         - Quantitative MRI: 99-appendices/11-qmri.md
         - Arterial Spin Labeling: 99-appendices/12-arterial-spin-labeling.md
+        - Cross modality correspondence: 99-appendices/13-cross-modality-correspondence.md
       - Changelog: CHANGES.md
     - The BIDS Starter Kit:
       - GitHub repository: https://github.com/bids-standard/bids-starter-kit
