@@ -416,7 +416,8 @@ def _resolve_metadata_type(definition):
             )
 
     elif "anyOf" in definition:
-        substrings = {_resolve_metadata_type(subdict)
+        # Use dictionary to get unique substrings while preserving insertion order
+        substrings = {_resolve_metadata_type(subdict): None
                       for subdict in definition["anyOf"]}
 
         string = " or ".join(substrings)
