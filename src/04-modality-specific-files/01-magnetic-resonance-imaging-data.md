@@ -20,7 +20,10 @@ by Ben Inglis:
       "HardcopyDeviceSoftwareVersion": "DEPRECATED",
       "MagneticFieldStrength": "RECOMMENDED, but REQUIRED for Arterial Spin Labeling",
       "ReceiveCoilName": "RECOMMENDED",
-      "ReceiveCoilActiveElements": {"RECOMMENDED", "See an example below the table."}
+      "ReceiveCoilActiveElements": (
+         "RECOMMENDED",
+         "See an example below the table.",
+      ),
       "GradientSetType": "RECOMMENDED",
       "MRTransmitCoilSequence": "RECOMMENDED",
       "MatrixCoilMode": "RECOMMENDED",
