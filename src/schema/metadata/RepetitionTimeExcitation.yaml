@@ -12,12 +12,7 @@ description: |
   `RepetitionTime` as it is already defined as the amount of time that it takes
   to acquire a single volume in the
   [task imaging data](#task-including-resting-state-imaging-data) section.
-anyOf:
-  - type: number
-    minimum: 0
-    unit: s
-  - type: array
-    items:
-      type: number
-      minimum: 0
-      unit: s
+# TODO: Determine if this should be an anyOf (number or array of numbers)
+type: number
+minimum: 0
+unit: s

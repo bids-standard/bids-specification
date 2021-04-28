@@ -2,4 +2,5 @@
 name: MultibandAccelerationFactor
 description: |
   The multiband factor, for multiband acquisitions.
-type: integer
+# TODO: Determine if integer would be more appropriate.
+type: number

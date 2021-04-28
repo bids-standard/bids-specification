@@ -6,6 +6,8 @@ description: |
   The path needs to use forward slashes instead of backward slashes
   (for example,
   "sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds").
+# TODO: Address/evaluate mismatch between validator and specification.
+# Validator says array, specification says string.
 anyOf:
   - type: array
     items:
