@@ -1087,7 +1087,7 @@ filling the `IntendedFor` field in the corresponding JSON file.
 {{ MACROS___make_metadata_table(
    {
       "IntendedFor": (
-         "RECOMMENDED",
+         "OPTIONAL",
          "This field is OPTIONAL, and in case the fieldmaps do not correspond "
          "to any particular scans, it does not have to be filled.",
       ),
