@@ -544,21 +544,24 @@ The user is free to choose any other label than `singleband` and
 ### REQUIRED gradient strength and orientation information
 
 The gradient strength and orientation information corresponding to a DWI acquisition
-is REQUIRED, and therefore, MUST be stored in the structure.
-The gradient strength and orientation information stored in the structure MUST correspond
+is REQUIRED, and therefore, MUST be stored in the structure using the formats introduced
+below.
+The gradient strength and orientation information MUST correspond
 to "*effective*" values (as in, the actual orientations and strengths applied by the scanner),
 rather than the "*requested*" values (as in, the original gradient table design that is
 configured into the scanner's MR protocol settings).
 
 The RECOMMENDED way to store gradient information is a `[*_]dwi.tsv` file corresponding
 to one or more DWI files.
-The format of this TSV file, and associated metadata, are described below.
-The gradient information MAY be stored using the `[*_]dwi.bval` and `[*_]dwi.bvec` pair
+The gradient information MAY be stored using the OPTIONAL `.bval` and `.bvec` pair
 of files.
-However, the `[*_]dwi.[bval|bvec]` files are DEPRECATED and will be
-phased out in a future release.
-The TSV file format is OPTIONAL, and will replace `[*_]dwi.[bval|bvec]` as the
-default method for representing gradients.
+The format of the `.tsv` file and the `.bvec`/`.bval` files, as well as the conversion from
+`.bvec`/`.bval` to `.tsv`, are described below.
+
+The RECOMMENDED `.tsv` file and the OPTIONAL `.bval`/`.bvec` MAY coexist in the structure.
+In such a case, the `.tsv` file and the `.bval`/`.bvec` pair MUST be consistent as described
+below.
+However, the `.bval`/`.bvec` files are DEPRECATED and will be phased out in a future release.
 
 The `[*_]dwi.[bval|bvec|tsv]` files MAY be saved on any level of the directory structure
 and thus define those values for all sessions and/or subjects in one place (see
@@ -600,7 +603,7 @@ stored by the scanner (therefore, unchanged).
 It is RECOMMENDED to maintain the column ordering as described above (thus, either `I J K b`
 or `R A S b`).
 
-Example of `_dwi.tsv` file, following the *RAS+b* convention:
+Example of TSV file, following the *RAS+b* convention:
 
 ```Text
 R	A	S	b
@@ -610,24 +613,24 @@ R	A	S	b
 ```
 
 **Legacy `.bvec` & `.bval` specification of gradient information**.
-The `[*_]dwi.bval` and `[*_]dwi.bvec` files MUST follow the
+The `.bvec`/`.bval` files MUST follow the
 [FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT).
 
-The `[*_]dwi.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
+The `.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
 (corresponding to the *N* volumes in the corresponding NIfTI file.)
 The first row contains the *x* elements, the second row contains the *y* elements and
 the third row contains the *z* elements of a unit vector in the direction of the applied
 diffusion gradient, where the *i*-th elements in each row correspond together to
 the *i*-th volume, with `[0,0,0]` for *non-diffusion-weighted* (also called *b*=0 or *low-b*)
 volumes.
-Following the FSL format for the `[*_]dwi.bvec` specification, the coordinate system of
+Following the FSL format for the `.bvec` specification, the coordinate system of
 the *b* vectors MUST be defined with respect to the coordinate system defined by
 the header of the corresponding `_dwi` NIfTI file and not the scanner's device
 coordinate system (see [Coordinate systems](../99-appendices/08-coordinate-systems.md)).
 The most relevant implication for this choice is that any rotations applied to the DWI data
 also need to be applied to the *b* vectors in the `[*_]dwi.bvec` file.
 
-Example of `[*_]dwi.bvec` file, with *N*=6, with two *b*=0 volumes in the beginning:
+Example of `.bvec` file, with *N*=6, with two *b*=0 volumes in the beginning:
 
 ```Text
 0 0 0.021828 -0.015425 -0.70918 -0.2465
@@ -635,13 +638,29 @@ Example of `[*_]dwi.bvec` file, with *N*=6, with two *b*=0 volumes in the beginn
 0 0 -0.59636 0.97516 -0.70503 -0.96351
 ```
 
-The `[*_]dwi.bval` file contains the *b*-values (in s/mm<sup>2</sup>) corresponding to the
+The `.bval` file contains the *b*-values (in s/mm<sup>2</sup>) corresponding to the
 volumes in the relevant NIfTI file), with 0 designating *b*=0 volumes, space-delimited.
 
-Example of `[*_]dwi.bval` file, corresponding to the previous `[*_]dwi.bvec` example:
+Example of `.bval` file, corresponding to the previous `.bvec` example:
 
 ```Text
 0 0 2000 2000 1000 1000
+```
+
+**Conversion from the legacy `.bvec` & `.bval` format into gradient table (`.tsv`)**.
+To convert from the legacy format into table format, the values of the `.bvec` file
+are transposed, the values of the `.bval` file are contatenated as the fourth column
+and the `I J K b` header is inserted.
+The conversion corresponding to the `.bvec`/`.bval` example above is:
+
+```Text
+I	J	K	b
+0	0	0	0
+0	0	0	0
+0.021828	0.80242	-0.59636	2000
+-0.015425	0.22098	0.97516	2000
+-0.70918	-0.00063106	-0.70503	1000
+-0.2465	0.1043	-0.96351	1000
 ```
 
 ### Multipart (split) DWI schemes
