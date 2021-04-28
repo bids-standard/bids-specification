@@ -237,6 +237,13 @@ The modality labels `dwi` (under `dwi/`), `bold` (under `func/`),
 any modality under `fmap/` are allowed to encode the MR protocol intent for
 fieldmap estimation using the following metadata:
 
+{{ MACROS___make_metadata_table(
+   {
+      "B0FieldIdentifier": "RECOMMENDED",
+      "B0FieldSource": "RECOMMENDED",
+   }
+) }}
+
 | **Key name**                | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | --------------------------- | --------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | B0FieldIdentifier           | OPTIONAL              | [string][]                            | The presence of this key states that this particular 3D or 4D image MAY be used for fieldmap estimation purposes. The `B0FieldIdentifier` MUST be a unique string within one participant's tree, shared only by the images meant to be used as inputs for the estimation of a particular instance of the *B<sub>0</sub> field* estimation. It is RECOMMENDED to derive this identifier from DICOM tags, for example, the *Protocol Name* `(0018,1030)` or the *Sequence Name* `(0018,0024)` when the former is not defined (for example, in GE devices.)      |
