@@ -3,6 +3,6 @@ name: ScanDate
 description: |
   Date of scan in the default unit `"YYYY-MM-DD[Z]"`,
   with the Z indicator being optional for indicating UTC timezone
-  (see [Units](../02-common-principles.md#units)).
+  (see [Units](/02-common-principles.html#units)).
 type: string
 pattern: date

@@ -8,7 +8,9 @@ description: |
   a single value for this field.
   The data type array provides a value for each volume in a 4D dataset and
   should only be used when the volume timing is critical for interpretation of
-  the data, such as in [ASL](#arterial-spin-labeling-perfusion-data).
+  the data, such as in
+  [ASL](/04-modality-specific-files/01-magnetic-resonance-imaging-data.html\
+  #arterial-spin-labeling-perfusion-data).
 anyOf:
   - type: number
     minimum: 0

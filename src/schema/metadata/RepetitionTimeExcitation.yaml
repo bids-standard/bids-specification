@@ -11,7 +11,9 @@ description: |
   `RepetitionTimePreparation` if needed) for anatomy imaging data rather than
   `RepetitionTime` as it is already defined as the amount of time that it takes
   to acquire a single volume in the
-  [task imaging data](#task-including-resting-state-imaging-data) section.
+  [task imaging data](/04-modality-specific-files/01-magnetic-resonance-\
+  imaging-data.html#task-including-resting-state-imaging-data)
+  section.
 # TODO: Determine if this should be an anyOf (number or array of numbers)
 type: number
 minimum: 0
