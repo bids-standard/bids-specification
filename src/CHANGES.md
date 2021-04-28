@@ -2,6 +2,12 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[ENH] Allow encoding the fieldmapping intent of the protocol [#622](https://github.com/bids-standard/bids-specification/pull/622) ([oesteban](https://github.com/oesteban))
+
+## [v1.6.0](https://github.com/bids-standard/bids-specification/tree/v1.6.0) (2021-04-22)
+
+-   FIX: Typos discovered by codespell [#784](https://github.com/bids-standard/bids-specification/pull/784) ([yarikoptic](https://github.com/yarikoptic))
+-   REL: v1.6.0 [#776](https://github.com/bids-standard/bids-specification/pull/776) ([effigies](https://github.com/effigies))
 -   FIX: Rename "Unit" metadata to "Units" for consistency with existing fields [#773](https://github.com/bids-standard/bids-specification/pull/773) ([effigies](https://github.com/effigies))
 -   FIX: typo in pet: institution -> institutional [#771](https://github.com/bids-standard/bids-specification/pull/771) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] install git in linkchecker job [#767](https://github.com/bids-standard/bids-specification/pull/767) ([sappelhoff](https://github.com/sappelhoff))

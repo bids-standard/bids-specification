@@ -254,7 +254,7 @@ This specification does not prescribe anything about the contents of `sourcedata
 folders in the above example - nor does it prescribe the `sourcedata`,
 `derivatives`, or `rawdata` folder names.
 The above example is just a convention that can be useful for organizing raw,
-source, and derived data while maintaining BIDS compliancy of the raw data
+source, and derived data while maintaining BIDS compliance of the raw data
 folder. When using this convention it is RECOMMENDED to set the `SourceDatasets`
 field in `dataset_description.json` of each subfolder of `derivatives` to:
 

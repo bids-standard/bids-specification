@@ -158,7 +158,7 @@ in the accompanying JSON sidecar as follows:
 {
     "trial_type": {
         "LongName": "Emotion image type",
-        "Descripton": "Type of emotional face from Karolinska database that is displayed",
+        "Description": "Type of emotional face from Karolinska database that is displayed",
         "Levels": {
             "afraid": "A face showing fear is displayed",
             "angry": "A face showing anger is displayed",
@@ -232,7 +232,7 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
 {
     "trial_type": {
         "LongName":   "Emotion image type",
-        "Descripton": "Type of emotional face from Karolinska database that is displayed",
+        "Description": "Type of emotional face from Karolinska database that is displayed",
         "Levels": {
             "afraid": "A face showing fear is displayed",
             "angry":  "A face showing anger is displayed",

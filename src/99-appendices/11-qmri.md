@@ -245,7 +245,7 @@ For example, without the information of `MagneticFieldStrength`, white-matter T1
 | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | `BasedOn`                       | List of files in a file collection to generate the map. Fieldmaps are also listed, if involved in the processing.            |
 | `EstimationReference`           | Reference to the study/studies on which the implementation is based.                                                         |
-| `EstimationAlgorithm`           | Type of algoritm used to perform fitting (for example, linear, non-linear, LM and such)                                      |
+| `EstimationAlgorithm`           | Type of algorithm used to perform fitting (for example, linear, non-linear, LM and such)                                     |
 | `Units`                         | Units of the maps, in accordance with the BIDS specification.                                                                |
 
 Example:
@@ -316,7 +316,7 @@ This approach aims at:
 | MPM                        |                                   | `EchoTime` (`echo`)                        | MPM-ME                                      |
 
 In this table, (`entity`/`fixed`) denotes whether the OPTIONAL metadata that forms a new
-flavor of qMRI applicaiton for the respective suffix varies across files of a file collection
+flavor of qMRI application for the respective suffix varies across files of a file collection
 (which calls for using a linking entity) or fixed. If former is the case, the entity is to be
 added to the files in that file collection. Note that this addition MUST be allowed by the
 priority levels given for that suffix in the [`entity table`](./04-entity-table.md). If latter (`fixed`) is the case,
@@ -324,7 +324,7 @@ filenames will remain the same; however, the optional metadata (third column) ma
 define the flavor of the application (fourth column) along with the conditional value of a
 required metadata field (second column).
 
-A derived qMRI application becomes avaiable if all the optional metadata fields
+A derived qMRI application becomes available if all the optional metadata fields
 listed for the respective file collection suffix are provided for the data. In addition,
 conditional rules based on the value of a given required metada field can be set
 for the description of a derived qMRI application. Note that the value of this
@@ -391,7 +391,7 @@ raw dataset directory along with the `MP2RAGE` file collection and to be used as
 for quantifying a `T1map`.
 
 If an additional `UNIT1` image is calculated offline, then the output is to be stored in the
-`derivatives` folder with neccesary provenance information.
+`derivatives` folder with necessary provenance information.
 
 ##### `NumberShots` metadata field
 
