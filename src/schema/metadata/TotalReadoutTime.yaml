@@ -6,6 +6,6 @@ description: |
   that would have generated data with the given level of distortion.
   It is NOT the actual, physical duration of the readout train.
   If `EffectiveEchoSpacing` has been properly computed,
-  it is just `EffectiveEchoSpacing * (ReconMatrixPE - 1)`.<sup>3</sup> .
+  it is just `EffectiveEchoSpacing * (ReconMatrixPE - 1)`.
 type: number
 unit: s

@@ -20,7 +20,7 @@ by Ben Inglis:
       "HardcopyDeviceSoftwareVersion": "DEPRECATED",
       "MagneticFieldStrength": "RECOMMENDED, but REQUIRED for Arterial Spin Labeling",
       "ReceiveCoilName": "RECOMMENDED",
-      "ReceiveCoilActiveElements": "RECOMMENDED",
+      "ReceiveCoilActiveElements": {"RECOMMENDED", "See an example below the table."}
       "GradientSetType": "RECOMMENDED",
       "MRTransmitCoilSequence": "RECOMMENDED",
       "MatrixCoilMode": "RECOMMENDED",
@@ -124,13 +124,14 @@ that a given scan was collected with the intended coil elements selected
       ),
       "EffectiveEchoSpacing": (
          "RECOMMENDED",
-         "This parameter is REQUIRED if corresponding fieldmap data is present.",
+         "<sup>2</sup> This parameter is REQUIRED if corresponding fieldmap data is present.",
       ),
       "TotalReadoutTime": (
          "RECOMMENDED",
-         "This parameter is REQUIRED if corresponding 'field/distortion' maps "
+         "<sup>3</sup> This parameter is REQUIRED if corresponding 'field/distortion' maps "
          "acquired with opposing phase encoding directions are present "
-         "(see 8.9.4).",
+         "(see [Case 4: Multiple phase encoded "
+         "directions](#case-4-multiple-phase-encoded-directions-pepolar)).",
       ),
       "MixingTime": "RECOMMENDED",
    }

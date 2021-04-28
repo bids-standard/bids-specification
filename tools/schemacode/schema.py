@@ -419,7 +419,7 @@ def _resolve_metadata_type(definition):
         substrings = {_resolve_metadata_type(subdict)
                       for subdict in definition["anyOf"]}
 
-        string = " or ".join(sorted(substrings))
+        string = " or ".join(substrings)
 
     else:
         # A hack to deal with $ref in the current schema
