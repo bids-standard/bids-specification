@@ -40,10 +40,10 @@ limit.
 For example Neuromag/Elekta/Megin, which can produce several files
 for a single recording.
 Both `some_file.fif` and `some_file-1.fif` would belong to a single recording.
-In BIDS, the [`split`](../99-appendices/09-entities.md#split) entity is RECOMMENDED to deal 
-with split files. 
+In BIDS, the [`split`](../99-appendices/09-entities.md#split) entity is RECOMMENDED to deal
+with split files.
 If there are multiple parts of a recording and the optional `scans.tsv` is provided,
-remember to list all files separately in `scans.tsv` and that the entries for the 
+remember to list all files separately in `scans.tsv` and that the entries for the
 `acq_time` column in `scans.tsv` MUST all be identical, as described in
 [Scans file](../03-modality-agnostic-files.md#scans-file).
 
