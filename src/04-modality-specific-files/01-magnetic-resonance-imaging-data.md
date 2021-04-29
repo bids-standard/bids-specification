@@ -614,7 +614,7 @@ R	A	S	b
 
 **Legacy `.bvec` & `.bval` specification of gradient information**.
 The `.bvec`/`.bval` files MUST follow the
-[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT).
+[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/FAQ#What_conventions_do_the_bvecs_use.3F).
 
 The `.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
 (corresponding to the *N* volumes in the corresponding NIfTI file.)
