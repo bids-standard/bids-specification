@@ -80,11 +80,29 @@ option to specify the value as follows:
 -   `Other`: Use this for other coordinate systems and specify all
     required details in the `<CoordSysType>CoordinateSystemDescription` field
 
-**If you believe a specific coordinate system should be added to the list
+If you believe a specific coordinate system should be added to the list
 of restricted keywords for MEG, EEG, or iEEG, please open a new issue on the
-[bids-standard/bids-specification GitHub repository](https://github.com/bids-standard/bids-specification/issues/new/choose).**
+[bids-standard/bids-specification GitHub repository](https://github.com/bids-standard/bids-specification/issues/new/choose).
 
-## MEG Specific Coordinate Systems
+Note that the short descriptions below may not capture all details.
+For detailed descriptions of the coordinate systems below, please see the
+[FieldTrip webpage](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined).
+
+### Commonly used anatomical landmarks in MEG, EEG, and iEEG research
+
+In the documentation below we refer to anatomical landmarks such as the
+Left Pre Auricular point (LPA) and the Right Pre Auricular point (RPA),
+or the left and right Helix-Tragus Junction (LHJ, RHJ).
+
+These anatomical landmarks are commonly used in MEG, EEG, and iEEG research
+to define coordinate systems that capture digitized sensor positions.
+
+More information can be obtained from the FieldTrip webpage.
+
+-   [FAQ: LPA and RPA](https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined/)
+-   [FAQ: Beyond LPA and RPA](https://www.fieldtriptoolbox.org/faq/how_should_i_report_the_positions_of_the_fiducial_points_on_the_head/)
+
+### MEG Specific Coordinate Systems
 
 Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 `coordinatesystem.json` file for MEG datasets:
@@ -102,17 +120,24 @@ the restricted keywords for
 can also be applied to MEG:
 
 -   `CapTrak`
+-   `EEGLAB`
+-   `EEGLAB-HJ`
 
-Note that the short descriptions above do not capture all details, there are
-detailed extensive descriptions of these coordinate systems on the
-[FieldTrip toolbox web page](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined)
-
-## EEG Specific Coordinate Systems
+### EEG Specific Coordinate Systems
 
 Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 `coordsystem.json` file for EEG datasets:
 
--   `CapTrak`: RAS orientation and the origin between the ears
+-   `CapTrak`: RAS orientation and the origin approximately between LPA and RPA
+
+-   `EEGLAB`: ALS orientation and the origin exactly between LPA and RPA.
+    For more information, see the
+    [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-coordinate-system).
+
+-   `EEGLAB-HJ`: ALS orientation and the origin exactly between LHJ and RHJ.
+    For more information, see the
+    [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-hj-coordinate-system).
+
 -   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
 
 In the case that EEG was recorded simultaneously with MEG,
@@ -126,11 +151,7 @@ can also be applied to EEG:
 -   `KitYokogawa`
 -   `ChietiItab`
 
-Note that the short descriptions above do not capture all details, There are
-detailed extensive descriptions of these coordinate systems on the
-[FieldTrip toolbox web page](https://www.fieldtriptoolbox.org/faq/how_are_the_different_head_and_mri_coordinate_systems_defined).
-
-## iEEG Specific Coordinate Systems
+### iEEG Specific Coordinate Systems
 
 Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 `coordsystem.json` file for iEEG datasets:
