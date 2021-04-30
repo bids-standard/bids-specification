@@ -198,7 +198,7 @@ about the channels.
 Note that electrode positions SHOULD NOT be added to this file, but to [`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-_electrodestsv).
 Furthermore, the entries in `*_electrodes.tsv` and `*_channels.tsv` do not have to match exactly,
 as for example in the case of recording a single `EOG` channel from a bipolar referencing scheme
-of two electrodes, or a data channel originating from an auxilliary, non-electrode device.
+of two electrodes, or a data channel originating from an auxiliary, non-electrode device.
 That is, in most cases `*_electrodes.tsv` will have more entries than `*_channels.tsv`.
 See the examples for `*_channels.tsv` below, and for `*_electrodes.tsv` in
 ["Electrodes description"](./03-electroencephalography.md#electrodes-description-_electrodestsv).

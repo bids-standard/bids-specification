@@ -2,6 +2,16 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] add CI to find trailing whitespace [#780](https://github.com/bids-standard/bids-specification/pull/780) ([sappelhoff](https://github.com/sappelhoff))
+-   ENH: add EEGLAB as valid coordinate system for EEG [#775](https://github.com/bids-standard/bids-specification/pull/775) ([sappelhoff](https://github.com/sappelhoff))
+-   \[ENH] Allow encoding the fieldmapping intent of the protocol [#622](https://github.com/bids-standard/bids-specification/pull/622) ([oesteban](https://github.com/oesteban))
+
+## [v1.6.0](https://github.com/bids-standard/bids-specification/tree/v1.6.0) (2021-04-22)
+
+-   FIX: Typos discovered by codespell [#784](https://github.com/bids-standard/bids-specification/pull/784) ([yarikoptic](https://github.com/yarikoptic))
+-   REL: v1.6.0 [#776](https://github.com/bids-standard/bids-specification/pull/776) ([effigies](https://github.com/effigies))
+-   FIX: Rename "Unit" metadata to "Units" for consistency with existing fields [#773](https://github.com/bids-standard/bids-specification/pull/773) ([effigies](https://github.com/effigies))
+-   FIX: typo in pet: institution -> institutional [#771](https://github.com/bids-standard/bids-specification/pull/771) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] install git in linkchecker job [#767](https://github.com/bids-standard/bids-specification/pull/767) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] Fix CircleCI workflows [#764](https://github.com/bids-standard/bids-specification/pull/764) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] do not run remark on auto CHANGES [#755](https://github.com/bids-standard/bids-specification/pull/755) ([sappelhoff](https://github.com/sappelhoff))
@@ -13,6 +23,8 @@
 -   \[MISC] Clarify participant_id in participants.tsv file if it exists [#738](https://github.com/bids-standard/bids-specification/pull/738) ([adam2392](https://github.com/adam2392))
 -   \[FIX] split MEG files should be listed separately in scans.tsv [#735](https://github.com/bids-standard/bids-specification/pull/735) ([eort](https://github.com/eort))
 -   \[FIX] 1) Clarify appropriate labels for space entity, 2) Clarify channels+electrodes do not have to match [#734](https://github.com/bids-standard/bids-specification/pull/734) ([sappelhoff](https://github.com/sappelhoff))
+-   \[MISC] refactor stimuli mentioning sections in the events page [#697](https://github.com/bids-standard/bids-specification/pull/697) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[ENH] Bep 009: Positron Emission Tomography [#633](https://github.com/bids-standard/bids-specification/pull/633) ([melanieganz](https://github.com/melanieganz))
 
 ## [v1.5.0](https://github.com/bids-standard/bids-specification/tree/v1.5.0) (2021-02-23)
 
