@@ -40,6 +40,14 @@ line) and a JSON for storing the following metadata fields:
 Note that when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
 `*_<physio|stim>.json` MUST be supplied as well.
 
+{{ MACROS___make_metadata_table(
+   {
+      "SamplingFrequency": "REQUIRED",
+      "StartTime": "REQUIRED",
+      "Columns": "REQUIRED",
+   }
+) }}
+
 | **Key name**      | **Requirement level** | **Data type**            | **Description**                                                                                                                                           |
 | ----------------- | --------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | SamplingFrequency | REQUIRED              | [number][]               | Sampling frequency in Hz of all columns in the file.                                                                                                      |

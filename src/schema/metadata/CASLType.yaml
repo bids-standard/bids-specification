@@ -1,0 +1,9 @@
+---
+name: CASLType
+description: |
+  Describes if a separate coil is used for labeling:
+  `single-coil` or `double-coil`.
+type: string
+enum:
+  - single-coil
+  - double-coil

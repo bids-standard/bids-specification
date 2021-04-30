@@ -1,0 +1,9 @@
+---
+name: RawSources
+description: |
+  A list of paths relative to dataset root pointing to the BIDS-Raw file(s)
+  that were used in the creation of this derivative.
+type: array
+items:
+  type: string
+  format: dataset_relative

@@ -1,0 +1,16 @@
+---
+name: SampleOrigin
+description: |
+  Describes from which tissue the genetic information was extracted.
+  Values MUST be one of `"blood"`, `"saliva"`, `"brain"`, `"csf"`,
+  `"breast milk"`, `"bile"`, `"amniotic fluid"`, `"other biospecimen"`.
+type: string
+enum:
+  - blood
+  - saliva
+  - brain
+  - csf
+  - breast milk
+  - bile
+  - amniotic fluid
+  - other biospecimen

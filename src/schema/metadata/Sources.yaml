@@ -1,0 +1,15 @@
+---
+name: Sources
+description: |
+  A list of files with the paths specified relative to dataset root;
+  these files were directly used in the creation of this derivative data file.
+  For example, if a derivative A is used in the creation of another
+  derivative B, which is in turn used to generate C in a chain of A->B->C,
+  C should only list B in `Sources`, and B should only list A in `Sources`.
+  However, in case both X and Y are directly used in the creation of Z,
+  then Z should list X and Y in `Sources`,
+  regardless of whether X was used to generate Y.
+type: array
+items:
+  type: string
+  format: dataset_relative

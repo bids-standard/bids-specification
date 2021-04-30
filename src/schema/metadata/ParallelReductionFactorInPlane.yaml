@@ -1,0 +1,8 @@
+---
+name: ParallelReductionFactorInPlane
+description: |
+  The parallel imaging (for instance, GRAPPA) factor.
+  Use the denominator of the fraction of k-space encoded for each slice.
+  For example, 2 means half of k-space is encoded.
+  Corresponds to DICOM Tag 0018, 9069 `Parallel Reduction Factor In-plane`.
+type: number

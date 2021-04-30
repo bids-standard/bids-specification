@@ -1,0 +1,5 @@
+---
+name: BackgroundSuppression
+description: |
+  Boolean indicating if background suppression is used.
+type: boolean

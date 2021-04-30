@@ -1,0 +1,7 @@
+---
+name: PulseSequenceType
+description: |
+  A general description of the pulse sequence used for the scan
+  (for example, `"MPRAGE"`, `"Gradient Echo EPI"`, `"Spin Echo EPI"`,
+  `"Multiband gradient echo EPI"`).
+type: string

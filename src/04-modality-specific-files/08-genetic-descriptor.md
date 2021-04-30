@@ -22,6 +22,14 @@ Datasets linked to a genetic database entry include the following REQUIRED or OP
 `dataset_description.json` keys (a dot in the key name denotes a key in a sub-[object][],
 see the example further below):
 
+{{ MACROS___make_metadata_table(
+   {
+      "Genetics.Dataset": "REQUIRED",
+      "Genetics.Database": "OPTIONAL",
+      "Genetics.Descriptors": "OPTIONAL",
+   }
+) }}
+
 | **Key name**         | **Requirement level** | **Data type**                          | **Description**                                                                                                  |
 | -------------------- | --------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | Genetics.Dataset     | REQUIRED              | [string][]                             | [URI][uri] where data can be retrieved.                                                                          |
@@ -82,6 +90,17 @@ The `genetic_info.json` file describes the genetic information available in the
 Datasets containing the `Genetics` field in `dataset_description.json` or the
 `genetic_id` column in `participants.tsv` MUST include this file with the following
 fields:
+
+{{ MACROS___make_metadata_table(
+   {
+      "GeneticLevel": "REQUIRED",
+      "AnalyticalApproach": "OPTIONAL",
+      "SampleOrigin": "REQUIRED",
+      "TissueOrigin": "OPTIONAL",
+      "BrainLocation": "OPTIONAL",
+      "CellType": "OPTIONAL",
+   }
+) }}
 
 | **Key name**       | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                           |
 | ------------------ | --------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

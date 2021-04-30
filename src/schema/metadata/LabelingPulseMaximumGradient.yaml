@@ -1,0 +1,8 @@
+---
+name: LabelingPulseMaximumGradient
+description: |
+  The maximum amplitude of the gradient switched on during the application of
+  the labeling RF pulse(s), in milliteslas per meter.
+type: number
+exclusiveMinimum: 0
+unit: mT/m

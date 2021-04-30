@@ -86,6 +86,12 @@ be specified.
 
 Generic fields MUST be present:
 
+{{ MACROS___make_metadata_table(
+   {
+      "TaskName": "REQUIRED",
+   }
+) }}
+
 | **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                    |
 | ------------ | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | TaskName     | REQUIRED              | [string][]    | Name of the task. No two tasks should have the same name. The task label included in the file name is derived from this TaskName field by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters. For example `TaskName` `"faces n-back"` will correspond to task label `facesnback`. A RECOMMENDED convention is to name resting state task using labels beginning with `rest`. |
@@ -93,6 +99,21 @@ Generic fields MUST be present:
 SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
+
+{{ MACROS___make_metadata_table(
+   {
+      "InstitutionName": "RECOMMENDED",
+      "InstitutionAddress": "RECOMMENDED",
+      "Manufacturer": "RECOMMENDED",
+      "ManufacturersModelName": "RECOMMENDED",
+      "SoftwareVersions": "RECOMMENDED",
+      "TaskDescription": "RECOMMENDED",
+      "Instructions": "RECOMMENDED",
+      "CogAtlasID": "RECOMMENDED",
+      "CogPOID": "RECOMMENDED",
+      "DeviceSerialNumber": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                   |
 | ---------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -109,6 +130,15 @@ Whenever possible, please avoid using ad hoc wording.
 
 Specific EEG fields MUST be present:
 
+{{ MACROS___make_metadata_table(
+   {
+      "EEGReference": "REQUIRED",
+      "SamplingFrequency": "REQUIRED",
+      "PowerLineFrequency": "REQUIRED",
+      "SoftwareFilters": "REQUIRED",
+   }
+) }}
+
 | **Key name**       | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                                                                                                                                                                       |
 | ------------------ | --------------------- | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | EEGReference       | REQUIRED              | [string][]                           | General description of the reference scheme used and (when applicable) of location of the reference electrode in the raw recordings (for example, `"left mastoid"`, `"Cz"`, `"CMS"`). If different channels have a different reference, this field should have a general description and the channel specific reference should be defined in the `channels.tsv` file. |
@@ -117,6 +147,27 @@ Specific EEG fields MUST be present:
 | SoftwareFilters    | REQUIRED              | [object][] of [objects][] or `"n/a"` | [Object][] of temporal software filters applied, or `"n/a"` if the data is not available. Each key:value pair in the JSON object is a name of the filter and an object in which its parameters are defined as key:value pairs. For example, `{"Anti-aliasing filter": {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`.                                |
 
 SHOULD be present:
+
+{{ MACROS___make_metadata_table(
+   {
+      "CapManufacturer": "RECOMMENDED",
+      "CapManufacturersModelName": "RECOMMENDED",
+      "EEGChannelCount": "RECOMMENDED",
+      "ECGChannelCount": "RECOMMENDED",
+      "EMGChannelCount": "RECOMMENDED",
+      "EOGChannelCount": "RECOMMENDED",
+      "MiscChannelCount": "RECOMMENDED",
+      "TriggerChannelCount": "RECOMMENDED",
+      "RecordingDuration": "RECOMMENDED",
+      "RecordingType": "RECOMMENDED",
+      "EpochLength": "RECOMMENDED",
+      "EEGGround": "RECOMMENDED",
+      "HeadCircumference": "RECOMMENDED",
+      "EEGPlacementScheme": "RECOMMENDED",
+      "HardwareFilters": "RECOMMENDED",
+      "SubjectArtefactDescription": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**               | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                                                                                                                                        |
 | -------------------------- | --------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -354,11 +405,29 @@ head.
 
 General fields:
 
+{{ MACROS___make_metadata_table(
+   {
+      "IntendedFor": (
+         "OPTIONAL",
+         "This identifies the MRI or CT scan associated with the electrodes, "
+         "landmarks, and fiducials.",
+      )
+   }
+) }}
+
 | **Key name** | **Requirement level** | **Data type** | **Description**                                                                  |
 | ------------ | --------------------- | ------------- | -------------------------------------------------------------------------------- |
 | IntendedFor  | OPTIONAL              | [string][]    | Relative path to associate the electrodes, landmarks and fiducials to an MRI/CT. |
 
 Fields relating to the EEG electrode positions:
+
+{{ MACROS___make_metadata_table(
+   {
+      "EEGCoordinateSystem": "REQUIRED",
+      "EEGCoordinateUnits": "REQUIRED",
+      "EEGCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `EEGCoordinateSystem` is `"Other"`',
+   }
+) }}
 
 | **Key name**                   | **Requirement level**                                           | **Data type** | **Description**                                                                                                                                                                                                                                                            |
 | ------------------------------ | --------------------------------------------------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -367,6 +436,16 @@ Fields relating to the EEG electrode positions:
 | EEGCoordinateSystemDescription | RECOMMENDED, but REQUIRED if `EEGCoordinateSystem` is `"Other"` | [string][]    | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                     |
 
 Fields relating to the position of fiducials measured during an EEG session/run:
+
+{{ MACROS___make_metadata_table(
+   {
+      "FiducialsDescription": "OPTIONAL",
+      "FiducialsCoordinates": "RECOMMENDED",
+      "FiducialsCoordinateSystem": "RECOMMENDED",
+      "FiducialsCoordinateUnits": "RECOMMENDED",
+      "FiducialsCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `FiducialsCoordinateSystem` is `"Other"`',
+   }
+) }}
 
 | **Key name**                         | **Requirement level**                                                 | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                 |
 | ------------------------------------ | --------------------------------------------------------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -377,6 +456,15 @@ Fields relating to the position of fiducials measured during an EEG session/run:
 | FiducialsCoordinateSystemDescription | RECOMMENDED, but REQUIRED if `FiducialsCoordinateSystem` is `"Other"` | [string][]               | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                                                                                                          |
 
 Fields relating to the position of anatomical landmark measured during an EEG session/run:
+
+{{ MACROS___make_metadata_table(
+   {
+      "AnatomicalLandmarkCoordinates": "RECOMMENDED",
+      "AnatomicalLandmarkCoordinateSystem": "RECOMMENDED",
+      "AnatomicalLandmarkCoordinateUnits": "RECOMMENDED",
+      "AnatomicalLandmarkCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `"Other"`',
+   }
+) }}
 
 | **Key name**                                  | **Requirement level**                                                          | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                          |
 | --------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

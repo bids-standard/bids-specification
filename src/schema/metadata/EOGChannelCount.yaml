@@ -1,0 +1,6 @@
+---
+name: EOGChannelCount
+description: |
+  Number of EOG channels.
+type: integer
+minimum: 0

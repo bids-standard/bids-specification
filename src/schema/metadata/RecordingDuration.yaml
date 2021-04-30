@@ -1,0 +1,6 @@
+---
+name: RecordingDuration
+description: |
+  Length of the recording in seconds (for example, 3600).
+type: number
+unit: s

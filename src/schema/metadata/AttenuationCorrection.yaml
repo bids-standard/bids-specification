@@ -1,0 +1,5 @@
+---
+name: AttenuationCorrection
+description: |
+  Short description of the attenuation correction method used.
+type: string

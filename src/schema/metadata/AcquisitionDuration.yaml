@@ -1,0 +1,9 @@
+---
+name: AcquisitionDuration
+description: |
+  Duration (in seconds) of volume acquisition.
+  Corresponds to DICOM Tag 0018,9073 Acquisition Duration.
+  This field is mutually exclusive with RepetitionTime.
+type: number
+exclusiveMinimum: 0
+unit: s

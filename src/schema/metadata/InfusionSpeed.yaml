@@ -1,0 +1,5 @@
+---
+name: InfusionSpeed
+description: |
+  If given, infusion speed.
+type: number

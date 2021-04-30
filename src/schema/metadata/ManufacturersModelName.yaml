@@ -1,0 +1,7 @@
+---
+name: ManufacturersModelName
+description: |
+  Manufacturer's model name of the equipment that produced the composite
+  instances.
+  Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
+type: string

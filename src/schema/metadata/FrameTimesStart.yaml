@@ -1,0 +1,8 @@
+---
+name: FrameTimesStart
+description: |
+  Start times for all frames relative to `TimeZero` in default unit seconds.
+type: array
+items:
+  type: number
+unit: s

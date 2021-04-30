@@ -1,0 +1,5 @@
+---
+name: PlasmaAvail
+description: |
+  Boolean that specifies if plasma measurements are available.
+type: boolean

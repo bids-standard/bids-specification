@@ -1,0 +1,6 @@
+---
+name: TriggerChannelCount
+description: |
+  Number of channels for digital (TTL bit level) triggers.
+type: integer
+minimum: 0

@@ -1,0 +1,10 @@
+---
+name: DatasetType
+description: |
+  The interpretation of the dataset.
+  MUST be one of `"raw"` or `"derivative"`.
+  For backwards compatibility, the default value is `"raw"`.
+type: string
+enum:
+  - raw
+  - derivative

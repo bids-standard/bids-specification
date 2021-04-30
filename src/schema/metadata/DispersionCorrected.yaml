@@ -1,0 +1,6 @@
+---
+name: DispersionCorrected
+description: |
+  Boolean flag specifying whether the blood data have been dispersion-corrected.
+  NOTE: not customary for manual samples, and hence should be set to false.
+type: boolean

@@ -1,0 +1,14 @@
+---
+name: AnalyticalApproach
+description: |
+  Methodology or methodologies used to analyse the GeneticLevel.
+  Values MUST be taken from the
+  [database of Genotypes and Phenotypes
+  (dbGaP)](https://www.ncbi.nlm.nih.gov/gap/advanced)
+  under /Study/Molecular Data Type (for example, SNP Genotypes (Array) or
+  Methylation (CpG).
+anyOf:
+  - type: string
+  - type: array
+    items:
+      type: string

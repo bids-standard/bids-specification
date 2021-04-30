@@ -1,0 +1,7 @@
+---
+name: FiducialsCoordinateSystemDescription
+description: |
+  Free-form text description of the coordinate system.
+  May also include a link to a documentation page or paper describing the
+  system in greater detail.
+type: string

@@ -80,6 +80,12 @@ systems (see [coordinates section](#coordinate-system-json-_coordsystemjson) bel
 
 Generic fields MUST be present:
 
+{{ MACROS___make_metadata_table(
+   {
+      "TaskName": "REQUIRED",
+   }
+) }}
+
 | **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                    |
 | ------------ | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | TaskName     | REQUIRED              | [string][]    | Name of the task. No two tasks should have the same name. The task label included in the file name is derived from this TaskName field by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters. For example `TaskName` `"faces n-back"` will correspond to task label `facesnback`. A RECOMMENDED convention is to name resting state task using labels beginning with `rest`. |
@@ -87,6 +93,32 @@ Generic fields MUST be present:
 SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad-hoc wording.
+
+{{ MACROS___make_metadata_table(
+   {
+      "InstitutionName": "RECOMMENDED",
+      "InstitutionAddress": "RECOMMENDED",
+      "Manufacturer": (
+         "RECOMMENDED",
+         "For MEG scanners, this must be one of: "
+         '`"CTF"`, `"Elekta/Neuromag"`, `"BTi/4D"`, `"KIT/Yokogawa"`, '
+         '`"ITAB"`, `"KRISS"`, `"Other"`. '
+         "See [Appendix VII](/99-appendices/07-meg-systems.html) for "
+         "preferred names.",
+      ),
+      "ManufacturersModelName": (
+         "RECOMMENDED",
+         "See [Appendix VII](/99-appendices/07-meg-systems.html) for "
+         "preferred names.",
+      ),
+      "SoftwareVersions": "RECOMMENDED",
+      "TaskDescription": "RECOMMENDED",
+      "Instructions": "RECOMMENDED",
+      "CogAtlasID": "RECOMMENDED",
+      "CogPOID": "RECOMMENDED",
+      "DeviceSerialNumber": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                   |
 | ---------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -103,6 +135,17 @@ Whenever possible, please avoid using ad-hoc wording.
 
 Specific MEG fields MUST be present:
 
+{{ MACROS___make_metadata_table(
+   {
+      "SamplingFrequency": "REQUIRED",
+      "PowerLineFrequency": "REQUIRED",
+      "DewarPosition": "REQUIRED",
+      "SoftwareFilters": "REQUIRED",
+      "DigitizedLandmarks": "REQUIRED",
+      "DigitizedHeadPoints": "REQUIRED",
+   }
+) }}
+
 | **Key name**        | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                                                                                                                                                                           |
 | ------------------- | --------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | SamplingFrequency   | REQUIRED              | [number][]                           | Sampling frequency (in Hz) of all the data in the recording, regardless of their type (for example, 2400).                                                                                                                                                                                                                                                                |
@@ -113,6 +156,30 @@ Specific MEG fields MUST be present:
 | DigitizedHeadPoints | REQUIRED              | [boolean][]                          | `true` or `false` value indicating whether head points outlining the scalp/face surface are contained within this recording.                                                                                                                                                                                                                                              |
 
 SHOULD be present:
+
+{{ MACROS___make_metadata_table(
+   {
+      "MEGChannelCount": "RECOMMENDED",
+      "MEGREFChannelCount": "RECOMMENDED",
+      "EEGChannelCount": "RECOMMENDED",
+      "ECOGChannelCount": "RECOMMENDED",
+      "SEEGChannelCount": "RECOMMENDED",
+      "EOGChannelCount": "RECOMMENDED",
+      "ECGChannelCount": "RECOMMENDED",
+      "EMGChannelCount": "RECOMMENDED",
+      "MiscChannelCount": "RECOMMENDED",
+      "TriggerChannelCount": "RECOMMENDED",
+      "RecordingDuration": "RECOMMENDED",
+      "RecordingType": "RECOMMENDED",
+      "EpochLength": "RECOMMENDED",
+      "ContinuousHeadLocalization": "RECOMMENDED",
+      "HeadCoilFrequency": "RECOMMENDED",
+      "MaxMovement": "RECOMMENDED",
+      "SubjectArtefactDescription": "RECOMMENDED",
+      "AssociatedEmptyRoom": "RECOMMENDED",
+      "HardwareFilters": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**               | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                          |
 | -------------------------- | --------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -139,6 +206,15 @@ SHOULD be present:
 Specific EEG fields
 (if recorded with MEG, see [Recording EEG simultaneously with MEG](#recording-eeg-simultaneously-with-meg)
 SHOULD be present:
+
+{{ MACROS___make_metadata_table(
+   {
+      "EEGPlacementScheme": "OPTIONAL",
+      "CapManufacturer": "OPTIONAL",
+      "CapManufacturersModelName": "OPTIONAL",
+      "EEGReference": "OPTIONAL",
+   }
+) }}
 
 | **Key name**              | **Requirement level** | **Data type** | **Description**                                                                                                                                                                            |
 | ------------------------- | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -284,6 +360,24 @@ EEG, head localization coils, and anatomical landmarks.
 
 MEG and EEG sensors:
 
+{{ MACROS___make_metadata_table(
+   {
+      "MEGCoordinateSystem": "REQUIRED",
+      "MEGCoordinateUnits": "REQUIRED",
+      "MEGCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `MEGCoordinateSystem` is `Other`",
+      "EEGCoordinateSystem": (
+         "OPTIONAL",
+         "See [Recording EEG simultaneously with MEG](/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg). "
+         "Preferably the same as the `MEGCoordinateSystem`.",
+      ),
+      "EEGCoordinateUnits": "OPTIONAL",
+      "EEGCoordinateSystemDescription": (
+         "OPTIONAL, but REQUIRED if `EEGCoordinateSystem` is `Other`",
+         "See [Recording EEG simultaneously with MEG](/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg).",
+      ),
+   }
+) }}
+
 | **Key name**                   | **Requirement level**                                      | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                 |
 | ------------------------------ | ---------------------------------------------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | MEGCoordinateSystem            | REQUIRED                                                   | [string][]    | Defines the coordinate system for the MEG sensors. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords for coordinate systems. If `"Other"`, provide definition of the coordinate system in `MEGCoordinateSystemDescription`.                                                                                                                                      |
@@ -295,6 +389,15 @@ MEG and EEG sensors:
 
 Head localization coils:
 
+{{ MACROS___make_metadata_table(
+   {
+      "HeadCoilCoordinates": "OPTIONAL",
+      "HeadCoilCoordinateSystem": "OPTIONAL",
+      "HeadCoilCoordinateUnits": "OPTIONAL",
+      "HeadCoilCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `HeadCoilCoordinateSystem` is `Other`",
+   }
+) }}
+
 | **Key name**                        | **Requirement level**                                           | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ----------------------------------- | --------------------------------------------------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | HeadCoilCoordinates                 | OPTIONAL                                                        | [object][] of [arrays][] | Key:value pairs describing head localization coil labels and their coordinates, interpreted following the `HeadCoilCoordinateSystem` (for example, `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). Note that coils are not always placed at locations that have a known anatomical name (for example, for Elekta, Yokogawa systems); in that case generic labels can be used (for example, `{"coil1": [12.2,21.3,12.3], "coil2": [6.7,12.3,8.6], "coil3": [21.9,11.0,8.1]}`). Each array MUST contain three numeric values corresponding to x, y, and z axis of the coordinate system in that exact order. |
@@ -303,6 +406,15 @@ Head localization coils:
 | HeadCoilCoordinateSystemDescription | OPTIONAL, but REQUIRED if `HeadCoilCoordinateSystem` is `Other` | [string][]               | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 Digitized head points:
+
+{{ MACROS___make_metadata_table(
+   {
+      "DigitizedHeadPoints": "OPTIONAL",
+      "DigitizedHeadPointsCoordinateSystem": "OPTIONAL",
+      "DigitizedHeadPointsCoordinateUnits": "OPTIONAL",
+      "DigitizedHeadPointsCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `DigitizedHeadPointsCoordinateSystem` is `Other`",
+   }
+) }}
 
 | **Key name**                                   | **Requirement level**                                                        | **Data type** | **Description**                                                                                                                                                                                                                                                                                      |
 | ---------------------------------------------- | ---------------------------------------------------------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -313,11 +425,31 @@ Digitized head points:
 
 Anatomical MRI:
 
+{{ MACROS___make_metadata_table(
+   {
+      "IntendedFor": (
+         "OPTIONAL",
+         "This is used to identify the structural MRI(s), "
+         "possibly of different types if a list is specified, "
+         "to be used with the MEG recording.",
+      )
+   }
+) }}
+
 | **Key name** | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                      |
 | ------------ | --------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | IntendedFor  | OPTIONAL              | [string][] or [array][] of [strings][] | Path or list of path relative to the subject subfolder pointing to the structural MRI, possibly of different types if a list is specified, to be used with the MEG recording. The path(s) need(s) to use forward slashes instead of backward slashes (for example, `"ses-/anat/sub-01_T1w.nii.gz"`). |
 
 Anatomical landmarks:
+
+{{ MACROS___make_metadata_table(
+   {
+      "AnatomicalLandmarkCoordinates": "OPTIONAL",
+      "AnatomicalLandmarkCoordinateSystem": "OPTIONAL",
+      "AnatomicalLandmarkCoordinateUnits": "OPTIONAL",
+      "AnatomicalLandmarkCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `Other`",
+   }
+) }}
 
 | **Key name**                                  | **Requirement level**                                                     | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                          |
 | --------------------------------------------- | ------------------------------------------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -343,6 +475,12 @@ session-specific labels for example, "NAS-session1": `[127,213,139]`,"NAS-sessio
 `[123,220,142]`.
 
 Fiducials information:
+
+{{ MACROS___make_metadata_table(
+   {
+      "FiducialsDescription": "OPTIONAL",
+   }
+) }}
 
 | **Key name**         | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | -------------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

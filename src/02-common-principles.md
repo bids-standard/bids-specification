@@ -508,6 +508,19 @@ Note that if a field name included in the data dictionary matches a column name 
 then that field MUST contain a description of the corresponding column,
 using an object containing the following fields:
 
+{{ MACROS___make_metadata_table(
+   {
+        "LongName": "OPTIONAL",
+        "Description": (
+            "RECOMMENDED",
+            "The description of the column.",
+        ),
+        "Levels": "RECOMMENDED",
+        "Units": "RECOMMENDED",
+        "TermURL": "RECOMMENDED",
+   }
+) }}
+
 | **Key name** | **Requirement level** | **Data type**             | **Description**                                                                                                 |
 | ------------ | --------------------- | ------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | LongName     | OPTIONAL              | [string][]                | Long (unabbreviated) name of the column.                                                                        |

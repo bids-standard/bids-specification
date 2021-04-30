@@ -41,6 +41,14 @@ pipeline1/
 
 The following metadata JSON fields are defined for preprocessed images:
 
+{{ MACROS___make_metadata_table(
+   {
+      "SkullStripped": "REQUIRED",
+      "Resolution": "REQUIRED if `res` is present",
+      "Density": "REQUIRED if `den` is present",
+   }
+) }}
+
 | **Key name**  | **Requirement level**         | **Data type**                                      | **Description**                                                              |
 | ------------- | ----------------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------- |
 | SkullStripped | REQUIRED                      | [boolean][]                                        | Whether the volume was skull stripped (non-brain voxels set to zero) or not. |
@@ -131,6 +139,16 @@ and the `Atlas` metadata SHOULD be defined.
 
 JSON metadata fields:
 
+{{ MACROS___make_metadata_table(
+   {
+      "RawSources": "REQUIRED",
+      "Type": "RECOMMENDED",
+      "Atlas": "RECOMMENDED if `label` entity is defined",
+      "Resolution": "REQUIRED if `res` is present",
+      "Density": "REQUIRED if `den` is present",
+   }
+) }}
+
 | **Key name** | **Requirement level**                    | **Data type**                                      | **Description**                                                                                                                   |
 | ------------ | ---------------------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | RawSources   | REQUIRED                                 | [array][] of [strings][]                           | Same as defined in [Common data types][], but elevated from OPTIONAL to REQUIRED.                                                 |
@@ -180,6 +198,15 @@ volumes, followed by discrete segmentations of surface/combined spaces.
 Probabilistic segmentations of surfaces are currently [unspecified][].
 
 The following metadata fields apply to all segmentation files:
+
+{{ MACROS___make_metadata_table(
+   {
+      "Manual": "OPTIONAL",
+      "Atlas": "OPTIONAL",
+      "Resolution": "REQUIRED if `res` is present",
+      "Density": "REQUIRED if `den` is present",
+   }
+) }}
 
 | **Key name** | **Requirement level**        | **Data type**                                      | **Description**                                                                   |
 | ------------ | ---------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------- |

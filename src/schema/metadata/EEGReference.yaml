@@ -1,0 +1,10 @@
+---
+name: EEGReference
+description: |
+  General description of the reference scheme used and (when applicable) of
+  location of the reference electrode in the raw recordings
+  (for example, `"left mastoid"`, `"Cz"`, `"CMS"`).
+  If different channels have a different reference,
+  this field should have a general description and the channel specific
+  reference should be defined in the `channels.tsv` file.
+type: string

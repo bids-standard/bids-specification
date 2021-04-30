@@ -1,0 +1,6 @@
+---
+name: InfusionSpeedUnits
+description: |
+  Unit of infusion speed (for example, `"mL/s"`).
+type: string
+format: unit

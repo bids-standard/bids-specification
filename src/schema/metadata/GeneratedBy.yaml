@@ -1,0 +1,28 @@
+---
+name: GeneratedBy
+description: |
+  Used to specify provenance of the derived dataset.
+  See table below for contents of each object.
+type: array
+items:
+  type: object
+  properties:
+    Name:
+      type: string
+    Version:
+      type: string
+    Description:
+      type: string
+    CodeURL:
+      type: string
+      format: uri
+    Container:
+      type: object
+      properties:
+        Type:
+          type: string
+        Tag:
+          type: string
+        URI:
+          type: string
+          format: uri

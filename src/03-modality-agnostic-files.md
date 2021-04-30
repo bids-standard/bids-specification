@@ -14,6 +14,23 @@ Templates:
 The file `dataset_description.json` is a JSON file describing the dataset.
 Every dataset MUST include this file with the following fields:
 
+{{ MACROS___make_metadata_table(
+   {
+      "Name": "REQUIRED",
+      "BIDSVersion": "REQUIRED",
+      "HEDVersion": "RECOMMENDED",
+      "DatasetType": "RECOMMENDED",
+      "License": "RECOMMENDED",
+      "Authors": "OPTIONAL",
+      "Acknowledgements": "OPTIONAL",
+      "HowToAcknowledge": "OPTIONAL",
+      "Funding": "OPTIONAL",
+      "EthicsApprovals": "OPTIONAL",
+      "ReferencesAndLinks": "OPTIONAL",
+      "DatasetDOI": "OPTIONAL",
+   }
+) }}
+
 | **Key name**       | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                       |
 |--------------------|-----------------------|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name               | REQUIRED              | [string][]               | Name of the dataset.                                                                                                                                                                                                                                  |
@@ -68,6 +85,13 @@ top level of the a derived dataset:
 In addition to the keys for raw BIDS datasets,
 derived BIDS datasets include the following REQUIRED and RECOMMENDED
 `dataset_description.json` keys:
+
+{{ MACROS___make_metadata_table(
+   {
+      "GeneratedBy": "REQUIRED",
+      "SourceDatasets": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                      |
 |----------------|-----------------------|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

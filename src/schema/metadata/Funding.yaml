@@ -1,0 +1,7 @@
+---
+name: Funding
+description: |
+  List of sources of funding (grant numbers).
+type: array
+items:
+  type: string

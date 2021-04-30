@@ -1,0 +1,6 @@
+---
+name: ElectrodeManufacturersModelName
+description: |
+  If different electrode types are used,
+  please use the corresponding table in the `_electrodes.tsv` file.
+type: string

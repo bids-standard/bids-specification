@@ -1,0 +1,10 @@
+---
+name: FrameDuration
+description: |
+  Time duration of each frame in default unit seconds.
+  This corresponds to DICOM Tag 0018, 1242 `Actual Frame Duration` converted
+  to seconds.
+type: array
+items:
+  type: number
+unit: s

@@ -92,6 +92,12 @@ please avoid using ad hoc wording.
 
 Generic fields MUST be present:
 
+{{ MACROS___make_metadata_table(
+   {
+      "TaskName": "REQUIRED",
+   }
+) }}
+
 | **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                     |
 | ------------ | --------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | TaskName     | REQUIRED              | [string][]    | Name of the task. No two tasks should have the same name. The task label included in the file name is derived from this TaskName field by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters. For example, `TaskName` `"faces n-back"` will correspond to task label `facesnback`. A RECOMMENDED convention is to name resting state task using labels beginning with `rest`. |
@@ -101,6 +107,21 @@ Note that the `TaskName` field does not have to be a "behavioral task" that subj
 SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
+
+{{ MACROS___make_metadata_table(
+   {
+      "InstitutionName": "RECOMMENDED",
+      "InstitutionAddress": "RECOMMENDED",
+      "Manufacturer": "RECOMMENDED",
+      "ManufacturersModelName": "RECOMMENDED",
+      "SoftwareVersions": "RECOMMENDED",
+      "TaskDescription": "RECOMMENDED",
+      "Instructions": "RECOMMENDED",
+      "CogAtlasID": "RECOMMENDED",
+      "CogPOID": "RECOMMENDED",
+      "DeviceSerialNumber": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                  |
 | ---------------------- | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -117,6 +138,15 @@ Whenever possible, please avoid using ad hoc wording.
 
 Specific iEEG fields MUST be present:
 
+{{ MACROS___make_metadata_table(
+   {
+      "iEEGReference": "REQUIRED",
+      "SamplingFrequency": "REQUIRED",
+      "PowerLineFrequency": "REQUIRED",
+      "SoftwareFilters": "REQUIRED",
+   }
+) }}
+
 | **Key name**       | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | ------------------ | --------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | iEEGReference      | REQUIRED              | [string][]                           | General description of the reference scheme used and (when applicable) of location of the reference electrode in the raw recordings (for example, `"left mastoid"`, `"bipolar"`, `"T01"` for electrode with name T01, `"intracranial electrode on top of a grid, not included with data"`, `"upside down electrode"`). If different channels have a different reference, this field should have a general description and the channel specific reference should be defined in the channels.tsv file. |
@@ -125,6 +155,30 @@ Specific iEEG fields MUST be present:
 | SoftwareFilters    | REQUIRED              | [object][] of [objects][] or `"n/a"` | Temporal software filters applied, or `"n/a"` if the data is not available. Each key:value pair in the JSON object is a name of the filter and an object in which its parameters are defined as key:value pairs. For example, `{"HighPass": {"HalfAmplitudeCutOffHz": 1, "RollOff": "6dB/Octave"}}`                                                                                                                                                                                                  |
 
 Specific iEEG fields SHOULD be present:
+
+{{ MACROS___make_metadata_table(
+   {
+      "DCOffsetCorrection": "RECOMMENDED",
+      "HardwareFilters": "RECOMMENDED",
+      "ElectrodeManufacturer": "RECOMMENDED",
+      "ElectrodeManufacturersModelName": "RECOMMENDED",
+      "ECOGChannelCount": "RECOMMENDED",
+      "SEEGChannelCount": "RECOMMENDED",
+      "EEGChannelCount": "RECOMMENDED",
+      "EOGChannelCount": "RECOMMENDED",
+      "ECGChannelCount": "RECOMMENDED",
+      "EMGChannelCount": "RECOMMENDED",
+      "MiscChannelCount": "RECOMMENDED",
+      "TriggerChannelCount": "RECOMMENDED",
+      "RecordingDuration": "RECOMMENDED",
+      "RecordingType": "RECOMMENDED",
+      "EpochLength": "RECOMMENDED",
+      "iEEGGround": "RECOMMENDED",
+      "iEEGPlacementScheme": "RECOMMENDED",
+      "iEEGElectrodeGroups": "RECOMMENDED",
+      "SubjectArtefactDescription": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**                    | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                                                                                                                                        |
 | ------------------------------- | --------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -149,6 +203,13 @@ Specific iEEG fields SHOULD be present:
 | SubjectArtefactDescription      | RECOMMENDED           | [string][]                           | Freeform description of the observed subject artefact and its possible cause (for example, `"door open", "nurse walked into room at 2 min"`, `"seizure at 10 min"`). If this field is left empty, it will be interpreted as absence of artifacts.                                                                                      |
 
 Specific iEEG fields MAY be present:
+
+{{ MACROS___make_metadata_table(
+   {
+      "ElectricalStimulation": "OPTIONAL",
+      "ElectricalStimulationParameters": "OPTIONAL",
+   }
+) }}
 
 | **Key name**                    | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                         |
 | ------------------------------- | --------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -362,11 +423,41 @@ also be specified.
 
 General fields:
 
+{{ MACROS___make_metadata_table(
+   {
+      "IntendedFor": (
+         "OPTIONAL",
+         "If only a surface reconstruction is available, this should point to "
+         "the surface reconstruction file. "
+         "Note that this file should have the same coordinate system "
+         "specified in `iEEGCoordinateSystem`. "
+         "For example, **T1**: `'sub-<label>/ses-<label>/anat/"
+         "sub-01_T1w.nii.gz'`  "
+         "**Surface**: `'/derivatives/surfaces/sub-<label>/ses-<label>/anat/"
+         "sub-01_T1w_pial.R.surf.gii'` "
+         "**Operative photo**: `'/sub-<label>/ses-<label>/ieeg/"
+         "sub-0001_ses-01_acq-photo1_photo.jpg'` "
+         "**Talairach**: `'/derivatives/surfaces/sub-Talairach/ses-01/anat/"
+         "sub-Talairach_T1w_pial.R.surf.gii'`",
+      )
+   }
+) }}
+
 | **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | ------------ | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | IntendedFor  | RECOMMENDED           | [string][]    | This can be an MRI/CT or a file containing the operative photo, x-ray or drawing with path relative to the project folder. If only a surface reconstruction is available, this should point to the surface reconstruction file. Note that this file should have the same coordinate system specified in `iEEGCoordinateSystem`. For example, **T1**: `"sub-<label>/ses-<label>/anat/sub-01_T1w.nii.gz"`  **Surface**: `"/derivatives/surfaces/sub-<label>/ses-<label>/anat/sub-01_T1w_pial.R.surf.gii"` **Operative photo**: `"/sub-<label>/ses-<label>/ieeg/sub-0001_ses-01_acq-photo1_photo.jpg"` **Talairach**: `"/derivatives/surfaces/sub-Talairach/ses-01/anat/sub-Talairach_T1w_pial.R.surf.gii"` |
 
 Fields relating to the iEEG electrode positions:
+
+{{ MACROS___make_metadata_table(
+   {
+      "iEEGCoordinateSystem": "REQUIRED",
+      "iEEGCoordinateUnits": "REQUIRED",
+      "iEEGCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `iEEGCoordinateSystem` is `"Other"`',
+      "iEEGCoordinateProcessingDescription": "RECOMMENDED",
+      "iEEGCoordinateProcessingReference": "RECOMMENDED",
+   }
+) }}
 
 | **Key name**                        | **Requirement level**                                          | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ----------------------------------- | -------------------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

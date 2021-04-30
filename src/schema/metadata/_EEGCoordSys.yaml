@@ -1,0 +1,7 @@
+---
+type: string
+enum:
+  - CapTrak
+  - EEGLAB
+  - EEGLAB-HJ
+  - Other

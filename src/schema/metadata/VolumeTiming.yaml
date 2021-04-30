@@ -1,0 +1,15 @@
+---
+name: VolumeTiming
+description: |
+  The time at which each volume was acquired during the acquisition.
+  It is described using a list of times referring to the onset of each volume
+  in the BOLD series.
+  The list must have the same length as the BOLD series,
+  and the values must be non-negative and monotonically increasing.
+  This field is mutually exclusive with `RepetitionTime` and `DelayTime`.
+  If defined, this requires acquisition time (TA) be defined via either
+  `SliceTiming` or `AcquisitionDuration` be defined.
+type: array
+items:
+  type: number
+  unit: s

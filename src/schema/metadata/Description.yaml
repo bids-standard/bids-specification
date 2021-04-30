@@ -1,0 +1,5 @@
+---
+name: Description
+description: |
+  Free-form natural language description.
+type: string

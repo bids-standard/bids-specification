@@ -1,0 +1,6 @@
+---
+name: ParallelAcquisitionTechnique
+description: |
+  The type of parallel imaging used (for example GRAPPA, SENSE).
+  Corresponds to DICOM Tag 0018, 9078 `Parallel Acquisition Technique`.
+type: string

@@ -1,0 +1,6 @@
+---
+name: MRTransmitCoilSequence
+description: |
+  This is a relevant field if a non-standard transmit coil is used.
+  Corresponds to DICOM Tag 0018, 9049 `MR Transmit Coil Sequence`.
+type: string

@@ -1,0 +1,11 @@
+---
+name: LabelingDistance
+description: |
+  Distance from the center of the imaging slab to the center of the labeling
+  plane (`(P)CASL`) or the leading edge of the labeling slab (`PASL`),
+  in millimeters.
+  If the labeling is performed inferior to the isocenter,
+  this number should be negative.
+  Based on DICOM macro C.8.13.5.14.
+type: number
+unit: mm

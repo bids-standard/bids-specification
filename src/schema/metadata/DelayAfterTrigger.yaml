@@ -1,0 +1,10 @@
+---
+name: DelayAfterTrigger
+description: |
+  Duration (in seconds) from trigger delivery to scan onset.
+  This delay is commonly caused by adjustments and loading times.
+  This specification is entirely independent of
+  `NumberOfVolumesDiscardedByScanner` or `NumberOfVolumesDiscardedByUser`,
+  as the delay precedes the acquisition.
+type: number
+unit: s

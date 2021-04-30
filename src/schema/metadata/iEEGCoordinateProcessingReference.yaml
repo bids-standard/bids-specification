@@ -1,0 +1,6 @@
+---
+name: iEEGCoordinateProcessingReference
+description: |
+  A reference to a paper that defines in more detail the method used to
+  localize the electrodes and to post-process the electrode positions.
+type: string

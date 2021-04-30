@@ -1,0 +1,6 @@
+---
+name: MEGChannelCount
+description: |
+  Number of MEG channels (for example, 275).
+type: integer
+minimum: 0

@@ -1,0 +1,5 @@
+---
+name: MTNumberOfPulses
+description: |
+  The number of magnetization transfer RF pulses applied before the readout.
+type: number

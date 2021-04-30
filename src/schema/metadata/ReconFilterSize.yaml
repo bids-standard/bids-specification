@@ -1,0 +1,11 @@
+---
+name: ReconFilterSize
+description: |
+  Kernel size of post-recon filter (FWHM) in default units `"mm"`.
+anyOf:
+  - type: number
+    unit: mm
+  - type: array
+    items:
+      type: number
+      unit: mm

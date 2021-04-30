@@ -1,0 +1,5 @@
+---
+name: TaskDescription
+description: |
+  Longer description of the task.
+type: string

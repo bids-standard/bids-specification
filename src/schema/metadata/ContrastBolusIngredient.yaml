@@ -1,0 +1,14 @@
+---
+name: ContrastBolusIngredient
+description: |
+  Active ingredient of agent.
+  Values MUST be one of: `"IODINE"`, `"GADOLINIUM"`, `"CARBON DIOXIDE"`,
+  `"BARIUM"`, `"XENON"`.
+  Corresponds to DICOM Tag 0018,1048.
+type: string
+enum:
+  - IODINE
+  - GADOLINIUM
+  - CARBON DIOXIDE
+  - BARIUM
+  - XENON

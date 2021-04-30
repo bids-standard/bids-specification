@@ -1,0 +1,10 @@
+---
+name: ScanningSequence
+description: |
+  Description of the type of data acquired.
+  Corresponds to DICOM Tag 0018, 0020 `Scanning Sequence`.
+anyOf:
+  - type: string
+  - type: array
+    items:
+      type: string

@@ -1,0 +1,7 @@
+---
+name: ElectricalStimulationParameters
+description: |
+  Free form description of stimulation parameters, such as frequency or shape.
+  Specific onsets can be specified in the events.tsv file.
+  Specific shapes can be described here in freeform text.
+type: string

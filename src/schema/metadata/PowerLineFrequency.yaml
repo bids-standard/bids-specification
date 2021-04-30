@@ -1,0 +1,12 @@
+---
+name: PowerLineFrequency
+description: |
+  Frequency (in Hz) of the power grid at the geographical location of the
+  instrument (for example, 50 or 60).
+anyOf:
+  - type: number
+    exclusiveMinimum: 0
+    unit: Hz
+  - type: string
+    enum:
+      - n/a

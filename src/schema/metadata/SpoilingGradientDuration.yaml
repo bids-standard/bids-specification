@@ -1,0 +1,8 @@
+---
+name: SpoilingGradientDuration
+description: |
+  The duration of the spoiler gradient lobe in seconds.
+  The duration of a trapezoidal lobe is defined as the summation of ramp-up
+  and plateau times.
+type: number
+unit: s

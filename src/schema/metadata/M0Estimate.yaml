@@ -1,0 +1,8 @@
+---
+name: M0Estimate
+description: |
+  A single numerical whole-brain M0 value (referring to the M0 of blood),
+  only if obtained externally
+  (for example retrieved from CSF in a separate measurement).
+type: number
+exclusiveMinimum: 0

@@ -1,0 +1,6 @@
+---
+name: SpoilingState
+description: |
+  Boolean stating whether the pulse sequence uses any type of spoiling
+  strategy to suppress residual transverse magnetization.
+type: boolean

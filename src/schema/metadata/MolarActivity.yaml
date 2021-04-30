@@ -1,0 +1,6 @@
+---
+name: MolarActivity
+description: |
+  Molar activity of compound injected.
+  Corresponds to DICOM Tag 0018, 1077 `Radiopharmaceutical Specific Activity`.
+type: number

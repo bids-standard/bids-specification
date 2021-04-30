@@ -1,0 +1,5 @@
+---
+name: Atlas
+description: |
+  Which atlas (if any) was used to generate the mask.
+type: string

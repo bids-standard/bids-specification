@@ -1,0 +1,9 @@
+---
+name: LabelingSlabThickness
+description: |
+  Thickness of the labeling slab in millimeters.
+  For non-selective FAIR a zero is entered.
+  Corresponds to DICOM Tag 0018,9254 `ASL Slab Thickness`.
+type: number
+exclusiveMinimum: 0
+unit: mm

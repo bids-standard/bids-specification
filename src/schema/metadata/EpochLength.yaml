@@ -1,0 +1,8 @@
+---
+name: EpochLength
+description: |
+  Duration of individual epochs in seconds (for example, 1)
+  in case of epoched data.
+  If recording was continuous or discontinuous, leave out the field.
+type: number
+minimum: 0
