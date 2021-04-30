@@ -321,6 +321,12 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         # each dtype could have multiple specs
         for spec in dtype_specs:
             suffixes = spec.get("suffixes")
+
+            # Skip this part of the schema if no suffixes are found.
+            # This is a hack to work around filter_schema's limitations.
+            if not len(suffixes):
+                continue
+
             # TODO: <br> is specific for html form
             suffixes_str = " ".join(suffixes) if suffixes else ""
             dtype_row = [dtype] + ([""] * len(entity_to_col))
