@@ -1,14 +1,14 @@
 {
   "plugins": [
-    ["preset-lint-markdown-style-guide", true],
-    ["preset-lint-recommended", true],
-    ["lint-no-duplicate-headings", false],
-    ["lint-list-item-indent", "tab-size"],
-    ["lint-emphasis-marker", "consistent"],
-    ["lint-maximum-line-length", false],
-    ["lint-maximum-heading-length", false],
-    ["lint-no-shortcut-reference-link", false],
-    ["lint-no-trailing-spaces"],
-    ["lint-no-undefined-references", false]
+    ["./node_modules/remark-preset-lint-recommended", true],
+    ["./node_modules/remark-preset-lint-markdown-style-guide", true],
+    ["./node_modules/remark-lint-no-duplicate-headings", false],
+    ["./node_modules/remark-lint-list-item-indent", "tab-size"],
+    ["./node_modules/remark-lint-emphasis-marker", "consistent"],
+    ["./node_modules/remark-lint-maximum-line-length", false],
+    ["./node_modules/remark-lint-maximum-heading-length", false],
+    ["./node_modules/remark-lint-no-shortcut-reference-link", false],
+    ["./node_modules/remark-lint-no-trailing-spaces"],
+    ["./node_modules/remark-lint-no-undefined-references", false]
   ]
 }
