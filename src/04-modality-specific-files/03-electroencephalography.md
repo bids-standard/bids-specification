@@ -282,7 +282,7 @@ MUST be present:
 | **Column name** | **Requirement level** | **Description**                     |
 | --------------- | --------------------- | ----------------------------------- |
 | name            | REQUIRED              | Name of the electrode.              |
-| x               | REQUIRED              | Recorded position along the x-axis. |
+| x               | REQUIRED              | Recorded position along the x-axis.   |
 | y               | REQUIRED              | Recorded position along the y-axis. |
 | z               | REQUIRED              | Recorded position along the z-axis. |
 
