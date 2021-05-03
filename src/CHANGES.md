@@ -3,6 +3,7 @@
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
 -   \[INFRA] add CI to find trailing whitespace [#780](https://github.com/bids-standard/bids-specification/pull/780) ([sappelhoff](https://github.com/sappelhoff))
+-   \[MISC] Add info on HED key to common principles [#777](https://github.com/bids-standard/bids-specification/pull/777) ([sappelhoff](https://github.com/sappelhoff))
 -   ENH: add EEGLAB as valid coordinate system for EEG [#775](https://github.com/bids-standard/bids-specification/pull/775) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Allow encoding the fieldmapping intent of the protocol [#622](https://github.com/bids-standard/bids-specification/pull/622) ([oesteban](https://github.com/oesteban))
 
