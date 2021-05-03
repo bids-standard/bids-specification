@@ -61,3 +61,23 @@ def make_entity_definitions():
     schema_obj = schema.load_schema(schemapath)
     text = schema.make_entity_definitions(schema_obj)
     return text
+
+
+def make_suffix_table(suffixes):
+    """Generate a markdown table of suffix information.
+
+    Parameters
+    ----------
+    suffixes : list of str
+        A list of the suffixes to include in the table.
+
+    Returns
+    -------
+    table : str
+        A Markdown-format table containing the corresponding table for
+        the requested fields.
+    """
+    schemapath = utils.get_schema_path()
+    schema_obj = schema.load_schema(schemapath)
+    table = schema.make_suffix_table(schema_obj, suffixes)
+    return table
