@@ -171,9 +171,10 @@ mtransfer:
     entity are `on` and `off`, for images acquired in presence and absence of an MT pulse,
     respectively.
   type: string
+  # on/off map to True/False in YAML so they must be placed in quotes.
   enum:
-    - on
-    - off
+    - "on"
+    - "off"
 part:
   name: Part
   entity: part

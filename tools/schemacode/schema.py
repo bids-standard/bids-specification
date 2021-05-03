@@ -139,8 +139,15 @@ def make_entity_definitions(schema):
         text += "\n\n"
         text += "Full name: {}".format(entity_info["name"])
         text += "\n\n"
-        text += "Format: `{}-<{}>`".format(entity_info["entity"], entity_info["format"])
+        text += "Format: `{}-<{}>`".format(
+            entity_info["entity"],
+            entity_info.get("format", "label"),
+        )
         text += "\n\n"
+        if "enum" in entity_info.keys():
+            text += "Allowed values: `{}`".format("`, `".join(entity_info["enum"]))
+            text += "\n\n"
+
         text += "Definition: {}".format(entity_info["description"])
     return text
 
@@ -185,7 +192,7 @@ def make_filename_template(schema, **kwargs):
             string = "\t\t\t"
             for ent in entities:
                 ent_format = "{}-<{}>".format(
-                    schema["entities"][ent]["entity"], schema["entities"][ent]["format"]
+                    schema["entities"][ent]["entity"], schema["entities"][ent].get("format", "label")
                 )
                 if ent in group["entities"]:
                     if group["entities"][ent] == "required":
@@ -274,7 +281,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         entity_shorthand = schema["entities"][entity]["entity"]
         header.append(spec["name"])
         formats.append(
-            f'[`{entity_shorthand}-<{spec["format"]}>`]'
+            f'[`{entity_shorthand}-<{spec.get("format", "label")}>`]'
             f"({ENTITIES_FILE}#{entity_shorthand})"
         )
         entity_to_col[entity] = i + 1
