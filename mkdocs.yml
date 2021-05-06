@@ -40,6 +40,7 @@ nav:
         - BIDS Derivatives: 05-derivatives/01-introduction.md
         - Common data types and metadata: 05-derivatives/02-common-data-types.md
         - Imaging data types: 05-derivatives/03-imaging.md
+        - Functional derivatives: 05-derivatives/05-functional-derivatives.md
       - Longitudinal and multi-site studies: 06-longitudinal-and-multi-site-studies.md
       - BIDS Extension Proposals: 07-extensions.md
       - Appendix:
