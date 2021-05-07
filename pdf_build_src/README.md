@@ -32,6 +32,8 @@ additional tex files are used with options offered by pandoc.
 
 ### Formatting files
 
+- `metadata.yml` - Contains formatting options for the PDF.
+
 - `header_setup.tex` -  This file sets up the packages to suit our needs.
 
 - `cover.tex` - BIDS Logo is used as a cover page for the document. `cover.tex` is used with the option `--include-before-body`
