@@ -28,14 +28,10 @@ def build_pdf(filename):
     # Prepare the command options
     cmd = [
         'pandoc',
-        '--from=markdown_github',
+        '--from=markdown_github+yaml_metadata_block',
         '--include-before-body=./cover.tex',
-        '--toc',
-        '--listings',
         '--include-in-header=./header.tex',
         '--include-in-header=./header_setup.tex',
-        '-V documentclass=report',
-        '-V linkcolor:blue',
         '--pdf-engine=xelatex',
         '--output={}'.format(filename),
     ]
@@ -56,7 +52,7 @@ def build_pdf(filename):
     # Add input files to command
     # The filenames in `markdown_list` will ensure correct order when sorted
     cmd += [str(root / index_page)]
-    cmd += [str(root / i) for i in sorted(markdown_list)]
+    cmd += [str(root / i) for i in ["../../metadata.yml"] + sorted(markdown_list)]
 
     # print and run
     print('running: \n\n' + '\n'.join(cmd))
