@@ -16,14 +16,19 @@ def build_pdf(filename):
         Name of the output file.
 
     """
+    # Files that are not supposed to be built into the PDF
+    EXCLUDE = ["./index.md", "./schema/README.md", "./pregh-changes.md"]
+
     # Get all input files
     markdown_list = []
     for root, dirs, files in os.walk('.'):
         for file in files:
-            if file.endswith(".md") and file != 'index.md':
-                markdown_list.append(os.path.join(root, file))
-            elif file == 'index.md':
-                index_page = os.path.join(root, file)
+            fpath = os.path.join(root, file)
+            if fpath.endswith(".md") and fpath not in EXCLUDE:
+                markdown_list.append(fpath)
+            elif fpath.endswith('index.md'):
+                # Special role for index.md
+                index_page = fpath
 
     # Prepare the command options
     cmd = [
