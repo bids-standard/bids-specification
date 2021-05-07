@@ -16,4 +16,4 @@ jobs:
     - name: Run style checks
       # see: https://stackoverflow.com/a/39991116/5201771
       # alternative (probably): npx remark ...
-      run: npm run env -- remark src/*.md src/*/*.md --frail --rc-path .remarkrc
+      run: npx remark src/*.md src/*/*.md --frail --rc-path .remarkrc
