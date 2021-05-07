@@ -1,7 +1,7 @@
 {
   "plugins": [
-    ["preset-lint-markdown-style-guide", true],
-    ["preset-lint-recommended", true],
+    "preset-lint-markdown-style-guide",
+    "preset-lint-recommended",
     ["lint-no-duplicate-headings", false],
     ["lint-list-item-indent", "tab-size"],
     ["lint-emphasis-marker", "consistent"],
