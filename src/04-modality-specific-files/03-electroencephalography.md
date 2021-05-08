@@ -230,25 +230,25 @@ Restricted keyword list for field `type` in alphabetic order (shared with the
 MEG and iEEG modality; however, only the types that are common in EEG data are listed here).
 Note that upper-case is REQUIRED:
 
-| **Keyword**  | **Description**                                              |
-| ------------ | ------------------------------------------------------------ |
-| AUDIO        | Audio signal                                                 |
-| EEG          | Electroencephalogram channel                                 |
-| EOG          | Generic electrooculogram (eye), different from HEOG and VEOG |
-| ECG          | Electrocardiogram (heart)                                    |
-| EMG          | Electromyogram (muscle)                                      |
-| EYEGAZE      | Eye tracker gaze                                             |
-| GSR          | Galvanic skin response                                       |
-| HEOG         | Horizontal EOG (eye)                                         |
-| MISC         | Miscellaneous                                                |
-| PPG          | Photoplethysmography                                         |
-| PUPIL        | Eye tracker pupil diameter                                   |
-| REF          | Reference channel                                            |
-| RESP         | Respiration                                                  |
-| SYSCLOCK     | System time showing elapsed time since trial started         |
-| TEMP         | Temperature                                                  |
-| TRIG         | System triggers                                              |
-| VEOG         | Vertical EOG (eye)                                           |
+| **Keyword** | **Description**                                              |
+| ----------- | ------------------------------------------------------------ |
+| AUDIO       | Audio signal                                                 |
+| EEG         | Electroencephalogram channel                                 |
+| EOG         | Generic electrooculogram (eye), different from HEOG and VEOG |
+| ECG         | Electrocardiogram (heart)                                    |
+| EMG         | Electromyogram (muscle)                                      |
+| EYEGAZE     | Eye tracker gaze                                             |
+| GSR         | Galvanic skin response                                       |
+| HEOG        | Horizontal EOG (eye)                                         |
+| MISC        | Miscellaneous                                                |
+| PPG         | Photoplethysmography                                         |
+| PUPIL       | Eye tracker pupil diameter                                   |
+| REF         | Reference channel                                            |
+| RESP        | Respiration                                                  |
+| SYSCLOCK    | System time showing elapsed time since trial started         |
+| TEMP        | Temperature                                                  |
+| TRIG        | System triggers                                              |
+| VEOG        | Vertical EOG (eye)                                           |
 
 Example of free-form text for field `description`
 
@@ -373,7 +373,7 @@ Fields relating to the position of fiducials measured during an EEG session/run:
 | FiducialsDescription                 | OPTIONAL                                                              | [string][]               | Free-form text description of how the fiducials such as vitamin-E capsules were placed relative to anatomical landmarks, and how the position of the fiducials were measured (for example, both with Polhemus and with T1w MRI).                                                                                                                                |
 | FiducialsCoordinates                 | RECOMMENDED                                                           | [object][] of [arrays][] | Key:value pairs of the labels and 3-D digitized position of anatomical landmarks, interpreted following the `FiducialsCoordinateSystem` (for example, `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). Each array MUST contain three numeric values corresponding to x, y, and z axis of the coordinate system in that exact order. |
 | FiducialsCoordinateSystem            | RECOMMENDED                                                           | [string][]               | Defines the coordinate system for the fiducials. Preferably the same as the `EEGCoordinateSystem`. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords for coordinate systems. If `"Other"`, provide definition of the coordinate system in `FiducialsCoordinateSystemDescription`.                                |
-| FiducialsCoordinateUnits             | RECOMMENDED                                                           | [string][]               | Units in which the coordinates that are  listed in the field `FiducialsCoordinateSystem` are represented. MUST be `"m"`, `"cm"`, or `"mm"`.                                                                                                                                                                                                            |
+| FiducialsCoordinateUnits             | RECOMMENDED                                                           | [string][]               | Units in which the coordinates that are  listed in the field `FiducialsCoordinateSystem` are represented. MUST be `"m"`, `"cm"`, or `"mm"`.                                                                                                                                                                                                                     |
 | FiducialsCoordinateSystemDescription | RECOMMENDED, but REQUIRED if `FiducialsCoordinateSystem` is `"Other"` | [string][]               | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                                                                                                          |
 
 Fields relating to the position of anatomical landmark measured during an EEG session/run:
