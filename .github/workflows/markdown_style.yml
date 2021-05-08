@@ -14,6 +14,4 @@ jobs:
     - name: Install dependencies
       run: npm install `cat npm-requirements.txt`
     - name: Run style checks
-      # see: https://stackoverflow.com/a/39991116/5201771
-      # alternative (probably): npx remark ...
       run: npx remark src/*.md src/*/*.md --frail --rc-path .remarkrc
