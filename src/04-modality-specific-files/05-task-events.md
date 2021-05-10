@@ -41,7 +41,7 @@ and OPTIONAL columns:
 | trial_type      | OPTIONAL              | [string][]               | Primary categorisation of each trial to identify them as instances of the experimental conditions. For example: for a response inhibition task, it could take on values `"go"` and `"no-go"` to refer to response initiation and response inhibition experimental conditions.                                                                                      |
 | response_time   | OPTIONAL              | [number][]               | Response time measured in seconds. A negative response time can be used to represent preemptive responses and "n/a" denotes a missed response.                                                                                                                                                                                                                     |
 | value           | OPTIONAL              | [string][] or [number][] | Marker value associated with the event (for example, the value of a TTL trigger that was recorded at the onset of the event).                                                                                                                                                                                                                                      |
-| HED             | OPTIONAL              | [string][]               | Hierarchical Event Descriptor (HED) Tag. See [Appendix III](../99-appendices/03-hed.md) for details.                                                                                                                                                                                                                                                               |
+| HED             | OPTIONAL              | [string][]               | Hierarchical Event Descriptor (HED) tag. See [Appendix III](../99-appendices/03-hed.md) for details.                                                                                                                                                                                                                                                               |
 
 <sup>5</sup> For example in case there is an in scanner training phase that
 begins before the scanning sequence has started events from this sequence should
@@ -99,28 +99,28 @@ sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
 sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
 ```
 
-Note: Events can also be documented in machine-actionable form 
+Note: Events can also be documented in machine-actionable form
 using HED (Hierarchical Event Descriptor) tags.
-This type of documentation is particularly useful for datasets likely to be used 
+This type of documentation is particularly useful for datasets likely to be used
 in event-related analyses.
-See [Hierarchical Event Descriptors](../99-appendices/03-hed.md) 
+See [Hierarchical Event Descriptors](../99-appendices/03-hed.md)
 for additional information and examples.
 
 ## Stimuli
 
-Additional information about the stimuli can be added in the `*_events.tsv` 
+Additional information about the stimuli can be added in the `*_events.tsv`
 and `*_events.json` files.
 
 This can be done by using a `/stimuli` folder or by reference to a stimuli database.
 
 ### Stimuli folder
 
-The stimulus files can be added in a `/stimuli` folder 
-(under the root folder of the dataset; with optional subfolders) AND using a 
-`stim_file` column in `*_events.tsv` mentioning which stimulus file was used 
+The stimulus files can be added in a `/stimuli` folder
+(under the root folder of the dataset; with optional subfolders) AND using a
+`stim_file` column in `*_events.tsv` mentioning which stimulus file was used
 for a given event,
 
-There are no restrictions on the file formats of the stimuli files, 
+There are no restrictions on the file formats of the stimuli files,
 but they should be stored in the `/stimuli` folder.
 
 | **Column name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                            |

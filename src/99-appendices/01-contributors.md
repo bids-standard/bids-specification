@@ -192,7 +192,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Jessica A. Turner 📖
 -   Pieter Vandemaele 📖💻
 -   Max A. van den Boom 💻👀📖
--   Wietske van der Zwaag 🔣💬 
+-   Wietske van der Zwaag 🔣💬
 -   Matthias Van Osch 📖
 -   Bradley Voytek 📖
 -   Brian A. Wandell 📖

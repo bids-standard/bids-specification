@@ -312,28 +312,28 @@ Restricted keyword list for field type in alphabetic order (shared with the MEG
 and EEG modality; however, only types that are common in iEEG data are listed here).
 Note that upper-case is REQUIRED:
 
-| **Keyword**  | **Description**                                                        |
-| ------------ | ---------------------------------------------------------------------- |
-| EEG          | Electrode channel from electroencephalogram                            |
-| ECOG         | Electrode channel from electrocorticogram (intracranial)               |
-| SEEG         | Electrode channel from stereo-electroencephalogram (intracranial)      |
-| DBS          | Electrode channel from deep brain stimulation electrode (intracranial) |
-| VEOG         | Vertical EOG (electrooculogram)                                        |
-| HEOG         | Horizontal EOG                                                         |
-| EOG          | Generic EOG channel if HEOG or VEOG information not available          |
-| ECG          | ElectroCardioGram (heart)                                              |
-| EMG          | ElectroMyoGram (muscle)                                                |
-| TRIG         | System Triggers                                                        |
-| AUDIO        | Audio signal                                                           |
-| PD           | Photodiode                                                             |
-| EYEGAZE      | Eye Tracker gaze                                                       |
-| PUPIL        | Eye Tracker pupil diameter                                             |
-| MISC         | Miscellaneous                                                          |
-| SYSCLOCK     | System time showing elapsed time since trial started                   |
-| ADC          | Analog to Digital input                                                |
-| DAC          | Digital to Analog output                                               |
-| REF          | Reference channel                                                      |
-| OTHER        | Any other type of channel                                              |
+| **Keyword** | **Description**                                                        |
+| ----------- | ---------------------------------------------------------------------- |
+| EEG         | Electrode channel from electroencephalogram                            |
+| ECOG        | Electrode channel from electrocorticogram (intracranial)               |
+| SEEG        | Electrode channel from stereo-electroencephalogram (intracranial)      |
+| DBS         | Electrode channel from deep brain stimulation electrode (intracranial) |
+| VEOG        | Vertical EOG (electrooculogram)                                        |
+| HEOG        | Horizontal EOG                                                         |
+| EOG         | Generic EOG channel if HEOG or VEOG information not available          |
+| ECG         | ElectroCardioGram (heart)                                              |
+| EMG         | ElectroMyoGram (muscle)                                                |
+| TRIG        | System Triggers                                                        |
+| AUDIO       | Audio signal                                                           |
+| PD          | Photodiode                                                             |
+| EYEGAZE     | Eye Tracker gaze                                                       |
+| PUPIL       | Eye Tracker pupil diameter                                             |
+| MISC        | Miscellaneous                                                          |
+| SYSCLOCK    | System time showing elapsed time since trial started                   |
+| ADC         | Analog to Digital input                                                |
+| DAC         | Digital to Analog output                                               |
+| REF         | Reference channel                                                      |
+| OTHER       | Any other type of channel                                              |
 
 Example of free-form text for field `description`:
 
