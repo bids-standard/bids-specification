@@ -2,17 +2,18 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] fix md ci and update ci badges  [#791](https://github.com/bids-standard/bids-specification/pull/791) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] add CI to find trailing whitespace [#780](https://github.com/bids-standard/bids-specification/pull/780) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Add info on HED key to common principles [#777](https://github.com/bids-standard/bids-specification/pull/777) ([sappelhoff](https://github.com/sappelhoff))
--   ENH: add EEGLAB as valid coordinate system for EEG [#775](https://github.com/bids-standard/bids-specification/pull/775) ([sappelhoff](https://github.com/sappelhoff))
+-   \[ENH] add EEGLAB as valid coordinate system for EEG [#775](https://github.com/bids-standard/bids-specification/pull/775) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Allow encoding the fieldmapping intent of the protocol [#622](https://github.com/bids-standard/bids-specification/pull/622) ([oesteban](https://github.com/oesteban))
 
 ## [v1.6.0](https://github.com/bids-standard/bids-specification/tree/v1.6.0) (2021-04-22)
 
--   FIX: Typos discovered by codespell [#784](https://github.com/bids-standard/bids-specification/pull/784) ([yarikoptic](https://github.com/yarikoptic))
+-   \[FIX] Typos discovered by codespell [#784](https://github.com/bids-standard/bids-specification/pull/784) ([yarikoptic](https://github.com/yarikoptic))
 -   REL: v1.6.0 [#776](https://github.com/bids-standard/bids-specification/pull/776) ([effigies](https://github.com/effigies))
--   FIX: Rename "Unit" metadata to "Units" for consistency with existing fields [#773](https://github.com/bids-standard/bids-specification/pull/773) ([effigies](https://github.com/effigies))
--   FIX: typo in pet: institution -> institutional [#771](https://github.com/bids-standard/bids-specification/pull/771) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Rename "Unit" metadata to "Units" for consistency with existing fields [#773](https://github.com/bids-standard/bids-specification/pull/773) ([effigies](https://github.com/effigies))
+-   \[FIX] typo in pet: institution -> institutional [#771](https://github.com/bids-standard/bids-specification/pull/771) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] install git in linkchecker job [#767](https://github.com/bids-standard/bids-specification/pull/767) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] Fix CircleCI workflows [#764](https://github.com/bids-standard/bids-specification/pull/764) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] do not run remark on auto CHANGES [#755](https://github.com/bids-standard/bids-specification/pull/755) ([sappelhoff](https://github.com/sappelhoff))
@@ -29,7 +30,7 @@
 
 ## [v1.5.0](https://github.com/bids-standard/bids-specification/tree/v1.5.0) (2021-02-23)
 
--   Updated TotalAcquiredVolumes into TotalAcquiredPairs [#742](https://github.com/bids-standard/bids-specification/pull/742) ([effigies](https://github.com/effigies))
+-   \[MISC] Updated TotalAcquiredVolumes into TotalAcquiredPairs [#742](https://github.com/bids-standard/bids-specification/pull/742) ([effigies](https://github.com/effigies))
 -   REL: v1.5.0 [#736](https://github.com/bids-standard/bids-specification/pull/736) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[SCHEMA] Update qMRI fieldmap schema [#728](https://github.com/bids-standard/bids-specification/pull/728) ([effigies](https://github.com/effigies))
 -   \[FIX] Add deprecated anatomical MRI suffixes back into schema [#725](https://github.com/bids-standard/bids-specification/pull/725) ([tsalo](https://github.com/tsalo))
@@ -59,7 +60,7 @@
 -   \[FIX] add paragraph on MEG specific "markers" suffix in MEG spec [#653](https://github.com/bids-standard/bids-specification/pull/653) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Rewrite the MRI/fieldmaps subsection for consistency with the rest of specs [#651](https://github.com/bids-standard/bids-specification/pull/651) ([oesteban](https://github.com/oesteban))
 -   \[FIX] Fixing template string on electrodes for eeg and ieeg. [#650](https://github.com/bids-standard/bids-specification/pull/650) ([adam2392](https://github.com/adam2392))
--   ENH: Update genetics-BIDS citation [#646](https://github.com/bids-standard/bids-specification/pull/646) ([effigies](https://github.com/effigies))
+-   \[ENH] Update genetics-BIDS citation [#646](https://github.com/bids-standard/bids-specification/pull/646) ([effigies](https://github.com/effigies))
 -   \[SCHEMA] Add derivatives entities to the schema [#645](https://github.com/bids-standard/bids-specification/pull/645) ([tsalo](https://github.com/tsalo))
 -   \[MISC] add brief note that TSV example in the spec may currently use either tab or space characters [#643](https://github.com/bids-standard/bids-specification/pull/643) ([yarikoptic](https://github.com/yarikoptic))
 -   \[ENH] Add "multipart DWI" acquisitions and refactor DWI specifications [#624](https://github.com/bids-standard/bids-specification/pull/624) ([oesteban](https://github.com/oesteban))
@@ -212,7 +213,7 @@
 
 ## [v1.2.1](https://github.com/bids-standard/bids-specification/tree/v1.2.1) (2019-08-14)
 
--   FIX: repair link in anatomical MRI table [#297](https://github.com/bids-standard/bids-specification/pull/297) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] repair link in anatomical MRI table [#297](https://github.com/bids-standard/bids-specification/pull/297) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Clarify requirements in Release Protocol [#294](https://github.com/bids-standard/bids-specification/pull/294) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[INFRA+FIX] Use linkchecker (from a dedicated docker image) to check all URLs [#293](https://github.com/bids-standard/bids-specification/pull/293) ([yarikoptic](https://github.com/yarikoptic))
 -   REL: v1.2.1 [#291](https://github.com/bids-standard/bids-specification/pull/291) ([franklin-feingold](https://github.com/franklin-feingold))
@@ -292,7 +293,7 @@
 -   \[MISC] Propose BEP026 MER [#116](https://github.com/bids-standard/bids-specification/pull/116) ([greydongilmore](https://github.com/greydongilmore))
 -   \[FIX] Remove duplicate entries in MEG table [#113](https://github.com/bids-standard/bids-specification/pull/113) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[MISC] Propose BEP025 MIDS [#110](https://github.com/bids-standard/bids-specification/pull/110) ([josator2](https://github.com/josator2))
--   FIX] repair links [#106](https://github.com/bids-standard/bids-specification/pull/106) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] repair links [#106](https://github.com/bids-standard/bids-specification/pull/106) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] Autogenerate CHANGES.md [#103](https://github.com/bids-standard/bids-specification/pull/103) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[MISC] Added contributor information [#100](https://github.com/bids-standard/bids-specification/pull/100) ([jgrethe](https://github.com/jgrethe))
 -   \[ENH] First(?) good practice recommendation. No excessive overrides in Inheritance principle [#99](https://github.com/bids-standard/bids-specification/pull/99) ([yarikoptic](https://github.com/yarikoptic))
@@ -337,7 +338,7 @@
 -   \[MISC] formatted MEG (8.4) [#17](https://github.com/bids-standard/bids-specification/pull/17) ([franklin-feingold](https://github.com/franklin-feingold))
 -   \[MISC] small fixes [#16](https://github.com/bids-standard/bids-specification/pull/16) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[MISC] Add meg img [#14](https://github.com/bids-standard/bids-specification/pull/14) ([sappelhoff](https://github.com/sappelhoff))
--   \[WIP] Cleaning up the specification [#13](https://github.com/bids-standard/bids-specification/pull/13) ([chrisgorgo](https://github.com/chrisgorgo))
+-   \[MISC] Cleaning up the specification [#13](https://github.com/bids-standard/bids-specification/pull/13) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[MISC] Adding code of conduct [#6](https://github.com/bids-standard/bids-specification/pull/6) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[INFRA] Renaming the main document [#1](https://github.com/bids-standard/bids-specification/pull/1) ([chrisgorgo](https://github.com/chrisgorgo))
 
