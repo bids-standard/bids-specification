@@ -180,7 +180,7 @@ for them:
     -   for "male", use one of these values: `male`, `m`, `M`, `MALE`, `Male`
 
     -   for "female", use one of these values: `female`, `f`, `F`, `FEMALE`,
-      ` Female`
+        `Female`
 
     -   for "other", use one of these values: `other`, `o`, `O`, `OTHER`,
         `Other`

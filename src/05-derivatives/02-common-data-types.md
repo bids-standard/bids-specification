@@ -77,10 +77,10 @@ identifiers][templates] table, then the `SpatialReference` metadata is REQUIRED.
 
 ### SpatialReference key allowed values
 
-| **Value**      | **Description**                                                                                                               |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `orig`         | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
-| URI or path    | This can be used to point to a specific file. Paths are written relative to the root of the derivative dataset.               |
+| **Value**   | **Description**                                                                                                               |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `orig`      | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
+| URI or path | This can be used to point to a specific file. Paths are written relative to the root of the derivative dataset.               |
 
 In the case of images with multiple references, an [object][] must link the relevant structures to reference files.
 If a single volumetric reference is used for multiple structures, the `VolumeReference` key MAY be used to reduce duplication.
