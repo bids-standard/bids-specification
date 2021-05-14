@@ -123,9 +123,10 @@ That is, in a directory `<dataset>/derivatives/<pipeline>[-<variant>]/`, the fir
 
 ### `README`
 
-In addition a free form text file (`README`) describing the dataset in more
-details SHOULD be provided.
+Every BIDS dataset SHOULD come with a free form text file (`README`) describing the dataset in more detail.
 The `README` file MUST be either in ASCII or UTF-8 encoding.
+A guideline for creating a good `README` file can be found in the
+[bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/blob/master/templates/README).
 
 ### `CHANGES`
 
@@ -180,7 +181,7 @@ for them:
     -   for "male", use one of these values: `male`, `m`, `M`, `MALE`, `Male`
 
     -   for "female", use one of these values: `female`, `f`, `F`, `FEMALE`,
-      ` Female`
+        `Female`
 
     -   for "other", use one of these values: `other`, `o`, `O`, `OTHER`,
         `Other`
@@ -339,7 +340,7 @@ The purpose of this file is to describe timing and other properties of each
 imaging acquisition sequence (each *run* file) within one session.
 
 Each neural recording *file* SHOULD be described by exactly one row.
-Some recordings consist of multiple parts, that span several files, 
+Some recordings consist of multiple parts, that span several files,
 for example through `echo-`, `part-`, or `split-` entities.
 Such recordings MUST be documented with one row per file.
 
@@ -347,7 +348,7 @@ Relative paths to files should be used under a compulsory `filename` header.
 
 If acquisition time is included it should be listed under the `acq_time` header.
 Acquisition time refers to when the first data point in each run was acquired.
-Furthermore, if this header is provided, the acquisition times of all files that 
+Furthermore, if this header is provided, the acquisition times of all files that
 belong to a recording MUST be identical.
 
 Datetime should be expressed as described in [Units](./02-common-principles.md#units).

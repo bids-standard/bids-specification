@@ -121,6 +121,25 @@ Useful for multimodal co-registration with MEG, (S)EEG, TMS, and so on.
 | ----------------------------- | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | AnatomicalLandmarkCoordinates | RECOMMENDED           | [object][] of [arrays][] | Key:value pairs of any number of additional anatomical landmarks and their coordinates in voxel units (where first voxel has index 0,0,0) relative to the associated anatomical MRI (for example, `{"AC": [127,119,149], "PC": [128,93,141], "IH": [131,114,206]}`, or `{"NAS": [127,213,139], "LPA": [52,113,96], "RPA": [202,113,91]}`). Each array MUST contain three numeric values corresponding to x, y, and z axis of the coordinate system in that exact order. |
 
+### Echo-Planar Imaging and *B<sub>0</sub>* mapping
+
+Echo-Planar Imaging (EPI) schemes typically used in the acquisition of
+diffusion and functional MRI may also be *intended for* estimating the
+*B<sub>0</sub>* field nonuniformity inside the scanner (in other words,
+*mapping the field*) without the acquisition of additional MRI schemes
+such as gradient-recalled echo (GRE) sequences that are stored under the
+`fmap/` folder of the BIDS structure.
+
+The modality labels `dwi` (under `dwi/`), `bold` (under `func/`),
+`asl` (under `perf/`), `sbref` (under `dwi/`, `func/` or `perf/`), and
+any modality under `fmap/` are allowed to encode the MR protocol intent for
+fieldmap estimation using the following metadata:
+
+| **Key name**      | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------- | --------------------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| B0FieldIdentifier | OPTIONAL              | [string][]                            | The presence of this key states that this particular 3D or 4D image MAY be used for fieldmap estimation purposes. The `B0FieldIdentifier` MUST be a unique string within one participant's tree, shared only by the images meant to be used as inputs for the estimation of a particular instance of the *B<sub>0</sub> field* estimation. It is RECOMMENDED to derive this identifier from DICOM tags, for example, the *Protocol Name* `(0018,1030)` or the *Sequence Name* `(0018,0024)` when the former is not defined (for example, in GE devices.) |
+| B0FieldSource     | OPTIONAL              | [string][] or [array][] of [string][] | At least one existing `B0FieldIdentifier` defined by other images in the participant's tree. This field states the *B<sub>0</sub> field* estimation designated by the `B0FieldIdentifier` that may be used to correct the dataset for distortions caused by B<sub>0</sub> inhomogeneities. `B0FieldSource` and `B0FieldIdentifier` are mutually exclusive.                                                                                                                                                                                               |
+
 ### Institution information
 
 | **Key name**                | **Requirement level** | **Data type** | **Description**                                                                                                                                                          |
@@ -468,7 +487,8 @@ sub-control01/
    "PhaseEncodingDirection": "j",
    "InstitutionName": "Stanford University",
    "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
-   "DeviceSerialNumber": "11035"
+   "DeviceSerialNumber": "11035",
+   "B0FieldSource": ["phasediff_fmap0", "pepolar_fmap0"]
 }
 ```
 
@@ -656,7 +676,8 @@ JSON example:
 ```JSON
 {
   "PhaseEncodingDirection": "j-",
-  "TotalReadoutTime": 0.095
+  "TotalReadoutTime": 0.095,
+  "B0FieldSource": ["phasediff_fmap0", "pepolar_fmap0"]
 }
 ```
 
@@ -803,21 +824,21 @@ form of flowcharts.
 Data acquired to correct for *B<sub>0</sub>* inhomogeneities can come in different forms.
 The current version of this standard considers four different scenarios:
 
- 1.  [Phase-difference map](#case-1-phase-difference-map-and-at-least-one-magnitude-image)
- 1.  [Two phase maps](#case-2-two-phase-maps-and-two-magnitude-images)
- 1.  [Direct *field mapping*](#case-3-direct-field-mapping)
- 1.  ["*PEpolar*" fieldmaps](#case-4-multiple-phase-encoded-directions-pepolar)
+1.  [Phase-difference map](#case-1-phase-difference-map-and-at-least-one-magnitude-image)
+1.  [Two phase maps](#case-2-two-phase-maps-and-two-magnitude-images)
+1.  [Direct *field mapping*](#case-3-direct-field-mapping)
+1.  ["*PEpolar*" fieldmaps](#case-4-multiple-phase-encoded-directions-pepolar)
 
 These four different types of field mapping strategies can be encoded
 using the following image types:
 
-| **Name**         | `suffix`        | **Description**                                                                                                                                                                                   |
-| ---------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Magnitude        | magnitude\[1,2] | Field-mapping MR schemes such as gradient-recalled echo (GRE) generate a Magnitude image to be used for anatomical reference. Requires the existence of Phase, Phase-difference or Fieldmap maps. |
-| Phase            | phase{1,2}      | Phase map generated by GRE or similar schemes, each associated with the first (`phase1`) or second (`phase2`) echoes in the sequence.                                                             |
-| Phase-difference | phasediff       | Some scanners subtract the `phase1` from the `phase2` map and generate a unique `phasediff` file. For instance, this is a common output for the built-in fieldmap sequence of Siemens scanners.   |
-| Fieldmap         | fieldmap        | Some MR schemes such as spiral-echo (SE) sequences are able to directly provide maps of the *B<sub>0</sub>* field inhomogeneity.                                                                  |
-| EPI              | epi             | The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo EPI scans with different phase encoding directions to estimate the underlying inhomogeneity/deformation map.       |
+| **Name**         | `suffix`         | **Description**                                                                                                                                                                                   |
+| ---------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Magnitude        | magnitude\[1,2\] | Field-mapping MR schemes such as gradient-recalled echo (GRE) generate a Magnitude image to be used for anatomical reference. Requires the existence of Phase, Phase-difference or Fieldmap maps. |
+| Phase            | phase{1,2}       | Phase map generated by GRE or similar schemes, each associated with the first (`phase1`) or second (`phase2`) echoes in the sequence.                                                             |
+| Phase-difference | phasediff        | Some scanners subtract the `phase1` from the `phase2` map and generate a unique `phasediff` file. For instance, this is a common output for the built-in fieldmap sequence of Siemens scanners.   |
+| Fieldmap         | fieldmap         | Some MR schemes such as spiral-echo imaging (SEI) sequences are able to directly provide maps of the *B<sub>0</sub>* field inhomogeneity.                                                         |
+| EPI              | epi              | The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo EPI scans with different phase encoding directions to estimate the underlying inhomogeneity/deformation map.       |
 
 Two OPTIONAL entities, following more general rules of the specification,
 are allowed across all the four scenarios:
@@ -827,6 +848,43 @@ are allowed across all the four scenarios:
 
 -   The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair corresponds to a custom label
     the user may use to distinguish different set of parameters.
+
+### Expressing the MR protocol intent for fieldmaps
+
+Fieldmaps are typically acquired with the purpose of correcting one or more EPI
+scans under `dwi/`, `func/`, or `perf/` for distortions derived from *B<sub>0</sub>*
+nonuniformity.
+
+#### Using `B0FieldIdentifier` metadata
+
+The general purpose [`B0FieldIdentifier` MRI metadata](#echo-planar-imaging-and-b0-mapping)
+is RECOMMENDED for the prescription of the *B<sub>0</sub>* field estimation intent of the
+original acquisition protocol.
+`B0FieldIdentifier` and `B0FieldSource` duplicate the capabilities of
+the original `IntendedFor` approach (see below), while permitting more
+complex use cases.
+It is RECOMMENDED to use both approaches to maintain compatibility with
+tools that support older datasets.
+
+#### Using `IntendedFor` metadata
+
+Fieldmap data MAY be linked to the specific scan(s) it was acquired for by
+filling the `IntendedFor` field in the corresponding JSON file.
+
+| **Key name** | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                                                                                 |
+| ------------ | --------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| IntendedFor  | OPTIONAL              | [string][] or [array][] of [string][] | Contains one or more filenames with paths relative to the participant subfolder. The path needs to use forward slashes instead of backward slashes. This field is OPTIONAL, and in case the fieldmaps do not correspond to any particular scans, it does not have to be filled. |
+
+For example:
+
+```JSON
+{
+   "IntendedFor": [
+        "ses-pre/func/sub-01_ses-pre_task-motor_run-1_bold.nii.gz",
+        "ses-pre/func/sub-01_ses-pre_task-motor_run-2_bold.nii.gz"
+    ]
+}
+```
 
 ### Types of fieldmaps
 
@@ -855,7 +913,8 @@ For example:
 ```JSON
 {
    "EchoTime1": 0.00600,
-   "EchoTime2": 0.00746
+   "EchoTime2": 0.00746,
+   "B0FieldIdentifier": "phasediff_fmap0"
 }
 ```
 
@@ -878,7 +937,8 @@ For example, `sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json`
 
 ```JSON
 {
-   "EchoTime": 0.00746
+   "EchoTime": 0.00746,
+   "B0FieldIdentifier": "phases_fmap0"
 }
 ```
 
@@ -899,7 +959,8 @@ For example:
 ```JSON
 {
    "Units": "rad/s",
-   "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
+   "IntendedFor": "func/sub-01_task-motor_bold.nii.gz",
+   "B0FieldIdentifier": "b0map_fmap0"
 }
 ```
 
@@ -937,7 +998,8 @@ For example:
 {
    "PhaseEncodingDirection": "j-",
    "TotalReadoutTime": 0.095,
-   "IntendedFor": "func/sub-01_task-motor_bold.nii.gz"
+   "IntendedFor": "func/sub-01_task-motor_bold.nii.gz",
+   "B0FieldIdentifier": "pepolar_fmap0"
 }
 ```
 
@@ -948,34 +1010,6 @@ As for other EPI sequences, these field mapping sequences may have any of the
 [in-plane spatial encoding](#in-plane-spatial-encoding) metadata keys.
 However, please note that `PhaseEncodingDirection` and `TotalReadoutTime` keys
 are REQUIRED for these field mapping sequences.
-
-### Expressing the MR protocol intent for fieldmaps
-
-Fieldmaps are typically acquired with the purpose of correcting one or more EPI
-scans under `func/` or `dwi/` for distortions derived from *B<sub>0</sub>*
-nonuniformity.
-This linking between fieldmaps and their targeted data MAY be encoded with the
-`IntendedFor` metadata.
-
-#### Using `IntendedFor` metadata
-
-Fieldmap data MAY be linked to the specific scan(s) it was acquired for by
-filling the `IntendedFor` field in the corresponding JSON file.
-
-| **Key name** | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                                                                                 |
-| ------------ | --------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IntendedFor  | RECOMMENDED           | [string][] or [array][] of [string][] | Contains one or more filenames with paths relative to the participant subfolder. The path needs to use forward slashes instead of backward slashes. This field is OPTIONAL, and in case the fieldmaps do not correspond to any particular scans, it does not have to be filled. |
-
-For example:
-
-```JSON
-{
-   "IntendedFor": [
-        "ses-pre/func/sub-01_ses-pre_task-motor_run-1_bold.nii.gz",
-        "ses-pre/func/sub-01_ses-pre_task-motor_run-2_bold.nii.gz"
-    ]
-}
-```
 
 <!-- Link Definitions -->
 
