@@ -123,9 +123,10 @@ That is, in a directory `<dataset>/derivatives/<pipeline>[-<variant>]/`, the fir
 
 ### `README`
 
-In addition a free form text file (`README`) describing the dataset in more
-details SHOULD be provided.
+Every BIDS dataset SHOULD come with a free form text file (`README`) describing the dataset in more detail.
 The `README` file MUST be either in ASCII or UTF-8 encoding.
+A guideline for creating a good `README` file can be found in the
+[bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/blob/master/templates/README).
 
 ### `CHANGES`
 
