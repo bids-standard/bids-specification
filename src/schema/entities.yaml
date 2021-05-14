@@ -164,7 +164,7 @@ part:
   description: |
     This entity is used to indicate which component of the complex
     representation of the MRI signal is represented in voxel data.
-    The `part-<label>` key/value pair is associated with the DICOM tag
+    The `part-<label>` key/value pair is associated with the DICOM Tag
     `0008,9208`.
     Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
     which are typically used in `part-mag`/`part-phase` or
