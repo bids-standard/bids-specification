@@ -61,7 +61,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            apt-get install python3-pip
+            apt install python3-pip
             python3 -m pip install --upgrade pip
             python3 -m pip install -r  ~/project/requirements.txt
       - run:
