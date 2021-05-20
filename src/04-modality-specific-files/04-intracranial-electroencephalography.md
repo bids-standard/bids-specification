@@ -128,7 +128,7 @@ Specific iEEG fields SHOULD be present:
 
 | **Key name**                    | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                                                                                                                                        |
 | ------------------------------- | --------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| DCOffsetCorrection              | RECOMMENDED           | [string][]                           | A description of the method (if any) used to correct for a DC offset. If the method used was subtracting the mean value for each channel, use "mean".                                                                                                                                                                                  |
+| DCOffsetCorrection              | [DEPRECATED][]        | [string][]                           | This key is [deprecated][], please use `SoftwareFilters` instead. A description of the method (if any) used to correct for a DC offset. If the method used was subtracting the mean value for each channel, use "mean".                                                                                                                |
 | HardwareFilters                 | RECOMMENDED           | [object][] of [objects][] or `"n/a"` | [Object][] of temporal hardware filters applied, or `"n/a"` if the data is not available. Each key:value pair in the JSON object is a name of the filter and an object in which its parameters are defined as key:value pairs. For example, `{"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dB/Octave"}}` |
 | ElectrodeManufacturer           | RECOMMENDED           | [string][]                           | Can be used if all electrodes are of the same manufacturer (for example, `"AD-TECH"`, `"DIXI"`). If electrodes of different manufacturers are used, please use the corresponding table in the \_electrodes.tsv file.                                                                                                                   |
 | ElectrodeManufacturersModelName | RECOMMENDED           | [string][]                           | If different electrode types are used, please use the corresponding table in the `*_electrodes.tsv` file.                                                                                                                                                                                                                              |
@@ -170,7 +170,6 @@ Example:
   "SamplingFrequency":1000,
   "PowerLineFrequency":60,
   "SoftwareFilters":"n/a",
-  "DCOffsetCorrection":0,
   "HardwareFilters":{"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dBOctave"}},
   "ElectrodeManufacturer":"AdTech",
   "ECOGChannelCount":120,
@@ -504,3 +503,5 @@ onset duration trial_type             electrical_stimulation_type electrical_sti
 [boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
 
 [uri]: ../02-common-principles.md#uniform-resource-indicator
+
+[deprecated]: ../02-common-principles.md#definitions
