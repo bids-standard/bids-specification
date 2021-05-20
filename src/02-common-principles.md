@@ -546,7 +546,8 @@ Example:
 
 JavaScript Object Notation (JSON) files MUST be used for storing key/value
 pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
-format can be found at [https://www.json.org/](https://www.json.org/).
+format can be found at [https://www.json.org/](https://www.json.org/),
+and at [https://tools.ietf.org/html/std90](https://tools.ietf.org/html/std90).
 Several editors have built-in support for JSON syntax highlighting that aids
 manual creation of such files.
 An online editor for JSON with built-in validation is available at
