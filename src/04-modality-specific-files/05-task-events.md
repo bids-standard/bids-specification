@@ -3,7 +3,7 @@
 The purpose of this file is to describe timing and other properties of events
 recorded during a run.
 Events are for example stimuli presented to the participant or participant responses
-(see [Definitions](./02-common-principles.md#definitions)).
+(see [Definitions](../02-common-principles.md#definitions)).
 A single event file MAY include any combination of stimuli, response, and other events.
 Events MAY overlap in time.
 Please mind that this does not imply that only so called "event related" study designs
