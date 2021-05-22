@@ -379,6 +379,34 @@ meg/sub-control01_task-rest_split-01_meg.nii.gz	1877-06-15T12:15:27
 meg/sub-control01_task-rest_split-02_meg.nii.gz	1877-06-15T12:15:27
 ```
 
+## Sessions file
+
+Template:
+
+```Text
+sub-<label>/
+            ses-<label>/
+            sub-<label>_sessions.tsv
+```
+
+Optional: Yes
+
+In case of multiple sessions there is an option of adding additional
+`sessions.tsv` files describing variables changing between sessions.
+In such case one file per participant SHOULD be added.
+These files MUST include a `session_id` column and describe each session by one and only one row.
+Column names in `sessions.tsv` files MUST be different from group level participant key column names in the
+[`participants.tsv` file](./03-modality-agnostic-files.md#participants-file).
+
+`_sessions.tsv` example:
+
+```Text
+session_id  acq_time  systolic_blood_pressure
+ses-predrug 2009-06-15T13:45:30 120
+ses-postdrug  2009-06-16T13:45:30 100
+ses-followup  2009-06-17T13:45:30 110
+```
+
 ## Code
 
 Template: `code/*`

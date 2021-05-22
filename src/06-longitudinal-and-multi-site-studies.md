@@ -2,20 +2,6 @@
 
 Multiple sessions (visits) are encoded by adding an extra layer of directories
 and file names in the form of `ses-<label>`.
-Session labels MUST consist only of alphanumeric characters `[a-zA-Z0-9]`
-and SHOULD be consistent across subjects.
-If numbers are used in session labels we RECOMMEND using zero padding
-(for example `ses-01`, `ses-11` instead of `ses-1`, `ses-11`). This makes
-results of alphabetical sorting more intuitive. Acquisition time of session can
-be defined in the [sessions file](#sessions-file).
-
-The extra session layer (at least one `/ses-<label>` subfolder) SHOULD
-be added for all subjects if at least one subject in the dataset has more than
-one session.
-If a `/ses-<label>` subfolder is included as part of the directory hierarchy,
-then the same [`ses-<label>`](./99-appendices/09-entities.md#ses)
-key/value pair MUST also be
-included as part of the file names themselves.
 
 ```Text
 sub-control01/
@@ -59,33 +45,6 @@ participants.tsv
 dataset_description.json
 README
 CHANGES
-```
-
-## Sessions file
-
-Template:
-
-```Text
-sub-<label>/
-    sub-<label>_sessions.tsv
-```
-
-Optional: Yes
-
-In case of multiple sessions there is an option of adding additional
-`sessions.tsv` files describing variables changing between sessions.
-In such case one file per participant SHOULD be added.
-These files MUST include a `session_id` column and describe each session by one and only one row.
-Column names in `sessions.tsv` files MUST be different from group level participant key column names in the
-[`participants.tsv` file](./03-modality-agnostic-files.md#participants-file).
-
-`_sessions.tsv` example:
-
-```Text
-session_id  acq_time  systolic_blood_pressure
-ses-predrug 2009-06-15T13:45:30 120
-ses-postdrug  2009-06-16T13:45:30 100
-ses-followup  2009-06-17T13:45:30 110
 ```
 
 ## Multi-site or multi-center studies
