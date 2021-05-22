@@ -133,6 +133,7 @@ The following RECOMMENDED metadata can also be added in the side-car JSON files
 of any `*_<physio>.tsv.gz` file.
 
 | **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                  |
+| ---------------------- | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Manufacturer           | RECOMMENDED           | [string][]    | Manufacturer of the system used to record the physiological data                                                                                                                                                 |
 | ManufacturersModelName | RECOMMENDED           | [string][]    | Manufacturer's designation of the system used to record the physiological data                                                                                                                                   |
 | SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer's designation of the acquisition software.                                                                                                                                                          |
