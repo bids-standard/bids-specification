@@ -3,6 +3,7 @@
 This is done once the duplicate src directory is processed.
 """
 import os
+import pathlib
 import subprocess
 
 
@@ -15,28 +16,52 @@ def build_pdf(filename):
         Name of the output file.
 
     """
+    # Files that are not supposed to be built into the PDF
+    EXCLUDE = ["./index.md", "./schema/README.md", "./pregh-changes.md"]
+
+    # Get all input files
     markdown_list = []
     for root, dirs, files in os.walk('.'):
         for file in files:
-            if file.endswith(".md") and file != 'index.md':
-                markdown_list.append(os.path.join(root, file))
-            elif file == 'index.md':
-                index_page = os.path.join(root, file)
+            fpath = os.path.join(root, file)
+            if fpath.endswith(".md") and fpath not in EXCLUDE:
+                markdown_list.append(fpath)
+            elif fpath.endswith('index.md'):
+                # Special role for index.md
+                index_page = fpath
 
-    default_pandoc_cmd = "pandoc "
+    # Prepare the command options
+    cmd = [
+        'pandoc',
+        '--from=markdown_github+yaml_metadata_block',
+        '--include-before-body=./cover.tex',
+        '--include-in-header=./header.tex',
+        '--include-in-header=./header_setup.tex',
+        '--pdf-engine=xelatex',
+        '--output={}'.format(filename),
+    ]
 
-    # creates string of file paths in the order we'd like them to be appear
-    # ordering is taken care of by the inherent file naming
-    files_string = index_page + " " + " ".join(sorted(markdown_list))
+    # location of this file: This is also the working directory when
+    # the pdf is being built using `cd build_pdf_src` and then
+    # `bash build_pdf.sh`
+    root = pathlib.Path(__file__).parent.absolute()
 
-    flags = (" -f markdown_github --include-before-body cover.tex --toc "
-             "-V documentclass=report --listings -H listings_setup.tex "
-             "-H header.tex -V linkcolor:blue -V geometry:a4paper "
-             "-V geometry:margin=2cm --pdf-engine=xelatex -o ")
-    output_filename = filename
+    # Resources are searched relative to the working directory, but
+    # we can add additional search paths using <path>:<another path>, ...
+    # When in one of the 99-appendices/ files there is a reference to
+    # "../04-modality-specific-files/images/...", then we need to use
+    # 99-appendices/ as a resource-path so that the relative files can
+    # be found.
+    cmd += [f'--resource-path=.:{str(root / "99-appendices")}']
 
-    cmd = default_pandoc_cmd + files_string + flags + output_filename
-    subprocess.run(cmd.split())
+    # Add input files to command
+    # The filenames in `markdown_list` will ensure correct order when sorted
+    cmd += [str(root / index_page)]
+    cmd += [str(root / i) for i in ["../../metadata.yml"] + sorted(markdown_list)]
+
+    # print and run
+    print('running: \n\n' + '\n'.join(cmd))
+    subprocess.run(cmd)
 
 
 if __name__ == "__main__":
