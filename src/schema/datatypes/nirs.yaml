@@ -1,0 +1,49 @@
+---
+# fNIRS recordings
+- suffixes:
+    - nirs
+  extensions:
+    - .snirf
+    - .json
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    run: optional
+# Events
+- suffixes:
+    - events
+  extensions:
+    - .tsv
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    run: optional
+- suffixes:
+    - channels
+  extensions:
+    - .tsv
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    run: optional
+- suffixes:
+    - coordsystem
+  extensions:
+    - .json
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    run: optional
+- suffixes:
+    - optodes
+  extensions:
+    - .tsv
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    run: optional
