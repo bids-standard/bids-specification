@@ -256,8 +256,9 @@ to date of birth.
 Template:
 
 ```Text
-phenotype/<measurement_tool_name>.tsv
-phenotype/<measurement_tool_name>.json
+phenotype/
+          <measurement_tool_name>.tsv
+          <measurement_tool_name>.json
 ```
 
 Optional: Yes
@@ -329,9 +330,10 @@ questionnaire).
 Template:
 
 ```Text
-sub-<label>/[ses-<label>/]
-    sub-<label>[_ses-<label>]_scans.tsv
-    sub-<label>[_ses-<label>]_scans.json
+sub-<label>/
+        [ses-<label>/]
+            sub-<label>[_ses-<label>]_scans.tsv
+            sub-<label>[_ses-<label>]_scans.json
 ```
 
 Optional: Yes
