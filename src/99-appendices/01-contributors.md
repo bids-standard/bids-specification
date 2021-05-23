@@ -3,7 +3,7 @@
 Legend (source:
 [https://allcontributors.org/docs/en/emoji-key](https://allcontributors.org/docs/en/emoji-key))
 
-| Emoji | Represents                                                                        |
+| **Emoji** | **Represents**                                                                        |
 |-------|---------------------------------------------------------------------------------- |
 | 💬    | Answering Questions (on the mailing list, NeuroStars, GitHub, or in person, etc.) |
 | 🐛    | Bug reports                                                                       |

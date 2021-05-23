@@ -441,7 +441,7 @@ The `flip` and `echo` entities MUST be used to distinguish images with this suff
 The use of `flip` follows the default convention. However, this suffix defines a
 specific use case for the `echo` entity:
 
-| `echo-1`             | `echo-2`                    |
+| **`echo-1`**             | **`echo-2`**                    |
 | -------------------- | --------------------------- |
 | Lower `EchoTime`     | Higher `EchoTime`           |
 | Spin Echo (SE) image | Stimulated Echo (STE) image |
@@ -458,7 +458,7 @@ The nominal FA value of the SE pulse is twice this value.
 Note that the following metadata fields MUST be defined in the accompanying JSON
 files:
 
-| Field name         | Definition                                                                                                                                     |
+| **Field name**         | **Definition**                                                                                                                                     |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | `TotalReadoutTime` | The effective readout length defined as `EffectiveEchoSpacing * PEReconMatrix`, with `EffectiveEchoSpacing = TrueEchoSpacing / PEacceleration` |
 | `MixingTime`       | Time interval between the SE and STE pulses                                                                                                    |
@@ -490,7 +490,7 @@ Therefore, to properly identify constituents of this particular method,
 values of the `acq` entity SHOULD begin with either `tr1` (lower TR) or `tr2` (higher TR)
 and MAY be followed by freeform entries:
 
-| First `TR`       | Second `TR`      | Use case             |
+| **First `TR`**       | **Second `TR`**      | **Use case**             |
 | ---------------- | ---------------- | -------------------- |
 | `_acq-tr1`       | `_acq-tr2`       | Single acquisition   |
 | `_acq-tr1Test`   | `_acq-tr2Test`   | Acquisition `Test`   |
@@ -514,7 +514,7 @@ The first image appears like an anatomical image and the second output is a scal
 To properly identify files of this particular file collection,
 values of the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be followed by freeform entries:
 
-| Anatomical (like) image | Scaled flip angle map | Use case             |
+| **Anatomical (like) image** | **Scaled flip angle map** | **Use case**             |
 | ----------------------- | --------------------- | -------------------- |
 | `_acq-anat`             | `_acq-famp`           | Single acquisition   |
 | `_acq-anatTest`         | `_acq-fampTest`       | Acquisition `Test`   |
@@ -541,7 +541,7 @@ To properly identify constituents of this particular method, values of the `acq`
 entity SHOULD begin with either `body` or `head` and MAY be followed by freeform
 entries:
 
-| Body coil      | Head coil      | Use case           |
+| **Body coil**      | **Head coil **     | **Use case**           |
 | -------------- | -------------- | ------------------ |
 | `_acq-body`    | `_acq-head`    | Single acquisition |
 | `_acq-bodyMTw` | `_acq-headMTw` | `MTw` for `MPM`    |
