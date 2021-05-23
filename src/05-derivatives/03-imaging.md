@@ -357,7 +357,7 @@ BIDS supplies a standard, generic label-index mapping, defined in the table
 below, that contains common image-derived segmentations and can be used to map segmentations
 (and parcellations) between lookup tables.
 
-| Integer value | Description             | Abbreviation (label) |
+| **Integer value** | **Description**             | **Abbreviation (label)** |
 | ------------- | ----------------------- | -------------------- |
 | 0             | Background              | BG                   |
 | 1             | Gray Matter             | GM                   |
@@ -401,13 +401,13 @@ pipeline/
 
 These TSV lookup tables contain the following columns:
 
-| Column name  | Description                                                             |
-| ------------ | ----------------------------------------------------------------------- |
-| index        | REQUIRED. The label integer index                                       |
-| name         | REQUIRED. The unique label name                                         |
-| abbreviation | OPTIONAL. The unique label abbreviation                                 |
-| color        | OPTIONAL. Hexadecimal. Label color for visualization                    |
-| mapping      | OPTIONAL. Corresponding integer label in the standard BIDS label lookup |
+| **Column name**  | **Requirement level** | **Description**                                                             |
+| ------------ | ---------------------|-------------------------------------------------- |
+| index        | REQUIRED | The label integer index                                       |
+| name         | REQUIRED | The unique label name                                         |
+| abbreviation | OPTIONAL | The unique label abbreviation                                 |
+| color        | OPTIONAL | Hexadecimal. Label color for visualization                    |
+| mapping      | OPTIONAL | Corresponding integer label in the standard BIDS label lookup |
 
 An example, custom `dseg.tsv` that defines three labels:
 

@@ -186,7 +186,7 @@ Unless specified explicitly in the sidecar file in the
 
 ### Standard template identifiers
 
-| Coordinate System                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| **Coordinate System**                  | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ICBM452AirSpace                    | Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" with "linear transforms of the subjects into the atlas space using a 12-parameter affine transformation" [https://www.loni.usc.edu/research/atlases](https://www.loni.usc.edu/research/atlases)                                                                                                                                                                                                                          |
 | ICBM452Warp5Space                  | Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" "based on a 5th order polynomial transformation into the atlas space" [https://www.loni.usc.edu/research/atlases](https://www.loni.usc.edu/research/atlases)                                                                                                                                                                                                                                                             |
@@ -210,7 +210,7 @@ The following template identifiers are retained for backwards compatibility
 of BIDS implementations.
 However, their use is [DEPRECATED][deprecated].
 
-| Coordinate System                   | Description                                                                                                                                              | RECOMMENDED alternative identifier |
+| **Coordinate System**                   | **Description**                                                                                                                                              | **RECOMMENDED alternative identifier** |
 | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | fsaverage\[3\|4\|5\|6\|sym\]        | Images were sampled to the FreeSurfer surface reconstructed from the subject’s T1w image, and registered to an fsaverage template                        | fsaverage\[Sym\]                   |
 | UNCInfant\[0\|1\|2\]V\[21\|22\|23\] | Infant Brain Atlases from Neonates to 1- and 2-year-olds. [https://www.nitrc.org/projects/pediatricatlas](https://www.nitrc.org/projects/pediatricatlas) | UNCInfant                          |
@@ -224,7 +224,7 @@ described in [Common file level metadata fields][common file level metadata fiel
 
 In the case of multiple study templates, additional names may need to be defined.
 
-| Coordinate System | Description                                                                                                                                                                                                                                                            |
+| **Coordinate System** | **Description**                                                                                                                                                                                                                                                            |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | individual        | Participant specific anatomical space (for example derived from T1w and/or T2w images). This coordinate system requires specifying an additional, participant-specific file to be fully defined. In context of surfaces this space has been referred to as `fsnative`. |
 | study             | Custom space defined using a group/study-specific template. This coordinate system requires specifying an additional file to be fully defined.                                                                                                                         |
@@ -234,7 +234,7 @@ In the case of multiple study templates, additional names may need to be defined
 The `scanner` coordinate system is implicit and assumed by default if the derivative filename does not define **any** `space-<label>`.
 Please note that `space-scanner` SHOULD NOT be used, it is mentioned in this specification to make its existence explicit.
 
-| Coordinate System | Description                                                                                                                                                                                                |
+| **Coordinate System** | **Description**                                                                                                                                                                                                |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | scanner           | The intrinsic coordinate system of the original image (the first entry of `RawSources`) after reconstruction and conversion to NIfTI or equivalent for the case of surfaces and dual volume/surface files. |
 

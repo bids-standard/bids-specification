@@ -8,7 +8,7 @@ licenses.
 The terms of any license should be consistent with the informed consent
 obtained from participants and any institutional limitations on distribution.
 
-| Identifier   | License name                                           | Description                                                                                                                    |
+| **Identifier**   | **License name**                                           | **Description**                                                                                                                    |
 | ------------ | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
 | PD           | Public Domain                                          | No license required for any purpose; the work is not subject to copyright in any jurisdiction.                                 |
 | [PDDL][pddl] | Open Data Commons Public Domain Dedication and License | License to assign public domain like permissions without giving up the copyright.                                              |
