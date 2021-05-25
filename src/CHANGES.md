@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[ENH] clarify that entities MUST be unique [#800](https://github.com/bids-standard/bids-specification/pull/800) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] add IETF standard link for json [#797](https://github.com/bids-standard/bids-specification/pull/797) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] In PDF, color every other row in table in light gray fill [#794](https://github.com/bids-standard/bids-specification/pull/794) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] add link to guide on how to write a good README [#793](https://github.com/bids-standard/bids-specification/pull/793) ([sappelhoff](https://github.com/sappelhoff))
