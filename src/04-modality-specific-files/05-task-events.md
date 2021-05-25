@@ -4,7 +4,7 @@ The purpose of this file is to describe timing and other properties of events
 recorded during a run.
 Events are, for example, stimuli presented to the participant or participant responses
 (see [Definitions](../02-common-principles.md#definitions)).
-A single event file MAY include any combination of stimuli, response, and other events.
+A single event file MAY include any combination of stimulus, response, and other events.
 Events MAY overlap in time.
 Please mind that this does not imply that only so called "event related" study designs
 are supported (in contrast to "block" designs) - each "block of events" can be
@@ -23,7 +23,7 @@ sub-<label>/[ses-<label>]
 Where `<matches>` corresponds to task file name. For example:
 `sub-control01_task-nback`.
 
-Each task events file REQUIRES a corresponding task file containing neural or behavioral data.
+Each task events file REQUIRES a corresponding task data file.
 It is also possible to have a single `events.tsv` file describing events
 for all participants and runs (see
 [Inheritance Principle](../02-common-principles.md#the-inheritance-principle)).
