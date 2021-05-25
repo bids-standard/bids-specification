@@ -159,6 +159,11 @@ data from subject `01`.
 The suffix `eeg` and the extension `.edf` depend on the imaging modality and
 the data format and indicate further details of the file's contents.
 
+Entities within a file name MUST be unique.
+For example, the following file name is not valid because it uses the `acq`
+entity twice:
+`sub-01_acq-laser_acq-uneven_electrodes.tsv`
+
 In cases where entities duplicate metadata,
 the presence of an entity should not be used as a replacement for
 the corresponding metadata field.
