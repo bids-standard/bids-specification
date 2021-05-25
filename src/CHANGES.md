@@ -12,6 +12,7 @@
 -   \[MISC] Add info on HED key to common principles [#777](https://github.com/bids-standard/bids-specification/pull/777) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] add EEGLAB as valid coordinate system for EEG [#775](https://github.com/bids-standard/bids-specification/pull/775) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Allow encoding the fieldmapping intent of the protocol [#622](https://github.com/bids-standard/bids-specification/pull/622) ([oesteban](https://github.com/oesteban))
+-   \[FIX] Correct iEEG example that contained double suffixes [#463](https://github.com/bids-standard/bids-specification/pull/463) ([yarikoptic](https://github.com/yarikoptic))
 
 ## [v1.6.0](https://github.com/bids-standard/bids-specification/tree/v1.6.0) (2021-04-22)
 
