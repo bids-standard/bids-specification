@@ -129,7 +129,7 @@ sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
 
 ### Other RECOMMENDED metadata for physiological data
 
-The following RECOMMENDED metadata can also be added in the side-car JSON files 
+The following RECOMMENDED metadata can also be added in the side-car JSON files
 of any `*_<physio>.tsv.gz` file.
 
 | **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                  |
