@@ -34,8 +34,9 @@ suffix, and signals related to the stimulus SHOULD use `_stim` suffix.
 
 Physiological recordings such as cardiac and respiratory signals and other
 continuous measures (such as parameters of a film or audio stimuli) can be
-specified using two files: a gzip compressed TSV file with data (without header
-line) and a JSON for storing the following metadata fields:
+specified using two files: a [gzip](https://datatracker.ietf.org/doc/html/rfc1952)
+compressed TSV file with data (without header line)
+and a JSON file for storing the following metadata fields.
 
 Note that when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
 `*_<physio|stim>.json` MUST be supplied as well.
@@ -105,7 +106,7 @@ following naming conventions SHOULD be used for the column names:
 For any other data to be specified in columns, the column names can be chosen
 as deemed appropriate by the researcher.
 
-Recordings with different sampling frequencies and/or starting times should be
+Recordings with different sampling frequencies or starting times should be
 stored in separate files.
 
 If the same continuous recording has been used for all subjects (for example in
