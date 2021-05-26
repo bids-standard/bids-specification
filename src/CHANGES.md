@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] Make MRI-centric language more general in Events [#801](https://github.com/bids-standard/bids-specification/pull/801) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] clarify that entities MUST be unique [#800](https://github.com/bids-standard/bids-specification/pull/800) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] add IETF standard link for json [#797](https://github.com/bids-standard/bids-specification/pull/797) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] In PDF, color every other row in table in light gray fill [#794](https://github.com/bids-standard/bids-specification/pull/794) ([sappelhoff](https://github.com/sappelhoff))
