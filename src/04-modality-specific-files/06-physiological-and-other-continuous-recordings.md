@@ -128,6 +128,18 @@ sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
 sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
 ```
 
+### Other RECOMMENDED metadata for physiological data
+
+The following RECOMMENDED metadata can also be added in the side-car JSON files
+of any `*_<physio>.tsv.gz` file.
+
+| **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                  |
+| ---------------------- | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Manufacturer           | RECOMMENDED           | [string][]    | Manufacturer of the system used to record the physiological data                                                                                                                                                 |
+| ManufacturersModelName | RECOMMENDED           | [string][]    | Manufacturer's designation of the system used to record the physiological data                                                                                                                                   |
+| SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer's designation of the acquisition software.                                                                                                                                                          |
+| DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset. |
+
 <!-- Link Definitions -->
 
 [number]: https://www.w3schools.com/js/js_json_datatypes.asp
