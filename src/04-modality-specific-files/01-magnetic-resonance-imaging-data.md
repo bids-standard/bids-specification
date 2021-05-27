@@ -568,8 +568,8 @@ Following the FSL format for the `[*_]dwi.bvec` specification, the coordinate sy
 the *b* vectors MUST be defined with respect to the coordinate system defined by
 the header of the corresponding `_dwi` NIfTI file and not the scanner's device
 coordinate system (see [Coordinate systems](../99-appendices/08-coordinate-systems.md)).
-The most relevant implication for this choice is that any rotations applied to the DWI data
-also need to be applied to the *b* vectors in the `[*_]dwi.bvec` file.
+The most relevant limitation imposed by this choice is that the gradient information cannot
+be directly stored in this format if the scanner generates *b*-vectors in *scanner coordinates*.
 
 Example of `[*_]dwi.bvec` file, with *N*=6, with two *b*=0 volumes in the beginning:
 
