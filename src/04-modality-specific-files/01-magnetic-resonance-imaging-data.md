@@ -272,6 +272,21 @@ which are typically used in `part-mag`/`part-phase` or `part-real`/`part-imag`
 pairs of files.
 For example:
 
+{{ MACROS___make_filetree_example(
+   {
+      "sub-01":
+         {
+            "anat":
+               [
+                  "sub-01_part-mag_T1w.nii.gz",
+                  "sub-01_part-mag_T1w.json",
+                  "sub-01_part-phase_T1w.nii.gz",
+                  "sub-01_part-phase_T1w.json",
+               ],
+         },
+   }
+) }}
+
 ```Text
 sub-01_part-mag_T1w.nii.gz
 sub-01_part-mag_T1w.json

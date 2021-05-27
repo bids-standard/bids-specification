@@ -142,6 +142,71 @@ def filter_schema(schema, **kwargs):
     return new_schema
 
 
+class DirectoryTree:
+    def __init__(self, filetree):
+        self._generator = _TreeGenerator(filetree)
+
+    def generate(self):
+        tree = self._generator.build_tree()
+        for entry in tree:
+            print(entry)
+
+
+class _TreeGenerator:
+    def __init__(self, filetree, dir_only=False):
+        import pathlib
+        self._filetree = pathlib.Path(filetree)
+        self._dir_only = dir_only
+        self._tree = []
+        self.PIPE = "│"
+        self.ELBOW = "└──"
+        self.TEE = "├──"
+        self.PIPE_PREFIX = "│   "
+        self.SPACE_PREFIX = "    "
+
+    def build_tree(self):
+        self._tree_head()
+        self._tree_body(self._root_dir)
+        return self._tree
+
+    def _add_directory(self, directory, index, entries_count, prefix, connector):
+        self._tree.append(f"{prefix}{connector} {directory.name}{os.sep}")
+        if index != entries_count - 1:
+            prefix += self.PIPE_PREFIX
+        else:
+            prefix += self.SPACE_PREFIX
+        self._tree_body(directory=directory, prefix=prefix)
+        self._tree.append(prefix.rstrip())
+
+    def _add_file(self, file, prefix, connector):
+        self._tree.append(f"{prefix}{connector} {file.name}")
+
+    def _tree_body(self, directory, prefix=""):
+        entries = self._prepare_entries(directory)
+        entries_count = len(entries)
+        for index, entry in enumerate(entries):
+            connector = self.ELBOW if index == entries_count - 1 else self.TEE
+            if isinstance(entry, dict):
+                self._add_directory(
+                    entry, index, entries_count, prefix, connector
+                )
+            else:
+                self._add_file(entry, prefix, connector)
+
+    def _prepare_entries(self, directory):
+        entries = directory.iterdir()
+        if self._dir_only:
+            entries = [entry for entry in entries if entry.is_dir()]
+            return entries
+        entries = sorted(entries, key=lambda entry: entry.is_file())
+        return entries
+
+
+def make_filetree_example(filetree_info):
+    """Make a filetree example."""
+    pass
+
+
 def make_entity_definitions(schema):
     """Generate definitions and other relevant information for entities in the
     specification.

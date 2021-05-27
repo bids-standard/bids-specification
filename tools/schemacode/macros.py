@@ -25,6 +25,22 @@ def make_filename_template(**kwargs):
     return codeblock
 
 
+def make_filetree_example(filetree_info):
+    """Generate a filetree snippet from example content.
+
+    Parameters
+    ----------
+    filetree_info : dict
+
+    Returns
+    -------
+    codeblock : str
+        A multiline string containing the filetree example.
+    """
+    codeblock = schema.make_filetree_example(filetree_info)
+    return codeblock
+
+
 def make_entity_table(**kwargs):
     """Generate an entity table from the schema, based on specific filters.
 
