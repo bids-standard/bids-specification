@@ -11,6 +11,7 @@
 -   \[MISC] add link to guide on how to write a good README [#793](https://github.com/bids-standard/bids-specification/pull/793) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] fix md ci and update ci badges  [#791](https://github.com/bids-standard/bids-specification/pull/791) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] consistently refer to DICOM Tags throughout the specification [#786](https://github.com/bids-standard/bids-specification/pull/786) ([Hboni](https://github.com/Hboni))
+-   \[FIX] Amend note about \*b\*-vecs on DWI specs [#782](https://github.com/bids-standard/bids-specification/pull/782) ([oesteban](https://github.com/oesteban))
 -   \[INFRA] add CI to find trailing whitespace [#780](https://github.com/bids-standard/bids-specification/pull/780) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Add info on HED key to common principles [#777](https://github.com/bids-standard/bids-specification/pull/777) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] add EEGLAB as valid coordinate system for EEG [#775](https://github.com/bids-standard/bids-specification/pull/775) ([sappelhoff](https://github.com/sappelhoff))
