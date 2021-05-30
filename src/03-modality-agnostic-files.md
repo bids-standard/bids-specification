@@ -257,8 +257,8 @@ Template:
 
 ```Text
 phenotype/
-          <measurement_tool_name>.tsv
-          <measurement_tool_name>.json
+    <measurement_tool_name>.tsv
+    <measurement_tool_name>.json
 ```
 
 Optional: Yes
@@ -331,9 +331,9 @@ Template:
 
 ```Text
 sub-<label>/
-        [ses-<label>/]
-            sub-<label>[_ses-<label>]_scans.tsv
-            sub-<label>[_ses-<label>]_scans.json
+    [ses-<label>/]
+        sub-<label>[_ses-<label>]_scans.tsv
+        sub-<label>[_ses-<label>]_scans.json
 ```
 
 Optional: Yes
@@ -387,8 +387,8 @@ Template:
 
 ```Text
 sub-<label>/
-            ses-<label>/
-            sub-<label>_sessions.tsv
+    ses-<label>/
+        sub-<label>_sessions.tsv
 ```
 
 Optional: Yes
