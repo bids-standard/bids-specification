@@ -219,16 +219,6 @@ We refer to the common principles for the standards for describing dates and tim
 
 All reconstruction-specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
 
-#### Task related metadata
-
-| **Key name**    | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                      |
-| ----------------| --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| TaskName        | RECOMMENDED           | [string][]    | Name of the task. No two tasks should have the same name. The task label included in the file name is derived from this `TaskName` field by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters. For example `TaskName` `"faces n-back"` will correspond to task label `facesnback`. A RECOMMENDED convention is to name resting state task using labels beginning with `rest`. |
-| TaskDescription | RECOMMENDED           | [string][]    | Description of the task.                                                                                                                                                                                                                                                                                                                                                             |
-| Instructions    | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the scan. This is not only important for behavioral or cognitive tasks but also in resting state paradigms (for example, to distinguish between eyes open and eyes closed).                                                                                                                                                    |
-| CogAtlasID      | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) term that describes the task (for example, Resting State with eyes closed "<https://www.cognitiveatlas.org/task/id/trm_54e69c642d89b>").                                                                                                                                                          |
-| CogPOID         | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task (for example, Rest "<http://wiki.cogpo.org/index.php?title=Rest>") .                                                                                                                                                                                                                     |
-
 #### Example (`*_pet.json`)
 
 ```JSON
