@@ -277,7 +277,9 @@ sub-03 72
 ```
 
 If multiple measurements are made, these data SHOULD be included in the
-[Sessions file](../06-longitudinal-and-multi-site-studies.md#sessions-file).
+[Sessions file](../03-modality-agnostic-files.md#sessions-file).
+
+
 
 For example:
 
