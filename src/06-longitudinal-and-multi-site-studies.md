@@ -1,7 +1,9 @@
 # Longitudinal and multi-site studies
 
 Multiple sessions (visits) are encoded by adding an extra layer of directories
-and file names in the form of `ses-<label>`.
+and [file names](03-modality-agnostic-files.md#file-name-structure) 
+in the form of a session (for example `ses-<label>`) and 
+with a [`*_sessions.tsv` file](03-modality-agnostic-files.md#sessions-file).
 
 ```Text
 sub-control01/
