@@ -1,10 +1,10 @@
 # Appendix I: Contributors
 
 Legend (source:
-[https://allcontributors.org/docs/en/emoji-key](https://allcontributors.org/docs/en/emoji-key))
+<https://allcontributors.org/docs/en/emoji-key>)
 
 | **Emoji** | **Represents**                                                                    |
-|-----------|-----------------------------------------------------------------------------------|
+| --------- | --------------------------------------------------------------------------------- |
 | 💬        | Answering Questions (on the mailing list, NeuroStars, GitHub, or in person, etc.) |
 | 🐛        | Bug reports                                                                       |
 | 📝        | Blogposts                                                                         |
@@ -20,14 +20,14 @@ Legend (source:
 | 🤔        | Ideas & Planning                                                                  |
 | 🚇        | Infrastructure (hosting, build-tools, etc.)                                       |
 | 🚧        | Maintenance of the BIDS standard                                                  |
-| 🧑‍🏫      | Mentoring new contributors                                                        |
+| 🧑‍🏫     | Mentoring new contributors                                                        |
 | 🔌        | Plugin/utility libraries                                                          |
 | 📆        | Project management                                                                |
 | 👀        | Reviewed Pull Requests                                                            |
 | 🔧        | Tools                                                                             |
 | 🌍        | Translation                                                                       |
-| ⚠️         | Tests                                                                             |
-| ✅        | Tutorials                                                                         |
+| ⚠️        | Tests                                                                             |
+| ✅         | Tutorials                                                                         |
 | 📢        | Talks                                                                             |
 | 📓        | User testing (of new features, tools, etc.)                                       |
 | 📹        | Videos                                                                            |
