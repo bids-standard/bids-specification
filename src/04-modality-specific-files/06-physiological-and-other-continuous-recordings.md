@@ -45,6 +45,10 @@ Note that when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
       "SamplingFrequency": "REQUIRED",
       "StartTime": "REQUIRED",
       "Columns": "REQUIRED",
+      "Manufacturer": "RECOMMENDED",
+      "ManufacturersModelName": "RECOMMENDED",
+      "SoftwareVersions": "RECOMMENDED",
+      "DeviceSerialNumber": "RECOMMENDED",
    }
 ) }}
 
