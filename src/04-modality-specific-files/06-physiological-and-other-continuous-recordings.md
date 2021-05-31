@@ -144,6 +144,8 @@ of any `*_<physio>.tsv.gz` file.
 
 [number]: https://www.w3schools.com/js/js_json_datatypes.asp
 
+[string]: https://www.w3schools.com/js/js_json_syntax.asp
+
 [strings]: https://www.w3schools.com/js/js_json_syntax.asp
 
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
