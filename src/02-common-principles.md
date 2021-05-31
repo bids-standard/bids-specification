@@ -32,6 +32,13 @@ misunderstanding we clarify them here.
     context, a session may also indicate a group of related scans,
     taken in one or more visits.
 
+1.  **Sample** - a sample pertaining to a subject such as tissue, primary cell
+    or cell-free sample.
+    The `sample-<label>` key/value pair is used to distinguish between different
+    samples from the same subject.
+    The label MUST be unique per subject and is RECOMMENDED to be unique
+    throughout the dataset.
+
 1.  **Data acquisition** - a continuous uninterrupted block of time during which
     a brain scanning instrument was acquiring data according to particular
     scanning sequence/protocol.
