@@ -357,20 +357,20 @@ BIDS supplies a standard, generic label-index mapping, defined in the table
 below, that contains common image-derived segmentations and can be used to map segmentations
 (and parcellations) between lookup tables.
 
-| Integer value | Description             | Abbreviation (label) |
-| ------------- | ----------------------- | -------------------- |
-| 0             | Background              | BG                   |
-| 1             | Gray Matter             | GM                   |
-| 2             | White Matter            | WM                   |
-| 3             | Cerebrospinal Fluid     | CSF                  |
-| 4             | Bone                    | B                    |
-| 5             | Soft Tissue             | ST                   |
-| 6             | Non-brain               | NB                   |
-| 7             | Lesion                  | L                    |
-| 8             | Cortical Gray Matter    | CGM                  |
-| 9             | Subcortical Gray Matter | SGM                  |
-| 10            | Brainstem               | BS                   |
-| 11            | Cerebellum              | CBM                  |
+| **Integer value** | **Description**         | **Abbreviation (label)** |
+| ----------------- | ----------------------- | ------------------------ |
+| 0                 | Background              | BG                       |
+| 1                 | Gray Matter             | GM                       |
+| 2                 | White Matter            | WM                       |
+| 3                 | Cerebrospinal Fluid     | CSF                      |
+| 4                 | Bone                    | B                        |
+| 5                 | Soft Tissue             | ST                       |
+| 6                 | Non-brain               | NB                       |
+| 7                 | Lesion                  | L                        |
+| 8                 | Cortical Gray Matter    | CGM                      |
+| 9                 | Subcortical Gray Matter | SGM                      |
+| 10                | Brainstem               | BS                       |
+| 11                | Cerebellum              | CBM                      |
 
 These definitions can be overridden (or added to) by providing custom labels in
 a sidecar `<matches>.tsv` file, in which `<matches>` corresponds to segmentation
@@ -401,13 +401,13 @@ pipeline/
 
 These TSV lookup tables contain the following columns:
 
-| Column name  | Description                                                             |
-| ------------ | ----------------------------------------------------------------------- |
-| index        | REQUIRED. The label integer index                                       |
-| name         | REQUIRED. The unique label name                                         |
-| abbreviation | OPTIONAL. The unique label abbreviation                                 |
-| color        | OPTIONAL. Hexadecimal. Label color for visualization                    |
-| mapping      | OPTIONAL. Corresponding integer label in the standard BIDS label lookup |
+| **Column name** | **Requirement level** | **Description**                                               |
+| --------------- | --------------------- |-------------------------------------------------------------- |
+| index           | REQUIRED              | The label integer index                                       |
+| name            | REQUIRED              | The unique label name                                         |
+| abbreviation    | OPTIONAL              | The unique label abbreviation                                 |
+| color           | OPTIONAL              | Hexadecimal. Label color for visualization                    |
+| mapping         | OPTIONAL              | Corresponding integer label in the standard BIDS label lookup |
 
 An example, custom `dseg.tsv` that defines three labels:
 
