@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] make table headers bold [#815](https://github.com/bids-standard/bids-specification/pull/815) ([Remi-Gau](https://github.com/Remi-Gau))
 -   Add device and acquisition metadata for physio files [#806](https://github.com/bids-standard/bids-specification/pull/806) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[MISC] Make MRI-centric language more general in Events [#801](https://github.com/bids-standard/bids-specification/pull/801) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] clarify that entities MUST be unique [#800](https://github.com/bids-standard/bids-specification/pull/800) ([sappelhoff](https://github.com/sappelhoff))
