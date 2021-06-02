@@ -182,14 +182,15 @@ which we divide into several categories:
 
 #### Time
 
-| **Key name**    | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                      |
-| --------------- | --------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| TimeZero        | REQUIRED              | [string][]               | Time zero to which all scan and/or blood measurements have been adjusted to, in the unit "hh:mm:ss". This should be equal to `InjectionStart` or `ScanStart`.                                        |
-| ScanStart       | REQUIRED              | [number][]               | Time of start of scan with respect to `TimeZero` in the default unit seconds.                                                                                                                        |
-| InjectionStart  | REQUIRED              | [number][]               | Time of start of injection with respect to `TimeZero` in the default unit seconds. This corresponds to DICOM Tag 0018, 1042 `Contrast/Bolus Start Time` converted to seconds relative to `TimeZero`. |
-| FrameTimesStart | REQUIRED              | [array][] of [numbers][] | Start times for all frames relative to `TimeZero` in default unit seconds.                                                                                                                           |
-| FrameDuration   | REQUIRED              | [array][] of [numbers][] | Time duration of each frame in default unit seconds. This corresponds to DICOM Tag 0018, 1242 `Actual Frame Duration` converted to seconds.                                                          |
-| InjectionEnd    | RECOMMENDED           | [number][]               | Time of end of injection with respect to `TimeZero` in the default unit seconds.                                                                                                                     |
+| **Key name**    | **Requirement level**    | **Data type**            | **Description**                                                                                                                                                                                                       |
+| --------------- | ------------------------ | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                  |
+| TimeZero        | REQUIRED                 | [string][]               | Time zero to which all scan and/or blood measurements have been adjusted to, in the unit "hh:mm:ss". This should be equal to `InjectionStart` or `ScanStart`.                                                         |
+| ScanStart       | REQUIRED                 | [number][]               | Time of start of scan with respect to `TimeZero` in the default unit seconds.                                                                                                                                         |
+| InjectionStart  | REQUIRED                 | [number][]               | Time of start of injection with respect to `TimeZero` in the default unit seconds. This corresponds to DICOM Tag 0018, 1042 `Contrast/Bolus Start Time` converted to seconds relative to `TimeZero`.                  |
+| FrameTimesStart | REQUIRED                 | [array][] of [numbers][] | Start times for all frames relative to `TimeZero` in default unit seconds.                                                                                                                                            |
+| FrameDuration   | REQUIRED                 | [array][] of [numbers][] | Time duration of each frame in default unit seconds. This corresponds to DICOM Tag 0018, 1242 `Actual Frame Duration` converted to seconds.                                                                           |
+| InjectionEnd    | RECOMMENDED              | [number][]               | Time of end of injection with respect to `TimeZero` in the default unit seconds.                                                                                                                                      |
+| ScanDate        | [DEPRECATED][deprecated] | [string][]               | Date of scan in the format `"YYYY-MM-DD[Z]"`. This field is DEPRECATED, and this metadata SHOULD be recorded in the `acq_time` column of the corresponding [Scans file](../03-modality-agnostic-files.md#scans-file). |
 
 We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see the [units section](../02-common-principles.md#units)).
 
@@ -411,3 +412,4 @@ time plasma_radioactivity whole_blood_radioactivity metabolite_parent_fraction m
 [numbers]: https://www.w3schools.com/js/js_json_datatypes.asp
 [boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
+[deprecated]: ../02-common-principles.md#definitions
