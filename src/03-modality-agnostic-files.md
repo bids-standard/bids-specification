@@ -251,6 +251,71 @@ to date of birth.
 }
 ```
 
+## Samples file
+
+Template:
+
+```Text
+samples.tsv
+samples.json
+```
+
+The purpose of this RECOMMENDED file is to describe properties of samples
+when the `sample-<label>` key/value pair is used in filenames.
+If this file exists, it MUST contain the three following columns:
+
+-   `sample_id`: MUST consist of `sample-<label>` values identifying one row
+    for each sample
+
+-   `participant_id`: MUST consist of `sub-<label>`
+
+-   `sample_type`: MUST consist of sample type values (for example: tissue,
+    primary cell or cell-free sample) from [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type)
+
+Other optional columns MAY be used to describe the samples.
+Each sample MUST be described by one and only one row.
+
+Commonly used *optional* columns in `samples.tsv` files are `pathology` and
+`derived_from`. We RECOMMEND to make use of these columns, and in case that
+you do use them, we RECOMMEND to use the following values for them:
+
+-   `pathology`: string value describing the pathology of the sample or type of control.
+    When different from `healthy`, pathology SHOULD be specified in `samples.tsv`.
+    The pathology MAY instead be specified in [Sessions files](06-longitudinal-and-multi-site-studies.html#sessions-file)
+    in case it changes over time.
+
+-   `derived_from`: `sample-<label>` key/value pair from which a sample is derived from,
+    for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`),
+    as illustrated in the example below.
+
+`samples.tsv` example:
+
+```Text
+sample_id participant_id sample_type derived_from
+sample-01 sub-01 tissue n/a
+sample-02 sub-01 tissue sample-01
+sample-03 sub-01 tissue sample-01
+sample-04 sub-02 tissue n/a
+sample-05 sub-02 tissue n/a
+```
+
+It is RECOMMENDED to accompany each `samples.tsv` file with a sidecar
+`samples.json` file to describe the TSV column names and properties of their values
+(see also the [section on tabular files](02-common-principles.md#tabular-files)).
+
+`samples.json` example:
+
+```JSON
+{
+    "sample_type": {
+        "Description": "type of sample from ENCODE Biosample Type (https://www.encodeproject.org/profiles/biosample_type)",
+    },
+    "derived_from": {
+        "Description": "sample_id from which the sample is derived from",
+    }
+}
+```
+
 ## Phenotypic and assessment data
 
 Template:
