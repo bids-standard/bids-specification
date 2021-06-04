@@ -281,7 +281,7 @@ you do use them, we RECOMMEND to use the following values for them:
 
 -   `pathology`: string value describing the pathology of the sample or type of control.
     When different from `healthy`, pathology SHOULD be specified in `samples.tsv`.
-    The pathology MAY instead be specified in [Sessions files](06-longitudinal-and-multi-site-studies.html#sessions-file)
+    The pathology MAY instead be specified in [Sessions files](06-longitudinal-and-multi-site-studies.md#sessions-file)
     in case it changes over time.
 
 -   `derived_from`: `sample-<label>` key/value pair from which a sample is derived from,
