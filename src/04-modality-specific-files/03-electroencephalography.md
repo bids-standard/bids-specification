@@ -188,8 +188,6 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 This file is RECOMMENDED as it provides easily searchable information across
 BIDS datasets for for example, general curation, response to queries or batch
 analysis.
-The required columns are channel `name`, `type` and `units` in this specific
-order.
 To avoid confusion, the channels SHOULD be listed in the order they
 appear in the EEG data file.
 Any number of additional columns may be added to provide additional information
@@ -205,7 +203,7 @@ See the examples for `*_channels.tsv` below, and for `*_electrodes.tsv` in
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
-MUST be present:
+MUST be present **in this specific order**:
 
 | **Column name** | **Requirement level** | **Description**                                                                                                                                                               |
 | --------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -277,7 +275,7 @@ expected in cartesian coordinates according to the `EEGCoordinateSystem` and
 file MUST be specified as well**. The order of the required columns in the
 `*_electrodes.tsv` file MUST be as listed below.
 
-MUST be present:
+MUST be present **in this specific order**:
 
 | **Column name** | **Requirement level** | **Description**                     |
 | --------------- | --------------------- | ----------------------------------- |
