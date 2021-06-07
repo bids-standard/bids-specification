@@ -470,12 +470,15 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
     if dropped_fields:
         print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
 
+    # Use the "name" field in the table, to allow for filenames to not match
+    # "names".
     df = pd.DataFrame(
-        index=retained_fields,
+        index=[metadata_schema[f]["name"] for f in retained_fields],
         columns=["**Requirement Level**", "**Data type**", "**Description**"],
     )
     df.index.name = "**Key name**"
     for field in retained_fields:
+        field_name = metadata_schema[field]["name"]
         requirement_info = field_info[field]
         description_addendum = ""
         if isinstance(requirement_info, tuple):
@@ -498,7 +501,7 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
         # Otherwise a newline corresponds to a space
         description = description.replace("\n", " ")
 
-        df.loc[field] = [requirement_info, type_string, description]
+        df.loc[field_name] = [requirement_info, type_string, description]
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)

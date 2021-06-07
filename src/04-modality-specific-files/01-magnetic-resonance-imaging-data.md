@@ -1160,7 +1160,7 @@ Required fields:
 
 {{ MACROS___make_metadata_table(
    {
-      "EchoTime": "REQUIRED",
+      "fmapEchoTime": "REQUIRED",
    }
 ) }}
 
@@ -1191,7 +1191,7 @@ Required fields:
       "Units": (
          "REQUIRED",
          'Fieldmaps must be in units of Hertz (`"Hz"`), '
-         'radians per second (`"rad/s"`), or Teslas (`"T"`).',
+         'radians per second (`"rad/s"`), or Tesla (`"T"`).',
       ),
    }
 ) }}
