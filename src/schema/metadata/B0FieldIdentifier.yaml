@@ -6,8 +6,8 @@ description: |
   The `B0FieldIdentifier` MUST be a unique string within one participant's tree,
   shared only by the images meant to be used as inputs for the estimation of a
   particular instance of the *B<sub>0</sub> field* estimation.
-  It is RECOMMENDED to derive this identifier from DICOM tags, for example,
-  the *Protocol Name* `(0018,1030)` or the *Sequence Name* `(0018,0024)`
+  It is RECOMMENDED to derive this identifier from DICOM Tags, for example,
+  the *Protocol Name* `(0018, 1030)` or the *Sequence Name* `(0018, 0024)`
   when the former is not defined (for example, in GE devices.)
 type: string
 format: participant_relative
