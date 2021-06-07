@@ -2,11 +2,22 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] make table headers bold [#815](https://github.com/bids-standard/bids-specification/pull/815) ([Remi-Gau](https://github.com/Remi-Gau))
+-   Add device and acquisition metadata for physio files [#806](https://github.com/bids-standard/bids-specification/pull/806) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[MISC] Make MRI-centric language more general in Events [#801](https://github.com/bids-standard/bids-specification/pull/801) ([sappelhoff](https://github.com/sappelhoff))
+-   \[ENH] clarify that entities MUST be unique [#800](https://github.com/bids-standard/bids-specification/pull/800) ([sappelhoff](https://github.com/sappelhoff))
+-   \[MISC] deprecate DCOffsetCorrection field from ieeg.json: Use SoftwareFilters field instead [#799](https://github.com/bids-standard/bids-specification/pull/799) ([sappelhoff](https://github.com/sappelhoff))
+-   \[MISC] add IETF standard link for json [#797](https://github.com/bids-standard/bids-specification/pull/797) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] In PDF, color every other row in table in light gray fill [#794](https://github.com/bids-standard/bids-specification/pull/794) ([sappelhoff](https://github.com/sappelhoff))
+-   \[MISC] add link to guide on how to write a good README [#793](https://github.com/bids-standard/bids-specification/pull/793) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] fix md ci and update ci badges  [#791](https://github.com/bids-standard/bids-specification/pull/791) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] consistently refer to DICOM Tags throughout the specification [#786](https://github.com/bids-standard/bids-specification/pull/786) ([Hboni](https://github.com/Hboni))
+-   \[FIX] Amend note about \*b\*-vecs on DWI specs [#782](https://github.com/bids-standard/bids-specification/pull/782) ([oesteban](https://github.com/oesteban))
 -   \[INFRA] add CI to find trailing whitespace [#780](https://github.com/bids-standard/bids-specification/pull/780) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Add info on HED key to common principles [#777](https://github.com/bids-standard/bids-specification/pull/777) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] add EEGLAB as valid coordinate system for EEG [#775](https://github.com/bids-standard/bids-specification/pull/775) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Allow encoding the fieldmapping intent of the protocol [#622](https://github.com/bids-standard/bids-specification/pull/622) ([oesteban](https://github.com/oesteban))
+-   \[FIX] Correct iEEG example that contained double suffixes [#463](https://github.com/bids-standard/bids-specification/pull/463) ([yarikoptic](https://github.com/yarikoptic))
 
 ## [v1.6.0](https://github.com/bids-standard/bids-specification/tree/v1.6.0) (2021-04-22)
 
@@ -304,7 +315,7 @@
 -   \[MISC] put links and some text into README [#91](https://github.com/bids-standard/bids-specification/pull/91) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Add extension proposal in 01-introduction.md [#88](https://github.com/bids-standard/bids-specification/pull/88) ([Hboni](https://github.com/Hboni))
 -   \[FIX] additional table to recap 'volume acquisition timing' [#87](https://github.com/bids-standard/bids-specification/pull/87) ([Remi-Gau](https://github.com/Remi-Gau))
--   \[FIX] Small typo in "scanning sequence" DICOM tag [#84](https://github.com/bids-standard/bids-specification/pull/84) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[FIX] Small typo in "scanning sequence" DICOM Tag [#84](https://github.com/bids-standard/bids-specification/pull/84) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[MISC] Update 01-contributors.md [#83](https://github.com/bids-standard/bids-specification/pull/83) ([teonbrooks](https://github.com/teonbrooks))
 -   \[ENH] Added CBV contrast [#82](https://github.com/bids-standard/bids-specification/pull/82) ([TheChymera](https://github.com/TheChymera))
 -   \[MISC] Add CC-BY 4.0 license [#81](https://github.com/bids-standard/bids-specification/pull/81) ([KirstieJane](https://github.com/KirstieJane))

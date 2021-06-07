@@ -159,6 +159,11 @@ data from subject `01`.
 The suffix `eeg` and the extension `.edf` depend on the imaging modality and
 the data format and indicate further details of the file's contents.
 
+Entities within a file name MUST be unique.
+For example, the following file name is not valid because it uses the `acq`
+entity twice:
+`sub-01_acq-laser_acq-uneven_electrodes.tsv`
+
 In cases where entities duplicate metadata,
 the presence of an entity should not be used as a replacement for
 the corresponding metadata field.
@@ -560,7 +565,8 @@ Example:
 
 JavaScript Object Notation (JSON) files MUST be used for storing key/value
 pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
-format can be found at [https://www.json.org/](https://www.json.org/).
+format can be found at [https://www.json.org/](https://www.json.org/),
+and at [https://tools.ietf.org/html/std90](https://tools.ietf.org/html/std90).
 Several editors have built-in support for JSON syntax highlighting that aids
 manual creation of such files.
 An online editor for JSON with built-in validation is available at

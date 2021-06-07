@@ -182,7 +182,6 @@ Specific iEEG fields SHOULD be present:
 
 | **Key name**                    | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                                                                                                                                        |
 | ------------------------------- | --------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| DCOffsetCorrection              | RECOMMENDED           | [string][]                           | A description of the method (if any) used to correct for a DC offset. If the method used was subtracting the mean value for each channel, use "mean".                                                                                                                                                                                  |
 | HardwareFilters                 | RECOMMENDED           | [object][] of [objects][] or `"n/a"` | [Object][] of temporal hardware filters applied, or `"n/a"` if the data is not available. Each key:value pair in the JSON object is a name of the filter and an object in which its parameters are defined as key:value pairs. For example, `{"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dB/Octave"}}` |
 | ElectrodeManufacturer           | RECOMMENDED           | [string][]                           | Can be used if all electrodes are of the same manufacturer (for example, `"AD-TECH"`, `"DIXI"`). If electrodes of different manufacturers are used, please use the corresponding table in the \_electrodes.tsv file.                                                                                                                   |
 | ElectrodeManufacturersModelName | RECOMMENDED           | [string][]                           | If different electrode types are used, please use the corresponding table in the `*_electrodes.tsv` file.                                                                                                                                                                                                                              |
@@ -201,6 +200,7 @@ Specific iEEG fields SHOULD be present:
 | iEEGPlacementScheme             | RECOMMENDED           | [string][]                           | Freeform description of the placement of the iEEG electrodes. Left/right/bilateral/depth/surface (for example, `"left frontal grid and bilateral hippocampal depth"` or `"surface strip and STN depth"` or `"clinical indication bitemporal, bilateral temporal strips and left grid"`).                                               |
 | iEEGElectrodeGroups             | RECOMMENDED           | [string][]                           | Field to describe the way electrodes are grouped into strips, grids or depth probes for example, `"grid1: 10x8 grid on left temporal pole, strip2: 1x8 electrode strip on xxx"`.                                                                                                                                                       |
 | SubjectArtefactDescription      | RECOMMENDED           | [string][]                           | Freeform description of the observed subject artefact and its possible cause (for example, `"door open", "nurse walked into room at 2 min"`, `"seizure at 10 min"`). If this field is left empty, it will be interpreted as absence of artifacts.                                                                                      |
+| DCOffsetCorrection              | [DEPRECATED][]        | [string][]                           | This key is [deprecated][], please use `SoftwareFilters` instead. A description of the method (if any) used to correct for a DC offset. If the method used was subtracting the mean value for each channel, use "mean".                                                                                                                |
 
 Specific iEEG fields MAY be present:
 
@@ -231,7 +231,6 @@ Example:
   "SamplingFrequency":1000,
   "PowerLineFrequency":60,
   "SoftwareFilters":"n/a",
-  "DCOffsetCorrection":0,
   "HardwareFilters":{"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dBOctave"}},
   "ElectrodeManufacturer":"AdTech",
   "ECOGChannelCount":120,
@@ -434,18 +433,18 @@ General fields:
          "For example, **T1**: `'sub-<label>/ses-<label>/anat/"
          "sub-01_T1w.nii.gz'`  "
          "**Surface**: `'/derivatives/surfaces/sub-<label>/ses-<label>/anat/"
-         "sub-01_T1w_pial.R.surf.gii'` "
+         "sub-01_desc-T1w_hemi-R_pial.surf.gii'` "
          "**Operative photo**: `'/sub-<label>/ses-<label>/ieeg/"
          "sub-0001_ses-01_acq-photo1_photo.jpg'` "
          "**Talairach**: `'/derivatives/surfaces/sub-Talairach/ses-01/anat/"
-         "sub-Talairach_T1w_pial.R.surf.gii'`",
+         "sub-Talairach_hemi-R_pial.surf.gii'`",
       )
    }
 ) }}
 
-| **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| ------------ | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IntendedFor  | RECOMMENDED           | [string][]    | This can be an MRI/CT or a file containing the operative photo, x-ray or drawing with path relative to the project folder. If only a surface reconstruction is available, this should point to the surface reconstruction file. Note that this file should have the same coordinate system specified in `iEEGCoordinateSystem`. For example, **T1**: `"sub-<label>/ses-<label>/anat/sub-01_T1w.nii.gz"`  **Surface**: `"/derivatives/surfaces/sub-<label>/ses-<label>/anat/sub-01_T1w_pial.R.surf.gii"` **Operative photo**: `"/sub-<label>/ses-<label>/ieeg/sub-0001_ses-01_acq-photo1_photo.jpg"` **Talairach**: `"/derivatives/surfaces/sub-Talairach/ses-01/anat/sub-Talairach_T1w_pial.R.surf.gii"` |
+| **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------ | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| IntendedFor  | RECOMMENDED           | [string][]    | This can be an MRI/CT or a file containing the operative photo, x-ray or drawing with path relative to the project folder. If only a surface reconstruction is available, this should point to the surface reconstruction file. Note that this file should have the same coordinate system specified in `iEEGCoordinateSystem`. For example, **T1**: `"sub-<label>/ses-<label>/anat/sub-01_T1w.nii.gz"`  **Surface**: `"/derivatives/surfaces/sub-<label>/ses-<label>/anat/sub-01_desc-T1w_hemi-R_pial.surf.gii"` **Operative photo**: `"/sub-<label>/ses-<label>/ieeg/sub-0001_ses-01_acq-photo1_photo.jpg"` **Talairach**: `"/derivatives/surfaces/sub-Talairach/ses-01/anat/sub-Talairach_hemi-R_pial.surf.gii"` |
 
 Fields relating to the iEEG electrode positions:
 
@@ -595,3 +594,5 @@ onset duration trial_type             electrical_stimulation_type electrical_sti
 [boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
 
 [uri]: ../02-common-principles.md#uniform-resource-indicator
+
+[deprecated]: ../02-common-principles.md#definitions

@@ -2,12 +2,13 @@
 
 The purpose of this file is to describe timing and other properties of events
 recorded during a run.
-Events MAY be either stimuli presented to the participant or participant responses.
-A single event file MAY include any combination of stimuli and response events.
+Events are, for example, stimuli presented to the participant or participant responses
+(see [Definitions](../02-common-principles.md#definitions)).
+A single event file MAY include any combination of stimulus, response, and other events.
 Events MAY overlap in time.
 Please mind that this does not imply that only so called "event related" study designs
 are supported (in contrast to "block" designs) - each "block of events" can be
-represented by an individual row in the `_events.tsv` file (with a long
+represented by an individual row in the `events.tsv` file (with a long
 duration).
 
 Template:
@@ -22,28 +23,31 @@ sub-<label>/[ses-<label>]
 Where `<matches>` corresponds to task file name. For example:
 `sub-control01_task-nback`.
 
-Each task events file REQUIRES a corresponding task imaging data file.
-It is also possible to have a single `_events.tsv` file describing events
+Each task events file REQUIRES a corresponding task data file.
+It is also possible to have a single `events.tsv` file describing events
 for all participants and runs (see
 [Inheritance Principle](../02-common-principles.md#the-inheritance-principle)).
-As with all other tabular data, `_events.tsv` files MAY be accompanied by a JSON
+As with all other tabular data, `events.tsv` files MAY be accompanied by a JSON
 file describing the columns in detail (see
 [Tabular Files](../02-common-principles.md#tabular-files)).
 
 The tabular files consists of one row per event and a set of REQUIRED
 and OPTIONAL columns:
 
-| **Column name** | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                    |
-| --------------- | --------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| onset           | REQUIRED              | [number][]               | Onset (in seconds) of the event measured from the beginning of the acquisition of the first volume in the corresponding task imaging data file. If any acquired scans have been discarded before forming the imaging data file, ensure that a time of 0 corresponds to the first image stored. In other words negative numbers in "onset" are allowed<sup>5</sup>. |
-| duration        | REQUIRED              | [number][]               | Duration of the event (measured from onset) in seconds. Must always be either zero or positive. A "duration" value of zero implies that the delta function or event is so short as to be effectively modeled as an impulse.                                                                                                                                        |
-| sample          | OPTIONAL              | [number][]               | Onset of the event according to the sampling scheme of the recorded modality (that is, referring to the raw data file that the `events.tsv` file accompanies).                                                                                                                                                                                                     |
-| trial_type      | OPTIONAL              | [string][]               | Primary categorisation of each trial to identify them as instances of the experimental conditions. For example: for a response inhibition task, it could take on values `"go"` and `"no-go"` to refer to response initiation and response inhibition experimental conditions.                                                                                      |
-| response_time   | OPTIONAL              | [number][]               | Response time measured in seconds. A negative response time can be used to represent preemptive responses and "n/a" denotes a missed response.                                                                                                                                                                                                                     |
-| value           | OPTIONAL              | [string][] or [number][] | Marker value associated with the event (for example, the value of a TTL trigger that was recorded at the onset of the event).                                                                                                                                                                                                                                      |
-| HED             | OPTIONAL              | [string][]               | Hierarchical Event Descriptor (HED) tag. See [Appendix III](../99-appendices/03-hed.md) for details.                                                                                                                                                                                                                                                               |
+| **Column name** | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                               |
+| --------------- | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| onset           | REQUIRED              | [number][]               | Onset (in seconds) of the event measured from the beginning of the acquisition of the first data point in the corresponding task data file. Negative numbers in "onset" are allowed<sup>5</sup>.                                                                              |
+| duration        | REQUIRED              | [number][]               | Duration of the event (measured from onset) in seconds. MUST be either zero or positive (or `"n/a"` if unavailable). A "duration" value of zero implies that the event is so short as to be effectively modeled as an impulse.                                                |
+| sample          | OPTIONAL              | [number][]               | Onset of the event according to the sampling scheme of the recorded modality (that is, referring to the raw data file that the `events.tsv` file accompanies).                                                                                                                |
+| trial_type      | OPTIONAL              | [string][]               | Primary categorisation of each trial to identify them as instances of the experimental conditions. For example: for a response inhibition task, it could take on values `"go"` and `"no-go"` to refer to response initiation and response inhibition experimental conditions. |
+| response_time   | OPTIONAL              | [number][]               | Response time measured in seconds. A negative response time can be used to represent preemptive responses and `"n/a"` denotes a missed response.                                                                                                                              |
+| value           | OPTIONAL              | [string][] or [number][] | Marker value associated with the event (for example, the value of a TTL trigger that was recorded at the onset of the event).                                                                                                                                                 |
+| HED             | OPTIONAL              | [string][]               | Hierarchical Event Descriptor (HED) tag. See [Appendix III](../99-appendices/03-hed.md) for details.                                                                                                                                                                          |
 
-<sup>5</sup> For example in case there is an in scanner training phase that
+<sup>5</sup> Note for MRI data:
+If any acquired scans have been discarded before forming the imaging data file,
+ensure that an `onset` of 0 corresponds to the time the first image was stored.
+For example in case there is an in scanner training phase that
 begins before the scanning sequence has started events from this sequence should
 have negative onset time counting down to the beginning of the acquisition of
 the first volume.
@@ -66,9 +70,9 @@ sub-control01/
 Example of the content of the TSV file:
 
 ```Text
-onset duration  trial_type  response_time stim_file
-1.2 0.6 go  1.435 images/red_square.jpg
-5.6 0.6 stop  1.739 images/blue_square.jpg
+onset	duration	trial_type	response_time	stim_file
+1.23	0.65	start	1.435	images/red_square.jpg
+5.65	0.65	stop	1.739	images/blue_square.jpg
 ```
 
 In the accompanying JSON sidecar, the `trial_type` column might look as follows:
@@ -79,7 +83,7 @@ In the accompanying JSON sidecar, the `trial_type` column might look as follows:
         "LongName": "Event category",
         "Description": "Indicator of type of action that is expected",
         "Levels": {
-            "go": "A red square is displayed to indicate starting",
+            "start": "A red square is displayed to indicate starting",
             "stop": "A blue square is displayed to indicate stopping",
         }
     }
@@ -89,7 +93,7 @@ In the accompanying JSON sidecar, the `trial_type` column might look as follows:
 Note that all other columns SHOULD also be described but are omitted for the
 sake of brevity.
 
-For multi-echo files, the `*_events.tsv` file is applicable to all echos of
+For multi-echo files, the `events.tsv` file is applicable to all echos of
 a particular run:
 
 ```Text
@@ -108,8 +112,8 @@ for additional information and examples.
 
 ## Stimuli
 
-Additional information about the stimuli can be added in the `*_events.tsv`
-and `*_events.json` files.
+Additional information about the stimuli can be added in the `events.tsv`
+and `events.json` files.
 
 This can be done by using a `/stimuli` folder or by reference to a stimuli database.
 
@@ -117,7 +121,7 @@ This can be done by using a `/stimuli` folder or by reference to a stimuli datab
 
 The stimulus files can be added in a `/stimuli` folder
 (under the root folder of the dataset; with optional subfolders) AND using a
-`stim_file` column in `*_events.tsv` mentioning which stimulus file was used
+`stim_file` column in `events.tsv` mentioning which stimulus file was used
 for a given event,
 
 There are no restrictions on the file formats of the stimuli files,
@@ -151,7 +155,7 @@ onset duration  trial_type  identifier  database  response_time
 5.6 0.6 sad AF01ANSA  kdef  1.739
 ```
 
-The `trial_type` and `identifier` columns from the `*_events.tsv` files might be described
+The `trial_type` and `identifier` columns from the `events.tsv` files might be described
 in the accompanying JSON sidecar as follows:
 
 ```JSON

@@ -61,8 +61,9 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            python -m pip install --upgrade pip
-            pip install -r  ~/project/requirements.txt
+            apt-get update && apt install -y python3-pip
+            python3 -m pip install --upgrade pip
+            python3 -m pip install -r  ~/project/requirements.txt
       - run:
           name: install font that works with unicode emojis
           command: apt-get update && apt-get install -y fonts-symbola
