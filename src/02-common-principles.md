@@ -363,7 +363,7 @@ In particular, if a BIDS dataset contains a `derivatives/` sub-directory,
 the contents of that directory may be a heterogeneous mix of BIDS Derivatives
 datasets and non-compliant derivatives.
 
-## Pointing to files within and outside of BIDS datasets
+## BIDS URI: Pointing to files within and outside of BIDS datasets
 
 Throughout the BIDS specification there a meta data fields that contain a
 pointer to a file.
