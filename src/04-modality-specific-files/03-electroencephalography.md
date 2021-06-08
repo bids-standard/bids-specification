@@ -32,7 +32,7 @@ stored in one of the following formats:
 -   The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab)
     (Each recording consisting of a `.set` file with an optional `.fdt` file)
 
--   [Biosemi](http://www.biosemi.com/) data format
+-   [Biosemi](https://www.biosemi.com/) data format
     (Each recording consisting of a `.bdf` file)
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
