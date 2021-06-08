@@ -361,9 +361,9 @@ also be specified.
 
 General fields:
 
-| **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ------------ | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IntendedFor  | RECOMMENDED           | [string][]    | This can be an MRI/CT or a file containing the operative photo, x-ray or drawing with path relative to the project folder. If only a surface reconstruction is available, this should point to the surface reconstruction file. Note that this file should have the same coordinate system specified in `iEEGCoordinateSystem`. For example, **T1**: `"sub-<label>/ses-<label>/anat/sub-01_T1w.nii.gz"`  **Surface**: `"/derivatives/surfaces/sub-<label>/ses-<label>/anat/sub-01_desc-T1w_hemi-R_pial.surf.gii"` **Operative photo**: `"/sub-<label>/ses-<label>/ieeg/sub-0001_ses-01_acq-photo1_photo.jpg"` **Talairach**: `"/derivatives/surfaces/sub-Talairach/ses-01/anat/sub-Talairach_hemi-R_pial.surf.gii"` |
+| **Key name** | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------ | --------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| IntendedFor  | RECOMMENDED           | [string][] or [array][] of [strings][] | One or more [BIDS URIs][]. This can be an MRI/CT or a file containing the operative photo, x-ray or drawing. Using paths relative to the project folder is [DEPRECATED][]. If only a surface reconstruction is available, this should point to the surface reconstruction file. Note that this file should have the same coordinate system specified in `iEEGCoordinateSystem`. For example, **T1**: `"sub-<label>/ses-<label>/anat/sub-01_T1w.nii.gz"`  **Surface**: `"/derivatives/surfaces/sub-<label>/ses-<label>/anat/sub-01_desc-T1w_hemi-R_pial.surf.gii"` **Operative photo**: `"/sub-<label>/ses-<label>/ieeg/sub-0001_ses-01_acq-photo1_photo.jpg"` **Talairach**: `"/derivatives/surfaces/sub-Talairach/ses-01/anat/sub-Talairach_hemi-R_pial.surf.gii"` |
 
 Fields relating to the iEEG electrode positions:
 
@@ -407,7 +407,7 @@ Example:
 
 ```json
 {
-    "IntendedFor": "/sub-01/ses-01/anat/sub-01_T1w.nii.gz",
+    "IntendedFor": "bids:local:/sub-01/ses-01/anat/sub-01_T1w.nii.gz",
     "iEEGCoordinateSystem": "ACPC",
     "iEEGCoordinateUnits": "mm",
     "iEEGCoordinateSystemDescription": "Coordinate system with the origin at anterior commissure (AC), negative y-axis going through the posterior commissure (PC), z-axis going to a mid-hemisperic point which lies superior to the AC-PC line, x-axis going to the right",
@@ -490,6 +490,10 @@ onset duration trial_type             electrical_stimulation_type electrical_sti
 
 <!-- Link Definitions -->
 
+[array]: https://www.w3schools.com/js/js_json_arrays.asp
+
+[bids uris]: ./02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-BIDS-datasets
+
 [object]: https://www.json.org/json-en.html
 
 [objects]: https://www.json.org/json-en.html
@@ -499,6 +503,8 @@ onset duration trial_type             electrical_stimulation_type electrical_sti
 [integer]: https://www.w3schools.com/js/js_json_datatypes.asp
 
 [string]: https://www.w3schools.com/js/js_json_datatypes.asp
+
+[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
 
 [boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
 

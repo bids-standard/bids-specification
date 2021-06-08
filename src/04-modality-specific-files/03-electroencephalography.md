@@ -354,9 +354,9 @@ head.
 
 General fields:
 
-| **Key name** | **Requirement level** | **Data type** | **Description**                                                                  |
-| ------------ | --------------------- | ------------- | -------------------------------------------------------------------------------- |
-| IntendedFor  | OPTIONAL              | [string][]    | Relative path to associate the electrodes, landmarks and fiducials to an MRI/CT. |
+| **Key name** | **Requirement level** | **Data type**                          | **Description**                                                                                                                      |
+| ------------ | --------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| IntendedFor  | OPTIONAL              | [string][] or [array][] of [strings][] | One or more [BIDS URIs][] to associate the electrodes, landmarks and fiducials to an MRI/CT. Use of relative paths is [DEPRECATED][] |
 
 Fields relating to the EEG electrode positions:
 
@@ -400,7 +400,7 @@ Example:
 
 ```JSON
 {
-  "IntendedFor":"/sub-01/ses-01/anat/sub-01_T1w.nii",
+  "IntendedFor":"bids:/sub-01/ses-01/anat/sub-01_T1w.nii",
   "EEGCoordinateSystem":"Other",
   "EEGCoordinateUnits":"mm",
   "EEGCoordinateSystemDescription":"RAS orientation: Origin halfway between LPA and RPA, positive x-axis towards RPA, positive y-axis orthogonal to x-axis through Nasion,  z-axis orthogonal to xy-plane, pointing in superior direction.",
@@ -432,6 +432,10 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 <!-- Link Definitions -->
 
+[bids uris]: ./02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-BIDS-datasets
+
+[deprecated]: ./02-common-principles.md#definitions
+
 [object]: https://www.json.org/json-en.html
 
 [objects]: https://www.json.org/json-en.html
@@ -441,6 +445,10 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 [integer]: https://www.w3schools.com/js/js_json_datatypes.asp
 
 [string]: https://www.w3schools.com/js/js_json_datatypes.asp
+
+[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
+
+[array]: https://www.w3schools.com/js/js_json_arrays.asp
 
 [arrays]: https://www.w3schools.com/js/js_json_arrays.asp
 

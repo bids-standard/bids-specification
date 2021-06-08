@@ -794,7 +794,7 @@ Some common metadata fields are REQUIRED for the `*_m0scan.json`: `EchoTime`, `R
 
 | **Key name**         | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                   |
 | -------------------- | --------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IntendedFor          | REQUIRED              | [string][] or [array][] of [strings][] | One or more filenames with paths relative to the subject subfolder, with forward slashes, referring to ASL time series for which the `*_m0scan.nii[.gz]` is intended.                                                                                                                                                                                                             |
+| IntendedFor          | REQUIRED              | [string][] or [array][] of [strings][] | One or more [BIDS URIs][] referring to ASL time series for which the `*_m0scan.nii[.gz]` is intended. Using paths relative to the subject folder is [DEPRECATED][]                                                                                                                                                                                                                |
 | AcquisitionVoxelSize | RECOMMENDED           | [array][] of [numbers][]               | An array of numbers with a length of 3, in millimeters. This parameter denotes the original acquisition voxel size, excluding any inter-slice gaps and before any interpolation or resampling within reconstruction or image processing. Any point spread function effects, for example due to T2-blurring, that would decrease the effective resolution are not considered here. |
 
 The following table recapitulates the ASL field dependencies. If Source field (column 1) contains the Value specified in column 2, then the Requirements in column 4 are
@@ -871,17 +871,17 @@ tools that support older datasets.
 Fieldmap data MAY be linked to the specific scan(s) it was acquired for by
 filling the `IntendedFor` field in the corresponding JSON file.
 
-| **Key name** | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                                                                                 |
-| ------------ | --------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IntendedFor  | OPTIONAL              | [string][] or [array][] of [string][] | Contains one or more filenames with paths relative to the participant subfolder. The path needs to use forward slashes instead of backward slashes. This field is OPTIONAL, and in case the fieldmaps do not correspond to any particular scans, it does not have to be filled. |
+| **Key name** | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                      |
+| ------------ | --------------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| IntendedFor  | OPTIONAL              | [string][] or [array][] of [string][] | One or more [BIDS URIs][]. Using paths relative to the subject folder is [DEPRECATED][]. This field is OPTIONAL, and in case the fieldmaps do not correspond to any particular scans, it does not have to be filled. |
 
 For example:
 
 ```JSON
 {
    "IntendedFor": [
-        "ses-pre/func/sub-01_ses-pre_task-motor_run-1_bold.nii.gz",
-        "ses-pre/func/sub-01_ses-pre_task-motor_run-2_bold.nii.gz"
+        "bids:local:/sub-01/ses-pre/func/sub-01_ses-pre_task-motor_run-1_bold.nii.gz",
+        "bids:local:/sub-01/ses-pre/func/sub-01_ses-pre_task-motor_run-2_bold.nii.gz"
     ]
 }
 ```
@@ -959,7 +959,7 @@ For example:
 ```JSON
 {
    "Units": "rad/s",
-   "IntendedFor": "func/sub-01_task-motor_bold.nii.gz",
+   "IntendedFor": "bids:local:/sub-01/func/sub-01_task-motor_bold.nii.gz",
    "B0FieldIdentifier": "b0map_fmap0"
 }
 ```
@@ -998,7 +998,7 @@ For example:
 {
    "PhaseEncodingDirection": "j-",
    "TotalReadoutTime": 0.095,
-   "IntendedFor": "func/sub-01_task-motor_bold.nii.gz",
+   "IntendedFor": "bids:local:/sub-01/func/sub-01_task-motor_bold.nii.gz",
    "B0FieldIdentifier": "pepolar_fmap0"
 }
 ```
@@ -1012,6 +1012,8 @@ However, please note that `PhaseEncodingDirection` and `TotalReadoutTime` keys
 are REQUIRED for these field mapping sequences.
 
 <!-- Link Definitions -->
+
+[bids uris]: ./02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-BIDS-datasets
 
 [deprecated]: ../02-common-principles.md#definitions
 

@@ -313,9 +313,9 @@ Digitized head points:
 
 Anatomical MRI:
 
-| **Key name** | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                      |
-| ------------ | --------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IntendedFor  | OPTIONAL              | [string][] or [array][] of [strings][] | Path or list of path relative to the subject subfolder pointing to the structural MRI, possibly of different types if a list is specified, to be used with the MEG recording. The path(s) need(s) to use forward slashes instead of backward slashes (for example, `"ses-/anat/sub-01_T1w.nii.gz"`). |
+| **Key name** | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                               |
+| ------------ | --------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| IntendedFor  | OPTIONAL              | [string][] or [array][] of [strings][] | One or more [BIDS URIs][] pointing to the structural MRI, possibly of different types if a list is specified, to be used with the MEG recording. Using paths relative to the subject folder is [DEPRECATED][] |
 
 Anatomical landmarks:
 
@@ -441,6 +441,10 @@ sub-emptyroom/
 ```
 
 <!-- Link Definitions -->
+
+[bids uris]: ./02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-BIDS-datasets
+
+[deprecated]: ./02-common-principles.md#definitions
 
 [object]: https://www.json.org/json-en.html
 
