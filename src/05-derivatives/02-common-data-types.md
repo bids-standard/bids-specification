@@ -71,9 +71,9 @@ The `space` entity may take any value in [Image-Based Coordinate Systems][coords
 If the `space` entity is omitted, or the space is not in the [Standard template
 identifiers][templates] table, then the `SpatialReference` metadata is REQUIRED.
 
-| **Key name**     | **Requirement level**                                                                                                                     | **Data type**            | **Description**                                                                                                                                                                                    |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SpatialReference | RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise. | [string][] or [object][] | For images with a single reference, the value MUST be a single string. For images with multiple references, such as surface and volume references, a JSON object MUST be used. See examples below. |
+| **Key name**     | **Requirement level**                                                                                                                     | **Data type**            | **Description**                                                                                                                                                                                                                            |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| SpatialReference | RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise. | [string][] or [object][] | For images with a single reference, the value MUST be a [BIDS URI][]. Using a single string is [DEPRECATED][]. For images with multiple references, such as surface and volume references, a JSON object MUST be used. See examples below. |
 
 ### SpatialReference key allowed values
 
@@ -98,7 +98,7 @@ sub-01/func/sub-01_task-rest_space-individual_bold.json
 
 ```JSON
 {
-    "SpatialReference": "sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
+    "SpatialReference": "bids:local:/sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
 }
 ```
 
@@ -196,3 +196,7 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 [strings]: https://www.w3schools.com/js/js_json_syntax.asp
 
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
+
+[bids uri]: ./02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-BIDS-datasets
+
+[deprecated]: ./02-common-principles.md#definitions
