@@ -442,9 +442,9 @@ sub-emptyroom/
 
 <!-- Link Definitions -->
 
-[bids uris]: ./02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-BIDS-datasets
+[bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-BIDS-datasets
 
-[deprecated]: ./02-common-principles.md#definitions
+[deprecated]: ../02-common-principles.md#definitions
 
 [object]: https://www.json.org/json-en.html
 
