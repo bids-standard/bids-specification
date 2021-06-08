@@ -404,7 +404,7 @@ directory within a dataset:
 ```json
 {
     "DatasetLinks": {
-        "deriv1": "file://derivatives/derivative1
+        "deriv1": "file://derivatives/derivative1"
     }
 
 }
@@ -427,7 +427,7 @@ directory that is NOT nested in the raw BIDS directory:
 ```json
 {
     "DatasetLinks": {
-        "deriv2": "file://../some-local-path/derivative2
+        "deriv2": "file://../some-local-path/derivative2"
     }
 }
 ```
@@ -439,7 +439,7 @@ current host using the following syntax:
 ```json
 {
     "DatasetLinks": {
-        "deriv2": "file:///some-other-local-path/derivative2
+        "deriv2": "file:///some-other-local-path/derivative2"
     }
 }
 ```
@@ -454,7 +454,7 @@ directory that is stored on a remote server called `mydatahost.com`.
 ```json
 {
     "DatasetLinks": {
-        "deriv3": "https://mydatahost.com/some-path/derivative3
+        "deriv3": "https://mydatahost.com/some-path/derivative3"
     }
 }
 ```
