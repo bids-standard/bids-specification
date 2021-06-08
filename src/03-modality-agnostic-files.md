@@ -30,9 +30,6 @@ Every dataset MUST include this file with the following fields:
 | ReferencesAndLinks | OPTIONAL                           | [array][] of [strings][]  | List of references to publications that contain information on the dataset. A reference may be textual or a [URI][uri].                                                                                                                               |
 | DatasetDOI         | OPTIONAL                           | [string][]                | The Digital Object Identifier of the dataset (not the corresponding paper). DOIs SHOULD be expressed as a valid [URI][uri]; bare DOIs such as `10.0.2.3/dfjj.10` are [DEPRECATED][deprecated].                                                        |
 
-
-
-
 Example:
 
 ```JSON
