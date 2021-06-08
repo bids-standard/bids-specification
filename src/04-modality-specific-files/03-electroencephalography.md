@@ -432,7 +432,7 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 <!-- Link Definitions -->
 
-[bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-BIDS-datasets
+[bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasetss
 
 [deprecated]: ../02-common-principles.md#definitions
 

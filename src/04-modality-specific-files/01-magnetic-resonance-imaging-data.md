@@ -1013,7 +1013,7 @@ are REQUIRED for these field mapping sequences.
 
 <!-- Link Definitions -->
 
-[bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-BIDS-datasets
+[bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasetss
 
 [deprecated]: ../02-common-principles.md#definitions
 
