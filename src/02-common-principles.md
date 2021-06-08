@@ -363,6 +363,27 @@ In particular, if a BIDS dataset contains a `derivatives/` sub-directory,
 the contents of that directory may be a heterogeneous mix of BIDS Derivatives
 datasets and non-compliant derivatives.
 
+## Pointing to files within and outside of BIDS datasets
+
+Throughout the BIDS specification there a meta data fields that contain a
+pointer to a file.
+For example `IntendedFor`, `SpatialReference`, and `AssociatedEmptyRoom`.
+Prior to BIDS version 1.6.1, such pointers were required to be "relative paths".
+However the specification failed to consistnelty  describe relative to *what*
+these pointers should be specified, and the exact syntax to be used.
+Yet even with perfectly well and consistently defined "relative paths", this
+method of pointing to files becomes impractical when referring to files that
+are outside of a particular file tree (for example, on the Internet), or when
+the location of the data that is being pointed to changes.
+
+For these reasons, starting with BIDS version 1.6.1, using "relative paths" for
+all fields pointing to a separate file is [DEPRECATED][].
+
+Instead, the following scheme should be used to point to files within and outside
+of BIDS datasets.
+
+... to be done
+
 ## The Inheritance Principle
 
 Any metadata file (such as `.json`, `.bvec` or `.tsv`) may be defined at any
@@ -620,7 +641,7 @@ specificity and persistence.
 
 Several fields are designated for DOIs, for example, `DatasetDOI` in `dataset_description.json`.
 DOI values SHOULD be fully specified URIs such as `doi:10.18112/openneuro.ds000001.v1.0.0`.
-Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED][deprecated].
+Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED][].
 
 ## Units
 
