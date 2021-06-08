@@ -197,6 +197,6 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
 
-[bids uri]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasetss
+[bids uri]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets
 
 [deprecated]: ../02-common-principles.md#definitions

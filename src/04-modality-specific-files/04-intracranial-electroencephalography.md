@@ -492,7 +492,7 @@ onset duration trial_type             electrical_stimulation_type electrical_sti
 
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
 
-[bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasetss
+[bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets
 
 [object]: https://www.json.org/json-en.html
 

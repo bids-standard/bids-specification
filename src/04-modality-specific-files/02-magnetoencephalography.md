@@ -442,7 +442,7 @@ sub-emptyroom/
 
 <!-- Link Definitions -->
 
-[bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasetss
+[bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets
 
 [deprecated]: ../02-common-principles.md#definitions
 

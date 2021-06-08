@@ -395,9 +395,9 @@ code organization of these scripts at the moment.
 
 <!-- Link Definitions -->
 
-[bids uri]: ./02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasetss
+[bids uri]: ./02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets
 
-[bids uris]: ./02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasetss
+[bids uris]: ./02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets
 
 [objects]: https://www.json.org/json-en.html
 
