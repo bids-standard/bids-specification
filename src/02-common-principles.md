@@ -379,10 +379,85 @@ the location of the data that is being pointed to changes.
 For these reasons, starting with BIDS version 1.6.1, using "relative paths" for
 all fields pointing to a separate file is [DEPRECATED][].
 
-Instead, the following scheme should be used to point to files within and outside
-of BIDS datasets.
+Instead, the following [URI][uniform-resource-indicator] scheme SHOULD be
+used to point to files within and outside of BIDS datasets, as elaborated below.
 
-... to be done
+`bids:<dataset-name>:/absolute/path/within/dataset`
+
+Here, `bids:` is the URI scheme, and `<dataset-name>:/absolute/path/within/dataset`
+is the path to the file, consisting of the name of a dataset, a colon, and the absolute
+path within that dataset that MUST start with a forward slash `/`.
+
+The location of a dataset with the name `<dataset-name>` MUST be specified in the
+[`dataset_description.json` file](./03-modality-agnostic-files.md#dataset-description)
+under the `DatasetLinks` field, which is an [object][] of [strings][], as shown in
+the examples below.
+Note that the `<dataset-name>`: `"local"` is a reserved value that may only be
+used to refer to the current dataset.
+
+### Refer to a file within a dataset
+
+To link for example to a derivative file that is stored in a nested `derivatives/`
+directory within a dataset:
+`bids:deriv1:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
+
+```json
+{
+    "DatasetLinks": {
+        "deriv1": "file://derivatives/derivative1
+    }
+
+}
+```
+
+Note that this is the same as specifying the following pointer:
+`bids:local:/derivatives/derivative1/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
+Because the reserved `<dataset-name>`: `"local"` always points to the
+root of the current dataset.
+The `DatasetLinks` metadata does not have to be specified if `local` is the
+only `<dataset-name>` that occurs throughout the dataset.
+
+### Refer to a file outside of a dataset but on the same host
+
+To link for example to a derivative file that is stored in a `derivatives/`
+directory that is NOT nested in the raw BIDS directory:
+
+`bids:deriv2:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
+
+```json
+{
+    "DatasetLinks": {
+        "deriv2": "file://../some-local-path/derivative2
+    }
+}
+```
+
+Instead of specifying the path for `deriv2` from the example above relative
+to the current dataset, you MAY specify the path as an absolute path on the
+current host using the following syntax:
+
+```json
+{
+    "DatasetLinks": {
+        "deriv2": "file:///some-other-local-path/derivative2
+    }
+}
+```
+
+### Refer to a remote dataset
+
+To link for example to a derivative file that is stored in a `derivatives/`
+directory that is stored on a remote server called `mydatahost.com`.
+
+`bids:deriv3:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
+
+```json
+{
+    "DatasetLinks": {
+        "deriv3": "https://mydatahost.com/some-path/derivative3
+    }
+}
+```
 
 ## The Inheritance Principle
 
