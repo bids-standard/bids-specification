@@ -43,6 +43,7 @@ misunderstanding we clarify them here.
     1.  `dwi` (diffusion weighted imaging)
     1.  `fmap` (field inhomogeneity mapping data such as field maps)
     1.  `anat` (structural imaging such as T1, T2, PD, and so on)
+    1.  `perf` (perfusion)
     1.  `meg` (magnetoencephalography)
     1.  `eeg` (electroencephalography)
     1.  `ieeg` (intracranial electroencephalography)
