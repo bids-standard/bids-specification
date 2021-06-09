@@ -403,10 +403,10 @@ Column names in `sessions.tsv` files MUST be different from group level particip
 `_sessions.tsv` example:
 
 ```Text
-session_id  acq_time  systolic_blood_pressure
-ses-predrug 2009-06-15T13:45:30 120
-ses-postdrug  2009-06-16T13:45:30 100
-ses-followup  2009-06-17T13:45:30 110
+session_id	acq_time	systolic_blood_pressure
+ses-predrug	2009-06-15T13:45:30	120
+ses-postdrug	2009-06-16T13:45:30	100
+ses-followup	2009-06-17T13:45:30	110
 ```
 
 ## Code
