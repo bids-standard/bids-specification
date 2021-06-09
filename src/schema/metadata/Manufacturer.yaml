@@ -1,6 +1,6 @@
 ---
 name: Manufacturer
 description: |
-  Manufacturer of the equipment that produced the composite instances.
+  Manufacturer of the equipment that produced the measurements.
   Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
 type: string
