@@ -37,15 +37,19 @@ misunderstanding we clarify them here.
     scanning sequence/protocol.
 
 1.  **Data type** - a functional group of different types of data.
-    BIDS defines eight data types:
-    `func` (task based and resting state functional MRI),
-    `dwi` (diffusion weighted imaging),
-    `fmap` (field inhomogeneity mapping data such as field maps),
-    `anat` (structural imaging such as T1, T2, PD, and so on),
-    `meg` (magnetoencephalography),
-    `eeg` (electroencephalography),
-    `ieeg` (intracranial electroencephalography),
-    `beh` (behavioral).
+    BIDS defines the following data types:
+
+    1.  `func` (task based and resting state functional MRI)
+    1.  `dwi` (diffusion weighted imaging)
+    1.  `fmap` (field inhomogeneity mapping data such as field maps)
+    1.  `anat` (structural imaging such as T1, T2, PD, and so on)
+    1.  `perf` (perfusion)
+    1.  `meg` (magnetoencephalography)
+    1.  `eeg` (electroencephalography)
+    1.  `ieeg` (intracranial electroencephalography)
+    1.  `beh` (behavioral)
+    1.  `pet` (positron emission tomography)
+
     Data files are contained in a directory named for the data type.
     In raw datasets, the data type directory is nested inside subject and
     (optionally) session directories.
