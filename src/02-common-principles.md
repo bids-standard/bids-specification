@@ -438,18 +438,18 @@ and if it is specified, it MUST be empty, because `local` MUST NOT be an entry.
 
 To link for example to a derivative file that is stored in a `derivatives/`
 directory that is stored on a remote server called `mydatahost.com`:
-`bids:deriv3:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
+`bids:deriv2:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
 
 ```json
 {
     "DatasetLinks": {
-        "deriv3": "https://mydatahost.com/derivatives/derivative3"
+        "deriv2": "https://mydatahost.com/derivatives/derivative2"
     }
 }
 ```
 
 This means that the needed files can be obtained by downloading the data
-from `https://mydatahost.com/derivatives/derivative3`, and then navigating
+from `https://mydatahost.com/derivatives/derivative2`, and then navigating
 to `/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz` relative to that
 downloaded data.
 
@@ -472,27 +472,37 @@ specified in the BIDS URI relative to the downloaded data.
 
 ### Refer to a file outside of a dataset but on the same host
 
+It is RECOMMENDED to refer to files **within** a dataset,
+or on a **remote** location as described in the sections above.
+However sometimes it may be convenient to refer to files that are
+outside of a given dataset but on the same host.
+BIDS URIs allow for specifying such locations, but such specifications
+are by definition not portable in that the BIDS URIs break when the
+host changes.
+When sharing a BIDS dataset, the dataset curator MUST make sure that
+all BIDS URIs are portable.
+
 To link for example to a derivative file that is stored in a `derivatives/`
 directory that is NOT nested in the raw BIDS directory:
 
-`bids:deriv2:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
+`bids:deriv3:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
 
 ```json
 {
     "DatasetLinks": {
-        "deriv2": "file://../some-local-path/derivative2"
+        "deriv3": "file://../some-local-path/derivative3"
     }
 }
 ```
 
-Instead of specifying the path for `deriv2` from the example above relative
+Instead of specifying the path for `deriv3` from the example above relative
 to the current dataset, you MAY specify the path as an absolute path on the
 current host using the following syntax:
 
 ```json
 {
     "DatasetLinks": {
-        "deriv2": "file:///some-other-local-path/derivative2"
+        "deriv3": "file:///some-other-local-path/derivative3"
     }
 }
 ```
