@@ -495,17 +495,44 @@ directory that is NOT nested in the raw BIDS directory:
 }
 ```
 
-Instead of specifying the path for `deriv3` from the example above relative
-to the current dataset, you MAY specify the path as an absolute path on the
-current host using the following syntax:
+As shown in the example above, the path to `deriv3` contains the `..` syntax,
+which is a common way to refer to parent directories.
+In this way, arbitrary locations on the host can be referenced relative to
+the current dataset.
+
+Alternatively, one may specify an absolute location on the host using a
+forward slash directly after the `file://` URI scheme as such:
+`file:///`.
+
+On Unix-like operating systems (including MacOS) this refers to the system root.
+And one may reference a dataset on some example user's Desktop as such:
 
 ```json
 {
     "DatasetLinks": {
-        "deriv3": "file:///some-other-local-path/derivative3"
+        "deriv3": "file:///home/example-user/Desktop/my-dataset"
     }
 }
 ```
+
+On the Windows operating system, `file:///` (note the `/` after the `file://` URI scheme)
+refers to a "virtual" system root that does not exist in practice.
+To reference a dataset on our example user's Desktop, one may use:
+
+```json
+{
+    "DatasetLinks": {
+        "deriv3": "file:///C/Users/example-user/Desktop/my-dataset"
+    }
+}
+```
+
+On a Windows machine, the location from this example would look like:
+`C:\Users\example-user\Desktop\my-dataset`
+
+However throughout BIDS, forward slashes `/` MUST be used as the path separator.
+Furthermore, the location `C:\` is specified in BIDS using the "virtual root"
+syntax as shown in the example: `/C`
 
 ## The Inheritance Principle
 
