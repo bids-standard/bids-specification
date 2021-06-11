@@ -396,8 +396,9 @@ The location of a dataset with the name `<dataset-name>` MUST be specified in th
 [`dataset_description.json` file](./03-modality-agnostic-files.md#dataset-description)
 under the `DatasetLinks` field, which is an [object][] of [strings][], as shown in
 the examples below.
-Note that the `<dataset-name>`: `"local"` is a reserved value that may only be
-used to refer to the current dataset.
+Note that the `<dataset-name>`: `local` is a reserved value that may only be
+used to refer to the root of the current dataset; `local` MUST NOT be a key in the
+`DatasetLinks` object.
 
 ### Refer to a file within a dataset
 
@@ -416,10 +417,20 @@ directory within a dataset:
 
 Note that this is the same as specifying the following pointer:
 `bids:local:/derivatives/derivative1/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
-Because the reserved `<dataset-name>`: `"local"` always points to the
+Because the reserved `<dataset-name>`: `local` always points to the
 root of the current dataset.
-The `DatasetLinks` metadata does not have to be specified if `local` is the
-only `<dataset-name>` that occurs throughout the dataset.
+Thus, for this specific case there are two ways to refer to the same file:
+
+1.  `bids:deriv1:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`,
+    with `deriv1` being specified within `dataset_description.DatasetLinks`,
+    as shown in the example above.
+1.  `bids:local:/derivatives/derivative1/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`,
+    with `local` NOT being part of `dataset_description.DatasetLinks`, because it
+    is a reserved value that always points to the root of the current dataset.
+
+If *all* BIDS URIs in a dataset *only* use `local` as a `<dataset-name>`,
+the `DatasetLinks` metadata MAY not be specified;
+and if it is specified, it MUST be empty, because `local` MUST NOT be an entry.
 
 ### Refer to a file outside of a dataset but on the same host
 
