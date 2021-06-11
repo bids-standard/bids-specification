@@ -372,7 +372,7 @@ datasets and non-compliant derivatives.
 Throughout the BIDS specification there a meta data fields that contain a
 pointer to a file.
 For example `IntendedFor`, `SpatialReference`, and `AssociatedEmptyRoom`.
-Prior to BIDS version 1.6.1, such pointers were required to be "relative paths".
+Prior to BIDS version 1.7.0, such pointers were required to be "relative paths".
 However the specification failed to consistently  describe relative to *what*
 these pointers should be specified, and the exact syntax to be used.
 Yet even with perfectly well and consistently defined "relative paths", this
@@ -380,7 +380,7 @@ method of pointing to files becomes impractical when referring to files that
 are outside of a particular file tree (for example, on the Internet), or when
 the location of the data that is being pointed to changes.
 
-For these reasons, starting with BIDS version 1.6.1, using "relative paths" for
+For these reasons, starting with BIDS version 1.7.0, using "relative paths" for
 all fields pointing to a separate file is [DEPRECATED][].
 
 Instead, the following [URI][uniform-resource-indicator] scheme SHOULD be
