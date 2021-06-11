@@ -394,8 +394,10 @@ path within that dataset that MUST start with a forward slash `/`.
 
 The location of a dataset with the name `<dataset-name>` MUST be specified in the
 [`dataset_description.json` file](./03-modality-agnostic-files.md#dataset-description)
-under the `DatasetLinks` field, which is an [object][] of [strings][], as shown in
+under the `DatasetLinks` field, which is an [object][] of [URIs][], as shown in
 the examples below.
+In brief, `dataset_description.DatasetLinks` contains mappings from strings to URIs
+that point to dataset locations.
 Note that the `<dataset-name>`: `local` is a reserved value that may only be
 used to refer to the root of the current dataset; `local` MUST NOT be a key in the
 `DatasetLinks` object.
@@ -435,17 +437,38 @@ and if it is specified, it MUST be empty, because `local` MUST NOT be an entry.
 ### Refer to a remote dataset
 
 To link for example to a derivative file that is stored in a `derivatives/`
-directory that is stored on a remote server called `mydatahost.com`.
-
+directory that is stored on a remote server called `mydatahost.com`:
 `bids:deriv3:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
 
 ```json
 {
     "DatasetLinks": {
-        "deriv3": "https://mydatahost.com/some-path/derivative3"
+        "deriv3": "https://mydatahost.com/derivatives/derivative3"
     }
 }
 ```
+
+This means that the needed files can be obtained by downloading the data
+from `https://mydatahost.com/derivatives/derivative3`, and then navigating
+to `/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz` relative to that
+downloaded data.
+
+However, arbitrary remote server locations such as the `mydatahost.com` example
+server may not be stable.
+Therefore it is RECOMMENDED to instead point to archived versions of a datasets
+using their DOIs:
+
+```json
+{
+    "DatasetLinks": {
+        "deriv3": "doi:10.18112/openneuro.ds003669.v1.0.0"
+    }
+}
+```
+
+Again, this means that the linked dataset must be downloaded from the
+DOI address, and the file will be found by navigating to the location
+specified in the BIDS URI relative to the downloaded data.
 
 ### Refer to a file outside of a dataset but on the same host
 
@@ -881,3 +904,5 @@ to suppress warnings or provide interpretations of your file names.
 [object]: https://www.json.org/json-en.html
 
 [deprecated]: ./02-common-principles.md#definitions
+
+[uris]: ./02-common-principles.md#uniform-resource-indicator
