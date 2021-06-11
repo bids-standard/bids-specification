@@ -426,6 +426,7 @@ Thus, for this specific case there are two ways to refer to the same file:
 1.  `bids:deriv1:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`,
     with `deriv1` being specified within `dataset_description.DatasetLinks`,
     as shown in the example above.
+
 1.  `bids:local:/derivatives/derivative1/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`,
     with `local` NOT being part of `dataset_description.DatasetLinks`, because it
     is a reserved value that always points to the root of the current dataset.
