@@ -432,6 +432,21 @@ If *all* BIDS URIs in a dataset *only* use `local` as a `<dataset-name>`,
 the `DatasetLinks` metadata MAY not be specified;
 and if it is specified, it MUST be empty, because `local` MUST NOT be an entry.
 
+### Refer to a remote dataset
+
+To link for example to a derivative file that is stored in a `derivatives/`
+directory that is stored on a remote server called `mydatahost.com`.
+
+`bids:deriv3:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
+
+```json
+{
+    "DatasetLinks": {
+        "deriv3": "https://mydatahost.com/some-path/derivative3"
+    }
+}
+```
+
 ### Refer to a file outside of a dataset but on the same host
 
 To link for example to a derivative file that is stored in a `derivatives/`
@@ -455,21 +470,6 @@ current host using the following syntax:
 {
     "DatasetLinks": {
         "deriv2": "file:///some-other-local-path/derivative2"
-    }
-}
-```
-
-### Refer to a remote dataset
-
-To link for example to a derivative file that is stored in a `derivatives/`
-directory that is stored on a remote server called `mydatahost.com`.
-
-`bids:deriv3:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
-
-```json
-{
-    "DatasetLinks": {
-        "deriv3": "https://mydatahost.com/some-path/derivative3"
     }
 }
 ```
