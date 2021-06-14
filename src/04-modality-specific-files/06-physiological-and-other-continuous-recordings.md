@@ -4,7 +4,7 @@ Template:
 
 ```Text
 sub-<label>/[ses-<label>/]
-    func/
+    <datatype>/
         <matches>[_recording-<label>]_physio.tsv.gz
         <matches>[_recording-<label>]_physio.json
         <matches>[_recording-<label>]_stim.tsv.gz
@@ -13,65 +13,51 @@ sub-<label>/[ses-<label>/]
 
 Optional: Yes
 
-Where `<matches>` corresponds to task file name without the `_bold.nii[.gz]`
-suffix. For example: `sub-control01_task-nback_run-1`. If the same continuous
-recording has been used for all subjects (for example in the case where they
-all watched the same movie) one file can be used and placed in the root
-directory. For example:`task-movie_stim.tsv.gz`
+For the template directory name, `<datatype>` can correspond to any data
+recording modality, for example `func`, `anat`, `dwi`, `meg`, `eeg`, `ieeg`,
+or `beh`.
+
+In the template file names, the `<matches>` part corresponds to task file name
+before the suffix.
+For example for the file `sub-control01_task-nback_run-1_bold.nii.gz`,
+`<matches>` would correspond to `sub-control01_task-nback_run-1`.
+
+The [`recording-<label>`](../99-appendices/09-entities.md#recording) entity can be used to distinguish between several
+recording files.
+For example `sub-01_task-bart_recording-eyetracking_physio.tsv.gz` to contain
+the eyetracking data in a certain sampling frequency, and
+`sub-01_task-bart_recording-breathing_physio.tsv.gz` to contain respiratory
+measurements in a different sampling frequency.
+
+Physiological recordings (including eyetracking) SHOULD use the `_physio`
+suffix, and signals related to the stimulus SHOULD use `_stim` suffix.
 
 Physiological recordings such as cardiac and respiratory signals and other
 continuous measures (such as parameters of a film or audio stimuli) can be
-specified using two files: a gzip compressed TSV file with data (without header
-line) and a JSON for storing the following metadata fields:
+specified using two files: a [gzip](https://datatracker.ietf.org/doc/html/rfc1952)
+compressed TSV file with data (without header line)
+and a JSON file for storing the following metadata fields.
 
-| Field name        | Definition                                                                                                                                                          |
-| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| SamplingFrequency | REQUIRED. Sampling frequency in Hz of all columns in the file.                                                                                                      |
-| StartTime         | REQUIRED. Start time in seconds in relation to the start of acquisition of the first data sample in the corresponding neural dataset (negative values are allowed). |
-| Columns           | REQUIRED. Names of columns in file.                                                                                                                                 |
+Note that when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
+`*_<physio|stim>.json` MUST be supplied as well.
+
+| **Key name**      | **Requirement level** | **Data type**            | **Description**                                                                                                                                           |
+| ----------------- | --------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SamplingFrequency | REQUIRED              | [number][]               | Sampling frequency in Hz of all columns in the file.                                                                                                      |
+| StartTime         | REQUIRED              | [number][]               | Start time in seconds in relation to the start of acquisition of the first data sample in the corresponding neural dataset (negative values are allowed). |
+| Columns           | REQUIRED              | [array][] of [strings][] | Names of columns in file.                                                                                                                                 |
 
 Additional metadata may be included as in
 [any TSV file](../02-common-principles.md#tabular-files) to specify, for
 example, the units of the recorded time series.
-Please note that in contrast to other TSV files this one does not include a
-header line. Instead the name of columns are specified in the JSON file.
-This is to improve compatibility with existing software (FSL PNM) as
-well as make support for other file formats possible in the future.
-Recordings with different sampling frequencies and/or starting times should be
-stored in separate files.
-The following naming conventions should be used for column names:
+Please note that, in contrast to other TSV files in BIDS, the TSV files specified
+for phsyiological and other continuous recordings *do not* include a header
+line.
+Instead the name of columns are specified in the JSON file.
+This is to improve compatibility with existing software (for example, FSL, PNM)
+as well as to make support for other file formats possible in the future.
 
-| Column name | Definition                                           |
-| :---------- | :--------------------------------------------------- |
-| cardiac     | continuous pulse measurement                         |
-| respiratory | continuous breathing measurement                     |
-| trigger     | continuous measurement of the scanner trigger signal |
-
-Any combination of those three can be included as well as any other stimuli
-related continuous variables (such as low level image properties in a video
-watching paradigm).
-
-Physiological recordings (including eye tracking) should use the `_physio`
-suffix, and signals related to the stimulus should use `_stim` suffix. For
-motion parameters acquired from scanner side motion correction please use
-`_physio` suffix.
-
-More than one continuous recording file can be included (with different sampling
-frequencies). In such case use different labels. For example:
-`_recording-contrast`, `_recording-saturation`. The full file name could then
-look like this: `sub-control01_task-nback_run-2_recording-movie_stim.tsv.gz`
-
-For multi-echo data, physio.tsv file is applicable to all echos of particular
-run. For eg:
-
-```Text
-sub-01_task-cuedSGT_run-1_physio.tsv.gz
-sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
-```
-
-Example:
+Example `*_physio.tsv.gz`:
 
 ```Text
 sub-control01/
@@ -82,10 +68,12 @@ sub-control01/
 (after decompression)
 
 ```Text
-34  110 0
-44  112 0
-23  100 1
+34    110    0
+44    112    0
+23    100    1
 ```
+
+Example `*_physio.json`:
 
 ```Text
 sub-control01/
@@ -97,9 +85,67 @@ sub-control01/
 {
    "SamplingFrequency": 100.0,
    "StartTime": -22.345,
-    "Columns": ["cardiac", "respiratory", "trigger"],
+   "Columns": ["cardiac", "respiratory", "trigger"],
    "cardiac": {
        "Units": "mV"
    }
 }
 ```
+
+## Recommendations for specific use cases
+
+To store pulse or breathing measurements, or the scanner trigger signal, the
+following naming conventions SHOULD be used for the column names:
+
+| **Column name** | **Description**                                      |
+| --------------- | ---------------------------------------------------- |
+| cardiac         | continuous pulse measurement                         |
+| respiratory     | continuous breathing measurement                     |
+| trigger         | continuous measurement of the scanner trigger signal |
+
+For any other data to be specified in columns, the column names can be chosen
+as deemed appropriate by the researcher.
+
+Recordings with different sampling frequencies or starting times should be
+stored in separate files.
+
+If the same continuous recording has been used for all subjects (for example in
+the case where they all watched the same movie), one file MAY be used and
+placed in the root directory.
+For example, `task-movie_stim.tsv.gz`
+
+For motion parameters acquired from MRI scanner side motion correction, the
+`_physio` suffix SHOULD be used.
+
+For multi-echo data, a given `physio.tsv` file is applicable to all echos of
+a particular run.
+For example:
+
+```Text
+sub-01_task-cuedSGT_run-1_physio.tsv.gz
+sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
+sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
+sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
+```
+
+### Other RECOMMENDED metadata for physiological data
+
+The following RECOMMENDED metadata can also be added in the side-car JSON files
+of any `*_<physio>.tsv.gz` file.
+
+| **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                           |
+| ---------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Manufacturer           | RECOMMENDED           | [string][]    | Manufacturer of the system used to record the measurements.                                                                                                                                               |
+| ManufacturersModelName | RECOMMENDED           | [string][]    | Manufacturer's designation of the system used to record the measurements.                                                                                                                                 |
+| SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer's designation of the acquisition software.                                                                                                                                                   |
+| DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the measurements. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset. |
+
+<!-- Link Definitions -->
+
+[number]: https://www.w3schools.com/js/js_json_datatypes.asp
+
+[string]: https://www.w3schools.com/js/js_json_syntax.asp
+
+[strings]: https://www.w3schools.com/js/js_json_syntax.asp
+
+[array]: https://www.w3schools.com/js/js_json_arrays.asp
