@@ -398,7 +398,7 @@ under the `DatasetLinks` field, which is an [object][] of [URIs][], as shown in
 the examples below.
 In brief, `dataset_description.DatasetLinks` contains mappings from strings to URIs
 that point to dataset locations.
-Note that the `<dataset-name>`: `local` is a reserved value that may only be
+The `<dataset-name>`: `local` is a reserved value that may only be
 used to refer to the root of the current dataset; `local` MUST NOT be a key in the
 `DatasetLinks` object.
 
@@ -417,10 +417,11 @@ directory within a dataset:
 }
 ```
 
-Note that this is the same as specifying the following pointer:
+Alternatively, we can also make use of the reserved `<dataset-name>`: `local`,
+which always points to the root of the current dataset, to point to the same file
+using the following syntax:
 `bids:local:/derivatives/derivative1/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
-Because the reserved `<dataset-name>`: `local` always points to the
-root of the current dataset.
+
 Thus, for this specific case there are two ways to refer to the same file:
 
 1.  `bids:deriv1:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`,
@@ -432,8 +433,7 @@ Thus, for this specific case there are two ways to refer to the same file:
     is a reserved value that always points to the root of the current dataset.
 
 If *all* BIDS URIs in a dataset *only* use `local` as a `<dataset-name>`,
-the `DatasetLinks` metadata MAY not be specified;
-and if it is specified, it MUST be empty, because `local` MUST NOT be an entry.
+the `DatasetLinks` metadata MAY not be specified.
 
 ### Refer to a remote dataset
 
@@ -506,7 +506,7 @@ forward slash directly after the `file://` URI scheme as such:
 `file:///`.
 
 On Unix-like operating systems (including MacOS) this refers to the system root.
-And one may reference a dataset on some example user's Desktop as such:
+One may reference a dataset on some example user's Desktop as such:
 
 ```json
 {
