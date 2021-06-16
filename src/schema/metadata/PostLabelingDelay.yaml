@@ -11,7 +11,7 @@ description: |
   namely each `control` and `label`, in the acquisition order.
   Any image within the time-series without a PLD, for example an `m0scan`,
   is indicated by a zero.
-  Based on DICOM Tags 0018,9079 `Inversion Times` and 0018,0082
+  Based on DICOM Tags 0018, 9079 `Inversion Times` and 0018, 0082
   `InversionTime`.
 anyOf:
   - type: number

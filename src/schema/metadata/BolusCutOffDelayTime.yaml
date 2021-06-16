@@ -8,7 +8,7 @@ description: |
   cut-off saturation pulses.
   For Q2TIPS, only the values for the first and last bolus cut-off saturation
   pulses are provided.
-  Based on DICOM Tag 0018,925F `ASL Bolus Cut-off Delay Time`.
+  Based on DICOM Tag 0018, 925F `ASL Bolus Cut-off Delay Time`.
 anyOf:
   - type: number
     minimum: 0

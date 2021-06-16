@@ -4,7 +4,7 @@ description: |
   Active ingredient of agent.
   Values MUST be one of: `"IODINE"`, `"GADOLINIUM"`, `"CARBON DIOXIDE"`,
   `"BARIUM"`, `"XENON"`.
-  Corresponds to DICOM Tag 0018,1048.
+  Corresponds to DICOM Tag 0018, 1048 `Contrast/Bolus Ingredient`.
 type: string
 enum:
   - IODINE

@@ -12,7 +12,7 @@ description: |
   In case an array of numbers is provided,
   its length should be equal to the number of volumes specified in
   `*_aslcontext.tsv`.
-  Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`.
+  Corresponds to DICOM Tag 0018, 9258 `ASL Pulse Train Duration`.
 anyOf:
   - type: number
     minimum: 0

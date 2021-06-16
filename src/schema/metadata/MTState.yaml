@@ -2,5 +2,5 @@
 name: MTState
 description: |
   Boolean stating whether the magnetization transfer pulse is applied.
-  Corresponds to DICOM tag (0018, 9020) `Magnetization Transfer`.
+  Corresponds to DICOM Tag 0018, 9020 `Magnetization Transfer`.
 type: boolean
