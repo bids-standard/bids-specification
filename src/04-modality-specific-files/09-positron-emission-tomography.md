@@ -131,16 +131,16 @@ which we divide into several categories:
 
 {{ MACROS___make_metadata_table(
    {
-      "Manufacturer": "REQUIRED",
-      "ManufacturersModelName": "REQUIRED",
+      "Manufacturer": ("REQUIRED", "Corresponds to DICOM Tag 0008, 0070 `Manufacturer`."),
+      "ManufacturersModelName": ("REQUIRED", "Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`."),
       "Units": (
          "REQUIRED",
          'SI unit for radioactivity (Becquerel) should be used '
          '(for example, `"Bq/mL"`). '
          'Corresponds to DICOM Tag 0054, 1001 `Units`.',
       ),
-      "InstitutionName": "RECOMMENDED",
-      "InstitutionAddress": "RECOMMENDED",
+      "InstitutionName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0080 `InstitutionName`."),
+      "InstitutionAddress": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`."),
       "InstitutionalDepartmentName": "RECOMMENDED",
       "BodyPart": "RECOMMENDED",
    }
