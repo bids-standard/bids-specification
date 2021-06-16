@@ -460,7 +460,7 @@ Fields relating to the position of anatomical landmark measured during an EEG se
 {{ MACROS___make_metadata_table(
    {
       "AnatomicalLandmarkCoordinates": "RECOMMENDED",
-      "AnatomicalLandmarkCoordinateSystem": "RECOMMENDED",
+      "AnatomicalLandmarkCoordinateSystem": ("RECOMMENDED", "Preferably the same as the `EEGCoordinateSystem`."),
       "AnatomicalLandmarkCoordinateUnits": "RECOMMENDED",
       "AnatomicalLandmarkCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `"Other"`',
    }

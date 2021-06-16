@@ -445,7 +445,7 @@ Anatomical landmarks:
 {{ MACROS___make_metadata_table(
    {
       "AnatomicalLandmarkCoordinates": "OPTIONAL",
-      "AnatomicalLandmarkCoordinateSystem": "OPTIONAL",
+      "AnatomicalLandmarkCoordinateSystem": ("OPTIONAL", "Preferably the same as the `MEGCoordinateSystem`."),
       "AnatomicalLandmarkCoordinateUnits": "OPTIONAL",
       "AnatomicalLandmarkCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `Other`",
    }
