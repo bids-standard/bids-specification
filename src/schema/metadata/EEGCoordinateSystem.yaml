@@ -6,7 +6,7 @@ description: |
   See
   [Appendix VIII](/99-appendices/08-coordinate-systems.html)
   for a list of restricted keywords for coordinate systems.
-  If `Other`, provide definition of the coordinate system in
+  If `"Other"`, provide definition of the coordinate system in
   `EEGCoordinateSystemDescription`.
 anyOf:
   - $ref: _MEGCoordSys.yaml
