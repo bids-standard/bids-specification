@@ -1160,7 +1160,7 @@ Required fields:
 
 {{ MACROS___make_metadata_table(
    {
-      "fmapEchoTime": "REQUIRED",
+      "EchoTime_fmap": "REQUIRED",
    }
 ) }}
 
