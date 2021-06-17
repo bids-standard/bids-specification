@@ -6,9 +6,8 @@ description: |
   not available.
   Each key:value pair in the JSON object is a name of the filter and an object
   in which its parameters are defined as key:value pairs
-  (for example, `{"SSS": {"frame": "head", "badlimit": 7},
-  "SpatialCompensation":
-  {"GradientOrder": "Order of the gradient compensation"}}`).
+  (for example, `{"Anti-aliasing filter":
+  {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`).
 anyOf:
   - type: object
     additionalProperties:
