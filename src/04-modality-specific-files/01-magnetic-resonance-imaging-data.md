@@ -215,7 +215,7 @@ Useful for multimodal co-registration with MEG, (S)EEG, TMS, and so on.
 
 {{ MACROS___make_metadata_table(
    {
-      "AnatomicalLandmarkCoordinates": "RECOMMENDED",
+      "AnatomicalLandmarkCoordinates_mri": "RECOMMENDED",
    }
 ) }}
 
