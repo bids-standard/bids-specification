@@ -112,8 +112,8 @@ Whenever possible, please avoid using ad hoc wording.
    {
       "InstitutionName": "RECOMMENDED",
       "InstitutionAddress": "RECOMMENDED",
-      "Manufacturer": "RECOMMENDED",
-      "ManufacturersModelName": "RECOMMENDED",
+      "Manufacturer": ("RECOMMENDED", 'For example, `"Biosemi"`, `"Brain Products"`, or `"Neuroscan"`.'),
+      "ManufacturersModelName": ("RECOMMENDED", 'For example, `"BrainAmp DC"`.'),
       "SoftwareVersions": "RECOMMENDED",
       "TaskDescription": "RECOMMENDED",
       "Instructions": "RECOMMENDED",
