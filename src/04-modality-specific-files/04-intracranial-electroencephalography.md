@@ -113,7 +113,7 @@ Whenever possible, please avoid using ad hoc wording.
       "InstitutionName": "RECOMMENDED",
       "InstitutionAddress": "RECOMMENDED",
       "Manufacturer": ("RECOMMENDED", 'For example, `"Biosemi"`, `"Brain Products"`, or `"Neuroscan"`.'),
-      "ManufacturersModelName": ("RECOMMENDED", 'For example, `"BrainAmp DC"`.'),
+      "ManufacturersModelName": "RECOMMENDED",
       "SoftwareVersions": "RECOMMENDED",
       "TaskDescription": "RECOMMENDED",
       "Instructions": "RECOMMENDED",
@@ -141,7 +141,7 @@ Specific iEEG fields MUST be present:
 {{ MACROS___make_metadata_table(
    {
       "iEEGReference": "REQUIRED",
-      "SamplingFrequency": "REQUIRED",
+      "SamplingFrequency": ("REQUIRED", "The sampling frequency of data channels that deviate from the main sampling frequency SHOULD be specified in the `channels.tsv` file."),
       "PowerLineFrequency": "REQUIRED",
       "SoftwareFilters": "REQUIRED",
    }
@@ -158,7 +158,7 @@ Specific iEEG fields SHOULD be present:
 
 {{ MACROS___make_metadata_table(
    {
-      "DCOffsetCorrection": "RECOMMENDED",
+      "DCOffsetCorrection": "DEPRECATED",
       "HardwareFilters": "RECOMMENDED",
       "ElectrodeManufacturer": "RECOMMENDED",
       "ElectrodeManufacturersModelName": "RECOMMENDED",

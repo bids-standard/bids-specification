@@ -137,7 +137,7 @@ Specific MEG fields MUST be present:
 
 {{ MACROS___make_metadata_table(
    {
-      "SamplingFrequency": "REQUIRED",
+      "SamplingFrequency": ("REQUIRED", "The sampling frequency of data channels that deviate from the main sampling frequency SHOULD be specified in the `channels.tsv` file."),
       "PowerLineFrequency": "REQUIRED",
       "DewarPosition": "REQUIRED",
       "SoftwareFilters": "REQUIRED",
