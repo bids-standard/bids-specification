@@ -713,6 +713,7 @@ individual files see descriptions in the next section:
 
 ```Text
 sub-control01/
+    sub-control01_scans.tsv
     anat/
         sub-control01_T1w.nii.gz
         sub-control01_T1w.json
@@ -733,7 +734,6 @@ sub-control01/
         sub-control01_phasediff.nii.gz
         sub-control01_phasediff.json
         sub-control01_magnitude1.nii.gz
-        sub-control01_scans.tsv
 code/
     deface.py
 derivatives/
