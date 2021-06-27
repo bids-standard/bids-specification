@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] correct file location of scans.tsv file in example [#824](https://github.com/bids-standard/bids-specification/pull/824) ([ghisvail](https://github.com/ghisvail))
 -   \[FIX] Add missing closing parenthesis in 02-common-principle.md [#822](https://github.com/bids-standard/bids-specification/pull/822) ([sebastientourbier](https://github.com/sebastientourbier))
 -   \[MISC] update available datatypes in specification [#819](https://github.com/bids-standard/bids-specification/pull/819) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] document required column order MEG, EEG, iEEG, PET, and fix typo iEEG [#818](https://github.com/bids-standard/bids-specification/pull/818) ([sappelhoff](https://github.com/sappelhoff))
