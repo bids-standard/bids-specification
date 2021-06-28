@@ -117,8 +117,8 @@ sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.json
 {
     "SpatialReference": {
         "VolumeReference": "bids:templateflow:/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz",
-        "CIFTI_STRUCTURE_CORTEX_LEFT": "bids:brainplot_repo:/Conte69_Atlas/Conte69.L.midthickness.32k_fs_LR.surf.gii",
-        "CIFTI_STRUCTURE_CORTEX_RIGHT": "bids:brainplot_repo:/Conte69_Atlas/Conte69.R.midthickness.32k_fs_LR.surf.gii"
+        "CIFTI_STRUCTURE_CORTEX_LEFT": "bids:brainplot:/brainplot/Conte69_Atlas/Conte69.L.midthickness.32k_fs_LR.surf.gii",
+        "CIFTI_STRUCTURE_CORTEX_RIGHT": "bids:brainplot:/brainplot/Conte69_Atlas/Conte69.R.midthickness.32k_fs_LR.surf.gii"
     }
 }
 ```
@@ -130,7 +130,7 @@ that enables resolving the [BIDS URIs][].
 {
     "DatasetLinks": {
         "templateflow": "https://templateflow.s3.amazonaws.com",
-        "brainplot_repo": "https://github.com/mgxd/brainplot/tree/master"
+        "brainplot": "https://github.com/mgxd/brainplot/raw/master"
     }
 }
 ```
