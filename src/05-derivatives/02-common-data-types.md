@@ -10,11 +10,11 @@ JSON file is also REQUIRED.
 Each derivative type defines their own set of fields, but all of them
 share the following (non-required) ones:
 
-| **Key name** | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ------------ | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Description  | RECOMMENDED           | [string][]               | Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| Sources      | OPTIONAL              | [array][] of [strings][] | A list of files with the paths specified relative to dataset root; these files were directly used in the creation of this derivative data file. For example, if a derivative A is used in the creation of another derivative B, which is in turn used to generate C in a chain of A->B->C, C should only list B in `Sources`, and B should only list A in `Sources`. However, in case both X and Y are directly used in the creation of Z, then Z should list X and Y in `Sources`, regardless of whether X was used to generate Y. |
-| RawSources   | OPTIONAL              | [array][] of [strings][] | A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **Key name** | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------ | --------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Description  | RECOMMENDED           | [string][]               | Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Sources      | OPTIONAL              | [array][] of [strings][] | A list of paths to files specified using [BIDS URIs][]; using paths specified relative to dataset root is [DEPRECATED][]; these files were directly used in the creation of this derivative data file. For example, if a derivative A is used in the creation of another derivative B, which is in turn used to generate C in a chain of A->B->C, C should only list B in `Sources`, and B should only list A in `Sources`. However, in case both X and Y are directly used in the creation of Z, then Z should list X and Y in `Sources`, regardless of whether X was used to generate Y. |
+| RawSources   | OPTIONAL              | [array][] of [strings][] | A list of paths to files that were used in the creation of this derivative, specified using [BIDS URIs][]; using paths relative to dataset root is [DEPRECATED][].                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 ### Examples
 
@@ -29,7 +29,7 @@ sub-01/func/sub-01_task-rest_desc-preproc_bold.json
 
 ```JSON
 {
-    "RawSources": ["sub-01/func/sub-01_task-rest_bold.nii.gz"]
+    "RawSources": ["bids:local:/sub-01/func/sub-01_task-rest_bold.nii.gz"]
 }
 ```
 
@@ -39,8 +39,8 @@ the same subject's `T1w`, then both files MAY be included in `RawSources`.
 ```JSON
 {
     "RawSources": [
-        "sub-01/func/sub-01_task-rest_bold.nii.gz",
-        "sub-01/anat/sub-01_T1w.nii.gz"
+        "bids:local:/sub-01/func/sub-01_task-rest_bold.nii.gz",
+        "bids:local:/sub-01/anat/sub-01_T1w.nii.gz"
     ]
 }
 ```
@@ -51,10 +51,10 @@ occurs in the derivatives, `Sources` and `RawSources` can both be specified.
 ```JSON
 {
     "Sources": [
-        "sub-01/anat/sub-01_desc-preproc_T1w.nii.gz"
+        "bids:local:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz"
     ],
     "RawSources": [
-        "sub-01/func/sub-01_task-rest_bold.nii.gz"
+        "bids:local:/sub-01/func/sub-01_task-rest_bold.nii.gz"
     ]
 }
 ```
