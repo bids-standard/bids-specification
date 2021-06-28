@@ -232,12 +232,12 @@ For example, without the information of `MagneticFieldStrength`, white-matter T1
 -   The JSON file accompanying a qMRI map which is obtained by using open-source software is RECOMMENDED
     to include additional metadata fields listed in the following table:
 
-| **Field name**        | **Definition**                                                                                                    |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `BasedOn`             | List of files in a file collection to generate the map. Fieldmaps are also listed, if involved in the processing. |
-| `EstimationReference` | Reference to the study/studies on which the implementation is based.                                              |
-| `EstimationAlgorithm` | Type of algorithm used to perform fitting (for example, linear, non-linear, LM and such)                          |
-| `Units`               | Units of the maps, in accordance with the BIDS specification.                                                     |
+| **Field name**        | **Definition**                                                                                                                                                                                         |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `BasedOn`             | List of paths to files in a file collection to generate the map; MUST be specified as [BIDS URIs][]. Using relative paths is [DEPRECATED][]. Fieldmaps are also listed, if involved in the processing. |
+| `EstimationReference` | Reference to the study/studies on which the implementation is based.                                                                                                                                   |
+| `EstimationAlgorithm` | Type of algorithm used to perform fitting (for example, linear, non-linear, LM and such)                                                                                                               |
+| `Units`               | Units of the maps, in accordance with the BIDS specification.                                                                                                                                          |
 
 Example:
 
@@ -253,11 +253,11 @@ sub-01_T1map.json:
 
 <<Parameter injected by the software/pipeline>>
 
-"BasedOn":["anat/sub-01_flip-1_VFA.nii.gz",
-           "anat/sub-01_flip-2_VFA.nii.gz",
-           "anat/sub-01_flip-3_VFA.nii.gz",
-           "anat/sub-01_flip-4_VFA.nii.gz",
-           "fmap/sub-01_TB1map.nii.gz"],
+"BasedOn":["bids:local:/sub-01/anat/sub-01_flip-1_VFA.nii.gz",
+           "bids:local:/sub-01/anat/sub-01_flip-2_VFA.nii.gz",
+           "bids:local:/sub-01/anat/sub-01_flip-3_VFA.nii.gz",
+           "bids:local:/sub-01/anat/sub-01_flip-4_VFA.nii.gz",
+           "bids:local:/sub-01/fmap/sub-01_TB1map.nii.gz"],
 "EstimationPaper":"Deoni et. al.MRM, 2015",
 "EstimationAlgorithm":"Linear",
 "Units": "second",
@@ -556,3 +556,9 @@ entries:
          ├── sub-01_acq-head_RB1COR.nii.gz (Head coil)
          └── sub-01_acq-head_RB1COR.json
 ```
+
+<!-- Link Definitions -->
+
+[bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets
+
+[deprecated]: ../02-common-principles.md#definitions
