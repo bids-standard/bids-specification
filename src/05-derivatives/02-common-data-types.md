@@ -77,10 +77,10 @@ identifiers][templates] table, then the `SpatialReference` metadata is REQUIRED.
 
 ### SpatialReference key allowed values
 
-| **Value**   | **Description**                                                                                                               |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `orig`      | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
-| URI or path | This can be used to point to a specific file. Paths are written relative to the root of the derivative dataset.               |
+| **Value**                                    | **Description**                                                                                                               |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `"orig"`                                     | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
+| [BIDS URI][] (URI or path are [DEPRECATED][] | This can be used to point to a specific file. Paths are written relative to the root of the derivative dataset.               |
 
 In the case of images with multiple references, an [object][] must link the relevant structures to reference files.
 If a single volumetric reference is used for multiple structures, the `VolumeReference` key MAY be used to reduce duplication.
@@ -116,9 +116,21 @@ sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.json
 ```JSON
 {
     "SpatialReference": {
-        "VolumeReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz",
-        "CIFTI_STRUCTURE_CORTEX_LEFT": "https://github.com/mgxd/brainplot/raw/master/brainplot/Conte69_Atlas/Conte69.L.midthickness.32k_fs_LR.surf.gii",
-        "CIFTI_STRUCTURE_CORTEX_RIGHT": "https://github.com/mgxd/brainplot/raw/master/brainplot/Conte69_Atlas/Conte69.R.midthickness.32k_fs_LR.surf.gii"
+        "VolumeReference": "bids:templateflow:/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz",
+        "CIFTI_STRUCTURE_CORTEX_LEFT": "bids:brainplot_repo:/Conte69_Atlas/Conte69.L.midthickness.32k_fs_LR.surf.gii",
+        "CIFTI_STRUCTURE_CORTEX_RIGHT": "bids:brainplot_repo:/Conte69_Atlas/Conte69.R.midthickness.32k_fs_LR.surf.gii"
+    }
+}
+```
+
+Where `dataset_description.json` contains the following `DatasetLinks` object
+that enables resolving the [BIDS URIs][].
+
+```JSON
+{
+    "DatasetLinks": {
+        "templateflow": "https://templateflow.s3.amazonaws.com",
+        "brainplot_repo": "https://github.com/mgxd/brainplot/tree/master"
     }
 }
 ```
