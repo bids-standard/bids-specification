@@ -402,6 +402,15 @@ The `<dataset-name>`: `local` is a reserved value that may only be
 used to refer to the root of the current dataset; `local` MUST NOT be a key in the
 `DatasetLinks` object.
 
+In the case where a derivatives dataset is nested under a raw dataset and both have a `dataset_description.json` file,
+the BIDS URIs within the nested derivatives dataset MUST be resolved with respect to `/derivatives/dataset_description.json`,
+and the BIDS URIs for the raw dataset (excluding `/derivatives`) MUST be resolved with respect to `/dataset_description.json`.
+
+However if a derivatives dataset is nested under a raw dataset and only the raw dataset has a `dataset_description.json` file,
+all BIDS URIs MUST be resolved with respect to the `/dataset_description.json` file.
+
+(Assuming that in the two above examples `/` refers to the root of the BIDS raw dataset with a nested derivatives dataset.)
+
 ### Refer to a file within a dataset
 
 To link for example to a derivative file that is stored in a nested `derivatives/`
