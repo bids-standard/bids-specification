@@ -6,7 +6,7 @@ description: |
   start and end of the infusion period. For more complex dose regimens,
   the regimen description should be complete enough to enable unambiguous
   interpretation of the DoseTime vector.
-  Unit format of the specified pharmaceutical dose time should be seconds.
+  Unit format of the specified pharmaceutical dose time SHOULD be seconds.
 anyOf:
   - type: number
     unit: s
