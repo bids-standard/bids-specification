@@ -1,7 +1,7 @@
 ---
 name: AnalyticalApproach
 description: |
-  Methodology or methodologies used to analyse the GeneticLevel.
+  Methodology or methodologies used to analyse the `GeneticLevel`.
   Values MUST be taken from the
   [database of Genotypes and Phenotypes
   (dbGaP)](https://www.ncbi.nlm.nih.gov/gap/advanced)

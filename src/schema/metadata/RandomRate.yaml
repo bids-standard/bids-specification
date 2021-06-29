@@ -1,7 +1,7 @@
 ---
 name: RandomRate
 description: |
-  Random rate for each frame (same units as `Unit`, for example, `"Bq/mL"`).
+  Random rate for each frame (same units as `Units`, for example, `"Bq/mL"`).
 type: array
 items:
   type: number

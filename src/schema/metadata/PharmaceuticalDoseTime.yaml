@@ -1,8 +1,7 @@
 ---
 name: PharmaceuticalDoseTime
 description: |
-  Time of administration of pharmaceutical dose, relative to time zero
-  (please see below).
+  Time of administration of pharmaceutical dose, relative to time zero.
   For an infusion, this should be a vector with two elements specifying the
   start and end of the infusion period. For more complex dose regimens,
   the regimen description should be complete enough to enable unambiguous
