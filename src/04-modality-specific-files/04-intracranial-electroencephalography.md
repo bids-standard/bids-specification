@@ -264,7 +264,6 @@ Although this information can often be extracted from the iEEG recording,
 listing it in a simple `.tsv` document makes it easy to browse or search (for example,
 searching for recordings with a sampling frequency of >=1000 Hz).
 Hence, the channels.tsv is RECOMMENDED.
-The two required columns are channel `name` and `type`.
 Channels SHOULD appear in the table in the same order they do in the iEEG data
 file.
 Any number of additional columns may be provided to provide additional
@@ -274,7 +273,7 @@ Note that electrode positions SHOULD NOT be added to this file but to
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
-MUST be present:
+MUST be present **in this specific order**:
 
 | **Column name** | **Requirement level** | **Description**                                                                                                                                                                                             |
 | --------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -336,7 +335,7 @@ Note that upper-case is REQUIRED:
 
 Example of free-form text for field `description`:
 
--   intracranial, stimulus, response, vertical EOG,  skin conductance
+-   intracranial, stimulus, response, vertical EOG, skin conductance
 
 ## Electrode description (`*_electrodes.tsv`)
 
@@ -376,7 +375,7 @@ For example:
 The order of the required columns in the `*_electrodes.tsv` file MUST be as
 listed below.
 
-MUST be present:
+MUST be present **in this specific order**:
 
 | **Column name** | **Requirement level** | **Description**                                                                                                                  |
 | --------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------- |

@@ -449,7 +449,8 @@ The following metadata SHOULD or MUST be provided if corresponding flags are `tr
 | MetaboliteMethod                    | REQUIRED if `MetaboliteAvail` is `true` | [string][]    | Method used to measure metabolites.                                                                                                                                                                          |
 | MetaboliteRecoveryCorrectionApplied | REQUIRED if `MetaboliteAvail` is `true` | [boolean][]   | Metabolite recovery correction from the HPLC, for tracers where it changes with time postinjection. If `true`, the `hplc_recovery_fractions` column MUST be present in the corresponding `*_blood.tsv` file. |
 
-The following columns are defined for `_blood.tsv` files:
+The following columns are defined for `_blood.tsv` files.
+The `time` column MUST always be the first column.
 
 | **Column name**              | **Requirement level**                                       | **Description**                                                                   | **Units**                                                                           |
 | ---------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |

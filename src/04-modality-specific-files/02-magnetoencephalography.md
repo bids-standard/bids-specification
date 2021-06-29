@@ -273,7 +273,7 @@ Missing values MUST be indicated with `n/a`.
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
-MUST be present:
+MUST be present **in this specific order**:
 
 | **Column name** | **Requirement level** | **Description**                                                                                                                                                               |
 | --------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -297,8 +297,8 @@ SHOULD be present:
 Example:
 
 ```Text
-name type units description sampling_frequency  low_cutoff  high_cutoff notch software_filters status
-UDIO001 TRIG V analogue trigger 1200  0.1 300 0 n/a good
+name type units description sampling_frequency low_cutoff high_cutoff notch software_filters status
+UDIO001 TRIG V analogue trigger 1200 0.1 300 0 n/a good
 MLC11 MEGGRADAXIAL T sensor 1st-order grad 1200 0 n/a 50 SSS bad
 ```
 
