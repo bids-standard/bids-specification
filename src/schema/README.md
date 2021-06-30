@@ -51,7 +51,6 @@ of the schema, roughly in order of importance:
         describing data types for the field itself apply to `items`.
         Additionally, there may be any of the following fields at the same level
         as `type`: `minItems`, `maxItems`.
-        The minimum number of items (`minItems`) defaults to 1.
         Here is an example of a field that MUST have three `integer` items:
         ```yaml
         name: ExampleField

@@ -10,6 +10,7 @@ description: |
   If defined, this requires acquisition time (TA) be defined via either
   `SliceTiming` or `AcquisitionDuration` be defined.
 type: array
+minItems: 1
 items:
   type: number
   unit: s
