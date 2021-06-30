@@ -3,9 +3,9 @@
 Portions of the BIDS specification are defined using YAML files, in order to
 make the specification machine-readable.
 
-Currently, the only portion of the specification that relies on this schema is
-the Entity Table, but any changes to the specification should be mirrored in the
-schema.
+Currently, the portions of the specification that rely on this schema are
+the entity tables, entity definitions, filename templates, and metadata tables.
+Any changes to the specification should be mirrored in the schema.
 
 ## The format of the schema
 
@@ -137,7 +137,7 @@ of the schema, roughly in order of importance:
         ```
 
     -   `boolean`: If `type` is `boolean`, then the field's value MUST be one
-        of: `"true"`, `"false"`. Here is an example:
+        of: `true`, `false`. Here is an example:
         ```yaml
         name: ExampleField
         description: |
