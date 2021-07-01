@@ -2,6 +2,6 @@
 name: InstitutionalDepartmentName
 description: |
   The department in the institution in charge of the equipment that produced
-  the composite instances.
+  the measurements.
   Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.
 type: string
