@@ -7,7 +7,7 @@ description: |
   shared only by the images meant to be used as inputs for the estimation of a
   particular instance of the *B<sub>0</sub> field* estimation.
   It is RECOMMENDED to derive this identifier from DICOM Tags, for example,
-  the *Protocol Name* `(0018, 1030)` or the *Sequence Name* `(0018, 0024)`
+  DICOM tag 0018, 1030 `Protocol Name`, or DICOM tag 0018, 0024 `Sequence Name`
   when the former is not defined (for example, in GE devices.)
 type: string
 format: participant_relative
