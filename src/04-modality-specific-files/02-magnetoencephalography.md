@@ -90,8 +90,8 @@ Whenever possible, please avoid using ad-hoc wording.
 
 | **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                   |
 | ---------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| InstitutionName        | RECOMMENDED           | [string][]    | The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                     |
-| InstitutionAddress     | RECOMMENDED           | [string][]    | The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                  |
+| InstitutionName        | RECOMMENDED           | [string][]    | The name of the institution in charge of the equipment that produced the measurements.                                                                                                                                            |
+| InstitutionAddress     | RECOMMENDED           | [string][]    | The address of the institution in charge of the equipment that produced the measurements.                                                                                                                                         |
 | Manufacturer           | RECOMMENDED           | [string][]    | Manufacturer of the MEG system (`"CTF"`, `"Elekta/Neuromag"`, `"BTi/4D"`, `"KIT/Yokogawa"`, `"ITAB"`, `"KRISS"`, `"Other"`). See [Appendix VII](../99-appendices/07-meg-systems.md) with preferred names.                         |
 | ManufacturersModelName | RECOMMENDED           | [string][]    | Manufacturer’s designation of the MEG scanner model (for example, `"CTF-275"`). See [Appendix VII](../99-appendices/07-meg-systems.md) with preferred names.                                                                      |
 | SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer’s designation of the acquisition software.                                                                                                                                                                           |
@@ -99,7 +99,7 @@ Whenever possible, please avoid using ad-hoc wording.
 | Instructions           | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the scan. This is not only important for behavioral or cognitive tasks but also in resting state paradigms (for example, to distinguish between eyes open and eyes closed). |
 | CogAtlasID             | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) term that describes the task (for example, Resting State with eyes closed "<https://www.cognitiveatlas.org/task/id/trm_54e69c642d89b>").       |
 | CogPOID                | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task (for example, Rest "<http://wiki.cogpo.org/index.php?title=Rest>").                                                                   |
-| DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.                  |
+| DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the measurements. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.                         |
 
 Specific MEG fields MUST be present:
 
@@ -197,7 +197,7 @@ Missing values MUST be indicated with `n/a`.
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
-MUST be present:
+MUST be present **in this specific order**:
 
 | **Column name** | **Requirement level** | **Description**                                                                                                                                                               |
 | --------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -221,8 +221,8 @@ SHOULD be present:
 Example:
 
 ```Text
-name type units description sampling_frequency  low_cutoff  high_cutoff notch software_filters status
-UDIO001 TRIG V analogue trigger 1200  0.1 300 0 n/a good
+name type units description sampling_frequency low_cutoff high_cutoff notch software_filters status
+UDIO001 TRIG V analogue trigger 1200 0.1 300 0 n/a good
 MLC11 MEGGRADAXIAL T sensor 1st-order grad 1200 0 n/a 50 SSS bad
 ```
 

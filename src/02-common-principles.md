@@ -37,15 +37,19 @@ misunderstanding we clarify them here.
     scanning sequence/protocol.
 
 1.  **Data type** - a functional group of different types of data.
-    BIDS defines eight data types:
-    `func` (task based and resting state functional MRI),
-    `dwi` (diffusion weighted imaging),
-    `fmap` (field inhomogeneity mapping data such as field maps),
-    `anat` (structural imaging such as T1, T2, PD, and so on),
-    `meg` (magnetoencephalography),
-    `eeg` (electroencephalography),
-    `ieeg` (intracranial electroencephalography),
-    `beh` (behavioral).
+    BIDS defines the following data types:
+
+    1.  `func` (task based and resting state functional MRI)
+    1.  `dwi` (diffusion weighted imaging)
+    1.  `fmap` (field inhomogeneity mapping data such as field maps)
+    1.  `anat` (structural imaging such as T1, T2, PD, and so on)
+    1.  `perf` (perfusion)
+    1.  `meg` (magnetoencephalography)
+    1.  `eeg` (electroencephalography)
+    1.  `ieeg` (intracranial electroencephalography)
+    1.  `beh` (behavioral)
+    1.  `pet` (positron emission tomography)
+
     Data files are contained in a directory named for the data type.
     In raw datasets, the data type directory is nested inside subject and
     (optionally) session directories.
@@ -158,6 +162,11 @@ It is evident from the file name alone that the file contains resting state
 data from subject `01`.
 The suffix `eeg` and the extension `.edf` depend on the imaging modality and
 the data format and indicate further details of the file's contents.
+
+Entities within a file name MUST be unique.
+For example, the following file name is not valid because it uses the `acq`
+entity twice:
+`sub-01_acq-laser_acq-uneven_electrodes.tsv`
 
 In cases where entities duplicate metadata,
 the presence of an entity should not be used as a replacement for
@@ -343,7 +352,7 @@ then Case 1 will be assumed for clarity in templates and examples, but removing
 Case 2.
 In both cases, every derivatives dataset is considered a BIDS dataset and must
 include a `dataset_description.json` file at the root level (see
-[Dataset description][dataset-description].
+[Dataset description][dataset-description]).
 Consequently, files should be organized to comply with BIDS to the full extent
 possible (that is, unless explicitly contradicted for derivatives).
 Any subject-specific derivatives should be housed within each subject’s directory;
@@ -546,7 +555,8 @@ Example:
 
 JavaScript Object Notation (JSON) files MUST be used for storing key/value
 pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
-format can be found at [https://www.json.org/](https://www.json.org/).
+format can be found at [https://www.json.org/](https://www.json.org/),
+and at [https://tools.ietf.org/html/std90](https://tools.ietf.org/html/std90).
 Several editors have built-in support for JSON syntax highlighting that aids
 manual creation of such files.
 An online editor for JSON with built-in validation is available at
@@ -703,6 +713,7 @@ individual files see descriptions in the next section:
 
 ```Text
 sub-control01/
+    sub-control01_scans.tsv
     anat/
         sub-control01_T1w.nii.gz
         sub-control01_T1w.json
@@ -723,7 +734,6 @@ sub-control01/
         sub-control01_phasediff.nii.gz
         sub-control01_phasediff.json
         sub-control01_magnitude1.nii.gz
-        sub-control01_scans.tsv
 code/
     deface.py
 derivatives/
