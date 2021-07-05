@@ -2,8 +2,8 @@
 name: RepetitionTimeExcitation
 description: |
   The interval, in seconds, between two successive excitations.
-  The DICOM tag that best refers to this parameter is
-  [(0018, 0080)](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080)).
+  [DICOM Tag 0018, 0080](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080)
+  best refers to this parameter.
   This field may be used together with the `RepetitionTimePreparation` for
   certain use cases, such as
   [MP2RAGE](https://doi.org/10.1016/j.neuroimage.2009.10.002).
