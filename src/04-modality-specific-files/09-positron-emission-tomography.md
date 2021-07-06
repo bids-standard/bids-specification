@@ -196,27 +196,27 @@ We refer to the common principles for the standards for describing dates and tim
 
 #### Reconstruction
 
-| **Key name**                         | **Requirement level** | **Data type**                          | **Description**                                                                                                 |
-| ------------------------------------ | --------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| AcquisitionMode                      | REQUIRED              | [string][]                             | Type of acquisition of the PET data (for example, `"list mode"`)                                                |
-| ImageDecayCorrected                  | REQUIRED              | [boolean][]                            | Boolean flag specifying whether the image data have been decay-corrected.                                       |
-| ImageDecayCorrectionTime             | REQUIRED              | [number][]                             | Point in time from which the decay correction was applied with respect to TimeZero in the default unit seconds. |
-| ReconMethodName                      | REQUIRED              | [string][]                             | Reconstruction method or algorithm (for example, `"3d-op-osem"`).                                               |
-| ReconMethodParameterLabels           | REQUIRED              | [array][] of [strings][]               | Names of reconstruction parameters (for example, `["subsets", "iterations"]`)                                   |
-| ReconMethodParameterUnits            | REQUIRED              | [array][] of [strings][]               | Unit of reconstruction parameters (for example, `["none", "none"]`).                                            |
-| ReconMethodParameterValues           | REQUIRED              | [array][] of [numbers][]               | Values of reconstruction parameters (for example, `[21, 3]`)                                                    |
-| ReconFilterType                      | REQUIRED              | [string][] or [array][] of [strings][] | Type of post-recon smoothing (for example, `["Shepp"]`)                                                         |
-| ReconFilterSize                      | REQUIRED              | [number][] or [array][] of [numbers][] | Kernel size of post-recon filter (FWHM) in default units `"mm"`.                                                |
-| AttenuationCorrection                | REQUIRED              | [string][]                             | Short description of the attenuation correction method used.                                                    |
-| ReconMethodImplementationVersion     | RECOMMENDED           | [string][]                             | Identification for the software used, such as name and version.                                                 |
-| AttenuationCorrectionMethodReference | RECOMMENDED           | [string][]                             | Reference paper for the attenuation correction method used.                                                     |
-| ScaleFactor                          | RECOMMENDED           | [array][] of [numbers][]               | Scale factor for each frame.                                                                                    |
-| ScatterFraction                      | RECOMMENDED           | [array][] of [numbers][]               | Scatter fraction for each frame (Units: 0-100%).                                                                |
-| DecayCorrectionFactor                | RECOMMENDED           | [array][] of [numbers][]               | Decay correction factor for each frame.                                                                         |
+|             **Key name**             | **Requirement level** |             **Data type**              |                                                  **Description**                                                   |
+| ------------------------------------ | --------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| AcquisitionMode                      | REQUIRED              | [string][]                             | Type of acquisition of the PET data (for example, `"list mode"`)                                                   |
+| ImageDecayCorrected                  | REQUIRED              | [boolean][]                            | Boolean flag specifying whether the image data have been decay-corrected.                                          |
+| ImageDecayCorrectionTime             | REQUIRED              | [number][]                             | Point in time from which the decay correction was applied with respect to TimeZero in the default unit seconds.    |
+| ReconMethodName                      | REQUIRED              | [string][]                             | Reconstruction method or algorithm (for example, `"3d-op-osem"`).                                                  |
+| ReconMethodParameterLabels           | REQUIRED              | [array][] of [strings][]               | Names of reconstruction parameters (for example, `["subsets", "iterations"]`)                                      |
+| ReconMethodParameterUnits            | REQUIRED              | [array][] of [strings][]               | Unit of reconstruction parameters (for example, `["none", "none"]`).                                               |
+| ReconMethodParameterValues           | REQUIRED              | [array][] of [numbers][]               | Values of reconstruction parameters (for example, `[21, 3]`)                                                       |
+| ReconFilterType                      | REQUIRED              | [string][] or [array][] of [strings][] | Type of post-recon smoothing (for example, `["Shepp"]`)                                                            |
+| ReconFilterSize                      | REQUIRED              | [number][] or [array][] of [numbers][] | Kernel size of post-recon filter (FWHM) in default units `"mm"`.                                                   |
+| AttenuationCorrection                | REQUIRED              | [string][]                             | Short description of the attenuation correction method used.                                                       |
+| ReconMethodImplementationVersion     | RECOMMENDED           | [string][]                             | Identification for the software used, such as name and version.                                                    |
+| AttenuationCorrectionMethodReference | RECOMMENDED           | [string][]                             | Reference paper for the attenuation correction method used.                                                        |
+| ScaleFactor                          | RECOMMENDED           | [array][] of [numbers][]               | Scale factor for each frame.                                                                                       |
+| ScatterFraction                      | RECOMMENDED           | [array][] of [numbers][]               | Scatter fraction for each frame (Units: 0-100%).                                                                   |
+| DecayCorrectionFactor                | RECOMMENDED           | [array][] of [numbers][]               | Decay correction factor for each frame.                                                                            |
 | DoseCalibrationFactor                | RECOMMENDED           | [number][]                             | Multiplication factor used to transform raw data (in counts/sec) to meaningful unit (Bq/ml) (dicom tag 0054,1322). |
-| PromptRate                           | RECOMMENDED           | [array][] of [numbers][]               | Prompt rate for each frame (same units as `Units`, for example, `"Bq/mL"`).                                     |
-| RandomRate                           | RECOMMENDED           | [array][] of [numbers][]               | Random rate for each frame (same units as `Units`, for example, `"Bq/mL"`).                                     |
-| SinglesRate                          | RECOMMENDED           | [array][] of [numbers][]               | Singles rate for each frame (same units as `Units`, for example, `"Bq/mL"`).                                    |
+| PromptRate                           | RECOMMENDED           | [array][] of [numbers][]               | Prompt rate for each frame (same units as `Units`, for example, `"Bq/mL"`).                                        |
+| RandomRate                           | RECOMMENDED           | [array][] of [numbers][]               | Random rate for each frame (same units as `Units`, for example, `"Bq/mL"`).                                        |
+| SinglesRate                          | RECOMMENDED           | [array][] of [numbers][]               | Singles rate for each frame (same units as `Units`, for example, `"Bq/mL"`).                                       |
 
 All reconstruction-specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
 
