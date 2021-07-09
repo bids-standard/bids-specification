@@ -102,18 +102,18 @@ SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
-| **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                  |
-| ---------------------- | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| InstitutionName        | RECOMMENDED           | [string][]    | The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                    |
-| InstitutionAddress     | RECOMMENDED           | [string][]    | The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                 |
-| Manufacturer           | RECOMMENDED           | [string][]    | Manufacturer of the amplifier system (for example, `"TDT, Blackrock"`).                                                                                                                                          |
-| ManufacturersModelName | RECOMMENDED           | [string][]    | Manufacturer's designation of the iEEG amplifier model.                                                                                                                                                          |
-| SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer's designation of the acquisition software.                                                                                                                                                          |
-| TaskDescription        | RECOMMENDED           | [string][]    | Longer description of the task.                                                                                                                                                                                  |
-| Instructions           | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the recording. This is especially important in context of resting state and distinguishing between eyes open and eyes closed paradigms.                    |
-| CogAtlasID             | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [Cognitive Atlas Task](https://www.cognitiveatlas.org/) term.                                                                                                                    |
-| CogPOID                | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                             |
-| DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset. |
+| **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                           |
+| ---------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| InstitutionName        | RECOMMENDED           | [string][]    | The name of the institution in charge of the equipment that produced the measurements.                                                                                                                    |
+| InstitutionAddress     | RECOMMENDED           | [string][]    | The address of the institution in charge of the equipment that produced the measurements.                                                                                                                 |
+| Manufacturer           | RECOMMENDED           | [string][]    | Manufacturer of the amplifier system (for example, `"TDT, Blackrock"`).                                                                                                                                   |
+| ManufacturersModelName | RECOMMENDED           | [string][]    | Manufacturer's designation of the iEEG amplifier model.                                                                                                                                                   |
+| SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer's designation of the acquisition software.                                                                                                                                                   |
+| TaskDescription        | RECOMMENDED           | [string][]    | Longer description of the task.                                                                                                                                                                           |
+| Instructions           | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the recording. This is especially important in context of resting state and distinguishing between eyes open and eyes closed paradigms.             |
+| CogAtlasID             | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [Cognitive Atlas Task](https://www.cognitiveatlas.org/) term.                                                                                                             |
+| CogPOID                | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                                      |
+| DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the measurements. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset. |
 
 Specific iEEG fields MUST be present:
 
@@ -128,7 +128,6 @@ Specific iEEG fields SHOULD be present:
 
 | **Key name**                    | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                                                                                                                                        |
 | ------------------------------- | --------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| DCOffsetCorrection              | RECOMMENDED           | [string][]                           | A description of the method (if any) used to correct for a DC offset. If the method used was subtracting the mean value for each channel, use "mean".                                                                                                                                                                                  |
 | HardwareFilters                 | RECOMMENDED           | [object][] of [objects][] or `"n/a"` | [Object][] of temporal hardware filters applied, or `"n/a"` if the data is not available. Each key:value pair in the JSON object is a name of the filter and an object in which its parameters are defined as key:value pairs. For example, `{"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dB/Octave"}}` |
 | ElectrodeManufacturer           | RECOMMENDED           | [string][]                           | Can be used if all electrodes are of the same manufacturer (for example, `"AD-TECH"`, `"DIXI"`). If electrodes of different manufacturers are used, please use the corresponding table in the \_electrodes.tsv file.                                                                                                                   |
 | ElectrodeManufacturersModelName | RECOMMENDED           | [string][]                           | If different electrode types are used, please use the corresponding table in the `*_electrodes.tsv` file.                                                                                                                                                                                                                              |
@@ -147,6 +146,7 @@ Specific iEEG fields SHOULD be present:
 | iEEGPlacementScheme             | RECOMMENDED           | [string][]                           | Freeform description of the placement of the iEEG electrodes. Left/right/bilateral/depth/surface (for example, `"left frontal grid and bilateral hippocampal depth"` or `"surface strip and STN depth"` or `"clinical indication bitemporal, bilateral temporal strips and left grid"`).                                               |
 | iEEGElectrodeGroups             | RECOMMENDED           | [string][]                           | Field to describe the way electrodes are grouped into strips, grids or depth probes for example, `"grid1: 10x8 grid on left temporal pole, strip2: 1x8 electrode strip on xxx"`.                                                                                                                                                       |
 | SubjectArtefactDescription      | RECOMMENDED           | [string][]                           | Freeform description of the observed subject artefact and its possible cause (for example, `"door open", "nurse walked into room at 2 min"`, `"seizure at 10 min"`). If this field is left empty, it will be interpreted as absence of artifacts.                                                                                      |
+| DCOffsetCorrection              | [DEPRECATED][]        | [string][]                           | This key is [deprecated][], please use `SoftwareFilters` instead. A description of the method (if any) used to correct for a DC offset. If the method used was subtracting the mean value for each channel, use "mean".                                                                                                                |
 
 Specific iEEG fields MAY be present:
 
@@ -170,7 +170,6 @@ Example:
   "SamplingFrequency":1000,
   "PowerLineFrequency":60,
   "SoftwareFilters":"n/a",
-  "DCOffsetCorrection":0,
   "HardwareFilters":{"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dBOctave"}},
   "ElectrodeManufacturer":"AdTech",
   "ECOGChannelCount":120,
@@ -204,7 +203,6 @@ Although this information can often be extracted from the iEEG recording,
 listing it in a simple `.tsv` document makes it easy to browse or search (for example,
 searching for recordings with a sampling frequency of >=1000 Hz).
 Hence, the channels.tsv is RECOMMENDED.
-The two required columns are channel `name` and `type`.
 Channels SHOULD appear in the table in the same order they do in the iEEG data
 file.
 Any number of additional columns may be provided to provide additional
@@ -214,7 +212,7 @@ Note that electrode positions SHOULD NOT be added to this file but to
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
-MUST be present:
+MUST be present **in this specific order**:
 
 | **Column name** | **Requirement level** | **Description**                                                                                                                                                                                             |
 | --------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -251,32 +249,32 @@ Restricted keyword list for field type in alphabetic order (shared with the MEG
 and EEG modality; however, only types that are common in iEEG data are listed here).
 Note that upper-case is REQUIRED:
 
-| **Keyword**  | **Description**                                                        |
-| ------------ | ---------------------------------------------------------------------- |
-| EEG          | Electrode channel from electroencephalogram                            |
-| ECOG         | Electrode channel from electrocorticogram (intracranial)               |
-| SEEG         | Electrode channel from stereo-electroencephalogram (intracranial)      |
-| DBS          | Electrode channel from deep brain stimulation electrode (intracranial) |
-| VEOG         | Vertical EOG (electrooculogram)                                        |
-| HEOG         | Horizontal EOG                                                         |
-| EOG          | Generic EOG channel if HEOG or VEOG information not available          |
-| ECG          | ElectroCardioGram (heart)                                              |
-| EMG          | ElectroMyoGram (muscle)                                                |
-| TRIG         | System Triggers                                                        |
-| AUDIO        | Audio signal                                                           |
-| PD           | Photodiode                                                             |
-| EYEGAZE      | Eye Tracker gaze                                                       |
-| PUPIL        | Eye Tracker pupil diameter                                             |
-| MISC         | Miscellaneous                                                          |
-| SYSCLOCK     | System time showing elapsed time since trial started                   |
-| ADC          | Analog to Digital input                                                |
-| DAC          | Digital to Analog output                                               |
-| REF          | Reference channel                                                      |
-| OTHER        | Any other type of channel                                              |
+| **Keyword** | **Description**                                                        |
+| ----------- | ---------------------------------------------------------------------- |
+| EEG         | Electrode channel from electroencephalogram                            |
+| ECOG        | Electrode channel from electrocorticogram (intracranial)               |
+| SEEG        | Electrode channel from stereo-electroencephalogram (intracranial)      |
+| DBS         | Electrode channel from deep brain stimulation electrode (intracranial) |
+| VEOG        | Vertical EOG (electrooculogram)                                        |
+| HEOG        | Horizontal EOG                                                         |
+| EOG         | Generic EOG channel if HEOG or VEOG information not available          |
+| ECG         | ElectroCardioGram (heart)                                              |
+| EMG         | ElectroMyoGram (muscle)                                                |
+| TRIG        | System Triggers                                                        |
+| AUDIO       | Audio signal                                                           |
+| PD          | Photodiode                                                             |
+| EYEGAZE     | Eye Tracker gaze                                                       |
+| PUPIL       | Eye Tracker pupil diameter                                             |
+| MISC        | Miscellaneous                                                          |
+| SYSCLOCK    | System time showing elapsed time since trial started                   |
+| ADC         | Analog to Digital input                                                |
+| DAC         | Digital to Analog output                                               |
+| REF         | Reference channel                                                      |
+| OTHER       | Any other type of channel                                              |
 
 Example of free-form text for field `description`:
 
--   intracranial, stimulus, response, vertical EOG,  skin conductance
+-   intracranial, stimulus, response, vertical EOG, skin conductance
 
 ## Electrode description (`*_electrodes.tsv`)
 
@@ -316,7 +314,7 @@ For example:
 The order of the required columns in the `*_electrodes.tsv` file MUST be as
 listed below.
 
-MUST be present:
+MUST be present **in this specific order**:
 
 | **Column name** | **Requirement level** | **Description**                                                                                                                  |
 | --------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -362,9 +360,9 @@ also be specified.
 
 General fields:
 
-| **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| ------------ | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IntendedFor  | RECOMMENDED           | [string][]    | This can be an MRI/CT or a file containing the operative photo, x-ray or drawing with path relative to the project folder. If only a surface reconstruction is available, this should point to the surface reconstruction file. Note that this file should have the same coordinate system specified in `iEEGCoordinateSystem`. For example, **T1**: `"sub-<label>/ses-<label>/anat/sub-01_T1w.nii.gz"`  **Surface**: `"/derivatives/surfaces/sub-<label>/ses-<label>/anat/sub-01_T1w_pial.R.surf.gii"` **Operative photo**: `"/sub-<label>/ses-<label>/ieeg/sub-0001_ses-01_acq-photo1_photo.jpg"` **Talairach**: `"/derivatives/surfaces/sub-Talairach/ses-01/anat/sub-Talairach_T1w_pial.R.surf.gii"` |
+| **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------ | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| IntendedFor  | RECOMMENDED           | [string][]    | This can be an MRI/CT or a file containing the operative photo, x-ray or drawing with path relative to the project folder. If only a surface reconstruction is available, this should point to the surface reconstruction file. Note that this file should have the same coordinate system specified in `iEEGCoordinateSystem`. For example, **T1**: `"sub-<label>/ses-<label>/anat/sub-01_T1w.nii.gz"`  **Surface**: `"/derivatives/surfaces/sub-<label>/ses-<label>/anat/sub-01_desc-T1w_hemi-R_pial.surf.gii"` **Operative photo**: `"/sub-<label>/ses-<label>/ieeg/sub-0001_ses-01_acq-photo1_photo.jpg"` **Talairach**: `"/derivatives/surfaces/sub-Talairach/ses-01/anat/sub-Talairach_hemi-R_pial.surf.gii"` |
 
 Fields relating to the iEEG electrode positions:
 
@@ -504,3 +502,5 @@ onset duration trial_type             electrical_stimulation_type electrical_sti
 [boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
 
 [uri]: ../02-common-principles.md#uniform-resource-indicator
+
+[deprecated]: ../02-common-principles.md#definitions

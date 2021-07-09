@@ -96,8 +96,8 @@ Whenever possible, please avoid using ad hoc wording.
 
 | **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                   |
 | ---------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| InstitutionName        | RECOMMENDED           | [string][]    | The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                     |
-| InstitutionAddress     | RECOMMENDED           | [string][]    | The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                  |
+| InstitutionName        | RECOMMENDED           | [string][]    | The name of the institution in charge of the equipment that produced the measurements.                                                                                                                                            |
+| InstitutionAddress     | RECOMMENDED           | [string][]    | The address of the institution in charge of the equipment that produced the measurements.                                                                                                                                         |
 | Manufacturer           | RECOMMENDED           | [string][]    | Manufacturer of the EEG system (for example, `"Biosemi"`, `"Brain Products"`, `"Neuroscan"`).                                                                                                                                     |
 | ManufacturersModelName | RECOMMENDED           | [string][]    | Manufacturer's designation of the EEG system model (for example, `"BrainAmp DC"`).                                                                                                                                                |
 | SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer's designation of the acquisition software.                                                                                                                                                                           |
@@ -105,7 +105,7 @@ Whenever possible, please avoid using ad hoc wording.
 | Instructions           | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the scan. This is not only important for behavioral or cognitive tasks but also in resting state paradigms (for example, to distinguish between eyes open and eyes closed). |
 | CogAtlasID             | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) term that describes the task (for example, Resting State with eyes closed "<https://www.cognitiveatlas.org/task/id/trm_54e69c642d89b>").       |
 | CogPOID                | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task (for example, Rest "<http://wiki.cogpo.org/index.php?title=Rest>") .                                                                  |
-| DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.                  |
+| DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the measurements. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.                         |
 
 Specific EEG fields MUST be present:
 
@@ -188,8 +188,6 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 This file is RECOMMENDED as it provides easily searchable information across
 BIDS datasets for for example, general curation, response to queries or batch
 analysis.
-The required columns are channel `name`, `type` and `units` in this specific
-order.
 To avoid confusion, the channels SHOULD be listed in the order they
 appear in the EEG data file.
 Any number of additional columns may be added to provide additional information
@@ -205,7 +203,7 @@ See the examples for `*_channels.tsv` below, and for `*_electrodes.tsv` in
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
-MUST be present:
+MUST be present **in this specific order**:
 
 | **Column name** | **Requirement level** | **Description**                                                                                                                                                               |
 | --------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -230,25 +228,25 @@ Restricted keyword list for field `type` in alphabetic order (shared with the
 MEG and iEEG modality; however, only the types that are common in EEG data are listed here).
 Note that upper-case is REQUIRED:
 
-| **Keyword**  | **Description**                                              |
-| ------------ | ------------------------------------------------------------ |
-| AUDIO        | Audio signal                                                 |
-| EEG          | Electroencephalogram channel                                 |
-| EOG          | Generic electrooculogram (eye), different from HEOG and VEOG |
-| ECG          | Electrocardiogram (heart)                                    |
-| EMG          | Electromyogram (muscle)                                      |
-| EYEGAZE      | Eye tracker gaze                                             |
-| GSR          | Galvanic skin response                                       |
-| HEOG         | Horizontal EOG (eye)                                         |
-| MISC         | Miscellaneous                                                |
-| PPG          | Photoplethysmography                                         |
-| PUPIL        | Eye tracker pupil diameter                                   |
-| REF          | Reference channel                                            |
-| RESP         | Respiration                                                  |
-| SYSCLOCK     | System time showing elapsed time since trial started         |
-| TEMP         | Temperature                                                  |
-| TRIG         | System triggers                                              |
-| VEOG         | Vertical EOG (eye)                                           |
+| **Keyword** | **Description**                                              |
+| ----------- | ------------------------------------------------------------ |
+| AUDIO       | Audio signal                                                 |
+| EEG         | Electroencephalogram channel                                 |
+| EOG         | Generic electrooculogram (eye), different from HEOG and VEOG |
+| ECG         | Electrocardiogram (heart)                                    |
+| EMG         | Electromyogram (muscle)                                      |
+| EYEGAZE     | Eye tracker gaze                                             |
+| GSR         | Galvanic skin response                                       |
+| HEOG        | Horizontal EOG (eye)                                         |
+| MISC        | Miscellaneous                                                |
+| PPG         | Photoplethysmography                                         |
+| PUPIL       | Eye tracker pupil diameter                                   |
+| REF         | Reference channel                                            |
+| RESP        | Respiration                                                  |
+| SYSCLOCK    | System time showing elapsed time since trial started         |
+| TEMP        | Temperature                                                  |
+| TRIG        | System triggers                                              |
+| VEOG        | Vertical EOG (eye)                                           |
 
 Example of free-form text for field `description`
 
@@ -277,7 +275,7 @@ expected in cartesian coordinates according to the `EEGCoordinateSystem` and
 file MUST be specified as well**. The order of the required columns in the
 `*_electrodes.tsv` file MUST be as listed below.
 
-MUST be present:
+MUST be present **in this specific order**:
 
 | **Column name** | **Requirement level** | **Description**                     |
 | --------------- | --------------------- | ----------------------------------- |
@@ -373,7 +371,7 @@ Fields relating to the position of fiducials measured during an EEG session/run:
 | FiducialsDescription                 | OPTIONAL                                                              | [string][]               | Free-form text description of how the fiducials such as vitamin-E capsules were placed relative to anatomical landmarks, and how the position of the fiducials were measured (for example, both with Polhemus and with T1w MRI).                                                                                                                                |
 | FiducialsCoordinates                 | RECOMMENDED                                                           | [object][] of [arrays][] | Key:value pairs of the labels and 3-D digitized position of anatomical landmarks, interpreted following the `FiducialsCoordinateSystem` (for example, `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). Each array MUST contain three numeric values corresponding to x, y, and z axis of the coordinate system in that exact order. |
 | FiducialsCoordinateSystem            | RECOMMENDED                                                           | [string][]               | Defines the coordinate system for the fiducials. Preferably the same as the `EEGCoordinateSystem`. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords for coordinate systems. If `"Other"`, provide definition of the coordinate system in `FiducialsCoordinateSystemDescription`.                                |
-| FiducialsCoordinateUnits             | RECOMMENDED                                                           | [string][]               | Units in which the coordinates that are  listed in the field `FiducialsCoordinateSystem` are represented. MUST be `"m"`, `"cm"`, or `"mm"`.                                                                                                                                                                                                            |
+| FiducialsCoordinateUnits             | RECOMMENDED                                                           | [string][]               | Units in which the coordinates that are  listed in the field `FiducialsCoordinateSystem` are represented. MUST be `"m"`, `"cm"`, or `"mm"`.                                                                                                                                                                                                                     |
 | FiducialsCoordinateSystemDescription | RECOMMENDED, but REQUIRED if `FiducialsCoordinateSystem` is `"Other"` | [string][]               | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                                                                                                          |
 
 Fields relating to the position of anatomical landmark measured during an EEG session/run:

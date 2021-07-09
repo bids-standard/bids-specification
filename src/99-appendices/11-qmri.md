@@ -125,16 +125,16 @@ but also by which metadata fields are provided in accompanying json files.
 
 #### Anatomy imaging data
 
-| **File collection**   | **REQUIRED metadata**                                                                                                        | **OPTIONAL metadata**      |
-|-----------------------|------------------------------------------------------------------------------------------------------------------------------|----------------------------|
-| VFA                   | `FlipAngle`, `PulseSequenceType`, `RepetitionTimeExcitation`                                                                 | `SpoilingRFPhaseIncrement` |
-| IRT1                  | `InversionTime`                                                                                                              |                            |
-| MP2RAGE<sup>\*</sup>  | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
-| MESE                  | `EchoTime`                                                                                                                   |                            |
-| MEGRE                 | `EchoTime`                                                                                                                   |                            |
-| MTR                   | `MTState`                                                                                                                    |                            |
-| MTS                   | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           |                            |
-| MPM                   | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           | `EchoTime`                 |
+| **File collection**  | **REQUIRED metadata**                                                                                                        | **OPTIONAL metadata**      |
+|----------------------|------------------------------------------------------------------------------------------------------------------------------|----------------------------|
+| VFA                  | `FlipAngle`, `PulseSequenceType`, `RepetitionTimeExcitation`                                                                 | `SpoilingRFPhaseIncrement` |
+| IRT1                 | `InversionTime`                                                                                                              |                            |
+| MP2RAGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
+| MESE                 | `EchoTime`                                                                                                                   |                            |
+| MEGRE                | `EchoTime`                                                                                                                   |                            |
+| MTR                  | `MTState`                                                                                                                    |                            |
+| MTS                  | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           |                            |
+| MPM                  | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           | `EchoTime`                 |
 
 <sup>\*</sup> Please see MP2RAGE-specific notes for the calculation of `NumberShots` and regarding the
 organization of `UNIT1` image.
@@ -232,12 +232,12 @@ For example, without the information of `MagneticFieldStrength`, white-matter T1
 -   The JSON file accompanying a qMRI map which is obtained by using open-source software is RECOMMENDED
     to include additional metadata fields listed in the following table:
 
-| **Field name**                  | **Definition**                                                                                                               |
-| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `BasedOn`                       | List of files in a file collection to generate the map. Fieldmaps are also listed, if involved in the processing.            |
-| `EstimationReference`           | Reference to the study/studies on which the implementation is based.                                                         |
-| `EstimationAlgorithm`           | Type of algorithm used to perform fitting (for example, linear, non-linear, LM and such)                                     |
-| `Units`                         | Units of the maps, in accordance with the BIDS specification.                                                                |
+| **Field name**        | **Definition**                                                                                                    |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `BasedOn`             | List of files in a file collection to generate the map. Fieldmaps are also listed, if involved in the processing. |
+| `EstimationReference` | Reference to the study/studies on which the implementation is based.                                              |
+| `EstimationAlgorithm` | Type of algorithm used to perform fitting (for example, linear, non-linear, LM and such)                          |
+| `Units`               | Units of the maps, in accordance with the BIDS specification.                                                     |
 
 Example:
 
@@ -299,12 +299,12 @@ This approach aims at:
 -   providing qMRI-focused BIDS applications with a set of meta-data driven rules to infer possible fitting options,
 -   keeping an inheritance track of the qMRI methods described within the specification.
 
-| **File-collection suffix** | **If REQUIRED metadata == Value** | **OPTIONAL metadata (`entity`/`fixed`)**   | **Derived application name (NOT a suffix)** |
-|----------------------------|-----------------------------------|--------------------------------------------|---------------------------------------------|
-| VFA                        | `PulseSequenceType` == `SPGR`     |                                            | DESPOT1                                     |
-| VFA                        | `PulseSequenceType` == `SSFP`     | `SpoilingRFPhaseIncrement` (`fixed`)       | DESPOT2                                     |
-| MP2RAGE                    |                                   | `EchoTime` (`echo`)                        | MP2RAGE-ME                                  |
-| MPM                        |                                   | `EchoTime` (`echo`)                        | MPM-ME                                      |
+| **File-collection suffix** | **If REQUIRED metadata == Value** | **OPTIONAL metadata (`entity`/`fixed`)** | **Derived application name (NOT a suffix)** |
+|----------------------------|-----------------------------------|------------------------------------------|---------------------------------------------|
+| VFA                        | `PulseSequenceType` == `SPGR`     |                                          | DESPOT1                                     |
+| VFA                        | `PulseSequenceType` == `SSFP`     | `SpoilingRFPhaseIncrement` (`fixed`)     | DESPOT2                                     |
+| MP2RAGE                    |                                   | `EchoTime` (`echo`)                      | MP2RAGE-ME                                  |
+| MPM                        |                                   | `EchoTime` (`echo`)                      | MPM-ME                                      |
 
 In this table, (`entity`/`fixed`) denotes whether the OPTIONAL metadata that forms a new
 flavor of qMRI application for the respective suffix varies across files of a file collection
@@ -441,7 +441,7 @@ The `flip` and `echo` entities MUST be used to distinguish images with this suff
 The use of `flip` follows the default convention. However, this suffix defines a
 specific use case for the `echo` entity:
 
-| `echo-1`             | `echo-2`                    |
+| **`echo-1`**         | **`echo-2`**                |
 | -------------------- | --------------------------- |
 | Lower `EchoTime`     | Higher `EchoTime`           |
 | Spin Echo (SE) image | Stimulated Echo (STE) image |
@@ -458,10 +458,10 @@ The nominal FA value of the SE pulse is twice this value.
 Note that the following metadata fields MUST be defined in the accompanying JSON
 files:
 
-| Field name         | Definition                                                                                                                                      |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `TotalReadoutTime` |  The effective readout length defined as `EffectiveEchoSpacing * PEReconMatrix`, with `EffectiveEchoSpacing = TrueEchoSpacing / PEacceleration` |
-| `MixingTime`       |  Time interval between the SE and STE pulses                                                                                                    |
+| **Field name**     | **Definition**                                                                                                                                 |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `TotalReadoutTime` | The effective readout length defined as `EffectiveEchoSpacing * PEReconMatrix`, with `EffectiveEchoSpacing = TrueEchoSpacing / PEacceleration` |
+| `MixingTime`       | Time interval between the SE and STE pulses                                                                                                    |
 
 To properly identify constituents of this particular method, values of the `echo`
 entity MUST index the images as follows:
@@ -490,7 +490,7 @@ Therefore, to properly identify constituents of this particular method,
 values of the `acq` entity SHOULD begin with either `tr1` (lower TR) or `tr2` (higher TR)
 and MAY be followed by freeform entries:
 
-| First `TR`       | Second `TR`      | Use case             |
+| **First `TR`**   | **Second `TR`**  | **Use case**         |
 | ---------------- | ---------------- | -------------------- |
 | `_acq-tr1`       | `_acq-tr2`       | Single acquisition   |
 | `_acq-tr1Test`   | `_acq-tr2Test`   | Acquisition `Test`   |
@@ -514,11 +514,11 @@ The first image appears like an anatomical image and the second output is a scal
 To properly identify files of this particular file collection,
 values of the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be followed by freeform entries:
 
-| Anatomical (like) image | Scaled flip angle map     | Use case             |
-| ----------------------- | ------------------------- | -------------------- |
-| `_acq-anat`             | `_acq-famp`               | Single acquisition   |
-| `_acq-anatTest`         | `_acq-fampTest`           | Acquisition `Test`   |
-| `_acq-anatRetest`       | `_acq-fampRetest`         | Acquisition `Retest` |
+| **Anatomical (like) image** | **Scaled flip angle map** | **Use case**         |
+| --------------------------- | ------------------------- | -------------------- |
+| `_acq-anat`                 | `_acq-famp`               | Single acquisition   |
+| `_acq-anatTest`             | `_acq-fampTest`           | Acquisition `Test`   |
+| `_acq-anatRetest`           | `_acq-fampRetest`         | Acquisition `Retest` |
 
 ```text
 └── sub-01/
@@ -541,7 +541,7 @@ To properly identify constituents of this particular method, values of the `acq`
 entity SHOULD begin with either `body` or `head` and MAY be followed by freeform
 entries:
 
-| Body coil      | Head coil      | Use case           |
+| **Body coil**  | **Head coil**  | **Use case**       |
 | -------------- | -------------- | ------------------ |
 | `_acq-body`    | `_acq-head`    | Single acquisition |
 | `_acq-bodyMTw` | `_acq-headMTw` | `MTw` for `MPM`    |
