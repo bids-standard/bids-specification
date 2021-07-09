@@ -1,5 +1,5 @@
 ---
 name: description
-description:
-type:
-unit:
+description: |
+  Brief free-text description of the channel, or other information of interest.
+type: string

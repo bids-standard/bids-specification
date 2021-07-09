@@ -1,5 +1,11 @@
 ---
 name: low_cutoff
-description:
-type:
-unit:
+description: |
+  Frequencies used for the high-pass filter applied to the channel in Hz.
+  If no high-pass filter applied, use `n/a`.
+anyOf:
+  - type: number
+    unit: Hz
+  - type: string
+    enum:
+      - n/a

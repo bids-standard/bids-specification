@@ -1,5 +1,5 @@
 ---
 name: index
-description:
-type:
-unit:
+description: |
+  The label integer index.
+type: integer

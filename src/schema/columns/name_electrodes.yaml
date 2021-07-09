@@ -1,0 +1,6 @@
+---
+# This definition of the 'name' column is specific to electrodes.tsv files.
+name: name
+description: |
+  Name of the electrode contact point.
+type: string

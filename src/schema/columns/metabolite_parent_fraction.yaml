@@ -1,5 +1,7 @@
 ---
 name: metabolite_parent_fraction
-description:
-type:
-unit:
+description: |
+  Parent fraction of the radiotracer (0-1).
+type: number
+minimum: 0
+maximum: 1

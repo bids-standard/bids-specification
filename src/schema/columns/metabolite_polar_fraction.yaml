@@ -1,5 +1,7 @@
 ---
 name: metabolite_polar_fraction
-description:
-type:
-unit:
+description: |
+  Polar metabolite fraction of the radiotracer (0-1).
+type: number
+minimum: 0
+maximum: 1
