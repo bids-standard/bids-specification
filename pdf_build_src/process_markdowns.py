@@ -10,9 +10,13 @@ well.
 import os
 import re
 import subprocess
+import sys
 from datetime import datetime
 
 import numpy as np
+
+sys.path.append("../tools/")
+from schemacode import macros
 
 
 def run_shell_cmd(command):
@@ -55,7 +59,7 @@ def copy_images(root_path):
     # walk through the src directory to find subdirectories named 'images'
     # and copy contents to the 'images' directory in the duplicate src
     # directory
-    for root, dirs, files in os.walk(root_path):
+    for root, dirs, files in sorted(os.walk(root_path)):
         if 'images' in dirs:
             subdir_list.append(root)
 
@@ -86,13 +90,13 @@ def add_header():
     header = " ".join([title, version_number, build_date])
 
     # creating a header string with latest version number and date
-    header_string = (r"\chead{ " + header + " }")
+    header_string = (r"\fancyhead[L]{ " + header + " }")
 
     with open('header.tex', 'r') as file:
         data = file.readlines()
 
-    # now change the last but 2nd line, note that you have to add a newline
-    data[-2] = header_string+'\n'
+    # insert the header, note that you have to add a newline
+    data[4] = header_string+'\n'
 
     # re-write header.tex file with new header string
     with open('header.tex', 'w') as file:
@@ -112,7 +116,7 @@ def remove_internal_links(root_path, link_type):
         # regex that matches references sections within the same markdown
         primary_pattern = re.compile(r'\[([\w\s.\(\)`*/–]+)\]\(([#\w\-._\w]+)\)')
 
-    for root, dirs, files in os.walk(root_path):
+    for root, dirs, files in sorted(os.walk(root_path)):
         for file in files:
             if file.endswith(".md"):
                 with open(os.path.join(root, file), 'r') as markdown:
@@ -178,6 +182,13 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
         # Ignore number of dashes in the count of characters
         if i != 1:
             nb_of_chars.append([len(elem) for elem in row])
+
+    # sanity check: nb_of_chars is list of list, all nested lists must be of equal length
+    if not len(set([len(i) for i in nb_of_chars])) == 1:
+        print('ERROR for current table ... "nb_of_chars" is misaligned, see:\n')
+        print(nb_of_chars)
+        print('\nSkipping formatting of this table.\n')
+        return table
 
     # Convert the list to a numpy array and computes the maximum number of chars for each column
     nb_of_chars_arr = np.array(nb_of_chars)
@@ -285,7 +296,7 @@ def correct_tables(root_path, debug=False):
     .. [1] https://stackoverflow.com/a/21107911/5201771
     """
     exclude_files = ['index.md', '01-contributors.md']
-    for root, dirs, files in os.walk(root_path):
+    for root, dirs, files in sorted(os.walk(root_path)):
         for file in files:
             if file.endswith(".md") and file not in exclude_files:
                 print('Check tables in {}'.format(os.path.join(root, file)))
@@ -402,6 +413,55 @@ def edit_titlepage():
         data = file.writelines(data)
 
 
+def process_macros(duplicated_src_dir_path):
+    """Search for mkdocs macros in the specification, run the embedded
+    functions, and replace the macros with their outputs.
+
+    Parameters
+    ----------
+    duplicated_src_dir_path : str
+        Location of the files from the specification.
+
+    Notes
+    -----
+    Macros are embedded snippets of Python code that are run as part of the
+    mkdocs build, when generating the website version of the specification.
+
+    Warning
+    -------
+    This function searches specifically for the mkdocs macros plugin's
+    delimiters ("{{" and "}}"). Therefore, those characters should not be used
+    in the specification for any purposes other than running macros.
+    """
+    for root, dirs, files in os.walk(duplicated_src_dir_path):
+        for name in files:
+            # Only edit markdown files
+            if not name.lower().endswith(".md"):
+                continue
+
+            filename = os.path.join(root, name)
+            with open(filename, "r") as fo:
+                contents = fo.read()
+
+            # Replace code snippets in the text with their outputs
+            matches = re.findall("({{.*?}})", contents)
+            for m in matches:
+                # Remove macro delimiters to get *just* the function call
+                function_string = m.strip("{} ")
+                # Replace prefix with module name
+                function_string = function_string.replace(
+                    "MACROS___",
+                    "macros."
+                )
+                # Run the function to get the output
+                new = eval(function_string)
+                # Replace the code snippet with the function output
+                contents = contents.replace(m, new)
+
+            with open(filename, "w") as fo:
+                fo.write(contents)
+
+
 if __name__ == '__main__':
 
     duplicated_src_dir_path = 'src_copy/src'
@@ -409,27 +469,30 @@ if __name__ == '__main__':
     # Step 1: make a copy of the src directory in the current directory
     copy_src()
 
-    # Step 2: copy BIDS_logo to images directory of the src_copy directory
+    # Step 2: run mkdocs macros embedded in markdown files
+    process_macros(duplicated_src_dir_path)
+
+    # Step 3: copy BIDS_logo to images directory of the src_copy directory
     copy_bids_logo()
 
-    # Step 3: copy images from subdirectories of src_copy directory
+    # Step 4: copy images from subdirectories of src_copy directory
     copy_images(duplicated_src_dir_path)
     subprocess.call("mv src_copy/src/images/images/* src_copy/src/images/",
                     shell=True)
 
-    # Step 4: extract the latest version number, date and title
+    # Step 5: extract the latest version number, date and title
     extract_header_string()
     add_header()
 
     edit_titlepage()
 
-    # Step 5: modify changelog to be a level 1 heading to facilitate section
+    # Step 6: modify changelog to be a level 1 heading to facilitate section
     # separation
     modify_changelog()
 
-    # Step 6: remove all internal links
+    # Step 7: remove all internal links
     remove_internal_links(duplicated_src_dir_path, 'cross')
     remove_internal_links(duplicated_src_dir_path, 'same')
 
-    # Step 7: correct number of dashes and fences alignment for rendering tables in PDF
+    # Step 8: correct number of dashes and fences alignment for rendering tables in PDF
     correct_tables(duplicated_src_dir_path)

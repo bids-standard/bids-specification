@@ -15,31 +15,71 @@
     - .kdf
     - .mhd
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
+    acquisition: optional
     run: optional
-    proc: optional
+    processing: optional
     split: optional
 # Second group
 - suffixes:
     - headshape
   extensions:
-    - .pos
-    - .txt
+    - "*"
   entities:
-    sub: required
-    ses: optional
-    acq: optional
-    space: optional
+    subject: required
+    session: optional
+    acquisition: optional
+# Third group
 - suffixes:
     - markers
   extensions:
+    - .sqd
+    - .mrk
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    space: optional
+# Fourth
+- suffixes:
+    - coordsystem
+  extensions:
     - .json
   entities:
-    sub: required
-    ses: optional
-    task: optional
-    acq: optional
-    space: optional
+    subject: required
+    session: optional
+    acquisition: optional
+- suffixes:
+    - channels
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+    processing: optional
+- suffixes:
+    - events
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+- suffixes:
+    - photo
+  extensions:
+    - .jpg
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional

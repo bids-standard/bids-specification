@@ -24,12 +24,13 @@ BIDS governance.
 
 ### Maintainers Group
 
-| Name                                                                           | Time commitment | Scope                 |
-|--------------------------------------------------------------------------------|-----------------|-----------------------|
-| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         |                       |
-| Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |                       |
-| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | 5h/week         | Community development |
-| Taylor Salo ([@tsalo](https://github.com/tsalo))                               | 3h/week         | MRI                   |
+| Name                                                                           | Time commitment | Scope                      |
+|--------------------------------------------------------------------------------|-----------------|----------------------------|
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         | Lead Maintainer            |
+| Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |                            |
+| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | 5h/week         | Community development      |
+| Taylor Salo ([@tsalo](https://github.com/tsalo))                               | 3h/week         | MRI                        |
+| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                            | 3h/week         | Community development, MRI |
 
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.
@@ -85,7 +86,7 @@ and heavily depends on [GitHub Pull Request Review system](https://help.github.c
    Request (PR) to the Repository.
 1. Anyone can open a PR (this action is not limited to Contributors).
 1. PRs adding new Contributors must also add their GitHub names to the
-   [CODEOWNERS](CODEOWNERS) file.
+   [CODEOWNERS](./CODEOWNERS) file.
 1. A PR is eligible to be merged if and only if these conditions are met:
    1. The last commit is at least 5 working days old to allow the community to
       evaluate it.
@@ -98,7 +99,7 @@ and heavily depends on [GitHub Pull Request Review system](https://help.github.c
    1. Does not feature "WIP" in the title (Work in Progress).
    1. Passes all automated tests.
    1. Is not proposing a new release or has been approved by at least one
-      Maintainer (i.e., PRs proposing new releases need to be approved by at
+      Maintainer (that is, PRs proposing new releases need to be approved by at
       least one Maintainer).
 1. A Maintainer can merge any PR - even if it's not eligible to merge according
    to Rule 4.
@@ -137,12 +138,12 @@ and heavily depends on [GitHub Pull Request Review system](https://help.github.c
 1. To facilitate triage of incoming PR you can subscribe to
    notifications for new PRs proposing changes to specific files. To do this
    add your GitHub name next to the file you want to subscribe to in the
-   [CODEOWNERS](CODEOWNERS). This way you will be ask to review each relevant
+   [CODEOWNERS](./CODEOWNERS). This way you will be ask to review each relevant
    PR. Please mind that lack of your review will not prevent the PR from being
    merged so if you think the PR needs your attention, please review it
    promptly or request more time via Request changes.
 1. Releases are triggered the same way as any other change - via a PR.
-1. PRs MUST be merged using the "Create a merge commit" option in GitHub (i.e.,
+1. PRs MUST be merged using the "Create a merge commit" option in GitHub (by using
    the "merge pull request" option). This is necessary for our automatic
    changelog generator to do its work reliably. See the [GitHub help page](https://help.github.com/en/articles/about-merge-methods-on-github)
    for information on merge methods. See the changelog generator implementation

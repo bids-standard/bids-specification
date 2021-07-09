@@ -8,8 +8,14 @@ licenses.
 The terms of any license should be consistent with the informed consent
 obtained from participants and any institutional limitations on distribution.
 
-| Identifier | License name                                           | Description                                                                                                                                                                                                      |
-| ------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PD         | Public Domain                                          | No license required for any purpose; the work is not subject to copyright in any jurisdiction.                                                                                                                   |
-| PDDL       | Open Data Commons Public Domain Dedication and License | License to assign public domain like permissions without giving up the copyright: [http://opendatacommons.org/licenses/pddl/](http://opendatacommons.org/licenses/pddl/)                                         |
-| CC0        | Creative Commons Zero 1.0 Universal.                   | Use this if you are a holder of copyright or database rights, and you wish to waive all your interests in your work worldwide: [http://opendatacommons.org/licenses/cc0/](https://creativecommons.org/about/cc0) |
+| **Identifier** | **License name**                                       | **Description**                                                                                                                |
+| ---------------| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| PD             | Public Domain                                          | No license required for any purpose; the work is not subject to copyright in any jurisdiction.                                 |
+| [PDDL][pddl]   | Open Data Commons Public Domain Dedication and License | License to assign public domain like permissions without giving up the copyright.                                              |
+| [CC0][cc0]     | Creative Commons Zero 1.0 Universal.                   | Use this if you are a holder of copyright or database rights, and you wish to waive all your interests in your work worldwide. |
+
+<!-- Link Definitions -->
+
+[pddl]: https://opendatacommons.org/licenses/pddl/
+
+[cc0]: https://creativecommons.org/publicdomain/zero/1.0/

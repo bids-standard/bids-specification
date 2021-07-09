@@ -27,18 +27,32 @@ misunderstanding we clarify them here.
     by DWI the day after) those can be grouped in one session. Defining multiple
     sessions is appropriate when several identical or similar data acquisitions
     are planned and performed on all -or most- subjects, often in the case of
-    some intervention between sessions (e.g., training).
+    some intervention between sessions (for example, training).
+    In the [PET](04-modality-specific-files/09-positron-emission-tomography.md)
+    context, a session may also indicate a group of related scans,
+    taken in one or more visits.
 
 1.  **Data acquisition** - a continuous uninterrupted block of time during which
     a brain scanning instrument was acquiring data according to particular
     scanning sequence/protocol.
 
-1.  **Data type** - a functional group of different types of data. In BIDS we
-    define eight data types: `func` (task based and resting state functional MRI),
-    `dwi` (diffusion weighted imaging), `fmap` (field inhomogeneity mapping data
-    such as field maps), `anat` (structural imaging such as T1, T2, etc.), `meg`
-    (magnetoencephalography), `eeg` (electroencephalography), `ieeg` (intracranial
-    electroencephalography), `beh` (behavioral).
+1.  **Data type** - a functional group of different types of data.
+    BIDS defines the following data types:
+
+    1.  `func` (task based and resting state functional MRI)
+    1.  `dwi` (diffusion weighted imaging)
+    1.  `fmap` (field inhomogeneity mapping data such as field maps)
+    1.  `anat` (structural imaging such as T1, T2, PD, and so on)
+    1.  `perf` (perfusion)
+    1.  `meg` (magnetoencephalography)
+    1.  `eeg` (electroencephalography)
+    1.  `ieeg` (intracranial electroencephalography)
+    1.  `beh` (behavioral)
+    1.  `pet` (positron emission tomography)
+
+    Data files are contained in a directory named for the data type.
+    In raw datasets, the data type directory is nested inside subject and
+    (optionally) session directories.
 
 1.  **Task** - a set of structured activities performed by the participant.
     Tasks are usually accompanied by stimuli and responses, and can greatly vary
@@ -48,31 +62,64 @@ misunderstanding we clarify them here.
     subject performed multiple conceptually different behaviors (with different
     sets of instructions) they will be considered one (combined) task.
 
-1.  **Event** - a stimulus or subject response recorded during a task. Each
-    event has an onset time and duration. Note that not all tasks will have
-    recorded events (e.g., “resting state”).
+1.  **Event** - something that happens or may be perceived by a test subject as happening
+    at a particular instant during the recording.
+    Events are most commonly associated with on- or offset of stimulus presentations,
+    or with the distinct marker of on- or offset of a subject's response or motor action.
+    Other events may include unplanned incidents
+    (for example, sudden onset of noise and vibrations due to construction work,
+    laboratory device malfunction),
+    changes in task instructions (for example, switching the response hand),
+    or experiment control parameters (for example,
+    changing the stimulus presentation rate over experimental blocks),
+    and noted data feature occurrences (for example, a recording electrode producing noise).
+    In BIDS, each event has an onset time and duration.
+    Note that not all tasks will have recorded events (for example, "resting state").
 
 1.  **Run** - an uninterrupted repetition of data acquisition that has the same
     acquisition parameters and task (however events can change from run to run
     due to different subject response or randomized nature of the stimuli). Run
     is a synonym of a data acquisition.
+    Note that "uninterrupted" may look different by modality due to the nature of the
+    recording.
+    For example, in [MRI](04-modality-specific-files/01-magnetic-resonance-imaging-data.md)
+    or [MEG] (04-modality-specific-files/02-magnetoencephalography.md),
+    if a subject leaves the scanner, the acquisition must be restarted.
+    For some types of [PET](04-modality-specific-files/09-positron-emission-tomography.md) acquisitions,
+    a subject may leave and re-enter the scanner without interrupting the scan.
+
+1.  **Modality** - the category of brain data recorded by a file.
+    For MRI data, different pulse sequences are considered distinct modalities,
+    such as `T1w`, `bold` or `dwi`.
+    For passive recording techniques, such as EEG, MEG or iEEG,
+    the technique is sufficiently uniform to define the modalities `eeg`,
+    `meg` and `ieeg`.
+    When applicable, the modality is indicated in the **suffix**.
+    The modality may overlap with, but should not be confused with
+    the **data type**.
 
 1.  **`<index>`** - a nonnegative integer, possibly prefixed with arbitrary number of
-    0s for consistent indentation, e.g., it is `01` in `run-01` following
+    0s for consistent indentation, for example, it is `01` in `run-01` following
     `run-<index>` specification.
 
 1.  **`<label>`** - an alphanumeric value, possibly prefixed with arbitrary
-    number of 0s for consistent indentation, e.g., it is `rest` in `task-rest`
+    number of 0s for consistent indentation, for example, it is `rest` in `task-rest`
     following `task-<label>` specification.
 
 1.  **`suffix`** - an alphanumeric value, located after the `key-value_` pairs (thus after
-    the final `_`), right before the **File extension**, e.g., it is `eeg` in
+    the final `_`), right before the **File extension**, for example, it is `eeg` in
     `sub-05_task-matchingpennies_eeg.vhdr`.
 
 1.  **File extension** - a portion of the the file name after the left-most
     period (`.`) preceded by any other alphanumeric. For example, `.gitignore` does
     not have a file extension, but the file extension of `test.nii.gz` is `.nii.gz`.
     Note that the left-most period is included in the file extension.
+
+1.  **DEPRECATED** - A "deprecated" entity or metadata field SHOULD NOT be used in the
+    generation of new datasets.
+    It remains in the standard in order to preserve the interpretability of existing datasets.
+    Validating software SHOULD warn when deprecated practices are detected and provide a
+    suggestion for updating the dataset to preserve the curator's intent.
 
 ## Compulsory, optional, and additional data and metadata
 
@@ -116,9 +163,44 @@ data from subject `01`.
 The suffix `eeg` and the extension `.edf` depend on the imaging modality and
 the data format and indicate further details of the file's contents.
 
+Entities within a file name MUST be unique.
+For example, the following file name is not valid because it uses the `acq`
+entity twice:
+`sub-01_acq-laser_acq-uneven_electrodes.tsv`
+
+In cases where entities duplicate metadata,
+the presence of an entity should not be used as a replacement for
+the corresponding metadata field.
+For instance, in echo-planar imaging MRI,
+the [`dir-<label>`](./99-appendices/09-entities.md#dir) entity MAY be used
+to distinguish files with different phase-encoding directions,
+but the file's `PhaseEncodingDirection` can only be specified as metadata.
+
 A summary of all entities in BIDS and the order in which they MUST be
 specified is available in the [entity table](./99-appendices/04-entity-table.md)
 in the appendix.
+
+### Entity-linked file collections
+
+An entity-linked file collection is a set of files that are related to each other
+based on a repetitive acquisition of sequential data
+by changing acquisition parameters one (or multiple) at a time
+or by being inherent components of the same data.
+Entity-linked collections are identified by a common suffix,
+indicating the group of files that should be considered a logical unit.
+Within each collection, files MUST be distinguished from each other by at least one
+entity (for example, `echo`) that corresponds to an altered acquisition parameter
+(`EchoTime`) or that defines a component relationship (for example, `part`).
+Note that these entities MUST be described by the specification and
+the parameter changes they declare MUST NOT invalidate the definition of the accompanying suffix.
+For example, the use of the `echo` entity along with the `T1w` suffix casts doubt on
+the validity of the identified contrast weighting.
+Provided the conditions above are satisfied,
+any suffix (such as `bold`) can identify an entity-linked file collection,
+although certain suffixes are exclusive for this purpose (for example, `MP2RAGE`).
+Use cases concerning this convention are compiled in the
+[file collections](./99-appendices/10-file-collections.md) appendix.
+This convention is mainly intended for but not limited to MRI modalities.
 
 ## Source vs. raw vs. derived data
 
@@ -140,7 +222,7 @@ external source repositories to maximize long term preservation,
 which would suffer if an external repository would not be available anymore.
 This specification currently does not go into the details of
 recommending a particular naming scheme for including different types of
-source data (raw event logs, parameter files, etc. before conversion to BIDS).
+source data (such as the raw event logs or parameter files, before conversion to BIDS).
 However, in the case that these data are to be included:
 
 1.  These data MUST be kept in separate `sourcedata` folder with a similar
@@ -181,7 +263,7 @@ This specification does not prescribe anything about the contents of `sourcedata
 folders in the above example - nor does it prescribe the `sourcedata`,
 `derivatives`, or `rawdata` folder names.
 The above example is just a convention that can be useful for organizing raw,
-source, and derived data while maintaining BIDS compliancy of the raw data
+source, and derived data while maintaining BIDS compliance of the raw data
 folder. When using this convention it is RECOMMENDED to set the `SourceDatasets`
 field in `dataset_description.json` of each subfolder of `derivatives` to:
 
@@ -197,14 +279,18 @@ Derivatives can be stored/distributed in two ways:
 
 1.  Under a `derivatives/` subfolder in the root of the source BIDS dataset
     folder to make a clear distinction between raw data and results of data
-    processing. A data processing pipeline will typically have a dedicated directory
-    under which it stores all of its outputs. Different components of a pipeline can,
-    however, also be stored under different subfolders. There are few restrictions on
-    the directory names; it is RECOMMENDED to use the format `<pipeline>-<variant>` in
-    cases where it is anticipated that the same pipeline will output more than one variant (e.g.,
-    `AFNI-blurring`, `AFNI-noblurring`, etc.). For the sake of consistency, the
-    subfolder name SHOULD be the `GeneratedBy.Name` field in
-    `data_description.json`, optionally followed by a hyphen and a suffix (see
+    processing.
+    A data processing pipeline will typically have a dedicated directory
+    under which it stores all of its outputs.
+    Different components of a pipeline can, however, also be stored under different
+    subfolders.
+    There are few restrictions on the directory names;
+    it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where
+    it is anticipated that the same pipeline will output more than one variant
+    (for example, `AFNI-blurring` and `AFNI-noblurring`).
+    For the sake of consistency, the subfolder name SHOULD be
+    the `GeneratedBy.Name` field in `data_description.json`,
+    optionally followed by a hyphen and a suffix (see
     [Derived dataset and pipeline description][derived-dataset-description]).
 
     Example of derivatives with one directory per pipeline:
@@ -228,7 +314,6 @@ Derivatives can be stored/distributed in two ways:
     <dataset>/derivatives/spm-preproc/sub-0001
     <dataset>/derivatives/spm-preproc/derivatives/spm-stats/sub-0001
     ```
-
 
 1.  As a standalone dataset independent of the source (raw or derived) BIDS
     dataset.
@@ -267,7 +352,7 @@ then Case 1 will be assumed for clarity in templates and examples, but removing
 Case 2.
 In both cases, every derivatives dataset is considered a BIDS dataset and must
 include a `dataset_description.json` file at the root level (see
-[Dataset description][dataset-description].
+[Dataset description][dataset-description]).
 Consequently, files should be organized to comply with BIDS to the full extent
 possible (that is, unless explicitly contradicted for derivatives).
 Any subject-specific derivatives should be housed within each subject’s directory;
@@ -284,7 +369,7 @@ datasets and non-compliant derivatives.
 
 ## The Inheritance Principle
 
-Any metadata file (`.json`, `.bvec`, `.tsv`, etc.) may be defined at any
+Any metadata file (such as `.json`, `.bvec` or `.tsv`) may be defined at any
 directory level, but no more than one applicable file may be defined at a given
 level (Example 1). The values from the top level are inherited by all lower
 levels unless they are overridden by a file at the lower level. For example,
@@ -295,9 +380,9 @@ within that specific series directory specifying the TR for that specific run.
 There is no notion of "unsetting" a key/value pair.
 Once a key/value pair is set in a given level in the dataset, lower down in
 the hierarchy that key/value pair will always have some assigned value.
-Files for a particular participant can exist only at participant level directory, i.e
-`/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any file that is not
-specific to a participant is to be declared only at top level of dataset for eg:
+Files for a particular participant can exist only at participant level directory,
+that is, `/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any file that is not
+specific to a participant is to be declared only at top level of dataset for example:
 `task-sist_bold.json` must be placed under `/dataset/task-sist_bold.json`
 
 Example 1: Two JSON files that are erroneously at the same level
@@ -368,7 +453,7 @@ inherited by the `.json` file at the deeper level (but NOT vice versa!).
 
 **Try to avoid excessive amount of overrides.**  Do not specify a field
 value in the upper levels if lower levels have more or less even
-distribution of multiple possible values. E.g., if a field `X` has one
+distribution of multiple possible values. For example, if a field `X` has one
 value for all `ses-01/` and another for all `ses-02/` it better not to be
 defined at all in the `.json` at the upper level.
 
@@ -385,14 +470,14 @@ acquisition parameters available in DICOM files, we RECOMMEND that users provide
 additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
 Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://github.com/rordenlab/dcm2niix)
-and [dicm2nii](http://www.mathworks.com/matlabcentral/fileexchange/42997-dicom-to-nifti-converter/content/dicm2nii.m)
+and [dicm2nii](https://www.mathworks.com/matlabcentral/fileexchange/42997-xiangruili-dicm2nii)
 DICOM to NIfTI converters. The [BIDS-validator](https://github.com/bids-standard/bids-validator)
 will check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
 
 ### Tabular files
 
-Tabular data MUST be saved as tab delimited values (`.tsv`) files, i.e., CSV
+Tabular data MUST be saved as tab delimited values (`.tsv`) files, that is, CSV
 files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
 line listing the names of all columns (with the exception of
@@ -400,7 +485,7 @@ line listing the names of all columns (with the exception of
 Names MUST be separated with tabs.
 It is RECOMMENDED that the column names in the header of the TSV file are
 written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
-first letter in lower case (e.g., `variable_name`, not `Variable_name`).
+first letter in lower case (for example, `variable_name`, not `Variable_name`).
 String values containing tabs MUST be escaped using double
 quotes. Missing and non-applicable values MUST be coded as `n/a`. Numerical
 values MUST employ the dot (`.`) as decimal separator and MAY be specified
@@ -410,9 +495,15 @@ exponent. TSV files MUST be in UTF-8 encoding.
 Example:
 
 ```Text
-onset duration  response_time correct stop_trial  go_trial
-200 200 0 n/a n/a n/a
+onset	duration	response_time	correct	stop_trial	go_trial
+200	200	0	n/a	n/a	n/a
 ```
+
+**Note**: The TSV examples in this document (like the one above this note)
+are occasionally formatted using space characters instead of tabs to improve
+human readability.
+Directly copying and then pasting these examples from the specification
+for use in new BIDS datasets can lead to errors and is discouraged.
 
 Tabular files MAY be optionally accompanied by a simple data dictionary
 in the form of a JSON [object](https://www.json.org/json-en.html)
@@ -426,13 +517,14 @@ Note that if a field name included in the data dictionary matches a column name 
 then that field MUST contain a description of the corresponding column,
 using an object containing the following fields:
 
-| Field name  | Definition                                                                                                                   |
-| :---------- | :--------------------------------------------------------------------------------------------------------------------------- |
-| LongName    | OPTIONAL. Long (unabbreviated) name of the column.                                                                           |
-| Description | RECOMMENDED. Description of the column.                                                                                      |
-| Levels      | RECOMMENDED. For categorical variables: a dictionary of possible values (keys) and their descriptions (values).              |
-| Units       | RECOMMENDED. Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
-| TermURL     | RECOMMENDED. URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
+| **Key name** | **Requirement level** | **Data type**                           | **Description**                                                                                                 |
+| ------------ | --------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| LongName     | OPTIONAL              | [string][]                              | Long (unabbreviated) name of the column.                                                                        |
+| Description  | RECOMMENDED           | [string][]                              | Description of the column.                                                                                      |
+| Levels       | RECOMMENDED           | [object][] of [strings][]               | For categorical variables: An object of possible values (keys) and their descriptions (values).                 |
+| Units        | RECOMMENDED           | [string][]                              | Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
+| TermURL      | RECOMMENDED           | [string][]                              | URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
+| HED          | OPTIONAL              | [object][] of [strings][] or [string][] | Hierarchical Event Descriptor (HED) information, see: [Appendix III](./99-appendices/03-hed.md) for details.    |
 
 Please note that while both `Units` and `Levels` are RECOMMENDED, typically only one
 of these two fields would be specified for describing a single TSV file column.
@@ -454,7 +546,7 @@ Example:
   "bmi": {
     "LongName": "Body mass index",
     "Units": "kg/m^2",
-    "TermURL": "http://purl.bioontology.org/ontology/SNOMEDCT/60621009"
+    "TermURL": "https://purl.bioontology.org/ontology/SNOMEDCT/60621009"
   }
 }
 ```
@@ -463,12 +555,14 @@ Example:
 
 JavaScript Object Notation (JSON) files MUST be used for storing key/value
 pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
-format can be found here: [http://json.org/](http://json.org/). Several editors
-have built-in support for JSON syntax highlighting that aids manual creation of
-such files. An online editor for JSON with built-in validation is available at:
-[http://jsoneditoronline.org](http://jsoneditoronline.org).
+format can be found at [https://www.json.org/](https://www.json.org/),
+and at [https://tools.ietf.org/html/std90](https://tools.ietf.org/html/std90).
+Several editors have built-in support for JSON syntax highlighting that aids
+manual creation of such files.
+An online editor for JSON with built-in validation is available at
+[https://jsoneditoronline.org](https://jsoneditoronline.org).
 It is RECOMMENDED that keys in a JSON file are written in [CamelCase](https://en.wikipedia.org/wiki/Camel_case)
-with the first letter in upper case (e.g., `SamplingFrequency`, not
+with the first letter in upper case (for example, `SamplingFrequency`, not
 `samplingFrequency`). Note however, when a JSON file is used as an accompanying
 sidecar file for a [TSV file](#tabular-files), the keys linking a TSV column
 with their description in the JSON file need to follow the exact formatting
@@ -502,19 +596,35 @@ for more information.
 
 ## Participant names and other labels
 
-BIDS allows for custom user-defined `<label>`s and `<index>`es e.g.,
-for naming of participants, sessions, acquisition schemes, etc. Note
-that they MUST consist only of allowed characters as described in
-[Definitions](02-common-principles.md#definitions) above. In `<index>`es
-we RECOMMEND using zero padding (e.g., `01` instead of `1` if you have more than
-nine subjects) to make alphabetical sorting more intuitive. Note that
-zero padding SHOULD NOT be used to merely maintain uniqueness
+BIDS allows for custom user-defined `<label>`s and `<index>`es for example,
+for naming of participants, sessions, acquisition schemes.
+Note that they MUST consist only of allowed characters as described in
+[Definitions](02-common-principles.md#definitions) above.
+In `<index>`es we RECOMMEND using zero padding (for example, `01` instead of `1`
+if you have more than nine subjects) to make alphabetical sorting more intuitive.
+Note that zero padding SHOULD NOT be used to merely maintain uniqueness
 of `<index>`es.
 
 Please note that a given label or index is distinct from the "prefix"
 it refers to. For example `sub-01` refers to the `sub` entity (a
 subject) with the label `01`. The `sub-` prefix is not part of the subject
 label, but must be included in file names (similarly to other key names).
+
+## Uniform Resource Indicator
+
+A Uniform Resource Indicator (URI) is a string referring to a resource and SHOULD
+have the form `<scheme>:[//<authority>]<path>[?<query>][#<fragment>]`, as specified
+in [RFC 3986](https://tools.ietf.org/html/rfc3986).
+This applies to URLs and other common URIs, including Digital Object Identifiers (DOIs),
+which may be fully specified as `doi:<path>`,
+for example, [doi:10.5281/zenodo.3686061](https://doi.org/10.5281/zenodo.3686061).
+A given resource may have multiple URIs.
+When selecting URIs to add to dataset metadata, it is important to consider
+specificity and persistence.
+
+Several fields are designated for DOIs, for example, `DatasetDOI` in `dataset_description.json`.
+DOI values SHOULD be fully specified URIs such as `doi:10.18112/openneuro.ds000001.v1.0.0`.
+Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED][deprecated].
 
 ## Units
 
@@ -543,6 +653,8 @@ For additional rules, see below:
     be converted to seconds.
 
 -   Frequency SHOULD be expressed in Hertz.
+
+-   Arbitrary units SHOULD be indicated with the string `"arbitrary"`.
 
 Describing dates and timestamps:
 
@@ -580,7 +692,7 @@ Describing dates and timestamps:
 
 -   WARNING: The Neuromag/Elekta/MEGIN file format for MEG (`.fif`) does *not*
     support recording dates earlier than `1902` roughly.
-    Some analysis software packages (e.g., MNE-Python) handle their data as `.fif`
+    Some analysis software packages (for example, MNE-Python) handle their data as `.fif`
     internally and will break if recording dates are specified prior to `1902`,
     even if the original data format is not `.fif`.
     See [MEG-file-formats](./99-appendices/06-meg-file-formats.md#recording-dates-in-fif-files)
@@ -589,7 +701,7 @@ Describing dates and timestamps:
 -   Age SHOULD be given as the number of years since birth at the time of
     scanning (or first scan in case of multi session datasets). Using higher
     accuracy (weeks) should in general be avoided due to privacy protection,
-    unless when appropriate given the study goals, e.g., when scanning babies.
+    unless when appropriate given the study goals, for example, when scanning babies.
 
 ## Directory structure
 
@@ -601,6 +713,7 @@ individual files see descriptions in the next section:
 
 ```Text
 sub-control01/
+    sub-control01_scans.tsv
     anat/
         sub-control01_T1w.nii.gz
         sub-control01_T1w.json
@@ -621,7 +734,6 @@ sub-control01/
         sub-control01_phasediff.nii.gz
         sub-control01_phasediff.json
         sub-control01_magnitude1.nii.gz
-        sub-control01_scans.tsv
 code/
     deface.py
 derivatives/
@@ -652,4 +764,13 @@ to suppress warnings or provide interpretations of your file names.
 <!-- Link Definitions -->
 
 [dataset-description]: 03-modality-agnostic-files.md#dataset-description
+
 [derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description
+
+[string]: https://www.w3schools.com/js/js_json_syntax.asp
+
+[strings]: https://www.w3schools.com/js/js_json_syntax.asp
+
+[object]: https://www.json.org/json-en.html
+
+[deprecated]: ./02-common-principles.md#definitions

@@ -1,42 +1,58 @@
 ---
-# First group
+# Func
 - suffixes:
     - bold
     - cbv
-    - phase
     - sbref
   extensions:
     - .nii.gz
     - .nii
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
-    ce: optional
-    rec: optional
-    dir: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
     run: optional
     echo: optional
+    part: optional
     coil: optional
-# Second group
+# Phase (deprecated)
+- suffixes:
+    - phase  # deprecated
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
+    run: optional
+    echo: optional
+# Events
 - suffixes:
     - events
   extensions:
     - .tsv
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
-    ce: optional
-    rec: optional
-    dir: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
     run: optional
-    echo: optional
-# Third group
+# Timeseries
 - suffixes:
     - physio
     - stim
@@ -44,10 +60,12 @@
     - .tsv.gz
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
-    rec: optional
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
     run: optional
     recording: optional

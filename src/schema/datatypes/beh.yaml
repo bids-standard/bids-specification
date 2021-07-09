@@ -7,10 +7,10 @@
     - .tsv.gz
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
+    acquisition: optional
     run: optional
     recording: optional
 # Second group
@@ -21,8 +21,8 @@
     - .tsv
     - .json
   entities:
-    sub: required
-    ses: optional
+    subject: required
+    session: optional
     task: required
-    acq: optional
+    acquisition: optional
     run: optional

@@ -16,37 +16,48 @@ def build_pdf(filename):
         Name of the output file.
 
     """
+    # Files that are not supposed to be built into the PDF
+    EXCLUDE = ["./index.md", "./schema/README.md", "./pregh-changes.md"]
+
     # Get all input files
     markdown_list = []
     for root, dirs, files in os.walk('.'):
         for file in files:
-            if file.endswith(".md") and file != 'index.md':
-                markdown_list.append(os.path.join(root, file))
-            elif file == 'index.md':
-                index_page = os.path.join(root, file)
+            fpath = os.path.join(root, file)
+            if fpath.endswith(".md") and fpath not in EXCLUDE:
+                markdown_list.append(fpath)
+            elif fpath.endswith('index.md'):
+                # Special role for index.md
+                index_page = fpath
 
     # Prepare the command options
     cmd = [
         'pandoc',
-        '--from=markdown_github',
+        '--from=markdown_github+yaml_metadata_block',
         '--include-before-body=./cover.tex',
-        '--toc',
-        '--listings',
         '--include-in-header=./header.tex',
         '--include-in-header=./header_setup.tex',
-        '-V documentclass=report',
-        '-V linkcolor:blue',
-        '-V geometry:a4paper',
-        '-V geometry:margin=2cm',
         '--pdf-engine=xelatex',
         '--output={}'.format(filename),
     ]
 
+    # location of this file: This is also the working directory when
+    # the pdf is being built using `cd build_pdf_src` and then
+    # `bash build_pdf.sh`
+    root = pathlib.Path(__file__).parent.absolute()
+
+    # Resources are searched relative to the working directory, but
+    # we can add additional search paths using <path>:<another path>, ...
+    # When in one of the 99-appendices/ files there is a reference to
+    # "../04-modality-specific-files/images/...", then we need to use
+    # 99-appendices/ as a resource-path so that the relative files can
+    # be found.
+    cmd += [f'--resource-path=.:{str(root / "99-appendices")}']
+
     # Add input files to command
     # The filenames in `markdown_list` will ensure correct order when sorted
-    root = pathlib.Path(__file__).parent.absolute()
     cmd += [str(root / index_page)]
-    cmd += [str(root / i) for i in sorted(markdown_list)]
+    cmd += [str(root / i) for i in ["../../metadata.yml"] + sorted(markdown_list)]
 
     # print and run
     print('running: \n\n' + '\n'.join(cmd))

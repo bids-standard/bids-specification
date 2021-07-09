@@ -10,11 +10,11 @@ JSON file is also REQUIRED.
 Each derivative type defines their own set of fields, but all of them
 share the following (non-required) ones:
 
-| **Key name** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Description  | RECOMMENDED. Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Sources      | OPTIONAL. A list of files with the paths specified relative to dataset root; these files were directly used in the creation of this derivative data file. For example, if a derivative A is used in the creation of another derivative B, which is in turn used to generate C in a chain of A->B->C, C should only list B in `Sources`, and B should only list A in `Sources`. However, in case both X and Y are directly used in the creation of Z, then Z should list X and Y in `Sources`, regardless of whether X was used to generate Y. |
-| RawSources   | OPTIONAL. A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **Key name** | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------ | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description  | RECOMMENDED           | [string][]               | Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Sources      | OPTIONAL              | [array][] of [strings][] | A list of files with the paths specified relative to dataset root; these files were directly used in the creation of this derivative data file. For example, if a derivative A is used in the creation of another derivative B, which is in turn used to generate C in a chain of A->B->C, C should only list B in `Sources`, and B should only list A in `Sources`. However, in case both X and Y are directly used in the creation of Z, then Z should list X and Y in `Sources`, regardless of whether X was used to generate Y. |
+| RawSources   | OPTIONAL              | [array][] of [strings][] | A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 ### Examples
 
@@ -71,16 +71,16 @@ The `space` entity may take any value in [Image-Based Coordinate Systems][coords
 If the `space` entity is omitted, or the space is not in the [Standard template
 identifiers][templates] table, then the `SpatialReference` metadata is REQUIRED.
 
-| **Key name**     | **Description**                                                                                                                                                                                                                                                                                                          |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| SpatialReference | RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise. For images with a single reference, the value MUST be a single string. For images with multiple references, such as surface and volume references, a JSON object MUST be used. |
+| **Key name**     | **Requirement level**                                                                                                                     | **Data type**            | **Description**                                                                                                                                                                                    |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SpatialReference | RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise. | [string][] or [object][] | For images with a single reference, the value MUST be a single string. For images with multiple references, such as surface and volume references, a JSON object MUST be used. See examples below. |
 
 ### SpatialReference key allowed values
 
-| **Value**      | **Description**                                                                                                               |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `orig`         | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
-| URI or path    | This can be used to point to a specific file. Paths are written relative to the root of the derivative dataset.               |
+| **Value**   | **Description**                                                                                                               |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `orig`      | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
+| URI or path | This can be used to point to a specific file. Paths are written relative to the root of the derivative dataset.               |
 
 In the case of images with multiple references, an [object][] must link the relevant structures to reference files.
 If a single volumetric reference is used for multiple structures, the `VolumeReference` key MAY be used to reduce duplication.
@@ -142,13 +142,13 @@ cannot be considered preprocessed or cleaned data.
 
 Examples of preprocessing:
 
- -  Motion-corrected, temporally denoised, and transformed to MNI space BOLD series
- -  Inhomogeneity corrected and skull stripped T1w files
- -  Motion-corrected DWI files
- -  Time-domain filtered EEG data
- -  MaxFilter (for example, SSS) cleaned MEG data
+-   Motion-corrected, temporally denoised, and transformed to MNI space BOLD series
+-   Inhomogeneity corrected and skull stripped T1w files
+-   Motion-corrected DWI files
+-   Time-domain filtered EEG data
+-   MaxFilter (for example, SSS) cleaned MEG data
 
-The `space` keyword is recomended to distinguish files with different underlying
+The `space` keyword is recommended to distinguish files with different underlying
 coordinate systems or registered to different reference maps.
 See [Spatial references](#spatial-references) for details.
 The `desc` (description) keyword is a general purpose field with freeform values,
@@ -180,11 +180,19 @@ pipeline2/
 
 All REQUIRED metadata fields coming from a derivative file’s source file(s) MUST
 be propagated to the JSON description of the derivative unless the processing
-makes them invalid (e.g., if a source 4D image is averaged to create a single
+makes them invalid (for example, if a source 4D image is averaged to create a single
 static volume, a `RepetitionTime` property would no longer be relevant).
 
 <!-- Link Definitions -->
 
 [coordsys]: ../99-appendices/08-coordinate-systems.md#image-based-coordinate-systems
+
 [templates]: ../99-appendices/08-coordinate-systems.md#standard-template-identifiers
+
 [object]: https://www.json.org/json-en.html
+
+[string]: https://www.w3schools.com/js/js_json_syntax.asp
+
+[strings]: https://www.w3schools.com/js/js_json_syntax.asp
+
+[array]: https://www.w3schools.com/js/js_json_arrays.asp

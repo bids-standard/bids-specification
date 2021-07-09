@@ -1,18 +1,20 @@
 # Longitudinal and multi-site studies
 
 Multiple sessions (visits) are encoded by adding an extra layer of directories
-and file names in the form of `ses-<label>`. Session label can consist
-only of alphanumeric characters `[a-zA-Z0-9]` and should be consistent across
-subjects. If numbers are used in session labels we recommend using zero padding
+and file names in the form of `ses-<label>`.
+Session labels MUST consist only of alphanumeric characters `[a-zA-Z0-9]`
+and SHOULD be consistent across subjects.
+If numbers are used in session labels we RECOMMEND using zero padding
 (for example `ses-01`, `ses-11` instead of `ses-1`, `ses-11`). This makes
 results of alphabetical sorting more intuitive. Acquisition time of session can
-be defined in the sessions file (see below for details).
+be defined in the [sessions file](#sessions-file).
 
-The extra session layer (at least one `/ses-<label>` subfolder) should
+The extra session layer (at least one `/ses-<label>` subfolder) SHOULD
 be added for all subjects if at least one subject in the dataset has more than
-one session. Skipping the session layer for only some subjects in the dataset is
-not allowed. If a `/ses-<label>` subfolder is included as part of the
-directory hierarchy, then the same `ses-<label>` tag must also be
+one session.
+If a `/ses-<label>` subfolder is included as part of the directory hierarchy,
+then the same [`ses-<label>`](./99-appendices/09-entities.md#ses)
+key/value pair MUST also be
 included as part of the file names themselves.
 
 ```Text
@@ -71,11 +73,11 @@ sub-<label>/
 Optional: Yes
 
 In case of multiple sessions there is an option of adding additional
-participant key files describing variables changing between sessions. In such
-case one file per participant should be added. These files need to include
-compulsory `session_id` column and describe each session by one and only one
-row. Column names in per participant key files have to be different from group
-level participant key column names.
+`sessions.tsv` files describing variables changing between sessions.
+In such case one file per participant SHOULD be added.
+These files MUST include a `session_id` column and describe each session by one and only one row.
+Column names in `sessions.tsv` files MUST be different from group level participant key column names in the
+[`participants.tsv` file](./03-modality-agnostic-files.md#participants-file).
 
 `_sessions.tsv` example:
 
@@ -90,7 +92,7 @@ ses-followup  2009-06-17T13:45:30 110
 
 This version of the BIDS specification does not explicitly cover studies with
 data coming from multiple sites or multiple centers (such extension is planned
-in [BIDS `2.0`](https://docs.google.com/document/d/1LEgsMiisGDe1Gv-hBp1EcLmoz7AlKj6VYULUgDD3Zdw/)).
+in [BIDS `2.0`](https://github.com/bids-standard/bids-2-devel).
 There are however ways to model your data without any loss in terms of metadata.
 
 ### Treat each site/center as a separate dataset
@@ -108,5 +110,5 @@ which site each subjects comes from you can add a `site` column in the
 analyze all of the subjects together in one dataset. One caveat is that subjects
 from all sites will have to have unique labels. To enforce that and improve
 readability you can use a subject label prefix identifying the site. For example
-`sub-NUY001`, `sub-MIT002`, `sub-MPG002` etc. Remember that hyphens and
+`sub-NUY001`, `sub-MIT002`, `sub-MPG002` and so on. Remember that hyphens and
 underscores are not allowed in subject labels.

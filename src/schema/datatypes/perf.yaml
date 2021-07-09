@@ -1,0 +1,40 @@
+---
+# First group
+- suffixes:
+    - asl
+    - m0scan
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    reconstruction: optional
+    direction: optional
+    run: optional
+# Second group
+- suffixes:
+    - aslcontext
+  extensions:
+    - .tsv
+    - .json
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    reconstruction: optional
+    direction: optional
+    run: optional
+# Third group
+- suffixes:
+    - asllabeling
+  extensions:
+    - .jpg
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    reconstruction: optional
+    run: optional
