@@ -1,5 +1,6 @@
 ---
-name:
-description:
-type:
-unit:
+name: hplc_recovery_fractions
+description: |
+  HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC).
+type: number
+unit: arbitrary

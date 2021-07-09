@@ -1,5 +1,6 @@
 ---
-name:
-description:
-type:
-unit:
+name: dimension
+description: |
+  Size of the group (grid/strip/probe) that this electrode belongs to.
+  Must be of form `[AxB]` with the smallest dimension first (for example, `[1x8]`).
+type: string

@@ -1,5 +1,8 @@
 ---
-name:
-description:
-type:
-unit:
+name: hemisphere
+description: |
+  The hemisphere in which the electrode is placed, one of `['L' or 'R']` (use capital).
+type: string
+enum:
+  - L
+  - R

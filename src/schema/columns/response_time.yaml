@@ -8,4 +8,5 @@ anyOf:
   - type: number
     unit: s
   - type: string
-    pattern: ^n/a$
+    enum:
+      - n/a
