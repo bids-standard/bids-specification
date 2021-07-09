@@ -179,6 +179,7 @@ part:
   format: label
 coil:
   name: Coil
+  entity: coil
   description: |
     The `coil-<label>` key/value can be used to distinguish coil-specific data.
     Typically it is used for sequences not employing coil combination
