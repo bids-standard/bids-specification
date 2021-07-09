@@ -213,7 +213,7 @@ contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the
 JSON file, with the same label.
 
 The OPTIONAL [`coil-<label>`](../99-appendices/09-entities.md#coil) key/value can be used to distinguish coil-specific data.
-Typically it is used for sequences not employing coil combination (e.g., SWI).
+Typically it is used for sequences not employing coil combination (for example, SWI).
 When the file contains data from a single coil, `coil-<label>` SHOULD be provided.
 The key `CoilString` MAY also be added in the JSON file, with a corresponding
 identifier for the coil.
