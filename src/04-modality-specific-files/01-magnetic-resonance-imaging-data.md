@@ -195,7 +195,7 @@ whenever possible. See also
 Anatomical (structural) data acquired for that participant. Currently supported
 non-parametric structural MR images include:
 
-{{ MACROS__make_suffix_table(
+{{ MACROS___make_suffix_table(
       [
          "T1w",
          "T2w",
@@ -313,7 +313,7 @@ different reconstruction algorithms (for example ones using motion correction).
 Structural MR images whose intensity is represented in a non-arbitrary scale
 constitute parametric maps. Currently supported parametric maps include:
 
-{{ MACROS__make_suffix_table(
+{{ MACROS___make_suffix_table(
       [
          "T1map",
          "R1map",
@@ -379,7 +379,7 @@ They are, however, still valid suffixes, to maintain backwards compatibility.
 The following suffixes are valid, but SHOULD NOT be used for new BIDS compatible
 datasets (created after version 1.5.0.):
 
-{{ MACROS__make_suffix_table(
+{{ MACROS___make_suffix_table(
       [
          "T2star",
          "FLASH",
@@ -398,7 +398,7 @@ datasets (created after version 1.5.0.):
 
 Currently supported image contrasts include:
 
-{{ MACROS__make_suffix_table(
+{{ MACROS___make_suffix_table(
       [
          "bold",
          "cbv",
@@ -606,7 +606,7 @@ participant, task and run takes precedence.
 Diffusion-weighted imaging data acquired for a participant.
 Currently supported image types include:
 
-{{ MACROS__make_suffix_table(
+{{ MACROS___make_suffix_table(
       [
          "dwi",
          "sbref",
@@ -954,7 +954,7 @@ The current version of this standard considers four different scenarios:
 These four different types of field mapping strategies can be encoded
 using the following image types:
 
-{{ MACROS__make_suffix_table(
+{{ MACROS___make_suffix_table(
       [
          "magnitude",
          "magnitude1",
