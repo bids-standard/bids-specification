@@ -252,15 +252,15 @@ which we divide into several categories:
    }
 ) }}
 
-| **Key name**    | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                      |
-| --------------- | --------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| TimeZero        | REQUIRED              | [string][]               | Time zero to which all scan and/or blood measurements have been adjusted to, in the unit "hh:mm:ss". This should be equal to `InjectionStart` or `ScanStart`.                                        |
-| ScanStart       | REQUIRED              | [number][]               | Time of start of scan with respect to `TimeZero` in the default unit seconds.                                                                                                                        |
-| InjectionStart  | REQUIRED              | [number][]               | Time of start of injection with respect to `TimeZero` in the default unit seconds. This corresponds to DICOM Tag 0018, 1042 `Contrast/Bolus Start Time` converted to seconds relative to `TimeZero`. |
-| FrameTimesStart | REQUIRED              | [array][] of [numbers][] | Start times for all frames relative to `TimeZero` in default unit seconds.                                                                                                                           |
-| FrameDuration   | REQUIRED              | [array][] of [numbers][] | Time duration of each frame in default unit seconds. This corresponds to DICOM Tag 0018, 1242 `Actual Frame Duration` converted to seconds.                                                          |
-| ScanDate        | RECOMMENDED           | [string][]               | Date of scan in the default unit `"YYYY-MM-DD[Z]"`, with the Z indicator being optional for indicating UTC timezone (see [Units](../02-common-principles.md#units)).                                 |
-| InjectionEnd    | RECOMMENDED           | [number][]               | Time of end of injection with respect to `TimeZero` in the default unit seconds.                                                                                                                     |
+| **Key name**    | **Requirement level**    | **Data type**            | **Description**                                                                                                                                                                                                       |
+| --------------- | ------------------------ | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                  |
+| TimeZero        | REQUIRED                 | [string][]               | Time zero to which all scan and/or blood measurements have been adjusted to, in the unit "hh:mm:ss". This should be equal to `InjectionStart` or `ScanStart`.                                                         |
+| ScanStart       | REQUIRED                 | [number][]               | Time of start of scan with respect to `TimeZero` in the default unit seconds.                                                                                                                                         |
+| InjectionStart  | REQUIRED                 | [number][]               | Time of start of injection with respect to `TimeZero` in the default unit seconds. This corresponds to DICOM Tag 0018, 1042 `Contrast/Bolus Start Time` converted to seconds relative to `TimeZero`.                  |
+| FrameTimesStart | REQUIRED                 | [array][] of [numbers][] | Start times for all frames relative to `TimeZero` in default unit seconds.                                                                                                                                            |
+| FrameDuration   | REQUIRED                 | [array][] of [numbers][] | Time duration of each frame in default unit seconds. This corresponds to DICOM Tag 0018, 1242 `Actual Frame Duration` converted to seconds.                                                                           |
+| InjectionEnd    | RECOMMENDED              | [number][]               | Time of end of injection with respect to `TimeZero` in the default unit seconds.                                                                                                                                      |
+| ScanDate        | [DEPRECATED][deprecated] | [string][]               | Date of scan in the format `"YYYY-MM-DD[Z]"`. This field is DEPRECATED, and this metadata SHOULD be recorded in the `acq_time` column of the corresponding [Scans file](../03-modality-agnostic-files.md#scans-file). |
 
 We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see [Units](../02-common-principles.md#units)).
 
@@ -289,26 +289,27 @@ We refer to the common principles for the standards for describing dates and tim
    }
 ) }}
 
-| **Key name**                         | **Requirement level** | **Data type**                          | **Description**                                                                                                 |
-| ------------------------------------ | --------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| AcquisitionMode                      | REQUIRED              | [string][]                             | Type of acquisition of the PET data (for example, `"list mode"`)                                                |
-| ImageDecayCorrected                  | REQUIRED              | [boolean][]                            | Boolean flag specifying whether the image data have been decay-corrected.                                       |
-| ImageDecayCorrectionTime             | REQUIRED              | [number][]                             | Point in time from which the decay correction was applied with respect to TimeZero in the default unit seconds. |
-| ReconMethodName                      | REQUIRED              | [string][]                             | Reconstruction method or algorithm (for example, `"3d-op-osem"`).                                               |
-| ReconMethodParameterLabels           | REQUIRED              | [array][] of [strings][]               | Names of reconstruction parameters (for example, `["subsets", "iterations"]`)                                   |
-| ReconMethodParameterUnits            | REQUIRED              | [array][] of [strings][]               | Unit of reconstruction parameters (for example, `["none", "none"]`).                                            |
-| ReconMethodParameterValues           | REQUIRED              | [array][] of [numbers][]               | Values of reconstruction parameters (for example, `[21, 3]`)                                                    |
-| ReconFilterType                      | REQUIRED              | [string][] or [array][] of [strings][] | Type of post-recon smoothing (for example, `["Shepp"]`)                                                         |
-| ReconFilterSize                      | REQUIRED              | [number][] or [array][] of [numbers][] | Kernel size of post-recon filter (FWHM) in default units `"mm"`.                                                |
-| AttenuationCorrection                | REQUIRED              | [string][]                             | Short description of the attenuation correction method used.                                                    |
-| ReconMethodImplementationVersion     | RECOMMENDED           | [string][]                             | Identification for the software used, such as name and version.                                                 |
-| AttenuationCorrectionMethodReference | RECOMMENDED           | [string][]                             | Reference paper for the attenuation correction method used.                                                     |
-| ScaleFactor                          | RECOMMENDED           | [array][] of [numbers][]               | Scale factor for each frame.                                                                                    |
-| ScatterFraction                      | RECOMMENDED           | [array][] of [numbers][]               | Scatter fraction for each frame (Units: 0-100%).                                                                |
-| DecayCorrectionFactor                | RECOMMENDED           | [array][] of [numbers][]               | Decay correction factor for each frame.                                                                         |
-| PromptRate                           | RECOMMENDED           | [array][] of [numbers][]               | Prompt rate for each frame (same units as `Units`, for example, `"Bq/mL"`).                                     |
-| RandomRate                           | RECOMMENDED           | [array][] of [numbers][]               | Random rate for each frame (same units as `Units`, for example, `"Bq/mL"`).                                     |
-| SinglesRate                          | RECOMMENDED           | [array][] of [numbers][]               | Singles rate for each frame (same units as `Units`, for example, `"Bq/mL"`).                                    |
+|             **Key name**             | **Requirement level** |             **Data type**              |                                                  **Description**                                                                 |
+| ------------------------------------ | --------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| AcquisitionMode                      | REQUIRED              | [string][]                             | Type of acquisition of the PET data (for example, `"list mode"`)                                                                 |
+| ImageDecayCorrected                  | REQUIRED              | [boolean][]                            | Boolean flag specifying whether the image data have been decay-corrected.                                                        |
+| ImageDecayCorrectionTime             | REQUIRED              | [number][]                             | Point in time from which the decay correction was applied with respect to TimeZero in the default unit seconds.                  |
+| ReconMethodName                      | REQUIRED              | [string][]                             | Reconstruction method or algorithm (for example, `"3d-op-osem"`).                                                                |
+| ReconMethodParameterLabels           | REQUIRED              | [array][] of [strings][]               | Names of reconstruction parameters (for example, `["subsets", "iterations"]`)                                                    |
+| ReconMethodParameterUnits            | REQUIRED              | [array][] of [strings][]               | Unit of reconstruction parameters (for example, `["none", "none"]`).                                                             |
+| ReconMethodParameterValues           | REQUIRED              | [array][] of [numbers][]               | Values of reconstruction parameters (for example, `[21, 3]`)                                                                     |
+| ReconFilterType                      | REQUIRED              | [string][] or [array][] of [strings][] | Type of post-recon smoothing (for example, `["Shepp"]`)                                                                          |
+| ReconFilterSize                      | REQUIRED              | [number][] or [array][] of [numbers][] | Kernel size of post-recon filter (FWHM) in default units `"mm"`.                                                                 |
+| AttenuationCorrection                | REQUIRED              | [string][]                             | Short description of the attenuation correction method used.                                                                     |
+| ReconMethodImplementationVersion     | RECOMMENDED           | [string][]                             | Identification for the software used, such as name and version.                                                                  |
+| AttenuationCorrectionMethodReference | RECOMMENDED           | [string][]                             | Reference paper for the attenuation correction method used.                                                                      |
+| ScaleFactor                          | RECOMMENDED           | [array][] of [numbers][]               | Scale factor for each frame.                                                                                                     |
+| ScatterFraction                      | RECOMMENDED           | [array][] of [numbers][]               | Scatter fraction for each frame (Units: 0-100%).                                                                                 |
+| DecayCorrectionFactor                | RECOMMENDED           | [array][] of [numbers][]               | Decay correction factor for each frame.                                                                                          |
+| DoseCalibrationFactor                | RECOMMENDED           | [number][]                             | Multiplication factor used to transform raw data (in counts/sec) to meaningful unit (Bq/ml). Corresponds to DICOM Tag 0054,1322. |
+| PromptRate                           | RECOMMENDED           | [array][] of [numbers][]               | Prompt rate for each frame (same units as `Units`, for example, `"Bq/mL"`).                                                      |
+| RandomRate                           | RECOMMENDED           | [array][] of [numbers][]               | Random rate for each frame (same units as `Units`, for example, `"Bq/mL"`).                                                      |
+| SinglesRate                          | RECOMMENDED           | [array][] of [numbers][]               | Singles rate for each frame (same units as `Units`, for example, `"Bq/mL"`).                                                     |
 
 All reconstruction-specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
 
@@ -530,3 +531,4 @@ time plasma_radioactivity whole_blood_radioactivity metabolite_parent_fraction m
 [numbers]: https://www.w3schools.com/js/js_json_datatypes.asp
 [boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
 [array]: https://www.w3schools.com/js/js_json_arrays.asp
+[deprecated]: ../02-common-principles.md#definitions
