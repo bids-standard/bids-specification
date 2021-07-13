@@ -129,94 +129,109 @@ which we divide into several categories:
 
 #### Scanner Hardware
 
-| **Key name**                | **Requirement level** | **Data type** | **Description**                                                                                                                                                                          |
-| --------------------------- | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Manufacturer                | REQUIRED              | [string][]    | Scanner manufacturer (for example, `"Siemens"`).                                                                                                                                         |
-| ManufacturersModelName      | REQUIRED              | [string][]    | PET scanner model name (for example, `"mMR Biograph"`).                                                                                                                                  |
-| Units                       | REQUIRED              | [string][]    | Unit of the image file; please see BIDS main spec section 6. SI unit for radioactivity (Becquerel) should be used (for example, `"Bq/mL"`). Corresponds to DICOM Tag 0054, 1001 `Units`. |
-| InstitutionName             | RECOMMENDED           | [string][]    | The name of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0080 `InstitutionName`.                                     |
-| InstitutionAddress          | RECOMMENDED           | [string][]    | The address of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`.                               |
-| InstitutionalDepartmentName | RECOMMENDED           | [string][]    | The department in the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.                 |
-| BodyPart                    | RECOMMENDED           | [string][]    | Body part of the organ / body region scanned. Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.                                                                                  |
+{{ MACROS___make_metadata_table(
+   {
+      "Manufacturer": ("REQUIRED", "Corresponds to DICOM Tag 0008, 0070 `Manufacturer`."),
+      "ManufacturersModelName": ("REQUIRED", "Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`."),
+      "Units": (
+         "REQUIRED",
+         'SI unit for radioactivity (Becquerel) should be used '
+         '(for example, `"Bq/mL"`). '
+         'Corresponds to DICOM Tag 0054, 1001 `Units`.',
+      ),
+      "InstitutionName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0080 `InstitutionName`."),
+      "InstitutionAddress": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`."),
+      "InstitutionalDepartmentName": "RECOMMENDED",
+      "BodyPart": "RECOMMENDED",
+   }
+) }}
 
 #### Radiochemistry
 
-| **Key name**                  | **Requirement level**                                                    | **Data type** | **Description**                                                                                                                                                                                                                                                                |
-| ----------------------------- | ------------------------------------------------------------------------ | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| TracerName                    | REQUIRED                                                                 | [string][]    | Name of the tracer compound used (for example, `"CIMBI-36"`)                                                                                                                                                                                                                   |
-| TracerRadionuclide            | REQUIRED                                                                 | [string][]    | Radioisotope labelling tracer (for example, `"C11"`).                                                                                                                                                                                                                          |
-| InjectedRadioactivity         | REQUIRED                                                                 | [number][]    | Total amount of radioactivity injected into the patient (for example, 400). For bolus-infusion experiments, this value should be the sum of all injected radioactivity originating from both bolus and infusion. Corresponds to DICOM Tag 0018, 1074 Radionuclide Total Dose.  |
-| InjectedRadioactivityUnits    | REQUIRED                                                                 | [string][]    | Unit format of the specified injected radioactivity (for example, `"MBq"`).                                                                                                                                                                                                    |
-| InjectedMass                  | REQUIRED                                                                 | [number][]    | Total mass of radiolabeled compound injected into subject (for example, 10). This can be derived as the ratio of the `InjectedRadioactivity` and `MolarRadioactivity`. **For those tracers in which injected mass is not available (for example FDG) can be set to `"n/a"`)**. |
-| InjectedMassUnits             | REQUIRED                                                                 | [string][]    | Unit format of the mass of compound injected (for example, `"ug"` or `"umol"`). **Note this is not required for an FDG acquisition, since it is not available, and SHOULD be set to `"n/a"`**.                                                                                 |
-| SpecificRadioactivity         | REQUIRED                                                                 | [number][]    | Specific activity of compound injected. **Note this is not required for an FDG acquisition, since it is not available, and SHOULD be set to `"n/a"`**.                                                                                                                         |
-| SpecificRadioactivityUnits    | REQUIRED                                                                 | [string][]    | Unit format of specified specific radioactivity (for example, `"Bq/g"`). **Note this is not required for an FDG acquisition, since it is not available, and SHOULD be set to `"n/a"`**.                                                                                        |
-| ModeOfAdministration          | REQUIRED                                                                 | [string][]    | Mode of administration of the injection (for example, `"bolus"`, `"infusion"`, or `"bolus-infusion"`).                                                                                                                                                                         |
-| TracerRadLex                  | RECOMMENDED                                                              | [string][]    | ID of the tracer compound from the RadLex Ontology.                                                                                                                                                                                                                            |
-| TracerSNOMED                  | RECOMMENDED                                                              | [string][]    | ID of the tracer compound from the SNOMED Ontology (subclass of Radioactive isotope).                                                                                                                                                                                          |
-| TracerMolecularWeight         | RECOMMENDED                                                              | [number][]    | Accurate molecular weight of the tracer used.                                                                                                                                                                                                                                  |
-| TracerMolecularWeightUnits    | RECOMMENDED                                                              | [string][]    | Unit of the molecular weights measurement (for example, `"g/mol"`).                                                                                                                                                                                                            |
-| InjectedMassPerWeight         | RECOMMENDED                                                              | [number][]    | Injected mass per kilogram bodyweight.                                                                                                                                                                                                                                         |
-| InjectedMassPerWeightUnits    | RECOMMENDED                                                              | [string][]    | Unit format of the injected mass per kilogram bodyweight (for example, `"ug/kg"`).                                                                                                                                                                                             |
-| SpecificRadioactivityMeasTime | RECOMMENDED                                                              | [string][]    | Time to which specific radioactivity measurement above applies in the default unit `"hh:mm:ss"`.                                                                                                                                                                               |
-| MolarActivity                 | RECOMMENDED                                                              | [number][]    | Molar activity of compound injected. Corresponds to DICOM Tag 0018, 1077 `Radiopharmaceutical Specific Activity`.                                                                                                                                                              |
-| MolarActivityUnits            | RECOMMENDED                                                              | [string][]    | Unit of the specified molar radioactivity (for example, `"GBq/umol"`).                                                                                                                                                                                                         |
-| MolarActivityMeasTime         | RECOMMENDED                                                              | [string][]    | Time to which molar radioactivity measurement above applies in the default unit `"hh:mm:ss"`.                                                                                                                                                                                  |
-| InfusionRadioactivity         | RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion` | [number][]    | Amount of radioactivity infused into the patient. This value must be less than or equal to the total injected radioactivity (`InjectedRadioactivity`). Units should be the same as `InjectedRadioactivityUnits`.                                                               |
-| InfusionStart                 | RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion` | [number][]    | Time of start of infusion with respect to `TimeZero` in the default unit seconds.                                                                                                                                                                                              |
-| InfusionSpeed                 | RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion` | [number][]    | If given, infusion speed.                                                                                                                                                                                                                                                      |
-| InfusionSpeedUnits            | RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion` | [string][]    | Unit of infusion speed (for example, `"mL/s"`).                                                                                                                                                                                                                                |
-| InjectedVolume                | RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion` | [number][]    | Injected volume of the radiotracer in the unit `"mL"`.                                                                                                                                                                                                                         |
-| Purity                        | RECOMMENDED                                                              | [number][]    | Purity of the radiolabeled compound (between 0 and 100%).                                                                                                                                                                                                                      |
+{{ MACROS___make_metadata_table(
+   {
+      "TracerName": "REQUIRED",
+      "TracerRadionuclide": "REQUIRED",
+      "InjectedRadioactivity": "REQUIRED",
+      "InjectedRadioactivityUnits": "REQUIRED",
+      "InjectedMass": "REQUIRED",
+      "InjectedMassUnits": "REQUIRED",
+      "SpecificRadioactivity": "REQUIRED",
+      "SpecificRadioactivityUnits": "REQUIRED",
+      "ModeOfAdministration": "REQUIRED",
+      "TracerRadLex": "RECOMMENDED",
+      "TracerSNOMED": "RECOMMENDED",
+      "TracerMolecularWeight": "RECOMMENDED",
+      "TracerMolecularWeightUnits": "RECOMMENDED",
+      "InjectedMassPerWeight": "RECOMMENDED",
+      "InjectedMassPerWeightUnits": "RECOMMENDED",
+      "SpecificRadioactivityMeasTime": "RECOMMENDED",
+      "MolarActivity": "RECOMMENDED",
+      "MolarActivityUnits": "RECOMMENDED",
+      "MolarActivityMeasTime": "RECOMMENDED",
+      "InfusionRadioactivity": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
+      "InfusionStart": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
+      "InfusionSpeed": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
+      "InfusionSpeedUnits": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
+      "InjectedVolume": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
+      "Purity": "RECOMMENDED",
+   }
+) }}
 
 #### Pharmaceuticals
 
-| **Key name**              | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ------------------------- | --------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PharmaceuticalName        | RECOMMENDED           | [string][]                             | Name of pharmaceutical coadministered with tracer.                                                                                                                                                                                                                                                                                                                                                                               |
-| PharmaceuticalDoseAmount  | RECOMMENDED           | [number][] or [array][] of [numbers][] | Dose amount of pharmaceutical coadministered with tracer.                                                                                                                                                                                                                                                                                                                                                                        |
-| PharmaceuticalDoseUnits   | RECOMMENDED           | [string][]                             | Unit format relating to pharmaceutical dose (for example, `"mg"` or `"mg/kg"`).                                                                                                                                                                                                                                                                                                                                                  |
-| PharmaceuticalDoseRegimen | RECOMMENDED           | [string][]                             | Details of the pharmaceutical dose regimen. Either adequate description or short-code relating to regimen documented elsewhere (for example, `"single oral bolus"`).                                                                                                                                                                                                                                                             |
-| PharmaceuticalDoseTime    | RECOMMENDED           | [number][] or [array][] of [numbers][] | Time of administration of pharmaceutical dose, relative to time zero (please see below). For an infusion, this should be a vector with two elements specifying the start and end of the infusion period. For more complex dose regimens, the regimen description should be complete enough to enable unambiguous interpretation of the DoseTime vector. Unit format of the specified pharmaceutical dose time should be seconds. |
-| Anaesthesia               | OPTIONAL              | [string][]                             | Details of anaesthesia used, if any.                                                                                                                                                                                                                                                                                                                                                                                             |
+{{ MACROS___make_metadata_table(
+   {
+      "PharmaceuticalName": "RECOMMENDED",
+      "PharmaceuticalDoseAmount": "RECOMMENDED",
+      "PharmaceuticalDoseUnits": "RECOMMENDED",
+      "PharmaceuticalDoseRegimen": "RECOMMENDED",
+      "PharmaceuticalDoseTime": "RECOMMENDED",
+      "Anaesthesia": "OPTIONAL",
+   }
+) }}
 
 #### Time
 
-| **Key name**    | **Requirement level**    | **Data type**            | **Description**                                                                                                                                                                                                       |
-| --------------- | ------------------------ | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                  |
-| TimeZero        | REQUIRED                 | [string][]               | Time zero to which all scan and/or blood measurements have been adjusted to, in the unit "hh:mm:ss". This should be equal to `InjectionStart` or `ScanStart`.                                                         |
-| ScanStart       | REQUIRED                 | [number][]               | Time of start of scan with respect to `TimeZero` in the default unit seconds.                                                                                                                                         |
-| InjectionStart  | REQUIRED                 | [number][]               | Time of start of injection with respect to `TimeZero` in the default unit seconds. This corresponds to DICOM Tag 0018, 1042 `Contrast/Bolus Start Time` converted to seconds relative to `TimeZero`.                  |
-| FrameTimesStart | REQUIRED                 | [array][] of [numbers][] | Start times for all frames relative to `TimeZero` in default unit seconds.                                                                                                                                            |
-| FrameDuration   | REQUIRED                 | [array][] of [numbers][] | Time duration of each frame in default unit seconds. This corresponds to DICOM Tag 0018, 1242 `Actual Frame Duration` converted to seconds.                                                                           |
-| InjectionEnd    | RECOMMENDED              | [number][]               | Time of end of injection with respect to `TimeZero` in the default unit seconds.                                                                                                                                      |
-| ScanDate        | [DEPRECATED][deprecated] | [string][]               | Date of scan in the format `"YYYY-MM-DD[Z]"`. This field is DEPRECATED, and this metadata SHOULD be recorded in the `acq_time` column of the corresponding [Scans file](../03-modality-agnostic-files.md#scans-file). |
+{{ MACROS___make_metadata_table(
+   {
+      "TimeZero": "REQUIRED",
+      "ScanStart": "REQUIRED",
+      "InjectionStart": "REQUIRED",
+      "FrameTimesStart": "REQUIRED",
+      "FrameDuration": "REQUIRED",
+      "InjectionEnd": "RECOMMENDED",
+      "ScanDate": "DEPRECATED",
+   }
+) }}
 
-We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see the [units section](../02-common-principles.md#units)).
+We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see [Units](../02-common-principles.md#units)).
 
 #### Reconstruction
 
-|             **Key name**             | **Requirement level** |             **Data type**              |                                                  **Description**                                                                 |
-| ------------------------------------ | --------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| AcquisitionMode                      | REQUIRED              | [string][]                             | Type of acquisition of the PET data (for example, `"list mode"`)                                                                 |
-| ImageDecayCorrected                  | REQUIRED              | [boolean][]                            | Boolean flag specifying whether the image data have been decay-corrected.                                                        |
-| ImageDecayCorrectionTime             | REQUIRED              | [number][]                             | Point in time from which the decay correction was applied with respect to TimeZero in the default unit seconds.                  |
-| ReconMethodName                      | REQUIRED              | [string][]                             | Reconstruction method or algorithm (for example, `"3d-op-osem"`).                                                                |
-| ReconMethodParameterLabels           | REQUIRED              | [array][] of [strings][]               | Names of reconstruction parameters (for example, `["subsets", "iterations"]`)                                                    |
-| ReconMethodParameterUnits            | REQUIRED              | [array][] of [strings][]               | Unit of reconstruction parameters (for example, `["none", "none"]`).                                                             |
-| ReconMethodParameterValues           | REQUIRED              | [array][] of [numbers][]               | Values of reconstruction parameters (for example, `[21, 3]`)                                                                     |
-| ReconFilterType                      | REQUIRED              | [string][] or [array][] of [strings][] | Type of post-recon smoothing (for example, `["Shepp"]`)                                                                          |
-| ReconFilterSize                      | REQUIRED              | [number][] or [array][] of [numbers][] | Kernel size of post-recon filter (FWHM) in default units `"mm"`.                                                                 |
-| AttenuationCorrection                | REQUIRED              | [string][]                             | Short description of the attenuation correction method used.                                                                     |
-| ReconMethodImplementationVersion     | RECOMMENDED           | [string][]                             | Identification for the software used, such as name and version.                                                                  |
-| AttenuationCorrectionMethodReference | RECOMMENDED           | [string][]                             | Reference paper for the attenuation correction method used.                                                                      |
-| ScaleFactor                          | RECOMMENDED           | [array][] of [numbers][]               | Scale factor for each frame.                                                                                                     |
-| ScatterFraction                      | RECOMMENDED           | [array][] of [numbers][]               | Scatter fraction for each frame (Units: 0-100%).                                                                                 |
-| DecayCorrectionFactor                | RECOMMENDED           | [array][] of [numbers][]               | Decay correction factor for each frame.                                                                                          |
-| DoseCalibrationFactor                | RECOMMENDED           | [number][]                             | Multiplication factor used to transform raw data (in counts/sec) to meaningful unit (Bq/ml). Corresponds to DICOM Tag 0054,1322. |
-| PromptRate                           | RECOMMENDED           | [array][] of [numbers][]               | Prompt rate for each frame (same units as `Units`, for example, `"Bq/mL"`).                                                      |
-| RandomRate                           | RECOMMENDED           | [array][] of [numbers][]               | Random rate for each frame (same units as `Units`, for example, `"Bq/mL"`).                                                      |
-| SinglesRate                          | RECOMMENDED           | [array][] of [numbers][]               | Singles rate for each frame (same units as `Units`, for example, `"Bq/mL"`).                                                     |
+{{ MACROS___make_metadata_table(
+   {
+      "AcquisitionMode": "REQUIRED",
+      "ImageDecayCorrected": "REQUIRED",
+      "ImageDecayCorrectionTime": "REQUIRED",
+      "ReconMethodName": "REQUIRED",
+      "ReconMethodParameterLabels": "REQUIRED",
+      "ReconMethodParameterUnits": "REQUIRED",
+      "ReconMethodParameterValues": "REQUIRED",
+      "ReconFilterType": "REQUIRED",
+      "ReconFilterSize": "REQUIRED",
+      "AttenuationCorrection": "REQUIRED",
+      "ReconMethodImplementationVersion": "RECOMMENDED",
+      "AttenuationCorrectionMethodReference": "RECOMMENDED",
+      "ScaleFactor": "RECOMMENDED",
+      "ScatterFraction": "RECOMMENDED",
+      "DecayCorrectionFactor": "RECOMMENDED",
+      "DoseCalibrationFactor": "RECOMMENDED",
+      "PromptRate": "RECOMMENDED",
+      "RandomRate": "RECOMMENDED",
+      "SinglesRate": "RECOMMENDED",
+   }
+) }}
 
 All reconstruction-specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
 
@@ -311,27 +326,31 @@ Innis et al. 2007 ([doi:10.1038/sj.jcbfm.9600493](https://doi.org/10.1038/sj.jcb
 Some metadata about the recording MUST be provided in an additional JSON
 file.
 
-| **Key name**        | **Requirement level** | **Data type** | **Description**                                                                                                                                                              |
-| ------------------- | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PlasmaAvail         | REQUIRED              | [boolean][]   | Boolean that specifies if plasma measurements are available.                                                                                                                 |
-| MetaboliteAvail     | REQUIRED              | [boolean][]   | Boolean that specifies if metabolite measurements are available. If `true`, the `metabolite_parent_fraction` column MUST be present in the corresponding `*_blood.tsv` file. |
-| WholeBloodAvail     | REQUIRED              | [boolean][]   | Boolean that specifies if whole blood measurements are available. If `true`, the `whole_blood_radioactivity` column MUST be present in the corresponding `*_blood.tsv` file. |
-| DispersionCorrected | REQUIRED              | [boolean][]   | Boolean flag specifying whether the blood data have been dispersion-corrected. NOTE: not customary for manual samples, and hence should be set to false.                     |
-| WithdrawalRate      | RECOMMENDED           | [number][]    | The rate at which the blood was withdrawn from the subject. The unit of the specified withdrawal rate should be in `"mL/s"`.                                                 |
-| TubingType          | RECOMMENDED           | [string][]    | Description of the type of tubing used, ideally including the material and (internal) diameter.                                                                              |
-| TubingLength        | RECOMMENDED           | [number][]    | The length of the blood tubing, from the subject to the detector in meters.                                                                                                  |
-| DispersionConstant  | RECOMMENDED           | [number][]    | External dispersion time constant resulting from tubing in default unit seconds.                                                                                             |
-| Haematocrit         | RECOMMENDED           | [number][]    | Measured haematocrit, meaning the volume of erythrocytes divided by the volume of whole blood.                                                                               |
-| BloodDensity        | RECOMMENDED           | [number][]    | Measured blood density. Unit of blood density should be in `"g/mL"`.                                                                                                         |
+{{ MACROS___make_metadata_table(
+   {
+      "PlasmaAvail": "REQUIRED",
+      "MetaboliteAvail": "REQUIRED",
+      "WholeBloodAvail": "REQUIRED",
+      "DispersionCorrected": "REQUIRED",
+      "WithdrawalRate": "RECOMMENDED",
+      "TubingType": "RECOMMENDED",
+      "TubingLength": "RECOMMENDED",
+      "DispersionConstant": "RECOMMENDED",
+      "Haematocrit": "RECOMMENDED",
+      "BloodDensity": "RECOMMENDED",
+   }
+) }}
 
 The following metadata SHOULD or MUST be provided if corresponding flags are `true`.
 
-| **Key name**                        | **Requirement level**                   | **Data type** | **Description**                                                                                                                                                                                              |
-| ----------------------------------- | --------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| PlasmaFreeFraction                  | RECOMMENDED if `PlasmaAvail` is `true`  | [number][]    | Measured free fraction in plasma, meaning the concentration of free compound in plasma divided by total concentration of compound in plasma (Units: 0-100%).                                                 |
-| PlasmaFreeFractionMethod            | RECOMMENDED if `PlasmaAvail` is `true`  | [string][]    | Method used to estimate free fraction.                                                                                                                                                                       |
-| MetaboliteMethod                    | REQUIRED if `MetaboliteAvail` is `true` | [string][]    | Method used to measure metabolites.                                                                                                                                                                          |
-| MetaboliteRecoveryCorrectionApplied | REQUIRED if `MetaboliteAvail` is `true` | [boolean][]   | Metabolite recovery correction from the HPLC, for tracers where it changes with time postinjection. If `true`, the `hplc_recovery_fractions` column MUST be present in the corresponding `*_blood.tsv` file. |
+{{ MACROS___make_metadata_table(
+   {
+      "PlasmaFreeFraction": "RECOMMENDED if `PlasmaAvail` is `true`",
+      "PlasmaFreeFractionMethod": "RECOMMENDED if `PlasmaAvail` is `true`",
+      "MetaboliteMethod": "REQUIRED if `MetaboliteAvail` is `true`",
+      "MetaboliteRecoveryCorrectionApplied": "REQUIRED if `MetaboliteAvail` is `true`",
+   }
+) }}
 
 The following columns are defined for `_blood.tsv` files.
 The `time` column MUST always be the first column.
@@ -407,11 +426,3 @@ time plasma_radioactivity whole_blood_radioactivity metabolite_parent_fraction m
 ```
 
 <!-- Link Definitions -->
-
-[string]: https://www.w3schools.com/js/js_json_datatypes.asp
-[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
-[number]: https://www.w3schools.com/js/js_json_datatypes.asp
-[numbers]: https://www.w3schools.com/js/js_json_datatypes.asp
-[boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
-[array]: https://www.w3schools.com/js/js_json_arrays.asp
-[deprecated]: ../02-common-principles.md#definitions

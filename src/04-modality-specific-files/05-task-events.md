@@ -184,19 +184,23 @@ sake of brevity.
 It is RECOMMENDED to include details of the stimulus presentation software,
 when applicable:
 
-| **Key name**         | **Requirement level** | **Data type**             | **Description**                                                                                                                                                                                                                                       |
-| -------------------- | --------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| StimulusPresentation | RECOMMENDED           | [object][] of [strings][] | [Object][] containing key value pairs related to the software used to present the stimuli during the experiment, specifically: `OperatingSystem`, `SoftwareName`, `SoftwareRRID`, `SoftwareVersion` and `Code`. See table below for more information. |
+{{ MACROS___make_metadata_table(
+   {
+      "StimulusPresentation": "RECOMMENDED",
+   }
+) }}
 
 The object supplied for `StimulusPresentation` SHOULD include the following key-value pairs:
 
-| **Key name**    | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                      |
-| --------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| OperatingSystem | RECOMMENDED           | [string][]    | Operating system used to run the stimuli presentation software (for formatting recommendations, see examples below this table).                                                                                      |
-| SoftwareName    | RECOMMENDED           | [string][]    | Name of the software that was used to present the stimuli.                                                                                                                                                           |
-| SoftwareRRID    | RECOMMENDED           | [string][]    | [Research Resource Identifier](https://scicrunch.org/resources) of the software that was used to present the stimuli. Examples: The RRID for Psychtoolbox is `"SCR_002881"`, and that of PsychoPy is `"SCR_006571"`. |
-| SoftwareVersion | RECOMMENDED           | [string][]    | Version of the software that was used to present the stimuli.                                                                                                                                                        |
-| Code            | RECOMMENDED           | [string][]    | [URI][uri] of the code used to present the stimuli. Persistent identifiers such as DOIs are preferred. If multiple versions of code may be hosted at the same location, revision-specific URIs are recommended.      |
+{{ MACROS___make_metadata_table(
+   {
+      "OperatingSystem": "RECOMMENDED",
+      "SoftwareName": "RECOMMENDED",
+      "SoftwareRRID": "RECOMMENDED",
+      "SoftwareVersion": "RECOMMENDED",
+      "Code": "RECOMMENDED",
+   }
+) }}
 
 The operating system description SHOULD include the following attributes:
 
@@ -245,10 +249,4 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
 
 [number]: https://www.w3schools.com/js/js_json_datatypes.asp
 
-[object]: https://www.json.org/json-en.html
-
 [string]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[uri]: ../02-common-principles.md#uniform-resource-indicator

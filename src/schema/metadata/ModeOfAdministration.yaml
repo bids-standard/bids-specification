@@ -1,0 +1,6 @@
+---
+name: ModeOfAdministration
+description: |
+  Mode of administration of the injection
+  (for example, `"bolus"`, `"infusion"`, or `"bolus-infusion"`).
+type: string

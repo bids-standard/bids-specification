@@ -1,0 +1,5 @@
+---
+name: TracerMolecularWeight
+description: |
+  Accurate molecular weight of the tracer used.
+type: number

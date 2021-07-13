@@ -1,0 +1,8 @@
+---
+type: object
+additionalProperties:
+  type: array
+  items:
+    type: number
+  minItems: 3
+  maxItems: 3
