@@ -1,0 +1,5 @@
+---
+name: Manufacturer
+description: |
+  Manufacturer of the equipment that produced the measurements.
+type: string

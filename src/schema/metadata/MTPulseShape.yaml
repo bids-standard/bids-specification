@@ -1,0 +1,17 @@
+---
+name: MTPulseShape
+description: |
+  Shape of the magnetization transfer RF pulse waveform.
+  Accepted values: `"HARD"`, `"GAUSSIAN"`,
+  `"GAUSSHANN"` (gaussian pulse with Hanning window),
+  `"SINC"`, `"SINCHANN"` (sinc pulse with Hanning window),
+  `"SINCGAUSS"` (sinc pulse with Gaussian window), `"FERMI"`.
+type: string
+enum:
+  - HARD
+  - GAUSSIAN
+  - GAUSSHANN
+  - SINC
+  - SINCHANN
+  - SINCGAUSS
+  - FERMI

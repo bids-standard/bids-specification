@@ -10,22 +10,27 @@ by Ben Inglis:
 
 ### Scanner Hardware
 
-| **Key name**                  | **Requirement level**                                | **Data type** | **Description**                                                                                                                                                                                                                                                           |
-| ----------------------------- | ---------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Manufacturer                  | RECOMMENDED                                          | [string][]    | Manufacturer of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0070 `Manufacturer`                                                                                                                                                   |
-| ManufacturersModelName        | RECOMMENDED                                          | [string][]    | Manufacturer's model name of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`                                                                                                                          |
-| DeviceSerialNumber            | RECOMMENDED                                          | [string][]    | The serial number of the equipment that produced the composite instances. Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`. A pseudonym can also be used to prevent the equipment from being identifiable, so long as each pseudonym is unique within the dataset |
-| StationName                   | RECOMMENDED                                          | [string][]    | Institution defined name of the machine that produced the composite instances. Corresponds to DICOM Tag 0008, 1010 `Station Name`                                                                                                                                         |
-| SoftwareVersions              | RECOMMENDED                                          | [string][]    | Manufacturer's designation of software version of the equipment that produced the composite instances. Corresponds to DICOM Tag 0018, 1020 `Software Versions`                                                                                                            |
-| HardcopyDeviceSoftwareVersion | [DEPRECATED][]                                       | [string][]    | Manufacturer's designation of the software of the device that created this Hardcopy Image (the printer). Corresponds to DICOM Tag 0018, 101A `Hardcopy Device Software Version`                                                                                           |
-| MagneticFieldStrength         | RECOMMENDED, but REQUIRED for Arterial Spin Labeling | [number][]    | Nominal field strength of MR magnet in Tesla. Corresponds to DICOM Tag 0018, 0087 `Magnetic Field Strength`                                                                                                                                                               |
-| ReceiveCoilName               | RECOMMENDED                                          | [string][]    | Information describing the receiver coil. Corresponds to DICOM Tag 0018, 1250 `Receive Coil Name`, although not all vendors populate that DICOM Tag, in which case this field can be derived from an appropriate private DICOM field                                      |
-| ReceiveCoilActiveElements     | RECOMMENDED                                          | [string][]    | Information describing the active/selected elements of the receiver coil. This doesn't correspond to a tag in the DICOM ontology. The vendor-defined terminology for active coil elements can go in this field. See an example below the table.                           |
-| CoilString                    | RECOMMENDED.                                         | [string][]    | Information describing the selected element of the receiver coil for channel-level data. This doesn’t correspond to a tag in the DICOM ontology. The vendor-defined identifier for individual channels can go in this field. As an example, for Siemens, while coil channels are typically not activated/selected individually, data from individual channels may be reconstructed separately. The DICOM files containing the combined data will have a `Coil String` entry matching the terminology of `ReceiveCoilActiveElements` (for example, `HEA;HEP` for the Siemens standard 32 ch coil when both the anterior and posterior groups are activated), while the DICOM files containing channel-level data will have a `Coil String` entry with a unique identifier for the channel (for example, `H1`-`H32` for the Siemens standard 32 ch coil when both the anterior and posterior groups are activated). This is a flexible field that can be used as most appropriate for a given vendor and coil to define the reconstructed channel. |
-| GradientSetType               | RECOMMENDED                                          | [string][]    | It should be possible to infer the gradient coil from the scanner model. If not, for example because of a custom upgrade or use of a gradient insert set, then the specifications of the actual gradient coil should be reported independently                            |
-| MRTransmitCoilSequence        | RECOMMENDED                                          | [string][]    | This is a relevant field if a non-standard transmit coil is used. Corresponds to DICOM Tag 0018, 9049 `MR Transmit Coil Sequence`                                                                                                                                         |
-| MatrixCoilMode                | RECOMMENDED                                          | [string][]    | (If used) A method for reducing the number of independent channels by combining in analog the signals from multiple coil elements. There are typically different default modes when using un-accelerated or accelerated (for example, `"GRAPPA"`, `"SENSE"`) imaging      |
-| CoilCombinationMethod         | RECOMMENDED                                          | [string][]    | Almost all fMRI studies using phased-array coils use root-sum-of-squares (rSOS) combination, but other methods exist. The image reconstruction is changed by the coil combination method (as for the matrix coil mode above), so anything non-standard should be reported |
+{{ MACROS___make_metadata_table(
+   {
+      "Manufacturer": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0070 `Manufacturer`."),
+      "ManufacturersModelName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`."),
+      "DeviceSerialNumber": ("RECOMMENDED", "Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`."),
+      "StationName": "RECOMMENDED",
+      "SoftwareVersions": ("RECOMMENDED", "Corresponds to DICOM Tag 0018, 1020 `Software Versions`."),
+      "HardcopyDeviceSoftwareVersion": "DEPRECATED",
+      "MagneticFieldStrength": "RECOMMENDED, but REQUIRED for Arterial Spin Labeling",
+      "ReceiveCoilName": "RECOMMENDED",
+      "ReceiveCoilActiveElements": (
+         "RECOMMENDED",
+         "See an example below the table.",
+      ),
+      "CoilString": "RECOMMENDED",
+      "GradientSetType": "RECOMMENDED",
+      "MRTransmitCoilSequence": "RECOMMENDED",
+      "MatrixCoilMode": "RECOMMENDED",
+      "CoilCombinationMethod": "RECOMMENDED",
+   }
+) }}
 
 Example for `ReceiveCoilActiveElements`:
 
@@ -44,41 +49,59 @@ that a given scan was collected with the intended coil elements selected
 
 ### Sequence Specifics
 
-| **Key name**                | **Requirement level**                                                                     | **Data type**                          | **Description**                                                                                                                                                                                                                                                                 |
-| --------------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PulseSequenceType           | RECOMMENDED                                                                               | [string][]                             | A general description of the pulse sequence used for the scan (for example, `"MPRAGE"`, `"Gradient Echo EPI"`, `"Spin Echo EPI"`, `"Multiband gradient echo EPI"`).                                                                                                             |
-| ScanningSequence            | RECOMMENDED                                                                               | [string][] or [array][] of [strings][] | Description of the type of data acquired. Corresponds to DICOM Tag 0018, 0020 `Scanning Sequence`.                                                                                                                                                                              |
-| SequenceVariant             | RECOMMENDED                                                                               | [string][] or [array][] of [strings][] | Variant of the ScanningSequence. Corresponds to DICOM Tag 0018, 0021 `Sequence Variant`.                                                                                                                                                                                        |
-| ScanOptions                 | RECOMMENDED                                                                               | [string][] or [array][] of [strings][] | Parameters of ScanningSequence. Corresponds to DICOM Tag 0018, 0022 `Scan Options`.                                                                                                                                                                                             |
-| SequenceName                | RECOMMENDED                                                                               | [string][]                             | Manufacturer's designation of the sequence name. Corresponds to DICOM Tag 0018, 0024 `Sequence Name`.                                                                                                                                                                           |
-| PulseSequenceDetails        | RECOMMENDED                                                                               | [string][]                             | Information beyond pulse sequence type that identifies the specific pulse sequence used (for example, `"Standard Siemens Sequence distributed with the VB17 software"`, `"Siemens WIP ### version #.##,"` or `"Sequence written by X using a version compiled on MM/DD/YYYY"`). |
-| NonlinearGradientCorrection | RECOMMENDED, but REQUIRED if [PET](./09-positron-emission-tomography.md) data are present | [boolean][]                            | Boolean stating if the image saved has been corrected for gradient nonlinearities by the scanner sequence.                                                                                                                                                                      |
-| MRAcquisitionType           | RECOMMENDED, but REQUIRED for Arterial Spin Labeling                                      | [string][]                             | Possible values: `"2D"` or `"3D"`. Type of sequence readout. Corresponds to DICOM Tag 0018, 0023 `MR Acquisition Type`.                                                                                                                                                         |
-| MTState                     | RECOMMENDED                                                                               | [boolean][]                            | Boolean stating whether the magnetization transfer pulse is applied. Corresponds to DICOM Tag 0018, 9020 `Magnetization Transfer`.                                                                                                                                              |
-| MTOffsetFrequency           | RECOMMENDED if the MTstate is `True`.                                                     | [number][]                             | The frequency offset of the magnetization transfer pulse with respect to the central H1 Larmor frequency in Hertz (Hz).                                                                                                                                                         |
-| MTPulseBandwidth            | RECOMMENDED if the MTstate is `True`.                                                     | [number][]                             | The excitation bandwidth of the magnetization transfer pulse in Hertz (Hz).                                                                                                                                                                                                     |
-| MTNumberOfPulses            | RECOMMENDED if the MTstate is `True`.                                                     | [number][]                             | The number of magnetization transfer RF pulses applied before the readout.                                                                                                                                                                                                      |
-| MTPulseShape                | RECOMMENDED if the MTstate is `True`.                                                     | [string][]                             | Shape of the magnetization transfer RF pulse waveform. Accepted values: `"HARD"`, `"GAUSSIAN"`, `"GAUSSHANN"` (gaussian pulse with Hanning window), `"SINC"`, `"SINCHANN"` (sinc pulse with Hanning window), `"SINCGAUSS"` (sinc pulse with Gaussian window), `"FERMI"`.        |
-| MTPulseDuration             | RECOMMENDED if the MTstate is `True`.                                                     | [number][]                             | Duration of the magnetization transfer RF pulse in seconds.                                                                                                                                                                                                                     |
-| SpoilingState               | RECOMMENDED                                                                               | [boolean][]                            | Boolean stating whether the pulse sequence uses any type of spoiling strategy to suppress residual transverse magnetization.                                                                                                                                                    |
-| SpoilingType                | RECOMMENDED if the SpoilingState is `True`.                                               | [string][]                             | Specifies which spoiling method(s) are used by a spoiled sequence. Accepted values: `"RF"`, `"GRADIENT"` or `"COMBINED"`.                                                                                                                                                       |
-| SpoilingRFPhaseIncrement    | RECOMMENDED if the SpoilingType is `"RF"` or `"COMBINED"`.                                | [number][]                             | The amount of incrementation described in degrees, which is applied to the phase of the excitation pulse at each TR period for achieving RF spoiling.                                                                                                                           |
-| SpoilingGradientMoment      | RECOMMENDED if the SpoilingType is `"GRADIENT"` or `"COMBINED"`.                          | [number][]                             | Zeroth moment of the spoiler gradient lobe in millitesla times second per meter (mT.s/m).                                                                                                                                                                                       |
-| SpoilingGradientDuration    | RECOMMENDED if the SpoilingType is `"GRADIENT"` or `"COMBINED"`.                          | [number][]                             | The duration of the spoiler gradient lobe in seconds. The duration of a trapezoidal lobe is defined as the summation of ramp-up and plateau times.                                                                                                                              |
+{{ MACROS___make_metadata_table(
+   {
+      "PulseSequenceType": "RECOMMENDED",
+      "ScanningSequence": "RECOMMENDED",
+      "SequenceVariant": "RECOMMENDED",
+      "ScanOptions": "RECOMMENDED",
+      "SequenceName": "RECOMMENDED",
+      "PulseSequenceDetails": "RECOMMENDED",
+      "NonlinearGradientCorrection": "RECOMMENDED, but REQUIRED if [PET](./09-positron-emission-tomography.md) data are present",
+      "MRAcquisitionType": "RECOMMENDED, but REQUIRED for Arterial Spin Labeling",
+      "MTState": "RECOMMENDED",
+      "MTOffsetFrequency": "RECOMMENDED if the MTstate is `True`.",
+      "MTPulseBandwidth": "RECOMMENDED if the MTstate is `True`.",
+      "MTNumberOfPulses": "RECOMMENDED if the MTstate is `True`.",
+      "MTPulseShape": "RECOMMENDED if the MTstate is `True`.",
+      "MTPulseDuration": "RECOMMENDED if the MTstate is `True`.",
+      "SpoilingState": "RECOMMENDED",
+      "SpoilingType": "RECOMMENDED if the SpoilingState is `True`.",
+      "SpoilingRFPhaseIncrement": 'RECOMMENDED if the SpoilingType is `"RF"` or `"COMBINED"`.',
+      "SpoilingGradientMoment": 'RECOMMENDED if the SpoilingType is `"GRADIENT"` or `"COMBINED"`.',
+      "SpoilingGradientDuration": 'RECOMMENDED if the SpoilingType is `"GRADIENT"` or `"COMBINED"`.',
+   }
+) }}
 
 ### In-Plane Spatial Encoding
 
-| **Key name**                   | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| ------------------------------ | --------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NumberShots                    | RECOMMENDED           | [number][] or [array][] of [numbers][] | The number of RF excitations needed to reconstruct a slice or volume (may be referred to as partition). Please mind that this is not the same as Echo Train Length which denotes the number of k-space lines collected after excitation in a multi-echo readout. The data type array is applicable for specifying this parameter before and after the k-space center is sampled. Please see [`NumberShots` metadata field](../99-appendices/11-qmri.md#numbershots-metadata-field) in the qMRI appendix for corresponding calculations.                                                                                                                                                                                                                                                                                               |
-| ParallelReductionFactorInPlane | RECOMMENDED           | [number][]                             | The parallel imaging (for instance, GRAPPA) factor. Use the denominator of the fraction of k-space encoded for each slice. For example, 2 means half of k-space is encoded. Corresponds to DICOM Tag 0018, 9069 `Parallel Reduction Factor In-plane`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ParallelAcquisitionTechnique   | RECOMMENDED           | [string][]                             | The type of parallel imaging used (for example GRAPPA, SENSE). Corresponds to DICOM Tag 0018, 9078 `Parallel Acquisition Technique`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| PartialFourier                 | RECOMMENDED           | [number][]                             | The fraction of partial Fourier information collected. Corresponds to DICOM Tag 0018, 9081 `Partial Fourier`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| PartialFourierDirection        | RECOMMENDED           | [string][]                             | The direction where only partial Fourier information was collected. Corresponds to DICOM Tag 0018, 9036 `Partial Fourier Direction`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| PhaseEncodingDirection         | RECOMMENDED           | [string][]                             | Possible values: `"i"`, `"j"`, `"k"`, `"i-"`, `"j-"`, `"k-"`. The letters `i`, `j`, `k` correspond to the first, second and third axis of the data in the NIFTI file. The polarity of the phase encoding is assumed to go from zero index to maximum index unless `-` sign is present (then the order is reversed - starting from the highest index instead of zero). `PhaseEncodingDirection` is defined as the direction along which phase is was modulated which may result in visible distortions. Note that this is not the same as the DICOM term `InPlanePhaseEncodingDirection` which can have `ROW` or `COL` values. This parameter is REQUIRED if corresponding fieldmap data is present or when using multiple runs with different phase encoding directions (which can be later used for field inhomogeneity correction). |
-| EffectiveEchoSpacing           | RECOMMENDED           | [number][]                             | The "effective" sampling interval, specified in seconds, between lines in the phase-encoding direction, defined based on the size of the reconstructed image in the phase direction. It is frequently, but incorrectly, referred to as "dwell time" (see `DwellTime` parameter below for actual dwell time). It is required for unwarping distortions using field maps. Note that beyond just in-plane acceleration, a variety of other manipulations to the phase encoding need to be accounted for properly, including partial fourier, phase oversampling, phase resolution, phase field-of-view and interpolation.<sup>2</sup> This parameter is REQUIRED if corresponding fieldmap data is present.                                                                                                                              |
-| TotalReadoutTime               | RECOMMENDED           | [number][]                             | This is actually the "effective" total readout time , defined as the readout duration, specified in seconds, that would have generated data with the given level of distortion. It is NOT the actual, physical duration of the readout train. If `EffectiveEchoSpacing` has been properly computed, it is just `EffectiveEchoSpacing * (ReconMatrixPE - 1)`.<sup>3</sup> . This parameter is REQUIRED if corresponding "field/distortion" maps acquired with opposing phase encoding directions are present (see 8.9.4).                                                                                                                                                                                                                                                                                                              |
-| MixingTime                     | RECOMMENDED           | [number][]                             | In the context of a stimulated- and spin-echo 3D EPI sequence for B1+ mapping, corresponds to the interval between spin- and stimulated-echo pulses. In the context of a diffusion-weighted double spin-echo sequence, corresponds to the interval between two successive diffusion sensitizing gradients, specified in seconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+{{ MACROS___make_metadata_table(
+   {
+      "NumberShots": "RECOMMENDED",
+      "ParallelReductionFactorInPlane": "RECOMMENDED",
+      "ParallelAcquisitionTechnique": "RECOMMENDED",
+      "PartialFourier": "RECOMMENDED",
+      "PartialFourierDirection": "RECOMMENDED",
+      "PhaseEncodingDirection": (
+         "RECOMMENDED",
+         "This parameter is REQUIRED if corresponding fieldmap data is present "
+         "or when using multiple runs with different phase encoding directions "
+         "(which can be later used for field inhomogeneity correction).",
+      ),
+      "EffectiveEchoSpacing": (
+         "RECOMMENDED",
+         "<sup>2</sup> This parameter is REQUIRED if corresponding fieldmap data is present.",
+      ),
+      "TotalReadoutTime": (
+         "RECOMMENDED",
+         "<sup>3</sup> This parameter is REQUIRED if corresponding 'field/distortion' maps "
+         "acquired with opposing phase encoding directions are present "
+         "(see [Case 4: Multiple phase encoded "
+         "directions](#case-4-multiple-phase-encoded-directions-pepolar)).",
+      ),
+      "MixingTime": "RECOMMENDED",
+   }
+) }}
 
 <sup>2</sup>Conveniently, for Siemens data, this value is easily obtained as
 `1 / (BWPPPE * ReconMatrixPE)`, where BWPPPE is the
@@ -93,34 +116,42 @@ and the center of the last "effective" echo, sometimes called the "FSL definitio
 
 ### Timing Parameters
 
-| **Key name**           | **Requirement level**                                                                                                                                       | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| EchoTime               | RECOMMENDED, but REQUIRED if corresponding fieldmap data is present, or the data comes from a multi echo sequence or Arterial Spin Labeling                 | [number][] or [array][] of [numbers][] | The echo time (TE) for the acquisition, specified in seconds. Corresponds to DICOM Tag 0018, 0081 Echo Time (please note that the DICOM term is in milliseconds not seconds). The data type number may apply to files from any MRI modality concerned with a single value for this field, or to the files in a [file collection](../99-appendices/10-file-collections.md) where the value of this field is iterated using the [echo entity](../99-appendices/09-entities.md#echo). The data type array provides a value for each volume in a 4D dataset and should only be used when the volume timing is critical for interpretation of the data, such as in [ASL](#arterial-spin-labeling-perfusion-data) or variable echo time fMRI sequences.                                                                                               |
-| InversionTime          | RECOMMENDED                                                                                                                                                 | [number][]                             | The inversion time (TI) for the acquisition, specified in seconds. Inversion time is the time after the middle of inverting RF pulse to middle of excitation pulse to detect the amount of longitudinal magnetization. Corresponds to DICOM Tag 0018, 0082 `Inversion Time` (please note that the DICOM term is in milliseconds not seconds).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| SliceTiming            | RECOMMENDED, but REQUIRED for sparse sequences that do not have the `DelayTime` field set, and Arterial Spin Labeling with `MRAcquisitionType` set on `2D`. | [array][] of [numbers][]               | The time at which each slice was acquired within each volume (frame) of the acquisition. Slice timing is not slice order -- rather, it is a list of times containing the time (in seconds) of each slice acquisition in relation to the beginning of volume acquisition. The list goes through the slices along the slice axis in the slice encoding dimension (see below). Note that to ensure the proper interpretation of the `SliceTiming` field, it is important to check if the OPTIONAL `SliceEncodingDirection` exists. In particular, if `SliceEncodingDirection` is negative, the entries in `SliceTiming` are defined in reverse order with respect to the slice axis, such that the final entry in the `SliceTiming` list is the time of acquisition of slice 0. Without this parameter slice time correction will not be possible. |
-| SliceEncodingDirection | RECOMMENDED                                                                                                                                                 | [string][]                             | Possible values: `"i"`, `"j"`, `"k"`, `"i-"`, `"j-"`, `"k-"` (the axis of the NIfTI data along which slices were acquired, and the direction in which `SliceTiming` is defined with respect to). `i`, `j`, `k` identifiers correspond to the first, second and third axis of the data in the NIfTI file. A `-` sign indicates that the contents of `SliceTiming` are defined in reverse order - that is, the first entry corresponds to the slice with the largest index, and the final entry corresponds to slice index zero. When present, the axis defined by `SliceEncodingDirection` needs to be consistent with the ‘slice_dim' field in the NIfTI header. When absent, the entries in `SliceTiming` must be in the order of increasing slice index as defined by the NIfTI header.                                                       |
-| DwellTime              | RECOMMENDED                                                                                                                                                 | [number][]                             | Actual dwell time (in seconds) of the receiver per point in the readout direction, including any oversampling. For Siemens, this corresponds to DICOM field (0019, 1018) (in ns). This value is necessary for the optional readout distortion correction of anatomicals in the HCP Pipelines. It also usefully provides a handle on the readout bandwidth, which isn't captured in the other metadata tags. Not to be confused with `EffectiveEchoSpacing`, and the frequent mislabeling of echo spacing (which is spacing in the phase encoding direction) as "dwell time" (which is spacing in the readout direction).                                                                                                                                                                                                                        |
+{{ MACROS___make_metadata_table(
+   {
+      "EchoTime": "RECOMMENDED, but REQUIRED if corresponding fieldmap data is present, or the data comes from a multi echo sequence or Arterial Spin Labeling",
+      "InversionTime": "RECOMMENDED",
+      "SliceTiming": "RECOMMENDED, but REQUIRED for sparse sequences that do not have the `DelayTime` field set, and Arterial Spin Labeling with `MRAcquisitionType` set on `2D`.",
+      "SliceEncodingDirection": "RECOMMENDED",
+      "DwellTime": "RECOMMENDED",
+   }
+) }}
 
 ### RF & Contrast
 
-| **Key name**     | **Requirement level**                                   | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| ---------------- | ------------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| FlipAngle        | RECOMMENDED, but REQUIRED if `LookLocker` is set `true` | [number][] or [array][] of [numbers][] | Flip angle (FA) for the acquisition, specified in degrees. Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`. The data type number may apply to files from any MRI modality concerned with a single value for this field, or to the files in a [file collection](../99-appendices/10-file-collections.md) where the value of this field is iterated using the [flip entity](../99-appendices/09-entities.md#flip). The data type array provides a value for each volume in a 4D dataset and should only be used when the volume timing is critical for interpretation of the data, such as in [ASL](#arterial-spin-labeling-perfusion-data) or variable flip angle fMRI sequences. |
-| NegativeContrast | OPTIONAL                                                | [boolean][]                            | `true` or `false` value specifying whether increasing voxel intensity (within sample voxels) denotes a decreased value with respect to the contrast suffix. This is commonly the case when Cerebral Blood Volume is estimated via usage of a contrast agent in conjunction with a T2\* weighted acquisition protocol.                                                                                                                                                                                                                                                                                                                                                              |
+{{ MACROS___make_metadata_table(
+   {
+      "FlipAngle": "RECOMMENDED, but REQUIRED if `LookLocker` is set `true`",
+      "NegativeContrast": "OPTIONAL",
+   }
+) }}
 
 ### Slice Acceleration
 
-| **Key name**                | **Requirement level** | **Data type** | **Description**                                   |
-| --------------------------- | --------------------- | ------------- | ------------------------------------------------- |
-| MultibandAccelerationFactor | RECOMMENDED           | [number][]    | The multiband factor, for multiband acquisitions. |
+{{ MACROS___make_metadata_table(
+   {
+      "MultibandAccelerationFactor": "RECOMMENDED",
+   }
+) }}
 
 ### Anatomical landmarks
 
 Useful for multimodal co-registration with MEG, (S)EEG, TMS, and so on.
 
-| **Key name**                  | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ----------------------------- | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| AnatomicalLandmarkCoordinates | RECOMMENDED           | [object][] of [arrays][] | Key:value pairs of any number of additional anatomical landmarks and their coordinates in voxel units (where first voxel has index 0,0,0) relative to the associated anatomical MRI (for example, `{"AC": [127,119,149], "PC": [128,93,141], "IH": [131,114,206]}`, or `{"NAS": [127,213,139], "LPA": [52,113,96], "RPA": [202,113,91]}`). Each array MUST contain three numeric values corresponding to x, y, and z axis of the coordinate system in that exact order. |
+{{ MACROS___make_metadata_table(
+   {
+      "AnatomicalLandmarkCoordinates_mri": "RECOMMENDED",
+   }
+) }}
 
 ### Echo-Planar Imaging and *B<sub>0</sub>* mapping
 
@@ -136,18 +167,22 @@ The modality labels `dwi` (under `dwi/`), `bold` (under `func/`),
 any modality under `fmap/` are allowed to encode the MR protocol intent for
 fieldmap estimation using the following metadata:
 
-| **Key name**      | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ----------------- | --------------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| B0FieldIdentifier | OPTIONAL              | [string][]                            | The presence of this key states that this particular 3D or 4D image MAY be used for fieldmap estimation purposes. The `B0FieldIdentifier` MUST be a unique string within one participant's tree, shared only by the images meant to be used as inputs for the estimation of a particular instance of the *B<sub>0</sub> field* estimation. It is RECOMMENDED to derive this identifier from DICOM Tags, for example, the *Protocol Name* `(0018, 1030)` or the *Sequence Name* `(0018, 0024)` when the former is not defined (for example, in GE devices.) |
-| B0FieldSource     | OPTIONAL              | [string][] or [array][] of [string][] | At least one existing `B0FieldIdentifier` defined by other images in the participant's tree. This field states the *B<sub>0</sub> field* estimation designated by the `B0FieldIdentifier` that may be used to correct the dataset for distortions caused by B<sub>0</sub> inhomogeneities. `B0FieldSource` and `B0FieldIdentifier` are mutually exclusive.                                                                                                                                                                                                 |
+{{ MACROS___make_metadata_table(
+   {
+      "B0FieldIdentifier": "RECOMMENDED",
+      "B0FieldSource": "RECOMMENDED",
+   }
+) }}
 
 ### Institution information
 
-| **Key name**                | **Requirement level** | **Data type** | **Description**                                                                                                                                                          |
-| --------------------------- | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| InstitutionName             | RECOMMENDED           | [string][]    | The name of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0080 `InstitutionName`.                     |
-| InstitutionAddress          | RECOMMENDED           | [string][]    | The address of the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`.               |
-| InstitutionalDepartmentName | RECOMMENDED           | [string][]    | The department in the institution in charge of the equipment that produced the composite instances. Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`. |
+{{ MACROS___make_metadata_table(
+   {
+      "InstitutionName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0080 `InstitutionName`."),
+      "InstitutionAddress": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`."),
+      "InstitutionalDepartmentName": "RECOMMENDED",
+   }
+) }}
 
 When adding additional metadata please use the CamelCase version of
 [DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
@@ -223,11 +258,13 @@ JSON file. See [Common metadata fields](#common-metadata-fields) for a
 list of terms and their definitions. There are also some OPTIONAL JSON
 fields specific to anatomical scans:
 
-| **Key name**              | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ------------------------- | --------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ContrastBolusIngredient   | OPTIONAL              | [string][]                             | Active ingredient of agent. Values MUST be one of: `"IODINE"`, `"GADOLINIUM"`, `"CARBON DIOXIDE"`, `"BARIUM"`, `"XENON"` Corresponds to DICOM Tag 0018, 1048.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| RepetitionTimeExcitation  | OPTIONAL              | [number][]                             | The interval, in seconds, between two successive excitations. The DICOM Tag that best refers to this parameter is [(0018, 0080)](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080)). This field may be used together with the `RepetitionTimePreparation` for certain use cases, such as [MP2RAGE](https://doi.org/10.1016/j.neuroimage.2009.10.002). Use `RepetitionTimeExcitation` (in combination with `RepetitionTimePreparation` if needed) for anatomy imaging data rather than `RepetitionTime` as it is already defined as the amount of time that it takes to acquire a single volume in the [task imaging data](#task-including-resting-state-imaging-data) section. |
-| RepetitionTimePreparation | OPTIONAL              | [number][] or [array][] of [numbers][] | The interval, in seconds, that it takes a preparation pulse block to re-appear at the beginning of the succeeding (essentially identical) pulse sequence block. The data type number may apply to files from any MRI modality concerned with a single value for this field. The data type array provides a value for each volume in a 4D dataset and should only be used when the volume timing is critical for interpretation of the data, such as in [ASL](#arterial-spin-labeling-perfusion-data).                                                                                                                                                                                   |
+{{ MACROS___make_metadata_table(
+   {
+      "ContrastBolusIngredient": "OPTIONAL",
+      "RepetitionTimeExcitation": "OPTIONAL",
+      "RepetitionTimePreparation": "OPTIONAL",
+   }
+) }}
 
 The [`part-<label>`](../99-appendices/09-entities.md#part) key/value pair is
 used to indicate which component of the complex representation of the MRI
@@ -425,11 +462,13 @@ JSON file.
 
 ### Required fields
 
-| **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| -------------- | --------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| RepetitionTime | REQUIRED              | [number][]               | The time in seconds between the beginning of an acquisition of one volume and the beginning of acquisition of the volume following it (TR). When used in the context of functional acquisitions this parameter best corresponds to [DICOM Tag 0020, 0110](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0020,0110)): the "time delta between images in a dynamic of functional set of images" but may also be found in [DICOM Tag 0018, 0080](http://dicomlookup.com/lookup.asp?sw=Tnumber&q=(0018,0080)): "the period of time in msec between the beginning of a pulse sequence and the beginning of the succeeding (essentially identical) pulse sequence". This definition includes time between scans (when no data has been acquired) in case of sparse acquisition schemes. This value MUST be consistent with the '`pixdim[4]`' field (after accounting for units stored in '`xyzt_units`' field) in the NIfTI header. This field is mutually exclusive with `VolumeTiming`. |
-| VolumeTiming   | REQUIRED              | [array][] of [numbers][] | The time at which each volume was acquired during the acquisition. It is described using a list of times referring to the onset of each volume in the BOLD series. The list must have the same length as the BOLD series, and the values must be non-negative and monotonically increasing. This field is mutually exclusive with `RepetitionTime` and `DelayTime`. If defined, this requires acquisition time (TA) be defined via either `SliceTiming` or `AcquisitionDuration` be defined.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| TaskName       | REQUIRED              | [string][]               | Name of the task. No two tasks should have the same name. The task label included in the file name is derived from this TaskName field by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters. For example `TaskName` `"faces n-back"` will correspond to task label `facesnback`. A RECOMMENDED convention is to name resting state task using labels beginning with `rest`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+{{ MACROS___make_metadata_table(
+   {
+      "RepetitionTime": "REQUIRED",
+      "VolumeTiming": "REQUIRED",
+      "TaskName": "REQUIRED",
+   }
+) }}
 
 For the fields described above and in the following section, the term "Volume"
 refers to a reconstruction of the object being imaged (for example, brain or part of a
@@ -440,13 +479,15 @@ combined image rather than an image from each coil.
 
 #### Timing Parameters
 
-| **Key name**                      | **Requirement level**                                                                                                                                                                             | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NumberOfVolumesDiscardedByScanner | RECOMMENDED                                                                                                                                                                                       | [integer][]   | Number of volumes ("dummy scans") discarded by the scanner (as opposed to those discarded by the user post hoc) before saving the imaging file. For example, a sequence that automatically discards the first 4 volumes before saving would have this field as 4. A sequence that doesn't discard dummy scans would have this set to 0. Please note that the onsets recorded in the \_event.tsv file should always refer to the beginning of the acquisition of the first volume in the corresponding imaging file - independent of the value of `NumberOfVolumesDiscardedByScanner` field. |
-| NumberOfVolumesDiscardedByUser    | RECOMMENDED                                                                                                                                                                                       | [integer][]   | Number of volumes ("dummy scans") discarded by the user before including the file in the dataset. If possible, including all of the volumes is strongly recommended. Please note that the onsets recorded in the \_event.tsv file should always refer to the beginning of the acquisition of the first volume in the corresponding imaging file - independent of the value of `NumberOfVolumesDiscardedByUser` field.                                                                                                                                                                       |
-| DelayTime                         | RECOMMENDED                                                                                                                                                                                       | [number][]    | User specified time (in seconds) to delay the acquisition of data for the following volume. If the field is not present it is assumed to be set to zero. Corresponds to Siemens CSA header field `lDelayTimeInTR`. This field is REQUIRED for sparse sequences using the `RepetitionTime` field that do not have the `SliceTiming` field set to allowed for accurate calculation of "acquisition time". This field is mutually exclusive with `VolumeTiming`.                                                                                                                               |
-| AcquisitionDuration               | RECOMMENDED, but REQUIRED for sequences that are described with the `VolumeTiming` field and that do not have the `SliceTiming` field set to allow for accurate calculation of "acquisition time" | [number][]    | Duration (in seconds) of volume acquisition. Corresponds to DICOM Tag 0018, 9073 `Acquisition Duration`. This field is mutually exclusive with `RepetitionTime`.                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| DelayAfterTrigger                 | RECOMMENDED                                                                                                                                                                                       | [number][]    | Duration (in seconds) from trigger delivery to scan onset. This delay is commonly caused by adjustments and loading times. This specification is entirely independent of `NumberOfVolumesDiscardedByScanner` or `NumberOfVolumesDiscardedByUser`, as the delay precedes the acquisition.                                                                                                                                                                                                                                                                                                    |
+{{ MACROS___make_metadata_table(
+   {
+      "NumberOfVolumesDiscardedByScanner": "RECOMMENDED",
+      "NumberOfVolumesDiscardedByUser": "RECOMMENDED",
+      "DelayTime": "RECOMMENDED",
+      "AcquisitionDuration": 'RECOMMENDED, but REQUIRED for sequences that are described with the `VolumeTiming` field and that do not have the `SliceTiming` field set to allow for accurate calculation of "acquisition time"',
+      "DelayAfterTrigger": "RECOMMENDED",
+   }
+) }}
 
 The following table recapitulates the different ways that specific fields have
 to be populated for functional sequences. Note that all these options can be
@@ -469,12 +510,14 @@ sparse sequences.
 
 #### fMRI task information
 
-| **Key name**    | **Requirement level** | **Data type** | **Description**                                                                                                                                                                               |
-| --------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Instructions    | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the scan. This is especially important in context of resting state fMRI and distinguishing between eyes open and eyes closed paradigms. |
-| TaskDescription | RECOMMENDED           | [string][]    | Longer description of the task.                                                                                                                                                               |
-| CogAtlasID      | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) Task term.                                                                                                 |
-| CogPOID         | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [CogPO](http://www.cogpo.org/) term.                                                                                                                          |
+{{ MACROS___make_metadata_table(
+   {
+      "Instructions": "RECOMMENDED",
+      "TaskDescription": "RECOMMENDED",
+      "CogAtlasID": "RECOMMENDED",
+      "CogPOID": "RECOMMENDED",
+   }
+) }}
 
 See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms and their definitions.
@@ -613,9 +656,11 @@ not be able to be directly concatenated.
 BIDS permits defining arbitrary groupings of these multipart scans with the
 following metadata:
 
-| **Key name** | **Requirement level** | **Data type** | **Description**                                                                      |
-| ------------ | --------------------- | ------------- | ------------------------------------------------------------------------------------ |
-| MultipartID  | REQUIRED              | [string][]    | A unique (per participant) label tagging DWI runs that are part of a multipart scan. |
+{{ MACROS___make_metadata_table(
+   {
+      "MultipartID": "REQUIRED",
+   }
+) }}
 
 JSON example:
 
@@ -753,61 +798,72 @@ See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#summary-i
 
 #### Common metadata fields applicable to both (P)CASL and PASL
 
-| **Key name**                      | **Requirement level**                                         | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| --------------------------------- | ------------------------------------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ArterialSpinLabelingType          | REQUIRED                                                      | [string][]                             | `"CASL"`, `"PCASL"`, `"PASL"`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| PostLabelingDelay                 | REQUIRED                                                      | [number][] or [array][] of [numbers][] | This is the postlabeling delay (PLD) time, in seconds, after the end of the labeling (for `"CASL"` or `"PCASL"`) or middle of the labeling pulse (for `"PASL"`) until the middle of the excitation pulse applied to the imaging slab (for 3D acquisition) or first slice (for 2D acquisition).  Can be a number (for a single-PLD time series) or an array of numbers (for multi-PLD and Look-Locker). In the latter case, the array of numbers contains the PLD of each volume, namely each `control` and `label`, in the acquisition order. Any image within the time-series without a PLD, for example an `m0scan`, is indicated by a zero. Based on DICOM Tags 0018, 9079 `Inversion Times` and 0018, 0082 `InversionTime`. |
-| BackgroundSuppression             | REQUIRED                                                      | [boolean][]                            | Boolean indicating if background suppression is used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| M0Type                            | REQUIRED                                                      | [string][]                             | Describes the presence of M0 information, as either: `"Separate"` when a separate `*_m0scan.nii[.gz]` is present, `"Included"` when an m0scan volume is contained within the current `*_asl.nii[.gz]`, `"Estimate"` when a single whole-brain M0 value is provided, or `"Absent"` when no specific M0 information is present.                                                                                                                                                                                                                                                                                                                                                                                                   |
-| TotalAcquiredPairs                | REQUIRED                                                      | [number][]                             | The total number of acquired `control`-`label` pairs. A single pair consists of a single `control` and a single `label` image.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| VascularCrushing                  | RECOMMENDED                                                   | [boolean][]                            | Boolean indicating if Vascular Crushing is used. Corresponds to DICOM Tag 0018, 9259 `ASL Crusher Flag`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| AcquisitionVoxelSize              | RECOMMENDED                                                   | [array][] of [numbers][]               | An array of numbers with a length of 3, in millimeters. This parameter denotes the original acquisition voxel size, excluding any inter-slice gaps and before any interpolation or resampling within reconstruction or image processing. Any point spread function effects, for example due to T2-blurring, that would decrease the effective resolution are not considered here.                                                                                                                                                                                                                                                                                                                                               |
-| M0Estimate                        | OPTIONAL, but REQUIRED when `M0Type` is defined as `Estimate` | [number][]                             | A single numerical whole-brain M0 value (referring to the M0 of blood), only if obtained externally (for example retrieved from CSF in a separate measurement).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| BackgroundSuppressionNumberPulses | OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`    | [number][]                             | The number of background suppression pulses used. Note that this excludes any effect of background suppression pulses applied before the labeling.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| BackgroundSuppressionPulseTime    | OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`    | [array][] of [numbers][]               | Array of numbers containing timing, in seconds, of the background suppression pulses with respect to the start of the labeling. In case of multi-PLD with different background suppression pulse times, only the pulse time of the first PLD should be defined.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| VascularCrushingVENC              | OPTIONAL, RECOMMENDED if `VascularCrushing` is `true`         | [number][] or [array][] of [numbers][] | The crusher gradient strength, in centimeters per second. Specify either one number for the total time-series, or provide an array of numbers, for example when using QUASAR, using the value zero to identify volumes for which `VascularCrushing` was turned off. Corresponds to DICOM Tag 0018, 925A `ASL Crusher Flow Limit`.                                                                                                                                                                                                                                                                                                                                                                                               |
-| LabelingOrientation               | RECOMMENDED                                                   | [array][] of [numbers][]               | Orientation of the labeling plane (`(P)CASL`) or slab (`PASL`). The direction cosines of a normal vector perpendicular to the ASL labeling slab or plane with respect to the patient. Corresponds to DICOM Tag 0018, 9255 `ASL Slab Orientation`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| LabelingDistance                  | RECOMMENDED                                                   | [number][]                             | Distance from the center of the imaging slab to the center of the labeling plane (`(P)CASL`) or the leading edge of the labeling slab (`PASL`), in millimeters. If the labeling is performed inferior to the isocenter, this number should be negative. Based on DICOM macro C.8.13.5.14.                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| LabelingLocationDescription       | RECOMMENDED                                                   | [string][]                             | Description of the location of the labeling plane (`"CASL"` or `"PCASL"`) or the labeling slab (`"PASL"`) that cannot be captured by fields `LabelingOrientation` or `LabelingDistance`. May include a link to an anonymized screenshot of the planning of the labeling slab/plane with respect to the imaging slab or slices `*_asllabeling.jpg`. Based on DICOM macro C.8.13.5.14.                                                                                                                                                                                                                                                                                                                                            |
-| LookLocker                        | OPTIONAL                                                      | [boolean][]                            | Boolean indicating if a Look-Locker readout is used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| LabelingEfficiency                | OPTIONAL                                                      | [number][]                             | Labeling efficiency, specified as a number between zero and one, only if obtained externally (for example phase-contrast based).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+{{ MACROS___make_metadata_table(
+   {
+      "ArterialSpinLabelingType": "REQUIRED",
+      "PostLabelingDelay": "REQUIRED",
+      "BackgroundSuppression": "REQUIRED",
+      "M0Type": "REQUIRED",
+      "TotalAcquiredPairs": "REQUIRED",
+      "VascularCrushing": "RECOMMENDED",
+      "AcquisitionVoxelSize": "RECOMMENDED",
+      "M0Estimate": "OPTIONAL, but REQUIRED when `M0Type` is defined as `Estimate`",
+      "BackgroundSuppressionNumberPulses": "OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`",
+      "BackgroundSuppressionPulseTime": "OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`",
+      "VascularCrushingVENC": "OPTIONAL, RECOMMENDED if `VascularCrushing` is `true`",
+      "LabelingOrientation": "RECOMMENDED",
+      "LabelingDistance": "RECOMMENDED",
+      "LabelingLocationDescription": "RECOMMENDED",
+      "LookLocker": "OPTIONAL",
+      "LabelingEfficiency": "OPTIONAL",
+   }
+) }}
 
 #### (P)CASL-specific metadata fields
 
 These fields can only be used when `ArterialSpinLabelingType` is `"CASL"` or `"PCASL"`. See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#pcasl-sequence) for more information on the (P)CASL sequence and the Labeling Pulse fields.
 
-| **Key name**                 | **Requirement level**                                  | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| ---------------------------- | ------------------------------------------------------ | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| LabelingDuration             | REQUIRED                                               | [number][] or [array][] of [numbers][] | Total duration of the labeling pulse train, in seconds, corresponding to the temporal width of the labeling bolus for `"PCASL"` or `"CASL"`. In case all control-label volumes (or deltam or CBF) have the same `LabelingDuration`, a scalar must be specified. In case the control-label volumes (or deltam or cbf) have a different `LabelingDuration`, an array of numbers must be specified, for which any `m0scan` in the timeseries has a `LabelingDuration` of zero. In case an array of numbers is provided, its length should be equal to the number of volumes specified in `*_aslcontext.tsv`. Corresponds to DICOM Tag 0018, 9258 `ASL Pulse Train Duration`. |
-| PCASLType                    | RECOMMENDED if `ArterialSpinLabelingType` is `"PCASL"` | [string][]                             | Type the gradient pulses used in the `"control"` condition: `"balanced"` or `"unbalanced"`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| CASLType                     | RECOMMENDED if `ArterialSpinLabelingType` is `"CASL"`  | [string][]                             | Describes if a separate coil is used for labeling: `"single-coil"` or `"double-coil"`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| LabelingPulseAverageGradient | RECOMMENDED                                            | [number][]                             | The average labeling gradient, in milliteslas per meter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| LabelingPulseMaximumGradient | RECOMMENDED                                            | [number][]                             | The maximum amplitude of the gradient switched on during the application of the labeling RF pulse(s), in milliteslas per meter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| LabelingPulseAverageB1       | RECOMMENDED                                            | [number][]                             | The average B1-field strength of the RF labeling pulses, in microteslas. As an alternative, `LabelingPulseFlipAngle` can be provided.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| LabelingPulseDuration        | RECOMMENDED                                            | [number][]                             | Duration of the individual labeling pulses, in milliseconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| LabelingPulseFlipAngle       | RECOMMENDED                                            | [number][]                             | The flip angle of a single labeling pulse, in degrees, which can be given as an alternative to `LabelingPulseAverageB1`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| LabelingPulseInterval        | RECOMMENDED                                            | [number][]                             | Delay between the peaks of the individual labeling pulses, in milliseconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+{{ MACROS___make_metadata_table(
+   {
+      "LabelingDuration": "REQUIRED",
+      "PCASLType": 'RECOMMENDED if `ArterialSpinLabelingType` is `"PCASL"`',
+      "CASLType": 'RECOMMENDED if `ArterialSpinLabelingType` is `"CASL"`',
+      "LabelingPulseAverageGradient": "RECOMMENDED",
+      "LabelingPulseMaximumGradient": "RECOMMENDED",
+      "LabelingPulseAverageB1": "RECOMMENDED",
+      "LabelingPulseDuration": "RECOMMENDED",
+      "LabelingPulseFlipAngle": "RECOMMENDED",
+      "LabelingPulseInterval": "RECOMMENDED",
+   }
+) }}
 
 #### PASL-specific metadata fields
 
 These fields can only be used when `ArterialSpinLabelingType` is `PASL`. See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#pasl-sequence) for more information on the PASL sequence and the BolusCutOff fields.
 
-| **Key name**          | **Requirement level**                             | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| --------------------- | ------------------------------------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| BolusCutOffFlag       | REQUIRED                                          | [boolean][]                            | Boolean indicating if a bolus cut-off technique is used. Corresponds to DICOM Tag 0018, 925C `ASL Bolus Cut-off Flag`.                                                                                                                                                                                                                                                                                                                                   |
-| PASLType              | RECOMMENDED                                       | [string][]                             | Type of the labeling pulse of the `PASL` labeling, for example `"FAIR"`, `"EPISTAR"`, or `"PICORE"`.                                                                                                                                                                                                                                                                                                                                                     |
-| LabelingSlabThickness | RECOMMENDED                                       | [number][]                             | Thickness of the labeling slab in millimeters. For non-selective FAIR a zero is entered. Corresponds to DICOM Tag 0018, 9254 `ASL Slab Thickness`.                                                                                                                                                                                                                                                                                                       |
-| BolusCutOffDelayTime  | OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true` | [number][] or [array][] of [numbers][] | Duration between the end of the labeling and the start of the bolus cut-off saturation pulse(s), in seconds. This can be a number or array of numbers, of which the values must be non-negative and monotonically increasing, depending on the number of bolus cut-off saturation pulses. For Q2TIPS, only the values for the first and last bolus cut-off saturation pulses are provided. Based on DICOM Tag 0018, 925F `ASL Bolus Cut-off Delay Time`. |
-| BolusCutOffTechnique  | OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true` | [string][]                             | Name of the technique used, for example `"Q2TIPS"`, `"QUIPSS"`, `"QUIPSSII"`. Corresponds to DICOM Tag 0018, 925E `ASL Bolus Cut-off Technique`.                                                                                                                                                                                                                                                                                                         |
+{{ MACROS___make_metadata_table(
+   {
+      "BolusCutOffFlag": "REQUIRED",
+      "PASLType": "RECOMMENDED",
+      "LabelingSlabThickness": "RECOMMENDED",
+      "BolusCutOffDelayTime": "OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`",
+      "BolusCutOffTechnique": "OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`",
+   }
+) }}
 
 ### `m0scan` metadata fields
 
 Some common metadata fields are REQUIRED for the `*_m0scan.json`: `EchoTime`, `RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
 
-| **Key name**         | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                   |
-| -------------------- | --------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IntendedFor          | REQUIRED              | [string][] or [array][] of [strings][] | One or more filenames with paths relative to the subject subfolder, with forward slashes, referring to ASL time series for which the `*_m0scan.nii[.gz]` is intended.                                                                                                                                                                                                             |
-| AcquisitionVoxelSize | RECOMMENDED           | [array][] of [numbers][]               | An array of numbers with a length of 3, in millimeters. This parameter denotes the original acquisition voxel size, excluding any inter-slice gaps and before any interpolation or resampling within reconstruction or image processing. Any point spread function effects, for example due to T2-blurring, that would decrease the effective resolution are not considered here. |
+{{ MACROS___make_metadata_table(
+   {
+      "IntendedFor": (
+         "REQUIRED",
+         "This is used to refer to the ASL time series for which the `*_m0scan.nii[.gz]` is intended."
+      ),
+      "AcquisitionVoxelSize": "RECOMMENDED",
+   }
+) }}
 
 The following table recapitulates the ASL field dependencies. If Source field (column 1) contains the Value specified in column 2, then the Requirements in column 4 are
 imposed on the Dependent fields in column 3. See [Appendix XII](../99-appendices/12-arterial-spin-labeling.md#flowchart-based-on-dependency-table) for this information in the
@@ -883,9 +939,15 @@ tools that support older datasets.
 Fieldmap data MAY be linked to the specific scan(s) it was acquired for by
 filling the `IntendedFor` field in the corresponding JSON file.
 
-| **Key name** | **Requirement level** | **Data type**                         | **Description**                                                                                                                                                                                                                                                                 |
-| ------------ | --------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IntendedFor  | OPTIONAL              | [string][] or [array][] of [string][] | Contains one or more filenames with paths relative to the participant subfolder. The path needs to use forward slashes instead of backward slashes. This field is OPTIONAL, and in case the fieldmaps do not correspond to any particular scans, it does not have to be filled. |
+{{ MACROS___make_metadata_table(
+   {
+      "IntendedFor": (
+         "OPTIONAL",
+         "This field is OPTIONAL, and in case the fieldmaps do not correspond "
+         "to any particular scans, it does not have to be filled.",
+      ),
+   }
+) }}
 
 For example:
 
@@ -911,10 +973,12 @@ the OPTIONAL `_magnitude2` image to the longer echo time.
 
 Required fields:
 
-| **Key name** | **Requirement level** | **Data type** | **Description**                                             |
-| ------------ | --------------------- | ------------- | ----------------------------------------------------------- |
-| EchoTime1    | REQUIRED              | [number][]    | The time (in seconds) when the first (shorter) echo occurs. |
-| EchoTime2    | REQUIRED              | [number][]    | The time (in seconds) when the second (longer) echo occurs. |
+{{ MACROS___make_metadata_table(
+   {
+      "EchoTime1": "REQUIRED",
+      "EchoTime2": "REQUIRED",
+   }
+) }}
 
 In this particular case, the sidecar JSON file
 `sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.json`
@@ -940,9 +1004,11 @@ second echos are available.
 
 Required fields:
 
-| **Key name** | **Requirement level** | **Data type** | **Description**                                                                   |
-| ------------ | --------------------- | ------------- | --------------------------------------------------------------------------------- |
-| EchoTime     | REQUIRED              | [number][]    | The time (in seconds) when the echo corresponding to this phase map was acquired. |
+{{ MACROS___make_metadata_table(
+   {
+      "EchoTime_fmap": "REQUIRED",
+   }
+) }}
 
 Each phase map has a corresponding sidecar JSON file to specify its corresponding `EchoTime`.
 For example, `sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json` may read:
@@ -962,9 +1028,15 @@ In some cases (for example GE), the scanner software will directly reconstruct a
 
 Required fields:
 
-| **Key name** | **Requirement level** | **Data type** | **Description**                                                                          |
-| ------------ | --------------------- | ------------- | ---------------------------------------------------------------------------------------- |
-| Units        | REQUIRED              | [string][]    | Units of the fieldmap: Hertz (`"Hz"`), Radians per second (`"rad/s"`), or Tesla (`"T"`). |
+{{ MACROS___make_metadata_table(
+   {
+      "Units": (
+         "REQUIRED",
+         'Fieldmaps must be in units of Hertz (`"Hz"`), '
+         'radians per second (`"rad/s"`), or Tesla (`"T"`).',
+      ),
+   }
+) }}
 
 For example:
 
@@ -999,10 +1071,12 @@ the REQUIRED `PhaseEncodingDirection` metadata field
 
 Required fields:
 
-| **Key name**           | **Requirement level** | **Data type** | **Description**                                                              |
-| ---------------------- | --------------------- | ------------- | ---------------------------------------------------------------------------- |
-| PhaseEncodingDirection | REQUIRED              | [string][]    | See [in-plane spatial encoding](#in-plane-spatial-encoding) table of fields. |
-| TotalReadoutTime       | REQUIRED              | [number][]    | See [in-plane spatial encoding](#in-plane-spatial-encoding) table of fields. |
+{{ MACROS___make_metadata_table(
+   {
+      "PhaseEncodingDirection": "REQUIRED",
+      "TotalReadoutTime": "REQUIRED",
+   }
+) }}
 
 For example:
 
@@ -1024,25 +1098,3 @@ However, please note that `PhaseEncodingDirection` and `TotalReadoutTime` keys
 are REQUIRED for these field mapping sequences.
 
 <!-- Link Definitions -->
-
-[deprecated]: ../02-common-principles.md#definitions
-
-[string]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[integer]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[number]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[numbers]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[array]: https://www.w3schools.com/js/js_json_arrays.asp
-
-[arrays]: https://www.w3schools.com/js/js_json_arrays.asp
-
-[object]: https://www.json.org/json-en.html
-
-[uri]: ../02-common-principles.md#uniform-resource-indicator

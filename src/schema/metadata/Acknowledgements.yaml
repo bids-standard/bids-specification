@@ -1,0 +1,6 @@
+---
+name: Acknowledgements
+description: |
+  Text acknowledging contributions of individuals or institutions beyond
+  those listed in Authors or Funding.
+type: string

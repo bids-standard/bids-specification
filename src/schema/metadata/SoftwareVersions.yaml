@@ -1,0 +1,6 @@
+---
+name: SoftwareVersions
+description: |
+  Manufacturer's designation of software version of the equipment that produced
+  the measurements.
+type: string
