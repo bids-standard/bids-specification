@@ -46,18 +46,8 @@ Note that when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
       "SamplingFrequency": "REQUIRED",
       "StartTime": "REQUIRED",
       "Columns": "REQUIRED",
-      "Manufacturer": "RECOMMENDED",
-      "ManufacturersModelName": "RECOMMENDED",
-      "SoftwareVersions": "RECOMMENDED",
-      "DeviceSerialNumber": "RECOMMENDED",
    }
 ) }}
-
-| **Key name**      | **Requirement level** | **Data type**            | **Description**                                                                                                                                           |
-| ----------------- | --------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SamplingFrequency | REQUIRED              | [number][]               | Sampling frequency in Hz of all columns in the file.                                                                                                      |
-| StartTime         | REQUIRED              | [number][]               | Start time in seconds in relation to the start of acquisition of the first data sample in the corresponding neural dataset (negative values are allowed). |
-| Columns           | REQUIRED              | [array][] of [strings][] | Names of columns in file.                                                                                                                                 |
 
 Additional metadata may be included as in
 [any TSV file](../02-common-principles.md#tabular-files) to specify, for
@@ -145,12 +135,14 @@ sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
 The following RECOMMENDED metadata can also be added in the side-car JSON files
 of any `*_<physio>.tsv.gz` file.
 
-| **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                           |
-| ---------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Manufacturer           | RECOMMENDED           | [string][]    | Manufacturer of the system used to record the measurements.                                                                                                                                               |
-| ManufacturersModelName | RECOMMENDED           | [string][]    | Manufacturer's designation of the system used to record the measurements.                                                                                                                                 |
-| SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer's designation of the acquisition software.                                                                                                                                                   |
-| DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the measurements. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset. |
+{{ MACROS___make_metadata_table(
+   {
+      "Manufacturer": "RECOMMENDED",
+      "ManufacturersModelName": "RECOMMENDED",
+      "SoftwareVersions": "RECOMMENDED",
+      "DeviceSerialNumber": "RECOMMENDED",
+   }
+) }}
 
 <!-- Link Definitions -->
 

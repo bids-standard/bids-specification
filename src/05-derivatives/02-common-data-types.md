@@ -21,12 +21,6 @@ share the following (non-required) ones:
    }
 ) }}
 
-| **Key name** | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ------------ | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Description  | RECOMMENDED           | [string][]               | Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| Sources      | OPTIONAL              | [array][] of [strings][] | A list of files with the paths specified relative to dataset root; these files were directly used in the creation of this derivative data file. For example, if a derivative A is used in the creation of another derivative B, which is in turn used to generate C in a chain of A->B->C, C should only list B in `Sources`, and B should only list A in `Sources`. However, in case both X and Y are directly used in the creation of Z, then Z should list X and Y in `Sources`, regardless of whether X was used to generate Y. |
-| RawSources   | OPTIONAL              | [array][] of [strings][] | A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                                                                                                                                                                                                                        |
-
 ### Examples
 
 Preprocessed `bold` NIfTI file in the original coordinate space of the original run.
@@ -87,10 +81,6 @@ identifiers][templates] table, then the `SpatialReference` metadata is REQUIRED.
       "SpatialReference": "RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise.",
    }
 ) }}
-
-| **Key name**     | **Requirement level**                                                                                                                     | **Data type**            | **Description**                                                                                                                                                                                    |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SpatialReference | RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise. | [string][] or [object][] | For images with a single reference, the value MUST be a single string. For images with multiple references, such as surface and volume references, a JSON object MUST be used. See examples below. |
 
 ### SpatialReference key allowed values
 

@@ -49,12 +49,6 @@ The following metadata JSON fields are defined for preprocessed images:
    }
 ) }}
 
-| **Key name**  | **Requirement level**         | **Data type**                                      | **Description**                                                              |
-| ------------- | ----------------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------- |
-| SkullStripped | REQUIRED                      | [boolean][]                                        | Whether the volume was skull stripped (non-brain voxels set to zero) or not. |
-| Resolution    | REQUIRED if `res` is present. | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the resolution keyword.                      |
-| Density       | REQUIRED if `den` is present. | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the density keyword.                         |
-
 Example JSON file corresponding to
 `pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_bold.json` above:
 
@@ -149,14 +143,6 @@ JSON metadata fields:
    }
 ) }}
 
-| **Key name** | **Requirement level**                    | **Data type**                                      | **Description**                                                                                                                   |
-| ------------ | ---------------------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| RawSources   | REQUIRED                                 | [array][] of [strings][]                           | Same as defined in [Common data types][], but elevated from OPTIONAL to REQUIRED.                                                 |
-| Type         | RECOMMENDED                              | [string][]                                         | Short identifier of the mask. Reserved values: `Brain` - brain mask, `Lesion` - lesion mask, `Face` - face mask, `ROI` - ROI mask |
-| Atlas        | RECOMMENDED if `label` entity is defined | [string][]                                         | Which atlas (if any) was used to generate the mask.                                                                               |
-| Resolution   | REQUIRED if `res` is present             | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the resolution keyword.                                                                           |
-| Density      | REQUIRED if `den` is present             | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the density keyword.                                                                              |
-
 Examples:
 
 ```Text
@@ -207,13 +193,6 @@ The following metadata fields apply to all segmentation files:
       "Density": "REQUIRED if `den` is present",
    }
 ) }}
-
-| **Key name** | **Requirement level**        | **Data type**                                      | **Description**                                                                   |
-| ------------ | ---------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Manual       | OPTIONAL                     | [boolean][]                                        | Indicates if the segmentation was performed manually or via an automated process. |
-| Atlas        | OPTIONAL                     | [string][]                                         | Which atlas (if any) was used to derive the segmentation.                         |
-| Resolution   | REQUIRED if `res` is present | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the resolution keyword.                           |
-| Density      | REQUIRED if `den` is present | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the density keyword.                              |
 
 ### Discrete Segmentations
 

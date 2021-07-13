@@ -190,10 +190,6 @@ when applicable:
    }
 ) }}
 
-| **Key name**         | **Requirement level** | **Data type**             | **Description**                                                                                                                                                                                                                                       |
-| -------------------- | --------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| StimulusPresentation | RECOMMENDED           | [object][] of [strings][] | [Object][] containing key value pairs related to the software used to present the stimuli during the experiment, specifically: `OperatingSystem`, `SoftwareName`, `SoftwareRRID`, `SoftwareVersion` and `Code`. See table below for more information. |
-
 The object supplied for `StimulusPresentation` SHOULD include the following key-value pairs:
 
 {{ MACROS___make_metadata_table(
@@ -205,14 +201,6 @@ The object supplied for `StimulusPresentation` SHOULD include the following key-
       "Code": "RECOMMENDED",
    }
 ) }}
-
-| **Key name**    | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                      |
-| --------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| OperatingSystem | RECOMMENDED           | [string][]    | Operating system used to run the stimuli presentation software (for formatting recommendations, see examples below this table).                                                                                      |
-| SoftwareName    | RECOMMENDED           | [string][]    | Name of the software that was used to present the stimuli.                                                                                                                                                           |
-| SoftwareRRID    | RECOMMENDED           | [string][]    | [Research Resource Identifier](https://scicrunch.org/resources) of the software that was used to present the stimuli. Examples: The RRID for Psychtoolbox is `"SCR_002881"`, and that of PsychoPy is `"SCR_006571"`. |
-| SoftwareVersion | RECOMMENDED           | [string][]    | Version of the software that was used to present the stimuli.                                                                                                                                                        |
-| Code            | RECOMMENDED           | [string][]    | [URI][uri] of the code used to present the stimuli. Persistent identifiers such as DOIs are preferred. If multiple versions of code may be hosted at the same location, revision-specific URIs are recommended.      |
 
 The operating system description SHOULD include the following attributes:
 
