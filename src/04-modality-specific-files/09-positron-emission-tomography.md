@@ -283,6 +283,7 @@ We refer to the common principles for the standards for describing dates and tim
       "ScaleFactor": "RECOMMENDED",
       "ScatterFraction": "RECOMMENDED",
       "DecayCorrectionFactor": "RECOMMENDED",
+      "DoseCalibrationFactor": "RECOMMENDED",
       "PromptRate": "RECOMMENDED",
       "RandomRate": "RECOMMENDED",
       "SinglesRate": "RECOMMENDED",
