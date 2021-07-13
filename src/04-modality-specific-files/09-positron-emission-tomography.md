@@ -247,8 +247,8 @@ which we divide into several categories:
       "InjectionStart": "REQUIRED",
       "FrameTimesStart": "REQUIRED",
       "FrameDuration": "REQUIRED",
-      "ScanDate": "RECOMMENDED",
       "InjectionEnd": "RECOMMENDED",
+      "ScanDate": "DEPRECATED",
    }
 ) }}
 
