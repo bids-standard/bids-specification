@@ -1,0 +1,20 @@
+---
+name: SourceDatasets
+description: |
+  Used to specify the locations and relevant attributes of all source datasets.
+  Valid keys in each object include `URL`, `DOI` (see
+  [URI](/02-common-principles.html#uniform-resource-indicator)), and
+  `Version` with
+  [string](https://www.w3schools.com/js/js_json_datatypes.asp)
+  values.
+type: array
+items:
+  type: object
+  properties:
+    URL:
+      type: string
+      format: uri
+    DOI:
+      type: string
+    Version:
+      type: string

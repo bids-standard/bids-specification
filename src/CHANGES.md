@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[ENH] add PET calibration factor [#825](https://github.com/bids-standard/bids-specification/pull/825) ([CPernet](https://github.com/CPernet))
 -   \[FIX] correct file location of scans.tsv file in example [#824](https://github.com/bids-standard/bids-specification/pull/824) ([ghisvail](https://github.com/ghisvail))
 -   \[FIX] Add missing closing parenthesis in 02-common-principle.md [#822](https://github.com/bids-standard/bids-specification/pull/822) ([sebastientourbier](https://github.com/sebastientourbier))
 -   \[MISC] update available datatypes in specification [#819](https://github.com/bids-standard/bids-specification/pull/819) ([sappelhoff](https://github.com/sappelhoff))
@@ -12,6 +13,7 @@
 -   \[MISC] Make MRI-centric language more general in Events [#801](https://github.com/bids-standard/bids-specification/pull/801) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] clarify that entities MUST be unique [#800](https://github.com/bids-standard/bids-specification/pull/800) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] deprecate DCOffsetCorrection field from ieeg.json: Use SoftwareFilters field instead [#799](https://github.com/bids-standard/bids-specification/pull/799) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Deprecate ScanDate (PET) in favor of AcquisitionTime in scans.tsv files [#798](https://github.com/bids-standard/bids-specification/pull/798) ([mnoergaard](https://github.com/mnoergaard))
 -   \[MISC] add IETF standard link for json [#797](https://github.com/bids-standard/bids-specification/pull/797) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] In PDF, color every other row in table in light gray fill [#794](https://github.com/bids-standard/bids-specification/pull/794) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] add link to guide on how to write a good README [#793](https://github.com/bids-standard/bids-specification/pull/793) ([sappelhoff](https://github.com/sappelhoff))

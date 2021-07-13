@@ -5,6 +5,7 @@ import os
 from copy import deepcopy
 from pathlib import Path
 from warnings import warn
+from pprint import pprint
 
 import pandas as pd
 import yaml
@@ -14,7 +15,9 @@ from . import utils
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
-utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
+utils.set_logger_level(
+    lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO)
+)
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 BIDS_SCHEMA = Path(__file__).parent.parent / "src" / "schema"
@@ -25,6 +28,28 @@ def _get_entry_name(path):
         return path.name[:-5]  # no .yaml
     else:
         return path.name
+
+
+def dereference_yaml(struct, path):
+    """Recursively search a dictionary-like object for $ref keys.
+
+    Each $ref key is replaced with the contents of the referenced file.
+    """
+    if isinstance(struct, dict):
+        if "$ref" in struct:
+            with open(os.path.join(path, struct["$ref"]), "r") as fo:
+                template = yaml.load(fo, Loader=yaml.SafeLoader)
+
+            struct.pop("$ref")
+            # Result is template object with local overrides
+            struct = {**template, **struct}
+
+        struct = {key: dereference_yaml(val, path) for key, val in struct.items()}
+
+    elif isinstance(struct, list):
+        struct = [dereference_yaml(item, path) for item in struct]
+
+    return struct
 
 
 def load_schema(schema_path):
@@ -48,8 +73,13 @@ def load_schema(schema_path):
     """
     schema_path = Path(schema_path)
     if schema_path.is_file() and (schema_path.suffix == ".yaml"):
+        base_path = os.path.dirname(schema_path.absolute())
         with open(schema_path) as f:
-            return yaml.load(f, Loader=yaml.SafeLoader)
+            dict_ = dereference_yaml(
+                yaml.load(f, Loader=yaml.SafeLoader),
+                base_path
+            )
+            return dict_
     elif schema_path.is_dir():
         # iterate through files and subdirectories
         res = {
@@ -140,7 +170,9 @@ def make_entity_definitions(schema):
         text += "\n\n"
         text += "Full name: {}".format(entity_info["name"])
         text += "\n\n"
-        text += "Format: `{}-<{}>`".format(entity_info["entity"], entity_info["format"])
+        text += "Format: `{}-<{}>`".format(
+            entity_info["entity"], entity_info["format"]
+        )
         text += "\n\n"
         text += "Definition: {}".format(entity_info["description"])
     return text
@@ -186,7 +218,8 @@ def make_filename_template(schema, **kwargs):
             string = "\t\t\t"
             for ent in entities:
                 ent_format = "{}-<{}>".format(
-                    schema["entities"][ent]["entity"], schema["entities"][ent]["format"]
+                    schema["entities"][ent]["entity"],
+                    schema["entities"][ent]["format"],
                 )
                 if ent in group["entities"]:
                     if group["entities"][ent] == "required":
@@ -209,13 +242,16 @@ def make_filename_template(schema, **kwargs):
                 string += suffix
                 strings = [string]
             else:
-                strings = [string + "_" + suffix for suffix in group["suffixes"]]
+                strings = [
+                    string + "_" + suffix for suffix in group["suffixes"]
+                ]
 
             # Add extensions
             full_strings = []
             extensions = group["extensions"]
-            extensions = [ext if ext != "*" else ".<extension>" for ext in
-                          extensions]
+            extensions = [
+                ext if ext != "*" else ".<extension>" for ext in extensions
+            ]
             extensions = utils.combine_extensions(extensions)
             if len(extensions) > 5:
                 # Combine exts when there are many, but keep JSON separate
@@ -257,8 +293,6 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     table_str : str
         Markdown string containing the table.
     """
-    from tabulate import tabulate
-
     schema = filter_schema(schema, **kwargs)
 
     ENTITIES_FILE = "09-entities.md"
@@ -287,6 +321,12 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         # each dtype could have multiple specs
         for spec in dtype_specs:
             suffixes = spec.get("suffixes")
+
+            # Skip this part of the schema if no suffixes are found.
+            # This is a hack to work around filter_schema's limitations.
+            if not len(suffixes):
+                continue
+
             # TODO: <br> is specific for html form
             suffixes_str = " ".join(suffixes) if suffixes else ""
             dtype_row = [dtype] + ([""] * len(entity_to_col))
@@ -306,7 +346,9 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
                 dtype_rows[suffixes_str] = dtype_row
 
         # Reformat first column
-        dtype_rows = {dtype + "<br>({})".format(k): v for k, v in dtype_rows.items()}
+        dtype_rows = {
+            dtype + "<br>({})".format(k): v for k, v in dtype_rows.items()
+        }
         dtype_rows = [[k] + v for k, v in dtype_rows.items()]
         table += dtype_rows
 
@@ -333,33 +375,165 @@ def make_suffix_table(schema, suffixes, tablefmt="github"):
     schema : dict
     suffixes : list of str
     tablefmt : str
+    
+    Returns
+    -------
+    table_str : str
+        The tabulated table as a Markdown string.
+    """
+    fields = list(field_info.keys())
+    # The filter function doesn't work here.
+    metadata_schema = schema["metadata"]
+
+    retained_fields = [f for f in fields if f in metadata_schema.keys()]
+    dropped_fields = [f for f in fields if f not in metadata_schema.keys()]
+    if dropped_fields:
+        print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
+
+    # Use the "name" field in the table, to allow for filenames to not match
+    # "names".
+    df = pd.DataFrame(
+        index=[metadata_schema[f]["name"] for f in retained_fields],
+        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+    )
+    df.index.name = "**Key name**"
+    for field in retained_fields:
+        field_name = metadata_schema[field]["name"]
+        requirement_info = field_info[field]
+        description_addendum = ""
+        if isinstance(requirement_info, tuple):
+            requirement_info, description_addendum = requirement_info
+
+        requirement_info = requirement_info.replace(
+            "DEPRECATED",
+            "[DEPRECATED](/02-common-principles.html#definitions)",
+        )
+
+        type_string = _resolve_metadata_type(metadata_schema[field])
+
+        description = (
+            metadata_schema[field]["description"] + " " + description_addendum
+        )
+        df.loc[suffix] = [suffix_info["name"], description]
+
+    df = df.reset_index(drop=False)
+    df = df.set_index("**Name**")
+    df = df[["`suffix`", "**Description**"]]
+
+    # Print it as markdown
+    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    return table_str
+
+
+def _get_link(string):
+    refs = {
+        "array": "https://www.w3schools.com/js/js_json_arrays.asp",
+        "string": "https://www.w3schools.com/js/js_json_datatypes.asp",
+        "number": "https://www.w3schools.com/js/js_json_datatypes.asp",
+        "object": "https://www.json.org/json-en.html",
+        "integer": "https://www.w3schools.com/js/js_json_datatypes.asp",
+        "boolean": "https://www.w3schools.com/js/js_json_datatypes.asp",
+    }
+    # Allow plurals (e.g., strings -> links to string)
+    dtype = string[:-1] if string[-1] == "s" else string
+    url = refs.get(dtype)
+    if url:
+        return f"[{string}]({url})"
+    return string
+
+
+def _resolve_metadata_type(definition):
+    """Generate string of metadata type from dictionary."""
+    if "type" in definition.keys():
+        string = _get_link(definition["type"])
+
+        if definition.get("enum") == ["n/a"]:
+            # Special string case of n/a
+            string = '`"n/a"`'
+
+        elif "type" in definition.get("items", {}):
+            # Items within arrays
+            string += " of " + _get_link(definition["items"]["type"] + "s")
+
+        elif "type" in definition.get("additionalProperties", {}):
+            # Values within objects
+            string += " of " + _get_link(
+                definition["additionalProperties"]["type"] + "s"
+            )
+
+    elif "anyOf" in definition:
+        # Use dictionary to get unique substrings while preserving insertion order
+        substrings = {_resolve_metadata_type(subdict): None
+                      for subdict in definition["anyOf"]}
+
+        string = " or ".join(substrings)
+
+    else:
+        # A hack to deal with $ref in the current schema
+        print(f"Type could not be inferred for {definition['name']}")
+        pprint(definition)
+        string = "unknown"
+
+    return string
+
+
+def make_metadata_table(schema, field_info, tablefmt="github"):
+    """Produce metadata table (markdown) based on requested fields.
+
+    Parameters
+    ----------
+    schema : dict
+        The BIDS schema.
+    field_info : dict of strings or tuples
+        A dictionary mapping metadata keys to requirement levels in the
+        rendered metadata table.
+        The dictionary values may be strings, in which case the string
+        is the requirement level information, or two-item tuples of strings,
+        in which case the first string is the requirement level information
+        and the second string is additional table-specific information
+        about the metadata field that will be appended to the field's base
+        definition from the schema.
+    tablefmt : string, optional
+        The target table format. The default is "github" (GitHub format).
 
     Returns
     -------
     table_str : str
-        Tabulated table as a string.
+        The tabulated table as a Markdown string.
     """
+    fields = list(field_info.keys())
     # The filter function doesn't work here.
-    suffix_schema = schema["suffixes"]
+    metadata_schema = schema["metadata"]
 
-    suffixes_found = [f for f in suffixes if f in suffix_schema.keys()]
-    suffixes_not_found = [f for f in suffixes if f not in suffix_schema.keys()]
-    if suffixes_not_found:
-        raise Exception(
-            "Warning: Missing suffixes: {}".format(
-                ", ".join(suffixes_not_found)
-            )
+    retained_fields = [f for f in fields if f in metadata_schema.keys()]
+    dropped_fields = [f for f in fields if f not in metadata_schema.keys()]
+    if dropped_fields:
+        print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
+
+    # Use the "name" field in the table, to allow for filenames to not match
+    # "names".
+    df = pd.DataFrame(
+        index=[metadata_schema[f]["name"] for f in retained_fields],
+        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+    )
+    df.index.name = "**Key name**"
+    for field in retained_fields:
+        field_name = metadata_schema[field]["name"]
+        requirement_info = field_info[field]
+        description_addendum = ""
+        if isinstance(requirement_info, tuple):
+            requirement_info, description_addendum = requirement_info
+
+        requirement_info = requirement_info.replace(
+            "DEPRECATED",
+            "[DEPRECATED](/02-common-principles.html#definitions)",
         )
 
-    df = pd.DataFrame(
-        index=suffixes_found,
-        columns=["**Name**", "**Description**"],
-    )
-    # Index by suffix because name cannot be assumed to be unique
-    df.index.name = "`suffix`"
-    for suffix in suffixes_found:
-        suffix_info = suffix_schema[suffix]
-        description = suffix_info["description"]
+        type_string = _resolve_metadata_type(metadata_schema[field])
+
+        description = (
+            metadata_schema[field]["description"] + " " + description_addendum
+        )
         # A backslash before a newline means continue a string
         description = description.replace("\\\n", "")
         # Two newlines should be respected
@@ -367,11 +541,7 @@ def make_suffix_table(schema, suffixes, tablefmt="github"):
         # Otherwise a newline corresponds to a space
         description = description.replace("\n", " ")
 
-        df.loc[suffix] = [suffix_info["name"], description]
-
-    df = df.reset_index(drop=False)
-    df = df.set_index("**Name**")
-    df = df[["`suffix`", "**Description**"]]
+        df.loc[field_name] = [requirement_info, type_string, description]
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
