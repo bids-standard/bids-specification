@@ -1,0 +1,5 @@
+---
+name: EstimationReference
+description: |
+  Reference to the study/studies on which the implementation is based.
+type: string

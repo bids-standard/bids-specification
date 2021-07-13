@@ -1,0 +1,5 @@
+---
+name: ReconMethodImplementationVersion
+description: |
+  Identification for the software used, such as name and version.
+type: string

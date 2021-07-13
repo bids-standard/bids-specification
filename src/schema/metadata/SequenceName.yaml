@@ -1,0 +1,6 @@
+---
+name: SequenceName
+description: |
+  Manufacturer's designation of the sequence name.
+  Corresponds to DICOM Tag 0018, 0024 `Sequence Name`.
+type: string

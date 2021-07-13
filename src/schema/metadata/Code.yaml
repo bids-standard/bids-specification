@@ -1,0 +1,10 @@
+---
+name: Code
+description: |
+  [URI](/02-common-principles.html#uniform-resource-indicator)
+  of the code used to present the stimuli.
+  Persistent identifiers such as DOIs are preferred.
+  If multiple versions of code may be hosted at the same location,
+  revision-specific URIs are recommended.
+type: string
+format: uri

@@ -3,14 +3,14 @@
 Each MEG system brand has specific file organization and data formats.
 RECOMMENDED values for `manufacturer_specific_extensions`:
 
-| **Value**                                             | **Description**                                                                       |
-| ----------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| [`ctf`](06-meg-file-formats.md#ctf)                   | CTF (folder with `.ds` extension)                                                     |
-| [`fif`](06-meg-file-formats.md#neuromagelektamegin)   | Neuromag / Elekta / MEGIN and BabyMEG (file with extension `.fif`)                    |
-| [`4d`](06-meg-file-formats.md#bti4d-neuroimaging)     | BTi / 4D Neuroimaging (folder containing multiple files without extensions)           |
-| [`kit`](06-meg-file-formats.md#kityokogawaricoh)      | KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`) |
-| [`kdf`](06-meg-file-formats.md#kriss)                 | KRISS (file with extension `.kdf`)                                                    |
-| [`itab`](06-meg-file-formats.md#itab)                 | Chieti system (file with extension `.raw` and `.mhd`)                                 |
+| **Value**                                           | **Description**                                                                       |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| [`ctf`](06-meg-file-formats.md#ctf)                 | CTF (folder with `.ds` extension)                                                     |
+| [`fif`](06-meg-file-formats.md#neuromagelektamegin) | Neuromag / Elekta / MEGIN and BabyMEG (file with extension `.fif`)                    |
+| [`4d`](06-meg-file-formats.md#bti4d-neuroimaging)   | BTi / 4D Neuroimaging (folder containing multiple files without extensions)           |
+| [`kit`](06-meg-file-formats.md#kityokogawaricoh)    | KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`) |
+| [`kdf`](06-meg-file-formats.md#kriss)               | KRISS (file with extension `.kdf`)                                                    |
+| [`itab`](06-meg-file-formats.md#itab)               | Chieti system (file with extension `.raw` and `.mhd`)                                 |
 
 Below are specifications for each system brand.
 

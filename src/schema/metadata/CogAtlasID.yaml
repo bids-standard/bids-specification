@@ -1,0 +1,8 @@
+---
+name: CogAtlasID
+description: |
+  [URI](/02-common-principles.html#uniform-resource-indicator)
+  of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/)
+  Task term.
+type: string
+format: uri

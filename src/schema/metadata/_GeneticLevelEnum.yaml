@@ -1,0 +1,9 @@
+---
+type: string
+enum:
+  - Genetic
+  - Genomic
+  - Epigenomic
+  - Transcriptomic
+  - Metabolomic
+  - Proteomic

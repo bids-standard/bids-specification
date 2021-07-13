@@ -1,0 +1,9 @@
+---
+name: iEEGPlacementScheme
+description: |
+  Freeform description of the placement of the iEEG electrodes.
+  Left/right/bilateral/depth/surface
+  (for example, `"left frontal grid and bilateral hippocampal depth"` or
+  `"surface strip and STN depth"` or
+  `"clinical indication bitemporal, bilateral temporal strips and left grid"`).
+type: string

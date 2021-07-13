@@ -1,0 +1,8 @@
+---
+name: FiducialsDescription
+description: |
+  Free-form text description of how the fiducials such as vitamin-E capsules
+  were placed relative to anatomical landmarks,
+  and how the position of the fiducials were measured
+  (for example, both with Polhemus and with T1w MRI).
+type: string

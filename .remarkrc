@@ -1,12 +1,15 @@
 {
   "plugins": [
     "preset-lint-markdown-style-guide",
+    "preset-lint-recommended",
+    "remark-gfm",
     ["lint-no-duplicate-headings", false],
     ["lint-list-item-indent", "tab-size"],
     ["lint-emphasis-marker", "consistent"],
     ["lint-maximum-line-length", false],
     ["lint-maximum-heading-length", false],
     ["lint-no-shortcut-reference-link", false],
-    ["lint-no-trailing-spaces"]
+    ["lint-no-trailing-spaces"],
+    ["lint-no-undefined-references", false]
   ]
 }
