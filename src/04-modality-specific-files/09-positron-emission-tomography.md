@@ -426,11 +426,3 @@ time plasma_radioactivity whole_blood_radioactivity metabolite_parent_fraction m
 ```
 
 <!-- Link Definitions -->
-
-[string]: https://www.w3schools.com/js/js_json_datatypes.asp
-[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
-[number]: https://www.w3schools.com/js/js_json_datatypes.asp
-[numbers]: https://www.w3schools.com/js/js_json_datatypes.asp
-[boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
-[array]: https://www.w3schools.com/js/js_json_arrays.asp
-[deprecated]: ../02-common-principles.md#definitions

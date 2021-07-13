@@ -197,9 +197,3 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 [templates]: ../99-appendices/08-coordinate-systems.md#standard-template-identifiers
 
 [object]: https://www.json.org/json-en.html
-
-[string]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[strings]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[array]: https://www.w3schools.com/js/js_json_arrays.asp

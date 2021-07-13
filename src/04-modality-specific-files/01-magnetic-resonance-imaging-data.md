@@ -1086,25 +1086,3 @@ However, please note that `PhaseEncodingDirection` and `TotalReadoutTime` keys
 are REQUIRED for these field mapping sequences.
 
 <!-- Link Definitions -->
-
-[deprecated]: ../02-common-principles.md#definitions
-
-[string]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[integer]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[number]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[numbers]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[array]: https://www.w3schools.com/js/js_json_arrays.asp
-
-[arrays]: https://www.w3schools.com/js/js_json_arrays.asp
-
-[object]: https://www.json.org/json-en.html
-
-[uri]: ../02-common-principles.md#uniform-resource-indicator

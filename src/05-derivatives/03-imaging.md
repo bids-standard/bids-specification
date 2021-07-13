@@ -409,18 +409,6 @@ index   name                abbreviation
 
 <!-- Link Definitions -->
 
-[common data types]: 02-common-data-types.md
-
 [common_preproc]: 02-common-data-types.md#preprocessed-or-cleaned-data
 
-[object]: https://www.json.org/json-en.html
-
 [unspecified]: ../02-common-principles.md#unspecified-data
-
-[string]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[strings]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[array]: https://www.w3schools.com/js/js_json_arrays.asp

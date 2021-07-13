@@ -249,10 +249,4 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
 
 [number]: https://www.w3schools.com/js/js_json_datatypes.asp
 
-[object]: https://www.json.org/json-en.html
-
 [string]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[uri]: ../02-common-principles.md#uniform-resource-indicator
