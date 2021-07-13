@@ -82,6 +82,7 @@ def make_suffix_table(suffixes):
     table = schema.make_suffix_table(schema_obj, suffixes)
     return table
 
+
 def make_metadata_table(field_info):
     """Generate a markdown table of metadata field information.
 

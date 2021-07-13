@@ -4,8 +4,8 @@ import logging
 import os
 from copy import deepcopy
 from pathlib import Path
-from warnings import warn
 from pprint import pprint
+from warnings import warn
 
 import pandas as pd
 import yaml
@@ -369,51 +369,44 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
 def make_suffix_table(schema, suffixes, tablefmt="github"):
     """Produce suffix table (markdown) based on requested suffixes.
-
     Parameters
     ----------
     schema : dict
     suffixes : list of str
     tablefmt : str
-    
     Returns
     -------
     table_str : str
-        The tabulated table as a Markdown string.
+        Tabulated table as a string.
     """
-    fields = list(field_info.keys())
     # The filter function doesn't work here.
-    metadata_schema = schema["metadata"]
+    suffix_schema = schema["suffixes"]
 
-    retained_fields = [f for f in fields if f in metadata_schema.keys()]
-    dropped_fields = [f for f in fields if f not in metadata_schema.keys()]
-    if dropped_fields:
-        print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
+    suffixes_found = [f for f in suffixes if f in suffix_schema.keys()]
+    suffixes_not_found = [f for f in suffixes if f not in suffix_schema.keys()]
+    if suffixes_not_found:
+        raise Exception(
+            "Warning: Missing suffixes: {}".format(
+                ", ".join(suffixes_not_found)
+            )
+        )
 
-    # Use the "name" field in the table, to allow for filenames to not match
-    # "names".
     df = pd.DataFrame(
-        index=[metadata_schema[f]["name"] for f in retained_fields],
-        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+        index=suffixes_found,
+        columns=["**Name**", "**Description**"],
     )
-    df.index.name = "**Key name**"
-    for field in retained_fields:
-        field_name = metadata_schema[field]["name"]
-        requirement_info = field_info[field]
-        description_addendum = ""
-        if isinstance(requirement_info, tuple):
-            requirement_info, description_addendum = requirement_info
+    # Index by suffix because name cannot be assumed to be unique
+    df.index.name = "`suffix`"
+    for suffix in suffixes_found:
+        suffix_info = suffix_schema[suffix]
+        description = suffix_info["description"]
+        # A backslash before a newline means continue a string
+        description = description.replace("\\\n", "")
+        # Two newlines should be respected
+        description = description.replace("\n\n", "<br>")
+        # Otherwise a newline corresponds to a space
+        description = description.replace("\n", " ")
 
-        requirement_info = requirement_info.replace(
-            "DEPRECATED",
-            "[DEPRECATED](/02-common-principles.html#definitions)",
-        )
-
-        type_string = _resolve_metadata_type(metadata_schema[field])
-
-        description = (
-            metadata_schema[field]["description"] + " " + description_addendum
-        )
         df.loc[suffix] = [suffix_info["name"], description]
 
     df = df.reset_index(drop=False)
