@@ -368,37 +368,19 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
 
 def _get_link(string):
-    dict_ = {
-        "array": "[array](https://www.w3schools.com/js/js_json_arrays.asp)",
-        "arrays": "[arrays](https://www.w3schools.com/js/js_json_arrays.asp)",
-        "string": (
-            "[string](https://www.w3schools.com/js/js_json_datatypes.asp)"
-        ),
-        "strings": (
-            "[strings](https://www.w3schools.com/js/js_json_datatypes.asp)"
-        ),
-        "number": (
-            "[number](https://www.w3schools.com/js/js_json_datatypes.asp)"
-        ),
-        "numbers": (
-            "[numbers](https://www.w3schools.com/js/js_json_datatypes.asp)"
-        ),
-        "object": "[object](https://www.json.org/json-en.html)",
-        "objects": "[objects](https://www.json.org/json-en.html)",
-        "integer": (
-            "[integer](https://www.w3schools.com/js/js_json_datatypes.asp)"
-        ),
-        "integers": (
-            "[integers](https://www.w3schools.com/js/js_json_datatypes.asp)"
-        ),
-        "boolean": (
-            "[boolean](https://www.w3schools.com/js/js_json_datatypes.asp)"
-        ),
-        "booleans": (
-            "[booleans](https://www.w3schools.com/js/js_json_datatypes.asp)"
-        ),
+    refs = {
+        "array": "https://www.w3schools.com/js/js_json_arrays.asp",
+        "string": "https://www.w3schools.com/js/js_json_datatypes.asp",
+        "number": "https://www.w3schools.com/js/js_json_datatypes.asp",
+        "object": "https://www.json.org/json-en.html",
+        "integer": "https://www.w3schools.com/js/js_json_datatypes.asp",
+        "boolean": "https://www.w3schools.com/js/js_json_datatypes.asp",
     }
-    string = dict_.get(string, string)
+    # Allow plurals (e.g., strings -> links to string)
+    dtype = string[:-1] if string[-1] == "s" else string
+    url = refs.get(dtype)
+    if url:
+        return f"[{string}]({url})"
     return string
 
 
