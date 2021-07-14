@@ -269,8 +269,9 @@ If this file exists, it MUST contain the three following columns:
 
 -   `participant_id`: MUST consist of `sub-<label>`
 
--   `sample_type`: MUST consist of sample type values (for example: tissue,
-    primary cell or cell-free sample) from [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type)
+-   `sample_type`: MUST consist of sample type values, either `cell line`, `in vitro differentiated cells`,
+    `primary cell`, `cell-free sample`, `cloning host`, `tissue`, `whole organisms`, `organoid` or
+    `technical sample` from [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type)
 
 Other optional columns MAY be used to describe the samples.
 Each sample MUST be described by one and only one row.
