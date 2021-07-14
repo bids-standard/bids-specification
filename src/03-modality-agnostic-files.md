@@ -260,8 +260,8 @@ samples.tsv
 samples.json
 ```
 
-The purpose of this RECOMMENDED file is to describe properties of samples
-when the `sample-<label>` key/value pair is used in filenames.
+The purpose of this file is to describe properties of samples, indicated by the `sample` entity.
+This file is REQUIRED if `sample-<label>` is present in any file name within the dataset.
 If this file exists, it MUST contain the three following columns:
 
 -   `sample_id`: MUST consist of `sample-<label>` values identifying one row
