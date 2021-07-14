@@ -1,5 +1,5 @@
 ---
-name: Phase
+name: Phase image
 description: |
   [DEPRECATED](/02-common-principles.html#definitions).
   Phase information associated with magnitude information stored in BOLD
