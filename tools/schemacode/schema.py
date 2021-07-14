@@ -223,7 +223,7 @@ def make_filename_template(schema, **kwargs):
             string = "\t\t\t"
             for ent in entities:
                 ent_format = "{}-<{}>".format(
-                    schema["entities"][ent]["entity"], 
+                    schema["entities"][ent]["entity"],
                     schema["entities"][ent].get("format", "label")
                 )
                 if ent in group["entities"]:
