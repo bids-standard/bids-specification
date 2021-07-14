@@ -206,7 +206,6 @@ non-parametric structural MR images include:
          "inplaneT2",
          "PDT2",
          "UNIT1",
-         "angio",
       ]
    )
 }}
