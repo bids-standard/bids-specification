@@ -1,0 +1,17 @@
+---
+name: CoilString
+description: |
+  Information describing the selected element of the receiver coil for channel-level data.
+  This doesn’t correspond to a tag in the DICOM ontology.
+  The vendor-defined identifier for individual channels can go in this field.
+  As an example, for Siemens, while coil channels are typically not activated/selected
+  individually, data from individual channels may be reconstructed separately.
+  The DICOM files containing the combined data will have a `CoilString` entry matching the
+  terminology of `ReceiveCoilActiveElements` (for example, `"HEA;HEP"` for the Siemens standard
+  32-channel coil when both the anterior and posterior groups are activated),
+  while the DICOM files containing channel-level data will have a `CoilString` entry with a
+  unique identifier for the channel (for example, `"H1-H32"` for the Siemens standard 32-channel
+  coil when both the anterior and posterior groups are activated).
+  This is a flexible field that can be used as most appropriate for a given vendor and coil to
+  define the reconstructed channel.
+type: string
