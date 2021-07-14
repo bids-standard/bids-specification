@@ -1,0 +1,10 @@
+---
+name: DatasetDOI
+description: |
+  The Digital Object Identifier of the dataset (not the corresponding paper).
+  DOIs SHOULD be expressed as a valid
+  [URI](/02-common-principles.html#uniform-resource-indicator);
+  bare DOIs such as `10.0.2.3/dfjj.10` are
+  [DEPRECATED](/02-common-principles.html#definitions).
+type: string
+format: uri

@@ -1,0 +1,10 @@
+---
+name: ScanOptions
+description: |
+  Parameters of ScanningSequence.
+  Corresponds to DICOM Tag 0018, 0022 `Scan Options`.
+anyOf:
+  - type: string
+  - type: array
+    items:
+      type: string

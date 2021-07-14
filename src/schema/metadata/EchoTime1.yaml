@@ -1,0 +1,7 @@
+---
+name: EchoTime1
+description: |
+  The time (in seconds) when the first (shorter) echo occurs.
+type: number
+unit: s
+exclusiveMinimum: 0
