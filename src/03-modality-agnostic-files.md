@@ -168,9 +168,11 @@ which MUST consist of `sub-<label>` values identifying one row for each particip
 followed by a list of optional columns describing participants.
 Each participant MUST be described by one and only one row.
 
-When different from `homo sapiens`, `participants.tsv` SHOULD include a `species`
-column, and the value MUST be the string of the binomial species name from
-[NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi).
+The RECOMMENDED `species` column SHOULD be a binomial species name from the
+[NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi)
+(for examples `homo sapiens`, `mus musculus`, `rattus norvegicus`).
+For backwards compatibility, if `species` is absent, the participant is assumed to be
+`homo sapiens`.
 
 Commonly used *optional* columns in `participants.tsv` files are `age`, `sex`,
 `handedness`, `strain`, `strain_rrid` and `diagnosis`. We RECOMMEND to make use
