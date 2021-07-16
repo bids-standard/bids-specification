@@ -162,7 +162,7 @@ participants.json
 ```
 
 The purpose of this RECOMMENDED file is to describe properties of participants
-such as age, sex, handedness, species, strain, strain_rrid.
+such as age, sex, handedness, species and strain.
 If this file exists, it MUST contain the column `participant_id`,
 which MUST consist of `sub-<label>` values identifying one row for each participant,
 followed by a list of optional columns describing participants.
@@ -203,10 +203,12 @@ following values for them:
     -   for "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`,
         `AMBIDEXTROUS`, `Ambidextrous`
 
--   `strain`: string value indicating the strain of the species
+-   `strain`: for species different from `homo sapiens`, string value indicating
+    the strain of the species, for example: `C57BL/6J`.
 
--   `strain_rrid`: research resource identifier ([RRID](https://scicrunch.org/resources/Organisms/search))
-    of the strain of the species
+-   `strain_rrid`: for species different from `homo sapiens`, research resource identifier
+    ([RRID](https://scicrunch.org/resources/Organisms/search)) of the strain of the species,
+    for examples: `RRID:IMSR_JAX:000664`.
 
 Throughout BIDS you can indicate missing values with `n/a` (for "not
 available").
