@@ -162,7 +162,7 @@ participants.json
 ```
 
 The purpose of this RECOMMENDED file is to describe properties of participants
-such as age, sex, handedness, species, strain, strain_rrid, diagnosis.
+such as age, sex, handedness, species, strain, strain_rrid.
 If this file exists, it MUST contain the column `participant_id`,
 which MUST consist of `sub-<label>` values identifying one row for each participant,
 followed by a list of optional columns describing participants.
@@ -175,7 +175,7 @@ For backwards compatibility, if `species` is absent, the participant is assumed 
 `homo sapiens`.
 
 Commonly used *optional* columns in `participants.tsv` files are `age`, `sex`,
-`handedness`, `strain`, `strain_rrid` and `diagnosis`. We RECOMMEND to make use
+`handedness`, `strain` and `strain_rrid`. We RECOMMEND to make use
 of these columns, and in case that you do use them, we RECOMMEND to use the
 following values for them:
 
@@ -208,10 +208,6 @@ following values for them:
 -   `strain_rrid`: research resource identifier ([RRID](https://scicrunch.org/resources/Organisms/search))
     of the strain of the species
 
--   `diagnosis`: string value describing the diagnosis of the participant.
-    The diagnosis MAY instead be specified in [Sessions files](06-longitudinal-and-multi-site-studies.md#sessions-file)
-    in case it changes over time.
-
 Throughout BIDS you can indicate missing values with `n/a` (for "not
 available").
 
@@ -229,7 +225,7 @@ It is RECOMMENDED to accompany each `participants.tsv` file with a sidecar
 the [section on tabular files](02-common-principles.md#tabular-files)).
 Such sidecar files are needed to interpret the data, especially so when
 optional columns are defined beyond `age`, `sex`, `handedness`, `species`, `strain`,
-`strain_rrid` and `diagnosis`, such as `group` in this example, or when a different
+and `strain_rrid`, such as `group` in this example, or when a different
 age unit is needed (for example, gestational weeks).
 If no `units` is provided for age, it will be assumed to be in years relative
 to date of birth.
