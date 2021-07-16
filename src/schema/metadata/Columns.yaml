@@ -1,0 +1,7 @@
+---
+name: Columns
+description: |
+  Names of columns in file.
+type: array
+items:
+  type: string

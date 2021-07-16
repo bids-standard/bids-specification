@@ -1,0 +1,6 @@
+---
+name: MTPulseDuration
+description: |
+  Duration of the magnetization transfer RF pulse in seconds.
+type: number
+unit: s
