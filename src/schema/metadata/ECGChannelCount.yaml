@@ -1,0 +1,6 @@
+---
+name: ECGChannelCount
+description: |
+  Number of ECG channels.
+type: integer
+minimum: 0

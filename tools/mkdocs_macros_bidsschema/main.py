@@ -34,10 +34,10 @@ def define_env(env):
         macros.make_entity_definitions,
         "MACROS___make_entity_definitions"
     )
-
-    @env.macro
-    def make_metadata_table():
-        return None
+    env.macro(
+        macros.make_metadata_table,
+        "MACROS___make_metadata_table"
+    )
 
     @env.macro
     def make_suffix_table(suffixes):

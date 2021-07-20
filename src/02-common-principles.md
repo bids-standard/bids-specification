@@ -37,15 +37,19 @@ misunderstanding we clarify them here.
     scanning sequence/protocol.
 
 1.  **Data type** - a functional group of different types of data.
-    BIDS defines eight data types:
-    `func` (task based and resting state functional MRI),
-    `dwi` (diffusion weighted imaging),
-    `fmap` (field inhomogeneity mapping data such as field maps),
-    `anat` (structural imaging such as T1, T2, PD, and so on),
-    `meg` (magnetoencephalography),
-    `eeg` (electroencephalography),
-    `ieeg` (intracranial electroencephalography),
-    `beh` (behavioral).
+    BIDS defines the following data types:
+
+    1.  `func` (task based and resting state functional MRI)
+    1.  `dwi` (diffusion weighted imaging)
+    1.  `fmap` (field inhomogeneity mapping data such as field maps)
+    1.  `anat` (structural imaging such as T1, T2, PD, and so on)
+    1.  `perf` (perfusion)
+    1.  `meg` (magnetoencephalography)
+    1.  `eeg` (electroencephalography)
+    1.  `ieeg` (intracranial electroencephalography)
+    1.  `beh` (behavioral)
+    1.  `pet` (positron emission tomography)
+
     Data files are contained in a directory named for the data type.
     In raw datasets, the data type directory is nested inside subject and
     (optionally) session directories.
@@ -167,6 +171,11 @@ It is evident from the file name alone that the file contains resting state
 data from subject `01`.
 The suffix `eeg` and the extension `.edf` depend on the imaging modality and
 the data format and indicate further details of the file's contents.
+
+Entities within a file name MUST be unique.
+For example, the following file name is not valid because it uses the `acq`
+entity twice:
+`sub-01_acq-laser_acq-uneven_electrodes.tsv`
 
 In cases where entities duplicate metadata,
 the presence of an entity should not be used as a replacement for
@@ -352,7 +361,7 @@ then Case 1 will be assumed for clarity in templates and examples, but removing
 Case 2.
 In both cases, every derivatives dataset is considered a BIDS dataset and must
 include a `dataset_description.json` file at the root level (see
-[Dataset description][dataset-description].
+[Dataset description][dataset-description]).
 Consequently, files should be organized to comply with BIDS to the full extent
 possible (that is, unless explicitly contradicted for derivatives).
 Any subject-specific derivatives should be housed within each subject’s directory;
@@ -517,14 +526,19 @@ Note that if a field name included in the data dictionary matches a column name 
 then that field MUST contain a description of the corresponding column,
 using an object containing the following fields:
 
-| **Key name** | **Requirement level** | **Data type**                           | **Description**                                                                                                 |
-| ------------ | --------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| LongName     | OPTIONAL              | [string][]                              | Long (unabbreviated) name of the column.                                                                        |
-| Description  | RECOMMENDED           | [string][]                              | Description of the column.                                                                                      |
-| Levels       | RECOMMENDED           | [object][] of [strings][]               | For categorical variables: An object of possible values (keys) and their descriptions (values).                 |
-| Units        | RECOMMENDED           | [string][]                              | Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
-| TermURL      | RECOMMENDED           | [string][]                              | URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
-| HED          | OPTIONAL              | [object][] of [strings][] or [string][] | Hierarchical Event Descriptor (HED) information, see: [Appendix III](./99-appendices/03-hed.md) for details.    |
+{{ MACROS___make_metadata_table(
+   {
+        "LongName": "OPTIONAL",
+        "Description": (
+            "RECOMMENDED",
+            "The description of the column.",
+        ),
+        "Levels": "RECOMMENDED",
+        "Units": "RECOMMENDED",
+        "TermURL": "RECOMMENDED",
+        "HED": "OPTIONAL",
+   }
+) }}
 
 Please note that while both `Units` and `Levels` are RECOMMENDED, typically only one
 of these two fields would be specified for describing a single TSV file column.
@@ -713,6 +727,7 @@ individual files see descriptions in the next section:
 
 ```Text
 sub-control01/
+    sub-control01_scans.tsv
     anat/
         sub-control01_T1w.nii.gz
         sub-control01_T1w.json
@@ -733,7 +748,6 @@ sub-control01/
         sub-control01_phasediff.nii.gz
         sub-control01_phasediff.json
         sub-control01_magnitude1.nii.gz
-        sub-control01_scans.tsv
 code/
     deface.py
 derivatives/
@@ -766,11 +780,5 @@ to suppress warnings or provide interpretations of your file names.
 [dataset-description]: 03-modality-agnostic-files.md#dataset-description
 
 [derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description
-
-[string]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[strings]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[object]: https://www.json.org/json-en.html
 
 [deprecated]: ./02-common-principles.md#definitions

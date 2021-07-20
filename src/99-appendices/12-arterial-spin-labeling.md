@@ -69,7 +69,7 @@ m0scan
 The following images illustrate the main BIDS metadata fields for three `ArterialSpinLabelingType`'s:
 `CASL`, `PCASL`, and `PASL`.
 Images are courtesy of, and adapted with permission from
-Y. Suzuki and [OSIPI Task force 4.1: ASL lexicon milestone 1](https://www.osipi.org/task-force-4-1/).
+Y. Suzuki and [OSIPI Task force 4.1: ASL lexicon milestone 1](https://osipi.github.io/task-force-4-1/).
 
 ### (P)CASL sequence
 

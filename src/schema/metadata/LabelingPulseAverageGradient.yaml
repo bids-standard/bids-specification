@@ -1,0 +1,7 @@
+---
+name: LabelingPulseAverageGradient
+description: |
+  The average labeling gradient, in milliteslas per meter.
+type: number
+exclusiveMinimum: 0
+unit: mT/m

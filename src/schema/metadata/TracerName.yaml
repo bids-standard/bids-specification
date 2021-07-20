@@ -1,0 +1,5 @@
+---
+name: TracerName
+description: |
+  Name of the tracer compound used (for example, `"CIMBI-36"`)
+type: string

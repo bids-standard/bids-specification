@@ -34,17 +34,20 @@ suffix, and signals related to the stimulus SHOULD use `_stim` suffix.
 
 Physiological recordings such as cardiac and respiratory signals and other
 continuous measures (such as parameters of a film or audio stimuli) can be
-specified using two files: a gzip compressed TSV file with data (without header
-line) and a JSON for storing the following metadata fields:
+specified using two files: a [gzip](https://datatracker.ietf.org/doc/html/rfc1952)
+compressed TSV file with data (without header line)
+and a JSON file for storing the following metadata fields.
 
 Note that when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
 `*_<physio|stim>.json` MUST be supplied as well.
 
-| **Key name**      | **Requirement level** | **Data type**            | **Description**                                                                                                                                           |
-| ----------------- | --------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SamplingFrequency | REQUIRED              | [number][]               | Sampling frequency in Hz of all columns in the file.                                                                                                      |
-| StartTime         | REQUIRED              | [number][]               | Start time in seconds in relation to the start of acquisition of the first data sample in the corresponding neural dataset (negative values are allowed). |
-| Columns           | REQUIRED              | [array][] of [strings][] | Names of columns in file.                                                                                                                                 |
+{{ MACROS___make_metadata_table(
+   {
+      "SamplingFrequency": "REQUIRED",
+      "StartTime": "REQUIRED",
+      "Columns": "REQUIRED",
+   }
+) }}
 
 Additional metadata may be included as in
 [any TSV file](../02-common-principles.md#tabular-files) to specify, for
@@ -105,7 +108,7 @@ following naming conventions SHOULD be used for the column names:
 For any other data to be specified in columns, the column names can be chosen
 as deemed appropriate by the researcher.
 
-Recordings with different sampling frequencies and/or starting times should be
+Recordings with different sampling frequencies or starting times should be
 stored in separate files.
 
 If the same continuous recording has been used for all subjects (for example in
@@ -127,10 +130,18 @@ sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
 sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
 ```
 
+### Other RECOMMENDED metadata for physiological data
+
+The following RECOMMENDED metadata can also be added in the side-car JSON files
+of any `*_<physio>.tsv.gz` file.
+
+{{ MACROS___make_metadata_table(
+   {
+      "Manufacturer": "RECOMMENDED",
+      "ManufacturersModelName": "RECOMMENDED",
+      "SoftwareVersions": "RECOMMENDED",
+      "DeviceSerialNumber": "RECOMMENDED",
+   }
+) }}
+
 <!-- Link Definitions -->
-
-[number]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[strings]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[array]: https://www.w3schools.com/js/js_json_arrays.asp
