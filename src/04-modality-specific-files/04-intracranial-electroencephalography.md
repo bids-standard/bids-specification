@@ -14,8 +14,9 @@ The iEEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, iEEG data MUST be
 stored in one of the following formats:
 
--   [European Data Format](https://www.edfplus.info/)
-    (Each recording consisting of a `.edf` file)
+-   [European data format](https://www.edfplus.info/)
+    (including [`edf+`](https://www.edfplus.info/specs/edfplus.html);
+    each recording consisting of a `.edf` file)
 
 -   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
     (Each recording consisting of a  `.vhdr`, `.vmrk`, `.eeg` file triplet)
