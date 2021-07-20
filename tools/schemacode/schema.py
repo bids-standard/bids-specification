@@ -367,6 +367,57 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     return table_str
 
 
+def make_suffix_table(schema, suffixes, tablefmt="github"):
+    """Produce suffix table (markdown) based on requested suffixes.
+    Parameters
+    ----------
+    schema : dict
+    suffixes : list of str
+    tablefmt : str
+    Returns
+    -------
+    table_str : str
+        Tabulated table as a string.
+    """
+    # The filter function doesn't work here.
+    suffix_schema = schema["suffixes"]
+
+    suffixes_found = [f for f in suffixes if f in suffix_schema.keys()]
+    suffixes_not_found = [f for f in suffixes if f not in suffix_schema.keys()]
+    if suffixes_not_found:
+        raise Exception(
+            "Warning: Missing suffixes: {}".format(
+                ", ".join(suffixes_not_found)
+            )
+        )
+
+    df = pd.DataFrame(
+        index=suffixes_found,
+        columns=["**Name**", "**Description**"],
+    )
+    # Index by suffix because name cannot be assumed to be unique
+    df.index.name = "`suffix`"
+    for suffix in suffixes_found:
+        suffix_info = suffix_schema[suffix]
+        description = suffix_info["description"]
+        # A backslash before a newline means continue a string
+        description = description.replace("\\\n", "")
+        # Two newlines should be respected
+        description = description.replace("\n\n", "<br>")
+        # Otherwise a newline corresponds to a space
+        description = description.replace("\n", " ")
+
+        df.loc[suffix] = [suffix_info["name"], description]
+
+    df = df.reset_index(drop=False)
+    df = df.set_index("**Name**")
+    df = df[["`suffix`", "**Description**"]]
+
+    # Print it as markdown
+    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    return table_str
+
+
 def _get_link(string):
     refs = {
         "array": "https://www.w3schools.com/js/js_json_arrays.asp",
