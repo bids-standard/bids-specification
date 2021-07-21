@@ -1,0 +1,9 @@
+---
+name: Corresponding Modality
+entity: mod
+description: |
+  The `mod-<label>` key/value pair corresponds to modality label for defacing
+  masks, for example, T1w, inplaneT1, referenced by a defacemask image.
+  For example, `sub-01_mod-T1w_defacemask.nii.gz`.
+type: string
+format: label

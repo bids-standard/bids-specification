@@ -1,0 +1,11 @@
+---
+name: Density
+entity: den
+description: |
+  Density of non-parametric surfaces.
+  MUST have a corresponding `Density` metadata field to provide
+  interpretation.
+
+  This entity is only applicable to derivative data.
+type: string
+format: label

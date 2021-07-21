@@ -1,0 +1,11 @@
+---
+name: Contrast Enhancing Agent
+entity: ce
+description: |
+  The `ce-<label>` key/value can be used to distinguish
+  sequences using different contrast enhanced images.
+  The label is the name of the contrast agent.
+  The key `ContrastBolusIngredient` MAY also be added in the JSON file,
+  with the same label.
+type: string
+format: label

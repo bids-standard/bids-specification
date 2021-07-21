@@ -1,0 +1,10 @@
+---
+name: Recording
+entity: recording
+description: |
+  More than one continuous recording file can be included (with different
+  sampling frequencies).
+  In such case use different labels.
+  For example: `_recording-contrast`, `_recording-saturation`.
+type: string
+format: label
