@@ -311,7 +311,7 @@ Template:
 
 ```Text
 - [Dataset level] prov.jsonld
-- [File level] sub-<label>/[ses-<label>/]sub-<label>[_ses-<label>]_prov.jsonld
+- [File level] sub-<label>/[ses-<label>/]sub-<label>[_ses-<label>]_<suffix>.prov
 ```
 
 Optional: Yes
