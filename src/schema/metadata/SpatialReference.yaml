@@ -1,0 +1,24 @@
+---
+name: SpatialReference
+description: |
+  For images with a single reference, the value MUST be a single string.
+  For images with multiple references, such as surface and volume references,
+  a JSON object MUST be used.
+anyOf:
+  - type: string
+    enum:
+      - orig
+  - type: string
+    format: uri
+  - type: string
+    format: dataset_relative
+  - type: object
+    additionalProperties:
+      anyOf:
+        - type: string
+          enum:
+            - orig
+        - type: string
+          format: uri
+        - type: string
+          format: dataset_relative

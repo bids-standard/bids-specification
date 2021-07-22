@@ -1,0 +1,6 @@
+---
+name: Manual
+description: |
+  Indicates if the segmentation was performed manually or via an automated
+  process.
+type: boolean

@@ -91,7 +91,7 @@ $ git push -u upstream rel/1.2.0
 ```
 
 ### 4. Open a pull request against the master branch
-Important note: The pull request title **must** be named "REL: vX.Y.Z" (*e.g.*, "REL: v1.2.0").
+Important note: The pull request title **must** be named "REL: vX.Y.Z" (for example, "REL: v1.2.0").
 
 **This will open a period of discussion for 5 business days regarding if we are ready to release.**
 

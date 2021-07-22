@@ -1,0 +1,6 @@
+---
+name: EstimationAlgorithm
+description: |
+  Type of algorithm used to perform fitting
+  (for example, linear, non-linear, LM and such).
+type: string
