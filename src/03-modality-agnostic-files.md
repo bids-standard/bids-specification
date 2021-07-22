@@ -343,7 +343,7 @@ ontology and SHOULD be augmented by terms curated in the BIDS specification,
 the [NIDM](http://nidm.nidash.org/) model, and future enhancements to these models.
 
 iii. If provenance records are included, these records of provenance of a dataset 
-or a file MUST be described using a `[&lt;prefix>_]prov.jsonld` file. 
+or a file MUST be described using a `[<prefix>_]prov.jsonld` file. 
 Since these [jsonld](https://json-ld.org/) documents are graph objects,
  they can be aggregated without the need to apply any inheritance principle. 
 
