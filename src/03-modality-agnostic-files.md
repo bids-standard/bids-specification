@@ -14,20 +14,22 @@ Templates:
 The file `dataset_description.json` is a JSON file describing the dataset.
 Every dataset MUST include this file with the following fields:
 
-| **Key name**       | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                       |
-|--------------------|-----------------------|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name               | REQUIRED              | [string][]               | Name of the dataset.                                                                                                                                                                                                                                  |
-| BIDSVersion        | REQUIRED              | [string][]               | The version of the BIDS standard that was used.                                                                                                                                                                                                       |
-| HEDVersion         | RECOMMENDED           | [string][]               | If HED tags are used: The version of the HED schema used to validate HED tags for study.                                                                                                                                                              |
-| DatasetType        | RECOMMENDED           | [string][]               | The interpretation of the dataset. MUST be one of `"raw"` or `"derivative"`. For backwards compatibility, the default value is `"raw"`.                                                                                                               |
-| License            | RECOMMENDED           | [string][]               | The license for the dataset. The use of license name abbreviations is RECOMMENDED for specifying a license (see [Appendix II](./99-appendices/02-licenses.md)). The corresponding full license text MAY be specified in an additional `LICENSE` file. |
-| Authors            | OPTIONAL              | [array][] of [strings][] | List of individuals who contributed to the creation/curation of the dataset.                                                                                                                                                                          |
-| Acknowledgements   | OPTIONAL              | [string][]               | Text acknowledging contributions of individuals or institutions beyond those listed in Authors or Funding.                                                                                                                                            |
-| HowToAcknowledge   | OPTIONAL              | [string][]               | Text containing instructions on how researchers using this dataset should acknowledge the original authors. This field can also be used to define a publication that should be cited in publications that use the dataset.                            |
-| Funding            | OPTIONAL              | [array][] of [strings][] | List of sources of funding (grant numbers).                                                                                                                                                                                                           |
-| EthicsApprovals    | OPTIONAL              | [array][] of [strings][] | List of ethics committee approvals of the research protocols and/or protocol identifiers.                                                                                                                                                             |
-| ReferencesAndLinks | OPTIONAL              | [array][] of [strings][] | List of references to publications that contain information on the dataset. A reference may be textual or a [URI][uri].                                                                                                                               |
-| DatasetDOI         | OPTIONAL              | [string][]               | The Digital Object Identifier of the dataset (not the corresponding paper). DOIs SHOULD be expressed as a valid [URI][uri]; bare DOIs such as `10.0.2.3/dfjj.10` are [DEPRECATED][deprecated].                                                        |
+{{ MACROS___make_metadata_table(
+   {
+      "Name": "REQUIRED",
+      "BIDSVersion": "REQUIRED",
+      "HEDVersion": "RECOMMENDED",
+      "DatasetType": "RECOMMENDED",
+      "License": "RECOMMENDED",
+      "Authors": "OPTIONAL",
+      "Acknowledgements": "OPTIONAL",
+      "HowToAcknowledge": "OPTIONAL",
+      "Funding": "OPTIONAL",
+      "EthicsApprovals": "OPTIONAL",
+      "ReferencesAndLinks": "OPTIONAL",
+      "DatasetDOI": "OPTIONAL",
+   }
+) }}
 
 Example:
 
@@ -69,10 +71,12 @@ In addition to the keys for raw BIDS datasets,
 derived BIDS datasets include the following REQUIRED and RECOMMENDED
 `dataset_description.json` keys:
 
-| **Key name**   | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                      |
-|----------------|-----------------------|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| GeneratedBy    | REQUIRED              | [array][] of [objects][] | Used to specify provenance of the derived dataset. See table below for contents of each object.                                                                                      |
-| SourceDatasets | RECOMMENDED           | [array][] of [objects][] | Used to specify the locations and relevant attributes of all source datasets. Valid keys in each object include `URL`, `DOI` (see [URI][uri]), and `Version` with [string][] values. |
+{{ MACROS___make_metadata_table(
+   {
+      "GeneratedBy": "REQUIRED",
+      "SourceDatasets": "RECOMMENDED",
+   }
+) }}
 
 Each object in the `GeneratedBy` list includes the following REQUIRED, RECOMMENDED
 and OPTIONAL keys:
@@ -251,6 +255,72 @@ to date of birth.
 }
 ```
 
+## Samples file
+
+Template:
+
+```Text
+samples.tsv
+samples.json
+```
+
+The purpose of this file is to describe properties of samples, indicated by the `sample` entity.
+This file is REQUIRED if `sample-<label>` is present in any file name within the dataset.
+If this file exists, it MUST contain the three following columns:
+
+-   `sample_id`: MUST consist of `sample-<label>` values identifying one row
+    for each sample
+
+-   `participant_id`: MUST consist of `sub-<label>`
+
+-   `sample_type`: MUST consist of sample type values, either `cell line`, `in vitro differentiated cells`,
+    `primary cell`, `cell-free sample`, `cloning host`, `tissue`, `whole organisms`, `organoid` or
+    `technical sample` from [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type)
+
+Other optional columns MAY be used to describe the samples.
+Each sample MUST be described by one and only one row.
+
+Commonly used *optional* columns in `samples.tsv` files are `pathology` and
+`derived_from`. We RECOMMEND to make use of these columns, and in case that
+you do use them, we RECOMMEND to use the following values for them:
+
+-   `pathology`: string value describing the pathology of the sample or type of control.
+    When different from `healthy`, pathology SHOULD be specified in `samples.tsv`.
+    The pathology MAY instead be specified in [Sessions files](06-longitudinal-and-multi-site-studies.md#sessions-file)
+    in case it changes over time.
+
+-   `derived_from`: `sample-<label>` key/value pair from which a sample is derived from,
+    for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`),
+    as illustrated in the example below.
+
+`samples.tsv` example:
+
+```Text
+sample_id participant_id sample_type derived_from
+sample-01 sub-01 tissue n/a
+sample-02 sub-01 tissue sample-01
+sample-03 sub-01 tissue sample-01
+sample-04 sub-02 tissue n/a
+sample-05 sub-02 tissue n/a
+```
+
+It is RECOMMENDED to accompany each `samples.tsv` file with a sidecar
+`samples.json` file to describe the TSV column names and properties of their values
+(see also the [section on tabular files](02-common-principles.md#tabular-files)).
+
+`samples.json` example:
+
+```JSON
+{
+    "sample_type": {
+        "Description": "type of sample from ENCODE Biosample Type (https://www.encodeproject.org/profiles/biosample_type)",
+    },
+    "derived_from": {
+        "Description": "sample_id from which the sample is derived"
+    }
+}
+```
+
 ## Phenotypic and assessment data
 
 Template:
@@ -394,16 +464,8 @@ code organization of these scripts at the moment.
 
 <!-- Link Definitions -->
 
-[objects]: https://www.json.org/json-en.html
-
 [object]: https://www.json.org/json-en.html
 
 [string]: https://www.w3schools.com/js/js_json_syntax.asp
 
-[strings]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[array]: https://www.w3schools.com/js/js_json_arrays.asp
-
 [uri]: ./02-common-principles.md#uniform-resource-indicator
-
-[deprecated]: ./02-common-principles.md#definitions

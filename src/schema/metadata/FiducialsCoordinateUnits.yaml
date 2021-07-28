@@ -1,0 +1,12 @@
+---
+name: FiducialsCoordinateUnits
+description: |
+  Units in which the coordinates that are  listed in the field
+  `FiducialsCoordinateSystem` are represented.
+  MUST be `"m"`, `"cm"`, or `"mm"`.
+type: string
+enum:
+  - m
+  - mm
+  - cm
+  - n/a

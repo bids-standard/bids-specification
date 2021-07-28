@@ -1,0 +1,12 @@
+---
+name: Type
+description: |
+  Short identifier of the mask.
+  Reserved values: `Brain` - brain mask, `Lesion` - lesion mask,
+  `Face` - face mask, `ROI` - ROI mask
+type: string
+enum:
+  - Brain
+  - Lesion
+  - Face
+  - ROI

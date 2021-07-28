@@ -24,3 +24,8 @@ participants:
   extensions:
     - .tsv
     - .json
+samples:
+  required: false
+  extensions:
+    - .tsv
+    - .json

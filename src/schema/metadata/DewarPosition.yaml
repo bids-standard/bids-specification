@@ -1,0 +1,7 @@
+---
+name: DewarPosition
+description: |
+  Position of the dewar during the MEG scan:
+  `"upright"`, `"supine"` or `"degrees"` of angle from vertical:
+  for example on CTF systems, `"upright=15°, supine=90°"`.
+type: string

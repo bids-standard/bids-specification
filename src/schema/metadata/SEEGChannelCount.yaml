@@ -1,0 +1,6 @@
+---
+name: SEEGChannelCount
+description: |
+  Number of SEEG channels.
+type: integer
+minimum: 0

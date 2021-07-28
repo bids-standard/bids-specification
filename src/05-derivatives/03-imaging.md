@@ -41,11 +41,13 @@ pipeline1/
 
 The following metadata JSON fields are defined for preprocessed images:
 
-| **Key name**  | **Requirement level**         | **Data type**                                      | **Description**                                                              |
-| ------------- | ----------------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------- |
-| SkullStripped | REQUIRED                      | [boolean][]                                        | Whether the volume was skull stripped (non-brain voxels set to zero) or not. |
-| Resolution    | REQUIRED if `res` is present. | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the resolution keyword.                      |
-| Density       | REQUIRED if `den` is present. | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the density keyword.                         |
+{{ MACROS___make_metadata_table(
+   {
+      "SkullStripped": "REQUIRED",
+      "Resolution": "REQUIRED if `res` is present",
+      "Density": "REQUIRED if `den` is present",
+   }
+) }}
 
 Example JSON file corresponding to
 `pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_bold.json` above:
@@ -131,13 +133,15 @@ and the `Atlas` metadata SHOULD be defined.
 
 JSON metadata fields:
 
-| **Key name** | **Requirement level**                    | **Data type**                                      | **Description**                                                                                                                   |
-| ------------ | ---------------------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| RawSources   | REQUIRED                                 | [array][] of [strings][]                           | Same as defined in [Common data types][], but elevated from OPTIONAL to REQUIRED.                                                 |
-| Type         | RECOMMENDED                              | [string][]                                         | Short identifier of the mask. Reserved values: `Brain` - brain mask, `Lesion` - lesion mask, `Face` - face mask, `ROI` - ROI mask |
-| Atlas        | RECOMMENDED if `label` entity is defined | [string][]                                         | Which atlas (if any) was used to generate the mask.                                                                               |
-| Resolution   | REQUIRED if `res` is present             | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the resolution keyword.                                                                           |
-| Density      | REQUIRED if `den` is present             | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the density keyword.                                                                              |
+{{ MACROS___make_metadata_table(
+   {
+      "RawSources": "REQUIRED",
+      "Type": "RECOMMENDED",
+      "Atlas": "RECOMMENDED if `label` entity is defined",
+      "Resolution": "REQUIRED if `res` is present",
+      "Density": "REQUIRED if `den` is present",
+   }
+) }}
 
 Examples:
 
@@ -181,12 +185,14 @@ Probabilistic segmentations of surfaces are currently [unspecified][].
 
 The following metadata fields apply to all segmentation files:
 
-| **Key name** | **Requirement level**        | **Data type**                                      | **Description**                                                                   |
-| ------------ | ---------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Manual       | OPTIONAL                     | [boolean][]                                        | Indicates if the segmentation was performed manually or via an automated process. |
-| Atlas        | OPTIONAL                     | [string][]                                         | Which atlas (if any) was used to derive the segmentation.                         |
-| Resolution   | REQUIRED if `res` is present | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the resolution keyword.                           |
-| Density      | REQUIRED if `den` is present | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the density keyword.                              |
+{{ MACROS___make_metadata_table(
+   {
+      "Manual": "OPTIONAL",
+      "Atlas": "OPTIONAL",
+      "Resolution": "REQUIRED if `res` is present",
+      "Density": "REQUIRED if `den` is present",
+   }
+) }}
 
 ### Discrete Segmentations
 
@@ -330,20 +336,20 @@ BIDS supplies a standard, generic label-index mapping, defined in the table
 below, that contains common image-derived segmentations and can be used to map segmentations
 (and parcellations) between lookup tables.
 
-| Integer value | Description             | Abbreviation (label) |
-| ------------- | ----------------------- | -------------------- |
-| 0             | Background              | BG                   |
-| 1             | Gray Matter             | GM                   |
-| 2             | White Matter            | WM                   |
-| 3             | Cerebrospinal Fluid     | CSF                  |
-| 4             | Bone                    | B                    |
-| 5             | Soft Tissue             | ST                   |
-| 6             | Non-brain               | NB                   |
-| 7             | Lesion                  | L                    |
-| 8             | Cortical Gray Matter    | CGM                  |
-| 9             | Subcortical Gray Matter | SGM                  |
-| 10            | Brainstem               | BS                   |
-| 11            | Cerebellum              | CBM                  |
+| **Integer value** | **Description**         | **Abbreviation (label)** |
+| ----------------- | ----------------------- | ------------------------ |
+| 0                 | Background              | BG                       |
+| 1                 | Gray Matter             | GM                       |
+| 2                 | White Matter            | WM                       |
+| 3                 | Cerebrospinal Fluid     | CSF                      |
+| 4                 | Bone                    | B                        |
+| 5                 | Soft Tissue             | ST                       |
+| 6                 | Non-brain               | NB                       |
+| 7                 | Lesion                  | L                        |
+| 8                 | Cortical Gray Matter    | CGM                      |
+| 9                 | Subcortical Gray Matter | SGM                      |
+| 10                | Brainstem               | BS                       |
+| 11                | Cerebellum              | CBM                      |
 
 These definitions can be overridden (or added to) by providing custom labels in
 a sidecar `<matches>.tsv` file, in which `<matches>` corresponds to segmentation
@@ -374,13 +380,13 @@ pipeline/
 
 These TSV lookup tables contain the following columns:
 
-| Column name  | Description                                                             |
-| ------------ | ----------------------------------------------------------------------- |
-| index        | REQUIRED. The label integer index                                       |
-| name         | REQUIRED. The unique label name                                         |
-| abbreviation | OPTIONAL. The unique label abbreviation                                 |
-| color        | OPTIONAL. Hexadecimal. Label color for visualization                    |
-| mapping      | OPTIONAL. Corresponding integer label in the standard BIDS label lookup |
+| **Column name** | **Requirement level** | **Description**                                               |
+| --------------- | --------------------- |-------------------------------------------------------------- |
+| index           | REQUIRED              | The label integer index                                       |
+| name            | REQUIRED              | The unique label name                                         |
+| abbreviation    | OPTIONAL              | The unique label abbreviation                                 |
+| color           | OPTIONAL              | Hexadecimal. Label color for visualization                    |
+| mapping         | OPTIONAL              | Corresponding integer label in the standard BIDS label lookup |
 
 An example, custom `dseg.tsv` that defines three labels:
 
@@ -403,18 +409,6 @@ index   name                abbreviation
 
 <!-- Link Definitions -->
 
-[common data types]: 02-common-data-types.md
-
 [common_preproc]: 02-common-data-types.md#preprocessed-or-cleaned-data
 
-[object]: https://www.json.org/json-en.html
-
 [unspecified]: ../02-common-principles.md#unspecified-data
-
-[string]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[strings]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[array]: https://www.w3schools.com/js/js_json_arrays.asp

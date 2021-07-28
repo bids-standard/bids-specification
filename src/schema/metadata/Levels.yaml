@@ -1,0 +1,8 @@
+---
+name: Levels
+description: |
+  For categorical variables: An object of possible values (keys) and their
+  descriptions (values).
+type: object
+additionalProperties:
+  type: string

@@ -61,3 +61,48 @@ def make_entity_definitions():
     schema_obj = schema.load_schema(schemapath)
     text = schema.make_entity_definitions(schema_obj)
     return text
+
+
+def make_suffix_table(suffixes):
+    """Generate a markdown table of suffix information.
+
+    Parameters
+    ----------
+    suffixes : list of str
+        A list of the suffixes to include in the table.
+
+    Returns
+    -------
+    table : str
+        A Markdown-format table containing the corresponding table for
+        the requested fields.
+    """
+    schemapath = utils.get_schema_path()
+    schema_obj = schema.load_schema(schemapath)
+    table = schema.make_suffix_table(schema_obj, suffixes)
+    return table
+
+
+def make_metadata_table(field_info):
+    """Generate a markdown table of metadata field information.
+
+    Parameters
+    ----------
+    field_names : dict
+        A list of the field names.
+        Field names correspond to filenames in the "metadata" folder of the
+        schema.
+        Until requirement levels can be codified in the schema,
+        this argument will be dictionary, with the field names as keys and
+        the requirement levels as values.
+
+    Returns
+    -------
+    table : str
+        A Markdown-format table containing the corresponding table for
+        the requested fields.
+    """
+    schemapath = utils.get_schema_path()
+    schema_obj = schema.load_schema(schemapath)
+    table = schema.make_metadata_table(schema_obj, field_info)
+    return table

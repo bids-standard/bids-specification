@@ -1,0 +1,5 @@
+---
+name: ReconMethodName
+description: |
+  Reconstruction method or algorithm (for example, `"3d-op-osem"`).
+type: string

@@ -16,8 +16,15 @@ In this repository, we develop the
 To organize your data in BIDS, all you need is neuro data, a computer, and the
 [BIDS specification](https://bids-specification.readthedocs.io/en/stable/).
 
-BIDS currently supports MRI, MEG, EEG, iEEG, behavioral, and physiological data
-and more modalities will be added.
+BIDS currently supports the following data modalities with more to come in the future:
+
+- MRI
+- MEG
+- EEG
+- iEEG
+- behavioral
+- physiological
+- PET
 
 # Formatting your data with BIDS
 
