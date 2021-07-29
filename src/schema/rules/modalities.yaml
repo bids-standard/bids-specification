@@ -1,3 +1,4 @@
+This file defines which data types fall under each modality.
 ---
 mri:
   name: Magnetic Resonance Imaging

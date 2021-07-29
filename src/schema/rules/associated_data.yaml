@@ -1,3 +1,4 @@
+Additional folders that may appear within a dataset folder without following BIDS rules.
 ---
 - code/:
     - required: false

@@ -1,0 +1,7 @@
+---
+name: LICENSE
+description: |
+  A `LICENSE` file MAY be provided in addition to the short specification of the
+  used license in the `dataset_description.json` `"License"` field.
+  The `"License"` field and `LICENSE` file MUST correspond.
+  The `LICENSE` file MUST be either in ASCII or UTF-8 encoding.
