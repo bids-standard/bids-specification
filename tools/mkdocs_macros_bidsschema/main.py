@@ -29,6 +29,7 @@ def define_env(env):
     build code.
     """
     env.macro(macros.make_filename_template, "MACROS___make_filename_template")
+    env.macro(macros.make_filetree_example, "MACROS___make_filetree_example")
     env.macro(macros.make_entity_table, "MACROS___make_entity_table")
     env.macro(
         macros.make_entity_definitions,

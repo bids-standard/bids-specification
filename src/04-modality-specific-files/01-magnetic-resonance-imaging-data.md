@@ -273,8 +273,6 @@ pairs of files.
 For example:
 
 {{ MACROS___make_filetree_example(
-   {
-      "sub-01":
          {
             "anat":
                [
@@ -283,8 +281,7 @@ For example:
                   "sub-01_part-phase_T1w.nii.gz",
                   "sub-01_part-phase_T1w.json",
                ],
-         },
-   }
+         }
 ) }}
 
 ```Text

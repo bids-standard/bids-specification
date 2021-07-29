@@ -12,8 +12,12 @@ class DirectoryTree:
 
     def generate(self):
         tree = self._generator.build_tree()
+        text = "\n```Text\n"
         for entry in tree:
-            print(entry)
+            text += entry
+            text += "\n"
+        text += "```\n"
+        return text
 
 
 class _TreeGenerator:
@@ -63,7 +67,7 @@ class _TreeGenerator:
         if self._dir_only:
             entries = [entry for entry in entries if entry.is_dir()]
             return entries
-            
+
         entries = sorted(entries, key=lambda entry: entry.is_file())
         return entries
 
