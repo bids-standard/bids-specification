@@ -21,9 +21,8 @@ class DirectoryTree:
 
 
 class _TreeGenerator:
-    def __init__(self, filetree, dir_only=False):
+    def __init__(self, filetree):
         self._filetree = filetree
-        self._dir_only = dir_only
         self._tree = []
         self.PIPE = "│"
         self.ELBOW = "└──"
@@ -59,17 +58,6 @@ class _TreeGenerator:
                 )
             else:
                 self._add_file(entry, prefix, connector)
-
-    def _prepare_entries(self, directory):
-        
-        entries = directory.iterdir()
-
-        if self._dir_only:
-            entries = [entry for entry in entries if entry.is_dir()]
-            return entries
-
-        entries = sorted(entries, key=lambda entry: entry.is_file())
-        return entries
 
     def _preprare_entries_list(self, directory):
         entries = directory
