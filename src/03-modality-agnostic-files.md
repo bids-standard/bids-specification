@@ -399,8 +399,7 @@ questionnaire).
 Template:
 
 ```Text
-sub-<label>/
-    [ses-<label>/]
+sub-<label>/[ses-<label>/]
         sub-<label>[_ses-<label>]_scans.tsv
         sub-<label>[_ses-<label>]_scans.json
 ```
