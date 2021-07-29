@@ -82,7 +82,7 @@ Generic fields MUST be present:
 
 {{ MACROS___make_metadata_table(
    {
-      "TaskName": "REQUIRED",
+      "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
    }
 ) }}
 

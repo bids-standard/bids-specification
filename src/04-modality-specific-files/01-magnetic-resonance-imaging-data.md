@@ -467,7 +467,7 @@ JSON file.
    {
       "RepetitionTime": "REQUIRED",
       "VolumeTiming": "REQUIRED",
-      "TaskName": "REQUIRED",
+      "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`.")
    }
 ) }}
 
