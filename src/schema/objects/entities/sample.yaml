@@ -1,0 +1,12 @@
+---
+name: Sample
+entity: sample
+description: |
+  A sample pertaining to a subject such as tissue, primary cell
+  or cell-free sample.
+  The `sample-<label>` key/value pair is used to distinguish between different
+  samples from the same subject.
+  The label MUST be unique per subject and is RECOMMENDED to be unique
+  throughout the dataset.
+type: string
+format: label

@@ -3,6 +3,7 @@ Entity definitions appear in the `entities/*.yaml` files.
 ---
 - subject
 - session
+- sample
 - task
 - acquisition
 - ceagent
