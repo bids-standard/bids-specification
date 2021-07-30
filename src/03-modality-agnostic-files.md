@@ -391,8 +391,7 @@ Template:
 
 ```Text
 sub-<label>/
-    ses-<label>/
-        sub-<label>_sessions.tsv
+    sub-<label>_sessions.tsv
 ```
 
 Optional: Yes
