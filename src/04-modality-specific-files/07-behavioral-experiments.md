@@ -40,5 +40,6 @@ it is RECOMMENDED to add the following metadata to the JSON files of this folder
       "CogPOID": "RECOMMENDED",
       "InstitutionName": "RECOMMENDED",
       "InstitutionAddress": "RECOMMENDED",
+      "InstitutionalDepartmentName": "RECOMMENDED",
    }
 ) }}
