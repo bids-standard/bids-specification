@@ -100,6 +100,7 @@ Whenever possible, please avoid using ad hoc wording.
    {
       "InstitutionName": "RECOMMENDED",
       "InstitutionAddress": "RECOMMENDED",
+      "InstitutionalDepartmentName": "RECOMMENDED",
       "Manufacturer": "RECOMMENDED",
       "ManufacturersModelName": "RECOMMENDED",
       "SoftwareVersions": "RECOMMENDED",

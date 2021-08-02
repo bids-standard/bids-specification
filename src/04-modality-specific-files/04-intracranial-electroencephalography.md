@@ -108,6 +108,7 @@ Whenever possible, please avoid using ad hoc wording.
    {
       "InstitutionName": "RECOMMENDED",
       "InstitutionAddress": "RECOMMENDED",
+      "InstitutionalDepartmentName": "RECOMMENDED",
       "Manufacturer": ("RECOMMENDED", 'For example, `"TDT"`, `"Blackrock"`.'),
       "ManufacturersModelName": "RECOMMENDED",
       "SoftwareVersions": "RECOMMENDED",

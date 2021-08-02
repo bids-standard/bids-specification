@@ -179,7 +179,7 @@ fieldmap estimation using the following metadata:
    {
       "InstitutionName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0080 `InstitutionName`."),
       "InstitutionAddress": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`."),
-      "InstitutionalDepartmentName": "RECOMMENDED",
+      "InstitutionalDepartmentName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.")
    }
 ) }}
 
