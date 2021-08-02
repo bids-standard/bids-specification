@@ -94,7 +94,7 @@ Generic fields MUST be present:
 
 {{ MACROS___make_metadata_table(
    {
-      "TaskName": "REQUIRED",
+      "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
    }
 ) }}
 
@@ -112,7 +112,7 @@ Whenever possible, please avoid using ad hoc wording.
       "ManufacturersModelName": "RECOMMENDED",
       "SoftwareVersions": "RECOMMENDED",
       "TaskDescription": "RECOMMENDED",
-      "Instructions": "RECOMMENDED",
+      "Instructions": ("RECOMMENDED", "This is especially important in context of resting state recordings and distinguishing between eyes open and eyes closed paradigms."),
       "CogAtlasID": "RECOMMENDED",
       "CogPOID": "RECOMMENDED",
       "DeviceSerialNumber": "RECOMMENDED",
