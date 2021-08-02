@@ -223,14 +223,18 @@ That would look like this:
 
 ## Using macros
 
-We use mkdocs macros to more easily make consistent the style of certain elements of the spec.
+We use [mkdocs-macros](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)
+to render parts of the BIDS specification from the BIDS schema.
+Macros make it easy to achieve a consistent style throughout the specification,
+and changing a given macro will automatically change all appropriate paragraphs in the specification.
 
-For example, this is especially convenient to generate the metadata tables by reading the content
-to put in the tables from the [yaml files](src/schema/metadata) in the [schema](src/schema/README.md).
 
-The macros are written in python (see the folders [tools/schemacode](tools/schemacode) 
-and [tools/mkdocs_macros_bidsschema](tools/mkdocs_macros_bidsschema)) and are called directly in the markdown document 
-where you want output of the macro to be inserted.
+For example, all tables on BIDS metadata are generated via macros that make use of data in the
+[yaml files](src/schema/metadata) in the [schema](src/schema/README.md).
+
+The macros are written in Python
+(see the folders [tools/schemacode](tools/schemacode) and [tools/mkdocs_macros_bidsschema](tools/mkdocs_macros_bidsschema)),
+and are called directly in the Markdown document where you want the output of the macro to be inserted.
 
 For example:
 
@@ -243,11 +247,11 @@ For example:
 ) }}
 ```
 
-This macro will create a metadata table for the "SamplingFrequency", "StartTime",
-filling the columns of that table with the content specified in their respective yaml files
-([here](src/schema/metadata/SamplingFrequency.yaml) and [there](src/schema/metadata/StartTime.yaml)).
+This macro will create a table for the "SamplingFrequency" and "StartTime" metadata,
+filling the table with the content specified in their respective yaml files
+(see [SamplingFrequency.yaml](src/schema/metadata/SamplingFrequency.yaml) and [StartTime.yaml](src/schema/metadata/StartTime.yaml)).
 
-Some of the content created by the macro can specified in the macro call. 
+Some of the content created by the macro can specified in the macro call itself, as opposed to in the yaml files. 
 Here the `"REQUIRED"`, `"RECOMMENDED, but REQUIRED for sparse sequences"` 
 specify the content of the requirement level column for each piece of metadata.
 
