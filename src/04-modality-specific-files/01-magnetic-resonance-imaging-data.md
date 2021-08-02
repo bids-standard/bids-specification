@@ -467,7 +467,7 @@ JSON file.
    {
       "RepetitionTime": "REQUIRED",
       "VolumeTiming": "REQUIRED",
-      "TaskName": "REQUIRED",
+      "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`.")
    }
 ) }}
 
@@ -513,7 +513,7 @@ sparse sequences.
 
 {{ MACROS___make_metadata_table(
    {
-      "Instructions": "RECOMMENDED",
+      "Instructions": ("RECOMMENDED", "This is especially important in context of resting state recordings and distinguishing between eyes open and eyes closed paradigms."),
       "TaskDescription": "RECOMMENDED",
       "CogAtlasID": "RECOMMENDED",
       "CogPOID": "RECOMMENDED",
