@@ -32,6 +32,13 @@ misunderstanding we clarify them here.
     context, a session may also indicate a group of related scans,
     taken in one or more visits.
 
+1.  **Sample** - a sample pertaining to a subject such as tissue, primary cell
+    or cell-free sample.
+    The `sample-<label>` key/value pair is used to distinguish between different
+    samples from the same subject.
+    The label MUST be unique per subject and is RECOMMENDED to be unique
+    throughout the dataset.
+
 1.  **Data acquisition** - a continuous uninterrupted block of time during which
     a brain scanning instrument was acquiring data according to particular
     scanning sequence/protocol.
@@ -155,6 +162,15 @@ the `sub-` "key" and`<label>` "value", where `<label>` would in a real data file
 correspond to a unique identifier of that subject, such as `01`.
 The same holds for the `session` entity with its `ses-` key and its `<label>`
 value.
+
+The extra session layer (at least one `/ses-<label>` subfolder) SHOULD
+be added for all subjects if at least one subject in the dataset has more than
+one session.
+If a `/ses-<label>` subfolder is included as part of the directory hierarchy,
+then the same [`ses-<label>`](./99-appendices/09-entities.md#ses)
+key/value pair MUST also be included as part of the file names themselves.
+Acquisition time of session can
+be defined in the [sessions file](03-modality-agnostic-files.md#sessions-file).
 
 A chain of entities, followed by a suffix, connected by underscores (`_`)
 produces a human readable file name, such as `sub-01_task-rest_eeg.edf`.

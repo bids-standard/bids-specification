@@ -36,6 +36,13 @@ of the schema, roughly in order of importance:
     internally, such as `code` or `sourcedata`. The schema specifies which
     folders are accepted and whether they are required or optional.
 
+-   `suffixes/*.yaml`: Suffixes supported by the specification.
+    Each suffix schema file contains, at minimum, `name` and `description`
+    fields. Additionally, it may have a `unit` field defining possible
+    units for data associated with that suffix, as well as fields
+    defining the range or types of values which are allowed for the data,
+    such as `minValue` and `maxValue`.
+
 -   `metadata/*.yaml`: Valid fields for sidecar metadata json files.
     These files contain, at minimum, the following fields: `name`,
     `description`, and a set of fields for describing the field's data type.
