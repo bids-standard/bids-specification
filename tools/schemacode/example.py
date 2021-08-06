@@ -6,6 +6,7 @@ Adapated from by https://realpython.com/directory-tree-generator-python/
 
 import os
 
+
 class DirectoryTree:
     def __init__(self, filetree):
         self._generator = _TreeGenerator(filetree)
@@ -32,35 +33,37 @@ class _TreeGenerator:
 
     def build_tree(self):
         self._tree_body(self._filetree)
-        return self._tree  
+        return self._tree
 
-    def _add_directory(self, directory, entry, index, entries_count, prefix, connector):
-        self._tree.append(f"{prefix}{connector} {entry}{os.sep}")
-        prefix += self.PIPE_PREFIX if index != entries_count - 1 else self.SPACE_PREFIX
-        self._tree_body(directory=directory[entry], prefix=prefix)
+    def _add_dictionnary(
+        self, directory, entry, index, entries_count, prefix, connector
+    ):
 
-    def _add_file(self, entry, prefix, connector):
-        self._tree.append(f"{prefix}{connector} {entry}")
+        if isinstance(directory[entry], str):
+            self._add_file(entry, prefix, connector, directory[entry])
+            return
+
+        else:  # We are dealing with a directory
+            self._tree.append(f"{prefix}{connector} {entry}{os.sep}")
+            prefix += (
+                self.PIPE_PREFIX if index != entries_count - 1 else self.SPACE_PREFIX
+            )
+            self._tree_body(directory=directory[entry], prefix=prefix)
+
+    def _add_file(self, entry, prefix, connector, comment=""):
+        self._tree.append(f"{prefix}{connector} {entry} {comment}")
 
     def _tree_body(self, directory, prefix=""):
 
-        entries = self._preprare_entries_list(directory)
-        entries_count = len(entries)
+        entries_count = len(directory)
 
-        for index, entry in enumerate(entries):
+        for index, entry in enumerate(directory):
 
             connector = self.ELBOW if index == entries_count - 1 else self.TEE
+            self._add_dictionnary(
+                directory, entry, index, entries_count, prefix, connector
+            )
 
-            if isinstance(directory, dict):
-                self._add_directory(
-                    directory, entry, index, entries_count, prefix, connector
-                )
-            else:
-                self._add_file(entry, prefix, connector)
-
-    def _preprare_entries_list(self, directory):
-        entries = directory
-        return entries
 
 def make_filetree_example(filetree_info):
     tree = DirectoryTree(filetree_info)
