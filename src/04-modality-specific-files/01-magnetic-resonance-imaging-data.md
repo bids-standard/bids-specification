@@ -273,17 +273,16 @@ pairs of files.
 For example:
 
 {{ MACROS___make_filetree_example(
-         {  "sub-01": 
-            {
-               "anat":
-                  [
-                     "sub-01_part-mag_T1w.nii.gz",
-                     "sub-01_part-mag_T1w.json",
-                     "sub-01_part-phase_T1w.nii.gz",
-                     "sub-01_part-phase_T1w.json",
-                  ],
-            }
-         }
+   {
+   "sub-01": {
+      "anat": {
+         "sub-01_part-mag_T1w.nii.gz": "",
+         "sub-01_part-mag_T1w.json": "",
+         "sub-01_part-phase_T1w.nii.gz": "",
+         "sub-01_part-phase_T1w.json": "",
+         },
+      }
+   }
 ) }}
 
 ```Text
@@ -434,19 +433,18 @@ Multi-echo data MUST be split into one file per echo using the
 [`echo-<index>`](../99-appendices/09-entities.md#echo) key-value pair. For example:
 
 {{ MACROS___make_filetree_example(
-         {  "sub-01": 
-            {
-               "func":
-                  [
-                     "sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz",
-                     "sub-01_task-cuedSGT_run-1_echo-1_bold.json",
-                     "sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz",
-                     "sub-01_task-cuedSGT_run-1_echo-2_bold.json",
-                     "sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz",
-                     "sub-01_task-cuedSGT_run-1_echo-3_bold.json",
-                  ],
-            }
-         }
+   {
+   "sub-01": {
+      "func": {
+         "sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz": "",
+         "sub-01_task-cuedSGT_run-1_echo-1_bold.json": "",
+         "sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz": "",
+         "sub-01_task-cuedSGT_run-1_echo-2_bold.json": "",
+         "sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz": "",
+         "sub-01_task-cuedSGT_run-1_echo-3_bold.json": "",
+         },
+      }
+   }
 ) }}
 
 ```Text
@@ -475,21 +473,20 @@ name with the exception of the `part-<mag|phase>` or `part-<real|imag>` key/valu
 For example:
 
 {{ MACROS___make_filetree_example(
-         {  "sub-01": 
-            {
-               "func":
-                  [
-                     "sub-01_task-cuedSGT_part-mag_bold.nii.gz",
-                     "sub-01_task-cuedSGT_part-mag_bold.json",
-                     "sub-01_task-cuedSGT_part-phase_bold.nii.gz",
-                     "sub-01_task-cuedSGT_part-phase_bold.json",
-                     "sub-01_task-cuedSGT_part-mag_sbref.nii.gz",
-                     "sub-01_task-cuedSGT_part-mag_sbref.json",
-                     "sub-01_task-cuedSGT_part-phase_sbref.nii.gz",
-                     "sub-01_task-cuedSGT_part-phase_sbref.json",
-                  ],
-            }
-         }
+   { 
+   "sub-01": {
+      "func": {
+         "sub-01_task-cuedSGT_part-mag_bold.nii.gz": "",
+         "sub-01_task-cuedSGT_part-mag_bold.json": "",
+         "sub-01_task-cuedSGT_part-phase_bold.nii.gz": "",
+         "sub-01_task-cuedSGT_part-phase_bold.json": "",
+         "sub-01_task-cuedSGT_part-mag_sbref.nii.gz": "",
+         "sub-01_task-cuedSGT_part-mag_sbref.json": "",
+         "sub-01_task-cuedSGT_part-phase_sbref.nii.gz": "",
+         "sub-01_task-cuedSGT_part-phase_sbref.json": "",
+         },
+      },
+   }
 ) }}
 
 ```Text
@@ -573,14 +570,13 @@ additional terms and their definitions.
 Example:
 
 {{ MACROS___make_filetree_example(
-         {  "sub-01": 
-            {
-               "func":
-                  [
-                     "sub-control01_task-nback_bold.json",
-                  ],
-            }
-         }
+   {
+   "sub-01": {
+      "func": {
+         "sub-control01_task-nback_bold.json": "",
+         },
+      }
+   }
 ) }}
 
 ```Text
@@ -738,17 +734,16 @@ part of a unique multipart scan, then they will tag all four runs with the
 same `MultipartID` (shown at the right-hand side of the file listing):
 
 {{ MACROS___make_filetree_example(
-         {  "sub-1": 
-            {
-               "dwi                                # MultipartID":
-                  [
-                     "sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1",
-                     "sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_1",
-                     "sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_1",
-                     "sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_1",
-                  ],
-            }
+   {
+   "sub-1": {
+      "dwi                               # MultipartID": {
+         "sub-1_dir-AP_run-1_dwi.nii.gz": "# dwi_1",
+         "sub-1_dir-AP_run-2_dwi.nii.gz": "# dwi_1",
+         "sub-1_dir-PA_run-1_dwi.nii.gz": "# dwi_1",
+         "sub-1_dir-PA_run-2_dwi.nii.gz": "# dwi_1",
          }
+      }
+   }
 ) }}
 
 ```Text
@@ -764,17 +759,16 @@ If, conversely, the researcher wanted to store two multipart scans, one possibil
 is to combine matching phase-encoding directions:
 
 {{ MACROS___make_filetree_example(
-         {  "sub-1": 
-            {
-               "dwi                                # MultipartID":
-                  [
-                     "sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1",
-                     "sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_1",
-                     "sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_2",
-                     "sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_2",
-                  ],
-            }
-         }
+   {
+   "sub-1": {
+      "dwi                               # MultipartID":{
+            "sub-1_dir-AP_run-1_dwi.nii.gz": "# dwi_1",
+            "sub-1_dir-AP_run-2_dwi.nii.gz": "# dwi_1",
+            "sub-1_dir-PA_run-1_dwi.nii.gz": "# dwi_2",
+            "sub-1_dir-PA_run-2_dwi.nii.gz": "# dwi_2",
+      },
+      }
+   }
 ) }}
 
 ```Text
@@ -790,17 +784,16 @@ Alternatively, the researcher's intent could be combining opposed phase-encoding
 runs instead:
 
 {{ MACROS___make_filetree_example(
-         {  "sub-1": 
-            {
-               "dwi                                # MultipartID":
-                  [
-                     "sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1",
-                     "sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_2",
-                     "sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_1",
-                     "sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_2",
-                  ],
-            }
-         }
+   {
+   "sub-1": {
+      "dwi                               # MultipartID":{
+            "sub-1_dir-AP_run-1_dwi.nii.gz": "# dwi_1",
+            "sub-1_dir-AP_run-2_dwi.nii.gz": "# dwi_2",
+            "sub-1_dir-PA_run-1_dwi.nii.gz": "# dwi_1",
+            "sub-1_dir-PA_run-2_dwi.nii.gz": "# dwi_2",
+      },
+      }
+   }
 ) }}
 
 ```Text
@@ -816,17 +809,16 @@ The `MultipartID` metadata MAY be used with the
 [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair, for example:
 
 {{ MACROS___make_filetree_example(
-         {  "sub-1": 
-            {
-               "dwi                                    # MultipartID":
-                  [
-                     "sub-1_acq-shell1_run-1_dwi.nii.gz  # dwi_1",
-                     "sub-1_acq-shell1_run-2_dwi.nii.gz  # dwi_2",
-                     "sub-1_acq-shell2_run-1_dwi.nii.gz  # dwi_1",
-                     "sub-1_acq-shell2_run-2_dwi.nii.gz  # dwi_2",
-                  ],
-            }
-         }
+   {
+   "sub-1": {
+      "dwi                                   # MultipartID":{
+         "sub-1_acq-shell1_run-1_dwi.nii.gz": "# dwi_1",
+         "sub-1_acq-shell1_run-2_dwi.nii.gz": "# dwi_2",
+         "sub-1_acq-shell2_run-1_dwi.nii.gz": "# dwi_1",
+         "sub-1_acq-shell2_run-2_dwi.nii.gz": "# dwi_2",
+         },
+      }
+   }
 ) }}
 
 
