@@ -286,7 +286,7 @@ you do use them, we RECOMMEND to use the following values for them:
 
 -   `pathology`: string value describing the pathology of the sample or type of control.
     When different from `healthy`, pathology SHOULD be specified in `samples.tsv`.
-    The pathology MAY instead be specified in [Sessions files](06-longitudinal-and-multi-site-studies.md#sessions-file)
+    The pathology MAY instead be specified in [Sessions files](./03-modality-agnostic-files.md#sessions-file)
     in case it changes over time.
 
 -   `derived_from`: `sample-<label>` key/value pair from which a sample is derived from,
@@ -326,8 +326,9 @@ It is RECOMMENDED to accompany each `samples.tsv` file with a sidecar
 Template:
 
 ```Text
-phenotype/<measurement_tool_name>.tsv
-phenotype/<measurement_tool_name>.json
+phenotype/
+    <measurement_tool_name>.tsv
+    <measurement_tool_name>.json
 ```
 
 Optional: Yes
@@ -399,7 +400,8 @@ questionnaire).
 Template:
 
 ```Text
-sub-<label>/[ses-<label>/]
+sub-<label>/
+    [ses-<label>/]
         sub-<label>[_ses-<label>]_scans.tsv
         sub-<label>[_ses-<label>]_scans.json
 ```
@@ -447,6 +449,33 @@ func/sub-control01_task-nback_bold.nii.gz	1877-06-15T13:45:30
 func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33
 meg/sub-control01_task-rest_split-01_meg.nii.gz	1877-06-15T12:15:27
 meg/sub-control01_task-rest_split-02_meg.nii.gz	1877-06-15T12:15:27
+```
+
+## Sessions file
+
+Template:
+
+```Text
+sub-<label>/
+    sub-<label>_sessions.tsv
+```
+
+Optional: Yes
+
+In case of multiple sessions there is an option of adding additional
+`sessions.tsv` files describing variables changing between sessions.
+In such case one file per participant SHOULD be added.
+These files MUST include a `session_id` column and describe each session by one and only one row.
+Column names in `sessions.tsv` files MUST be different from group level participant key column names in the
+[`participants.tsv` file](./03-modality-agnostic-files.md#participants-file).
+
+`_sessions.tsv` example:
+
+```Text
+session_id	acq_time	systolic_blood_pressure
+ses-predrug	2009-06-15T13:45:30	120
+ses-postdrug	2009-06-16T13:45:30	100
+ses-followup	2009-06-17T13:45:30	110
 ```
 
 ## Code

@@ -163,6 +163,15 @@ correspond to a unique identifier of that subject, such as `01`.
 The same holds for the `session` entity with its `ses-` key and its `<label>`
 value.
 
+The extra session layer (at least one `/ses-<label>` subfolder) SHOULD
+be added for all subjects if at least one subject in the dataset has more than
+one session.
+If a `/ses-<label>` subfolder is included as part of the directory hierarchy,
+then the same [`ses-<label>`](./99-appendices/09-entities.md#ses)
+key/value pair MUST also be included as part of the file names themselves.
+Acquisition time of session can
+be defined in the [sessions file](03-modality-agnostic-files.md#sessions-file).
+
 A chain of entities, followed by a suffix, connected by underscores (`_`)
 produces a human readable file name, such as `sub-01_task-rest_eeg.edf`.
 It is evident from the file name alone that the file contains resting state
