@@ -9,7 +9,7 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         <datatype>/
             <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<ext>
 ```
@@ -149,7 +149,7 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         anat|func|dwi/
             <source_entities>[_space-<space>][_res-<label>][_den-<label>][_label-<label>][_desc-<label>]_mask.nii.gz
 ```
@@ -261,7 +261,7 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         anat|func|dwi/
             <source_entities>[_space-<space>][_res-<label>][_den-<label>]_dseg.nii.gz
 ```
@@ -328,7 +328,7 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         func|anat|dwi/
             <source_entities>[_space-<space>][_res-<label>][_den-<label>][_label-<label>]_probseg.nii.gz
 ```
@@ -410,7 +410,7 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         anat/
             <source_entities>[_hemi-{L|R}][_space-<space>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
 ```

@@ -169,7 +169,7 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         <datatype>/
             <source_entities>[_space-<space>][_desc-<label>]_<suffix>.<ext>
 ```
