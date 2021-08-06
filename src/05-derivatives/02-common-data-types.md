@@ -27,6 +27,17 @@ Preprocessed `bold` NIfTI file in the original coordinate space of the original 
 The location of the file in the original datasets is encoded in the `RawSources`
 metadata, and `desc-<label>` is used to prevent clashing with the original file name.
 
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-rest_desc-preproc_bold.nii.gz": "",
+        "sub-01_task-rest_desc-preproc_bold.json": "",
+         },
+      },
+   }
+) }}
+
 ```Text
 sub-01/func/sub-01_task-rest_desc-preproc_bold.nii.gz
 sub-01/func/sub-01_task-rest_desc-preproc_bold.json
@@ -98,6 +109,17 @@ For CIFTI-2 images, the relevant structures are BrainStructure values defined in
 Preprocessed `bold` NIfTI file in `individual` coordinate space. Please mind
 that in this case `SpatialReference` key is REQUIRED.
 
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-rest_space-individual_bold.nii.gz": "",
+        "sub-01_task-rest_space-individual_bold.json": "",
+         },
+      },
+   }
+) }}
+
 ```Text
 sub-01/func/sub-01_task-rest_space-individual_bold.nii.gz
 sub-01/func/sub-01_task-rest_space-individual_bold.json
@@ -114,6 +136,17 @@ meshes defined in the Conte69 atlas along with the MNI152NLin6Asym template.
 In this example, because all volumetric structures are sampled to the same
 reference, the `VolumeReference` key is used as a default, and only the
 surface references need to be specified by BrainStructure names.
+
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-rest_space-fsLR_den-91k_bold.dtseries.nii": "",
+        "sub-01_task-rest_space-fsLR_den-91k_bold.json": "",
+         },
+      },
+   }
+) }}
 
 ```Text
 sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.dtseries.nii
@@ -164,6 +197,23 @@ processing for the same input data.
 
 Examples of preprocessed data:
 
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline1": {
+        "sub-001": {
+            "anat": {
+                "sub-001_space-MNI305_T1w.nii.gz": "",
+                "sub-001_space-MNI305_T1w.json": "",
+                },
+            "func": {
+                "sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.nii.gz": "",
+                "sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.json": "",
+                },
+            },
+        }
+   }
+) }}
+
 ```Text
 pipeline1/
     sub-001/
@@ -174,6 +224,21 @@ pipeline1/
             sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.nii.gz
             sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.json
 ```
+
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline2": {
+        "sub-001": {
+            "eeg": {
+                "sub-001_task-listening_run-1_desc-autoannotation_events.tsv": "",
+                "sub-001_task-listening_run-1_desc-autoannotation_events.json": "",
+                "sub-001_task-listening_run-1_desc-filtered_eeg.edf": "",
+                "sub-001_task-listening_run-1_desc-filtered_eeg.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 ```Text
 pipeline2/
