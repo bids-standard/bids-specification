@@ -36,6 +36,23 @@ such as the CTF newDs command-line application or
 
 Example:
 
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01": {
+        "ses-001": {
+            "sub-control01_ses-001_scans.tsv": "",
+            "meg": {
+                "sub-control01_ses-001_coordsystem.json": "",
+                "sub-control01_ses-001_headshape.pos": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.ds": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.json": "",
+                "sub-control01_ses-001_task-rest_run-01_channels.tsv": "",
+                },
+            },
+        }
+   }
+) }}
+
 ```Text
 sub-control01/
     ses-001/
@@ -90,6 +107,31 @@ which may be nested inside a `ses-<label>` folder, as shown in the following exa
 
 #### Example with single session (omitted session folder)
 
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "meg": {
+            "sub-01_coordsystem.json": "",
+            "sub-01_task-rest_meg.fif": "",
+            "sub-01_task-rest_meg.json": "",
+            "sub-01_task-rest_channels.tsv": "",
+            "sub-01_acq-crosstalk_meg.fif": "",
+            "sub-01_acq-calibration_meg.dat": "",
+            },
+        },
+    "sub-02": {
+        "meg": {
+            "sub-02_coordsystem.json": "",
+            "sub-02_task-rest_meg.fif": "",
+            "sub-02_task-rest_meg.json": "",
+            "sub-02_task-rest_channels.tsv": "",
+            "sub-02_acq-crosstalk_meg.fif": "",
+            "sub-02_acq-calibration_meg.dat": "",
+            },
+        }
+   }
+) }}
+
 ```Text
 sub-01/
     meg/
@@ -110,6 +152,35 @@ sub-02/
 ```
 
 #### Example with multiple sessions
+
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "ses-01":{
+            "sub-01_ses-01_scans.tsv": "",
+            "meg": {
+                "sub-01_ses-01_coordsystem.json": "",
+                "sub-01_ses-01_task-rest_run-01_meg.fif": "",
+                "sub-01_ses-01_task-rest_run-01_meg.json": "",
+                "sub-01_ses-01_task-rest_run-01_channels.tsv": "",
+                "sub-01_ses-01_acq-crosstalk_meg.fif": "",
+                "sub-01_ses-01_acq-calibration_meg.dat": "",
+                },
+            },
+        "ses-02":{
+            "sub-01_ses-02_scans.tsv": "",
+            "meg": {
+                "sub-01_ses-02_coordsystem.json": "",
+                "sub-01_ses-02_task-rest_run-01_meg.fif": "",
+                "sub-01_ses-02_task-rest_run-01_meg.json": "",
+                "sub-01_ses-02_task-rest_run-01_channels.tsv": "",
+                "sub-01_ses-02_acq-crosstalk_meg.fif": "",
+                "sub-01_ses-02_acq-calibration_meg.dat": "",
+                },
+            },
+        },
+   }
+) }}
 
 ```Text
 sub-01/
@@ -140,6 +211,19 @@ files SHOULD be renamed with the corresponding label (for example, `proc-sss`)
 and placed in a `derivatives` subfolder.
 
 Example:
+
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01": {
+        "ses-001":{
+            "meg": {
+                "sub-control01_ses-001_task-rest_run-01_proc-sss_meg.fif": "",
+                "sub-control01_ses-001_task-rest_run-01_proc-sss_meg.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 ```Text
 sub-control01_ses-001_task-rest_run-01_proc-sss_meg.fif
@@ -174,6 +258,19 @@ for the `acq_time` column in `scans.tsv` MUST all be identical, as described in
 
 Example:
 
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01": {
+        "ses-001":{
+            "meg": {
+                "sub-control01_ses-001_task-rest_run-01_split-01_meg.fif": "",
+                "sub-control01_ses-001_task-rest_run-01_split-02_meg.fif": "",
+                },
+            },
+        }
+   }
+) }}
+
 ```Text
 sub-control01_ses-001_task-rest_run-01_split-01_meg.fif
 sub-control01_ses-001_task-rest_run-01_split-02_meg.fif
@@ -204,10 +301,27 @@ containing multiple files without extensions.
 sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg>
 ```
 
-One SHOULD rename/create a father run specific directory and keep the original
+One SHOULD rename/create a parent run-specific directory and keep the original
 files for each run inside (for example, `c,rfhp0.1Hz`, `config` and `hs_file`).
 
 Example:
+
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01": {
+        "ses-001":{
+            "sub-control01_ses-001_scans.tsv": "",
+            "meg": {
+                "sub-control01_ses-001_coordsystem.json": "",
+                "sub-control01_ses-001_headshape.pos": "",
+                "sub-control01_ses-001_task-rest_run-01_meg": {},
+                "sub-control01_ses-001_task-rest_run-01_meg.json": "",
+                "sub-control01_ses-001_task-rest_run-01_channels.tsv": "",
+                },
+            },
+        },
+   }
+) }}
 
 ```Text
 sub-control01/
@@ -222,6 +336,17 @@ sub-control01/
 ```
 
 Where:
+
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01_ses-001_task-rest_run-01_meg": {
+        "config": "",
+        "hs_file": "",
+        "e,rfhp1.0Hz.COH": "",
+        "c,rfDC": "",
+        },
+   }
+) }}
 
 ```Text
 sub-control01_ses-001_task-rest_run-01_meg/
@@ -243,6 +368,25 @@ The marker coil file(s) contain coil positions in the *acquisition system's nati
 Head points and marker points in *head space* are acquired using third-party hardware.
 
 Example:
+
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01": {
+        "ses-001":{
+            "sub-control01_ses-001_scans.tsv": "",
+            "meg": {
+                "sub-control01_ses-001_coordsystem.json": "",
+                "sub-control01_ses-001_headshape.txt": "",
+                "sub-control01_ses-001_task-rest_run-01_meg": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.json": "",
+                "sub-control01_ses-001_task-rest_run-01_channels.tsv": "",
+                "sub-control01_ses-001_task-rest[_acq-<label>]_run-01_markers.<mrk,sqd>": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.<con,sqd>": "",
+                },
+            },
+        },
+   }
+) }}
 
 ```Text
 sub-control01/
@@ -296,6 +440,27 @@ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>]_digitizer.txt
 
 Example:
 
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01": {
+        "ses-001":{
+            "sub-control01_ses-001_scans.tsv": "",
+            "meg": {
+                "sub-control01_ses-001_coordsystem.json": "",
+                "sub-control01_ses-001_headshape.txt": "",
+                "sub-control01_ses-001_task-rest_run-01_meg": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.json": "",
+                "sub-control01_ses-001_task-rest_run-01_channels.tsv": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.chn": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.kdf": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.trg": "",
+                "sub-control01_ses-001_task-rest_digitizer.txt": "",
+                },
+            },
+        },
+   }
+) }}
+
 ```Text
 sub-control01/
     ses-001/
@@ -324,6 +489,24 @@ plus other information on offline preprocessing performed after data acquisition
 information).
 
 Example:
+
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01": {
+        "ses-001":{
+            "meg": {
+                "sub-control01_ses-001_coordsystem.json": "",
+                "sub-control01_ses-001_headshape.txt": "",
+                "sub-control01_ses-001_task-rest_run-01_meg": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.json": "",
+                "sub-control01_ses-001_task-rest_run-01_channels.tsv": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.raw": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.raw.mhd": "",
+                },
+            },
+        },
+   }
+) }}
 
 ```Text
 sub-control01/
