@@ -439,6 +439,17 @@ manufacturer (see [Appendix VI](../99-appendices/06-meg-file-formats.md)).
 
 Example:
 
+{{ MACROS___make_filetree_example(
+   {
+   "sub-control01": {
+      "ses-01":{
+         "sub-control01_ses-01_acq-HEAD_headshape.pos": "",
+         "sub-control01_ses-01_acq-ECG_headshape.pos": "",
+         },
+      }
+   }
+) }}
+
 ```Text
 sub-control01
     ses-01
@@ -472,6 +483,23 @@ recordings, hence all metadata sidecar files (such as the `channels.tsv`) file
 SHOULD be present as well.
 
 Example:
+
+{{ MACROS___make_filetree_example(
+   {
+   "sub-control01": {},
+   "sub-control02": {},
+   "sub-emptyroom": {
+      "ses-20170801": {
+         "sub-emptyroom_ses-20170801_scans.tsv": "",
+         "meg": {
+            "sub-emptyroom_ses-20170801_task-noise_meg.ds": "",
+            "sub-emptyroom_ses-20170801_task-noise_meg.json": "",
+            "sub-emptyroom_ses-20170801_task-noise_channels.tsv": "",
+            }
+         }
+      },
+   }
+) }}
 
 ```Text
 sub-control01/
