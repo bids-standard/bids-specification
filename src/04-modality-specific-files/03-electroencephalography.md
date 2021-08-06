@@ -13,7 +13,8 @@ and can be used for practical guidance when curating a new dataset.
 -   Multiple sessions per subject: [`eeg_rishikesh`](https://doi.org/10.5281/zenodo.1490922)
 -   Combined with fMRI: [`eeg_rest_fmri`](https://osf.io/94c5t/files/)
 
-Further datasets are available from the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
+Further datasets are available from 
+the [BIDS examples repository](https://github.com/bids-standard/bids-examples#eeg-datasets).
 
 ## EEG recording data
 
