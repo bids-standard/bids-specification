@@ -245,29 +245,23 @@ However, in the case that these data are to be included:
 
 Alternatively one can organize their data in the following way
 
-<!-- TODO:
- add single files at same level as directories: participants.tsv...
- requires macro to handle list that contains strings and dict
--->
-
 {{ MACROS___make_filetree_example(
-         {  "my_dataset-1": 
-            {
-               "sourcedata": "",
-               "...": "",
-               "sourcedata": {
-                   "sub-01": "",
-                   "sub-02": "",
-                   "...": "",
-               },
-               "derivatives": {
-                   "pipeline_1": "",
-                   "pipeline_2": "",
-                   "...": "",
-               },
-
-            }
-         }
+    {
+    "my_dataset-1": {
+            "sourcedata": "",
+            "...": "",
+            "sourcedata": {
+                "sub-01": "",
+                "sub-02": "",
+                "...": "",
+            },
+            "derivatives": {
+                "pipeline_1": "",
+                "pipeline_2": "",
+                "...": "",
+            },
+        }
+    }
 ) }}
 
 ```Text
@@ -360,30 +354,24 @@ Derivatives can be stored/distributed in two ways:
 
     Example of a derivative dataset including the raw dataset as source:
 
-<!-- TODO:
- add single files at same level as directories
- requires macro to handle list that contains strings and dict
--->
-
-
     {{ MACROS___make_filetree_example(
-            {  "my_processed_data": 
-                {
-                "code":[
-                    "processing_pipeline-1.0.0.img",
-                    "hpc_submitter.sh",
-                    "...",
-                    ],
-                "sourcedata": {
-                    "sub-01": "",
-                    "sub-02": "",
-                    "...": "",
-                    },
-                "sub-01": "",
-                "sub-02": "",
-                "...": ""
-                }
+        {
+        "my_processed_data": {
+            "code": {
+                "processing_pipeline-1.0.0.img": "",
+                "hpc_submitter.sh": "",
+                "...": "",
+            },
+            "sourcedata": {
+                "sub-01": {},
+                "sub-02": {},
+                "...": "",
+            },
+            "sub-01": {},
+            "sub-02": {},
+            "...": "",
             }
+        }
     ) }}
 
     ```Text
@@ -445,25 +433,22 @@ specific to a participant is to be declared only at top level of dataset for exa
 
 Example 1: Two JSON files that are erroneously at the same level
 
-<!-- TODO:
- add single files at same level as directories
- requires macro to handle list that contains strings and dict
--->
-
 {{ MACROS___make_filetree_example(
-        {  "sub-01": 
-            {
-            "ses-test":{
-                    "anat": [
-                        "sub-01_ses-test_T1w.nii.gz"
-                    ],
-                    "func": [
-                        "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz",
-                        "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz",
-                    ]
+    {  
+    "sub-01": {
+        "ses-test":{
+            "sub-01_ses-test_task-overtverbgeneration_bold.json": "",
+            "sub-01_ses-test_task-overtverbgeneration_run-2_bold.json": "",
+            "anat": {
+                "sub-01_ses-test_T1w.nii.gz": "",
+                },
+            "func": {
+                "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz": "",
+                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz": "",
                 }
             }
         }
+    }
 ) }}
 
 ```Text
@@ -488,19 +473,18 @@ should have been under `sub-01/ses-test/func/`.
 Example 2: Multiple `run`s and `rec`s with same acquisition (`acq`) parameters
 
 {{ MACROS___make_filetree_example(
-        {  "sub-01": 
-            {
-                "anat": [],
-                "func": [
-                    "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz",
-                    "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz",
-                    "sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz",
-                    "sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz",
-                    "sub-01_task-xyz_acq-test1_bold.json",
-                ]
-
+    {  
+    "sub-01": {
+        "anat": {},
+        "func": {
+            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_bold.json": "",
             }
         }
+    }
 ) }}
 
 ```Text
@@ -522,25 +506,19 @@ will be applicable to all task runs with `test1` acquisition parameter.
 
 Example 3: Multiple JSON files at different levels for same task and acquisition parameters
 
-<!-- TODO:
- add single files at same level as directories
- requires macro to handle list that contains strings and dict
--->
-
 {{ MACROS___make_filetree_example(
-        {  "sub-01": 
-            {
-                "anat": [],
-                "func": [
-                    "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz",
-                    "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz",
-                    "sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz",
-                    "sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz",
-                    "sub-01_task-xyz_acq-test1_bold.json",
-                ]
-
+    {
+    "task-xyz_acq-test1_bold.json": "",
+    "sub-01": {
+        "anat": {},
+        "func": {
+            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_bold.json": "",
             }
         }
+    }
 ) }}
 
 ```Text
@@ -832,47 +810,43 @@ This is an example of the folder and file structure. Because there is only one
 session, the session level is not required by the format. For details on
 individual files see descriptions in the next section:
 
-<!-- TODO:
- add single files at same level as directories
- requires macro to handle list that contains strings and dict
--->
-
 {{ MACROS___make_filetree_example(
-         {  "sub-control01": 
-                {
-                "anat":
-                    [
-                        "sub-control01_T1w.nii.gz",
-                        "sub-control01_T1w.json",
-                        "sub-control01_T2w.nii.gz",
-                        "sub-control01_T2w.json",
-                    ],
-                "func":
-                    [
-                        "sub-control01_task-nback_bold.nii.gz",
-                        "sub-control01_task-nback_bold.json",
-                        "sub-control01_task-nback_events.tsv",
-                        "sub-control01_task-nback_physio.tsv.gz",
-                        "sub-control01_task-nback_physio.json",
-                        "sub-control01_task-nback_sbref.nii.gz",
-                    ],
-                "dwi":
-                    [
-                        "sub-control01_dwi.nii.gz",
-                        "sub-control01_dwi.bval",
-                        "sub-control01_dwi.bvec",
-                    ],
-                "fmap":
-                    [
-                        "sub-control01_phasediff.nii.gz",
-                        "sub-control01_phasediff.json",
-                        "sub-control01_magnitude1.nii.gz",
-                    ]
-                },
-            "code": ["deface.py"],
-            "derivatives": [],
-         },
-
+    {
+    "sub-control01": {
+        "anat":{
+            "sub-control01_T1w.nii.gz": "",
+            "sub-control01_T1w.json": "",
+            "sub-control01_T2w.nii.gz": "",
+            "sub-control01_T2w.json": "",
+            },
+        "func":{
+            "sub-control01_task-nback_bold.nii.gz": "",
+            "sub-control01_task-nback_bold.json": "",
+            "sub-control01_task-nback_events.tsv": "",
+            "sub-control01_task-nback_physio.tsv.gz": "",
+            "sub-control01_task-nback_physio.json": "",
+            "sub-control01_task-nback_sbref.nii.gz": "",
+            },
+        "dwi":{
+            "sub-control01_dwi.nii.gz": "",
+            "sub-control01_dwi.bval": "",
+            "sub-control01_dwi.bvec": "",
+            },
+        "fmap":{
+            "sub-control01_phasediff.nii.gz": "",
+            "sub-control01_phasediff.json": "",
+            "sub-control01_magnitude1.nii.gz": "",
+            }
+        },
+    "code": {
+        "deface.py": ""
+        },
+    "derivatives": {},
+    "README": "",
+    "participants.tsv": "",
+    "dataset_description.json": "",
+    "CHANGES": "",
+    }
 ) }}
 
 
