@@ -43,6 +43,21 @@ If a qMRI file collection is intended for creating structural quantitative maps 
 files belonging to that collection are stored in the `anat` subfolder.
 Below is an example file collection for `MP2RAGE`:
 
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "anat": {
+            "sub-01_inv-1_part-mag_MP2RAGE.nii.gz":"",
+            "sub-01_inv-1_part-phase_MP2RAGE.nii.gz":"",
+            "sub-01_inv-1_MP2RAGE.json":"",
+            "sub-01_inv-2_part-mag_MP2RAGE.nii.gz":"",
+            "sub-01_inv-2_part-phase_MP2RAGE.nii.gz":"",
+            "sub-01_inv-2_MP2RAGE.json":"",
+            },
+        },
+}
+) }}
+
 ```text
 └── sub-01/
      └── anat/
@@ -58,6 +73,23 @@ Commonly, RF fieldmaps (`B1+` and `B1-` maps) are used for the correction of str
 As these images do not convey substantial structural information,
 respective file collections of RF fieldmaps are stored in the `fmap` subfolder.
 Below is an example file collection for RF transmit field map `TB1EPI`:
+
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_echo-1_flip-1_TB1EPI.nii.gz": "",
+            "sub-01_echo-1_flip-1_TB1EPI.json": "",
+            "sub-01_echo-2_flip-1_TB1EPI.nii.gz": "",
+            "sub-01_echo-2_flip-1_TB1EPI.json": "",
+            "sub-01_echo-1_flip-2_TB1EPI.nii.gz": "",
+            "sub-01_echo-1_flip-2_TB1EPI.json": "",
+            "sub-01_echo-2_flip-2_TB1EPI.nii.gz": "",
+            "sub-01_echo-2_flip-2_TB1EPI.json": "",
+            },
+        },
+   }
+) }}
 
 ```text
 └── sub-01/
@@ -81,6 +113,25 @@ For example a `T1map` can be generated from an `MP2RAGE` file collection using e
 
 If the map is post-generated:
 
+{{ MACROS___make_filetree_example(
+   {
+    "ds-example": {
+        "derivatives": {
+            "qMRI-software-name": {
+                "sub-01": {
+                    "anat": {
+                        "sub-01_T1map.nii.gz": "",
+                        "sub-01_T1map.json": "",
+                        "sub-01_UNIT1.nii.gz": "",
+                        "sub-01_UNIT1.json": "",
+                        },
+                    },
+                },
+            },
+        },
+   }
+) }}
+
 ```text
  ds-example/
  └── derivatives/
@@ -94,6 +145,25 @@ If the map is post-generated:
 ```
 
 If the map is pre-generated, for example, by a Siemens scanner:
+
+{{ MACROS___make_filetree_example(
+   {
+    "ds-example": {
+        "derivatives": {
+            "Siemens": {
+                "sub-01": {
+                    "anat": {
+                        "sub-01_T1map.nii.gz": "",
+                        "sub-01_T1map.json": "",
+                        "sub-01_UNIT1.nii.gz": "",
+                        "sub-01_UNIT1.json": "",
+                        },
+                    },
+                },
+            },
+        },
+   }
+) }}
 
 ```text
  ds-example/
@@ -172,6 +242,26 @@ As qMRI maps are stored as derivatives, they are subjected to the metadata requi
 [derived datasets](../03-modality-agnostic-files.md#derived-dataset-and-pipeline-description).
 
 An example `dataset_description.json` for a qMRI map derivatives folder:
+
+{{ MACROS___make_filetree_example(
+   {
+    "ds-example": {
+        "derivatives": {
+            "qMRLab": {
+                "dataset_description.json": "",
+                "sub-01": {
+                    "anat": {
+                        "sub-01_T1map.nii.gz": "",
+                        "sub-01_T1map.json": "",
+                        "sub-01_M0map.nii.gz": "",
+                        "sub-01_M0map.json": "",
+                        },
+                    },
+                },
+            },
+        },
+   }
+) }}
 
 ```text
  ds-example/
@@ -475,6 +565,23 @@ files:
 To properly identify constituents of this particular method, values of the `echo`
 entity MUST index the images as follows:
 
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_echo-1_flip-1_TB1EPI.nii.gz": "# SE",
+            "sub-01_echo-1_flip-1_TB1EPI.json":   "",
+            "sub-01_echo-2_flip-1_TB1EPI.nii.gz": "# STE",
+            "sub-01_echo-2_flip-1_TB1EPI.json":   "",
+            "sub-01_echo-1_flip-2_TB1EPI.nii.gz": "# SE",
+            "sub-01_echo-1_flip_2_TB1EPI.json":   "",
+            "sub-01_echo-2_flip-2_TB1EPI.nii.gz": "# STE",
+            "sub-01_echo-2_flip-2_TB1EPI.json":   "",
+            },
+        },
+   }
+) }}
+
 ```text
 └── sub-01/
      └── fmap/
@@ -505,6 +612,19 @@ and MAY be followed by freeform entries:
 | `_acq-tr1Test`   | `_acq-tr2Test`   | Acquisition `Test`   |
 | `_acq-tr1Retest` | `_acq-tr2Retest` | Acquisition `Retest` |
 
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_acq-tr1_TB1AFI.nii.gz": "",
+            "sub-01_acq-tr1_TB1AFI.json": "",
+            "sub-01_acq-tr2_TB1AFI.nii.gz": "",
+            "sub-01_acq-tr2_TB1AFI.json": "",
+            },
+        },
+   }
+) }}
+
 ```text
 └── sub-01/
      └── fmap/
@@ -528,6 +648,19 @@ values of the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be 
 | `_acq-anat`                 | `_acq-famp`               | Single acquisition   |
 | `_acq-anatTest`             | `_acq-fampTest`           | Acquisition `Test`   |
 | `_acq-anatRetest`           | `_acq-fampRetest`         | Acquisition `Retest` |
+
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_acq-anat_TB1TFL.nii.gz": "",
+            "sub-01_acq-anat_TB1TFL.json": "",
+            "sub-01_acq-famp_TB1TFL.nii.gz": "",
+            "sub-01_acq-famp_TB1TFL.json": "",
+            },
+        },
+   }
+) }}
 
 ```text
 └── sub-01/
@@ -556,6 +689,19 @@ entries:
 | `_acq-bodyMTw` | `_acq-headMTw` | `MTw` for `MPM`    |
 | `_acq-bodyPDw` | `_acq-headPDw` | `PDw` for `MPM`    |
 | `_acq-bodyT1w` | `_acq-headT1w` | `T1w` for `MPM`    |
+
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_acq-body_RB1COR.nii.gz": "# Body coil",
+            "sub-01_acq-body_RB1COR.json": "",
+            "sub-01_acq-head_RB1COR.nii.gz": "# Head coil",
+            "sub-01_acq-head_RB1COR.json": "",
+            },
+        },
+   }
+) }}
 
 ```text
 └── sub-01/
