@@ -16,66 +16,58 @@ If a `/ses-<label>` subfolder is included as part of the directory hierarchy,
 then the same [`ses-<label>`](./99-appendices/09-entities.md#ses)
 key/value pair MUST also be
 included as part of the file names themselves.
-
-<!-- TODO:
- add single files at same level as directories: scans.tsv, sessions.tsv...
- requires macro to handle list that contains strings and dict
--->
  
 {{ MACROS___make_filetree_example(
-         {  "sub-control01": 
-            { "ses-predrug":
-                {
-                "anat":
-                    [
-                        "sub-control01_ses-predrug_T1w.nii.gz",
-                        "sub-control01_ses-predrug_T1w.json",
-                        "sub-control01_ses-predrug_T2w.nii.gz",
-                        "sub-control01_ses-predrug_T2w.json",
-                    ],
-                "func":
-                    [
-                        "sub-control01_ses-predrug_task-nback_bold.nii.gz",
-                        "sub-control01_ses-predrug_task-nback_bold.json",
-                        "sub-control01_ses-predrug_task-nback_events.tsv",
-                        "sub-control01_ses-predrug_task-nback_cont-physio.tsv.gz",
-                        "sub-control01_ses-predrug_task-nback_cont-physio.json",
-                        "sub-control01_ses-predrug_task-nback_sbref.nii.gz",
-                    ],
-                "dwi":
-                    [
-                        "sub-control01_ses-predrug_dwi.nii.gz",
-                        "sub-control01_ses-predrug_dwi.bval",
-                        "sub-control01_ses-predrug_dwi.bvec",
-                    ],
-                "fmap":
-                    [
-                        "sub-control01_ses-predrug_phasediff.nii.gz",
-                        "sub-control01_ses-predrug_phasediff.json",
-                        "sub-control01_ses-predrug_magnitude1.nii.gz",
-                    ]
+    {
+    "sub-control01": { 
+        "ses-predrug": {
+            "anat": {
+                "sub-control01_ses-predrug_T1w.nii.gz": "",
+                "sub-control01_ses-predrug_T1w.json": "",
+                "sub-control01_ses-predrug_T2w.nii.gz": "",
+                "sub-control01_ses-predrug_T2w.json": "",
                 },
-             "ses-postdrug":
-                {
-                "func":
-                    [
-                        "sub-control01_ses-postdrug_task-nback_bold.nii.gz",
-                        "sub-control01_ses-postdrug_task-nback_bold.json",
-                        "sub-control01_ses-postdrug_task-nback_events.tsv",
-                        "sub-control01_ses-postdrug_task-nback_cont-physio.tsv.gz",
-                        "sub-control01_ses-postdrug_task-nback_cont-physio.json",
-                        "sub-control01_ses-postdrug_task-nback_sbref.nii.gz",
-                    ],
-                "fmap":
-                    [
-                        "sub-control01_ses-postdrug_phasediff.nii.gz",
-                        "sub-control01_ses-postdrug_phasediff.json",
-                        "sub-control01_ses-postdrug_magnitude1.nii.gz",
-                    ]
+            "func": {
+                "sub-control01_ses-predrug_task-nback_bold.nii.gz": "",
+                "sub-control01_ses-predrug_task-nback_bold.json": "",
+                "sub-control01_ses-predrug_task-nback_events.tsv": "",
+                "sub-control01_ses-predrug_task-nback_cont-physio.tsv.gz": "",
+                "sub-control01_ses-predrug_task-nback_cont-physio.json": "",
+                "sub-control01_ses-predrug_task-nback_sbref.nii.gz": "",
+                },
+            "dwi": {
+                "sub-control01_ses-predrug_dwi.nii.gz": "",
+                "sub-control01_ses-predrug_dwi.bval": "",
+                "sub-control01_ses-predrug_dwi.bvec": "",
+                },
+            "fmap": {
+                "sub-control01_ses-predrug_phasediff.nii.gz": "",
+                "sub-control01_ses-predrug_phasediff.json": "",
+                "sub-control01_ses-predrug_magnitude1.nii.gz": "",
+                },
+            "sub-control01_ses-predrug_scans.tsv": "",
+            },
+        "ses-postdrug": {
+            "func": {
+                "sub-control01_ses-postdrug_task-nback_bold.nii.gz": "",
+                "sub-control01_ses-postdrug_task-nback_bold.json": "",
+                "sub-control01_ses-postdrug_task-nback_events.tsv": "",
+                "sub-control01_ses-postdrug_task-nback_cont-physio.tsv.gz": "",
+                "sub-control01_ses-postdrug_task-nback_cont-physio.json": "",
+                "sub-control01_ses-postdrug_task-nback_sbref.nii.gz": "",
+                },
+            "fmap": { 
+                "sub-control01_ses-postdrug_phasediff.nii.gz": "",
+                "sub-control01_ses-postdrug_phasediff.json": "",
+                "sub-control01_ses-postdrug_magnitude1.nii.gz": "",
                 }
             }
-
-         }
+        },
+    "participants.tsv": "",
+    "dataset_description.json": "",
+    "README": "",
+    "CHANGES": "",
+    }
 ) }}
 
 
