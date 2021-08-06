@@ -60,6 +60,17 @@ SHOULD be documented in an accompanying JSON sidecar file.
 
 Example:
 
+{{ MACROS___make_filetree_example(
+   {
+   "sub-control01": {
+      "func": {
+         "sub-control01_task-stopsignal_events.tsv": "",
+         "sub-control01_task-stopsignal_events.json": "",
+         },
+      },
+   }
+) }}
+
 ```Text
 sub-control01/
     func/
@@ -95,6 +106,19 @@ sake of brevity.
 
 For multi-echo files, the `events.tsv` file is applicable to all echos of
 a particular run:
+
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-cuedSGT_run-1_events.tsv": "",
+        "sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz": "",
+        "sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz": "",
+        "sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz": "",
+         },
+      },
+   }
+) }}
 
 ```Text
 sub-01_task-cuedSGT_run-1_events.tsv
@@ -138,6 +162,17 @@ The following example includes references to the
 [Karolinska Directed Emotional Faces (KDEF) database](https://www.emotionlab.se/resources/kdef).
 
 Example:
+
+{{ MACROS___make_filetree_example(
+   {
+   "sub-control01": {
+      "func": {
+         "sub-control01_task-emoface_events.tsv": "",
+         "sub-control01_task-emoface_events.json": "",
+         },
+      },
+   }
+) }}
 
 ```Text
 sub-control01/
