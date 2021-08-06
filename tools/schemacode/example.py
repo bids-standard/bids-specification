@@ -38,7 +38,6 @@ class _TreeGenerator:
         self._tree.append(f"{prefix}{connector} {entry}{os.sep}")
         prefix += self.PIPE_PREFIX if index != entries_count - 1 else self.SPACE_PREFIX
         self._tree_body(directory=directory[entry], prefix=prefix)
-        self._tree.append(prefix.rstrip())
 
     def _add_file(self, entry, prefix, connector):
         self._tree.append(f"{prefix}{connector} {entry}")
