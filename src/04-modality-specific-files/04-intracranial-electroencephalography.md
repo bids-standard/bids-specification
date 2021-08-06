@@ -318,6 +318,16 @@ correspond.
 
 For example:
 
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "sub-01_space-Talairach_electrodes.tsv": "",
+      "sub-01_space-Talairach_coordsystem.json": "",
+      "...": "",
+      },
+   }
+) }}
+
 -   `sub-01_space-Talairach_electrodes.tsv`
 -   `sub-01_space-Talairach_coordsystem.json`
 
@@ -471,6 +481,18 @@ The [`ses-<label>`](../99-appendices/09-entities.md#ses) entity may be used to s
 Example of the operative photo of ECoG electrodes (here is an annotated example in
 which electrodes and vasculature are marked, taken from Hermes et al.,
 JNeuroMeth 2010).
+
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "ses-0001": {
+         "sub-0001_ses-01_acq-photo1_photo.jpg": "",
+         "sub-0001_ses-01_acq-photo2_photo.jpg": "",
+         "...": "",
+         },
+      },
+   }
+) }}
 
 ```Text
     sub-0001_ses-01_acq-photo1_photo.jpg
