@@ -30,6 +30,20 @@ to present both `res` and `den` entities simultaneously.
 
 Examples:
 
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline1": {
+        "sub-001": {
+            "func": {
+                "sub-001_task-rest_run-1_space-MNI305_res-lo_bold.nii.gz": "",
+                "sub-001_task-rest_run-1_space-MNI305_res-hi_bold.nii.gz": "",
+                "sub-001_task-rest_run-1_space-MNI305_bold.json": "",
+                },
+            },
+        }
+   }
+) }}
+
 ```Text
 pipeline1/
     sub-001/
@@ -85,6 +99,22 @@ And one corresponding to `res-hi`
 
 Example of CIFTI-2 files (a format that combines regularly sampled data
 and non-parametric surfaces) having both `res` and `den` entities:
+
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline1": {
+        "sub-001": {
+            "func": {
+                "sub-001_task-rest_run-1_space-fsLR_res-1_den-10k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_res-1_den-41k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_res-2_den-10k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_res-2_den-41k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_bold.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 ```Text
 pipeline1/
@@ -145,6 +175,19 @@ JSON metadata fields:
 
 Examples:
 
+{{ MACROS___make_filetree_example(
+   {
+    "func_loc": {
+        "sub-001": {
+            "func": {
+                "sub-001_task-rest_run-1_space-MNI305_desc-PFC_mask.nii.gz": "",
+                "sub-001_task-rest_run-1_space-MNI305_desc-PFC_mask.json": "",
+                },
+            },
+        }
+   }
+) }}
+
 ```Text
 func_loc/
     sub-001/
@@ -152,6 +195,19 @@ func_loc/
            sub-001_task-rest_run-1_space-MNI305_desc-PFC_mask.nii.gz
            sub-001_task-rest_run-1_space-MNI305_desc-PFC_mask.json
 ```
+
+{{ MACROS___make_filetree_example(
+   {
+    "manual_masks": {
+        "sub-001": {
+            "anat": {
+                "sub-001_desc-tumor_mask.nii.gz": "",
+                "sub-001_desc-tumor_mask.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 ```Text
 manual_masks/
@@ -212,6 +268,19 @@ Template:
 
 Example:
 
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_space-orig_dseg.nii.gz": "",
+                "sub-001_space-orig_dseg.json": "",
+                },
+            },
+        }
+   }
+) }}
+
 ```Text
 pipeline/
     sub-001/
@@ -227,6 +296,18 @@ to specify the masked structure
 (see [Common image-derived labels](#common-image-derived-labels)),
 and the `Atlas` metadata SHOULD be defined.
 For example:
+
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_space-orig_label-GM_mask.nii.gz": "",
+                },
+            },
+        }
+   }
+) }}
 
 ```Text
 pipeline/
@@ -254,6 +335,19 @@ Template:
 
 Example:
 
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_space-orig_label-BG_probseg.nii.gz": "",
+                "sub-001_space-orig_label-WM_probseg.nii.gz": "",
+                },
+            },
+        }
+   }
+) }}
+
 ```Text
 pipeline/
     sub-001/
@@ -267,6 +361,19 @@ for reserved key values for `label`.
 
 A 4D probabilistic segmentation, in which each frame corresponds to a different
 tissue class, must provide a label mapping in its JSON sidecar. For example:
+
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+		        "sub-001_space-orig_probseg.nii.gz": "",
+		        "sub-001_space-orig_probseg.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 ```Text
 pipeline/
@@ -312,6 +419,19 @@ The `hemi` tag is REQUIRED for GIFTI files storing information about
 a structure that is restricted to a hemibrain.
 For example:
 
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_hemi-L_dseg.label.gii": "",
+                "sub-001_hemi-R_dseg.label.gii": "",
+                },
+            },
+        }
+   }
+) }}
+
 ```Text
 pipeline/
     sub-001/
@@ -321,6 +441,19 @@ pipeline/
 ```
 
 The REQUIRED extension for CIFTI parcellations is `.dlabel.nii`. For example:
+
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_dseg.dlabel.nii": "",
+                "sub-001_dseg.dlabel.nii": "",
+                },
+            },
+        }
+   }
+) }}
 
 ```Text
 pipeline/
@@ -357,6 +490,19 @@ filename.
 
 Example:
 
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_space-orig_dseg.nii.gz": "",
+                "sub-001_space-orig_dseg.tsv": "",
+                },
+            },
+        }
+   }
+) }}
+
 ```Text
 pipeline/
     sub-001/
@@ -369,6 +515,19 @@ Definitions can also be specified with a top-level `dseg.tsv`, which propagates 
 segmentations in relative subdirectories.
 
 Example:
+
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "dseg.tsv": "",
+        "sub-001": {
+            "anat": {
+                "sub-001_space-orig_dseg.nii.gz": "",
+                },
+            },
+        }
+   }
+) }}
 
 ```Text
 pipeline/
