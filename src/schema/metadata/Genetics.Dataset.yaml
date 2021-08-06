@@ -1,7 +1,7 @@
 ---
-name: Genetics_Database
+name: Genetics.Dataset
 description: |
   [URI](/02-common-principles.html#uniform-resource-indicator)
-  of database where the dataset is hosted.
+  where data can be retrieved.
 type: string
 format: uri

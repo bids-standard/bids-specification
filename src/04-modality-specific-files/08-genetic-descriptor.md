@@ -24,9 +24,9 @@ see the example further below):
 
 {{ MACROS___make_metadata_table(
    {
-      "Genetics_Dataset": "REQUIRED",
-      "Genetics_Database": "OPTIONAL",
-      "Genetics_Descriptors": "OPTIONAL",
+      "Genetics.Dataset": "REQUIRED",
+      "Genetics.Database": "OPTIONAL",
+      "Genetics.Descriptors": "OPTIONAL",
    }
 ) }}
 

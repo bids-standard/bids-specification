@@ -5,8 +5,8 @@ description: |
 type: object
 properties:
   Database:
-    $ref: Genetics_Database.yaml
+    $ref: Genetics.Database.yaml
   Dataset:
-    $ref: Genetics_Dataset.yaml
+    $ref: Genetics.Dataset.yaml
   Descriptors:
-    $ref: Genetics_Descriptors.yaml
+    $ref: Genetics.Descriptors.yaml
