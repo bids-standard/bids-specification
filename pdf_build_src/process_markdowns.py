@@ -454,6 +454,12 @@ def process_macros(duplicated_src_dir_path):
                     "MACROS___",
                     "macros."
                 )
+                # switch "use_pipe" flag OFF to render examples
+                if "make_filetree_example" in function_string:
+                    function_string = function_string.replace(
+                    ")",
+                    ", False)"
+                    )
                 # Run the function to get the output
                 new = eval(function_string)
                 # Replace the code snippet with the function output
