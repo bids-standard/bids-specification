@@ -1,0 +1,15 @@
+---
+name: AssociatedEmptyRoom
+description: |
+  One or more [BIDS URIs][] pointing to empty-room file(s)
+  associated with the subject's MEG recording.
+  Using forward-slash separated paths relative to the dataset root is [DEPRECATED][].
+# TODO: Address/evaluate mismatch between validator and specification.
+# Validator says array, specification says string.
+anyOf:
+  - type: array
+    items:
+      type: string
+      format: dataset_relative
+  - type: string
+    format: dataset_relative

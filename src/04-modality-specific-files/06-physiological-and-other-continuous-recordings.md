@@ -41,11 +41,13 @@ and a JSON file for storing the following metadata fields.
 Note that when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
 `*_<physio|stim>.json` MUST be supplied as well.
 
-| **Key name**      | **Requirement level** | **Data type**            | **Description**                                                                                                                                           |
-| ----------------- | --------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SamplingFrequency | REQUIRED              | [number][]               | Sampling frequency in Hz of all columns in the file.                                                                                                      |
-| StartTime         | REQUIRED              | [number][]               | Start time in seconds in relation to the start of acquisition of the first data sample in the corresponding neural dataset (negative values are allowed). |
-| Columns           | REQUIRED              | [array][] of [strings][] | Names of columns in file.                                                                                                                                 |
+{{ MACROS___make_metadata_table(
+   {
+      "SamplingFrequency": "REQUIRED",
+      "StartTime": "REQUIRED",
+      "Columns": "REQUIRED",
+   }
+) }}
 
 Additional metadata may be included as in
 [any TSV file](../02-common-principles.md#tabular-files) to specify, for
@@ -133,19 +135,13 @@ sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
 The following RECOMMENDED metadata can also be added in the side-car JSON files
 of any `*_<physio>.tsv.gz` file.
 
-| **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                  |
-| ---------------------- | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Manufacturer           | RECOMMENDED           | [string][]    | Manufacturer of the system used to record the physiological data                                                                                                                                                 |
-| ManufacturersModelName | RECOMMENDED           | [string][]    | Manufacturer's designation of the system used to record the physiological data                                                                                                                                   |
-| SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer's designation of the acquisition software.                                                                                                                                                          |
-| DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset. |
+{{ MACROS___make_metadata_table(
+   {
+      "Manufacturer": "RECOMMENDED",
+      "ManufacturersModelName": "RECOMMENDED",
+      "SoftwareVersions": "RECOMMENDED",
+      "DeviceSerialNumber": "RECOMMENDED",
+   }
+) }}
 
 <!-- Link Definitions -->
-
-[number]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[string]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[strings]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[array]: https://www.w3schools.com/js/js_json_arrays.asp

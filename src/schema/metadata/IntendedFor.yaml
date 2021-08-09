@@ -1,0 +1,14 @@
+---
+name: IntendedFor
+description: |
+  The paths to files for which the associated file is intended to be used.
+  Contains one or more [BIDS URIs][].
+  Using forward-slash separated paths relative to the subject folder is [DEPRECATED][].
+anyOf:
+  - type: string
+    format: bids_uri
+    # XXX --> and participant_relative? how to encode in schema?
+  - type: array
+    items:
+      type: string
+      format: bids_uri

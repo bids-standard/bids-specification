@@ -1,0 +1,10 @@
+---
+name: DatasetLinks
+description: |
+  Used to map a given `<dataset-name>` from a [BIDS URI][] of the form
+  `bids:<dataset-name>:/absolute/path/within/dataset` to a local or remote location.
+  The `<dataset-name>`: `local` is a reserved keyword that MUST NOT be a key in `DatasetLinks`
+type: object
+additionalProperties:
+  type: string
+  format: uri

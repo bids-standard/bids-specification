@@ -32,6 +32,13 @@ misunderstanding we clarify them here.
     context, a session may also indicate a group of related scans,
     taken in one or more visits.
 
+1.  **Sample** - a sample pertaining to a subject such as tissue, primary cell
+    or cell-free sample.
+    The `sample-<label>` key/value pair is used to distinguish between different
+    samples from the same subject.
+    The label MUST be unique per subject and is RECOMMENDED to be unique
+    throughout the dataset.
+
 1.  **Data acquisition** - a continuous uninterrupted block of time during which
     a brain scanning instrument was acquiring data according to particular
     scanning sequence/protocol.
@@ -155,6 +162,15 @@ the `sub-` "key" and`<label>` "value", where `<label>` would in a real data file
 correspond to a unique identifier of that subject, such as `01`.
 The same holds for the `session` entity with its `ses-` key and its `<label>`
 value.
+
+The extra session layer (at least one `/ses-<label>` subfolder) SHOULD
+be added for all subjects if at least one subject in the dataset has more than
+one session.
+If a `/ses-<label>` subfolder is included as part of the directory hierarchy,
+then the same [`ses-<label>`](./99-appendices/09-entities.md#ses)
+key/value pair MUST also be included as part of the file names themselves.
+Acquisition time of session can
+be defined in the [sessions file](03-modality-agnostic-files.md#sessions-file).
 
 A chain of entities, followed by a suffix, connected by underscores (`_`)
 produces a human readable file name, such as `sub-01_task-rest_eeg.edf`.
@@ -352,7 +368,7 @@ then Case 1 will be assumed for clarity in templates and examples, but removing
 Case 2.
 In both cases, every derivatives dataset is considered a BIDS dataset and must
 include a `dataset_description.json` file at the root level (see
-[Dataset description][dataset-description].
+[Dataset description][dataset-description]).
 Consequently, files should be organized to comply with BIDS to the full extent
 possible (that is, unless explicitly contradicted for derivatives).
 Any subject-specific derivatives should be housed within each subject’s directory;
@@ -694,14 +710,19 @@ Note that if a field name included in the data dictionary matches a column name 
 then that field MUST contain a description of the corresponding column,
 using an object containing the following fields:
 
-| **Key name** | **Requirement level** | **Data type**                           | **Description**                                                                                                 |
-| ------------ | --------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| LongName     | OPTIONAL              | [string][]                              | Long (unabbreviated) name of the column.                                                                        |
-| Description  | RECOMMENDED           | [string][]                              | Description of the column.                                                                                      |
-| Levels       | RECOMMENDED           | [object][] of [strings][]               | For categorical variables: An object of possible values (keys) and their descriptions (values).                 |
-| Units        | RECOMMENDED           | [string][]                              | Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
-| TermURL      | RECOMMENDED           | [string][]                              | URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
-| HED          | OPTIONAL              | [object][] of [strings][] or [string][] | Hierarchical Event Descriptor (HED) information, see: [Appendix III](./99-appendices/03-hed.md) for details.    |
+{{ MACROS___make_metadata_table(
+   {
+        "LongName": "OPTIONAL",
+        "Description": (
+            "RECOMMENDED",
+            "The description of the column.",
+        ),
+        "Levels": "RECOMMENDED",
+        "Units": "RECOMMENDED",
+        "TermURL": "RECOMMENDED",
+        "HED": "OPTIONAL",
+   }
+) }}
 
 Please note that while both `Units` and `Levels` are RECOMMENDED, typically only one
 of these two fields would be specified for describing a single TSV file column.
@@ -890,6 +911,7 @@ individual files see descriptions in the next section:
 
 ```Text
 sub-control01/
+    sub-control01_scans.tsv
     anat/
         sub-control01_T1w.nii.gz
         sub-control01_T1w.json
@@ -910,7 +932,6 @@ sub-control01/
         sub-control01_phasediff.nii.gz
         sub-control01_phasediff.json
         sub-control01_magnitude1.nii.gz
-        sub-control01_scans.tsv
 code/
     deface.py
 derivatives/
@@ -943,12 +964,6 @@ to suppress warnings or provide interpretations of your file names.
 [dataset-description]: 03-modality-agnostic-files.md#dataset-description
 
 [derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description
-
-[string]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[strings]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[object]: https://www.json.org/json-en.html
 
 [deprecated]: ./02-common-principles.md#definitions
 

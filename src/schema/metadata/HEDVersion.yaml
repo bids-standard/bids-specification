@@ -1,0 +1,6 @@
+---
+name: HEDVersion
+description: |
+  If HED tags are used:
+  The version of the HED schema used to validate HED tags for study.
+type: string

@@ -24,7 +24,8 @@ no single standard that all researchers agree on. For BIDS, EEG data MUST be
 stored in one of the following formats:
 
 -   [European data format](https://www.edfplus.info/)
-    (Each recording consisting of a `.edf` file)
+    (including [`edf+`](https://www.edfplus.info/specs/edfplus.html);
+    each recording consisting of a `.edf` file)
 
 -   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
     (Each recording consisting of a  `.vhdr`, `.vmrk`, `.eeg` file triplet)
@@ -33,7 +34,8 @@ stored in one of the following formats:
     (Each recording consisting of a `.set` file with an optional `.fdt` file)
 
 -   [Biosemi](https://www.biosemi.com/) data format
-    (Each recording consisting of a `.bdf` file)
+    (including [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html);
+    each recording consisting of a `.bdf` file)
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -86,56 +88,65 @@ be specified.
 
 Generic fields MUST be present:
 
-| **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                    |
-| ------------ | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| TaskName     | REQUIRED              | [string][]    | Name of the task. No two tasks should have the same name. The task label included in the file name is derived from this TaskName field by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters. For example `TaskName` `"faces n-back"` will correspond to task label `facesnback`. A RECOMMENDED convention is to name resting state task using labels beginning with `rest`. |
+{{ MACROS___make_metadata_table(
+   {
+      "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
+   }
+) }}
 
 SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
-| **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                   |
-| ---------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| InstitutionName        | RECOMMENDED           | [string][]    | The name of the institution in charge of the equipment that produced the composite instances.                                                                                                                                     |
-| InstitutionAddress     | RECOMMENDED           | [string][]    | The address of the institution in charge of the equipment that produced the composite instances.                                                                                                                                  |
-| Manufacturer           | RECOMMENDED           | [string][]    | Manufacturer of the EEG system (for example, `"Biosemi"`, `"Brain Products"`, `"Neuroscan"`).                                                                                                                                     |
-| ManufacturersModelName | RECOMMENDED           | [string][]    | Manufacturer's designation of the EEG system model (for example, `"BrainAmp DC"`).                                                                                                                                                |
-| SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer's designation of the acquisition software.                                                                                                                                                                           |
-| TaskDescription        | RECOMMENDED           | [string][]    | Description of the task.                                                                                                                                                                                                          |
-| Instructions           | RECOMMENDED           | [string][]    | Text of the instructions given to participants before the scan. This is not only important for behavioral or cognitive tasks but also in resting state paradigms (for example, to distinguish between eyes open and eyes closed). |
-| CogAtlasID             | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/) term that describes the task (for example, Resting State with eyes closed "<https://www.cognitiveatlas.org/task/id/trm_54e69c642d89b>").       |
-| CogPOID                | RECOMMENDED           | [string][]    | [URI][uri] of the corresponding [CogPO](http://www.cogpo.org/) term that describes the task (for example, Rest "<http://wiki.cogpo.org/index.php?title=Rest>") .                                                                  |
-| DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the composite instances. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset.                  |
+{{ MACROS___make_metadata_table(
+   {
+      "InstitutionName": "RECOMMENDED",
+      "InstitutionAddress": "RECOMMENDED",
+      "InstitutionalDepartmentName": "RECOMMENDED",
+      "Manufacturer": "RECOMMENDED",
+      "ManufacturersModelName": "RECOMMENDED",
+      "SoftwareVersions": "RECOMMENDED",
+      "TaskDescription": "RECOMMENDED",
+      "Instructions": ("RECOMMENDED", "This is especially important in context of resting state recordings and distinguishing between eyes open and eyes closed paradigms."),
+      "CogAtlasID": "RECOMMENDED",
+      "CogPOID": "RECOMMENDED",
+      "DeviceSerialNumber": "RECOMMENDED",
+   }
+) }}
 
 Specific EEG fields MUST be present:
 
-| **Key name**       | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                                                                                                                                                                       |
-| ------------------ | --------------------- | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| EEGReference       | REQUIRED              | [string][]                           | General description of the reference scheme used and (when applicable) of location of the reference electrode in the raw recordings (for example, `"left mastoid"`, `"Cz"`, `"CMS"`). If different channels have a different reference, this field should have a general description and the channel specific reference should be defined in the `channels.tsv` file. |
-| SamplingFrequency  | REQUIRED              | [number][]                           | Sampling frequency (in Hz) of all the data in the recording, regardless of their type (for example, 2400).                                                                                                                                                                                                                                                            |
-| PowerLineFrequency | REQUIRED              | [number][] or `"n/a"`                | Frequency (in Hz) of the power grid at the geographical location of the EEG instrument (for example, 50 or 60).                                                                                                                                                                                                                                                       |
-| SoftwareFilters    | REQUIRED              | [object][] of [objects][] or `"n/a"` | [Object][] of temporal software filters applied, or `"n/a"` if the data is not available. Each key:value pair in the JSON object is a name of the filter and an object in which its parameters are defined as key:value pairs. For example, `{"Anti-aliasing filter": {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`.                                |
+{{ MACROS___make_metadata_table(
+   {
+      "EEGReference": "REQUIRED",
+      "SamplingFrequency": ("REQUIRED", "The sampling frequency of data channels that deviate from the main sampling frequency SHOULD be specified in the `channels.tsv` file."),
+      "PowerLineFrequency": "REQUIRED",
+      "SoftwareFilters": "REQUIRED",
+   }
+) }}
 
 SHOULD be present:
 
-| **Key name**               | **Requirement level** | **Data type**                        | **Description**                                                                                                                                                                                                                                                                                                                        |
-| -------------------------- | --------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CapManufacturer            | RECOMMENDED           | [string][]                           | Name of the cap manufacturer (for example, `"EasyCap"`).                                                                                                                                                                                                                                                                               |
-| CapManufacturersModelName  | RECOMMENDED           | [string][]                           | Manufacturer's designation of the EEG cap model (for example, `"actiCAP 64 Ch Standard-2"`).                                                                                                                                                                                                                                           |
-| EEGChannelCount            | RECOMMENDED           | [integer][]                          | Number of EEG channels included in the recording (for example, 128).                                                                                                                                                                                                                                                                   |
-| ECGChannelCount            | RECOMMENDED           | [integer][]                          | Number of ECG channels.                                                                                                                                                                                                                                                                                                                |
-| EMGChannelCount            | RECOMMENDED           | [integer][]                          | Number of EMG channels.                                                                                                                                                                                                                                                                                                                |
-| EOGChannelCount            | RECOMMENDED           | [integer][]                          | Number of EOG channels.                                                                                                                                                                                                                                                                                                                |
-| MiscChannelCount           | RECOMMENDED           | [integer][]                          | Number of miscellaneous analog channels for auxiliary signals.                                                                                                                                                                                                                                                                         |
-| TriggerChannelCount        | RECOMMENDED           | [integer][]                          | Number of channels for digital (TTL bit level) trigger.                                                                                                                                                                                                                                                                                |
-| RecordingDuration          | RECOMMENDED           | [number][]                           | Length of the recording in seconds (for example, 3600).                                                                                                                                                                                                                                                                                |
-| RecordingType              | RECOMMENDED           | [string][]                           | Defines whether the recording is `"continuous"`, `"discontinuous"` or `"epoched"`, where `"epoched"` is limited to time windows about events of interest (for example, stimulus presentations, subject responses).                                                                                                                     |
-| EpochLength                | RECOMMENDED           | [number][]                           | Duration of individual epochs in seconds (for example, 1) in case of epoched data.                                                                                                                                                                                                                                                     |
-| EEGGround                  | RECOMMENDED           | [string][]                           | Description of the location of the ground electrode (for example, `"placed on right mastoid (M2)"`).                                                                                                                                                                                                                                   |
-| HeadCircumference          | RECOMMENDED           | [number][]                           | Circumference of the participants head, expressed in cm (for example, 58).                                                                                                                                                                                                                                                             |
-| EEGPlacementScheme         | RECOMMENDED           | [string][]                           | Placement scheme of EEG electrodes. Either the name of a standardized placement system (for example, `"10-20"`) or a list of standardized electrode names (for example, `"["Cz", "Pz"]"`).                                                                                                                                             |
-| HardwareFilters            | RECOMMENDED           | [object][] of [objects][] or `"n/a"` | [Object][] of temporal hardware filters applied, or `"n/a"` if the data is not available. Each key:value pair in the JSON object is a name of the filter and an object in which its parameters are defined as key:value pairs. For example, `{"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dB/Octave"}}` |
-| SubjectArtefactDescription | RECOMMENDED           | [string][]                           | Free-form description of the observed subject artifact and its possible cause (for example, "Vagus Nerve Stimulator", "non-removable implant"). If this field is set to `n/a`, it will be interpreted as absence of major source of artifacts except cardiac and blinks.                                                               |
+{{ MACROS___make_metadata_table(
+   {
+      "CapManufacturer": "RECOMMENDED",
+      "CapManufacturersModelName": "RECOMMENDED",
+      "EEGChannelCount": "RECOMMENDED",
+      "ECGChannelCount": "RECOMMENDED",
+      "EMGChannelCount": "RECOMMENDED",
+      "EOGChannelCount": "RECOMMENDED",
+      "MiscChannelCount": "RECOMMENDED",
+      "TriggerChannelCount": "RECOMMENDED",
+      "RecordingDuration": "RECOMMENDED",
+      "RecordingType": "RECOMMENDED",
+      "EpochLength": "RECOMMENDED",
+      "EEGGround": "RECOMMENDED",
+      "HeadCircumference": "RECOMMENDED",
+      "EEGPlacementScheme": "RECOMMENDED",
+      "HardwareFilters": "RECOMMENDED",
+      "SubjectArtefactDescription": "RECOMMENDED",
+   }
+) }}
 
 Example:
 
@@ -188,8 +199,6 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 This file is RECOMMENDED as it provides easily searchable information across
 BIDS datasets for for example, general curation, response to queries or batch
 analysis.
-The required columns are channel `name`, `type` and `units` in this specific
-order.
 To avoid confusion, the channels SHOULD be listed in the order they
 appear in the EEG data file.
 Any number of additional columns may be added to provide additional information
@@ -205,7 +214,7 @@ See the examples for `*_channels.tsv` below, and for `*_electrodes.tsv` in
 
 The columns of the Channels description table stored in `*_channels.tsv` are:
 
-MUST be present:
+MUST be present **in this specific order**:
 
 | **Column name** | **Requirement level** | **Description**                                                                                                                                                               |
 | --------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -277,7 +286,7 @@ expected in cartesian coordinates according to the `EEGCoordinateSystem` and
 file MUST be specified as well**. The order of the required columns in the
 `*_electrodes.tsv` file MUST be as listed below.
 
-MUST be present:
+MUST be present **in this specific order**:
 
 | **Column name** | **Requirement level** | **Description**                     |
 | --------------- | --------------------- | ----------------------------------- |
@@ -354,36 +363,48 @@ head.
 
 General fields:
 
-| **Key name** | **Requirement level** | **Data type**                          | **Description**                                                                                                                      |
-| ------------ | --------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| IntendedFor  | OPTIONAL              | [string][] or [array][] of [strings][] | One or more [BIDS URIs][] to associate the electrodes, landmarks and fiducials to an MRI/CT. Use of relative paths is [DEPRECATED][] |
+{{ MACROS___make_metadata_table(
+   {
+      "IntendedFor": (
+         "OPTIONAL",
+         "This identifies the MRI or CT scan associated with the electrodes, "
+         "landmarks, and fiducials.",
+      )
+   }
+) }}
 
 Fields relating to the EEG electrode positions:
 
-| **Key name**                   | **Requirement level**                                           | **Data type** | **Description**                                                                                                                                                                                                                                                            |
-| ------------------------------ | --------------------------------------------------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| EEGCoordinateSystem            | REQUIRED                                                        | [string][]    | Defines the coordinate system for the EEG sensors. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords for coordinate systems. If `"Other"`, provide definition of the coordinate system in `EEGCoordinateSystemDescription`. |
-| EEGCoordinateUnits             | REQUIRED                                                        | [string][]    | Units in which the coordinates that are listed in the field `EEGCoordinateSystem` are represented. MUST be `"m"`, `"cm"`, or `"mm"`.                                                                                                                                       |
-| EEGCoordinateSystemDescription | RECOMMENDED, but REQUIRED if `EEGCoordinateSystem` is `"Other"` | [string][]    | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                     |
+{{ MACROS___make_metadata_table(
+   {
+      "EEGCoordinateSystem": "REQUIRED",
+      "EEGCoordinateUnits": "REQUIRED",
+      "EEGCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `EEGCoordinateSystem` is `"Other"`',
+   }
+) }}
 
 Fields relating to the position of fiducials measured during an EEG session/run:
 
-| **Key name**                         | **Requirement level**                                                 | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                 |
-| ------------------------------------ | --------------------------------------------------------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| FiducialsDescription                 | OPTIONAL                                                              | [string][]               | Free-form text description of how the fiducials such as vitamin-E capsules were placed relative to anatomical landmarks, and how the position of the fiducials were measured (for example, both with Polhemus and with T1w MRI).                                                                                                                                |
-| FiducialsCoordinates                 | RECOMMENDED                                                           | [object][] of [arrays][] | Key:value pairs of the labels and 3-D digitized position of anatomical landmarks, interpreted following the `FiducialsCoordinateSystem` (for example, `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). Each array MUST contain three numeric values corresponding to x, y, and z axis of the coordinate system in that exact order. |
-| FiducialsCoordinateSystem            | RECOMMENDED                                                           | [string][]               | Defines the coordinate system for the fiducials. Preferably the same as the `EEGCoordinateSystem`. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords for coordinate systems. If `"Other"`, provide definition of the coordinate system in `FiducialsCoordinateSystemDescription`.                                |
-| FiducialsCoordinateUnits             | RECOMMENDED                                                           | [string][]               | Units in which the coordinates that are  listed in the field `FiducialsCoordinateSystem` are represented. MUST be `"m"`, `"cm"`, or `"mm"`.                                                                                                                                                                                                                     |
-| FiducialsCoordinateSystemDescription | RECOMMENDED, but REQUIRED if `FiducialsCoordinateSystem` is `"Other"` | [string][]               | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                                                                                                          |
+{{ MACROS___make_metadata_table(
+   {
+      "FiducialsDescription": "OPTIONAL",
+      "FiducialsCoordinates": "RECOMMENDED",
+      "FiducialsCoordinateSystem": "RECOMMENDED",
+      "FiducialsCoordinateUnits": "RECOMMENDED",
+      "FiducialsCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `FiducialsCoordinateSystem` is `"Other"`',
+   }
+) }}
 
 Fields relating to the position of anatomical landmark measured during an EEG session/run:
 
-| **Key name**                                  | **Requirement level**                                                          | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                          |
-| --------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| AnatomicalLandmarkCoordinates                 | RECOMMENDED                                                                    | [object][] of [arrays][] | Key:value pairs of the labels and 3-D digitized position of anatomical landmarks, interpreted following the `AnatomicalLandmarkCoordinateSystem` (for example, `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6], "RPA": [20.2,11.3,9.1]}`). Each array MUST contain three numeric values corresponding to x, y, and z axis of the coordinate system in that exact order. |
-| AnatomicalLandmarkCoordinateSystem            | RECOMMENDED                                                                    | [string][]               | Defines the coordinate system for the anatomical landmarks. Preferably the same as the `EEGCoordinateSystem`. See [Appendix VIII](../99-appendices/08-coordinate-systems.md) for a list of restricted keywords for coordinate systems. If `"Other"`, provide definition of the coordinate system in `AnatomicalLandmarkCoordinateSystemDescription`.                     |
-| AnatomicalLandmarkCoordinateUnits             | RECOMMENDED                                                                    | [string][]               | Units in which the coordinates that are  listed in the field `AnatomicalLandmarkCoordinateSystem` are represented. MUST be `"m"`, `"cm"`, or `"mm"`.                                                                                                                                                                                                                     |
-| AnatomicalLandmarkCoordinateSystemDescription | RECOMMENDED, but REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `"Other"` | [string][]               | Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.                                                                                                                                                                                                                   |
+{{ MACROS___make_metadata_table(
+   {
+      "AnatomicalLandmarkCoordinates": "RECOMMENDED",
+      "AnatomicalLandmarkCoordinateSystem": ("RECOMMENDED", "Preferably the same as the `EEGCoordinateSystem`."),
+      "AnatomicalLandmarkCoordinateUnits": "RECOMMENDED",
+      "AnatomicalLandmarkCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `"Other"`',
+   }
+) }}
 
 If the position of anatomical landmarks is measured using the same system or
 device used to measure electrode positions, and if thereby the anatomical

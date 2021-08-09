@@ -1,0 +1,18 @@
+---
+name: BasedOn
+description: |
+  List of files in a file collection to generate the map.
+  MUST be specified as [BIDS URIs][]. Using forward-slash separated
+  relative paths is [DEPRECATED][].
+  Fieldmaps are also listed, if involved in the processing.
+anyOf:
+  - type: string
+    format: participant_relative
+  - type: string
+    format: bids_uri
+  - type: array
+    items:
+      type: string
+      format: participant_relative
+      type: string
+      format: bids_uri

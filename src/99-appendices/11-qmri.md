@@ -232,12 +232,21 @@ For example, without the information of `MagneticFieldStrength`, white-matter T1
 -   The JSON file accompanying a qMRI map which is obtained by using open-source software is RECOMMENDED
     to include additional metadata fields listed in the following table:
 
-| **Field name**        | **Definition**                                                                                                                                                                                         |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `BasedOn`             | List of paths to files in a file collection to generate the map; MUST be specified as [BIDS URIs][]. Using relative paths is [DEPRECATED][]. Fieldmaps are also listed, if involved in the processing. |
-| `EstimationReference` | Reference to the study/studies on which the implementation is based.                                                                                                                                   |
-| `EstimationAlgorithm` | Type of algorithm used to perform fitting (for example, linear, non-linear, LM and such)                                                                                                               |
-| `Units`               | Units of the maps, in accordance with the BIDS specification.                                                                                                                                          |
+{{ MACROS___make_metadata_table(
+   {
+      "BasedOn": "RECOMMENDED",
+      "EstimationReference": "RECOMMENDED",
+      "EstimationAlgorithm": "RECOMMENDED",
+      "Units": "RECOMMENDED",
+   }
+) }}
+
+| **Field name**        | **Definition**                                                                                                    |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `BasedOn`             | List of files in a file collection to generate the map. Fieldmaps are also listed, if involved in the processing. |
+| `EstimationReference` | Reference to the study/studies on which the implementation is based.                                              |
+| `EstimationAlgorithm` | Type of algorithm used to perform fitting (for example, linear, non-linear, LM and such)                          |
+| `Units`               | Units of the maps, in accordance with the BIDS specification.                                                     |
 
 Example:
 
