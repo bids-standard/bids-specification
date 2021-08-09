@@ -385,38 +385,42 @@ datasets and non-compliant derivatives.
 
 ## BIDS URI: Pointing to files within and outside of BIDS datasets
 
-Throughout the BIDS specification there a meta data fields that contain a
-pointer to a file.
-For example `IntendedFor`, `SpatialReference`, and `AssociatedEmptyRoom`.
-Prior to BIDS version 1.7.0, such pointers were required to be "relative paths".
-However the specification failed to consistently  describe relative to *what*
-these pointers should be specified, and the exact syntax to be used.
-Yet even with perfectly well and consistently defined "relative paths", this
-method of pointing to files becomes impractical when referring to files that
-are outside of a particular file tree (for example, on the Internet), or when
-the location of the data that is being pointed to changes.
+Throughout the BIDS specification there a metadata fields that contain one or more
+pointers to files
+(for example `IntendedFor`, `SpatialReference`, and `AssociatedEmptyRoom`).
+Prior to BIDS version 1.7.0, such pointers were often required to be "relative paths".
+However the specification failed to consistently describe relative to *what* these pointers should be specified,
+and the exact syntax to be used.
+Yet even with perfectly well and consistently defined "relative paths",
+this method of pointing to files becomes impractical when referring to files that
+are outside of a particular file tree (for example, on the Internet),
+or when the location of the data that is being pointed to changes.
 
-For these reasons, starting with BIDS version 1.7.0, using "relative paths" for
-all fields pointing to a separate file is [DEPRECATED][].
+For these reasons, starting with BIDS version 1.7.0,
+using "relative paths" for all fields pointing to a separate file is [DEPRECATED][].
+For internal consistency, the use of "absolute paths" is [DEPRECATED][] as well.
 
-Instead, the following [URI][uniform-resource-indicator] scheme SHOULD be
-used to point to files within and outside of BIDS datasets, as elaborated below.
+Instead, the following [URI][uniform-resource-indicator]
+scheme SHOULD be used to point to files within and outside of BIDS datasets,
+as elaborated below.
 
 `bids:<dataset-name>:/absolute/path/within/dataset`
 
-Here, `bids:` is the URI scheme, and `<dataset-name>:/absolute/path/within/dataset`
-is the path to the file, consisting of the name of a dataset, a colon, and the absolute
-path within that dataset that MUST start with a forward slash `/`.
+Here, `bids:` is the URI scheme,
+and `<dataset-name>:/absolute/path/within/dataset` is the path to the file,
+consisting of the name of a dataset, a colon,
+and the absolute path within that dataset that MUST start with a forward slash `/`.
 
 The location of a dataset with the name `<dataset-name>` MUST be specified in the
 [`dataset_description.json` file](./03-modality-agnostic-files.md#dataset-description)
-under the `DatasetLinks` field, which is an [object][] of [URIs][], as shown in
-the examples below.
-In brief, `dataset_description.DatasetLinks` contains mappings from strings to URIs
-that point to dataset locations.
-The `<dataset-name>`: `""` (that is, an empty string) is a reserved value that may only be
-used to refer to the root of the current dataset; an empty string (`""`) MUST NOT be a key
-in the `DatasetLinks` object.
+under the `DatasetLinks` field,
+which is an [object][] of [URIs][], as shown in the examples below.
+
+In brief,
+`dataset_description.DatasetLinks` contains mappings from strings to URIs that point to dataset locations.
+The `<dataset-name>`: `""` (that is, an empty string)
+is a reserved value that may only be used to refer to the root of the current dataset;
+an empty string (`""`) MUST NOT be a key in the `DatasetLinks` object.
 
 In the case where a derivatives dataset is nested under a raw dataset and both have a `dataset_description.json` file,
 the BIDS URIs within the nested derivatives dataset MUST be resolved with respect to `/derivatives/dataset_description.json`,
@@ -443,8 +447,7 @@ directory within a dataset:
 ```
 
 Alternatively, we can also make use of the reserved `<dataset-name>`: `""` (an empty string),
-which always points to the root of the current dataset, to point to the same file
-using the following syntax:
+which always points to the root of the current dataset, to point to the same file using the following syntax:
 `bids::/derivatives/derivative1/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
 
 Thus, for this specific case there are two ways to refer to the same file:
@@ -457,8 +460,8 @@ Thus, for this specific case there are two ways to refer to the same file:
     with `""` (an empty string) NOT being a key in `dataset_description.DatasetLinks`,
     because it is a reserved value that always points to the root of the current dataset.
 
-If *all* BIDS URIs in a dataset *only* use an empty string (`""`) as a `<dataset-name>`,
-the `DatasetLinks` metadata MAY not be specified.
+**If *all* BIDS URIs in a dataset *only* use an empty string (`""`) as a `<dataset-name>`,**
+**the `DatasetLinks` metadata MAY not be specified.**
 
 ### Refer to a remote dataset
 
@@ -479,10 +482,9 @@ from `https://mydatahost.com/derivatives/derivative2`, and then navigating
 to `/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz` relative to that
 downloaded data.
 
-However, arbitrary remote server locations such as the `mydatahost.com` example
-server may not be stable.
-Therefore it is RECOMMENDED to instead point to archived versions of a datasets
-using their DOIs:
+However,
+arbitrary remote server locations such as the `mydatahost.com` example server may not be stable.
+Therefore it is RECOMMENDED to instead point to archived versions of a datasets using their DOIs:
 
 ```json
 {
@@ -492,21 +494,18 @@ using their DOIs:
 }
 ```
 
-Again, this means that the linked dataset must be downloaded from the
-DOI address, and the file will be found by navigating to the location
-specified in the BIDS URI relative to the downloaded data.
+Again, this means that the linked dataset must be downloaded from the DOI address,
+and the file will be found by navigating to the location specified in the BIDS URI
+relative to the downloaded data.
 
 ### Refer to a file outside of a dataset but on the same host
 
 It is RECOMMENDED to refer to files **within** a dataset,
 or on a **remote** location as described in the sections above.
-However sometimes it may be convenient to refer to files that are
-outside of a given dataset but on the same host.
-BIDS URIs allow for specifying such locations, but such specifications
-are by definition not portable in that the BIDS URIs break when the
-host changes.
-When sharing a BIDS dataset, the dataset curator MUST make sure that
-all BIDS URIs are portable.
+However sometimes it may be convenient to refer to files that are outside of a given dataset but on the same host.
+BIDS URIs allow for specifying such locations,
+but such specifications are by definition not portable in that the BIDS URIs break when the host changes.
+When sharing a BIDS dataset, the dataset curator MUST make sure that all BIDS URIs are portable.
 
 To link for example to a derivative file that is stored in a `derivatives/`
 directory that is NOT nested in the raw BIDS directory:
@@ -523,8 +522,7 @@ directory that is NOT nested in the raw BIDS directory:
 
 As shown in the example above, the path to `deriv3` contains the `..` syntax,
 which is a common way to refer to parent directories.
-In this way, arbitrary locations on the host can be referenced relative to
-the current dataset.
+In this way, arbitrary locations on the host can be referenced relative to the current dataset.
 
 Alternatively, one may specify an absolute location on the host using a
 forward slash directly after the `file://` URI scheme as such:
@@ -559,6 +557,25 @@ On a Windows machine, the location from this example would look like:
 However throughout BIDS, forward slashes `/` MUST be used as the path separator.
 Furthermore, the location `C:\` is specified in BIDS using the "virtual root"
 syntax as shown in the example: `/C:`
+
+### BIDS URI usage recommendations
+
+Dataset curators can flexibly use BIDS URIs to point to files in their BIDS datasets.
+However, when it comes to publicly sharing the data,
+BIDS makes two strong RECOMMENDATIONS:
+
+1.  Whenever possible, all data that is pointed to SHOULD be included in the BIDS dataset,
+    and BIDS URI pointers should be of the "local" form (that is, `bids::/absolute_path_within_dataset`).
+
+1.  In case shipping the data that is pointed to is impossible,
+    that data SHOULD be made available remotely with a DOI that allows an easy download from anywhere and by anyone.
+    For example, instead of pointing to data on some generic `http://mydatahost.com` host,
+    consider making the data available with a DOI on hosts such as [Zenodo](https://zenodo.org/),
+    the [OSF](https://osf.io/),
+    or [GIN](https://gin.g-node.org/).
+
+Not adhering to these recommendations results in a high likelihood that users of
+your data may not have access to the data that you are pointing to.
 
 ## The Inheritance Principle
 
