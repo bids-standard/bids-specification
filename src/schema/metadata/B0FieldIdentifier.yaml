@@ -3,9 +3,12 @@ name: B0FieldIdentifier
 description: |
   The presence of this key states that this particular 3D or 4D image MAY be
   used for fieldmap estimation purposes.
-  The `B0FieldIdentifier` MUST be a [BIDS URI][] pointing to a file within one
+  The `B0FieldIdentifier` MUST be a
+  [BIDS URI][/02-common-principles.html#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets]
+  pointing to a file within one
   participant's tree.
-  Using forward-slash separated paths is [DEPRECATED][].
+  Using forward-slash separated paths is
+  [DEPRECATED][/02-common-principles.html#definitions].
   The value of this field MUST be shared only by the images meant to be used
   as inputs for the estimation of a
   particular instance of the *B<sub>0</sub> field* estimation.

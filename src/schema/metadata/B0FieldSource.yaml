@@ -3,8 +3,9 @@ name: B0FieldSource
 description: |
   At least one existing `B0FieldIdentifier` defined by other images in the
   participant's tree.
-  MUST be a [BIDS URI][],
-  using forward-slash separated paths is [DEPRECATED][].
+  MUST be a
+  [BIDS URI][/02-common-principles.html#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets],
+  using forward-slash separated paths is [DEPRECATED][02-common-principles.html#definitions].
   This field states the *B<sub>0</sub> field* estimation designated by the
   `B0FieldIdentifier` that may be used to correct the dataset for distortions
   caused by B<sub>0</sub> inhomogeneities.

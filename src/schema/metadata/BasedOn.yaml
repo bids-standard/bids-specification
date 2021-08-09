@@ -2,8 +2,10 @@
 name: BasedOn
 description: |
   List of files in a file collection to generate the map.
-  MUST be specified as [BIDS URIs][]. Using forward-slash separated
-  relative paths is [DEPRECATED][].
+  MUST be specified as
+  [BIDS URIs][/02-common-principles.html#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets].
+  Using forward-slash separated relative paths is
+  [DEPRECATED][/02-common-principles.html#definitions].
   Fieldmaps are also listed, if involved in the processing.
 anyOf:
   - type: string

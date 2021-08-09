@@ -201,8 +201,6 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 
 [bids uri]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets
 
-[bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets
-
 [deprecated]: ../02-common-principles.md#definitions
 
-[uris]: ./02-common-principles.md#uniform-resource-indicator
+[uris]: ../02-common-principles.md#uniform-resource-indicator
