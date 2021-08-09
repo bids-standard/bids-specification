@@ -89,7 +89,7 @@ def set_logger_level(lgr, level):
 
 def drop_unused_entities(df):
     """Remove columns from a dataframe where all values in the column are NaNs.
-    For entity tables, this limits each table to only entities thare are used
+    For entity tables, this limits each table to only entities that are used
     within the modality.
 
     Parameters
