@@ -12,7 +12,8 @@ anyOf:
     format: bids_uri
   - type: array
     items:
-      type: string
-      format: participant_relative
-      type: string
-      format: bids_uri
+      anyOf:
+        - type: string
+          format: participant_relative
+        - type: string
+          format: bids_uri

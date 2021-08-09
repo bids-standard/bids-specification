@@ -3,11 +3,17 @@ name: B0FieldIdentifier
 description: |
   The presence of this key states that this particular 3D or 4D image MAY be
   used for fieldmap estimation purposes.
-  The `B0FieldIdentifier` MUST be a unique string within one participant's tree,
-  shared only by the images meant to be used as inputs for the estimation of a
+  The `B0FieldIdentifier` MUST be a [BIDS URI][] pointing to a file within one
+  participant's tree.
+  Using forward-slash separated paths is [DEPRECATED][].
+  The value of this field MUST be shared only by the images meant to be used
+  as inputs for the estimation of a
   particular instance of the *B<sub>0</sub> field* estimation.
   It is RECOMMENDED to derive this identifier from DICOM Tags, for example,
   DICOM tag 0018, 1030 `Protocol Name`, or DICOM tag 0018, 0024 `Sequence Name`
   when the former is not defined (for example, in GE devices.)
-type: string
-format: participant_relative
+anyOf:
+  - type: string
+    format: participant_relative
+  - type: string
+    format: bids_uri

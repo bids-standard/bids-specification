@@ -494,18 +494,10 @@ code organization of these scripts at the moment.
 
 <!-- Link Definitions -->
 
-[bids uri]: ./02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets
-
 [bids uris]: ./02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets
 
 [object]: https://www.json.org/json-en.html
 
-[objects]: https://www.json.org/json-en.html
-
 [string]: https://www.w3schools.com/js/js_json_syntax.asp
 
 [uri]: ./02-common-principles.md#uniform-resource-indicator
-
-[uris]: ./02-common-principles.md#uniform-resource-indicator
-
-[deprecated]: ./02-common-principles.md#definitions

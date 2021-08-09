@@ -1106,29 +1106,3 @@ As for other EPI sequences, these field mapping sequences may have any of the
 [in-plane spatial encoding](#in-plane-spatial-encoding) metadata keys.
 However, please note that `PhaseEncodingDirection` and `TotalReadoutTime` keys
 are REQUIRED for these field mapping sequences.
-
-<!-- Link Definitions -->
-
-[bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets
-
-[deprecated]: ../02-common-principles.md#definitions
-
-[string]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[integer]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[number]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[numbers]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[array]: https://www.w3schools.com/js/js_json_arrays.asp
-
-[arrays]: https://www.w3schools.com/js/js_json_arrays.asp
-
-[object]: https://www.json.org/json-en.html
-
-[uri]: ../02-common-principles.md#uniform-resource-indicator

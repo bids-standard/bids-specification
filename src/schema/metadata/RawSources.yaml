@@ -5,7 +5,8 @@ description: |
   specified using [BIDS URIs][]; using paths relative to dataset root is [DEPRECATED][].
 type: array
 items:
-  type: string
-  format: dataset_relative
-  type: string
-  format: bids_uri
+  anyOf:
+    - type: string
+      format: dataset_relative
+    - type: string
+      format: bids_uri

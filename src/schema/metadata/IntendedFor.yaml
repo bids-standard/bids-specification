@@ -7,8 +7,12 @@ description: |
 anyOf:
   - type: string
     format: bids_uri
-    # XXX --> and participant_relative? how to encode in schema?
+  - type: string
+    format: participant_relative
   - type: array
     items:
-      type: string
-      format: bids_uri
+      anyOf:
+        - type: string
+          format: bids_uri
+        - type: string
+          format: participant_relative

@@ -450,27 +450,3 @@ Picture of a NAS fiducial placed between the eyebrows, rather than at the
 actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
-
-<!-- Link Definitions -->
-
-[bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets
-
-[deprecated]: ../02-common-principles.md#definitions
-
-[object]: https://www.json.org/json-en.html
-
-[objects]: https://www.json.org/json-en.html
-
-[number]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[integer]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[string]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[array]: https://www.w3schools.com/js/js_json_arrays.asp
-
-[arrays]: https://www.w3schools.com/js/js_json_arrays.asp
-
-[uri]: ../02-common-principles.md#uniform-resource-indicator

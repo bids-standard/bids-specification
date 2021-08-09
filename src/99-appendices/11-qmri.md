@@ -565,9 +565,3 @@ entries:
          ├── sub-01_acq-head_RB1COR.nii.gz (Head coil)
          └── sub-01_acq-head_RB1COR.json
 ```
-
-<!-- Link Definitions -->
-
-[bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets
-
-[deprecated]: ../02-common-principles.md#definitions

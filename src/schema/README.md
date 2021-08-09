@@ -74,8 +74,11 @@ of the schema, roughly in order of importance:
         fields at the same level as `type`: `pattern`, `format`, and `enum`.
         `pattern` defines a regular expression for valid string names.
         `format` defines the format for the string at the same level as `type`.
-        Valid values for `format` include: `uri` (uniform resource
-        identifiers), `date` (date-times), `unit` (standard units),
+        Valid values for `format` include:
+        `uri` (uniform resource identifiers),
+        `bids_uri` (BIDS URIs),
+        `date` (date-times),
+        `unit` (standard units),
         `dataset_relative` (relative paths from dataset root),
         `participant_relative` (relative paths from participant folder).
         `enum` defines a list of valid values for the field.

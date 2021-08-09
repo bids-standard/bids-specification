@@ -516,27 +516,3 @@ onset duration trial_type             electrical_stimulation_type electrical_sti
 4.2   1        electrical_stimulation complex                     LT02-LT03                   n/a
 15.2  3        auditory_stimulus      n/a                         n/a                         n/a
 ```
-
-<!-- Link Definitions -->
-
-[array]: https://www.w3schools.com/js/js_json_arrays.asp
-
-[bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets
-
-[object]: https://www.json.org/json-en.html
-
-[objects]: https://www.json.org/json-en.html
-
-[number]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[integer]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[string]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[uri]: ../02-common-principles.md#uniform-resource-indicator
-
-[deprecated]: ../02-common-principles.md#definitions

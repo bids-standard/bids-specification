@@ -143,5 +143,3 @@ of any `*_<physio>.tsv.gz` file.
       "DeviceSerialNumber": "RECOMMENDED",
    }
 ) }}
-
-<!-- Link Definitions -->

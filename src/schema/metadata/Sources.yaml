@@ -12,7 +12,8 @@ description: |
   regardless of whether X was used to generate Y.
 type: array
 items:
-  type: string
-  format: dataset_relative
-  type: string
-  format: bids_uri
+  anyOf:
+    - type: string
+      format: dataset_relative
+    - type: string
+      format: bids_uri
