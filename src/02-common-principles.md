@@ -543,12 +543,12 @@ One may reference a dataset on some example user's Desktop as such:
 
 On the Windows operating system, `file:///` (note the `/` after the `file://` URI scheme)
 refers to a "virtual" system root that does not exist in practice.
-To reference a dataset on our example user's Desktop, one may use:
+To reference a dataset on our example user's Windows Desktop, one may use:
 
 ```json
 {
     "DatasetLinks": {
-        "deriv3": "file:///C/Users/example-user/Desktop/my-dataset"
+        "deriv3": "file:///C:/Users/example-user/Desktop/my-dataset"
     }
 }
 ```
@@ -558,7 +558,7 @@ On a Windows machine, the location from this example would look like:
 
 However throughout BIDS, forward slashes `/` MUST be used as the path separator.
 Furthermore, the location `C:\` is specified in BIDS using the "virtual root"
-syntax as shown in the example: `/C`
+syntax as shown in the example: `/C:`
 
 ## The Inheritance Principle
 
