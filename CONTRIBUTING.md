@@ -251,7 +251,7 @@ This macro will create a table for the "SamplingFrequency" and "StartTime" metad
 filling the table with the content specified in their respective yaml files
 (see [SamplingFrequency.yaml](src/schema/metadata/SamplingFrequency.yaml) and [StartTime.yaml](src/schema/metadata/StartTime.yaml)).
 
-Some of the content created by the macro can specified in the macro call itself, as opposed to in the yaml files. 
+Some of the content created by the macro can be specified in the macro call itself, as opposed to in the yaml files. 
 Here the `"REQUIRED"`, `"RECOMMENDED, but REQUIRED for sparse sequences"` 
 specify the content of the requirement level column for each piece of metadata.
 
