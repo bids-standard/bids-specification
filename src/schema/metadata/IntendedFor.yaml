@@ -3,9 +3,9 @@ name: IntendedFor
 description: |
   The paths to files for which the associated file is intended to be used.
   Contains one or more
-  [BIDS URIs][/02-common-principles.html#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets].
+  [BIDS URIs](/02-common-principles.html#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets).
   Using forward-slash separated paths relative to the subject folder is
-  [DEPRECATED][/02-common-principles.html#definitions].
+  [DEPRECATED](/02-common-principles.html#definitions).
 anyOf:
   - type: string
     format: bids_uri

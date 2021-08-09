@@ -2,11 +2,11 @@
 name: SpatialReference
 description: |
   For images with a single reference, the value MUST be a single string in the format of a
-  [URI][02-common-principles.html#uniform-resource-identifier]
+  [URI](/02-common-principles.html#uniform-resource-identifier)
   or a
-  [BIDS URI][/02-common-principles.html#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets].
+  [BIDS URI](/02-common-principles.html#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets).
   Using paths written relative to the root of the derivative dataset is
-  [DEPRECATED][/02-common-principles.html#definitions].
+  [DEPRECATED](/02-common-principles.html#definitions).
   For images with multiple references, such as surface and volume references,
   a JSON object MUST be used.
 anyOf:

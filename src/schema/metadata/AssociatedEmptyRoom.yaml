@@ -2,11 +2,11 @@
 name: AssociatedEmptyRoom
 description: |
   One or more
-  [BIDS URIs][/02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets]
+  [BIDS URIs](/02-common-principles.html#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets)
   pointing to empty-room file(s)
   associated with the subject's MEG recording.
   Using forward-slash separated paths relative to the dataset root is
-  [DEPRECATED][/02-common-principles.md#definitions].
+  [DEPRECATED](/02-common-principles.html#definitions).
 anyOf:
   - type: array
     items:

@@ -3,9 +3,9 @@ name: RawSources
 description: |
   A list of paths to the BIDS-Raw file(s) that were used in the creation of this derivative,
   specified using
-  [BIDS URIs][/02-common-principles.html#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets];
+  [BIDS URIs](/02-common-principles.html#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets);
   using paths relative to dataset root is
-  [DEPRECATED][02-common-principles.html#definitions].
+  [DEPRECATED](/02-common-principles.html#definitions).
 type: array
 items:
   anyOf:

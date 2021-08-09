@@ -2,9 +2,9 @@
 name: Sources
 description: |
   A list of files with the paths specified using
-  [BIDS URIs][/02-common-principles.html#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets];
+  [BIDS URIs](/02-common-principles.html#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets);
   using paths specified relative to dataset root is
-  [DEPRECATED][/02-common-principles.html#definitions];
+  [DEPRECATED](/02-common-principles.html#definitions);
   these files were directly used in the creation of this derivative data file.
   For example, if a derivative A is used in the creation of another
   derivative B, which is in turn used to generate C in a chain of A->B->C,
