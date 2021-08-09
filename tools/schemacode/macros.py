@@ -25,7 +25,7 @@ def make_filename_template(**kwargs):
     return codeblock
 
 
-def make_filetree_example(filetree_info):
+def make_filetree_example(filetree_info, use_pipe = True):
     """Generate a filetree snippet from example content.
 
     Parameters
@@ -34,10 +34,10 @@ def make_filetree_example(filetree_info):
 
     Returns
     -------
-    codeblock : str
+    example : str
         A multiline string containing the filetree example.
     """
-    return example.make_filetree_example(filetree_info)
+    return example.make_filetree_example(filetree_info, use_pipe)
 
 
 def make_entity_table(**kwargs):

@@ -8,8 +8,8 @@ import os
 
 
 class DirectoryTree:
-    def __init__(self, filetree):
-        self._generator = _TreeGenerator(filetree)
+    def __init__(self, filetree, use_pipe = True):
+        self._generator = _TreeGenerator(filetree, use_pipe)
 
     def generate(self):
         tree = self._generator.build_tree()
@@ -22,7 +22,7 @@ class DirectoryTree:
 
 
 class _TreeGenerator:
-    def __init__(self, filetree):
+    def __init__(self, filetree, use_pipe):
         self._filetree = filetree
         self._tree = []
         self.PIPE = "│"
@@ -30,6 +30,11 @@ class _TreeGenerator:
         self.TEE = "├─"
         self.PIPE_PREFIX = "│  "
         self.SPACE_PREFIX = "   "
+        if not use_pipe:
+            self.ELBOW = "  "
+            self.PIPE = " "
+            self.TEE = "  "
+            self.PIPE_PREFIX = "   "
 
     def build_tree(self):
         self._tree_body(self._filetree)
@@ -65,6 +70,6 @@ class _TreeGenerator:
             )
 
 
-def make_filetree_example(filetree_info):
-    tree = DirectoryTree(filetree_info)
+def make_filetree_example(filetree_info, use_pipe):
+    tree = DirectoryTree(filetree_info, use_pipe)
     return tree.generate()
