@@ -26,10 +26,10 @@ class _TreeGenerator:
         self._filetree = filetree
         self._tree = []
         self.PIPE = "│"
-        self.ELBOW = "└──"
-        self.TEE = "├──"
-        self.PIPE_PREFIX = "│   "
-        self.SPACE_PREFIX = "    "
+        self.ELBOW = "└─"
+        self.TEE = "├─"
+        self.PIPE_PREFIX = "│  "
+        self.SPACE_PREFIX = "   "
 
     def build_tree(self):
         self._tree_body(self._filetree)
