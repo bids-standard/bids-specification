@@ -34,7 +34,7 @@ sub-01/func/sub-01_task-rest_desc-preproc_bold.json
 
 ```JSON
 {
-    "RawSources": ["bids:local:/sub-01/func/sub-01_task-rest_bold.nii.gz"]
+    "RawSources": ["bids::/sub-01/func/sub-01_task-rest_bold.nii.gz"]
 }
 ```
 
@@ -44,8 +44,8 @@ the same subject's `T1w`, then both files MAY be included in `RawSources`.
 ```JSON
 {
     "RawSources": [
-        "bids:local:/sub-01/func/sub-01_task-rest_bold.nii.gz",
-        "bids:local:/sub-01/anat/sub-01_T1w.nii.gz"
+        "bids::/sub-01/func/sub-01_task-rest_bold.nii.gz",
+        "bids::/sub-01/anat/sub-01_T1w.nii.gz"
     ]
 }
 ```
@@ -56,10 +56,10 @@ occurs in the derivatives, `Sources` and `RawSources` can both be specified.
 ```JSON
 {
     "Sources": [
-        "bids:local:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz"
+        "bids::/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz"
     ],
     "RawSources": [
-        "bids:local:/sub-01/func/sub-01_task-rest_bold.nii.gz"
+        "bids::/sub-01/func/sub-01_task-rest_bold.nii.gz"
     ]
 }
 ```
@@ -105,7 +105,7 @@ sub-01/func/sub-01_task-rest_space-individual_bold.json
 
 ```JSON
 {
-    "SpatialReference": "bids:local:/sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
+    "SpatialReference": "bids::/sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
 }
 ```
 

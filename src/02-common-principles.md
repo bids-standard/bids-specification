@@ -414,9 +414,9 @@ under the `DatasetLinks` field, which is an [object][] of [URIs][], as shown in
 the examples below.
 In brief, `dataset_description.DatasetLinks` contains mappings from strings to URIs
 that point to dataset locations.
-The `<dataset-name>`: `local` is a reserved value that may only be
-used to refer to the root of the current dataset; `local` MUST NOT be a key in the
-`DatasetLinks` object.
+The `<dataset-name>`: `""` (that is, an empty string) is a reserved value that may only be
+used to refer to the root of the current dataset; an empty string (`""`) MUST NOT be a key
+in the `DatasetLinks` object.
 
 In the case where a derivatives dataset is nested under a raw dataset and both have a `dataset_description.json` file,
 the BIDS URIs within the nested derivatives dataset MUST be resolved with respect to `/derivatives/dataset_description.json`,
@@ -442,10 +442,10 @@ directory within a dataset:
 }
 ```
 
-Alternatively, we can also make use of the reserved `<dataset-name>`: `local`,
+Alternatively, we can also make use of the reserved `<dataset-name>`: `""` (an empty string),
 which always points to the root of the current dataset, to point to the same file
 using the following syntax:
-`bids:local:/derivatives/derivative1/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
+`bids::/derivatives/derivative1/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
 
 Thus, for this specific case there are two ways to refer to the same file:
 
@@ -453,11 +453,11 @@ Thus, for this specific case there are two ways to refer to the same file:
     with `deriv1` being specified within `dataset_description.DatasetLinks`,
     as shown in the example above.
 
-1.  `bids:local:/derivatives/derivative1/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`,
-    with `local` NOT being part of `dataset_description.DatasetLinks`, because it
-    is a reserved value that always points to the root of the current dataset.
+1.  `bids::/derivatives/derivative1/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`,
+    with `""` (an empty string) NOT being a key in `dataset_description.DatasetLinks`,
+    because it is a reserved value that always points to the root of the current dataset.
 
-If *all* BIDS URIs in a dataset *only* use `local` as a `<dataset-name>`,
+If *all* BIDS URIs in a dataset *only* use an empty string (`""`) as a `<dataset-name>`,
 the `DatasetLinks` metadata MAY not be specified.
 
 ### Refer to a remote dataset
