@@ -114,6 +114,7 @@ meshes defined in the Conte69 atlas along with the MNI152NLin6Asym template.
 In this example, because all volumetric structures are sampled to the same
 reference, the `VolumeReference` key is used as a default, and only the
 surface references need to be specified by BrainStructure names.
+Here referred to via "https" [URIs][].
 
 ```Text
 sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.dtseries.nii
@@ -123,21 +124,9 @@ sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.json
 ```JSON
 {
     "SpatialReference": {
-        "VolumeReference": "bids:templateflow:/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz",
-        "CIFTI_STRUCTURE_CORTEX_LEFT": "bids:brainplot:/brainplot/Conte69_Atlas/Conte69.L.midthickness.32k_fs_LR.surf.gii",
-        "CIFTI_STRUCTURE_CORTEX_RIGHT": "bids:brainplot:/brainplot/Conte69_Atlas/Conte69.R.midthickness.32k_fs_LR.surf.gii"
-    }
-}
-```
-
-Where `dataset_description.json` contains the following `DatasetLinks` object
-that enables resolving the [BIDS URIs][].
-
-```JSON
-{
-    "DatasetLinks": {
-        "templateflow": "https://templateflow.s3.amazonaws.com",
-        "brainplot": "https://github.com/mgxd/brainplot/raw/master"
+        "VolumeReference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym_res-02_T1w.nii.gz",
+        "CIFTI_STRUCTURE_CORTEX_LEFT": "https://github.com/mgxd/brainplot/raw/master/brainplot/Conte69_Atlas/Conte69.L.midthickness.32k_fs_LR.surf.gii",
+        "CIFTI_STRUCTURE_CORTEX_RIGHT": "https://github.com/mgxd/brainplot/raw/master/brainplot/Conte69_Atlas/Conte69.R.midthickness.32k_fs_LR.surf.gii"
     }
 }
 ```
@@ -215,3 +204,5 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 [bids uris]: ../02-common-principles.md#bids-uri-pointing-to-files-within-and-outside-of-bids-datasets
 
 [deprecated]: ../02-common-principles.md#definitions
+
+[uris]: ./02-common-principles.md#uniform-resource-indicator
