@@ -477,10 +477,10 @@ directory that is stored on a remote server called `mydatahost.com`:
 }
 ```
 
-This means that the needed files can be obtained by downloading the data
-from `https://mydatahost.com/derivatives/derivative2`, and then navigating
-to `/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz` relative to that
-downloaded data.
+This means that the needed files can be obtained by downloading the whole dataset from
+`https://mydatahost.com/derivatives/derivative2`,
+and then navigating to `/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
+relative to that downloaded dataset.
 
 However,
 arbitrary remote server locations such as the `mydatahost.com` example server may not be stable.
@@ -494,8 +494,8 @@ Therefore it is RECOMMENDED to instead point to archived versions of a datasets 
 }
 ```
 
-Again, this means that the linked dataset must be downloaded from the DOI address,
-and the file will be found by navigating to the location specified in the BIDS URI
+Again, this means that the entire linked dataset must be downloaded from the DOI address,
+and the file will be found by navigating to the location specified by the BIDS URI
 relative to the downloaded data.
 
 ### Refer to a file outside of a dataset but on the same host
@@ -567,7 +567,7 @@ BIDS makes two strong RECOMMENDATIONS:
 1.  Whenever possible, all data that is pointed to SHOULD be included in the BIDS dataset,
     and BIDS URI pointers should be of the "local" form (that is, `bids::/absolute_path_within_dataset`).
 
-1.  In case shipping the data that is pointed to is impossible,
+1.  In case including the data that is pointed to is impossible,
     that data SHOULD be made available remotely with a DOI that allows an easy download from anywhere and by anyone.
     For example, instead of pointing to data on some generic `http://mydatahost.com` host,
     consider making the data available with a DOI on hosts such as [Zenodo](https://zenodo.org/),
