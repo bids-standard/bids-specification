@@ -1,0 +1,8 @@
+---
+name: SourceCodeVersion
+description: |
+  Version of the `"SourceCode"`.
+type: string
+
+
+

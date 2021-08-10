@@ -1,0 +1,7 @@
+---
+name: ModelParam
+description: |
+  Reference to exactly one `param/*_param.xml` file where the computational model is 
+  specified in [LEMS](http://lems.github.io/LEMS).
+type: string
+format: dataset_relative

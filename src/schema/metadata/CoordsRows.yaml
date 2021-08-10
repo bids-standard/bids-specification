@@ -1,0 +1,14 @@
+---
+name: CoordsRows
+description: |
+  Link to `coord/` file(s) where the coordinates of each row are clarified. The 
+  coordinates of each row are defined in the row with the same index in the linked
+  file(s). Consequently, the number of rows must be identical to the number of rows in 
+  the linked file(s).
+anyOf:
+  - type: array
+    items:
+      type: string
+      format: dataset_relative
+  - type: string
+    format: dataset_relative

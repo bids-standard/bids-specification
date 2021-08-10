@@ -1,0 +1,9 @@
+---
+- suffixes:
+    - param
+  extensions:
+    - .xml
+    - .json
+  entities:
+    description: required
+

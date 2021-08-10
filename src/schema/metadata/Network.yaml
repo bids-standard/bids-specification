@@ -1,0 +1,15 @@
+---
+name: Network
+description: |
+  Reference to the network graph file(s) in `net/` that were used to produce the 
+  simulation result.
+anyOf:
+  - type: array
+    items:
+      type: string
+      format: dataset_relative
+  - type: string
+    format: dataset_relative
+
+
+

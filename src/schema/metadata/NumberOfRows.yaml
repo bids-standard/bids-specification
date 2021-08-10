@@ -1,0 +1,6 @@
+---
+name: NumberOfRows
+description: |
+  Number of rows in the corresponding data file.
+type: integer
+minimum: 1

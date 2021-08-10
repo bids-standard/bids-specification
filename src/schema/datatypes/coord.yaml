@@ -1,0 +1,25 @@
+---
+- suffixes:
+    - times
+    - nodes
+    - vertices
+    - faces
+    - normals
+    - labels
+    - orientations
+    - map
+    - conv
+    - areas
+    - volumes
+    - cartesian2d
+    - cartesian3d
+    - polar2d
+    - polar3d
+  extensions:
+    - .tsv.gz
+    - .tsv
+    - .json
+  entities:
+    subject: optional
+    description: required
+    space: optional

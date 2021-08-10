@@ -1,0 +1,16 @@
+---
+- suffixes:
+    - weights
+    - distances
+    - delays
+    - speeds
+    - labels
+  extensions:
+    - .tsv.gz
+    - .tsv
+    - .json
+  entities:
+    description: required
+    subject: optional
+    space: optional
+

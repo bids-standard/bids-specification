@@ -1,0 +1,19 @@
+---
+- suffixes:
+    - vars
+    - stimuli
+    - noise
+    - spikes
+    - raster
+    - emp
+    - ts
+    - events
+  extensions:
+    - .tsv.gz
+    - .tsv
+    - .json
+  entities:
+    description: required
+    subject: optional
+    space: optional
+    series: optional

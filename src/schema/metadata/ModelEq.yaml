@@ -1,0 +1,12 @@
+---
+name: ModelEq
+description: |
+  Reference to one or more `eq/*_eq.xml` file(s) where the computational model is 
+  specified in [LEMS](http://lems.github.io/LEMS).
+anyOf:
+  - type: array
+    items:
+      type: string
+      format: dataset_relative
+  - type: string
+    format: dataset_relative

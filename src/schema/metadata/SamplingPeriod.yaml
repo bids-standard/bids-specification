@@ -1,0 +1,7 @@
+---
+name: SamplingPeriod
+description: |
+  Sampling period (in s) of the time points of the corresponding time series.
+type: number
+exclusiveMinimum: 0
+unit: s

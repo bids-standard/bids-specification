@@ -1,0 +1,21 @@
+---
+name: SourceCode
+description: |
+  Either [URI](/02-common-principles.html#uniform-resource-indicator) to a publicly
+  accessible repository or reference to files in `code/*_eq.xml` where the computational 
+  code used to produce the simulation result is provided.
+anyOf:
+  - type: array
+    items:
+      type: string
+      format: dataset_relative
+  - type: string
+    format: dataset_relative
+  - type: string
+    format: uri
+  - type: array
+    items:
+      type: string
+      format: uri
+
+

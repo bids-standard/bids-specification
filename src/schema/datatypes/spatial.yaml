@@ -1,0 +1,16 @@
+---
+- suffixes:
+    - fc
+    - map
+  extensions:
+    - .tsv.gz
+    - .tsv
+    - .json
+  entities:
+    description: required
+    subject: optional
+    space: optional
+    series: optional
+
+
+

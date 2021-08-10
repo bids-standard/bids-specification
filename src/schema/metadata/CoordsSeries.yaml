@@ -1,0 +1,14 @@
+---
+name: CoordsSeries
+description: |
+  Link to `coord/` file(s) where the coordinates of each series file are clarified. The 
+  coordinates of each series file are defined in the row with the same index in the linked
+  file(s). Consequently, the number of series files must be identical to the number of 
+  rows in the linked file(s).
+anyOf:
+  - type: array
+    items:
+      type: string
+      format: dataset_relative
+  - type: string
+    format: dataset_relative

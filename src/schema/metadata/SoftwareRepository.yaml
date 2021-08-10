@@ -1,0 +1,17 @@
+---
+name: SoftwareRepository
+description: |
+  Repository where executable software is hosted (for example, Docker Hub).
+anyOf:
+  - type: array
+    items:
+      type: string
+      format: dataset_relative
+  - type: string
+    format: dataset_relative
+  - type: string
+    format: uri
+  - type: array
+    items:
+      type: string
+      format: uri

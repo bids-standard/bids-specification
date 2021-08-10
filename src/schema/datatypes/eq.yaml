@@ -1,0 +1,9 @@
+---
+- suffixes:
+    - eq
+  extensions:
+    - .xml
+    - .json
+  entities:
+    description: required
+

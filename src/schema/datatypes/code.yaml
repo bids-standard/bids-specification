@@ -1,0 +1,10 @@
+---
+- suffixes:
+    - code
+  extensions:
+    - "*"
+    - .json
+  entities:
+    description: required
+
+
