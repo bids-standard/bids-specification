@@ -275,3 +275,17 @@ description:
 
     This entity is only applicable to derivative data.
   format: label
+series:
+  name: Series
+  entity: series
+  description: |
+    This entity is used to indicate a series of files that belong together. For
+    example, a series of spatial objects (for example, functional connectivity matrices)
+    at different points in time. Or, a series of time series files that were created
+    with different initial conditions. The file that contains corresponding coordinates 
+    (for example, labels, time points) of the series elements MUST be specified with the 
+    metadata key `"CoordsSeries"`.
+    Use leading zeros for improved filename sorting. That is, do not use 
+    `*_series_1_*.tsv`, `*_series_2_*.tsv`, `*_series_3_*.tsv`, ...
+    Instead, use: `*_series_0001_*.tsv`, `*_series_0002_*.tsv`, `*_series_0003_*.tsv`, ...
+  format: label

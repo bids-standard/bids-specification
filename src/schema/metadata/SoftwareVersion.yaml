@@ -1,5 +1,5 @@
 ---
 name: SoftwareVersion
 description: |
-  Version of the software that was used to present the stimuli.
+  Version of the software that was used.
 type: string

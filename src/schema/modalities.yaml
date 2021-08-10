@@ -27,3 +27,14 @@ pet:
   name: Positron Emission Tomography
   datatypes:
     - pet
+comp:
+  name: Computational Modelling
+  datatypes:
+    - net
+    - coord
+    - ts
+    - spatial
+    - eq
+    - param
+    - code
+    

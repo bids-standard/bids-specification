@@ -1,5 +1,10 @@
 ---
 name: SoftwareName
 description: |
-  Name of the software that was used to present the stimuli.
-type: string
+  Name of the software that was used.
+anyOf:
+  - type: array
+    items:
+      type: string
+  - type: string
+
