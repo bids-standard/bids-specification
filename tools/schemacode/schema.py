@@ -171,9 +171,14 @@ def make_entity_definitions(schema):
         text += "Full name: {}".format(entity_info["name"])
         text += "\n\n"
         text += "Format: `{}-<{}>`".format(
-            entity_info["entity"], entity_info["format"]
+            entity_info["entity"],
+            entity_info.get("format", "label"),
         )
         text += "\n\n"
+        if "enum" in entity_info.keys():
+            text += "Allowed values: `{}`".format("`, `".join(entity_info["enum"]))
+            text += "\n\n"
+
         text += "Definition: {}".format(entity_info["description"])
     return text
 
@@ -219,7 +224,7 @@ def make_filename_template(schema, **kwargs):
             for ent in entities:
                 ent_format = "{}-<{}>".format(
                     schema["entities"][ent]["entity"],
-                    schema["entities"][ent]["format"],
+                    schema["entities"][ent].get("format", "label")
                 )
                 if ent in group["entities"]:
                     if group["entities"][ent] == "required":
@@ -309,7 +314,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         entity_shorthand = schema["entities"][entity]["entity"]
         header.append(spec["name"])
         formats.append(
-            f'[`{entity_shorthand}-<{spec["format"]}>`]'
+            f'[`{entity_shorthand}-<{spec.get("format", "label")}>`]'
             f"({ENTITIES_FILE}#{entity_shorthand})"
         )
         entity_to_col[entity] = i + 1
@@ -364,6 +369,57 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
     # Print it as markdown
     table_str = tabulate(table, headers="keys", tablefmt=tablefmt)
+    return table_str
+
+
+def make_suffix_table(schema, suffixes, tablefmt="github"):
+    """Produce suffix table (markdown) based on requested suffixes.
+    Parameters
+    ----------
+    schema : dict
+    suffixes : list of str
+    tablefmt : str
+    Returns
+    -------
+    table_str : str
+        Tabulated table as a string.
+    """
+    # The filter function doesn't work here.
+    suffix_schema = schema["suffixes"]
+
+    suffixes_found = [f for f in suffixes if f in suffix_schema.keys()]
+    suffixes_not_found = [f for f in suffixes if f not in suffix_schema.keys()]
+    if suffixes_not_found:
+        raise Exception(
+            "Warning: Missing suffixes: {}".format(
+                ", ".join(suffixes_not_found)
+            )
+        )
+
+    df = pd.DataFrame(
+        index=suffixes_found,
+        columns=["**Name**", "**Description**"],
+    )
+    # Index by suffix because name cannot be assumed to be unique
+    df.index.name = "`suffix`"
+    for suffix in suffixes_found:
+        suffix_info = suffix_schema[suffix]
+        description = suffix_info["description"]
+        # A backslash before a newline means continue a string
+        description = description.replace("\\\n", "")
+        # Two newlines should be respected
+        description = description.replace("\n\n", "<br>")
+        # Otherwise a newline corresponds to a space
+        description = description.replace("\n", " ")
+
+        df.loc[suffix] = [suffix_info["name"], description]
+
+    df = df.reset_index(drop=False)
+    df = df.set_index("**Name**")
+    df = df[["`suffix`", "**Description**"]]
+
+    # Print it as markdown
+    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
     return table_str
 
 
