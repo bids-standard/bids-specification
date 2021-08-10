@@ -507,20 +507,20 @@ BIDS URIs allow for specifying such locations,
 but such specifications are by definition not portable in that the BIDS URIs break when the host changes.
 When sharing a BIDS dataset, the dataset curator MUST make sure that all BIDS URIs are portable.
 
-To link for example to a derivative file that is stored in a `derivatives/`
-directory that is NOT nested in the raw BIDS directory:
+To link for example to an MRI file that is stored in a
+local directory that is NOT nested in the raw BIDS directory:
 
-`bids:deriv4:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
+`bids:canonical:/single_subj_T1.nii`
 
 ```json
 {
     "DatasetLinks": {
-        "deriv4": "file://../some-local-path/derivative4"
+        "canonical": "file://../../common/matlab/spm12/canonical"
     }
 }
 ```
 
-As shown in the example above, the path to `deriv4` contains the `..` syntax,
+As shown in the example above, the path to `canonical` contains the `..` syntax,
 which is a common way to refer to parent directories.
 In this way, arbitrary locations on the host can be referenced relative to the current dataset.
 
@@ -534,7 +534,7 @@ One may reference a dataset on some example user's Desktop as such:
 ```json
 {
     "DatasetLinks": {
-        "deriv4": "file:///home/example-user/Desktop/my-dataset"
+        "my-dataset": "file:///home/example-user/Desktop/my-dataset"
     }
 }
 ```
@@ -546,7 +546,7 @@ To reference a dataset on our example user's Windows Desktop, one may use:
 ```json
 {
     "DatasetLinks": {
-        "deriv4": "file:///C:/Users/example-user/Desktop/my-dataset"
+        "my-dataset": "file:///C:/Users/example-user/Desktop/my-dataset"
     }
 }
 ```
