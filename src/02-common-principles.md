@@ -422,6 +422,11 @@ The `<dataset-name>`: `""` (that is, an empty string)
 is a reserved value that may only be used to refer to the root of the current dataset;
 an empty string (`""`) MUST NOT be a key in the `DatasetLinks` object.
 
+In the context of BIDS URIs,
+a dataset with a given `<dataset-name>` does not have to be a BIDS dataset,
+or a neuroimaging dataset.
+It may just as well be a (sub-)directory containing one or more arbitrary files.
+
 In the case where a derivatives dataset is nested under a raw dataset and both have a `dataset_description.json` file,
 the BIDS URIs within the nested derivatives dataset MUST be resolved with respect to `/derivatives/dataset_description.json`,
 and the BIDS URIs for the raw dataset (excluding `/derivatives`) MUST be resolved with respect to `/dataset_description.json`.
@@ -523,40 +528,107 @@ However throughout BIDS, forward slashes `/` MUST be used as the path separator.
 Furthermore, the location `C:\` is specified in BIDS using the "virtual root"
 syntax as shown in the example: `/C:`
 
-### Refer to a remote dataset
+### Refer to a remote file
 
-To link for example to a derivative file that is stored in a `derivatives/`
-directory that is stored on a remote server called `mydatahost.com`:
-`bids:deriv2:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
+Dataset curators can design a BIDS URI to point to a file on remote locations
+(for example on the Internet).
+Broadly, there are two design options:
+
+1.  Make a BIDS URI machine readable, that is, resolvable by tools such as
+    [curl](https://curl.se/),
+    or [wget](https://www.gnu.org/software/wget/),
+    or by simply typing the full BIDS URI into a browser window.
+
+1.  Make a BIDS URI human readable and such that a human can obtain the referred
+    data through a few steps, but sometimes not resolvable by tools.
+
+Both options are discussed with respect to the same example below.
+
+#### Machine readable "remote" BIDS URIs
+
+If a user wants to refer to a remote file `Conte69.R.midthickness.32k_fs_LR.surf.gii`,
+they may use a BIDS URI as follows:
+
+`bids:my-location:/Conte69_Atlas/Conte69.R.midthickness.32k_fs_LR.surf.gii`
 
 ```json
 {
     "DatasetLinks": {
-        "deriv2": "https://mydatahost.com/derivatives/derivative2"
+        "my-location": "https://github.com/mgxd/brainplot/raw/master/brainplot"
     }
 }
 ```
 
-This means that the needed files can be obtained by downloading the whole dataset from
-`https://mydatahost.com/derivatives/derivative2`,
-and then navigating to `/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
-relative to that downloaded dataset.
+Combining the BIDS URI with the information from `dataset_description.DatasetLinks`
+will yield the following full BIDS URI:
 
-However,
-arbitrary remote server locations such as the `mydatahost.com` example server may not be stable.
-Therefore it is RECOMMENDED to instead point to archived versions of a datasets using their DOIs:
+`https://github.com/mgxd/brainplot/raw/master/brainplot/Conte69_Atlas/Conte69.R.midthickness.32k_fs_LR.surf.gii`
+
+typing this BIDS URI into a browser window will lead you directly to the file:
+The BIDS URI is machine readable and human readable.
+
+Unfortunately, specifying BIDS URIs reliably in a machine readable way is sometimes impossible,
+because remote hosts may have a complicated, unknown, or unstable interface to provide data.
+In such cases, dataset curators MAY design BIDS URIs that are *not* machine readable,
+as detailed below.
+
+#### Human readable "remote" BIDS URIs
+
+As in the example for machine readable BIDS URIs above,
+a user wants to refer to a remote file `Conte69.R.midthickness.32k_fs_LR.surf.gii`.
+They may specify the following BIDS URI:
+
+`bids:my-location:/brainplot-master/brainplot/Conte69_Atlas/Conte69.R.midthickness.32k_fs_LR.surf.gii`
 
 ```json
 {
     "DatasetLinks": {
-        "deriv3": "doi:10.18112/openneuro.ds003669.v1.0.0"
+        "my-location": "https://github.com/mgxd/brainplot/archive/refs/heads/master.zip"
     }
 }
 ```
 
-Again, this means that the entire linked dataset must be downloaded from the DOI address,
-and the file will be found by navigating to the location specified by the BIDS URI
-relative to the downloaded data.
+Combining the BIDS URI with the information from `dataset_description.DatasetLinks`
+will yield the following full BIDS URI:
+
+`https://github.com/mgxd/brainplot/archive/refs/heads/master.zip/brainplot-master/brainplot/Conte69_Atlas/Conte69.R.midthickness.32k_fs_LR.surf.gii`
+
+This BIDS URI is not machine readable.
+However, a human user can still obtain the data by:
+
+1.  Downloading the dataset `https://github.com/mgxd/brainplot/archive/refs/heads/master.zip`
+1.  Unzipping the obtained dataset
+1.  Navigating to the path relative to the obtained and unzipped dataset: `/brainplot-master/brainplot/Conte69_Atlas/Conte69.R.midthickness.32k_fs_LR.surf.gii`
+
+**Using BIDS URIs in this way should be considered a fallback option to be used only**
+**when specifying machine readable BIDS URIs is for some reason impossible.**
+
+When using remote BIDS URIs, dataset curators SHOULD make them machine readable,
+as detailed in the section above.
+
+#### Additional examples for "remote" BIDS URIs
+
+##### Referring to a DOI-based location
+
+- A dataset curator wants to point to a file `BIDS-Specification-v1.6.0.pdf`.
+- This file is stored in the following Zenodo record: [https://zenodo.org/record/4710751/](https://zenodo.org/record/4710751/)
+- This Zenodo record has an associated DOI: `doi:10.5281/zenodo.4710751`
+
+We thus may refer to the file using a BIDS URI as follows:
+
+`bids:myds:/BIDS-Specification-v1.6.0.pdf`
+
+```json
+{
+    "DatasetLinks": {
+        "myds": "doi:10.5281/zenodo.4710751"
+    }
+}
+```
+
+This BIDS URI is not machine readable,
+but it allows users to find the Zenodo record, download its associated data,
+and use the path `/BIDS-Specification-v1.6.0.pdf` to find the file.
 
 ### BIDS URI usage recommendations
 
@@ -564,15 +636,27 @@ Dataset curators can flexibly use BIDS URIs to point to files in their BIDS data
 However, when it comes to publicly sharing the data,
 BIDS makes two strong RECOMMENDATIONS:
 
-1.  Whenever possible, all data that is pointed to SHOULD be included in the BIDS dataset,
+1.  Whenever possible, all files that are pointed to SHOULD be included in the BIDS dataset,
     and BIDS URI pointers should be of the "local" form (that is, `bids::/absolute_path_within_dataset`).
 
-1.  In case including the data that is pointed to is impossible,
-    that data SHOULD be made available remotely with a DOI that allows an easy download from anywhere and by anyone.
-    For example, instead of pointing to data on some generic `http://mydatahost.com` host,
-    consider making the data available with a DOI on hosts such as [Zenodo](https://zenodo.org/),
+1.  In case including the file that is pointed to is impossible,
+    that file SHOULD be made available remotely with a DOI that allows an easy download from anywhere and by anyone.
+    For example, instead of pointing to a file on some generic `http://mydatahost.com` host,
+    consider making that file available with a DOI on hosts such as [Zenodo](https://zenodo.org/),
     the [OSF](https://osf.io/),
     or [GIN](https://gin.g-node.org/).
+
+1.  BIDS URIs pointing to remote files SHOULD be designed such that a minimal amount of data needs to be downloaded.
+    This can be achieved by either
+    (1) making the BIDS URI machine readable so that the needed file can be obtained directly (RECOMMENDED), or
+    (2) narrowing down the dataset to be downloaded from the location detailed via `<dataset-name>` as much as possible.
+    For example,
+    location: `https://mydatahost.com/this_specific_dataset/this_specific_subset`
+    with path: `/single_subj_T1.nii`
+    is preferable to
+    location: `https://mydatahost.com/this_specific_dataset`
+    with path: `/this_specific_subset/single_subj_T1.nii`,
+    because less data needs to be downloaded for the former case.
 
 Not adhering to these recommendations results in a high likelihood that users of
 your data may not have access to the data that you are pointing to.
