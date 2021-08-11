@@ -431,10 +431,12 @@ In the case where a derivatives dataset is nested under a raw dataset and both h
 the BIDS URIs within the nested derivatives dataset MUST be resolved with respect to `/derivatives/dataset_description.json`,
 and the BIDS URIs for the raw dataset (excluding `/derivatives`) MUST be resolved with respect to `/dataset_description.json`.
 
-However if a derivatives dataset is nested under a raw dataset and only the raw dataset has a `dataset_description.json` file,
-all BIDS URIs MUST be resolved with respect to the `/dataset_description.json` file.
+However if a `derivatives/` *folder* is nested under a raw dataset and only the raw dataset has a `dataset_description.json` file,
+that `derivatives/` *folder* is not considered a BIDS dataset (see [Storage of Derivated Datasets](#storage-of-derived-datasets)),
+and all BIDS URIs MUST be resolved with respect to the `/dataset_description.json` file.
+The latter situation is then comparable to referring to data in a `sourcedata/` or `code/` folder.
 
-(Assuming that in the two above examples `/` refers to the root of the BIDS raw dataset with a nested derivatives dataset.)
+(Assuming that in the two above examples `/` refers to the root of the BIDS raw dataset with a nested derivatives dataset/folder.)
 
 ### Refer to a file within a dataset
 
@@ -610,9 +612,9 @@ as detailed in the section above.
 
 ##### Referring to a DOI-based location
 
-- A dataset curator wants to point to a file `BIDS-Specification-v1.6.0.pdf`.
-- This file is stored in the following Zenodo record: [https://zenodo.org/record/4710751/](https://zenodo.org/record/4710751/)
-- This Zenodo record has an associated DOI: `doi:10.5281/zenodo.4710751`
+-   A dataset curator wants to point to a file `BIDS-Specification-v1.6.0.pdf`.
+-   This file is stored in the following Zenodo record: [https://zenodo.org/record/4710751/](https://zenodo.org/record/4710751/)
+-   This Zenodo record has an associated DOI: `doi:10.5281/zenodo.4710751`
 
 We thus may refer to the file using a BIDS URI as follows:
 
