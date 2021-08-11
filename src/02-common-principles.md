@@ -463,45 +463,10 @@ Thus, for this specific case there are two ways to refer to the same file:
 **If *all* BIDS URIs in a dataset *only* use an empty string (`""`) as a `<dataset-name>`,**
 **the `DatasetLinks` metadata MAY not be specified.**
 
-### Refer to a remote dataset
-
-To link for example to a derivative file that is stored in a `derivatives/`
-directory that is stored on a remote server called `mydatahost.com`:
-`bids:deriv2:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
-
-```json
-{
-    "DatasetLinks": {
-        "deriv2": "https://mydatahost.com/derivatives/derivative2"
-    }
-}
-```
-
-This means that the needed files can be obtained by downloading the whole dataset from
-`https://mydatahost.com/derivatives/derivative2`,
-and then navigating to `/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
-relative to that downloaded dataset.
-
-However,
-arbitrary remote server locations such as the `mydatahost.com` example server may not be stable.
-Therefore it is RECOMMENDED to instead point to archived versions of a datasets using their DOIs:
-
-```json
-{
-    "DatasetLinks": {
-        "deriv3": "doi:10.18112/openneuro.ds003669.v1.0.0"
-    }
-}
-```
-
-Again, this means that the entire linked dataset must be downloaded from the DOI address,
-and the file will be found by navigating to the location specified by the BIDS URI
-relative to the downloaded data.
-
 ### Refer to a file outside of a dataset but on the same host
 
-It is RECOMMENDED to refer to files **within** a dataset,
-or on a **remote** location as described in the sections above.
+It is RECOMMENDED to refer to files **within** a dataset (as described in the section above),
+or on a **remote** location (as described in the section below).
 However sometimes it may be convenient to refer to files that are outside of a given dataset but on the same host.
 BIDS URIs allow for specifying such locations,
 but such specifications are by definition not portable in that the BIDS URIs break when the host changes.
@@ -557,6 +522,41 @@ On a Windows machine, the location from this example would look like:
 However throughout BIDS, forward slashes `/` MUST be used as the path separator.
 Furthermore, the location `C:\` is specified in BIDS using the "virtual root"
 syntax as shown in the example: `/C:`
+
+### Refer to a remote dataset
+
+To link for example to a derivative file that is stored in a `derivatives/`
+directory that is stored on a remote server called `mydatahost.com`:
+`bids:deriv2:/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
+
+```json
+{
+    "DatasetLinks": {
+        "deriv2": "https://mydatahost.com/derivatives/derivative2"
+    }
+}
+```
+
+This means that the needed files can be obtained by downloading the whole dataset from
+`https://mydatahost.com/derivatives/derivative2`,
+and then navigating to `/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz`
+relative to that downloaded dataset.
+
+However,
+arbitrary remote server locations such as the `mydatahost.com` example server may not be stable.
+Therefore it is RECOMMENDED to instead point to archived versions of a datasets using their DOIs:
+
+```json
+{
+    "DatasetLinks": {
+        "deriv3": "doi:10.18112/openneuro.ds003669.v1.0.0"
+    }
+}
+```
+
+Again, this means that the entire linked dataset must be downloaded from the DOI address,
+and the file will be found by navigating to the location specified by the BIDS URI
+relative to the downloaded data.
 
 ### BIDS URI usage recommendations
 
