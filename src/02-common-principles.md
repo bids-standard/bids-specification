@@ -385,13 +385,13 @@ datasets and non-compliant derivatives.
 
 ## BIDS URI: Pointing to files within and outside of BIDS datasets
 
-Throughout the BIDS specification there a metadata fields that contain one or more
+Throughout the BIDS specification there are metadata fields that contain one or more
 pointers to files
 (for example `IntendedFor`, `SpatialReference`, and `AssociatedEmptyRoom`).
 Prior to BIDS version 1.7.0, such pointers were often required to be "relative paths".
-However the specification failed to consistently describe relative to *what* these pointers should be specified,
+However the specification failed to consistently describe *what* these pointers should be relative to,
 and the exact syntax to be used.
-Yet even with perfectly well and consistently defined "relative paths",
+Yet even with consistently defined "relative paths",
 this method of pointing to files becomes impractical when referring to files that
 are outside of a particular file tree (for example, on the Internet),
 or when the location of the data that is being pointed to changes.
@@ -408,7 +408,7 @@ as elaborated below.
 
 Here, `bids:` is the URI scheme,
 and `<dataset-name>:/absolute/path/within/dataset` is the path to the file,
-consisting of the name of a dataset, a colon,
+consisting of the name of a dataset (MAY be an empty string, as defined below), a colon,
 and the absolute path within that dataset that MUST start with a forward slash `/`.
 
 The location of a dataset with the name `<dataset-name>` MUST be specified in the
@@ -419,7 +419,7 @@ which is an [object][] of [URIs][], as shown in the examples below.
 In brief,
 `dataset_description.DatasetLinks` contains mappings from strings to URIs that point to dataset locations.
 The `<dataset-name>`: `""` (that is, an empty string)
-is a reserved value that may only be used to refer to the root of the current dataset;
+is a reserved value that may only be used to refer to the *root of the current dataset*;
 an empty string (`""`) MUST NOT be a key in the `DatasetLinks` object.
 
 In the context of BIDS URIs,
