@@ -1,0 +1,83 @@
+---
+# Metadata rules that apply to all/most MRI data types
+Manufacturer: recommended
+ManufacturersModelName: recommended
+DeviceSerialNumber: recommended
+StationName: recommended
+SoftwareVersions: recommended
+HardcopyDeviceSoftwareVersion: deprecated
+MagneticFieldStrength: recommended
+ReceiveCoilName: recommended
+ReceiveCoilActiveElements: recommended
+GradientSetType: recommended
+MRTransmitCoilSequence: recommended
+MatrixCoilMode: recommended
+CoilCombinationMethod: recommended
+PulseSequenceType: recommended
+ScanningSequence: recommended
+SequenceVariant: recommended
+ScanOptions: recommended
+SequenceName: recommended
+PulseSequenceDetails: recommended
+
+# Required if PET data are present
+NonlinearGradientCorrection: recommended
+
+MRAcquisitionType: recommended
+MTState: recommended
+
+# Required if MTState is True
+MTOffsetFrequency: recommended
+MTPulseBandwidth: recommended
+MTNumberOfPulses: recommended
+MTPulseShape: recommended
+MTPulseDuration: recommended
+# End of MTState if/else
+
+SpoilingState: recommended
+
+# Recommended if SpoilingState is True
+SpoilingType: recommended
+
+# Recommended if SpoilingType is RF or COMBINED
+SpoilingRFPhaseIncrement: recommended
+
+# Recommended if SpoilingType is GRADIENT or COMBINED
+SpoilingGradientMoment: recommended
+SpoilingGradientDuration: recommended
+# End of SpoilingType if/else
+
+NumberShots: recommended
+ParallelReductionFactorInPlane: recommended
+ParallelAcquisitionTechnique: recommended
+PartialFourier: recommended
+PartialFourierDirection: recommended
+PhaseEncodingDirection: recommended
+EffectiveEchoSpacing: recommended
+TotalReadoutTime: recommended
+MixingTime: recommended
+
+# RECOMMENDED, but REQUIRED if corresponding fieldmap data is present,
+# or the data comes from a multi echo sequence or Arterial Spin Labeling
+EchoTime: recommended
+
+InversionTime: recommended
+
+# RECOMMENDED, but REQUIRED for sparse sequences that do not have the
+# DelayTime field set, and Arterial Spin Labeling with MRAcquisitionType
+# set on 2D.
+SliceTiming: recommended
+
+SliceEncodingDirection: recommended
+DwellTime: recommended
+
+# RECOMMENDED, but REQUIRED if LookLocker is set true
+# LookLocker only exists for ASL files
+FlipAngle: recommended
+
+NegativeContrast: optional
+MultibandAccelerationFactor: recommended
+AnatomicalLandmarkCoordinates: recommended
+InstitutionName: recommended
+InstitutionAddress: recommended
+InstitutionalDepartmentName: recommended

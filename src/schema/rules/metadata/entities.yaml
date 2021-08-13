@@ -1,0 +1,25 @@
+---
+- entityHasValue(part, phase):
+  metadata:
+    Units: required
+- hasEntity(ce):
+  metadata:
+    ContrastBolusIngredient: recommended
+- hasEntity(trc):
+  metadata:
+    TracerName: required
+- hasEntity(flip):
+  metadata:
+    FlipAngle: required
+- hasEntity(inv):
+  metadata:
+    InversionTime: required
+- hasEntity(mt):
+  metadata:
+    MTState: required
+- hasEntity(res):
+  metadata:
+    Resolution: required
+- hasEntity(den):
+  metadata:
+    Density: required

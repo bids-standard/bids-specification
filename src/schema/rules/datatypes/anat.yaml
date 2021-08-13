@@ -25,6 +25,14 @@
     ceagent: optional
     reconstruction: optional
     part: optional
+  metadata:
+    $ref: /rules/metadata/mri.yaml
+
+    # Now anatomical MRI-specific
+    ContrastBolusIngredient: optional
+    RepetitionTimeExcitation: optional
+    RepetitionTimePreparation: optional
+
 # Parametric
 - suffixes:
     - T1map
