@@ -14,8 +14,9 @@ The iEEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, iEEG data MUST be
 stored in one of the following formats:
 
--   [European Data Format](https://www.edfplus.info/)
-    (Each recording consisting of a `.edf` file)
+-   [European data format](https://www.edfplus.info/)
+    (including [`edf+`](https://www.edfplus.info/specs/edfplus.html);
+    each recording consisting of a `.edf` file)
 
 -   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
     (Each recording consisting of a  `.vhdr`, `.vmrk`, `.eeg` file triplet)
@@ -94,7 +95,7 @@ Generic fields MUST be present:
 
 {{ MACROS___make_metadata_table(
    {
-      "TaskName": "REQUIRED",
+      "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
    }
 ) }}
 
@@ -108,11 +109,12 @@ Whenever possible, please avoid using ad hoc wording.
    {
       "InstitutionName": "RECOMMENDED",
       "InstitutionAddress": "RECOMMENDED",
+      "InstitutionalDepartmentName": "RECOMMENDED",
       "Manufacturer": ("RECOMMENDED", 'For example, `"TDT"`, `"Blackrock"`.'),
       "ManufacturersModelName": "RECOMMENDED",
       "SoftwareVersions": "RECOMMENDED",
       "TaskDescription": "RECOMMENDED",
-      "Instructions": "RECOMMENDED",
+      "Instructions": ("RECOMMENDED", "This is especially important in context of resting state recordings and distinguishing between eyes open and eyes closed paradigms."),
       "CogAtlasID": "RECOMMENDED",
       "CogPOID": "RECOMMENDED",
       "DeviceSerialNumber": "RECOMMENDED",

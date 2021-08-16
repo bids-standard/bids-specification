@@ -7,6 +7,4 @@ description: |
   by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters.
   For example `TaskName` `"faces n-back"` will correspond to task label
   `facesnback`.
-  A RECOMMENDED convention is to name resting state task using labels beginning
-  with `rest`.
 type: string

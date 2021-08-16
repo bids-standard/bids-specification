@@ -2,8 +2,11 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] Add basic documentation on how to use metadata table macros [#840](https://github.com/bids-standard/bids-specification/pull/840) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[ENH] make "Institutional department name" available for all datatypes [#839](https://github.com/bids-standard/bids-specification/pull/839) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] Add angio suffix to the non-parametric aMRI suffix table [#835](https://github.com/bids-standard/bids-specification/pull/835) ([tsalo](https://github.com/tsalo))
 -   \[FIX] Remove last hardcoded suffix table [#833](https://github.com/bids-standard/bids-specification/pull/833) ([tsalo](https://github.com/tsalo))
+-   \[MISC] make explicit that EDF+ (and for EEG: BDF+) are included in iEEG / EEG format requirements [#831](https://github.com/bids-standard/bids-specification/pull/831) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] add metadata to PET calibration factor: "DoseCalibrationFactor" [#825](https://github.com/bids-standard/bids-specification/pull/825) ([CPernet](https://github.com/CPernet))
 -   \[FIX] correct file location of scans.tsv file in example [#824](https://github.com/bids-standard/bids-specification/pull/824) ([ghisvail](https://github.com/ghisvail))
 -   \[FIX] Add missing closing parenthesis in 02-common-principle.md [#822](https://github.com/bids-standard/bids-specification/pull/822) ([sebastientourbier](https://github.com/sebastientourbier))
@@ -13,6 +16,8 @@
 -   \[FIX] What is a composite instance? Change to measurement for non MRI modalities? [#813](https://github.com/bids-standard/bids-specification/pull/813) ([rob-luke](https://github.com/rob-luke))
 -   \[ENH] BEP031 - New entity: sample and samples.tsv file [#812](https://github.com/bids-standard/bids-specification/pull/812) ([mariehbourget](https://github.com/mariehbourget))
 -   Add device and acquisition metadata for physio files [#806](https://github.com/bids-standard/bids-specification/pull/806) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[MISC] Move section on sessions.tsv file: longitudinal files -> modality agnostic files [#805](https://github.com/bids-standard/bids-specification/pull/805) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[ENH] Make explicit that "task" metadata applies to "beh" modality [#804](https://github.com/bids-standard/bids-specification/pull/804) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[MISC] Make MRI-centric language more general in Events [#801](https://github.com/bids-standard/bids-specification/pull/801) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] clarify that entities MUST be unique [#800](https://github.com/bids-standard/bids-specification/pull/800) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] deprecate DCOffsetCorrection field from ieeg.json: Use SoftwareFilters field instead [#799](https://github.com/bids-standard/bids-specification/pull/799) ([sappelhoff](https://github.com/sappelhoff))

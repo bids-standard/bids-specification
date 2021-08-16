@@ -19,6 +19,7 @@ Jump to the following sections:
 -   [Contributing through GitHub](#contributing-through-github)
 -   [Understanding issues](#understanding-issues)
 -   [Writing in markdown](#writing-in-markdown)
+-   [Using macros](#using-macros)
 -   [Fixing markdown style errors](#fixing-markdown-style-errors)
 -   [Adding a figure to the specifications](#adding-a-figure-to-the-specifications)
 -   [Making a change with a pull request](#making-a-change-with-a-pull-request)
@@ -219,6 +220,53 @@ That would look like this:
 | **Key name** | **Description**                                          |
 |--------------|----------------------------------------------------------|
 | Manufacturer | Manufacturer of the equipment, for example (`"Siemens"`) | 
+
+## Using macros
+
+We use [mkdocs-macros](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)
+to render parts of the BIDS specification from the BIDS schema.
+Macros make it easy to achieve a consistent style throughout the specification,
+and changing a given macro will automatically change all appropriate paragraphs in the specification.
+
+
+For example, all tables on BIDS metadata are generated via macros that make use of data in the
+[yaml files](src/schema/metadata) in the [schema](src/schema/README.md).
+
+The macros are written in Python
+(see the folders [tools/schemacode](tools/schemacode) and [tools/mkdocs_macros_bidsschema](tools/mkdocs_macros_bidsschema)),
+and are called directly in the Markdown document where you want the output of the macro to be inserted.
+
+For example:
+
+```Text
+{{ MACROS___make_metadata_table(
+   {
+      "SamplingFrequency": "REQUIRED",
+      "StartTime": "RECOMMENDED, but REQUIRED for sparse sequences",
+   }
+) }}
+```
+
+This macro will create a table for the "SamplingFrequency" and "StartTime" metadata,
+filling the table with the content specified in their respective yaml files
+(see [SamplingFrequency.yaml](src/schema/metadata/SamplingFrequency.yaml) and [StartTime.yaml](src/schema/metadata/StartTime.yaml)).
+
+Some of the content created by the macro can be specified in the macro call itself, as opposed to in the yaml files. 
+Here the `"REQUIRED"`, `"RECOMMENDED, but REQUIRED for sparse sequences"` 
+specify the content of the requirement level column for each piece of metadata.
+
+This macro also allows you to append extra content to the description of that metadata
+by specifying it in the macro call:
+
+```Text
+{{ MACROS___make_metadata_table(
+   {
+      "SamplingFrequency": ("REQUIRED", "This extra content will be added to the description")
+      "StartTime": "RECOMMENDED, but REQUIRED for sparse sequences",
+   }
+) }}
+```
+
 
 ## Building the specification using mkdocs
 

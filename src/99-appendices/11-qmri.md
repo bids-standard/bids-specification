@@ -241,13 +241,6 @@ For example, without the information of `MagneticFieldStrength`, white-matter T1
    }
 ) }}
 
-| **Field name**        | **Definition**                                                                                                    |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `BasedOn`             | List of files in a file collection to generate the map. Fieldmaps are also listed, if involved in the processing. |
-| `EstimationReference` | Reference to the study/studies on which the implementation is based.                                              |
-| `EstimationAlgorithm` | Type of algorithm used to perform fitting (for example, linear, non-linear, LM and such)                          |
-| `Units`               | Units of the maps, in accordance with the BIDS specification.                                                     |
-
 Example:
 
 ```text
