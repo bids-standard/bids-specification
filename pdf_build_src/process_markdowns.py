@@ -112,10 +112,10 @@ def remove_internal_links(root_path, link_type):
     if link_type == 'cross':
         # regex that matches cross markdown links within a file
         # TODO: add more documentation explaining regex
-        primary_pattern = re.compile(r'\[((?!http).[\w\s.\(\)`*/–]+)\]\(((?!http).+(\.md|\.yml|\.md#[\w\-\w]+))\)')  # noqa: E501
+        primary_pattern = re.compile(r'\[((?!http).[\w\s.\(\)`*/–]+)\]\(((?!http).+(\.md|\.yml|\.md#[\w\-]+))\)')  # noqa: E501
     elif link_type == 'same':
         # regex that matches references sections within the same markdown
-        primary_pattern = re.compile(r'\[([\w\s.\(\)`*/–]+)\]\(([#\w\-._\w]+)\)')
+        primary_pattern = re.compile(r'\[([\w\s.\(\)`*/–]+)\]\(([#\w\-._]+)\)')
 
     for root, dirs, files in sorted(os.walk(root_path)):
         for file in files:
