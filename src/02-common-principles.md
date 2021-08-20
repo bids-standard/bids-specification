@@ -111,7 +111,9 @@ misunderstanding we clarify them here.
 
 1.  **`<label>`** - an alphanumeric value, possibly prefixed with arbitrary
     number of 0s for consistent indentation, for example, it is `rest` in `task-rest`
-    following `task-<label>` specification.
+    following `task-<label>` specification. **Note:** value is case sensitive, but
+    values for the same entity MUST NOT be identical if casing is ignored, for example,
+    it is not allowed to have `sub-S1` and `sub-s1`.
 
 1.  **`suffix`** - an alphanumeric value, located after the `key-value_` pairs (thus after
     the final `_`), right before the **File extension**, for example, it is `eeg` in
