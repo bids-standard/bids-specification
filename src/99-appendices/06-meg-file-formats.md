@@ -44,7 +44,7 @@ Example:
             "meg": {
                 "sub-control01_ses-001_coordsystem.json": "",
                 "sub-control01_ses-001_headshape.pos": "",
-                "sub-control01_ses-001_task-rest_run-01_meg.ds": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.ds": {},
                 "sub-control01_ses-001_task-rest_run-01_meg.json": "",
                 "sub-control01_ses-001_task-rest_run-01_channels.tsv": "",
                 },

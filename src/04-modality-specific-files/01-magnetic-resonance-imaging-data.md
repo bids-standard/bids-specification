@@ -700,10 +700,10 @@ same `MultipartID` (shown at the right-hand side of the file listing):
    {
    "sub-1": {
       "dwi                               # MultipartID": {
-         "sub-1_dir-AP_run-1_dwi.nii.gz": "# dwi_1",
-         "sub-1_dir-AP_run-2_dwi.nii.gz": "# dwi_1",
-         "sub-1_dir-PA_run-1_dwi.nii.gz": "# dwi_1",
-         "sub-1_dir-PA_run-2_dwi.nii.gz": "# dwi_1",
+         "sub-1_dir-AP_run-1_dwi.nii.gz": " # dwi_1",
+         "sub-1_dir-AP_run-2_dwi.nii.gz": " # dwi_1",
+         "sub-1_dir-PA_run-1_dwi.nii.gz": " # dwi_1",
+         "sub-1_dir-PA_run-2_dwi.nii.gz": " # dwi_1",
          }
       }
    }
@@ -716,10 +716,10 @@ is to combine matching phase-encoding directions:
    {
    "sub-1": {
       "dwi                               # MultipartID":{
-            "sub-1_dir-AP_run-1_dwi.nii.gz": "# dwi_1",
-            "sub-1_dir-AP_run-2_dwi.nii.gz": "# dwi_1",
-            "sub-1_dir-PA_run-1_dwi.nii.gz": "# dwi_2",
-            "sub-1_dir-PA_run-2_dwi.nii.gz": "# dwi_2",
+            "sub-1_dir-AP_run-1_dwi.nii.gz": " # dwi_1",
+            "sub-1_dir-AP_run-2_dwi.nii.gz": " # dwi_1",
+            "sub-1_dir-PA_run-1_dwi.nii.gz": " # dwi_2",
+            "sub-1_dir-PA_run-2_dwi.nii.gz": " # dwi_2",
       },
       }
    }
@@ -732,10 +732,10 @@ runs instead:
    {
    "sub-1": {
       "dwi                               # MultipartID":{
-            "sub-1_dir-AP_run-1_dwi.nii.gz": "# dwi_1",
-            "sub-1_dir-AP_run-2_dwi.nii.gz": "# dwi_2",
-            "sub-1_dir-PA_run-1_dwi.nii.gz": "# dwi_1",
-            "sub-1_dir-PA_run-2_dwi.nii.gz": "# dwi_2",
+            "sub-1_dir-AP_run-1_dwi.nii.gz": " # dwi_1",
+            "sub-1_dir-AP_run-2_dwi.nii.gz": " # dwi_2",
+            "sub-1_dir-PA_run-1_dwi.nii.gz": " # dwi_1",
+            "sub-1_dir-PA_run-2_dwi.nii.gz": " # dwi_2",
       },
       }
    }
@@ -748,10 +748,10 @@ The `MultipartID` metadata MAY be used with the
    {
    "sub-1": {
       "dwi                                   # MultipartID":{
-         "sub-1_acq-shell1_run-1_dwi.nii.gz": "# dwi_1",
-         "sub-1_acq-shell1_run-2_dwi.nii.gz": "# dwi_2",
-         "sub-1_acq-shell2_run-1_dwi.nii.gz": "# dwi_1",
-         "sub-1_acq-shell2_run-2_dwi.nii.gz": "# dwi_2",
+         "sub-1_acq-shell1_run-1_dwi.nii.gz": " # dwi_1",
+         "sub-1_acq-shell1_run-2_dwi.nii.gz": " # dwi_2",
+         "sub-1_acq-shell2_run-1_dwi.nii.gz": " # dwi_1",
+         "sub-1_acq-shell2_run-2_dwi.nii.gz": " # dwi_2",
          },
       }
    }

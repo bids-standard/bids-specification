@@ -260,13 +260,13 @@ Alternatively one can organize their data in the following way
             "sourcedata": "",
             "...": "",
             "sourcedata": {
-                "sub-01": "",
-                "sub-02": "",
+                "sub-01": {},
+                "sub-02": {},
                 "...": "",
             },
             "derivatives": {
-                "pipeline_1": "",
-                "pipeline_2": "",
+                "pipeline_1": {},
+                "pipeline_2": {},
                 "...": "",
             },
         }
