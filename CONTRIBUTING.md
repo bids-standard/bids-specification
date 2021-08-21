@@ -228,11 +228,10 @@ to render parts of the BIDS specification from the BIDS schema.
 Macros make it easy to achieve a consistent style throughout the specification,
 and changing a given macro will automatically change all appropriate paragraphs in the specification.
 
-
 For example, all tables on BIDS metadata are generated via macros that make use of data in the
 [yaml files](src/schema/metadata) in the [schema](src/schema/README.md).
 
-The macros are written in Python
+These macros are written in Python
 (see the folders [tools/schemacode](tools/schemacode) and [tools/mkdocs_macros_bidsschema](tools/mkdocs_macros_bidsschema)),
 and are called directly in the Markdown document where you want the output of the macro to be inserted.
 
@@ -267,6 +266,39 @@ by specifying it in the macro call:
 ) }}
 ```
 
+### Writing folder content examples
+
+We also use macros to have a consistent style to render the examples of folder contents.
+
+These code for these macros are in the folder [tools/schemacode](tools/schemacode).
+
+To insert examples in the code you have make calls to the macro like this:
+
+```
+{{ MACROS___make_filetree_example(
+
+   {
+   "sub-01": {
+      "func": {
+         "sub-control01_task-nback_bold.json": "",
+         },
+      }
+   }
+
+) }}
+```
+
+And this will be turned into this.
+
+```Text
+└─ sub-01/
+   └─ func/
+      └─ sub-control01_task-nback_bold.json 
+```
+
+When you have complex files and folder structure, we suggest you use this 
+[jupyter notebook](tools/filetree_example.ipynb) for sandboxing your example 
+before you insert the macro call into the markdown document.
 
 ## Building the specification using mkdocs
 
