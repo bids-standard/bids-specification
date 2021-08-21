@@ -285,13 +285,6 @@ For example:
    }
 ) }}
 
-```Text
-sub-01_part-mag_T1w.nii.gz
-sub-01_part-mag_T1w.json
-sub-01_part-phase_T1w.nii.gz
-sub-01_part-phase_T1w.json
-```
-
 Phase images MAY be in radians or in arbitrary units.
 The sidecar JSON file MUST include the units of the `phase` image.
 The possible options are `rad` or `arbitrary`.
@@ -447,17 +440,6 @@ Multi-echo data MUST be split into one file per echo using the
    }
 ) }}
 
-```Text
-sub-01/
-   func/
-      sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-      sub-01_task-cuedSGT_run-1_echo-1_bold.json
-      sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-      sub-01_task-cuedSGT_run-1_echo-2_bold.json
-      sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
-      sub-01_task-cuedSGT_run-1_echo-3_bold.json
-```
-
 Please note that the `<index>` denotes the number/index (in the form of a
 nonnegative integer) of the echo not the echo time value which needs to be stored in the
 field EchoTime of the separate JSON file.
@@ -488,19 +470,6 @@ For example:
       },
    }
 ) }}
-
-```Text
-sub-01/
-   func/
-      sub-01_task-cuedSGT_part-mag_bold.nii.gz
-      sub-01_task-cuedSGT_part-mag_bold.json
-      sub-01_task-cuedSGT_part-phase_bold.nii.gz
-      sub-01_task-cuedSGT_part-phase_bold.json
-      sub-01_task-cuedSGT_part-mag_sbref.nii.gz
-      sub-01_task-cuedSGT_part-mag_sbref.json
-      sub-01_task-cuedSGT_part-phase_sbref.nii.gz
-      sub-01_task-cuedSGT_part-phase_sbref.json
-```
 
 Some meta information about the acquisition MUST be provided in an additional
 JSON file.
@@ -578,12 +547,6 @@ Example:
       }
    }
 ) }}
-
-```Text
-sub-control01/
-    func/
-        sub-control01_task-nback_bold.json
-```
 
 ```JSON
 {
@@ -746,15 +709,6 @@ same `MultipartID` (shown at the right-hand side of the file listing):
    }
 ) }}
 
-```Text
-sub-<label>/[ses-<label>/]         # MultipartID
-  dwi/
-    sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1
-    sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_1
-    sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_1
-    sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_1
-```
-
 If, conversely, the researcher wanted to store two multipart scans, one possibility
 is to combine matching phase-encoding directions:
 
@@ -770,15 +724,6 @@ is to combine matching phase-encoding directions:
       }
    }
 ) }}
-
-```Text
-sub-<label>/[ses-<label>/]         # MultipartID
-  dwi/
-    sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1
-    sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_1
-    sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_2
-    sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_2
-```
 
 Alternatively, the researcher's intent could be combining opposed phase-encoding
 runs instead:
@@ -796,15 +741,6 @@ runs instead:
    }
 ) }}
 
-```Text
-sub-<label>/[ses-<label>/]         # MultipartID
-  dwi/
-    sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1
-    sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_2
-    sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_1
-    sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_2
-```
-
 The `MultipartID` metadata MAY be used with the
 [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair, for example:
 
@@ -820,16 +756,6 @@ The `MultipartID` metadata MAY be used with the
       }
    }
 ) }}
-
-
-```Text
-sub-<label>/[ses-<label>/]             # MultipartID
-  dwi/
-    sub-1_acq-shell1_run-1_dwi.nii.gz  # dwi_1
-    sub-1_acq-shell1_run-2_dwi.nii.gz  # dwi_2
-    sub-1_acq-shell2_run-1_dwi.nii.gz  # dwi_1
-    sub-1_acq-shell2_run-2_dwi.nii.gz  # dwi_2
-```
 
 ### Other RECOMMENDED metadata
 

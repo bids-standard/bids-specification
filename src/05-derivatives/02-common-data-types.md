@@ -38,11 +38,6 @@ metadata, and `desc-<label>` is used to prevent clashing with the original file 
    }
 ) }}
 
-```Text
-sub-01/func/sub-01_task-rest_desc-preproc_bold.nii.gz
-sub-01/func/sub-01_task-rest_desc-preproc_bold.json
-```
-
 ```JSON
 {
     "RawSources": ["sub-01/func/sub-01_task-rest_bold.nii.gz"]
@@ -120,11 +115,6 @@ that in this case `SpatialReference` key is REQUIRED.
    }
 ) }}
 
-```Text
-sub-01/func/sub-01_task-rest_space-individual_bold.nii.gz
-sub-01/func/sub-01_task-rest_space-individual_bold.json
-```
-
 ```JSON
 {
     "SpatialReference": "sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
@@ -147,11 +137,6 @@ surface references need to be specified by BrainStructure names.
       },
    }
 ) }}
-
-```Text
-sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.dtseries.nii
-sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.json
-```
 
 ```JSON
 {
@@ -214,16 +199,6 @@ Examples of preprocessed data:
    }
 ) }}
 
-```Text
-pipeline1/
-    sub-001/
-        anat/
-            sub-001_space-MNI305_T1w.nii.gz
-            sub-001_space-MNI305_T1w.json
-        func/
-            sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.nii.gz
-            sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.json
-```
 
 {{ MACROS___make_filetree_example(
    {
@@ -239,16 +214,6 @@ pipeline1/
         }
    }
 ) }}
-
-```Text
-pipeline2/
-    sub-001/
-        eeg/
-            sub-001_task-listening_run-1_desc-autoannotation_events.tsv
-            sub-001_task-listening_run-1_desc-autoannotation_events.json
-            sub-001_task-listening_run-1_desc-filtered_eeg.edf
-            sub-001_task-listening_run-1_desc-filtered_eeg.json
-```
 
 All REQUIRED metadata fields coming from a derivative file’s source file(s) MUST
 be propagated to the JSON description of the derivative unless the processing

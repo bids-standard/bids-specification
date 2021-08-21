@@ -451,12 +451,6 @@ Example:
    }
 ) }}
 
-```Text
-sub-control01
-    ses-01
-        sub-control01_ses-01_acq-HEAD_headshape.pos
-        sub-control01_ses-01_acq-ECG_headshape.pos
-```
 
 Note that the `*_headshape` file(s) is shared by all the runs and tasks in a
 session. If the subject needs to be taken out of the scanner and the head-shape
@@ -501,17 +495,5 @@ Example:
       },
    }
 ) }}
-
-```Text
-sub-control01/
-sub-control02/
-sub-emptyroom/
-    ses-20170801/
-        sub-emptyroom_ses-20170801_scans.tsv
-        meg/
-            sub-emptyroom_ses-20170801_task-noise_meg.ds
-            sub-emptyroom_ses-20170801_task-noise_meg.json
-            sub-emptyroom_ses-20170801_task-noise_channels.tsv
-```
 
 <!-- Link Definitions -->

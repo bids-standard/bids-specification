@@ -71,12 +71,6 @@ Example `*_physio.tsv.gz`:
    }
 ) }}
 
-```Text
-sub-control01/
-    func/
-        sub-control01_task-nback_physio.tsv.gz
-```
-
 (after decompression)
 
 ```Text
@@ -96,12 +90,6 @@ Example `*_physio.json`:
       },
    }
 ) }}
-
-```Text
-sub-control01/
-    func/
-        sub-control01_task-nback_physio.json
-```
 
 ```JSON
 {
@@ -155,13 +143,6 @@ For example:
       },
    }
 ) }}
-
-```Text
-sub-01_task-cuedSGT_run-1_physio.tsv.gz
-sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
-```
 
 ### Other RECOMMENDED metadata for physiological data
 

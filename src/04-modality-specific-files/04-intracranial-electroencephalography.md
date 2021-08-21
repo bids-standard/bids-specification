@@ -330,9 +330,6 @@ For example:
    }
 ) }}
 
--   `sub-01_space-Talairach_electrodes.tsv`
--   `sub-01_space-Talairach_coordsystem.json`
-
 The order of the required columns in the `*_electrodes.tsv` file MUST be as
 listed below.
 
@@ -495,11 +492,6 @@ JNeuroMeth 2010).
       },
    }
 ) }}
-
-```Text
-    sub-0001_ses-01_acq-photo1_photo.jpg
-    sub-0001_ses-01_acq-photo2_photo.jpg
-```
 
 ![operative photo of ECoG electrodes](images/ieeg_electrodes1.png "operative photo of ECoG electrodes")
 
