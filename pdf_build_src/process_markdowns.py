@@ -447,14 +447,11 @@ def process_macros(duplicated_src_dir_path):
             matches = re.findall(re.compile("({{.*?}})", re.DOTALL), contents)
             for m in matches:
                 # Remove macro delimiters to get *just* the function call
-                function_string = m.strip("{} ")
-                # Replace prefix with module name
-                function_string = function_string.replace(
-                    "MACROS___",
-                    "macros."
-                )
-                # Run the function to get the output
-                new = eval(function_string)
+                function_name = m.strip("{} ")
+                # Remove prefix
+                function_name = function_name.replace("MACROS___", "")
+                # Find function_name in imported module macros
+                new = getattr(macros, function_name)
                 # Replace the code snippet with the function output
                 contents = contents.replace(m, new)
 
