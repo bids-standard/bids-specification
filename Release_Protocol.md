@@ -107,7 +107,7 @@ For example, if an inconsistency is noticed, a PR might be necessary to resolve 
 Merging an entire BEP would likely lead to greater uncertainty about self-consistency, and should
 probably wait.
 
-If `master` is updated, it should be merged into the `rel/<verison>` branch:
+If `master` is updated, it should be merged into the `rel/<version>` branch:
 
 ```Shell
 $ git fetch upstream

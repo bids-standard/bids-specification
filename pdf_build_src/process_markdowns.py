@@ -444,7 +444,6 @@ def process_macros(duplicated_src_dir_path):
                 contents = fo.read()
 
             # Replace code snippets in the text with their outputs
-            matches = re.findall("({{.*?}})", contents)
             matches = re.findall(re.compile("({{.*?}})", re.DOTALL), contents)
             for m in matches:
                 # Remove macro delimiters to get *just* the function call
