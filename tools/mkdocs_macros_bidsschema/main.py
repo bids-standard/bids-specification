@@ -10,6 +10,7 @@ import sys
 schemacode_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(schemacode_path)
 from schemacode import macros
+from examplecode import example
 
 
 def define_env(env):
@@ -29,7 +30,6 @@ def define_env(env):
     build code.
     """
     env.macro(macros.make_filename_template, "MACROS___make_filename_template")
-    env.macro(macros.make_filetree_example, "MACROS___make_filetree_example")
     env.macro(macros.make_entity_table, "MACROS___make_entity_table")
     env.macro(
         macros.make_entity_definitions,
@@ -37,3 +37,4 @@ def define_env(env):
     )
     env.macro(macros.make_suffix_table, "MACROS___make_suffix_table")
     env.macro(macros.make_metadata_table, "MACROS___make_metadata_table")
+    env.macro(example.make_filetree_example, "MACROS___make_filetree_example")

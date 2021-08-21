@@ -1,5 +1,5 @@
 """Functions used by the macros mkdocs plugin."""
-from . import schema, utils, example
+from . import schema, utils
 
 
 def make_filename_template(**kwargs):
@@ -23,21 +23,6 @@ def make_filename_template(**kwargs):
     schema_obj = schema.load_schema(schemapath)
     codeblock = schema.make_filename_template(schema_obj, **kwargs)
     return codeblock
-
-
-def make_filetree_example(filetree_info, use_pipe = True):
-    """Generate a filetree snippet from example content.
-
-    Parameters
-    ----------
-    filetree_info : dict
-
-    Returns
-    -------
-    example : str
-        A multiline string containing the filetree example.
-    """
-    return example.make_filetree_example(filetree_info, use_pipe)
 
 
 def make_entity_table(**kwargs):

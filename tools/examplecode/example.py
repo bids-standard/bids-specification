@@ -7,8 +7,24 @@ Adapated from by https://realpython.com/directory-tree-generator-python/
 import os
 
 
+def make_filetree_example(filetree_info, use_pipe=True):
+    """Generate a filetree snippet from example content.
+
+    Parameters
+    ----------
+    filetree_info : dict
+
+    Returns
+    -------
+    example : str
+        A multiline string containing the filetree example.
+    """
+    tree = DirectoryTree(filetree_info, use_pipe)
+    return tree.generate()
+
+
 class DirectoryTree:
-    def __init__(self, filetree, use_pipe = True):
+    def __init__(self, filetree, use_pipe=True):
         self._generator = _TreeGenerator(filetree, use_pipe)
 
     def generate(self):
@@ -68,8 +84,3 @@ class _TreeGenerator:
             self._add_dictionnary(
                 directory, entry, index, entries_count, prefix, connector
             )
-
-
-def make_filetree_example(filetree_info, use_pipe):
-    tree = DirectoryTree(filetree_info, use_pipe)
-    return tree.generate()
