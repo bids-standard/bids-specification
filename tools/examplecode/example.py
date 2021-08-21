@@ -2,6 +2,9 @@
 
 Adapated from by https://realpython.com/directory-tree-generator-python/
 
+See the companion jupyter notebook ../filetree_example.ipynb to see demos
+on how to use this code.
+
 """
 
 import os
@@ -13,10 +16,13 @@ def make_filetree_example(filetree_info, use_pipe=True):
     Parameters
     ----------
     filetree_info : dict
+        Dictionnary to represent the folder content.
+    use_pipe: boolean
+        Set to ``false`` to avoid using pdf unfriendly pipes: "│ └─ ├─"
 
     Returns
     -------
-    example : str
+    tree : str
         A multiline string containing the filetree example.
     """
     tree = DirectoryTree(filetree_info, use_pipe)
@@ -56,15 +62,33 @@ class _TreeGenerator:
         self._tree_body(self._filetree)
         return self._tree
 
+    def _tree_body(self, directory, prefix=""):
+        """
+        Loops through the dictionnary content representing a folder
+        and append the content to the tree.
+        This is done recursively any time a new dictionnary is encountered.
+        """
+
+        entries_count = len(directory)
+
+        for index, entry in enumerate(directory):
+
+            # change connector if this is the last item in this folder
+            connector = self.ELBOW if index == entries_count - 1 else self.TEE
+            self._add_dictionnary(
+                directory, entry, index, entries_count, prefix, connector
+            )
+
     def _add_dictionnary(
         self, directory, entry, index, entries_count, prefix, connector
     ):
-
+        # We are dealing with a file
         if isinstance(directory[entry], str):
             self._add_file(entry, prefix, connector, directory[entry])
             return
 
-        else:  # We are dealing with a directory
+        # We are dealing with a directory
+        else:
             self._tree.append(f"{prefix}{connector} {entry}{os.sep}")
             prefix += (
                 self.PIPE_PREFIX if index != entries_count - 1 else self.SPACE_PREFIX
@@ -73,14 +97,3 @@ class _TreeGenerator:
 
     def _add_file(self, entry, prefix, connector, comment=""):
         self._tree.append(f"{prefix}{connector} {entry} {comment}")
-
-    def _tree_body(self, directory, prefix=""):
-
-        entries_count = len(directory)
-
-        for index, entry in enumerate(directory):
-
-            connector = self.ELBOW if index == entries_count - 1 else self.TEE
-            self._add_dictionnary(
-                directory, entry, index, entries_count, prefix, connector
-            )
