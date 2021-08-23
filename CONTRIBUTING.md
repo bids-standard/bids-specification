@@ -232,7 +232,7 @@ For example, all tables on BIDS metadata are generated via macros that make use 
 [yaml files](src/schema/metadata) in the [schema](src/schema/README.md).
 
 These macros are written in Python
-(see the folders [tools/schemacode](tools/schemacode) and [tools/mkdocs_macros_bidsschema](tools/mkdocs_macros_bidsschema)),
+(see the folders [tools/schemacode](tools/schemacode) and [tools/mkdocs_macros_bids](tools/mkdocs_macros_bids)),
 and are called directly in the Markdown document where you want the output of the macro to be inserted.
 
 For example:

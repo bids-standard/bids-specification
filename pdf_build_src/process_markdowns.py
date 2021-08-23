@@ -15,8 +15,12 @@ from datetime import datetime
 
 import numpy as np
 
+# pyright: reportMissingImports=false 
+
+# if using pylance, ignore warning:
+#   macros will be accessed through eval of the markdown content
 sys.path.append("../tools/")
-from schemacode import macros
+from mkdocs_macros_bids import macros 
 
 
 def run_shell_cmd(command):

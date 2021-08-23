@@ -4,13 +4,7 @@ MarkDown format for the specification text.
 Functions decorated in "define_env()" are callable throughout the
 specification and are run/rendered with the mkdocs plugin "macros".
 """
-import os
-import sys
-
-schemacode_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append(schemacode_path)
-from schemacode import macros
-from examplecode import example
+from . import macros
 
 
 def define_env(env):
@@ -37,4 +31,4 @@ def define_env(env):
     )
     env.macro(macros.make_suffix_table, "MACROS___make_suffix_table")
     env.macro(macros.make_metadata_table, "MACROS___make_metadata_table")
-    env.macro(example.make_filetree_example, "MACROS___make_filetree_example")
+    env.macro(macros.make_filetree_example, "MACROS___make_filetree_example")

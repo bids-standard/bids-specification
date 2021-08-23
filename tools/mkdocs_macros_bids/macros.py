@@ -1,5 +1,10 @@
 """Functions used by the macros mkdocs plugin."""
-from . import schema, utils
+import os
+
+code_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
+from schemacode import schema, utils
+from examplecode import example
 
 
 def make_filename_template(**kwargs):
@@ -106,3 +111,22 @@ def make_metadata_table(field_info):
     schema_obj = schema.load_schema(schemapath)
     table = schema.make_metadata_table(schema_obj, field_info)
     return table
+
+
+def make_filetree_example(filetree_info, use_pipe=True):
+    """Generate a filetree snippet from example content.
+
+    Parameters
+    ----------
+    filetree_info : dict
+        Dictionnary to represent the folder content.
+    use_pipe: boolean
+        Set to ``false`` to avoid using pdf unfriendly pipes: "│ └─ ├─"
+
+    Returns
+    -------
+    tree : str
+        A multiline string containing the filetree example.
+    """
+    tree = example.DirectoryTree(filetree_info, use_pipe)
+    return tree.generate()

@@ -9,26 +9,6 @@ on how to use this code.
 
 import os
 
-
-def make_filetree_example(filetree_info, use_pipe=True):
-    """Generate a filetree snippet from example content.
-
-    Parameters
-    ----------
-    filetree_info : dict
-        Dictionnary to represent the folder content.
-    use_pipe: boolean
-        Set to ``false`` to avoid using pdf unfriendly pipes: "│ └─ ├─"
-
-    Returns
-    -------
-    tree : str
-        A multiline string containing the filetree example.
-    """
-    tree = DirectoryTree(filetree_info, use_pipe)
-    return tree.generate()
-
-
 class DirectoryTree:
     def __init__(self, filetree, use_pipe=True):
         self._generator = _TreeGenerator(filetree, use_pipe)
