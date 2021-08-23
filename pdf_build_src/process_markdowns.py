@@ -15,10 +15,6 @@ from datetime import datetime
 
 import numpy as np
 
-# pyright: reportMissingImports=false 
-
-# if using pylance, ignore warning:
-#   macros will be accessed through eval of the markdown content
 sys.path.append("../tools/")
 from mkdocs_macros_bids import macros 
 
