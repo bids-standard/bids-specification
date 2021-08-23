@@ -16,7 +16,7 @@ from datetime import datetime
 import numpy as np
 
 sys.path.append("../tools/")
-from schemacode import macros
+from schemacode import macros  # noqa   (used in "eval" call later on)
 
 
 def run_shell_cmd(command):
