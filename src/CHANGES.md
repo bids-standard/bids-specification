@@ -2,6 +2,9 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] dos2unix [#859](https://github.com/bids-standard/bids-specification/pull/859) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
+-   \[INFRA] LGTM warning: Variable defined multiple times [#851](https://github.com/bids-standard/bids-specification/pull/851) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
+-   \[FIX] Typos found by codespell [#848](https://github.com/bids-standard/bids-specification/pull/848) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA] Add basic documentation on how to use metadata table macros [#840](https://github.com/bids-standard/bids-specification/pull/840) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] make "Institutional department name" available for all datatypes [#839](https://github.com/bids-standard/bids-specification/pull/839) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] Add angio suffix to the non-parametric aMRI suffix table [#835](https://github.com/bids-standard/bids-specification/pull/835) ([tsalo](https://github.com/tsalo))
@@ -15,7 +18,7 @@
 -   \[MISC] make table headers bold [#815](https://github.com/bids-standard/bids-specification/pull/815) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] What is a composite instance? Change to measurement for non MRI modalities? [#813](https://github.com/bids-standard/bids-specification/pull/813) ([rob-luke](https://github.com/rob-luke))
 -   \[ENH] BEP031 - New entity: sample and samples.tsv file [#812](https://github.com/bids-standard/bids-specification/pull/812) ([mariehbourget](https://github.com/mariehbourget))
--   Add device and acquisition metadata for physio files [#806](https://github.com/bids-standard/bids-specification/pull/806) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[ENH] Add device and acquisition metadata for physio files [#806](https://github.com/bids-standard/bids-specification/pull/806) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[MISC] Move section on sessions.tsv file: longitudinal files -> modality agnostic files [#805](https://github.com/bids-standard/bids-specification/pull/805) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] Make explicit that "task" metadata applies to "beh" modality [#804](https://github.com/bids-standard/bids-specification/pull/804) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[MISC] Make MRI-centric language more general in Events [#801](https://github.com/bids-standard/bids-specification/pull/801) ([sappelhoff](https://github.com/sappelhoff))
