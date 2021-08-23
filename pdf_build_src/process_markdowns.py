@@ -410,7 +410,7 @@ def edit_titlepage():
                 "\\end{titlepage}")
 
     with open('cover.tex', 'w') as file:
-        data = file.writelines(data)
+        file.writelines(data)
 
 
 def process_macros(duplicated_src_dir_path):
