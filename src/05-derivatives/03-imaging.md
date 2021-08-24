@@ -438,7 +438,6 @@ Example:
    }
 ) }}
 
-
 These TSV lookup tables contain the following columns:
 
 | **Column name** | **Requirement level** | **Description**                                               |

@@ -452,10 +452,11 @@ from the specification in the next major release.
 For backwards compatibility, `_phase` is considered equivalent to `_part-phase_bold`.
 When the `_phase` suffix is not used, each file shares the same
 name with the exception of the `part-<mag|phase>` or `part-<real|imag>` key/value.
+
 For example:
 
 {{ MACROS___make_filetree_example(
-   { 
+   {
    "sub-01": {
       "func": {
          "sub-01_task-cuedSGT_part-mag_bold.nii.gz": "",

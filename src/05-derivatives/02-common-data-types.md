@@ -199,7 +199,6 @@ Examples of preprocessed data:
    }
 ) }}
 
-
 {{ MACROS___make_filetree_example(
    {
     "pipeline2": {

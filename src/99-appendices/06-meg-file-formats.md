@@ -273,7 +273,6 @@ Where:
    }
 ) }}
 
-
 More about the 4D neuroimaging/BTi data organization at:
 [https://www.fieldtriptoolbox.org/getting_started/bti](https://www.fieldtriptoolbox.org/getting_started/bti)
 

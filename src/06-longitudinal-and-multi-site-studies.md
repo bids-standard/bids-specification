@@ -1,14 +1,13 @@
 # Longitudinal and multi-site studies
 
-
 Multiple sessions (visits) are encoded by adding an extra layer of directories
 and [file names](02-common-principles.md#file-name-structure)
 in the form of a session (for example `ses-<label>`) and
 with a [`*_sessions.tsv` file](03-modality-agnostic-files.md#sessions-file).
- 
+
 {{ MACROS___make_filetree_example(
     {
-    "sub-control01": { 
+    "sub-control01": {
         "ses-predrug": {
             "anat": {
                 "sub-control01_ses-predrug_T1w.nii.gz": "",
@@ -45,7 +44,7 @@ with a [`*_sessions.tsv` file](03-modality-agnostic-files.md#sessions-file).
                 "sub-control01_ses-postdrug_task-nback_cont-physio.json": "",
                 "sub-control01_ses-postdrug_task-nback_sbref.nii.gz": "",
                 },
-            "fmap": { 
+            "fmap": {
                 "sub-control01_ses-postdrug_phasediff.nii.gz": "",
                 "sub-control01_ses-postdrug_phasediff.json": "",
                 "sub-control01_ses-postdrug_magnitude1.nii.gz": "",

@@ -451,7 +451,6 @@ Example:
    }
 ) }}
 
-
 Note that the `*_headshape` file(s) is shared by all the runs and tasks in a
 session. If the subject needs to be taken out of the scanner and the head-shape
 has to be updated, then for MEG it could be considered to be a new session.

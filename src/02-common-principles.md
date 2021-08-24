@@ -409,7 +409,7 @@ specific to a participant is to be declared only at top level of dataset for exa
 Example 1: Two JSON files that are erroneously at the same level
 
 {{ MACROS___make_filetree_example(
-    {  
+    {
     "sub-01": {
         "ses-test":{
             "sub-01_ses-test_task-overtverbgeneration_bold.json": "",
@@ -436,7 +436,7 @@ should have been under `sub-01/ses-test/func/`.
 Example 2: Multiple `run`s and `rec`s with same acquisition (`acq`) parameters
 
 {{ MACROS___make_filetree_example(
-    {  
+    {
     "sub-01": {
         "anat": {},
         "func": {
