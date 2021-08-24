@@ -2,7 +2,7 @@
 
 Adapated from by https://realpython.com/directory-tree-generator-python/
 
-See the companion jupyter notebook ../filetree_example.ipynb to see demos
+See the companion Jupyter notebook ../filetree_example.ipynb to see demos
 on how to use this code.
 
 """

@@ -297,7 +297,7 @@ And this will be turned into this.
 ```
 
 When you have complex files and folder structure, we suggest you use this 
-[jupyter notebook](tools/filetree_example.ipynb) for sandboxing your example 
+[Jupyter notebook](tools/filetree_example.ipynb) for sandboxing your example 
 before you insert the macro call into the markdown document.
 
 ## Building the specification using mkdocs

@@ -1,5 +1,5 @@
-from .main import define_env
-from .macros import (
+from main import define_env
+from macros import (
     make_filename_template,
     make_entity_table,
     make_entity_definitions,
