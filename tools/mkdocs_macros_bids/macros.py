@@ -1,5 +1,6 @@
 """Functions used by the macros mkdocs plugin."""
-import os, sys
+import os
+import sys
 
 code_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(code_path)
@@ -121,8 +122,8 @@ def make_filetree_example(filetree_info, use_pipe=True):
     ----------
     filetree_info : dict
         Dictionnary to represent the folder content.
-    use_pipe: boolean
-        Set to ``false`` to avoid using pdf unfriendly pipes: "│ └─ ├─"
+    use_pipe : bool
+        Set to ``False`` to avoid using pdf unfriendly pipes: "│ └─ ├─"
 
     Returns
     -------
