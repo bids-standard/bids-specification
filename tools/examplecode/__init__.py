@@ -1,6 +1,6 @@
 """A Python package to render BIDS example with tree like output."""
-from . import example
+from examplecode.example import DirectoryTree
 
 __all__ = [
-    "example",
+    "DirectoryTree",
 ]

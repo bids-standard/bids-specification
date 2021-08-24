@@ -1,7 +1,8 @@
 """Functions used by the macros mkdocs plugin."""
-import os
+import os, sys
 
 code_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(code_path)
 
 from schemacode import schema, utils
 from examplecode import example
