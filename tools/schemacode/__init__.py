@@ -1,5 +1,5 @@
 """A Python package for working with the BIDS schema."""
-import schema, utils
+from . import schema, utils
 
 __all__ = [
     "schema",
