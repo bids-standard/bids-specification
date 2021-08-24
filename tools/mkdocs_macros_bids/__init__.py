@@ -1,4 +1,4 @@
-from main import define_env
+from .main import define_env
 from macros import (
     make_filename_template,
     make_entity_table,
