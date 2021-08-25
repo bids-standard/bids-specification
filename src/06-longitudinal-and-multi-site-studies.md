@@ -17,8 +17,8 @@ sub-control01/
             sub-control01_ses-predrug_task-nback_bold.nii.gz
             sub-control01_ses-predrug_task-nback_bold.json
             sub-control01_ses-predrug_task-nback_events.tsv
-            sub-control01_ses-predrug_task-nback_cont-physio.tsv.gz
-            sub-control01_ses-predrug_task-nback_cont-physio.json
+            sub-control01_ses-predrug_task-nback_physio.tsv.gz
+            sub-control01_ses-predrug_task-nback_physio.json
             sub-control01_ses-predrug_task-nback_sbref.nii.gz
         dwi/
             sub-control01_ses-predrug_dwi.nii.gz
@@ -34,8 +34,8 @@ sub-control01/
             sub-control01_ses-postdrug_task-nback_bold.nii.gz
             sub-control01_ses-postdrug_task-nback_bold.json
             sub-control01_ses-postdrug_task-nback_events.tsv
-            sub-control01_ses-postdrug_task-nback_cont-physio.tsv.gz
-            sub-control01_ses-postdrug_task-nback_cont-physio.json
+            sub-control01_ses-postdrug_task-nback_physio.tsv.gz
+            sub-control01_ses-postdrug_task-nback_physio.json
             sub-control01_ses-postdrug_task-nback_sbref.nii.gz
         fmap/
             sub-control01_ses-postdrug_phasediff.nii.gz
