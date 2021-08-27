@@ -16,7 +16,7 @@ from datetime import datetime
 import numpy as np
 
 sys.path.append("../tools/")
-from schemacode import macros
+from schemacode import macros  # noqa   (used in "eval" call later on)
 
 
 def run_shell_cmd(command):
@@ -410,7 +410,7 @@ def edit_titlepage():
                 "\\end{titlepage}")
 
     with open('cover.tex', 'w') as file:
-        data = file.writelines(data)
+        file.writelines(data)
 
 
 def process_macros(duplicated_src_dir_path):
@@ -444,7 +444,6 @@ def process_macros(duplicated_src_dir_path):
                 contents = fo.read()
 
             # Replace code snippets in the text with their outputs
-            matches = re.findall("({{.*?}})", contents)
             matches = re.findall(re.compile("({{.*?}})", re.DOTALL), contents)
             for m in matches:
                 # Remove macro delimiters to get *just* the function call

@@ -126,7 +126,7 @@ def read_and_check_files(files):
 
 
 def get_all_files(directory=os.path.join(ABSOLUTE_HERE, "src")):
-    """Get a list of files to be checked. Ignores image, javacript, css files.
+    """Get a list of files to be checked. Ignores images, javascript, css files.
 
 	Keyword Arguments:
 		directory {string} -- The directory containing the files to check
