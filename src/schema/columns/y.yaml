@@ -3,4 +3,3 @@ name: y
 description: |
   Recorded position along the y-axis.
 type: number
-
