@@ -1,5 +1,6 @@
 ---
 name: y
-description:
-type:
-unit:
+description: |
+  Recorded position along the y-axis.
+type: number
+

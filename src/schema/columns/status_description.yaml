@@ -1,5 +1,6 @@
 ---
 name: status_description
-description:
-type:
-unit:
+description: |
+  Freeform text description of noise or artifact affecting data quality on the channel.
+  It is meant to explain why the channel was declared bad in `[status]`.
+type: string

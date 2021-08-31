@@ -1,5 +1,12 @@
 ---
 name: software_filters
-description:
-type:
-unit:
+description: |
+  List of temporal and/or spatial software filters applied
+  (for example, "SSS", `"SpatialCompensation"`).
+  Note that parameters should be defined in the general MEG sidecar .json file.
+  Indicate `n/a` in the absence of software filters applied.
+anyOf:
+  - type: string
+  - type: string
+    enum:
+      - n/a

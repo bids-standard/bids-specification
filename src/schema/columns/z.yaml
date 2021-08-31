@@ -1,5 +1,5 @@
 ---
 name: z
-description:
-type:
-unit:
+description: |
+  Recorded position along the z-axis.
+type: number

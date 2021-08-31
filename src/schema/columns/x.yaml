@@ -1,5 +1,5 @@
 ---
 name: x
-description:
-type:
-unit:
+description: |
+  Recorded position along the x-axis.
+type: number

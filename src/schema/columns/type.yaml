@@ -1,5 +1,35 @@
 ---
 name: type
-description:
-type:
-unit:
+description: |
+  Type of channel; MUST use the channel types listed below.
+  Note that the type MUST be in upper-case.
+type: string
+enum:
+  - MEGMAG
+  - MEGGRADAXIAL
+  - MEGGRADPLANAR
+  - MEGREFMAG
+  - MEGREFGRADAXIAL
+  - MEGREFGRADPLANAR
+  - MEGOTHER
+  - EEG
+  - ECOG
+  - SEEG
+  - DBS
+  - VEOG
+  - HEOG
+  - EOG
+  - ECG
+  - EMG
+  - TRIG
+  - AUDIO
+  - PD
+  - EYEGAZE
+  - PUPIL
+  - MISC
+  - SYSCLOCK
+  - ADC
+  - DAC
+  - HLU
+  - FITERR
+  - OTHER

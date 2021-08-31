@@ -1,5 +1,7 @@
 ---
 name: time
-description:
-type:
-unit:
+description: |
+  Time in relation to `TimeZero` defined by the `*_pet.json`.
+  For example, 5.
+type: number
+unit: s

@@ -1,5 +1,7 @@
 ---
 name: units
-description:
-type:
-unit:
+description: |
+  Physical unit of the value represented in this channel,
+  for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter
+  (see [Units](/02-common-principles.html#units)).
+type: string

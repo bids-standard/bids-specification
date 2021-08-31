@@ -1,5 +1,6 @@
 ---
 name: size
-description:
-type:
-unit:
+description: |
+  Surface area of the electrode, units MUST be in `mm^2`.
+type: number
+unit: mm2

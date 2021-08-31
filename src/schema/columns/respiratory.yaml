@@ -1,5 +1,5 @@
 ---
 name: respiratory
-description:
-type:
-unit:
+description: |
+  continuous breathing measurement
+type: number

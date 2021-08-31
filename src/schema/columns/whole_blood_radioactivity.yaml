@@ -1,5 +1,6 @@
 ---
 name: whole_blood_radioactivity
-description:
-type:
-unit:
+description: |
+  Radioactivity in whole blood samples,
+  in unit of radioactivity measurements in whole blood samples (for example, `"kBq/mL"`).
+type: number
