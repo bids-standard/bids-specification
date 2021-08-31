@@ -364,6 +364,17 @@ The `time` column MUST always be the first column.
 | `hplc_recovery_fractions`    | REQUIRED if `MetaboliteRecoveryCorrectionApplied` is `true` | HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC) | Unit of recovery fractions (for example, `"unitless"`)                              |
 | `whole_blood_radioactivity`  | REQUIRED if `WholeBloodAvail` is `true`                     | Radioactivity in whole blood samples                                              | Unit of radioactivity measurements in whole blood samples (for example, `"kBq/mL"`) |
 
+{{ MACROS___make_columns_table(
+   {
+      "time": "REQUIRED",
+      "plasma_radioactivity": "REQUIRED if `PlasmaAvail` is `true`",
+      "metabolite_parent_fraction": "REQUIRED if `MetaboliteAvail` is `true`",
+      "metabolite_polar_fraction": "RECOMMENDED if `MetaboliteAvail` is `true`",
+      "hplc_recovery_fractions": "REQUIRED if `MetaboliteRecoveryCorrectionApplied` is `true`",
+      "whole_blood_radioactivity": "REQUIRED if `WholeBloodAvail` is `true`",
+   }
+) }}
+
 As with all [tabular files](../02-common-principles.md#tabular-files),
 additional columns MAY be defined in `_blood.json`.
 For clarity, it is RECOMMENDED to include the above column definitions in `_blood.json`,

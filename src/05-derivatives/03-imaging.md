@@ -448,6 +448,16 @@ These TSV lookup tables contain the following columns:
 | color           | OPTIONAL              | Hexadecimal. Label color for visualization                    |
 | mapping         | OPTIONAL              | Corresponding integer label in the standard BIDS label lookup |
 
+{{ MACROS___make_columns_table(
+   {
+      "index": "REQUIRED",
+      "name_segmentations": "REQUIRED",
+      "abbreviation": "OPTIONAL",
+      "color": "OPTIONAL",
+      "mapping": "OPTIONAL",
+   }
+) }}
+
 An example, custom `dseg.tsv` that defines three labels:
 
 ```Text

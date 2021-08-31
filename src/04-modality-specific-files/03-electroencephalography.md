@@ -222,6 +222,14 @@ MUST be present **in this specific order**:
 | type            | REQUIRED              | Type of channel; MUST use the channel types listed below. Note that the type MUST be in upper-case.                                                                           |
 | units           | REQUIRED              | Physical unit of the value represented in this channel, for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [Units](../02-common-principles.md#units)). |
 
+{{ MACROS___make_columns_table(
+   {
+      "name_channels": "REQUIRED",
+      "type": "REQUIRED",
+      "units": "REQUIRED",
+   }
+) }}
+
 SHOULD be present:
 
 | **Column name**    | **Requirement level** | **Description**                                                                                                                                                                                                                                                 |
@@ -234,6 +242,19 @@ SHOULD be present:
 | notch              | OPTIONAL              | Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use `n/a`.                                                                                                                                                     |
 | status             | OPTIONAL              | Data quality observed on the channel (`good`, `bad`). A channel is considered `bad` if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in `status_description`.                                                |
 | status_description | OPTIONAL              | Free-form text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `status`.                                                                                                     |
+
+{{ MACROS___make_columns_table(
+   {
+      "description": "OPTIONAL",
+      "sampling_frequency": "OPTIONAL",
+      "reference": "OPTIONAL",
+      "low_cutoff": "OPTIONAL",
+      "high_cutoff": "OPTIONAL",
+      "notch": "OPTIONAL",
+      "status": "OPTIONAL",
+      "status_description": "OPTIONAL",
+   }
+) }}
 
 Restricted keyword list for field `type` in alphabetic order (shared with the
 MEG and iEEG modality; however, only the types that are common in EEG data are listed here).
@@ -295,6 +316,15 @@ MUST be present **in this specific order**:
 | y               | REQUIRED              | Recorded position along the y-axis. |
 | z               | REQUIRED              | Recorded position along the z-axis. |
 
+{{ MACROS___make_columns_table(
+   {
+      "name_electrodes": "REQUIRED",
+      "x": "REQUIRED",
+      "y": "REQUIRED",
+      "z": "REQUIRED",
+   }
+) }}
+
 SHOULD be present:
 
 | **Column name** | **Requirement level** | **Description**                                                        |
@@ -302,6 +332,14 @@ SHOULD be present:
 | type            | RECOMMENDED           | Type of the electrode (for example, cup, ring, clip-on, wire, needle). |
 | material        | RECOMMENDED           | Material of the electrode  (for example, Tin, Ag/AgCl, Gold).          |
 | impedance       | RECOMMENDED           | Impedance of the electrode, units MUST be in `kOhm`.                   |
+
+{{ MACROS___make_columns_table(
+   {
+      "type": "RECOMMENDED",
+      "material": "RECOMMENDED",
+      "impedance": "RECOMMENDED",
+   }
+) }}
 
 ### Example `electrodes.tsv`
 

@@ -234,6 +234,16 @@ MUST be present **in this specific order**:
 | low_cutoff      | REQUIRED              | Frequencies used for the low pass filter applied to the channel in Hz. If no low pass filter was applied, use `n/a`. Note that anti-alias is a low pass filter, specify its frequencies here if applicable. |
 | high_cutoff     | REQUIRED              | Frequencies used for the high pass filter applied to the channel in Hz. If no high pass filter applied, use `n/a`.                                                                                          |
 
+{{ MACROS___make_columns_table(
+   {
+      "name_channels": "REQUIRED",
+      "type": "REQUIRED",
+      "units": "REQUIRED",
+      "low_cutoff": "REQUIRED",
+      "high_cutoff": "REQUIRED",
+   }
+) }}
+
 SHOULD be present:
 
 | **Column name**    | **Requirement level** | **Description**                                                                                                                                                                                                                                                            |
@@ -245,6 +255,18 @@ SHOULD be present:
 | notch              | OPTIONAL              | Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use n/a.                                                                                                                                                                  |
 | status             | OPTIONAL              | Data quality observed on the channel (good/bad). A channel is considered bad if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in `[status_description]`.                                                                |
 | status_description | OPTIONAL              | Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `[status]`.                                                                                                               |
+
+{{ MACROS___make_columns_table(
+   {
+      "reference": "OPTIONAL",
+      "group": "OPTIONAL",
+      "sampling_frequency": "OPTIONAL",
+      "description": "OPTIONAL",
+      "notch": "OPTIONAL",
+      "status": "OPTIONAL",
+      "status_description": "OPTIONAL",
+   }
+) }}
 
 **Example** `sub-01_channels.tsv`:
 
@@ -343,6 +365,16 @@ MUST be present **in this specific order**:
 | z               | REQUIRED              | Z position. If electrodes are in 2D space this should be a column of `n/a` values.                                               |
 | size            | REQUIRED              | Surface area of the electrode, units MUST be in `mm^2`.                                                                          |
 
+{{ MACROS___make_columns_table(
+   {
+      "name_electrodes": "REQUIRED",
+      "x": "REQUIRED",
+      "y": "REQUIRED",
+      "z": "REQUIRED",
+      "size": "REQUIRED",
+   }
+) }}
+
 SHOULD be present:
 
 | **Column name** | **Requirement level** | **Description**                                                                                                                  |
@@ -352,6 +384,15 @@ SHOULD be present:
 | group           | RECOMMENDED           | The group that the electrode is a part of. Note that any group specified here should match a group specified in `_channels.tsv`. |
 | hemisphere      | RECOMMENDED           | The hemisphere in which the electrode is placed, one of `['L' or 'R']` (use capital).                                            |
 
+{{ MACROS___make_columns_table(
+   {
+      "material": "RECOMMENDED",
+      "manufacturer": "RECOMMENDED",
+      "group": "RECOMMENDED",
+      "hemisphere": "RECOMMENDED",
+   }
+) }}
+
 MAY be present:
 
 | **Column name** | **Requirement level** | **Description**                                                                                                                                        |
@@ -359,6 +400,14 @@ MAY be present:
 | type            | OPTIONAL              | Optional type of the electrode, for example, cup, ring, clip-on, wire, needle, ...                                                                     |
 | impedance       | OPTIONAL              | Impedance of the electrode, units MUST be in `kOhm`.                                                                                                   |
 | dimension       | OPTIONAL              | Size of the group (grid/strip/probe) that this electrode belongs to. Must be of form `[AxB]` with the smallest dimension first (for example, `[1x8]`). |
+
+{{ MACROS___make_columns_table(
+   {
+      "type": "OPTIONAL",
+      "impedance": "OPTIONAL",
+      "dimension": "OPTIONAL",
+   }
+) }}
 
 Example:
 

@@ -227,6 +227,14 @@ MUST be present **in this specific order**:
 | type            | REQUIRED              | Type of channel; MUST use the channel types listed below. Note that the type MUST be in upper-case.                                                                           |
 | units           | REQUIRED              | Physical unit of the value represented in this channel, for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [Units](../02-common-principles.md#units)). |
 
+{{ MACROS___make_columns_table(
+   {
+      "name_channels": "REQUIRED",
+      "type": "REQUIRED",
+      "units": "REQUIRED",
+   }
+) }}
+
 SHOULD be present:
 
 | **Column name**    | **Requirement level** | **Description**                                                                                                                                                                                                                                                     |
@@ -239,6 +247,19 @@ SHOULD be present:
 | software_filters   | OPTIONAL              | List of temporal and/or spatial software filters applied (for example, "SSS", `"SpatialCompensation"`). Note that parameters should be defined in the general MEG sidecar .json file. Indicate `n/a` in the absence of software filters applied.                    |
 | status             | OPTIONAL              | Data quality observed on the channel `(good/bad)`. A channel is considered `bad` if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in `[status_description]`.                                                     |
 | status_description | OPTIONAL              | Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `[status]`.                                                                                                        |
+
+{{ MACROS___make_columns_table(
+   {
+      "description": "OPTIONAL",
+      "sampling_frequency": "OPTIONAL",
+      "low_cutoff": "OPTIONAL",
+      "high_cutoff": "OPTIONAL",
+      "notch": "OPTIONAL",
+      "software_filters": "OPTIONAL",
+      "status": "OPTIONAL",
+      "status_description": "OPTIONAL",
+   }
+) }}
 
 Example:
 

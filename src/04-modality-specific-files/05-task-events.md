@@ -44,6 +44,18 @@ and OPTIONAL columns:
 | value           | OPTIONAL              | [string][] or [number][] | Marker value associated with the event (for example, the value of a TTL trigger that was recorded at the onset of the event).                                                                                                                                                 |
 | HED             | OPTIONAL              | [string][]               | Hierarchical Event Descriptor (HED) tag. See [Appendix III](../99-appendices/03-hed.md) for details.                                                                                                                                                                          |
 
+{{ MACROS___make_columns_table(
+   {
+      "onset": "REQUIRED",
+      "duration": "REQUIRED",
+      "sample": "OPTIONAL",
+      "trial_type": "OPTIONAL",
+      "response_time": "OPTIONAL",
+      "value": "OPTIONAL",
+      "HED": "OPTIONAL",
+   }
+) }}
+
 <sup>5</sup> Note for MRI data:
 If any acquired scans have been discarded before forming the imaging data file,
 ensure that an `onset` of 0 corresponds to the time the first image was stored.
@@ -140,6 +152,12 @@ but they should be stored in the `/stimuli` folder.
 | **Column name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                            |
 | --------------- | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | stim_file       | OPTIONAL              | [string][]    | Represents the location of the stimulus file (such as an image, video, or audio file) presented at the given onset time. The values under the `stim_file` column correspond to a path relative to the folder `/stimuli`. For example `images/cat03.jpg` will be translated to `/stimuli/images/cat03.jpg`. |
+
+{{ MACROS___make_columns_table(
+   {
+      "stim_file": "OPTIONAL",
+   }
+) }}
 
 ### Stimuli databases
 
