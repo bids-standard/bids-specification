@@ -1,0 +1,6 @@
+---
+name: MiscChannelCount
+description: |
+  Number of miscellaneous analog channels for auxiliary signals.
+type: integer
+minimum: 0

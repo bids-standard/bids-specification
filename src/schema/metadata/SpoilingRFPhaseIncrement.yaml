@@ -1,0 +1,8 @@
+---
+name: SpoilingRFPhaseIncrement
+description: |
+  The amount of incrementation described in degrees,
+  which is applied to the phase of the excitation pulse at each TR period for
+  achieving RF spoiling.
+type: number
+unit: degrees

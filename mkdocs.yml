@@ -1,4 +1,5 @@
-site_name: Brain Imaging Data Structure v1.6.0-dev
+site_name: Brain Imaging Data Structure v1.6.1-dev
+site_url: https://bids-specification.readthedocs.io/en/stable/
 theme:
     name: material
     custom_dir: theme_customizations/
@@ -18,7 +19,7 @@ plugins:
            +extra_css:
              - css/watermark.css
     - macros:
-        module_name: tools/mkdocs_macros_bidsschema/main
+        module_name: tools/mkdocs_macros_bids/main
 docs_dir: 'src'
 use_directory_urls: false
 nav:

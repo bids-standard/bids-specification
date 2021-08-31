@@ -32,20 +32,31 @@ misunderstanding we clarify them here.
     context, a session may also indicate a group of related scans,
     taken in one or more visits.
 
+1.  **Sample** - a sample pertaining to a subject such as tissue, primary cell
+    or cell-free sample.
+    The `sample-<label>` key/value pair is used to distinguish between different
+    samples from the same subject.
+    The label MUST be unique per subject and is RECOMMENDED to be unique
+    throughout the dataset.
+
 1.  **Data acquisition** - a continuous uninterrupted block of time during which
     a brain scanning instrument was acquiring data according to particular
     scanning sequence/protocol.
 
 1.  **Data type** - a functional group of different types of data.
-    BIDS defines eight data types:
-    `func` (task based and resting state functional MRI),
-    `dwi` (diffusion weighted imaging),
-    `fmap` (field inhomogeneity mapping data such as field maps),
-    `anat` (structural imaging such as T1, T2, PD, and so on),
-    `meg` (magnetoencephalography),
-    `eeg` (electroencephalography),
-    `ieeg` (intracranial electroencephalography),
-    `beh` (behavioral).
+    BIDS defines the following data types:
+
+    1.  `func` (task based and resting state functional MRI)
+    1.  `dwi` (diffusion weighted imaging)
+    1.  `fmap` (field inhomogeneity mapping data such as field maps)
+    1.  `anat` (structural imaging such as T1, T2, PD, and so on)
+    1.  `perf` (perfusion)
+    1.  `meg` (magnetoencephalography)
+    1.  `eeg` (electroencephalography)
+    1.  `ieeg` (intracranial electroencephalography)
+    1.  `beh` (behavioral)
+    1.  `pet` (positron emission tomography)
+
     Data files are contained in a directory named for the data type.
     In raw datasets, the data type directory is nested inside subject and
     (optionally) session directories.
@@ -152,12 +163,26 @@ correspond to a unique identifier of that subject, such as `01`.
 The same holds for the `session` entity with its `ses-` key and its `<label>`
 value.
 
+The extra session layer (at least one `/ses-<label>` subfolder) SHOULD
+be added for all subjects if at least one subject in the dataset has more than
+one session.
+If a `/ses-<label>` subfolder is included as part of the directory hierarchy,
+then the same [`ses-<label>`](./99-appendices/09-entities.md#ses)
+key/value pair MUST also be included as part of the file names themselves.
+Acquisition time of session can
+be defined in the [sessions file](03-modality-agnostic-files.md#sessions-file).
+
 A chain of entities, followed by a suffix, connected by underscores (`_`)
 produces a human readable file name, such as `sub-01_task-rest_eeg.edf`.
 It is evident from the file name alone that the file contains resting state
 data from subject `01`.
 The suffix `eeg` and the extension `.edf` depend on the imaging modality and
 the data format and indicate further details of the file's contents.
+
+Entities within a file name MUST be unique.
+For example, the following file name is not valid because it uses the `acq`
+entity twice:
+`sub-01_acq-laser_acq-uneven_electrodes.tsv`
 
 In cases where entities duplicate metadata,
 the presence of an entity should not be used as a replacement for
@@ -229,21 +254,24 @@ However, in the case that these data are to be included:
 
 Alternatively one can organize their data in the following way
 
-```Text
-my_dataset/
-  sourcedata/
-    ...
-  rawdata/
-    dataset_description.json
-    participants.tsv
-    sub-01/
-    sub-02/
-    ...
-  derivatives/
-    pipeline_1/
-    pipeline_2/
-    ...
-```
+{{ MACROS___make_filetree_example(
+    {
+    "my_dataset-1": {
+            "sourcedata": "",
+            "...": "",
+            "sourcedata": {
+                "sub-01": {},
+                "sub-02": {},
+                "...": "",
+            },
+            "derivatives": {
+                "pipeline_1": {},
+                "pipeline_2": {},
+                "...": "",
+            },
+        }
+    }
+) }}
 
 In this example, where `sourcedata` and `derivatives` are not nested inside
 `rawdata`, **only the `rawdata` subfolder** needs to be a BIDS-compliant
@@ -254,7 +282,7 @@ This specification does not prescribe anything about the contents of `sourcedata
 folders in the above example - nor does it prescribe the `sourcedata`,
 `derivatives`, or `rawdata` folder names.
 The above example is just a convention that can be useful for organizing raw,
-source, and derived data while maintaining BIDS compliancy of the raw data
+source, and derived data while maintaining BIDS compliance of the raw data
 folder. When using this convention it is RECOMMENDED to set the `SourceDatasets`
 field in `dataset_description.json` of each subfolder of `derivatives` to:
 
@@ -319,23 +347,25 @@ Derivatives can be stored/distributed in two ways:
 
     Example of a derivative dataset including the raw dataset as source:
 
-    ```Plain
-    my_processed_data/
-      code/
-        processing_pipeline-1.0.0.img
-        hpc_submitter.sh
-        ...
-      sourcedata/
-        dataset_description.json
-        participants.tsv
-        sub-01/
-        sub-02/
-        ...
-      dataset_description.json
-      sub-01/
-      sub-02/
-      ...
-    ```
+    {{ MACROS___make_filetree_example(
+        {
+        "my_processed_data": {
+            "code": {
+                "processing_pipeline-1.0.0.img": "",
+                "hpc_submitter.sh": "",
+                "...": "",
+            },
+            "sourcedata": {
+                "sub-01": {},
+                "sub-02": {},
+                "...": "",
+            },
+            "sub-01": {},
+            "sub-02": {},
+            "...": "",
+            }
+        }
+    ) }}
 
 Throughout this specification, if a section applies particularly to derivatives,
 then Case 1 will be assumed for clarity in templates and examples, but removing
@@ -343,7 +373,7 @@ then Case 1 will be assumed for clarity in templates and examples, but removing
 Case 2.
 In both cases, every derivatives dataset is considered a BIDS dataset and must
 include a `dataset_description.json` file at the root level (see
-[Dataset description][dataset-description].
+[Dataset description][dataset-description]).
 Consequently, files should be organized to comply with BIDS to the full extent
 possible (that is, unless explicitly contradicted for derivatives).
 Any subject-specific derivatives should be housed within each subject’s directory;
@@ -378,17 +408,23 @@ specific to a participant is to be declared only at top level of dataset for exa
 
 Example 1: Two JSON files that are erroneously at the same level
 
-```Text
-sub-01/
-    ses-test/
-        sub-01_ses-test_task-overtverbgeneration_bold.json
-        sub-01_ses-test_task-overtverbgeneration_run-2_bold.json
-        anat/
-            sub-01_ses-test_T1w.nii.gz
-        func/
-            sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz
-            sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz
-```
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "ses-test":{
+            "sub-01_ses-test_task-overtverbgeneration_bold.json": "",
+            "sub-01_ses-test_task-overtverbgeneration_run-2_bold.json": "",
+            "anat": {
+                "sub-01_ses-test_T1w.nii.gz": "",
+                },
+            "func": {
+                "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz": "",
+                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz": "",
+                }
+            }
+        }
+    }
+) }}
 
 In the above example, two JSON files are listed under `sub-01/ses-test/`, which
 are each applicable to
@@ -399,16 +435,20 @@ should have been under `sub-01/ses-test/func/`.
 
 Example 2: Multiple `run`s and `rec`s with same acquisition (`acq`) parameters
 
-```Text
-sub-01/
-    anat/
-    func/
-        sub-01_task-xyz_acq-test1_run-1_bold.nii.gz
-        sub-01_task-xyz_acq-test1_run-2_bold.nii.gz
-        sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz
-        sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz
-        sub-01_task-xyz_acq-test1_bold.json
-```
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "anat": {},
+        "func": {
+            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_bold.json": "",
+            }
+        }
+    }
+) }}
 
 For the above example, all NIfTI files are acquired with same scanning
 parameters (`acq-test1`). Hence a JSON file describing the acq parameters will
@@ -418,16 +458,20 @@ will be applicable to all task runs with `test1` acquisition parameter.
 
 Example 3: Multiple JSON files at different levels for same task and acquisition parameters
 
-```Text
-task-xyz_acq-test1_bold.json
-sub-01/
-    anat/
-    func/
-        sub-01_task-xyz_acq-test1_run-1_bold.nii.gz
-        sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz
-        sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz
-        sub-01_task-xyz_acq-test1_bold.json
-```
+{{ MACROS___make_filetree_example(
+    {
+    "task-xyz_acq-test1_bold.json": "",
+    "sub-01": {
+        "anat": {},
+        "func": {
+            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_rec-recon1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_rec-recon2_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_bold.json": "",
+            }
+        }
+    }
+) }}
 
 In the above example, the fields from the `task-xyz_acq-test1_bold.json` file
 at the top directory will apply to all bold runs. However, if there is a key
@@ -508,13 +552,19 @@ Note that if a field name included in the data dictionary matches a column name 
 then that field MUST contain a description of the corresponding column,
 using an object containing the following fields:
 
-| **Key name** | **Requirement level** | **Data type**             | **Description**                                                                                                 |
-| ------------ | --------------------- | ------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| LongName     | OPTIONAL              | [string][]                | Long (unabbreviated) name of the column.                                                                        |
-| Description  | RECOMMENDED           | [string][]                | Description of the column.                                                                                      |
-| Levels       | RECOMMENDED           | [object][] of [strings][] | For categorical variables: An object of possible values (keys) and their descriptions (values).                 |
-| Units        | RECOMMENDED           | [string][]                | Measurement units. SI units in CMIXF formatting are RECOMMENDED (see [Units](./02-common-principles.md#units)). |
-| TermURL      | RECOMMENDED           | [string][]                | URL pointing to a formal definition of this type of data in an ontology available on the web.                   |
+{{ MACROS___make_metadata_table(
+   {
+        "LongName": "OPTIONAL",
+        "Description": (
+            "RECOMMENDED",
+            "The description of the column.",
+        ),
+        "Levels": "RECOMMENDED",
+        "Units": "RECOMMENDED",
+        "TermURL": "RECOMMENDED",
+        "HED": "OPTIONAL",
+   }
+) }}
 
 Please note that while both `Units` and `Levels` are RECOMMENDED, typically only one
 of these two fields would be specified for describing a single TSV file column.
@@ -545,7 +595,8 @@ Example:
 
 JavaScript Object Notation (JSON) files MUST be used for storing key/value
 pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
-format can be found at [https://www.json.org/](https://www.json.org/).
+format can be found at [https://www.json.org/](https://www.json.org/),
+and at [https://tools.ietf.org/html/std90](https://tools.ietf.org/html/std90).
 Several editors have built-in support for JSON syntax highlighting that aids
 manual creation of such files.
 An online editor for JSON with built-in validation is available at
@@ -700,37 +751,44 @@ This is an example of the folder and file structure. Because there is only one
 session, the session level is not required by the format. For details on
 individual files see descriptions in the next section:
 
-```Text
-sub-control01/
-    anat/
-        sub-control01_T1w.nii.gz
-        sub-control01_T1w.json
-        sub-control01_T2w.nii.gz
-        sub-control01_T2w.json
-    func/
-        sub-control01_task-nback_bold.nii.gz
-        sub-control01_task-nback_bold.json
-        sub-control01_task-nback_events.tsv
-        sub-control01_task-nback_physio.tsv.gz
-        sub-control01_task-nback_physio.json
-        sub-control01_task-nback_sbref.nii.gz
-    dwi/
-        sub-control01_dwi.nii.gz
-        sub-control01_dwi.bval
-        sub-control01_dwi.bvec
-    fmap/
-        sub-control01_phasediff.nii.gz
-        sub-control01_phasediff.json
-        sub-control01_magnitude1.nii.gz
-        sub-control01_scans.tsv
-code/
-    deface.py
-derivatives/
-README
-participants.tsv
-dataset_description.json
-CHANGES
-```
+{{ MACROS___make_filetree_example(
+    {
+    "sub-control01": {
+        "anat":{
+            "sub-control01_T1w.nii.gz": "",
+            "sub-control01_T1w.json": "",
+            "sub-control01_T2w.nii.gz": "",
+            "sub-control01_T2w.json": "",
+            },
+        "func":{
+            "sub-control01_task-nback_bold.nii.gz": "",
+            "sub-control01_task-nback_bold.json": "",
+            "sub-control01_task-nback_events.tsv": "",
+            "sub-control01_task-nback_physio.tsv.gz": "",
+            "sub-control01_task-nback_physio.json": "",
+            "sub-control01_task-nback_sbref.nii.gz": "",
+            },
+        "dwi":{
+            "sub-control01_dwi.nii.gz": "",
+            "sub-control01_dwi.bval": "",
+            "sub-control01_dwi.bvec": "",
+            },
+        "fmap":{
+            "sub-control01_phasediff.nii.gz": "",
+            "sub-control01_phasediff.json": "",
+            "sub-control01_magnitude1.nii.gz": "",
+            }
+        },
+    "code": {
+        "deface.py": ""
+        },
+    "derivatives": {},
+    "README": "",
+    "participants.tsv": "",
+    "dataset_description.json": "",
+    "CHANGES": "",
+    }
+) }}
 
 ## Unspecified data
 
@@ -755,11 +813,5 @@ to suppress warnings or provide interpretations of your file names.
 [dataset-description]: 03-modality-agnostic-files.md#dataset-description
 
 [derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description
-
-[string]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[strings]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[object]: https://www.json.org/json-en.html
 
 [deprecated]: ./02-common-principles.md#definitions

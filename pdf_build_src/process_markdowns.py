@@ -16,7 +16,7 @@ from datetime import datetime
 import numpy as np
 
 sys.path.append("../tools/")
-from schemacode import macros
+from mkdocs_macros_bids import macros  # noqa   (used in "eval" call later on)
 
 
 def run_shell_cmd(command):
@@ -410,7 +410,7 @@ def edit_titlepage():
                 "\\end{titlepage}")
 
     with open('cover.tex', 'w') as file:
-        data = file.writelines(data)
+        file.writelines(data)
 
 
 def process_macros(duplicated_src_dir_path):
@@ -444,7 +444,7 @@ def process_macros(duplicated_src_dir_path):
                 contents = fo.read()
 
             # Replace code snippets in the text with their outputs
-            matches = re.findall("({{.*?}})", contents)
+            matches = re.findall(re.compile("({{.*?}})", re.DOTALL), contents)
             for m in matches:
                 # Remove macro delimiters to get *just* the function call
                 function_string = m.strip("{} ")
@@ -453,6 +453,12 @@ def process_macros(duplicated_src_dir_path):
                     "MACROS___",
                     "macros."
                 )
+                # switch "use_pipe" flag OFF to render examples
+                if "make_filetree_example" in function_string:
+                    function_string = function_string.replace(
+                    ")",
+                    ", False)"
+                    )
                 # Run the function to get the output
                 new = eval(function_string)
                 # Replace the code snippet with the function output

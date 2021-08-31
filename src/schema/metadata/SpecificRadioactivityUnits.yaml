@@ -1,0 +1,12 @@
+---
+name: SpecificRadioactivityUnits
+description: |
+  Unit format of specified specific radioactivity (for example, `"Bq/g"`).
+  **Note this is not required for an FDG acquisition, since it is not available,
+  and SHOULD be set to `"n/a"`**.
+anyOf:
+  - type: string
+    format: unit
+  - type: string
+    enum:
+      - n/a

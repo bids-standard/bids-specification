@@ -3,14 +3,14 @@
 Each MEG system brand has specific file organization and data formats.
 RECOMMENDED values for `manufacturer_specific_extensions`:
 
-| **Value**                                             | **Description**                                                                       |
-| ----------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| [`ctf`](06-meg-file-formats.md#ctf)                   | CTF (folder with `.ds` extension)                                                     |
-| [`fif`](06-meg-file-formats.md#neuromagelektamegin)   | Neuromag / Elekta / MEGIN and BabyMEG (file with extension `.fif`)                    |
-| [`4d`](06-meg-file-formats.md#bti4d-neuroimaging)     | BTi / 4D Neuroimaging (folder containing multiple files without extensions)           |
-| [`kit`](06-meg-file-formats.md#kityokogawaricoh)      | KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`) |
-| [`kdf`](06-meg-file-formats.md#kriss)                 | KRISS (file with extension `.kdf`)                                                    |
-| [`itab`](06-meg-file-formats.md#itab)                 | Chieti system (file with extension `.raw` and `.mhd`)                                 |
+| **Value**                                           | **Description**                                                                       |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| [`ctf`](06-meg-file-formats.md#ctf)                 | CTF (folder with `.ds` extension)                                                     |
+| [`fif`](06-meg-file-formats.md#neuromagelektamegin) | Neuromag / Elekta / MEGIN and BabyMEG (file with extension `.fif`)                    |
+| [`4d`](06-meg-file-formats.md#bti4d-neuroimaging)   | BTi / 4D Neuroimaging (folder containing multiple files without extensions)           |
+| [`kit`](06-meg-file-formats.md#kityokogawaricoh)    | KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`) |
+| [`kdf`](06-meg-file-formats.md#kriss)               | KRISS (file with extension `.kdf`)                                                    |
+| [`itab`](06-meg-file-formats.md#itab)               | Chieti system (file with extension `.raw` and `.mhd`)                                 |
 
 Below are specifications for each system brand.
 
@@ -36,17 +36,22 @@ such as the CTF newDs command-line application or
 
 Example:
 
-```Text
-sub-control01/
-    ses-001/
-        sub-control01_ses-001_scans.tsv
-        meg/
-            sub-control01_ses-001_coordsystem.json
-            sub-control01_ses-001_headshape.pos
-            sub-control01_ses-001_task-rest_run-01_meg.ds
-            sub-control01_ses-001_task-rest_run-01_meg.json
-            sub-control01_ses-001_task-rest_run-01_channels.tsv
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01": {
+        "ses-001": {
+            "sub-control01_ses-001_scans.tsv": "",
+            "meg": {
+                "sub-control01_ses-001_coordsystem.json": "",
+                "sub-control01_ses-001_headshape.pos": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.ds": {},
+                "sub-control01_ses-001_task-rest_run-01_meg.json": "",
+                "sub-control01_ses-001_task-rest_run-01_channels.tsv": "",
+                },
+            },
+        }
+   }
+) }}
 
 To learn more about CTF’s data organization:
 [https://www.fieldtriptoolbox.org/getting_started/ctf](https://www.fieldtriptoolbox.org/getting_started/ctf)
@@ -90,48 +95,61 @@ which may be nested inside a `ses-<label>` folder, as shown in the following exa
 
 #### Example with single session (omitted session folder)
 
-```Text
-sub-01/
-    meg/
-        sub-01_coordsystem.json
-        sub-01_task-rest_meg.fif
-        sub-01_task-rest_meg.json
-        sub-01_task-rest_channels.tsv
-        sub-01_acq-crosstalk_meg.fif
-        sub-01_acq-calibration_meg.dat
-sub-02/
-    meg/
-        sub-02_coordsystem.json
-        sub-02_task-rest_meg.fif
-        sub-02_task-rest_meg.json
-        sub-02_task-rest_channels.tsv
-        sub-02_acq-crosstalk_meg.fif
-        sub-02_acq-calibration_meg.dat
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "meg": {
+            "sub-01_coordsystem.json": "",
+            "sub-01_task-rest_meg.fif": "",
+            "sub-01_task-rest_meg.json": "",
+            "sub-01_task-rest_channels.tsv": "",
+            "sub-01_acq-crosstalk_meg.fif": "",
+            "sub-01_acq-calibration_meg.dat": "",
+            },
+        },
+    "sub-02": {
+        "meg": {
+            "sub-02_coordsystem.json": "",
+            "sub-02_task-rest_meg.fif": "",
+            "sub-02_task-rest_meg.json": "",
+            "sub-02_task-rest_channels.tsv": "",
+            "sub-02_acq-crosstalk_meg.fif": "",
+            "sub-02_acq-calibration_meg.dat": "",
+            },
+        }
+   }
+) }}
 
 #### Example with multiple sessions
 
-```Text
-sub-01/
-    ses-01/
-        sub-01_ses-01_scans.tsv
-        meg/
-            sub-01_ses-01_coordsystem.json
-            sub-01_ses-01_task-rest_run-01_meg.fif
-            sub-01_ses-01_task-rest_run-01_meg.json
-            sub-01_ses-01_task-rest_run-01_channels.tsv
-            sub-01_ses-01_acq-crosstalk_meg.fif
-            sub-01_ses-01_acq-calibration_meg.dat
-    ses-02/
-        sub-01_ses-02_scans.tsv
-        meg/
-            sub-01_ses-02_coordsystem.json
-            sub-01_ses-02_task-rest_run-01_meg.fif
-            sub-01_ses-02_task-rest_run-01_meg.json
-            sub-01_ses-02_task-rest_run-01_channels.tsv
-            sub-01_ses-02_acq-crosstalk_meg.fif
-            sub-01_ses-02_acq-calibration_meg.dat
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "ses-01":{
+            "sub-01_ses-01_scans.tsv": "",
+            "meg": {
+                "sub-01_ses-01_coordsystem.json": "",
+                "sub-01_ses-01_task-rest_run-01_meg.fif": "",
+                "sub-01_ses-01_task-rest_run-01_meg.json": "",
+                "sub-01_ses-01_task-rest_run-01_channels.tsv": "",
+                "sub-01_ses-01_acq-crosstalk_meg.fif": "",
+                "sub-01_ses-01_acq-calibration_meg.dat": "",
+                },
+            },
+        "ses-02":{
+            "sub-01_ses-02_scans.tsv": "",
+            "meg": {
+                "sub-01_ses-02_coordsystem.json": "",
+                "sub-01_ses-02_task-rest_run-01_meg.fif": "",
+                "sub-01_ses-02_task-rest_run-01_meg.json": "",
+                "sub-01_ses-02_task-rest_run-01_channels.tsv": "",
+                "sub-01_ses-02_acq-crosstalk_meg.fif": "",
+                "sub-01_ses-02_acq-calibration_meg.dat": "",
+                },
+            },
+        },
+   }
+) }}
 
 ### Sharing FIFF data after signal-space separation (SSS)
 
@@ -141,10 +159,18 @@ and placed in a `derivatives` subfolder.
 
 Example:
 
-```Text
-sub-control01_ses-001_task-rest_run-01_proc-sss_meg.fif
-sub-control01_ses-001_task-rest_run-01_proc-sss_meg.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01": {
+        "ses-001":{
+            "meg": {
+                "sub-control01_ses-001_task-rest_run-01_proc-sss_meg.fif": "",
+                "sub-control01_ses-001_task-rest_run-01_proc-sss_meg.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 ### Split files
 
@@ -167,17 +193,25 @@ updated.
 It is RECOMMENDED that FIFF files with multiple parts use the `split-<index>`
 entity to indicate each part.
 
-If there are multiple parts of a recording and the optional `scans.tsv` is provided, 
-remember to list all files separately in `scans.tsv` and that the entries 
+If there are multiple parts of a recording and the optional `scans.tsv` is provided,
+remember to list all files separately in `scans.tsv` and that the entries
 for the `acq_time` column in `scans.tsv` MUST all be identical, as described in
 [Scans file](../03-modality-agnostic-files.md#scans-file).
 
 Example:
 
-```Text
-sub-control01_ses-001_task-rest_run-01_split-01_meg.fif
-sub-control01_ses-001_task-rest_run-01_split-02_meg.fif
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01": {
+        "ses-001":{
+            "meg": {
+                "sub-control01_ses-001_task-rest_run-01_split-01_meg.fif": "",
+                "sub-control01_ses-001_task-rest_run-01_split-02_meg.fif": "",
+                },
+            },
+        }
+   }
+) }}
 
 More information can be found under the following links:
 
@@ -204,32 +238,40 @@ containing multiple files without extensions.
 sub-<label>[_ses-<label>]_task-<label>[_run-<index>]_meg>
 ```
 
-One SHOULD rename/create a father run specific directory and keep the original
+One SHOULD rename/create a parent run-specific directory and keep the original
 files for each run inside (for example, `c,rfhp0.1Hz`, `config` and `hs_file`).
 
 Example:
 
-```Text
-sub-control01/
-    ses-001/
-        sub-control01_ses-001_scans.tsv
-        meg/
-            sub-control01_ses-001_coordsystem.json
-            sub-control01_ses-001_headshape.pos
-            sub-control01_ses-001_task-rest_run-01_meg
-            sub-control01_ses-001_task-rest_run-01_meg.json
-            sub-control01_ses-001_task-rest_run-01_channels.tsv
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01": {
+        "ses-001":{
+            "sub-control01_ses-001_scans.tsv": "",
+            "meg": {
+                "sub-control01_ses-001_coordsystem.json": "",
+                "sub-control01_ses-001_headshape.pos": "",
+                "sub-control01_ses-001_task-rest_run-01_meg": {},
+                "sub-control01_ses-001_task-rest_run-01_meg.json": "",
+                "sub-control01_ses-001_task-rest_run-01_channels.tsv": "",
+                },
+            },
+        },
+   }
+) }}
 
 Where:
 
-```Text
-sub-control01_ses-001_task-rest_run-01_meg/
-    config
-    hs_file
-    e,rfhp1.0Hz.COH
-    c,rfDC
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01_ses-001_task-rest_run-01_meg": {
+        "config": "",
+        "hs_file": "",
+        "e,rfhp1.0Hz.COH": "",
+        "c,rfDC": "",
+        },
+   }
+) }}
 
 More about the 4D neuroimaging/BTi data organization at:
 [https://www.fieldtriptoolbox.org/getting_started/bti](https://www.fieldtriptoolbox.org/getting_started/bti)
@@ -244,19 +286,24 @@ Head points and marker points in *head space* are acquired using third-party har
 
 Example:
 
-```Text
-sub-control01/
-    ses-001/
-        sub-control01_ses-001_scans.tsv
-        meg/
-            sub-control01_ses-001_coordsystem.json
-            sub-control01_ses-001_headshape.txt
-            sub-control01_ses-001_task-rest_run-01_meg
-            sub-control01_ses-001_task-rest_run-01_meg.json
-            sub-control01_ses-001_task-rest_run-01_channels.tsv
-            sub-control01_ses-001_task-rest[_acq-<label>]_run-01_markers.<mrk,sqd>
-            sub-control01_ses-001_task-rest_run-01_meg.<con,sqd>
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01": {
+        "ses-001":{
+            "sub-control01_ses-001_scans.tsv": "",
+            "meg": {
+                "sub-control01_ses-001_coordsystem.json": "",
+                "sub-control01_ses-001_headshape.txt": "",
+                "sub-control01_ses-001_task-rest_run-01_meg": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.json": "",
+                "sub-control01_ses-001_task-rest_run-01_channels.tsv": "",
+                "sub-control01_ses-001_task-rest[_acq-<label>]_run-01_markers.<mrk,sqd>": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.<con,sqd>": "",
+                },
+            },
+        },
+   }
+) }}
 
 To understand why both `.sqd` and `.con`, as well as both `.sqd` and `.mrk` are valid
 extensions, we provide a brief historical perspective on the evolution of the data format:
@@ -296,21 +343,26 @@ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>]_digitizer.txt
 
 Example:
 
-```Text
-sub-control01/
-    ses-001/
-        sub-control01_ses-001_scans.tsv
-        meg/
-            sub-control01_ses-001_coordsystem.json
-            sub-control01_ses-001_headshape.txt
-            sub-control01_ses-001_task-rest_run-01_meg
-            sub-control01_ses-001_task-rest_run-01_meg.json
-            sub-control01_ses-001_task-rest_run-01_channels.tsv
-            sub-control01_ses-001_task-rest_run-01_meg.chn
-            sub-control01_ses-001_task-rest_run-01_meg.kdf
-            sub-control01_ses-001_task-rest_run-01_meg.trg
-            sub-control01_ses-001_task-rest_digitizer.txt
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01": {
+        "ses-001":{
+            "sub-control01_ses-001_scans.tsv": "",
+            "meg": {
+                "sub-control01_ses-001_coordsystem.json": "",
+                "sub-control01_ses-001_headshape.txt": "",
+                "sub-control01_ses-001_task-rest_run-01_meg": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.json": "",
+                "sub-control01_ses-001_task-rest_run-01_channels.tsv": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.chn": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.kdf": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.trg": "",
+                "sub-control01_ses-001_task-rest_digitizer.txt": "",
+                },
+            },
+        },
+   }
+) }}
 
 ## ITAB
 
@@ -325,17 +377,23 @@ information).
 
 Example:
 
-```Text
-sub-control01/
-    ses-001/
-        sub-control01_ses-001_coordsystem.json
-        sub-control01_ses-001_headshape.txt
-        sub-control01_ses-001_task-rest_run-01_meg
-        sub-control01_ses-001_task-rest_run-01_meg.json
-        sub-control01_ses-001_task-rest_run-01_channels.tsv
-        sub-control01_ses-001_task-rest_run-01_meg.raw
-        sub-control01_ses-001_task-rest_run-01_meg.raw.mhd
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-control01": {
+        "ses-001":{
+            "meg": {
+                "sub-control01_ses-001_coordsystem.json": "",
+                "sub-control01_ses-001_headshape.txt": "",
+                "sub-control01_ses-001_task-rest_run-01_meg": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.json": "",
+                "sub-control01_ses-001_task-rest_run-01_channels.tsv": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.raw": "",
+                "sub-control01_ses-001_task-rest_run-01_meg.raw.mhd": "",
+                },
+            },
+        },
+   }
+) }}
 
 ## Aalto MEG–MRI
 

@@ -1,0 +1,9 @@
+---
+name: SoftwareRRID
+description: |
+  [Research Resource Identifier](https://scicrunch.org/resources) of the
+  software that was used to present the stimuli.
+  Examples: The RRID for Psychtoolbox is 'SCR_002881',
+  and that of PsychoPy is 'SCR_006571'.
+type: string
+pattern: .+_.+

@@ -1,0 +1,5 @@
+---
+name: TracerRadionuclide
+description: |
+  Radioisotope labelling tracer (for example, `"C11"`).
+type: string

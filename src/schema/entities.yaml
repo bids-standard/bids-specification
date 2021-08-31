@@ -4,6 +4,7 @@ subject:
   entity: sub
   description: |
     A person or animal participating in the study.
+  type: string
   format: label
 session:
   name: Session
@@ -24,16 +25,29 @@ session:
     data acquisitions are planned and performed on all -or most- subjects,
     often in the case of some intervention between sessions
     (for example, training).
+  type: string
+  format: label
+sample:
+  name: Sample
+  entity: sample
+  description: |
+    A sample pertaining to a subject such as tissue, primary cell
+    or cell-free sample.
+    The `sample-<label>` key/value pair is used to distinguish between different
+    samples from the same subject.
+    The label MUST be unique per subject and is RECOMMENDED to be unique
+    throughout the dataset.
   format: label
 task:
   name: Task
   entity: task
-  format: label
   description: |
     Each task has a unique label that MUST only consist of letters and/or
     numbers (other characters, including spaces and underscores, are not
     allowed).
     Those labels MUST be consistent across subjects and sessions.
+  type: string
+  format: label
 acquisition:
   name: Acquisition
   entity: acq
@@ -54,6 +68,7 @@ acquisition:
     At what level of detail to make the distinction (for example,
     just between RARE and FLASH, or between RARE, FLASH, and FLASHsubsampled)
     remains at the discretion of the researcher.
+  type: string
   format: label
 ceagent:
   name: Contrast Enhancing Agent
@@ -64,6 +79,7 @@ ceagent:
     The label is the name of the contrast agent.
     The key `ContrastBolusIngredient` MAY also be added in the JSON file,
     with the same label.
+  type: string
   format: label
 tracer:
   name: Tracer
@@ -73,6 +89,7 @@ tracer:
     sequences using different tracers.
     The key `TracerName` MUST also be included in the associated JSON file,
     although the label may be different.
+  type: string
   format: label
 reconstruction:
   name: Reconstruction
@@ -81,6 +98,7 @@ reconstruction:
     The `rec-<label>` key/value can be used to distinguish
     different reconstruction algorithms (for example ones using motion
     correction).
+  type: string
   format: label
 direction:
   name: Phase-Encoding Direction
@@ -89,6 +107,7 @@ direction:
     The `dir-<label>` key/value can be set to an arbitrary alphanumeric label
     (for example, `dir-LR` or `dir-AP`) to distinguish different phase-encoding
     directions.
+  type: string
   format: label
 run:
   name: Run
@@ -104,6 +123,7 @@ run:
     or different acquisition parameters indicated by
     [`acq-<label>`](../99-appendices/09-entities.md#acq),
     then `run` is not needed to distinguish the scans and MAY be omitted.
+  type: string
   format: index
 modality:
   name: Corresponding Modality
@@ -112,6 +132,7 @@ modality:
     The `mod-<label>` key/value pair corresponds to modality label for defacing
     masks, for example, T1w, inplaneT1, referenced by a defacemask image.
     For example, `sub-01_mod-T1w_defacemask.nii.gz`.
+  type: string
   format: label
 echo:
   name: Echo
@@ -124,6 +145,7 @@ echo:
     denotes the number/index (in the form of a nonnegative integer), not the
     `EchoTime` value which needs to be stored in the field `EchoTime` of the separate
     JSON file.
+  type: string
   format: index
 flip:
   name: Flip Angle
@@ -135,6 +157,7 @@ flip:
     This entity represents the `FlipAngle` metadata field. Please note that the `<index>`
     denotes the number/index (in the form of a nonnegative integer), not the `FlipAngle`
     value which needs to be stored in the field `FlipAngle` of the separate JSON file.
+  type: string
   format: index
 inversion:
   name: Inversion Time
@@ -146,6 +169,7 @@ inversion:
     This entity represents the `InversionTime` metadata field. Please note that the `<index>`
     denotes the number/index (in the form of a nonnegative integer), not the `InversionTime`
     value which needs to be stored in the field `InversionTime` of the separate JSON file.
+  type: string
   format: index
 mtransfer:
   name: Magnetization Transfer
@@ -157,15 +181,19 @@ mtransfer:
     This entity represents the `MTState` metadata field. Allowed label values for this
     entity are `on` and `off`, for images acquired in presence and absence of an MT pulse,
     respectively.
-  format: label
+  type: string
+  # on/off map to True/False in YAML so they must be placed in quotes.
+  enum:
+    - "on"
+    - "off"
 part:
   name: Part
   entity: part
   description: |
     This entity is used to indicate which component of the complex
     representation of the MRI signal is represented in voxel data.
-    The `part-<label>` key/value pair is associated with the DICOM tag
-    `0008,9208`.
+    The `part-<label>` key/value pair is associated with the DICOM Tag
+    `0008, 9208`.
     Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
     which are typically used in `part-mag`/`part-phase` or
     `part-real`/`part-imag` pairs of files.
@@ -176,7 +204,12 @@ part:
 
     When there is only a magnitude image of a given type, the `part` key MAY be
     omitted.
-  format: label
+  type: string
+  enum:
+    - mag
+    - phase
+    - real
+    - imag
 recording:
   name: Recording
   entity: recording
@@ -185,6 +218,7 @@ recording:
     sampling frequencies).
     In such case use different labels.
     For example: `_recording-contrast`, `_recording-saturation`.
+  type: string
   format: label
 processing:
   name: Processed (on device)
@@ -197,6 +231,7 @@ processing:
     which some installations impose to be run on raw data because of active
     shielding software corrections before the MEG data can actually be
     exploited.
+  type: string
   format: label
 space:
   name: Space
@@ -214,6 +249,7 @@ space:
 
     For EEG/MEG/iEEG data, this entity can be applied to raw data, but
     for other data types, it is restricted to derivative data.
+  type: string
   format: label
 split:
   name: Split
@@ -235,6 +271,7 @@ split:
     remember to list all files separately in `scans.tsv` and that the entries for the
     `acq_time` column in `scans.tsv` MUST all be identical, as described in
     [Scans file](../03-modality-agnostic-files.md#scans-file).
+  type: string
   format: index
 resolution:
   name: Resolution
@@ -245,6 +282,7 @@ resolution:
     interpretation.
 
     This entity is only applicable to derivative data.
+  type: string
   format: label
 density:
   name: Density
@@ -255,6 +293,7 @@ density:
     interpretation.
 
     This entity is only applicable to derivative data.
+  type: string
   format: label
 label:
   name: Label
@@ -265,6 +304,7 @@ label:
     that describe a single tissue type.
 
     This entity is only applicable to derivative data.
+  type: string
   format: label
 description:
   name: Description
@@ -274,4 +314,5 @@ description:
     distinguishing entity, the `_desc-<label>` keyword-value SHOULD be used.
 
     This entity is only applicable to derivative data.
+  type: string
   format: label

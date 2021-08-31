@@ -43,34 +43,42 @@ If a qMRI file collection is intended for creating structural quantitative maps 
 files belonging to that collection are stored in the `anat` subfolder.
 Below is an example file collection for `MP2RAGE`:
 
-```text
-└── sub-01/
-     └── anat/
-         ├── sub-01_inv-1_part-mag_MP2RAGE.nii.gz
-         ├── sub-01_inv-1_part-phase_MP2RAGE.nii.gz
-         ├── sub-01_inv-1_MP2RAGE.json
-         ├── sub-01_inv-2_part-mag_MP2RAGE.nii.gz
-         ├── sub-01_inv-2_part-phase_MP2RAGE.nii.gz
-         └── sub-01_inv-2_MP2RAGE.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "anat": {
+            "sub-01_inv-1_part-mag_MP2RAGE.nii.gz":"",
+            "sub-01_inv-1_part-phase_MP2RAGE.nii.gz":"",
+            "sub-01_inv-1_MP2RAGE.json":"",
+            "sub-01_inv-2_part-mag_MP2RAGE.nii.gz":"",
+            "sub-01_inv-2_part-phase_MP2RAGE.nii.gz":"",
+            "sub-01_inv-2_MP2RAGE.json":"",
+            },
+        },
+}
+) }}
 
 Commonly, RF fieldmaps (`B1+` and `B1-` maps) are used for the correction of structural quantitative maps.
 As these images do not convey substantial structural information,
 respective file collections of RF fieldmaps are stored in the `fmap` subfolder.
 Below is an example file collection for RF transmit field map `TB1EPI`:
 
-```text
-└── sub-01/
-     └── fmap/
-         ├── sub-01_echo-1_flip-1_TB1EPI.nii.gz
-         ├── sub-01_echo-1_flip-1_TB1EPI.json
-         ├── sub-01_echo-2_flip-1_TB1EPI.nii.gz
-         ├── sub-01_echo-2_flip-1_TB1EPI.json
-         ├── sub-01_echo-1_flip-2_TB1EPI.nii.gz
-         ├── sub-01_echo-1_flip-2_TB1EPI.json
-         ├── sub-01_echo-2_flip-2_TB1EPI.nii.gz
-         └── sub-01_echo-2_flip-2_TB1EPI.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_echo-1_flip-1_TB1EPI.nii.gz": "",
+            "sub-01_echo-1_flip-1_TB1EPI.json": "",
+            "sub-01_echo-2_flip-1_TB1EPI.nii.gz": "",
+            "sub-01_echo-2_flip-1_TB1EPI.json": "",
+            "sub-01_echo-1_flip-2_TB1EPI.nii.gz": "",
+            "sub-01_echo-1_flip-2_TB1EPI.json": "",
+            "sub-01_echo-2_flip-2_TB1EPI.nii.gz": "",
+            "sub-01_echo-2_flip-2_TB1EPI.json": "",
+            },
+        },
+   }
+) }}
 
 Please visit the [file collections appendix](./10-file-collections.md#magnetic-resonance-imaging) to see the list of currently supported qMRI applications.
 
@@ -81,31 +89,45 @@ For example a `T1map` can be generated from an `MP2RAGE` file collection using e
 
 If the map is post-generated:
 
-```text
- ds-example/
- └── derivatives/
-     └── qMRI-software-name/
-         └── sub-01/
-             └── anat/
-                 ├── sub-01_T1map.nii.gz
-                 ├── sub-01_T1map.json
-                 ├── sub-01_UNIT1.nii.gz
-                 └── sub-01_UNIT1.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "ds-example": {
+        "derivatives": {
+            "qMRI-software-name": {
+                "sub-01": {
+                    "anat": {
+                        "sub-01_T1map.nii.gz": "",
+                        "sub-01_T1map.json": "",
+                        "sub-01_UNIT1.nii.gz": "",
+                        "sub-01_UNIT1.json": "",
+                        },
+                    },
+                },
+            },
+        },
+   }
+) }}
 
 If the map is pre-generated, for example, by a Siemens scanner:
 
-```text
- ds-example/
- └── derivatives/
-     └── Siemens/
-         └── sub-01/
-             └── anat/
-                 ├── sub-01_T1map.nii.gz
-                 ├── sub-01_T1map.json
-                 ├── sub-01_UNIT1.nii.gz
-                 └── sub-01_UNIT1.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "ds-example": {
+        "derivatives": {
+            "Siemens": {
+                "sub-01": {
+                    "anat": {
+                        "sub-01_T1map.nii.gz": "",
+                        "sub-01_T1map.json": "",
+                        "sub-01_UNIT1.nii.gz": "",
+                        "sub-01_UNIT1.json": "",
+                        },
+                    },
+                },
+            },
+        },
+   }
+) }}
 
 Note: Even though the process from which pre-generated qMRI maps are obtained (vendor pipelines) is not known,
 vendors generally allow exporting of the corresponding input data.
@@ -125,16 +147,16 @@ but also by which metadata fields are provided in accompanying json files.
 
 #### Anatomy imaging data
 
-| **File collection**   | **REQUIRED metadata**                                                                                                        | **OPTIONAL metadata**      |
-|-----------------------|------------------------------------------------------------------------------------------------------------------------------|----------------------------|
-| VFA                   | `FlipAngle`, `PulseSequenceType`, `RepetitionTimeExcitation`                                                                 | `SpoilingRFPhaseIncrement` |
-| IRT1                  | `InversionTime`                                                                                                              |                            |
-| MP2RAGE<sup>\*</sup>  | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
-| MESE                  | `EchoTime`                                                                                                                   |                            |
-| MEGRE                 | `EchoTime`                                                                                                                   |                            |
-| MTR                   | `MTState`                                                                                                                    |                            |
-| MTS                   | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           |                            |
-| MPM                   | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           | `EchoTime`                 |
+| **File collection**  | **REQUIRED metadata**                                                                                                        | **OPTIONAL metadata**      |
+|----------------------|------------------------------------------------------------------------------------------------------------------------------|----------------------------|
+| VFA                  | `FlipAngle`, `PulseSequenceType`, `RepetitionTimeExcitation`                                                                 | `SpoilingRFPhaseIncrement` |
+| IRT1                 | `InversionTime`                                                                                                              |                            |
+| MP2RAGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
+| MESE                 | `EchoTime`                                                                                                                   |                            |
+| MEGRE                | `EchoTime`                                                                                                                   |                            |
+| MTR                  | `MTState`                                                                                                                    |                            |
+| MTS                  | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           |                            |
+| MPM                  | `FlipAngle`, `MTState`, `RepetitionTimeExcitation`                                                                           | `EchoTime`                 |
 
 <sup>\*</sup> Please see MP2RAGE-specific notes for the calculation of `NumberShots` and regarding the
 organization of `UNIT1` image.
@@ -173,18 +195,25 @@ As qMRI maps are stored as derivatives, they are subjected to the metadata requi
 
 An example `dataset_description.json` for a qMRI map derivatives folder:
 
-```text
- ds-example/
- └── derivatives/
-     └── qMRLab/
-         ├── dataset_description.json
-         └── sub-01/
-             └── anat/
-                 ├── sub-01_T1map.nii.gz
-                 ├── sub-01_T1map.json
-                 ├── sub-01_M0map.nii.gz
-                 └── sub-01_M0map.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "ds-example": {
+        "derivatives": {
+            "qMRLab": {
+                "dataset_description.json": "",
+                "sub-01": {
+                    "anat": {
+                        "sub-01_T1map.nii.gz": "",
+                        "sub-01_T1map.json": "",
+                        "sub-01_M0map.nii.gz": "",
+                        "sub-01_M0map.json": "",
+                        },
+                    },
+                },
+            },
+        },
+   }
+) }}
 
 `dataset_description.json`:
 
@@ -232,12 +261,14 @@ For example, without the information of `MagneticFieldStrength`, white-matter T1
 -   The JSON file accompanying a qMRI map which is obtained by using open-source software is RECOMMENDED
     to include additional metadata fields listed in the following table:
 
-| **Field name**                  | **Definition**                                                                                                               |
-| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `BasedOn`                       | List of files in a file collection to generate the map. Fieldmaps are also listed, if involved in the processing.            |
-| `EstimationReference`           | Reference to the study/studies on which the implementation is based.                                                         |
-| `EstimationAlgorithm`           | Type of algoritm used to perform fitting (for example, linear, non-linear, LM and such)                                      |
-| `Units`                         | Units of the maps, in accordance with the BIDS specification.                                                                |
+{{ MACROS___make_metadata_table(
+   {
+      "BasedOn": "RECOMMENDED",
+      "EstimationReference": "RECOMMENDED",
+      "EstimationAlgorithm": "RECOMMENDED",
+      "Units": "RECOMMENDED",
+   }
+) }}
 
 Example:
 
@@ -299,15 +330,15 @@ This approach aims at:
 -   providing qMRI-focused BIDS applications with a set of meta-data driven rules to infer possible fitting options,
 -   keeping an inheritance track of the qMRI methods described within the specification.
 
-| **File-collection suffix** | **If REQUIRED metadata == Value** | **OPTIONAL metadata (`entity`/`fixed`)**   | **Derived application name (NOT a suffix)** |
-|----------------------------|-----------------------------------|--------------------------------------------|---------------------------------------------|
-| VFA                        | `PulseSequenceType` == `SPGR`     |                                            | DESPOT1                                     |
-| VFA                        | `PulseSequenceType` == `SSFP`     | `SpoilingRFPhaseIncrement` (`fixed`)       | DESPOT2                                     |
-| MP2RAGE                    |                                   | `EchoTime` (`echo`)                        | MP2RAGE-ME                                  |
-| MPM                        |                                   | `EchoTime` (`echo`)                        | MPM-ME                                      |
+| **File-collection suffix** | **If REQUIRED metadata == Value** | **OPTIONAL metadata (`entity`/`fixed`)** | **Derived application name (NOT a suffix)** |
+|----------------------------|-----------------------------------|------------------------------------------|---------------------------------------------|
+| VFA                        | `PulseSequenceType` == `SPGR`     |                                          | DESPOT1                                     |
+| VFA                        | `PulseSequenceType` == `SSFP`     | `SpoilingRFPhaseIncrement` (`fixed`)     | DESPOT2                                     |
+| MP2RAGE                    |                                   | `EchoTime` (`echo`)                      | MP2RAGE-ME                                  |
+| MPM                        |                                   | `EchoTime` (`echo`)                      | MPM-ME                                      |
 
 In this table, (`entity`/`fixed`) denotes whether the OPTIONAL metadata that forms a new
-flavor of qMRI applicaiton for the respective suffix varies across files of a file collection
+flavor of qMRI application for the respective suffix varies across files of a file collection
 (which calls for using a linking entity) or fixed. If former is the case, the entity is to be
 added to the files in that file collection. Note that this addition MUST be allowed by the
 priority levels given for that suffix in the [`entity table`](./04-entity-table.md). If latter (`fixed`) is the case,
@@ -315,7 +346,7 @@ filenames will remain the same; however, the optional metadata (third column) ma
 define the flavor of the application (fourth column) along with the conditional value of a
 required metadata field (second column).
 
-A derived qMRI application becomes avaiable if all the optional metadata fields
+A derived qMRI application becomes available if all the optional metadata fields
 listed for the respective file collection suffix are provided for the data. In addition,
 conditional rules based on the value of a given required metada field can be set
 for the description of a derived qMRI application. Note that the value of this
@@ -382,7 +413,7 @@ raw dataset directory along with the `MP2RAGE` file collection and to be used as
 for quantifying a `T1map`.
 
 If an additional `UNIT1` image is calculated offline, then the output is to be stored in the
-`derivatives` folder with neccesary provenance information.
+`derivatives` folder with necessary provenance information.
 
 ##### `NumberShots` metadata field
 
@@ -441,7 +472,7 @@ The `flip` and `echo` entities MUST be used to distinguish images with this suff
 The use of `flip` follows the default convention. However, this suffix defines a
 specific use case for the `echo` entity:
 
-| `echo-1`             | `echo-2`                    |
+| **`echo-1`**         | **`echo-2`**                |
 | -------------------- | --------------------------- |
 | Lower `EchoTime`     | Higher `EchoTime`           |
 | Spin Echo (SE) image | Stimulated Echo (STE) image |
@@ -458,26 +489,30 @@ The nominal FA value of the SE pulse is twice this value.
 Note that the following metadata fields MUST be defined in the accompanying JSON
 files:
 
-| Field name         | Definition                                                                                                                                      |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `TotalReadoutTime` |  The effective readout length defined as `EffectiveEchoSpacing * PEReconMatrix`, with `EffectiveEchoSpacing = TrueEchoSpacing / PEacceleration` |
-| `MixingTime`       |  Time interval between the SE and STE pulses                                                                                                    |
+| **Field name**     | **Definition**                                                                                                                                 |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `TotalReadoutTime` | The effective readout length defined as `EffectiveEchoSpacing * PEReconMatrix`, with `EffectiveEchoSpacing = TrueEchoSpacing / PEacceleration` |
+| `MixingTime`       | Time interval between the SE and STE pulses                                                                                                    |
 
 To properly identify constituents of this particular method, values of the `echo`
 entity MUST index the images as follows:
 
-```text
-└── sub-01/
-     └── fmap/
-         ├── sub-01_echo-1_flip-1_TB1EPI.nii.gz (SE)
-         ├── sub-01_echo-1_flip-1_TB1EPI.json
-         ├── sub-01_echo-2_flip-1_TB1EPI.nii.gz (STE)
-         ├── sub-01_echo-2_flip-1_TB1EPI.json
-         ├── sub-01_echo-1_flip-2_TB1EPI.nii.gz (SE)
-         ├── sub-01_echo-1_flip_2_TB1EPI.json
-         ├── sub-01_echo-2_flip-2_TB1EPI.nii.gz (STE)
-         └── sub-01_echo-2_flip-2_TB1EPI.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_echo-1_flip-1_TB1EPI.nii.gz": "# SE",
+            "sub-01_echo-1_flip-1_TB1EPI.json":   "",
+            "sub-01_echo-2_flip-1_TB1EPI.nii.gz": "# STE",
+            "sub-01_echo-2_flip-1_TB1EPI.json":   "",
+            "sub-01_echo-1_flip-2_TB1EPI.nii.gz": "# SE",
+            "sub-01_echo-1_flip_2_TB1EPI.json":   "",
+            "sub-01_echo-2_flip-2_TB1EPI.nii.gz": "# STE",
+            "sub-01_echo-2_flip-2_TB1EPI.json":   "",
+            },
+        },
+   }
+) }}
 
 #### `TB1AFI` specific notes
 
@@ -490,20 +525,24 @@ Therefore, to properly identify constituents of this particular method,
 values of the `acq` entity SHOULD begin with either `tr1` (lower TR) or `tr2` (higher TR)
 and MAY be followed by freeform entries:
 
-| First `TR`       | Second `TR`      | Use case             |
+| **First `TR`**   | **Second `TR`**  | **Use case**         |
 | ---------------- | ---------------- | -------------------- |
 | `_acq-tr1`       | `_acq-tr2`       | Single acquisition   |
 | `_acq-tr1Test`   | `_acq-tr2Test`   | Acquisition `Test`   |
 | `_acq-tr1Retest` | `_acq-tr2Retest` | Acquisition `Retest` |
 
-```text
-└── sub-01/
-     └── fmap/
-         ├── sub-01_acq-tr1_TB1AFI.nii.gz
-         ├── sub-01_acq-tr1_TB1AFI.json
-         ├── sub-01_acq-tr2_TB1AFI.nii.gz
-         └── sub-01_acq-tr2_TB1AFI.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_acq-tr1_TB1AFI.nii.gz": "",
+            "sub-01_acq-tr1_TB1AFI.json": "",
+            "sub-01_acq-tr2_TB1AFI.nii.gz": "",
+            "sub-01_acq-tr2_TB1AFI.json": "",
+            },
+        },
+   }
+) }}
 
 #### `TB1TFL` and `TB1RFM` specific notes
 
@@ -514,20 +553,24 @@ The first image appears like an anatomical image and the second output is a scal
 To properly identify files of this particular file collection,
 values of the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be followed by freeform entries:
 
-| Anatomical (like) image | Scaled flip angle map     | Use case             |
-| ----------------------- | ------------------------- | -------------------- |
-| `_acq-anat`             | `_acq-famp`               | Single acquisition   |
-| `_acq-anatTest`         | `_acq-fampTest`           | Acquisition `Test`   |
-| `_acq-anatRetest`       | `_acq-fampRetest`         | Acquisition `Retest` |
+| **Anatomical (like) image** | **Scaled flip angle map** | **Use case**         |
+| --------------------------- | ------------------------- | -------------------- |
+| `_acq-anat`                 | `_acq-famp`               | Single acquisition   |
+| `_acq-anatTest`             | `_acq-fampTest`           | Acquisition `Test`   |
+| `_acq-anatRetest`           | `_acq-fampRetest`         | Acquisition `Retest` |
 
-```text
-└── sub-01/
-     └── fmap/
-         ├── sub-01_acq-anat_TB1TFL.nii.gz
-         ├── sub-01_acq-anat_TB1TFL.json
-         ├── sub-01_acq-famp_TB1TFL.nii.gz
-         └── sub-01_acq-famp_TB1TFL.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_acq-anat_TB1TFL.nii.gz": "",
+            "sub-01_acq-anat_TB1TFL.json": "",
+            "sub-01_acq-famp_TB1TFL.nii.gz": "",
+            "sub-01_acq-famp_TB1TFL.json": "",
+            },
+        },
+   }
+) }}
 
 The example above applies to the `TB1RFM` suffix as well.
 
@@ -541,18 +584,22 @@ To properly identify constituents of this particular method, values of the `acq`
 entity SHOULD begin with either `body` or `head` and MAY be followed by freeform
 entries:
 
-| Body coil      | Head coil      | Use case           |
+| **Body coil**  | **Head coil**  | **Use case**       |
 | -------------- | -------------- | ------------------ |
 | `_acq-body`    | `_acq-head`    | Single acquisition |
 | `_acq-bodyMTw` | `_acq-headMTw` | `MTw` for `MPM`    |
 | `_acq-bodyPDw` | `_acq-headPDw` | `PDw` for `MPM`    |
 | `_acq-bodyT1w` | `_acq-headT1w` | `T1w` for `MPM`    |
 
-```text
-└── sub-01/
-     └── fmap/
-         ├── sub-01_acq-body_RB1COR.nii.gz (Body coil)
-         ├── sub-01_acq-body_RB1COR.json
-         ├── sub-01_acq-head_RB1COR.nii.gz (Head coil)
-         └── sub-01_acq-head_RB1COR.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_acq-body_RB1COR.nii.gz": "# Body coil",
+            "sub-01_acq-body_RB1COR.json": "",
+            "sub-01_acq-head_RB1COR.nii.gz": "# Head coil",
+            "sub-01_acq-head_RB1COR.json": "",
+            },
+        },
+   }
+) }}
