@@ -172,6 +172,12 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
     [ACPC site](https://www.fieldtriptoolbox.org/faq/acpc/) on the FieldTrip
     toolbox wiki.
 
+-   `ScanRAS`: The origin of the coordinate system is the center of the
+    gradient coil for the corresponding T1w image of the subject, and the x-axis
+    increases left to right, the y-axis increases posterior to to anterior and
+    the z-axis increases inferior to superior. For more information see the
+    [Nipy Documentation](https://nipy.org/nibabel/coordinate_systems.html).
+
 -   Any keyword from the list of
     [Standard template identifiers](#standard-template-identifiers)
 
