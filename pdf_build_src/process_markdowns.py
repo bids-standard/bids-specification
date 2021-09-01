@@ -16,7 +16,7 @@ from datetime import datetime
 import numpy as np
 
 sys.path.append("../tools/")
-from schemacode import macros  # noqa   (used in "eval" call later on)
+from mkdocs_macros_bids import macros  # noqa   (used in "eval" call later on)
 
 
 def run_shell_cmd(command):
@@ -453,6 +453,12 @@ def process_macros(duplicated_src_dir_path):
                     "MACROS___",
                     "macros."
                 )
+                # switch "use_pipe" flag OFF to render examples
+                if "make_filetree_example" in function_string:
+                    function_string = function_string.replace(
+                    ")",
+                    ", False)"
+                    )
                 # Run the function to get the output
                 new = eval(function_string)
                 # Replace the code snippet with the function output

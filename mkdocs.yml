@@ -19,7 +19,7 @@ plugins:
            +extra_css:
              - css/watermark.css
     - macros:
-        module_name: tools/mkdocs_macros_bidsschema/main
+        module_name: tools/mkdocs_macros_bids/main
 docs_dir: 'src'
 use_directory_urls: false
 nav:
