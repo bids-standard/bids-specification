@@ -320,8 +320,15 @@ correspond.
 
 For example:
 
--   `sub-01_space-Talairach_electrodes.tsv`
--   `sub-01_space-Talairach_coordsystem.json`
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "sub-01_space-Talairach_electrodes.tsv": "",
+      "sub-01_space-Talairach_coordsystem.json": "",
+      "...": "",
+      },
+   }
+) }}
 
 The order of the required columns in the `*_electrodes.tsv` file MUST be as
 listed below.
@@ -474,10 +481,17 @@ Example of the operative photo of ECoG electrodes (here is an annotated example 
 which electrodes and vasculature are marked, taken from Hermes et al.,
 JNeuroMeth 2010).
 
-```Text
-    sub-0001_ses-01_acq-photo1_photo.jpg
-    sub-0001_ses-01_acq-photo2_photo.jpg
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "ses-0001": {
+         "sub-0001_ses-01_acq-photo1_photo.jpg": "",
+         "sub-0001_ses-01_acq-photo2_photo.jpg": "",
+         "...": "",
+         },
+      },
+   }
+) }}
 
 ![operative photo of ECoG electrodes](images/ieeg_electrodes1.png "operative photo of ECoG electrodes")
 

@@ -61,11 +61,15 @@ as well as to make support for other file formats possible in the future.
 
 Example `*_physio.tsv.gz`:
 
-```Text
-sub-control01/
-    func/
-        sub-control01_task-nback_physio.tsv.gz
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-control01": {
+      "func": {
+         "sub-control01_task-nback_physio.tsv.gz": "",
+         },
+      },
+   }
+) }}
 
 (after decompression)
 
@@ -77,11 +81,15 @@ sub-control01/
 
 Example `*_physio.json`:
 
-```Text
-sub-control01/
-    func/
-        sub-control01_task-nback_physio.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-control01": {
+      "func": {
+         "sub-control01_task-nback_physio.json": "",
+         },
+      },
+   }
+) }}
 
 ```JSON
 {
@@ -123,12 +131,18 @@ For multi-echo data, a given `physio.tsv` file is applicable to all echos of
 a particular run.
 For example:
 
-```Text
-sub-01_task-cuedSGT_run-1_physio.tsv.gz
-sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-cuedSGT_run-1_physio.tsv.gz": "",
+        "sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz": "",
+        "sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz": "",
+        "sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz": "",
+         },
+      },
+   }
+) }}
 
 ### Other RECOMMENDED metadata for physiological data
 

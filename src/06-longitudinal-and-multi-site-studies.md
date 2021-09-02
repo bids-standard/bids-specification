@@ -5,49 +5,58 @@ and [file names](02-common-principles.md#file-name-structure)
 in the form of a session (for example `ses-<label>`) and
 with a [`*_sessions.tsv` file](03-modality-agnostic-files.md#sessions-file).
 
-```Text
-sub-control01/
-    ses-predrug/
-        anat/
-            sub-control01_ses-predrug_T1w.nii.gz
-            sub-control01_ses-predrug_T1w.json
-            sub-control01_ses-predrug_T2w.nii.gz
-            sub-control01_ses-predrug_T2w.json
-        func/
-            sub-control01_ses-predrug_task-nback_bold.nii.gz
-            sub-control01_ses-predrug_task-nback_bold.json
-            sub-control01_ses-predrug_task-nback_events.tsv
-            sub-control01_ses-predrug_task-nback_cont-physio.tsv.gz
-            sub-control01_ses-predrug_task-nback_cont-physio.json
-            sub-control01_ses-predrug_task-nback_sbref.nii.gz
-        dwi/
-            sub-control01_ses-predrug_dwi.nii.gz
-            sub-control01_ses-predrug_dwi.bval
-            sub-control01_ses-predrug_dwi.bvec
-        fmap/
-            sub-control01_ses-predrug_phasediff.nii.gz
-            sub-control01_ses-predrug_phasediff.json
-            sub-control01_ses-predrug_magnitude1.nii.gz
-        sub-control01_ses-predrug_scans.tsv
-    ses-postdrug/
-        func/
-            sub-control01_ses-postdrug_task-nback_bold.nii.gz
-            sub-control01_ses-postdrug_task-nback_bold.json
-            sub-control01_ses-postdrug_task-nback_events.tsv
-            sub-control01_ses-postdrug_task-nback_cont-physio.tsv.gz
-            sub-control01_ses-postdrug_task-nback_cont-physio.json
-            sub-control01_ses-postdrug_task-nback_sbref.nii.gz
-        fmap/
-            sub-control01_ses-postdrug_phasediff.nii.gz
-            sub-control01_ses-postdrug_phasediff.json
-            sub-control01_ses-postdrug_magnitude1.nii.gz
-        sub-control01_ses-postdrug_scans.tsv
-    sub-control01_sessions.tsv
-participants.tsv
-dataset_description.json
-README
-CHANGES
-```
+{{ MACROS___make_filetree_example(
+    {
+    "sub-control01": {
+        "ses-predrug": {
+            "anat": {
+                "sub-control01_ses-predrug_T1w.nii.gz": "",
+                "sub-control01_ses-predrug_T1w.json": "",
+                "sub-control01_ses-predrug_T2w.nii.gz": "",
+                "sub-control01_ses-predrug_T2w.json": "",
+                },
+            "func": {
+                "sub-control01_ses-predrug_task-nback_bold.nii.gz": "",
+                "sub-control01_ses-predrug_task-nback_bold.json": "",
+                "sub-control01_ses-predrug_task-nback_events.tsv": "",
+                "sub-control01_ses-predrug_task-nback_physio.tsv.gz": "",
+                "sub-control01_ses-predrug_task-nback_physio.json": "",
+                "sub-control01_ses-predrug_task-nback_sbref.nii.gz": "",
+                },
+            "dwi": {
+                "sub-control01_ses-predrug_dwi.nii.gz": "",
+                "sub-control01_ses-predrug_dwi.bval": "",
+                "sub-control01_ses-predrug_dwi.bvec": "",
+                },
+            "fmap": {
+                "sub-control01_ses-predrug_phasediff.nii.gz": "",
+                "sub-control01_ses-predrug_phasediff.json": "",
+                "sub-control01_ses-predrug_magnitude1.nii.gz": "",
+                },
+            "sub-control01_ses-predrug_scans.tsv": "",
+            },
+        "ses-postdrug": {
+            "func": {
+                "sub-control01_ses-postdrug_task-nback_bold.nii.gz": "",
+                "sub-control01_ses-postdrug_task-nback_bold.json": "",
+                "sub-control01_ses-postdrug_task-nback_events.tsv": "",
+                "sub-control01_ses-postdrug_task-nback_physio.tsv.gz": "",
+                "sub-control01_ses-postdrug_task-nback_physio.json": "",
+                "sub-control01_ses-postdrug_task-nback_sbref.nii.gz": "",
+                },
+            "fmap": {
+                "sub-control01_ses-postdrug_phasediff.nii.gz": "",
+                "sub-control01_ses-postdrug_phasediff.json": "",
+                "sub-control01_ses-postdrug_magnitude1.nii.gz": "",
+                }
+            }
+        },
+    "participants.tsv": "",
+    "dataset_description.json": "",
+    "README": "",
+    "CHANGES": "",
+    }
+) }}
 
 ## Multi-site or multi-center studies
 

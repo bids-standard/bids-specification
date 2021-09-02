@@ -60,12 +60,16 @@ SHOULD be documented in an accompanying JSON sidecar file.
 
 Example:
 
-```Text
-sub-control01/
-    func/
-        sub-control01_task-stopsignal_events.tsv
-        sub-control01_task-stopsignal_events.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-control01": {
+      "func": {
+         "sub-control01_task-stopsignal_events.tsv": "",
+         "sub-control01_task-stopsignal_events.json": "",
+         },
+      },
+   }
+) }}
 
 Example of the content of the TSV file:
 
@@ -96,12 +100,18 @@ sake of brevity.
 For multi-echo files, the `events.tsv` file is applicable to all echos of
 a particular run:
 
-```Text
-sub-01_task-cuedSGT_run-1_events.tsv
-sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-cuedSGT_run-1_events.tsv": "",
+        "sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz": "",
+        "sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz": "",
+        "sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz": "",
+         },
+      },
+   }
+) }}
 
 Note: Events can also be documented in machine-actionable form
 using HED (Hierarchical Event Descriptor) tags.
@@ -139,12 +149,16 @@ The following example includes references to the
 
 Example:
 
-```Text
-sub-control01/
-    func/
-        sub-control01_task-emoface_events.tsv
-        sub-control01_task-emoface_events.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-control01": {
+      "func": {
+         "sub-control01_task-emoface_events.tsv": "",
+         "sub-control01_task-emoface_events.json": "",
+         },
+      },
+   }
+) }}
 
 Example of the content of the TSV file:
 

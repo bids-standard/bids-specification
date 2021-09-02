@@ -272,19 +272,24 @@ which are typically used in `part-mag`/`part-phase` or `part-real`/`part-imag`
 pairs of files.
 For example:
 
-```Text
-sub-01_part-mag_T1w.nii.gz
-sub-01_part-mag_T1w.json
-sub-01_part-phase_T1w.nii.gz
-sub-01_part-phase_T1w.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "anat": {
+         "sub-01_part-mag_T1w.nii.gz": "",
+         "sub-01_part-mag_T1w.json": "",
+         "sub-01_part-phase_T1w.nii.gz": "",
+         "sub-01_part-phase_T1w.json": "",
+         },
+      }
+   }
+) }}
 
 Phase images MAY be in radians or in arbitrary units.
 The sidecar JSON file MUST include the units of the `phase` image.
 The possible options are `rad` or `arbitrary`.
-For example:
 
-sub-01_part-phase_T1w.json
+For example, for `sub-01_part-phase_T1w.json`:
 
 ```Text
 {
@@ -420,16 +425,20 @@ for more information on `dir` field specification.
 Multi-echo data MUST be split into one file per echo using the
 [`echo-<index>`](../99-appendices/09-entities.md#echo) key-value pair. For example:
 
-```Text
-sub-01/
-   func/
-      sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-      sub-01_task-cuedSGT_run-1_echo-1_bold.json
-      sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-      sub-01_task-cuedSGT_run-1_echo-2_bold.json
-      sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
-      sub-01_task-cuedSGT_run-1_echo-3_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+         "sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz": "",
+         "sub-01_task-cuedSGT_run-1_echo-1_bold.json": "",
+         "sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz": "",
+         "sub-01_task-cuedSGT_run-1_echo-2_bold.json": "",
+         "sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz": "",
+         "sub-01_task-cuedSGT_run-1_echo-3_bold.json": "",
+         },
+      }
+   }
+) }}
 
 Please note that the `<index>` denotes the number/index (in the form of a
 nonnegative integer) of the echo not the echo time value which needs to be stored in the
@@ -443,20 +452,25 @@ from the specification in the next major release.
 For backwards compatibility, `_phase` is considered equivalent to `_part-phase_bold`.
 When the `_phase` suffix is not used, each file shares the same
 name with the exception of the `part-<mag|phase>` or `part-<real|imag>` key/value.
+
 For example:
 
-```Text
-sub-01/
-   func/
-      sub-01_task-cuedSGT_part-mag_bold.nii.gz
-      sub-01_task-cuedSGT_part-mag_bold.json
-      sub-01_task-cuedSGT_part-phase_bold.nii.gz
-      sub-01_task-cuedSGT_part-phase_bold.json
-      sub-01_task-cuedSGT_part-mag_sbref.nii.gz
-      sub-01_task-cuedSGT_part-mag_sbref.json
-      sub-01_task-cuedSGT_part-phase_sbref.nii.gz
-      sub-01_task-cuedSGT_part-phase_sbref.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+         "sub-01_task-cuedSGT_part-mag_bold.nii.gz": "",
+         "sub-01_task-cuedSGT_part-mag_bold.json": "",
+         "sub-01_task-cuedSGT_part-phase_bold.nii.gz": "",
+         "sub-01_task-cuedSGT_part-phase_bold.json": "",
+         "sub-01_task-cuedSGT_part-mag_sbref.nii.gz": "",
+         "sub-01_task-cuedSGT_part-mag_sbref.json": "",
+         "sub-01_task-cuedSGT_part-phase_sbref.nii.gz": "",
+         "sub-01_task-cuedSGT_part-phase_sbref.json": "",
+         },
+      },
+   }
+) }}
 
 Some meta information about the acquisition MUST be provided in an additional
 JSON file.
@@ -525,11 +539,15 @@ additional terms and their definitions.
 
 Example:
 
-```Text
-sub-control01/
-    func/
-        sub-control01_task-nback_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+         "sub-control01_task-nback_bold.json": "",
+         },
+      }
+   }
+) }}
 
 ```JSON
 {
@@ -679,50 +697,66 @@ two runs each, and the intent of the researcher is that all of them are
 part of a unique multipart scan, then they will tag all four runs with the
 same `MultipartID` (shown at the right-hand side of the file listing):
 
-```Text
-sub-<label>/[ses-<label>/]         # MultipartID
-  dwi/
-    sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1
-    sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_1
-    sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_1
-    sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_1
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-1": {
+      "dwi                               # MultipartID": {
+         "sub-1_dir-AP_run-1_dwi.nii.gz": " # dwi_1",
+         "sub-1_dir-AP_run-2_dwi.nii.gz": " # dwi_1",
+         "sub-1_dir-PA_run-1_dwi.nii.gz": " # dwi_1",
+         "sub-1_dir-PA_run-2_dwi.nii.gz": " # dwi_1",
+         }
+      }
+   }
+) }}
 
 If, conversely, the researcher wanted to store two multipart scans, one possibility
 is to combine matching phase-encoding directions:
 
-```Text
-sub-<label>/[ses-<label>/]         # MultipartID
-  dwi/
-    sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1
-    sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_1
-    sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_2
-    sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_2
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-1": {
+      "dwi                               # MultipartID":{
+            "sub-1_dir-AP_run-1_dwi.nii.gz": " # dwi_1",
+            "sub-1_dir-AP_run-2_dwi.nii.gz": " # dwi_1",
+            "sub-1_dir-PA_run-1_dwi.nii.gz": " # dwi_2",
+            "sub-1_dir-PA_run-2_dwi.nii.gz": " # dwi_2",
+      },
+      }
+   }
+) }}
 
 Alternatively, the researcher's intent could be combining opposed phase-encoding
 runs instead:
 
-```Text
-sub-<label>/[ses-<label>/]         # MultipartID
-  dwi/
-    sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1
-    sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_2
-    sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_1
-    sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_2
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-1": {
+      "dwi                               # MultipartID":{
+            "sub-1_dir-AP_run-1_dwi.nii.gz": " # dwi_1",
+            "sub-1_dir-AP_run-2_dwi.nii.gz": " # dwi_2",
+            "sub-1_dir-PA_run-1_dwi.nii.gz": " # dwi_1",
+            "sub-1_dir-PA_run-2_dwi.nii.gz": " # dwi_2",
+      },
+      }
+   }
+) }}
 
 The `MultipartID` metadata MAY be used with the
 [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair, for example:
 
-```Text
-sub-<label>/[ses-<label>/]             # MultipartID
-  dwi/
-    sub-1_acq-shell1_run-1_dwi.nii.gz  # dwi_1
-    sub-1_acq-shell1_run-2_dwi.nii.gz  # dwi_2
-    sub-1_acq-shell2_run-1_dwi.nii.gz  # dwi_1
-    sub-1_acq-shell2_run-2_dwi.nii.gz  # dwi_2
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-1": {
+      "dwi                                   # MultipartID":{
+         "sub-1_acq-shell1_run-1_dwi.nii.gz": " # dwi_1",
+         "sub-1_acq-shell1_run-2_dwi.nii.gz": " # dwi_2",
+         "sub-1_acq-shell2_run-1_dwi.nii.gz": " # dwi_1",
+         "sub-1_acq-shell2_run-2_dwi.nii.gz": " # dwi_2",
+         },
+      }
+   }
+) }}
 
 ### Other RECOMMENDED metadata
 

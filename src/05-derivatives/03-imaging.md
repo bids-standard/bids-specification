@@ -9,7 +9,7 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         <datatype>/
             <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<ext>
 ```
@@ -30,14 +30,19 @@ to present both `res` and `den` entities simultaneously.
 
 Examples:
 
-```Text
-pipeline1/
-    sub-001/
-        func/
-            sub-001_task-rest_run-1_space-MNI305_res-lo_bold.nii.gz
-            sub-001_task-rest_run-1_space-MNI305_res-hi_bold.nii.gz
-            sub-001_task-rest_run-1_space-MNI305_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline1": {
+        "sub-001": {
+            "func": {
+                "sub-001_task-rest_run-1_space-MNI305_res-lo_bold.nii.gz": "",
+                "sub-001_task-rest_run-1_space-MNI305_res-hi_bold.nii.gz": "",
+                "sub-001_task-rest_run-1_space-MNI305_bold.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 The following metadata JSON fields are defined for preprocessed images:
 
@@ -86,16 +91,21 @@ And one corresponding to `res-hi`
 Example of CIFTI-2 files (a format that combines regularly sampled data
 and non-parametric surfaces) having both `res` and `den` entities:
 
-```Text
-pipeline1/
-    sub-001/
-        func/
-            sub-001_task-rest_run-1_space-fsLR_res-1_den-10k_bold.dtseries.nii
-            sub-001_task-rest_run-1_space-fsLR_res-1_den-41k_bold.dtseries.nii
-            sub-001_task-rest_run-1_space-fsLR_res-2_den-10k_bold.dtseries.nii
-            sub-001_task-rest_run-1_space-fsLR_res-2_den-41k_bold.dtseries.nii
-            sub-001_task-rest_run-1_space-fsLR_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline1": {
+        "sub-001": {
+            "func": {
+                "sub-001_task-rest_run-1_space-fsLR_res-1_den-10k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_res-1_den-41k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_res-2_den-10k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_res-2_den-41k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_bold.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 And the corresponding `sub-001_task-rest_run-1_space-fsLR_bold.json` file:
 
@@ -119,7 +129,7 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         anat|func|dwi/
             <source_entities>[_space-<space>][_res-<label>][_den-<label>][_label-<label>][_desc-<label>]_mask.nii.gz
 ```
@@ -145,21 +155,31 @@ JSON metadata fields:
 
 Examples:
 
-```Text
-func_loc/
-    sub-001/
-        func/
-           sub-001_task-rest_run-1_space-MNI305_desc-PFC_mask.nii.gz
-           sub-001_task-rest_run-1_space-MNI305_desc-PFC_mask.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "func_loc": {
+        "sub-001": {
+            "func": {
+                "sub-001_task-rest_run-1_space-MNI305_desc-PFC_mask.nii.gz": "",
+                "sub-001_task-rest_run-1_space-MNI305_desc-PFC_mask.json": "",
+                },
+            },
+        }
+   }
+) }}
 
-```Text
-manual_masks/
-    sub-001/
-        anat/
-            sub-001_desc-tumor_mask.nii.gz
-            sub-001_desc-tumor_mask.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "manual_masks": {
+        "sub-001": {
+            "anat": {
+                "sub-001_desc-tumor_mask.nii.gz": "",
+                "sub-001_desc-tumor_mask.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 ## Segmentations
 
@@ -205,20 +225,25 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         anat|func|dwi/
             <source_entities>[_space-<space>][_res-<label>][_den-<label>]_dseg.nii.gz
 ```
 
 Example:
 
-```Text
-pipeline/
-    sub-001/
-        anat/
-            sub-001_space-orig_dseg.nii.gz
-            sub-001_space-orig_dseg.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_space-orig_dseg.nii.gz": "",
+                "sub-001_space-orig_dseg.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 A segmentation can be used to generate a binary mask that functions as a
 discrete "label" for a single structure.
@@ -228,12 +253,17 @@ to specify the masked structure
 and the `Atlas` metadata SHOULD be defined.
 For example:
 
-```Text
-pipeline/
-    sub-001/
-        anat/
-            sub-001_space-orig_label-GM_mask.nii.gz
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_space-orig_label-GM_mask.nii.gz": "",
+                },
+            },
+        }
+   }
+) }}
 
 ### Probabilistic Segmentations
 
@@ -247,20 +277,25 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         func|anat|dwi/
             <source_entities>[_space-<space>][_res-<label>][_den-<label>][_label-<label>]_probseg.nii.gz
 ```
 
 Example:
 
-```Text
-pipeline/
-    sub-001/
-        anat/
-            sub-001_space-orig_label-BG_probseg.nii.gz
-            sub-001_space-orig_label-WM_probseg.nii.gz
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_space-orig_label-BG_probseg.nii.gz": "",
+                "sub-001_space-orig_label-WM_probseg.nii.gz": "",
+                },
+            },
+        }
+   }
+) }}
 
 See [Common image-derived labels](#common-image-derived-labels)
 for reserved key values for `label`.
@@ -268,13 +303,18 @@ for reserved key values for `label`.
 A 4D probabilistic segmentation, in which each frame corresponds to a different
 tissue class, must provide a label mapping in its JSON sidecar. For example:
 
-```Text
-pipeline/
-    sub-001/
-	    anat/
-		    sub-001_space-orig_probseg.nii.gz
-		    sub-001_space-orig_probseg.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+		        "sub-001_space-orig_probseg.nii.gz": "",
+		        "sub-001_space-orig_probseg.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 The JSON sidecar MUST include the label-map key that specifies a tissue label
 for each volume:
@@ -303,7 +343,7 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         anat/
             <source_entities>[_hemi-{L|R}][_space-<space>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
 ```
@@ -312,23 +352,33 @@ The `hemi` tag is REQUIRED for GIFTI files storing information about
 a structure that is restricted to a hemibrain.
 For example:
 
-```Text
-pipeline/
-    sub-001/
-        anat/
-            sub-001_hemi-L_dseg.label.gii
-            sub-001_hemi-R_dseg.label.gii
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_hemi-L_dseg.label.gii": "",
+                "sub-001_hemi-R_dseg.label.gii": "",
+                },
+            },
+        }
+   }
+) }}
 
 The REQUIRED extension for CIFTI parcellations is `.dlabel.nii`. For example:
 
-```Text
-pipeline/
-    sub-001/
-        anat/
-            sub-001_dseg.dlabel.nii
-            sub-001_dseg.dlabel.nii
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_dseg.dlabel.nii": "",
+                "sub-001_dseg.dlabel.nii": "",
+                },
+            },
+        }
+   }
+) }}
 
 ### Common image-derived labels
 
@@ -357,26 +407,36 @@ filename.
 
 Example:
 
-```Text
-pipeline/
-    sub-001/
-        anat/
-            sub-001_space-orig_dseg.nii.gz
-            sub-001_space-orig_dseg.tsv
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_space-orig_dseg.nii.gz": "",
+                "sub-001_space-orig_dseg.tsv": "",
+                },
+            },
+        }
+   }
+) }}
 
 Definitions can also be specified with a top-level `dseg.tsv`, which propagates to
 segmentations in relative subdirectories.
 
 Example:
 
-```Text
-pipeline/
-    dseg.tsv
-    sub-001/
-        anat/
-            sub-001_space-orig_dseg.nii.gz
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "dseg.tsv": "",
+        "sub-001": {
+            "anat": {
+                "sub-001_space-orig_dseg.nii.gz": "",
+                },
+            },
+        }
+   }
+) }}
 
 These TSV lookup tables contain the following columns:
 

@@ -27,10 +27,16 @@ Preprocessed `bold` NIfTI file in the original coordinate space of the original 
 The location of the file in the original datasets is encoded in the `RawSources`
 metadata, and `desc-<label>` is used to prevent clashing with the original file name.
 
-```Text
-sub-01/func/sub-01_task-rest_desc-preproc_bold.nii.gz
-sub-01/func/sub-01_task-rest_desc-preproc_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-rest_desc-preproc_bold.nii.gz": "",
+        "sub-01_task-rest_desc-preproc_bold.json": "",
+         },
+      },
+   }
+) }}
 
 ```JSON
 {
@@ -98,10 +104,16 @@ For CIFTI-2 images, the relevant structures are BrainStructure values defined in
 Preprocessed `bold` NIfTI file in `individual` coordinate space. Please mind
 that in this case `SpatialReference` key is REQUIRED.
 
-```Text
-sub-01/func/sub-01_task-rest_space-individual_bold.nii.gz
-sub-01/func/sub-01_task-rest_space-individual_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-rest_space-individual_bold.nii.gz": "",
+        "sub-01_task-rest_space-individual_bold.json": "",
+         },
+      },
+   }
+) }}
 
 ```JSON
 {
@@ -116,10 +128,16 @@ reference, the `VolumeReference` key is used as a default, and only the
 surface references need to be specified by BrainStructure names.
 Here referred to via "https" [URIs][].
 
-```Text
-sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.dtseries.nii
-sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-rest_space-fsLR_den-91k_bold.dtseries.nii": "",
+        "sub-01_task-rest_space-fsLR_den-91k_bold.json": "",
+         },
+      },
+   }
+) }}
 
 ```JSON
 {
@@ -137,7 +155,7 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         <datatype>/
             <source_entities>[_space-<space>][_desc-<label>]_<suffix>.<ext>
 ```
@@ -165,26 +183,37 @@ processing for the same input data.
 
 Examples of preprocessed data:
 
-```Text
-pipeline1/
-    sub-001/
-        anat/
-            sub-001_space-MNI305_T1w.nii.gz
-            sub-001_space-MNI305_T1w.json
-        func/
-            sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.nii.gz
-            sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline1": {
+        "sub-001": {
+            "anat": {
+                "sub-001_space-MNI305_T1w.nii.gz": "",
+                "sub-001_space-MNI305_T1w.json": "",
+                },
+            "func": {
+                "sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.nii.gz": "",
+                "sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.json": "",
+                },
+            },
+        }
+   }
+) }}
 
-```Text
-pipeline2/
-    sub-001/
-        eeg/
-            sub-001_task-listening_run-1_desc-autoannotation_events.tsv
-            sub-001_task-listening_run-1_desc-autoannotation_events.json
-            sub-001_task-listening_run-1_desc-filtered_eeg.edf
-            sub-001_task-listening_run-1_desc-filtered_eeg.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline2": {
+        "sub-001": {
+            "eeg": {
+                "sub-001_task-listening_run-1_desc-autoannotation_events.tsv": "",
+                "sub-001_task-listening_run-1_desc-autoannotation_events.json": "",
+                "sub-001_task-listening_run-1_desc-filtered_eeg.edf": "",
+                "sub-001_task-listening_run-1_desc-filtered_eeg.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 All REQUIRED metadata fields coming from a derivative file’s source file(s) MUST
 be propagated to the JSON description of the derivative unless the processing
