@@ -7,9 +7,10 @@ specification and are run/rendered with the mkdocs plugin "macros".
 import os
 import sys
 
-schemacode_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append(schemacode_path)
-from schemacode import macros
+code_path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
+sys.path.append(code_path)
+
+import macros
 
 
 def define_env(env):
@@ -32,13 +33,8 @@ def define_env(env):
     env.macro(macros.make_entity_table, "MACROS___make_entity_table")
     env.macro(
         macros.make_entity_definitions,
-        "MACROS___make_entity_definitions"
+        "MACROS___make_entity_definitions",
     )
-    env.macro(
-        macros.make_metadata_table,
-        "MACROS___make_metadata_table"
-    )
-
-    @env.macro
-    def make_suffix_table(suffixes):
-        return None
+    env.macro(macros.make_suffix_table, "MACROS___make_suffix_table")
+    env.macro(macros.make_metadata_table, "MACROS___make_metadata_table")
+    env.macro(macros.make_filetree_example, "MACROS___make_filetree_example")

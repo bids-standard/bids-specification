@@ -141,7 +141,7 @@ which we divide into several categories:
       ),
       "InstitutionName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0080 `InstitutionName`."),
       "InstitutionAddress": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`."),
-      "InstitutionalDepartmentName": "RECOMMENDED",
+      "InstitutionalDepartmentName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`."),
       "BodyPart": "RECOMMENDED",
    }
 ) }}
@@ -293,7 +293,7 @@ sub-03 72
 ```
 
 If multiple measurements are made, these data SHOULD be included in the
-[Sessions file](../06-longitudinal-and-multi-site-studies.md#sessions-file).
+[Sessions file](../03-modality-agnostic-files.md#sessions-file).
 
 For example:
 

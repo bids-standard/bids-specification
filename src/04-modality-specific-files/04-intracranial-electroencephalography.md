@@ -14,8 +14,9 @@ The iEEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, iEEG data MUST be
 stored in one of the following formats:
 
--   [European Data Format](https://www.edfplus.info/)
-    (Each recording consisting of a `.edf` file)
+-   [European data format](https://www.edfplus.info/)
+    (including [`edf+`](https://www.edfplus.info/specs/edfplus.html);
+    each recording consisting of a `.edf` file)
 
 -   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
     (Each recording consisting of a  `.vhdr`, `.vmrk`, `.eeg` file triplet)
@@ -94,7 +95,7 @@ Generic fields MUST be present:
 
 {{ MACROS___make_metadata_table(
    {
-      "TaskName": "REQUIRED",
+      "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
    }
 ) }}
 
@@ -108,11 +109,12 @@ Whenever possible, please avoid using ad hoc wording.
    {
       "InstitutionName": "RECOMMENDED",
       "InstitutionAddress": "RECOMMENDED",
+      "InstitutionalDepartmentName": "RECOMMENDED",
       "Manufacturer": ("RECOMMENDED", 'For example, `"TDT"`, `"Blackrock"`.'),
       "ManufacturersModelName": "RECOMMENDED",
       "SoftwareVersions": "RECOMMENDED",
       "TaskDescription": "RECOMMENDED",
-      "Instructions": "RECOMMENDED",
+      "Instructions": ("RECOMMENDED", "This is especially important in context of resting state recordings and distinguishing between eyes open and eyes closed paradigms."),
       "CogAtlasID": "RECOMMENDED",
       "CogPOID": "RECOMMENDED",
       "DeviceSerialNumber": "RECOMMENDED",
@@ -318,8 +320,15 @@ correspond.
 
 For example:
 
--   `sub-01_space-Talairach_electrodes.tsv`
--   `sub-01_space-Talairach_coordsystem.json`
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "sub-01_space-Talairach_electrodes.tsv": "",
+      "sub-01_space-Talairach_coordsystem.json": "",
+      "...": "",
+      },
+   }
+) }}
 
 The order of the required columns in the `*_electrodes.tsv` file MUST be as
 listed below.
@@ -472,10 +481,17 @@ Example of the operative photo of ECoG electrodes (here is an annotated example 
 which electrodes and vasculature are marked, taken from Hermes et al.,
 JNeuroMeth 2010).
 
-```Text
-    sub-0001_ses-01_acq-photo1_photo.jpg
-    sub-0001_ses-01_acq-photo2_photo.jpg
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "ses-0001": {
+         "sub-0001_ses-01_acq-photo1_photo.jpg": "",
+         "sub-0001_ses-01_acq-photo2_photo.jpg": "",
+         "...": "",
+         },
+      },
+   }
+) }}
 
 ![operative photo of ECoG electrodes](images/ieeg_electrodes1.png "operative photo of ECoG electrodes")
 

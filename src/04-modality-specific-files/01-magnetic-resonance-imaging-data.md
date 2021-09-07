@@ -180,7 +180,7 @@ fieldmap estimation using the following metadata:
    {
       "InstitutionName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0080 `InstitutionName`."),
       "InstitutionAddress": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`."),
-      "InstitutionalDepartmentName": "RECOMMENDED",
+      "InstitutionalDepartmentName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.")
    }
 ) }}
 
@@ -196,17 +196,21 @@ whenever possible. See also
 Anatomical (structural) data acquired for that participant. Currently supported
 non-parametric structural MR images include:
 
-| **Name**                                     | `suffix`  | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| -------------------------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| T1 weighted images                           | T1w       | In arbitrary units (arbitrary). The contrast of these images is mainly determined by spatial variations in the longitudinal relaxation time of the imaged specimen. In spin-echo sequences this contrast is achieved at relatively short repetition and echo times. To achieve this weighting in gradient-echo images, again, short repetition and echo times are selected; however, at relatively large flip angles. Another common approach to increase T1 weighting in gradient-echo images is to add an inversion preparation block to the beginning of the imaging sequence (for example, `TurboFLASH` or `MP-RAGE`). |
-| T2 weighted images                           | T2w       | In arbitrary units (arbitrary). The contrast of these images is mainly determined by spatial variations in the (true) transverse relaxation time of the imaged specimen. In spin-echo sequences this contrast is achieved at relatively long repetition and echo times. Generally, gradient echo sequences are not the most suitable option for achieving T2 weighting, as their contrast natively depends on T2-star rather than on T2.                                                                                                                                                                                   |
-| Proton density (PD) weighted images          | PDw       | In arbitrary units (arbitrary). The contrast of these images is mainly determined by spatial variations in the spin density (1H) of the imaged specimen. In spin-echo sequences this contrast is achieved at short repetition and long echo times. In a gradient-echo acquisition, PD weighting dominates the contrast at long repetition and short echo times, and at small flip angles.                                                                                                                                                                                                                                  |
-| T2star weighted images                       | T2starw   | In arbitrary units (arbitrary). The contrast of these images is mainly determined by spatial variations in the (observed) transverse relaxation time of the imaged specimen. In spin-echo sequences, this effect is negated as the excitation is followed by an inversion pulse. The contrast of gradient-echo images natively depends on T2-star effects. However, for T2-star variation to dominate the image contrast, gradient-echo acquisitions are carried out at long repetition and echo times, and at small flip angles.                                                                                          |
-| Fluid attenuated inversion recovery images   | FLAIR     | In arbitrary units (arbitrary). Structural images with predominant T2 contribution (also known as T2-FLAIR), in which signal from fluids (for example, CSF) is nulled out by adjusting inversion time, coupled with notably long repetition and echo times.                                                                                                                                                                                                                                                                                                                                                                |
-| Inplane T1                                   | inplaneT1 | In arbitrary units (arbitrary). T1 weighted structural image matched to a functional (task) image.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Inplane T2                                   | inplaneT2 | In arbitrary units (arbitrary). T2 weighted structural image matched to a functional (task) image.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| PD and T2 weighted images                    | PDT2      | In arbitrary units (arbitrary). PDw and T2w images acquired using a dual echo FSE sequence through view sharing process ([Johnson et al. 1994](https://pubmed.ncbi.nlm.nih.gov/8010268/)).                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| Homogeneous (flat) T1-weighted MP2RAGE image | UNIT1     | In arbitrary units (arbitrary). UNIT1 images are REQUIRED to use this suffix regardless of the method used to generate them. Note that although this image is T1-weighted, regions without MR signal will contain white salt-and-pepper noise that most segmentation algorithms will fail on. Therefore, it is important to dissociate it from from `T1w`. Please see [`MP2RAGE` specific notes](../99-appendices/11-qmri.md#unit1-images) in the qMRI appendix for further information.                                                                                                                                   |
+{{ MACROS___make_suffix_table(
+      [
+         "T1w",
+         "T2w",
+         "PDw",
+         "T2starw",
+         "FLAIR",
+         "inplaneT1",
+         "inplaneT2",
+         "PDT2",
+         "UNIT1",
+         "angio",
+      ]
+   )
+}}
 
 If the structural images included in the dataset were defaced (to protect
 identity of participants) one MAY provide the binary mask that was used to
@@ -275,19 +279,24 @@ which are typically used in `part-mag`/`part-phase` or `part-real`/`part-imag`
 pairs of files.
 For example:
 
-```Text
-sub-01_part-mag_T1w.nii.gz
-sub-01_part-mag_T1w.json
-sub-01_part-phase_T1w.nii.gz
-sub-01_part-phase_T1w.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "anat": {
+         "sub-01_part-mag_T1w.nii.gz": "",
+         "sub-01_part-mag_T1w.json": "",
+         "sub-01_part-phase_T1w.nii.gz": "",
+         "sub-01_part-phase_T1w.json": "",
+         },
+      }
+   }
+) }}
 
 Phase images MAY be in radians or in arbitrary units.
 The sidecar JSON file MUST include the units of the `phase` image.
 The possible options are `rad` or `arbitrary`.
-For example:
 
-sub-01_part-phase_T1w.json
+For example, for `sub-01_part-phase_T1w.json`:
 
 ```Text
 {
@@ -304,26 +313,29 @@ different reconstruction algorithms (for example ones using motion correction).
 Structural MR images whose intensity is represented in a non-arbitrary scale
 constitute parametric maps. Currently supported parametric maps include:
 
-| **Name**                                | `suffix`  | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| --------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Longitudinal relaxation time map        | T1map     | In seconds (s). T1 maps are REQUIRED to use this suffix regardless of the method used to generate them. See [this interactive book on T1 mapping](https://qmrlab.org/t1_book/intro) for further reading on T1-mapping.                                                                                                                                                                                                                                                                                            |
-| Longitudinal relaxation rate map        | R1map     | In seconds<sup>-1</sup> (1/s). R1 maps (R1 = 1/T1) are REQUIRED to use this suffix regardless of the method used to generate them.                                                                                                                                                                                                                                                                                                                                                                                |
-| True transverse relaxation time map     | T2map     | In seconds (s). T2 maps are REQUIRED to use this suffix regardless of the method used to generate them.                                                                                                                                                                                                                                                                                                                                                                                                           |
-| True transverse relaxation rate map     | R2map     | In seconds<sup>-1</sup> (1/s). R2 maps (R2 = 1/T2) are REQUIRED to use this suffix regardless of the method used to generate them.                                                                                                                                                                                                                                                                                                                                                                                |
-| Observed transverse relaxation time map | T2starmap | In seconds (s). T2-star maps are REQUIRED to use this suffix regardless of the method used to generate them.                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Observed transverse relaxation rate map | R2starmap | In seconds<sup>-1</sup> (1/s). R2-star maps (R2star = 1/T2star) are REQUIRED to use this suffix regardless of the method used to generate them.                                                                                                                                                                                                                                                                                                                                                                   |
-| Proton density map                      | PDmap     | In arbitrary units (arbitrary). PD maps are REQUIRED to use this suffix regardless of the method used to generate them.                                                                                                                                                                                                                                                                                                                                                                                           |
-| Magnetization transfer ratio map        | MTRmap    | In arbitrary units (arbitrary). MTR maps are REQUIRED to use this suffix regardless of the method used to generate them. MTRmap intensity values are RECOMMENDED to be represented in percentage in the range of 0-100%.                                                                                                                                                                                                                                                                                          |
-| Magnetization transfer saturation map   | MTsat     | In arbitrary units (arbitrary). MTsat maps are REQUIRED to use this suffix regardless of the method used to generate them.                                                                                                                                                                                                                                                                                                                                                                                        |
-| T1 in rotating frame (T1 rho) map       | T1rho     | In seconds (s). T1-rho maps are REQUIRED to use this suffix regardless of the method used to generate them.                                                                                                                                                                                                                                                                                                                                                                                                       |
-| Myelin water fraction map               | MWFmap    | In arbitrary units (arbitrary). MWF maps are REQUIRED to use this suffix regardless of the method used to generate them. MWF intensity values are RECOMMENDED to be represented in percentage in the range of 0-100%.                                                                                                                                                                                                                                                                                             |
-| Macromolecular tissue volume (MTV) map  | MTVmap    | In arbitrary units (arbitrary). MTV maps are REQUIRED to use this suffix regardless of the method used to generate them.                                                                                                                                                                                                                                                                                                                                                                                          |
-| Combined PD/T2 map                      | PDT2map   | In arbitrary units (arbitrary). Combined PD/T2 maps are REQUIRED to use this suffix regardless of the method used to generate them.                                                                                                                                                                                                                                                                                                                                                                               |
-| Quantitative susceptibility map (QSM)   | Chimap    | In parts per million (ppm). QSM allows for determining the underlying magnetic susceptibility of tissue (Chi) ([Wang & Liu, 2014](https://onlinelibrary.wiley.com/doi/10.1002/mrm.25358)). Chi maps are REQUIRED to use this suffix regardless of the method used to generate them.                                                                                                                                                                                                                               |
-| RF transmit field map                   | TB1map    | In arbitrary units (arbitrary). Radio frequency (RF) transmit (B1+) field maps are REQUIRED to use this suffix regardless of the method used to generate them. TB1map intensity values are RECOMMENDED to be represented as percent multiplicative factors such that FlipAngle<sub>effective</sub> = B1+<sub>intensity</sub>\*FlipAngle<sub>nominal</sub> .                                                                                                                                                       |
-| RF receive sensitivity map              | RB1map    | In arbitrary units (arbitrary). Radio frequency (RF) receive (B1-) sensitivity maps are REQUIRED to use this suffix regardless of the method used to generate them. RB1map intensity values are RECOMMENDED to be represented as percent multiplicative factors such that Amplitude<sub>effective</sub> = B1-<sub>intensity</sub>\*Amplitude<sub>ideal</sub>.                                                                                                                                                     |
-| Observed signal amplitude (S0) map      | S0map     | In arbitrary units (arbitrary). For a multi-echo (typically fMRI) sequence, S0 maps index the baseline signal before exponential (T2-star) signal decay. In other words: the exponential of the intercept for a linear decay model across log-transformed echos. For more information, please see, for example, [the tedana documentation](https://tedana.readthedocs.io/en/latest/approach.html#monoexponential-decay-model-fit). S0 maps are RECOMMENDED to use this suffix if derived from an ME-FMRI dataset. |
-| Equilibrium magnetization (M0) map      | M0map     | In arbitrary units (arbitrary). A common quantitative MRI (qMRI) fitting variable that represents the amount of magnetization at thermal equilibrium. M0 maps are RECOMMENDED to use this suffix if generated by qMRI applications (for example, variable flip angle T1 mapping).                                                                                                                                                                                                                                 |
+{{ MACROS___make_suffix_table(
+      [
+         "T1map",
+         "R1map",
+         "T2map",
+         "R2map",
+         "T2starmap",
+         "R2starmap",
+         "PDmap",
+         "MTRmap",
+         "MTsat",
+         "T1rho",
+         "MWFmap",
+         "MTVmap",
+         "PDT2map",
+         "Chimap",
+         "TB1map",
+         "RB1map",
+         "S0map",
+         "M0map",
+      ]
+   )
+}}
 
 Parametric images listed in the table above are typically generated by
 processing a [file collection](../02-common-principles.md#entity-linked-file-collections).
@@ -346,21 +358,27 @@ They are, however, still valid suffixes, to maintain backwards compatibility.
 The following suffixes are valid, but SHOULD NOT be used for new BIDS compatible
 datasets (created after version 1.5.0.):
 
-| **Name**       | `suffix` | **Reason to deprecate**                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| -------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| T2\*           | T2star   | Ambiguous, may refer to a parametric image or to a conventional image. **Change:** Replaced by `T2starw` or `T2starmap`.                                                                                                                                                                                                                                                                                                                   |
-| FLASH          | FLASH    | FLASH (Fast-Low-Angle-Shot) is a vendor specific implementation for spoiled gradient echo acquisition. It is commonly used for rapid anatomical imaging and also for many different qMRI applications. When used for a single file, it does not convey any information about the image contrast. When used in a file collection, it may result in conflicts across filenames of different applications. **Change:** Removed from suffixes. |
-| Proton density | PD       | Ambiguous, may refer to a parametric image or to a conventional image. **Change:** Replaced by `PDw` or `PDmap`.                                                                                                                                                                                                                                                                                                                           |
+{{ MACROS___make_suffix_table(
+      [
+         "T2star",
+         "FLASH",
+         "PD",
+      ]
+   )
+}}
 
 ## Task (including resting state) imaging data
 
 Currently supported image contrasts include:
 
-| **Name** | `suffix` | **Description**                                                                                                                                                                                                                                                          |
-| -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| BOLD     | bold     | Blood-Oxygen-Level Dependent contrast (specialized T2\* weighting)                                                                                                                                                                                                       |
-| CBV      | cbv      | Cerebral Blood Volume contrast (specialized T2\* weighting or difference between T1 weighted images)                                                                                                                                                                     |
-| Phase    | phase    | [DEPRECATED](../02-common-principles.md#definitions). Phase information associated with magnitude information stored in BOLD contrast. This suffix should be replaced by the [`part-phase`](../99-appendices/09-entities.md#part) in conjunction with the `bold` suffix. |
+{{ MACROS___make_suffix_table(
+      [
+         "bold",
+         "cbv",
+         "phase",
+      ]
+   )
+}}
 
 {{ MACROS___make_filename_template(datatypes=["func"]) }}
 
@@ -419,16 +437,20 @@ coil identifier.
 Multi-echo data MUST be split into one file per echo using the
 [`echo-<index>`](../99-appendices/09-entities.md#echo) key-value pair. For example:
 
-```Text
-sub-01/
-   func/
-      sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-      sub-01_task-cuedSGT_run-1_echo-1_bold.json
-      sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-      sub-01_task-cuedSGT_run-1_echo-2_bold.json
-      sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
-      sub-01_task-cuedSGT_run-1_echo-3_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+         "sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz": "",
+         "sub-01_task-cuedSGT_run-1_echo-1_bold.json": "",
+         "sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz": "",
+         "sub-01_task-cuedSGT_run-1_echo-2_bold.json": "",
+         "sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz": "",
+         "sub-01_task-cuedSGT_run-1_echo-3_bold.json": "",
+         },
+      }
+   }
+) }}
 
 Please note that the `<index>` denotes the number/index (in the form of a
 nonnegative integer) of the echo not the echo time value which needs to be stored in the
@@ -442,20 +464,25 @@ from the specification in the next major release.
 For backwards compatibility, `_phase` is considered equivalent to `_part-phase_bold`.
 When the `_phase` suffix is not used, each file shares the same
 name with the exception of the `part-<mag|phase>` or `part-<real|imag>` key/value.
+
 For example:
 
-```Text
-sub-01/
-   func/
-      sub-01_task-cuedSGT_part-mag_bold.nii.gz
-      sub-01_task-cuedSGT_part-mag_bold.json
-      sub-01_task-cuedSGT_part-phase_bold.nii.gz
-      sub-01_task-cuedSGT_part-phase_bold.json
-      sub-01_task-cuedSGT_part-mag_sbref.nii.gz
-      sub-01_task-cuedSGT_part-mag_sbref.json
-      sub-01_task-cuedSGT_part-phase_sbref.nii.gz
-      sub-01_task-cuedSGT_part-phase_sbref.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+         "sub-01_task-cuedSGT_part-mag_bold.nii.gz": "",
+         "sub-01_task-cuedSGT_part-mag_bold.json": "",
+         "sub-01_task-cuedSGT_part-phase_bold.nii.gz": "",
+         "sub-01_task-cuedSGT_part-phase_bold.json": "",
+         "sub-01_task-cuedSGT_part-mag_sbref.nii.gz": "",
+         "sub-01_task-cuedSGT_part-mag_sbref.json": "",
+         "sub-01_task-cuedSGT_part-phase_sbref.nii.gz": "",
+         "sub-01_task-cuedSGT_part-phase_sbref.json": "",
+         },
+      },
+   }
+) }}
 
 Some meta information about the acquisition MUST be provided in an additional
 JSON file.
@@ -466,7 +493,7 @@ JSON file.
    {
       "RepetitionTime": "REQUIRED",
       "VolumeTiming": "REQUIRED",
-      "TaskName": "REQUIRED",
+      "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`.")
    }
 ) }}
 
@@ -512,7 +539,7 @@ sparse sequences.
 
 {{ MACROS___make_metadata_table(
    {
-      "Instructions": "RECOMMENDED",
+      "Instructions": ("RECOMMENDED", "This is especially important in context of resting state recordings and distinguishing between eyes open and eyes closed paradigms."),
       "TaskDescription": "RECOMMENDED",
       "CogAtlasID": "RECOMMENDED",
       "CogPOID": "RECOMMENDED",
@@ -524,11 +551,15 @@ additional terms and their definitions.
 
 Example:
 
-```Text
-sub-control01/
-    func/
-        sub-control01_task-nback_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+         "sub-control01_task-nback_bold.json": "",
+         },
+      }
+   }
+) }}
 
 ```JSON
 {
@@ -560,10 +591,13 @@ participant, task and run takes precedence.
 Diffusion-weighted imaging data acquired for a participant.
 Currently supported image types include:
 
-| **Name**              | `suffix` | **Description**                                                   |
-| --------------------- | -------- | ----------------------------------------------------------------- |
-| DWI                   | dwi      | Diffusion-weighted imaging contrast (specialized T2\* weighting). |
-| Single-Band Reference | sbref    | Single-band reference for one or more multi-band `dwi` images.    |
+{{ MACROS___make_suffix_table(
+      [
+         "dwi",
+         "sbref",
+      ]
+   )
+}}
 
 {{ MACROS___make_filename_template(datatypes=["dwi"]) }}
 
@@ -675,50 +709,66 @@ two runs each, and the intent of the researcher is that all of them are
 part of a unique multipart scan, then they will tag all four runs with the
 same `MultipartID` (shown at the right-hand side of the file listing):
 
-```Text
-sub-<label>/[ses-<label>/]         # MultipartID
-  dwi/
-    sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1
-    sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_1
-    sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_1
-    sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_1
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-1": {
+      "dwi                               # MultipartID": {
+         "sub-1_dir-AP_run-1_dwi.nii.gz": " # dwi_1",
+         "sub-1_dir-AP_run-2_dwi.nii.gz": " # dwi_1",
+         "sub-1_dir-PA_run-1_dwi.nii.gz": " # dwi_1",
+         "sub-1_dir-PA_run-2_dwi.nii.gz": " # dwi_1",
+         }
+      }
+   }
+) }}
 
 If, conversely, the researcher wanted to store two multipart scans, one possibility
 is to combine matching phase-encoding directions:
 
-```Text
-sub-<label>/[ses-<label>/]         # MultipartID
-  dwi/
-    sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1
-    sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_1
-    sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_2
-    sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_2
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-1": {
+      "dwi                               # MultipartID":{
+            "sub-1_dir-AP_run-1_dwi.nii.gz": " # dwi_1",
+            "sub-1_dir-AP_run-2_dwi.nii.gz": " # dwi_1",
+            "sub-1_dir-PA_run-1_dwi.nii.gz": " # dwi_2",
+            "sub-1_dir-PA_run-2_dwi.nii.gz": " # dwi_2",
+      },
+      }
+   }
+) }}
 
 Alternatively, the researcher's intent could be combining opposed phase-encoding
 runs instead:
 
-```Text
-sub-<label>/[ses-<label>/]         # MultipartID
-  dwi/
-    sub-1_dir-AP_run-1_dwi.nii.gz  # dwi_1
-    sub-1_dir-AP_run-2_dwi.nii.gz  # dwi_2
-    sub-1_dir-PA_run-1_dwi.nii.gz  # dwi_1
-    sub-1_dir-PA_run-2_dwi.nii.gz  # dwi_2
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-1": {
+      "dwi                               # MultipartID":{
+            "sub-1_dir-AP_run-1_dwi.nii.gz": " # dwi_1",
+            "sub-1_dir-AP_run-2_dwi.nii.gz": " # dwi_2",
+            "sub-1_dir-PA_run-1_dwi.nii.gz": " # dwi_1",
+            "sub-1_dir-PA_run-2_dwi.nii.gz": " # dwi_2",
+      },
+      }
+   }
+) }}
 
 The `MultipartID` metadata MAY be used with the
 [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair, for example:
 
-```Text
-sub-<label>/[ses-<label>/]             # MultipartID
-  dwi/
-    sub-1_acq-shell1_run-1_dwi.nii.gz  # dwi_1
-    sub-1_acq-shell1_run-2_dwi.nii.gz  # dwi_2
-    sub-1_acq-shell2_run-1_dwi.nii.gz  # dwi_1
-    sub-1_acq-shell2_run-2_dwi.nii.gz  # dwi_2
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-1": {
+      "dwi                                   # MultipartID":{
+         "sub-1_acq-shell1_run-1_dwi.nii.gz": " # dwi_1",
+         "sub-1_acq-shell1_run-2_dwi.nii.gz": " # dwi_2",
+         "sub-1_acq-shell2_run-1_dwi.nii.gz": " # dwi_1",
+         "sub-1_acq-shell2_run-2_dwi.nii.gz": " # dwi_2",
+         },
+      }
+   }
+) }}
 
 ### Other RECOMMENDED metadata
 
@@ -900,13 +950,19 @@ The current version of this standard considers four different scenarios:
 These four different types of field mapping strategies can be encoded
 using the following image types:
 
-| **Name**         | **`suffix`**     | **Description**                                                                                                                                                                                   |
-| ---------------- | -----------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Magnitude        | magnitude\[1,2\] | Field-mapping MR schemes such as gradient-recalled echo (GRE) generate a Magnitude image to be used for anatomical reference. Requires the existence of Phase, Phase-difference or Fieldmap maps. |
-| Phase            | phase{1,2}       | Phase map generated by GRE or similar schemes, each associated with the first (`phase1`) or second (`phase2`) echoes in the sequence.                                                             |
-| Phase-difference | phasediff        | Some scanners subtract the `phase1` from the `phase2` map and generate a unique `phasediff` file. For instance, this is a common output for the built-in fieldmap sequence of Siemens scanners.   |
-| Fieldmap         | fieldmap         | Some MR schemes such as spiral-echo imaging (SEI) sequences are able to directly provide maps of the *B<sub>0</sub>* field inhomogeneity.                                                         |
-| EPI              | epi              | The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo EPI scans with different phase encoding directions to estimate the underlying inhomogeneity/deformation map.       |
+{{ MACROS___make_suffix_table(
+      [
+         "magnitude",
+         "magnitude1",
+         "magnitude2",
+         "phase1",
+         "phase2",
+         "phasediff",
+         "fieldmap",
+         "epi",
+      ]
+   )
+}}
 
 Two OPTIONAL entities, following more general rules of the specification,
 are allowed across all the four scenarios:

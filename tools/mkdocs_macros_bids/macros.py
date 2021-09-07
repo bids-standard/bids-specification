@@ -1,5 +1,12 @@
 """Functions used by the macros mkdocs plugin."""
-from . import schema, utils
+import os
+import sys
+
+code_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(code_path)
+
+from schemacode import schema, utils
+from examplecode import example
 
 
 def make_filename_template(**kwargs):
@@ -63,6 +70,26 @@ def make_entity_definitions():
     return text
 
 
+def make_suffix_table(suffixes):
+    """Generate a markdown table of suffix information.
+
+    Parameters
+    ----------
+    suffixes : list of str
+        A list of the suffixes to include in the table.
+
+    Returns
+    -------
+    table : str
+        A Markdown-format table containing the corresponding table for
+        the requested fields.
+    """
+    schemapath = utils.get_schema_path()
+    schema_obj = schema.load_schema(schemapath)
+    table = schema.make_suffix_table(schema_obj, suffixes)
+    return table
+
+
 def make_metadata_table(field_info):
     """Generate a markdown table of metadata field information.
 
@@ -86,3 +113,22 @@ def make_metadata_table(field_info):
     schema_obj = schema.load_schema(schemapath)
     table = schema.make_metadata_table(schema_obj, field_info)
     return table
+
+
+def make_filetree_example(filetree_info, use_pipe=True):
+    """Generate a filetree snippet from example content.
+
+    Parameters
+    ----------
+    filetree_info : dict
+        Dictionnary to represent the folder content.
+    use_pipe : bool
+        Set to ``False`` to avoid using pdf unfriendly pipes: "│ └─ ├─"
+
+    Returns
+    -------
+    tree : str
+        A multiline string containing the filetree example.
+    """
+    tree = example.DirectoryTree(filetree_info, use_pipe)
+    return tree.generate()
