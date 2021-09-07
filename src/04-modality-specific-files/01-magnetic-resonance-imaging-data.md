@@ -608,9 +608,8 @@ distinguish different sets of phase-encoding directions.
 **Combining multi- and single-band acquisitions**.
 The single-band reference image MAY be stored with suffix `sbref` (for example,
 `dwi/sub-control01_sbref.nii[.gz]`) as long as the image has no corresponding
-[gradient information (`[*_]dwi.bval` and `[*_]dwi.bvec` sidecar files)](#required-gradient-orientation-information)
+[gradient information](#required-gradient-strength-and-orientation-information)
 to be stored.
-
 Otherwise, if some gradient information is associated to the single-band diffusion
 image and a multi-band diffusion image also exists, the `acq-<label>` key/value pair
 MUST be used to distinguish both images.
@@ -619,36 +618,96 @@ In such a case, two files could have the following names:
 The user is free to choose any other label than `singleband` and
 `multiband`, as long as they are consistent across subjects and sessions.
 
-### REQUIRED gradient orientation information
+### REQUIRED gradient strength and orientation information
 
-The REQUIRED gradient orientation information corresponding to a DWI acquisition
-MUST be stored using `[*_]dwi.bval` and `[*_]dwi.bvec` pairs of files.
-The `[*_]dwi.bval` and `[*_]dwi.bvec` files MAY be saved on any level of the directory structure
+The gradient strength and orientation information corresponding to a DWI acquisition
+is REQUIRED, and therefore, MUST be stored in the structure using the formats introduced
+below.
+The gradient strength and orientation information MUST correspond
+to "*effective*" values (as in, the actual orientations and strengths applied by the scanner),
+rather than the "*requested*" values (as in, the original gradient table design that is
+configured into the scanner's MR protocol settings).
+
+The RECOMMENDED way to store gradient information is a `[*_]dwi.tsv` file corresponding
+to one or more DWI files.
+The gradient information MAY be stored using the OPTIONAL `.bval` and `.bvec` pair
+of files.
+The format of the `.tsv` file and the `.bvec`/`.bval` files, as well as the conversion from
+`.bvec`/`.bval` to `.tsv`, are described below.
+
+The RECOMMENDED `.tsv` file and the OPTIONAL `.bval`/`.bvec` MAY coexist in the structure.
+In such a case, the `.tsv` file and the `.bval`/`.bvec` pair MUST be consistent as described
+below.
+However, the `.bval`/`.bvec` files are DEPRECATED and will be phased out in a future release.
+
+The `[*_]dwi.[bval|bvec|tsv]` files MAY be saved on any level of the directory structure
 and thus define those values for all sessions and/or subjects in one place (see
 [the inheritance principle](../02-common-principles.md#the-inheritance-principle)).
 
 As an exception to the [common principles](../02-common-principles.md#definitions)
 that parameters are constant across runs, the gradient table information (stored
-within the `[*_]dwi.bval` and `[*_]dwi.bvec` files) MAY change across DWI runs.
+within `[*_]dwi.[bval|bvec|tsv]` files) MAY change across DWI runs.
 
-**Gradient orientation file formats**.
-The `[*_]dwi.bval` and `[*_]dwi.bvec` files MUST follow the
-[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#DTIFIT):
-The `[*_]dwi.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
+**Gradient table specification (`_dwi.tsv` file)**.
+Gradient strength and orientation can be provided in a TSV file named, for example,
+`sub-01_acq-singleband_dwi.tsv` or `sub-01_acq-multiband_dwi.tsv`.
+This TSV file must contain four columns, where the first three columns correspond to the
+three components of a unit-norm vector determining one gradient orientation (also called "*b*-vector")
+and the last column contains the gradient strength ("*b*-value") in s/mm<sup>2</sup>.
+Each row of the TSV file corresponds to one sampled DWI, and therefore, the number of rows
+MUST match the number of volumes in the corresponding DWI file(s).
+In other words, the number of rows in the TSV file and the size of the last dimension of the
+data array in the corresponding DWI file(s) MUST be the same.
+
+Rows corresponding to *b = 0* s/mm<sup>2</sup> strengths MUST contain four zeros.
+Correspondingly, the components of the *b*-vector associated with a nonzero gradient strength
+(*b* &#62; 0) MUST represent a unit-norm vector.
+
+Scanner devices may store the *b*-vectors with reference to the acquired voxel or the
+scanner coordinate system (see [Coordinate systems](../99-appendices/08-coordinate-systems.md)).
+The coordinate system specification is REQUIRED, and MUST be encoded by the column headers
+of the TSV file.
+Therefore, if the *b*-vectors in the gradient table are given in *voxel coordinates*,
+the column headers MUST be `I`, `J`, `K`, `b`.
+We will refer to this format as *IJK+b* in the following.
+Alternatively, if the *b*-vectors in the gradient table are given in *scanner coordinates*,
+the column headers MUST be `R`, `A`, `S`, `b`.
+We will refer to this format as *RAS+b* in the following.
+
+It is RECOMMENDED to store the gradient table information in the original coordinate system
+stored by the scanner (therefore, unchanged).
+
+It is RECOMMENDED to maintain the column ordering as described above (thus, either `I J K b`
+or `R A S b`).
+
+Example of TSV file, following the *RAS+b* convention:
+
+```Text
+R	A	S	b
+0	0	0	0
+1.0	0	0	1000
+-0.0509541	0.0617551	-0.99679	1000
+```
+
+**Legacy `.bvec` & `.bval` specification of gradient information**.
+The `.bvec`/`.bval` files MUST follow the
+[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/FAQ#What_conventions_do_the_bvecs_use.3F).
+
+The `.bvec` file contains 3 rows with *N* space-delimited floating-point numbers
 (corresponding to the *N* volumes in the corresponding NIfTI file.)
 The first row contains the *x* elements, the second row contains the *y* elements and
 the third row contains the *z* elements of a unit vector in the direction of the applied
 diffusion gradient, where the *i*-th elements in each row correspond together to
 the *i*-th volume, with `[0,0,0]` for *non-diffusion-weighted* (also called *b*=0 or *low-b*)
 volumes.
-Following the FSL format for the `[*_]dwi.bvec` specification, the coordinate system of
+Following the FSL format for the `.bvec` specification, the coordinate system of
 the *b* vectors MUST be defined with respect to the coordinate system defined by
 the header of the corresponding `_dwi` NIfTI file and not the scanner's device
 coordinate system (see [Coordinate systems](../99-appendices/08-coordinate-systems.md)).
 The most relevant limitation imposed by this choice is that the gradient information cannot
 be directly stored in this format if the scanner generates *b*-vectors in *scanner coordinates*.
 
-Example of `[*_]dwi.bvec` file, with *N*=6, with two *b*=0 volumes in the beginning:
+Example of `.bvec` file, with *N*=6, with two *b*=0 volumes in the beginning:
 
 ```Text
 0 0 0.021828 -0.015425 -0.70918 -0.2465
@@ -656,13 +715,29 @@ Example of `[*_]dwi.bvec` file, with *N*=6, with two *b*=0 volumes in the beginn
 0 0 -0.59636 0.97516 -0.70503 -0.96351
 ```
 
-The `[*_]dwi.bval` file contains the *b*-values (in s/mm<sup>2</sup>) corresponding to the
+The `.bval` file contains the *b*-values (in s/mm<sup>2</sup>) corresponding to the
 volumes in the relevant NIfTI file), with 0 designating *b*=0 volumes, space-delimited.
 
-Example of `[*_]dwi.bval` file, corresponding to the previous `[*_]dwi.bvec` example:
+Example of `.bval` file, corresponding to the previous `.bvec` example:
 
 ```Text
 0 0 2000 2000 1000 1000
+```
+
+**Conversion from the legacy `.bvec` & `.bval` format into gradient table (`.tsv`)**.
+To convert from the legacy format into table format, the values of the `.bvec` file
+are transposed, the values of the `.bval` file are contatenated as the fourth column
+and the `I J K b` header is inserted.
+The conversion corresponding to the `.bvec`/`.bval` example above is:
+
+```Text
+I	J	K	b
+0	0	0	0
+0	0	0	0
+0.021828	0.80242	-0.59636	2000
+-0.015425	0.22098	0.97516	2000
+-0.70918	-0.00063106	-0.70503	1000
+-0.2465	0.1043	-0.96351	1000
 ```
 
 ### Multipart (split) DWI schemes
@@ -760,11 +835,26 @@ The `MultipartID` metadata MAY be used with the
 
 ### Other RECOMMENDED metadata
 
+#### Phase-encoding information (common metadata fields)
+
 The `PhaseEncodingDirection` and `TotalReadoutTime` metadata
 fields are RECOMMENDED to enable the correction of geometrical distortions
 with [fieldmap information](#fieldmap-data).
 See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms that can be included in the corresponding JSON file.
+
+#### Pulse gradient timing information
+
+Although the *b*-value is the most common way to convey gradient strength, it does not
+unambiguously depict the sampled coordinate in *q*-space.
+The relationship between each *b*-vector and its corresponding *q*-space coordinate
+can be calculated with the `BigDelta` and `SmallDelta` metadata fields in the corresponding
+JSON file.
+
+| Field name     | Definition                                                                                                                                                                                                                                                                |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| SmallDelta     | RECOMMENDED. Acquisition pulse separation time (in seconds). For Siemens, this is in the shadow header (0029,1120) under `sSpecPara.dSpecLipidSupprBandwidth` in milliseconds. This value is necessary for estimating ensemble average propagators in physical units.     |
+| BigDelta       | RECOMMENDED. Acquisition pulse separation time (in seconds). For Siemens, this is in the shadow header (0029,1120) under `sSpecPara.dSpecLipidSupprDeltaPos` in milliseconds. This value is also necessary for estimating ensemble average propagators in physical units. |
 
 JSON example:
 
@@ -772,7 +862,9 @@ JSON example:
 {
   "PhaseEncodingDirection": "j-",
   "TotalReadoutTime": 0.095,
-  "B0FieldSource": ["phasediff_fmap0", "pepolar_fmap0"]
+  "B0FieldSource": ["phasediff_fmap0", "pepolar_fmap0"],
+  "BigDelta": 0.005,
+  "SmallDelta": 0.0005
 }
 ```
 

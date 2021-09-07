@@ -6,6 +6,7 @@
     - .nii.gz
     - .nii
     - .json
+    - .tsv
     - .bvec
     - .bval
   entities:
