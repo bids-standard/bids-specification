@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] Make subheadings consistent in  06-longitudinal-and-multi-site-studies.md [#870](https://github.com/bids-standard/bids-specification/pull/870) ([guiomar](https://github.com/guiomar))
 -   \[ENH, MRG] Add "ScanRAS" as an accepted coordinate frame for ieeg [#866](https://github.com/bids-standard/bids-specification/pull/866) ([alexrockhill](https://github.com/alexrockhill))
 -   \[FIX] update physio bids name in longitudinal study page examples [#863](https://github.com/bids-standard/bids-specification/pull/863) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[INFRA] Enforce consistent line endings via .gitattributes [#861](https://github.com/bids-standard/bids-specification/pull/861) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
