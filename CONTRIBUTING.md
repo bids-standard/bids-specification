@@ -145,13 +145,13 @@ GitHub has a helpful page on
 
 There are certain style rules we are trying to follow in the way the specifications are written.
 
-Many of those styling issues can fixed automatically using a linter: see 
+Many of those styling issues can fixed automatically using a linter: see
 the section [Fixing Remark errors from Travis](#fixing-travis-remark-errors).
 
 Some others need to fixed manually:
 
 - Do not use Latin abbreviations like `"e.g"`, `"i.e"`, `"etc"` that can be confusing
-  to some readers and try to replace them by common English equivalents such as 
+  to some readers and try to replace them by common English equivalents such as
   `"for example"`, `"that is"`, `"and so on"`.
 
 #### Soft rules
@@ -159,13 +159,13 @@ Some others need to fixed manually:
 We follow certain "soft rules" in the way we format the specification in markdown.
 
 These rules are sometimes for internal consistency in terms of styling and aesthetics,
-but several of them are also there because they help the workflow of 
+but several of them are also there because they help the workflow of
 tracking changes, reviewing them on GitHub, and making code suggestions.
 
-They are "soft" rules because they will not be a reason to reject a contribution 
+They are "soft" rules because they will not be a reason to reject a contribution
 but if they are followed they will definitely make the lives of many people easier.
 
-- Start every sentence on a new line. 
+- Start every sentence on a new line.
   This then makes it easier to track with git where a change happened in the text.
 
 - Similarly try to use "hard word wrapping": if a sentence gets long and extends
@@ -182,9 +182,9 @@ Unprocessed MEG data MUST be stored in the native file format of the MEG instrum
 But do this:
 
 ```markdown
-Unprocessed MEG data MUST be stored in the native file format of the MEG instrument 
-with which the data was collected. 
-With the MEG specification of BIDS, we wish to promote the adoption of good practices 
+Unprocessed MEG data MUST be stored in the native file format of the MEG instrument
+with which the data was collected.
+With the MEG specification of BIDS, we wish to promote the adoption of good practices
 in the management of scientific data.
 ```
 
@@ -219,7 +219,7 @@ That would look like this:
 
 | **Key name** | **Description**                                          |
 |--------------|----------------------------------------------------------|
-| Manufacturer | Manufacturer of the equipment, for example (`"Siemens"`) | 
+| Manufacturer | Manufacturer of the equipment, for example (`"Siemens"`) |
 
 ## Using macros
 
@@ -250,8 +250,8 @@ This macro will create a table for the "SamplingFrequency" and "StartTime" metad
 filling the table with the content specified in their respective yaml files
 (see [SamplingFrequency.yaml](src/schema/metadata/SamplingFrequency.yaml) and [StartTime.yaml](src/schema/metadata/StartTime.yaml)).
 
-Some of the content created by the macro can be specified in the macro call itself, as opposed to in the yaml files. 
-Here the `"REQUIRED"`, `"RECOMMENDED, but REQUIRED for sparse sequences"` 
+Some of the content created by the macro can be specified in the macro call itself, as opposed to in the yaml files.
+Here the `"REQUIRED"`, `"RECOMMENDED, but REQUIRED for sparse sequences"`
 specify the content of the requirement level column for each piece of metadata.
 
 This macro also allows you to append extra content to the description of that metadata
@@ -293,11 +293,11 @@ And this will be turned into this.
 ```Text
 └─ sub-01/
    └─ func/
-      └─ sub-control01_task-nback_bold.json 
+      └─ sub-control01_task-nback_bold.json
 ```
 
-When you have complex files and folder structure, we suggest you use this 
-[Jupyter notebook](tools/filetree_example.ipynb) for sandboxing your example 
+When you have complex files and folder structure, we suggest you use this
+[Jupyter notebook](tools/filetree_example.ipynb) for sandboxing your example
 before you insert the macro call into the markdown document.
 
 ## Building the specification using mkdocs
@@ -314,19 +314,19 @@ In the following links, you can find more information about
 
 You will also need several other mkdocs plugins, like `branchcustomization` and `macros`.
 
-To install all of this make sure you have a recent version of Python on your computer. 
+To install all of this make sure you have a recent version of Python on your computer.
 The [DataLad Handbook](http://handbook.datalad.org/en/latest/intro/installation.html#python-3-all-operating-systems) provides helpful instructions for setting up Python.
 
-An easy way to install the correct version of mkdocs and all the other required extensions 
-is to use the `requirements.txt` file contained in this repository, 
+An easy way to install the correct version of mkdocs and all the other required extensions
+is to use the `requirements.txt` file contained in this repository,
 by using the following command:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-However this will also install some other packages you might not want to have (like `numpy`). 
-So if you only want to install what you need to build the specification, 
+However this will also install some other packages you might not want to have (like `numpy`).
+So if you only want to install what you need to build the specification,
 use the following command:
 
 ```bash
@@ -342,7 +342,7 @@ pip install \
 #### 2. Download the BIDS specification [repository](https://github.com/bids-standard/bids-specification/tree/master) onto your computer
 
 This can be done by clicking the green button on the right titled "Clone or
-download" 
+download"
 or using [this link](https://github.com/bids-standard/bids-specification/archive/master.zip).
 
 #### 3. In the terminal (command line) navigate to your local version of the specification
@@ -423,7 +423,7 @@ git add flagged_file.md
 git commit -m 'STY: Fixed Markdown style'
 ```
 
-NOTE: 
+NOTE:
 
 Using `remark` to fix some linting errors might introduce some additional changes:
 
@@ -657,8 +657,8 @@ reviewer as a co-author.
 
 ## Making a change to the BIDS-schema
 
-Several aspects of the specification are defined in a set of YAML files in the 
-`src/schema` folder. The content of those files is described in a dedicated 
+Several aspects of the specification are defined in a set of YAML files in the
+`src/schema` folder. The content of those files is described in a dedicated
 [README file](./src/schema/README.md).
 
 ### 1. Ensure that changes to the specification are matched in the schema
