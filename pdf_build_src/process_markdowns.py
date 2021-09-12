@@ -36,11 +36,11 @@ def copy_src():
     target_path = "src_copy"
 
     # make new directory
-    mkdir_cmd = "mkdir "+target_path
+    mkdir_cmd = "mkdir " + target_path
     run_shell_cmd(mkdir_cmd)
 
     # copy contents of src directory
-    copy_cmd = "cp -R "+src_path+" "+target_path
+    copy_cmd = "cp -R " + src_path + " " + target_path
     run_shell_cmd(copy_cmd)
 
 
@@ -66,7 +66,7 @@ def copy_images(root_path):
 
     for each in subdir_list:
         if each != root_path:
-            run_shell_cmd("cp -R "+each+"/images"+" "+root_path+"/images/")
+            run_shell_cmd("cp -R " + each + "/images" + " " + root_path + "/images/")
 
 
 def extract_header_string():
@@ -91,13 +91,13 @@ def add_header():
     header = " ".join([title, version_number, build_date])
 
     # creating a header string with latest version number and date
-    header_string = (r"\fancyhead[L]{ " + header + " }")
+    header_string = r"\fancyhead[L]{ " + header + " }"
 
     with open('header.tex', 'r') as file:
         data = file.readlines()
 
     # insert the header, note that you have to add a newline
-    data[4] = header_string+'\n'
+    data[4] = header_string + '\n'
 
     # re-write header.tex file with new header string
     with open('header.tex', 'w') as file:
@@ -321,12 +321,12 @@ def correct_tables(root_path, debug=False):
                         table_mode = True
 
                         # Keep track of the line number where the table starts
-                        start_line = line_nb-1
+                        start_line = line_nb - 1
 
                         print('  * Detected table starting line {}'.format(start_line))
                         # Extract for each row (header and the one containing dashes)
                         # the content of each column and strip to remove extra whitespace
-                        header_row = [c.strip() for c in re.split(r'(?<!\\)\|', content[line_nb-1])]
+                        header_row = [c.strip() for c in re.split(r'(?<!\\)\|', content[line_nb - 1])]
                         row = [c.strip() for c in re.split(r'(?<!\\)\|', line)]
 
                         # Add the two lines to the table row list
@@ -378,10 +378,10 @@ def correct_tables(root_path, debug=False):
                                 if i == start_line:
                                     new_content.pop()
                                 if i >= start_line and i < end_line:
-                                    new_content.append('|'.join(table[count])+' \n')
+                                    new_content.append('|'.join(table[count]) + ' \n')
                                     count += 1
                                 elif i == end_line:
-                                    new_content.append('|'.join(table[count])+' \n\n')
+                                    new_content.append('|'.join(table[count]) + ' \n\n')
                                     count += 1
                             print('    - Appended corrected table lines to the new markdown content')
                     else:
@@ -401,7 +401,7 @@ def edit_titlepage():
     with open('cover.tex', 'r') as file:
         data = file.readlines()
 
-    data[-1] = ("\\textsc{\\large "+version_number+"}" +
+    data[-1] = ("\\textsc{\\large " + version_number + "}" +
                 "\\\\[0.5cm]" +
                 "{\\large " +
                 build_date +
