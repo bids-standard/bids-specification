@@ -401,9 +401,9 @@ def edit_titlepage():
     with open('cover.tex', 'r') as file:
         data = file.readlines()
 
-    data[-1] = ("\\textsc{\large "+version_number+"}" +
+    data[-1] = ("\\textsc{\\large "+version_number+"}" +
                 "\\\\[0.5cm]" +
-                "{\large " +
+                "{\\large " +
                 build_date +
                 "}" +
                 "\\\\[2cm]" +
