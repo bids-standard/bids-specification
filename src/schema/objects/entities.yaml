@@ -1,10 +1,4 @@
-_template:
-  name: null
-  entity: null
-  description: |-
-    None
-  type: null
-  format: null
+---
 acquisition:
   name: Acquisition
   entity: acq

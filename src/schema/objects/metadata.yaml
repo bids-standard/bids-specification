@@ -1,3 +1,4 @@
+---
 Acknowledgements:
   name: Acknowledgements
   description: |
@@ -2694,12 +2695,6 @@ _iEEGCoordSys:
   - Pixels
   - ACPC
   - Other
-_template:
-  name: null
-  description: |-
-    None
-  type: null
-  unit: null
 iEEGCoordinateProcessingDescription:
   name: iEEGCoordinateProcessingDescription
   description: |
