@@ -16,7 +16,8 @@ from datetime import datetime
 import numpy as np
 
 sys.path.append("../tools/")
-from mkdocs_macros_bids import macros  # noqa   (used in "eval" call later on)
+# functions from module macros are called by eval() later on
+from mkdocs_macros_bids import macros  # noqa: F401
 
 
 def run_shell_cmd(command):
