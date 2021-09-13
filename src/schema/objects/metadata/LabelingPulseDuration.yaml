@@ -1,7 +1,0 @@
----
-name: LabelingPulseDuration
-description: |
-  Duration of the individual labeling pulses, in milliseconds.
-type: number
-exclusiveMinimum: 0
-unit: ms

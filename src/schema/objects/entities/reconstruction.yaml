@@ -1,9 +1,0 @@
----
-name: Reconstruction
-entity: rec
-description: |
-  The `rec-<label>` key/value can be used to distinguish
-  different reconstruction algorithms (for example ones using motion
-  correction).
-type: string
-format: label

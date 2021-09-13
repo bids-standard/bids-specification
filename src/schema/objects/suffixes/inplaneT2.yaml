@@ -1,6 +1,0 @@
----
-name: Inplane T2
-description: |
-  In arbitrary units (arbitrary).
-  T2 weighted structural image matched to a functional (task) image.
-unit: arbitrary

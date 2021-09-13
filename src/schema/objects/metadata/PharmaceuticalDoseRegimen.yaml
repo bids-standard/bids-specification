@@ -1,7 +1,0 @@
----
-name: PharmaceuticalDoseRegimen
-description: |
-  Details of the pharmaceutical dose regimen.
-  Either adequate description or short-code relating to regimen documented
-  elsewhere (for example, `"single oral bolus"`).
-type: string

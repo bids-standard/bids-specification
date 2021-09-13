@@ -1,9 +1,0 @@
----
-name: ReferencesAndLinks
-description: |
-  List of references to publications that contain information on the dataset.
-  A reference may be textual or a
-  [URI](/02-common-principles.html#uniform-resource-indicator).
-items:
-  type: string
-type: array

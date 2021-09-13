@@ -1,9 +1,0 @@
----
-name: PlasmaFreeFraction
-description: |
-  Measured free fraction in plasma, meaning the concentration of free compound
-  in plasma divided by total concentration of compound in plasma
-  (Units: 0-100%).
-type: number
-minimum: 0
-maximum: 100

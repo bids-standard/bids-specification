@@ -1,5 +1,0 @@
----
-name: SoftwareName
-description: |
-  Name of the software that was used to present the stimuli.
-type: string

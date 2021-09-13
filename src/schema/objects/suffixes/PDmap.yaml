@@ -1,7 +1,0 @@
----
-name: Proton density image
-description: |
-  In arbitrary units (arbitrary).
-  PD maps are REQUIRED to use this suffix regardless of the method used to
-  generate them.
-unit: arbitrary

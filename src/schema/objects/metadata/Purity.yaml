@@ -1,7 +1,0 @@
----
-name: Purity
-description: |
-  Purity of the radiolabeled compound (between 0 and 100%).
-type: number
-minimum: 0
-maximum: 100

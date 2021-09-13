@@ -1,7 +1,0 @@
----
-name: True transverse relaxation rate image
-description: |
-  In seconds<sup>-1</sup> (1/s).
-  R2 maps (R2 = 1/T2) are REQUIRED to use this suffix regardless of the method
-  used to generate them.
-unit: 1/s

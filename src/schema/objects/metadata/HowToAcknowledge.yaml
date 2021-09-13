@@ -1,8 +1,0 @@
----
-name: HowToAcknowledge
-description: |
-  Text containing instructions on how researchers using this dataset should
-  acknowledge the original authors.
-  This field can also be used to define a publication that should be cited in
-  publications that use the dataset.
-type: string

@@ -1,6 +1,0 @@
----
-type: string
-enum:
-  - Pixels
-  - ACPC
-  - Other

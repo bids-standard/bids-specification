@@ -1,7 +1,0 @@
----
-name: Subject
-entity: sub
-description: |
-  A person or animal participating in the study.
-type: string
-format: label

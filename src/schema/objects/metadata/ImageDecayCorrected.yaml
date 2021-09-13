@@ -1,5 +1,0 @@
----
-name: ImageDecayCorrected
-description: |
-  Boolean flag specifying whether the image data have been decay-corrected.
-type: boolean
