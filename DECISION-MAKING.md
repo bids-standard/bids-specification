@@ -31,7 +31,7 @@ BIDS governance.
 | Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | 5h/week         | Community development      |
 | Taylor Salo ([@tsalo](https://github.com/tsalo))                               | 3h/week         | MRI                        |
 | Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                            | 3h/week         | Community development, MRI |
-| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))            | 3h/week         | PET, Community development                   |
+| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))            | 3h/week         | PET, Community development |
 
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.
