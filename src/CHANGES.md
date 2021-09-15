@@ -2,8 +2,11 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] Add "codespell" tool to CI checks to catch typos sooner [#873](https://github.com/bids-standard/bids-specification/pull/873) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[FIX] Make subheadings consistent in  06-longitudinal-and-multi-site-studies.md [#870](https://github.com/bids-standard/bids-specification/pull/870) ([guiomar](https://github.com/guiomar))
--   \[ENH, MRG] Add "ScanRAS" as an accepted coordinate frame for ieeg [#866](https://github.com/bids-standard/bids-specification/pull/866) ([alexrockhill](https://github.com/alexrockhill))
+-   \[DOC] add Anthony as maintainer [#868](https://github.com/bids-standard/bids-specification/pull/868) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[ENH] Add "ScanRAS" as an accepted coordinate frame for ieeg [#866](https://github.com/bids-standard/bids-specification/pull/866) ([alexrockhill](https://github.com/alexrockhill))
+-   \[INFRA] Add .lgtm.yml file for better usage of LGTM CI tool [#865](https://github.com/bids-standard/bids-specification/pull/865) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[FIX] update physio bids name in longitudinal study page examples [#863](https://github.com/bids-standard/bids-specification/pull/863) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[INFRA] Enforce consistent line endings via .gitattributes [#861](https://github.com/bids-standard/bids-specification/pull/861) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA] dos2unix [#859](https://github.com/bids-standard/bids-specification/pull/859) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
@@ -12,7 +15,7 @@
 -   \[FIX] Typos found by codespell [#848](https://github.com/bids-standard/bids-specification/pull/848) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA] Add basic documentation on how to use metadata table macros [#840](https://github.com/bids-standard/bids-specification/pull/840) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] make "Institutional department name" available for all datatypes [#839](https://github.com/bids-standard/bids-specification/pull/839) ([Remi-Gau](https://github.com/Remi-Gau))
--   use macro to render examples in a "tree" like fashion [#837](https://github.com/bids-standard/bids-specification/pull/837) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[INFRA] use macro to render examples in a "tree" like fashion [#837](https://github.com/bids-standard/bids-specification/pull/837) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] Add angio suffix to the non-parametric aMRI suffix table [#835](https://github.com/bids-standard/bids-specification/pull/835) ([tsalo](https://github.com/tsalo))
 -   \[FIX] Remove last hardcoded suffix table [#833](https://github.com/bids-standard/bids-specification/pull/833) ([tsalo](https://github.com/tsalo))
 -   \[MISC] make explicit that EDF+ (and for EEG: BDF+) are included in iEEG / EEG format requirements [#831](https://github.com/bids-standard/bids-specification/pull/831) ([sappelhoff](https://github.com/sappelhoff))
