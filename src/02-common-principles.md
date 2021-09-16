@@ -56,6 +56,7 @@ misunderstanding we clarify them here.
     1.  `ieeg` (intracranial electroencephalography)
     1.  `beh` (behavioral)
     1.  `pet` (positron emission tomography)
+    1.  `microscopy`
 
     Data files are contained in a directory named for the data type.
     In raw datasets, the data type directory is nested inside subject and

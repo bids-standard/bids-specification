@@ -38,6 +38,15 @@ sample:
     The label MUST be unique per subject and is RECOMMENDED to be unique
     throughout the dataset.
   format: label
+chunk:
+  name: Chunk
+  entity: chunk
+  description: |
+    The `chunk-<index>` key/value pair is used to distinguish between different
+    regions, 2D images or 3D volumes files, of the same physical sample with
+    different fields of view acquired in the same imaging experiment.
+  type: string
+  format: index
 task:
   name: Task
   entity: task
@@ -88,6 +97,17 @@ tracer:
     The `trc-<label>` key/value can be used to distinguish
     sequences using different tracers.
     The key `TracerName` MUST also be included in the associated JSON file,
+    although the label may be different.
+  type: string
+  format: label
+stain:
+  name: Stain
+  entity: stain
+  description: |
+    The `stain-<label>` key/pair values can be used to distinguish image files
+    from the same sample using different stains or antibodies for contrast enhancement.
+    Stains or antibodies SHOULD be indicated as appropriate in the `SampleStaining`,
+    `SamplePrimaryAntibodies` and/or `SampleSecondaryAntobodies` keys in the JSON file,
     although the label may be different.
   type: string
   format: label
