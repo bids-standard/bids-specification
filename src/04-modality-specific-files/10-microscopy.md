@@ -19,6 +19,7 @@ guidance when curating a new dataset.
 Further Microscopy datasets are available:
 
 -   In PNG format:  [`data_axondeepseg_sem`](https://doi.org/10.5281/zenodo.5498378)
+
 -   In OME-TIFF format: [link to the dataset - pending]
 
 ## Microscopy recording data
@@ -27,7 +28,7 @@ The following table will be generated automatically with macros after community 
 A "manual" table is provided to facilitate the review process.
 -->
 Template:
-```
+```Text
 sub-<label>/
     [ses-<label>/]
         microscopy/
@@ -52,11 +53,13 @@ or vice-versa.
 
 For BIDS, Microscopy raw data MUST be stored in one of the following formats:
 
-- [Portable Network Graphics](http://www.libpng.org/pub/png/) (`.png`)
-- [Tag Image File Format](https://www.adobe.io/open/standards/TIFF.html) (`.tif`)
-- [OME-TIFF](https://docs.openmicroscopy.org/ome-model/6.1.2/ome-tiff/specification.html#)
-(`.ome.tif` for standard TIFF files or `.ome.btf` for
-[BigTIFF](https://www.awaresystems.be/imaging/tiff/bigtiff.html) files)
+-   [Portable Network Graphics](http://www.libpng.org/pub/png/) (`.png`)
+
+-   [Tag Image File Format](https://www.adobe.io/open/standards/TIFF.html) (`.tif`)
+
+-   [OME-TIFF](https://docs.openmicroscopy.org/ome-model/6.1.2/ome-tiff/specification.html#)
+    (`.ome.tif` for standard TIFF files or `.ome.btf` for
+    [BigTIFF](https://www.awaresystems.be/imaging/tiff/bigtiff.html) files)
 
 If different from PNG, TIFF or OME-TIFF, the original unprocessed data in the native format MAY be
 stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
@@ -71,25 +74,25 @@ Microscopy data currently support the following imaging modalities:
 The following table will be generated automatically with macros after community review.
 A "manual" table is provided to facilitate the review process.
 -->
-| **Name**                                         | `suffix` |
-| ------------------------------------------------ | -------- |
-| Transmission electron microscopy                 | TEM      |
-| Scanning electron microscopy                     | SEM      |
-| Micro-CT                                         | CT       |
-| Bright-field microscopy                          | BF       |
-| Dark-field microscopy                            | DF       |
-| Phase-contrast microscopy                        | PC       |
-| Differential interference contrast microscopy    | DIC      |
-| Fluorescence                                     | FLUO     |
-| Confocal microscopy                              | CONF     |
-| Polarized-light microscopy                       | PLI      |
-| Coherent anti-Stokes Raman spectroscopy          | CARS     |
-| 2-photon excitation microscopy                   | 2PE      |
-| Multi-photon excitation microscopy               | MPE      |
-| Super-resolution microscopy                      | SR       |
-| Nonlinear optical microscopy                     | NLO      |
-| Optical coherence tomography                     | OCT      |
-| Selective plane illumination microscopy          | SPIM     |
+| **Name**                                      | `suffix` |
+| --------------------------------------------- | -------- |
+| Transmission electron microscopy              | TEM      |
+| Scanning electron microscopy                  | SEM      |
+| Micro-CT                                      | CT       |
+| Bright-field microscopy                       | BF       |
+| Dark-field microscopy                         | DF       |
+| Phase-contrast microscopy                     | PC       |
+| Differential interference contrast microscopy | DIC      |
+| Fluorescence                                  | FLUO     |
+| Confocal microscopy                           | CONF     |
+| Polarized-light microscopy                    | PLI      |
+| Coherent anti-Stokes Raman spectroscopy       | CARS     |
+| 2-photon excitation microscopy                | 2PE      |
+| Multi-photon excitation microscopy            | MPE      |
+| Super-resolution microscopy                   | SR       |
+| Nonlinear optical microscopy                  | NLO      |
+| Optical coherence tomography                  | OCT      |
+| Selective plane illumination microscopy       | SPIM     |
 
 ### Filename entities
 
@@ -211,32 +214,31 @@ A "manual" table is provided to facilitate the review process.
 Note: For `StationName`, we removed "Corresponds to DICOM Tag 0008, 1010 `Station Name`." from the description.
 It will require changes to `src/schema/metatata/StationName.yaml` and `src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md`.
 -->
-| **Key name**              | **Requirement level** | **Data type** | **Description**                                                                                                                                                                        |
-| ------------------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Manufacturer              | RECOMMENDED           | string    | Manufacturer of the equipment that produced the measurements. |
-| ManufacturersModelName    | RECOMMENDED           | string    | Manufacturer’s model name of the equipment that produced the measurements. |
-| DeviceSerialNumber        | RECOMMENDED           | string    | The serial number of the equipment that produced the measurements. A pseudonym can also be used to prevent the equipment from being identifiable, so long as each pseudonym is unique within the dataset. |
-| StationName               | RECOMMENDED           | string    | Institution defined name of the machine that produced the measurements. |
-| SoftwareVersions          | RECOMMENDED           | string    | Manufacturer’s designation of software version of the equipment that produced the measurements. |
-| InstitutionName           | RECOMMENDED           | string    | The name of the institution in charge of the equipment that produced the measurements. |
-| InstitutionAddress        | RECOMMENDED           | string    | The address of the institution in charge of the equipment that produced the measurements. |
-| InstitutionDepartmentName | RECOMMENDED           | string    | The department in the institution in charge of the equipment that produced the measurements. |
-
+| **Key name**              | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                           |
+| ------------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Manufacturer              | RECOMMENDED           | [string][]    | Manufacturer of the equipment that produced the measurements.                                                                                                                                             |
+| ManufacturersModelName    | RECOMMENDED           | [string][]    | Manufacturer’s model name of the equipment that produced the measurements.                                                                                                                                |
+| DeviceSerialNumber        | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the measurements. A pseudonym can also be used to prevent the equipment from being identifiable, so long as each pseudonym is unique within the dataset. |
+| StationName               | RECOMMENDED           | [string][]    | Institution defined name of the machine that produced the measurements.                                                                                                                                   |
+| SoftwareVersions          | RECOMMENDED           | [string][]    | Manufacturer’s designation of software version of the equipment that produced the measurements.                                                                                                           |
+| InstitutionName           | RECOMMENDED           | [string][]    | The name of the institution in charge of the equipment that produced the measurements.                                                                                                                    |
+| InstitutionAddress        | RECOMMENDED           | [string][]    | The address of the institution in charge of the equipment that produced the measurements.                                                                                                                 |
+| InstitutionDepartmentName | RECOMMENDED           | [string][]    | The department in the institution in charge of the equipment that produced the measurements.                                                                                                              |
 
 #### Image Acquisition
 <!---
 The following table will be generated automatically with macros after community review.
 A "manual" table is provided to facilitate the review process.
 -->
-| **Key name**               | **Requirement level** | **Data type** | **Description**                                                                                                                                                                        |
-| -------------------------- | --------------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PixelSize                  | REQUIRED              | array of numbers    | A 2- or 3-number array of the physical size of a pixel, either`[PixelSizeX, PixelSizeY]` or `[PixelSizeX, PixelSizeY, PixelSizeZ]`, where X is the width, Y the height and Z the depth. If the file format is OME-TIFF, these values need to be consistent with `PhysicalSizeX`, `PhysicalSizeY` and `PhysicalSizeZ` OME metadata fields, after converting in `PixelSizeUnits` according to `PhysicalSizeXunit`, `PhysicalSizeYunit` and `PhysicalSizeZunit` OME fields. |
-| PixelSizeUnits             | REQUIRED              | string              | Unit format of the specified PixelSize. MUST be micrometer (`"um"`). |
-| Immersion                  | OPTIONAL              | string              | Lens immersion medium. If the file format is OME-TIFF, the value MUST be consistent with the `"Immersion"` OME metadata field. |
-| NumericalAperture          | OPTIONAL              | number              | Lens numerical aperture (for example, `1.4`). If the file format is OME-TIFF, the value MUST be consistent with the `"LensNA"` OME metadata field. |
-| Magnification              | OPTIONAL              | number              | Lens magnification (for example, `40`) If the file format is OME-TIFF, the value MUST be consistent with the `"NominalMagnification"` OME metadata field.|
-| ImageAcquisitionProtocol   | OPTIONAL              | string or URI       | Description of the image acquisition protocol or URI from [protocols.io](https://www.protocols.io/). |
-| OtherAcquisitionParameters | OPTIONAL              | string              | Description of other relevant image acquisition parameters. |
+| **Key name**               | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| -------------------------- | --------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| PixelSize                  | REQUIRED              | [array][] of [numbers][] | A 2- or 3-number array of the physical size of a pixel, either`[PixelSizeX, PixelSizeY]` or `[PixelSizeX, PixelSizeY, PixelSizeZ]`, where X is the width, Y the height and Z the depth. If the file format is OME-TIFF, these values need to be consistent with `PhysicalSizeX`, `PhysicalSizeY` and `PhysicalSizeZ` OME metadata fields, after converting in `PixelSizeUnits` according to `PhysicalSizeXunit`, `PhysicalSizeYunit` and `PhysicalSizeZunit` OME fields. |
+| PixelSizeUnits             | REQUIRED              | [string][]               | Unit format of the specified PixelSize. MUST be micrometer (`"um"`).                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Immersion                  | OPTIONAL              | [string][]               | Lens immersion medium. If the file format is OME-TIFF, the value MUST be consistent with the `"Immersion"` OME metadata field.                                                                                                                                                                                                                                                                                                                                           |
+| NumericalAperture          | OPTIONAL              | [number][]               | Lens numerical aperture (for example, `1.4`). If the file format is OME-TIFF, the value MUST be consistent with the `"LensNA"` OME metadata field.                                                                                                                                                                                                                                                                                                                       |
+| Magnification              | OPTIONAL              | [number][]               | Lens magnification (for example, `40`) If the file format is OME-TIFF, the value MUST be consistent with the `"NominalMagnification"` OME metadata field.                                                                                                                                                                                                                                                                                                                |
+| ImageAcquisitionProtocol   | OPTIONAL              | [string][] or [URI][]    | Description of the image acquisition protocol or URI from [protocols.io](https://www.protocols.io/).                                                                                                                                                                                                                                                                                                                                                                     |
+| OtherAcquisitionParameters | OPTIONAL              | [string][]               | Description of other relevant image acquisition parameters.                                                                                                                                                                                                                                                                                                                                                                                                              |
 
 #### Sample
 <!---
@@ -248,41 +250,46 @@ from the description, and replace with
 "from [DICOM Body Part Examined](http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html#chapter_L) (for example: `"BRAIN".`)".
 It will require changes to `src/schema/metatata/BodyPart.yaml` and `src/04-modality-specific-files/09-positron-emission-tomography.md`.
 -->
-| **Key name**                | **Requirement level** | **Data type** | **Description**                                                                                                                                                                        |
-| --------------------------- | --------------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| BodyPart                    | RECOMMENDED           | string                     | Body part of the organ / body region scanned. from [DICOM Body Part Examined](http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html#chapter_L) (for example: `"BRAIN"`)". |
-| BodyPartDetails             | OPTIONAL              | string                     | If needed, additional details about body part or location (for example: `"corpus callosum"`). |
-| BodyPartDetailsOntology     | OPTIONAL              | string                     | If applicable, information about the ontology used for specifying BodyPartDetails (for example: `"UBERON (https://www.ebi.ac.uk/ols/ontologies/uberon)"`). |
-| Environment                 | RECOMMENDED           | string                     | RECOMMENDED. Indicate if the sample is imaged `"invivo"`, `"exvivo"` or `"invitro"`. |
-| SampleEmbedding             | OPTIONAL              | string                     | Description of the tissue sample embedding (for example: `"Epoxy resin"`). |
-| SampleFixation              | OPTIONAL              | string                     | Description of the tissue sample fixation (for example: `"4% paraformaldehyde, 2% glutaraldehyde"`). |
-| SampleStaining              | RECOMMENDED           | string or array of strings | Description of the tissue sample staining (for example: `"Osmium"`). MAY be an array of strings if different stains are used in each channel of the file (for example: `["LFB", "PLP"]`). |
-| SamplePrimaryAntibody       | RECOMMENDED           | string or array of strings | Description of the primary antibody used for immunostaining. Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalogue number of a commercial antibody. For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the host-animal and immunogen used (for examples: `"RRID:AB_2122563"` or `"Rabbit anti-Human HTR5A Polyclonal Antibody, Invitrogen, Catalog # PA1-2453"`). MAY be an array of strings if different antibodies are used in each channel of the file. |
-| SampleSecondaryAntibody     | RECOMMENDED           | string or array of strings | Description of the secondary antibody used for immunostaining. Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalogue number of a commercial antibody. For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the host-animal and immunogen used (for examples: `"RRID:AB_228322"` or `"Goat anti-Mouse IgM Secondary Antibody, Invitrogen, Catalog # 31172"`). MAY be an array of strings if different antibodies are used in each channel of the file. |
-| SliceThickness              | OPTIONAL              | number                     | Slice thickness of the tissue sample in the unit micrometers (`"um"`) (for example: `5`). |
-| ShrinkageFactor             | OPTIONAL              | number                     | Estimated shrinkage factor of the tissue, given in percent (between 0 and 100%) of the original tissue dimensions (for example: `3`). |
-| SampleExtractionProtocol    | OPTIONAL              | string or URI              | Description of the sample extraction protocol or URI from [protocols.io](https://www.protocols.io/). |
-| SampleExtractionInstitution | OPTIONAL              | string                     | The name of the institution in charge of the extraction of the sample, if different from the institution in charge of the equipment that produced the image. |
+| **Key name**                | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| --------------------------- | --------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| BodyPart                    | RECOMMENDED           | [string][]                             | Body part of the organ / body region scanned. from [DICOM Body Part Examined](http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html#chapter_L) (for example: `"BRAIN"`)".                                                                                                                                                                                                                                                                                                                         |
+| BodyPartDetails             | OPTIONAL              | [string][]                             | If needed, additional details about body part or location (for example: `"corpus callosum"`).                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| BodyPartDetailsOntology     | OPTIONAL              | [string][]                             | If applicable, information about the ontology used for specifying BodyPartDetails (for example: `"UBERON (https://www.ebi.ac.uk/ols/ontologies/uberon)"`).                                                                                                                                                                                                                                                                                                                                                                 |
+| Environment                 | RECOMMENDED           | [string][]                             | Indicate if the sample is imaged `"invivo"`, `"exvivo"` or `"invitro"`.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| SampleEmbedding             | OPTIONAL              | [string][]                             | Description of the tissue sample embedding (for example: `"Epoxy resin"`).                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| SampleFixation              | OPTIONAL              | [string][]                             | Description of the tissue sample fixation (for example: `"4% paraformaldehyde, 2% glutaraldehyde"`).                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| SampleStaining              | RECOMMENDED           | [string][] or [array][] of [strings][] | Description of the tissue sample staining (for example: `"Osmium"`). MAY be an array of strings if different stains are used in each channel of the file (for example: `["LFB", "PLP"]`).                                                                                                                                                                                                                                                                                                                                  |
+| SamplePrimaryAntibody       | RECOMMENDED           | [string][] or [array][] of [strings][] | Description of the primary antibody used for immunostaining. Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalogue number of a commercial antibody. For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the host-animal and immunogen used (for examples: `"RRID:AB_2122563"` or `"Rabbit anti-Human HTR5A Polyclonal Antibody, Invitrogen, Catalog # PA1-2453"`). MAY be an array of strings if different antibodies are used in each channel of the file. |
+| SampleSecondaryAntibody     | RECOMMENDED           | [string][] or [array][] of [strings][] | Description of the secondary antibody used for immunostaining. Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalogue number of a commercial antibody. For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the host-animal and immunogen used (for examples: `"RRID:AB_228322"` or `"Goat anti-Mouse IgM Secondary Antibody, Invitrogen, Catalog # 31172"`). MAY be an array of strings if different antibodies are used in each channel of the file.        |
+| SliceThickness              | OPTIONAL              | [number]                               | Slice thickness of the tissue sample in the unit micrometers (`"um"`) (for example: `5`).                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ShrinkageFactor             | OPTIONAL              | [number][]                             | Estimated shrinkage factor of the tissue, given in percent (between 0 and 100%) of the original tissue dimensions (for example: `3`).                                                                                                                                                                                                                                                                                                                                                                                      |
+| SampleExtractionProtocol    | OPTIONAL              | [string][] or [URI][]                  | Description of the sample extraction protocol or URI from [protocols.io](https://www.protocols.io/).                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| SampleExtractionInstitution | OPTIONAL              | [string][]                             | The name of the institution in charge of the extraction of the sample, if different from the institution in charge of the equipment that produced the image.                                                                                                                                                                                                                                                                                                                                                               |
 
 #### Chunk transformations
 
 Chunk transformations metadata describes the spatial relation between chunks
 of the same sample in an implicit coordinate system.
 
-- The source frame of reference is the frame of reference of the associated image.
-- The target frame of reference is the implicit coordinate system of the transform.
-- The target frame of reference has the same units as the `PixelSizeUnits` metadata.
-- The chunk transform is described by 2 metadata fields: a transformation matrix and a
-description of the axis of the matrix.
-- Other transformations should be described in derivatives.
+-   The source frame of reference is the frame of reference of the associated image.
+
+-   The target frame of reference is the implicit coordinate system of the transform.
+
+-   The target frame of reference has the same units as the `PixelSizeUnits` metadata.
+
+-   The chunk transform is described by 2 metadata fields: a transformation matrix and a
+    description of the axis of the matrix.
+
+-   Other transformations should be described in derivatives.
+
 <!---
 The following table will be generated automatically with macros after community review.
 A "manual" table is provided to facilitate the review process.
 -->
-| **Key name**                  | **Requirement level**                                            | **Data type**              | **Description**                                                                                                                                                                        |
-| ----------------------------- | ---------------------------------------------------------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ChunkTransformationMatrix     | OPTIONAL                                                         | array of arrays of numbers | 3x3 or 4x4 matrix describing spatial chunk transformation, for 2D and 3D respectively (for examples: `[[2, 0, 0], [0, 3, 0], [0, 0, 1]]` in 2D for 2x and 3x scaling along the first and second axis respectively or `[[1, 0, 0, 0], [0, 2, 0, 0], [0, 0, 3, 0], [0, 0, 0, 1]]` in 3D for 2x and 3x scaling along the second and third axis respectively). Note that non-spatial dimensions like time and channel are not included in the transformation matrix. |
-| ChunkTransformationMatrixAxis | OPTIONAL, but REQUIRED if `ChunkTransformationMatrix` is present | arrays of strings          | Describe the axis of the ChunkTransformationMatrix (for examples: `['X', 'Y']` or `['Z', 'Y', 'X']`) |
+| **Key name**                  | **Requirement level**                                            | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ----------------------------- | ---------------------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ChunkTransformationMatrix     | OPTIONAL                                                         | [array][] of [arrays][] of [numbers][] | 3x3 or 4x4 matrix describing spatial chunk transformation, for 2D and 3D respectively (for examples: `[[2, 0, 0], [0, 3, 0], [0, 0, 1]]` in 2D for 2x and 3x scaling along the first and second axis respectively or `[[1, 0, 0, 0], [0, 2, 0, 0], [0, 0, 3, 0], [0, 0, 0, 1]]` in 3D for 2x and 3x scaling along the second and third axis respectively). Note that non-spatial dimensions like time and channel are not included in the transformation matrix. |
+| ChunkTransformationMatrixAxis | OPTIONAL, but REQUIRED if `ChunkTransformationMatrix` is present | [arrays][] of [strings][]              | Describe the axis of the ChunkTransformationMatrix (for examples: `['X', 'Y']` or `['Z', 'Y', 'X']`)                                                                                                                                                                                                                                                                                                                                                             |
 
 #### Example (`*_<suffix>.json`)
 ```JSON
@@ -318,6 +325,7 @@ In addition to the species column in the [Participants file](../03-modality-agno
 the following data SHOULD be included for species different from `homo sapiens`:
 
 -   `strain`: string value indicating the strain of the species, for example: `C57BL/6J`.
+
 -   `strain_rrid`: research resource identifier ([RRID](https://scicrunch.org/resources/Organisms/search))
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
 
@@ -359,3 +367,11 @@ Below is an example of a spinal cord SEM overview, modified from Zaimi et al., 2
 ![SEM overview](images/microscopy_sem_overview.jpg "SEM overview")
 
 <!-- Link Definitions -->
+
+[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
+[string]: https://www.w3schools.com/js/js_json_datatypes.asp
+[numbers]: https://www.w3schools.com/js/js_json_datatypes.asp
+[number]: https://www.w3schools.com/js/js_json_datatypes.asp
+[arrays]: https://www.w3schools.com/js/js_json_arrays.asp
+[array]: https://www.w3schools.com/js/js_json_arrays.asp
+[URI]: ../02-common-principles.md#uniform-resource-indicator
