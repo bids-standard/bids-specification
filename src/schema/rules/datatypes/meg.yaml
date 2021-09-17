@@ -22,6 +22,7 @@
     run: optional
     processing: optional
     split: optional
+
 # Second group
 - suffixes:
     - headshape
@@ -31,6 +32,7 @@
     subject: required
     session: optional
     acquisition: optional
+
 # Third group
 - suffixes:
     - markers
@@ -43,6 +45,7 @@
     task: optional
     acquisition: optional
     space: optional
+
 # Fourth
 - suffixes:
     - coordsystem
@@ -52,6 +55,7 @@
     subject: required
     session: optional
     acquisition: optional
+
 - suffixes:
     - channels
   extensions:
@@ -64,6 +68,7 @@
     acquisition: optional
     run: optional
     processing: optional
+
 - suffixes:
     - events
   extensions:
@@ -75,6 +80,7 @@
     task: required
     acquisition: optional
     run: optional
+
 - suffixes:
     - photo
   extensions:

@@ -17,6 +17,7 @@
     session: optional
     acquisition: optional
     run: optional
+
 # PEPolar
 - suffixes:
     - epi
@@ -32,6 +33,7 @@
     ceagent: optional
     direction: required
     run: optional
+
 # TB1DAM
 - suffixes:
     - TB1DAM
@@ -49,6 +51,7 @@
     flip: required
     inversion: optional
     part: optional
+
 # TB1EPI
 - suffixes:
     - TB1EPI
@@ -67,6 +70,7 @@
     flip: required
     inversion: optional
     part: optional
+
 # RFFieldMaps
 - suffixes:
     - TB1AFI
@@ -88,6 +92,7 @@
     flip: optional
     inversion: optional
     part: optional
+
 # TB1SRGE
 - suffixes:
     - TB1SRGE
@@ -106,6 +111,7 @@
     flip: required
     inversion: required
     part: optional
+
 # Parametric
 - suffixes:
     - TB1map

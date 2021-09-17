@@ -13,6 +13,7 @@
     tracer: optional
     reconstruction: optional
     run: optional
+
 # Blood recordings
 - suffixes:
     - blood
@@ -27,6 +28,7 @@
     reconstruction: optional
     run: optional
     recording: required
+
 # Events
 - suffixes:
     - events

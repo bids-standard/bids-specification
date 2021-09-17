@@ -25,13 +25,6 @@
     ceagent: optional
     reconstruction: optional
     part: optional
-  metadata:
-    $ref: /rules/metadata/mri.yaml
-
-    # Now anatomical MRI-specific
-    ContrastBolusIngredient: optional
-    RepetitionTimeExcitation: optional
-    RepetitionTimePreparation: optional
 
 # Parametric
 - suffixes:
@@ -63,6 +56,7 @@
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+
 # Defacemask
 - suffixes:
     - defacemask
@@ -78,6 +72,7 @@
     ceagent: optional
     reconstruction: optional
     modality: optional
+
 # Multi-echo
 - suffixes:
     - MESE
@@ -95,6 +90,7 @@
     reconstruction: optional
     echo: required
     part: optional
+
 # Multi-flip
 - suffixes:
     - VFA
@@ -111,6 +107,7 @@
     reconstruction: optional
     flip: required
     part: optional
+
 # Multi-inv
 - suffixes:
     - IRT1
@@ -127,6 +124,7 @@
     reconstruction: optional
     inversion: required
     part: optional
+
 # MP2RAGE
 - suffixes:
     - MP2RAGE
@@ -145,6 +143,7 @@
     flip: optional
     inversion: required
     part: optional
+
 # VFA+MT
 - suffixes:
     - MPM
@@ -164,6 +163,7 @@
     flip: required
     mtransfer: required
     part: optional
+
 # MTR
 - suffixes:
     - MTR

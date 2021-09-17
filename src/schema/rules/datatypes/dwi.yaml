@@ -15,6 +15,7 @@
     direction: optional
     run: optional
     part: optional
+
 # Single-band reference images
 - suffixes:
     - sbref

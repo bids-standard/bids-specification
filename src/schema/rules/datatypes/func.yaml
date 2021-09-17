@@ -19,44 +19,6 @@
     run: optional
     echo: optional
     part: optional
-  metadata:
-    $ref: /rules/metadata/mri.yaml
-
-    # RepetitionTime: required
-    # VolumeTiming: required
-    TaskName: required
-    NumberOfVolumesDiscardedByScanner: recommended
-    NumberOfVolumesDiscardedByUser: recommended
-    # DelayTime: recommended
-    # AcquisitionDuration: recommended
-    DelayAfterTrigger: recommended
-    # Above commented-out requirements overriden by the logic below,
-    # along with SliceTiming from the generic MRI metadata rules.
-    oneOf:
-      - RepetitionTime: required
-        AcquisitionDuration: prohibited
-        VolumeTiming: prohibited
-      - RepetitionTime: prohibited
-        SliceTiming: required
-        DelayTime: prohibited
-        VolumeTiming: required
-      - RepetitionTime: prohibited
-        AcquisitionDuration: required
-        DelayTime: prohibited
-        VolumeTiming: required
-      - RepetitionTime: required
-        SliceTiming: required
-        AcquisitionDuration: prohibited
-        VolumeTiming: prohibited
-      - RepetitionTime: required
-        AcquisitionDuration: prohibited
-        DelayTime: required
-        VolumeTiming: prohibited
-
-    Instructions: recommended
-    TaskDescription: recommended
-    CogAtlasID: recommended
-    CogPOID: recommended
 
 # Phase (deprecated)
 - suffixes:
@@ -75,6 +37,7 @@
     direction: optional
     run: optional
     echo: optional
+
 # Events
 - suffixes:
     - events
@@ -90,6 +53,7 @@
     reconstruction: optional
     direction: optional
     run: optional
+
 # Timeseries
 - suffixes:
     - physio

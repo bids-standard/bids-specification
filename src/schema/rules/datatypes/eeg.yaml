@@ -16,6 +16,7 @@
     task: required
     acquisition: optional
     run: optional
+
 - suffixes:
     - channels
   extensions:
@@ -27,6 +28,7 @@
     task: required
     acquisition: optional
     run: optional
+
 - suffixes:
     - coordsystem
   extensions:
@@ -36,6 +38,7 @@
     session: optional
     acquisition: optional
     space: optional
+
 - suffixes:
     - electrodes
   extensions:
@@ -46,6 +49,7 @@
     session: optional
     acquisition: optional
     space: optional
+
 - suffixes:
     - events
   extensions:
@@ -57,6 +61,7 @@
     task: required
     acquisition: optional
     run: optional
+
 - suffixes:
     - photo
   extensions:

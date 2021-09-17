@@ -1,5 +1,5 @@
 ---
-# First group
+# Continuous data
 - suffixes:
     - stim
     - physio
@@ -13,7 +13,8 @@
     acquisition: optional
     run: optional
     recording: optional
-# Second group
+
+# Non-continuous data
 - suffixes:
     - events
     - beh
