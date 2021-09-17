@@ -33,13 +33,19 @@ Each of these object types has a single file in the `objects/` folder.
     These modalities are not reflected directly in the specification.
     For example, while both fMRI and DWI data are acquired with an MRI,
     in a BIDS dataset they are stored in different folders reflecting the two different `datatypes`.
+
 -   `datatypes.yaml`: Data types supported by the specification.
     The only information provided in the file is (1) a full list of valid BIDS datatypes,
     (2) each datatype's full name, and (3) a free text description of the datatype.
+
 -   `entities.yaml`: Entities (key/value pairs in folder and filenames).
+
 -   `metadata.yaml`: All valid metadata fields that are explicitly supported in BIDS sidecar JSON files.
+
 -   `suffixes.yaml`: Valid file suffixes.
+
 -   `top_level_files.yaml`: Valid top-level files which may appear in a BIDS dataset.
+
 -   `associated_data.yaml`: Folders that may appear within a dataset folder without following BIDS rules.
 
 ### `modalities.yaml`
@@ -311,11 +317,15 @@ because rules governing how different object types interact in a valid dataset a
 than the object definitions.
 
 -   `modalities.yaml`: This file simply groups `datatypes` under their associated modality.
+
 -   `datatypes/*.yaml`: Files in the `datatypes` folder contain information about valid filenames within a given datatype.
     Specifically, each datatype's YAML file contains a list of dictionaries.
     Each dictionary contains a list of suffixes, entities, and file extensions which may constitute a valid BIDS filename.
+
 -   `entities.yaml`: This file simply defines the order in which entities, when present, MUST appear in filenames.
+
 -   `top_level_files.yaml`: Requirement levels and valid file extensions of top-level files.
+
 -   `associated_data.yaml`: Requirement levels of associated non-BIDS folders.
 
 ### `modalities.yaml`
