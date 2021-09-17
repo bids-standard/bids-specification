@@ -53,10 +53,10 @@ AnalyticalApproach:
     under /Study/Molecular Data Type (for example, SNP Genotypes (Array) or
     Methylation (CpG).
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 AnatomicalLandmarkCoordinateSystem:
   name: AnatomicalLandmarkCoordinateSystem
   description: |
@@ -66,10 +66,10 @@ AnatomicalLandmarkCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `AnatomicalLandmarkCoordinateSystemDescription`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+    - $ref: _MEGCoordSys
+    - $ref: _EEGCoordSys
+    - $ref: _StandardTemplateCoordSys
+    - $ref: _StandardTemplateDeprecatedCoordSys
 AnatomicalLandmarkCoordinateSystemDescription:
   name: AnatomicalLandmarkCoordinateSystemDescription
   description: |
@@ -84,10 +84,10 @@ AnatomicalLandmarkCoordinateUnits:
     MUST be `"m"`, `"cm"`, or `"mm"`.
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - n/a
+    - m
+    - mm
+    - cm
+    - n/a
 AnatomicalLandmarkCoordinates:
   name: AnatomicalLandmarkCoordinates
   description: |
@@ -128,9 +128,9 @@ ArterialSpinLabelingType:
     `"CASL"`, `"PCASL"`, `"PASL"`.
   type: string
   enum:
-  - CASL
-  - PCASL
-  - PASL
+    - CASL
+    - PCASL
+    - PASL
 AssociatedEmptyRoom:
   name: AssociatedEmptyRoom
   description: |
@@ -140,12 +140,12 @@ AssociatedEmptyRoom:
     (for example,
     "sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds").
   anyOf:
-  - type: array
-    items:
-      type: string
+    - type: array
+      items:
+        type: string
+        format: dataset_relative
+    - type: string
       format: dataset_relative
-  - type: string
-    format: dataset_relative
 Atlas:
   name: Atlas
   description: |
@@ -191,12 +191,12 @@ B0FieldSource:
     caused by B<sub>0</sub> inhomogeneities.
     `B0FieldSource` and `B0FieldIdentifier` are mutually exclusive.
   anyOf:
-  - type: string
-    format: participant_relative
-  - type: array
-    items:
-      type: string
+    - type: string
       format: participant_relative
+    - type: array
+      items:
+        type: string
+        format: participant_relative
 BIDSVersion:
   name: BIDSVersion
   description: |
@@ -234,12 +234,12 @@ BasedOn:
     List of files in a file collection to generate the map.
     Fieldmaps are also listed, if involved in the processing.
   anyOf:
-  - type: string
-    format: participant_relative
-  - type: array
-    items:
-      type: string
+    - type: string
       format: participant_relative
+    - type: array
+      items:
+        type: string
+        format: participant_relative
 BloodDensity:
   name: BloodDensity
   description: |
@@ -264,14 +264,14 @@ BolusCutOffDelayTime:
     pulses are provided.
     Based on DICOM Tag 0018, 925F `ASL Bolus Cut-off Delay Time`.
   anyOf:
-  - type: number
-    minimum: 0
-    unit: s
-  - type: array
-    items:
-      type: number
-      unit: s
+    - type: number
       minimum: 0
+      unit: s
+    - type: array
+      items:
+        type: number
+        unit: s
+        minimum: 0
 BolusCutOffFlag:
   name: BolusCutOffFlag
   description: |
@@ -303,8 +303,8 @@ CASLType:
     `"single-coil"` or `"double-coil"`.
   type: string
   enum:
-  - single-coil
-  - double-coil
+    - single-coil
+    - double-coil
 CapManufacturer:
   name: CapManufacturer
   description: |
@@ -379,11 +379,11 @@ ContrastBolusIngredient:
     Corresponds to DICOM Tag 0018, 1048 `Contrast/Bolus Ingredient`.
   type: string
   enum:
-  - IODINE
-  - GADOLINIUM
-  - CARBON DIOXIDE
-  - BARIUM
-  - XENON
+    - IODINE
+    - GADOLINIUM
+    - CARBON DIOXIDE
+    - BARIUM
+    - XENON
 DCOffsetCorrection:
   name: DCOffsetCorrection
   description: |
@@ -409,8 +409,8 @@ DatasetType:
     For backwards compatibility, the default value is `"raw"`.
   type: string
   enum:
-  - raw
-  - derivative
+    - raw
+    - derivative
 DecayCorrectionFactor:
   name: DecayCorrectionFactor
   description: |
@@ -448,10 +448,10 @@ Density:
     If an object is used, then the keys should be values for the ``den`` entity
     and values should be descriptions of those ``den`` values.
   anyOf:
-  - type: string
-  - type: object
-    additionalProperties:
-      type: string
+    - type: string
+    - type: object
+      additionalProperties:
+        type: string
 Description:
   name: Description
   description: |
@@ -487,10 +487,10 @@ DigitizedHeadPointsCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `DigitizedHeadPointsCoordinateSystemDescription`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+    - $ref: _MEGCoordSys
+    - $ref: _EEGCoordSys
+    - $ref: _StandardTemplateCoordSys
+    - $ref: _StandardTemplateDeprecatedCoordSys
 DigitizedHeadPointsCoordinateSystemDescription:
   name: DigitizedHeadPointsCoordinateSystemDescription
   description: |
@@ -505,10 +505,10 @@ DigitizedHeadPointsCoordinateUnits:
     MUST be `"m"`, `"cm"`, or `"mm"`.
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - n/a
+    - m
+    - mm
+    - cm
+    - n/a
 DigitizedLandmarks:
   name: DigitizedLandmarks
   description: |
@@ -578,10 +578,10 @@ EEGCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `EEGCoordinateSystemDescription`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+    - $ref: _MEGCoordSys
+    - $ref: _EEGCoordSys
+    - $ref: _StandardTemplateCoordSys
+    - $ref: _StandardTemplateDeprecatedCoordSys
 EEGCoordinateSystemDescription:
   name: EEGCoordinateSystemDescription
   description: |
@@ -596,10 +596,10 @@ EEGCoordinateUnits:
     MUST be `"m"`, `"cm"`, or `"mm"`.
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - n/a
+    - m
+    - mm
+    - cm
+    - n/a
 EEGGround:
   name: EEGGround
   description: |
@@ -653,14 +653,14 @@ EchoTime:
     arterial-spin-labeling-perfusion-data)
     or variable echo time fMRI sequences.
   anyOf:
-  - type: number
-    unit: s
-    exclusiveMinimum: 0
-  - type: array
-    items:
-      type: number
+    - type: number
       unit: s
       exclusiveMinimum: 0
+    - type: array
+      items:
+        type: number
+        unit: s
+        exclusiveMinimum: 0
 EchoTime1:
   name: EchoTime1
   description: |
@@ -764,10 +764,10 @@ FiducialsCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `FiducialsCoordinateSystemDescription`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+    - $ref: _MEGCoordSys
+    - $ref: _EEGCoordSys
+    - $ref: _StandardTemplateCoordSys
+    - $ref: _StandardTemplateDeprecatedCoordSys
 FiducialsCoordinateSystemDescription:
   name: FiducialsCoordinateSystemDescription
   description: |
@@ -783,10 +783,10 @@ FiducialsCoordinateUnits:
     MUST be `"m"`, `"cm"`, or `"mm"`.
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - n/a
+    - m
+    - mm
+    - cm
+    - n/a
 FiducialsCoordinates:
   name: FiducialsCoordinates
   description: |
@@ -828,16 +828,16 @@ FlipAngle:
     arterial-spin-labeling-perfusion-data)
     or variable flip angle fMRI sequences.
   anyOf:
-  - type: number
-    unit: degree
-    exclusiveMinimum: 0
-    maximum: 360
-  - type: array
-    items:
-      type: number
+    - type: number
       unit: degree
       exclusiveMinimum: 0
       maximum: 360
+    - type: array
+      items:
+        type: number
+        unit: degree
+        exclusiveMinimum: 0
+        maximum: 360
 FrameDuration:
   name: FrameDuration
   description: |
@@ -899,10 +899,10 @@ GeneticLevel:
     Values MUST be one of `"Genetic"`, `"Genomic"`, `"Epigenomic"`,
     `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.
   anyOf:
-  - $ref: _GeneticLevelEnum
-  - type: array
-    items:
-      $ref: _GeneticLevelEnum
+    - $ref: _GeneticLevelEnum
+    - type: array
+      items:
+        $ref: _GeneticLevelEnum
 Genetics.Database:
   name: Genetics.Database
   description: |
@@ -925,10 +925,10 @@ Genetics.Descriptors:
     [URI](/02-common-principles.html#uniform-resource-indicator)
     when possible.
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 Genetics:
   name: Genetics
   description: |
@@ -955,10 +955,10 @@ HED:
     Hierarchical Event Descriptor (HED) information,
     see: [Appendix III](/99-appendices/03-hed.html) for details.
   anyOf:
-  - type: string
-  - type: object
-    additionalProperties:
-      type: string
+    - type: string
+    - type: object
+      additionalProperties:
+        type: string
 HEDVersion:
   name: HEDVersion
   description: |
@@ -987,12 +987,12 @@ HardwareFilters:
     For example, `{"Highpass RC filter": {"Half amplitude cutoff (Hz)":
     0.0159, "Roll-off": "6dB/Octave"}}`.
   anyOf:
-  - type: object
-    additionalProperties:
-      type: object
-  - type: string
-    enum:
-    - n/a
+    - type: object
+      additionalProperties:
+        type: object
+    - type: string
+      enum:
+        - n/a
 HeadCircumference:
   name: HeadCircumference
   description: |
@@ -1010,14 +1010,15 @@ HeadCoilCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `HeadCoilCoordinateSystemDescription`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+    - $ref: _MEGCoordSys
+    - $ref: _EEGCoordSys
+    - $ref: _StandardTemplateCoordSys
+    - $ref: _StandardTemplateDeprecatedCoordSys
 HeadCoilCoordinateSystemDescription:
   name: HeadCoilCoordinateSystemDescription
-  description: |-
-    Free-form text description of the coordinate system. May also include a link to a documentation page or paper describing the system in greater detail.
+  description: |
+    Free-form text description of the coordinate system.
+    May also include a link to a documentation page or paper describing the system in greater detail.
   type: string
 HeadCoilCoordinateUnits:
   name: HeadCoilCoordinateUnits
@@ -1026,10 +1027,10 @@ HeadCoilCoordinateUnits:
     MUST be `"m"`, `"cm"`, or `"mm"`.
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - n/a
+    - m
+    - mm
+    - cm
+    - n/a
 HeadCoilCoordinates:
   name: HeadCoilCoordinates
   description: |
@@ -1059,12 +1060,12 @@ HeadCoilFrequency:
     that track the subject's head position in the MEG helmet
     (for example, `[293, 307, 314, 321]`).
   anyOf:
-  - type: number
-    unit: Hz
-  - type: array
-    items:
-      type: number
+    - type: number
       unit: Hz
+    - type: array
+      items:
+        type: number
+        unit: Hz
 HowToAcknowledge:
   name: HowToAcknowledge
   description: |
@@ -1120,10 +1121,10 @@ InjectedMass:
     **For those tracers in which injected mass is not available (for example FDG)
     can be set to `"n/a"`)**.
   anyOf:
-  - type: number
-  - type: string
-    enum:
-    - n/a
+    - type: number
+    - type: string
+      enum:
+        - n/a
 InjectedMassPerWeight:
   name: InjectedMassPerWeight
   description: |
@@ -1144,11 +1145,11 @@ InjectedMassUnits:
     **Note this is not required for an FDG acquisition, since it is not available,
     and SHOULD be set to `"n/a"`**.
   anyOf:
-  - type: string
-    format: unit
-  - type: string
-    enum:
-    - n/a
+    - type: string
+      format: unit
+    - type: string
+      enum:
+        - n/a
 InjectedRadioactivity:
   name: InjectedRadioactivity
   description: |
@@ -1217,12 +1218,12 @@ IntendedFor:
     Paths need to use forward slashes instead of backward slashes,
     regardless of operating system.
   anyOf:
-  - type: string
-    format: participant_relative
-  - type: array
-    items:
-      type: string
+    - type: string
       format: participant_relative
+    - type: array
+      items:
+        type: string
+        format: participant_relative
 InversionTime:
   name: InversionTime
   description: |
@@ -1261,14 +1262,14 @@ LabelingDuration:
     `*_aslcontext.tsv`.
     Corresponds to DICOM Tag 0018, 9258 `ASL Pulse Train Duration`.
   anyOf:
-  - type: number
-    minimum: 0
-    unit: s
-  - type: array
-    items:
-      type: number
-      unit: s
+    - type: number
       minimum: 0
+      unit: s
+    - type: array
+      items:
+        type: number
+        unit: s
+        minimum: 0
 LabelingEfficiency:
   name: LabelingEfficiency
   description: |
@@ -1398,10 +1399,10 @@ M0Type:
     `"Absent"` when no specific M0 information is present.
   type: string
   enum:
-  - Separate
-  - Included
-  - Estimate
-  - Absent
+    - Separate
+    - Included
+    - Estimate
+    - Absent
 MEGChannelCount:
   name: MEGChannelCount
   description: |
@@ -1417,10 +1418,10 @@ MEGCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `MEGCoordinateSystemDescription`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+    - $ref: _MEGCoordSys
+    - $ref: _EEGCoordSys
+    - $ref: _StandardTemplateCoordSys
+    - $ref: _StandardTemplateDeprecatedCoordSys
 MEGCoordinateSystemDescription:
   name: MEGCoordinateSystemDescription
   description: |
@@ -1435,10 +1436,10 @@ MEGCoordinateUnits:
     MUST be `"m"`, `"cm"`, or `"mm"`.
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - n/a
+    - m
+    - mm
+    - cm
+    - n/a
 MEGREFChannelCount:
   name: MEGREFChannelCount
   description: |
@@ -1455,8 +1456,8 @@ MRAcquisitionType:
     Corresponds to DICOM Tag 0018, 0023 `MR Acquisition Type`.
   type: string
   enum:
-  - 2D
-  - 3D
+    - 2D
+    - 3D
 MRTransmitCoilSequence:
   name: MRTransmitCoilSequence
   description: |
@@ -1497,13 +1498,13 @@ MTPulseShape:
     `"SINCGAUSS"` (sinc pulse with Gaussian window), `"FERMI"`.
   type: string
   enum:
-  - HARD
-  - GAUSSIAN
-  - GAUSSHANN
-  - SINC
-  - SINCHANN
-  - SINCGAUSS
-  - FERMI
+    - HARD
+    - GAUSSIAN
+    - GAUSSHANN
+    - SINC
+    - SINCHANN
+    - SINCGAUSS
+    - FERMI
 MTState:
   name: MTState
   description: |
@@ -1682,10 +1683,10 @@ NumberShots:
     (/99-appendices/11-qmri.html#numbershots-metadata-field)
     in the qMRI appendix for corresponding calculations.
   anyOf:
-  - type: number
-  - type: array
-    items:
-      type: number
+    - type: number
+    - type: array
+      items:
+        type: number
 OperatingSystem:
   name: OperatingSystem
   description: |
@@ -1705,8 +1706,8 @@ PCASLType:
     `"balanced"` or `"unbalanced"`.
   type: string
   enum:
-  - balanced
-  - unbalanced
+    - balanced
+    - unbalanced
 ParallelAcquisitionTechnique:
   name: ParallelAcquisitionTechnique
   description: |
@@ -1738,10 +1739,10 @@ PharmaceuticalDoseAmount:
   description: |
     Dose amount of pharmaceutical coadministered with tracer.
   anyOf:
-  - type: number
-  - type: array
-    items:
-      type: number
+    - type: number
+    - type: array
+      items:
+        type: number
 PharmaceuticalDoseRegimen:
   name: PharmaceuticalDoseRegimen
   description: |
@@ -1759,12 +1760,12 @@ PharmaceuticalDoseTime:
     interpretation of `PharmaceuticalDoseTime`.
     Unit format of the specified pharmaceutical dose time MUST be seconds.
   anyOf:
-  - type: number
-    unit: s
-  - type: array
-    items:
-      type: number
+    - type: number
       unit: s
+    - type: array
+      items:
+        type: number
+        unit: s
 PharmaceuticalDoseUnits:
   name: PharmaceuticalDoseUnits
   description: |
@@ -1793,12 +1794,12 @@ PhaseEncodingDirection:
     `InPlanePhaseEncodingDirection` which can have `ROW` or `COL` values.
   type: string
   enum:
-  - i
-  - j
-  - k
-  - i-
-  - j-
-  - k-
+    - i
+    - j
+    - k
+    - i-
+    - j-
+    - k-
 PlasmaAvail:
   name: PlasmaAvail
   description: |
@@ -1834,26 +1835,26 @@ PostLabelingDelay:
     Based on DICOM Tags 0018, 9079 `Inversion Times` and 0018, 0082
     `InversionTime`.
   anyOf:
-  - type: number
-    exclusiveMinimum: 0
-    unit: s
-  - type: array
-    items:
-      type: number
+    - type: number
       exclusiveMinimum: 0
       unit: s
+    - type: array
+      items:
+        type: number
+        exclusiveMinimum: 0
+        unit: s
 PowerLineFrequency:
   name: PowerLineFrequency
   description: |
     Frequency (in Hz) of the power grid at the geographical location of the
     instrument (for example, `50` or `60`).
   anyOf:
-  - type: number
-    exclusiveMinimum: 0
-    unit: Hz
-  - type: string
-    enum:
-    - n/a
+    - type: number
+      exclusiveMinimum: 0
+      unit: Hz
+    - type: string
+      enum:
+        - n/a
 PromptRate:
   name: PromptRate
   description: |
@@ -1921,21 +1922,21 @@ ReconFilterSize:
   description: |
     Kernel size of post-recon filter (FWHM) in default units `"mm"`.
   anyOf:
-  - type: number
-    unit: mm
-  - type: array
-    items:
-      type: number
+    - type: number
       unit: mm
+    - type: array
+      items:
+        type: number
+        unit: mm
 ReconFilterType:
   name: ReconFilterType
   description: |
     Type of post-recon smoothing (for example, `["Shepp"]`).
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 ReconMethodImplementationVersion:
   name: ReconMethodImplementationVersion
   description: |
@@ -1982,9 +1983,9 @@ RecordingType:
     interest (for example, stimulus presentations or subject responses).
   type: string
   enum:
-  - continuous
-  - epoched
-  - discontinuous
+    - continuous
+    - epoched
+    - discontinuous
 ReferencesAndLinks:
   name: ReferencesAndLinks
   description: |
@@ -2049,14 +2050,14 @@ RepetitionTimePreparation:
     [ASL](/04-modality-specific-files/01-magnetic-resonance-imaging-data.html\
     #arterial-spin-labeling-perfusion-data).
   anyOf:
-  - type: number
-    minimum: 0
-    unit: s
-  - type: array
-    items:
-      type: number
+    - type: number
       minimum: 0
       unit: s
+    - type: array
+      items:
+        type: number
+        minimum: 0
+        unit: s
 Resolution:
   name: Resolution
   description: |
@@ -2064,10 +2065,10 @@ Resolution:
     If an object is used, then the keys should be values for the ``res`` entity
     and values should be descriptions of those ``res`` values.
   anyOf:
-  - type: string
-  - type: object
-    additionalProperties:
-      type: string
+    - type: string
+    - type: object
+      additionalProperties:
+        type: string
 SEEGChannelCount:
   name: SEEGChannelCount
   description: |
@@ -2082,14 +2083,14 @@ SampleOrigin:
     `"breast milk"`, `"bile"`, `"amniotic fluid"`, `"other biospecimen"`.
   type: string
   enum:
-  - blood
-  - saliva
-  - brain
-  - csf
-  - breast milk
-  - bile
-  - amniotic fluid
-  - other biospecimen
+    - blood
+    - saliva
+    - brain
+    - csf
+    - breast milk
+    - bile
+    - amniotic fluid
+    - other biospecimen
 SamplingFrequency:
   name: SamplingFrequency
   description: |
@@ -2118,10 +2119,10 @@ ScanOptions:
     Parameters of ScanningSequence.
     Corresponds to DICOM Tag 0018, 0022 `Scan Options`.
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 ScanStart:
   name: ScanStart
   description: |
@@ -2134,10 +2135,10 @@ ScanningSequence:
     Description of the type of data acquired.
     Corresponds to DICOM Tag 0018, 0020 `Scanning Sequence`.
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 ScatterFraction:
   name: ScatterFraction
   description: |
@@ -2159,10 +2160,10 @@ SequenceVariant:
     Variant of the ScanningSequence.
     Corresponds to DICOM Tag 0018, 0021 `Sequence Variant`.
   anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string
+    - type: string
+    - type: array
+      items:
+        type: string
 SinglesRate:
   name: SinglesRate
   description: |
@@ -2192,12 +2193,12 @@ SliceEncodingDirection:
     slice index as defined by the NIfTI header.
   type: string
   enum:
-  - i
-  - j
-  - k
-  - i-
-  - j-
-  - k-
+    - i
+    - j
+    - k
+    - i-
+    - j-
+    - k-
 SliceTiming:
   name: SliceTiming
   description: |
@@ -2231,12 +2232,12 @@ SoftwareFilters:
     (for example, `{"Anti-aliasing filter":
     {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`).
   anyOf:
-  - type: object
-    additionalProperties:
-      type: object
-  - type: string
-    enum:
-    - n/a
+    - type: object
+      additionalProperties:
+        type: object
+    - type: string
+      enum:
+        - n/a
 SoftwareName:
   name: SoftwareName
   description: |
@@ -2304,23 +2305,23 @@ SpatialReference:
     For images with multiple references, such as surface and volume references,
     a JSON object MUST be used.
   anyOf:
-  - type: string
-    enum:
-    - orig
-  - type: string
-    format: uri
-  - type: string
-    format: dataset_relative
-  - type: object
-    additionalProperties:
-      anyOf:
-      - type: string
-        enum:
+    - type: string
+      enum:
         - orig
-      - type: string
-        format: uri
-      - type: string
-        format: dataset_relative
+    - type: string
+      format: uri
+    - type: string
+      format: dataset_relative
+    - type: object
+      additionalProperties:
+        anyOf:
+          - type: string
+            enum:
+              - orig
+          - type: string
+            format: uri
+          - type: string
+            format: dataset_relative
 SpecificRadioactivity:
   name: SpecificRadioactivity
   description: |
@@ -2328,10 +2329,10 @@ SpecificRadioactivity:
     **Note this is not required for an FDG acquisition, since it is not available,
     and SHOULD be set to `"n/a"`**.
   anyOf:
-  - type: number
-  - type: string
-    enum:
-    - n/a
+    - type: number
+    - type: string
+      enum:
+        - n/a
 SpecificRadioactivityMeasTime:
   name: SpecificRadioactivityMeasTime
   description: |
@@ -2346,11 +2347,11 @@ SpecificRadioactivityUnits:
     **Note this is not required for an FDG acquisition, since it is not available,
     and SHOULD be set to `"n/a"`**.
   anyOf:
-  - type: string
-    format: unit
-  - type: string
-    enum:
-    - n/a
+    - type: string
+      format: unit
+    - type: string
+      enum:
+        - n/a
 SpoilingGradientDuration:
   name: SpoilingGradientDuration
   description: |
@@ -2387,9 +2388,9 @@ SpoilingType:
     Accepted values: `"RF"`, `"GRADIENT"` or `"COMBINED"`.
   type: string
   enum:
-  - RF
-  - GRADIENT
-  - COMBINED
+    - RF
+    - GRADIENT
+    - COMBINED
 StartTime:
   name: StartTime
   description: |
@@ -2468,12 +2469,12 @@ TissueOrigin:
     `"meninges"`, `"macrovascular"` or `microvascular`.
   type: string
   enum:
-  - gray matter
-  - white matter
-  - csf
-  - meninges
-  - macrovascular
-  - microvascular
+    - gray matter
+    - white matter
+    - csf
+    - meninges
+    - macrovascular
+    - microvascular
 TotalAcquiredPairs:
   name: TotalAcquiredPairs
   description: |
@@ -2550,10 +2551,10 @@ Type:
     `Face` - face mask, `ROI` - ROI mask
   type: string
   enum:
-  - Brain
-  - Lesion
-  - Face
-  - ROI
+    - Brain
+    - Lesion
+    - Face
+    - ROI
 Units:
   name: Units
   description: |
@@ -2577,12 +2578,12 @@ VascularCrushingVENC:
     volumes for which `VascularCrushing` was turned off.
     Corresponds to DICOM Tag 0018, 925A `ASL Crusher Flow Limit`.
   anyOf:
-  - type: number
-    unit: cm/s
-  - type: array
-    items:
-      type: number
+    - type: number
       unit: cm/s
+    - type: array
+      items:
+        type: number
+        unit: cm/s
 VolumeTiming:
   name: VolumeTiming
   description: |
@@ -2616,26 +2617,26 @@ WithdrawalRate:
 _CoordUnits:
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - n/a
+    - m
+    - mm
+    - cm
+    - n/a
 _EEGCoordSys:
   type: string
   enum:
-  - CapTrak
-  - EEGLAB
-  - EEGLAB-HJ
-  - Other
+    - CapTrak
+    - EEGLAB
+    - EEGLAB-HJ
+    - Other
 _GeneticLevelEnum:
   type: string
   enum:
-  - Genetic
-  - Genomic
-  - Epigenomic
-  - Transcriptomic
-  - Metabolomic
-  - Proteomic
+    - Genetic
+    - Genomic
+    - Epigenomic
+    - Transcriptomic
+    - Metabolomic
+    - Proteomic
 _LandmarkCoordinates:
   type: object
   additionalProperties:
@@ -2647,60 +2648,60 @@ _LandmarkCoordinates:
 _MEGCoordSys:
   type: string
   enum:
-  - CTF
-  - ElektaNeuromag
-  - 4DBti
-  - KitYokogawa
-  - ChietiItab
-  - Other
+    - CTF
+    - ElektaNeuromag
+    - 4DBti
+    - KitYokogawa
+    - ChietiItab
+    - Other
 _StandardTemplateCoordSys:
   type: string
   enum:
-  - ICBM452AirSpace
-  - ICBM452Warp5Space
-  - IXI549Space
-  - fsaverage
-  - fsaverageSym
-  - fsLR
-  - MNIColin27
-  - MNI152Lin
-  - MNI152NLin2009aSym
-  - MNI152NLin2009bSym
-  - MNI152NLin2009cSym
-  - MNI152NLin2009aAsym
-  - MNI152NLin2009bAsym
-  - MNI152NLin2009cAsym
-  - MNI152NLin6Sym
-  - MNI152NLin6ASym
-  - MNI305
-  - NIHPD
-  - OASIS30AntsOASISAnts
-  - OASIS30Atropos
-  - Talairach
-  - UNCInfant
+    - ICBM452AirSpace
+    - ICBM452Warp5Space
+    - IXI549Space
+    - fsaverage
+    - fsaverageSym
+    - fsLR
+    - MNIColin27
+    - MNI152Lin
+    - MNI152NLin2009aSym
+    - MNI152NLin2009bSym
+    - MNI152NLin2009cSym
+    - MNI152NLin2009aAsym
+    - MNI152NLin2009bAsym
+    - MNI152NLin2009cAsym
+    - MNI152NLin6Sym
+    - MNI152NLin6ASym
+    - MNI305
+    - NIHPD
+    - OASIS30AntsOASISAnts
+    - OASIS30Atropos
+    - Talairach
+    - UNCInfant
 _StandardTemplateDeprecatedCoordSys:
   type: string
   enum:
-  - fsaverage3
-  - fsaverage4
-  - fsaverage5
-  - fsaverage6
-  - fsaveragesym
-  - UNCInfant0V21
-  - UNCInfant1V21
-  - UNCInfant2V21
-  - UNCInfant0V22
-  - UNCInfant1V22
-  - UNCInfant2V22
-  - UNCInfant0V23
-  - UNCInfant1V23
-  - UNCInfant2V23
+    - fsaverage3
+    - fsaverage4
+    - fsaverage5
+    - fsaverage6
+    - fsaveragesym
+    - UNCInfant0V21
+    - UNCInfant1V21
+    - UNCInfant2V21
+    - UNCInfant0V22
+    - UNCInfant1V22
+    - UNCInfant2V22
+    - UNCInfant0V23
+    - UNCInfant1V23
+    - UNCInfant2V23
 _iEEGCoordSys:
   type: string
   enum:
-  - Pixels
-  - ACPC
-  - Other
+    - Pixels
+    - ACPC
+    - Other
 iEEGCoordinateProcessingDescription:
   name: iEEGCoordinateProcessingDescription
   description: |
@@ -2729,9 +2730,9 @@ iEEGCoordinateSystem:
     [2D coordinate systems](/04-modality-specific-files/04-intracranial\
     -electroencephalography.html#allowed-2d-coordinate-systems).
   anyOf:
-  - $ref: _iEEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+    - $ref: _iEEGCoordSys
+    - $ref: _StandardTemplateCoordSys
+    - $ref: _StandardTemplateDeprecatedCoordSys
 iEEGCoordinateSystemDescription:
   name: iEEGCoordinateSystemDescription
   description: |
@@ -2746,11 +2747,11 @@ iEEGCoordinateUnits:
     MUST be `"pixels"` if `iEEGCoordinateSystem` is `Pixels`.
   type: string
   enum:
-  - m
-  - mm
-  - cm
-  - pixels
-  - n/a
+    - m
+    - mm
+    - cm
+    - pixels
+    - n/a
 iEEGElectrodeGroups:
   name: iEEGElectrodeGroups
   description: |

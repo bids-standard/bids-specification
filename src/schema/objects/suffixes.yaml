@@ -256,8 +256,8 @@ T2star:
     Ambiguous, may refer to a parametric image or to a conventional image.
     **Change:** Replaced by `T2starw` or `T2starmap`.
   anyOf:
-  - unit: arbitrary
-  - unit: s
+    - unit: arbitrary
+    - unit: s
 T2starmap:
   name: Observed transverse relaxation time image
   description: |
@@ -522,8 +522,8 @@ phase:
     [`part-phase`](/99-appendices/09-entities.html#part)
     in conjunction with the `bold` suffix.
   anyOf:
-  - unit: arbitrary
-  - unit: rad
+    - unit: arbitrary
+    - unit: rad
 phase1:
   name: Phase
   description: |
