@@ -1,9 +1,0 @@
----
-name: PCASLType
-description: |
-  Type the gradient pulses used in the `"control"` condition:
-  `"balanced"` or `"unbalanced"`.
-type: string
-enum:
-  - balanced
-  - unbalanced

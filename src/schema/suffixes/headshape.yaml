@@ -1,5 +1,0 @@
----
-name: Headshape File
-description: |
-  The 3-D locations of points that describe the head shape and/or electrode
-  locations can be digitized and stored in separate files.

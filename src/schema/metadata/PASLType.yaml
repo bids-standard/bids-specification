@@ -1,6 +1,0 @@
----
-name: PASLType
-description: |
-  Type of the labeling pulse of the `PASL` labeling,
-  for example `"FAIR"`, `"EPISTAR"`, or `"PICORE"`.
-type: string

@@ -1,5 +1,0 @@
----
-name: AttenuationCorrectionMethodReference
-description: |
-  Reference paper for the attenuation correction method used.
-type: string

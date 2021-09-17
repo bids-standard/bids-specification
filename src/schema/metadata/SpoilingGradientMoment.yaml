@@ -1,7 +1,0 @@
----
-name: SpoilingGradientMoment
-description: |
-  Zeroth moment of the spoiler gradient lobe in
-  millitesla times second per meter (mT.s/m).
-type: number
-unit: mT.s/m

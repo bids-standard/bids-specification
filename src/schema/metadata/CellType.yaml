@@ -1,7 +1,0 @@
----
-name: CellType
-description: |
-  Describes the type of cell analyzed.
-  Values SHOULD come from the
-  [cell ontology](http://obofoundry.org/ontology/cl.html).
-type: string

@@ -1,0 +1,10 @@
+---
+# First group of valid file patterns for this data type.
+- suffixes:  # valid suffixes for files in this group
+    -
+  extensions:  # valid extensions for files in this group
+    - .json
+  entities:  # entity: requirement-level pairs for files in this group
+    subject: required
+    session: optional
+# Additional groups

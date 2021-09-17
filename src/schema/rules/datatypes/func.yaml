@@ -1,0 +1,109 @@
+---
+# Func
+- suffixes:
+    - bold
+    - cbv
+    - sbref
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
+    run: optional
+    echo: optional
+    part: optional
+  metadata:
+    $ref: /rules/metadata/mri.yaml
+
+    # RepetitionTime: required
+    # VolumeTiming: required
+    TaskName: required
+    NumberOfVolumesDiscardedByScanner: recommended
+    NumberOfVolumesDiscardedByUser: recommended
+    # DelayTime: recommended
+    # AcquisitionDuration: recommended
+    DelayAfterTrigger: recommended
+    # Above commented-out requirements overriden by the logic below,
+    # along with SliceTiming from the generic MRI metadata rules.
+    oneOf:
+      - RepetitionTime: required
+        AcquisitionDuration: prohibited
+        VolumeTiming: prohibited
+      - RepetitionTime: prohibited
+        SliceTiming: required
+        DelayTime: prohibited
+        VolumeTiming: required
+      - RepetitionTime: prohibited
+        AcquisitionDuration: required
+        DelayTime: prohibited
+        VolumeTiming: required
+      - RepetitionTime: required
+        SliceTiming: required
+        AcquisitionDuration: prohibited
+        VolumeTiming: prohibited
+      - RepetitionTime: required
+        AcquisitionDuration: prohibited
+        DelayTime: required
+        VolumeTiming: prohibited
+
+    Instructions: recommended
+    TaskDescription: recommended
+    CogAtlasID: recommended
+    CogPOID: recommended
+
+# Phase (deprecated)
+- suffixes:
+    - phase  # deprecated
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
+    run: optional
+    echo: optional
+# Events
+- suffixes:
+    - events
+  extensions:
+    - .tsv
+    - .json
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
+    run: optional
+# Timeseries
+- suffixes:
+    - physio
+    - stim
+  extensions:
+    - .tsv.gz
+    - .json
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
+    run: optional
+    recording: optional

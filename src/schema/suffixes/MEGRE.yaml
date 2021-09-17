@@ -1,6 +1,0 @@
----
-name: Multi-echo Gradient Recalled Echo
-description: |
-  Anatomical gradient echo images acquired at different echo times.
-  Please note that this suffix is not intended for the logical grouping of
-  images acquired using an Echo Planar Imaging (EPI) readout.
