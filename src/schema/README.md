@@ -330,10 +330,94 @@ than the object definitions.
 
 ### `modalities.yaml`
 
+This file contains a dictionary in which each key is a modality abbreviation and the value is a dictionary with one key: `datatypes`.
+The `datatypes` dictionary contains a list of datatypes that fall under that modality.
+
 ### `datatypes/*.yaml`
+
+The files in this folder are currently the least standardized of any part of the schema.
+
+Each file corresponds to a single `datatype`.
+Within the file is a list of dictionaries.
+Each dictionary corresponds to a group of suffixes that have the same rules regarding filenames.
+
+The dictionaries have three keys: `suffixes`, `extensions`, and `entities`.
+
+The `suffixes` entry is a list of file suffixes for which all of the extensions in the `extensions` entry
+and all of the entity rules in the `entities` entry apply.
+
+The `extensions` entry is a list of valid file extensions.
+
+The `entities` entry is a dictionary in which the keys are entity names and the values are whether the entity is
+required or optional for that suffix.
+Any entities that are not present in this dictionary are not allowed in files with any of the suffixes in the group.
+
+**NOTE**: The order in which entities appear in these dictionaries does not reflect how they should appear in filenames.
+That information is present in `rules/entities.yaml`.
+
+As an example, let us look at part of `func.yaml`:
+
+```yaml
+- suffixes:
+    - bold
+    - cbv
+    - sbref
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
+    run: optional
+    echo: optional
+    part: optional
+
+# Phase (deprecated)
+- suffixes:
+    - phase  # deprecated
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    ceagent: optional
+    reconstruction: optional
+    direction: optional
+    run: optional
+    echo: optional
+```
+
+In this case, the first group has three suffixes: `bold`, `cbv`, and `sbref`.
+The second group has one suffix: `phase`.
+While the valid extensions are the same for both groups (`.nii.gz`, `.nii`, and `.json`), the entities are not.
+
+Specifically, files with the `phase` suffix may not have a `part` entity,
+while this is an option for files with the `bold`, `cbv`, or `sbref` suffixes.
 
 ### `entities.yaml`
 
+This file contains a list of entities in the order in which they must appear in filenames.
+
 ### `top_level_files.yaml`
 
+This file contains a dictionary in which each key is a top-level file and the value is a dictionary with two keys:
+`required` and `extensions`.
+The `required` entry contains a boolean value (true or false) to indicate if that top-level file is required for BIDS datasets or not.
+The `extensions` entry contains a list of valid file extensions for the file.
+
+In cases where there is a data file and a metadata file, the `.json` extension for metadata file is included.
+
 ### `associated_data.yaml`
+
+This file contains a dictionary in which each key is a folder and the value is a dictionary with one key: `required`.
+The `required` entry contains a boolean value to indicate if that folder is required for BIDS datasets or not.
