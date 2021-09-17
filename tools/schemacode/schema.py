@@ -2,10 +2,10 @@
 """
 import logging
 import os
+import os.path as op
 from copy import deepcopy
+from glob import glob
 from pathlib import Path
-from warnings import warn
-from pprint import pprint
 
 import pandas as pd
 import yaml
@@ -30,24 +30,24 @@ def _get_entry_name(path):
         return path.name
 
 
-def dereference_yaml(struct, path):
+def dereference_yaml(schema, struct):
     """Recursively search a dictionary-like object for $ref keys.
 
-    Each $ref key is replaced with the contents of the referenced file.
+    Each $ref key is replaced with the contents of the referenced field in the overall
+    dictionary-like object.
     """
     if isinstance(struct, dict):
         if "$ref" in struct:
-            with open(os.path.join(path, struct["$ref"]), "r") as fo:
-                template = yaml.load(fo, Loader=yaml.SafeLoader)
-
+            ref_field = struct["$ref"]
+            template = schema[ref_field]
             struct.pop("$ref")
             # Result is template object with local overrides
             struct = {**template, **struct}
 
-        struct = {key: dereference_yaml(val, path) for key, val in struct.items()}
+        struct = {key: dereference_yaml(schema, val) for key, val in struct.items()}
 
     elif isinstance(struct, list):
-        struct = [dereference_yaml(item, path) for item in struct]
+        struct = [dereference_yaml(schema, item) for item in struct]
 
     return struct
 
@@ -72,23 +72,46 @@ def load_schema(schema_path):
         Schema in dictionary form.
     """
     schema_path = Path(schema_path)
-    if schema_path.is_file() and (schema_path.suffix == ".yaml"):
-        base_path = os.path.dirname(schema_path.absolute())
-        with open(schema_path) as f:
-            dict_ = dereference_yaml(
-                yaml.load(f, Loader=yaml.SafeLoader),
-                base_path
-            )
-            return dict_
-    elif schema_path.is_dir():
-        # iterate through files and subdirectories
-        res = {
-            _get_entry_name(path): load_schema(path)
-            for path in sorted(schema_path.iterdir())
-        }
-        return {k: v for k, v in res.items() if v is not None}
-    else:
-        warn(f"{schema_path} is somehow nothing we can load")
+    objects_dir = schema_path / "objects/"
+    rules_dir = schema_path / "rules/"
+
+    schema = {}
+    schema["objects"] = {}
+    schema["rules"] = {}
+
+    # Load object definitions. All are present in single files.
+    object_group_files = sorted(glob(str(objects_dir / "*.yaml")))
+    for object_group_file in object_group_files:
+        group_name = op.splitext(op.basename(object_group_file))[0]
+        with open(object_group_file, "r") as fo:
+            dict_ = yaml.load(fo, Loader=yaml.SafeLoader)
+            dict_ = dereference_yaml(dict_, dict_)
+            schema["objects"][group_name] = dict_
+
+    # Grab single-file rule groups
+    rule_group_files = sorted(glob(str(rules_dir / "*.yaml")))
+    rule_group_folders = sorted(glob(str(rules_dir / "*")))
+    rule_group_folders = [f for f in rule_group_folders if op.isdir(f)]
+    for rule_group_file in rule_group_files:
+        group_name = op.splitext(op.basename(rule_group_file))[0]
+        with open(rule_group_file, "r") as fo:
+            dict_ = yaml.load(fo, Loader=yaml.SafeLoader)
+            dict_ = dereference_yaml(dict_, dict_)
+            schema["rules"][group_name] = dict_
+
+    # Load folders of rule subgroups.
+    for rule_group_folder in rule_group_folders:
+        group_name = op.basename(rule_group_folder)
+        rule_subgroup_files = sorted(glob(op.join(rule_group_folder, "*.yaml")))
+        schema["rules"][group_name] = {}
+        for rule_subgroup_file in rule_subgroup_files:
+            subgroup_name = op.splitext(op.basename(rule_subgroup_file))[0]
+            with open(rule_subgroup_file, "r") as fo:
+                dict_ = yaml.load(fo, Loader=yaml.SafeLoader)
+                dict_ = dereference_yaml(dict_, dict_)
+                schema["rules"][group_name][subgroup_name] = dict_
+
+    return schema
 
 
 def filter_schema(schema, **kwargs):
@@ -160,10 +183,12 @@ def make_entity_definitions(schema):
         A string containing descriptions and some formatting
         information about the entities in the schema.
     """
-    entities = schema["entities"]
+    entity_order = schema["rules"]["entities"]
+    entity_definitions = schema["objects"]["entities"]
 
     text = ""
-    for entity, entity_info in entities.items():
+    for entity in entity_order:
+        entity_info = entity_definitions[entity]
         entity_shorthand = entity_info["entity"]
         text += "\n"
         text += "## {}".format(entity_shorthand)
@@ -204,27 +229,28 @@ def make_filename_template(schema, **kwargs):
         in the schema, after filtering.
     """
     schema = filter_schema(schema, **kwargs)
-    entities = list(schema["entities"].keys())
+
+    entity_order = schema["rules"]["entities"]
 
     paragraph = ""
     # Parent folders
     paragraph += "{}-<{}>/\n\t[{}-<{}>/]\n".format(
-        schema["entities"]["subject"]["entity"],
-        schema["entities"]["subject"]["format"],
-        schema["entities"]["session"]["entity"],
-        schema["entities"]["session"]["format"],
+        schema["objects"]["entities"]["subject"]["entity"],
+        schema["objects"]["entities"]["subject"]["format"],
+        schema["objects"]["entities"]["session"]["entity"],
+        schema["objects"]["entities"]["session"]["format"],
     )
 
-    for datatype in schema["datatypes"].keys():
+    for datatype in schema["rules"]["datatypes"].keys():
         paragraph += "\t\t{}/\n".format(datatype)
 
         # Unique filename patterns
-        for group in schema["datatypes"][datatype]:
+        for group in schema["rules"]["datatypes"][datatype]:
             string = "\t\t\t"
-            for ent in entities:
+            for ent in entity_order:
                 ent_format = "{}-<{}>".format(
-                    schema["entities"][ent]["entity"],
-                    schema["entities"][ent].get("format", "label")
+                    schema["objects"]["entities"][ent]["entity"],
+                    schema["objects"]["entities"][ent].get("format", "label")
                 )
                 if ent in group["entities"]:
                     if group["entities"][ent] == "required":
@@ -310,8 +336,8 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     table = [formats]
 
     # Compose header and formats first
-    for i, (entity, spec) in enumerate(schema["entities"].items()):
-        entity_shorthand = schema["entities"][entity]["entity"]
+    for i, (entity, spec) in enumerate(schema["objects"]["entities"].items()):
+        entity_shorthand = schema["objects"]["entities"][entity]["entity"]
         header.append(spec["name"])
         formats.append(
             f'[`{entity_shorthand}-<{spec.get("format", "label")}>`]'
@@ -320,7 +346,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         entity_to_col[entity] = i + 1
 
     # Go through data types
-    for dtype, dtype_specs in schema["datatypes"].items():
+    for dtype, dtype_specs in schema["rules"]["datatypes"].items():
         dtype_rows = {}
 
         # each dtype could have multiple specs
@@ -374,18 +400,20 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
 def make_suffix_table(schema, suffixes, tablefmt="github"):
     """Produce suffix table (markdown) based on requested suffixes.
+
     Parameters
     ----------
     schema : dict
     suffixes : list of str
     tablefmt : str
+
     Returns
     -------
     table_str : str
         Tabulated table as a string.
     """
     # The filter function doesn't work here.
-    suffix_schema = schema["suffixes"]
+    suffix_schema = schema["objects"]["suffixes"]
 
     suffixes_found = [f for f in suffixes if f in suffix_schema.keys()]
     suffixes_not_found = [f for f in suffixes if f not in suffix_schema.keys()]
@@ -423,58 +451,6 @@ def make_suffix_table(schema, suffixes, tablefmt="github"):
     return table_str
 
 
-def _get_link(string):
-    refs = {
-        "array": "https://www.w3schools.com/js/js_json_arrays.asp",
-        "string": "https://www.w3schools.com/js/js_json_datatypes.asp",
-        "number": "https://www.w3schools.com/js/js_json_datatypes.asp",
-        "object": "https://www.json.org/json-en.html",
-        "integer": "https://www.w3schools.com/js/js_json_datatypes.asp",
-        "boolean": "https://www.w3schools.com/js/js_json_datatypes.asp",
-    }
-    # Allow plurals (e.g., strings -> links to string)
-    dtype = string[:-1] if string[-1] == "s" else string
-    url = refs.get(dtype)
-    if url:
-        return f"[{string}]({url})"
-    return string
-
-
-def _resolve_metadata_type(definition):
-    """Generate string of metadata type from dictionary."""
-    if "type" in definition.keys():
-        string = _get_link(definition["type"])
-
-        if definition.get("enum") == ["n/a"]:
-            # Special string case of n/a
-            string = '`"n/a"`'
-
-        elif "type" in definition.get("items", {}):
-            # Items within arrays
-            string += " of " + _get_link(definition["items"]["type"] + "s")
-
-        elif "type" in definition.get("additionalProperties", {}):
-            # Values within objects
-            string += " of " + _get_link(
-                definition["additionalProperties"]["type"] + "s"
-            )
-
-    elif "anyOf" in definition:
-        # Use dictionary to get unique substrings while preserving insertion order
-        substrings = {_resolve_metadata_type(subdict): None
-                      for subdict in definition["anyOf"]}
-
-        string = " or ".join(substrings)
-
-    else:
-        # A hack to deal with $ref in the current schema
-        print(f"Type could not be inferred for {definition['name']}")
-        pprint(definition)
-        string = "unknown"
-
-    return string
-
-
 def make_metadata_table(schema, field_info, tablefmt="github"):
     """Produce metadata table (markdown) based on requested fields.
 
@@ -501,7 +477,7 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
     """
     fields = list(field_info.keys())
     # The filter function doesn't work here.
-    metadata_schema = schema["metadata"]
+    metadata_schema = schema["objects"]["metadata"]
 
     retained_fields = [f for f in fields if f in metadata_schema.keys()]
     dropped_fields = [f for f in fields if f not in metadata_schema.keys()]
@@ -527,7 +503,7 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
             "[DEPRECATED](/02-common-principles.html#definitions)",
         )
 
-        type_string = _resolve_metadata_type(metadata_schema[field])
+        type_string = utils._resolve_metadata_type(metadata_schema[field])
 
         description = (
             metadata_schema[field]["description"] + " " + description_addendum
