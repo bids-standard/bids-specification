@@ -330,14 +330,10 @@ than the object definitions.
 
 ### `modalities.yaml`
 
-
 ### `datatypes/*.yaml`
-
 
 ### `entities.yaml`
 
-
 ### `top_level_files.yaml`
-
 
 ### `associated_data.yaml`
