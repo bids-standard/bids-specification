@@ -1,0 +1,355 @@
+---
+HED:
+  name: HED
+  description: |
+    Hierarchical Event Descriptor (HED) Tag.
+    See [Appendix III](/99-appendices/03-hed.html) for details.
+  type: string
+abbreviation:
+  name: abbreviation
+  description: |
+    The unique label abbreviation
+  type: string
+cardiac:
+  name: cardiac
+  description: |
+    continuous pulse measurement
+  type: number
+color:
+  name: color
+  description: |
+    Hexadecimal. Label color for visualization.
+  type: string
+  unit: hexadecimal
+description:
+  name: description
+  description: |
+    Brief free-text description of the channel, or other information of interest.
+  type: string
+dimension:
+  name: dimension
+  description: |
+    Size of the group (grid/strip/probe) that this electrode belongs to.
+    Must be of form `[AxB]` with the smallest dimension first (for example, `[1x8]`).
+  type: string
+duration:
+  name: duration
+  description: |
+    Duration of the event (measured from onset) in seconds.
+    Must always be either zero or positive.
+    A "duration" value of zero implies that the delta function or event is so
+    short as to be effectively modeled as an impulse.
+  type: number
+  unit: s
+  minimum: 0
+group:
+  name: group
+  description: |
+    Which group of channels (grid/strip/seeg/depth) this channel belongs to.
+    This is relevant because one group has one cable-bundle and noise can be shared.
+    This can be a name or number.
+    Note that any groups specified in `_electrodes.tsv` must match those present here.
+  anyOf:
+  - type: string
+  - type: number
+hemisphere:
+  name: hemisphere
+  description: |
+    The hemisphere in which the electrode is placed, one of `['L' or 'R']` (use capital).
+  type: string
+  enum:
+  - L
+  - R
+high_cutoff:
+  name: high_cutoff
+  description: |
+    Frequencies used for the low-pass filter applied to the channel in Hz.
+    If no low-pass filter applied, use `n/a`.
+    Note that hardware anti-aliasing in A/D conversion of all MEG/EEG electronics
+    applies a low-pass filter; specify its frequency here if applicable.
+  anyOf:
+  - type: number
+    unit: Hz
+    minimum: 0
+  - type: string
+    enum:
+    - n/a
+hplc_recovery_fractions:
+  name: hplc_recovery_fractions
+  description: |
+    HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC).
+  type: number
+  unit: arbitrary
+impedance:
+  name: impedance
+  description: |
+    Impedance of the electrode, units MUST be in `kOhm`.
+  type: number
+  unit: kOhm
+index:
+  name: index
+  description: |
+    The label integer index.
+  type: integer
+low_cutoff:
+  name: low_cutoff
+  description: |
+    Frequencies used for the high-pass filter applied to the channel in Hz.
+    If no high-pass filter applied, use `n/a`.
+  anyOf:
+  - type: number
+    unit: Hz
+  - type: string
+    enum:
+    - n/a
+manufacturer:
+  name: manufacturer
+  description: |
+    The manufacturer for each electrode.
+    Can be used if electrodes were manufactured by more than one company.
+  type: string
+mapping:
+  name: mapping
+  description: |
+    Corresponding integer label in the standard BIDS label lookup.
+  type: integer
+material:
+  name: material
+  description: |
+    Material of the electrode (for example, `"Tin"`, `"Ag/AgCl"`, `"Gold"`).
+  type: string
+metabolite_parent_fraction:
+  name: metabolite_parent_fraction
+  description: |
+    Parent fraction of the radiotracer (0-1).
+  type: number
+  minimum: 0
+  maximum: 1
+metabolite_polar_fraction:
+  name: metabolite_polar_fraction
+  description: |
+    Polar metabolite fraction of the radiotracer (0-1).
+  type: number
+  minimum: 0
+  maximum: 1
+name_channels:
+  name: name
+  description: |
+    Label of the channel.
+    The label must correspond to `_electrodes.tsv` name and all ieeg type channels are
+    required to have a position.
+    The reference channel name MAY be provided in the reference column.
+  type: string
+name_electrodes:
+  name: name
+  description: |
+    Name of the electrode contact point.
+  type: string
+name_segmentations:
+  name: name
+  description: |
+    The unique label name.
+  type: string
+notch:
+  name: notch
+  description: |
+    Frequencies used for the notch filter applied to the channel, in Hz.
+    If no notch filter applied, use n/a.
+  anyOf:
+  - type: number
+    unit: Hz
+  - type: string
+    enum:
+    - n/a
+onset:
+  name: onset
+  description: |
+    Onset (in seconds) of the event measured from the beginning of the acquisition
+    of the first volume in the corresponding task imaging data file.
+    If any acquired scans have been discarded before forming the imaging data file,
+    ensure that a time of 0 corresponds to the first image stored.
+    In other words negative numbers in "onset" are allowed (see below).
+
+    For example in case there is an in scanner training phase that begins before
+    the scanning sequence has started events from this sequence should have
+    negative onset time counting down to the beginning of the acquisition of the
+    first volume.
+  type: number
+  unit: s
+plasma_radioactivity:
+  name: plasma_radioactivity
+  description: |
+    Radioactivity in plasma, in unit of plasma radioactivity (for example, `"kBq/mL"`).
+  type: number
+reference:
+  name: reference
+  description: |
+    Name of the reference electrode(s)
+    (not needed when it is common to all channels, in that case it can be specified in `*_eeg.json` as `EEGReference`).
+  type: string
+respiratory:
+  name: respiratory
+  description: |
+    continuous breathing measurement
+  type: number
+response_time:
+  name: response_time
+  description: |
+    Response time measured in seconds.
+    A negative response time can be used to represent preemptive responses and
+    "n/a" denotes a missed response.
+  anyOf:
+  - type: number
+    unit: s
+  - type: string
+    enum:
+    - n/a
+sample:
+  name: sample
+  description: |
+    Onset of the event according to the sampling scheme of the recorded modality
+    (that is, referring to the raw data file that the `events.tsv` file accompanies).
+  type: integer
+sampling_frequency:
+  name: sampling_frequency
+  description: |
+    Sampling rate of the channel in Hz.
+  type: number
+  unit: Hz
+size:
+  name: size
+  description: |
+    Surface area of the electrode, units MUST be in `mm^2`.
+  type: number
+  unit: mm2
+software_filters:
+  name: software_filters
+  description: |
+    List of temporal and/or spatial software filters applied
+    (for example, "SSS", `"SpatialCompensation"`).
+    Note that parameters should be defined in the general MEG sidecar .json file.
+    Indicate `n/a` in the absence of software filters applied.
+  anyOf:
+  - type: string
+  - type: string
+    enum:
+    - n/a
+status:
+  name: status
+  description: |
+    Data quality observed on the channel `(good/bad)`.
+    A channel is considered `bad` if its data quality is compromised by excessive noise.
+    Description of noise type SHOULD be provided in `[status_description]`.
+  type: string
+  enum:
+  - good
+  - bad
+status_description:
+  name: status_description
+  description: |
+    Freeform text description of noise or artifact affecting data quality on the channel.
+    It is meant to explain why the channel was declared bad in `[status]`.
+  type: string
+stim_file:
+  name: stim_file
+  description: |
+    Represents the location of the stimulus file (such as an image, video, or
+    audio file) presented at the given onset time.
+    There are no restrictions on the file formats of the stimuli files,
+    but they should be stored in the /stimuli folder
+    (under the root folder of the dataset; with optional subfolders).
+    The values under the stim_file column correspond to a path relative to
+    "/stimuli".
+    For example "images/cat03.jpg" will be translated to "/stimuli/images/cat03.jpg".
+  type: string
+  format: stimuli_relative
+time:
+  name: time
+  description: |
+    Time in relation to `TimeZero` defined by the `*_pet.json`.
+    For example, 5.
+  type: number
+  unit: s
+trial_type:
+  name: trial_type
+  description: |
+    Primary categorisation of each trial to identify them as instances of the
+    experimental conditions.
+    For example: for a response inhibition task, it could take on values "go" and
+    "no-go" to refer to response initiation and response inhibition experimental
+    conditions.
+  type: string
+trigger:
+  name: trigger
+  description: |
+    continuous measurement of the scanner trigger signal
+  type: number
+type:
+  name: type
+  description: |
+    Type of channel; MUST use the channel types listed below.
+    Note that the type MUST be in upper-case.
+  type: string
+  enum:
+  - MEGMAG
+  - MEGGRADAXIAL
+  - MEGGRADPLANAR
+  - MEGREFMAG
+  - MEGREFGRADAXIAL
+  - MEGREFGRADPLANAR
+  - MEGOTHER
+  - EEG
+  - ECOG
+  - SEEG
+  - DBS
+  - VEOG
+  - HEOG
+  - EOG
+  - ECG
+  - EMG
+  - TRIG
+  - AUDIO
+  - PD
+  - EYEGAZE
+  - PUPIL
+  - MISC
+  - SYSCLOCK
+  - ADC
+  - DAC
+  - HLU
+  - FITERR
+  - OTHER
+units:
+  name: units
+  description: |
+    Physical unit of the value represented in this channel,
+    for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter
+    (see [Units](/02-common-principles.html#units)).
+  type: string
+value:
+  name: value
+  description: |
+    Marker value associated with the event (for example, the value of a TTL
+    trigger that was recorded at the onset of the event).
+  type: number
+whole_blood_radioactivity:
+  name: whole_blood_radioactivity
+  description: |
+    Radioactivity in whole blood samples,
+    in unit of radioactivity measurements in whole blood samples (for example, `"kBq/mL"`).
+  type: number
+x:
+  name: x
+  description: |
+    Recorded position along the x-axis.
+  type: number
+y:
+  name: y
+  description: |
+    Recorded position along the y-axis.
+  type: number
+z:
+  name: z
+  description: |
+    Recorded position along the z-axis.
+  type: number
