@@ -1,19 +1,19 @@
 ---
 # First group
 - suffixes:
-    - meg
+  - meg
   extensions:
-    - /  # corresponds to BTi/4D data
-    - .ds/
-    - .json
-    - .fif
-    - .sqd
-    - .con
-    - .raw
-    - .ave
-    - .mrk
-    - .kdf
-    - .mhd
+  - /  # corresponds to BTi/4D data
+  - .ds/
+  - .json
+  - .fif
+  - .sqd
+  - .con
+  - .raw
+  - .ave
+  - .mrk
+  - .kdf
+  - .mhd
   entities:
     subject: required
     session: optional
@@ -25,9 +25,9 @@
 
 # Second group
 - suffixes:
-    - headshape
+  - headshape
   extensions:
-    - "*"
+  - "*"
   entities:
     subject: required
     session: optional
@@ -35,10 +35,10 @@
 
 # Third group
 - suffixes:
-    - markers
+  - markers
   extensions:
-    - .sqd
-    - .mrk
+  - .sqd
+  - .mrk
   entities:
     subject: required
     session: optional
@@ -48,19 +48,19 @@
 
 # Fourth
 - suffixes:
-    - coordsystem
+  - coordsystem
   extensions:
-    - .json
+  - .json
   entities:
     subject: required
     session: optional
     acquisition: optional
 
 - suffixes:
-    - channels
+  - channels
   extensions:
-    - .json
-    - .tsv
+  - .json
+  - .tsv
   entities:
     subject: required
     session: optional
@@ -70,10 +70,10 @@
     processing: optional
 
 - suffixes:
-    - events
+  - events
   extensions:
-    - .json
-    - .tsv
+  - .json
+  - .tsv
   entities:
     subject: required
     session: optional
@@ -82,9 +82,9 @@
     run: optional
 
 - suffixes:
-    - photo
+  - photo
   extensions:
-    - .jpg
+  - .jpg
   entities:
     subject: required
     session: optional

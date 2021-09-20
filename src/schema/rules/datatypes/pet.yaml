@@ -1,11 +1,11 @@
 ---
 # PET recordings
 - suffixes:
-    - pet
+  - pet
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .nii.gz
+  - .nii
+  - .json
   entities:
     subject: required
     session: optional
@@ -16,10 +16,10 @@
 
 # Blood recordings
 - suffixes:
-    - blood
+  - blood
   extensions:
-    - .tsv
-    - .json
+  - .tsv
+  - .json
   entities:
     subject: required
     session: optional
@@ -31,10 +31,10 @@
 
 # Events
 - suffixes:
-    - events
+  - events
   extensions:
-    - .tsv
-    - .json
+  - .tsv
+  - .json
   entities:
     subject: required
     session: optional

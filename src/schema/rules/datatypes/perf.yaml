@@ -1,12 +1,12 @@
 ---
 # First group
 - suffixes:
-    - asl
-    - m0scan
+  - asl
+  - m0scan
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .nii.gz
+  - .nii
+  - .json
   entities:
     subject: required
     session: optional
@@ -17,10 +17,10 @@
 
 # Second group
 - suffixes:
-    - aslcontext
+  - aslcontext
   extensions:
-    - .tsv
-    - .json
+  - .tsv
+  - .json
   entities:
     subject: required
     session: optional
@@ -31,9 +31,9 @@
 
 # Third group
 - suffixes:
-    - asllabeling
+  - asllabeling
   extensions:
-    - .jpg
+  - .jpg
   entities:
     subject: required
     session: optional

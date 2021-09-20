@@ -1,13 +1,13 @@
 ---
 # Func
 - suffixes:
-    - bold
-    - cbv
-    - sbref
+  - bold
+  - cbv
+  - sbref
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .nii.gz
+  - .nii
+  - .json
   entities:
     subject: required
     session: optional
@@ -22,11 +22,11 @@
 
 # Phase (deprecated)
 - suffixes:
-    - phase  # deprecated
+  - phase  # deprecated
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .nii.gz
+  - .nii
+  - .json
   entities:
     subject: required
     session: optional
@@ -40,10 +40,10 @@
 
 # Events
 - suffixes:
-    - events
+  - events
   extensions:
-    - .tsv
-    - .json
+  - .tsv
+  - .json
   entities:
     subject: required
     session: optional
@@ -56,11 +56,11 @@
 
 # Timeseries
 - suffixes:
-    - physio
-    - stim
+  - physio
+  - stim
   extensions:
-    - .tsv.gz
-    - .json
+  - .tsv.gz
+  - .json
   entities:
     subject: required
     session: optional

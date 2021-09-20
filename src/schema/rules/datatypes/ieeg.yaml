@@ -1,16 +1,16 @@
 ---
 - suffixes:
-    - ieeg
+  - ieeg
   extensions:
-    - .mefd/
-    - .json
-    - .edf
-    - .vhdr
-    - .eeg
-    - .vmrk
-    - .set
-    - .fdt
-    - .nwb
+  - .mefd/
+  - .json
+  - .edf
+  - .vhdr
+  - .eeg
+  - .vmrk
+  - .set
+  - .fdt
+  - .nwb
   entities:
     subject: required
     session: optional
@@ -19,10 +19,10 @@
     run: optional
 
 - suffixes:
-    - channels
+  - channels
   extensions:
-    - .json
-    - .tsv
+  - .json
+  - .tsv
   entities:
     subject: required
     session: optional
@@ -31,9 +31,9 @@
     run: optional
 
 - suffixes:
-    - coordsystem
+  - coordsystem
   extensions:
-    - .json
+  - .json
   entities:
     subject: required
     session: optional
@@ -41,10 +41,10 @@
     space: optional
 
 - suffixes:
-    - electrodes
+  - electrodes
   extensions:
-    - .json
-    - .tsv
+  - .json
+  - .tsv
   entities:
     subject: required
     session: optional
@@ -52,10 +52,10 @@
     space: optional
 
 - suffixes:
-    - events
+  - events
   extensions:
-    - .json
-    - .tsv
+  - .json
+  - .tsv
   entities:
     subject: required
     session: optional
@@ -64,9 +64,9 @@
     run: optional
 
 - suffixes:
-    - photo
+  - photo
   extensions:
-    - .jpg
+  - .jpg
   entities:
     subject: required
     session: optional

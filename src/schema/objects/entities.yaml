@@ -135,8 +135,8 @@ mtransfer:
     respectively.
   type: string
   enum:
-    - 'on'
-    - 'off'
+  - 'on'
+  - 'off'
 part:
   name: Part
   entity: part
@@ -157,10 +157,10 @@ part:
     omitted.
   type: string
   enum:
-    - mag
-    - phase
-    - real
-    - imag
+  - mag
+  - phase
+  - real
+  - imag
 processing:
   name: Processed (on device)
   entity: proc

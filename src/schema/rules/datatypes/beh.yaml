@@ -1,11 +1,11 @@
 ---
 # Continuous data
 - suffixes:
-    - stim
-    - physio
+  - stim
+  - physio
   extensions:
-    - .tsv.gz
-    - .json
+  - .tsv.gz
+  - .json
   entities:
     subject: required
     session: optional
@@ -16,11 +16,11 @@
 
 # Non-continuous data
 - suffixes:
-    - events
-    - beh
+  - events
+  - beh
   extensions:
-    - .tsv
-    - .json
+  - .tsv
+  - .json
   entities:
     subject: required
     session: optional
