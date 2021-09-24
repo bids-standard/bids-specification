@@ -69,4 +69,4 @@ uri:
 bids_uri:
   description: |
     A BIDS uniform resource indicator.
-  pattern: ^bids:[0-9a-zA-Z/_-\.]+$
+  pattern: ^bids:[0-9a-zA-Z/\_\-\.]+$
