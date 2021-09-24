@@ -27,7 +27,7 @@ boolean:
   description: |
     A boolean.
   pattern: ^(true|false)$
-# String patterns
+# String formats
 date:
   description: |
     A date.
