@@ -44,6 +44,12 @@ unit:
     Currently this matches any string that isn't "n/a"
     TODO: Somehow reference the actual unit options in the Units appendix.
   pattern: ^(?!(n/a)$).*$
+stimuli_relative:
+  description: |
+    A path to a stimulus file, relative to a `/stimuli` folder somewhere.
+
+    The validation for this format is minimal.
+  pattern: ^[0-9a-zA-Z/_-\.]+$
 dataset_relative:
   description: |
     A path to a file, relative to the dataset folder.
