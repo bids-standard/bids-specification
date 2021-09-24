@@ -49,13 +49,13 @@ stimuli_relative:
     A path to a stimulus file, relative to a `/stimuli` folder somewhere.
 
     The validation for this format is minimal.
-  pattern: ^(?!/)(?!stimuli/)[0-9a-zA-Z/_-\.]+$
+  pattern: ^(?!/)(?!stimuli/)[0-9a-zA-Z/\_\-\.]+$
 dataset_relative:
   description: |
     A path to a file, relative to the dataset folder.
 
     The validation for this format is minimal.
-  pattern: ^(?!/)[0-9a-zA-Z/_-\.]+$
+  pattern: ^(?!/)[0-9a-zA-Z/\_\-\.]+$
 participant_relative:
   description: |
     A path to a file, relative to the participant's folder in the dataset.
