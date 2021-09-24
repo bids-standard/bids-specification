@@ -8,7 +8,7 @@ label:
 index:
   description: |
     Non-negative, non-zero integers, optionally prefixed with leading zeros for sortability.
-  pattern: ^[0-9]+$
+  pattern: ^[0-9]*[1-9]+[0-9]*$
 # Metadata types
 string:
   description: |
