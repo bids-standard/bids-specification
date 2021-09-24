@@ -65,7 +65,7 @@ participant_relative:
 uri:
   description: |
     A uniform resource indicator.
-  pattern: ^[a-zA-Z]+:[0-9a-zA-Z/_-\.]+$
+  pattern: ^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?
 bids_uri:
   description: |
     A BIDS uniform resource indicator.
