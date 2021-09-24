@@ -8,40 +8,44 @@ label:
 index:
   description: |
     Non-negative, non-zero integers, optionally prefixed with leading zeros for sortability.
+    An index may not be all zeros.
   pattern: ^[0-9]*[1-9]+[0-9]*$
 # Metadata types
 string:
   description: |
-    A basic string type (not a specific format).
+    The basic string type (not a specific format).
     This should allow any free-form string *except* "n/a".
   pattern: ^(?!(n/a)$).*$
 integer:
   description: |
-    An integer.
+    An integer which may be positive or negative.
   pattern: ^[+-]?\d+$
 number:
   description: |
-    A number.
+    A number which may be an integer or float, positive or negative.
   pattern: ^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$
 boolean:
   description: |
     A boolean.
+    Must be either "true" or "false".
   pattern: ^(true|false)$
 # String formats
 date:
   description: |
-    A date.
-    YYYY-MM-DD[Z]
+    A date in the form YYYY-MM-DD[Z],
+    where [Z] is an optional, valid timezone code.
   pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}?([A-Z]{3,4})$
 datetime:
   description: |
-    A datetime.
-    YYYY-MM-DDThh:mm:ss[.000000][Z]
+    A datetime in the form YYYY-MM-DDThh:mm:ss[.000000][Z],
+    where [.000000] is an optional subsecond resolution between 1 and 6 decimal points,
+    and [Z] is an optional, valid timezone code.
   pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}?(\.[0-9]{1,6})?([A-Z]{3,4})$
 unit:
   description: |
     A unit.
-    Currently this matches any string that isn't "n/a"
+    Currently this matches any string that isn't "n/a".
+
     TODO: Somehow reference the actual unit options in the Units appendix.
   pattern: ^(?!(n/a)$).*$
 stimuli_relative:
@@ -49,18 +53,26 @@ stimuli_relative:
     A path to a stimulus file, relative to a `/stimuli` folder somewhere.
 
     The validation for this format is minimal.
+    It simply ensures that the value is a string with any characters that may appear in a valid path,
+    without starting with "/" (an absolute path) or "stimuli/"
+    (a relative path starting with the stimuli folder, rather than relative to that folder).
   pattern: ^(?!/)(?!stimuli/)[0-9a-zA-Z/\_\-\.]+$
 dataset_relative:
   description: |
     A path to a file, relative to the dataset folder.
 
     The validation for this format is minimal.
+    It simply ensures that the value is a string with any characters that may appear in a valid path,
+    without starting with "/" (an absolute path).
   pattern: ^(?!/)[0-9a-zA-Z/\_\-\.]+$
 participant_relative:
   description: |
     A path to a file, relative to the participant's folder in the dataset.
 
     The validation for this format is minimal.
+    It simply ensures that the value is a string with any characters that may appear in a valid path,
+    without starting with "/" (an absolute path) or "sub/"
+    (a relative path starting with the participant folder, rather than relative to that folder).
   pattern: ^(?!/)(?!sub-)[0-9a-zA-Z/\_\-\.]+$
 uri:
   description: |
@@ -69,4 +81,8 @@ uri:
 bids_uri:
   description: |
     A BIDS uniform resource indicator.
-  pattern: ^bids:[0-9a-zA-Z/\_\-\.]+$
+
+    The validation for this format is minimal.
+    It simply ensures that the value is a string with any characters that may appear in a valid URI,
+    starting with "bids:".
+  pattern: ^bids:[0-9a-zA-Z/#:\?\_\-\.]+$
