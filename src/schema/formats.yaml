@@ -32,7 +32,7 @@ date:
   description: |
     A date.
     YYYY-MM-DD[Z]
-  pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}?[A-Z]*$
+  pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}?([A-Z]{3,4})$
 datetime:
   description: |
     A datetime.
