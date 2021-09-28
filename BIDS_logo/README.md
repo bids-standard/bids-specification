@@ -2,6 +2,9 @@ The BIDS logo originates from a [design competition](https://en.99designs.de/log
 
 See the related discussion here: https://github.com/bids-standard/bids-specification/issues/216
 
+The sources of the animated version of the logo can be found at
+[github.com/adswa/animated-bids-logo](https://github.com/adswa/animated-bids-logo).
+
 # Files
 - Standard formats
     - `BIDS_logo.jpg`
@@ -13,3 +16,5 @@ See the related discussion here: https://github.com/bids-standard/bids-specifica
     - Transparent background
         - `BIDS_logo_black.svg`
         - `BIDS_logo_white.svg`
+- Animated logo
+    - `bids_animated.webm`
