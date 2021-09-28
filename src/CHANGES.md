@@ -11,6 +11,7 @@
 -   \[FIX] update physio bids name in longitudinal study page examples [#863](https://github.com/bids-standard/bids-specification/pull/863) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[INFRA] Enforce consistent line endings via .gitattributes [#861](https://github.com/bids-standard/bids-specification/pull/861) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA] dos2unix [#859](https://github.com/bids-standard/bids-specification/pull/859) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
+-   \[FIX] Clarify case collision intolerance as a file naming principle [#858](https://github.com/bids-standard/bids-specification/pull/858) ([yarikoptic](https://github.com/yarikoptic))
 -   \[INFRA] LGTM recommendation: Unused local variable [#853](https://github.com/bids-standard/bids-specification/pull/853) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA] LGTM warning: Variable defined multiple times [#851](https://github.com/bids-standard/bids-specification/pull/851) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[FIX] Typos found by codespell [#848](https://github.com/bids-standard/bids-specification/pull/848) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
