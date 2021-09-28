@@ -4,6 +4,7 @@
 
 -   \[INFRA] jQuery 3.4.1 → 3.6.0 [#875](https://github.com/bids-standard/bids-specification/pull/875) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA] Add "codespell" tool to CI checks to catch typos sooner [#873](https://github.com/bids-standard/bids-specification/pull/873) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
+-   \[INFRA] Several style fixes (Flake8) for Python code in the repo [#872](https://github.com/bids-standard/bids-specification/pull/872) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[FIX] Make subheadings consistent in  06-longitudinal-and-multi-site-studies.md [#870](https://github.com/bids-standard/bids-specification/pull/870) ([guiomar](https://github.com/guiomar))
 -   \[DOC] add Anthony as maintainer [#868](https://github.com/bids-standard/bids-specification/pull/868) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] Add "ScanRAS" as an accepted coordinate frame for ieeg [#866](https://github.com/bids-standard/bids-specification/pull/866) ([alexrockhill](https://github.com/alexrockhill))
