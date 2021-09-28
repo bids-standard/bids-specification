@@ -38,15 +38,6 @@ sample:
     The label MUST be unique per subject and is RECOMMENDED to be unique
     throughout the dataset.
   format: label
-chunk:
-  name: Chunk
-  entity: chunk
-  description: |
-    The `chunk-<index>` key/value pair is used to distinguish between different
-    regions, 2D images or 3D volumes files, of the same physical sample with
-    different fields of view acquired in the same imaging experiment.
-  type: string
-  format: index
 task:
   name: Task
   entity: task
@@ -291,6 +282,15 @@ split:
     remember to list all files separately in `scans.tsv` and that the entries for the
     `acq_time` column in `scans.tsv` MUST all be identical, as described in
     [Scans file](../03-modality-agnostic-files.md#scans-file).
+  type: string
+  format: index
+chunk:
+  name: Chunk
+  entity: chunk
+  description: |
+    The `chunk-<index>` key/value pair is used to distinguish between different
+    regions, 2D images or 3D volumes files, of the same physical sample with
+    different fields of view acquired in the same imaging experiment.
   type: string
   format: index
 resolution:

@@ -31,8 +31,8 @@ Template:
 sub-<label>/
     [ses-<label>/]
         microscopy/
-            sub-<label>[_ses-<label>]_sample-<label>[_chunk-<index>][_acq-<label>][_stain-<label>][_run-<index>]_<suffix>.<extension>
-            sub-<label>[_ses-<label>]_sample-<label>[_chunk-<index>][_acq-<label>][_stain-<label>][_run-<index>]_<suffix>.json
+            sub-<label>[_ses-<label>]_sample-<label>[_acq-<label>][_stain-<label>][_run-<index>][_chunk-<index>]_<suffix>.<extension>
+            sub-<label>[_ses-<label>]_sample-<label>[_acq-<label>][_stain-<label>][_run-<index>][_chunk-<index>]_<suffix>.json
 ```
 Microscopy data MUST be stored in the `microscopy` directory.
 
@@ -118,41 +118,6 @@ In this example, JSON metadata is common for all samples of `sub-01`.
 JSON metadata may be defined per subject or per sample as appropriate, per the
 [inheritance principle](../02-common-principles.md#the-inheritance-principle).
 
-The [`chunk-<index>`](../99-appendices/09-entities.md#chunk) entity is used when multiples
-regions (2D images or 3D volumes files) of the same physical sample are imaged with different
-fields of view, regardless if they overlap or not.
-
-<!--- The following example will be generated automatically with macros after community review. -->
-For example:
-Four chunks (`chunk-01` to `chunk-04`) from the same brain sample (`sample-01`) of subject `sub-01`.
-```Text
-sub-01/
-    microscopy/
-        sub-01_sample-01_chunk-01_<modality_suffix>.<ext>
-        sub-01_sample-01_chunk-01_<modality_suffix>.json
-        sub-01_sample-01_chunk-02_<modality_suffix>.<ext>
-        sub-01_sample-01_chunk-02_<modality_suffix>.json
-        sub-01_sample-01_chunk-03_<modality_suffix>.<ext>
-        sub-01_sample-01_chunk-03_<modality_suffix>.json
-        sub-01_sample-01_chunk-04_<modality_suffix>.<ext>
-        sub-01_sample-01_chunk-04_<modality_suffix>.json
-```
-In this example, JSON metadata is different for each chunk of `sub-01_sample-01`.
-JSON metadata may be defined per sample or per chunk as appropriate, per the
-[inheritance principle](../02-common-principles.md#the-inheritance-principle).
-
-In some cases, the chunks can be "ordered" and correspond to the displacement of the
-microscope stage for example.
-In others cases, the chunks can be different images of the same sample with no explicit
-spatial relation between them.
-
-Examples of different chunks configurations can be seen in Figure 1.
-![Figure 1](images/microscopy_chunks.png "Examples of Microscopy chunks")
-
-Figure 1: Examples of chunks configurations. a) ordered 2D chunks without overlap,
-b) ordered 2D chunks with overlap, c) unordered 2D chunks with and without overlap,
-d) and e) ordered 2D chunks on different 3D planes, f) ordered 3D chunks
-
 The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity corresponds to a custom label that
 MAY be used to distinguish a different set of parameters used for acquiring the same modality.
 For example, two images of the same sample acquired with different magnification of 40x and 60x.
@@ -189,10 +154,45 @@ Stains or antibodies SHOULD be indicated as appropriate in the `"SampleStaining"
 `"SamplePrimaryAntibodies"` and/or `"SampleSecondaryAntobodies"` keys in the sidecar JSON file,
 although the label may be different.
 
-If more than one run of the same sample, chunk, acquisition and stain are acquired during
-the same session, the [`run-<index>`](../99-appendices/09-entities.md#run) entity MUST be used:
+If more than one run of the same sample, acquisition and stain are acquired during the same
+session, the [`run-<index>`](../99-appendices/09-entities.md#run) entity MUST be used:
 `_run-1`, `_run-2`, `_run-3`, and so on.
 If only one run was acquired the `run-<index>` can be omitted.
+
+The [`chunk-<index>`](../99-appendices/09-entities.md#chunk) entity is used when multiples
+regions (2D images or 3D volumes files) of the same physical sample are imaged with different
+fields of view, regardless if they overlap or not.
+
+<!--- The following example will be generated automatically with macros after community review. -->
+For example:
+Four chunks (`chunk-01` to `chunk-04`) from the same brain sample (`sample-01`) of subject `sub-01`.
+```Text
+sub-01/
+    microscopy/
+        sub-01_sample-01_chunk-01_<modality_suffix>.<ext>
+        sub-01_sample-01_chunk-01_<modality_suffix>.json
+        sub-01_sample-01_chunk-02_<modality_suffix>.<ext>
+        sub-01_sample-01_chunk-02_<modality_suffix>.json
+        sub-01_sample-01_chunk-03_<modality_suffix>.<ext>
+        sub-01_sample-01_chunk-03_<modality_suffix>.json
+        sub-01_sample-01_chunk-04_<modality_suffix>.<ext>
+        sub-01_sample-01_chunk-04_<modality_suffix>.json
+```
+In this example, JSON metadata is different for each chunk of `sub-01_sample-01`.
+JSON metadata may be defined per sample or per chunk as appropriate, per the
+[inheritance principle](../02-common-principles.md#the-inheritance-principle).
+
+In some cases, the chunks can be "ordered" and correspond to the displacement of the
+microscope stage for example.
+In others cases, the chunks can be different images of the same sample with no explicit
+spatial relation between them.
+
+Examples of different chunks configurations can be seen in Figure 1.
+![Figure 1](images/microscopy_chunks.png "Examples of Microscopy chunks")
+
+Figure 1: Examples of chunks configurations. a) ordered 2D chunks without overlap,
+b) ordered 2D chunks with overlap, c) unordered 2D chunks with and without overlap,
+d) and e) ordered 2D chunks on different 3D planes, f) ordered 3D chunks
 
 In microscopy, many pyramidal file formats store multiple resolutions for the same acquisition.
 In the case where a multiple resolutions file format is converted to single resolution file format,
@@ -251,7 +251,7 @@ It will require changes to `src/schema/metatata/BodyPart.yaml` and `src/04-modal
 -->
 | **Key name**                | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | --------------------------- | --------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| BodyPart                    | RECOMMENDED           | [string][]                             | Body part of the organ / body region scanned. from [DICOM Body Part Examined](http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html#chapter_L) (for example: `"BRAIN"`)".                                                                                                                                                                                                                                                                                                                         |
+| BodyPart                    | RECOMMENDED           | [string][]                             | Body part of the organ / body region scanned. From [DICOM Body Part Examined](http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html#chapter_L) (for example: `"BRAIN"`)".                                                                                                                                                                                                                                                                                                                         |
 | BodyPartDetails             | OPTIONAL              | [string][]                             | If needed, additional details about body part or location (for example: `"corpus callosum"`).                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | BodyPartDetailsOntology     | OPTIONAL              | [string][]                             | If applicable, information about the ontology used for specifying BodyPartDetails (for example: `"UBERON (https://www.ebi.ac.uk/ols/ontologies/uberon)"`).                                                                                                                                                                                                                                                                                                                                                                 |
 | Environment                 | RECOMMENDED           | [string][]                             | Indicate if the sample is imaged `"invivo"`, `"exvivo"` or `"invitro"`.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |

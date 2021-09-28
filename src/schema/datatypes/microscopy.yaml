@@ -28,10 +28,10 @@
     subject: required
     session: optional
     sample: required
-    chunk: optional
     acquisition: optional
     stain: optional
     run: optional
+    chunk: optional
 - suffixes:
     - photo
   extensions:
