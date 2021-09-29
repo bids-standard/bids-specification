@@ -14,24 +14,27 @@ dwi:
   description: |
     Diffusion-weighted imaging (DWI).
 eeg:
-  name:
-  description:
+  name: Electroencephalography
+  description: Electroencephalography
 fmap:
-  name: Field-Maps
-  description:
+  name: Field maps
+  description: |
+    MRI scans for estimating B0 inhomogeneity-induced distortions.
 func:
   name: Task-Based Magnetic Resonance Imaging
   description: |
     Task (including resting state) imaging data
 ieeg:
-  name:
-  description:
+  name: Intracranial electroencephalography
+  description: |
+    Intracranial electroencephalography (iEEG) or electrocorticography (ECoG) data
 meg:
-  name:
-  description:
+  name: Magnetoencephalography
+  description: Magnetoencephalography
 perf:
-  name:
-  description:
+  name: Perfusion imaging
+  description: |
+    Blood perfusion imaging data, including arterial spin labeling (ASL)
 pet:
   name: Positron Emission Tomography
   description:
