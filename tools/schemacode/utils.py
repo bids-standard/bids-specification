@@ -135,7 +135,7 @@ def flatten_multiindexed_columns(df):
     return df
 
 
-def _get_link(string):
+def get_link(string):
     refs = {
         "array": "https://www.w3schools.com/js/js_json_arrays.asp",
         "string": "https://www.w3schools.com/js/js_json_datatypes.asp",
@@ -152,10 +152,10 @@ def _get_link(string):
     return string
 
 
-def _resolve_metadata_type(definition):
+def resolve_metadata_type(definition):
     """Generate string of metadata type from dictionary."""
     if "type" in definition.keys():
-        string = _get_link(definition["type"])
+        string = get_link(definition["type"])
 
         if definition.get("enum") == ["n/a"]:
             # Special string case of n/a
@@ -163,17 +163,17 @@ def _resolve_metadata_type(definition):
 
         elif "type" in definition.get("items", {}):
             # Items within arrays
-            string += " of " + _get_link(definition["items"]["type"] + "s")
+            string += " of " + get_link(definition["items"]["type"] + "s")
 
         elif "type" in definition.get("additionalProperties", {}):
             # Values within objects
-            string += " of " + _get_link(
+            string += " of " + get_link(
                 definition["additionalProperties"]["type"] + "s"
             )
 
     elif "anyOf" in definition:
         # Use dictionary to get unique substrings while preserving insertion order
-        substrings = {_resolve_metadata_type(subdict): None
+        substrings = {resolve_metadata_type(subdict): None
                       for subdict in definition["anyOf"]}
 
         string = " or ".join(substrings)

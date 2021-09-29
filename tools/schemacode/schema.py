@@ -503,7 +503,7 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
             "[DEPRECATED](/02-common-principles.html#definitions)",
         )
 
-        type_string = utils._resolve_metadata_type(metadata_schema[field])
+        type_string = utils.resolve_metadata_type(metadata_schema[field])
 
         description = (
             metadata_schema[field]["description"] + " " + description_addendum
