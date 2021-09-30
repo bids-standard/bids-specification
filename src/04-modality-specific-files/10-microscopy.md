@@ -19,7 +19,7 @@ guidance when curating a new dataset.
 Further Microscopy datasets are available:
 
 -   In PNG format:  [`data_axondeepseg_sem`](https://doi.org/10.5281/zenodo.5498378)
--   In OME-TIFF format: (link to the dataset - pending)
+-   In OME-TIFF format: [`Broca's Area Light-Sheet Microscopy`](https://doi.org/10.5281/zenodo.5517223)
 
 ## Microscopy recording data
 <!---
