@@ -41,7 +41,7 @@ The Microscopy community uses a variety of formats for storing raw data, and the
 standard that all researchers agree on. However, a standardized file structure has been developed
 by the [Open Microscopy Environment](https://www.openmicroscopy.org/) for whole-slide imaging with
 the [OME-TIFF file specifications](https://docs.openmicroscopy.org/ome-model/6.1.2/ome-tiff/file-structure.html).
-The OME-TIFF file allows for multi-pages TIFF file to store multiple image planes and supports
+The OME-TIFF file allows for multi-page TIFF files to store multiple image planes and supports
 multi-resolution pyramidal tiled images. An OME-XML data block is also embedded inside the
 file’s header.
 
