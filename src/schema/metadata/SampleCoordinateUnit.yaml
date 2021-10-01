@@ -1,0 +1,5 @@
+---
+name: SampleCoordinateUnit
+description: |
+  Unit of individual samples. For example, in pixel or metric (mm, cm) units.
+type: string

@@ -1,0 +1,6 @@
+---
+name: CalibrationUnit
+description: |
+  Unit of CalibrationPosition.
+  For example, in pixel or metric (mm, cm) units.
+type: string

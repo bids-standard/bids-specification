@@ -1,0 +1,12 @@
+---
+name: CalibrationPosition
+description: |
+  Provide a list of `X/Y/Z coordinates` in cm on the screen/world
+  or the visual angles of the calibration positions used.
+  The Z coordinate reflects the calibration distance,
+  for example distance to screen or distance to real-world/virtual objects.
+anyOf:
+  - type: number
+  - type: array
+    items:
+      type: number

@@ -1,0 +1,13 @@
+---
+name: EnvironmentCoordinates
+description: |
+  In the case of the classical gaze-on-screen coordinates,
+  this can be for example: `[["0,0", "top left"], ["1,1", "bottom right"]]`.
+  In VR this could take on, amongst others, spherical coordinates.
+anyOf:
+  - type: object
+    items:
+      type: object
+  - type: string
+    enum:
+      - n/a

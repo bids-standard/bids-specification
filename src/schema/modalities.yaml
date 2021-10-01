@@ -27,3 +27,7 @@ pet:
   name: Positron Emission Tomography
   datatypes:
     - pet
+eyetrack:
+  name: Eye Tracking Data
+  datatypes:
+    - eyetrack
