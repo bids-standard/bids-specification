@@ -1,4 +1,4 @@
-.md-nav__title {
+.md-nav__title[for=__drawer] {
     background-color: #ff0000;
 }
 
