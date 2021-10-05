@@ -1,6 +1,7 @@
 """Utility functions for the bids-specification schema."""
 import logging
 import os.path as op
+from pprint import pprint
 
 import numpy as np
 
@@ -131,3 +132,55 @@ def flatten_multiindexed_columns(df):
     df.index.name = "Entity"
     df = df.drop(columns=["DataType"])
     return df
+
+
+def get_link(string):
+    refs = {
+        "array": "https://www.w3schools.com/js/js_json_arrays.asp",
+        "string": "https://www.w3schools.com/js/js_json_datatypes.asp",
+        "number": "https://www.w3schools.com/js/js_json_datatypes.asp",
+        "object": "https://www.json.org/json-en.html",
+        "integer": "https://www.w3schools.com/js/js_json_datatypes.asp",
+        "boolean": "https://www.w3schools.com/js/js_json_datatypes.asp",
+    }
+    # Allow plurals (e.g., strings -> links to string)
+    dtype = string[:-1] if string[-1] == "s" else string
+    url = refs.get(dtype)
+    if url:
+        return f"[{string}]({url})"
+    return string
+
+
+def resolve_metadata_type(definition):
+    """Generate string of metadata type from dictionary."""
+    if "type" in definition.keys():
+        string = get_link(definition["type"])
+
+        if definition.get("enum") == ["n/a"]:
+            # Special string case of n/a
+            string = '`"n/a"`'
+
+        elif "type" in definition.get("items", {}):
+            # Items within arrays
+            string += " of " + get_link(definition["items"]["type"] + "s")
+
+        elif "type" in definition.get("additionalProperties", {}):
+            # Values within objects
+            string += " of " + get_link(
+                definition["additionalProperties"]["type"] + "s"
+            )
+
+    elif "anyOf" in definition:
+        # Use dictionary to get unique substrings while preserving insertion order
+        substrings = {resolve_metadata_type(subdict): None
+                      for subdict in definition["anyOf"]}
+
+        string = " or ".join(substrings)
+
+    else:
+        # A hack to deal with $ref in the current schema
+        print(f"Type could not be inferred for {definition['name']}")
+        pprint(definition)
+        string = "unknown"
+
+    return string

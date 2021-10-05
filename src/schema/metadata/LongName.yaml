@@ -1,5 +1,0 @@
----
-name: LongName
-description: |
-  Long (unabbreviated) name of the column.
-type: string

@@ -1,5 +1,0 @@
----
-name: AcquisitionMode
-description: |
-  Type of acquisition of the PET data (for example, `"list mode"`).
-type: string

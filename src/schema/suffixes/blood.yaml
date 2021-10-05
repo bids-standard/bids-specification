@@ -1,6 +1,0 @@
----
-name: Blood recording data
-description: |
-  Blood measurements of radioactivity stored in
-  [tabular files](/02-common-principles.html#tabular-files)
-  and located in the `pet/` directory along with the corresponding PET data.

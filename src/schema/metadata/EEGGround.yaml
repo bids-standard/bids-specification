@@ -1,6 +1,0 @@
----
-name: EEGGround
-description: |
-  Description of the location of the ground electrode
-  (for example, `"placed on right mastoid (M2)"`).
-type: string

@@ -1,5 +1,0 @@
----
-name: Coordinate System File
-description: |
-  A JSON document specifying the coordinate system(s) used for the MEG, EEG,
-  head localization coils, and anatomical landmarks.
