@@ -20,11 +20,6 @@ utils.set_logger_level(
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 
-def get_schema_dir():
-    schema_dir = Path(__file__).parent.parent.parent / "src" / "schema"
-    return schema_dir
-
-
 def _get_entry_name(path):
     if path.suffix == ".yaml":
         return path.name[:-5]  # no .yaml
@@ -168,8 +163,7 @@ def filter_schema(schema, **kwargs):
 
 
 def make_entity_definitions(schema):
-    """Generate definitions and other relevant information for entities in the
-    specification.
+    """Generate definitions and other relevant information for entities in the specification.
 
     Each entity gets its own heading.
 
@@ -211,8 +205,7 @@ def make_entity_definitions(schema):
 
 
 def make_filename_template(schema, **kwargs):
-    """Create codeblocks containing example filename patterns for a given
-    datatype.
+    """Create codeblocks containing example filename patterns for a given datatype.
 
     Parameters
     ----------
