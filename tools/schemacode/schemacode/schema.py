@@ -1,11 +1,10 @@
-"""Schema loading- and processing-related functions.
-"""
+"""Schema loading- and processing-related functions."""
 import logging
 import os
 from copy import deepcopy
 from pathlib import Path
-from warnings import warn
 from pprint import pprint
+from warnings import warn
 
 import pandas as pd
 import yaml
@@ -20,7 +19,10 @@ utils.set_logger_level(
 )
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
-BIDS_SCHEMA = Path(__file__).parent.parent / "src" / "schema"
+
+def get_schema_dir():
+    schema_dir = Path(__file__).parent.parent.parent / "src" / "schema"
+    return schema_dir
 
 
 def _get_entry_name(path):

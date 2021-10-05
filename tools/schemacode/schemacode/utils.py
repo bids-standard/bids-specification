@@ -1,5 +1,4 @@
-"""Utility functions for the bids-specification schema.
-"""
+"""Utility functions for the bids-specification schema."""
 import logging
 import os.path as op
 
