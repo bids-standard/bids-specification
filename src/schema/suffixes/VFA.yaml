@@ -1,8 +1,0 @@
----
-name: Variable flip angle
-description: |
-  The VFA method involves at least two spoiled gradient echo (SPGR) of
-  steady-state free precession (SSFP) images acquired at different flip angles.
-  Depending on the provided metadata fields and the sequence type,
-  data may be eligible for DESPOT1, DESPOT2 and their variants
-  ([Deoni et al. 2005](https://doi.org/10.1002/mrm.20314)).

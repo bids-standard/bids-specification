@@ -1,6 +1,0 @@
----
-name: Behavioral recording
-description: |
-  Behavioral recordings from tasks.
-  These files are similar to events files, but do not include the `"onset"` and
-  `"duration"` columns that are mandatory for events files.
