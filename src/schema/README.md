@@ -44,9 +44,9 @@ Each of these object types has a single file in the `objects/` folder.
 -   `datatypes.yaml`: Data types supported by the specification.
     The only information provided in the file is:
 
-    1.   a full list of valid BIDS datatypes
-    1.   each datatype's full name
-    1.   a free text description of the datatype.
+    1.  a full list of valid BIDS datatypes
+    1.  each datatype's full name
+    1.  a free text description of the datatype.
 
 -   `entities.yaml`: Entities (key/value pairs in folder and filenames).
 
@@ -160,29 +160,30 @@ There are additional fields which may define rules that apply to a given type.
 -   `string`: If `type` is `string`, then there MAY be any of the following
     fields at the same level as `type`: `pattern`, `format`, and `enum`.
 
-    -  `pattern` defines a regular expression for valid string names.
-    -  `format` defines the format for the string at the same level as `type`.
-       Valid values for `format` include:
+    -   `pattern` defines a regular expression for valid string names.
 
-       -  `uri` (uniform resource identifiers),
-       -  `date` (date-times),
-       -  `unit` (standard units),
-       -  `dataset_relative` (relative paths from dataset root),
-       -  `participant_relative` (relative paths from participant folder).
+    -   `format` defines the format for the string at the same level as `type`.
+        Valid values for `format` include:
 
-    -  `enum` defines a list of valid values for the field.
-    The minimum string length (`minLength`) defaults to 1.
-    Here is an example of a field with a restricted set of possible values:
-    ```yaml
-    ExampleField:
-        name: ExampleField
-        description: |
-            The description of "ExampleField".
-        type: string
-        enum:
-            - PossibleValue1
-            - PossibleValue2
-    ```
+       -    `uri` (uniform resource identifiers),
+       -    `date` (date-times),
+       -    `unit` (standard units),
+       -    `dataset_relative` (relative paths from dataset root),
+       -    `participant_relative` (relative paths from participant folder).
+
+    -   `enum` defines a list of valid values for the field.
+        The minimum string length (`minLength`) defaults to 1.
+        Here is an example of a field with a restricted set of possible values:
+        ```yaml
+        ExampleField:
+            name: ExampleField
+            description: |
+                The description of "ExampleField".
+            type: string
+            enum:
+                - PossibleValue1
+                - PossibleValue2
+        ```
 
 -   `integer`: If `type` is `integer`, then there MAY be any of the
     following fields at the same level as `type`: `unit`,
