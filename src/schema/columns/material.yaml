@@ -1,5 +1,0 @@
----
-name: material
-description: |
-  Material of the electrode (for example, `"Tin"`, `"Ag/AgCl"`, `"Gold"`).
-type: string

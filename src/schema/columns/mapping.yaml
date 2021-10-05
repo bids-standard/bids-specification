@@ -1,5 +1,0 @@
----
-name: mapping
-description: |
-  Corresponding integer label in the standard BIDS label lookup.
-type: integer

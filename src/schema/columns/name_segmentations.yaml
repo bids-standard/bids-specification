@@ -1,6 +1,0 @@
----
-# This definition of the 'name' column is specific to segmentation files.
-name: name
-description: |
-  The unique label name.
-type: string

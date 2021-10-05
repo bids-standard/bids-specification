@@ -1,5 +1,0 @@
----
-name: trigger
-description: |
-  continuous measurement of the scanner trigger signal
-type: number

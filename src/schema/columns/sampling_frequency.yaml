@@ -1,6 +1,0 @@
----
-name: sampling_frequency
-description: |
-  Sampling rate of the channel in Hz.
-type: number
-unit: Hz

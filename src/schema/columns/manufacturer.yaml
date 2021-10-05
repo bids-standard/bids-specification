@@ -1,6 +1,0 @@
----
-name: manufacturer
-description: |
-  The manufacturer for each electrode.
-  Can be used if electrodes were manufactured by more than one company.
-type: string

@@ -1,6 +1,0 @@
----
-name: impedance
-description: |
-  Impedance of the electrode, units MUST be in `kOhm`.
-type: number
-unit: kOhm

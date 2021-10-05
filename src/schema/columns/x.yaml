@@ -1,5 +1,0 @@
----
-name: x
-description: |
-  Recorded position along the x-axis.
-type: number
