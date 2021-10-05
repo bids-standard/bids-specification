@@ -25,13 +25,15 @@ as well as their requirement levels.
 ## Object files
 
 The types of objects currently supported in the schema are:
-- modalities, 
-- datatypes, 
-- entities, 
-- suffixes, 
-- metadata, 
-- top-level files,
-- and non-BIDS associated folders.
+
+-   modalities,
+-   datatypes,
+-   entities,
+-   suffixes,
+-   metadata,
+-   top-level files,
+-   and non-BIDS associated folders.
+
 Each of these object types has a single file in the `objects/` folder.
 
 -   `modalities.yaml`: The modalities, or types of technology, used to acquire data in a BIDS dataset.
@@ -41,9 +43,10 @@ Each of these object types has a single file in the `objects/` folder.
 
 -   `datatypes.yaml`: Data types supported by the specification.
     The only information provided in the file is:
-       1. a full list of valid BIDS datatypes,
-       2. each datatype's full name
-       3. a free text description of the datatype.
+
+       1.   a full list of valid BIDS datatypes
+       2.   each datatype's full name
+       3.   a free text description of the datatype.
 
 -   `entities.yaml`: Entities (key/value pairs in folder and filenames).
 
@@ -83,11 +86,12 @@ is `ceagent`.
 These keys are also the recommended variable names for their associated entities in BIDS-compliant code,
 since many entities (such as `ce`) have very short filename elements.
 Each key's associated value is a dictionary with five keys:
-- `name`, 
-- `entity`, 
-- `description`, 
-- `type`, 
-- and either `format` or `enum`.
+
+-   `name`,
+-   `entity`,
+-   `description`,
+-   `type`,
+-   and either `format` or `enum`.
 
 The `name` field is the full name of the entity. For example, the `name` for `ceagent` is "Contrast Enhancing Agent".
 
@@ -124,12 +128,14 @@ Entries in this file contain, at minimum, the following fields: `name`,
 `description`, and a set of fields for describing the field's data type.
 
 The data types include:
-- `type`, which MUST have a value of `array`, 
-- `string`, 
-- `integer`, 
-- `number`, 
-- `object`, 
-- or `boolean`.
+
+-   `type`, which MUST have a value of `array`,
+-   `string`,
+-   `integer`,
+-   `number`,
+-   `object`,
+-   or `boolean`.
+
 There are additional fields which may define rules that apply to a given type.
 
 -   `array`: If `type` is `array`, then there MUST be an `items` field at
@@ -155,9 +161,9 @@ There are additional fields which may define rules that apply to a given type.
     fields at the same level as `type`: `pattern`, `format`, and `enum`.
     -  `pattern` defines a regular expression for valid string names.
     -  `format` defines the format for the string at the same level as `type`.
-       Valid values for `format` include: 
-       -  `uri` (uniform resource identifiers), 
-       -  `date` (date-times), 
+       Valid values for `format` include:
+       -  `uri` (uniform resource identifiers),
+       -  `date` (date-times),
        -  `unit` (standard units),
        -  `dataset_relative` (relative paths from dataset root),
        -  `participant_relative` (relative paths from participant folder).
