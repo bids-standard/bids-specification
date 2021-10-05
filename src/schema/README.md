@@ -99,8 +99,8 @@ so if there is some additional information about the entity that applies specifi
 then that information should be provided in the specification, rather than the schema.
 
 The `type` field defines the representation type for the value associated with the entity.
-All entities are represented in filenames as key-value pairs, and in all cases the value should be a string,
-so the `type` field should always be `string`.
+Given that all entities appear in filenames, they should all be strings and the `type` field should always be `string`.
+This is true of both alphanumeric entities (such as `acq-desc`) and numeric ones (such as `run-1`).
 
 The `format` field defines the specific format the value should take.
 Entities are broadly divided into either `label` or `index` types.
