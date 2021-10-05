@@ -10,6 +10,30 @@ abbreviation:
   description: |
     The unique label abbreviation
   type: string
+acq_time:
+  name: acq_time
+  description: |
+    Acquisition time refers to when the first data point in each run was acquired.
+    Furthermore, if this header is provided, the acquisition times of all files that
+    belong to a recording MUST be identical.
+
+    Datetime should be expressed as described in [Units](/02-common-principles.html#units).
+
+    For anonymization purposes all dates within one subject should be shifted by a randomly
+    chosen (but consistent across all recordings) number of days.
+    This way relative timing would be preserved, but chances of identifying a person based
+    on the date and time of their scan would be decreased.
+    Dates that are shifted for anonymization purposes SHOULD be set to the year 1925 or earlier
+    to clearly distinguish them from unmodified data.
+    Shifting dates is RECOMMENDED, but not required.
+  type: string
+  format: datetime
+age:
+  name: age
+  description: |
+    Numeric value in years (float or integer value).
+  type: number
+  unit: year
 cardiac:
   name: cardiac
   description: |
@@ -21,6 +45,13 @@ color:
     Hexadecimal. Label color for visualization.
   type: string
   unit: hexadecimal
+derived_from:
+  name: derived_from
+  description: |
+    `sample-<label>` key/value pair from which a sample is derived,
+    for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`).
+  type: string
+  pattern: ^sample-[0-9a-zA-Z]+$
 description:
   name: description
   description: |
@@ -42,6 +73,12 @@ duration:
   type: number
   unit: s
   minimum: 0
+filename:
+  name: filename
+  description: |
+    Relative paths to files.
+  type: string
+  format: participant_relative
 group:
   name: group
   description: |
@@ -52,6 +89,35 @@ group:
   anyOf:
   - type: string
   - type: number
+handedness:
+  name: handedness
+  description: |
+    String value indicating one of "left", "right", "ambidextrous".
+
+    For "left", use one of these values: `left`, `l`, `L`, `LEFT`, `Left`.
+
+    For "right", use one of these values: `right`, `r`, `R`, `RIGHT`, `Right`.
+
+    For "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`, `AMBIDEXTROUS`,
+    `Ambidextrous`.
+  type: string
+  enum:
+  - left
+  - l
+  - L
+  - LEFT
+  - Left
+  - right
+  - r
+  - R
+  - RIGHT
+  - Right
+  - ambidextrous
+  - a
+  - A
+  - AMBIDEXTROUS
+  - Ambidextrous
+  - n/a
 hemisphere:
   name: hemisphere
   description: |
@@ -176,6 +242,22 @@ onset:
     first volume.
   type: number
   unit: s
+pathology:
+  name: pathology
+  description: |
+    String value describing the pathology of the sample or type of control.
+    When different from `healthy`, pathology SHOULD be specified in `samples.tsv`.
+    The pathology MAY instead be specified in
+    [Sessions files](/03-modality-agnostic-files.html#sessions-file)
+    in case it changes over time.
+  type: string
+participant_id:
+  name: participant_id
+  description: |
+    The column `participant_id` MUST consist of `sub-<label>` values identifying one row
+    for each participant.
+  type: string
+  pattern: ^sub-[0-9a-zA-Z]+$
 plasma_radioactivity:
   name: plasma_radioactivity
   description: |
@@ -210,12 +292,70 @@ sample:
     Onset of the event according to the sampling scheme of the recorded modality
     (that is, referring to the raw data file that the `events.tsv` file accompanies).
   type: integer
+sample_id:
+  name: sample_id
+  description: |
+    MUST consist of `sample-<label>` values identifying one row for each sample.
+  type: string
+  pattern: ^sample-[0-9a-zA-Z]+$
+sample_type:
+  name: sample_type
+  description: |
+    MUST consist of sample type values, either `cell line`, `in vitro differentiated cells`,
+    `primary cell`, `cell-free sample`, `cloning host`, `tissue`, `whole organisms`,
+    `organoid`, or `technical sample` from
+    [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type).
+  type: string
+  enum:
+  - cell line
+  - in vitro differentiated cells
+  - primary cell
+  - cell-free sample
+  - cloning host
+  - tissue
+  - whole organisms
+  - organoid
+  - technical sample
 sampling_frequency:
   name: sampling_frequency
   description: |
     Sampling rate of the channel in Hz.
   type: number
   unit: Hz
+session_id:
+  name: session_id
+  description: |
+    MUST consist of `ses-<label>` values identifying one row for each session.
+  type: string
+  pattern: ^ses-[0-9a-zA-Z]+$
+sex:
+  name: sex
+  description: |
+    String value indicating phenotypical sex, one of "male", "female", "other".
+
+    For "male", use one of these values: `male`, `m`, `M`, `MALE`, `Male`.
+
+    For "female", use one of these values: `female`, `f`, `F`, `FEMALE`, `Female`.
+
+    For "other", use one of these values: `other`, `o`, `O`, `OTHER`, `Other`.
+  type: string
+  enum:
+  - male
+  - m
+  - M
+  - MALE
+  - Male
+  - female
+  - f
+  - F
+  - FEMALE
+  - Female
+  - other
+  - o
+  - O
+  - OTHER
+  - Other
+  - n/a
 size:
   name: size
   description: |

@@ -175,31 +175,15 @@ Each participant MUST be described by one and only one row.
 Commonly used *optional* columns in `participant.tsv` files are `age`, `sex`,
 and `handedness`. We RECOMMEND to make use of these columns, and
 in case that you do use them, we RECOMMEND to use the following values
-for them:
+for them.
 
--   `age`: numeric value in years (float or integer value)
-
--   `sex`: string value indicating phenotypical sex, one of "male", "female",
-    "other"
-
-    -   for "male", use one of these values: `male`, `m`, `M`, `MALE`, `Male`
-
-    -   for "female", use one of these values: `female`, `f`, `F`, `FEMALE`,
-        `Female`
-
-    -   for "other", use one of these values: `other`, `o`, `O`, `OTHER`,
-        `Other`
-
--   `handedness`: string value indicating one of "left", "right",
-    "ambidextrous"
-
-    -   for "left", use one of these values: `left`, `l`, `L`, `LEFT`, `Left`
-
-    -   for "right", use one of these values: `right`, `r`, `R`, `RIGHT`,
-        `Right`
-
-    -   for "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`,
-        `AMBIDEXTROUS`, `Ambidextrous`
+{{ MACROS___make_columns_table(
+   {
+      "age": "RECOMMENDED",
+      "sex": "RECOMMENDED",
+      "handedness": "RECOMMENDED",
+   }
+) }}
 
 Throughout BIDS you can indicate missing values with `n/a` (for "not
 available").
@@ -266,6 +250,18 @@ samples.json
 
 The purpose of this file is to describe properties of samples, indicated by the `sample` entity.
 This file is REQUIRED if `sample-<label>` is present in any file name within the dataset.
+Each sample MUST be described by one and only one row.
+
+{{ MACROS___make_columns_table(
+   {
+      "sample_id": "REQUIRED",
+      "participant_id": "REQUIRED",
+      "sample_type": "REQUIRED",
+      "pathology": "RECOMMENDED",
+      "derived_from": "RECOMMENDED",
+   }
+) }}
+
 If this file exists, it MUST contain the three following columns:
 
 -   `sample_id`: MUST consist of `sample-<label>` values identifying one row
@@ -278,7 +274,6 @@ If this file exists, it MUST contain the three following columns:
     `technical sample` from [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type)
 
 Other optional columns MAY be used to describe the samples.
-Each sample MUST be described by one and only one row.
 
 Commonly used *optional* columns in `samples.tsv` files are `pathology` and
 `derived_from`. We RECOMMEND to make use of these columns, and in case that
@@ -416,22 +411,12 @@ Some recordings consist of multiple parts, that span several files,
 for example through `echo-`, `part-`, or `split-` entities.
 Such recordings MUST be documented with one row per file.
 
-Relative paths to files should be used under a compulsory `filename` header.
-
-If acquisition time is included it should be listed under the `acq_time` header.
-Acquisition time refers to when the first data point in each run was acquired.
-Furthermore, if this header is provided, the acquisition times of all files that
-belong to a recording MUST be identical.
-
-Datetime should be expressed as described in [Units](./02-common-principles.md#units).
-
-For anonymization purposes all dates within one subject should be shifted by a
-randomly chosen (but consistent across all recordings) number of days.
-This way relative timing would be preserved, but chances of identifying a
-person based on the date and time of their scan would be decreased.
-Dates that are shifted for anonymization purposes SHOULD be set to the year 1925
-or earlier to clearly distinguish them from unmodified data.
-Shifting dates is RECOMMENDED, but not required.
+{{ MACROS___make_columns_table(
+   {
+      "filename": "REQUIRED",
+      "acq_time": "OPTIONAL",
+   }
+) }}
 
 Additional fields can include external behavioral measures relevant to the
 scan.
@@ -468,6 +453,13 @@ In such case one file per participant SHOULD be added.
 These files MUST include a `session_id` column and describe each session by one and only one row.
 Column names in `sessions.tsv` files MUST be different from group level participant key column names in the
 [`participants.tsv` file](./03-modality-agnostic-files.md#participants-file).
+
+{{ MACROS___make_columns_table(
+   {
+      "session_id": "REQUIRED",
+      "acq_time": "OPTIONAL",
+   }
+) }}
 
 `_sessions.tsv` example:
 
