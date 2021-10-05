@@ -146,7 +146,7 @@ def make_filetree_example(filetree_info, use_pipe=True):
     Parameters
     ----------
     filetree_info : dict
-        Dictionnary to represent the folder content.
+        Dictionary to represent the folder content.
     use_pipe : bool
         Set to ``False`` to avoid using pdf unfriendly pipes: "│ └─ ├─"
 

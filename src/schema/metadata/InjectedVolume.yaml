@@ -1,6 +1,0 @@
----
-name: InjectedVolume
-description: |
-  Injected volume of the radiotracer in the unit `"mL"`.
-type: number
-unit: mL

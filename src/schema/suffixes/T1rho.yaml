@@ -1,7 +1,0 @@
----
-name: T1 in rotating frame (T1 rho) image
-description: |
-  In seconds (s).
-  T1-rho maps are REQUIRED to use this suffix regardless of the method used to
-  generate them.
-unit: s

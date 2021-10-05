@@ -111,7 +111,8 @@ misunderstanding we clarify them here.
 
 1.  **`<label>`** - an alphanumeric value, possibly prefixed with arbitrary
     number of 0s for consistent indentation, for example, it is `rest` in `task-rest`
-    following `task-<label>` specification.
+    following `task-<label>` specification. Note that labels MUST not collide when
+    casing is ignored (see [Case collision intolerance](#case-collision-intolerance)).
 
 1.  **`suffix`** - an alphanumeric value, located after the `key-value_` pairs (thus after
     the final `_`), right before the **File extension**, for example, it is `eeg` in
@@ -217,6 +218,15 @@ although certain suffixes are exclusive for this purpose (for example, `MP2RAGE`
 Use cases concerning this convention are compiled in the
 [file collections](./99-appendices/10-file-collections.md) appendix.
 This convention is mainly intended for but not limited to MRI modalities.
+
+### Case collision intolerance
+
+File name components are case sensitive,
+but collisions MUST be avoided when casing is ignored.
+For example, a dataset cannot contain both `sub-s1` and `sub-S1`,
+as the labels would collide on a case-insensitive filesystem.
+Additionally, because the suffix `eeg` is defined,
+then the suffix `EEG` will not be added to future versions of the standard.
 
 ## Source vs. raw vs. derived data
 

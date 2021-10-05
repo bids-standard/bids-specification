@@ -1,8 +1,0 @@
----
-# This is a field map-specific definition for the EchoTime field.
-name: EchoTime
-description: |
-  The time (in seconds) when the echo corresponding to this map was acquired.
-type: number
-unit: s
-exclusiveMinimum: 0
