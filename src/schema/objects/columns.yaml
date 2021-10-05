@@ -332,6 +332,18 @@ value:
     Marker value associated with the event (for example, the value of a TTL
     trigger that was recorded at the onset of the event).
   type: number
+volume_type:
+  name: volume_type
+  description: |
+    The `*_aslcontext.tsv` table consists of a single column of labels identifying
+    the `volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
+  type: string
+  enum:
+  - control
+  - label
+  - m0scan
+  - deltam
+  - cbf
 whole_blood_radioactivity:
   name: whole_blood_radioactivity
   description: |

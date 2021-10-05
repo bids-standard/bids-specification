@@ -548,7 +548,7 @@ def make_columns_table(schema, column_info, tablefmt="github"):
     """
     fields = list(column_info.keys())
     # The filter function doesn't work here.
-    column_schema = schema["columns"]
+    column_schema = schema["objects"]["columns"]
 
     retained_fields = [f for f in fields if f in column_schema.keys()]
     dropped_fields = [f for f in fields if f not in column_schema.keys()]
@@ -574,7 +574,7 @@ def make_columns_table(schema, column_info, tablefmt="github"):
             "[DEPRECATED](/02-common-principles.html#definitions)",
         )
 
-        type_string = _resolve_metadata_type(column_schema[field])
+        type_string = utils.resolve_metadata_type(column_schema[field])
 
         description = (
             column_schema[field]["description"] + " " + description_addendum
