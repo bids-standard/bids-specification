@@ -1,5 +1,0 @@
----
-name: Anaesthesia
-description: |
-  Details of anaesthesia used, if any.
-type: string

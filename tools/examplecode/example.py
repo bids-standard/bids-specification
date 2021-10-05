@@ -9,6 +9,7 @@ on how to use this code.
 
 import os
 
+
 class DirectoryTree:
     def __init__(self, filetree, use_pipe=True):
         self._generator = _TreeGenerator(filetree, use_pipe)

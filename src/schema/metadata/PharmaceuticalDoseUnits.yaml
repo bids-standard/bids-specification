@@ -1,7 +1,0 @@
----
-name: PharmaceuticalDoseUnits
-description: |
-  Unit format relating to pharmaceutical dose
-  (for example, `"mg"` or `"mg/kg"`).
-type: string
-format: unit

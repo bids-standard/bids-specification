@@ -1,8 +1,0 @@
----
-name: LabelingPulseAverageB1
-description: |
-  The average B1-field strength of the RF labeling pulses, in microteslas.
-  As an alternative, `LabelingPulseFlipAngle` can be provided.
-type: number
-exclusiveMinimum: 0
-unit: uT

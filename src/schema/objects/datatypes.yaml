@@ -1,0 +1,40 @@
+---
+# This file defines valid BIDS datatypes, along with their full names and descriptions.
+# For rules regarding how suffixes relate to datatypes, see files in `rules/datatypes/`.
+anat:
+  name: Anatomical Magnetic Resonance Imaging
+  description: |
+    Magnetic resonance imaging sequences designed to characterize static, anatomical features.
+beh:
+  name: Behavioral Data
+  description: |
+    Behavioral data.
+dwi:
+  name: Diffusion-Weighted Imaging
+  description: |
+    Diffusion-weighted imaging (DWI).
+eeg:
+  name: Electroencephalography
+  description: Electroencephalography
+fmap:
+  name: Field maps
+  description: |
+    MRI scans for estimating B0 inhomogeneity-induced distortions.
+func:
+  name: Task-Based Magnetic Resonance Imaging
+  description: |
+    Task (including resting state) imaging data
+ieeg:
+  name: Intracranial electroencephalography
+  description: |
+    Intracranial electroencephalography (iEEG) or electrocorticography (ECoG) data
+meg:
+  name: Magnetoencephalography
+  description: Magnetoencephalography
+perf:
+  name: Perfusion imaging
+  description: |
+    Blood perfusion imaging data, including arterial spin labeling (ASL)
+pet:
+  name: Positron Emission Tomography
+  description:

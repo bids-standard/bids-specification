@@ -1,8 +1,0 @@
----
-name: iEEGElectrodeGroups
-description: |
-  Field to describe the way electrodes are grouped into strips, grids or depth
-  probes.
-  For example, `"grid1: 10x8 grid on left temporal pole, strip2: 1x8 electrode
-  strip on xxx"`.
-type: string
