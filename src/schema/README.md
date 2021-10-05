@@ -165,11 +165,15 @@ There are additional fields which may define rules that apply to a given type.
     -   `format` defines the format for the string at the same level as `type`.
         Valid values for `format` include:
 
-       -    `uri` (uniform resource identifiers),
-       -    `date` (date-times),
-       -    `unit` (standard units),
-       -    `dataset_relative` (relative paths from dataset root),
-       -    `participant_relative` (relative paths from participant folder).
+       -   `uri` (uniform resource identifiers),
+
+       -   `date` (date-times),
+
+       -   `unit` (standard units),
+
+       -   `dataset_relative` (relative paths from dataset root),
+
+       -   `participant_relative` (relative paths from participant folder).
 
     -   `enum` defines a list of valid values for the field.
         The minimum string length (`minLength`) defaults to 1.
