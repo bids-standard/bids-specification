@@ -67,12 +67,16 @@ duration:
   name: duration
   description: |
     Duration of the event (measured from onset) in seconds.
-    Must always be either zero or positive.
+    Must always be either zero or positive (or `"n/a"` if unavailable).
     A "duration" value of zero implies that the delta function or event is so
     short as to be effectively modeled as an impulse.
-  type: number
-  unit: s
-  minimum: 0
+  anyOf:
+  - type: number
+    unit: s
+    minimum: 0
+  - type: string
+    enum:
+    - n/a
 filename:
   name: filename
   description: |
