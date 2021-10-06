@@ -208,7 +208,7 @@ name_channels:
     Label of the channel.
     The label must correspond to `_electrodes.tsv` name and all ieeg type channels are
     required to have a position.
-    The reference channel name MAY be provided in the reference column.
+    The reference channel name MAY be provided in the `reference` column.
   type: string
 name_electrodes:
   name: name
