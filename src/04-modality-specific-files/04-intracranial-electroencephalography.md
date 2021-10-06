@@ -259,7 +259,7 @@ SHOULD be present:
 {{ MACROS___make_columns_table(
    {
       "reference": "OPTIONAL",
-      "group": "OPTIONAL",
+      "group": ("OPTIONAL", "Note that any groups specified in `_electrodes.tsv` must match those present here."),
       "sampling_frequency": "OPTIONAL",
       "description": "OPTIONAL",
       "notch": "OPTIONAL",
@@ -389,7 +389,7 @@ SHOULD be present:
    {
       "material": "RECOMMENDED",
       "manufacturer": "RECOMMENDED",
-      "group": "RECOMMENDED",
+      "group": ("RECOMMENDED", "Note that any group specified here should match a group specified in `_channels.tsv`."),
       "hemisphere": "RECOMMENDED",
    }
 ) }}
