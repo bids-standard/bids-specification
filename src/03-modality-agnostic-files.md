@@ -179,6 +179,7 @@ for them.
 
 {{ MACROS___make_columns_table(
    {
+      "participant_id": ("REQUIRED", "There MUST be exactly one row for each participant."),
       "age": "RECOMMENDED",
       "sex": "RECOMMENDED",
       "handedness": "RECOMMENDED",
@@ -413,7 +414,7 @@ Such recordings MUST be documented with one row per file.
 
 {{ MACROS___make_columns_table(
    {
-      "filename": "REQUIRED",
+      "filename": ("REQUIRED", "There MUST be exactly one row for each file."),
       "acq_time": "OPTIONAL",
    }
 ) }}
@@ -456,7 +457,7 @@ Column names in `sessions.tsv` files MUST be different from group level particip
 
 {{ MACROS___make_columns_table(
    {
-      "session_id": "REQUIRED",
+      "session_id": ("REQUIRED", "There MUST be exactly one row for each session."),
       "acq_time": "OPTIONAL",
    }
 ) }}

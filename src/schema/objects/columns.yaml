@@ -330,7 +330,8 @@ sampling_frequency:
 session_id:
   name: session_id
   description: |
-    MUST consist of `ses-<label>` values identifying one row for each session.
+    A session identifier of the form `ses-<label>`,
+    matching a session found in the dataset.
   type: string
   pattern: ^ses-[0-9a-zA-Z]+$
 sex:
