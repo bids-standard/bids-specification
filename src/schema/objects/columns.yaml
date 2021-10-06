@@ -382,13 +382,15 @@ software_filters:
 status:
   name: status
   description: |
-    Data quality observed on the channel `(good/bad)`.
+    Data quality observed on the channel.
+    Must be one of: `good`, `bad`, or `n/a` (when quality is unknown).
     A channel is considered `bad` if its data quality is compromised by excessive noise.
     Description of noise type SHOULD be provided in `[status_description]`.
   type: string
   enum:
   - good
   - bad
+  - n/a
 status_description:
   name: status_description
   description: |
