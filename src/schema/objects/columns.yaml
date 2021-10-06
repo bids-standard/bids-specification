@@ -471,12 +471,15 @@ units:
     for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter
     (see [Units](/02-common-principles.html#units)).
   type: string
+  format: unit
 value:
   name: value
   description: |
     Marker value associated with the event (for example, the value of a TTL
     trigger that was recorded at the onset of the event).
-  type: number
+  anyOf:
+  - type: number
+  - type: string
 volume_type:
   name: volume_type
   description: |
