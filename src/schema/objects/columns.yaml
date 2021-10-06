@@ -269,12 +269,25 @@ plasma_radioactivity:
   description: |
     Radioactivity in plasma, in unit of plasma radioactivity (for example, `"kBq/mL"`).
   type: number
-reference:
+# reference column for channels.tsv files for EEG data
+reference_eeg:
   name: reference
   description: |
-    Name of the reference electrode(s)
-    (not needed when it is common to all channels, in that case it can be specified in `*_eeg.json` as `EEGReference`).
+    Name of the reference electrode(s).
+    This column is not needed when it is common to all channels.
+    In that case the reference electrode(s) can be specified in `*_eeg.json` as `EEGReference`).
   type: string
+# reference column for channels.tsv files for iEEG data
+reference_ieeg:
+  name: reference
+  description: |
+    Specification of the reference (for example, 'mastoid', 'ElectrodeName01', 'intracranial', 'CAR', 'other', 'n/a').
+    If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.
+  anyOf:
+  - type: string
+  - type: string
+    enum:
+    - n/a
 respiratory:
   name: respiratory
   description: |

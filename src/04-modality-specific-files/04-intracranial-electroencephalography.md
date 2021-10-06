@@ -258,7 +258,7 @@ SHOULD be present:
 
 {{ MACROS___make_columns_table(
    {
-      "reference": "OPTIONAL",
+      "reference_ieeg": "OPTIONAL",
       "group": ("OPTIONAL", "Note that any groups specified in `_electrodes.tsv` must match those present here."),
       "sampling_frequency": "OPTIONAL",
       "description": "OPTIONAL",

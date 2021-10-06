@@ -247,7 +247,7 @@ SHOULD be present:
    {
       "description": "OPTIONAL",
       "sampling_frequency": "OPTIONAL",
-      "reference": "OPTIONAL",
+      "reference_eeg": "OPTIONAL",
       "low_cutoff": "OPTIONAL",
       "high_cutoff": "OPTIONAL",
       "notch": "OPTIONAL",
