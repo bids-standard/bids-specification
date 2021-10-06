@@ -734,8 +734,11 @@ Describing dates and timestamps:
 
 -   Dates can be shifted by a random number of days for privacy protection
     reasons.
-    To distinguish real dates from shifted dates, always use year 1925
-    or earlier when including shifted years.
+    To distinguish real dates from shifted dates,
+    is is RECOMMENDED to set shifted dates to the year 1925 or earlier.
+    Note that some data formats do not support arbitrary recording dates.
+    For example, the [EDF](https://www.edfplus.info/)
+    data format can only contain recording dates after 1985.
     For longitudinal studies dates MUST be shifted by the same number of days
     within each subject to maintain the interval information.
     For example: `1867-06-15T13:45:30`
