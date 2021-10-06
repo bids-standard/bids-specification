@@ -370,7 +370,7 @@ MUST be present **in this specific order**:
       "name_electrodes": "REQUIRED",
       "x": "REQUIRED",
       "y": "REQUIRED",
-      "z": "REQUIRED",
+      "z": ("REQUIRED", "If electrodes are in 2D space this should be a column of `n/a` values."),
       "size": "REQUIRED",
    }
 ) }}

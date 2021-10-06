@@ -512,4 +512,8 @@ z:
   name: z
   description: |
     Recorded position along the z-axis.
-  type: number
+  anyOf:
+  - type: number
+  - type: string
+    enum:
+    - n/a
