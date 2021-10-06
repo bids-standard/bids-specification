@@ -230,7 +230,7 @@ MUST be present **in this specific order**:
 {{ MACROS___make_columns_table(
    {
       "name_channels": "REQUIRED",
-      "type": "REQUIRED",
+      "type_channels": "REQUIRED",
       "units": "REQUIRED",
    }
 ) }}

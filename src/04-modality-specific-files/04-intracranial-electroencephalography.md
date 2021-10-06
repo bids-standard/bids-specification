@@ -237,7 +237,7 @@ MUST be present **in this specific order**:
 {{ MACROS___make_columns_table(
    {
       "name_channels": "REQUIRED",
-      "type": "REQUIRED",
+      "type_channels": "REQUIRED",
       "units": "REQUIRED",
       "low_cutoff": "REQUIRED",
       "high_cutoff": "REQUIRED",
@@ -404,7 +404,7 @@ MAY be present:
 
 {{ MACROS___make_columns_table(
    {
-      "type": "OPTIONAL",
+      "type_electrodes": "OPTIONAL",
       "impedance": "OPTIONAL",
       "dimension": "OPTIONAL",
    }
