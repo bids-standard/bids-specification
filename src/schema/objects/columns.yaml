@@ -125,7 +125,7 @@ handedness:
 hemisphere:
   name: hemisphere
   description: |
-    The hemisphere in which the electrode is placed, one of `['L' or 'R']` (use capital).
+    The hemisphere in which the electrode is placed, one of `['L' or 'R']` (MUST be in upper-case).
   type: string
   enum:
   - L
@@ -224,7 +224,7 @@ notch:
   name: notch
   description: |
     Frequencies used for the notch filter applied to the channel, in Hz.
-    If no notch filter applied, use n/a.
+    If no notch filter applied, use `n/a`.
   anyOf:
   - type: number
     unit: Hz
@@ -258,8 +258,8 @@ pathology:
 participant_id:
   name: participant_id
   description: |
-    The column `participant_id` MUST consist of `sub-<label>` values identifying one row
-    for each participant.
+    A participant identifier of the form `sub-<label>`,
+    matching a participant entity found in the dataset.
   type: string
   pattern: ^sub-[0-9a-zA-Z]+$
 plasma_radioactivity:
@@ -299,7 +299,8 @@ sample:
 sample_id:
   name: sample_id
   description: |
-    MUST consist of `sample-<label>` values identifying one row for each sample.
+    A sample identifier of the form `sample-<label>`,
+    matching a sample entity found in the dataset.
   type: string
   pattern: ^sample-[0-9a-zA-Z]+$
 sample_type:

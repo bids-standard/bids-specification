@@ -254,8 +254,8 @@ Each sample MUST be described by one and only one row.
 
 {{ MACROS___make_columns_table(
    {
-      "sample_id": "REQUIRED",
-      "participant_id": "REQUIRED",
+      "sample_id": ("REQUIRED", "The combination of `sample_id` and `participant_id` MUST be unique."),
+      "participant_id": ("REQUIRED", "The combination of `sample_id` and `participant_id` MUST be unique."),
       "sample_type": "REQUIRED",
       "pathology": "RECOMMENDED",
       "derived_from": "RECOMMENDED",
