@@ -1,0 +1,29 @@
+---
+# Continuous data
+- suffixes:
+  - stim
+  - physio
+  extensions:
+  - .tsv.gz
+  - .json
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+    recording: optional
+
+# Non-continuous data
+- suffixes:
+  - events
+  - beh
+  extensions:
+  - .tsv
+  - .json
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional

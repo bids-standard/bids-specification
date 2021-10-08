@@ -1,7 +1,0 @@
----
-name: TB1RFM
-description: |
-  The result of a Siemens `rf_map` product sequence.
-  This sequence produces two images.
-  The first image appears like an anatomical image and the second output is a
-  scaled flip angle map.

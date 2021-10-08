@@ -1,6 +1,0 @@
----
-name: Inversion recovery T1 mapping
-description: |
-  The IRT1 method involves multiple inversion recovery spin-echo images
-  acquired at different inversion times
-  ([Barral et al. 2010](https://doi.org/10.1002/mrm.22497)).

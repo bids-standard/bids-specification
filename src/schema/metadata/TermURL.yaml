@@ -1,6 +1,0 @@
----
-name: TermURL
-description: |
-  URL pointing to a formal definition of this type of data in an ontology
-  available on the web.
-type: string

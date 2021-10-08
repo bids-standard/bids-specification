@@ -196,6 +196,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Matthias Van Osch 📖
 -   Bradley Voytek 📖
 -   Brian A. Wandell 📖
+-   Adina S. Wagner 🎨
 -   Joseph Wexler 📖💡
 -   Kirstie Whitaker 📖💡🔍🤔📢💬
 -   Jonathan Winawer 📖

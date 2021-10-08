@@ -1,9 +1,0 @@
----
-name: ArterialSpinLabelingType
-description: |
-  `"CASL"`, `"PCASL"`, `"PASL"`.
-type: string
-enum:
-  - CASL
-  - PCASL
-  - PASL

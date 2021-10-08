@@ -13,7 +13,7 @@ import argparse
 
 def parse_args():
     """Construct the command line interface for the script"""
-    DESCRIPTION = "Script to pull changed files in a Pull Request using a GET resquest to the GitHub API."
+    DESCRIPTION = "Script to pull changed files in a Pull Request using a GET request to the GitHub API."
     parser = argparse.ArgumentParser(description=DESCRIPTION)
 
     parser.add_argument(

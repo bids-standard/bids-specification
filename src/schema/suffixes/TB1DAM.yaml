@@ -1,9 +1,0 @@
----
-name: TB1DAM
-description: |
-  The double-angle B1<sup>+</sup> method
-  ([Insko and Bolinger 1993](https://doi.org/10.1006/jmra.1993.1133)) is based
-  on the calculation of the actual angles from signal ratios,
-  collected by two acquisitions at different nominal excitation flip angles.
-  Common sequence types for this application include spin echo and echo planar
-  imaging.
