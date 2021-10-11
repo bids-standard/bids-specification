@@ -80,6 +80,7 @@ def load_schema(schema_path):
     object_group_files = sorted(glob(str(objects_dir / "*.yaml")))
     for object_group_file in object_group_files:
         group_name = op.splitext(op.basename(object_group_file))[0]
+        lgr.info(f"Loading {group_name} objects.")
         with open(object_group_file, "r") as fo:
             dict_ = yaml.load(fo, Loader=yaml.SafeLoader)
             dict_ = dereference_yaml(dict_, dict_)
@@ -91,6 +92,7 @@ def load_schema(schema_path):
     rule_group_folders = [f for f in rule_group_folders if op.isdir(f)]
     for rule_group_file in rule_group_files:
         group_name = op.splitext(op.basename(rule_group_file))[0]
+        lgr.info(f"Loading {group_name} rules.")
         with open(rule_group_file, "r") as fo:
             dict_ = yaml.load(fo, Loader=yaml.SafeLoader)
             dict_ = dereference_yaml(dict_, dict_)
@@ -103,6 +105,7 @@ def load_schema(schema_path):
         schema["rules"][group_name] = {}
         for rule_subgroup_file in rule_subgroup_files:
             subgroup_name = op.splitext(op.basename(rule_subgroup_file))[0]
+            lgr.info(f"Loading {subgroup_name} rules.")
             with open(rule_subgroup_file, "r") as fo:
                 dict_ = yaml.load(fo, Loader=yaml.SafeLoader)
                 dict_ = dereference_yaml(dict_, dict_)
