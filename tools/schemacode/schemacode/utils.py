@@ -17,7 +17,6 @@ def get_schema_path():
     schema_dir = op.abspath(
         op.join(op.dirname(op.dirname(op.dirname(op.dirname(__file__)))), "src", "schema") + op.sep
     )
-    raise Exception(schema_dir)
     return schema_dir
 
 

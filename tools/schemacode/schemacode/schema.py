@@ -72,6 +72,11 @@ def load_schema(schema_path):
     objects_dir = schema_path / "objects/"
     rules_dir = schema_path / "rules/"
 
+    if not objects_dir.is_dir() or not rules_dir.is_dir():
+        raise ValueError(
+            f"Schema path or paths do not exist:\n\t{str(objects_dir)}\n\t{str(rules_dir)}"
+        )
+
     schema = {}
     schema["objects"] = {}
     schema["rules"] = {}
