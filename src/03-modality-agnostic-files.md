@@ -64,8 +64,8 @@ Example:
 #### Derived dataset and pipeline description
 
 As for any BIDS dataset, a `dataset_description.json` file MUST be found at the
-top level of the a derived dataset:
-`<dataset>/derivatives/<pipeline_name>/dataset_description.json`
+top level of every derived dataset:
+`<dataset>/derivatives/<pipeline_name>/dataset_description.json`.
 
 In addition to the keys for raw BIDS datasets,
 derived BIDS datasets include the following REQUIRED and RECOMMENDED
