@@ -14,9 +14,10 @@ def get_schema_path():
     str
         Absolute path to the folder containing schema-related files.
     """
-    return op.abspath(
-        op.join(op.dirname(op.dirname(op.dirname(__file__))), "src", "schema") + op.sep
+    schema_dir = op.abspath(
+        op.join(op.dirname(op.dirname(op.dirname(op.dirname(__file__)))), "src", "schema") + op.sep
     )
+    return schema_dir
 
 
 def combine_extensions(lst):
