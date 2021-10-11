@@ -11,7 +11,7 @@ jobs:
           command: |
             python -m pip install --upgrade pip
             pip install -r requirements.txt
-            pip install -e ~/project/tools/schemacode/
+            pip install ~/project/tools/schemacode/
       - run:
           name: generate docs
           command: mkdocs build --clean --strict --verbose
