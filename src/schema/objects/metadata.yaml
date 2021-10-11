@@ -866,7 +866,7 @@ Funding:
 GeneratedBy:
   name: GeneratedBy
   description: |
-    Used to specify provenance of the derived dataset.
+    Used to specify provenance of the dataset.
     See table below for contents of each object.
   type: array
   minItems: 1
