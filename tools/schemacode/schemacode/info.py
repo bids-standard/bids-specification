@@ -23,13 +23,13 @@ longdesc = readme_path.open().read()
 AUTHOR = "bids-standard developers"
 COPYRIGHT = "Copyright 2021, bids-standard developers"
 CREDITS = "bids-standard developers"
-LICENSE = "LGPL 2.1"
+LICENSE = "MIT"
 MAINTAINER = ""
 EMAIL = ""
 STATUS = "Prototype"
 URL = "https://github.com/bids-standard/schemacode"
 PACKAGENAME = "schemacode"
-DESCRIPTION = ""
+DESCRIPTION = "Python tools for working with the BIDS schema."
 LONGDESC = longdesc
 
 DOWNLOAD_URL = "https://github.com/bids-standard/{name}/archive/{ver}.tar.gz".format(
@@ -76,7 +76,7 @@ CLASSIFIERS = [
     "Development Status :: 2 - Pre-Alpha",
     "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering :: Information Analysis",
-    "License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)",
+    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
