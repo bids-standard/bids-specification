@@ -2,7 +2,7 @@
 import os
 import sys
 
-from schemacode import schema, utils
+from schemacode import render, schema, utils
 
 code_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(code_path)
@@ -29,7 +29,7 @@ def make_filename_template(**kwargs):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    codeblock = schema.make_filename_template(schema_obj, **kwargs)
+    codeblock = render.make_filename_template(schema_obj, **kwargs)
     return codeblock
 
 
@@ -51,7 +51,7 @@ def make_entity_table(**kwargs):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = schema.make_entity_table(schema_obj, **kwargs)
+    table = render.make_entity_table(schema_obj, **kwargs)
     return table
 
 
@@ -67,7 +67,7 @@ def make_entity_definitions():
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    text = schema.make_entity_definitions(schema_obj)
+    text = render.make_entity_definitions(schema_obj)
     return text
 
 
@@ -87,7 +87,7 @@ def make_suffix_table(suffixes):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = schema.make_suffix_table(schema_obj, suffixes)
+    table = render.make_suffix_table(schema_obj, suffixes)
     return table
 
 
@@ -112,7 +112,7 @@ def make_metadata_table(field_info):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = schema.make_metadata_table(schema_obj, field_info)
+    table = render.make_metadata_table(schema_obj, field_info)
     return table
 
 
