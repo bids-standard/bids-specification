@@ -993,6 +993,13 @@ For example:
 
 #### Case 1: Phase-difference map and at least one magnitude image
 
+[Example datasets](https://github.com/bids-standard/bids-examples) 
+containing that type of fieldmap can be found here:
+
+- [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
+- [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+- [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
+
 {{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["phasediff", "magnitude1", "magnitude2"]) }}
 
 where
@@ -1081,6 +1088,11 @@ See [Using `IntendedFor` metadata](#using-intendedfor-metadata)
 for details on the `IntendedFor` field.
 
 #### Case 4: Multiple phase encoded directions ("pepolar")
+
+An [example dataset](https://github.com/bids-standard/bids-examples) 
+containing that type of fieldmap can be found here:
+
+- [`ieeg_visual_multimodal`](https://github.com/bids-standard/bids-examples/tree/master/ieeg_visual_multimodal)
 
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
 EPI scans with different phase encoding directions to estimate the distortion
