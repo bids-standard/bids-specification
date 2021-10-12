@@ -89,3 +89,20 @@
     subject: required
     session: optional
     acquisition: optional
+
+# Timeseries
+- suffixes:
+  - physio
+  - stim
+  extensions:
+  - .tsv.gz
+  - .json
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+    processing: optional
+    split: optional
+    recording: optional
