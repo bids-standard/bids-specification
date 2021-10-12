@@ -558,6 +558,15 @@ participant, task and run takes precedence.
 
 ## Diffusion imaging data
 
+Several [example datasets](https://github.com/bids-standard/bids-examples) 
+contain diffusion imaging data formatted using this specification
+and that can be used for practical guidance when curating a new dataset:
+
+- [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+- [`eeg_rest_fmri`](https://github.com/bids-standard/bids-examples/tree/master/eeg_rest_fmri)
+- [`ds114`](https://github.com/bids-standard/bids-examples/tree/master/ds114)
+- [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
+
 Diffusion-weighted imaging data acquired for a participant.
 Currently supported image types include:
 
