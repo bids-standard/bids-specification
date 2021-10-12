@@ -1,5 +1,12 @@
 # Physiological and other continuous recordings
 
+[Example datasets](https://github.com/bids-standard/bids-examples) 
+with physiological data have been formatted using this specification
+and can be used for practical guidance when curating a new dataset:
+
+- [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
+- [`ds210`](https://github.com/bids-standard/bids-examples/tree/master/ds210)
+
 Template:
 
 ```Text
