@@ -9,7 +9,7 @@ context of the academic literature.
 The following example EEG datasets have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
--   Single session per subject: [`eeg_matchingpennies`](https://doi.org/10.17605/OSF.IO/CJ2DR)
+-   Single session per subject: [`eeg_matchingpennies`](https://github.com/bids-standard/bids-examples/tree/master/eeg_matchingpennies)
 -   Multiple sessions per subject: [`eeg_rishikesh`](https://github.com/bids-standard/bids-examples/tree/master/eeg_rishikesh)
 -   Combined with fMRI: [`eeg_rest_fmri`](https://osf.io/94c5t/files/)
 
