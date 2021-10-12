@@ -6,7 +6,7 @@ MR Data described in the following sections share the following RECOMMENDED meta
 fields (stored in sidecar JSON files). MRI acquisition parameters are divided
 into several categories based on
 ["A checklist for fMRI acquisition methods reporting in the literature"](https://thewinnower.com/papers/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature)
-by Ben Inglis:
+by Ben Inglis.
 
 ### Scanner Hardware
 
@@ -743,6 +743,16 @@ JSON example:
 ```
 
 ## Arterial Spin Labeling perfusion data
+
+Several [example ASL datasets](https://github.com/bids-standard/bids-examples) 
+have been formatted using this specification
+and can be used for practical guidance when curating a new dataset:
+
+- [`asl001`](https://github.com/bids-standard/bids-examples/tree/master/asl001)
+- [`asl002`](https://github.com/bids-standard/bids-examples/tree/master/asl002)
+- [`asl003`](https://github.com/bids-standard/bids-examples/tree/master/asl003)
+- [`asl004`](https://github.com/bids-standard/bids-examples/tree/master/asl004)
+- [`asl005`](https://github.com/bids-standard/bids-examples/tree/master/asl005)
 
 {{ MACROS___make_filename_template(datatypes=["perf"]) }}
 
