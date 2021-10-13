@@ -180,9 +180,12 @@ for them.
 {{ MACROS___make_columns_table(
    {
       "participant_id": ("REQUIRED", "There MUST be exactly one row for each participant."),
+      "species": "RECOMMENDED",
       "age": "RECOMMENDED",
       "sex": "RECOMMENDED",
       "handedness": "RECOMMENDED",
+      "strain": "RECOMMENDED",
+      "strain_rrid": "RECOMMENDED",
    }
 ) }}
 
