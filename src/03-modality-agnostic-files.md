@@ -166,16 +166,22 @@ participants.json
 ```
 
 The purpose of this RECOMMENDED file is to describe properties of participants
-such as age, sex, handedness.
+such as age, sex, handedness, species and strain.
 If this file exists, it MUST contain the column `participant_id`,
 which MUST consist of `sub-<label>` values identifying one row for each participant,
 followed by a list of optional columns describing participants.
 Each participant MUST be described by one and only one row.
 
-Commonly used *optional* columns in `participant.tsv` files are `age`, `sex`,
-and `handedness`. We RECOMMEND to make use of these columns, and
-in case that you do use them, we RECOMMEND to use the following values
-for them:
+The RECOMMENDED `species` column SHOULD be a binomial species name from the
+[NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi)
+(for examples `homo sapiens`, `mus musculus`, `rattus norvegicus`).
+For backwards compatibility, if `species` is absent, the participant is assumed to be
+`homo sapiens`.
+
+Commonly used *optional* columns in `participants.tsv` files are `age`, `sex`,
+`handedness`, `strain` and `strain_rrid`. We RECOMMEND to make use
+of these columns, and in case that you do use them, we RECOMMEND to use the
+following values for them:
 
 -   `age`: numeric value in years (float or integer value)
 
@@ -201,6 +207,13 @@ for them:
     -   for "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`,
         `AMBIDEXTROUS`, `Ambidextrous`
 
+-   `strain`: for species different from `homo sapiens`, string value indicating
+    the strain of the species, for example: `C57BL/6J`.
+
+-   `strain_rrid`: for species different from `homo sapiens`, research resource identifier
+    ([RRID](https://scicrunch.org/resources/Organisms/search)) of the strain of the species,
+    for example: `RRID:IMSR_JAX:000664`.
+
 Throughout BIDS you can indicate missing values with `n/a` (for "not
 available").
 
@@ -217,9 +230,9 @@ It is RECOMMENDED to accompany each `participants.tsv` file with a sidecar
 `participants.json` file to describe the TSV column names and properties of their values (see also
 the [section on tabular files](02-common-principles.md#tabular-files)).
 Such sidecar files are needed to interpret the data, especially so when
-optional columns are defined beyond `age`, `sex`, and `handedness`, such as
-`group` in this example, or when a different age unit is needed
-(for example, gestational weeks).
+optional columns are defined beyond `age`, `sex`, `handedness`, `species`, `strain`,
+and `strain_rrid`, such as `group` in this example, or when a different
+age unit is needed (for example, gestational weeks).
 If no `units` is provided for age, it will be assumed to be in years relative
 to date of birth.
 
