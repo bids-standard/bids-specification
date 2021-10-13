@@ -88,7 +88,7 @@ In the accompanying JSON sidecar, the `trial_type` column might look as follows:
         "Description": "Indicator of type of action that is expected",
         "Levels": {
             "start": "A red square is displayed to indicate starting",
-            "stop": "A blue square is displayed to indicate stopping",
+            "stop": "A blue square is displayed to indicate stopping"
         }
     }
 }
