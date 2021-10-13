@@ -195,13 +195,6 @@ following values for them:
    }
 ) }}
 
--   `strain`: for species different from `homo sapiens`, string value indicating
-    the strain of the species, for example: `C57BL/6J`.
-
--   `strain_rrid`: for species different from `homo sapiens`, research resource identifier
-    ([RRID](https://scicrunch.org/resources/Organisms/search)) of the strain of the species,
-    for example: `RRID:IMSR_JAX:000664`.
-
 Throughout BIDS you can indicate missing values with `n/a` (for "not
 available").
 
