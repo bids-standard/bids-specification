@@ -383,58 +383,51 @@ The `extensions` entry is a list of valid file extensions.
 The `entities` entry is a dictionary in which the keys are entity names and the values are whether the entity is
 required or optional for that suffix.
 Any entities that are not present in this dictionary are not allowed in files with any of the suffixes in the group.
+In rare occasions, there are restrictions on valid entity values
+(for example, some suffixes may only allow an `acq` value of `calibration`).
+In those cases, the entity's value will be another object, rather than a string indicating the requirement level.
+This object will contain at least two keys: "requirement" and "type".
 
 **NOTE**: The order in which entities appear in these dictionaries does not reflect how they should appear in filenames.
 That information is present in `rules/entities.yaml`.
 
-As an example, let us look at part of `func.yaml`:
+As an example, let us look at part of `meg.yaml`:
 
 ```yaml
 - suffixes:
-    - bold
-    - cbv
-    - sbref
+  - meg
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .fif
   entities:
     subject: required
     session: optional
     task: required
     acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    direction: optional
     run: optional
-    echo: optional
-    part: optional
+    processing: optional
+    split: optional
 
-# Phase (deprecated)
 - suffixes:
-    - phase  # deprecated
+  - meg
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .fif
   entities:
     subject: required
     session: optional
-    task: required
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    direction: optional
-    run: optional
-    echo: optional
+    acquisition:
+      requirement: required
+      type: string
+      enum:
+      - crosstalk
 ```
 
-In this case, the first group has three suffixes: `bold`, `cbv`, and `sbref`.
-The second group has one suffix: `phase`.
-While the valid extensions are the same for both groups (`.nii.gz`, `.nii`, and `.json`), the entities are not.
+In this case, the first group has one suffix: `meg`.
+The second group has the same suffix (`meg`), but describes different rules for files with that suffix.
+While the valid extension is the same for both groups (`.fif`), the entities are not.
 
-Specifically, files with the `phase` suffix may not have a `part` entity,
-while this is an option for files with the `bold`, `cbv`, or `sbref` suffixes.
+Specifically, files in the first group may have `task`, `run`, `processing`, and `split` entities,
+while files in the second group may not.
+Also, when files in the second group have the `acq` entity, the associated value MUST be `crosstalk`.
 
 ### `entities.yaml`
 
