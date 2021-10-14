@@ -40,20 +40,7 @@
       - calibration
 
 # Third group
-- suffixes:
-  - meg
-  extensions:
-  - .fif
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional
-    processing: optional
-    split: optional
-
-# Fourth group
+# fif files with "acq-crosstalk"
 - suffixes:
   - meg
   extensions:
