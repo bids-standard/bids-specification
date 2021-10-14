@@ -365,8 +365,8 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     table = [formats]
 
     # Compose header and formats first
-    entity_to_col = {ent: i for i, ent in enumerate(schema["rules"]["entities"])}
-    for i_entity, entity in enumerate(schema["rules"]["entities"]):
+    all_entities = schema["rules"]["entities"]
+    for entity in all_entities:
         entity_spec = schema["objects"]["entities"][entity]
         entity_shorthand = entity_spec["entity"]
         header.append(entity_spec["name"])
@@ -380,8 +380,8 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         dtype_rows = {}
 
         # each dtype could have multiple specs
-        for spec in dtype_specs:
-            suffixes = spec.get("suffixes")
+        for i_dtype_spec, dtype_spec in enumerate(dtype_specs):
+            suffixes = dtype_spec.get("suffixes")
 
             # Skip this part of the schema if no suffixes are found.
             # This is a hack to work around filter_schema's limitations.
@@ -390,25 +390,41 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
             # TODO: <br> is specific for html form
             suffixes_str = " ".join(suffixes) if suffixes else ""
-            dtype_row = [dtype] + ([""] * len(entity_to_col))
-            for ent, ent_info in spec.get("entities", []).items():
+            dtype_row = [dtype] + ([""] * len(all_entities))
+            for ent, ent_info in dtype_spec.get("entities", {}).items():
                 if isinstance(ent_info, dict):
                     requirement_level = ent_info["requirement"]
                 else:
                     requirement_level = ent_info
 
-                dtype_row[entity_to_col[ent]] = requirement_level.upper()
+                dtype_row[all_entities.index(ent) + 1] = requirement_level.upper()
 
-            # Merge specs within dtypes if they share all of the same entities
             if dtype_row in dtype_rows.values():
-                for k, v in dtype_rows.items():
-                    if dtype_row == v:
-                        dtype_rows.pop(k)
-                        new_k = k + " " + suffixes_str
-                        new_k = new_k.strip()
-                        dtype_rows[new_k] = v
+                # Merge specs within dtypes if they share all of the same entities
+                for existing_suffixes_str, existing_entities in dtype_rows.items():
+                    if dtype_row == existing_entities:
+                        dtype_rows.pop(existing_suffixes_str)
+                        split_old_suffixes = existing_suffixes_str.split(" ")
+                        split_suffixes = suffixes_str.split(" ")
+                        split_new_suffixes = sorted(list(set(split_suffixes + split_old_suffixes)))
+                        if "also" in split_new_suffixes:
+                            split_new_suffixes.remove("also")
+                            new_suffixes_str = " ".join(split_new_suffixes)
+                            new_suffixes_str = "also " + new_suffixes_str
+                        else:
+                            new_suffixes_str = " ".join(split_new_suffixes)
+
+                        dtype_rows[new_suffixes_str] = existing_entities
                         break
+
+            elif suffixes_str in dtype_rows.keys():
+                # Create new lines for multiple specs with the same dtype and suffix,
+                # but different entities
+                # Unfortunately, the keys need to be unique
+                dtype_rows["also " + suffixes_str] = dtype_row
+
             else:
+                # Otherwise, just add the new suffix group
                 dtype_rows[suffixes_str] = dtype_row
 
         # Reformat first column
@@ -416,6 +432,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
             dtype + "<br>({})".format(k): v for k, v in dtype_rows.items()
         }
         dtype_rows = [[k] + v for k, v in dtype_rows.items()]
+
         table += dtype_rows
 
     # Create multi-level index because first two rows are headers
