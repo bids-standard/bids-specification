@@ -208,6 +208,23 @@ def make_entity_definitions(schema):
     return text
 
 
+def _add_entity(filename_template, entity_pattern, requirement_level):
+    if requirement_level == "required":
+        if len(filename_template.strip()):
+            filename_template += "_" + entity_pattern
+        else:
+            # Only the first entity doesn't need an underscore
+            filename_template += entity_pattern
+    else:
+        if len(filename_template.strip()):
+            filename_template += "[_" + entity_pattern + "]"
+        else:
+            # Only the first entity doesn't need an underscore
+            filename_template += "[" + entity_pattern + "]"
+
+    return filename_template
+
+
 def make_filename_template(schema, **kwargs):
     """Create codeblocks containing example filename patterns for a given
     datatype.
@@ -248,23 +265,31 @@ def make_filename_template(schema, **kwargs):
         for group in schema["rules"]["datatypes"][datatype]:
             string = "\t\t\t"
             for ent in entity_order:
-                ent_format = "{}-<{}>".format(
-                    schema["objects"]["entities"][ent]["entity"],
-                    schema["objects"]["entities"][ent].get("format", "label")
-                )
+                if "enum" in schema["objects"]["entities"][ent].keys():
+                    # Entity key-value pattern with specific allowed values
+                    ent_format = "{}-<{}>".format(
+                        schema["objects"]["entities"][ent]["entity"],
+                        "|".join(schema["objects"]["entities"][ent]["enum"]),
+                    )
+                else:
+                    # Standard entity key-value pattern with simple label/index
+                    ent_format = "{}-<{}>".format(
+                        schema["objects"]["entities"][ent]["entity"],
+                        schema["objects"]["entities"][ent].get("format", "label"),
+                    )
+
                 if ent in group["entities"]:
-                    if group["entities"][ent] == "required":
-                        if len(string.strip()):
-                            string += "_" + ent_format
-                        else:
-                            # Only the first entity doesn't need an underscore
-                            string += ent_format
+                    if isinstance(group["entities"][ent], dict):
+                        if "enum" in group["entities"][ent].keys():
+                            # Overwrite the filename pattern based on the valid values
+                            ent_format = "{}-<{}>".format(
+                                schema["objects"]["entities"][ent]["entity"],
+                                "|".join(group["entities"][ent]["enum"]),
+                            )
+
+                        string = _add_entity(string, ent_format, group["entities"][ent]["requirement"])
                     else:
-                        if len(string.strip()):
-                            string += "[_" + ent_format + "]"
-                        else:
-                            # Only the first entity doesn't need an underscore
-                            string += "[" + ent_format + "]"
+                        string = _add_entity(string, ent_format, group["entities"][ent])
 
             # In cases of large numbers of suffixes,
             # we use the "suffix" variable and expect a table later in the spec
