@@ -363,12 +363,14 @@ in the BIDS dataset and `participants.tsv` file.
 As with all other tabular data, the additional phenotypic information files
 MAY be accompanied by a JSON file describing the columns in detail
 (see [Tabular files](02-common-principles.md#tabular-files)).
-In addition to the column description, a section describing the measurement tool
-(as a whole) MAY be added under the name `MeasurementToolMetadata`.
-This section consists of two keys:
 
--   `Description`: A free text description of the measurement tool
--   `TermURL`: A URL to an entity in an ontology corresponding to this tool.
+In addition to the column descriptions, the JSON file MAY contain the following fields:
+
+{{ MACROS___make_metadata_table(
+   {
+      "MeasurementToolMetadata": "OPTIONAL",
+   }
+) }}
 
 As an example, consider the contents of a file called
 `phenotype/acds_adult.json`:

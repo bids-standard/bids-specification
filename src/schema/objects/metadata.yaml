@@ -452,6 +452,13 @@ Density:
   - type: object
     additionalProperties:
       type: string
+Derivative:
+  name: Derivative
+  description: |
+    Indicates that values in the corresponding column are transformations of values
+    from other columns (for example a summary score based on a subset of items in a
+    questionnaire).
+  type: boolean
 Description:
   name: Description
   description: |
@@ -1549,6 +1556,20 @@ MaxMovement:
     as measured by the head localisation coils (for example, 4.8).
   type: number
   unit: mm
+MeasurementToolMetadata:
+  name: MeasurementToolMetadata
+  description: |
+    A description of the measurement tool as a whole.
+    Contains two fields: `"Description"` and `"TermURL"`.
+    `"Description"` is a free text description of the measurement tool.
+    `"TermURL"` is a URL to an entity in an ontology corresponding to this tool.
+  type: object
+  properties:
+    TermURL:
+      type: string
+      format: uri
+    Description:
+      type: string
 MetaboliteAvail:
   name: MetaboliteAvail
   description: |
