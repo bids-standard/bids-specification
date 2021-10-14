@@ -209,6 +209,7 @@ def make_entity_definitions(schema):
 
 
 def _add_entity(filename_template, entity_pattern, requirement_level):
+    """Add entity pattern to filename template based on requirement level."""
     if requirement_level == "required":
         if len(filename_template.strip()):
             filename_template += "_" + entity_pattern
@@ -287,7 +288,11 @@ def make_filename_template(schema, **kwargs):
                                 "|".join(group["entities"][ent]["enum"]),
                             )
 
-                        string = _add_entity(string, ent_format, group["entities"][ent]["requirement"])
+                        string = _add_entity(
+                            string,
+                            ent_format,
+                            group["entities"][ent]["requirement"],
+                        )
                     else:
                         string = _add_entity(string, ent_format, group["entities"][ent])
 
