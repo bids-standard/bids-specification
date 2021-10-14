@@ -14,8 +14,8 @@ index:
 string:
   description: |
     The basic string type (not a specific format).
-    This should allow any free-form string *except* "n/a".
-  pattern: ^(?!(n/a)$).*$
+    This should allow any free-form string.
+  pattern: ^.*$
 integer:
   description: |
     An integer which may be positive or negative.
@@ -44,10 +44,13 @@ datetime:
 unit:
   description: |
     A unit.
-    Currently this matches any string that isn't "n/a".
+    SI units in CMIXF formatting are RECOMMENDED
+    (see [Units](/02-common-principles.html#units)).
+
+    Currently this matches any string.
 
     TODO: Somehow reference the actual unit options in the Units appendix.
-  pattern: ^(?!(n/a)$).*$
+  pattern: ^.*$
 stimuli_relative:
   description: |
     A path to a stimulus file, relative to a `/stimuli` folder somewhere.
