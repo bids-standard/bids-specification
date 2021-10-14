@@ -357,18 +357,18 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     # import pdb; pdb.set_trace()
     header = ["Entity", "DataType"]
     formats = ["Format", "DataType"]
-    entity_to_col = {}
     table = [formats]
 
     # Compose header and formats first
-    for i, (entity, spec) in enumerate(schema["objects"]["entities"].items()):
-        entity_shorthand = schema["objects"]["entities"][entity]["entity"]
-        header.append(spec["name"])
+    entity_to_col = {ent: i for i, ent in enumerate(schema["rules"]["entities"])}
+    for i_entity, entity in enumerate(schema["rules"]["entities"]):
+        entity_spec = schema["objects"]["entities"][entity]
+        entity_shorthand = entity_spec["entity"]
+        header.append(entity_spec["name"])
         formats.append(
-            f'[`{entity_shorthand}-<{spec.get("format", "label")}>`]'
+            f'[`{entity_shorthand}-<{entity_spec.get("format", "label")}>`]'
             f"({ENTITIES_FILE}#{entity_shorthand})"
         )
-        entity_to_col[entity] = i + 1
 
     # Go through data types
     for dtype, dtype_specs in schema["rules"]["datatypes"].items():
@@ -386,8 +386,13 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
             # TODO: <br> is specific for html form
             suffixes_str = " ".join(suffixes) if suffixes else ""
             dtype_row = [dtype] + ([""] * len(entity_to_col))
-            for ent, req in spec.get("entities", []).items():
-                dtype_row[entity_to_col[ent]] = req.upper()
+            for ent, ent_info in spec.get("entities", []).items():
+                if isinstance(ent_info, dict):
+                    requirement_level = ent_info["requirement"]
+                else:
+                    requirement_level = ent_info
+
+                dtype_row[entity_to_col[ent]] = requirement_level.upper()
 
             # Merge specs within dtypes if they share all of the same entities
             if dtype_row in dtype_rows.values():
