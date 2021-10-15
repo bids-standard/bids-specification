@@ -331,18 +331,9 @@ For Microscopy data, the [Samples file](../03-modality-agnostic-files.md#samples
 Additional optional columns in `samples.tsv` MAY be used to describe other samples' attributes.
 
 ## Recommended participant data (`participants.tsv`)
-<!---
-This section may be removed or modified depending if it is included in the "general"
-participants.tsv file in PR #816.
-(https://github.com/bids-standard/bids-specification/pull/816#issuecomment-909343123)
--->
-In addition to the species column in the [Participants file](../03-modality-agnostic-files.md#participants-file),
-the following data SHOULD be included for species different from `homo sapiens`:
 
--   `strain`: string value indicating the strain of the species, for example: `C57BL/6J`.
-
--   `strain_rrid`: research resource identifier ([RRID](https://scicrunch.org/resources/Organisms/search))
-    of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
+For Microscopy data, we RECOMMEND to make use of the columns `species`, `strain` and `strain_rrid`
+in the [Participants file](../03-modality-agnostic-files.md#participants-file) when applicable.
 
 For example:
 ```Text
