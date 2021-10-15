@@ -378,6 +378,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     # Go through data types
     for dtype, dtype_specs in schema["rules"]["datatypes"].items():
         dtype_rows = {}
+        duplicate_row_counter = 0
 
         # each dtype could have multiple specs
         for i_dtype_spec, dtype_spec in enumerate(dtype_specs):
@@ -403,16 +404,21 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
                 # Merge specs within dtypes if they share all of the same entities
                 for existing_suffixes_str, existing_entities in dtype_rows.items():
                     if dtype_row == existing_entities:
+                        # Combine suffixes from the existing row with ones from the new row
                         dtype_rows.pop(existing_suffixes_str)
-                        split_old_suffixes = existing_suffixes_str.split(" ")
-                        split_suffixes = suffixes_str.split(" ")
-                        split_new_suffixes = sorted(list(set(split_suffixes + split_old_suffixes)))
-                        if "also" in split_new_suffixes:
-                            split_new_suffixes.remove("also")
-                            new_suffixes_str = " ".join(split_new_suffixes)
-                            new_suffixes_str = "also " + new_suffixes_str
+                        old_suffix_list = existing_suffixes_str.split(" ")
+                        new_suffix_list = suffixes_str.split(" ")
+                        comb_suffix_list = sorted(list(set(new_suffix_list + old_suffix_list)))
+                        number_suffixes = list(filter(str.isnumeric, comb_suffix_list))
+                        if len(number_suffixes) == 1:
+                            number = number_suffixes[0]
+                            comb_suffix_list.remove(number)
+                            new_suffixes_str = " ".join(comb_suffix_list)
+                            new_suffixes_str = number + " " + new_suffixes_str
+                        elif len(number_suffixes) > 1:
+                            raise Exception("Something's wrong here.")
                         else:
-                            new_suffixes_str = " ".join(split_new_suffixes)
+                            new_suffixes_str = " ".join(comb_suffix_list)
 
                         dtype_rows[new_suffixes_str] = existing_entities
                         break
@@ -421,7 +427,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
                 # Create new lines for multiple specs with the same dtype and suffix,
                 # but different entities
                 # Unfortunately, the keys need to be unique
-                dtype_rows["also " + suffixes_str] = dtype_row
+                dtype_rows[str(duplicate_row_counter) + " " + suffixes_str] = dtype_row
 
             else:
                 # Otherwise, just add the new suffix group
