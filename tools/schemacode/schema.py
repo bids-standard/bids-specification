@@ -11,7 +11,7 @@ import pandas as pd
 import yaml
 from tabulate import tabulate
 
-import utils
+from . import utils
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
