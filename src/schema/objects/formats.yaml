@@ -84,7 +84,7 @@ participant_relative:
 rrid:
   description: |
     A [research resource identifier](https://scicrunch.org/resources).
-  pattern: ^.+_.+$
+  pattern: ^RRID:.+_.+$
 uri:
   description: |
     A uniform resource indicator.
