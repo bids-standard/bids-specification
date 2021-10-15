@@ -11,7 +11,7 @@ import pandas as pd
 import yaml
 from tabulate import tabulate
 
-from . import utils
+import utils
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
@@ -409,15 +409,21 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
                         old_suffix_list = existing_suffixes_str.split(" ")
                         new_suffix_list = suffixes_str.split(" ")
                         comb_suffix_list = sorted(list(set(new_suffix_list + old_suffix_list)))
+
+                        # Identify if the list of suffixes comes from an existing alternate row
                         number_suffixes = list(filter(str.isnumeric, comb_suffix_list))
                         if len(number_suffixes) == 1:
+                            # Suffixes come from an existing alternate row
                             number = number_suffixes[0]
                             comb_suffix_list.remove(number)
                             new_suffixes_str = " ".join(comb_suffix_list)
+                            # Retain the old number
                             new_suffixes_str = number + " " + new_suffixes_str
                         elif len(number_suffixes) > 1:
+                            # The row exists already, but contains multiple numbers
                             raise Exception("Something's wrong here.")
                         else:
+                            # It's a new row
                             new_suffixes_str = " ".join(comb_suffix_list)
 
                         dtype_rows[new_suffixes_str] = existing_entities
@@ -426,17 +432,17 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
             elif suffixes_str in dtype_rows.keys():
                 # Create new lines for multiple specs with the same dtype and suffix,
                 # but different entities
-                # Unfortunately, the keys need to be unique
+                # Unfortunately, the keys need to be unique, so we include a number
+                # NOTE: This assumes that no suffix in BIDS will ever be purely numeric.
                 dtype_rows[str(duplicate_row_counter) + " " + suffixes_str] = dtype_row
+                duplicate_row_counter += 1
 
             else:
                 # Otherwise, just add the new suffix group
                 dtype_rows[suffixes_str] = dtype_row
 
-        # Reformat first column
-        dtype_rows = {
-            dtype + "<br>({})".format(k): v for k, v in dtype_rows.items()
-        }
+        # Add datatype to first column and reformat it
+        dtype_rows = {dtype + "<br>({})".format(k): v for k, v in dtype_rows.items()}
         dtype_rows = [[k] + v for k, v in dtype_rows.items()]
 
         table += dtype_rows
@@ -450,6 +456,26 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     # Remove unnecessary columns
     table = utils.drop_unused_entities(table)
     table = utils.flatten_multiindexed_columns(table)
+
+    # Remove fake numeric suffixes from first column
+    def _remove_numeric_suffixes(string):
+        import re
+
+        suffix_str = re.findall("\((.+)\)", string)
+        # The "Format" row should be skipped
+        if not suffix_str:
+            return string
+
+        suffix_str = suffix_str[0]  # Only one parenthesis should appear
+        suffixes = suffix_str.split(" ")
+        suffixes = list(filter(lambda v: not str.isnumeric(v), suffixes))
+        suffix_str2 = " ".join(suffixes)
+        new_string = string.replace(f"({suffix_str})", f"({suffix_str2})")
+        return new_string
+
+    table[table.index.name] = table.index
+    table[table.index.name] = table[table.index.name].apply(_remove_numeric_suffixes)
+    table = table.set_index(table.index.name, drop=True)
 
     # Print it as markdown
     table_str = tabulate(table, headers="keys", tablefmt=tablefmt)
