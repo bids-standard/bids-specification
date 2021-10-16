@@ -1,8 +1,0 @@
----
-name: TB1EPI
-description: |
-  This B1<sup>+</sup> mapping method
-  ([Jiru and Klose 2006](https://doi.org/10.1002/mrm.21083)) is based on two
-  EPI readouts to acquire spin echo (SE) and stimulated echo (STE) images at
-  multiple flip angles in one sequence, used in the calculation of deviations
-  from the nominal flip angle.

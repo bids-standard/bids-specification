@@ -6,7 +6,7 @@ theme:
     favicon: images/favicon.png
     logo: images/logo.png
 extra_javascript:
-    - js/jquery-3.4.1.min.js
+    - js/jquery-3.6.0.min.js
 markdown_extensions:
     - toc:
         anchorlink: true

@@ -1,5 +1,0 @@
----
-name: ManufacturersModelName
-description: |
-  Manufacturer's model name of the equipment that produced the measurements.
-type: string

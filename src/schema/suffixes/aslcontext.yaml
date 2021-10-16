@@ -1,4 +1,0 @@
----
-name: Arterial Spin Labeling Context
-description: |
-  A TSV file defining the image types for volumes in an associated ASL file.

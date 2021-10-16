@@ -1,7 +1,0 @@
----
-name: Observed transverse relaxation rate image
-description: |
-  In seconds<sup>-1</sup> (1/s).
-  R2-star maps (R2star = 1/T2star) are REQUIRED to use this suffix regardless
-  of the method used to generate them.
-unit: 1/s

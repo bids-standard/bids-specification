@@ -1,7 +1,0 @@
----
-name: LabelingPulseInterval
-description: |
-  Delay between the peaks of the individual labeling pulses, in milliseconds.
-type: number
-exclusiveMinimum: 0
-unit: ms

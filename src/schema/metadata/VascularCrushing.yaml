@@ -1,6 +1,0 @@
----
-name: VascularCrushing
-description: |
-  Boolean indicating if Vascular Crushing is used.
-  Corresponds to DICOM Tag 0018, 9259 `ASL Crusher Flag`.
-type: boolean

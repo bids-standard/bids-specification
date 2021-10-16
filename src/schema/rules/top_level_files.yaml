@@ -1,0 +1,31 @@
+---
+README:
+  required: true
+  extensions:
+  - None
+CHANGES:
+  required: true
+  extensions:
+  - None
+LICENSE:
+  required: false
+  extensions:
+  - None
+dataset_description:
+  required: true
+  extensions:
+  - .json
+genetic_info:
+  required: false
+  extensions:
+  - .json
+participants:
+  required: false
+  extensions:
+  - .tsv
+  - .json
+samples:
+  required: false
+  extensions:
+  - .tsv
+  - .json
