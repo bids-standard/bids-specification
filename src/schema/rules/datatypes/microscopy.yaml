@@ -1,29 +1,29 @@
 ---
 # Microscopy
 - suffixes:
-    - TEM
-    - SEM
-    - uCT
-    - BF
-    - DF
-    - PC
-    - DIC
-    - FLUO
-    - CONF
-    - PLI
-    - CARS
-    - 2PE
-    - MPE
-    - SR
-    - NLO
-    - OCT
-    - SPIM
+  - TEM
+  - SEM
+  - uCT
+  - BF
+  - DF
+  - PC
+  - DIC
+  - FLUO
+  - CONF
+  - PLI
+  - CARS
+  - 2PE
+  - MPE
+  - SR
+  - NLO
+  - OCT
+  - SPIM
   extensions:
-    - .ome.tif
-    - .ome.btf
-    - .png
-    - .tiff
-    - .json
+  - .ome.tif
+  - .ome.btf
+  - .png
+  - .tiff
+  - .json
   entities:
     subject: required
     session: optional
@@ -32,12 +32,13 @@
     stain: optional
     run: optional
     chunk: optional
+
 - suffixes:
-    - photo
+  - photo
   extensions:
-    - .jpg
-    - .png
-    - .tif
+  - .jpg
+  - .png
+  - .tif
   entities:
     subject: required
     session: optional
