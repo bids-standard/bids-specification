@@ -27,9 +27,14 @@ stimulation turned on or off, the data files may be labelled
 
 ## RECOMMENDED metadata
 
-In addition of the metadata REQUIRED for some data that can be found in the `beh` folder
+In addition of the metadata:
+
+- RECOMMENDED for side-car JSON files for [tabular data](../02-common-principles.md#tabular-data),
+
+- REQUIRED for some data that can be found in the `beh` folder
 (for example `SamplingFrequency` and `StartTime` for `*_<physio|stim>.tsv.gz` files),
-it is RECOMMENDED to add the following metadata to the JSON files of this folder.
+
+it is RECOMMENDED to add the following metadata to the JSON files of this folder:
 
 {{ MACROS___make_metadata_table(
    {
@@ -43,3 +48,27 @@ it is RECOMMENDED to add the following metadata to the JSON files of this folder
       "InstitutionalDepartmentName": "RECOMMENDED",
    }
 ) }}
+
+Example of the content of a `_beh.tsv` and its `_beh.json` file:
+
+```Text
+trial	response	response_time	stim_file
+congruent	red	1.435	images/word-red_color-red.jpg
+incongruent	red	1.739	images/word-red_color-blue.jpg
+```
+
+In the accompanying JSON sidecar, the `trial_type` column might look as follows:
+
+```JSON
+{
+   "TaskName": "Stroop",
+   "trial": {
+      "LongName": "Trial name",
+      "Description": "Indicator of the type of trial",
+      "Levels": {
+         "congruent": "Word and color font are congruent.",
+         "incongruent": "Word and color font are not congruent.",
+      }
+   }
+}
+```
