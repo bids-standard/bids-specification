@@ -114,19 +114,7 @@ It is RECOMMENDED to share them along with the vendor outputs, whenever possible
 ### Example datasets
 
 You can find example file collections and qMRI maps organized according to BIDS 
-in the [BIDS examples](https://github.com/bids-standard/bids-examples):
-
-- [qmri_megre](https://github.com/bids-standard/bids-examples/tree/master/qmri_megre)
-- [qmri_mpm](https://github.com/bids-standard/bids-examples/tree/master/qmri_mpm)
-- [qmri_vfa](https://github.com/bids-standard/bids-examples/tree/master/qmri_vfa)
-- [qmri_mp2rageme](https://github.com/bids-standard/bids-examples/tree/master/qmri_mp2rageme)
-- [qmri_mtsat](https://github.com/bids-standard/bids-examples/tree/master/qmri_mtsat)
-- [qmri_mp2rage](https://github.com/bids-standard/bids-examples/tree/master/qmri_mp2rage)
-- [qmri_irt1](https://github.com/bids-standard/bids-examples/tree/master/qmri_irt1)
-- [qmri_qsm](https://github.com/bids-standard/bids-examples/tree/master/qmri_qsm)
-- [qmri_mese](https://github.com/bids-standard/bids-examples/tree/master/qmri_mese
-- [qmri_sa2rage](https://github.com/bids-standard/bids-examples/tree/master/qmri_sa2rage)
-- [qmri_tb1tfl](https://github.com/bids-standard/bids-examples/tree/master/qmri_tb1tfl)
+in the [BIDS examples](https://github.com/bids-standard/bids-examples#qmri-datasets).
 
 ## Metadata requirements for qMRI data
 

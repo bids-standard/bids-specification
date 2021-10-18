@@ -6,16 +6,9 @@ Please see [Citing BIDS](../01-introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-The following example iEEG datasets have been formatted using this specification
+Several [example iEEG datasets](https://github.com/bids-standard/bids-examples#ieeg-datasets) 
+have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
-
--   iEEG: 
-[`ieeg visual`](https://github.com/bids-standard/bids-examples/tree/master/ieeg_visual)
--   multimodal iEEG and functional MRI: 
-[`ieeg visual multimodal`](https://github.com/bids-standard/bids-examples/tree/master/ieeg_visual_multimodal)
-
-Further datasets are available from 
-the [BIDS examples repository](https://github.com/bids-standard/bids-examples#ieeg-datasets).
 
 
 ## iEEG recording data

@@ -753,15 +753,9 @@ JSON example:
 
 ## Arterial Spin Labeling perfusion data
 
-Several [example ASL datasets](https://github.com/bids-standard/bids-examples) 
+Several [example ASL datasets](https://github.com/bids-standard/bids-examples#asl-datasets) 
 have been formatted using this specification
-and can be used for practical guidance when curating a new dataset:
-
-- [`asl001`](https://github.com/bids-standard/bids-examples/tree/master/asl001)
-- [`asl002`](https://github.com/bids-standard/bids-examples/tree/master/asl002)
-- [`asl003`](https://github.com/bids-standard/bids-examples/tree/master/asl003)
-- [`asl004`](https://github.com/bids-standard/bids-examples/tree/master/asl004)
-- [`asl005`](https://github.com/bids-standard/bids-examples/tree/master/asl005)
+and can be used for practical guidance when curating a new dataset.
 
 {{ MACROS___make_filename_template(datatypes=["perf"]) }}
 
