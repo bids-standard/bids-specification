@@ -208,6 +208,24 @@ def make_entity_definitions(schema):
     return text
 
 
+def _add_entity(filename_template, entity_pattern, requirement_level):
+    """Add entity pattern to filename template based on requirement level."""
+    if requirement_level == "required":
+        if len(filename_template.strip()):
+            filename_template += "_" + entity_pattern
+        else:
+            # Only the first entity doesn't need an underscore
+            filename_template += entity_pattern
+    else:
+        if len(filename_template.strip()):
+            filename_template += "[_" + entity_pattern + "]"
+        else:
+            # Only the first entity doesn't need an underscore
+            filename_template += "[" + entity_pattern + "]"
+
+    return filename_template
+
+
 def make_filename_template(schema, **kwargs):
     """Create codeblocks containing example filename patterns for a given
     datatype.
@@ -248,23 +266,35 @@ def make_filename_template(schema, **kwargs):
         for group in schema["rules"]["datatypes"][datatype]:
             string = "\t\t\t"
             for ent in entity_order:
-                ent_format = "{}-<{}>".format(
-                    schema["objects"]["entities"][ent]["entity"],
-                    schema["objects"]["entities"][ent].get("format", "label")
-                )
+                if "enum" in schema["objects"]["entities"][ent].keys():
+                    # Entity key-value pattern with specific allowed values
+                    ent_format = "{}-<{}>".format(
+                        schema["objects"]["entities"][ent]["entity"],
+                        "|".join(schema["objects"]["entities"][ent]["enum"]),
+                    )
+                else:
+                    # Standard entity key-value pattern with simple label/index
+                    ent_format = "{}-<{}>".format(
+                        schema["objects"]["entities"][ent]["entity"],
+                        schema["objects"]["entities"][ent].get("format", "label"),
+                    )
+
                 if ent in group["entities"]:
-                    if group["entities"][ent] == "required":
-                        if len(string.strip()):
-                            string += "_" + ent_format
-                        else:
-                            # Only the first entity doesn't need an underscore
-                            string += ent_format
+                    if isinstance(group["entities"][ent], dict):
+                        if "enum" in group["entities"][ent].keys():
+                            # Overwrite the filename pattern based on the valid values
+                            ent_format = "{}-<{}>".format(
+                                schema["objects"]["entities"][ent]["entity"],
+                                "|".join(group["entities"][ent]["enum"]),
+                            )
+
+                        string = _add_entity(
+                            string,
+                            ent_format,
+                            group["entities"][ent]["requirement"],
+                        )
                     else:
-                        if len(string.strip()):
-                            string += "[_" + ent_format + "]"
-                        else:
-                            # Only the first entity doesn't need an underscore
-                            string += "[" + ent_format + "]"
+                        string = _add_entity(string, ent_format, group["entities"][ent])
 
             # In cases of large numbers of suffixes,
             # we use the "suffix" variable and expect a table later in the spec
@@ -332,26 +362,27 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     # import pdb; pdb.set_trace()
     header = ["Entity", "DataType"]
     formats = ["Format", "DataType"]
-    entity_to_col = {}
     table = [formats]
 
     # Compose header and formats first
-    for i, (entity, spec) in enumerate(schema["objects"]["entities"].items()):
-        entity_shorthand = schema["objects"]["entities"][entity]["entity"]
-        header.append(spec["name"])
+    all_entities = schema["rules"]["entities"]
+    for entity in all_entities:
+        entity_spec = schema["objects"]["entities"][entity]
+        entity_shorthand = entity_spec["entity"]
+        header.append(entity_spec["name"])
         formats.append(
-            f'[`{entity_shorthand}-<{spec.get("format", "label")}>`]'
+            f'[`{entity_shorthand}-<{entity_spec.get("format", "label")}>`]'
             f"({ENTITIES_FILE}#{entity_shorthand})"
         )
-        entity_to_col[entity] = i + 1
 
     # Go through data types
     for dtype, dtype_specs in schema["rules"]["datatypes"].items():
         dtype_rows = {}
+        duplicate_row_counter = 0
 
         # each dtype could have multiple specs
-        for spec in dtype_specs:
-            suffixes = spec.get("suffixes")
+        for i_dtype_spec, dtype_spec in enumerate(dtype_specs):
+            suffixes = dtype_spec.get("suffixes")
 
             # Skip this part of the schema if no suffixes are found.
             # This is a hack to work around filter_schema's limitations.
@@ -360,27 +391,60 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
             # TODO: <br> is specific for html form
             suffixes_str = " ".join(suffixes) if suffixes else ""
-            dtype_row = [dtype] + ([""] * len(entity_to_col))
-            for ent, req in spec.get("entities", []).items():
-                dtype_row[entity_to_col[ent]] = req.upper()
+            dtype_row = [dtype] + ([""] * len(all_entities))
+            for ent, ent_info in dtype_spec.get("entities", {}).items():
+                if isinstance(ent_info, dict):
+                    requirement_level = ent_info["requirement"]
+                else:
+                    requirement_level = ent_info
 
-            # Merge specs within dtypes if they share all of the same entities
+                dtype_row[all_entities.index(ent) + 1] = requirement_level.upper()
+
             if dtype_row in dtype_rows.values():
-                for k, v in dtype_rows.items():
-                    if dtype_row == v:
-                        dtype_rows.pop(k)
-                        new_k = k + " " + suffixes_str
-                        new_k = new_k.strip()
-                        dtype_rows[new_k] = v
+                # Merge specs within dtypes if they share all of the same entities
+                for existing_suffixes_str, existing_entities in dtype_rows.items():
+                    if dtype_row == existing_entities:
+                        # Combine suffixes from the existing row with ones from the new row
+                        dtype_rows.pop(existing_suffixes_str)
+                        old_suffix_list = existing_suffixes_str.split(" ")
+                        new_suffix_list = suffixes_str.split(" ")
+                        comb_suffix_list = sorted(list(set(new_suffix_list + old_suffix_list)))
+
+                        # Identify if the list of suffixes comes from an existing alternate row
+                        number_suffixes = list(filter(str.isnumeric, comb_suffix_list))
+                        if len(number_suffixes) == 1:
+                            # Suffixes come from an existing alternate row
+                            number = number_suffixes[0]
+                            comb_suffix_list.remove(number)
+                            new_suffixes_str = " ".join(comb_suffix_list)
+                            # Retain the old number
+                            new_suffixes_str = number + " " + new_suffixes_str
+                        elif len(number_suffixes) > 1:
+                            # The row exists already, but contains multiple numbers
+                            raise Exception("Something's wrong here.")
+                        else:
+                            # It's a new row
+                            new_suffixes_str = " ".join(comb_suffix_list)
+
+                        dtype_rows[new_suffixes_str] = existing_entities
                         break
+
+            elif suffixes_str in dtype_rows.keys():
+                # Create new lines for multiple specs with the same dtype and suffix,
+                # but different entities
+                # Unfortunately, the keys need to be unique, so we include a number
+                # NOTE: This assumes that no suffix in BIDS will ever be purely numeric.
+                dtype_rows[str(duplicate_row_counter) + " " + suffixes_str] = dtype_row
+                duplicate_row_counter += 1
+
             else:
+                # Otherwise, just add the new suffix group
                 dtype_rows[suffixes_str] = dtype_row
 
-        # Reformat first column
-        dtype_rows = {
-            dtype + "<br>({})".format(k): v for k, v in dtype_rows.items()
-        }
+        # Add datatype to first column and reformat it
+        dtype_rows = {dtype + "<br>({})".format(k): v for k, v in dtype_rows.items()}
         dtype_rows = [[k] + v for k, v in dtype_rows.items()]
+
         table += dtype_rows
 
     # Create multi-level index because first two rows are headers
@@ -392,6 +456,26 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     # Remove unnecessary columns
     table = utils.drop_unused_entities(table)
     table = utils.flatten_multiindexed_columns(table)
+
+    # Remove fake numeric suffixes from first column
+    def _remove_numeric_suffixes(string):
+        import re
+
+        suffix_str = re.findall("\((.+)\)", string)
+        # The "Format" row should be skipped
+        if not suffix_str:
+            return string
+
+        suffix_str = suffix_str[0]  # Only one parenthesis should appear
+        suffixes = suffix_str.split(" ")
+        suffixes = list(filter(lambda v: not str.isnumeric(v), suffixes))
+        suffix_str2 = " ".join(suffixes)
+        new_string = string.replace(f"({suffix_str})", f"({suffix_str2})")
+        return new_string
+
+    table[table.index.name] = table.index
+    table[table.index.name] = table[table.index.name].apply(_remove_numeric_suffixes)
+    table = table.set_index(table.index.name, drop=True)
 
     # Print it as markdown
     table_str = tabulate(table, headers="keys", tablefmt=tablefmt)
