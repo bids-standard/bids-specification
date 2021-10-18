@@ -66,8 +66,8 @@ In the accompanying JSON sidecar, the `trial_type` column might look as follows:
       "LongName": "Trial name",
       "Description": "Indicator of the type of trial",
       "Levels": {
-         "congruent": "Word and color font are congruent.",
-         "incongruent": "Word and color font are not congruent."
+         "congruent": "Word and font color match.",
+         "incongruent": "Word and font color do not match."
       }
    }
 }
