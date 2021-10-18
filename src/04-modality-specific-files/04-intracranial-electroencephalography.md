@@ -8,7 +8,11 @@ context of the academic literature.
 
 ## iEEG recording data
 
-{{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["ieeg", "events"]) }}
+{{ 
+   MACROS___make_filename_template(
+      datatypes=["ieeg"], 
+      suffixes=["ieeg", "events", "physio", "stim"]) 
+}}
 
 The iEEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, iEEG data MUST be

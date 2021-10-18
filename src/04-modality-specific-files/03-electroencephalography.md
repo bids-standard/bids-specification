@@ -17,7 +17,11 @@ Further datasets are available from the [BIDS examples repository](https://githu
 
 ## EEG recording data
 
-{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["eeg", "events"]) }}
+{{ 
+   MACROS___make_filename_template(
+      datatypes=["eeg"], 
+      suffixes=["eeg", "events", "physio", "stim"]) 
+}}
 
 The EEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, EEG data MUST be
