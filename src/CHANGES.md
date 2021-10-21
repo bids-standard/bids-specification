@@ -2,7 +2,14 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[ENH] update and reformat table for template in cordinate system page [#903](https://github.com/bids-standard/bids-specification/pull/903) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[SCHEMA] Add new MEG files and fix entity tables [#898](https://github.com/bids-standard/bids-specification/pull/898) ([tsalo](https://github.com/tsalo))
+-   \[FIX] small typo in json example [#897](https://github.com/bids-standard/bids-specification/pull/897) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[INFRA] tiny speedup of building PDF by moving `re.compile\(\)` outside of a loop [#896](https://github.com/bids-standard/bids-specification/pull/896) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
+-   \[INFRA] Document \*.webm video files as binary [#895](https://github.com/bids-standard/bids-specification/pull/895) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
+-   \[INFRA] fix draft rendering css on mobile or when browser window is narrow [#889](https://github.com/bids-standard/bids-specification/pull/889) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Add an animated BIDS logo [#886](https://github.com/bids-standard/bids-specification/pull/886) ([adswa](https://github.com/adswa))
+-   \[SCHEMA] Consolidate schema files by term type [#883](https://github.com/bids-standard/bids-specification/pull/883) ([tsalo](https://github.com/tsalo))
 -   \[INFRA] jQuery 3.4.1 → 3.6.0 [#875](https://github.com/bids-standard/bids-specification/pull/875) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA] Add "codespell" tool to CI checks to catch typos sooner [#873](https://github.com/bids-standard/bids-specification/pull/873) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA] Several style fixes (Flake8) for Python code in the repo [#872](https://github.com/bids-standard/bids-specification/pull/872) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
@@ -28,6 +35,7 @@
 -   \[FIX] Add missing closing parenthesis in 02-common-principle.md [#822](https://github.com/bids-standard/bids-specification/pull/822) ([sebastientourbier](https://github.com/sebastientourbier))
 -   \[MISC] update available datatypes in specification [#819](https://github.com/bids-standard/bids-specification/pull/819) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] document required column order MEG, EEG, iEEG, PET, and fix typo iEEG [#818](https://github.com/bids-standard/bids-specification/pull/818) ([sappelhoff](https://github.com/sappelhoff))
+-   \[ENH] BEP031 - New columns to participants.tsv file [#816](https://github.com/bids-standard/bids-specification/pull/816) ([mariehbourget](https://github.com/mariehbourget))
 -   \[MISC] make table headers bold [#815](https://github.com/bids-standard/bids-specification/pull/815) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] What is a composite instance? Change to measurement for non MRI modalities? [#813](https://github.com/bids-standard/bids-specification/pull/813) ([rob-luke](https://github.com/rob-luke))
 -   \[ENH] BEP031 - New entity: sample and samples.tsv file [#812](https://github.com/bids-standard/bids-specification/pull/812) ([mariehbourget](https://github.com/mariehbourget))
