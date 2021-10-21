@@ -274,7 +274,8 @@ Similar to [derivatives](../05-derivatives/02-common-data-types.md), it is OPTIO
   "ReconMethodParameterUnits": ["none","none"],
   "ReconMethodParameterValues": [16,10],
   "ReconFilterType": "none",
-  "AttenuationCorrection": "[137Cs]transmission scan-based"
+  "AttenuationCorrection": "[137Cs]transmission scan-based",
+  "Sources": ["pet_file.nii"]
 }
 ```
 
