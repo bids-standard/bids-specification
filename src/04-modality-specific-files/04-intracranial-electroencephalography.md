@@ -199,7 +199,7 @@ Example:
   "iEEGGround":"placed on the right mastoid",
   "iEEGPlacementScheme":"right occipital temporal surface",
   "ElectricalStimulation":false,
-  "Sources":"001-visual.edf"
+  "Sources": ["001-visual.edf"]
 }
 ```
 

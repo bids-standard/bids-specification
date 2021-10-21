@@ -187,7 +187,7 @@ Example:
   },
   "RecordingDuration":600,
   "RecordingType":"continuous",
-  "Sources":"001-eeg-recording.vhdr"
+  "Sources": ["001-eeg-recording.vhdr"]
 }
 ```
 

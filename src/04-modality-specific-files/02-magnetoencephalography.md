@@ -201,7 +201,7 @@ Example:
    "HeadCoilFrequency": [1470,1530,1590],
    "DigitizedLandmarks": true,
    "DigitizedHeadPoints": true,
-   "Sources": "001-upright-meg.ds",
+   "Sources": ["001-upright-meg.ds"],
 }
 ```
 
