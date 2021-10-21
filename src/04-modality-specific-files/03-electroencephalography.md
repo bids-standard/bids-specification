@@ -148,6 +148,9 @@ SHOULD be present:
    }
 ) }}
 
+Similar to [derivatives](../05-derivatives/02-common-data-types.md), one SHOULD include ``RawSources`` as a key, specifying the filename of the
+source file used to generate this dataset.
+
 Example:
 
 ```JSON
@@ -184,7 +187,8 @@ Example:
     }
   },
   "RecordingDuration":600,
-  "RecordingType":"continuous"
+  "RecordingType":"continuous",
+  "RawSources":"001-eeg-recording.vhdr"
 }
 ```
 

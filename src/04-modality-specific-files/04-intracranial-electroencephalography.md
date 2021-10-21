@@ -167,6 +167,9 @@ Specific iEEG fields MAY be present:
    }
 ) }}
 
+Similar to [derivatives](../05-derivatives/02-common-data-types.md), one SHOULD include ``RawSources`` as a key, specifying the filename of the
+source file used to generate this dataset.
+
 Example:
 
 ```JSON
@@ -196,7 +199,8 @@ Example:
   "RecordingType":"continuous",
   "iEEGGround":"placed on the right mastoid",
   "iEEGPlacementScheme":"right occipital temporal surface",
-  "ElectricalStimulation":false
+  "ElectricalStimulation":false,
+  "RawSources":"001-visual.edf"
 }
 ```
 

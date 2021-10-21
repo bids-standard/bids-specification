@@ -169,6 +169,9 @@ SHOULD be present:
    }
 ) }}
 
+Similar to [derivatives](../05-derivatives/02-common-data-types.md), one SHOULD include ``RawSources`` as a key, specifying the filename of the
+source file used to generate this dataset.
+
 Example:
 
 ```JSON
@@ -198,7 +201,8 @@ Example:
    "ContinuousHeadLocalization": true,
    "HeadCoilFrequency": [1470,1530,1590],
    "DigitizedLandmarks": true,
-   "DigitizedHeadPoints": true
+   "DigitizedHeadPoints": true,
+   "RawSources": "001-upright-meg.ds",
 }
 ```
 
