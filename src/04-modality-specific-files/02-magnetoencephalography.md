@@ -169,8 +169,7 @@ SHOULD be present:
    }
 ) }}
 
-Similar to [derivatives](../05-derivatives/02-common-data-types.md), one SHOULD include ``RawSources`` as a key, specifying the filename of the
-source file used to generate this dataset.
+Similar to [derivatives](../05-derivatives/02-common-data-types.md), it is OPTIONAL to include ``Sources`` as a key in the sidecar JSON, specifying the filename(s) of the source file used to generate this dataset. If the filename(s) contains patient identifiable information, then it should not be stored in ``Sources``.
 
 Example:
 
@@ -202,7 +201,7 @@ Example:
    "HeadCoilFrequency": [1470,1530,1590],
    "DigitizedLandmarks": true,
    "DigitizedHeadPoints": true,
-   "RawSources": "001-upright-meg.ds",
+   "Sources": "001-upright-meg.ds",
 }
 ```
 

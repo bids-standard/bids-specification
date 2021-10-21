@@ -235,6 +235,10 @@ We refer to the common principles for the standards for describing dates and tim
 
 All reconstruction-specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
 
+#### Source Filename
+
+Similar to [derivatives](../05-derivatives/02-common-data-types.md), it is OPTIONAL to include ``Sources`` as a key in the sidecar JSON, specifying the filename(s) of the source file used to generate this dataset. If the filename(s) contains patient identifiable information, then it should not be stored in ``Sources``.
+
 #### Example (`*_pet.json`)
 
 ```JSON

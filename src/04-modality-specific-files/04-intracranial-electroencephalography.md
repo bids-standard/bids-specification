@@ -167,8 +167,7 @@ Specific iEEG fields MAY be present:
    }
 ) }}
 
-Similar to [derivatives](../05-derivatives/02-common-data-types.md), one SHOULD include ``RawSources`` as a key, specifying the filename of the
-source file used to generate this dataset.
+Similar to [derivatives](../05-derivatives/02-common-data-types.md), it is OPTIONAL to include ``Sources`` as a key in the sidecar JSON, specifying the filename(s) of the source file used to generate this dataset. If the filename(s) contains patient identifiable information, then it should not be stored in ``Sources``.
 
 Example:
 
@@ -200,7 +199,7 @@ Example:
   "iEEGGround":"placed on the right mastoid",
   "iEEGPlacementScheme":"right occipital temporal surface",
   "ElectricalStimulation":false,
-  "RawSources":"001-visual.edf"
+  "Sources":"001-visual.edf"
 }
 ```
 

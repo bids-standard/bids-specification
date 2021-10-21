@@ -31,6 +31,8 @@ In addition of the metadata REQUIRED for some data that can be found in the `beh
 (for example `SamplingFrequency` and `StartTime` for `*_<physio|stim>.tsv.gz` files),
 it is RECOMMENDED to add the following metadata to the JSON files of this folder.
 
+Similar to [derivatives](../05-derivatives/02-common-data-types.md), it is OPTIONAL to include ``Sources`` as a key in the sidecar JSON, specifying the filename(s) of the source file used to generate this dataset. If the filename(s) contains patient identifiable information, then it should not be stored in ``Sources``.
+
 {{ MACROS___make_metadata_table(
    {
       "TaskName": "RECOMMENDED",
