@@ -158,7 +158,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Dianne Patterson 📖
 -   John Pellman 📖
 -   Cyril Pernet 💬📝📖🎨💡📋🤔📢
--   Franco Pestilli 📖💻🎨💡🤔👀🔧
+-   Franco Pestilli 📖💻🎨💡🤔👀🔧📋🔍🚇
 -   Jan Petr 💬🐛💻📖🔣💡📋🤔📆⚠️📢
 -   Natalia Petridou 📖
 -   Dmitry Petrov 📖💻
