@@ -444,6 +444,9 @@ This way relative timing would be preserved, but chances of identifying a
 person based on the date and time of their scan would be decreased.
 Dates that are shifted for anonymization purposes SHOULD be set to the year 1925
 or earlier to clearly distinguish them from unmodified data.
+Note that some data formats do not support arbitrary recording dates.
+For example, the [EDF](https://www.edfplus.info/)
+data format can only contain recording dates after 1985.
 Shifting dates is RECOMMENDED, but not required.
 
 Additional fields can include external behavioral measures relevant to the
