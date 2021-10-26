@@ -354,7 +354,7 @@ For example:
 ) }}
 
 The order of the required columns in the `*_electrodes.tsv` file MUST be as listed below.
-The `x`, `y`, and `z` columns indicate the positions of the center of each electrode in xyz space.
+The `x`, `y`, and `z` columns indicate the positions of the center of each electrode in Cartesian coordinates.
 Units are specified in `space-<label>_coordsystem.json`.
 
 MUST be present **in this specific order**:
