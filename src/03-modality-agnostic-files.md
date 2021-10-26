@@ -468,6 +468,7 @@ Column names in `sessions.tsv` files MUST be different from group level particip
    {
       "session_id": ("REQUIRED", "There MUST be exactly one row for each session."),
       "acq_time": "OPTIONAL",
+      "pathology": "RECOMMENDED",
    }
 ) }}
 

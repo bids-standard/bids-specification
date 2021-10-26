@@ -249,10 +249,9 @@ pathology:
   name: pathology
   description: |
     String value describing the pathology of the sample or type of control.
-    When different from `healthy`, pathology SHOULD be specified in `samples.tsv`.
-    The pathology MAY instead be specified in
-    [Sessions files](/03-modality-agnostic-files.html#sessions-file)
-    in case it changes over time.
+    When different from `healthy`, pathology SHOULD be specified.
+    The pathology may be specified in either `samples.tsv` or
+    `sessions.tsv`, depending on whether the pathology changes over time.
   type: string
 participant_id:
   name: participant_id
@@ -318,10 +317,10 @@ sample_id:
 sample_type:
   name: sample_type
   description: |
-    MUST consist of sample type values, either `cell line`, `in vitro differentiated cells`,
-    `primary cell`, `cell-free sample`, `cloning host`, `tissue`, `whole organisms`,
-    `organoid`, or `technical sample` from
+    Biosample type defined by
     [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type).
+    One of: `"cell line"`, `"in vitro differentiated cells"`, `"primary cell"`, `"cell-free sample"`,
+    `"cloning host"`, `"tissue"`, `"whole organisms"`, `"organoid"`, or `"technical sample"`.
   type: string
   enum:
   - cell line
@@ -449,7 +448,7 @@ strain_rrid:
 time:
   name: time
   description: |
-    Time in relation to `TimeZero` defined by the `*_pet.json`.
+    Time, in seconds, relative to `TimeZero` defined by the `*_pet.json`.
     For example, 5.
   type: number
   unit: s
