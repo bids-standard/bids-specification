@@ -57,7 +57,7 @@ congruent	red	1.435	images/word-red_color-red.jpg
 incongruent	red	1.739	images/word-red_color-blue.jpg
 ```
 
-In the accompanying JSON sidecar, the `trial_type` column might look as follows:
+In the accompanying JSON sidecar, the `trial` column might be documented as follows:
 
 ```JSON
 {
