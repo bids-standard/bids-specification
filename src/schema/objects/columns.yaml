@@ -25,6 +25,9 @@ acq_time:
     on the date and time of their scan would be decreased.
     Dates that are shifted for anonymization purposes SHOULD be set to the year 1925 or earlier
     to clearly distinguish them from unmodified data.
+    Note that some data formats do not support arbitrary recording dates.
+    For example, the [EDF](https://www.edfplus.info/)
+    data format can only contain recording dates after 1985.
     Shifting dates is RECOMMENDED, but not required.
   type: string
   format: datetime
@@ -241,7 +244,7 @@ onset:
     the scanning sequence has started events from this sequence should have
     negative onset time counting down to the beginning of the acquisition of the
     first volume.
-    
+
     If any data points have been discarded before forming the data file
     (for example, "dummy volumes" in BOLD fMRI),
     a time of 0 corresponds to the first stored data point and not the first
