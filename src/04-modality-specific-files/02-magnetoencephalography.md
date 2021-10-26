@@ -229,8 +229,8 @@ MUST be present **in this specific order**:
 
 {{ MACROS___make_columns_table(
    {
-      "name_channels": "REQUIRED",
-      "type_channels": "REQUIRED",
+      "name__channels": "REQUIRED",
+      "type__channels": "REQUIRED",
       "units": "REQUIRED",
    }
 ) }}

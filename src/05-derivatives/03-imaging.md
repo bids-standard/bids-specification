@@ -451,7 +451,7 @@ These TSV lookup tables contain the following columns:
 {{ MACROS___make_columns_table(
    {
       "index": "REQUIRED",
-      "name_segmentations": "REQUIRED",
+      "name__segmentations": "REQUIRED",
       "abbreviation": "OPTIONAL",
       "color": "OPTIONAL",
       "mapping": "OPTIONAL",

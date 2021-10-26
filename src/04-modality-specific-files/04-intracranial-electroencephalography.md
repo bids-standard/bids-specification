@@ -236,9 +236,9 @@ MUST be present **in this specific order**:
 
 {{ MACROS___make_columns_table(
    {
-      "name_channels": ("REQUIRED", "The label must correspond to `_electrodes.tsv` name and all ieeg type channels are
+      "name__channels": ("REQUIRED", "The label must correspond to `_electrodes.tsv` name and all ieeg type channels are
     required to have a position."),
-      "type_channels": "REQUIRED",
+      "type__channels": "REQUIRED",
       "units": "REQUIRED",
       "low_cutoff": "REQUIRED",
       "high_cutoff": "REQUIRED",
@@ -259,7 +259,7 @@ SHOULD be present:
 
 {{ MACROS___make_columns_table(
    {
-      "reference_ieeg": "OPTIONAL",
+      "reference__ieeg": "OPTIONAL",
       "group": ("OPTIONAL", "Note that any groups specified in `_electrodes.tsv` must match those present here."),
       "sampling_frequency": "OPTIONAL",
       "description": "OPTIONAL",
@@ -369,7 +369,7 @@ MUST be present **in this specific order**:
 
 {{ MACROS___make_columns_table(
    {
-      "name_electrodes": "REQUIRED",
+      "name__electrodes": "REQUIRED",
       "x": "REQUIRED",
       "y": "REQUIRED",
       "z": ("REQUIRED", "If electrodes are in 2D space this should be a column of `n/a` values."),
@@ -405,7 +405,7 @@ MAY be present:
 
 {{ MACROS___make_columns_table(
    {
-      "type_electrodes": "OPTIONAL",
+      "type__electrodes": "OPTIONAL",
       "impedance": "OPTIONAL",
       "dimension": "OPTIONAL",
    }

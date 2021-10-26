@@ -224,8 +224,8 @@ MUST be present **in this specific order**:
 
 {{ MACROS___make_columns_table(
    {
-      "name_channels": "REQUIRED",
-      "type_channels": "REQUIRED",
+      "name__channels": "REQUIRED",
+      "type__channels": "REQUIRED",
       "units": "REQUIRED",
    }
 ) }}
@@ -247,7 +247,7 @@ SHOULD be present:
    {
       "description": "OPTIONAL",
       "sampling_frequency": "OPTIONAL",
-      "reference_eeg": "OPTIONAL",
+      "reference__eeg": "OPTIONAL",
       "low_cutoff": "OPTIONAL",
       "high_cutoff": "OPTIONAL",
       "notch": "OPTIONAL",
@@ -318,7 +318,7 @@ MUST be present **in this specific order**:
 
 {{ MACROS___make_columns_table(
    {
-      "name_electrodes": "REQUIRED",
+      "name__electrodes": "REQUIRED",
       "x": "REQUIRED",
       "y": "REQUIRED",
       "z": "REQUIRED",
@@ -335,7 +335,7 @@ SHOULD be present:
 
 {{ MACROS___make_columns_table(
    {
-      "type_electrodes": "RECOMMENDED",
+      "type__electrodes": "RECOMMENDED",
       "material": "RECOMMENDED",
       "impedance": "RECOMMENDED",
    }
