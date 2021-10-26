@@ -29,10 +29,10 @@ stimulation turned on or off, the data files may be labelled
 
 In addition to the metadata that is either:
 
-- RECOMMENDED for side-car JSON files for [tabular data](../02-common-principles.md#tabular-data), or
+-   RECOMMENDED for side-car JSON files for [tabular data](../02-common-principles.md#tabular-data), or
 
-- REQUIRED for some data that can be found in the `beh` folder
-(for example `SamplingFrequency` and `StartTime` for `*_<physio|stim>.tsv.gz` files),
+-   REQUIRED for some data that can be found in the `beh` folder
+    (for example `SamplingFrequency` and `StartTime` for `*_<physio|stim>.tsv.gz` files),
 
 it is RECOMMENDED to add the following metadata to the JSON files of this folder:
 
