@@ -188,6 +188,16 @@ When adding additional metadata please use the CamelCase version of
 whenever possible. See also
 [recommendations on JSON files](../02-common-principles.md#keyvalue-files-dictionaries).
 
+### Source Filename
+
+Similar to [derivatives](../05-derivatives/02-common-data-types.md), it is OPTIONAL to include ``Sources`` as a key in the sidecar JSON, specifying the filename(s) of the source file used to generate this dataset. If the filename(s) contains patient identifiable information, then it should not be stored in ``Sources``.
+
+{{ MACROS___make_metadata_table(
+   {
+      "Sources": ("OPTIONAL", "URI of source file used to generate the current file. Care should be taken not to leak patient identifiable information for publicly shared datasets.")
+   }
+) }}
+
 ## Anatomy imaging data
 
 {{ MACROS___make_filename_template(datatypes=["anat"]) }}
@@ -492,10 +502,6 @@ combined image rather than an image from each coil.
 
 ### Other RECOMMENDED metadata
 
-#### Source Filename
-
-Similar to [derivatives](../05-derivatives/02-common-data-types.md), it is OPTIONAL to include ``Sources`` as a key in the sidecar JSON, specifying the filename(s) of the source file used to generate this dataset. If the filename(s) contains patient identifiable information, then it should not be stored in ``Sources``.
-
 #### Timing Parameters
 
 {{ MACROS___make_metadata_table(
@@ -566,8 +572,7 @@ Example:
    "InstitutionName": "Stanford University",
    "InstitutionAddress": "450 Serra Mall, Stanford, CA 94305-2004, USA",
    "DeviceSerialNumber": "11035",
-   "B0FieldSource": ["phasediff_fmap0", "pepolar_fmap0"],
-   "Sources": ["dicom01", "dicom02", ..., "dicom150"]
+   "B0FieldSource": ["phasediff_fmap0", "pepolar_fmap0"]
 }
 ```
 

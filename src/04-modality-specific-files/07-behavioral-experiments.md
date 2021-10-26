@@ -43,5 +43,6 @@ Similar to [derivatives](../05-derivatives/02-common-data-types.md), it is OPTIO
       "InstitutionName": "RECOMMENDED",
       "InstitutionAddress": "RECOMMENDED",
       "InstitutionalDepartmentName": "RECOMMENDED",
+      "Sources": ("OPTIONAL", "URI of source file used to generate the current file. Care should be taken not to leak patient identifiable information for publicly shared datasets.")
    }
 ) }}

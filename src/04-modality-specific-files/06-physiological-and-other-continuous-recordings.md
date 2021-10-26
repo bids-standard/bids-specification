@@ -160,4 +160,9 @@ of any `*_<physio>.tsv.gz` file.
 
 Similar to [derivatives](../05-derivatives/02-common-data-types.md), it is OPTIONAL to include ``Sources`` as a key in the sidecar JSON, specifying the filename(s) of the source file used to generate this dataset. If the filename(s) contains patient identifiable information, then it should not be stored in ``Sources``.
 
+{{ MACROS___make_metadata_table(
+   {
+      "Sources": ("OPTIONAL", "URI of source file used to generate the current file. Care should be taken not to leak patient identifiable information for publicly shared datasets.")
+   }
+) }}
 <!-- Link Definitions -->
