@@ -573,7 +573,6 @@ using an object containing the following fields:
         "Units": "RECOMMENDED",
         "TermURL": "RECOMMENDED",
         "HED": "OPTIONAL",
-        "Derivative": "OPTIONAL",
    }
 ) }}
 

@@ -369,6 +369,7 @@ In addition to the column descriptions, the JSON file MAY contain the following 
 {{ MACROS___make_metadata_table(
    {
       "MeasurementToolMetadata": "OPTIONAL",
+      "Derivative": "OPTIONAL",
    }
 ) }}
 
