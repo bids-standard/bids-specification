@@ -108,6 +108,24 @@ def remove_internal_links(root_path, link_type):
     """Find and replace all cross and same markdown internal links.
 
     The links will be replaced with plain text associated with it.
+    See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links
+
+    We need to remove the following types of links:
+
+    - `[inline-style links](#some-heading)`
+    - `[inline-style links](./some_section.md#some-heading)`
+    - `[reference-style links][some-ref]`
+
+    For "reference-style links" we also need to remove the reference, which we
+    assume to be put at the bottom of the markdown document, below a comment:
+    `<!-- Link Definitions -->`.
+    These references look like this:
+    `[some-ref]: ./some_section.md#some-heading`
+
+    "reference style links" of the form `[this is my link]`, where at the
+    bottom of the document a declaration `[this is my link]:
+    ./some_section#some-heading` is present, MUST NOT be part of the BIDS spec.
+    Standard "reference-style links" MUST be used as syntax instead.
     """
     if link_type == 'cross':
         # regex that matches cross markdown links within a file
