@@ -30,7 +30,13 @@ jobs:
           at: ~/project
       - run:
           name: install git
+          # `apt-key adv` calls added 2021-10-27, no idea why they are needed now.
           command: |
+            apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DCC9EFBF77E11517
+            apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0E98404D386FA1D9
+            apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 54404762BBB6E853
+            apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 112695A0E562B32A
+            apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
             apt update -y
             apt install git-all -y
       - run:
