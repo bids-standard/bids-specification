@@ -190,9 +190,12 @@ spatial relation between them.
 Examples of different chunks configurations can be seen in Figure 1.
 ![Figure 1](images/microscopy_chunks.png "Examples of Microscopy chunks")
 
-Figure 1: Examples of chunks configurations. a) ordered 2D chunks without overlap,
-b) ordered 2D chunks with overlap, c) unordered 2D chunks with and without overlap,
-d) and e) ordered 2D chunks on different 3D planes, f) ordered 3D chunks
+Figure 1: Examples of chunks configurations. 
+- a) ordered 2D chunks without overlap,
+- b) ordered 2D chunks with overlap, 
+- c) unordered 2D chunks with and without overlap,
+- d) and e) ordered 2D chunks on different 3D planes, 
+- f) ordered 3D chunks
 
 In microscopy, many pyramidal file formats store multiple resolutions for the same acquisition.
 In the case where a multiple resolutions file format is converted to single resolution file format,
@@ -209,7 +212,7 @@ my_dataset/
             sub-01/
                 microscopy/
                     sub-01_sample-01_res-4x_TEM.png
-                    sub-01_sample-01_res-4x.json
+                    sub-01_sample-01_res-4x_TEM.json
     sub-01/
         microscopy/
             sub-01_sample-01_TEM.png
