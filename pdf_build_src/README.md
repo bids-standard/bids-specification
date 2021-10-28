@@ -9,7 +9,7 @@ The `pdf_build_src` directory contains the scripts and `.tex` files required to 
 For the pdf build to be successful, the following need to be installed:
 
 - Python 3.6 or higher
-- Numpy
+- numpy, pandas, tabulate, pyyaml
 - pandoc
 - Latest version of LaTeX: By default, Pandoc creates PDFs using LaTeX.
   Because a full MacTeX installation uses four gigabytes of disk space,
