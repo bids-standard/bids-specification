@@ -192,7 +192,11 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
     new_table : list of list of str
         List of corrected lines of the input table with corrected number of dashes and aligned fences.
         To be later joined with pipe characters (``|``).
+    corrected : bool
+        Whether or not the table was corrected.
     """
+    corrected = True
+
     # nb_of_rows = len(table)
     nb_of_cols = len(table[0]) - 2
 
@@ -204,10 +208,11 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
 
     # sanity check: nb_of_chars is list of list, all nested lists must be of equal length
     if not len(set([len(i) for i in nb_of_chars])) == 1:
-        print('ERROR for current table ... "nb_of_chars" is misaligned, see:\n')
+        print('    - ERROR for current table ... "nb_of_chars" is misaligned, see:\n')
         print(nb_of_chars)
-        print('\nSkipping formatting of this table.\n')
-        return table
+        print('\n    - Skipping formatting of this table.')
+        corrected = False
+        return table, corrected
 
     # Convert the list to a numpy array and computes the maximum number of chars for each column
     nb_of_chars_arr = np.array(nb_of_chars)
@@ -269,7 +274,7 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
 
         new_table.append(row_content)
 
-    return new_table
+    return new_table, corrected
 
 
 def _contains_table_start(line, debug=False):
@@ -384,8 +389,9 @@ def correct_tables(root_path, debug=False):
                             table_mode = False
 
                             # Correct the given table
-                            table = correct_table(table, debug=debug)
-                            print('    - Table corrected')
+                            table, corrected = correct_table(table, debug=debug)
+                            if corrected:
+                                print('    - Table corrected')
                             if debug:
                                 print(table)
 
@@ -401,7 +407,8 @@ def correct_tables(root_path, debug=False):
                                 elif i == end_line:
                                     new_content.append('|'.join(table[count]) + ' \n\n')
                                     count += 1
-                            print('    - Appended corrected table lines to the new markdown content')
+                            if corrected:
+                                print('    - Appended corrected table lines to the new markdown content')
                     else:
                         new_content.append(line)
 
