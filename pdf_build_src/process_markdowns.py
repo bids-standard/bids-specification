@@ -114,7 +114,8 @@ def remove_internal_links(root_path):
 
     - `[inline-style links](#some-heading)`
     - `[inline-style links](./some_section.md#some-heading)`
-    - `[reference-style links][some-ref]`, if "some-ref" is a local reference
+    - `[reference-style links][some-ref]`, if "some-ref" points to a local reference
+    - `[some-ref][]`, if "some-ref" points to a local reference
 
     For "reference-style links" we also need to remove the reference itself,
     which we assume to be put at the bottom of the markdown document,
@@ -125,11 +126,10 @@ def remove_internal_links(root_path):
     - `[some-ref]: ./some_section.md#some-heading`
 
     "reference style links" of the form `[this is my link]`, where at the
-    bottom of the document a declaration `[this is my link]:
-    ./some_section#some-heading` is present, MUST NOT be part of the BIDS spec.
-    Standard "reference-style links" MUST be used as syntax instead. That is:
-    `[this is my link][some-ref]` with "some-ref" declared at the bottom of
-    the document.
+    bottom of the document a declaration
+    `[this is my link]: ./some_section#some-heading` is present,
+    MUST be written with a trailing pair of empty brackets:
+    `[this is my link][]`.
     """
     # match anything starting with " [" until you find "]"
     # (this is important to not also match pictures, which
