@@ -33,7 +33,7 @@ Every dataset MUST include this file with the following fields:
    }
 ) }}
 
-Each object in the `GeneratedBy` list includes the following REQUIRED, RECOMMENDED
+Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
 and OPTIONAL keys:
 
 | **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                        |
@@ -96,7 +96,7 @@ As for any BIDS dataset, a `dataset_description.json` file MUST be found at the
 top level of every derived dataset:
 `<dataset>/derivatives/<pipeline_name>/dataset_description.json`.
 
-In contrast to raw BIDS datasets, derived BIDS datasets MUST include
+In contrast to raw BIDS datasets, derived BIDS datasets MUST include a
 `GeneratedBy` key:
 
 {{ MACROS___make_metadata_table(
