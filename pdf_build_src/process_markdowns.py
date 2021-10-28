@@ -127,23 +127,26 @@ def remove_internal_links(root_path):
     "reference style links" of the form `[this is my link]`, where at the
     bottom of the document a declaration `[this is my link]:
     ./some_section#some-heading` is present, MUST NOT be part of the BIDS spec.
-    Standard "reference-style links" MUST be used as syntax instead.
+    Standard "reference-style links" MUST be used as syntax instead. That is:
+    `[this is my link][some-ref]` with "some-ref" declared at the bottom of
+    the document.
     """
     # match anything starting with " [" until you find "]"
     # (this is important to not also match pictures, which
     # start with "![")
     # then, if a "(" is present,
     # check that the following does not continue with "http"
+    # (assuming that all links that start with http are external,
+    # and all remaining links are internal)
     # if it doesn't, match anything until you find ")"
     # if all of this works out, we found something
-    # NOTE: This doesn't work ... somehow kills pandoc.
-    # primary_pattern = re.compile(r"\s+\[([^\]]+)\]\((?!http)([^\)]+)\)")
+    pattern_inline_style = re.compile(r"\s+\[([^\]]+)\]\((?!http)([^\)]+)\)")
+
+    # TODO: add pattern for ref-style ... maybe new func needed.
 
     patterns = [
-        re.compile(r'\[((?!http).[\w\s.\(\)`*/–]+)\]\(((?!http).+(\.md|\.yml|\.md#[\w\-\w]+))\)'),
-        re.compile(r'\[([\w\s.\(\)`*/–]+)\]\(([#\w\-._\w]+)\)')
+        pattern_inline_style
     ]
-
     for primary_pattern in patterns:
         for root, dirs, files in sorted(os.walk(root_path)):
             for file in files:
