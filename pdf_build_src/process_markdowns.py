@@ -155,8 +155,7 @@ def remove_internal_links(root_path):
                         match = primary_pattern.search(line)
 
                         if match:
-                            line = re.sub(primary_pattern,
-                                          match.group().split('](')[0][1:], line)
+                            line = re.sub(primary_pattern, f" {match.groups()[0]}", line)
 
                         data[ind] = line
 
