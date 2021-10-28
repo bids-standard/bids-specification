@@ -284,7 +284,7 @@ def _contains_table_start(line, debug=False):
     nb_of_pipes = line.count('|')
     nb_of_escaped_pipes = line.count(r'\|')
     nb_of_pipes = nb_of_pipes - nb_of_escaped_pipes
-    nb_of_dashes = line.count('-')
+    nb_of_dashes = line.count('--')
 
     if debug:
         print('Number of dashes / pipes : {} / {}'.format(nb_of_dashes, nb_of_pipes))
