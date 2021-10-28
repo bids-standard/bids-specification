@@ -104,7 +104,7 @@ def add_header():
         file.writelines(data)
 
 
-def remove_internal_links(root_path, link_type):
+def remove_internal_links(root_path):
     """Find and replace all cross and same markdown internal links.
 
     The links will be replaced with plain text associated with it.
@@ -114,44 +114,54 @@ def remove_internal_links(root_path, link_type):
 
     - `[inline-style links](#some-heading)`
     - `[inline-style links](./some_section.md#some-heading)`
-    - `[reference-style links][some-ref]`
+    - `[reference-style links][some-ref]`, if "some-ref" is a local reference
 
-    For "reference-style links" we also need to remove the reference, which we
-    assume to be put at the bottom of the markdown document, below a comment:
-    `<!-- Link Definitions -->`.
+    For "reference-style links" we also need to remove the reference itself,
+    which we assume to be put at the bottom of the markdown document,
+    below a comment: `<!-- Link Definitions -->`.
     These references look like this:
-    `[some-ref]: ./some_section.md#some-heading`
+
+    - `[some-ref]: #some-heading`
+    - `[some-ref]: ./some_section.md#some-heading`
 
     "reference style links" of the form `[this is my link]`, where at the
     bottom of the document a declaration `[this is my link]:
     ./some_section#some-heading` is present, MUST NOT be part of the BIDS spec.
     Standard "reference-style links" MUST be used as syntax instead.
     """
-    if link_type == 'cross':
-        # regex that matches cross markdown links within a file
-        # TODO: add more documentation explaining regex
-        primary_pattern = re.compile(r'\[((?!http).[\w\s.\(\)`*/–]+)\]\(((?!http).+(\.md|\.yml|\.md#[\w\-\w]+))\)')  # noqa: E501
-    elif link_type == 'same':
-        # regex that matches references sections within the same markdown
-        primary_pattern = re.compile(r'\[([\w\s.\(\)`*/–]+)\]\(([#\w\-._\w]+)\)')
+    # match anything starting with " [" until you find "]"
+    # (this is important to not also match pictures, which
+    # start with "![")
+    # then, if a "(" is present,
+    # check that the following does not continue with "http"
+    # if it doesn't, match anything until you find ")"
+    # if all of this works out, we found something
+    # NOTE: This doesn't work ... somehow kills pandoc.
+    # primary_pattern = re.compile(r"\s+\[([^\]]+)\]\((?!http)([^\)]+)\)")
 
-    for root, dirs, files in sorted(os.walk(root_path)):
-        for file in files:
-            if file.endswith(".md"):
-                with open(os.path.join(root, file), 'r') as markdown:
-                    data = markdown.readlines()
+    patterns = [
+        re.compile(r'\[((?!http).[\w\s.\(\)`*/–]+)\]\(((?!http).+(\.md|\.yml|\.md#[\w\-\w]+))\)'),
+        re.compile(r'\[([\w\s.\(\)`*/–]+)\]\(([#\w\-._\w]+)\)')
+    ]
 
-                for ind, line in enumerate(data):
-                    match = primary_pattern.search(line)
+    for primary_pattern in patterns:
+        for root, dirs, files in sorted(os.walk(root_path)):
+            for file in files:
+                if file.endswith(".md"):
+                    with open(os.path.join(root, file), 'r') as markdown:
+                        data = markdown.readlines()
 
-                    if match:
-                        line = re.sub(primary_pattern,
-                                      match.group().split('](')[0][1:], line)
+                    for ind, line in enumerate(data):
+                        match = primary_pattern.search(line)
 
-                    data[ind] = line
+                        if match:
+                            line = re.sub(primary_pattern,
+                                          match.group().split('](')[0][1:], line)
 
-                with open(os.path.join(root, file), 'w') as markdown:
-                    markdown.writelines(data)
+                        data[ind] = line
+
+                    with open(os.path.join(root, file), 'w') as markdown:
+                        markdown.writelines(data)
 
 
 def modify_changelog():
@@ -525,8 +535,7 @@ if __name__ == '__main__':
     modify_changelog()
 
     # Step 7: remove all internal links
-    remove_internal_links(duplicated_src_dir_path, 'cross')
-    remove_internal_links(duplicated_src_dir_path, 'same')
+    remove_internal_links(duplicated_src_dir_path)
 
     # Step 8: correct number of dashes and fences alignment for rendering tables in PDF
     correct_tables(duplicated_src_dir_path)
