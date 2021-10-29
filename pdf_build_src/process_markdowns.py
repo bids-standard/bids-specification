@@ -169,7 +169,7 @@ def remove_internal_links_inline(root_path):
     MUST be written with a trailing pair of empty brackets:
     `[this is my link][]`.
     """
-    # match anything starting with " [" until you find "]"
+    # match anything starting with " [" or "[" until you find "]"
     # (this is important to not also match pictures, which
     # start with "![")
     # then, if a "(" is present,
@@ -178,30 +178,24 @@ def remove_internal_links_inline(root_path):
     # and all remaining links are internal)
     # if it doesn't, match anything until you find ")"
     # if all of this works out, we found something
-    pattern_inline_style = re.compile(r"\s+\[([^\]]+)\]\((?!http)([^\)]+)\)")
+    pattern_inline_style = re.compile(r"(\s|^)+\[([^\]]+)\]\((?!http)([^\)]+)\)")
 
-    # TODO: add pattern for ref-style ... maybe new func needed.
+    for root, dirs, files in sorted(os.walk(root_path)):
+        for file in files:
+            if file.endswith(".md"):
+                with open(os.path.join(root, file), 'r') as markdown:
+                    data = markdown.readlines()
 
-    patterns = [
-        pattern_inline_style
-    ]
-    for primary_pattern in patterns:
-        for root, dirs, files in sorted(os.walk(root_path)):
-            for file in files:
-                if file.endswith(".md"):
-                    with open(os.path.join(root, file), 'r') as markdown:
-                        data = markdown.readlines()
+                for ind, line in enumerate(data):
+                    match = pattern_inline_style.search(line)
 
-                    for ind, line in enumerate(data):
-                        match = primary_pattern.search(line)
+                    if match:
+                        line = re.sub(pattern_inline_style, f" {match.groups()[1]}", line)
 
-                        if match:
-                            line = re.sub(primary_pattern, f" {match.groups()[0]}", line)
+                    data[ind] = line
 
-                        data[ind] = line
-
-                    with open(os.path.join(root, file), 'w') as markdown:
-                        markdown.writelines(data)
+                with open(os.path.join(root, file), 'w') as markdown:
+                    markdown.writelines(data)
 
 
 def modify_changelog():
