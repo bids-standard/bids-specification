@@ -104,7 +104,45 @@ def add_header():
         file.writelines(data)
 
 
-def remove_internal_links(root_path):
+def remove_internal_links_reference(root_path):
+    """Replace internal links."""
+    ref_pattern = re.compile(r"\[([^\]]+)\]:\s((?!http).+)$")
+
+    for root, dirs, files in sorted(os.walk(root_path)):
+        for file in files:
+            links_to_remove = []
+            if file.endswith(".md"):
+                with open(os.path.join(root, file), 'r') as markdown:
+                    data = markdown.readlines()
+
+                # first find, which links need to be remove by scanning the
+                # references, and remove the reference
+                for ind, line in enumerate(data):
+
+                    match = ref_pattern.search(line)
+
+                    if match:
+                        links_to_remove.append(match.groups()[0])
+                        data[ind] = "\n"
+
+                # Now remove the links for the references we found (& removed)
+                for link in links_to_remove:
+                    pattern = re.compile(r"\[([^\]]+)\]\[" + f"{link}" + r"\]")
+                    for ind, line in enumerate(data):
+
+                        match = pattern.search(line)
+
+                        if match:
+                            line = re.sub(pattern, match.groups()[0], line)
+
+                        data[ind] = line
+
+                # Now write the changed data back to file
+                with open(os.path.join(root, file), 'w') as markdown:
+                    markdown.writelines(data)
+
+
+def remove_internal_links_inline(root_path):
     """Find and replace all cross and same markdown internal links.
 
     The links will be replaced with plain text associated with it.
@@ -537,7 +575,8 @@ if __name__ == '__main__':
     modify_changelog()
 
     # Step 7: remove all internal links
-    remove_internal_links(duplicated_src_dir_path)
+    remove_internal_links_inline(duplicated_src_dir_path)
+    remove_internal_links_reference(duplicated_src_dir_path)
 
     # Step 8: correct number of dashes and fences alignment for rendering tables in PDF
     correct_tables(duplicated_src_dir_path)
