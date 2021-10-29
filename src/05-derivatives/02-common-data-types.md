@@ -17,15 +17,15 @@ share the following (non-required) ones:
             "This describes the nature of the file.",
         ),
         "Sources": "OPTIONAL",
-        "RawSources": "OPTIONAL",
+        "RawSources": "DEPRECATED",
    }
 ) }}
 
 ### Examples
 
 Preprocessed `bold` NIfTI file in the original coordinate space of the original run.
-The location of the file in the original datasets is encoded in the `RawSources`
-metadata, and `desc-<label>` is used to prevent clashing with the original file name.
+The location of the file in the original datasets is encoded in the `Sources` metadata,
+and `desc-<label>` is used to prevent clashing with the original file name.
 
 {{ MACROS___make_filetree_example(
    {
@@ -40,33 +40,36 @@ metadata, and `desc-<label>` is used to prevent clashing with the original file 
 
 ```JSON
 {
-    "RawSources": ["sub-01/func/sub-01_task-rest_bold.nii.gz"]
+    "Sources": ["bids:raw:/sub-01/func/sub-01_task-rest_bold.nii.gz"]
 }
 ```
 
-If this file was generated with prior knowledge from additional sources, such as
-the same subject's `T1w`, then both files MAY be included in `RawSources`.
+Note that `"raw"` must appear in the `DatasetLinks` metadata in
+`dataset_description.json`.
+
+If this file was generated with prior knowledge from additional sources,
+such as the same subject's `T1w`,
+then both files MAY be included in `Sources`.
 
 ```JSON
 {
-    "RawSources": [
-        "sub-01/func/sub-01_task-rest_bold.nii.gz",
-        "sub-01/anat/sub-01_T1w.nii.gz"
+    "Sources": [
+        "bids:raw:/sub-01/func/sub-01_task-rest_bold.nii.gz",
+        "bids:raw:/sub-01/anat/sub-01_T1w.nii.gz"
     ]
 }
 ```
 
 On the other hand, if a preprocessed version of the T1w image was used, and it also
-occurs in the derivatives, `Sources` and `RawSources` can both be specified.
+occurs in the derivatives, `Sources` may include both the local, derivative file,
+and the raw original file.
 
 ```JSON
 {
     "Sources": [
-        "sub-01/anat/sub-01_desc-preproc_T1w.nii.gz"
+        "bids::/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz"
+        "bids:raw:/sub-01/func/sub-01_task-rest_bold.nii.gz"
     ],
-    "RawSources": [
-        "sub-01/func/sub-01_task-rest_bold.nii.gz"
-    ]
 }
 ```
 
@@ -91,10 +94,10 @@ then the `SpatialReference` metadata is REQUIRED.
 
 ### SpatialReference key allowed values
 
-| **Value**   | **Description**                                                                                                               |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `orig`      | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
-| URI or path | This can be used to point to a specific file. Paths are written relative to the root of the derivative dataset.               |
+| **Value** | **Description**                                                                                                                                          |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"orig"`  | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space.                            |
+| [URI][]   | This can be used to point to a specific file. Paths written relative to the root of the derivative dataset are [DEPRECATED][] in favor of [BIDS URIs][]. |
 
 In the case of images with multiple references, an [object][] must link the relevant structures to reference files.
 If a single volumetric reference is used for multiple structures, the `VolumeReference` key MAY be used to reduce duplication.
@@ -118,7 +121,7 @@ that in this case `SpatialReference` key is REQUIRED.
 
 ```JSON
 {
-    "SpatialReference": "sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
+    "SpatialReference": "bids::/sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
 }
 ```
 
@@ -127,6 +130,7 @@ meshes defined in the Conte69 atlas along with the MNI152NLin6Asym template.
 In this example, because all volumetric structures are sampled to the same
 reference, the `VolumeReference` key is used as a default, and only the
 surface references need to be specified by BrainStructure names.
+Here referred to via "https" [URIs][].
 
 {{ MACROS___make_filetree_example(
    {
@@ -227,3 +231,9 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 [templates]: ../99-appendices/08-coordinate-systems.md#standard-template-identifiers
 
 [object]: https://www.json.org/json-en.html
+
+[bids uris]: ../02-common-principles.md#bids-uri
+
+[deprecated]: ../02-common-principles.md#definitions
+
+[uris]: ../02-common-principles.md#uniform-resource-indicator

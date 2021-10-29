@@ -134,18 +134,22 @@ ArterialSpinLabelingType:
 AssociatedEmptyRoom:
   name: AssociatedEmptyRoom
   description: |
-    Relative path in BIDS folder structure to empty-room file associated with
-    the subject's MEG recording.
-    The path needs to use forward slashes instead of backward slashes
-    (for example,
-    "sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds").
+    One or more [BIDS URIs](/02-common-principles.html#bids-uri)
+    pointing to empty-room file(s) associated with the subject's MEG recording.
+    Using forward-slash separated paths relative to the dataset root is
+    [DEPRECATED](/02-common-principles.html#definitions).
   anyOf:
   - type: array
     items:
-      type: string
-      format: dataset_relative
+      anyOf:
+      - type: string
+        format: dataset_relative
+      - type: string
+        format: bids_uri
   - type: string
     format: dataset_relative
+  - type: string
+    format: bids_uri
 Atlas:
   name: Atlas
   description: |
@@ -401,6 +405,17 @@ DatasetDOI:
     [DEPRECATED](/02-common-principles.html#definitions).
   type: string
   format: uri
+DatasetLinks:
+  name: DatasetLinks
+  description: |
+    Used to map a given `<dataset-name>` from a [BIDS URI](/02-common-principles.html#bids-uri)
+    of the form `bids:<dataset-name>:/absolute/path/within/dataset` to a local or remote location.
+    The `<dataset-name>`: `""` (an empty string) is a reserved keyword that MUST NOT be a key in
+    `DatasetLinks` (example: `bids::/absolute/path/within/dataset`).
+  type: object
+  additionalProperties:
+    type: string
+    format: uri
 DatasetType:
   name: DatasetType
   description: |
@@ -1220,17 +1235,21 @@ IntendedFor:
   name: IntendedFor
   description: |
     The paths to files for which the associated file is intended to be used.
-    Contains one or more filenames with paths relative to the participant
-    subfolder.
-    Paths need to use forward slashes instead of backward slashes,
-    regardless of operating system.
+    Contains one or more [BIDS URIs](/02-common-principles.html#bids-uri).
+    Using forward-slash separated paths relative to the participant subfolder is
+    [DEPRECATED](/02-common-principles.html#definitions).
   anyOf:
+  - type: string
+    format: bids_uri
   - type: string
     format: participant_relative
   - type: array
     items:
-      type: string
-      format: participant_relative
+      anyOf:
+      - type: string
+        format: bids_uri
+      - type: string
+        format: participant_relative
 InversionTime:
   name: InversionTime
   description: |
@@ -1918,6 +1937,9 @@ RawSources:
   description: |
     A list of paths relative to dataset root pointing to the BIDS-Raw file(s)
     that were used in the creation of this derivative.
+    This field is DEPRECATED, and this metadata SHOULD be recorded in the
+    `Sources` field using [BIDS URIs](/02-common-principles.html#bids-uri)
+    to distinguish sources from different datasets.
   type: array
   items:
     type: string
@@ -2307,7 +2329,8 @@ SourceDatasets:
 Sources:
   name: Sources
   description: |
-    A list of files with the paths specified relative to dataset root;
+    A list of files with the paths specified using
+    [BIDS URIs](/02-common-principles.html#bids-uri);
     these files were directly used in the creation of this derivative data file.
     For example, if a derivative A is used in the creation of another
     derivative B, which is in turn used to generate C in a chain of A->B->C,
@@ -2315,10 +2338,15 @@ Sources:
     However, in case both X and Y are directly used in the creation of Z,
     then Z should list X and Y in `Sources`,
     regardless of whether X was used to generate Y.
+    Using paths specified relative to the dataset root is
+    [DEPRECATED](/02-common-principles.html#definitions).
   type: array
   items:
-    type: string
-    format: dataset_relative
+    anyOf:
+    - type: string
+      format: dataset_relative
+    - type: string
+      format: bids_uri
 SpatialReference:
   name: SpatialReference
   description: |

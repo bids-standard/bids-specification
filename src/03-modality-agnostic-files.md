@@ -19,6 +19,7 @@ Every dataset MUST include this file with the following fields:
       "Name": "REQUIRED",
       "BIDSVersion": "REQUIRED",
       "HEDVersion": "RECOMMENDED",
+      "DatasetLinks": "REQUIRED if [BIDS URIs][] are used",
       "DatasetType": "RECOMMENDED",
       "License": "RECOMMENDED",
       "Authors": "OPTIONAL",
@@ -472,6 +473,8 @@ There are no limitations or recommendations on the language and/or
 code organization of these scripts at the moment.
 
 <!-- Link Definitions -->
+
+[bids uris]: ./02-common-principles.md#bids-uri
 
 [object]: https://www.json.org/json-en.html
 

@@ -212,6 +212,8 @@ There are additional fields which may define rules that apply to a given type.
 
        -   `uri` (uniform resource identifiers),
 
+       -   `bids_uri` (BIDS URIs),
+
        -   `date` (date-times),
 
        -   `unit` (standard units),

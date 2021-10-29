@@ -674,7 +674,85 @@ specificity and persistence.
 
 Several fields are designated for DOIs, for example, `DatasetDOI` in `dataset_description.json`.
 DOI values SHOULD be fully specified URIs such as `doi:10.18112/openneuro.ds000001.v1.0.0`.
-Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED][deprecated].
+Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED][].
+
+### BIDS URI
+
+To reference files in BIDS datasets, the following URI scheme may be used:
+
+```plain
+bids:<dataset-name>:<absolute-path>
+```
+
+The scheme component `bids` identifies a BIDS URI,
+which defines a `path` component of the form `<dataset-name>:<absolute-path>`.
+The `dataset-name` component is an identifier for a dataset,
+and the `absolute-path` component is a path, starting with a slash (`/`),
+followed by the location of a resource within the dataset.
+
+Examples:
+
+```plain
+bids::/sub-01/fmap/sub-01_dir-AP_epi.nii.gz
+bids:ds000001:/sub-02/anat/sub-02_T1w.nii.gz
+bids:myderivatives:/sub-03/func/sub-03_task-rest_space-MNI152_bold.nii.gz
+```
+
+#### Resolution of BIDS URIs
+
+In order to resolve a BIDS URI, the dataset name must be mapped to a dataset.
+
+The special case `""` (that is, the empty string) refers to the dataset in
+which the BIDS URI is found.
+The dataset root is the nearest parent directory that contains a valid
+`dataset_description.json`.
+
+All other dataset names MUST be specified in the `DatasetLinks` object in
+[dataset_description.json][], which maps dataset names to URIs that point
+to dataset locations.
+If the scheme is omitted from the URI, the path is relative to the dataset
+root.
+
+BIDS URIs cannot be interpreted outside a BIDS dataset,
+as they require a `dataset_description.json` file to resolve.
+
+#### Examples
+
+Consider this example `dataset_description.json`:
+
+```YAML
+{
+    ...
+    "DatasetLinks": {
+        "deriv1": "derivatives/derivative1",
+        "phantoms": "file:///data/phantoms",
+        "ds000001": "doi:10.18112/openneuro.ds000001.v1.0.0"
+    }
+}
+```
+
+Here `deriv1` refers to a BIDS Derivatives dataset contained within the current
+dataset, `phantoms` refers to a BIDS dataset of phantom data stored on the local
+filesystem, and `ds000001` refers to a dataset that must be resolved by DOI.
+
+Note that resolving `bids:phantoms:sub-phantom01/anat/sub-phantom01_T1w.nii.gz`
+is a straightforward concatenation:
+`file:///data/phantoms/sub-phantom01/anat/sub-phantom01_T1w.nii.gz`.
+However, retrieving `bids:ds000001:/sub-02/anat/sub-02_T1w.nii.gz` requires
+first resolving the DOI, identifying the retrieval method, possibly retrieving
+the entire dataset, and finally constructing a URI to the desired resource.
+
+No protocol is currently proposed to automatically resolve all possible BIDS URIs.
+
+#### Future statement
+
+BIDS URIs are parsable as standard URIs with scheme `bids` and path
+`<dataset-name>:<abspath>`.
+The authority, query and fragment components are unused.
+Future versions of BIDS may specify interpretations for these components,
+but MUST NOT change the interpretation of a previously valid BIDS URI.
+For example, a future version may specify an authority that would allow BIDS
+URIs to be resolved without reference to a local `dataset_description.json`.
 
 ## Units
 
@@ -824,7 +902,6 @@ to suppress warnings or provide interpretations of your file names.
 <!-- Link Definitions -->
 
 [dataset-description]: 03-modality-agnostic-files.md#dataset-description
-
+[dataset_description.json]: 03-modality-agnostic-files.md#dataset_descriptionjson
 [derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description
-
-[deprecated]: ./02-common-principles.md#definitions
+[deprecated]: #definitions
