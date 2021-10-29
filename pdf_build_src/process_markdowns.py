@@ -105,7 +105,29 @@ def add_header():
 
 
 def remove_internal_links_reference(root_path):
-    """Replace internal links."""
+    """Find and replace internal "reference-style" links.
+
+    The links will be replaced with plain text associated with it.
+    See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links
+
+    - `[reference-style links][some-ref]`, if "some-ref" points to a local reference
+    - `[some-ref][]`, if "some-ref" points to a local reference
+
+    For "reference-style links" we also need to remove the reference itself,
+    which we assume to be put at the bottom of the markdown document,
+    below a comment: `<!-- Link Definitions -->`.
+    These references look like this:
+
+    - `[some-ref]: #some-heading`
+    - `[some-ref]: ./some_section.md#some-heading`
+
+    "reference style links" of the form `[this is my link]`, where at the
+    bottom of the document a declaration
+    `[this is my link]: ./some_section#some-heading` is present,
+    MUST be written with a trailing pair of empty brackets:
+    `[this is my link][]`.
+
+    """
     ref_pattern = re.compile(r"\[([^\]]+)\]:\s((?!http).+)$")
 
     for root, dirs, files in sorted(os.walk(root_path)):
@@ -143,7 +165,7 @@ def remove_internal_links_reference(root_path):
 
 
 def remove_internal_links_inline(root_path):
-    """Find and replace all cross and same markdown internal links.
+    """Find and replace internal "inline-style" links.
 
     The links will be replaced with plain text associated with it.
     See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links
@@ -152,22 +174,6 @@ def remove_internal_links_inline(root_path):
 
     - `[inline-style links](#some-heading)`
     - `[inline-style links](./some_section.md#some-heading)`
-    - `[reference-style links][some-ref]`, if "some-ref" points to a local reference
-    - `[some-ref][]`, if "some-ref" points to a local reference
-
-    For "reference-style links" we also need to remove the reference itself,
-    which we assume to be put at the bottom of the markdown document,
-    below a comment: `<!-- Link Definitions -->`.
-    These references look like this:
-
-    - `[some-ref]: #some-heading`
-    - `[some-ref]: ./some_section.md#some-heading`
-
-    "reference style links" of the form `[this is my link]`, where at the
-    bottom of the document a declaration
-    `[this is my link]: ./some_section#some-heading` is present,
-    MUST be written with a trailing pair of empty brackets:
-    `[this is my link][]`.
     """
     # match anything starting with " [" or "[" until you find "]"
     # (this is important to not also match pictures, which
