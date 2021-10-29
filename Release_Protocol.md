@@ -95,8 +95,8 @@ Important note: The pull request title **must** be named "REL: vX.Y.Z" (for exam
 
 **This will open a period of discussion for 5 business days regarding if we are ready to release.**
 
-Minor revisions may be made using GitHub's [suggestion
-feature](https://help.github.com/en/articles/incorporating-feedback-in-your-pull-request).
+Minor revisions may be made using GitHub's
+[suggestion feature](https://help.github.com/en/articles/incorporating-feedback-in-your-pull-request).
 For larger changes, pull requests should be made against `master`.
 
 **Merging other pull requests during this period requires agreement among BIDS Maintainers.**
@@ -171,8 +171,8 @@ There are four components to the tag command:
 ### 8. Create a GitHub release
 
 Some GitHub processes may only trigger on a GitHub release, rather than a tag push.
-To make a GitHub release, go to the [Releases
-](https://github.com/bids-standard/bids-specification/releases) page:
+To make a GitHub release, go to the
+[Releases](https://github.com/bids-standard/bids-specification/releases) page:
 ![GH-release-1](release_images/GH-release_1.png "GH-release-1")
 
 Click [Draft a new release](https://github.com/bids-standard/bids-specification/releases/new):
