@@ -91,6 +91,16 @@ flip:
     value which needs to be stored in the field `FlipAngle` of the separate JSON file.
   type: string
   format: index
+hemisphere:
+  name: Hemisphere
+  entity: hemi
+  description: |
+    The hemi entity is used for storing information about a structure that is restricted to a hemibrain.
+  type: string
+  format: label
+  enum:
+    - "L"
+    - "R"
 inversion:
   name: Inversion Time
   entity: inv
@@ -135,8 +145,8 @@ mtransfer:
     respectively.
   type: string
   enum:
-  - 'on'
-  - 'off'
+    - "on"
+    - "off"
 part:
   name: Part
   entity: part
@@ -157,10 +167,10 @@ part:
     omitted.
   type: string
   enum:
-  - mag
-  - phase
-  - real
-  - imag
+    - mag
+    - phase
+    - real
+    - imag
 processing:
   name: Processed (on device)
   entity: proc
