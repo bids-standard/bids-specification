@@ -7,11 +7,12 @@ pandoc library documentation***) with pdf specific text rendering in mind as
 well.
 """
 
+from datetime import datetime
+import json
 import os
 import re
 import subprocess
 import sys
-from datetime import datetime
 
 import numpy as np
 
@@ -221,6 +222,59 @@ def remove_internal_links_inline(root_path):
 
                 with open(os.path.join(root, file), 'w') as markdown:
                     markdown.writelines(data)
+
+
+def assert_no_multiline_links(root_path):
+    """Check that markdown links are defined on single lines.
+
+    Works on all ".md" files in `root_path`.
+    This "style" is important for link removal/replacement to work
+    properly.
+
+    Links like this are not accepted: `some stuff [start of link
+    continues](http://ends-here.com)`
+
+    See Also
+    --------
+    remove_internal_links_reference
+    remove_internal_links_inline
+    """
+    pattern = re.compile(r'(\s|^)+\[([^\]]+)$')
+
+    problems = dict()
+    for root, dirs, files in sorted(os.walk(root_path)):
+        for file in files:
+            if file.endswith(".md"):
+                with open(os.path.join(root, file), 'r') as markdown:
+                    data = markdown.readlines()
+
+                code_context = False
+                macro_context = False
+                for ind, line in enumerate(data):
+
+                    # do not check "code blocks" or "macros"
+                    if line.strip().startswith("```"):
+                        code_context = not code_context
+
+                    if (not macro_context) and line.strip().startswith("{{"):
+                        macro_context = True
+
+                    if macro_context and line.strip().endswith("}}"):
+                        macro_context = False
+
+                    if code_context or macro_context:
+                        continue
+
+                    match = pattern.search(line)
+
+                    if match:
+                        problems[file] = problems.get(file, []) + [(ind, line)]
+
+    if len(problems) > 0:
+        msg = ("Found multiline markdown links! Please reformat as single"
+               " line links.\n\n")
+        msg += json.dumps(problems, indent=4)
+        raise AssertionError(msg)
 
 
 def modify_changelog():
@@ -594,6 +648,7 @@ if __name__ == '__main__':
     modify_changelog()
 
     # Step 7: remove all internal links
+    assert_no_multiline_links(duplicated_src_dir_path)
     remove_internal_links_inline(duplicated_src_dir_path)
     remove_internal_links_reference(duplicated_src_dir_path)
 
