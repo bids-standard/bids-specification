@@ -95,7 +95,9 @@ hemisphere:
   name: Hemisphere
   entity: hemi
   description: |
-    The hemi entity is used for storing information about a structure that is restricted to a hemibrain.
+    The `hemi-<label>` entity indicates which hemibrain is described by the file.
+    Allowed label values for this entity are `L` and `R`, for the left and right
+    hemibrains, respectively.
   type: string
   format: label
   enum:
