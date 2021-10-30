@@ -390,7 +390,7 @@ General fields:
          "For example, **T1**: `'sub-<label>/ses-<label>/anat/"
          "sub-01_T1w.nii.gz'`  "
          "**Surface**: `'/derivatives/surfaces/sub-<label>/ses-<label>/anat/"
-         "sub-01_desc-T1w_hemi-R_pial.surf.gii'` "
+         "sub-01_hemi-R_desc-T1w_pial.surf.gii'` "
          "**Operative photo**: `'/sub-<label>/ses-<label>/ieeg/"
          "sub-0001_ses-01_acq-photo1_photo.jpg'` "
          "**Talairach**: `'/derivatives/surfaces/sub-Talairach/ses-01/anat/"
