@@ -47,3 +47,5 @@ additional tex files are used with options offered by pandoc.
 - `pandoc_script.py` - Prepares and runs the final pandoc command through the `build_pdf.sh` script
 
 - `build_pdf.sh` - Shell script that organizes the directory structure and runs the above two python scripts
+
+- `check_pandoc_log.py` - Script that checks the pandoc log for warnings that should be raised as errors in the continuous integration services

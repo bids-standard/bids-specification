@@ -16,5 +16,8 @@ mv bids-spec.pdf ../..
 mv bids-spec_pandoc_log.json ../..
 popd
 
+# Do a check on the pandoc log file
+python3 check_pandoc_log.py
+
 # delete the duplicated src directory
 rm -rf src_copy
