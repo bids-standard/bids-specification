@@ -4,6 +4,7 @@ site/
 venvs
 
 pdf_build_src/bids-spec.pdf
+pdf_build_src/bids-spec_pandoc_log.json
 pdf_build_src/src_copy
 
 # JS/NPM
