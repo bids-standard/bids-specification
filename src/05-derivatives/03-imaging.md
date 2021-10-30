@@ -348,7 +348,7 @@ Template:
             <source_entities>[_hemi-{L|R}][_space-<space>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
 ```
 
-The [`hemi-<label>`](./99-appendices/09-entities.md#hemi) entity is REQUIRED for GIFTI files storing information about
+The [`hemi-<label>`](../99-appendices/09-entities.md#hemi) entity is REQUIRED for GIFTI files storing information about
 a structure that is restricted to a hemibrain.
 For example:
 
