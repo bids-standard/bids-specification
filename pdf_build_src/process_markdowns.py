@@ -107,11 +107,12 @@ def add_header():
 def remove_internal_links_reference(root_path):
     """Find and replace internal "reference-style" links.
 
+    Works on all ".md" files in `root_path`.
     The links will be replaced with plain text associated with it.
     See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links
 
-    - `[reference-style links][some-ref]`, if "some-ref" points to a local reference
-    - `[some-ref][]`, if "some-ref" points to a local reference
+    - `[reference-style links][some-ref]`, if "some-ref" points to a local ref
+    - `[some-ref][]`, if "some-ref" points to a local ref
 
     For "reference-style links" we also need to remove the reference itself,
     which we assume to be put at the bottom of the markdown document,
@@ -126,9 +127,19 @@ def remove_internal_links_reference(root_path):
     `[this is my link]: ./some_section#some-heading` is present,
     MUST be written with a trailing pair of empty brackets:
     `[this is my link][]`.
-
     """
-    ref_pattern = re.compile(r"\[([^\]]+)\]:\s((?!http).+)$")
+    # match anything starting on a new line with "[" until you find "]"
+    # (this is important to not also match pictures, which
+    # start with "![")
+    # then, we expect a ": "
+    # then, if a "(" is present,
+    # check that the following does not continue with "http"
+    # (assuming that all links that start with http are external,
+    # and all remaining links are internal)
+    # if it doesn't, match anything until you find ")" and the end of
+    # the line
+    # if all of this works out, we found something
+    pattern_ref = re.compile(r"^\[([^\]]+)\]:\s((?!http).+)$")
 
     for root, dirs, files in sorted(os.walk(root_path)):
         for file in files:
@@ -141,7 +152,7 @@ def remove_internal_links_reference(root_path):
                 # references, and remove the reference
                 for ind, line in enumerate(data):
 
-                    match = ref_pattern.search(line)
+                    match = pattern_ref.search(line)
 
                     if match:
                         links_to_remove.append(match.groups()[0])
@@ -149,6 +160,12 @@ def remove_internal_links_reference(root_path):
 
                 # Now remove the links for the references we found (& removed)
                 for link in links_to_remove:
+                    # match as in pattern_ref above, except that:
+                    # line start and end don't matter(^ and $)
+                    # no ": " in between bracket parts
+                    # second bracket part uses square brackets
+                    # part within second bracket part MUST match a particular
+                    # link
                     pattern = re.compile(r"\[([^\]]+)\]\[" + f"{link}" + r"\]")
                     for ind, line in enumerate(data):
 
@@ -167,6 +184,7 @@ def remove_internal_links_reference(root_path):
 def remove_internal_links_inline(root_path):
     """Find and replace internal "inline-style" links.
 
+    Works on all ".md" files in `root_path`.
     The links will be replaced with plain text associated with it.
     See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links
 
@@ -184,7 +202,7 @@ def remove_internal_links_inline(root_path):
     # and all remaining links are internal)
     # if it doesn't, match anything until you find ")"
     # if all of this works out, we found something
-    pattern_inline_style = re.compile(r"(\s|^)+\[([^\]]+)\]\((?!http)([^\)]+)\)")
+    pattern_inline = re.compile(r"(\s|^)+\[([^\]]+)\]\((?!http)([^\)]+)\)")
 
     for root, dirs, files in sorted(os.walk(root_path)):
         for file in files:
@@ -193,10 +211,11 @@ def remove_internal_links_inline(root_path):
                     data = markdown.readlines()
 
                 for ind, line in enumerate(data):
-                    match = pattern_inline_style.search(line)
+                    match = pattern_inline.search(line)
 
                     if match:
-                        line = re.sub(pattern_inline_style, f" {match.groups()[1]}", line)
+                        line = re.sub(pattern_inline,
+                                      f" {match.groups()[1]}", line)
 
                     data[ind] = line
 
