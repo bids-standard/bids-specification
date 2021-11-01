@@ -46,6 +46,17 @@ def dereference_yaml(schema, struct):
 
         struct = {key: dereference_yaml(schema, val) for key, val in struct.items()}
 
+        # For the rare case of multiple sets of valid values (enums) from multiple references,
+        # anyOf is used. Here we try to flatten our anyOf of enums into a single enum list.
+        if "anyOf" in struct.keys():
+            if all("enum" in obj for obj in struct["anyOf"]):
+                all_enum = [v["enum"] for v in struct["anyOf"]]
+                all_enum = [item for sublist in all_enum for item in sublist]
+
+                struct.pop("anyOf")
+                struct["type"] = "string"
+                struct["enum"] = all_enum
+
     elif isinstance(struct, list):
         struct = [dereference_yaml(schema, item) for item in struct]
 
