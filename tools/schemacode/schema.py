@@ -603,6 +603,12 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
         description = (
             metadata_schema[field]["description"] + " " + description_addendum
         )
+
+        # Try to add info about valid values
+        valid_values_str = utils.describe_valid_values(metadata_schema[field])
+        if valid_values_str:
+            description += "\n\n\n\n" + valid_values_str
+
         # A backslash before a newline means continue a string
         description = description.replace("\\\n", "")
         # Two newlines should be respected
