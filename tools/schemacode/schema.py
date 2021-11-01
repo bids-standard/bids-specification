@@ -44,17 +44,6 @@ def dereference_yaml(schema, struct):
 
         struct = {key: dereference_yaml(schema, val) for key, val in struct.items()}
 
-        # For the rare case of multiple sets of valid values (enums) from multiple references,
-        # anyOf is used. Here we try to flatten our anyOf of enums into a single enum list.
-        if "anyOf" in struct.keys():
-            if all("enum" in obj for obj in struct["anyOf"]):
-                all_enum = [v["enum"] for v in struct["anyOf"]]
-                all_enum = [item for sublist in all_enum for item in sublist]
-
-                struct.pop("anyOf")
-                struct["type"] = "string"
-                struct["enum"] = all_enum
-
     elif isinstance(struct, list):
         struct = [dereference_yaml(schema, item) for item in struct]
 
@@ -612,10 +601,6 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
         type_string = utils.resolve_metadata_type(metadata_schema[field])
 
         description = metadata_schema[field]["description"] + " " + description_addendum
-        # Try to add info about valid values
-        valid_values_str = utils.describe_valid_values(metadata_schema[field])
-        if valid_values_str:
-            description += "\n\n\n\n" + valid_values_str
 
         # A backslash before a newline means continue a string
         description = description.replace("\\\n", "")
