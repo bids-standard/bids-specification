@@ -36,6 +36,7 @@
     acquisition:
       requirement: required
       type: string
+      # TODO: Add definitions for these values.
       enum:
       - calibration
 
@@ -51,6 +52,7 @@
     acquisition:
       requirement: required
       type: string
+      # TODO: Add definitions for these values.
       enum:
       - crosstalk
 
