@@ -449,6 +449,8 @@ For example, the [EDF](https://www.edfplus.info/)
 data format can only contain recording dates after 1985.
 Shifting dates is RECOMMENDED, but not required.
 
+The source file path of each recording is also OPTIONAL and can be stored under the ``sources`` column. Similar to [derivatives](./05-derivatives/02-common-data-types.md), it is OPTIONAL to include ``sources``, specifying the filename(s) of the source file used to generate this dataset. If the filename(s) contains patient identifiable information, then it should not be stored.
+
 Additional fields can include external behavioral measures relevant to the
 scan.
 For example vigilance questionnaire score administered after a resting
@@ -460,11 +462,11 @@ All such included additional fields SHOULD be documented in an accompanying
 Example `_scans.tsv`:
 
 ```Text
-filename	acq_time
-func/sub-control01_task-nback_bold.nii.gz	1877-06-15T13:45:30
-func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33
-meg/sub-control01_task-rest_split-01_meg.nii.gz	1877-06-15T12:15:27
-meg/sub-control01_task-rest_split-02_meg.nii.gz	1877-06-15T12:15:27
+filename	acq_time  sources
+func/sub-control01_task-nback_bold.nii.gz	1877-06-15T13:45:30 sourcedata/sub01/dicoms
+func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33 sourcedata/sub01/motordicoms
+meg/sub-control01_task-rest_split-01_meg.nii.gz	1877-06-15T12:15:27 sourcedata/sub01/restdicoms
+meg/sub-control01_task-rest_split-02_meg.nii.gz	1877-06-15T12:15:27 sourcedata/sub01/restdicoms2
 ```
 
 ## Sessions file
