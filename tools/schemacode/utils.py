@@ -219,10 +219,10 @@ def describe_valid_values(definition):
             description = f"Must be one of: {', '.join(enum_values)}."
 
         elif "pattern" in definition.keys():
-            description = f"Must follow the pattern {definition['pattern']}."
+            description = f"Must follow the pattern `{definition['pattern']}`."
 
         elif "format" in definition.keys():
-            description = f"Must follow BIDS rules for the {definition['format']} format."
+            description = f"Must follow BIDS rules for the `{definition['format']}` format."
 
         else:
             description = None
