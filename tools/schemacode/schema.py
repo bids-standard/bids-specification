@@ -15,9 +15,7 @@ from . import utils
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
-utils.set_logger_level(
-    lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO)
-)
+utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 BIDS_SCHEMA = Path(__file__).parent.parent / "src" / "schema"
@@ -45,6 +43,17 @@ def dereference_yaml(schema, struct):
             struct = {**template, **struct}
 
         struct = {key: dereference_yaml(schema, val) for key, val in struct.items()}
+
+        # For the rare case of multiple sets of valid values (enums) from multiple references,
+        # anyOf is used. Here we try to flatten our anyOf of enums into a single enum list.
+        if "anyOf" in struct.keys():
+            if all("enum" in obj for obj in struct["anyOf"]):
+                all_enum = [v["enum"] for v in struct["anyOf"]]
+                all_enum = [item for sublist in all_enum for item in sublist]
+
+                struct.pop("anyOf")
+                struct["type"] = "string"
+                struct["enum"] = all_enum
 
     elif isinstance(struct, list):
         struct = [dereference_yaml(schema, item) for item in struct]
@@ -201,7 +210,12 @@ def make_entity_definitions(schema):
         )
         text += "\n\n"
         if "enum" in entity_info.keys():
-            text += "Allowed values: `{}`".format("`, `".join(entity_info["enum"]))
+            # Allow enums to be "objects" (dicts) or strings
+            enum_values = [
+                list(v.keys())[0] if isinstance(v, dict) else v
+                for v in entity_info["enum"]
+            ]
+            text += "Allowed values: `{}`".format("`, `".join(enum_values))
             text += "\n\n"
 
         text += "Definition: {}".format(entity_info["description"])
@@ -267,10 +281,16 @@ def make_filename_template(schema, **kwargs):
             string = "\t\t\t"
             for ent in entity_order:
                 if "enum" in schema["objects"]["entities"][ent].keys():
+                    # Allow enums to be "objects" (dicts) or strings
+                    enum_values = [
+                        list(v.keys())[0] if isinstance(v, dict) else v
+                        for v in schema["objects"]["entities"][ent]["enum"]
+                    ]
+
                     # Entity key-value pattern with specific allowed values
                     ent_format = "{}-<{}>".format(
                         schema["objects"]["entities"][ent]["entity"],
-                        "|".join(schema["objects"]["entities"][ent]["enum"]),
+                        "|".join(enum_values),
                     )
                 else:
                     # Standard entity key-value pattern with simple label/index
@@ -282,10 +302,16 @@ def make_filename_template(schema, **kwargs):
                 if ent in group["entities"]:
                     if isinstance(group["entities"][ent], dict):
                         if "enum" in group["entities"][ent].keys():
+                            # Allow enums to be "objects" (dicts) or strings
+                            enum_values = [
+                                list(v.keys())[0] if isinstance(v, dict) else v
+                                for v in group["entities"][ent]["enum"]
+                            ]
+
                             # Overwrite the filename pattern based on the valid values
                             ent_format = "{}-<{}>".format(
                                 schema["objects"]["entities"][ent]["entity"],
-                                "|".join(group["entities"][ent]["enum"]),
+                                "|".join(enum_values),
                             )
 
                         string = _add_entity(
@@ -303,16 +329,12 @@ def make_filename_template(schema, **kwargs):
                 string += suffix
                 strings = [string]
             else:
-                strings = [
-                    string + "_" + suffix for suffix in group["suffixes"]
-                ]
+                strings = [string + "_" + suffix for suffix in group["suffixes"]]
 
             # Add extensions
             full_strings = []
             extensions = group["extensions"]
-            extensions = [
-                ext if ext != "*" else ".<extension>" for ext in extensions
-            ]
+            extensions = [ext if ext != "*" else ".<extension>" for ext in extensions]
             extensions = utils.combine_extensions(extensions)
             if len(extensions) > 5:
                 # Combine exts when there are many, but keep JSON separate
@@ -408,7 +430,9 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
                         dtype_rows.pop(existing_suffixes_str)
                         old_suffix_list = existing_suffixes_str.split(" ")
                         new_suffix_list = suffixes_str.split(" ")
-                        comb_suffix_list = sorted(list(set(new_suffix_list + old_suffix_list)))
+                        comb_suffix_list = sorted(
+                            list(set(new_suffix_list + old_suffix_list))
+                        )
 
                         # Identify if the list of suffixes comes from an existing alternate row
                         number_suffixes = list(filter(str.isnumeric, comb_suffix_list))
@@ -503,9 +527,7 @@ def make_suffix_table(schema, suffixes, tablefmt="github"):
     suffixes_not_found = [f for f in suffixes if f not in suffix_schema.keys()]
     if suffixes_not_found:
         raise Exception(
-            "Warning: Missing suffixes: {}".format(
-                ", ".join(suffixes_not_found)
-            )
+            "Warning: Missing suffixes: {}".format(", ".join(suffixes_not_found))
         )
 
     df = pd.DataFrame(
@@ -589,9 +611,12 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
 
         type_string = utils.resolve_metadata_type(metadata_schema[field])
 
-        description = (
-            metadata_schema[field]["description"] + " " + description_addendum
-        )
+        description = metadata_schema[field]["description"] + " " + description_addendum
+        # Try to add info about valid values
+        valid_values_str = utils.describe_valid_values(metadata_schema[field])
+        if valid_values_str:
+            description += "\n\n\n\n" + valid_values_str
+
         # A backslash before a newline means continue a string
         description = description.replace("\\\n", "")
         # Two newlines should be respected
