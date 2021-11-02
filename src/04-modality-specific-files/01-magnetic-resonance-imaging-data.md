@@ -148,7 +148,7 @@ Useful for multimodal co-registration with MEG, (S)EEG, TMS, and so on.
 
 {{ MACROS___make_metadata_table(
    {
-      "AnatomicalLandmarkCoordinates_mri": "RECOMMENDED",
+      "AnatomicalLandmarkCoordinates__mri": "RECOMMENDED",
    }
 ) }}
 
@@ -1050,7 +1050,7 @@ Required fields:
 
 {{ MACROS___make_metadata_table(
    {
-      "EchoTime_fmap": "REQUIRED",
+      "EchoTime__fmap": "REQUIRED",
    }
 ) }}
 
