@@ -258,7 +258,7 @@ def make_glossary(schema):
             new_name = sense_names.get(key, key)
             new_name = f"{new_name} ({group})"
             all_objects[new_name] = {}
-            all_objects[new_name]["key"] = key
+            all_objects[new_name]["key"] = f"objects.{group}.{key}"
             all_objects[new_name]["definition"] = group_objects[key]
 
     text = ""
