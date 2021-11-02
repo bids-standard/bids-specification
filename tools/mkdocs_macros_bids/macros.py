@@ -5,8 +5,8 @@ import sys
 code_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(code_path)
 
-from schemacode import schema, utils
 from examplecode import example
+from schemacode import schema, utils
 
 
 def make_filename_template(**kwargs):
@@ -67,6 +67,21 @@ def make_entity_definitions():
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
     text = schema.make_entity_definitions(schema_obj)
+    return text
+
+
+def make_glossary():
+    """Generate glossary.
+
+    Returns
+    -------
+    text : str
+        A multiline string containing descriptions and some formatting
+        information about the entities in the schema.
+    """
+    schemapath = utils.get_schema_path()
+    schema_obj = schema.load_schema(schemapath)
+    text = schema.make_glossary(schema_obj)
     return text
 
 
