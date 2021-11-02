@@ -264,6 +264,7 @@ def make_glossary(schema):
     text = ""
     for obj_key in sorted(all_objects.keys()):
         obj = all_objects[obj_key]
+        obj_marker = obj["key"]
         obj_def = obj["definition"]
         obj_name = obj_def["name"]
         obj_desc = obj_def["description"]
@@ -274,6 +275,7 @@ def make_glossary(schema):
         # Otherwise a newline corresponds to a space
         obj_desc = obj_desc.replace("\n", " ")
 
+        text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
         text += f"name: {obj_name}\n\n"
         text += f"description:\n>{obj_desc}\n\n"
