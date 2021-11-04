@@ -200,8 +200,8 @@ sub-01/
         sub-01_sample-01_chunk-06_<modality_suffix>.json
 ```
 The index number can be assigned arbitrarily and, in the case of "ordered" chunks, the chunks'
-position relative to one another SHOULD be defined by an affine transformation matrix in the JSON
-sidecar file of each chunk, as described in [Chunk Tranformations](10-microscopy.md#chunk-transformations).
+positions relative to one another SHOULD be defined by an affine transformation matrix in the JSON
+sidecar file of each chunk, as described in [Chunk Transformations](10-microscopy.md#chunk-transformations).
 
 In this example, the JSON metadata is different for each chunk of `sub-01_sample-01`.
 JSON metadata may be defined per sample or per chunk as appropriate, as per the
@@ -317,7 +317,7 @@ A "manual" table is provided to facilitate the review process.
 | **Key name**                  | **Requirement level**                               | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | ----------------------------- | --------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ChunkTransformationMatrix     | RECOMMENDED if `<chunk-index>` is used in filenames | [array][] of [arrays][] of [numbers][] | 3x3 or 4x4 matrix describing spatial chunk transformation, for 2D and 3D respectively (for examples: `[[2, 0, 0], [0, 3, 0], [0, 0, 1]]` in 2D for 2x and 3x scaling along the first and second axis respectively or `[[1, 0, 0, 0], [0, 2, 0, 0], [0, 0, 3, 0], [0, 0, 0, 1]]` in 3D for 2x and 3x scaling along the second and third axis respectively). Note that non-spatial dimensions like time and channel are not included in the transformation matrix. |
-| ChunkTransformationMatrixAxis | REQUIRED if `ChunkTransformationMatrix` is present  | [arrays][] of [strings][]              | Describe the axis of the ChunkTransformationMatrix (for examples: `['X', 'Y']` or `['Z', 'Y', 'X']`)                                                                                                                                                                                                                                                                                                                                                             |
+| ChunkTransformationMatrixAxis | REQUIRED if `ChunkTransformationMatrix` is present  | [arrays][] of [strings][]              | Describe the axis of the ChunkTransformationMatrix (for examples: `["X", "Y"]` or `["Z", "Y", "X"]`)                                                                                                                                                                                                                                                                                                                                                             |
 
 #### Example (`*_<suffix>.json`)
 ```JSON
