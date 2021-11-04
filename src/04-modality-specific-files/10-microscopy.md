@@ -114,8 +114,8 @@ sub-01/
         sub-01_sample-03_<modality_suffix>.<ext>
         sub-01_<modality_suffix>.json
 ```
-In this example, JSON metadata is common for all samples of `sub-01`.
-JSON metadata may be defined per subject or per sample as appropriate, per the
+In this example, the JSON metadata is common for all samples of `sub-01`.
+JSON metadata may be defined per subject or per sample as appropriate, as per the
 [inheritance principle](../02-common-principles.md#the-inheritance-principle).
 
 The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity corresponds to a custom label that
@@ -131,7 +131,7 @@ image files from the same sample using different stains or antibodies for contra
 
 <!--- The following example will be generated automatically with macros after community review. -->
 For example:
-Brain slice (`sample-01`) extracted from subject `sub-01`, imaged with three stains
+One brain slice (`sample-01`) extracted from subject `sub-01`, imaged with three stains
 (`stain-01`, `stain-02`, `stain-03`) in three separate files.
 In this example, the entity stain is used to distinguish images with different
 stains in separate files from the same sample.
@@ -163,28 +163,9 @@ The [`chunk-<index>`](../99-appendices/09-entities.md#chunk) entity is used when
 regions (2D images or 3D volumes files) of the same physical sample are imaged with different
 fields of view, regardless if they overlap or not.
 
-<!--- The following example will be generated automatically with macros after community review. -->
-For example:
-Four chunks (`chunk-01` to `chunk-04`) from the same brain sample (`sample-01`) of subject `sub-01`.
-```Text
-sub-01/
-    microscopy/
-        sub-01_sample-01_chunk-01_<modality_suffix>.<ext>
-        sub-01_sample-01_chunk-01_<modality_suffix>.json
-        sub-01_sample-01_chunk-02_<modality_suffix>.<ext>
-        sub-01_sample-01_chunk-02_<modality_suffix>.json
-        sub-01_sample-01_chunk-03_<modality_suffix>.<ext>
-        sub-01_sample-01_chunk-03_<modality_suffix>.json
-        sub-01_sample-01_chunk-04_<modality_suffix>.<ext>
-        sub-01_sample-01_chunk-04_<modality_suffix>.json
-```
-In this example, JSON metadata is different for each chunk of `sub-01_sample-01`.
-JSON metadata may be defined per sample or per chunk as appropriate, per the
-[inheritance principle](../02-common-principles.md#the-inheritance-principle).
-
 In some cases, the chunks can be "ordered" and correspond to the displacement of the
-microscope stage for example.
-In others cases, the chunks can be different images of the same sample with no explicit
+microscope stage, for example.
+In other cases, the chunks can be different images of the same sample with no explicit
 spatial relation between them.
 
 Examples of different chunks configurations can be seen in Figure 1.
@@ -197,6 +178,34 @@ Figure 1: Examples of chunks configurations.
 -   c) unordered 2D chunks with and without overlap,
 -   d) and e) ordered 2D chunks on different 3D planes,
 -   f) ordered 3D chunks.
+
+<!--- The following example will be generated automatically with macros after community review. -->
+For example, as illustrated in Figure 1b:
+Six chunks (`chunk-01` to `chunk-06`) from the same brain sample (`sample-01`) of subject `sub-01`,
+are named:
+```Text
+sub-01/
+    microscopy/
+        sub-01_sample-01_chunk-01_<modality_suffix>.<ext>
+        sub-01_sample-01_chunk-01_<modality_suffix>.json
+        sub-01_sample-01_chunk-02_<modality_suffix>.<ext>
+        sub-01_sample-01_chunk-02_<modality_suffix>.json
+        sub-01_sample-01_chunk-03_<modality_suffix>.<ext>
+        sub-01_sample-01_chunk-03_<modality_suffix>.json
+        sub-01_sample-01_chunk-04_<modality_suffix>.<ext>
+        sub-01_sample-01_chunk-04_<modality_suffix>.json
+        sub-01_sample-01_chunk-05_<modality_suffix>.<ext>
+        sub-01_sample-01_chunk-05_<modality_suffix>.json
+        sub-01_sample-01_chunk-06_<modality_suffix>.<ext>
+        sub-01_sample-01_chunk-06_<modality_suffix>.json
+```
+The index number can be assigned arbitrarily and, in the case of "ordered" chunks, the chunks'
+position relative to one another SHOULD be defined by an affine transformation matrix in the JSON
+sidecar file of each chunk, as described in [Chunk Tranformations](10-microscopy.md#chunk-transformations).
+
+In this example, the JSON metadata is different for each chunk of `sub-01_sample-01`.
+JSON metadata may be defined per sample or per chunk as appropriate, as per the
+[inheritance principle](../02-common-principles.md#the-inheritance-principle).
 
 In microscopy, many pyramidal file formats store multiple resolutions for the same acquisition.
 In the case where a multiple resolutions file format is converted to single resolution file format,
@@ -285,7 +294,7 @@ It will require changes to `src/schema/metatata/BodyPart.yaml` and `src/04-modal
 | SampleExtractionProtocol    | OPTIONAL              | [string][] or [URI][uri]               | Description of the sample extraction protocol or URI (for example from [protocols.io](https://www.protocols.io/)).                                                                                                                                                                                                                                                                                                                                                                                                         |
 | SampleExtractionInstitution | OPTIONAL              | [string][]                             | The name of the institution in charge of the extraction of the sample, if different from the institution in charge of the equipment that produced the image.                                                                                                                                                                                                                                                                                                                                                               |
 
-#### Chunk transformations
+#### Chunk Transformations
 
 Chunk transformations metadata describes the spatial relation between chunks
 of the same sample in an implicit coordinate system.
@@ -305,10 +314,10 @@ of the same sample in an implicit coordinate system.
 The following table will be generated automatically with macros after community review.
 A "manual" table is provided to facilitate the review process.
 -->
-| **Key name**                  | **Requirement level**                                            | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ----------------------------- | ---------------------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ChunkTransformationMatrix     | OPTIONAL                                                         | [array][] of [arrays][] of [numbers][] | 3x3 or 4x4 matrix describing spatial chunk transformation, for 2D and 3D respectively (for examples: `[[2, 0, 0], [0, 3, 0], [0, 0, 1]]` in 2D for 2x and 3x scaling along the first and second axis respectively or `[[1, 0, 0, 0], [0, 2, 0, 0], [0, 0, 3, 0], [0, 0, 0, 1]]` in 3D for 2x and 3x scaling along the second and third axis respectively). Note that non-spatial dimensions like time and channel are not included in the transformation matrix. |
-| ChunkTransformationMatrixAxis | OPTIONAL, but REQUIRED if `ChunkTransformationMatrix` is present | [arrays][] of [strings][]              | Describe the axis of the ChunkTransformationMatrix (for examples: `['X', 'Y']` or `['Z', 'Y', 'X']`)                                                                                                                                                                                                                                                                                                                                                             |
+| **Key name**                  | **Requirement level**                               | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ----------------------------- | --------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ChunkTransformationMatrix     | RECOMMENDED if `<chunk-index>` is used in filenames | [array][] of [arrays][] of [numbers][] | 3x3 or 4x4 matrix describing spatial chunk transformation, for 2D and 3D respectively (for examples: `[[2, 0, 0], [0, 3, 0], [0, 0, 1]]` in 2D for 2x and 3x scaling along the first and second axis respectively or `[[1, 0, 0, 0], [0, 2, 0, 0], [0, 0, 3, 0], [0, 0, 0, 1]]` in 3D for 2x and 3x scaling along the second and third axis respectively). Note that non-spatial dimensions like time and channel are not included in the transformation matrix. |
+| ChunkTransformationMatrixAxis | REQUIRED if `ChunkTransformationMatrix` is present  | [arrays][] of [strings][]              | Describe the axis of the ChunkTransformationMatrix (for examples: `['X', 'Y']` or `['Z', 'Y', 'X']`)                                                                                                                                                                                                                                                                                                                                                             |
 
 #### Example (`*_<suffix>.json`)
 ```JSON
