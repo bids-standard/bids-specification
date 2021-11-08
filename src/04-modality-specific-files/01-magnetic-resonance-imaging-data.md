@@ -1013,8 +1013,8 @@ For example:
 ```JSON
 {
    "IntendedFor": [
-        "bids::/sub-01/ses-pre/func/sub-01_ses-pre_task-motor_run-1_bold.nii.gz",
-        "bids::/sub-01/ses-pre/func/sub-01_ses-pre_task-motor_run-2_bold.nii.gz"
+        "bids::sub-01/ses-pre/func/sub-01_ses-pre_task-motor_run-1_bold.nii.gz",
+        "bids::sub-01/ses-pre/func/sub-01_ses-pre_task-motor_run-2_bold.nii.gz"
     ]
 }
 ```
@@ -1109,7 +1109,7 @@ For example:
 ```JSON
 {
    "Units": "rad/s",
-   "IntendedFor": "bids::/sub-01/func/sub-01_task-motor_bold.nii.gz",
+   "IntendedFor": "bids::sub-01/func/sub-01_task-motor_bold.nii.gz",
    "B0FieldIdentifier": "b0map_fmap0"
 }
 ```
@@ -1155,7 +1155,7 @@ For example:
 {
    "PhaseEncodingDirection": "j-",
    "TotalReadoutTime": 0.095,
-   "IntendedFor": "bids::/sub-01/func/sub-01_task-motor_bold.nii.gz",
+   "IntendedFor": "bids::sub-01/func/sub-01_task-motor_bold.nii.gz",
    "B0FieldIdentifier": "pepolar_fmap0"
 }
 ```

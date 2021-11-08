@@ -40,7 +40,7 @@ and `desc-<label>` is used to prevent clashing with the original file name.
 
 ```JSON
 {
-    "Sources": ["bids:raw:/sub-01/func/sub-01_task-rest_bold.nii.gz"]
+    "Sources": ["bids:raw:sub-01/func/sub-01_task-rest_bold.nii.gz"]
 }
 ```
 
@@ -54,8 +54,8 @@ then both files MAY be included in `Sources`.
 ```JSON
 {
     "Sources": [
-        "bids:raw:/sub-01/func/sub-01_task-rest_bold.nii.gz",
-        "bids:raw:/sub-01/anat/sub-01_T1w.nii.gz"
+        "bids:raw:sub-01/func/sub-01_task-rest_bold.nii.gz",
+        "bids:raw:sub-01/anat/sub-01_T1w.nii.gz"
     ]
 }
 ```
@@ -67,8 +67,8 @@ and the raw original file.
 ```JSON
 {
     "Sources": [
-        "bids::/sub-01/anat/sub-01_desc-preproc_T1w.nii.gz"
-        "bids:raw:/sub-01/func/sub-01_task-rest_bold.nii.gz"
+        "bids::sub-01/anat/sub-01_desc-preproc_T1w.nii.gz"
+        "bids:raw:sub-01/func/sub-01_task-rest_bold.nii.gz"
     ],
 }
 ```
@@ -121,7 +121,7 @@ that in this case `SpatialReference` key is REQUIRED.
 
 ```JSON
 {
-    "SpatialReference": "bids::/sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
+    "SpatialReference": "bids::sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
 }
 ```
 
