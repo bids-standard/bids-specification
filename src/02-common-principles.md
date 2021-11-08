@@ -703,9 +703,9 @@ This is made more precise in the next section.
 
 #### Resolution of BIDS URIs
 
-In order to resolve a BIDS URI, the dataset name must be mapped to a dataset.
+In order to resolve a BIDS URI, the dataset name must be mapped to a BIDS dataset.
 
-The special case `""` (that is, the empty string) refers to the dataset in
+The special case `""` (that is, the empty string) refers to the BIDS dataset in
 which the BIDS URI is found.
 The dataset root is the nearest parent directory that contains a valid
 `dataset_description.json`.
@@ -737,7 +737,7 @@ Consider this example `dataset_description.json`:
 
 Here `deriv1` refers to a BIDS Derivatives dataset contained within the current
 dataset, `phantoms` refers to a BIDS dataset of phantom data stored on the local
-filesystem, and `ds000001` refers to a dataset that must be resolved by DOI.
+filesystem, and `ds000001` refers to a BIDS dataset that must be resolved by DOI.
 
 Note that resolving `bids:phantoms:sub-phantom01/anat/sub-phantom01_T1w.nii.gz`
 is a straightforward concatenation:
