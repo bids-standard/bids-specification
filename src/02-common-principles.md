@@ -686,16 +686,16 @@ bids:<dataset-name>:<absolute-path>
 
 The scheme component `bids` identifies a BIDS URI,
 which defines a `path` component of the form `<dataset-name>:<absolute-path>`.
-The `dataset-name` component is an identifier for a dataset,
-and the `absolute-path` component is a path, starting with a slash (`/`),
-followed by the location of a resource within the dataset.
+The `dataset-name` component is an identifier for a BIDS dataset,
+and the `relative-path` component is the location of a resource within the
+BIDS dataset, relative to the root of that dataset.
 
 Examples:
 
 ```plain
-bids::/sub-01/fmap/sub-01_dir-AP_epi.nii.gz
-bids:ds000001:/sub-02/anat/sub-02_T1w.nii.gz
-bids:myderivatives:/sub-03/func/sub-03_task-rest_space-MNI152_bold.nii.gz
+bids::sub-01/fmap/sub-01_dir-AP_epi.nii.gz
+bids:ds000001:sub-02/anat/sub-02_T1w.nii.gz
+bids:myderivatives:sub-03/func/sub-03_task-rest_space-MNI152_bold.nii.gz
 ```
 
 #### Resolution of BIDS URIs
@@ -738,7 +738,7 @@ filesystem, and `ds000001` refers to a dataset that must be resolved by DOI.
 Note that resolving `bids:phantoms:sub-phantom01/anat/sub-phantom01_T1w.nii.gz`
 is a straightforward concatenation:
 `file:///data/phantoms/sub-phantom01/anat/sub-phantom01_T1w.nii.gz`.
-However, retrieving `bids:ds000001:/sub-02/anat/sub-02_T1w.nii.gz` requires
+However, retrieving `bids:ds000001:sub-02/anat/sub-02_T1w.nii.gz` requires
 first resolving the DOI, identifying the retrieval method, possibly retrieving
 the entire dataset, and finally constructing a URI to the desired resource.
 
