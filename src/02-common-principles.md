@@ -681,7 +681,7 @@ Bare DOIs such as `10.18112/openneuro.ds000001.v1.0.0` are [DEPRECATED][].
 To reference files in BIDS datasets, the following URI scheme may be used:
 
 ```plain
-bids:<dataset-name>:<absolute-path>
+bids:[<dataset-name>]:<relative-path>
 ```
 
 The scheme component `bids` identifies a BIDS URI,
@@ -747,7 +747,7 @@ No protocol is currently proposed to automatically resolve all possible BIDS URI
 #### Future statement
 
 BIDS URIs are parsable as standard URIs with scheme `bids` and path
-`<dataset-name>:<abspath>`.
+`[<dataset-name>]:<relative-path>`.
 The authority, query and fragment components are unused.
 Future versions of BIDS may specify interpretations for these components,
 but MUST NOT change the interpretation of a previously valid BIDS URI.
