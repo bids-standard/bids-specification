@@ -662,13 +662,17 @@ label, but must be included in file names (similarly to other key names).
 
 ## Specification of paths
 
-Several metadata fields in BIDS require the specification of paths, that is
-a string of characters used to uniquely identify a location in a directory
-structure. For example the `IntendedFor` or `AssociatedEmptyroom` metadata fields.
+Several metadata fields in BIDS require the specification of paths,
+that is a string of characters used to uniquely identify a location in a directory structure.
+For example the `IntendedFor` or `AssociatedEmptyroom` metadata fields.
 
 Throughout BIDS all such paths MUST be specified using the slash character (`/`),
-regardless of the operating system that a particular dataset is curated on
-or used on.
+regardless of the operating system that a particular dataset is curated on or used on.
+
+Paths MUST NOT be absolute local paths,
+because these might break when a dataset is used on a different machine.
+Thus, all paths specified in a BIDS dataset must be relative paths,
+as specified in the respective descriptions of metadata fields that require the use of paths.
 
 ## Uniform Resource Indicator
 
