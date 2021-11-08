@@ -709,9 +709,10 @@ The dataset root is the nearest parent directory that contains a valid
 
 All other dataset names MUST be specified in the `DatasetLinks` object in
 [dataset_description.json][], which maps dataset names to URIs that point
-to dataset locations.
-If the scheme is omitted from the URI, the path is relative to the dataset
-root.
+to BIDS dataset locations.
+If the scheme is omitted from a URI in `DatasetLinks`,
+that path is resolved relative to the current dataset root
+(see `deriv1` example, below).
 
 BIDS URIs cannot be interpreted outside a BIDS dataset,
 as they require a `dataset_description.json` file to resolve.
