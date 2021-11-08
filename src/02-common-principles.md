@@ -698,6 +698,9 @@ bids:ds000001:sub-02/anat/sub-02_T1w.nii.gz
 bids:myderivatives:sub-03/func/sub-03_task-rest_space-MNI152_bold.nii.gz
 ```
 
+If no dataset name is specified, the URI is relative to the current BIDS dataset.
+This is made more precise in the next section.
+
 #### Resolution of BIDS URIs
 
 In order to resolve a BIDS URI, the dataset name must be mapped to a dataset.
