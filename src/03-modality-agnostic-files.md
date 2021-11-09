@@ -179,40 +179,21 @@ For backwards compatibility, if `species` is absent, the participant is assumed 
 `homo sapiens`.
 
 Commonly used *optional* columns in `participants.tsv` files are `age`, `sex`,
-`handedness`, `strain` and `strain_rrid`. We RECOMMEND to make use
+`handedness`, `strain`, and `strain_rrid`. We RECOMMEND to make use
 of these columns, and in case that you do use them, we RECOMMEND to use the
 following values for them:
 
--   `age`: numeric value in years (float or integer value)
-
--   `sex`: string value indicating phenotypical sex, one of "male", "female",
-    "other"
-
-    -   for "male", use one of these values: `male`, `m`, `M`, `MALE`, `Male`
-
-    -   for "female", use one of these values: `female`, `f`, `F`, `FEMALE`,
-        `Female`
-
-    -   for "other", use one of these values: `other`, `o`, `O`, `OTHER`,
-        `Other`
-
--   `handedness`: string value indicating one of "left", "right",
-    "ambidextrous"
-
-    -   for "left", use one of these values: `left`, `l`, `L`, `LEFT`, `Left`
-
-    -   for "right", use one of these values: `right`, `r`, `R`, `RIGHT`,
-        `Right`
-
-    -   for "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`,
-        `AMBIDEXTROUS`, `Ambidextrous`
-
--   `strain`: for species different from `homo sapiens`, string value indicating
-    the strain of the species, for example: `C57BL/6J`.
-
--   `strain_rrid`: for species different from `homo sapiens`, research resource identifier
-    ([RRID](https://scicrunch.org/resources/Organisms/search)) of the strain of the species,
-    for example: `RRID:IMSR_JAX:000664`.
+{{ MACROS___make_columns_table(
+   {
+      "participant_id": ("REQUIRED", "There MUST be exactly one row for each participant."),
+      "species": "RECOMMENDED",
+      "age": "RECOMMENDED",
+      "sex": "RECOMMENDED",
+      "handedness": "RECOMMENDED",
+      "strain": "RECOMMENDED",
+      "strain_rrid": "RECOMMENDED",
+   }
+) }}
 
 Throughout BIDS you can indicate missing values with `n/a` (for "not
 available").
@@ -279,32 +260,17 @@ samples.json
 
 The purpose of this file is to describe properties of samples, indicated by the `sample` entity.
 This file is REQUIRED if `sample-<label>` is present in any file name within the dataset.
-If this file exists, it MUST contain the three following columns:
-
--   `sample_id`: MUST consist of `sample-<label>` values identifying one row
-    for each sample
-
--   `participant_id`: MUST consist of `sub-<label>`
-
--   `sample_type`: MUST consist of sample type values, either `cell line`, `in vitro differentiated cells`,
-    `primary cell`, `cell-free sample`, `cloning host`, `tissue`, `whole organisms`, `organoid` or
-    `technical sample` from [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type)
-
-Other optional columns MAY be used to describe the samples.
 Each sample MUST be described by one and only one row.
 
-Commonly used *optional* columns in `samples.tsv` files are `pathology` and
-`derived_from`. We RECOMMEND to make use of these columns, and in case that
-you do use them, we RECOMMEND to use the following values for them:
-
--   `pathology`: string value describing the pathology of the sample or type of control.
-    When different from `healthy`, pathology SHOULD be specified in `samples.tsv`.
-    The pathology MAY instead be specified in [Sessions files](./03-modality-agnostic-files.md#sessions-file)
-    in case it changes over time.
-
--   `derived_from`: `sample-<label>` key/value pair from which a sample is derived from,
-    for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`),
-    as illustrated in the example below.
+{{ MACROS___make_columns_table(
+   {
+      "sample_id": ("REQUIRED", "The combination of `sample_id` and `participant_id` MUST be unique."),
+      "participant_id": ("REQUIRED", "The combination of `sample_id` and `participant_id` MUST be unique."),
+      "sample_type": "REQUIRED",
+      "pathology": "RECOMMENDED",
+      "derived_from": "RECOMMENDED",
+   }
+) }}
 
 `samples.tsv` example:
 
@@ -363,12 +329,15 @@ in the BIDS dataset and `participants.tsv` file.
 As with all other tabular data, the additional phenotypic information files
 MAY be accompanied by a JSON file describing the columns in detail
 (see [Tabular files](02-common-principles.md#tabular-files)).
-In addition to the column description, a section describing the measurement tool
-(as a whole) MAY be added under the name `MeasurementToolMetadata`.
-This section consists of two keys:
 
--   `Description`: A free text description of the measurement tool
--   `TermURL`: A URL to an entity in an ontology corresponding to this tool.
+In addition to the column descriptions, the JSON file MAY contain the following fields:
+
+{{ MACROS___make_metadata_table(
+   {
+      "MeasurementToolMetadata": "OPTIONAL",
+      "Derivative": "OPTIONAL",
+   }
+) }}
 
 As an example, consider the contents of a file called
 `phenotype/acds_adult.json`:
@@ -429,25 +398,12 @@ Some recordings consist of multiple parts, that span several files,
 for example through `echo-`, `part-`, or `split-` entities.
 Such recordings MUST be documented with one row per file.
 
-Relative paths to files should be used under a compulsory `filename` header.
-
-If acquisition time is included it should be listed under the `acq_time` header.
-Acquisition time refers to when the first data point in each run was acquired.
-Furthermore, if this header is provided, the acquisition times of all files that
-belong to a recording MUST be identical.
-
-Datetime should be expressed as described in [Units](./02-common-principles.md#units).
-
-For anonymization purposes all dates within one subject should be shifted by a
-randomly chosen (but consistent across all recordings) number of days.
-This way relative timing would be preserved, but chances of identifying a
-person based on the date and time of their scan would be decreased.
-Dates that are shifted for anonymization purposes SHOULD be set to the year 1925
-or earlier to clearly distinguish them from unmodified data.
-Note that some data formats do not support arbitrary recording dates.
-For example, the [EDF](https://www.edfplus.info/)
-data format can only contain recording dates after 1985.
-Shifting dates is RECOMMENDED, but not required.
+{{ MACROS___make_columns_table(
+   {
+      "filename": ("REQUIRED", "There MUST be exactly one row for each file."),
+      "acq_time": "OPTIONAL",
+   }
+) }}
 
 Additional fields can include external behavioral measures relevant to the
 scan.
@@ -484,6 +440,14 @@ In such case one file per participant SHOULD be added.
 These files MUST include a `session_id` column and describe each session by one and only one row.
 Column names in `sessions.tsv` files MUST be different from group level participant key column names in the
 [`participants.tsv` file](./03-modality-agnostic-files.md#participants-file).
+
+{{ MACROS___make_columns_table(
+   {
+      "session_id": ("REQUIRED", "There MUST be exactly one row for each session."),
+      "acq_time": "OPTIONAL",
+      "pathology": "RECOMMENDED",
+   }
+) }}
 
 `_sessions.tsv` example:
 

@@ -221,24 +221,28 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present **in this specific order**:
 
-| **Column name** | **Requirement level** | **Description**                                                                                                                                                               |
-| --------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name            | REQUIRED              | Channel name (for example, MRT012, MEG023).                                                                                                                                   |
-| type            | REQUIRED              | Type of channel; MUST use the channel types listed below. Note that the type MUST be in upper-case.                                                                           |
-| units           | REQUIRED              | Physical unit of the value represented in this channel, for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [Units](../02-common-principles.md#units)). |
+{{ MACROS___make_columns_table(
+   {
+      "name__channels": "REQUIRED",
+      "type__channels": "REQUIRED",
+      "units": "REQUIRED",
+   }
+) }}
 
 SHOULD be present:
 
-| **Column name**    | **Requirement level** | **Description**                                                                                                                                                                                                                                                     |
-| ------------------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| description        | OPTIONAL              | Brief free-text description of the channel, or other information of interest. See examples below.                                                                                                                                                                   |
-| sampling_frequency | OPTIONAL              | Sampling rate of the channel in Hz.                                                                                                                                                                                                                                 |
-| low_cutoff         | OPTIONAL              | Frequencies used for the high-pass filter applied to the channel in Hz. If no high-pass filter applied, use `n/a`.                                                                                                                                                  |
-| high_cutoff        | OPTIONAL              | Frequencies used for the low-pass filter applied to the channel in Hz. If no low-pass filter applied, use `n/a`. Note that hardware anti-aliasing in A/D conversion of all MEG/EEG electronics applies a low-pass filter; specify its frequency here if applicable. |
-| notch              | OPTIONAL              | Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use `n/a`.                                                                                                                                                         |
-| software_filters   | OPTIONAL              | List of temporal and/or spatial software filters applied (for example, "SSS", `"SpatialCompensation"`). Note that parameters should be defined in the general MEG sidecar .json file. Indicate `n/a` in the absence of software filters applied.                    |
-| status             | OPTIONAL              | Data quality observed on the channel `(good/bad)`. A channel is considered `bad` if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in `[status_description]`.                                                     |
-| status_description | OPTIONAL              | Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `[status]`.                                                                                                        |
+{{ MACROS___make_columns_table(
+   {
+      "description": "OPTIONAL",
+      "sampling_frequency": "OPTIONAL",
+      "low_cutoff": "OPTIONAL",
+      "high_cutoff": "OPTIONAL",
+      "notch": "OPTIONAL",
+      "software_filters": "OPTIONAL",
+      "status": "OPTIONAL",
+      "status_description": "OPTIONAL",
+   }
+) }}
 
 Example:
 
