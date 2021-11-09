@@ -237,6 +237,9 @@ BasedOn:
   description: |
     List of files in a file collection to generate the map.
     Fieldmaps are also listed, if involved in the processing.
+    This field is DEPRECATED, and this metadata SHOULD be recorded in the
+    `Sources` field using [BIDS URIs](/02-common-principles.html#bids-uri)
+    to distinguish sources from different datasets.
   anyOf:
   - type: string
     format: participant_relative
