@@ -5,8 +5,8 @@ import sys
 code_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(code_path)
 
-from schemacode import schema, utils
 from examplecode import example
+from schemacode import schema, utils
 
 
 def make_filename_template(**kwargs):
@@ -112,6 +112,31 @@ def make_metadata_table(field_info):
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
     table = schema.make_metadata_table(schema_obj, field_info)
+    return table
+
+
+def make_columns_table(column_info):
+    """Generate a markdown table of TSV column information.
+
+    Parameters
+    ----------
+    column_info : dict
+        A list of the column names.
+        Column names correspond to filenames in the "columns" folder of the
+        schema.
+        Until requirement levels can be codified in the schema,
+        this argument will be a dictionary, with the column names as keys and
+        the requirement levels as values.
+
+    Returns
+    -------
+    table : str
+        A Markdown-format table containing the corresponding table for
+        the requested columns.
+    """
+    schemapath = utils.get_schema_path()
+    schema_obj = schema.load_schema(schemapath)
+    table = schema.make_columns_table(schema_obj, column_info)
     return table
 
 

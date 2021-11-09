@@ -604,3 +604,74 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
     return table_str
+
+
+def make_columns_table(schema, column_info, tablefmt="github"):
+    """Produce columns table (markdown) based on requested fields.
+
+    Parameters
+    ----------
+    schema : dict
+        The BIDS schema.
+    column_info : dict of strings or tuples
+        A dictionary mapping column names to requirement levels in the
+        rendered columns table.
+        The dictionary values may be strings, in which case the string
+        is the requirement level information, or two-item tuples of strings,
+        in which case the first string is the requirement level information
+        and the second string is additional table-specific information
+        about the column that will be appended to the column's base
+        definition from the schema.
+    tablefmt : string, optional
+        The target table format. The default is "github" (GitHub format).
+
+    Returns
+    -------
+    table_str : str
+        The tabulated table as a Markdown string.
+    """
+    fields = list(column_info.keys())
+    # The filter function doesn't work here.
+    column_schema = schema["objects"]["columns"]
+
+    retained_fields = [f for f in fields if f in column_schema.keys()]
+    dropped_fields = [f for f in fields if f not in column_schema.keys()]
+    if dropped_fields:
+        print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
+
+    # Use the "name" field in the table, to allow for filenames to not match
+    # "names".
+    df = pd.DataFrame(
+        index=[column_schema[f]["name"] for f in retained_fields],
+        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+    )
+    df.index.name = "**Column name**"
+    for field in retained_fields:
+        field_name = column_schema[field]["name"]
+        requirement_info = column_info[field]
+        description_addendum = ""
+        if isinstance(requirement_info, tuple):
+            requirement_info, description_addendum = requirement_info
+
+        requirement_info = requirement_info.replace(
+            "DEPRECATED",
+            "[DEPRECATED](/02-common-principles.html#definitions)",
+        )
+
+        type_string = utils.resolve_metadata_type(column_schema[field])
+
+        description = (
+            column_schema[field]["description"] + " " + description_addendum
+        )
+        # A backslash before a newline means continue a string
+        description = description.replace("\\\n", "")
+        # Two newlines should be respected
+        description = description.replace("\n\n", "<br>")
+        # Otherwise a newline corresponds to a space
+        description = description.replace("\n", " ")
+
+        df.loc[field_name] = [requirement_info, type_string, description]
+
+    # Print it as markdown
+    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    return table_str
