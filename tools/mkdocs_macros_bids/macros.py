@@ -130,6 +130,31 @@ def make_metadata_table(field_info):
     return table
 
 
+def make_columns_table(column_info):
+    """Generate a markdown table of TSV column information.
+
+    Parameters
+    ----------
+    column_info : dict
+        A list of the column names.
+        Column names correspond to filenames in the "columns" folder of the
+        schema.
+        Until requirement levels can be codified in the schema,
+        this argument will be a dictionary, with the column names as keys and
+        the requirement levels as values.
+
+    Returns
+    -------
+    table : str
+        A Markdown-format table containing the corresponding table for
+        the requested columns.
+    """
+    schemapath = utils.get_schema_path()
+    schema_obj = schema.load_schema(schemapath)
+    table = schema.make_columns_table(schema_obj, column_info)
+    return table
+
+
 def make_filetree_example(filetree_info, use_pipe=True):
     """Generate a filetree snippet from example content.
 
