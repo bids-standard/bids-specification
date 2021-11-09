@@ -91,6 +91,18 @@ flip:
     value which needs to be stored in the field `FlipAngle` of the separate JSON file.
   type: string
   format: index
+hemisphere:
+  name: Hemisphere
+  entity: hemi
+  description: |
+    The `hemi-<label>` entity indicates which hemibrain is described by the file.
+    Allowed label values for this entity are `L` and `R`, for the left and right
+    hemibrains, respectively.
+  type: string
+  format: label
+  enum:
+  - "L"
+  - "R"
 inversion:
   name: Inversion Time
   entity: inv
@@ -135,12 +147,12 @@ mtransfer:
     respectively.
   type: string
   enum:
-  - 'on':
+  - "on":
       name: "on"
       description: |
         The image acquired in the presence of the magnetization transfer pulse,
         also known as the off-resonance pulse.
-  - 'off':
+  - "off":
       name: "off"
       description: |
         The image acquired in the absence of the magnetization transfer pulse.
