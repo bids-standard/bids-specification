@@ -45,10 +45,10 @@ The OME-TIFF file allows for multi-page TIFF files to store multiple image plane
 multi-resolution pyramidal tiled images. An OME-XML data block is also embedded inside the
 file’s header.
 
-In Microscopy-BIDS, we accept different file formats to accommodate datasets stored in 2D image
-formats and whole-slide imaging formats, to accommodate lossless and lossy compression,
-and to avoid unnecessary conversions of the original data from a non-tiled to a tiled format,
-or vice-versa.
+The BIDS standard accepts microscopy data in different file formats to accommodate datasets
+stored in 2D image formats and whole-slide imaging formats, to accommodate lossless and lossy
+compression, and to avoid unnecessary conversions of the original data from a non-tiled to a
+tiled format, or vice-versa.
 
 For BIDS, Microscopy raw data MUST be stored in one of the following formats:
 
@@ -63,7 +63,7 @@ For BIDS, Microscopy raw data MUST be stored in one of the following formats:
 If different from PNG, TIFF or OME-TIFF, the original unprocessed data in the native format MAY be
 stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
 
-Future versions of Microscopy-BIDS may extend this list of supported file formats.
+Future versions may extend this list of supported file formats.
 For example with the [OME-NGFF](https://ngff.openmicroscopy.org/latest/) format currently
 developed by OME as a successor to OME-TIFF for better remote sharing of large datasets.
 
