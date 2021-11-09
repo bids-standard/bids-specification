@@ -262,9 +262,3 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
     }
 }
 ```
-
-<!-- Link Definitions -->
-
-[number]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[string]: https://www.w3schools.com/js/js_json_datatypes.asp
