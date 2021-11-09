@@ -107,12 +107,6 @@ Example `*_physio.json`:
 To store pulse or breathing measurements, or the scanner trigger signal, the
 following naming conventions SHOULD be used for the column names:
 
-| **Column name** | **Description**                                      |
-| --------------- | ---------------------------------------------------- |
-| cardiac         | continuous pulse measurement                         |
-| respiratory     | continuous breathing measurement                     |
-| trigger         | continuous measurement of the scanner trigger signal |
-
 {{ MACROS___make_columns_table(
    {
       "cardiac": "OPTIONAL",

@@ -34,16 +34,6 @@ file describing the columns in detail (see
 The tabular files consists of one row per event and a set of REQUIRED
 and OPTIONAL columns:
 
-| **Column name** | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                               |
-| --------------- | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| onset           | REQUIRED              | [number][]               | Onset (in seconds) of the event measured from the beginning of the acquisition of the first data point in the corresponding task data file. Negative numbers in "onset" are allowed<sup>5</sup>.                                                                              |
-| duration        | REQUIRED              | [number][]               | Duration of the event (measured from onset) in seconds. MUST be either zero or positive (or `"n/a"` if unavailable). A "duration" value of zero implies that the event is so short as to be effectively modeled as an impulse.                                                |
-| sample          | OPTIONAL              | [number][]               | Onset of the event according to the sampling scheme of the recorded modality (that is, referring to the raw data file that the `events.tsv` file accompanies).                                                                                                                |
-| trial_type      | OPTIONAL              | [string][]               | Primary categorisation of each trial to identify them as instances of the experimental conditions. For example: for a response inhibition task, it could take on values `"go"` and `"no-go"` to refer to response initiation and response inhibition experimental conditions. |
-| response_time   | OPTIONAL              | [number][]               | Response time measured in seconds. A negative response time can be used to represent preemptive responses and `"n/a"` denotes a missed response.                                                                                                                              |
-| value           | OPTIONAL              | [string][] or [number][] | Marker value associated with the event (for example, the value of a TTL trigger that was recorded at the onset of the event).                                                                                                                                                 |
-| HED             | OPTIONAL              | [string][]               | Hierarchical Event Descriptor (HED) tag. See [Appendix III](../99-appendices/03-hed.md) for details.                                                                                                                                                                          |
-
 {{ MACROS___make_columns_table(
    {
       "onset": "REQUIRED",
@@ -148,10 +138,6 @@ for a given event,
 
 There are no restrictions on the file formats of the stimuli files,
 but they should be stored in the `/stimuli` folder.
-
-| **Column name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                            |
-| --------------- | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| stim_file       | OPTIONAL              | [string][]    | Represents the location of the stimulus file (such as an image, video, or audio file) presented at the given onset time. The values under the `stim_file` column correspond to a path relative to the folder `/stimuli`. For example `images/cat03.jpg` will be translated to `/stimuli/images/cat03.jpg`. |
 
 {{ MACROS___make_columns_table(
    {

@@ -440,14 +440,6 @@ Example:
 
 These TSV lookup tables contain the following columns:
 
-| **Column name** | **Requirement level** | **Description**                                               |
-| --------------- | --------------------- |-------------------------------------------------------------- |
-| index           | REQUIRED              | The label integer index                                       |
-| name            | REQUIRED              | The unique label name                                         |
-| abbreviation    | OPTIONAL              | The unique label abbreviation                                 |
-| color           | OPTIONAL              | Hexadecimal. Label color for visualization                    |
-| mapping         | OPTIONAL              | Corresponding integer label in the standard BIDS label lookup |
-
 {{ MACROS___make_columns_table(
    {
       "index": "REQUIRED",
