@@ -9,11 +9,10 @@ context of the academic literature.
 The following example MEG datasets have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
-- [`multimodal MEG and MRI`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
+-   [`multimodal MEG and MRI`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
 
-Further datasets are available from 
+Further datasets are available from
 the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
-
 
 ## MEG recording data
 

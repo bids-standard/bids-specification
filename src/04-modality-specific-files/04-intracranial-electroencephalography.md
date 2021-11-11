@@ -6,10 +6,9 @@ Please see [Citing BIDS](../01-introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example iEEG datasets](https://github.com/bids-standard/bids-examples#ieeg-datasets) 
+Several [example iEEG datasets](https://github.com/bids-standard/bids-examples#ieeg-datasets)
 have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
-
 
 ## iEEG recording data
 

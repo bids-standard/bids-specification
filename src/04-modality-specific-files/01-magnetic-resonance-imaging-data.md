@@ -558,14 +558,14 @@ participant, task and run takes precedence.
 
 ## Diffusion imaging data
 
-Several [example datasets](https://github.com/bids-standard/bids-examples) 
+Several [example datasets](https://github.com/bids-standard/bids-examples)
 contain diffusion imaging data formatted using this specification
 and that can be used for practical guidance when curating a new dataset:
 
-- [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
-- [`eeg_rest_fmri`](https://github.com/bids-standard/bids-examples/tree/master/eeg_rest_fmri)
-- [`ds114`](https://github.com/bids-standard/bids-examples/tree/master/ds114)
-- [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
+-   [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+-   [`eeg_rest_fmri`](https://github.com/bids-standard/bids-examples/tree/master/eeg_rest_fmri)
+-   [`ds114`](https://github.com/bids-standard/bids-examples/tree/master/ds114)
+-   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
 
 Diffusion-weighted imaging data acquired for a participant.
 Currently supported image types include:
@@ -753,7 +753,7 @@ JSON example:
 
 ## Arterial Spin Labeling perfusion data
 
-Several [example ASL datasets](https://github.com/bids-standard/bids-examples#asl-datasets) 
+Several [example ASL datasets](https://github.com/bids-standard/bids-examples#asl-datasets)
 have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
@@ -987,12 +987,12 @@ For example:
 
 #### Case 1: Phase-difference map and at least one magnitude image
 
-[Example datasets](https://github.com/bids-standard/bids-examples) 
+[Example datasets](https://github.com/bids-standard/bids-examples)
 containing that type of fieldmap can be found here:
 
-- [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
-- [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
-- [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
+-   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
+-   [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+-   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
 
 {{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["phasediff", "magnitude1", "magnitude2"]) }}
 
@@ -1083,10 +1083,10 @@ for details on the `IntendedFor` field.
 
 #### Case 4: Multiple phase encoded directions ("pepolar")
 
-An [example dataset](https://github.com/bids-standard/bids-examples) 
+An [example dataset](https://github.com/bids-standard/bids-examples)
 containing that type of fieldmap can be found here:
 
-- [`ieeg_visual_multimodal`](https://github.com/bids-standard/bids-examples/tree/master/ieeg_visual_multimodal)
+-   [`ieeg_visual_multimodal`](https://github.com/bids-standard/bids-examples/tree/master/ieeg_visual_multimodal)
 
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
 EPI scans with different phase encoding directions to estimate the distortion
