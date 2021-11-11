@@ -113,7 +113,7 @@ It is RECOMMENDED to share them along with the vendor outputs, whenever possible
 
 ### Example datasets
 
-You can find example file collections and qMRI maps organized according to BIDS 
+You can find example file collections and qMRI maps organized according to BIDS
 in the [BIDS examples](https://github.com/bids-standard/bids-examples#qmri-datasets).
 
 ## Metadata requirements for qMRI data
