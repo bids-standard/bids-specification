@@ -6,14 +6,9 @@ Please see [Citing BIDS](../01-introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-The following example EEG datasets have been formatted using this specification
+Several [example EEG datasets](https://github.com/bids-standard/bids-examples#eeg-datasets)
+have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
-
--   Single session per subject: [`eeg_matchingpennies`](https://doi.org/10.17605/OSF.IO/CJ2DR)
--   Multiple sessions per subject: [`eeg_rishikesh`](https://doi.org/10.5281/zenodo.1490922)
--   Combined with fMRI: [`eeg_rest_fmri`](https://osf.io/94c5t/files/)
-
-Further datasets are available from the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
 
 ## EEG recording data
 

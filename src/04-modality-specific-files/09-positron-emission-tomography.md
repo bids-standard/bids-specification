@@ -6,7 +6,8 @@ Please see [Citing BIDS](../01-introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example PET datasets](https://github.com/bids-standard/bids-examples) have been formatted using this specification
+Several [example PET datasets](https://github.com/bids-standard/bids-examples#pet-datasets)
+have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
 Further PET datasets are available from [OpenNeuro](https://openneuro.org).
