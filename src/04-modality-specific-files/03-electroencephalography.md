@@ -20,10 +20,8 @@ stored in one of the following formats:
 
 -   [European data format](https://www.edfplus.info/)
     (including [`edf+`](https://www.edfplus.info/specs/edfplus.html);
-    each recording consisting of a `.edf` file). Although the
-    European data format supports
-    both upper and lower case extensions, in BIDS the file extension MUST
-    be lower case (that is `.edf` instead of `.EDF`).
+    each recording consisting of a `.edf` file).
+    The capital `.EDF` extension MUST NOT be used.
 
 -   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
     (Each recording consisting of a  `.vhdr`, `.vmrk`, `.eeg` file triplet)
