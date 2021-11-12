@@ -167,7 +167,7 @@ In other cases, the chunks can be different images of the same sample with no ex
 spatial relation between them.
 
 Examples of different chunks configurations can be seen in Figure 1.
-![Figure 1](images/microscopy_chunks.png "Examples of Microscopy chunks")
+![Figure 1](images/microscopy_chunks1.png "Examples of Microscopy chunks")
 
 Figure 1: Examples of chunks configurations.
 
@@ -317,7 +317,41 @@ A "manual" table is provided to facilitate the review process.
 | ChunkTransformationMatrix     | RECOMMENDED if `<chunk-index>` is used in filenames | [array][] of [arrays][] of [numbers][] | 3x3 or 4x4 matrix describing spatial chunk transformation, for 2D and 3D respectively (for examples: `[[2, 0, 0], [0, 3, 0], [0, 0, 1]]` in 2D for 2x and 3x scaling along the first and second axis respectively or `[[1, 0, 0, 0], [0, 2, 0, 0], [0, 0, 3, 0], [0, 0, 0, 1]]` in 3D for 2x and 3x scaling along the second and third axis respectively). Note that non-spatial dimensions like time and channel are not included in the transformation matrix. |
 | ChunkTransformationMatrixAxis | REQUIRED if `ChunkTransformationMatrix` is present  | [arrays][] of [strings][]              | Describe the axis of the ChunkTransformationMatrix (for examples: `["X", "Y"]` or `["Z", "Y", "X"]`)                                                                                                                                                                                                                                                                                                                                                             |
 
-#### Example (`*_<suffix>.json`)
+An example of chunk transformations JSON metadata for `chunk-01` and `chunk-05` of Figure 2
+is shown below:
+
+![Figure 2](images/microscopy_chunks2.png "Example figure for chunks transformations")
+
+Figure 2: Example figure for chunks transformations.
+
+In this example, there is no scaling and `chunk-01` is at the origin.
+`chunk-05` is translated of 5 um in `X` and 3 um in `Y`.
+
+**`*_chunk-01_<modality_suffix>.json`**:
+```JSON
+{
+        "PixelSize": [1, 1],
+        "PixelSizeUnits": "um",
+        "ChunkTransformationMatrix": [[1, 0, 0],
+                                      [0, 1, 0],
+                                      [0, 0, 1]],
+        "ChunkTransformationMatrixAxis": ["X", "Y"]
+}
+```
+
+**`*_chunk-05_<modality_suffix>.json`**:
+```JSON
+{
+        "PixelSize": [1, 1],
+        "PixelSizeUnits": "um",
+        "ChunkTransformationMatrix": [[1, 0, 5],
+                                      [0, 1, 3],
+                                      [0, 0, 1]],
+        "ChunkTransformationMatrixAxis": ["X", "Y"]
+}
+```
+
+#### Example of sidecar JSON file (`*_<suffix>.json`)
 ```JSON
 {
         "Manufacturer": "Hamamatsu",
