@@ -18,24 +18,13 @@ The iEEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, iEEG data MUST be
 stored in one of the following formats:
 
--   [European data format](https://www.edfplus.info/)
-    (including [`edf+`](https://www.edfplus.info/specs/edfplus.html);
-    each recording consisting of a `.edf` file). Although the
-    European data format supports
-    both upper and lower case extensions, in BIDS the file extension MUST
-    be lower case (that is `.edf` instead of `.EDF`).
-
--   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
-    (Each recording consisting of a  `.vhdr`, `.vmrk`, `.eeg` file triplet)
-
--   The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab)
-    (Each recording consisting of a `.set` file with an optional `.fdt` file)
-
--   [Neurodata Without Borders](https://nwb-schema.readthedocs.io)
-    (Each recording consisting of a `.nwb` file)
-
--   [MEF3](https://msel.mayo.edu/files/codes/MEF%203%20Specification.pdf)
-    (Each recording consisting of a `.mefd` directory)
+| **Format** | **Extension(s)** | **Description** |
+| ---------- | ---------------- | --------------- |
+| [European data format](https://www.edfplus.info/) | `.edf` | Each recording consists of a single file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital .EDF extension MUST NOT be used. |
+| [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5) | `.vhdr`, `.vmrk`, `.eeg` | Each recording consisting of a  `.vhdr`, `.vmrk`, `.eeg` file triplet. |
+| [EEGLAB](https://sccn.ucsd.edu/eeglab) | `.set`, `.fdt` | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab). Each recording consisting of a `.set` file with an optional `.fdt` file. |
+| [Neurodata Without Borders](https://nwb-schema.readthedocs.io) | `nwb` | Each recording consists of a single `.nwb` file. |
+| [MEF3](https://msel.mayo.edu/files/codes/MEF%203%20Specification.pdf) | `mefd` | Each recording consisting of a `.mefd` directory. |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
