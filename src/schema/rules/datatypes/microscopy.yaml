@@ -22,7 +22,7 @@
   - .ome.tif
   - .ome.btf
   - .png
-  - .tiff
+  - .tif
   - .json
   entities:
     subject: required
