@@ -133,8 +133,6 @@ image files from the same sample using different stains or antibodies for contra
 For example:
 One brain slice (`sample-01`) extracted from subject `sub-01`, imaged with three stains
 (`stain-01`, `stain-02`, `stain-03`) in three separate files.
-In this example, the entity stain is used to distinguish images with different
-stains in separate files from the same sample.
 ```Text
 sub-01/
     microscopy/
