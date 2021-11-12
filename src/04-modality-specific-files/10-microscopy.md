@@ -82,7 +82,7 @@ A "manual" table is provided to facilitate the review process.
 | Dark-field microscopy                         | DF       |
 | Phase-contrast microscopy                     | PC       |
 | Differential interference contrast microscopy | DIC      |
-| Fluorescence                                  | FLUO     |
+| Fluorescence microscopy                       | FLUO     |
 | Confocal microscopy                           | CONF     |
 | Polarized-light microscopy                    | PLI      |
 | Coherent anti-Stokes Raman spectroscopy       | CARS     |
