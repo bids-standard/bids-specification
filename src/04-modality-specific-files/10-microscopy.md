@@ -325,7 +325,7 @@ is shown below:
 Figure 2: Example figure for chunks transformations.
 
 In this example, there is no scaling and `chunk-01` is at the origin.
-`chunk-05` is translated of 5 um in `X` and 3 um in `Y`.
+`chunk-05` is translated by 5 um along `X+` and by 3 um along `Y+`.
 
 **`*_chunk-01_<modality_suffix>.json`**:
 ```JSON
