@@ -60,10 +60,10 @@ In this example, tracer injection coincides with scan start.
 
 ## PET recording data
 
-{{ 
+{{
    MACROS___make_filename_template(
-      datatypes=["pet"], 
-      suffixes=["pet", "events", "physio", "stim"]) 
+      datatypes=["pet"],
+      suffixes=["pet", "events", "physio", "stim"])
 }}
 
 PET data MUST be stored in the `pet` directory.
