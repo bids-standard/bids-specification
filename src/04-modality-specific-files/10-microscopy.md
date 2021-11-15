@@ -64,8 +64,8 @@ If different from PNG, TIFF or OME-TIFF, the original unprocessed data in the na
 stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
 
 Future versions may extend this list of supported file formats, for example with the
-Next-Generation File Formats ([OME-NGFF](https://ngff.openmicroscopy.org/latest/)) currently
-developed by OME as a successor to OME-TIFF for better remote sharing of large datasets.
+Next-Generation File Formats currently developed by OME ([OME-NGFF](https://ngff.openmicroscopy.org/latest/))
+as a successor to OME-TIFF for better remote sharing of large datasets.
 
 ### Modality suffixes
 Microscopy data currently support the following imaging modalities:
