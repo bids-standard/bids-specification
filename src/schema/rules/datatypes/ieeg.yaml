@@ -85,4 +85,4 @@
     task: required
     acquisition: optional
     run: optional
-    recording: optional    
+    recording: optional
