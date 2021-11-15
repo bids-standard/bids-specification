@@ -63,8 +63,8 @@ For BIDS, Microscopy raw data MUST be stored in one of the following formats:
 If different from PNG, TIFF or OME-TIFF, the original unprocessed data in the native format MAY be
 stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
 
-Future versions may extend this list of supported file formats.
-For example with the [OME-NGFF](https://ngff.openmicroscopy.org/latest/) format currently
+Future versions may extend this list of supported file formats, for example with the
+Next-Generation File Formats ([OME-NGFF](https://ngff.openmicroscopy.org/latest/)) currently
 developed by OME as a successor to OME-TIFF for better remote sharing of large datasets.
 
 ### Modality suffixes
