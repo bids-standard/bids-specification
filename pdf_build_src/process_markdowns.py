@@ -434,6 +434,8 @@ def process_macros(duplicated_src_dir_path):
     delimiters ("{{" and "}}"). Therefore, those characters should not be used
     in the specification for any purposes other than running macros.
     """
+    re_code_snippets = re.compile("({{.*?}})", re.DOTALL)
+
     for root, dirs, files in os.walk(duplicated_src_dir_path):
         for name in files:
             # Only edit markdown files
@@ -445,7 +447,7 @@ def process_macros(duplicated_src_dir_path):
                 contents = fo.read()
 
             # Replace code snippets in the text with their outputs
-            matches = re.findall(re.compile("({{.*?}})", re.DOTALL), contents)
+            matches = re.findall(re_code_snippets, contents)
             for m in matches:
                 # Remove macro delimiters to get *just* the function call
                 function_string = m.strip("{} ")

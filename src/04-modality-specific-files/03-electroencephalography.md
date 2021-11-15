@@ -6,14 +6,9 @@ Please see [Citing BIDS](../01-introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-The following example EEG datasets have been formatted using this specification
+Several [example EEG datasets](https://github.com/bids-standard/bids-examples#eeg-datasets)
+have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
-
--   Single session per subject: [`eeg_matchingpennies`](https://doi.org/10.17605/OSF.IO/CJ2DR)
--   Multiple sessions per subject: [`eeg_rishikesh`](https://doi.org/10.5281/zenodo.1490922)
--   Combined with fMRI: [`eeg_rest_fmri`](https://osf.io/94c5t/files/)
-
-Further datasets are available from the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
 
 ## EEG recording data
 
@@ -220,24 +215,28 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present **in this specific order**:
 
-| **Column name** | **Requirement level** | **Description**                                                                                                                                                               |
-| --------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name            | REQUIRED              | Channel name (for example, FC1, Cz)                                                                                                                                           |
-| type            | REQUIRED              | Type of channel; MUST use the channel types listed below. Note that the type MUST be in upper-case.                                                                           |
-| units           | REQUIRED              | Physical unit of the value represented in this channel, for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [Units](../02-common-principles.md#units)). |
+{{ MACROS___make_columns_table(
+   {
+      "name__channels": "REQUIRED",
+      "type__channels": "REQUIRED",
+      "units": "REQUIRED",
+   }
+) }}
 
 SHOULD be present:
 
-| **Column name**    | **Requirement level** | **Description**                                                                                                                                                                                                                                                 |
-| ------------------ | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| description        | OPTIONAL              | Free-form text description of the channel, or other information of interest. See examples below.                                                                                                                                                                |
-| sampling_frequency | OPTIONAL              | Sampling rate of the channel in Hz.                                                                                                                                                                                                                             |
-| reference          | OPTIONAL              | Name of the reference electrode(s) (not needed when it is common to all channels, in that case it can be specified in `*_eeg.json` as `EEGReference`).                                                                                                          |
-| low_cutoff         | OPTIONAL              | Frequencies used for the high-pass filter applied to the channel in Hz. If no high-pass filter applied, use `n/a`.                                                                                                                                              |
-| high_cutoff        | OPTIONAL              | Frequencies used for the low-pass filter applied to the channel in Hz. If no low-pass filter applied, use `n/a`. Note that hardware anti-aliasing in A/D conversion of all EEG electronics applies a low-pass filter; specify its frequency here if applicable. |
-| notch              | OPTIONAL              | Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use `n/a`.                                                                                                                                                     |
-| status             | OPTIONAL              | Data quality observed on the channel (`good`, `bad`). A channel is considered `bad` if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in `status_description`.                                                |
-| status_description | OPTIONAL              | Free-form text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `status`.                                                                                                     |
+{{ MACROS___make_columns_table(
+   {
+      "description": "OPTIONAL",
+      "sampling_frequency": "OPTIONAL",
+      "reference__eeg": "OPTIONAL",
+      "low_cutoff": "OPTIONAL",
+      "high_cutoff": "OPTIONAL",
+      "notch": "OPTIONAL",
+      "status": "OPTIONAL",
+      "status_description": "OPTIONAL",
+   }
+) }}
 
 Restricted keyword list for field `type` in alphabetic order (shared with the
 MEG and iEEG modality; however, only the types that are common in EEG data are listed here).
@@ -292,20 +291,24 @@ file MUST be specified as well**. The order of the required columns in the
 
 MUST be present **in this specific order**:
 
-| **Column name** | **Requirement level** | **Description**                     |
-| --------------- | --------------------- | ----------------------------------- |
-| name            | REQUIRED              | Name of the electrode.              |
-| x               | REQUIRED              | Recorded position along the x-axis. |
-| y               | REQUIRED              | Recorded position along the y-axis. |
-| z               | REQUIRED              | Recorded position along the z-axis. |
+{{ MACROS___make_columns_table(
+   {
+      "name__electrodes": "REQUIRED",
+      "x": "REQUIRED",
+      "y": "REQUIRED",
+      "z": "REQUIRED",
+   }
+) }}
 
 SHOULD be present:
 
-| **Column name** | **Requirement level** | **Description**                                                        |
-| --------------- | --------------------- | ---------------------------------------------------------------------- |
-| type            | RECOMMENDED           | Type of the electrode (for example, cup, ring, clip-on, wire, needle). |
-| material        | RECOMMENDED           | Material of the electrode  (for example, Tin, Ag/AgCl, Gold).          |
-| impedance       | RECOMMENDED           | Impedance of the electrode, units MUST be in `kOhm`.                   |
+{{ MACROS___make_columns_table(
+   {
+      "type__electrodes": "RECOMMENDED",
+      "material": "RECOMMENDED",
+      "impedance": "RECOMMENDED",
+   }
+) }}
 
 ### Example `electrodes.tsv`
 

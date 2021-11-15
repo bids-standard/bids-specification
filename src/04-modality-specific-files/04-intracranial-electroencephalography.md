@@ -6,6 +6,10 @@ Please see [Citing BIDS](../01-introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
+Several [example iEEG datasets](https://github.com/bids-standard/bids-examples#ieeg-datasets)
+have been formatted using this specification
+and can be used for practical guidance when curating a new dataset.
+
 ## iEEG recording data
 
 {{ 
@@ -230,25 +234,30 @@ The columns of the Channels description table stored in `*_channels.tsv` are:
 
 MUST be present **in this specific order**:
 
-| **Column name** | **Requirement level** | **Description**                                                                                                                                                                                             |
-| --------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name            | REQUIRED              | Label of the channel. The label must correspond to \_electrodes.tsv name and all ieeg type channels are required to have a position. The reference channel name MAY be provided in the reference column.    |
-| type            | REQUIRED              | Type of channel, see below for adequate keywords in this field. Note that the type MUST be in upper case.                                                                                                   |
-| units           | REQUIRED              | Physical unit of the value represented in this channel, for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [Units](../02-common-principles.md#units)).                               |
-| low_cutoff      | REQUIRED              | Frequencies used for the low pass filter applied to the channel in Hz. If no low pass filter was applied, use `n/a`. Note that anti-alias is a low pass filter, specify its frequencies here if applicable. |
-| high_cutoff     | REQUIRED              | Frequencies used for the high pass filter applied to the channel in Hz. If no high pass filter applied, use `n/a`.                                                                                          |
+{{ MACROS___make_columns_table(
+   {
+      "name__channels": ("REQUIRED", "The label must correspond to `_electrodes.tsv` name and all ieeg type channels are
+    required to have a position."),
+      "type__channels": "REQUIRED",
+      "units": "REQUIRED",
+      "low_cutoff": "REQUIRED",
+      "high_cutoff": "REQUIRED",
+   }
+) }}
 
 SHOULD be present:
 
-| **Column name**    | **Requirement level** | **Description**                                                                                                                                                                                                                                                            |
-| ------------------ | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| reference          | OPTIONAL              | Specification of the reference (for example, 'mastoid', 'ElectrodeName01', 'intracranial', 'CAR', 'other', 'n/a'). If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.                                                               |
-| group              | OPTIONAL              | Which group of channels (grid/strip/seeg/depth) this channel belongs to. This is relevant because one group has one cable-bundle and noise can be shared. This can be a name or number. Note that any groups specified in `_electrodes.tsv` must match those present here. |
-| sampling_frequency | OPTIONAL              | Sampling rate of the channel in Hz.                                                                                                                                                                                                                                        |
-| description        | OPTIONAL              | Brief free-text description of the channel, or other information of interest (for example, position (for example, "left lateral temporal surface")).                                                                                                                       |
-| notch              | OPTIONAL              | Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use n/a.                                                                                                                                                                  |
-| status             | OPTIONAL              | Data quality observed on the channel (good/bad). A channel is considered bad if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in `[status_description]`.                                                                |
-| status_description | OPTIONAL              | Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `[status]`.                                                                                                               |
+{{ MACROS___make_columns_table(
+   {
+      "reference__ieeg": "OPTIONAL",
+      "group": ("OPTIONAL", "Note that any groups specified in `_electrodes.tsv` must match those present here."),
+      "sampling_frequency": "OPTIONAL",
+      "description": "OPTIONAL",
+      "notch": "OPTIONAL",
+      "status": "OPTIONAL",
+      "status_description": "OPTIONAL",
+   }
+) }}
 
 **Example** `sub-01_channels.tsv`:
 
@@ -334,35 +343,42 @@ For example:
    }
 ) }}
 
-The order of the required columns in the `*_electrodes.tsv` file MUST be as
-listed below.
+The order of the required columns in the `*_electrodes.tsv` file MUST be as listed below.
+The `x`, `y`, and `z` columns indicate the positions of the center of each electrode in Cartesian coordinates.
+Units are specified in `space-<label>_coordsystem.json`.
 
 MUST be present **in this specific order**:
 
-| **Column name** | **Requirement level** | **Description**                                                                                                                  |
-| --------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| name            | REQUIRED              | Name of the electrode contact point.                                                                                             |
-| x               | REQUIRED              | X position. The positions of the center of each electrode in xyz space. Units are specified in `space-<label>_coordsystem.json`. |
-| y               | REQUIRED              | Y position.                                                                                                                      |
-| z               | REQUIRED              | Z position. If electrodes are in 2D space this should be a column of `n/a` values.                                               |
-| size            | REQUIRED              | Surface area of the electrode, units MUST be in `mm^2`.                                                                          |
+{{ MACROS___make_columns_table(
+   {
+      "name__electrodes": "REQUIRED",
+      "x": "REQUIRED",
+      "y": "REQUIRED",
+      "z": ("REQUIRED", "If electrodes are in 2D space this should be a column of `n/a` values."),
+      "size": "REQUIRED",
+   }
+) }}
 
 SHOULD be present:
 
-| **Column name** | **Requirement level** | **Description**                                                                                                                  |
-| --------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| material        | RECOMMENDED           | Material of the electrodes.                                                                                                      |
-| manufacturer    | RECOMMENDED           | The manufacturer for each electrode. Can be used if electrodes were manufactured by more than one company.                       |
-| group           | RECOMMENDED           | The group that the electrode is a part of. Note that any group specified here should match a group specified in `_channels.tsv`. |
-| hemisphere      | RECOMMENDED           | The hemisphere in which the electrode is placed, one of `['L' or 'R']` (use capital).                                            |
+{{ MACROS___make_columns_table(
+   {
+      "material": "RECOMMENDED",
+      "manufacturer": "RECOMMENDED",
+      "group": ("RECOMMENDED", "Note that any group specified here should match a group specified in `_channels.tsv`."),
+      "hemisphere": "RECOMMENDED",
+   }
+) }}
 
 MAY be present:
 
-| **Column name** | **Requirement level** | **Description**                                                                                                                                        |
-| --------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| type            | OPTIONAL              | Optional type of the electrode, for example, cup, ring, clip-on, wire, needle, ...                                                                     |
-| impedance       | OPTIONAL              | Impedance of the electrode, units MUST be in `kOhm`.                                                                                                   |
-| dimension       | OPTIONAL              | Size of the group (grid/strip/probe) that this electrode belongs to. Must be of form `[AxB]` with the smallest dimension first (for example, `[1x8]`). |
+{{ MACROS___make_columns_table(
+   {
+      "type__electrodes": "OPTIONAL",
+      "impedance": "OPTIONAL",
+      "dimension": "OPTIONAL",
+   }
+) }}
 
 Example:
 
@@ -394,7 +410,7 @@ General fields:
          "For example, **T1**: `'sub-<label>/ses-<label>/anat/"
          "sub-01_T1w.nii.gz'`  "
          "**Surface**: `'/derivatives/surfaces/sub-<label>/ses-<label>/anat/"
-         "sub-01_desc-T1w_hemi-R_pial.surf.gii'` "
+         "sub-01_hemi-R_desc-T1w_pial.surf.gii'` "
          "**Operative photo**: `'/sub-<label>/ses-<label>/ieeg/"
          "sub-0001_ses-01_acq-photo1_photo.jpg'` "
          "**Talairach**: `'/derivatives/surfaces/sub-Talairach/ses-01/anat/"

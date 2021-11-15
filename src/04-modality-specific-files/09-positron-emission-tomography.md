@@ -6,7 +6,8 @@ Please see [Citing BIDS](../01-introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Several [example PET datasets](https://github.com/bids-standard/bids-examples) have been formatted using this specification
+Several [example PET datasets](https://github.com/bids-standard/bids-examples#pet-datasets)
+have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
 Further PET datasets are available from [OpenNeuro](https://openneuro.org).
@@ -359,14 +360,16 @@ The following metadata SHOULD or MUST be provided if corresponding flags are `tr
 The following columns are defined for `_blood.tsv` files.
 The `time` column MUST always be the first column.
 
-| **Column name**              | **Requirement level**                                       | **Description**                                                                   | **Units**                                                                           |
-| ---------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `time`                       | REQUIRED                                                    | Time in relation to `TimeZero` defined by the `*_pet.json`. (for example, 5)      | Seconds                                                                             |
-| `plasma_radioactivity`       | REQUIRED if `PlasmaAvail` is `true`                         | Radioactivity in plasma                                                           | Unit of plasma radioactivity (for example, `"kBq/mL"`)                              |
-| `metabolite_parent_fraction` | REQUIRED if `MetaboliteAvail` is `true`                     | Parent fraction of the radiotracer (0-1)                                          | Unit of parent fraction (for example, `"unitless"`)                                 |
-| `metabolite_polar_fraction`  | RECOMMENDED if `MetaboliteAvail` is `true`                  | Polar metabolite fraction of the radiotracer (0-1)                                | Unit of polar metabolite fraction (for example, `"unitless"`)                       |
-| `hplc_recovery_fractions`    | REQUIRED if `MetaboliteRecoveryCorrectionApplied` is `true` | HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC) | Unit of recovery fractions (for example, `"unitless"`)                              |
-| `whole_blood_radioactivity`  | REQUIRED if `WholeBloodAvail` is `true`                     | Radioactivity in whole blood samples                                              | Unit of radioactivity measurements in whole blood samples (for example, `"kBq/mL"`) |
+{{ MACROS___make_columns_table(
+   {
+      "time": "REQUIRED",
+      "plasma_radioactivity": "REQUIRED if `PlasmaAvail` is `true`",
+      "metabolite_parent_fraction": "REQUIRED if `MetaboliteAvail` is `true`",
+      "metabolite_polar_fraction": "RECOMMENDED if `MetaboliteAvail` is `true`",
+      "hplc_recovery_fractions": "REQUIRED if `MetaboliteRecoveryCorrectionApplied` is `true`",
+      "whole_blood_radioactivity": "REQUIRED if `WholeBloodAvail` is `true`",
+   }
+) }}
 
 As with all [tabular files](../02-common-principles.md#tabular-files),
 additional columns MAY be defined in `_blood.json`.
