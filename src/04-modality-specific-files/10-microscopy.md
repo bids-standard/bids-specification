@@ -104,8 +104,7 @@ Microscopy data and is used to distinguish between different samples from the sa
 The label MUST be unique per subject and is RECOMMENDED to be unique throughout the dataset.
 
 <!--- The following example will be generated automatically with macros after community review. -->
-For example:
-Three brain slices (`sample-01` to `sample-03`) extracted from subject `sub-01`.
+For example: Three brain slices (`sample-01` to `sample-03`) extracted from subject `sub-01`.
 ```Text
 sub-01/
     microscopy/
@@ -130,9 +129,8 @@ The [`stain-<label>`](../99-appendices/09-entities.md#stain) entity can be used 
 image files from the same sample using different stains or antibodies for contrast enhancement.
 
 <!--- The following example will be generated automatically with macros after community review. -->
-For example:
-One brain slice (`sample-01`) extracted from subject `sub-01`, imaged with three stains
-(`stain-01`, `stain-02`, `stain-03`) in three separate files.
+For example: One brain slice (`sample-01`) extracted from subject `sub-01`, imaged with three
+stains (`stain-01`, `stain-02`, `stain-03`) in three separate files.
 ```Text
 sub-01/
     microscopy/
@@ -178,9 +176,8 @@ Figure 1: Examples of chunks configurations.
 -   f) ordered 3D chunks.
 
 <!--- The following example will be generated automatically with macros after community review. -->
-For example, as illustrated in Figure 1b:
-Six chunks (`chunk-01` to `chunk-06`) from the same brain sample (`sample-01`) of subject `sub-01`,
-are named:
+For example, as illustrated in Figure 1b: Six chunks (`chunk-01` to `chunk-06`) from the same
+brain sample (`sample-01`) of subject `sub-01`, are named:
 ```Text
 sub-01/
     microscopy/
