@@ -475,6 +475,6 @@ code organization of these scripts at the moment.
 
 [object]: https://www.json.org/json-en.html
 
-[string]: https://www.w3schools.com/js/js_json_syntax.asp
+[string]: https://www.w3schools.com/js/js_json_datatypes.asp
 
 [uri]: ./02-common-principles.md#uniform-resource-indicator

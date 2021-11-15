@@ -10,9 +10,14 @@ python3 process_markdowns.py
 cp pandoc_script.py header.tex cover.tex header_setup.tex src_copy/src
 
 # run pandoc_script from src_copy directory
-cd src_copy/src
+pushd src_copy/src
 python3 pandoc_script.py
 mv bids-spec.pdf ../..
+mv bids-spec_pandoc_log.json ../..
+popd
+
+# Do a check on the pandoc log file
+python3 check_pandoc_log.py
 
 # delete the duplicated src directory
 rm -rf src_copy

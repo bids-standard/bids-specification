@@ -79,8 +79,9 @@ A file may indicate the spatial reference to which it has been aligned using the
 
 The `space` entity may take any value in [Image-Based Coordinate Systems][coordsys].
 
-If the `space` entity is omitted, or the space is not in the [Standard template
-identifiers][templates] table, then the `SpatialReference` metadata is REQUIRED.
+If the `space` entity is omitted, or the space is not in the
+[Standard template identifiers][templates] table,
+then the `SpatialReference` metadata is REQUIRED.
 
 {{ MACROS___make_metadata_table(
    {
