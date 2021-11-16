@@ -159,8 +159,8 @@ The [`chunk-<index>`](../99-appendices/09-entities.md#chunk) entity is used when
 regions (2D images or 3D volumes files) of the same physical sample are imaged with different
 fields of view, regardless if they overlap or not.
 
-In some cases, the chunks can be "ordered" and correspond to the displacement of the
-microscope stage, for example.
+In some cases, the chunks can be "ordered" and, for example, correspond to the displacement of the
+microscope stage.
 In other cases, the chunks can be different images of the same sample with no explicit
 spatial relation between them.
 
