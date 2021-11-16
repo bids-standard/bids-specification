@@ -146,9 +146,9 @@ stains in separate files from the same sample.
 In the case where a single file contains different staining in each channel, the
 `stain-<label>` is omitted.
 
-Stains or antibodies SHOULD be indicated as appropriate in the `"SampleStaining"`,
-`"SamplePrimaryAntibodies"` and/or `"SampleSecondaryAntobodies"` keys in the sidecar JSON file,
-although the label may be different.
+Stains SHOULD be indicated in the `"SampleStaining"` key in the sidecar JSON file,
+although the label may be different. Description of antibodies SHOULD also be indicated in
+`"SamplePrimaryAntibodies"` and/or `"SampleSecondaryAntobodies"` as appropriate.
 
 If more than one run of the same sample, acquisition and stain are acquired during the same
 session, the [`run-<index>`](../99-appendices/09-entities.md#run) entity MUST be used:
