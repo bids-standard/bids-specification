@@ -104,14 +104,15 @@ Microscopy data and is used to distinguish between different samples from the sa
 The label MUST be unique per subject and is RECOMMENDED to be unique throughout the dataset.
 
 <!--- The following example will be generated automatically with macros after community review. -->
-For example: Three brain slices (`sample-01` to `sample-03`) extracted from subject `sub-01`.
+For example: Three brain slices (`sample-01` to `sample-03`) extracted from subject `sub-01`,
+imaged by scanning electron microscopy (SEM) in PNG format
 ```Text
 sub-01/
     microscopy/
-        sub-01_sample-01_<modality_suffix>.<ext>
-        sub-01_sample-02_<modality_suffix>.<ext>
-        sub-01_sample-03_<modality_suffix>.<ext>
-        sub-01_<modality_suffix>.json
+        sub-01_sample-01_SEM.png
+        sub-01_sample-02_SEM.png
+        sub-01_sample-03_SEM.png
+        sub-01_SEM.json
 ```
 In this example, the JSON metadata is common for all samples of `sub-01`.
 JSON metadata may be defined per subject or per sample as appropriate, as per the
@@ -119,27 +120,28 @@ JSON metadata may be defined per subject or per sample as appropriate, as per th
 
 The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity corresponds to a custom label that
 MAY be used to distinguish a different set of parameters used for acquiring the same modality.
-For example, two images of the same sample acquired with different magnification of 40x and 60x.
-In such case two files could have the following names:
-`sub-01_sample-01_acq-40x_<modality_suffix>.<ext>` and
-`sub-01_sample-01_acq-60x_<modality_suffix>.<ext>`, however the user is free to choose any other
-label as long as they are consistent across subjects and sessions.
+For example, two images of the same sample acquired by bright-field microscopy (BF) in PNG format at
+different magnification of 40x and 60x.
+In such case two files could have the following names: `sub-01_sample-01_acq-40x_BF.png` and
+`sub-01_sample-01_acq-60x_BF.png`, however the user is free to choose any other label as long as
+they are consistent across subjects and sessions.
 
 The [`stain-<label>`](../99-appendices/09-entities.md#stain) entity can be used to distinguish
 image files from the same sample using different stains or antibodies for contrast enhancement.
 
 <!--- The following example will be generated automatically with macros after community review. -->
-For example: One brain slice (`sample-01`) extracted from subject `sub-01`, imaged with three
-stains (`stain-01`, `stain-02`, `stain-03`) in three separate files.
+For example: One brain slice (`sample-01`) extracted from subject `sub-01` with three
+stains (`stain-01`, `stain-02` and `stain-03`) in three separate files, imaged by selective plane
+illumination microscopy (SPIM) in OME-TIFF format
 ```Text
 sub-01/
     microscopy/
-        sub-01_sample-01_stain-01_<modality_suffix>.<ext>
-        sub-01_sample-01_stain-01_<modality_suffix>.json
-        sub-01_sample-01_stain-02_<modality_suffix>.<ext>
-        sub-01_sample-01_stain-02_<modality_suffix>.json
-        sub-01_sample-01_stain-03_<modality_suffix>.<ext>
-        sub-01_sample-01_stain-03_<modality_suffix>.json
+        sub-01_sample-01_stain-01_SPIM.ome.tif
+        sub-01_sample-01_stain-01_SPIM.json
+        sub-01_sample-01_stain-02_SPIM.ome.tif
+        sub-01_sample-01_stain-02_SPIM.json
+        sub-01_sample-01_stain-03_SPIM.ome.tif
+        sub-01_sample-01_stain-03_SPIM.json
 ```
 In this example, the entity stain is used to distinguish images with different
 stains in separate files from the same sample.
@@ -147,7 +149,8 @@ In the case where a single file contains different staining in each channel, the
 `stain-<label>` is omitted.
 
 Stains SHOULD be indicated in the `"SampleStaining"` key in the sidecar JSON file,
-although the label may be different. Description of antibodies SHOULD also be indicated in
+although the label may be different.
+Description of antibodies SHOULD also be indicated in
 `"SamplePrimaryAntibodies"` and/or `"SampleSecondaryAntobodies"` as appropriate.
 
 If more than one run of the same sample, acquisition and stain are acquired during the same
@@ -176,23 +179,19 @@ Figure 1: Examples of chunks configurations.
 -   f) ordered 3D chunks.
 
 <!--- The following example will be generated automatically with macros after community review. -->
-For example, as illustrated in Figure 1b: Six chunks (`chunk-01` to `chunk-06`) from the same
-brain sample (`sample-01`) of subject `sub-01`, are named:
+For example: Four chunks (`chunk-01` to `chunk-04`) from the same brain sample (`sample-01`)
+of subject `sub-01`, imaged by confocal microscopy (CONF) in OME-TIFF format
 ```Text
 sub-01/
     microscopy/
-        sub-01_sample-01_chunk-01_<modality_suffix>.<ext>
-        sub-01_sample-01_chunk-01_<modality_suffix>.json
-        sub-01_sample-01_chunk-02_<modality_suffix>.<ext>
-        sub-01_sample-01_chunk-02_<modality_suffix>.json
-        sub-01_sample-01_chunk-03_<modality_suffix>.<ext>
-        sub-01_sample-01_chunk-03_<modality_suffix>.json
-        sub-01_sample-01_chunk-04_<modality_suffix>.<ext>
-        sub-01_sample-01_chunk-04_<modality_suffix>.json
-        sub-01_sample-01_chunk-05_<modality_suffix>.<ext>
-        sub-01_sample-01_chunk-05_<modality_suffix>.json
-        sub-01_sample-01_chunk-06_<modality_suffix>.<ext>
-        sub-01_sample-01_chunk-06_<modality_suffix>.json
+        sub-01_sample-01_chunk-01_CONF.ome.tif
+        sub-01_sample-01_chunk-01_CONF.json
+        sub-01_sample-01_chunk-02_CONF.ome.tif
+        sub-01_sample-01_chunk-02_CONF.json
+        sub-01_sample-01_chunk-03_CONF.ome.tif
+        sub-01_sample-01_chunk-03_CONF.json
+        sub-01_sample-01_chunk-04_CONF.ome.tif
+        sub-01_sample-01_chunk-04_CONF.json
 ```
 The index number can be assigned arbitrarily and, in the case of "ordered" chunks, the chunks'
 positions relative to one another SHOULD be defined by an affine transformation matrix in the JSON
@@ -348,7 +347,7 @@ In this example, there is no scaling and `chunk-01` is at the origin.
 }
 ```
 
-#### Example of sidecar JSON file (`*_<suffix>.json`)
+#### Example of sidecar JSON file (`*_<modality_suffix>.json`)
 ```JSON
 {
         "Manufacturer": "Hamamatsu",
