@@ -1,19 +1,20 @@
 ---
+# MEG data files
 # First group
 - suffixes:
-    - meg
+  - meg
   extensions:
-    - /  # corresponds to BTi/4D data
-    - .ds/
-    - .json
-    - .fif
-    - .sqd
-    - .con
-    - .raw
-    - .ave
-    - .mrk
-    - .kdf
-    - .mhd
+  - /  # corresponds to BTi/4D data
+  - .ds/
+  - .json
+  - .fif
+  - .sqd
+  - .con
+  - .raw
+  - .ave
+  - .mrk
+  - .kdf
+  - .mhd
   entities:
     subject: required
     session: optional
@@ -22,41 +23,76 @@
     run: optional
     processing: optional
     split: optional
+
 # Second group
+# Specifically, it's dat files with "acq-calibration"
 - suffixes:
-    - headshape
+  - meg
   extensions:
-    - "*"
+  - .dat
+  entities:
+    subject: required
+    session: optional
+    acquisition:
+      requirement: required
+      type: string
+      enum:
+      - calibration
+
+# Third group
+# fif files with "acq-crosstalk"
+- suffixes:
+  - meg
+  extensions:
+  - .fif
+  entities:
+    subject: required
+    session: optional
+    acquisition:
+      requirement: required
+      type: string
+      enum:
+      - crosstalk
+
+# Headshape files
+- suffixes:
+  - headshape
+  extensions:
+  - "*"
   entities:
     subject: required
     session: optional
     acquisition: optional
-# Third group
+
+# Marker files
 - suffixes:
-    - markers
+  - markers
   extensions:
-    - .sqd
-    - .mrk
+  - .sqd
+  - .mrk
   entities:
     subject: required
     session: optional
     task: optional
     acquisition: optional
     space: optional
-# Fourth
+
+# Coordinate systems
 - suffixes:
-    - coordsystem
+  - coordsystem
   extensions:
-    - .json
+  - .json
   entities:
     subject: required
     session: optional
     acquisition: optional
+
+# Channel files
 - suffixes:
-    - channels
+  - channels
   extensions:
-    - .json
-    - .tsv
+  - .json
+  - .tsv
   entities:
     subject: required
     session: optional
@@ -64,21 +100,25 @@
     acquisition: optional
     run: optional
     processing: optional
+
+# Events files
 - suffixes:
-    - events
+  - events
   extensions:
-    - .json
-    - .tsv
+  - .json
+  - .tsv
   entities:
     subject: required
     session: optional
     task: required
     acquisition: optional
     run: optional
+
+# Head photos
 - suffixes:
-    - photo
+  - photo
   extensions:
-    - .jpg
+  - .jpg
   entities:
     subject: required
     session: optional

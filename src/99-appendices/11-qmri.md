@@ -43,34 +43,42 @@ If a qMRI file collection is intended for creating structural quantitative maps 
 files belonging to that collection are stored in the `anat` subfolder.
 Below is an example file collection for `MP2RAGE`:
 
-```text
-└── sub-01/
-     └── anat/
-         ├── sub-01_inv-1_part-mag_MP2RAGE.nii.gz
-         ├── sub-01_inv-1_part-phase_MP2RAGE.nii.gz
-         ├── sub-01_inv-1_MP2RAGE.json
-         ├── sub-01_inv-2_part-mag_MP2RAGE.nii.gz
-         ├── sub-01_inv-2_part-phase_MP2RAGE.nii.gz
-         └── sub-01_inv-2_MP2RAGE.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "anat": {
+            "sub-01_inv-1_part-mag_MP2RAGE.nii.gz":"",
+            "sub-01_inv-1_part-phase_MP2RAGE.nii.gz":"",
+            "sub-01_inv-1_MP2RAGE.json":"",
+            "sub-01_inv-2_part-mag_MP2RAGE.nii.gz":"",
+            "sub-01_inv-2_part-phase_MP2RAGE.nii.gz":"",
+            "sub-01_inv-2_MP2RAGE.json":"",
+            },
+        },
+}
+) }}
 
 Commonly, RF fieldmaps (`B1+` and `B1-` maps) are used for the correction of structural quantitative maps.
 As these images do not convey substantial structural information,
 respective file collections of RF fieldmaps are stored in the `fmap` subfolder.
 Below is an example file collection for RF transmit field map `TB1EPI`:
 
-```text
-└── sub-01/
-     └── fmap/
-         ├── sub-01_echo-1_flip-1_TB1EPI.nii.gz
-         ├── sub-01_echo-1_flip-1_TB1EPI.json
-         ├── sub-01_echo-2_flip-1_TB1EPI.nii.gz
-         ├── sub-01_echo-2_flip-1_TB1EPI.json
-         ├── sub-01_echo-1_flip-2_TB1EPI.nii.gz
-         ├── sub-01_echo-1_flip-2_TB1EPI.json
-         ├── sub-01_echo-2_flip-2_TB1EPI.nii.gz
-         └── sub-01_echo-2_flip-2_TB1EPI.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_echo-1_flip-1_TB1EPI.nii.gz": "",
+            "sub-01_echo-1_flip-1_TB1EPI.json": "",
+            "sub-01_echo-2_flip-1_TB1EPI.nii.gz": "",
+            "sub-01_echo-2_flip-1_TB1EPI.json": "",
+            "sub-01_echo-1_flip-2_TB1EPI.nii.gz": "",
+            "sub-01_echo-1_flip-2_TB1EPI.json": "",
+            "sub-01_echo-2_flip-2_TB1EPI.nii.gz": "",
+            "sub-01_echo-2_flip-2_TB1EPI.json": "",
+            },
+        },
+   }
+) }}
 
 Please visit the [file collections appendix](./10-file-collections.md#magnetic-resonance-imaging) to see the list of currently supported qMRI applications.
 
@@ -81,31 +89,45 @@ For example a `T1map` can be generated from an `MP2RAGE` file collection using e
 
 If the map is post-generated:
 
-```text
- ds-example/
- └── derivatives/
-     └── qMRI-software-name/
-         └── sub-01/
-             └── anat/
-                 ├── sub-01_T1map.nii.gz
-                 ├── sub-01_T1map.json
-                 ├── sub-01_UNIT1.nii.gz
-                 └── sub-01_UNIT1.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "ds-example": {
+        "derivatives": {
+            "qMRI-software-name": {
+                "sub-01": {
+                    "anat": {
+                        "sub-01_T1map.nii.gz": "",
+                        "sub-01_T1map.json": "",
+                        "sub-01_UNIT1.nii.gz": "",
+                        "sub-01_UNIT1.json": "",
+                        },
+                    },
+                },
+            },
+        },
+   }
+) }}
 
 If the map is pre-generated, for example, by a Siemens scanner:
 
-```text
- ds-example/
- └── derivatives/
-     └── Siemens/
-         └── sub-01/
-             └── anat/
-                 ├── sub-01_T1map.nii.gz
-                 ├── sub-01_T1map.json
-                 ├── sub-01_UNIT1.nii.gz
-                 └── sub-01_UNIT1.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "ds-example": {
+        "derivatives": {
+            "Siemens": {
+                "sub-01": {
+                    "anat": {
+                        "sub-01_T1map.nii.gz": "",
+                        "sub-01_T1map.json": "",
+                        "sub-01_UNIT1.nii.gz": "",
+                        "sub-01_UNIT1.json": "",
+                        },
+                    },
+                },
+            },
+        },
+   }
+) }}
 
 Note: Even though the process from which pre-generated qMRI maps are obtained (vendor pipelines) is not known,
 vendors generally allow exporting of the corresponding input data.
@@ -113,7 +135,8 @@ It is RECOMMENDED to share them along with the vendor outputs, whenever possible
 
 ### Example datasets
 
-You can find example file collections and qMRI maps organized according to BIDS at [https://osf.io/k4bs5/](https://osf.io/k4bs5/).
+You can find example file collections and qMRI maps organized according to BIDS
+in the [BIDS examples](https://github.com/bids-standard/bids-examples#qmri-datasets).
 
 ## Metadata requirements for qMRI data
 
@@ -173,18 +196,25 @@ As qMRI maps are stored as derivatives, they are subjected to the metadata requi
 
 An example `dataset_description.json` for a qMRI map derivatives folder:
 
-```text
- ds-example/
- └── derivatives/
-     └── qMRLab/
-         ├── dataset_description.json
-         └── sub-01/
-             └── anat/
-                 ├── sub-01_T1map.nii.gz
-                 ├── sub-01_T1map.json
-                 ├── sub-01_M0map.nii.gz
-                 └── sub-01_M0map.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "ds-example": {
+        "derivatives": {
+            "qMRLab": {
+                "dataset_description.json": "",
+                "sub-01": {
+                    "anat": {
+                        "sub-01_T1map.nii.gz": "",
+                        "sub-01_T1map.json": "",
+                        "sub-01_M0map.nii.gz": "",
+                        "sub-01_M0map.json": "",
+                        },
+                    },
+                },
+            },
+        },
+   }
+) }}
 
 `dataset_description.json`:
 
@@ -232,12 +262,14 @@ For example, without the information of `MagneticFieldStrength`, white-matter T1
 -   The JSON file accompanying a qMRI map which is obtained by using open-source software is RECOMMENDED
     to include additional metadata fields listed in the following table:
 
-| **Field name**        | **Definition**                                                                                                    |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `BasedOn`             | List of files in a file collection to generate the map. Fieldmaps are also listed, if involved in the processing. |
-| `EstimationReference` | Reference to the study/studies on which the implementation is based.                                              |
-| `EstimationAlgorithm` | Type of algorithm used to perform fitting (for example, linear, non-linear, LM and such)                          |
-| `Units`               | Units of the maps, in accordance with the BIDS specification.                                                     |
+{{ MACROS___make_metadata_table(
+   {
+      "BasedOn": "RECOMMENDED",
+      "EstimationReference": "RECOMMENDED",
+      "EstimationAlgorithm": "RECOMMENDED",
+      "Units": "RECOMMENDED",
+   }
+) }}
 
 Example:
 
@@ -329,9 +361,11 @@ metadata field has the value of `SSFP`, and the `SpoilingRFPhaseIncrement` is
 provided as a metadata field, then the dataset becomes eligible for `DESPOT2`
 T2 fitting application.
 
-Please note that optional metadata fields listed in the [deriving the intended qMRI
-application from an ambiguous file collection table](#deriving-the-intended-qmri-application-from-an-ambiguous-file-collection) are included in the optional (third)
-column of [the priority levels table](#method-specific-priority-levels-for-qmri-file-collections) for the consistency of this appendix.
+Please note that optional metadata fields listed in the
+[deriving the intended qMRI application from an ambiguous file collection table](#deriving-the-intended-qmri-application-from-an-ambiguous-file-collection)
+are included in the optional (third) column of
+[the priority levels table](#method-specific-priority-levels-for-qmri-file-collections)
+for the consistency of this appendix.
 
 ## Introducing a new qMRI file collection
 
@@ -466,18 +500,22 @@ files:
 To properly identify constituents of this particular method, values of the `echo`
 entity MUST index the images as follows:
 
-```text
-└── sub-01/
-     └── fmap/
-         ├── sub-01_echo-1_flip-1_TB1EPI.nii.gz (SE)
-         ├── sub-01_echo-1_flip-1_TB1EPI.json
-         ├── sub-01_echo-2_flip-1_TB1EPI.nii.gz (STE)
-         ├── sub-01_echo-2_flip-1_TB1EPI.json
-         ├── sub-01_echo-1_flip-2_TB1EPI.nii.gz (SE)
-         ├── sub-01_echo-1_flip_2_TB1EPI.json
-         ├── sub-01_echo-2_flip-2_TB1EPI.nii.gz (STE)
-         └── sub-01_echo-2_flip-2_TB1EPI.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_echo-1_flip-1_TB1EPI.nii.gz": "# SE",
+            "sub-01_echo-1_flip-1_TB1EPI.json":   "",
+            "sub-01_echo-2_flip-1_TB1EPI.nii.gz": "# STE",
+            "sub-01_echo-2_flip-1_TB1EPI.json":   "",
+            "sub-01_echo-1_flip-2_TB1EPI.nii.gz": "# SE",
+            "sub-01_echo-1_flip_2_TB1EPI.json":   "",
+            "sub-01_echo-2_flip-2_TB1EPI.nii.gz": "# STE",
+            "sub-01_echo-2_flip-2_TB1EPI.json":   "",
+            },
+        },
+   }
+) }}
 
 #### `TB1AFI` specific notes
 
@@ -496,14 +534,18 @@ and MAY be followed by freeform entries:
 | `_acq-tr1Test`   | `_acq-tr2Test`   | Acquisition `Test`   |
 | `_acq-tr1Retest` | `_acq-tr2Retest` | Acquisition `Retest` |
 
-```text
-└── sub-01/
-     └── fmap/
-         ├── sub-01_acq-tr1_TB1AFI.nii.gz
-         ├── sub-01_acq-tr1_TB1AFI.json
-         ├── sub-01_acq-tr2_TB1AFI.nii.gz
-         └── sub-01_acq-tr2_TB1AFI.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_acq-tr1_TB1AFI.nii.gz": "",
+            "sub-01_acq-tr1_TB1AFI.json": "",
+            "sub-01_acq-tr2_TB1AFI.nii.gz": "",
+            "sub-01_acq-tr2_TB1AFI.json": "",
+            },
+        },
+   }
+) }}
 
 #### `TB1TFL` and `TB1RFM` specific notes
 
@@ -520,14 +562,18 @@ values of the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be 
 | `_acq-anatTest`             | `_acq-fampTest`           | Acquisition `Test`   |
 | `_acq-anatRetest`           | `_acq-fampRetest`         | Acquisition `Retest` |
 
-```text
-└── sub-01/
-     └── fmap/
-         ├── sub-01_acq-anat_TB1TFL.nii.gz
-         ├── sub-01_acq-anat_TB1TFL.json
-         ├── sub-01_acq-famp_TB1TFL.nii.gz
-         └── sub-01_acq-famp_TB1TFL.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_acq-anat_TB1TFL.nii.gz": "",
+            "sub-01_acq-anat_TB1TFL.json": "",
+            "sub-01_acq-famp_TB1TFL.nii.gz": "",
+            "sub-01_acq-famp_TB1TFL.json": "",
+            },
+        },
+   }
+) }}
 
 The example above applies to the `TB1RFM` suffix as well.
 
@@ -548,11 +594,15 @@ entries:
 | `_acq-bodyPDw` | `_acq-headPDw` | `PDw` for `MPM`    |
 | `_acq-bodyT1w` | `_acq-headT1w` | `T1w` for `MPM`    |
 
-```text
-└── sub-01/
-     └── fmap/
-         ├── sub-01_acq-body_RB1COR.nii.gz (Body coil)
-         ├── sub-01_acq-body_RB1COR.json
-         ├── sub-01_acq-head_RB1COR.nii.gz (Head coil)
-         └── sub-01_acq-head_RB1COR.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "sub-01": {
+        "fmap": {
+            "sub-01_acq-body_RB1COR.nii.gz": "# Body coil",
+            "sub-01_acq-body_RB1COR.json": "",
+            "sub-01_acq-head_RB1COR.nii.gz": "# Head coil",
+            "sub-01_acq-head_RB1COR.json": "",
+            },
+        },
+   }
+) }}

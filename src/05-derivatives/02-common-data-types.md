@@ -10,11 +10,16 @@ JSON file is also REQUIRED.
 Each derivative type defines their own set of fields, but all of them
 share the following (non-required) ones:
 
-| **Key name** | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ------------ | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Description  | RECOMMENDED           | [string][]               | Free-form natural language description of the nature of the file.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| Sources      | OPTIONAL              | [array][] of [strings][] | A list of files with the paths specified relative to dataset root; these files were directly used in the creation of this derivative data file. For example, if a derivative A is used in the creation of another derivative B, which is in turn used to generate C in a chain of A->B->C, C should only list B in `Sources`, and B should only list A in `Sources`. However, in case both X and Y are directly used in the creation of Z, then Z should list X and Y in `Sources`, regardless of whether X was used to generate Y. |
-| RawSources   | OPTIONAL              | [array][] of [strings][] | A list of paths relative to dataset root pointing to the BIDS-Raw file(s) that were used in the creation of this derivative.                                                                                                                                                                                                                                                                                                                                                                                                        |
+{{ MACROS___make_metadata_table(
+   {
+        "Description": (
+            "RECOMMENDED",
+            "This describes the nature of the file.",
+        ),
+        "Sources": "OPTIONAL",
+        "RawSources": "OPTIONAL",
+   }
+) }}
 
 ### Examples
 
@@ -22,10 +27,16 @@ Preprocessed `bold` NIfTI file in the original coordinate space of the original 
 The location of the file in the original datasets is encoded in the `RawSources`
 metadata, and `desc-<label>` is used to prevent clashing with the original file name.
 
-```Text
-sub-01/func/sub-01_task-rest_desc-preproc_bold.nii.gz
-sub-01/func/sub-01_task-rest_desc-preproc_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-rest_desc-preproc_bold.nii.gz": "",
+        "sub-01_task-rest_desc-preproc_bold.json": "",
+         },
+      },
+   }
+) }}
 
 ```JSON
 {
@@ -68,12 +79,15 @@ A file may indicate the spatial reference to which it has been aligned using the
 
 The `space` entity may take any value in [Image-Based Coordinate Systems][coordsys].
 
-If the `space` entity is omitted, or the space is not in the [Standard template
-identifiers][templates] table, then the `SpatialReference` metadata is REQUIRED.
+If the `space` entity is omitted, or the space is not in the
+[Standard template identifiers][templates] table,
+then the `SpatialReference` metadata is REQUIRED.
 
-| **Key name**     | **Requirement level**                                                                                                                     | **Data type**            | **Description**                                                                                                                                                                                    |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SpatialReference | RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise. | [string][] or [object][] | For images with a single reference, the value MUST be a single string. For images with multiple references, such as surface and volume references, a JSON object MUST be used. See examples below. |
+{{ MACROS___make_metadata_table(
+   {
+      "SpatialReference": "RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise.",
+   }
+) }}
 
 ### SpatialReference key allowed values
 
@@ -91,10 +105,16 @@ For CIFTI-2 images, the relevant structures are BrainStructure values defined in
 Preprocessed `bold` NIfTI file in `individual` coordinate space. Please mind
 that in this case `SpatialReference` key is REQUIRED.
 
-```Text
-sub-01/func/sub-01_task-rest_space-individual_bold.nii.gz
-sub-01/func/sub-01_task-rest_space-individual_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-rest_space-individual_bold.nii.gz": "",
+        "sub-01_task-rest_space-individual_bold.json": "",
+         },
+      },
+   }
+) }}
 
 ```JSON
 {
@@ -108,10 +128,16 @@ In this example, because all volumetric structures are sampled to the same
 reference, the `VolumeReference` key is used as a default, and only the
 surface references need to be specified by BrainStructure names.
 
-```Text
-sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.dtseries.nii
-sub-01/func/sub-01_task-rest_space-fsLR_den-91k_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-rest_space-fsLR_den-91k_bold.dtseries.nii": "",
+        "sub-01_task-rest_space-fsLR_den-91k_bold.json": "",
+         },
+      },
+   }
+) }}
 
 ```JSON
 {
@@ -129,7 +155,7 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         <datatype>/
             <source_entities>[_space-<space>][_desc-<label>]_<suffix>.<ext>
 ```
@@ -157,26 +183,37 @@ processing for the same input data.
 
 Examples of preprocessed data:
 
-```Text
-pipeline1/
-    sub-001/
-        anat/
-            sub-001_space-MNI305_T1w.nii.gz
-            sub-001_space-MNI305_T1w.json
-        func/
-            sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.nii.gz
-            sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline1": {
+        "sub-001": {
+            "anat": {
+                "sub-001_space-MNI305_T1w.nii.gz": "",
+                "sub-001_space-MNI305_T1w.json": "",
+                },
+            "func": {
+                "sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.nii.gz": "",
+                "sub-001_task-rest_run-1_space-MNI305_desc-preproc_bold.json": "",
+                },
+            },
+        }
+   }
+) }}
 
-```Text
-pipeline2/
-    sub-001/
-        eeg/
-            sub-001_task-listening_run-1_desc-autoannotation_events.tsv
-            sub-001_task-listening_run-1_desc-autoannotation_events.json
-            sub-001_task-listening_run-1_desc-filtered_eeg.edf
-            sub-001_task-listening_run-1_desc-filtered_eeg.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline2": {
+        "sub-001": {
+            "eeg": {
+                "sub-001_task-listening_run-1_desc-autoannotation_events.tsv": "",
+                "sub-001_task-listening_run-1_desc-autoannotation_events.json": "",
+                "sub-001_task-listening_run-1_desc-filtered_eeg.edf": "",
+                "sub-001_task-listening_run-1_desc-filtered_eeg.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 All REQUIRED metadata fields coming from a derivative file’s source file(s) MUST
 be propagated to the JSON description of the derivative unless the processing
@@ -190,9 +227,3 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 [templates]: ../99-appendices/08-coordinate-systems.md#standard-template-identifiers
 
 [object]: https://www.json.org/json-en.html
-
-[string]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[strings]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[array]: https://www.w3schools.com/js/js_json_arrays.asp

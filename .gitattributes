@@ -1,0 +1,4 @@
+* text=auto
+*.png -text
+*.jpg -text
+*.webm -text

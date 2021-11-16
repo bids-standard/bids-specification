@@ -1,39 +1,8 @@
 ---
-subject:
-  name: Subject
-  entity: sub
-  description: |
-    A person or animal participating in the study.
-  format: label
-session:
-  name: Session
-  entity: ses
-  description: |
-    A logical grouping of neuroimaging and behavioral data consistent across
-    subjects.
-    Session can (but doesn't have to) be synonymous to a visit in a
-    longitudinal study.
-    In general, subjects will stay in the scanner during one session.
-    However, for example, if a subject has to leave the scanner room and then
-    be re-positioned on the scanner bed, the set of MRI acquisitions will still
-    be considered as a session and match sessions acquired in other subjects.
-    Similarly, in situations where different data types are obtained over
-    several visits (for example fMRI on one day followed by DWI the day after)
-    those can be grouped in one session.
-    Defining multiple sessions is appropriate when several identical or similar
-    data acquisitions are planned and performed on all -or most- subjects,
-    often in the case of some intervention between sessions
-    (for example, training).
-  format: label
-task:
-  name: Task
-  entity: task
-  format: label
-  description: |
-    Each task has a unique label that MUST only consist of letters and/or
-    numbers (other characters, including spaces and underscores, are not
-    allowed).
-    Those labels MUST be consistent across subjects and sessions.
+# This file describes entities present in BIDS filenames.
+# WARNING: The entities are presented here in alphabetical order!
+# The appropriate order of entities in filenames is defined in `rules/entities.yaml`,
+# rather than this file (`objects/entities.yaml`).
 acquisition:
   name: Acquisition
   entity: acq
@@ -54,6 +23,7 @@ acquisition:
     At what level of detail to make the distinction (for example,
     just between RARE and FLASH, or between RARE, FLASH, and FLASHsubsampled)
     remains at the discretion of the researcher.
+  type: string
   format: label
 ceagent:
   name: Contrast Enhancing Agent
@@ -64,23 +34,28 @@ ceagent:
     The label is the name of the contrast agent.
     The key `ContrastBolusIngredient` MAY also be added in the JSON file,
     with the same label.
+  type: string
   format: label
-tracer:
-  name: Tracer
-  entity: trc
+density:
+  name: Density
+  entity: den
   description: |
-    The `trc-<label>` key/value can be used to distinguish
-    sequences using different tracers.
-    The key `TracerName` MUST also be included in the associated JSON file,
-    although the label may be different.
+    Density of non-parametric surfaces.
+    MUST have a corresponding `Density` metadata field to provide
+    interpretation.
+
+    This entity is only applicable to derivative data.
+  type: string
   format: label
-reconstruction:
-  name: Reconstruction
-  entity: rec
+description:
+  name: Description
+  entity: desc
   description: |
-    The `rec-<label>` key/value can be used to distinguish
-    different reconstruction algorithms (for example ones using motion
-    correction).
+    When necessary to distinguish two files that do not otherwise have a
+    distinguishing entity, the `_desc-<label>` keyword-value SHOULD be used.
+
+    This entity is only applicable to derivative data.
+  type: string
   format: label
 direction:
   name: Phase-Encoding Direction
@@ -89,29 +64,7 @@ direction:
     The `dir-<label>` key/value can be set to an arbitrary alphanumeric label
     (for example, `dir-LR` or `dir-AP`) to distinguish different phase-encoding
     directions.
-  format: label
-run:
-  name: Run
-  entity: run
-  description: |
-    If several scans with the same acquisition parameters are acquired in the same session,
-    they MUST be indexed with the [`run-<index>`](../99-appendices/09-entities.md#run) entity:
-    `_run-1`, `_run-2`, `_run-3`, and so on (only nonnegative integers are allowed as
-    run labels).
-
-    If different entities apply,
-    such as a different session indicated by [`ses-<label>`](../99-appendices/09-entities.md#ses),
-    or different acquisition parameters indicated by
-    [`acq-<label>`](../99-appendices/09-entities.md#acq),
-    then `run` is not needed to distinguish the scans and MAY be omitted.
-  format: index
-modality:
-  name: Corresponding Modality
-  entity: mod
-  description: |
-    The `mod-<label>` key/value pair corresponds to modality label for defacing
-    masks, for example, T1w, inplaneT1, referenced by a defacemask image.
-    For example, `sub-01_mod-T1w_defacemask.nii.gz`.
+  type: string
   format: label
 echo:
   name: Echo
@@ -124,6 +77,7 @@ echo:
     denotes the number/index (in the form of a nonnegative integer), not the
     `EchoTime` value which needs to be stored in the field `EchoTime` of the separate
     JSON file.
+  type: string
   format: index
 flip:
   name: Flip Angle
@@ -135,7 +89,20 @@ flip:
     This entity represents the `FlipAngle` metadata field. Please note that the `<index>`
     denotes the number/index (in the form of a nonnegative integer), not the `FlipAngle`
     value which needs to be stored in the field `FlipAngle` of the separate JSON file.
+  type: string
   format: index
+hemisphere:
+  name: Hemisphere
+  entity: hemi
+  description: |
+    The `hemi-<label>` entity indicates which hemibrain is described by the file.
+    Allowed label values for this entity are `L` and `R`, for the left and right
+    hemibrains, respectively.
+  type: string
+  format: label
+  enum:
+  - "L"
+  - "R"
 inversion:
   name: Inversion Time
   entity: inv
@@ -146,7 +113,28 @@ inversion:
     This entity represents the `InversionTime` metadata field. Please note that the `<index>`
     denotes the number/index (in the form of a nonnegative integer), not the `InversionTime`
     value which needs to be stored in the field `InversionTime` of the separate JSON file.
+  type: string
   format: index
+label:
+  name: Label
+  entity: label
+  description: |
+    Tissue-type label, following a prescribed vocabulary.
+    Applies to binary masks and probabilistic/partial volume segmentations
+    that describe a single tissue type.
+
+    This entity is only applicable to derivative data.
+  type: string
+  format: label
+modality:
+  name: Corresponding Modality
+  entity: mod
+  description: |
+    The `mod-<label>` key/value pair corresponds to modality label for defacing
+    masks, for example, T1w, inplaneT1, referenced by a defacemask image.
+    For example, `sub-01_mod-T1w_defacemask.nii.gz`.
+  type: string
+  format: label
 mtransfer:
   name: Magnetization Transfer
   entity: mt
@@ -157,7 +145,10 @@ mtransfer:
     This entity represents the `MTState` metadata field. Allowed label values for this
     entity are `on` and `off`, for images acquired in presence and absence of an MT pulse,
     respectively.
-  format: label
+  type: string
+  enum:
+  - "on"
+  - "off"
 part:
   name: Part
   entity: part
@@ -176,6 +167,34 @@ part:
 
     When there is only a magnitude image of a given type, the `part` key MAY be
     omitted.
+  type: string
+  enum:
+  - mag
+  - phase
+  - real
+  - imag
+processing:
+  name: Processed (on device)
+  entity: proc
+  description: |
+    The proc label is analogous to rec for MR and denotes a variant of
+    a file that was a result of particular processing performed on the device.
+
+    This is useful for files produced in particular by Elekta's MaxFilter
+    (for example, sss, tsss, trans, quat or mc),
+    which some installations impose to be run on raw data because of active
+    shielding software corrections before the MEG data can actually be
+    exploited.
+  type: string
+  format: label
+reconstruction:
+  name: Reconstruction
+  entity: rec
+  description: |
+    The `rec-<label>` key/value can be used to distinguish
+    different reconstruction algorithms (for example ones using motion
+    correction).
+  type: string
   format: label
 recording:
   name: Recording
@@ -185,18 +204,67 @@ recording:
     sampling frequencies).
     In such case use different labels.
     For example: `_recording-contrast`, `_recording-saturation`.
+  type: string
   format: label
-processing:
-  name: Processed (on device)
-  entity: proc
+resolution:
+  name: Resolution
+  entity: res
   description: |
-    The proc label is analogous to rec for MR and denotes a variant of a file
-    that was a result of particular processing performed on the device.
-    This is useful for files produced in particular by Elekta’s MaxFilter
-    (for example, sss, tsss, trans, quat or mc),
-    which some installations impose to be run on raw data because of active
-    shielding software corrections before the MEG data can actually be
-    exploited.
+    Resolution of regularly sampled N-dimensional data.
+    MUST have a corresponding `Resolution` metadata field to provide
+    interpretation.
+
+    This entity is only applicable to derivative data.
+  type: string
+  format: label
+run:
+  name: Run
+  entity: run
+  description: |
+    If several scans with the same acquisition parameters are acquired in the same session,
+    they MUST be indexed with the [`run-<index>`](../99-appendices/09-entities.md#run) entity:
+    `_run-1`, `_run-2`, `_run-3`, and so on (only nonnegative integers are allowed as
+    run labels).
+
+    If different entities apply,
+    such as a different session indicated by [`ses-<label>`](../99-appendices/09-entities.md#ses),
+    or different acquisition parameters indicated by
+    [`acq-<label>`](../99-appendices/09-entities.md#acq),
+    then `run` is not needed to distinguish the scans and MAY be omitted.
+  type: string
+  format: index
+sample:
+  name: Sample
+  entity: sample
+  description: |
+    A sample pertaining to a subject such as tissue, primary cell
+    or cell-free sample.
+    The `sample-<label>` key/value pair is used to distinguish between different
+    samples from the same subject.
+    The label MUST be unique per subject and is RECOMMENDED to be unique
+    throughout the dataset.
+  type: string
+  format: label
+session:
+  name: Session
+  entity: ses
+  description: |
+    A logical grouping of neuroimaging and behavioral data consistent across
+    subjects.
+    Session can (but doesn't have to) be synonymous to a visit in a
+    longitudinal study.
+    In general, subjects will stay in the scanner during one session.
+    However, for example, if a subject has to leave the scanner room and then
+    be re-positioned on the scanner bed, the set of MRI acquisitions will still
+    be considered as a session and match sessions acquired in other subjects.
+    Similarly, in situations where different data types are obtained over
+    several visits (for example fMRI on one day followed by DWI the day after)
+    those can be grouped in one session.
+    Defining multiple sessions is appropriate when several identical or similar
+    data acquisitions are planned and performed on all -or most- subjects,
+    often in the case of some intervention between sessions
+    (for example, training).
+  type: string
   format: label
 space:
   name: Space
@@ -214,6 +282,7 @@ space:
 
     For EEG/MEG/iEEG data, this entity can be applied to raw data, but
     for other data types, it is restricted to derivative data.
+  type: string
   format: label
 split:
   name: Split
@@ -235,43 +304,32 @@ split:
     remember to list all files separately in `scans.tsv` and that the entries for the
     `acq_time` column in `scans.tsv` MUST all be identical, as described in
     [Scans file](../03-modality-agnostic-files.md#scans-file).
+  type: string
   format: index
-resolution:
-  name: Resolution
-  entity: res
+subject:
+  name: Subject
+  entity: sub
   description: |
-    Resolution of regularly sampled N-dimensional data.
-    MUST have a corresponding `Resolution` metadata field to provide
-    interpretation.
-
-    This entity is only applicable to derivative data.
+    A person or animal participating in the study.
+  type: string
   format: label
-density:
-  name: Density
-  entity: den
+task:
+  name: Task
+  entity: task
   description: |
-    Density of non-parametric surfaces.
-    MUST have a corresponding `Density` metadata field to provide
-    interpretation.
-
-    This entity is only applicable to derivative data.
+    Each task has a unique label that MUST only consist of letters and/or
+    numbers (other characters, including spaces and underscores, are not
+    allowed).
+    Those labels MUST be consistent across subjects and sessions.
+  type: string
   format: label
-label:
-  name: Label
-  entity: label
+tracer:
+  name: Tracer
+  entity: trc
   description: |
-    Tissue-type label, following a prescribed vocabulary.
-    Applies to binary masks and probabilistic/partial volume segmentations
-    that describe a single tissue type.
-
-    This entity is only applicable to derivative data.
-  format: label
-description:
-  name: Description
-  entity: desc
-  description: |
-    When necessary to distinguish two files that do not otherwise have a
-    distinguishing entity, the `_desc-<label>` keyword-value SHOULD be used.
-
-    This entity is only applicable to derivative data.
+    The `trc-<label>` key/value can be used to distinguish
+    sequences using different tracers.
+    The key `TracerName` MUST also be included in the associated JSON file,
+    although the label may be different.
+  type: string
   format: label

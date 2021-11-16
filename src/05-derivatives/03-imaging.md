@@ -9,7 +9,7 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         <datatype>/
             <source_entities>[_space-<space>][_res-<label>][_den-<label>][_desc-<label>]_<suffix>.<ext>
 ```
@@ -30,22 +30,29 @@ to present both `res` and `den` entities simultaneously.
 
 Examples:
 
-```Text
-pipeline1/
-    sub-001/
-        func/
-            sub-001_task-rest_run-1_space-MNI305_res-lo_bold.nii.gz
-            sub-001_task-rest_run-1_space-MNI305_res-hi_bold.nii.gz
-            sub-001_task-rest_run-1_space-MNI305_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline1": {
+        "sub-001": {
+            "func": {
+                "sub-001_task-rest_run-1_space-MNI305_res-lo_bold.nii.gz": "",
+                "sub-001_task-rest_run-1_space-MNI305_res-hi_bold.nii.gz": "",
+                "sub-001_task-rest_run-1_space-MNI305_bold.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 The following metadata JSON fields are defined for preprocessed images:
 
-| **Key name**  | **Requirement level**         | **Data type**                                      | **Description**                                                              |
-| ------------- | ----------------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------- |
-| SkullStripped | REQUIRED                      | [boolean][]                                        | Whether the volume was skull stripped (non-brain voxels set to zero) or not. |
-| Resolution    | REQUIRED if `res` is present. | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the resolution keyword.                      |
-| Density       | REQUIRED if `den` is present. | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the density keyword.                         |
+{{ MACROS___make_metadata_table(
+   {
+      "SkullStripped": "REQUIRED",
+      "Resolution": "REQUIRED if `res` is present",
+      "Density": "REQUIRED if `den` is present",
+   }
+) }}
 
 Example JSON file corresponding to
 `pipeline1/sub-001/func/sub-001_task-rest_run-1_space-MNI305_bold.json` above:
@@ -84,16 +91,21 @@ And one corresponding to `res-hi`
 Example of CIFTI-2 files (a format that combines regularly sampled data
 and non-parametric surfaces) having both `res` and `den` entities:
 
-```Text
-pipeline1/
-    sub-001/
-        func/
-            sub-001_task-rest_run-1_space-fsLR_res-1_den-10k_bold.dtseries.nii
-            sub-001_task-rest_run-1_space-fsLR_res-1_den-41k_bold.dtseries.nii
-            sub-001_task-rest_run-1_space-fsLR_res-2_den-10k_bold.dtseries.nii
-            sub-001_task-rest_run-1_space-fsLR_res-2_den-41k_bold.dtseries.nii
-            sub-001_task-rest_run-1_space-fsLR_bold.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline1": {
+        "sub-001": {
+            "func": {
+                "sub-001_task-rest_run-1_space-fsLR_res-1_den-10k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_res-1_den-41k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_res-2_den-10k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_res-2_den-41k_bold.dtseries.nii": "",
+                "sub-001_task-rest_run-1_space-fsLR_bold.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 And the corresponding `sub-001_task-rest_run-1_space-fsLR_bold.json` file:
 
@@ -117,7 +129,7 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         anat|func|dwi/
             <source_entities>[_space-<space>][_res-<label>][_den-<label>][_label-<label>][_desc-<label>]_mask.nii.gz
 ```
@@ -131,31 +143,43 @@ and the `Atlas` metadata SHOULD be defined.
 
 JSON metadata fields:
 
-| **Key name** | **Requirement level**                    | **Data type**                                      | **Description**                                                                                                                   |
-| ------------ | ---------------------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| RawSources   | REQUIRED                                 | [array][] of [strings][]                           | Same as defined in [Common data types][], but elevated from OPTIONAL to REQUIRED.                                                 |
-| Type         | RECOMMENDED                              | [string][]                                         | Short identifier of the mask. Reserved values: `Brain` - brain mask, `Lesion` - lesion mask, `Face` - face mask, `ROI` - ROI mask |
-| Atlas        | RECOMMENDED if `label` entity is defined | [string][]                                         | Which atlas (if any) was used to generate the mask.                                                                               |
-| Resolution   | REQUIRED if `res` is present             | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the resolution keyword.                                                                           |
-| Density      | REQUIRED if `den` is present             | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the density keyword.                                                                              |
+{{ MACROS___make_metadata_table(
+   {
+      "RawSources": "REQUIRED",
+      "Type": "RECOMMENDED",
+      "Atlas": "RECOMMENDED if `label` entity is defined",
+      "Resolution": "REQUIRED if `res` is present",
+      "Density": "REQUIRED if `den` is present",
+   }
+) }}
 
 Examples:
 
-```Text
-func_loc/
-    sub-001/
-        func/
-           sub-001_task-rest_run-1_space-MNI305_desc-PFC_mask.nii.gz
-           sub-001_task-rest_run-1_space-MNI305_desc-PFC_mask.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "func_loc": {
+        "sub-001": {
+            "func": {
+                "sub-001_task-rest_run-1_space-MNI305_desc-PFC_mask.nii.gz": "",
+                "sub-001_task-rest_run-1_space-MNI305_desc-PFC_mask.json": "",
+                },
+            },
+        }
+   }
+) }}
 
-```Text
-manual_masks/
-    sub-001/
-        anat/
-            sub-001_desc-tumor_mask.nii.gz
-            sub-001_desc-tumor_mask.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "manual_masks": {
+        "sub-001": {
+            "anat": {
+                "sub-001_desc-tumor_mask.nii.gz": "",
+                "sub-001_desc-tumor_mask.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 ## Segmentations
 
@@ -181,12 +205,14 @@ Probabilistic segmentations of surfaces are currently [unspecified][].
 
 The following metadata fields apply to all segmentation files:
 
-| **Key name** | **Requirement level**        | **Data type**                                      | **Description**                                                                   |
-| ------------ | ---------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Manual       | OPTIONAL                     | [boolean][]                                        | Indicates if the segmentation was performed manually or via an automated process. |
-| Atlas        | OPTIONAL                     | [string][]                                         | Which atlas (if any) was used to derive the segmentation.                         |
-| Resolution   | REQUIRED if `res` is present | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the resolution keyword.                           |
-| Density      | REQUIRED if `den` is present | [string][] or [object][] mapping labels to strings | Specifies the interpretation of the density keyword.                              |
+{{ MACROS___make_metadata_table(
+   {
+      "Manual": "OPTIONAL",
+      "Atlas": "OPTIONAL",
+      "Resolution": "REQUIRED if `res` is present",
+      "Density": "REQUIRED if `den` is present",
+   }
+) }}
 
 ### Discrete Segmentations
 
@@ -199,20 +225,25 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         anat|func|dwi/
             <source_entities>[_space-<space>][_res-<label>][_den-<label>]_dseg.nii.gz
 ```
 
 Example:
 
-```Text
-pipeline/
-    sub-001/
-        anat/
-            sub-001_space-orig_dseg.nii.gz
-            sub-001_space-orig_dseg.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_space-orig_dseg.nii.gz": "",
+                "sub-001_space-orig_dseg.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 A segmentation can be used to generate a binary mask that functions as a
 discrete "label" for a single structure.
@@ -222,12 +253,17 @@ to specify the masked structure
 and the `Atlas` metadata SHOULD be defined.
 For example:
 
-```Text
-pipeline/
-    sub-001/
-        anat/
-            sub-001_space-orig_label-GM_mask.nii.gz
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_space-orig_label-GM_mask.nii.gz": "",
+                },
+            },
+        }
+   }
+) }}
 
 ### Probabilistic Segmentations
 
@@ -241,20 +277,25 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         func|anat|dwi/
             <source_entities>[_space-<space>][_res-<label>][_den-<label>][_label-<label>]_probseg.nii.gz
 ```
 
 Example:
 
-```Text
-pipeline/
-    sub-001/
-        anat/
-            sub-001_space-orig_label-BG_probseg.nii.gz
-            sub-001_space-orig_label-WM_probseg.nii.gz
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_space-orig_label-BG_probseg.nii.gz": "",
+                "sub-001_space-orig_label-WM_probseg.nii.gz": "",
+                },
+            },
+        }
+   }
+) }}
 
 See [Common image-derived labels](#common-image-derived-labels)
 for reserved key values for `label`.
@@ -262,13 +303,18 @@ for reserved key values for `label`.
 A 4D probabilistic segmentation, in which each frame corresponds to a different
 tissue class, must provide a label mapping in its JSON sidecar. For example:
 
-```Text
-pipeline/
-    sub-001/
-	    anat/
-		    sub-001_space-orig_probseg.nii.gz
-		    sub-001_space-orig_probseg.json
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+		        "sub-001_space-orig_probseg.nii.gz": "",
+		        "sub-001_space-orig_probseg.json": "",
+                },
+            },
+        }
+   }
+) }}
 
 The JSON sidecar MUST include the label-map key that specifies a tissue label
 for each volume:
@@ -297,32 +343,42 @@ Template:
 
 ```Text
 <pipeline_name>/
-    sub-<participant_label>/
+    sub-<label>/
         anat/
             <source_entities>[_hemi-{L|R}][_space-<space>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
 ```
 
-The `hemi` tag is REQUIRED for GIFTI files storing information about
+The [`hemi-<label>`](../99-appendices/09-entities.md#hemi) entity is REQUIRED for GIFTI files storing information about
 a structure that is restricted to a hemibrain.
 For example:
 
-```Text
-pipeline/
-    sub-001/
-        anat/
-            sub-001_hemi-L_dseg.label.gii
-            sub-001_hemi-R_dseg.label.gii
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_hemi-L_dseg.label.gii": "",
+                "sub-001_hemi-R_dseg.label.gii": "",
+                },
+            },
+        }
+   }
+) }}
 
 The REQUIRED extension for CIFTI parcellations is `.dlabel.nii`. For example:
 
-```Text
-pipeline/
-    sub-001/
-        anat/
-            sub-001_dseg.dlabel.nii
-            sub-001_dseg.dlabel.nii
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_dseg.dlabel.nii": "",
+                "sub-001_dseg.dlabel.nii": "",
+                },
+            },
+        }
+   }
+) }}
 
 ### Common image-derived labels
 
@@ -351,36 +407,48 @@ filename.
 
 Example:
 
-```Text
-pipeline/
-    sub-001/
-        anat/
-            sub-001_space-orig_dseg.nii.gz
-            sub-001_space-orig_dseg.tsv
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "sub-001": {
+            "anat": {
+                "sub-001_space-orig_dseg.nii.gz": "",
+                "sub-001_space-orig_dseg.tsv": "",
+                },
+            },
+        }
+   }
+) }}
 
 Definitions can also be specified with a top-level `dseg.tsv`, which propagates to
 segmentations in relative subdirectories.
 
 Example:
 
-```Text
-pipeline/
-    dseg.tsv
-    sub-001/
-        anat/
-            sub-001_space-orig_dseg.nii.gz
-```
+{{ MACROS___make_filetree_example(
+   {
+    "pipeline": {
+        "dseg.tsv": "",
+        "sub-001": {
+            "anat": {
+                "sub-001_space-orig_dseg.nii.gz": "",
+                },
+            },
+        }
+   }
+) }}
 
 These TSV lookup tables contain the following columns:
 
-| **Column name** | **Requirement level** | **Description**                                               |
-| --------------- | --------------------- |-------------------------------------------------------------- |
-| index           | REQUIRED              | The label integer index                                       |
-| name            | REQUIRED              | The unique label name                                         |
-| abbreviation    | OPTIONAL              | The unique label abbreviation                                 |
-| color           | OPTIONAL              | Hexadecimal. Label color for visualization                    |
-| mapping         | OPTIONAL              | Corresponding integer label in the standard BIDS label lookup |
+{{ MACROS___make_columns_table(
+   {
+      "index": "REQUIRED",
+      "name__segmentations": "REQUIRED",
+      "abbreviation": "OPTIONAL",
+      "color": "OPTIONAL",
+      "mapping": "OPTIONAL",
+   }
+) }}
 
 An example, custom `dseg.tsv` that defines three labels:
 
@@ -403,18 +471,6 @@ index   name                abbreviation
 
 <!-- Link Definitions -->
 
-[common data types]: 02-common-data-types.md
-
 [common_preproc]: 02-common-data-types.md#preprocessed-or-cleaned-data
 
-[object]: https://www.json.org/json-en.html
-
 [unspecified]: ../02-common-principles.md#unspecified-data
-
-[string]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[strings]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[boolean]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[array]: https://www.w3schools.com/js/js_json_arrays.asp

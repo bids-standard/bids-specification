@@ -34,15 +34,17 @@ file describing the columns in detail (see
 The tabular files consists of one row per event and a set of REQUIRED
 and OPTIONAL columns:
 
-| **Column name** | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                               |
-| --------------- | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| onset           | REQUIRED              | [number][]               | Onset (in seconds) of the event measured from the beginning of the acquisition of the first data point in the corresponding task data file. Negative numbers in "onset" are allowed<sup>5</sup>.                                                                              |
-| duration        | REQUIRED              | [number][]               | Duration of the event (measured from onset) in seconds. MUST be either zero or positive (or `"n/a"` if unavailable). A "duration" value of zero implies that the event is so short as to be effectively modeled as an impulse.                                                |
-| sample          | OPTIONAL              | [number][]               | Onset of the event according to the sampling scheme of the recorded modality (that is, referring to the raw data file that the `events.tsv` file accompanies).                                                                                                                |
-| trial_type      | OPTIONAL              | [string][]               | Primary categorisation of each trial to identify them as instances of the experimental conditions. For example: for a response inhibition task, it could take on values `"go"` and `"no-go"` to refer to response initiation and response inhibition experimental conditions. |
-| response_time   | OPTIONAL              | [number][]               | Response time measured in seconds. A negative response time can be used to represent preemptive responses and `"n/a"` denotes a missed response.                                                                                                                              |
-| value           | OPTIONAL              | [string][] or [number][] | Marker value associated with the event (for example, the value of a TTL trigger that was recorded at the onset of the event).                                                                                                                                                 |
-| HED             | OPTIONAL              | [string][]               | Hierarchical Event Descriptor (HED) tag. See [Appendix III](../99-appendices/03-hed.md) for details.                                                                                                                                                                          |
+{{ MACROS___make_columns_table(
+   {
+      "onset": "REQUIRED",
+      "duration": "REQUIRED",
+      "sample": "OPTIONAL",
+      "trial_type": "OPTIONAL",
+      "response_time": "OPTIONAL",
+      "value": "OPTIONAL",
+      "HED": "OPTIONAL",
+   }
+) }}
 
 <sup>5</sup> Note for MRI data:
 If any acquired scans have been discarded before forming the imaging data file,
@@ -60,12 +62,16 @@ SHOULD be documented in an accompanying JSON sidecar file.
 
 Example:
 
-```Text
-sub-control01/
-    func/
-        sub-control01_task-stopsignal_events.tsv
-        sub-control01_task-stopsignal_events.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-control01": {
+      "func": {
+         "sub-control01_task-stopsignal_events.tsv": "",
+         "sub-control01_task-stopsignal_events.json": "",
+         },
+      },
+   }
+) }}
 
 Example of the content of the TSV file:
 
@@ -84,7 +90,7 @@ In the accompanying JSON sidecar, the `trial_type` column might look as follows:
         "Description": "Indicator of type of action that is expected",
         "Levels": {
             "start": "A red square is displayed to indicate starting",
-            "stop": "A blue square is displayed to indicate stopping",
+            "stop": "A blue square is displayed to indicate stopping"
         }
     }
 }
@@ -96,12 +102,18 @@ sake of brevity.
 For multi-echo files, the `events.tsv` file is applicable to all echos of
 a particular run:
 
-```Text
-sub-01_task-cuedSGT_run-1_events.tsv
-sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-cuedSGT_run-1_events.tsv": "",
+        "sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz": "",
+        "sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz": "",
+        "sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz": "",
+         },
+      },
+   }
+) }}
 
 Note: Events can also be documented in machine-actionable form
 using HED (Hierarchical Event Descriptor) tags.
@@ -127,9 +139,11 @@ for a given event,
 There are no restrictions on the file formats of the stimuli files,
 but they should be stored in the `/stimuli` folder.
 
-| **Column name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                            |
-| --------------- | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| stim_file       | OPTIONAL              | [string][]    | Represents the location of the stimulus file (such as an image, video, or audio file) presented at the given onset time. The values under the `stim_file` column correspond to a path relative to the folder `/stimuli`. For example `images/cat03.jpg` will be translated to `/stimuli/images/cat03.jpg`. |
+{{ MACROS___make_columns_table(
+   {
+      "stim_file": "OPTIONAL",
+   }
+) }}
 
 ### Stimuli databases
 
@@ -139,12 +153,16 @@ The following example includes references to the
 
 Example:
 
-```Text
-sub-control01/
-    func/
-        sub-control01_task-emoface_events.tsv
-        sub-control01_task-emoface_events.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-control01": {
+      "func": {
+         "sub-control01_task-emoface_events.tsv": "",
+         "sub-control01_task-emoface_events.json": "",
+         },
+      },
+   }
+) }}
 
 Example of the content of the TSV file:
 
@@ -184,19 +202,23 @@ sake of brevity.
 It is RECOMMENDED to include details of the stimulus presentation software,
 when applicable:
 
-| **Key name**         | **Requirement level** | **Data type**             | **Description**                                                                                                                                                                                                                                       |
-| -------------------- | --------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| StimulusPresentation | RECOMMENDED           | [object][] of [strings][] | [Object][] containing key value pairs related to the software used to present the stimuli during the experiment, specifically: `OperatingSystem`, `SoftwareName`, `SoftwareRRID`, `SoftwareVersion` and `Code`. See table below for more information. |
+{{ MACROS___make_metadata_table(
+   {
+      "StimulusPresentation": "RECOMMENDED",
+   }
+) }}
 
 The object supplied for `StimulusPresentation` SHOULD include the following key-value pairs:
 
-| **Key name**    | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                      |
-| --------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| OperatingSystem | RECOMMENDED           | [string][]    | Operating system used to run the stimuli presentation software (for formatting recommendations, see examples below this table).                                                                                      |
-| SoftwareName    | RECOMMENDED           | [string][]    | Name of the software that was used to present the stimuli.                                                                                                                                                           |
-| SoftwareRRID    | RECOMMENDED           | [string][]    | [Research Resource Identifier](https://scicrunch.org/resources) of the software that was used to present the stimuli. Examples: The RRID for Psychtoolbox is `"SCR_002881"`, and that of PsychoPy is `"SCR_006571"`. |
-| SoftwareVersion | RECOMMENDED           | [string][]    | Version of the software that was used to present the stimuli.                                                                                                                                                        |
-| Code            | RECOMMENDED           | [string][]    | [URI][uri] of the code used to present the stimuli. Persistent identifiers such as DOIs are preferred. If multiple versions of code may be hosted at the same location, revision-specific URIs are recommended.      |
+{{ MACROS___make_metadata_table(
+   {
+      "OperatingSystem": "RECOMMENDED",
+      "SoftwareName": "RECOMMENDED",
+      "SoftwareRRID": "RECOMMENDED",
+      "SoftwareVersion": "RECOMMENDED",
+      "Code": "RECOMMENDED",
+   }
+) }}
 
 The operating system description SHOULD include the following attributes:
 
@@ -240,15 +262,3 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
     }
 }
 ```
-
-<!-- Link Definitions -->
-
-[number]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[object]: https://www.json.org/json-en.html
-
-[string]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[uri]: ../02-common-principles.md#uniform-resource-indicator

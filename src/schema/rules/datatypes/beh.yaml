@@ -1,31 +1,29 @@
 ---
-# DWI
+# Continuous data
 - suffixes:
-    - dwi
+  - stim
+  - physio
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
-    - .bvec
-    - .bval
+  - .tsv.gz
+  - .json
   entities:
     subject: required
     session: optional
+    task: required
     acquisition: optional
-    direction: optional
     run: optional
-    part: optional
-# Single-band reference images
+    recording: optional
+
+# Non-continuous data
 - suffixes:
-    - sbref
+  - events
+  - beh
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .tsv
+  - .json
   entities:
     subject: required
     session: optional
+    task: required
     acquisition: optional
-    direction: optional
     run: optional
-    part: optional

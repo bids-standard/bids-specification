@@ -12,6 +12,11 @@ A genetic descriptor links a BIDS dataset to associated genetic data,
 potentially in a separate repository,
 with details of where to find the genetic data and the type of data available.
 
+The following example dataset with genetics data have been formatted using this specification
+and can be used for practical guidance when curating a new dataset.
+
+-   [`UK biobank`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+
 ## Dataset Description
 
 Genetic descriptors are encoded as an additional, OPTIONAL entry in the
@@ -22,11 +27,13 @@ Datasets linked to a genetic database entry include the following REQUIRED or OP
 `dataset_description.json` keys (a dot in the key name denotes a key in a sub-[object][],
 see the example further below):
 
-| **Key name**         | **Requirement level** | **Data type**                          | **Description**                                                                                                  |
-| -------------------- | --------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Genetics.Dataset     | REQUIRED              | [string][]                             | [URI][uri] where data can be retrieved.                                                                          |
-| Genetics.Database    | OPTIONAL              | [string][]                             | [URI][uri] of database where the dataset is hosted.                                                              |
-| Genetics.Descriptors | OPTIONAL              | [string][] or [array][] of [strings][] | List of relevant descriptors (for example, journal articles) for dataset using a valid [URI][uri] when possible. |
+{{ MACROS___make_metadata_table(
+   {
+      "Genetics.Dataset": "REQUIRED",
+      "Genetics.Database": "OPTIONAL",
+      "Genetics.Descriptors": "OPTIONAL",
+   }
+) }}
 
 Example:
 
@@ -83,14 +90,16 @@ Datasets containing the `Genetics` field in `dataset_description.json` or the
 `genetic_id` column in `participants.tsv` MUST include this file with the following
 fields:
 
-| **Key name**       | **Requirement level** | **Data type**                          | **Description**                                                                                                                                                                                                                                           |
-| ------------------ | --------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GeneticLevel       | REQUIRED              | [string][] or [array][] of [strings][] | Describes the level of analysis. Values MUST be one of `"Genetic"`, `"Genomic"`, `"Epigenomic"`, `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.                                                                                                   |
-| AnalyticalApproach | OPTIONAL              | [string][] or [array][] of [strings][] | Methodology or methodologies used to analyse the `GeneticLevel`. Values MUST be taken from the [database of Genotypes and Phenotypes (dbGaP)][gapsolr] under /Study/Molecular Data Type (for example, `"SNP Genotypes (Array)"` or `"Methylation (CpG)"`. |
-| SampleOrigin       | REQUIRED              | [string][]                             | Describes from which tissue the genetic information was extracted. Values MUST be one of `"blood"`, `"saliva"`, `"brain"`, `"csf"`, `"breast milk"`, `"bile"`, `"amniotic fluid"`, `"other biospecimen"`.                                                 |
-| TissueOrigin       | OPTIONAL              | [string][]                             | Describes the type of tissue analyzed for `SampleOrigin` `brain`. Values MUST be one of `"gray matter"`, `"white matter"`, `"csf"`, `"meninges"`, `"macrovascular"` or `microvascular`.                                                                   |
-| BrainLocation      | OPTIONAL              | [string][]                             | Refers to the location in space of the `TissueOrigin`. Values may be an MNI coordinate, a label taken from the [Allen Brain Atlas][allen], or layer to refer to layer-specific gene expression, which can also tie up with laminar fMRI.                  |
-| CellType           | OPTIONAL              | [string][]                             | Describes the type of cell analyzed. Values SHOULD come from the [cell ontology][ontology].                                                                                                                                                               |
+{{ MACROS___make_metadata_table(
+   {
+      "GeneticLevel": "REQUIRED",
+      "AnalyticalApproach": "OPTIONAL",
+      "SampleOrigin": "REQUIRED",
+      "TissueOrigin": "OPTIONAL",
+      "BrainLocation": "OPTIONAL",
+      "CellType": "OPTIONAL",
+   }
+) }}
 
 To ensure dataset description consistency, we recommend following [Multi-omics approaches to disease](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1215-1) by Hasin et al. 2017 to determine the `GeneticLevel:`
 
@@ -117,17 +126,3 @@ To ensure dataset description consistency, we recommend following [Multi-omics a
 <!-- Link Definitions -->
 
 [object]: https://www.json.org/json-en.html
-
-[string]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[strings]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[array]: https://www.w3schools.com/js/js_json_arrays.asp
-
-[allen]: https://atlas.brain-map.org/atlas?atlas=265297125&plate=112360888&structure=4392&x=40348.15104166667&y=46928.75&zoom=-7&resolution=206.60&z=3
-
-[ontology]: http://obofoundry.org/ontology/cl.html
-
-[gapsolr]: https://www.ncbi.nlm.nih.gov/gap/advanced
-
-[uri]: ../02-common-principles.md#uniform-resource-indicator

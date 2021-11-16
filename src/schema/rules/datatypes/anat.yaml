@@ -1,22 +1,22 @@
 ---
 # Nonparametric
 - suffixes:
-    - T1w
-    - T2w
-    - PDw
-    - T2starw
-    - FLAIR
-    - inplaneT1
-    - inplaneT2
-    - PDT2
-    - angio
-    - T2star  # deprecated
-    - FLASH  # deprecated
-    - PD  # deprecated
+  - T1w
+  - T2w
+  - PDw
+  - T2starw
+  - FLAIR
+  - inplaneT1
+  - inplaneT2
+  - PDT2
+  - angio
+  - T2star  # deprecated
+  - FLASH  # deprecated
+  - PD  # deprecated
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .nii.gz
+  - .nii
+  - .json
   entities:
     subject: required
     session: optional
@@ -25,29 +25,30 @@
     ceagent: optional
     reconstruction: optional
     part: optional
+
 # Parametric
 - suffixes:
-    - T1map
-    - T2map
-    - T2starmap
-    - R1map
-    - R2map
-    - R2starmap
-    - PDmap
-    - MTRmap
-    - MTsat
-    - UNIT1
-    - T1rho
-    - MWFmap
-    - MTVmap
-    - PDT2map
-    - Chimap
-    - S0map
-    - M0map
+  - T1map
+  - T2map
+  - T2starmap
+  - R1map
+  - R2map
+  - R2starmap
+  - PDmap
+  - MTRmap
+  - MTsat
+  - UNIT1
+  - T1rho
+  - MWFmap
+  - MTVmap
+  - PDT2map
+  - Chimap
+  - S0map
+  - M0map
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .nii.gz
+  - .nii
+  - .json
   entities:
     subject: required
     session: optional
@@ -55,13 +56,14 @@
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+
 # Defacemask
 - suffixes:
-    - defacemask
+  - defacemask
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .nii.gz
+  - .nii
+  - .json
   entities:
     subject: required
     session: optional
@@ -70,14 +72,15 @@
     ceagent: optional
     reconstruction: optional
     modality: optional
+
 # Multi-echo
 - suffixes:
-    - MESE
-    - MEGRE
+  - MESE
+  - MEGRE
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .nii.gz
+  - .nii
+  - .json
   entities:
     subject: required
     session: optional
@@ -87,13 +90,14 @@
     reconstruction: optional
     echo: required
     part: optional
+
 # Multi-flip
 - suffixes:
-    - VFA
+  - VFA
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .nii.gz
+  - .nii
+  - .json
   entities:
     subject: required
     session: optional
@@ -103,13 +107,14 @@
     reconstruction: optional
     flip: required
     part: optional
+
 # Multi-inv
 - suffixes:
-    - IRT1
+  - IRT1
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .nii.gz
+  - .nii
+  - .json
   entities:
     subject: required
     session: optional
@@ -119,13 +124,14 @@
     reconstruction: optional
     inversion: required
     part: optional
+
 # MP2RAGE
 - suffixes:
-    - MP2RAGE
+  - MP2RAGE
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .nii.gz
+  - .nii
+  - .json
   entities:
     subject: required
     session: optional
@@ -137,14 +143,15 @@
     flip: optional
     inversion: required
     part: optional
+
 # VFA+MT
 - suffixes:
-    - MPM
-    - MTS
+  - MPM
+  - MTS
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .nii.gz
+  - .nii
+  - .json
   entities:
     subject: required
     session: optional
@@ -156,13 +163,14 @@
     flip: required
     mtransfer: required
     part: optional
+
 # MTR
 - suffixes:
-    - MTR
+  - MTR
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .nii.gz
+  - .nii
+  - .json
   entities:
     subject: required
     session: optional

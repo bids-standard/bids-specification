@@ -1,5 +1,12 @@
 # Physiological and other continuous recordings
 
+[Example datasets](https://github.com/bids-standard/bids-examples)
+with physiological data have been formatted using this specification
+and can be used for practical guidance when curating a new dataset:
+
+-   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
+-   [`ds210`](https://github.com/bids-standard/bids-examples/tree/master/ds210)
+
 Template:
 
 ```Text
@@ -41,11 +48,13 @@ and a JSON file for storing the following metadata fields.
 Note that when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
 `*_<physio|stim>.json` MUST be supplied as well.
 
-| **Key name**      | **Requirement level** | **Data type**            | **Description**                                                                                                                                           |
-| ----------------- | --------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SamplingFrequency | REQUIRED              | [number][]               | Sampling frequency in Hz of all columns in the file.                                                                                                      |
-| StartTime         | REQUIRED              | [number][]               | Start time in seconds in relation to the start of acquisition of the first data sample in the corresponding neural dataset (negative values are allowed). |
-| Columns           | REQUIRED              | [array][] of [strings][] | Names of columns in file.                                                                                                                                 |
+{{ MACROS___make_metadata_table(
+   {
+      "SamplingFrequency": "REQUIRED",
+      "StartTime": "REQUIRED",
+      "Columns": "REQUIRED",
+   }
+) }}
 
 Additional metadata may be included as in
 [any TSV file](../02-common-principles.md#tabular-files) to specify, for
@@ -59,11 +68,15 @@ as well as to make support for other file formats possible in the future.
 
 Example `*_physio.tsv.gz`:
 
-```Text
-sub-control01/
-    func/
-        sub-control01_task-nback_physio.tsv.gz
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-control01": {
+      "func": {
+         "sub-control01_task-nback_physio.tsv.gz": "",
+         },
+      },
+   }
+) }}
 
 (after decompression)
 
@@ -75,11 +88,15 @@ sub-control01/
 
 Example `*_physio.json`:
 
-```Text
-sub-control01/
-    func/
-        sub-control01_task-nback_physio.json
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-control01": {
+      "func": {
+         "sub-control01_task-nback_physio.json": "",
+         },
+      },
+   }
+) }}
 
 ```JSON
 {
@@ -97,11 +114,13 @@ sub-control01/
 To store pulse or breathing measurements, or the scanner trigger signal, the
 following naming conventions SHOULD be used for the column names:
 
-| **Column name** | **Description**                                      |
-| --------------- | ---------------------------------------------------- |
-| cardiac         | continuous pulse measurement                         |
-| respiratory     | continuous breathing measurement                     |
-| trigger         | continuous measurement of the scanner trigger signal |
+{{ MACROS___make_columns_table(
+   {
+      "cardiac": "OPTIONAL",
+      "respiratory": "OPTIONAL",
+      "trigger": "OPTIONAL",
+   }
+) }}
 
 For any other data to be specified in columns, the column names can be chosen
 as deemed appropriate by the researcher.
@@ -121,31 +140,31 @@ For multi-echo data, a given `physio.tsv` file is applicable to all echos of
 a particular run.
 For example:
 
-```Text
-sub-01_task-cuedSGT_run-1_physio.tsv.gz
-sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz
-sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz
-sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz
-```
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "func": {
+        "sub-01_task-cuedSGT_run-1_physio.tsv.gz": "",
+        "sub-01_task-cuedSGT_run-1_echo-1_bold.nii.gz": "",
+        "sub-01_task-cuedSGT_run-1_echo-2_bold.nii.gz": "",
+        "sub-01_task-cuedSGT_run-1_echo-3_bold.nii.gz": "",
+         },
+      },
+   }
+) }}
 
 ### Other RECOMMENDED metadata for physiological data
 
 The following RECOMMENDED metadata can also be added in the side-car JSON files
 of any `*_<physio>.tsv.gz` file.
 
-| **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                           |
-| ---------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Manufacturer           | RECOMMENDED           | [string][]    | Manufacturer of the system used to record the measurements.                                                                                                                                               |
-| ManufacturersModelName | RECOMMENDED           | [string][]    | Manufacturer's designation of the system used to record the measurements.                                                                                                                                 |
-| SoftwareVersions       | RECOMMENDED           | [string][]    | Manufacturer's designation of the acquisition software.                                                                                                                                                   |
-| DeviceSerialNumber     | RECOMMENDED           | [string][]    | The serial number of the equipment that produced the measurements. A pseudonym can also be used to prevent the equipment from being identifiable, as long as each pseudonym is unique within the dataset. |
+{{ MACROS___make_metadata_table(
+   {
+      "Manufacturer": "RECOMMENDED",
+      "ManufacturersModelName": "RECOMMENDED",
+      "SoftwareVersions": "RECOMMENDED",
+      "DeviceSerialNumber": "RECOMMENDED",
+   }
+) }}
 
 <!-- Link Definitions -->
-
-[number]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[string]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[strings]: https://www.w3schools.com/js/js_json_syntax.asp
-
-[array]: https://www.w3schools.com/js/js_json_arrays.asp

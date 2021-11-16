@@ -18,8 +18,8 @@ in [Derived dataset and pipeline description][derived-dataset-description].
     pertinent fields is very valuable and thus encouraged. Moreover, for some
     types of files, there may be one or more required metadata fields, in which
     case at least one metadata file containing that field must be located
-    somewhere within the file’s hierarchy (per [the Inheritance
-    Principle](../02-common-principles.md#the-inheritance-principle)).
+    somewhere within the file’s hierarchy (per the
+    [Inheritance Principle](../02-common-principles.md#the-inheritance-principle)).
 
 -   When chaining derivative pipelines, any JSON fields that were specified as
     mandatory in the input files SHOULD be propagated forward in the output

@@ -2,25 +2,30 @@
 README:
   required: true
   extensions:
-    - None
+  - None
 CHANGES:
   required: true
   extensions:
-    - None
+  - None
 LICENSE:
   required: false
   extensions:
-    - None
+  - None
 dataset_description:
   required: true
   extensions:
-    - .json
+  - .json
 genetic_info:
   required: false
   extensions:
-    - .json
+  - .json
 participants:
   required: false
   extensions:
-    - .tsv
-    - .json
+  - .tsv
+  - .json
+samples:
+  required: false
+  extensions:
+  - .tsv
+  - .json
