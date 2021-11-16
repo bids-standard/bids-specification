@@ -194,8 +194,9 @@ sub-01/
         sub-01_sample-01_chunk-04_CONF.json
 ```
 The index number can be assigned arbitrarily and, in the case of "ordered" chunks, the chunks'
-positions relative to one another SHOULD be defined by an affine transformation matrix in the JSON
-sidecar file of each chunk, as described in [Chunk Transformations](10-microscopy.md#chunk-transformations).
+relative positions (in terms of scaling and translation) SHOULD be defined by an affine
+transformation matrix in the JSON sidecar file of each chunk, as described in
+[Chunk Transformations](10-microscopy.md#chunk-transformations).
 
 In this example, the JSON metadata is different for each chunk of `sub-01_sample-01`.
 JSON metadata may be defined per sample or per chunk as appropriate, as per the
@@ -299,8 +300,8 @@ of the same sample in an implicit coordinate system.
 
 -   The target frame of reference has the same units as the `PixelSizeUnits` metadata.
 
--   The chunk transform is described by 2 metadata fields: a transformation matrix and a
-    description of the axis of the matrix.
+-   The chunk transformation is described by 2 metadata fields: an affine transformation matrix
+    and a description of the axis of the matrix.
 
 -   Other transformations should be described in derivatives.
 
@@ -310,8 +311,8 @@ A "manual" table is provided to facilitate the review process.
 -->
 | **Key name**                  | **Requirement level**                               | **Data type**                          | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | ----------------------------- | --------------------------------------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ChunkTransformationMatrix     | RECOMMENDED if `<chunk-index>` is used in filenames | [array][] of [arrays][] of [numbers][] | 3x3 or 4x4 matrix describing spatial chunk transformation, for 2D and 3D respectively (for examples: `[[2, 0, 0], [0, 3, 0], [0, 0, 1]]` in 2D for 2x and 3x scaling along the first and second axis respectively or `[[1, 0, 0, 0], [0, 2, 0, 0], [0, 0, 3, 0], [0, 0, 0, 1]]` in 3D for 2x and 3x scaling along the second and third axis respectively). Note that non-spatial dimensions like time and channel are not included in the transformation matrix. |
-| ChunkTransformationMatrixAxis | REQUIRED if `ChunkTransformationMatrix` is present  | [arrays][] of [strings][]              | Describe the axis of the ChunkTransformationMatrix (for examples: `["X", "Y"]` or `["Z", "Y", "X"]`)                                                                                                                                                                                                                                                                                                                                                             |
+| ChunkTransformationMatrix     | RECOMMENDED if `<chunk-index>` is used in filenames | [array][] of [arrays][] of [numbers][] | 3x3 or 4x4 affine transformation matrix describing spatial chunk transformation, for 2D and 3D respectively (for examples: `[[2, 0, 0], [0, 3, 0], [0, 0, 1]]` in 2D for 2x and 3x scaling along the first and second axis respectively or `[[1, 0, 0, 0], [0, 2, 0, 0], [0, 0, 3, 0], [0, 0, 0, 1]]` in 3D for 2x and 3x scaling along the second and third axis respectively). Note that non-spatial dimensions like time and channel are not included in the transformation matrix. |
+| ChunkTransformationMatrixAxis | REQUIRED if `ChunkTransformationMatrix` is present  | [arrays][] of [strings][]              | Describe the axis of the ChunkTransformationMatrix (for examples: `["X", "Y"]` or `["Z", "Y", "X"]`)                                                                                                                                                                                                                                                                                                                                                                                   |
 
 An example of chunk transformations JSON metadata for `chunk-01` and `chunk-05` of Figure 2
 is shown below:
