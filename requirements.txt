@@ -7,4 +7,3 @@ numpy
 pandas
 PYYaml
 tabulate
-pre-commit
