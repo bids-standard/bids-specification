@@ -224,8 +224,8 @@ MUST be present **in this specific order**:
 
 {{ MACROS___make_columns_table(
    {
-      "name__channels": ("REQUIRED", "The label must correspond to `_electrodes.tsv` name and all ieeg type channels are
-    required to have a position."),
+      "name__channels": ("REQUIRED", "The label must correspond to `_electrodes.tsv` name "
+                         "and all ieeg type channels are required to have a position."),
       "type__channels": "REQUIRED",
       "units": "REQUIRED",
       "low_cutoff": "REQUIRED",
