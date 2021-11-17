@@ -24,7 +24,7 @@ stored in one of the following formats:
 | [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5) | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                       |
 | [EEGLAB](https://sccn.ucsd.edu/eeglab)                                                       | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab). Each recording consists of a `.set` file with an optional `.fdt` file.                       |
 | [Neurodata Without Borders](https://nwb-schema.readthedocs.io)                               | `.nwb`                   | Each recording consists of a single `.nwb` file.                                                                                                                           |
-| [MEF3](https://msel.mayo.edu/files/codes/MEF%203%20Specification.pdf)                        | `.mefd`                  | Each recording consists of a `.mefd` directory.                                                                                                                            |
+| [MEF3](https://osf.io/e3sf9/)                                                                | `.mefd`                  | Each recording consists of a `.mefd` directory.                                                                                                                            |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
