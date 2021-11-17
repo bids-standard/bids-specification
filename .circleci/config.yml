@@ -21,7 +21,7 @@ jobs:
 
   linkchecker:
     docker:
-      - image: yarikoptic/linkchecker:9.4.0.anchorfix1-1
+      - image: circleci/python:3.8
     steps:
       # checkout code to default ~/project
       - checkout
@@ -29,10 +29,10 @@ jobs:
           # mkdocs build outputs will be in ~/project/site
           at: ~/project
       - run:
-          name: install git
+          name: install linkchecker
           command: |
-            apt update -y
-            apt install git-all -y
+            python -m ensurepip
+            python -m pip install linkchecker
       - run:
           name: check links
           command: |
