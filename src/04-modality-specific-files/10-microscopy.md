@@ -375,8 +375,10 @@ Additional optional columns in `samples.tsv` MAY be used to describe other sampl
 
 ## Recommended participant data (`participants.tsv`)
 
-For Microscopy data, we RECOMMEND to make use of the columns `species`, `strain` and `strain_rrid`
-in the [Participants file](../03-modality-agnostic-files.md#participants-file) when applicable.
+As for other data types in BIDS, the [Participants file](../03-modality-agnostic-files.md#participants-file)
+is RECOMMENDED and MUST contain the column `participant_id`.
+For Microscopy data, we RECOMMEND to also make use of the columns `species`, `strain` and
+`strain_rrid` when applicable.
 
 For example:
 ```Text
@@ -384,6 +386,8 @@ participant_id species strain strain_rrid
 sub-01 mus musculus C57BL/6J RRID:IMSR_JAX:000664
 sub-02 mus musculus C57BL/6J RRID:IMSR_JAX:000664
 ```
+
+Additional optional columns in `participants.tsv` MAY be used to describe other subjects' attributes.
 
 ## Photos of the samples (`*_photo.<extension>`)
 Photos of the tissue sample, overview microscopy scans or blockface images from cutting
