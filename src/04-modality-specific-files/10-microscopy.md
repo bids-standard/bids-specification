@@ -98,6 +98,7 @@ A "manual" table is provided to facilitate the review process.
 In the context of Microscopy, a session ([`ses-<label>`](../99-appendices/09-entities.md#ses))
 can refer to all the acquisitions between the start and the end of an imaging experiment
 for ex vivo imaging or a subject lab visit for biopsy procedure and/or in vivo imaging.
+Consistent with other data types in BIDS, the session entity is optional.
 
 The [`sample-<label>`](../99-appendices/09-entities.md#sample) entity is REQUIRED for
 Microscopy data and is used to distinguish between different samples from the same subject.
