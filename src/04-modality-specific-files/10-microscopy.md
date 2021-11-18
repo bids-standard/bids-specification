@@ -127,7 +127,7 @@ In such case two files could have the following names: `sub-01_sample-01_acq-40x
 `sub-01_sample-01_acq-60x_BF.png`, however the user is free to choose any other label as long as
 they are consistent across subjects and sessions.
 
-The [`stain-<label>`](../99-appendices/09-entities.md#stain) entity can be used to distinguish
+The [`stain-<label>`](../99-appendices/09-entities.md#stain) entity MAY be used to distinguish
 image files from the same sample using different stains or antibodies for contrast enhancement.
 
 <!--- The following example will be generated automatically with macros after community review. -->
@@ -396,9 +396,9 @@ sub-<label>/
         microscopy/
             sub-<label>[_ses-<label>]_sample-<label>[_acq-<label>]_photo.<extension>
 ```
-The file `<extension>` for photos can be either `.jpg`, `.png` or `.tif`.
+The file `<extension>` for photos MUST be either `.jpg`, `.png` or `.tif`.
 
-The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity can be used to indicate
+The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity MAY be used to indicate
 acquisition of different photos of the same sample.
 <!--- The following example will be generated automatically with macros after community review. -->
 For example:
