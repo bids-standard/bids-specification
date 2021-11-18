@@ -234,7 +234,7 @@ The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
 key/value pair corresponds to a custom label the user
 MAY use to distinguish a different set of parameters used for acquiring the same
 modality. For example this should be used when a study includes two T1w images -
-one full brain low resolution and and one restricted field of view but high
+one full brain low resolution and one restricted field of view but high
 resolution. In such case two files could have the following names:
 `sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however the
 user is free to choose any other label than `highres` and `lowres` as long as

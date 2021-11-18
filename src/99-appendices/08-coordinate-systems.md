@@ -53,7 +53,7 @@ information for a coordinate system (origin and orientation) are specified in
 `<CoordSysType>CoordinateSystem`.
 The third piece of information for a coordinate system (units) are specified in
 `<CoordSysType>CoordinateUnits`.
-Here, `<CoordSysType>` can be one of of the following,
+Here, `<CoordSysType>` can be one of the following,
 depending on the data that is supposed to be documented:
 
 -   `MEG`
@@ -174,7 +174,7 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 
 -   `ScanRAS`: The origin of the coordinate system is the center of the
     gradient coil for the corresponding T1w image of the subject, and the x-axis
-    increases left to right, the y-axis increases posterior to to anterior and
+    increases left to right, the y-axis increases posterior to anterior and
     the z-axis increases inferior to superior. For more information see the
     [Nipy Documentation](https://nipy.org/nibabel/coordinate_systems.html). It is
     strongly encouraged to align the subject's T1w to ACPC so that the `ACPC`

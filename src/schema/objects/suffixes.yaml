@@ -356,7 +356,7 @@ UNIT1:
     Note that although this image is T1-weighted, regions without MR signal will
     contain white salt-and-pepper noise that most segmentation algorithms will
     fail on.
-    Therefore, it is important to dissociate it from from `T1w`.
+    Therefore, it is important to dissociate it from `T1w`.
     Please see [`MP2RAGE` specific notes](/99-appendices/11-qmri.html#unit1-images)
     in the qMRI appendix for further information.
 VFA:
