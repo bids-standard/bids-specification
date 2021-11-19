@@ -21,6 +21,7 @@ Jump to the following sections:
 -   [Writing in markdown](#writing-in-markdown)
 -   [Using macros](#using-macros)
 -   [Fixing markdown style errors](#fixing-markdown-style-errors)
+-   [Using pre-commit hooks](#using-pre-commit-hooks)
 -   [Adding a figure to the specifications](#adding-a-figure-to-the-specifications)
 -   [Making a change with a pull request](#making-a-change-with-a-pull-request)
 -   [Example pull request](#example-pull-request)
@@ -433,6 +434,19 @@ Using `remark` to fix some linting errors might introduce some additional change
 - in some instances, it will "escape" all `_` and `&` with a `\` in all the URLs.
 
 You might have to revert those or use [interactive staging](https://git-scm.com/book/en/v2/Git-Tools-Interactive-Staging) to make sure you only commit the right chunks of code.
+
+## Using pre-commit hooks
+
+> Git hook scripts are useful for identifying simple issues before submission to code review.
+
+For more information on Git hooks, see: https://pre-commit.com/.
+
+Contributors to the bids-specification repository can optionally make use of the `.pre-commit-config.yaml`
+configuration file at the root of the repository.
+Using Python, simply install `pre-commit` via `pip`, and then run `pre-commit install` from the root
+of the bids-specification repository.
+
+To uninstall the pre-commit hooks, run `pre-commit uninstall`.
 
 ## Adding a figure to the specifications
 
