@@ -309,9 +309,10 @@ stain:
   description: |
     The `stain-<label>` key/pair values can be used to distinguish image files
     from the same sample using different stains or antibodies for contrast enhancement.
-    Stains or antibodies SHOULD be indicated as appropriate in the `SampleStaining`,
-    `SamplePrimaryAntibodies` and/or `SampleSecondaryAntobodies` keys in the JSON file,
+    Stains SHOULD be indicated in the `"SampleStaining"` key in the sidecar JSON file,
     although the label may be different.
+    Description of antibodies SHOULD also be indicated in `"SamplePrimaryAntibodies"`
+    and/or `"SampleSecondaryAntobodies"` as appropriate.
   type: string
   format: label
 subject:
