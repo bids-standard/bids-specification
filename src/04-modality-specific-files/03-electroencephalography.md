@@ -185,7 +185,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["channels"]) }}
 
 This file is RECOMMENDED as it provides easily searchable information across
-BIDS datasets for for example, general curation, response to queries or batch
+BIDS datasets for example, general curation, response to queries or batch
 analysis.
 To avoid confusion, the channels SHOULD be listed in the order they
 appear in the EEG data file.
