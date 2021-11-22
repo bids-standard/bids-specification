@@ -447,33 +447,51 @@ for instance, 3-vectors { 0.57735, 0.57735, 0.57735 } and
 { -0.57735, -0.57735, -0.57735 } are both permissible and equivalent to one
 another.
 
-#### Spherical Harmonics bases
+#### Spherical Harmonics
+
+- Concepts shared across all spherical harmonics bases:
+
+   -  Basis functions:
+
+      ![SH basis functions](https://latex.codecogs.com/gif.latex?Y_l^m(\theta,\phi)&space;=&space;\sqrt{\frac{(2l&plus;1)}{4\pi}\frac{(l-m)!}{(l&plus;m)!}}&space;P_l^m(\cos&space;\theta)&space;e^{im\phi}")
+
+      for integer *order* *l*, *phase* *m*, associated Legendre polynomials *P*.
+
+   -  (Truncated) basis coefficients:
+
+      ![SH basis coefficients](https://latex.codecogs.com/gif.latex?f(\theta,\phi)&space;=&space;\sum_{l=0}^{l_\text{max}}&space;\sum_{m=-l}^{l}&space;c_l^m&space;Y_l^m(\theta,\phi)")
+
+      for *maximum* spherical harmonic order *l<sub>max</sub>*.
 
 -  `MRtrix3`
-
-   -  Antipodally symmetric: all basis functions with odd degree are
-      assumed zero; `AntipodalSymmetry` MUST NOT be set to True.
 
    -  Functions assumed to be real: conjugate symmetry is assumed, i.e.
       *Y*(*l*,-*m*) = *Y*(*l*,*m*)\*, where \* denotes the complex
       conjugate.
 
-   -  Mapping of image volumes to spherical harmonic basis function
-      coefficients:
+   -  Antipodally symmetric: all basis functions with odd degree are
+      assumed zero; `AntipodalSymmetry` MUST NOT be set to `True`.
 
-      | **Volume** | **Coefficient**                   |
-      | ---------- | --------------------------------- |
-      | 0          | *l* = 0, *m* = 0                  |
-      | 1          | *l* = 2, *m* = 2 (imaginary part) |
-      | 2          | *l* = 2, *m* = 1 (imaginary part) |
-      | 3          | *l* = 2, *m* = 0                  |
-      | 4          | *l* = 2, *m* = 1 (real part)      |
-      | 5          | *l* = 2, *m* = 2 (real part)      |
-      | 6          | *l* = 4, *m* = 4 (imaginary part) |
-      | 7          | *l* = 4, *m* = 3 (imaginary part) |
-      | ...        | etc.                              |
+   -  Utilised basis functions:
 
-   -  Normalisation: ***TODO***
+      ![MRtrix3 SH basis functions](https://latex.codecogs.com/gif.latex?Y_{lm}(\theta,\phi)=\begin{Bmatrix}&space;0&\text{if&space;}l\text{&space;is&space;odd},\\&space;\sqrt{2}\times\text{Im}\left[Y_l^{-m}(\theta,\phi)\right]&\text{if&space;}m<0,\\&space;Y_l^0(\theta,\phi)&\text{if&space;}m=0,\\&space;\sqrt{2}\times\text{Re}\left[Y_l^m(\theta,\phi)\right]&\text{if&space;}m>0\\&space;\end{Bmatrix})
+
+   -  Mapping between image volume *V<sub>lm</sub>* and spherical harmonic basis
+      function coefficient *c<sub>lm</sub>*:
+
+      *V<sub>lm</sub>* = (*l*(*l*+1) / 2) + *m*
+
+      | ***V<sub>lm</sub>*** | ***c<sub>lm</sub>***              |
+      | -------------------- | --------------------------------- |
+      | 0                    | *l* = 0, *m* = 0                  |
+      | 1                    | *l* = 2, *m* = 2 (imaginary part) |
+      | 2                    | *l* = 2, *m* = 1 (imaginary part) |
+      | 3                    | *l* = 2, *m* = 0                  |
+      | 4                    | *l* = 2, *m* = 1 (real part)      |
+      | 5                    | *l* = 2, *m* = 2 (real part)      |
+      | 6                    | *l* = 4, *m* = 4 (imaginary part) |
+      | 7                    | *l* = 4, *m* = 3 (imaginary part) |
+      | ...                  | etc.                              |
 
    -  Relationship between maximal spherical harmonic degree *l<sub>max</sub>*
       and number of image volumes *N*:
@@ -493,7 +511,7 @@ another.
 
       | ***l<sub>max</sub>*** |  0  |  2  |  4  |  6  |  8  | ...  |
       | --------------------- | --: | --: | --: | --: | --: | :--: |
-      | ***N***               |   1 |   2 |  3  |  4  |  5  | etc. |
+      | ***N***               |  1  |  2  |  3  |  4  |  5  | etc. |
 
 -  `Descoteaux`
 
