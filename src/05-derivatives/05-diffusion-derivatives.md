@@ -267,9 +267,9 @@ ideally be integrated in a future version of the specification.
 | `bs`        | Ball-and-Stick(s) model \[[Behrens2003](#behrens2003)\],\[[Behrens2007](#behrens2007)\],\[[Jbabdi2012](#jbabdi2012)\]                           | One [spherical coordinates](#data-spherical) image with parameter name "`sticks`", providing both fibre volume fractions and orientations using polar angles;<br>Optional scalar images with parameter names {"`bzero`", "`dmean`", "`dstd`"} providing the model-estimated *b*=0 signal intensity, mean stick diffusivity, and standard deviation of stick diffusivities respectively                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `csa`       | Constant Solid Angle \[[Aganj2010](#aganj2010)\]                                                                                                | [Spherical harmonics](#data-sh) image                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `csd`       | Constrained Spherical Deconvolution \[[Tournier2007](#tournier2007)\],\[[Descoteaux2009](#descoteaux2009)\],\[[Jeurissen2014](#jeurissen2014)\] | [Spherical harmonics](#data-sh) image<br>If a multi-tissue decomposition is performed, provide one individual 4D image per tissue, with "`_desc-<desc>`" filename field being an abbreviation of the tissue estimated by that particular ODF                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `dki`       | Diffusion Kurtosis Imaging \[[Jensen2005](#jensen2005)\]                                                                                        | Single [parameter vectors](#data-param) image with parameter name "`all`" with 21 volumes in the order: *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>*, *W<sub>xxxx</sub>*, *W<sub>yyyy</sub>*, *W<sub>zzzz</sub>*, *W<sub>xxxy</sub>*, *W<sub>xxxz</sub>*, *W<sub>xyyy</sub>*, *W<sub>yyyz</sub>*, *W<sub>xzzz</sub>*, *W<sub>yzzz</sub>*, *W<sub>xxyy</sub>*, *W<sub>xxzz</sub>*, *W<sub>yyzz</sub>*, *W<sub>xxyz</sub>*, *W<sub>xyyz</sub>*, *W<sub>xyzz</sub>* (*D* is the diffusion tensor, *W* is the kurtosis tensor)<br>OR<br>6 diffusion tensor coefficients as [parameter vectors](#data-param) image with parameter name "`tensor`";<br>15 kurtosis tensor coefficients as [parameter vectors](#data-param) image with parameter name "`kurtosis`";<br>Optional: estimated *b*=0 intensity as scalar image with parameter name "`bzero`"                                                                              |
-| `dsi`       | Diffusion Spectrum Imaging \[[Wedeen2008](#wedeen2008)\],\[[Paquette2017](paquette2017)\]                                                       | [Probability distribution functions](#data-pdf)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `dti`       | Diffusion Tensor Imaging \[[Basser1994](#basser1994)\]                                                                                          | Single [parameter vectors](#data-param) image with parameter name "`all`" with 6 volumes in the order: *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>*<br>OR<br>Tensor coefficients as [parameter vectors](#data-param) image with parameter name "`tensor`";<br>Estimated *b*=0 intensity as [scalar](#data-scalar) image with parameter name "`bzero`"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `dki`       | Diffusion Kurtosis Imaging \[[Jensen2005](#jensen2005)\]                                                                                        | Single [parameter vectors](#data-param) image with parameter name "`all`" with 21 volumes in the order: *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>*, *W<sub>xxxx</sub>*, *W<sub>yyyy</sub>*, *W<sub>zzzz</sub>*, *W<sub>xxxy</sub>*, *W<sub>xxxz</sub>*, *W<sub>xyyy</sub>*, *W<sub>yyyz</sub>*, *W<sub>xzzz</sub>*, *W<sub>yzzz</sub>*, *W<sub>xxyy</sub>*, *W<sub>xxzz</sub>*, *W<sub>yyzz</sub>*, *W<sub>xxyz</sub>*, *W<sub>xyyz</sub>*, *W<sub>xyzz</sub>* (*D* is the diffusion tensor, *W* is the kurtosis tensor)<br>OR<br>6 diffusion tensor coefficients as [parameter vectors](#data-param) image with parameter name "`tensor`";<br>15 kurtosis tensor coefficients as [parameter vectors](#data-param) image with parameter name "`kurtosis`";<br>Optional: estimated *b*=0 intensity as scalar image with parameter name "`bzero`"                                     |
+| `dsi`       | Diffusion Spectrum Imaging \[[Wedeen2008](#wedeen2008)\],\[[Paquette2017](paquette2017)\]                                                       | [Probability distribution functions](#data-pdf)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `dti`       | Diffusion Tensor Imaging \[[Basser1994](#basser1994)\]                                                                                          | Single [parameter vectors](#data-param) image with parameter name "`all`" with 6 volumes in the order: *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>*<br>OR<br>Tensor coefficients as [parameter vectors](#data-param) image with parameter name "`tensor`";<br>Estimated *b*=0 intensity as [scalar](#data-scalar) image with parameter name "`bzero`"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `forecast`  | Fiber ORientation Estimated using Continuous Axially Symmetric Tensors \[[Zuchelli2017](#zuchelli2017)\]                                        | [Spherical harmonics](#data-sh) image                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `fwdti`     | Free water DTI \[[Hoy2015](#hoy2015)\]                                                                                                          | One [parameter vectors](#data-param) image with parameter name "`tensor`", containing 6 volumes in the order: *Dc<sub>xx</sub>*, *Dc<sub>xy</sub>*, *Dc<sub>xz</sub>*, *Dc<sub>yy</sub>*, *Dc<sub>yz</sub>*, *Dc<sub>zz</sub>* (*Dc* is the free-water-corrected diffusion tensor);<br>One [scalar](#data-scalar) image with parameter name "`fwf`" corresponding to the estimated free water fraction                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `mapmri`    | Mean Apparent Propagator MRI \[[Ozarslan2013](#ozarslan2013)\]                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
@@ -288,7 +288,7 @@ the following key/value pairs irrespective of the particular model:
 | Mask             | OPTIONAL. String. Name of image that was used as a binary mask to specify those voxels for which the model was fit.                                                                          |
 | ModelDescription | OPTIONAL. String. Extended information to describe the model.                                                                                                                                |
 | ModelURL         | OPTIONAL. String. URL to the implementation of the specific model utilized.                                                                                                                  |
-| Parameters       | OPTIONAL. Dictionary. [Input](#paramdef-input) model parameters that are constant across the image (see examples below).                                                                    |
+| Parameters       | OPTIONAL. Dictionary. [Input](#paramdef-input) model parameters that are constant across the image (see examples below).                                                                     |
 
 #### Model bootstrapping
 
@@ -319,49 +319,35 @@ Reserved keywords for models built into the specification are as follows:
 -   `bs` :
 
     -   `ARDFudgeFactor`: Float. Weight applied to Automatic Relevance Determination (ARD).
-    
     -   `Fibers`: Integer. Number of discrete fibres to fit in each voxel.
-    
     -   `ModelBall`: String. Model used to describe the "ball" component in the model.
-    
     -   `ModelSticks`: String. Model used to describe the "stick" component in the model.
 
 -   `csa` :
 
     -   `SphericalHarmonicOrder` : value
-    
     -   `Smoothing` : value
-    
     -   `Basis` : value
 
 -   `csd`:
 
     -   `NonNegativityConstraint`: String. Options are: { `soft`, `hard` }. Specifies whether the ODF was estimated using regularisation ("`soft`") or prevention ("`hard`") of negative values.
-    
     -   `ResponseFunctionZSH`: Two options:
-    
+
         -   Vector of floating-point values, where values correspond to the response function coefficient for each consecutive even zonal spherical harmonic degree starting from zero (in this case field "`Shells`" should contain a single integer value);
-        
         -   Matrix of floating-point values: 1 row per unique *b*-value as listed in "`Shells`"; 1 column per even zonal spherical harmonic degree starting from zero; if there are a different number of non-zero zonal spherical harmonic coefficients for different *b*-values, these must be padded with zeroes such that all rows contain the same number of columns.
-        
+
     -   `ResponseFunctionTensor`: Vector of 4 floating-point values: three tensor eigenvalues, then reference *b*=0 intensity
-    
     -   `SphericalHarmonicBasis`: String. Options are: { `MRtrix3`, `Descoteaux` }. Details are provided in the [spherical harmonics bases](#spherical-harmonics-bases) section.
-    
     -   `SphericalHarmonicDegree`: Integer. The maximal spherical harmonic order *l<sub>max</sub>*; the number of volumes in the associated NIfTI image must correspond to this value as per the relationship described in [spherical harmonics bases](#spherical-harmonics-bases) section.
-    
     -   `Tissue`: String. A more verbose description for the tissue estimated via this specific ODF.
 
 -   `dsi` :
 
     -   `GridSize` : value
-    
     -   `RStart` : value
-    
     -   `RStep` : value
-    
     -   `REnd` : value
-    
     -   `FilterWidth` : value
 
 -   `dti` :
@@ -371,73 +357,45 @@ Reserved keywords for models built into the specification are as follows:
 -   `forecast` :
 
     -   `Sphere` : value
-    
     -   `DecAlg` : value
-    
     -   `LambdaLb` : value
-    
     -   `SphericalHarmonicsOrder` : value
 
 -   `mapmri` :
 
     -   `RadialOrder` : value
-    
     -   `LaplacianRegularization` : bool
-    
     -   `LaplacianWeighting` : value
-    
     -   `PositivityConstraint` : bool
-    
     -   `Tau` : value
-    
     -   `ConstrainE0` : value
-    
     -   `PositiveConstraint` : value
-    
     -   `PosGrid` : value
-    
     -   `PosRadius` : value
-    
     -   `AnisotropicScaling` : bool
-    
     -   `EigenvalueThreshold` : value
-    
     -   `PosGrid` : value
-    
     -   `BvalThreshold` : value
-    
     -   `DTIScaleEstimation` : bool
-    
     -   `StaticDiffusivity` : value
 
 -   `noddi`:
 
     -   `DPar` : value
-    
     -   `DIso` : value
-    
     -   `Lambda1` : value
-    
     -   `Lambda2` : value
 
 -  `shore` :
 
     -   `RadialOrder` : value
-    
     -   `Zeta` : value
-    
     -   `LambdaN` : value
-    
     -   `LambdaL` : value
-    
     -   `Tau` : value
-    
     -   `ConstrainE0` : value
-    
     -   `PositiveConstraint` : value
-    
     -   `PosGrid` : value
-    
     -   `PosRadius` : value
 
 ### Extrinsic model parameters
