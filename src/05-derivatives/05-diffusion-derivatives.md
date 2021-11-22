@@ -476,28 +476,28 @@ another.
         conjugate.
 
     -   Antipodally symmetric: all basis functions with odd degree are
-        assumed zero; `AntipodalSymmetry` MUST NOT be set to `True`.
+        assumed zero; `AntipodalSymmetry` MUST NOT be set to `False`.
 
     -   Utilised basis functions:
 
         ![MRtrix3 SH basis functions](https://latex.codecogs.com/gif.latex?Y_{lm}(\theta,\phi)=\begin{Bmatrix}&space;0&\text{if&space;}l\text{&space;is&space;odd},\\&space;\sqrt{2}\times\text{Im}\left[Y_l^{-m}(\theta,\phi)\right]&\text{if&space;}m<0,\\&space;Y_l^0(\theta,\phi)&\text{if&space;}m=0,\\&space;\sqrt{2}\times\text{Re}\left[Y_l^m(\theta,\phi)\right]&\text{if&space;}m>0\\&space;\end{Bmatrix})
 
-    -   Mapping between image volume *V<sub>lm</sub>* and spherical harmonic basis
-        function coefficient *c<sub>lm</sub>*:
+    -   Mapping between image volume *V* and spherical harmonic basis
+        function coefficient *Y<sub>l,m</sub>*:
 
-        *V<sub>lm</sub>* = (*l*(*l*+1) / 2) + *m*
+        *V<sub>l,m</sub>* = (*l*(*l*+1) / 2) + *m*
 
-        | ***V<sub>lm</sub>*** | ***c<sub>lm</sub>***              |
-        | -------------------- | --------------------------------- |
-        | 0                    | *l* = 0, *m* = 0                  |
-        | 1                    | *l* = 2, *m* = 2 (imaginary part) |
-        | 2                    | *l* = 2, *m* = 1 (imaginary part) |
-        | 3                    | *l* = 2, *m* = 0                  |
-        | 4                    | *l* = 2, *m* = 1 (real part)      |
-        | 5                    | *l* = 2, *m* = 2 (real part)      |
-        | 6                    | *l* = 4, *m* = 4 (imaginary part) |
-        | 7                    | *l* = 4, *m* = 3 (imaginary part) |
-        | ...                  | etc.                              |
+        | ***V*** | **Coefficient**    |
+        | ------- | ------------------ |
+        | 0       | *Y<sub>0,0</sub>*  |
+        | 1       | *Y<sub>2,-2</sub>* |
+        | 2       | *Y<sub>2,-1</sub>* |
+        | 3       | *Y<sub>2,0</sub>*  |
+        | 4       | *Y<sub>2,1</sub>*  |
+        | 5       | *Y<sub>2,2</sub>*  |
+        | 6       | *Y<sub>4,-4</sub>* |
+        | 7       | *Y<sub>4,-3</sub>* |
+        | ...     | etc.               |
 
     -   Relationship between maximal spherical harmonic degree *l<sub>max</sub>*
         and number of image volumes *N*:
