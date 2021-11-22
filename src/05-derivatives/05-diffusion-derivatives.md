@@ -332,14 +332,18 @@ Reserved keywords for models built into the specification are as follows:
 -   `csd`:
 
     -   `NonNegativityConstraint`: String. Options are: { `soft`, `hard` }. Specifies whether the ODF was estimated using regularisation ("`soft`") or prevention ("`hard`") of negative values.
+    
     -   `ResponseFunctionZSH`: Two options:
 
         -   Vector of floating-point values, where values correspond to the response function coefficient for each consecutive even zonal spherical harmonic degree starting from zero (in this case field "`Shells`" should contain a single integer value);
         -   Matrix of floating-point values: 1 row per unique *b*-value as listed in "`Shells`"; 1 column per even zonal spherical harmonic degree starting from zero; if there are a different number of non-zero zonal spherical harmonic coefficients for different *b*-values, these must be padded with zeroes such that all rows contain the same number of columns.
 
     -   `ResponseFunctionTensor`: Vector of 4 floating-point values: three tensor eigenvalues, then reference *b*=0 intensity
+    
     -   `SphericalHarmonicBasis`: String. Options are: { `MRtrix3`, `Descoteaux` }. Details are provided in the [spherical harmonics bases](#spherical-harmonics-bases) section.
+    
     -   `SphericalHarmonicDegree`: Integer. The maximal spherical harmonic order *l<sub>max</sub>*; the number of volumes in the associated NIfTI image must correspond to this value as per the relationship described in [spherical harmonics bases](#spherical-harmonics-bases) section.
+    
     -   `Tissue`: String. A more verbose description for the tissue estimated via this specific ODF.
 
 -   `dsi` :
@@ -386,7 +390,7 @@ Reserved keywords for models built into the specification are as follows:
     -   `Lambda1` : value
     -   `Lambda2` : value
 
--  `shore` :
+-   `shore` :
 
     -   `RadialOrder` : value
     -   `Zeta` : value
@@ -482,9 +486,9 @@ another.
 
         *N* = ((*l<sub>max</sub>*+1) x (*l<sub>max</sub>*+2)) / 2
 
-        | ***l<sub>max</sub>*** |  0  |  2  |  4  |  6  |  8  | ...  |
+        | ***l<sub>max</sub>*** | 0   | 2   | 4   | 6   | 8   | ...  |
         | --------------------- | --: | --: | --: | --: | --: | :--: |
-        | ***N***               |   1 |   6 |  15 |  28 |  45 | etc. |
+        | ***N***               | 1   | 6   | 15  | 28  | 45  | etc. |
 
     -   Relationship between maximal degree of *zonal* spherical harmonic
         function (spherical harmonics function where all *m* != 0 terms are
@@ -493,9 +497,9 @@ another.
 
         *N* = 1 + (*l<sub>max</sub>* / 2)
 
-        | ***l<sub>max</sub>*** |  0  |  2  |  4  |  6  |  8  | ...  |
+        | ***l<sub>max</sub>*** | 0   | 2   | 4   | 6   | 8   | ...  |
         | --------------------- | --: | --: | --: | --: | --: | :--: |
-        | ***N***               |   1 |   2 |  3  |  4  |  5  | etc. |
+        | ***N***               | 1   | 2   | 3   | 4   | 5   | etc. |
 
 -   `Descoteaux`
 
@@ -682,13 +686,13 @@ another.
     }
     ```
 
------
+---
 
 <a name="diffusivity"><sup>1</sup></a>: For example, for free water in body
 temperature, the diffusivity in units of \mu m<sup>2</sup>.ms<sup>-1</sup>
 should be approximately 3.0.
 
------
+---
 
 <a name="aganj2010">\[Aganj2010\]</a>: Aganj et al. 2010
 
