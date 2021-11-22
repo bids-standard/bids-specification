@@ -65,27 +65,27 @@ The JSON sidecar contains the following key/value pairs:
 
 RECOMMENDED to appear within the "`Constraints`" field when "`TractographyClass`" is "`local`":
 
-| **Key name**      | **Description**                                                                             |
-| ----------------- | ------------------------------------------------------------------------------------------- |
-| AnatomicalType    | {`ACT`,`CMC`}                                                                               |
-| AnatomicalImage   | string (name of anatomical tissue segmentation image)                                       |
-| Include           | list of names of inclusion ROIs (streamlines must intersect all)                            |
-| OrderedInclude    | list of names of ordered inclusion ROIs (streamlines must intersect all in order specified) |
-| Exclude           | list of names of exclusion ROIs (streamlines must not intersect any)                        |
-| Mask              | list of names of mask ROIs (streamlines must exist within)                                  |
+| **Key name**    | **Description**                                                                             |
+| --------------- | ------------------------------------------------------------------------------------------- |
+| AnatomicalType  | {`ACT`,`CMC`}                                                                               |
+| AnatomicalImage | string (name of anatomical tissue segmentation image)                                       |
+| Include         | list of names of inclusion ROIs (streamlines must intersect all)                            |
+| OrderedInclude  | list of names of ordered inclusion ROIs (streamlines must intersect all in order specified) |
+| Exclude         | list of names of exclusion ROIs (streamlines must not intersect any)                        |
+| Mask            | list of names of mask ROIs (streamlines must exist within)                                  |
 
 RECOMMENDED to appear within the "`Parameters`" field when "`TractographyClass`" is "`local`":
 
-| **Key name**      | **Description**                                      |
-| ----------------- | ---------------------------------------------------- |
-| Units             | {`mm`,`norm`} (applies to all within "`Parameters`") |
-| StepSize          | value                                                |
-| AngleCurvature    | value (maximum angle per step)                       |
-| RadiusCurvature   | value (minimal radius of curvature)                  |
-| MinimumLength     | value                                                |
-| MaximumLength     | value                                                |
-| IntegrationOrder  | integer                                              |
-| Unidirectional    | bool                                                 |
+| **Key name**     | **Description**                                      |
+| ---------------- | ---------------------------------------------------- |
+| Units            | {`mm`,`norm`} (applies to all within "`Parameters`") |
+| StepSize         | value                                                |
+| AngleCurvature   | value (maximum angle per step)                       |
+| RadiusCurvature  | value (minimal radius of curvature)                  |
+| MinimumLength    | value                                                |
+| MaximumLength    | value                                                |
+| IntegrationOrder | integer                                              |
+| Unidirectional   | bool                                                 |
 
 RECOMMENDED to appear within the "Seeding" field when `TractographyClass` is `local`:
 
