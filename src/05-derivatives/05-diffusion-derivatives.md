@@ -47,17 +47,17 @@ informative representations of the diffusion process and the underlying
 biological structure. A wide range of such models are available, each of
 which has its own unique requirements with respect to:
 
--  The [input](#paramdef-input) parameters required in order to
-   define / constrain the model;
+-   The [input](#paramdef-input) parameters required in order to
+    define / constrain the model;
 
--  The appropriate [data representations](#data-representations) utilised to
-   store information parameterised [by](#paramdef-intrinsic) or
-   [from](#paramdef-extrinsic) the model onto the filesystem;
+-   The appropriate [data representations](#data-representations) utilised to
+    store information parameterised [by](#paramdef-intrinsic) or
+    [from](#paramdef-extrinsic) the model onto the filesystem;
 
--  The requirements for encapsulation and complete representation of
-   derived [orientation information](#orientation-specification), which is
-   a key strength of diffusion MRI but presents unique challenges for
-   correct interpretation.
+-   The requirements for encapsulation and complete representation of
+    derived [orientation information](#orientation-specification), which is
+    a key strength of diffusion MRI but presents unique challenges for
+    correct interpretation.
 
 ### Parameter terminology
 
@@ -65,21 +65,21 @@ Throughout this document, the term "parameter" is used to refer to
 multiple distinct sources of information. The distinction between
 these uses is defined thus:
 
-1. <a name="paramdef-input">*Input*</a> model parameter:
+1.  <a name="paramdef-input">*Input*</a> model parameter:
 
-   Value or non-numerical setting that influences the conformation
-   of the diffusion model to the empirical diffusion-weighted data.
+    Value or non-numerical setting that influences the conformation
+    of the diffusion model to the empirical diffusion-weighted data.
 
-1. <a name="paramdef-intrinsic">*Intrinsic*</a> model parameter:
+1.  <a name="paramdef-intrinsic">*Intrinsic*</a> model parameter:
 
-   Value that is the direct result of fitting the diffusion model to the
-   empirical diffusion-weighted data.
+    Value that is the direct result of fitting the diffusion model to the
+    empirical diffusion-weighted data.
 
-1. <a name="paramdef-extrinsic">*Extrinsic*</a> model parameter:
+1.  <a name="paramdef-extrinsic">*Extrinsic*</a> model parameter:
 
-   Value that can be calculated directly from previously estimated
-   intrinsic model parameters, without necessitating reference to
-   the empirical diffusion-weighted data.
+    Value that can be calculated directly from previously estimated
+    intrinsic model parameters, without necessitating reference to
+    the empirical diffusion-weighted data.
 
 For example, consider a diffusion tensor model fit: the number of
 iterations in the optimisation algorithm would be an *input* parameter;
@@ -104,37 +104,37 @@ rather than the image data).
             [<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam2>_<model>.json]
 ```
 
--  Field "`<model>`" is a unique identifier corresponding to the particular
-   diffusion model. If the particular diffusion model is one that is included
-   in this specification, then the [prescribed model label](intrinsic-model-parameters)
-   MUST be utilised; e.g. "`dti`" for the diffusion tensor model.
+-   Field "`<model>`" is a unique identifier corresponding to the particular
+    diffusion model. If the particular diffusion model is one that is included
+    in this specification, then the [prescribed model label](intrinsic-model-parameters)
+    MUST be utilised; e.g. "`dti`" for the diffusion tensor model.
 
--  Files "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<intparam*>_<model>.nii[.gz]`"
-   provide data corresponding to the various [intrinsic](#paramdef-intrinsic) parameters
-   of the model. In cases where [intrinsic](#paramdef-intrinsic) model parameters are all
-   contained within a single image file, field "`_parameter-`" nevertheless MUST be
-   included, with value "`all`"; e.g.:
+-   Files "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<intparam*>_<model>.nii[.gz]`"
+    provide data corresponding to the various [intrinsic](#paramdef-intrinsic) parameters
+    of the model. In cases where [intrinsic](#paramdef-intrinsic) model parameters are all
+    contained within a single image file, field "`_parameter-`" nevertheless MUST be
+    included, with value "`all`"; e.g.:
 
-   ```Text
-   <pipeline_name>/
-       sub-<participant_label>/
-           dwi/
-               <source_keywords>[_space-<space>][_desc-<label>]_parameter-all_<model>.nii[.gz]
-               <source_keywords>[_space-<space>][_desc-<label>]_<model>.json
-   ```
+    ```Text
+    <pipeline_name>/
+        sub-<participant_label>/
+            dwi/
+                <source_keywords>[_space-<space>][_desc-<label>]_parameter-all_<model>.nii[.gz]
+                <source_keywords>[_space-<space>][_desc-<label>]_<model>.json
+    ```
 
--  File "`<source_keywords>[_space-<space>][_desc-<label>]_<model>.json`"
-   provides basic model information and [input](#paramdef-input)
-   model parameters.
+-   File "`<source_keywords>[_space-<space>][_desc-<label>]_<model>.json`"
+    provides basic model information and [input](#paramdef-input)
+    model parameters.
 
--  OPTIONAL images "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam*>_<model>.nii[.gz]`"
-   may be defined, in order to provide additional [extrinsic](#paramdef-extrinsic)
-   model parameters.
+-   OPTIONAL images "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam*>_<model>.nii[.gz]`"
+    may be defined, in order to provide additional [extrinsic](#paramdef-extrinsic)
+    model parameters.
 
--  OPTIONAL files "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam*>_<model>.json`"
-   may be defined to provide only information or parameters relevant to
-   derivation of each relevant [extrinsic](#paramdef-extrinsic) model
-   parameter image.
+-   OPTIONAL files "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam*>_<model>.json`"
+    may be defined to provide only information or parameters relevant to
+    derivation of each relevant [extrinsic](#paramdef-extrinsic) model
+    parameter image.
 
 ### Data representations
 
@@ -148,111 +148,111 @@ For data that encode orientation information, there are fields that MUST
 be specified in the sidecar JSON file in order to ensure appropriate
 interpretation of that information; see [orientation specification](#orientation-specification)).
 
-1. <a name="data-scalar">*Scalars*</a>:
+1.  <a name="data-scalar">*Scalars*</a>:
 
-   Any model parameter image (whether [intrinsic](#paramdef-intrinsic) or
-   [extrinsic](#paramdef-extrinsic)) where a solitary numerical value is
-   defined in each 3D image voxel is referred to here as a "scalar" image.
+    Any model parameter image (whether [intrinsic](#paramdef-intrinsic) or
+    [extrinsic](#paramdef-extrinsic)) where a solitary numerical value is
+    defined in each 3D image voxel is referred to here as a "scalar" image.
 
-1. <a name="data-dec">*Directionally-Encoded Colours (DEC)*</a>:
+1.  <a name="data-dec">*Directionally-Encoded Colours (DEC)*</a>:
 
-   4D image with three volumes, intended to be interpreted as red, green
-   and blue colour intensities for visualisation
-   \[[Pajevic1999](#pajevic1999)\]. Image data MUST NOT contain negative
-   values.
+    4D image with three volumes, intended to be interpreted as red, green
+    and blue colour intensities for visualisation
+    \[[Pajevic1999](#pajevic1999)\]. Image data MUST NOT contain negative
+    values.
 
-1. <a name="data-spherical">*Spherical coordinates*</a>:
+1.  <a name="data-spherical">*Spherical coordinates*</a>:
 
-   4D image where data across volumes within each voxel encode one or
-   more discrete orientations using angles on the 2-sphere, optionally
-   exploiting the distance from origin to encode the value of some parameter.
+    4D image where data across volumes within each voxel encode one or
+    more discrete orientations using angles on the 2-sphere, optionally
+    exploiting the distance from origin to encode the value of some parameter.
 
-   This may take one of two forms:
+    This may take one of two forms:
 
-   1. Value per direction
+    1.  Value per direction
 
-      Each consecutive triplet of image volumes encodes a spherical
-      coordinate, using ISO convention for both the order of parameters
-      and reference frame for angles:
+        Each consecutive triplet of image volumes encodes a spherical
+        coordinate, using ISO convention for both the order of parameters
+        and reference frame for angles:
 
-      1. Distance from origin; value of embedded parameter MUST be
-         indicated in "`_parameter-*`" filename field;
+        1.  Distance from origin; value of embedded parameter MUST be
+            indicated in "`_parameter-*`" filename field;
 
-      1. Inclination / polar angle, in radians, relative to the zenith
-         direction being the positive direction of the *third* reference
-         axis (see [orientation specification](#orientation-specification));
+        1.  Inclination / polar angle, in radians, relative to the zenith
+            direction being the positive direction of the *third* reference
+            axis (see [orientation specification](#orientation-specification));
 
-      1. Azimuth angle, in radians, orthogonal to the zenith direction,
-         with value of 0.0 corresponding to the *first* reference axis
-         (see [orientation specification](#orientation-specification)),
-         increasing according to the right-hand rule about the zenith
-         direction.
+        1.  Azimuth angle, in radians, orthogonal to the zenith direction,
+            with value of 0.0 corresponding to the *first* reference axis
+            (see [orientation specification](#orientation-specification)),
+            increasing according to the right-hand rule about the zenith
+            direction.
 
-      Number of image volumes is equal to (3x*N*), where *N* is the maximum
-      number of discrete orientations in any voxel in the image.
+        Number of image volumes is equal to (3x*N*), where *N* is the maximum
+        number of discrete orientations in any voxel in the image.
 
-   1. Directions only
+    1.  Directions only
 
-      Each consecutive pair of image volumes encodes inclination /
-      azimuth pairs, with order & convention identical to that above
-      (equivalent to spherical coordinate with assumed unity distance from
-      origin).
+        Each consecutive pair of image volumes encodes inclination /
+        azimuth pairs, with order & convention identical to that above
+        (equivalent to spherical coordinate with assumed unity distance from
+        origin).
 
-      Number of image volumes is equal to (2x*N*), where *N* is the maximum
-      number of discrete orientations in any voxel in the image.
+        Number of image volumes is equal to (2x*N*), where *N* is the maximum
+        number of discrete orientations in any voxel in the image.
 
-1. <a name="data-3vector">*3-Vectors*</a>:
+1.  <a name="data-3vector">*3-Vectors*</a>:
 
-   4D image where data across volumes within each voxel encode one or
-   more discrete orientations using triplets of axis dot products.
+    4D image where data across volumes within each voxel encode one or
+    more discrete orientations using triplets of axis dot products.
 
-   This representation may be used in one of two ways:
+    This representation may be used in one of two ways:
 
-   1. Value per direction
+    1.  Value per direction
 
-      Each 3-vector, once explicitly normalized, provides a direction
-      on the unit sphere; the *norm* of each 3-vector additionally encodes
-      the magnitude of some model parameter, the nature of which MUST be
-      indicated in the "`_parameter-*`" filename field.
+        Each 3-vector, once explicitly normalized, provides a direction
+        on the unit sphere; the *norm* of each 3-vector additionally encodes
+        the magnitude of some model parameter, the nature of which MUST be
+        indicated in the "`_parameter-*`" filename field.
 
-   2. Directions only
+    1.  Directions only
 
-      Each triplet of values encodes an orientation on the unit sphere
-      (i.e. the 3-vector data are normalized); no quantitative value is
-      associated with each triplet.
+        Each triplet of values encodes an orientation on the unit sphere
+        (i.e. the 3-vector data are normalized); no quantitative value is
+        associated with each triplet.
 
-   Number of image volumes is equal to (3x*N*), where *N* is the maximum
-   number of discrete orientations in any voxel in the image.
+    Number of image volumes is equal to (3x*N*), where *N* is the maximum
+    number of discrete orientations in any voxel in the image.
 
-1. <a name="data-sh">*Spherical Harmonics (SH)*</a>:
+1.  <a name="data-sh">*Spherical Harmonics (SH)*</a>:
 
-   4D image where data across volumes within each voxel represent a
-   continuous function spanning the 2-sphere as coefficient values using a
-   spherical harmonics basis.
+    4D image where data across volumes within each voxel represent a
+    continuous function spanning the 2-sphere as coefficient values using a
+    spherical harmonics basis.
 
-   Number of image volumes depends on the spherical harmonic basis employed,
-   and the maximal spherical harmonic degree *l<sub>max</sub>* (see
-   [spherical harmonics bases](#spherical-harmonics-bases)).
+    Number of image volumes depends on the spherical harmonic basis employed,
+    and the maximal spherical harmonic degree *l<sub>max</sub>* (see
+    [spherical harmonics bases](#spherical-harmonics-bases)).
 
-1. <a name="data-amp">*Amplitudes*</a>:
+1.  <a name="data-amp">*Amplitudes*</a>:
 
-   4D image where data across volumes within each voxel represent
-   amplitudes of a discrete function spanning the 2-sphere.
+    4D image where data across volumes within each voxel represent
+    amplitudes of a discrete function spanning the 2-sphere.
 
-   Number of image volumes corresponds to the number of discrete directions
-   on the unit sphere along which samples for the spherical function in
-   each voxel are provided; these directions MUST themselves be provided
-   in the associated sidecar JSON file (see [orientation specification](#orientation-specification)).
+    Number of image volumes corresponds to the number of discrete directions
+    on the unit sphere along which samples for the spherical function in
+    each voxel are provided; these directions MUST themselves be provided
+    in the associated sidecar JSON file (see [orientation specification](#orientation-specification)).
 
-1. <a name="data-pdf">*Probability Distribution Functions (PDFs)*</a>:
+1.  <a name="data-pdf">*Probability Distribution Functions (PDFs)*</a>:
 
-   ***TODO***
+    ***TODO***
 
-1. <a name="data-param">*Parameter vectors*</a>:
+1.  <a name="data-param">*Parameter vectors*</a>:
 
-   4D image containing, for every image voxel, data corresponding to some
-   set of model parameters, the names and order of which are defined within
-   the [intrinsic](#paramdef-intrinsic) model parameters section.
+    4D image containing, for every image voxel, data corresponding to some
+    set of model parameters, the names and order of which are defined within
+    the [intrinsic](#paramdef-intrinsic) model parameters section.
 
 ### Intrinsic model parameters
 
@@ -316,85 +316,129 @@ field depends on the particular model used.
 
 Reserved keywords for models built into the specification are as follows:
 
--  `bs` :
+-   `bs` :
 
-   -  `ARDFudgeFactor`: Float. Weight applied to Automatic Relevance Determination (ARD).
-   -  `Fibers`: Integer. Number of discrete fibres to fit in each voxel.
-   -  `ModelBall`: String. Model used to describe the "ball" component in the model.
-   -  `ModelSticks`: String. Model used to describe the "stick" component in the model.
+    -   `ARDFudgeFactor`: Float. Weight applied to Automatic Relevance Determination (ARD).
+    
+    -   `Fibers`: Integer. Number of discrete fibres to fit in each voxel.
+    
+    -   `ModelBall`: String. Model used to describe the "ball" component in the model.
+    
+    -   `ModelSticks`: String. Model used to describe the "stick" component in the model.
 
--  `csa` :
+-   `csa` :
 
-   -  `SphericalHarmonicOrder` : value
-   -  `Smoothing` : value
-   -  `Basis` : value
+    -   `SphericalHarmonicOrder` : value
+    
+    -   `Smoothing` : value
+    
+    -   `Basis` : value
 
--  `csd`:
+-   `csd`:
 
-   -  `NonNegativityConstraint`: String. Options are: { `soft`, `hard` }. Specifies whether the ODF was estimated using regularisation ("`soft`") or prevention ("`hard`") of negative values.
-   -  `ResponseFunctionZSH`: Two options:
-      -  Vector of floating-point values, where values correspond to the response function coefficient for each consecutive even zonal spherical harmonic degree starting from zero (in this case field "`Shells`" should contain a single integer value);
-      -  Matrix of floating-point values: 1 row per unique *b*-value as listed in "`Shells`"; 1 column per even zonal spherical harmonic degree starting from zero; if there are a different number of non-zero zonal spherical harmonic coefficients for different *b*-values, these must be padded with zeroes such that all rows contain the same number of columns.
-   -  `ResponseFunctionTensor`: Vector of 4 floating-point values: three tensor eigenvalues, then reference *b*=0 intensity
-   -  `SphericalHarmonicBasis`: String. Options are: { `MRtrix3`, `Descoteaux` }. Details are provided in the [spherical harmonics bases](#spherical-harmonics-bases) section.
-   -  `SphericalHarmonicDegree`: Integer. The maximal spherical harmonic order *l<sub>max</sub>*; the number of volumes in the associated NIfTI image must correspond to this value as per the relationship described in [spherical harmonics bases](#spherical-harmonics-bases) section.
-   -  `Tissue`: String. A more verbose description for the tissue estimated via this specific ODF.
+    -   `NonNegativityConstraint`: String. Options are: { `soft`, `hard` }. Specifies whether the ODF was estimated using regularisation ("`soft`") or prevention ("`hard`") of negative values.
+    
+    -   `ResponseFunctionZSH`: Two options:
+    
+        -   Vector of floating-point values, where values correspond to the response function coefficient for each consecutive even zonal spherical harmonic degree starting from zero (in this case field "`Shells`" should contain a single integer value);
+        
+        -   Matrix of floating-point values: 1 row per unique *b*-value as listed in "`Shells`"; 1 column per even zonal spherical harmonic degree starting from zero; if there are a different number of non-zero zonal spherical harmonic coefficients for different *b*-values, these must be padded with zeroes such that all rows contain the same number of columns.
+        
+    -   `ResponseFunctionTensor`: Vector of 4 floating-point values: three tensor eigenvalues, then reference *b*=0 intensity
+    
+    -   `SphericalHarmonicBasis`: String. Options are: { `MRtrix3`, `Descoteaux` }. Details are provided in the [spherical harmonics bases](#spherical-harmonics-bases) section.
+    
+    -   `SphericalHarmonicDegree`: Integer. The maximal spherical harmonic order *l<sub>max</sub>*; the number of volumes in the associated NIfTI image must correspond to this value as per the relationship described in [spherical harmonics bases](#spherical-harmonics-bases) section.
+    
+    -   `Tissue`: String. A more verbose description for the tissue estimated via this specific ODF.
 
--  `dsi` :
+-   `dsi` :
 
-   -  `GridSize` : value
-   -  `RStart` : value
-   -  `RStep` : value
-   -  `REnd` : value
-   -  `FilterWidth` : value
+    -   `GridSize` : value
+    
+    -   `RStart` : value
+    
+    -   `RStep` : value
+    
+    -   `REnd` : value
+    
+    -   `FilterWidth` : value
 
--  `dti` :
+-   `dti` :
 
-   -  `RESTORESigma`: Float
+    -   `RESTORESigma`: Float
 
--  `forecast` :
+-   `forecast` :
 
-   -  `Sphere` : value
-   -  `DecAlg` : value
-   -  `LambdaLb` : value
-   -  `SphericalHarmonicsOrder` : value
+    -   `Sphere` : value
+    
+    -   `DecAlg` : value
+    
+    -   `LambdaLb` : value
+    
+    -   `SphericalHarmonicsOrder` : value
 
--  `mapmri` :
+-   `mapmri` :
 
-   -  `RadialOrder` : value
-   -  `LaplacianRegularization` : bool
-   -  `LaplacianWeighting` : value
-   -  `PositivityConstraint` : bool
-   -  `Tau` : value
-   -  `ConstrainE0` : value
-   -  `PositiveConstraint` : value
-   -  `PosGrid` : value
-   -  `PosRadius` : value
-   -  `AnisotropicScaling` : bool
-   -  `EigenvalueThreshold` : value
-   -  `PosGrid` : value
-   -  `BvalThreshold` : value
-   -  `DTIScaleEstimation` : bool
-   -  `StaticDiffusivity` : value
+    -   `RadialOrder` : value
+    
+    -   `LaplacianRegularization` : bool
+    
+    -   `LaplacianWeighting` : value
+    
+    -   `PositivityConstraint` : bool
+    
+    -   `Tau` : value
+    
+    -   `ConstrainE0` : value
+    
+    -   `PositiveConstraint` : value
+    
+    -   `PosGrid` : value
+    
+    -   `PosRadius` : value
+    
+    -   `AnisotropicScaling` : bool
+    
+    -   `EigenvalueThreshold` : value
+    
+    -   `PosGrid` : value
+    
+    -   `BvalThreshold` : value
+    
+    -   `DTIScaleEstimation` : bool
+    
+    -   `StaticDiffusivity` : value
 
--  `noddi`:
+-   `noddi`:
 
-   -  `DPar` : value
-   -  `DIso` : value
-   -  `Lambda1` : value
-   -  `Lambda2` : value
+    -   `DPar` : value
+    
+    -   `DIso` : value
+    
+    -   `Lambda1` : value
+    
+    -   `Lambda2` : value
 
 -  `shore` :
 
-   -  `RadialOrder` : value
-   -  `Zeta` : value
-   -  `LambdaN` : value
-   -  `LambdaL` : value
-   -  `Tau` : value
-   -  `ConstrainE0` : value
-   -  `PositiveConstraint` : value
-   -  `PosGrid` : value
-   -  `PosRadius` : value
+    -   `RadialOrder` : value
+    
+    -   `Zeta` : value
+    
+    -   `LambdaN` : value
+    
+    -   `LambdaL` : value
+    
+    -   `Tau` : value
+    
+    -   `ConstrainE0` : value
+    
+    -   `PositiveConstraint` : value
+    
+    -   `PosGrid` : value
+    
+    -   `PosRadius` : value
 
 ### Extrinsic model parameters
 
@@ -449,236 +493,236 @@ another.
 
 #### Spherical Harmonics bases
 
--  `MRtrix3`
+-   `MRtrix3`
 
-   -  Antipodally symmetric: all basis functions with odd degree are
-      assumed zero; `AntipodalSymmetry` MUST NOT be set to True.
+    -   Antipodally symmetric: all basis functions with odd degree are
+        assumed zero; `AntipodalSymmetry` MUST NOT be set to True.
 
-   -  Functions assumed to be real: conjugate symmetry is assumed, i.e.
-      *Y*(*l*,-*m*) = *Y*(*l*,*m*)\*, where \* denotes the complex
-      conjugate.
+    -   Functions assumed to be real: conjugate symmetry is assumed, i.e.
+        *Y*(*l*,-*m*) = *Y*(*l*,*m*)\*, where \* denotes the complex
+        conjugate.
 
-   -  Mapping of image volumes to spherical harmonic basis function
-      coefficients:
+    -   Mapping of image volumes to spherical harmonic basis function
+        coefficients:
 
-      | **Volume** | **Coefficient**                   |
-      | ---------- | --------------------------------- |
-      | 0          | *l* = 0, *m* = 0                  |
-      | 1          | *l* = 2, *m* = 2 (imaginary part) |
-      | 2          | *l* = 2, *m* = 1 (imaginary part) |
-      | 3          | *l* = 2, *m* = 0                  |
-      | 4          | *l* = 2, *m* = 1 (real part)      |
-      | 5          | *l* = 2, *m* = 2 (real part)      |
-      | 6          | *l* = 4, *m* = 4 (imaginary part) |
-      | 7          | *l* = 4, *m* = 3 (imaginary part) |
-      | ...        | etc.                              |
+        | **Volume** | **Coefficient**                   |
+        | ---------- | --------------------------------- |
+        | 0          | *l* = 0, *m* = 0                  |
+        | 1          | *l* = 2, *m* = 2 (imaginary part) |
+        | 2          | *l* = 2, *m* = 1 (imaginary part) |
+        | 3          | *l* = 2, *m* = 0                  |
+        | 4          | *l* = 2, *m* = 1 (real part)      |
+        | 5          | *l* = 2, *m* = 2 (real part)      |
+        | 6          | *l* = 4, *m* = 4 (imaginary part) |
+        | 7          | *l* = 4, *m* = 3 (imaginary part) |
+        | ...        | etc.                              |
 
-   -  Normalisation: ***TODO***
+    -   Normalisation: ***TODO***
 
-   -  Relationship between maximal spherical harmonic degree *l<sub>max</sub>*
-      and number of image volumes *N*:
+    -   Relationship between maximal spherical harmonic degree *l<sub>max</sub>*
+        and number of image volumes *N*:
 
-      *N* = ((*l<sub>max</sub>*+1) x (*l<sub>max</sub>*+2)) / 2
+        *N* = ((*l<sub>max</sub>*+1) x (*l<sub>max</sub>*+2)) / 2
 
-      | ***l<sub>max</sub>*** |  0  |  2  |  4  |  6  |  8  | ...  |
-      | --------------------- | --: | --: | --: | --: | --: | :--: |
-      | ***N***               |   1 |   6 |  15 |  28 |  45 | etc. |
+        | ***l<sub>max</sub>*** |  0  |  2  |  4  |  6  |  8  | ...  |
+        | --------------------- | --: | --: | --: | --: | --: | :--: |
+        | ***N***               |   1 |   6 |  15 |  28 |  45 | etc. |
 
-   -  Relationship between maximal degree of *zonal* spherical harmonic
-      function (spherical harmonics function where all *m* != 0 terms are
-      assumed to be zero; used for e.g. response function definition) and
-      number of coefficients *N*:
+    -   Relationship between maximal degree of *zonal* spherical harmonic
+        function (spherical harmonics function where all *m* != 0 terms are
+        assumed to be zero; used for e.g. response function definition) and
+        number of coefficients *N*:
 
-      *N* = 1 + (*l<sub>max</sub>* / 2)
+        *N* = 1 + (*l<sub>max</sub>* / 2)
 
-      | ***l<sub>max</sub>*** |  0  |  2  |  4  |  6  |  8  | ...  |
-      | --------------------- | --: | --: | --: | --: | --: | :--: |
-      | ***N***               |   1 |   2 |  3  |  4  |  5  | etc. |
+        | ***l<sub>max</sub>*** |  0  |  2  |  4  |  6  |  8  | ...  |
+        | --------------------- | --: | --: | --: | --: | --: | :--: |
+        | ***N***               |   1 |   2 |  3  |  4  |  5  | etc. |
 
--  `Descoteaux`
+-   `Descoteaux`
 
-   ***TODO***
+    ***TODO***
 
 ## Demonstrative examples
 
--  A basic Diffusion Tensor fit:
+-   A basic Diffusion Tensor fit:
 
-   ```Text
-   my_diffusion_pipeline/
-       sub-01/
-           dwi/
-               sub-01_dti.nii.gz
-               sub-01_dti.json
-   ```
+    ```Text
+    my_diffusion_pipeline/
+        sub-01/
+            dwi/
+                sub-01_dti.nii.gz
+                sub-01_dti.json
+    ```
 
-   Dimensions of NIfTI image "`sub-01_dti.nii.gz`": *I*x*J*x*K*x6 ([parameter vectors](#data-param))
+    Dimensions of NIfTI image "`sub-01_dti.nii.gz`": *I*x*J*x*K*x6 ([parameter vectors](#data-param))
 
-   Contents of JSON file:
+    Contents of JSON file:
 
-   ```JSON
-   {
-       "Model": "Diffusion Tensor",
-       "OrientationRepresentation": "param",
-       "ReferenceAxes": "xyz",
-       "Parameters": {
-           "FitMethod": "ols",
-           "OutlierRejection": False
-       }
-   }
-   ```
+    ```JSON
+    {
+        "Model": "Diffusion Tensor",
+        "OrientationRepresentation": "param",
+        "ReferenceAxes": "xyz",
+        "Parameters": {
+            "FitMethod": "ols",
+            "OutlierRejection": False
+        }
+    }
+    ```
 
--  A multi-shell, multi-tissue Constrained Spherical Deconvolution fit:
+-   A multi-shell, multi-tissue Constrained Spherical Deconvolution fit:
 
-   ```Text
-   my_diffusion_pipeline/
-       sub-01/
-           dwi/
-               sub-01_desc-wm_csd.nii.gz
-               sub-01_desc-wm_csd.json
-               sub-01_desc-gm_csd.nii.gz
-               sub-01_desc-gm_csd.json
-               sub-01_desc-csf_csd.nii.gz
-               sub-01_desc-csf_csd.json
-               sub-01_csd.json
-   ```
+    ```Text
+    my_diffusion_pipeline/
+        sub-01/
+            dwi/
+                sub-01_desc-wm_csd.nii.gz
+                sub-01_desc-wm_csd.json
+                sub-01_desc-gm_csd.nii.gz
+                sub-01_desc-gm_csd.json
+                sub-01_desc-csf_csd.nii.gz
+                sub-01_desc-csf_csd.json
+                sub-01_csd.json
+    ```
 
-   Dimensions of NIfTI image "`sub-01_desc-wm_csd.nii.gz`": *I*x*J*x*K*x45 ([spherical harmonics](#data-sh))
-   Dimensions of NIfTI image "`sub-01_desc-gm_csd.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
-   Dimensions of NIfTI image "`sub-01_desc-csf_csd.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
+    Dimensions of NIfTI image "`sub-01_desc-wm_csd.nii.gz`": *I*x*J*x*K*x45 ([spherical harmonics](#data-sh))
+    Dimensions of NIfTI image "`sub-01_desc-gm_csd.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
+    Dimensions of NIfTI image "`sub-01_desc-csf_csd.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
 
-   Contents of file "`sub-01_csd.json`" (common to all [intrinsic](#paramdef-intrinsic) model parameter images):
+    Contents of file "`sub-01_csd.json`" (common to all [intrinsic](#paramdef-intrinsic) model parameter images):
 
-   ```JSON
-   {
-       "Model": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
-       "ModelURL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
-       "Shells": [ 0, 1000, 2000, 3000 ],
-       "Parameters": {
-           "SphericalHarmonicBasis": "MRtrix3",
-           "NonNegativityConstraint": "hard"
-       }
-   }
-   ```
+    ```JSON
+    {
+        "Model": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
+        "ModelURL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
+        "Shells": [ 0, 1000, 2000, 3000 ],
+        "Parameters": {
+            "SphericalHarmonicBasis": "MRtrix3",
+            "NonNegativityConstraint": "hard"
+        }
+    }
+    ```
 
-   Contents of JSON file "`sub-01_desc-wm_csd.json`":
+    Contents of JSON file "`sub-01_desc-wm_csd.json`":
 
-   ```JSON
-   {
-       "OrientationRepresentation": "sh",
-       "ReferenceAxes": "xyz",
-       "ResponseFunctionZSH": [ [ 600.2 0.0 0.0 0.0 0.0 0.0 ],
-                                [ 296.3 -115.2 24.7 -4.4 -0.5 1.8 ],
-                                [ 199.8 -111.3 41.8 -10.2 2.1 -0.7 ],
-                                [ 158.3 -98.7 48.4 -17.1 4.5 -1.4 ] ],
-       "SphericalHarmonicDegree": 8,
-       "Tissue": "White matter"
-   }
-   ```
+    ```JSON
+    {
+        "OrientationRepresentation": "sh",
+        "ReferenceAxes": "xyz",
+        "ResponseFunctionZSH": [ [ 600.2 0.0 0.0 0.0 0.0 0.0 ],
+                                 [ 296.3 -115.2 24.7 -4.4 -0.5 1.8 ],
+                                 [ 199.8 -111.3 41.8 -10.2 2.1 -0.7 ],
+                                 [ 158.3 -98.7 48.4 -17.1 4.5 -1.4 ] ],
+        "SphericalHarmonicDegree": 8,
+        "Tissue": "White matter"
+    }
+    ```
 
-   Contents of JSON file "`sub-01_desc-gm_csd.json`":
+    Contents of JSON file "`sub-01_desc-gm_csd.json`":
 
-   ```JSON
-   {
-       "OrientationRepresentation": "sh",
-       "ReferenceAxes": "xyz",
-       "ResponseFunctionZSH": [ [ 1041.0 ],
-                                [ 436.6 ],
-                                [ 224.9 ],
-                                [ 128.8 ] ],
-       "SphericalHarmonicDegree": 0,
-       "Tissue": "Grey matter"
-   }
-   ```
+    ```JSON
+    {
+        "OrientationRepresentation": "sh",
+        "ReferenceAxes": "xyz",
+        "ResponseFunctionZSH": [ [ 1041.0 ],
+                                 [ 436.6 ],
+                                 [ 224.9 ],
+                                 [ 128.8 ] ],
+        "SphericalHarmonicDegree": 0,
+        "Tissue": "Grey matter"
+    }
+    ```
 
--  A NODDI fit:
+-   A NODDI fit:
 
-   ```Text
-   my_diffusion_pipeline/
-       sub-01/
-           dwi/
-               sub-01_parameter-icvf_noddi.nii.gz
-               sub-01_parameter-isovf_noddi.nii.gz
-               sub-01_parameter-od_noddi.nii.gz
-               sub-01_parameter-direction_noddi.nii.gz
-               sub-01_parameter-direction_noddi.json
-               sub-01_noddi.json
-   ```
+    ```Text
+    my_diffusion_pipeline/
+        sub-01/
+            dwi/
+                sub-01_parameter-icvf_noddi.nii.gz
+                sub-01_parameter-isovf_noddi.nii.gz
+                sub-01_parameter-od_noddi.nii.gz
+                sub-01_parameter-direction_noddi.nii.gz
+                sub-01_parameter-direction_noddi.json
+                sub-01_noddi.json
+    ```
 
-   Dimensions of NIfTI image "`sub-01_parameter-icvf_noddi.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-   Dimensions of NIfTI image "`sub-01_parameter-isovf_noddi.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-   Dimensions of NIfTI image "`sub-01_parameter-od_noddi.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-   Dimensions of NIfTI image "`sub-01_parameter-direction_noddi.nii.gz`": *I*x*J*x*K*x3 ([3-vectors](#data-3vector))
+    Dimensions of NIfTI image "`sub-01_parameter-icvf_noddi.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
+    Dimensions of NIfTI image "`sub-01_parameter-isovf_noddi.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
+    Dimensions of NIfTI image "`sub-01_parameter-od_noddi.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
+    Dimensions of NIfTI image "`sub-01_parameter-direction_noddi.nii.gz`": *I*x*J*x*K*x3 ([3-vectors](#data-3vector))
 
-   Contents of file "`sub-01_noddi.json`" (common to all [intrinsic](#paramdef-intrinsic) model parameter images):
+    Contents of file "`sub-01_noddi.json`" (common to all [intrinsic](#paramdef-intrinsic) model parameter images):
 
-   ```JSON
-   {
-       "Model": "Neurite Orientation Dispersion and Density Imaging (NODDI)",
-       "ModelURL": "https://www.nitrc.org/projects/noddi_toolbox"
-   }
-   ```
+    ```JSON
+    {
+        "Model": "Neurite Orientation Dispersion and Density Imaging (NODDI)",
+        "ModelURL": "https://www.nitrc.org/projects/noddi_toolbox"
+    }
+    ```
 
-   Contents of JSON file "`sub-01_parameter-direction_noddi.json`":
+    Contents of JSON file "`sub-01_parameter-direction_noddi.json`":
 
-   ```JSON
-   {
-       "OrientationRepresentation": "3vector",
-       "ReferenceAxes": "???"
-   }
-   ```
+    ```JSON
+    {
+        "OrientationRepresentation": "3vector",
+        "ReferenceAxes": "???"
+    }
+    ```
 
--  An FSL `bedpostx` Ball-And-Sticks fit (including both mean parameters and
-   bootstrap realisations):
+-   An FSL `bedpostx` Ball-And-Sticks fit (including both mean parameters and
+    bootstrap realisations):
 
-   ```Text
-   my_diffusion_pipeline/
-       sub-01/
-           dwi/
-               sub-01_desc-mean_parameter-bzero_bs.nii.gz
-               sub-01_desc-mean_parameter-dmean_bs.nii.gz
-               sub-01_desc-mean_parameter-dstd_bs.nii.gz
-               sub-01_desc-mean_parameter-sticks_bs.nii.gz
-               sub-01_desc-mean_parameter-sticks_bs.json
-               sub-01_desc-merged_parameter-sticks_bs.nii.gz
-               sub-01_desc-merged_parameter-sticks_bs.json
-               sub-01_bs.json
-   ```
+    ```Text
+    my_diffusion_pipeline/
+        sub-01/
+            dwi/
+                sub-01_desc-mean_parameter-bzero_bs.nii.gz
+                sub-01_desc-mean_parameter-dmean_bs.nii.gz
+                sub-01_desc-mean_parameter-dstd_bs.nii.gz
+                sub-01_desc-mean_parameter-sticks_bs.nii.gz
+                sub-01_desc-mean_parameter-sticks_bs.json
+                sub-01_desc-merged_parameter-sticks_bs.nii.gz
+                sub-01_desc-merged_parameter-sticks_bs.json
+                sub-01_bs.json
+    ```
 
-   Dimensions of NIfTI image "`sub-01_desc-mean_parameter-bzero_bs.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-   Dimensions of NIfTI image "`sub-01_desc-mean_parameter-dmean_bs.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-   Dimensions of NIfTI image "`sub-01_desc-mean_parameter-dstd_bs.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-   Dimensions of NIfTI image "`sub-01_desc-mean_parameter-sticks_bs.nii.gz`": *I*x*J*x*K*x9 ([spherical coordinates](#data-spherical), distance from origin encodes fibre volume fraction)
-   Dimensions of NIfTI image "`sub-01_desc-merged_parameter-sticks_bs.nii.gz`": *I*x*J*x*K*x9x50 ([spherical coordinates](#data-spherical), distance from origin encodes fibre volume fraction; 50 bootstrap realisations)
+    Dimensions of NIfTI image "`sub-01_desc-mean_parameter-bzero_bs.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
+    Dimensions of NIfTI image "`sub-01_desc-mean_parameter-dmean_bs.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
+    Dimensions of NIfTI image "`sub-01_desc-mean_parameter-dstd_bs.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
+    Dimensions of NIfTI image "`sub-01_desc-mean_parameter-sticks_bs.nii.gz`": *I*x*J*x*K*x9 ([spherical coordinates](#data-spherical), distance from origin encodes fibre volume fraction)
+    Dimensions of NIfTI image "`sub-01_desc-merged_parameter-sticks_bs.nii.gz`": *I*x*J*x*K*x9x50 ([spherical coordinates](#data-spherical), distance from origin encodes fibre volume fraction; 50 bootstrap realisations)
 
-   Contents of JSON files "`sub-01_desc-mean_parameter-sticks_bs.json`"
-   and "`sub-01_desc-merged_parameter-sticks_bs.json`" (contents of two
-   files are identical):
+    Contents of JSON files "`sub-01_desc-mean_parameter-sticks_bs.json`"
+    and "`sub-01_desc-merged_parameter-sticks_bs.json`" (contents of two
+    files are identical):
 
-   ```JSON
-   {
-       "OrientationRepresentation": "spherical",
-       "ReferenceAxes": "ijk"
-   }
-   ```
+    ```JSON
+    {
+        "OrientationRepresentation": "spherical",
+        "ReferenceAxes": "ijk"
+    }
+    ```
 
-   Contents of JSON file "`sub-01_bs.json`":
+    Contents of JSON file "`sub-01_bs.json`":
 
-   ```JSON
-   {
-       "Model": "Ball-And-Sticks model using FSL bedpostx",
-       "ModelURL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
-       "Parameters": {
-           "ARDFudgeFactor": 1.0,
-           "Fibers": 3,
-           "Samples": 50
-       },
-       "BootstrapParameters": {
-           "Burnin": 1000,
-           "Jumps": 1250,
-           "SampleEvery": 25
-       }
-   }
-   ```
+    ```JSON
+    {
+        "Model": "Ball-And-Sticks model using FSL bedpostx",
+        "ModelURL": "https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT",
+        "Parameters": {
+            "ARDFudgeFactor": 1.0,
+            "Fibers": 3,
+            "Samples": 50
+        },
+        "BootstrapParameters": {
+            "Burnin": 1000,
+            "Jumps": 1250,
+            "SampleEvery": 25
+        }
+    }
+    ```
 
 -----
 
