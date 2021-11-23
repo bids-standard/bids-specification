@@ -39,4 +39,4 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 ## Microscopy
 
-{{ MACROS___make_entity_table(datatypes=["microscopy"], auxdatatypes=[]) }}
+{{ MACROS___make_entity_table(datatypes=["micr"], auxdatatypes=[]) }}
