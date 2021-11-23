@@ -30,11 +30,11 @@ Template:
 ```Text
 sub-<label>/
     [ses-<label>/]
-        microscopy/
+        micr/
             sub-<label>[_ses-<label>]_sample-<label>[_acq-<label>][_stain-<label>][_run-<index>][_chunk-<index>]_<suffix>.<extension>
             sub-<label>[_ses-<label>]_sample-<label>[_acq-<label>][_stain-<label>][_run-<index>][_chunk-<index>]_<suffix>.json
 ```
-Microscopy data MUST be stored in the `microscopy` directory.
+Microscopy data MUST be stored in the `micr` directory.
 
 ### File formats
 The Microscopy community uses a variety of formats for storing raw data, and there is no single
@@ -109,7 +109,7 @@ For example: Three brain slices (`sample-01` to `sample-03`) extracted from subj
 imaged by scanning electron microscopy (SEM) in PNG format
 ```Text
 sub-01/
-    microscopy/
+    micr/
         sub-01_sample-01_SEM.png
         sub-01_sample-02_SEM.png
         sub-01_sample-03_SEM.png
@@ -136,7 +136,7 @@ stains (`stain-01`, `stain-02` and `stain-03`) in three separate files, imaged b
 illumination microscopy (SPIM) in OME-TIFF format
 ```Text
 sub-01/
-    microscopy/
+    micr/
         sub-01_sample-01_stain-01_SPIM.ome.tif
         sub-01_sample-01_stain-01_SPIM.json
         sub-01_sample-01_stain-02_SPIM.ome.tif
@@ -184,7 +184,7 @@ For example: Four chunks (`chunk-01` to `chunk-04`) from the same brain sample (
 of subject `sub-01`, imaged by confocal microscopy (CONF) in OME-TIFF format
 ```Text
 sub-01/
-    microscopy/
+    micr/
         sub-01_sample-01_chunk-01_CONF.ome.tif
         sub-01_sample-01_chunk-01_CONF.json
         sub-01_sample-01_chunk-02_CONF.ome.tif
@@ -216,11 +216,11 @@ my_dataset/
     derivatives/
         downsampled/
             sub-01/
-                microscopy/
+                micr/
                     sub-01_sample-01_res-4x_TEM.png
                     sub-01_sample-01_res-4x_TEM.json
     sub-01/
-        microscopy/
+        micr/
             sub-01_sample-01_TEM.png
 ```
 See [Preprocessed, coregistered and/or resampled volumes](../05-derivatives/03-imaging.md#preprocessed-coregistered-andor-resampled-volumes)
@@ -397,7 +397,7 @@ in a sample.
 ```Text
 sub-<label>/
     [ses-<label>/]
-        microscopy/
+        micr/
             sub-<label>[_ses-<label>]_sample-<label>[_acq-<label>]_photo.<extension>
 ```
 The file `<extension>` for photos MUST be either `.jpg`, `.png` or `.tif`.
@@ -408,7 +408,7 @@ acquisition of different photos of the same sample.
 For example:
 ```Text
 sub-01/
-    microscopy/
+    micr/
         sub-01_sample-01_acq-1_photo.jpg
         sub-01_sample-01_acq-2_photo.jpg
 ```
