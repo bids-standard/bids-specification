@@ -369,25 +369,43 @@ In this example, there is no scaling and `chunk-01` is at the origin.
 
 ## Required Samples file (`samples.tsv`)
 
-For Microscopy data, the [Samples file](../03-modality-agnostic-files.md#samples-file) is REQUIRED.
+For Microscopy data, the [Samples file](../03-modality-agnostic-files.md#samples-file) `samples.tsv`
+is REQUIRED and its associated metadata `samples.json` file is RECOMMENDED.
 
-Additional optional columns in `samples.tsv` MAY be used to describe other samples' attributes.
+Additional optional columns MAY be used to describe other samples' attributes.
 
-## Recommended participant data (`participants.tsv`)
+## Recommended Participants file (`participants.tsv`)
 
 As for other data types in BIDS, the [Participants file](../03-modality-agnostic-files.md#participants-file)
-is RECOMMENDED and MUST contain the column `participant_id`.
+`participants.tsv` is RECOMMENDED and MUST contain the column `participant_id`, and its associated
+`participants.json` file is RECOMMENDED as well.
+
 For Microscopy data, we RECOMMEND to also make use of the columns `species`, `strain` and
 `strain_rrid` when applicable.
 
-For example:
+Additional optional columns MAY be used to describe other subjects' attributes.
+
+`participants.tsv` example:
 ```Text
 participant_id species strain strain_rrid
 sub-01 mus musculus C57BL/6J RRID:IMSR_JAX:000664
 sub-02 mus musculus C57BL/6J RRID:IMSR_JAX:000664
 ```
 
-Additional optional columns in `participants.tsv` MAY be used to describe other subjects' attributes.
+`participants.json` example:
+```JSON
+{
+    "species": {
+        "Description": "binomial species name from the NCBI Taxonomy (https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi)"
+    },
+    "strain": {
+        "Description": "name of the strain of the species"
+    },
+    "strain_rrid": {
+        "Description": "research resource identifier (RRID) of the strain (https://scicrunch.org/resources/Organisms/search)"
+    }
+}
+```
 
 ## Photos of the samples (`*_photo.<extension>`)
 Photos of the tissue sample, overview microscopy scans or blockface images from cutting
