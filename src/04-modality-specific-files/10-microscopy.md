@@ -359,7 +359,7 @@ In this example, there is no scaling and `chunk-01` is at the origin.
         "Magnification": 40,
         "BodyPart": "BRAIN",
         "BodyPartDetails": "corpus callosum",
-        "SampleEnvironment": "exvivo",
+        "SampleEnvironment": "ex vivo",
         "SampleFixation": "4% paraformaldehyde, 2% glutaraldehyde",
         "SampleStaining": "LFB",
         "SliceThickness": 5,
