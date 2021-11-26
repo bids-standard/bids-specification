@@ -135,7 +135,8 @@ It is RECOMMENDED to share them along with the vendor outputs, whenever possible
 
 ### Example datasets
 
-You can find example file collections and qMRI maps organized according to BIDS at [https://osf.io/k4bs5/](https://osf.io/k4bs5/).
+You can find example file collections and qMRI maps organized according to BIDS
+in the [BIDS examples](https://github.com/bids-standard/bids-examples#qmri-datasets).
 
 ## Metadata requirements for qMRI data
 
@@ -360,9 +361,11 @@ metadata field has the value of `SSFP`, and the `SpoilingRFPhaseIncrement` is
 provided as a metadata field, then the dataset becomes eligible for `DESPOT2`
 T2 fitting application.
 
-Please note that optional metadata fields listed in the [deriving the intended qMRI
-application from an ambiguous file collection table](#deriving-the-intended-qmri-application-from-an-ambiguous-file-collection) are included in the optional (third)
-column of [the priority levels table](#method-specific-priority-levels-for-qmri-file-collections) for the consistency of this appendix.
+Please note that optional metadata fields listed in the
+[deriving the intended qMRI application from an ambiguous file collection table](#deriving-the-intended-qmri-application-from-an-ambiguous-file-collection)
+are included in the optional (third) column of
+[the priority levels table](#method-specific-priority-levels-for-qmri-file-collections)
+for the consistency of this appendix.
 
 ## Introducing a new qMRI file collection
 

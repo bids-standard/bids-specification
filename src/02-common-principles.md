@@ -119,7 +119,7 @@ misunderstanding we clarify them here.
     the final `_`), right before the **File extension**, for example, it is `eeg` in
     `sub-05_task-matchingpennies_eeg.vhdr`.
 
-1.  **File extension** - a portion of the the file name after the left-most
+1.  **File extension** - a portion of the file name after the left-most
     period (`.`) preceded by any other alphanumeric. For example, `.gitignore` does
     not have a file extension, but the file extension of `test.nii.gz` is `.nii.gz`.
     Note that the left-most period is included in the file extension.
@@ -735,8 +735,11 @@ Describing dates and timestamps:
 
 -   Dates can be shifted by a random number of days for privacy protection
     reasons.
-    To distinguish real dates from shifted dates, always use year 1925
-    or earlier when including shifted years.
+    To distinguish real dates from shifted dates,
+    is is RECOMMENDED to set shifted dates to the year 1925 or earlier.
+    Note that some data formats do not support arbitrary recording dates.
+    For example, the [EDF](https://www.edfplus.info/)
+    data format can only contain recording dates after 1985.
     For longitudinal studies dates MUST be shifted by the same number of days
     within each subject to maintain the interval information.
     For example: `1867-06-15T13:45:30`

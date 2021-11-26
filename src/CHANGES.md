@@ -2,7 +2,22 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA/FIX] Use string concatenation in table macro [#933](https://github.com/bids-standard/bids-specification/pull/933) ([effigies](https://github.com/effigies))
+-   \[INFRA] Run linkchecker in stock docker image [#932](https://github.com/bids-standard/bids-specification/pull/932) ([effigies](https://github.com/effigies))
+-   \[FIX] Clarify that EDF/BDF files MUST have lower case extensions in BIDS [#927](https://github.com/bids-standard/bids-specification/pull/927) ([adam2392](https://github.com/adam2392))
+-   \[ENH] add `hemi` entity to schema [#917](https://github.com/bids-standard/bids-specification/pull/917) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[INFRA] PDF version of spec: fix handling of internal links [#915](https://github.com/bids-standard/bids-specification/pull/915) ([sappelhoff](https://github.com/sappelhoff))
+-   \[ENH] update and reformat table for template in coordinate system page [#903](https://github.com/bids-standard/bids-specification/pull/903) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[ENH] add details for content of `\*\_beh.json` [#902](https://github.com/bids-standard/bids-specification/pull/902) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[SCHEMA] Add MeasurementToolMetadata and Derivative metadata fields [#899](https://github.com/bids-standard/bids-specification/pull/899) ([tsalo](https://github.com/tsalo))
+-   \[SCHEMA] Add new MEG files and fix entity tables [#898](https://github.com/bids-standard/bids-specification/pull/898) ([tsalo](https://github.com/tsalo))
+-   \[FIX] small typo in json example [#897](https://github.com/bids-standard/bids-specification/pull/897) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[INFRA] tiny speedup of building PDF by moving `re.compile\(\)` outside of a loop [#896](https://github.com/bids-standard/bids-specification/pull/896) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
+-   \[INFRA] Document \*.webm video files as binary [#895](https://github.com/bids-standard/bids-specification/pull/895) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
+-   \[FIX] Clarify shifting dates RECOMMENDED, add example EDF [#891](https://github.com/bids-standard/bids-specification/pull/891) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] fix draft rendering css on mobile or when browser window is narrow [#889](https://github.com/bids-standard/bids-specification/pull/889) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Add an animated BIDS logo [#886](https://github.com/bids-standard/bids-specification/pull/886) ([adswa](https://github.com/adswa))
+-   \[SCHEMA] Consolidate schema files by term type [#883](https://github.com/bids-standard/bids-specification/pull/883) ([tsalo](https://github.com/tsalo))
 -   \[INFRA] jQuery 3.4.1 → 3.6.0 [#875](https://github.com/bids-standard/bids-specification/pull/875) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA] Add "codespell" tool to CI checks to catch typos sooner [#873](https://github.com/bids-standard/bids-specification/pull/873) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA] Several style fixes (Flake8) for Python code in the repo [#872](https://github.com/bids-standard/bids-specification/pull/872) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
@@ -17,17 +32,20 @@
 -   \[INFRA] LGTM recommendation: Unused local variable [#853](https://github.com/bids-standard/bids-specification/pull/853) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA] LGTM warning: Variable defined multiple times [#851](https://github.com/bids-standard/bids-specification/pull/851) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[FIX] Typos found by codespell [#848](https://github.com/bids-standard/bids-specification/pull/848) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
+-   \[ENH] Add links to example datasets for each modality [#845](https://github.com/bids-standard/bids-specification/pull/845) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[INFRA] Add basic documentation on how to use metadata table macros [#840](https://github.com/bids-standard/bids-specification/pull/840) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[ENH] make "Institutional department name" available for all datatypes [#839](https://github.com/bids-standard/bids-specification/pull/839) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[INFRA] use macro to render examples in a "tree" like fashion [#837](https://github.com/bids-standard/bids-specification/pull/837) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] Add angio suffix to the non-parametric aMRI suffix table [#835](https://github.com/bids-standard/bids-specification/pull/835) ([tsalo](https://github.com/tsalo))
 -   \[FIX] Remove last hardcoded suffix table [#833](https://github.com/bids-standard/bids-specification/pull/833) ([tsalo](https://github.com/tsalo))
 -   \[MISC] make explicit that EDF+ (and for EEG: BDF+) are included in iEEG / EEG format requirements [#831](https://github.com/bids-standard/bids-specification/pull/831) ([sappelhoff](https://github.com/sappelhoff))
+-   \[SCHEMA] Add TSV column files [#827](https://github.com/bids-standard/bids-specification/pull/827) ([tsalo](https://github.com/tsalo))
 -   \[ENH] add metadata to PET calibration factor: "DoseCalibrationFactor" [#825](https://github.com/bids-standard/bids-specification/pull/825) ([CPernet](https://github.com/CPernet))
 -   \[FIX] correct file location of scans.tsv file in example [#824](https://github.com/bids-standard/bids-specification/pull/824) ([ghisvail](https://github.com/ghisvail))
 -   \[FIX] Add missing closing parenthesis in 02-common-principle.md [#822](https://github.com/bids-standard/bids-specification/pull/822) ([sebastientourbier](https://github.com/sebastientourbier))
 -   \[MISC] update available datatypes in specification [#819](https://github.com/bids-standard/bids-specification/pull/819) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] document required column order MEG, EEG, iEEG, PET, and fix typo iEEG [#818](https://github.com/bids-standard/bids-specification/pull/818) ([sappelhoff](https://github.com/sappelhoff))
+-   \[ENH] BEP031 - New columns to participants.tsv file [#816](https://github.com/bids-standard/bids-specification/pull/816) ([mariehbourget](https://github.com/mariehbourget))
 -   \[MISC] make table headers bold [#815](https://github.com/bids-standard/bids-specification/pull/815) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] What is a composite instance? Change to measurement for non MRI modalities? [#813](https://github.com/bids-standard/bids-specification/pull/813) ([rob-luke](https://github.com/rob-luke))
 -   \[ENH] BEP031 - New entity: sample and samples.tsv file [#812](https://github.com/bids-standard/bids-specification/pull/812) ([mariehbourget](https://github.com/mariehbourget))
@@ -397,39 +415,39 @@
 
 ## [1.1.0](https://doi.org/10.5281/zenodo.3759802) (2018-04-19)
 
--   Added support for MEG data (merged BEP008)
+-   Added support for MEG data (merged BEP008).
 -   Added `SequenceName` field.
--   Added support for describing events with Hierarchical Event Descriptors \[[4.3 Task events](04-modality-specific-files/05-task-events.md)].
--   Added `VolumeTiming` and `AcquisitionDuration` fields \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+-   Added support for describing events with Hierarchical Event Descriptors: [4.3 Task events](04-modality-specific-files/05-task-events.md).
+-   Added `VolumeTiming` and `AcquisitionDuration` fields: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 -   Added `DwellTime` field.
 
 ## [1.0.2](https://doi.org/10.5281/zenodo.3759801) (2017-07-18)
 
--   Added support for high resolution (anatomical) T2star images \[[4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)].
--   Added support for multiple defacing masks \[[4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)].
--   Added optional key and metadata field for contrast enhanced structural scans \[[4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)]
--   Added `DelayTime` field \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
--   Added support for multi echo BOLD data \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+-   Added support for high resolution (anatomical) T2star images: [4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data).
+-   Added support for multiple defacing masks: [4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data).
+-   Added optional key and metadata field for contrast enhanced structural scans: [4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data).
+-   Added `DelayTime` field: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
+-   Added support for multi echo BOLD data: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 
 ## [1.0.1](https://doi.org/10.5281/zenodo.3759788) (2017-03-13)
 
--   Added `InstitutionName` field \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
--   Added `InstitutionAddress` field \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
--   Added `DeviceSerialNumber` field \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
--   Added `NumberOfVolumesDiscardedByUser` and `NumberOfVolumesDiscardedByScanner` field \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
--   Added `TotalReadoutTime to` functional images metadata list \[[4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data)].
+-   Added `InstitutionName` field: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
+-   Added `InstitutionAddress` field: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
+-   Added `DeviceSerialNumber` field: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
+-   Added `NumberOfVolumesDiscardedByUser` and `NumberOfVolumesDiscardedByScanner` field: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
+-   Added `TotalReadoutTime to` functional images metadata list: [4.1 Task (including resting state) imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#task-including-resting-state-imaging-data).
 
 ## 1.0.1-rc1
 
--   Added T1 Rho maps \[[4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data)].
--   Added support for phenotypic information split into multiple files \[[3.2 Participant key file](03-modality-agnostic-files.md#participants-file)].
--   Added recommendations for multi site datasets
--   Added `SoftwareVersions`
+-   Added T1 Rho maps: [4.1 Anatomy imaging data](04-modality-specific-files/01-magnetic-resonance-imaging-data.md#anatomy-imaging-data).
+-   Added support for phenotypic information split into multiple files: [3.2 Participant key file](03-modality-agnostic-files.md#participants-file).
+-   Added recommendations for multi site datasets.
+-   Added `SoftwareVersions`.
 -   Added `run-<run_index>` to the phase encoding maps. Improved the description.
 -   Added `InversionTime` metadata key.
 -   Clarification on the source vs raw language.
 -   Added `trial_type` column to the event files.
--   Added missing `sub-<participant_label>` in behavioral data file names
+-   Added missing `sub-<participant_label>` in behavioral data file names.
 -   Added ability to store stimuli files.
 -   Clarified the language describing allowed subject labels.
 -   Added quantitative proton density maps.
@@ -449,24 +467,24 @@
 
 ## 1.0.0-rc3
 
--   Renamed `PhaseEncodingDirection` values from "x", "y", "z" to "i", "j", "k" to avoid confusion with FSL parameters
--   Renamed `SliceEncodingDirection` values from "x", "y", "z" to "i", "j", "k"
+-   Renamed `PhaseEncodingDirection` values from "x", "y", "z" to "i", "j", "k" to avoid confusion with FSL parameters.
+-   Renamed `SliceEncodingDirection` values from "x", "y", "z" to "i", "j", "k".
 
 ## 1.0.0-rc2
 
 -   Removed the requirement that TSV files cannot include more than two consecutive spaces.
--   Refactor of the definitions sections (copied from the manuscript)
+-   Refactor of the definitions sections (copied from the manuscript).
 -   Make support for uncompressed `.nii` files more explicit.
--   Added `BIDSVersion` to `dataset.json`
--   Remove the statement that `SliceEncodingDirection` is necessary for slice time correction
+-   Added `BIDSVersion` to `dataset.json`.
+-   Remove the statement that `SliceEncodingDirection` is necessary for slice time correction.
 -   Change dicom converter recommendation from dcmstack to dcm2nii and dicm2nii following interactions with the community (see <https://github.com/moloney/dcmstack/issues/39> and <https://github.com/neurolabusc/dcm2niix/issues/4>).
--   Added section on behavioral experiments with no accompanying MRI acquisition
+-   Added section on behavioral experiments with no accompanying MRI acquisition.
 -   Add `_magnitude.nii[.gz]` image for GE type fieldmaps.
 -   Replaced EchoTimeDifference with EchoTime1 and EchoTime2 (SPM toolbox requires this input).
 -   Added support for single band reference image for DWI.
 -   Added DatasetDOI field in the dataset description.
 -   Added description of more metadata fields relevant to DWI fieldmap correction.
--   PhaseEncodingDirection is now expressed in "x", "y" etc. instead of "PA" "RL" for DWI scans (so it's the same as BOLD scans)
+-   PhaseEncodingDirection is now expressed in "x", "y" etc. instead of "PA" "RL" for DWI scans (so it's the same as BOLD scans).
 -   Added `rec-<label>` flag to BOLD files to distinguish between different reconstruction algorithms (analogous to anatomical scans).
 -   Added recommendation to use `_physio` suffix for continuous recordings of motion parameters obtained by the scanner side reconstruction algorithms.
 
