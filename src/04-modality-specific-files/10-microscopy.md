@@ -351,7 +351,7 @@ Figure 2: Example figure for chunks transformations.
 In this example, there is no scaling and `chunk-01` is at the origin.
 `chunk-05` is translated by 5 um along `X+` and by 3 um along `Y+`.
 
-**`*_chunk-01_<modality_suffix>.json`**:
+**`*_chunk-01_<suffix>.json`**:
 ```JSON
 {
         "PixelSize": [1, 1],
@@ -363,7 +363,7 @@ In this example, there is no scaling and `chunk-01` is at the origin.
 }
 ```
 
-**`*_chunk-05_<modality_suffix>.json`**:
+**`*_chunk-05_<suffix>.json`**:
 ```JSON
 {
         "PixelSize": [1, 1],
@@ -375,7 +375,7 @@ In this example, there is no scaling and `chunk-01` is at the origin.
 }
 ```
 
-#### Example of sidecar JSON file (`*_<modality_suffix>.json`)
+#### Example of sidecar JSON file (`*_<suffix>.json`)
 ```JSON
 {
         "Manufacturer": "Hamamatsu",
