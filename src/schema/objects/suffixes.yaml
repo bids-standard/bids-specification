@@ -426,7 +426,7 @@ defacemask:
 dwi:
   name: Diffusion-weighted image
   description: |
-    Diffusion-weighted imaging contrast (specialized T2\* weighting).
+    Diffusion-weighted imaging contrast (specialized T2 weighting).
 eeg:
   name: Electroencephalography
   description: |
