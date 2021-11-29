@@ -89,7 +89,6 @@ Specific ET fields SHOULD be present:
 
 {{ MACROS___make_metadata_table(
    {
-      
       "IncludedEyeMovementEvents": "RECOMMENDED",
       "DetectionAlgorithm": "RECOMMENDED",
       "DetectionAlgorithmSettings": "RECOMMENDED",
@@ -152,6 +151,7 @@ Example:
 Eye-tracking data, measured with an Eyelink, from 2 German speaker learners reading 36 sentences from the Potsdamer Sentence Corpus (Kliegl et al., 2004). They were measured on four occasions, in a randomized controlled design (that is, before and after a control and experimental training). The sentences appeared after the calibration check on the fixation cross and disappeared as soon as a saccade crossed the invisible boundary on the right sight of the screen. The participants were asked to fixate the fixation cross and then read the sentences naturally as they would read a book or a newspaper. After they have read the sentence, they should look to a fixation cross in the right down corner of the screen. With this action they automatically passed the boundary and the sentence disappeared. After some sentences a question sign appeared and the experimenter asked the participant a question about the content of the sentence to check if the participant understood it. The correctness of the answer was recorded by the experimenter by pressing the key "r" ("correct") or "f" ("false").
 
 [BIDS dataset](https://github.com/greckla/Eye-Tracking-BIDS/tree/master/PSC_train/PSC_train_raw_data_BIDS) 
+
 [Conversion script](https://github.com/greckla/Eye-Tracking-BIDS/blob/master/PSC_train/from_asc_to_BIDS_asc.Rmd)
 
 
@@ -161,6 +161,7 @@ Eye-tracking data, measured with an Eyelink, from 8 subjects reading sentences w
 For details see [here](https://doi.org/10.7717/peerj.2467)
 
 [BIDS dataset](https://github.com/greckla/Eye-Tracking-BIDS/tree/master/hyperlink/hyperlinks_raw_data_BIDS) 
+
 [Conversion script](https://github.com/greckla/Eye-Tracking-BIDS/blob/master/hyperlink/from_asc_to_BIDS_asc.Rmd)
 
 **Emotional Faces Dataset**
@@ -171,10 +172,13 @@ Eye-tracking data, measured with an Eyelink, from 4 subjects viewing a grid of s
 In both tasks, 64 stimulus matrices in 2 blocks of 32 matrices were presented. Participants were asked to just look at the photos. Each matrix was presented for 6s.
 
 [BIDS dataset](https://github.com/greckla/Eye-Tracking-BIDS/tree/master/emotional_faces/freeviewfaces_raw_data_BIDS) 
+
 [Conversion script](https://github.com/greckla/Eye-Tracking-BIDS/blob/master/emotional_faces/from_asc_to_BIDS_asc.Rmd)
 
 **Resting State inside MRI Dataset**
 
 Eye-tracking data, measured from 3 healthy subjects by an EyeLink 1000 Plus eye-tracking system (SR Research Ltd. Ottawa, ON, Canada) inside a Siemens 3.0T MAGNETOM Prisma MRI. Two resting state scans were acquired for each subject. Subjects were instructed to stay still, think of nothing in particular, and maintain fixation on the cross. All lights were turned off except an assistant front-light inside the scanner room. Total duration of each fMRI scan was 6:50 min. The start of MRI acquisition was automatically recorded in the eye-tracking data using MRI trigger (e.g.  MSG `<time-stamp>` RS_starts.). The end of MRI acquisition was manually recorded by human operator by pressing button after the MRI acquisition was finished (e.g. MSG `<time-stamp>` RS_endtime_recorded_maually). For details see [here](https://doi.org/10.1101/2021.07.12.452041)
 
+[BIDS dataset](https://github.com/greckla/Eye-Tracking-BIDS/tree/master/emotional_faces/freeviewfaces_raw_data_BIDS) 
 
+[Conversion script](https://github.com/greckla/Eye-Tracking-BIDS/blob/master/emotional_faces/from_asc_to_BIDS_asc.Rmd)
