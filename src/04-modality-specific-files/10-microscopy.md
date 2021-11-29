@@ -104,17 +104,22 @@ The [`sample-<label>`](../99-appendices/09-entities.md#sample) entity is REQUIRE
 Microscopy data and is used to distinguish between different samples from the same subject.
 The label MUST be unique per subject and is RECOMMENDED to be unique throughout the dataset.
 
-<!--- The following example will be generated automatically with macros after community review. -->
 For example: Three brain slices (`sample-01` to `sample-03`) extracted from subject `sub-01`,
 imaged by scanning electron microscopy (SEM) in PNG format
-```Text
-sub-01/
-    micr/
-        sub-01_sample-01_SEM.png
-        sub-01_sample-02_SEM.png
-        sub-01_sample-03_SEM.png
-        sub-01_SEM.json
-```
+
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "micr": {
+         "sub-01_sample-01_SEM.png": "",
+         "sub-01_sample-02_SEM.png": "",
+         "sub-01_sample-03_SEM.png": "",
+         "sub-01_SEM.json": "",
+         },
+      }
+   }
+) }}
+
 In this example, the JSON metadata is common for all samples of `sub-01`.
 JSON metadata may be defined per subject or per sample as appropriate, as per the
 [inheritance principle](../02-common-principles.md#the-inheritance-principle).
@@ -130,20 +135,25 @@ they are consistent across subjects and sessions.
 The [`stain-<label>`](../99-appendices/09-entities.md#stain) entity MAY be used to distinguish
 image files from the same sample using different stains or antibodies for contrast enhancement.
 
-<!--- The following example will be generated automatically with macros after community review. -->
 For example: One brain slice (`sample-01`) extracted from subject `sub-01` with three
 stains (`stain-01`, `stain-02` and `stain-03`) in three separate files, imaged by selective plane
 illumination microscopy (SPIM) in OME-TIFF format
-```Text
-sub-01/
-    micr/
-        sub-01_sample-01_stain-01_SPIM.ome.tif
-        sub-01_sample-01_stain-01_SPIM.json
-        sub-01_sample-01_stain-02_SPIM.ome.tif
-        sub-01_sample-01_stain-02_SPIM.json
-        sub-01_sample-01_stain-03_SPIM.ome.tif
-        sub-01_sample-01_stain-03_SPIM.json
-```
+
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "micr": {
+         "sub-01_sample-01_stain-01_SPIM.ome.tif": "",
+         "sub-01_sample-01_stain-01_SPIM.json": "",
+         "sub-01_sample-01_stain-02_SPIM.ome.tif": "",
+         "sub-01_sample-01_stain-02_SPIM.json": "",
+         "sub-01_sample-01_stain-03_SPIM.ome.tif": "",
+         "sub-01_sample-01_stain-03_SPIM.json": "",
+         },
+      }
+   }
+) }}
+
 In this example, the entity stain is used to distinguish images with different
 stains in separate files from the same sample.
 In the case where a single file contains different staining in each channel, the
@@ -179,21 +189,26 @@ Figure 1: Examples of chunks configurations.
 -   d) and e) ordered 2D chunks on different 3D planes,
 -   f) ordered 3D chunks.
 
-<!--- The following example will be generated automatically with macros after community review. -->
 For example: Four chunks (`chunk-01` to `chunk-04`) from the same brain sample (`sample-01`)
 of subject `sub-01`, imaged by confocal microscopy (CONF) in OME-TIFF format
-```Text
-sub-01/
-    micr/
-        sub-01_sample-01_chunk-01_CONF.ome.tif
-        sub-01_sample-01_chunk-01_CONF.json
-        sub-01_sample-01_chunk-02_CONF.ome.tif
-        sub-01_sample-01_chunk-02_CONF.json
-        sub-01_sample-01_chunk-03_CONF.ome.tif
-        sub-01_sample-01_chunk-03_CONF.json
-        sub-01_sample-01_chunk-04_CONF.ome.tif
-        sub-01_sample-01_chunk-04_CONF.json
-```
+
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "micr": {
+         "sub-01_sample-01_chunk-01_CONF.ome.tif": "",
+         "sub-01_sample-01_chunk-01_CONF.json": "",
+         "sub-01_sample-01_chunk-02_CONF.ome.tif": "",
+         "sub-01_sample-01_chunk-02_CONF.json": "",
+         "sub-01_sample-01_chunk-03_CONF.ome.tif": "",
+         "sub-01_sample-01_chunk-03_CONF.json": "",
+         "sub-01_sample-01_chunk-04_CONF.ome.tif": "",
+         "sub-01_sample-01_chunk-04_CONF.json": "",
+         },
+      }
+   }
+) }}
+
 The index number can be assigned arbitrarily and, in the case of "ordered" chunks, the chunks'
 relative positions (in terms of scaling and translation) SHOULD be defined by an affine
 transformation matrix in the JSON sidecar file of each chunk, as described in
@@ -209,20 +224,31 @@ only the higher resolution file is present in the raw data.
 Lower resolutions files MUST be placed under the `derivatives` folder and use the
 [`res-<label>`](../99-appendices/09-entities.md#res) entity.
 
-<!--- The following example will be generated automatically with macros after community review. -->
 For example:
-```Text
-my_dataset/
-    derivatives/
-        downsampled/
-            sub-01/
-                micr/
-                    sub-01_sample-01_res-4x_TEM.png
-                    sub-01_sample-01_res-4x_TEM.json
-    sub-01/
-        micr/
-            sub-01_sample-01_TEM.png
-```
+
+{{ MACROS___make_filetree_example(
+   {
+   "my_dataset": {
+      "derivatives": {
+         "downsampled": {
+            "sub-01": {
+               "micr": {
+                  "sub-01_sample-01_res-4x_TEM.png": "",
+                  "sub-01_sample-01_res-4x_TEM.json": "",
+                  },
+               }
+            }
+         },
+      "sub-01": {
+         "micr": {
+            "sub-01_sample-01_TEM.png": "",
+            "sub-01_sample-01_TEM.json": "",
+            },
+         }
+      }
+   }
+) }}
+
 See [Preprocessed, coregistered and/or resampled volumes](../05-derivatives/03-imaging.md#preprocessed-coregistered-andor-resampled-volumes)
 for details.
 
@@ -422,14 +448,20 @@ The file `<extension>` for photos MUST be either `.jpg`, `.png` or `.tif`.
 
 The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity MAY be used to indicate
 acquisition of different photos of the same sample.
-<!--- The following example will be generated automatically with macros after community review. -->
+
 For example:
-```Text
-sub-01/
-    micr/
-        sub-01_sample-01_acq-1_photo.jpg
-        sub-01_sample-01_acq-2_photo.jpg
-```
+
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "micr": {
+         "sub-01_sample-01_acq-1_photo.jpg": "",
+         "sub-01_sample-01_acq-2_photo.jpg": "",
+         },
+      }
+   }
+) }}
+
 Below is an example of a spinal cord SEM overview, modified from Zaimi et al., 2018.
 [doi:10.1038/s41598-018-22181-4](https://doi.org/10.1038/s41598-018-22181-4).
 ```Text
