@@ -78,10 +78,10 @@ comparison of acquired data across runs, sessions, subjects or datasets.
 A file may indicate the spatial reference to which it has been aligned using the
 [`space` entity](../99-appendices/09-entities.md#space) and/or the `SpatialReference` metadata.
 
-The [`space` entity]((../99-appendices/09-entities.md#space)) may take any value in
+The [`space` entity](../99-appendices/09-entities.md#space) may take any value in
 [Image-Based Coordinate Systems][coordsys].
 
-If the [`space` entity]((../99-appendices/09-entities.md#space)) is omitted,
+If the [`space` entity](../99-appendices/09-entities.md#space) is omitted,
 or the space is not in the [Standard template identifiers][templates] table,
 then the `SpatialReference` metadata is REQUIRED.
 
@@ -176,11 +176,11 @@ Examples of preprocessing:
 -   Time-domain filtered EEG data
 -   MaxFilter (for example, SSS) cleaned MEG data
 
-The [`space` entity]((../99-appendices/09-entities.md#space))
+The [`space` entity](../99-appendices/09-entities.md#space)
 is recommended to distinguish files with different underlying
 coordinate systems or registered to different reference maps.
 See [Spatial references](#spatial-references) for details.
-The [`desc` entity]((../99-appendices/09-entities.md#desc)) ("description")
+The [`desc` entity](../99-appendices/09-entities.md#desc) ("description")
 is a general purpose field with freeform values,
 which SHOULD be used to distinguish between multiple different versions of
 processing for the same input data.

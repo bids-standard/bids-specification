@@ -22,13 +22,13 @@ sufficiently similar in practice to treat them equivalently.
 
 When two or more instances of a given derivative are provided with resolution
 or surface sampling density being the only difference between them, then the
-[`res`]((../99-appendices/09-entities.md#res)) (for *resolution* of regularly sampled N-D data) and/or
-[`den`]((../99-appendices/09-entities.md#den)) (for *density* of non-parametric surfaces)
+[`res`](../99-appendices/09-entities.md#res) (for *resolution* of regularly sampled N-D data) and/or
+[`den`](../99-appendices/09-entities.md#den) (for *density* of non-parametric surfaces)
 entities SHOULD be used to avoid name conflicts.
 Note that only files combining both regularly sampled (for example, gridded)
 and surface sampled data (and their downstream derivatives) are allowed
 to present both [`res`](../99-appendices/09-entities.md#res) and
-[`den`]((../99-appendices/09-entities.md#den)) entities simultaneously.
+[`den`](../99-appendices/09-entities.md#den) entities simultaneously.
 
 Examples:
 
@@ -92,7 +92,7 @@ And one corresponding to `res-hi`
 
 Example of CIFTI-2 files (a format that combines regularly sampled data
 and non-parametric surfaces) having both [`res`](../99-appendices/09-entities.md#res)
-and [`den`]((../99-appendices/09-entities.md#den)) entities:
+and [`den`](../99-appendices/09-entities.md#den) entities:
 
 {{ MACROS___make_filetree_example(
    {
@@ -139,7 +139,7 @@ Template:
 
 A binary (1 - inside, 0 - outside) mask in the space defined by the [`space` entity](../99-appendices/09-entities.md#space).
 If no transformation has taken place, the value of `space` SHOULD be set to `orig`.
-If the mask is an ROI mask derived from an atlas, then the [`label` entity]((../99-appendices/09-entities.md#label)) SHOULD
+If the mask is an ROI mask derived from an atlas, then the [`label` entity](../99-appendices/09-entities.md#label)) SHOULD
 be used to specify the masked structure
 (see [Common image-derived labels](#common-image-derived-labels)),
 and the `Atlas` metadata SHOULD be defined.
@@ -251,7 +251,7 @@ Example:
 A segmentation can be used to generate a binary mask that functions as a
 discrete "label" for a single structure.
 In this case, the mask suffix MUST be used,
-the [`label` entity]((../99-appendices/09-entities.md#label)) SHOULD be used
+the [`label` entity](../99-appendices/09-entities.md#label)) SHOULD be used
 to specify the masked structure
 (see [Common image-derived labels](#common-image-derived-labels)),
 and the `Atlas` metadata SHOULD be defined.
@@ -275,7 +275,7 @@ Probabilistic segmentations of brain tissue represent a single anatomical
 structure with values ranging from 0 to 1 in individual 3D volumes or across
 multiple frames.
 If a single structure is included,
-the [`label` entity]((../99-appendices/09-entities.md#label)) SHOULD be used to specify
+the [`label` entity](../99-appendices/09-entities.md#label) SHOULD be used to specify
 the structure.
 
 Template:
@@ -303,7 +303,7 @@ Example:
 ) }}
 
 See [Common image-derived labels](#common-image-derived-labels)
-for reserved key values for [`label`]((../99-appendices/09-entities.md#label)).
+for reserved key values for [`label`](../99-appendices/09-entities.md#label).
 
 A 4D probabilistic segmentation, in which each frame corresponds to a different
 tissue class, must provide a label mapping in its JSON sidecar. For example:
