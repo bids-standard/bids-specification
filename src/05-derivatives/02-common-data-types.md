@@ -24,8 +24,9 @@ share the following (non-required) ones:
 ### Examples
 
 Preprocessed `bold` NIfTI file in the original coordinate space of the original run.
-The location of the file in the original datasets is encoded in the `RawSources`
-metadata, and `desc-<label>` is used to prevent clashing with the original file name.
+The location of the file in the original datasets is encoded in the `RawSources` metadata,
+and [`_desc-<label>`](../99-appendices/09-entities.md#desc)
+is used to prevent clashing with the original file name.
 
 {{ MACROS___make_filetree_example(
    {
@@ -75,12 +76,13 @@ occurs in the derivatives, `Sources` and `RawSources` can both be specified.
 Derivatives are often aligned to a common spatial reference to allow for the
 comparison of acquired data across runs, sessions, subjects or datasets.
 A file may indicate the spatial reference to which it has been aligned using the
-`space` entity and/or the `SpatialReference` metadata.
+[`space` entity](../99-appendices/09-entities.md#space) and/or the `SpatialReference` metadata.
 
-The `space` entity may take any value in [Image-Based Coordinate Systems][coordsys].
+The [`space` entity]((../99-appendices/09-entities.md#space)) may take any value in
+[Image-Based Coordinate Systems][coordsys].
 
-If the `space` entity is omitted, or the space is not in the
-[Standard template identifiers][templates] table,
+If the [`space` entity]((../99-appendices/09-entities.md#space)) is omitted,
+or the space is not in the [Standard template identifiers][templates] table,
 then the `SpatialReference` metadata is REQUIRED.
 
 {{ MACROS___make_metadata_table(
@@ -174,10 +176,12 @@ Examples of preprocessing:
 -   Time-domain filtered EEG data
 -   MaxFilter (for example, SSS) cleaned MEG data
 
-The `space` keyword is recommended to distinguish files with different underlying
+The [`space` entity]((../99-appendices/09-entities.md#space))
+is recommended to distinguish files with different underlying
 coordinate systems or registered to different reference maps.
 See [Spatial references](#spatial-references) for details.
-The `desc` (description) keyword is a general purpose field with freeform values,
+The [`desc` entity]((../99-appendices/09-entities.md#desc)) ("description")
+is a general purpose field with freeform values,
 which SHOULD be used to distinguish between multiple different versions of
 processing for the same input data.
 
