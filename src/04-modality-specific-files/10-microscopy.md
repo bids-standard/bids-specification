@@ -23,10 +23,7 @@ Further Microscopy datasets are available:
 
 ## Microscopy recording data
 <!---
-The following table will be generated automatically with macros after community review.
-A "manual" table is provided to facilitate the review process.
--->
-Template:
+Intended template:
 ```Text
 sub-<label>/
     [ses-<label>/]
@@ -34,6 +31,12 @@ sub-<label>/
             sub-<label>[_ses-<label>]_sample-<label>[_acq-<label>][_stain-<label>][_run-<index>][_chunk-<index>]_<suffix>.<extension>
             sub-<label>[_ses-<label>]_sample-<label>[_acq-<label>][_stain-<label>][_run-<index>][_chunk-<index>]_<suffix>.json
 ```
+The current MACRO list ".ome.btf", ".png" and ".tif[.ome]", is it possible to have "<extension>" instead?
+If not, ".tif" and ".ome.tif" should be 2 separate lines but are concatenated as ".tif[.ome]"
+-->
+{{ MACROS___make_filename_template(datatypes=["micr"], suffixes=["TEM", "SEM", "uCT", "BF", "DF",
+"PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM"]) }}
+
 Microscopy data MUST be stored in the `micr` directory.
 
 ### File formats
@@ -437,13 +440,18 @@ sub-02 mus musculus C57BL/6J RRID:IMSR_JAX:000664
 Photos of the tissue sample, overview microscopy scans or blockface images from cutting
 MAY be included for visualization of large samples or to indicate the location of chunks
 in a sample.
-<!--- The following example will be generated automatically with macros after community review. -->
+<!---
+Intended template:
 ```Text
 sub-<label>/
     [ses-<label>/]
         micr/
             sub-<label>[_ses-<label>]_sample-<label>[_acq-<label>]_photo.<extension>
 ```
+The current MACRO list ".jpg", ".png" and ".tif", is it possible to have one line with "<extension>" instead?
+-->
+{{ MACROS___make_filename_template(datatypes=["micr"], suffixes=["photo"]) }}
+
 The file `<extension>` for photos MUST be either `.jpg`, `.png` or `.tif`.
 
 The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity MAY be used to indicate
