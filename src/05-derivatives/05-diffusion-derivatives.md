@@ -340,7 +340,7 @@ Reserved keywords for models built into the specification are as follows:
 
     -   `ResponseFunctionTensor`: Vector of 4 floating-point values: three tensor eigenvalues, then reference *b*=0 intensity
 
-    -   `SphericalHarmonicBasis`: String. Options are: { `MRtrix3`, `Descoteaux` }. Details are provided in the [spherical harmonics bases](#spherical-harmonics-bases) section.
+    -   `SphericalHarmonicBasis`: String. Options are: { `MRtrix3` }. Details are provided in the [spherical harmonics bases](#spherical-harmonics-bases) section.
 
     -   `SphericalHarmonicDegree`: Integer. The maximal spherical harmonic order *l<sub>max</sub>*; the number of volumes in the associated NIfTI image must correspond to this value as per the relationship described in [spherical harmonics bases](#spherical-harmonics-bases) section.
 
@@ -444,7 +444,7 @@ in order to produce a [directionally-encoded colour](#data-dec),
 | `FillValue`                 | [Spherical coordinates](#data-spherical), [3-vectors](#data-3vector)                                                                                                                                              | OPTIONAL. Float; allowed values: { 0.0, NaN }. Value stored in image when number of discrete orientations in a voxel is fewer than the maximal number for that image.                                                                                     |
 | `OrientationRepresentation` | All except [scalar](#data-scalar)                                                                                                                                                                                 | REQUIRED. String; allowed values: { `dec`, `unitspherical`, `spherical`, `unit3vector`, `3vector`, `sh`, `amp`, `pdf`, `param` }. The [data representation](#data-representations) used to encode orientation information within the NIfTI image.         |
 | `ReferenceAxes`             | All except [scalar](#data-scalar)                                                                                                                                                                                 | REQUIRED. String; allowed values: { `ijk`, `xyz` }. Indicates whether the NIfTI image axes, or scanner-space axes, are used as reference axes for orientation information.                                                                                |
-| `SphericalHarmonicBasis`    | [Spherical harmonics](#data-sh)                                                                                                                                                                                   | REQUIRED. String; allowed values: { `MRtrix3`, `Descoteaux` }. Basis by which to define the interpretation of image values across volumes as spherical harmonics coefficients.                                                                            |
+| `SphericalHarmonicBasis`    | [Spherical harmonics](#data-sh)                                                                                                                                                                                   | REQUIRED. String; allowed values: { `MRtrix3` }. Basis by which to define the interpretation of image values across volumes as spherical harmonics coefficients.                                                                                          |
 | `SphericalHarmonicDegree`   | [Spherical harmonics](#data-sh)                                                                                                                                                                                   | REQUIRED. Integer. Maximal degree of the spherical harmonic basis employed.                                                                                                                                                                               |
 
 If `AntipodalSymmetry` is True, then no constraints are imposed with respect
@@ -518,10 +518,6 @@ another.
         | ***l<sub>max</sub>*** | 0 | 2 | 4 | 6 | 8 | ...  |
         | --------------------- |--:|--:|--:|--:|--:| :--: |
         | ***N***               | 1 | 2 | 3 | 4 | 5 | etc. |
-
--   `Descoteaux`
-
-    ***TODO***
 
 ## Demonstrative examples
 
