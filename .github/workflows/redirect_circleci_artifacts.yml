@@ -14,4 +14,4 @@ jobs:
           job-title: Check the rendered PDF version here!
       - name: Check the URL
         run: |
-          curl --fail ${{ steps.step1.outputs.url }} | grep $GITHUB_SHA
+          curl --fail ${{ steps.step1.outputs.url_output }} | grep $GITHUB_SHA
