@@ -73,9 +73,8 @@ as a successor to OME-TIFF for better remote sharing of large datasets.
 ### Modality suffixes
 Microscopy data currently support the following imaging modalities:
 <!---
-The following table will be generated automatically with macros after community review.
-A "manual" table is provided to facilitate the review process.
--->
+Intended table:
+
 | **Name**                                      | `suffix` |
 | --------------------------------------------- | -------- |
 | Transmission electron microscopy              | TEM      |
@@ -95,6 +94,31 @@ A "manual" table is provided to facilitate the review process.
 | Nonlinear optical microscopy                  | NLO      |
 | Optical coherence tomography                  | OCT      |
 | Selective plane illumination microscopy       | SPIM     |
+
+Can we remove the "Description" column of the table in the MACRO?
+-->
+{{ MACROS___make_suffix_table(
+      [
+         "TEM",
+         "SEM",
+         "uCT",
+         "BF",
+         "DF",
+         "PC",
+         "DIC",
+         "FLUO",
+         "CONF",
+         "PLI",
+         "CARS",
+         "2PE",
+         "MPE",
+         "SR",
+         "NLO",
+         "OCT",
+         "SPIM",
+      ]
+   )
+}}
 
 ### Filename entities
 
