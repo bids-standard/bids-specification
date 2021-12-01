@@ -1,5 +1,5 @@
 ---
 name: RecordedEye
 description: |
-  Specification for which eye was tracked (`Left`, `Right`, `Both`)
+  Specification for which eye was tracked (`"Left"`, `"Right"`, `"Both"`)
 type: string

@@ -1,6 +1,7 @@
 ---
 name: ScreenRefreshRate
 description: |
-  Refresh rate of the monitor (when monitor used), in Hz.
-  For example, `150 Hz`
-type: string
+  Refresh rate of the screen (when used), in Hertz
+  (for example, `60` for 60 Hz).
+type: number
+unit: Hz

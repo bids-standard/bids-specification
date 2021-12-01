@@ -1,6 +1,0 @@
----
-name: PupilPositionType
-description: |
-  The type of position that is coded in the datafile.
-  For example, `raw pupil position on screen`; `pupil-in-head`; or `pupil-in-world`
-type: string

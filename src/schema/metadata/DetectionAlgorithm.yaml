@@ -2,7 +2,6 @@
 name: DetectionAlgorithm
 description: |
   Name the event detection algorithm.
-  If no events are included write `None`.
   If a detection algorithm is used,
-  settings SHOULD be present at `DetectionAlgorithmSettings`.
+  settings SHOULD be present in `DetectionAlgorithmSettings`.
 type: string

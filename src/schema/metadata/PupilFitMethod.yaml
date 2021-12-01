@@ -2,5 +2,5 @@
 name: PupilFitMethod
 description: |
   The method employed for fitting the pupil:
-  `centre of mass` or `ellipse`.
+  `"centre-of-mass"` or `"ellipse"`.
 type: string
