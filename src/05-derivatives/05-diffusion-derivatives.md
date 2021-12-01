@@ -2,43 +2,32 @@
 
 ## Preprocessed diffusion-weighted images
 
-Multiple different versions of preprocessing can be stored for the same source
-data. To distinguish them from each other, the `desc` filename keyword can be
-used. Details of preprocessing performed for each variation of the processing
-should be included in the pipeline documentation.
+-   As with [raw diffusion imaging data](../04-modality-specific-files/01-magnetic-resonance-imaging-data.md#required-gradient-orientation-information),
+    inclusion of gradient orientation information is REQUIRED. While
+    [the inheritance principle](../02-common-principles.md#the-inheritance-principle)
+    applies, it is common for DWI preprocessing to include rotation of
+    gradient orientations according to subject motion, so series-specific
+    gradient information is typically expected.
+
+-   As per [file naming conventions for BIDS Derivatives](01-introduction.md#file-naming-conventions),
+    preprocessed DWI data must not possess the same name as that of the raw
+    DWI data. It is RECOMMENDED to disambiguate through use of the key-value
+    "`_desc-preproc`".
+
+-   As per [common data types](02-common-data-types.md) for derivative data, a
+    JSON sidecar file is REQUIRED due to the REQUIRED `SkullStripped` field.
+
+Template:
 
 ```Text
 <pipeline_name>/
     sub-<participant_label>/
         dwi/
-            <source_keywords>[_space-<space>][_desc-<label>]_dwi.nii[.gz]
-            <source_keywords>[_space-<space>][_desc-<label>]_dwi.bvals
-            <source_keywords>[_space-<space>][_desc-<label>]_dwi.bvecs
-            <source_keywords>[_space-<space>][_desc-<label>]_dwi.json
+            <source_keywords>[_space-<space>]_desc-preproc_dwi.nii[.gz]
+            <source_keywords>[_space-<space>]_desc-preproc_dwi.bvals
+            <source_keywords>[_space-<space>]_desc-preproc_dwi.bvecs
+            <source_keywords>[_space-<space>]_desc-preproc_dwi.json
 ```
-
-The JSON sidecar file is REQUIRED (due to the REQUIRED `SkullStripped` field -
-see [Common Data Types](02-common-data-types.md)), and MAY additionally be used to
-store information about what preprocessing options were used (for example
-whether denoising was performed, corrections applied for field inhomogeneity /
-gradient non-linearity / subject motion / eddy currents, etc.).
-
-Additional reserved JSON metadata fields:
-
-| **Key name**                           | **Description**                                                                                                                                   |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Denoising                              | OPTIONAL. String. Denoising method                                                                                                                |
-| GibbsRingingCorrection                 | OPTIONAL. Boolean. Removal of Gibbs ringing artifacts                                                                                             |
-| MotionCorrection                       | OPTIONAL. String. Motion correction; allowed values: `none`, `volume`, `slice`                                                                    |
-| EddyCurrentCorrection                  | OPTIONAL. String. Eddy current distortion correction; reserved values: `none`, `linear`, `quadratic`, `cubic`                                     |
-| IntensityNormalizationMethod           | OPTIONAL. String. Method (if any) used for intensity normalization                                                                                |
-| FieldInhomogeneityEstimation           | OPTIONAL. String. Method (if any) used for estimation of the B0 inhomogeneity field; reserved values: `multiecho`, `phaseencode`, `registration`  |
-| FieldInhomogeneityCorrection           | OPTIONAL. String. Correction for geometric distortions arising from B0 magnetic field inhomogeneity; reserved values: `none`, `static`, `dynamic` |
-| GradientNonLinearityGeometryCorrection | OPTIONAL. Boolean. Correction for geometric distortions arising from non-linearity of gradients                                                   |
-| GradientNonLinearityQSpaceCorrection   | OPTIONAL. Boolean. Correction for spatial inhomogeneity of diffusion sensitisation gradient strength                                              |
-| SliceDropoutDetection                  | OPTIONAL. Boolean. Detection of signal dropout in acquired slices during pre-processing                                                           |
-| SliceDropoutReplacement                | OPTIONAL. Boolean. Replacement of image data within slices containing signal dropout with predicted values                                        |
-| BiasFieldCorrectionMethod              | OPTIONAL. String. Method (if any) used for correction of B1 RF field inhomogeneity                                                                |
 
 ## Diffusion models
 
