@@ -110,6 +110,38 @@ Specific ET fields SHOULD be present:
    }
 ) }}
 
+### Example:
+
+```JSON
+{"TaskName": "PSC_train",
+"InstitutionName": "Goethe-University of Frankfurt; Department of Psychology",
+"InstitutionAdress": "Theodor-W.-Adorno-Platz 6 60323 Frankfurt am Main; Germany",
+"Manufacturer": "SR-Research",
+"ManufacturersModelName": "EYELINK II CL v4.56 Aug 18 2010",
+"SoftwareVersion": "SREB1.10.1630 WIN32 LID:F2AE011 Mod:2017.04.21 15:19 CEST",
+"TaskDescription": "Sentence reading",
+"Instructions": "Read sentences as you would read a book or a newspaper",
+"SamplingFrequency": 1000,
+"SampleCoordinateUnit": "pixel",
+"SampleCoordinateSystem": "gaze-on-screen",
+"EnvironmentCoordinates": [["0,0", "top left"], ["1,1", "bottom right"]],
+"EventIdentifier": ["ID_73_7","ID_74_7","ID_75_7","ID_76_7","ID_77_7","ID_78_9","ID_79_8","ID_80_8","ID_81_8","ID_82_5","ID_83_6","ID_84_8","ID_85_7","ID_86_8","ID_87_5","ID_88_8","ID_89_5","ID_90_8","ID_91_6","ID_92_8","ID_93_8","ID_94_8","ID_95_7","ID_96_6","ID_97_8","ID_98_7","ID_99_9","ID_100_7","ID_101_6","ID_102_8","ID_103_7","ID_104_7","ID_105_10","ID_106_7","ID_107_6","ID_108_7"],
+"IncludedEyeMovementEvents": [["Start of fixation", "SFIX"],["End of fixation", "EFIX"],["Start of saccade", "SSACC"], ["End of saccade", "ESACC"],["Start of blink", "SBLINK"], ["End of blink", "EBLINK"]],
+"DetectionAlgorithm": "SR-Research",
+"StartMessage": "SENTENCESTART",
+"EndMessage": "SENTENCESTOP",
+"KeyPressMessage": "ANSWER",
+"RecordedEye": "BOTH",
+"ScreenSize": [38.6, 29],
+"ScreenResolution": [1024, 768],
+"ScreenDistance": 60,
+"AOIDefinition": ["square",["x_start", "x_stop", "y_start", "y_stop"]] ,
+"PupilPositionType": "raw pupil position on screen",
+"CalibrationList":[["H3", "LEFT", 0.71, 0.41, -425.49],["H3", "RIGHT", 0.51, 0.35, -425.49],["H3", "LEFT", 0.21, 0.16, -108.696],["H3", "RIGHT", 0.73, 0.42, -108.696],["H3", "LEFT", 0.39, 0.33, -99.545],["H3", "RIGHT", 1.08, 0.41, -99.545],["H3", "LEFT", 0.57, 0.31, -79.831],["H3", "RIGHT", 0.43, 0.21, -79.831],["H3", "LEFT", 0.51, 0.36, -72.362],["H3", "RIGHT", 0.27, 0.2, -72.362],["H3", "LEFT", 0.58, 0.44, -35.031],["H3", "RIGHT", 0.59, 0.44, -35.031],["H3", "LEFT", 0.42, 0.25, -25.399],["H3", "RIGHT", 0.42, 0.3, -25.399]]
+}
+```
+
+
 ### Example Dataset
 
 **Potsdam Sentence Corpus Dataset**
