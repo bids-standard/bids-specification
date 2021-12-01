@@ -244,10 +244,6 @@ interpretation of that information; see [orientation specification](#orientation
     each voxel are provided; these directions MUST themselves be provided
     in the associated sidecar JSON file (see [orientation specification](#orientation-specification)).
 
-1.  <a name="data-pdf">*Probability Distribution Functions (PDFs)*</a>:
-
-    ***TODO***
-
 1.  <a name="data-param">*Parameter vectors*</a>:
 
     4D image containing, for every image voxel, data corresponding to some
@@ -265,18 +261,8 @@ ideally be integrated in a future version of the specification.
 | Model label | Full Name                                                                                                                                       | [Data representation](#data-representations)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `bs`        | Ball-and-Stick(s) model \[[Behrens2003](#behrens2003)\],\[[Behrens2007](#behrens2007)\],\[[Jbabdi2012](#jbabdi2012)\]                           | One [spherical coordinates](#data-spherical) image with parameter name "`sticks`", providing both fibre volume fractions and orientations using polar angles;<br>Optional scalar images with parameter names {"`bzero`", "`dmean`", "`dstd`"} providing the model-estimated *b*=0 signal intensity, mean stick diffusivity, and standard deviation of stick diffusivities respectively                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `csa`       | Constant Solid Angle \[[Aganj2010](#aganj2010)\]                                                                                                | [Spherical harmonics](#data-sh) image                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `csd`       | Constrained Spherical Deconvolution \[[Tournier2007](#tournier2007)\],\[[Descoteaux2009](#descoteaux2009)\],\[[Jeurissen2014](#jeurissen2014)\] | [Spherical harmonics](#data-sh) image<br>If a multi-tissue decomposition is performed, provide one individual 4D image per tissue, with "`_desc-<desc>`" filename field being an abbreviation of the tissue estimated by that particular ODF                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `dki`       | Diffusion Kurtosis Imaging \[[Jensen2005](#jensen2005)\]                                                                                        | Single [parameter vectors](#data-param) image with parameter name "`all`" with 21 volumes in the order: *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>*, *W<sub>xxxx</sub>*, *W<sub>yyyy</sub>*, *W<sub>zzzz</sub>*, *W<sub>xxxy</sub>*, *W<sub>xxxz</sub>*, *W<sub>xyyy</sub>*, *W<sub>yyyz</sub>*, *W<sub>xzzz</sub>*, *W<sub>yzzz</sub>*, *W<sub>xxyy</sub>*, *W<sub>xxzz</sub>*, *W<sub>yyzz</sub>*, *W<sub>xxyz</sub>*, *W<sub>xyyz</sub>*, *W<sub>xyzz</sub>* (*D* is the diffusion tensor, *W* is the kurtosis tensor)<br>OR<br>6 diffusion tensor coefficients as [parameter vectors](#data-param) image with parameter name "`tensor`";<br>15 kurtosis tensor coefficients as [parameter vectors](#data-param) image with parameter name "`kurtosis`";<br>Optional: estimated *b*=0 intensity as scalar image with parameter name "`bzero`"                                     |
-| `dsi`       | Diffusion Spectrum Imaging \[[Wedeen2008](#wedeen2008)\],\[[Paquette2017](paquette2017)\]                                                       | [Probability distribution functions](#data-pdf)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `dti`       | Diffusion Tensor Imaging \[[Basser1994](#basser1994)\]                                                                                          | Single [parameter vectors](#data-param) image with parameter name "`all`" with 6 volumes in the order: *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>*<br>OR<br>Tensor coefficients as [parameter vectors](#data-param) image with parameter name "`tensor`";<br>Estimated *b*=0 intensity as [scalar](#data-scalar) image with parameter name "`bzero`"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `forecast`  | Fiber ORientation Estimated using Continuous Axially Symmetric Tensors \[[Zuchelli2017](#zuchelli2017)\]                                        | [Spherical harmonics](#data-sh) image                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `fwdti`     | Free water DTI \[[Hoy2015](#hoy2015)\]                                                                                                          | One [parameter vectors](#data-param) image with parameter name "`tensor`", containing 6 volumes in the order: *Dc<sub>xx</sub>*, *Dc<sub>xy</sub>*, *Dc<sub>xz</sub>*, *Dc<sub>yy</sub>*, *Dc<sub>yz</sub>*, *Dc<sub>zz</sub>* (*Dc* is the free-water-corrected diffusion tensor);<br>One [scalar](#data-scalar) image with parameter name "`fwf`" corresponding to the estimated free water fraction                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `mapmri`    | Mean Apparent Propagator MRI \[[Ozarslan2013](#ozarslan2013)\]                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `noddi`     | Neurite Orientation Dispersion and Density Imaging \[[Zhang2012](#zhang2012)\],\[[Daducci2015](#daducci2015)\]                                  | Three [scalar](#data-scalar) images, with parameter names equal to {"`icvf`", "`isovf`", "`od`"} (ICVF is the “intracellular volume fraction” (also known as NDI); ISOVF is the "isotropic component volume fraction"; OD is the “orientation dispersion” (the variance of the Watson distribution; also known as ODI));<br>One [3-vectors](#data-3vector) image with parameter name "`direction`" to provide the estimated fibre orientation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| `qbi`       | Q-Ball Imaging \[[Tuch2004](#tuch2004)\], \[[Hess2006](#hess2006)\]                                                                             | Single [amplitudes](#data-amp) image<br>OR<br>Single [spherical harmonics](#data-sh) image                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| `shore`     | Simple Harmonic Oscillator-based Reconstruction and Estimation \[[Ozarslan2008](#ozarslan2008)\]                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `wmti`      | White Matter Tract Integrity \[[Fieremans2011](#fieremans2011)\]                                                                                | One [parameter vectors](#data-param) image with parameter name "`coeffs`", with 33 volumes in the order: *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>*, *W<sub>xxxx</sub>*, *W<sub>yyyy</sub>*, *W<sub>zzzz</sub>*, *W<sub>xxxy</sub>*, *W<sub>xxxz</sub>*, *W<sub>xyyy</sub>*, *W<sub>yyyz</sub>*, *W<sub>xzzz</sub>*, *W<sub>yzzz</sub>*, *W<sub>xxyy</sub>*, *W<sub>xxzz</sub>*, *W<sub>yyzz</sub>*, *W<sub>xxyz</sub>*, *W<sub>xyyz</sub>*, *W<sub>xyzz</sub>*, *Dh<sub>xx</sub>*, *Dh<sub>xy</sub>*, *Dh<sub>xz</sub>*, *Dh<sub>yy</sub>*, *Dh<sub>yz</sub>*, *Dh<sub>zz</sub>*, *Dr<sub>xx</sub>*, *Dr<sub>xy</sub>*, *Dr<sub>xz</sub>*, *Dr<sub>yy</sub>*, *Dr<sub>yz</sub>*, *Dr<sub>zz</sub>* (*D* is the diffusion tensor and *W* is the kurtosis tensor);<br>One [scalar](#data-scalar) image with parameter name "`awf`", representing the estimated axonal water fraction |
 
 The JSON sidecar for the intrinsic diffusion model parameters may contain
 the following key/value pairs irrespective of the particular model:
@@ -323,12 +309,6 @@ Reserved keywords for models built into the specification are as follows:
     -   `ModelBall`: String. Model used to describe the "ball" component in the model.
     -   `ModelSticks`: String. Model used to describe the "stick" component in the model.
 
--   `csa` :
-
-    -   `SphericalHarmonicOrder` : value
-    -   `Smoothing` : value
-    -   `Basis` : value
-
 -   `csd`:
 
     -   `NonNegativityConstraint`: String. Options are: { `soft`, `hard` }. Specifies whether the ODF was estimated using regularisation ("`soft`") or prevention ("`hard`") of negative values.
@@ -346,88 +326,27 @@ Reserved keywords for models built into the specification are as follows:
 
     -   `Tissue`: String. A more verbose description for the tissue estimated via this specific ODF.
 
--   `dsi` :
-
-    -   `GridSize` : value
-    -   `RStart` : value
-    -   `RStep` : value
-    -   `REnd` : value
-    -   `FilterWidth` : value
-
 -   `dti` :
 
     -   `RESTORESigma`: Float
 
--   `forecast` :
-
-    -   `Sphere` : value
-    -   `DecAlg` : value
-    -   `LambdaLb` : value
-    -   `SphericalHarmonicsOrder` : value
-
--   `mapmri` :
-
-    -   `RadialOrder` : value
-    -   `LaplacianRegularization` : bool
-    -   `LaplacianWeighting` : value
-    -   `PositivityConstraint` : bool
-    -   `Tau` : value
-    -   `ConstrainE0` : value
-    -   `PositiveConstraint` : value
-    -   `PosGrid` : value
-    -   `PosRadius` : value
-    -   `AnisotropicScaling` : bool
-    -   `EigenvalueThreshold` : value
-    -   `PosGrid` : value
-    -   `BvalThreshold` : value
-    -   `DTIScaleEstimation` : bool
-    -   `StaticDiffusivity` : value
-
--   `noddi`:
-
-    -   `DPar` : value
-    -   `DIso` : value
-    -   `Lambda1` : value
-    -   `Lambda2` : value
-
--   `shore` :
-
-    -   `RadialOrder` : value
-    -   `Zeta` : value
-    -   `LambdaN` : value
-    -   `LambdaL` : value
-    -   `Tau` : value
-    -   `ConstrainE0` : value
-    -   `PositiveConstraint` : value
-    -   `PosGrid` : value
-    -   `PosRadius` : value
-
 ### Extrinsic model parameters
 
-| `<parameter>` value | Description                                                            | [Data representation](#data-representations) | Possible Model sources                          | Unit or scale                                                  |
-| ------------------- | ---------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------- | -------------------------------------------------------------- |
-| `ad`                | Axial Diffusivity (also called parallel diffusivity)                   | [Scalar](#data-scalar)                       | { `dki`, `dti`, `forecast`, `fwdti`, `wmti` }   | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
-| `ak`                | Axial kurtosis                                                         | [Scalar](#data-scalar)                       | { `dki`, `wmti` }                               | Unitless                                                       |
-| `afdtotal`          | Total Apparent Fibre Density (AFD) \[[Calamante2015](#calamante2015)\] | [Scalar](#data-scalar)                       | { `csd` }                                       | Unitless                                                       |
-| `cl`                | Tensor linearity \[[Westin1997](#westin1997)\]                         | [Scalar](#data-scalar)                       | { `dki`, `dti`, `fwdti`, `wmti` }               |                                                                |
-| `cp`                | Tensor planarity \[[Westin1997](#westin1997)\]                         | [Scalar](#data-scalar)                       | { `dki`, `dti`, `fwdti`, `wmti` }               |                                                                |
-| `cs`                | Tensor sphericity \[[Westin1997](#westin1997)\]                        | [Scalar](#data-scalar)                       | { `dki`, `dti`, `fwdti`, `wmti` }               |                                                                |
-| `evec`              | Eigenvector(s)                                                         | [3-vectors](#data-3vector)                   | { `dki`, `dti`, `fwdti`, `wmti` }               | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
-| `fa`                | Fractional Anisotropy \[[Basser1996](#basser1996)\]                    | [Scalar](#data-scalar)                       | { `dki`, `dti`, `forecast`, `fwdti`, `wmti` }   | Proportion \[0.0-1.0\]                                         |
-| `fsum`              | Sum of partial volume fractions of stick components                    | [Scalar](#data-scalar)                       | { `bs` }                                        | Volume fraction \[0.0-1.0\]                                    |
-| `gfa`               | Generalized Fractional Anisotropy \[[Tuch2004](#tuch2004)\]            | [Scalar](#data-scalar)                       | { `csa`, `csd`, `forecast`, `mapmri`, `shore` } | Proportion \[0.0-1.0\]                                         |
-| `md`                | Mean diffusivity (also called apparent diffusion coefficient, ADC)     | [Scalar](#data-scalar)                       | { `dki`, `dti`, `forecast`, `fwdti`, `wmti` }   | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
-| `mk`                | Mean kurtosis                                                          | [Scalar](#data-scalar)                       | { `dki`, `wmti` }                               | Unitless                                                       |
-| `mode`              | Mode of the tensor                                                     | [Scalar](#data-scalar)                       | { `dki`, `dti`, `fwdti`, `wmti` }               |                                                                |
-| `msd`               | Mean-Squared Displacement                                              | [Scalar](#data-scalar)                       | { `mapmri`, `shore` }                           |                                                                |
-| `pdf`               | Diffusion propagator                                                   | [3-vectors](#data-3vector)                   |                                                 |                                                                |
-| `peak`              | Direction(s) and amplitude(s) of ODF maximum (maxima)                  | [3-vectors](#data-3vector)                   | { `csa`, `csd`, `forecast`, `shore` }           | Same units as ODF                                              |
-| `rd`                | Radial Diffusivity (also called perpendicular diffusivity)             | [Scalar](#data-scalar)                       | { `dki`, `dti`, `forecast`, `fwdti`, `wmti` }   | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
-| `rk`                | Radial kurtosis                                                        | [Scalar](#data-scalar)                       | { `dki`, `wmti` }                               | Unitless                                                       |
-| `rtap`              | Return To Axis Probability                                             | [Scalar](#data-scalar)                       | { `mapmri` }                                    | Probability \[0.0-1.0\]                                        |
-| `rtop`              | Return To Origin Probability                                           | [Scalar](#data-scalar)                       | { `shore` }                                     | Probability \[0.0-1.0\]                                        |
-| `rtpp`              | Return To Plane Probability                                            | [Scalar](#data-scalar)                       | { `mapmri` }                                    | Probability \[0.0-1.0\]                                        |
-| `tort`              | Tortuosity of extra-cellular space                                     | [Scalar](#data-scalar)                       | { `dki` }                                       |                                                                |
+| `<parameter>` value | Description                                                            | [Data representation](#data-representations) | Possible Model sources | Unit or scale                                                  |
+| ------------------- | ---------------------------------------------------------------------- | -------------------------------------------- | ---------------------- | -------------------------------------------------------------- |
+| `ad`                | Axial Diffusivity (also called parallel diffusivity)                   | [Scalar](#data-scalar)                       | { `dti` }              | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
+| `afdtotal`          | Total Apparent Fibre Density (AFD) \[[Calamante2015](#calamante2015)\] | [Scalar](#data-scalar)                       | { `csd` }              | Unitless                                                       |
+| `cl`                | Tensor linearity \[[Westin1997](#westin1997)\]                         | [Scalar](#data-scalar)                       | { `dti` }              |                                                                |
+| `cp`                | Tensor planarity \[[Westin1997](#westin1997)\]                         | [Scalar](#data-scalar)                       | { `dti` }              |                                                                |
+| `cs`                | Tensor sphericity \[[Westin1997](#westin1997)\]                        | [Scalar](#data-scalar)                       | { `dti` }              |                                                                |
+| `evec`              | Eigenvector(s)                                                         | [3-vectors](#data-3vector)                   | { `dti` }              | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
+| `fa`                | Fractional Anisotropy \[[Basser1996](#basser1996)\]                    | [Scalar](#data-scalar)                       | { `dti` }              | Proportion \[0.0-1.0\]                                         |
+| `fsum`              | Sum of partial volume fractions of stick components                    | [Scalar](#data-scalar)                       | { `bs` }               | Volume fraction \[0.0-1.0\]                                    |
+| `gfa`               | Generalized Fractional Anisotropy \[[Tuch2004](#tuch2004)\]            | [Scalar](#data-scalar)                       | { `csd` }              | Proportion \[0.0-1.0\]                                         |
+| `md`                | Mean diffusivity (also called apparent diffusion coefficient, ADC)     | [Scalar](#data-scalar)                       | { `dti` }              | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
+| `mode`              | Mode of the tensor                                                     | [Scalar](#data-scalar)                       | { `dti` }              |                                                                |
+| `peak`              | Direction(s) and amplitude(s) of ODF maximum (maxima)                  | [3-vectors](#data-3vector)                   | { `csd` }              | Same units as ODF                                              |
+| `rd`                | Radial Diffusivity (also called perpendicular diffusivity)             | [Scalar](#data-scalar)                       | { `dti` }              | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
 
 While not explicitly included in the table above, *any* [scalar](#data-scalar)
 [extrinsic](paramdef-extrinsic) parameter can theoretically be combined
@@ -596,43 +515,6 @@ another.
     }
     ```
 
--   A NODDI fit:
-
-    ```Text
-    my_diffusion_pipeline/
-        sub-01/
-            dwi/
-                sub-01_parameter-icvf_noddi.nii.gz
-                sub-01_parameter-isovf_noddi.nii.gz
-                sub-01_parameter-od_noddi.nii.gz
-                sub-01_parameter-direction_noddi.nii.gz
-                sub-01_parameter-direction_noddi.json
-                sub-01_noddi.json
-    ```
-
-    Dimensions of NIfTI image "`sub-01_parameter-icvf_noddi.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-    Dimensions of NIfTI image "`sub-01_parameter-isovf_noddi.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-    Dimensions of NIfTI image "`sub-01_parameter-od_noddi.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-    Dimensions of NIfTI image "`sub-01_parameter-direction_noddi.nii.gz`": *I*x*J*x*K*x3 ([3-vectors](#data-3vector))
-
-    Contents of file "`sub-01_noddi.json`" (common to all [intrinsic](#paramdef-intrinsic) model parameter images):
-
-    ```JSON
-    {
-        "Model": "Neurite Orientation Dispersion and Density Imaging (NODDI)",
-        "ModelURL": "https://www.nitrc.org/projects/noddi_toolbox"
-    }
-    ```
-
-    Contents of JSON file "`sub-01_parameter-direction_noddi.json`":
-
-    ```JSON
-    {
-        "OrientationRepresentation": "3vector",
-        "ReferenceAxes": "???"
-    }
-    ```
-
 -   An FSL `bedpostx` Ball-And-Sticks fit (including both mean parameters and
     bootstrap realisations):
 
@@ -694,8 +576,6 @@ should be approximately 3.0.
 
 ---
 
-<a name="aganj2010">\[Aganj2010\]</a>: Aganj et al. 2010
-
 <a name="basser1994">\[Basser1994\]</a>: Basser et al. 1994
 
 <a name="basser1996">\[Basser1996\]</a>: Basser et al. 1996
@@ -706,27 +586,11 @@ should be approximately 3.0.
 
 <a name="calamante2015">\[Calamante2015\]</a>: Calamante et al. 2015
 
-<a name="daducci2015">\[Daducci2015\]</a>: Daducci et al. 2015
-
 <a name="descoteaux2009">\[Descoteaux2009\]</a>: Descoteaux et al. 2009
-
-<a name="fieremans2011">\[Fieremans2011\]</a>: Fieremans et al. 2011
-
-<a name="hess2006">\[Hess2006\]</a>: Hess et al. 2006
-
-<a name="hoy2014">\[Hoy2014\]</a>: Hoy et al. 2014
 
 <a name="jbabdi2012">\[Jbabdi2012\]</a> Jbabdi et al. 2012
 
-<a name="jensen2005">\[Jensen2005\]</a>: Jensen et al. 2005
-
 <a name="jeurissen2014">\[Jeurissen2014\]</a>: Jeurissen et al. 2014
-
-<a name="ozarslan2008">\[Ozarslan2008\]</a>: Ozarslan et al. 2008
-
-<a name="ozarslan2013">\[Ozarslan2013\]</a>: Ozarslan 2013
-
-<a name="paquette2017">\[Paquette2017\]</a>: Paquette et al 2017
 
 <a name="pajevic1999">\[Pajevic1999\]</a>: Pajevic et al 1999
 
@@ -734,10 +598,4 @@ should be approximately 3.0.
 
 <a name="tuch2004">\[Tuch2004\]</a>: Tuch 2004
 
-<a name="wedeen2008">\[Wedeen2008\]</a>: Wedeen et al. 2008
-
 <a name="westin1997">\[Westin1997\]</a>: Westin 1997
-
-<a name="zhang2012">\[Zhang2012\]</a>: Zhang et al. 2012
-
-<a name="zuchelli2017">\[Zuchelli2017\]</a>: Zuchelli et al. 2017
