@@ -271,7 +271,7 @@ Results of model bootstrapping can be provided by concatenating multiple
 realisations of model intrinsic parameters along an additional image axis.
 
 The corresponding sidecar JSON file may include dictionary field
-"`BootstrapParameters`", descibing those input parameters specific to
+"`BootstrapParameters`", describing those input parameters specific to
 the determination and export of multiple realisations of the model fit
 in each image voxel.
 
