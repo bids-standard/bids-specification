@@ -490,11 +490,3 @@ Below is an example of a spinal cord SEM overview, modified from Zaimi et al., 2
 ![SEM overview](images/microscopy_sem_overview.jpg "SEM overview")
 
 <!-- Link Definitions -->
-
-[strings]: https://www.w3schools.com/js/js_json_datatypes.asp
-[string]: https://www.w3schools.com/js/js_json_datatypes.asp
-[numbers]: https://www.w3schools.com/js/js_json_datatypes.asp
-[number]: https://www.w3schools.com/js/js_json_datatypes.asp
-[arrays]: https://www.w3schools.com/js/js_json_arrays.asp
-[array]: https://www.w3schools.com/js/js_json_arrays.asp
-[uri]: ../02-common-principles.md#uniform-resource-indicator
