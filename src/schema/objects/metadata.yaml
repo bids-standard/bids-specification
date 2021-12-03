@@ -344,15 +344,25 @@ ChunkTransformationMatrix:
     scaling along the second and third axis respectively).
     Note that non-spatial dimensions like time and channel are not included in the
     transformation matrix.
-  type: array
-  minItems: 3
-  maxItems: 4
-  items:
-    type: array
+  anyOf:
+  - type: array
     minItems: 3
+    maxItems: 3
+    items:
+      type: array
+      minItems: 3
+      maxItems: 3
+      tems:
+       type: number
+  - type: array
+    minItems: 4
     maxItems: 4
     items:
-      type: number
+      type: array
+      minItems: 4
+      maxItems: 4
+      items:
+        type: number
 ChunkTransformationMatrixAxis:
   name: ChunkTransformationMatrixAxis
   description: |
@@ -361,6 +371,8 @@ ChunkTransformationMatrixAxis:
   type: array
   items:
     type: string
+    minItems: 2
+    maxItems: 3
 Code:
   name: Code
   description: |
@@ -1581,6 +1593,7 @@ Magnification:
     Lens magnification (for example: `40`). If the file format is OME-TIFF,
     the value MUST be consistent with the `NominalMagnification` OME metadata field.
   type: number
+  exclusiveMinimum: 0
 Manual:
   name: Manual
   description: |
@@ -1771,6 +1784,7 @@ NumericalAperture:
     Lens numerical aperture (for example: `1.4`). If the file format is OME-TIFF,
     the value MUST be consistent with the `LensNA` OME metadata field.
   type: number
+  exclusiveMinimum: 0
 OperatingSystem:
   name: OperatingSystem
   description: |
@@ -1892,7 +1906,7 @@ PhaseEncodingDirection:
 PixelSize:
   name: PixelSize
   description: |
-    A 2- or 3-number array of the physical size of a pixel, either`[PixelSizeX, PixelSizeY]`
+    A 2- or 3-number array of the physical size of a pixel, either `[PixelSizeX, PixelSizeY]`
     or `[PixelSizeX, PixelSizeY, PixelSizeZ]`, where X is the width, Y the height and Z the
     depth.
     If the file format is OME-TIFF, these values need to be consistent with `PhysicalSizeX`,
@@ -1904,6 +1918,7 @@ PixelSize:
   maxItems: 3
   items:
     type: number
+    minimum: 0
 PixelSizeUnits:
   name: PixelSizeUnits
   description: |
@@ -2394,6 +2409,7 @@ SliceThickness:
     Slice thickness of the tissue sample in the unit micrometers (`"um"`) (for example: `5`).
   type: number
   unit: um
+  exclusiveMinimum: 0
 SliceTiming:
   name: SliceTiming
   description: |
