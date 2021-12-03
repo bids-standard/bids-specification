@@ -408,21 +408,18 @@ In this example, there is no scaling and `chunk-01` is at the origin.
 }
 ```
 
-## Required Samples file (`samples.tsv`)
+## Required Samples file
 
-For Microscopy data, the [Samples file](../03-modality-agnostic-files.md#samples-file) `samples.tsv`
-is REQUIRED and its associated sidecar `samples.json` file is RECOMMENDED.
+For Microscopy data, the [Samples file](../03-modality-agnostic-files.md#samples-file)
+`samples.tsv` is REQUIRED and its associated sidecar `samples.json` file is RECOMMENDED.
 
 Additional optional columns MAY be used to describe other samples' attributes.
 
-## Recommended Participants file (`participants.tsv`)
+## Recommended Participants data
 
-As for other data types in BIDS, the [Participants file](../03-modality-agnostic-files.md#participants-file)
-`participants.tsv` is RECOMMENDED and MUST contain the column `participant_id`, and its associated
-sidecar `participants.json` file is RECOMMENDED as well.
-
-For Microscopy data, we RECOMMEND to also make use of the columns `species`, `strain` and
-`strain_rrid` when applicable.
+For Microscopy data, we RECOMMEND to make use of the columns `species`, `strain` and
+`strain_rrid` in the [Participants file](../03-modality-agnostic-files.md#participants-file)
+when applicable.
 
 Additional optional columns MAY be used to describe other subjects' attributes.
 
