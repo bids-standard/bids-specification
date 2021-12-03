@@ -352,8 +352,8 @@ ChunkTransformationMatrix:
       type: array
       minItems: 3
       maxItems: 3
-      tems:
-       type: number
+      items:
+        type: number
   - type: array
     minItems: 4
     maxItems: 4
