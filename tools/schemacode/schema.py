@@ -226,15 +226,17 @@ def _add_entity(filename_template, entity_pattern, requirement_level):
     return filename_template
 
 
-def make_filename_template(schema, **kwargs):
-    """Create codeblocks containing example filename patterns for a given
-    datatype.
+def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
+    """Create codeblocks containing example filename patterns for a given datatype.
 
     Parameters
     ----------
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
+    n_dupes_to_combine : int
+        The minimum number of suffixes/extensions to combine in the template as
+        <suffix>/<extension>.
     kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
@@ -298,7 +300,7 @@ def make_filename_template(schema, **kwargs):
 
             # In cases of large numbers of suffixes,
             # we use the "suffix" variable and expect a table later in the spec
-            if len(group["suffixes"]) > 5:
+            if len(group["suffixes"]) >= n_dupes_to_combine:
                 suffix = "_<suffix>"
                 string += suffix
                 strings = [string]
@@ -314,7 +316,7 @@ def make_filename_template(schema, **kwargs):
                 ext if ext != "*" else ".<extension>" for ext in extensions
             ]
             extensions = utils.combine_extensions(extensions)
-            if len(extensions) > 5:
+            if len(extensions) >= n_dupes_to_combine:
                 # Combine exts when there are many, but keep JSON separate
                 if ".json" in extensions:
                     extensions = [".<extension>", ".json"]

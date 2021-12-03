@@ -35,7 +35,7 @@ The current MACRO list ".ome.btf", ".png" and ".tif[.ome]", is it possible to ha
 If not, ".tif" and ".ome.tif" should be 2 separate lines but are concatenated as ".tif[.ome]"
 -->
 {{ MACROS___make_filename_template(datatypes=["micr"], suffixes=["TEM", "SEM", "uCT", "BF", "DF",
-"PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM"]) }}
+"PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM"], n_dupes_to_combine=3) }}
 
 Microscopy data MUST be stored in the `micr` directory.
 
@@ -459,7 +459,7 @@ sub-<label>/
 ```
 The current MACRO list ".jpg", ".png" and ".tif", is it possible to have one line with "<extension>" instead?
 -->
-{{ MACROS___make_filename_template(datatypes=["micr"], suffixes=["photo"]) }}
+{{ MACROS___make_filename_template(datatypes=["micr"], suffixes=["photo"], n_dupes_to_combine=3) }}
 
 The file `<extension>` for photos MUST be either `.jpg`, `.png` or `.tif`.
 
