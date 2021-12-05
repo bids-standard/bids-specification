@@ -105,6 +105,9 @@ misunderstanding we clarify them here.
     The modality may overlap with, but should not be confused with
     the **data type**.
 
+1.  **Entity** - a portion of a file name, consisting of a **key** and corresponding
+    **value** separated by a hyphen.
+
 1.  **`<index>`** - a nonnegative integer, possibly prefixed with arbitrary number of
     0s for consistent indentation, for example, it is `01` in `run-01` following
     `run-<index>` specification.
