@@ -444,7 +444,7 @@ Contents of file "sub-01/func/sub-01_task-rest_acq-longtr_bold.json":
 ) }}
 
 When reading image `sub-01/func/sub-01_task-rest_acq-default_bold.nii.gz`, only
-metadata file `task-rest_bold.json` is read; file 
+metadata file `task-rest_bold.json` is read; file
 `sub-01/func/sub-01_task-rest_acq-longtr_bold.json` is inapplicable as it contains
 entity "`acq-longtr`" that is absent from the image path. When reading image
 `sub-01/func/sub-01_task-rest_acq-longtr_bold.nii.gz`, metadata file
