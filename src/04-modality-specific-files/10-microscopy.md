@@ -13,8 +13,8 @@ update to 'https://github.com/bids-standard/bids-examples' when examples are mer
 -->
 Microscopy datasets formatted using this specification are available on the
 [BIDS examples repository](https://github.com/neuropoly/bids-examples/tree/bep031)
-(`microscopy_SEM001` and `microscopy_SPIM001`) and can be used for practical
-guidance when curating a new dataset.
+(`micr_SEM` and `micr_SPIM`) and can be used for practical guidance when curating
+a new dataset.
 
 Further Microscopy datasets are available:
 
