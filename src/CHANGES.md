@@ -2,8 +2,15 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] fix "CircleCI redirector" GH-action: remove the 2nd (sanity) check [#944](https://github.com/bids-standard/bids-specification/pull/944) ([yarikoptic](https://github.com/yarikoptic))
+-   \[FIX] Typo: ECG_headshape [#942](https://github.com/bids-standard/bids-specification/pull/942) ([Moo-Marc](https://github.com/Moo-Marc))
+-   \[FIX] description: dwi is specialized T2 weighting, not T2\* [#939](https://github.com/bids-standard/bids-specification/pull/939) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] expand submenus on landing page automatically [#937](https://github.com/bids-standard/bids-specification/pull/937) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Add links from derivatives section to entity list [#936](https://github.com/bids-standard/bids-specification/pull/936) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Remove repeated words [#934](https://github.com/bids-standard/bids-specification/pull/934) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA/FIX] Use string concatenation in table macro [#933](https://github.com/bids-standard/bids-specification/pull/933) ([effigies](https://github.com/effigies))
 -   \[INFRA] Run linkchecker in stock docker image [#932](https://github.com/bids-standard/bids-specification/pull/932) ([effigies](https://github.com/effigies))
+-   \[INFRA] add (optional) pre-commit config file [#929](https://github.com/bids-standard/bids-specification/pull/929) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Clarify that EDF/BDF files MUST have lower case extensions in BIDS [#927](https://github.com/bids-standard/bids-specification/pull/927) ([adam2392](https://github.com/adam2392))
 -   \[ENH] add `hemi` entity to schema [#917](https://github.com/bids-standard/bids-specification/pull/917) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[INFRA] PDF version of spec: fix handling of internal links [#915](https://github.com/bids-standard/bids-specification/pull/915) ([sappelhoff](https://github.com/sappelhoff))
