@@ -61,31 +61,6 @@ as a successor to OME-TIFF for better remote sharing of large datasets.
 
 ### Modality suffixes
 Microscopy data currently support the following imaging modalities:
-<!---
-Intended table:
-
-| **Name**                                      | `suffix` |
-| --------------------------------------------- | -------- |
-| Transmission electron microscopy              | TEM      |
-| Scanning electron microscopy                  | SEM      |
-| Micro-CT                                      | uCT      |
-| Bright-field microscopy                       | BF       |
-| Dark-field microscopy                         | DF       |
-| Phase-contrast microscopy                     | PC       |
-| Differential interference contrast microscopy | DIC      |
-| Fluorescence microscopy                       | FLUO     |
-| Confocal microscopy                           | CONF     |
-| Polarized-light microscopy                    | PLI      |
-| Coherent anti-Stokes Raman spectroscopy       | CARS     |
-| 2-photon excitation microscopy                | 2PE      |
-| Multi-photon excitation microscopy            | MPE      |
-| Super-resolution microscopy                   | SR       |
-| Nonlinear optical microscopy                  | NLO      |
-| Optical coherence tomography                  | OCT      |
-| Selective plane illumination microscopy       | SPIM     |
-
-Can we remove the "Description" column of the table in the MACRO?
--->
 
 {{ MACROS___make_suffix_table(
       [
