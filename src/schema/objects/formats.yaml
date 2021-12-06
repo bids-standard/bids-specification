@@ -4,47 +4,47 @@
 label:
   description: |
     Freeform labels without special characters.
-  pattern: "[0-9a-zA-Z]+"
+  pattern: '[0-9a-zA-Z]+'
 index:
   description: |
     Non-negative, non-zero integers, optionally prefixed with leading zeros for sortability.
     An index may not be all zeros.
-  pattern: "[0-9]*[1-9]+[0-9]*"
+  pattern: '[0-9]*[1-9]+[0-9]*'
 # Metadata types
 string:
   description: |
     The basic string type (not a specific format).
     This should allow any free-form string.
-  pattern: ".*"
+  pattern: '.*'
 integer:
   description: |
     An integer which may be positive or negative.
-  pattern: "[+-]?\d+"
+  pattern: '[+-]?\d+'
 number:
   description: |
     A number which may be an integer or float, positive or negative.
-  pattern: "[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)"
+  pattern: '[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)'
 boolean:
   description: |
     A boolean.
     Must be either "true" or "false".
-  pattern: "(true|false)"
+  pattern: '(true|false)'
 # String formats
 date:
   description: |
     A date in the form `"YYYY-MM-DD[Z]"`,
     where [Z] is an optional, valid timezone code.
-  pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}?([A-Z]{3,4})"
+  pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}?([A-Z]{3,4})'
 datetime:
   description: |
     A datetime in the form `"YYYY-MM-DDThh:mm:ss[.000000][Z]"`,
     where [.000000] is an optional subsecond resolution between 1 and 6 decimal points,
     and [Z] is an optional, valid timezone code.
-  pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}?(\.[0-9]{1,6})?([A-Z]{3,4})"
+  pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}?(\.[0-9]{1,6})?([A-Z]{3,4})'
 time:
   description: |
     A time in the form `"hh:mm:ss"`.
-  pattern: "(?:2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]"
+  pattern: '(?:2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]'
 unit:
   description: |
     A unit.
@@ -54,7 +54,7 @@ unit:
     Currently this matches any string.
 
     TODO: Somehow reference the actual unit options in the Units appendix.
-  pattern: ".*"
+  pattern: '.*'
 stimuli_relative:
   description: |
     A path to a stimulus file, relative to a `/stimuli` folder somewhere.
@@ -63,7 +63,7 @@ stimuli_relative:
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path) or "stimuli/"
     (a relative path starting with the stimuli folder, rather than relative to that folder).
-  pattern: "(?!/)(?!stimuli/)[0-9a-zA-Z/\_\-\.]+"
+  pattern: '(?!/)(?!stimuli/)[0-9a-zA-Z/\_\-\.]+'
 dataset_relative:
   description: |
     A path to a file, relative to the dataset folder.
@@ -71,7 +71,7 @@ dataset_relative:
     The validation for this format is minimal.
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path).
-  pattern: "(?!/)[0-9a-zA-Z/\_\-\.]+"
+  pattern: '(?!/)[0-9a-zA-Z/\_\-\.]+'
 participant_relative:
   description: |
     A path to a file, relative to the participant's folder in the dataset.
@@ -80,15 +80,15 @@ participant_relative:
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path) or "sub/"
     (a relative path starting with the participant folder, rather than relative to that folder).
-  pattern: "(?!/)(?!sub-)[0-9a-zA-Z/\_\-\.]+"
+  pattern: '(?!/)(?!sub-)[0-9a-zA-Z/\_\-\.]+'
 rrid:
   description: |
     A [research resource identifier](https://scicrunch.org/resources).
-  pattern: "RRID:.+_.+"
+  pattern: 'RRID:.+_.+'
 uri:
   description: |
     A uniform resource indicator.
-  pattern: "(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"
+  pattern: '(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?'
 bids_uri:
   description: |
     A BIDS uniform resource indicator.
@@ -96,4 +96,4 @@ bids_uri:
     The validation for this format is minimal.
     It simply ensures that the value is a string with any characters that may appear in a valid URI,
     starting with "bids:".
-  pattern: "bids:[0-9a-zA-Z/#:\?\_\-\.]+"
+  pattern: 'bids:[0-9a-zA-Z/#:\?\_\-\.]+'
