@@ -22,20 +22,9 @@ Further Microscopy datasets are available:
 -   In OME-TIFF format: [`Broca's Area Light-Sheet Microscopy`](https://doi.org/10.5281/zenodo.5517223)
 
 ## Microscopy imaging data
-<!---
-Intended template:
-```Text
-sub-<label>/
-    [ses-<label>/]
-        micr/
-            sub-<label>[_ses-<label>]_sample-<label>[_acq-<label>][_stain-<label>][_run-<index>][_chunk-<index>]_<suffix>.<extension>
-            sub-<label>[_ses-<label>]_sample-<label>[_acq-<label>][_stain-<label>][_run-<index>][_chunk-<index>]_<suffix>.json
-```
-The current MACRO list ".ome.btf", ".png" and ".tif[.ome]", is it possible to have "<extension>" instead?
-If not, ".tif" and ".ome.tif" should be 2 separate lines but are concatenated as ".tif[.ome]"
--->
+
 {{ MACROS___make_filename_template(datatypes=["micr"], suffixes=["TEM", "SEM", "uCT", "BF", "DF",
-"PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM"], n_dupes_to_combine=3) }}
+"PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM"], n_dupes_to_combine=4) }}
 
 Microscopy data MUST be stored in the `micr` directory.
 
@@ -449,16 +438,7 @@ sub-02 mus musculus C57BL/6J RRID:IMSR_JAX:000664
 Photos of the tissue sample, overview microscopy scans or blockface images from cutting
 MAY be included for visualization of large samples or to indicate the location of chunks
 in a sample.
-<!---
-Intended template:
-```Text
-sub-<label>/
-    [ses-<label>/]
-        micr/
-            sub-<label>[_ses-<label>]_sample-<label>[_acq-<label>]_photo.<extension>
-```
-The current MACRO list ".jpg", ".png" and ".tif", is it possible to have one line with "<extension>" instead?
--->
+
 {{ MACROS___make_filename_template(datatypes=["micr"], suffixes=["photo"], n_dupes_to_combine=3) }}
 
 The file `<extension>` for photos MUST be either `.jpg`, `.png` or `.tif`.
