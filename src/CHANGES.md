@@ -5,6 +5,7 @@
 -   \[INFRA] fix "CircleCI redirector" GH-action: remove the 2nd (sanity) check [#944](https://github.com/bids-standard/bids-specification/pull/944) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] Typo: ECG_headshape [#942](https://github.com/bids-standard/bids-specification/pull/942) ([Moo-Marc](https://github.com/Moo-Marc))
 -   \[FIX] description: dwi is specialized T2 weighting, not T2\* [#939](https://github.com/bids-standard/bids-specification/pull/939) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] relax unrealistically strict requirements with ieeg channels.tsv 'name' column [#938](https://github.com/bids-standard/bids-specification/pull/938) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] expand submenus on landing page automatically [#937](https://github.com/bids-standard/bids-specification/pull/937) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Add links from derivatives section to entity list [#936](https://github.com/bids-standard/bids-specification/pull/936) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Remove repeated words [#934](https://github.com/bids-standard/bids-specification/pull/934) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
