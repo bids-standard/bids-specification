@@ -204,7 +204,7 @@ def describe_valid_values(definition):
         A sentence describing valid values for the object.
     """
     description = ""
-    if "anyOf" in description.keys():
+    if "anyOf" in definition.keys():
         return description
 
     if definition["type"] == "boolean":
