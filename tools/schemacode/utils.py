@@ -190,6 +190,9 @@ def resolve_metadata_type(definition):
 def describe_valid_values(definition):
     """Build a sentence describing valid values for an object from its definition.
 
+    This only covers booleans, enums, integers, and numbers.
+    Currently uncovered are anyOfs, arrays, and objects.
+
     Parameters
     ----------
     definition : :obj:`dict`
@@ -200,9 +203,6 @@ def describe_valid_values(definition):
     :obj:`str`
         A sentence describing valid values for the object.
     """
-    if "anyOf" in definition.keys():
-        return "Value restrictions are too complicated to infer automatically."
-
     description = ""
 
     if definition["type"] == "boolean":
@@ -217,15 +217,6 @@ def describe_valid_values(definition):
             ]
             enum_values = [f'`"{v}"`' for v in enum_values]
             description = f"Must be one of: {', '.join(enum_values)}."
-
-        elif "pattern" in definition.keys():
-            description = f"Must follow the pattern `{definition['pattern']}`."
-
-        elif "format" in definition.keys():
-            description = f"Must follow BIDS rules for the `{definition['format']}` format."
-
-        else:
-            description = None
 
     elif definition["type"] in ("integer", "number"):
         if "minimum" in definition.keys():
@@ -254,27 +245,6 @@ def describe_valid_values(definition):
         if minmaxstr:
             description = f"Must be a number {minmaxstr}."
         else:
-            description = None
-
-    elif definition["type"] == "array":
-        min_items = definition.get("minItems", 0)
-        max_items = definition.get("maxItems", -1)
-
-        if min_items == max_items:
-            description = f"Must be an array with {min_items} elements."
-        elif (min_items > 0) and (max_items != -1):
-            description = f"Must be an array with between {min_items} and {max_items} elements."
-        elif min_items > 0:
-            description = f"Must be an array with at least {min_items} elements."
-        elif max_items != -1:
-            description = f"Must be an array with, at most, {max_items} elements."
-
-        item_description = describe_valid_values(definition["items"])
-        if item_description:
-            item_description = item_description[0].lower() + item_description[1:]
-            description += f" Each element in the array {item_description}"
-
-    if description == "":
-        description = "Possible values: who knows?"
+            description = ""
 
     return description
