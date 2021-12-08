@@ -349,7 +349,7 @@ required metadata field (second column).
 
 A derived qMRI application becomes available if all the optional metadata fields
 listed for the respective file collection suffix are provided for the data. In addition,
-conditional rules based on the value of a given required metada field can be set
+conditional rules based on the value of a given required metadata field can be set
 for the description of a derived qMRI application. Note that the value of this
 required metadata is fixed across constituent images of a file collection and defined
 in [Method-specific priority levels for qMRI file collections](#method-specific-priority-levels-for-qmri-file-collections).
