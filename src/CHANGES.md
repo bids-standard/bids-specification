@@ -3,6 +3,7 @@
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
 -   \[FIX] Spelling errors in appendices [#951](https://github.com/bids-standard/bids-specification/pull/951) ([Lestropie](https://github.com/Lestropie))
+-   \[FIX] Broken hyperlink in entity list file [#949](https://github.com/bids-standard/bids-specification/pull/949) ([Lestropie](https://github.com/Lestropie))
 -   \[INFRA] fix "CircleCI redirector" GH-action: remove the 2nd (sanity) check [#944](https://github.com/bids-standard/bids-specification/pull/944) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] Typo: ECG_headshape [#942](https://github.com/bids-standard/bids-specification/pull/942) ([Moo-Marc](https://github.com/Moo-Marc))
 -   \[FIX] description: dwi is specialized T2 weighting, not T2\* [#939](https://github.com/bids-standard/bids-specification/pull/939) ([sappelhoff](https://github.com/sappelhoff))
