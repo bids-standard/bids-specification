@@ -106,7 +106,10 @@ misunderstanding we clarify them here.
     the **data type**.
 
 1.  **Entity** - a portion of a file name, consisting of a **key** and corresponding
-    **value** separated by a hyphen.
+    **value** separated by a hyphen. Supported entities are defined in
+    [Appendix IX](99-appendices/09-entities.md); further, whether they are allowed,
+    OPTIONAL or REQUIRED for various data files, as well as their relative ordering,
+    are defined in the Entity Table in [Appendix IV](99-appendices/04-entity-table.md).
 
 1.  **`<index>`** - a nonnegative integer, possibly prefixed with arbitrary number of
     0s for consistent indentation, for example, it is `01` in `run-01` following
