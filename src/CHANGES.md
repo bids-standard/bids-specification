@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] Add Eric Earl as a Maintainer [#953](https://github.com/bids-standard/bids-specification/pull/953) ([ericearl](https://github.com/ericearl))
 -   \[FIX] Spelling errors in appendices [#951](https://github.com/bids-standard/bids-specification/pull/951) ([Lestropie](https://github.com/Lestropie))
 -   \[FIX] Broken hyperlink in entity list file [#949](https://github.com/bids-standard/bids-specification/pull/949) ([Lestropie](https://github.com/Lestropie))
 -   \[INFRA] fix "CircleCI redirector" GH-action: remove the 2nd (sanity) check [#944](https://github.com/bids-standard/bids-specification/pull/944) ([yarikoptic](https://github.com/yarikoptic))
