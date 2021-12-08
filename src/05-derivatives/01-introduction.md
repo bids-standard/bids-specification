@@ -58,7 +58,7 @@ in [Derived dataset and pipeline description][derived-dataset-description].
 
 -   When necessary to distinguish two files that do not otherwise have a
     distinguishing entity, the [`_desc-<label>`](../99-appendices/09-entities.md#desc)
-    keyword-value SHOULD be used.
+    entity SHOULD be used.
     This includes the cases of needing to distinguish both differing inputs and
     differing outputs (for example, `_desc-T1w` and `_desc-T2w` to distinguish
     brain mask files derived from T1w and T2w images;

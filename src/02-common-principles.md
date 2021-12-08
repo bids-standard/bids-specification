@@ -13,7 +13,7 @@ misunderstanding we clarify them here.
     purpose of a particular study. A dataset consists of data acquired from one
     or more subjects, possibly from multiple sessions.
 
-1.  **Subject** - a person or animal participating in the study.  Used
+1.  **Subject** - a person or animal participating in the study. Used
     interchangeably with term **Participant**.
 
 1.  **Session** - a logical grouping of neuroimaging and behavioral data
@@ -34,7 +34,7 @@ misunderstanding we clarify them here.
 
 1.  **Sample** - a sample pertaining to a subject such as tissue, primary cell
     or cell-free sample.
-    The `sample-<label>` key/value pair is used to distinguish between different
+    The `sample-<label>` **entity** is used to distinguish between different
     samples from the same subject.
     The label MUST be unique per subject and is RECOMMENDED to be unique
     throughout the dataset.
@@ -120,8 +120,8 @@ misunderstanding we clarify them here.
     following `task-<label>` specification. Note that labels MUST not collide when
     casing is ignored (see [Case collision intolerance](#case-collision-intolerance)).
 
-1.  **`suffix`** - an alphanumeric value, located after the `key-value_` pairs (thus after
-    the final `_`), right before the **File extension**, for example, it is `eeg` in
+1.  **`suffix`** - an alphanumeric value, located after all **entities** and following
+    a final `_`, right before the **file extension**; for example, it is `eeg` in
     `sub-05_task-matchingpennies_eeg.vhdr`.
 
 1.  **File extension** - a portion of the file name after the left-most
@@ -155,8 +155,7 @@ specification.
 
 ## File name structure
 
-A file name consists of a chain of *entities*, or key-value pairs, a *suffix* and an
-*extension*.
+A file name consists of a chain of *entities*, a *suffix* and an *extension*.
 Two prominent examples of entities are `subject` and `session`.
 
 For a data file that was collected in a given `session` from a given
@@ -175,7 +174,7 @@ be added for all subjects if at least one subject in the dataset has more than
 one session.
 If a `/ses-<label>` subfolder is included as part of the directory hierarchy,
 then the same [`ses-<label>`](./99-appendices/09-entities.md#ses)
-key/value pair MUST also be included as part of the file names themselves.
+entity MUST also be included as part of the file names themselves.
 Acquisition time of session can
 be defined in the [sessions file](03-modality-agnostic-files.md#sessions-file).
 
@@ -414,9 +413,9 @@ levels unless they are overridden by a file at the lower level. For example,
 TR to a specific value. If one of the runs has a different TR than the one
 specified in that file, another `sub-*_task-rest_bold.json` file can be placed
 within that specific series directory specifying the TR for that specific run.
-There is no notion of "unsetting" a key/value pair.
-Once a key/value pair is set in a given level in the dataset, lower down in
-the hierarchy that key/value pair will always have some assigned value.
+There is no notion of "unsetting" a key-value pair.
+Once a key-value pair is set in a given level in the dataset, lower down in
+the hierarchy that key-value pair will always have some assigned value.
 Files for a particular participant can exist only at participant level directory,
 that is, `/dataset/sub-*[/ses-*]/sub-*_T1w.json`. Similarly, any file that is not
 specific to a participant is to be declared only at top level of dataset for example:
@@ -496,8 +495,8 @@ with different value in the
 deeper level, that value will be applicable for that particular run/task NIfTI
 file/s. In other words, the `.json` file at the deeper level overrides values
 that are potentially also defined in the `.json` at a more shallow level. If the
-`.json` file at the more shallow level contains key-value-pairs that are not
-present in the `.json` file at the deeper level, these key-value-pairs are
+`.json` file at the more shallow level contains key-value pairs that are not
+present in the `.json` file at the deeper level, these key-value pairs are
 inherited by the `.json` file at the deeper level (but NOT vice versa!).
 
 ### Good practice recommendations
@@ -607,9 +606,9 @@ Example:
 }
 ```
 
-### Key/value files (dictionaries)
+### Key-value files (dictionaries)
 
-JavaScript Object Notation (JSON) files MUST be used for storing key/value
+JavaScript Object Notation (JSON) files MUST be used for storing key-value
 pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
 format can be found at [https://www.json.org/](https://www.json.org/),
 and at [https://tools.ietf.org/html/std90](https://tools.ietf.org/html/std90).
@@ -664,7 +663,7 @@ of `<index>`es.
 Please note that a given label or index is distinct from the "prefix"
 it refers to. For example `sub-01` refers to the `sub` entity (a
 subject) with the label `01`. The `sub-` prefix is not part of the subject
-label, but must be included in file names (similarly to other key names).
+label, but must be included in file names (similarly to other entities).
 
 ## Uniform Resource Indicator
 
