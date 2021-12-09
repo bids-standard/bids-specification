@@ -5,6 +5,8 @@ theme:
     custom_dir: theme_customizations/
     favicon: images/favicon.png
     logo: images/logo.png
+    features:
+      - navigation.sections
 extra_javascript:
     - js/jquery-3.6.0.min.js
 markdown_extensions:
