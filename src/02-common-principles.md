@@ -400,16 +400,17 @@ datasets and non-compliant derivatives.
 
 ## The Inheritance Principle
 
-Any metadata file (such as `.json`, `.bvec` or `.tsv`) MAY be defined at any
-directory level. For any given data file, any metadata file at that directory
-level or higher that does not include any entities absent from the name of the
-data file and possesses the same suffix are applicable to that data file. Such
-files are loaded from the top of the directory hierarchy downwards, such that
-values from the top level are inherited by all data files at lower levels to
-which it is applicable unless overridden by a value for the same key present
-in another metadata file at a lower level (though it is RECOMMENDED to minimise
-the extent of such overrides). There is no notion of "unsetting" a
-key/value pair.
+- Any metadata file (such as `.json`, `.bvec` or `.tsv`) MAY be defined at any directory level. 
+- For a given data file, any metadata file at that directory level or higher 
+is applicable to that data file if:
+  - the metadata and the data filenames possess the same suffix,
+  - the metadata filename does not include any entity absent from the data filename. 
+- Such files are loaded from the top of the directory hierarchy downwards, 
+such that values from the top level are inherited by all data files 
+at lower levels to which it is applicable unless overridden 
+by a value for the same key present in another metadata file at a lower level 
+(though it is RECOMMENDED to minimise the extent of such overrides). 
+- There is no notion of "unsetting" a key/value pair.
 
 Example 1: Demonstration of inheritance principle
 
