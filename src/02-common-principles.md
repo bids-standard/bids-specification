@@ -398,141 +398,6 @@ In particular, if a BIDS dataset contains a `derivatives/` sub-directory,
 the contents of that directory may be a heterogeneous mix of BIDS Derivatives
 datasets and non-compliant derivatives.
 
-## The Inheritance Principle
-
-1.  Any metadata file (such as `.json`, `.bvec` or `.tsv`) MAY be defined at any directory level.
-1.  For a given data file, any metadata file is applicable to that data file if:
-    1.  It is stored at the same directory level or higher;
-    1.  The metadata and the data filenames possess the same suffix;
-    1.  The metadata filename does not include any entity absent from the data filename.
-1.  A metadata file MUST NOT have a file name that would be otherwise applicable
-    to some data file based on rules 2.2 and 2.3 but is made inapplicable based on its
-    location in the directory structure as per rule 2.1.
-1.  There MUST NOT be multiple metadata files applicable to a data file at one level
-    of the directory hierarchy.
-1.  If multiple metadata files are applicable to a given data file:
-    1.  For [tabular files](#tabular-files) and other simple metadata files
-        (e.g. [`bvec` / `bval` files for diffusion MRI](#04-modality-specific-files/01-magnetic-resonance-imaging#required-gradient-orientation-information),
-        only the file lowest in the filesystem hierarchy SHALL be treated as being
-        associated with that data file.
-    1.  For [JSON files](#key-value-files-dictionaries):
-        1.  Files are loaded from the top of the directory hierarchy downwards,
-            such that values from the top level are inherited by all data files
-            at lower levels to which it is applicable unless overridden
-            by a value for the same key present in another metadata file at a lower level
-            (though it is RECOMMENDED to minimise the extent of such overrides).
-        1.  There is no notion of "unsetting" a key/value pair.
-
-Corollaries:
-
-1.  As per rule 3, metadata files applicable only to a specific participant / session
-    MUST be defined in or below the directory corresponding to that participant / session;
-    similarly, a metadata file that is applicable to multiple participants / sessions
-    MUST NOT be placed within a directory corresponding to only one such participant / session.
-1.  It is permissible for a single metadata file to be applicable to multiple data
-    files at that level of the hierarchy. Where such metadata content is consistent
-    across multiple data files, it is RECOMMENDED to store metadata in this
-    way, rather than duplicating that metadata content across multiple metadata files.
-
-Example 1: Demonstration of inheritance principle
-
-{{ MACROS___make_filetree_example(
-    {
-    "sub-01": {
-        "func": {
-            "sub-01_task-rest_acq-default_bold.nii.gz": "",
-            "sub-01_task-rest_acq-longtr_bold.nii.gz": "",
-            "sub-01_task-rest_acq-longtr_bold.json": "",
-            }
-        }
-    }
-    "task-rest_bold.json": "",
-) }}
-
-Contents of file "task-rest_bold.json":
-
-{{ MACROS___make_metadata_table(
-   {
-        "EchoTime": 40.0,
-        "RepetitionTime", 1000.0
-   }
-) }}
-
-Contents of file "sub-01/func/sub-01_task-rest_acq-longtr_bold.json":
-
-{{ MACROS___make_metadata_table(
-   {
-        "RepetitionTime", 3000.0
-   }
-) }}
-
-When reading image `sub-01/func/sub-01_task-rest_acq-default_bold.nii.gz`, only
-metadata file `task-rest_bold.json` is read; file
-`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` is inapplicable as it contains
-entity "`acq-longtr`" that is absent from the image path (rule 2.3). When reading image
-`sub-01/func/sub-01_task-rest_acq-longtr_bold.nii.gz`, metadata file
-`task-rest_bold.json` at the top level is read first, followed by file
-`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` at the bottom level (rule 5.2.1);
-the value for field "`RepetitionTime`" is therefore overridden to the value 3000.0.
-The value for field "`EchoTime`" remains applicable to that image, and is not unset by its
-absence in the metadata file at the lower level (rule 5.2.2).
-
-Example 2: Impermissible use of multiple metadata files at one directory level (rule 4)
-
-{{ MACROS___make_filetree_example(
-    {
-    "sub-01": {
-        "ses-test":{
-            "anat": {
-                "sub-01_ses-test_T1w.nii.gz": "",
-                },
-            "func": {
-                "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz": "",
-                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz": "",
-                "sub-01_ses-test_task-overtverbgeneration_bold.json": "",
-                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.json": "",
-                }
-            }
-        }
-    }
-) }}
-
-Example 3: Modification of filesystem structure from Example 2 to satisfy inheritance
-principle requirements
-
-{{ MACROS___make_filetree_example(
-    {
-    "sub-01": {
-        "ses-test":{
-            "sub-01_ses-test_task-overtverbgeneration_bold.json": "",
-            "anat": {
-                "sub-01_ses-test_T1w.nii.gz": "",
-                },
-            "func": {
-                "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz": "",
-                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz": "",
-                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.json": "",
-                }
-            }
-        }
-    }
-) }}
-
-Example 4: Single metadata file applying to multiple data files (corollary 2)
-
-{{ MACROS___make_filetree_example(
-    {
-    "sub-01": {
-        "anat": {},
-        "func": {
-            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
-            "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz": "",
-            "sub-01_task-xyz_acq-test1_bold.json": "",
-            }
-        }
-    }
-) }}
-
 ## File Formation specification
 
 ### Imaging files
@@ -674,6 +539,141 @@ for more information.
   }
 }
 ```
+
+## The Inheritance Principle
+
+1.  Any metadata file (such as `.json`, `.bvec` or `.tsv`) MAY be defined at any directory level.
+1.  For a given data file, any metadata file is applicable to that data file if:
+    1.  It is stored at the same directory level or higher;
+    1.  The metadata and the data filenames possess the same suffix;
+    1.  The metadata filename does not include any entity absent from the data filename.
+1.  A metadata file MUST NOT have a file name that would be otherwise applicable
+    to some data file based on rules 2.2 and 2.3 but is made inapplicable based on its
+    location in the directory structure as per rule 2.1.
+1.  There MUST NOT be multiple metadata files applicable to a data file at one level
+    of the directory hierarchy.
+1.  If multiple metadata files are applicable to a given data file:
+    1.  For [tabular files](#tabular-files) and other simple metadata files
+        (e.g. [`bvec` / `bval` files for diffusion MRI](#04-modality-specific-files/01-magnetic-resonance-imaging#required-gradient-orientation-information),
+        only the file lowest in the filesystem hierarchy SHALL be treated as being
+        associated with that data file.
+    1.  For [JSON files](#key-value-files-dictionaries):
+        1.  Files are loaded from the top of the directory hierarchy downwards,
+            such that values from the top level are inherited by all data files
+            at lower levels to which it is applicable unless overridden
+            by a value for the same key present in another metadata file at a lower level
+            (though it is RECOMMENDED to minimise the extent of such overrides).
+        1.  There is no notion of "unsetting" a key/value pair.
+
+Corollaries:
+
+1.  As per rule 3, metadata files applicable only to a specific participant / session
+    MUST be defined in or below the directory corresponding to that participant / session;
+    similarly, a metadata file that is applicable to multiple participants / sessions
+    MUST NOT be placed within a directory corresponding to only one such participant / session.
+1.  It is permissible for a single metadata file to be applicable to multiple data
+    files at that level of the hierarchy. Where such metadata content is consistent
+    across multiple data files, it is RECOMMENDED to store metadata in this
+    way, rather than duplicating that metadata content across multiple metadata files.
+
+Example 1: Demonstration of inheritance principle
+
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "func": {
+            "sub-01_task-rest_acq-default_bold.nii.gz": "",
+            "sub-01_task-rest_acq-longtr_bold.nii.gz": "",
+            "sub-01_task-rest_acq-longtr_bold.json": "",
+            }
+        }
+    }
+    "task-rest_bold.json": "",
+) }}
+
+Contents of file "task-rest_bold.json":
+
+{{ MACROS___make_metadata_table(
+   {
+        "EchoTime": 40.0,
+        "RepetitionTime", 1000.0
+   }
+) }}
+
+Contents of file "sub-01/func/sub-01_task-rest_acq-longtr_bold.json":
+
+{{ MACROS___make_metadata_table(
+   {
+        "RepetitionTime", 3000.0
+   }
+) }}
+
+When reading image `sub-01/func/sub-01_task-rest_acq-default_bold.nii.gz`, only
+metadata file `task-rest_bold.json` is read; file
+`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` is inapplicable as it contains
+entity "`acq-longtr`" that is absent from the image path (rule 2.3). When reading image
+`sub-01/func/sub-01_task-rest_acq-longtr_bold.nii.gz`, metadata file
+`task-rest_bold.json` at the top level is read first, followed by file
+`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` at the bottom level (rule 5.2.1);
+the value for field "`RepetitionTime`" is therefore overridden to the value 3000.0.
+The value for field "`EchoTime`" remains applicable to that image, and is not unset by its
+absence in the metadata file at the lower level (rule 5.2.2).
+
+Example 2: Impermissible use of multiple metadata files at one directory level (rule 4)
+
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "ses-test":{
+            "anat": {
+                "sub-01_ses-test_T1w.nii.gz": "",
+                },
+            "func": {
+                "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz": "",
+                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz": "",
+                "sub-01_ses-test_task-overtverbgeneration_bold.json": "",
+                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.json": "",
+                }
+            }
+        }
+    }
+) }}
+
+Example 3: Modification of filesystem structure from Example 2 to satisfy inheritance
+principle requirements
+
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "ses-test":{
+            "sub-01_ses-test_task-overtverbgeneration_bold.json": "",
+            "anat": {
+                "sub-01_ses-test_T1w.nii.gz": "",
+                },
+            "func": {
+                "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz": "",
+                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz": "",
+                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.json": "",
+                }
+            }
+        }
+    }
+) }}
+
+Example 4: Single metadata file applying to multiple data files (corollary 2)
+
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "anat": {},
+        "func": {
+            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_bold.json": "",
+            }
+        }
+    }
+) }}
 
 ## Participant names and other labels
 
