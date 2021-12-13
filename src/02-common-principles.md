@@ -578,7 +578,7 @@ Corollaries:
     similarly, a metadata file that is applicable to multiple participants / sessions
     MUST NOT be placed within a directory corresponding to only one such participant / session.
 1.  It is permissible for a single metadata file to be applicable to multiple data
-    files at that level of the hierarchy. Where such metadata content is consistent
+    files at that level of the hierarchy or below. Where such metadata content is consistent
     across multiple data files, it is RECOMMENDED to store metadata in this
     way, rather than duplicating that metadata content across multiple metadata files.
 
