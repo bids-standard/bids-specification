@@ -151,7 +151,18 @@ def get_link(string):
 
 
 def resolve_metadata_type(definition):
-    """Generate string of metadata type from dictionary."""
+    """Generate string of metadata type from dictionary.
+
+    Parameters
+    ----------
+    definition : :obj:`dict`
+        A schema object definition for a metadata term.
+
+    Returns
+    -------
+    string : :obj:`str`
+        A string describing the valid value types for the metadata term.
+    """
     if "type" in definition.keys():
         string = get_link(definition["type"])
 
