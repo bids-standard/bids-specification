@@ -1,8 +1,6 @@
 ---
-# This file describes folders that may appear within a dataset folder
-# without following BIDS rules.
-# Information about whether these folders are required or not is present in
-# `rules/associated_data.yaml`.
+# This file describes folders that may appear within a dataset folder without following BIDS rules.
+# Information about whether these folders are required or not is present in `rules/associated_data.yaml`.
 code:
   name: Code
   description: |
