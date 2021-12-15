@@ -17,9 +17,7 @@ exclude = '''
     | build
     | dist
   )/
-  | get_version.py
   | versioneer.py
-  | schemacode/info.py
   | schemacode/_version.py
 )
 '''

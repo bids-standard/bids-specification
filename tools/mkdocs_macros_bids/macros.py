@@ -8,7 +8,6 @@ code_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(code_path)
 
 from examplecode import example
-from schemacode import schema, utils
 
 
 def make_filename_template(**kwargs):
@@ -83,7 +82,7 @@ def make_glossary():
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    text = schema.make_glossary(schema_obj)
+    text = render.make_glossary(schema_obj)
     return text
 
 
@@ -153,7 +152,7 @@ def make_columns_table(column_info):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = schema.make_columns_table(schema_obj, column_info)
+    table = render.make_columns_table(schema_obj, column_info)
     return table
 
 
