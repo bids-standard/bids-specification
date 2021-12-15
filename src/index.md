@@ -4,7 +4,7 @@ The Brain Imaging Data Structure (BIDS) is a simple and intuitive way to
 organize and describe data.
 
 This document defines the BIDS specification, which provides all of the details
-to implement BIDS. It includes the core specification as well as many extensions
+to implement the standard. It includes the core specification as well as many extensions
 to specific brain imaging modalities, and increasingly also to other kinds of
 data.
 
