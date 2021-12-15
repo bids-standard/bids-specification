@@ -62,6 +62,6 @@ nav:
         - Glossary: 99-appendices/14-glossary.md
       - Changelog: CHANGES.md
     - The BIDS Starter Kit:
+      - Website: https://bids-standard.github.io/bids-starter-kit
+      - Tutorials: https://bids-standard.github.io/bids-starter-kit/tutorials/tutorials.html
       - GitHub repository: https://github.com/bids-standard/bids-starter-kit
-      - Tutorials: https://github.com/bids-standard/bids-starter-kit/wiki/Tutorials
-      - Wiki: https://github.com/bids-standard/bids-starter-kit/wiki
