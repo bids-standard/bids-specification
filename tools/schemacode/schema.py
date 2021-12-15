@@ -13,6 +13,9 @@ from tabulate import tabulate
 
 from . import utils
 
+# import utils
+
+
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
 utils.set_logger_level(
@@ -205,6 +208,81 @@ def make_entity_definitions(schema):
             text += "\n\n"
 
         text += "Definition: {}".format(entity_info["description"])
+    return text
+
+
+def make_glossary(schema):
+    """Generate glossary.
+
+    Parameters
+    ----------
+    schema : dict
+        The schema object, which is a dictionary with nested dictionaries and
+        lists stored within it.
+
+    Returns
+    -------
+    text : str
+        A string containing descriptions and some formatting
+        information about the entities in the schema.
+    """
+    all_objects = {}
+
+    for group, group_objects in schema["objects"].items():
+        group_obj_keys = list(group_objects.keys())
+        # Remove private objects
+        group_obj_keys = [k for k in group_obj_keys if not k.startswith("_")]
+
+        multi_sense_objects = []
+        # Identify multi-sense objects (multiple entries, some with __ in them)
+        for key in group_obj_keys:
+            if "__" in key:
+                temp_key = key.split("__")[0]
+                multi_sense_objects.append(temp_key)
+
+        multi_sense_objects = sorted(list(set(multi_sense_objects)))
+        sense_keys = {mso: [] for mso in multi_sense_objects}
+
+        for key in group_obj_keys:
+            for sense_key in sense_keys.keys():
+                if (key == sense_key) or (key.startswith(sense_key + "__")):
+                    sense_keys[sense_key].append(key)
+
+        sense_names = {}
+        for sense_key, key_list in sense_keys.items():
+            for i_key, key in enumerate(key_list):
+                new_key_name = f"{sense_key} _sense {i_key + 1}_"
+                sense_names[key] = new_key_name
+
+        for key in group_obj_keys:
+            new_name = sense_names.get(key, key)
+            new_name = f"{new_name} ({group})"
+            all_objects[new_name] = {}
+            all_objects[new_name]["key"] = f"objects.{group}.{key}"
+            all_objects[new_name]["definition"] = group_objects[key]
+
+    text = ""
+    for obj_key in sorted(all_objects.keys()):
+        obj = all_objects[obj_key]
+        obj_marker = obj["key"]
+        obj_def = obj["definition"]
+        obj_name = obj_def["name"]
+        obj_desc = obj_def["description"]
+        # A backslash before a newline means continue a string
+        obj_desc = obj_desc.replace("\\\n", "")
+        # Two newlines should be respected
+        obj_desc = obj_desc.replace("\n\n", "<br>")
+        # Otherwise a newline corresponds to a space
+        obj_desc = obj_desc.replace("\n", " ")
+
+        text += f'\n<a name="{obj_marker}"></a>'
+        text += f"\n## {obj_key}\n\n"
+        text += f"name: {obj_name}\n\n"
+        text += f"description:\n>{obj_desc}\n\n"
+
+        temp_obj_def = {k: v for k, v in obj_def.items() if k not in ("description", "name")}
+        text += f"schema information:\n```yaml\n{temp_obj_def}\n```"
+
     return text
 
 

@@ -10,7 +10,8 @@ code:
     source data.
 derivatives:
   name: Derivative data
-  description:
+  description: |
+    Derivative data
 sourcedata:
   name: Source data
   description: |
