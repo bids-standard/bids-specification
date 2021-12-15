@@ -40,7 +40,7 @@ automatically generated.
 Usually annotations that appear in the `HED` column are specific to each individual event.
 Information that is common to groups of events can be annotated by category.
 Numerical values associated with each event can be annotated by value type.
-Annotating by category and by valuegreatly reduces the effort required to HED tag
+Annotating by category and by value greatly reduces the effort required to HED tag
 data and improves the clarity for data users.
 
 ## Annotating events by categories

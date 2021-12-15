@@ -1,4 +1,5 @@
 ---
+# MEG data files
 # First group
 - suffixes:
   - meg
@@ -24,6 +25,36 @@
     split: optional
 
 # Second group
+# Specifically, it's dat files with "acq-calibration"
+- suffixes:
+  - meg
+  extensions:
+  - .dat
+  entities:
+    subject: required
+    session: optional
+    acquisition:
+      requirement: required
+      type: string
+      enum:
+      - calibration
+
+# Third group
+# fif files with "acq-crosstalk"
+- suffixes:
+  - meg
+  extensions:
+  - .fif
+  entities:
+    subject: required
+    session: optional
+    acquisition:
+      requirement: required
+      type: string
+      enum:
+      - crosstalk
+
+# Headshape files
 - suffixes:
   - headshape
   extensions:
@@ -33,7 +64,7 @@
     session: optional
     acquisition: optional
 
-# Third group
+# Marker files
 - suffixes:
   - markers
   extensions:
@@ -46,7 +77,7 @@
     acquisition: optional
     space: optional
 
-# Fourth
+# Coordinate systems
 - suffixes:
   - coordsystem
   extensions:
@@ -56,6 +87,7 @@
     session: optional
     acquisition: optional
 
+# Channel files
 - suffixes:
   - channels
   extensions:
@@ -69,6 +101,7 @@
     run: optional
     processing: optional
 
+# Events files
 - suffixes:
   - events
   extensions:
@@ -81,6 +114,7 @@
     acquisition: optional
     run: optional
 
+# Head photos
 - suffixes:
   - photo
   extensions:

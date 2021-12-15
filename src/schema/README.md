@@ -52,11 +52,56 @@ Each of these object types has a single file in the `objects/` folder.
 
 -   `metadata.yaml`: All valid metadata fields that are explicitly supported in BIDS sidecar JSON files.
 
+-   `columns.yaml`: All valid columns that are explicitly supported in BIDS TSV files.
+
 -   `suffixes.yaml`: Valid file suffixes.
 
 -   `top_level_files.yaml`: Valid top-level files which may appear in a BIDS dataset.
 
 -   `associated_data.yaml`: Folders that may appear within a dataset folder without following BIDS rules.
+
+### On re-used objects with different definitions
+
+If an object may mean something different depending on where it is used within the specification,
+then this must be reflected in the schema.
+Specifically, each version of the object must have its own definition within the relevant file.
+However, since object files are organized as dictionaries, each object must have a unique key.
+Thus, we append a suffix to each re-used object's key in order to make it unique.
+For objects with `CamelCase` names (for example, metadata fields), the suffix will start with a single underscore (`_`).
+For objects with `snake_case` names, two underscores must be used.
+
+There should also be a comment near the object definition in the YAML file describing the nature of the different objects.
+
+For example, the TSV column `"reference"` means different things when used for EEG data, as compared to iEEG data.
+As such, there are two definitions in `columns.yaml` for the `"reference"` column: `"reference__eeg"` and `"reference_ieeg"`.
+
+```yaml
+# reference column for channels.tsv files for EEG data
+reference__eeg:
+  name: reference
+  description: |
+    Name of the reference electrode(s).
+    This column is not needed when it is common to all channels.
+    In that case the reference electrode(s) can be specified in `*_eeg.json` as `EEGReference`).
+  type: string
+# reference column for channels.tsv files for iEEG data
+reference__ieeg:
+  name: reference
+  description: |
+    Specification of the reference (for example, 'mastoid', 'ElectrodeName01', 'intracranial', 'CAR', 'other', 'n/a').
+    If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.
+  anyOf:
+  - type: string
+  - type: string
+    enum:
+    - n/a
+```
+
+When adding new object definitions to the schema,
+every effort should be made to find a shared, common definition for the term, should it already exist.
+If the differences between two versions of the same object are subtle or driven by context,
+then you can generally _append_ additional text to the object definition within the associated rendered table in the specification,
+rather than creating a separate entry in the schema.
 
 ### `modalities.yaml`
 
@@ -270,7 +315,7 @@ ExampleField:
             type: number
 ```
 
-Finally, if the data type description of a field is reused across fields,
+Furthermore, if the data type description of a field is reused across fields,
 then it may be defined in a separate field and referenced in each target field with the `$ref` keyword.
 Here is an example of a field definition using `$ref`:
 ```yaml
@@ -307,6 +352,13 @@ ExampleField:
         - PossibleValue1
         - PossibleValue2
 ```
+
+### `columns.yaml`
+
+This file contains definitions for all TSV columns currently supported in BIDS.
+
+Entries in this file follow the same rules as `metadata.yaml`,
+although column names appear in `snake_case`, rather than `CamelCase`.
 
 ### `suffixes.yaml`
 
@@ -383,58 +435,51 @@ The `extensions` entry is a list of valid file extensions.
 The `entities` entry is a dictionary in which the keys are entity names and the values are whether the entity is
 required or optional for that suffix.
 Any entities that are not present in this dictionary are not allowed in files with any of the suffixes in the group.
+In rare occasions, there are restrictions on valid entity values
+(for example, some suffixes may only allow an `acq` value of `calibration`).
+In those cases, the entity's value will be another object, rather than a string indicating the requirement level.
+This object will contain at least two keys: "requirement" and "type".
 
 **NOTE**: The order in which entities appear in these dictionaries does not reflect how they should appear in filenames.
 That information is present in `rules/entities.yaml`.
 
-As an example, let us look at part of `func.yaml`:
+As an example, let us look at part of `meg.yaml`:
 
 ```yaml
 - suffixes:
-    - bold
-    - cbv
-    - sbref
+  - meg
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .fif
   entities:
     subject: required
     session: optional
     task: required
     acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    direction: optional
     run: optional
-    echo: optional
-    part: optional
+    processing: optional
+    split: optional
 
-# Phase (deprecated)
 - suffixes:
-    - phase  # deprecated
+  - meg
   extensions:
-    - .nii.gz
-    - .nii
-    - .json
+  - .fif
   entities:
     subject: required
     session: optional
-    task: required
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    direction: optional
-    run: optional
-    echo: optional
+    acquisition:
+      requirement: required
+      type: string
+      enum:
+      - crosstalk
 ```
 
-In this case, the first group has three suffixes: `bold`, `cbv`, and `sbref`.
-The second group has one suffix: `phase`.
-While the valid extensions are the same for both groups (`.nii.gz`, `.nii`, and `.json`), the entities are not.
+In this case, the first group has one suffix: `meg`.
+The second group has the same suffix (`meg`), but describes different rules for files with that suffix.
+While the valid extension is the same for both groups (`.fif`), the entities are not.
 
-Specifically, files with the `phase` suffix may not have a `part` entity,
-while this is an option for files with the `bold`, `cbv`, or `sbref` suffixes.
+Specifically, files in the first group may have `task`, `run`, `processing`, and `split` entities,
+while files in the second group may not.
+Also, when files in the second group have the `acq` entity, the associated value MUST be `crosstalk`.
 
 ### `entities.yaml`
 

@@ -8,6 +8,7 @@ code_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(code_path)
 
 from examplecode import example
+from schemacode import schema, utils
 
 
 def make_filename_template(**kwargs):
@@ -71,6 +72,21 @@ def make_entity_definitions():
     return text
 
 
+def make_glossary():
+    """Generate glossary.
+
+    Returns
+    -------
+    text : str
+        A multiline string containing descriptions and some formatting
+        information about the entities in the schema.
+    """
+    schemapath = utils.get_schema_path()
+    schema_obj = schema.load_schema(schemapath)
+    text = schema.make_glossary(schema_obj)
+    return text
+
+
 def make_suffix_table(suffixes):
     """Generate a markdown table of suffix information.
 
@@ -113,6 +129,31 @@ def make_metadata_table(field_info):
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
     table = render.make_metadata_table(schema_obj, field_info)
+    return table
+
+
+def make_columns_table(column_info):
+    """Generate a markdown table of TSV column information.
+
+    Parameters
+    ----------
+    column_info : dict
+        A list of the column names.
+        Column names correspond to filenames in the "columns" folder of the
+        schema.
+        Until requirement levels can be codified in the schema,
+        this argument will be a dictionary, with the column names as keys and
+        the requirement levels as values.
+
+    Returns
+    -------
+    table : str
+        A Markdown-format table containing the corresponding table for
+        the requested columns.
+    """
+    schemapath = utils.get_schema_path()
+    schema_obj = schema.load_schema(schemapath)
+    table = schema.make_columns_table(schema_obj, column_info)
     return table
 
 
