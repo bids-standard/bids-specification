@@ -8,9 +8,6 @@ from tabulate import tabulate
 from . import utils
 from .schema import filter_schema
 
-# import utils
-
-
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
 utils.set_logger_level(
