@@ -51,8 +51,8 @@ jobs:
       - name: "Install the schemacode package"
         shell: bash {0}
         run: |
-          python -m pip install --progress-bar off --upgrade pip setuptools wheel flake8
-          python -m pip install ./tools/schemacode/
+          python -m pip install --progress-bar off --upgrade pip setuptools wheel
+          python -m pip install ./tools/schemacode[tests]
 
       - name: "Run tests"
         shell: bash {0}
