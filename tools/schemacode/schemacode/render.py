@@ -10,9 +10,7 @@ from .schema import filter_schema
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
-utils.set_logger_level(
-    lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO)
-)
+utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 
@@ -227,16 +225,12 @@ def make_filename_template(schema, **kwargs):
                 string += suffix
                 strings = [string]
             else:
-                strings = [
-                    string + "_" + suffix for suffix in group["suffixes"]
-                ]
+                strings = [string + "_" + suffix for suffix in group["suffixes"]]
 
             # Add extensions
             full_strings = []
             extensions = group["extensions"]
-            extensions = [
-                ext if ext != "*" else ".<extension>" for ext in extensions
-            ]
+            extensions = [ext if ext != "*" else ".<extension>" for ext in extensions]
             extensions = utils.combine_extensions(extensions)
             if len(extensions) > 5:
                 # Combine exts when there are many, but keep JSON separate
@@ -426,11 +420,7 @@ def make_suffix_table(schema, suffixes, tablefmt="github"):
     suffixes_found = [f for f in suffixes if f in suffix_schema.keys()]
     suffixes_not_found = [f for f in suffixes if f not in suffix_schema.keys()]
     if suffixes_not_found:
-        raise Exception(
-            "Warning: Missing suffixes: {}".format(
-                ", ".join(suffixes_not_found)
-            )
-        )
+        raise Exception("Warning: Missing suffixes: {}".format(", ".join(suffixes_not_found)))
 
     df = pd.DataFrame(
         index=suffixes_found,
@@ -513,9 +503,7 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
 
         type_string = utils.resolve_metadata_type(metadata_schema[field])
 
-        description = (
-            metadata_schema[field]["description"] + " " + description_addendum
-        )
+        description = metadata_schema[field]["description"] + " " + description_addendum
         # A backslash before a newline means continue a string
         description = description.replace("\\\n", "")
         # Two newlines should be respected
@@ -584,9 +572,7 @@ def make_columns_table(schema, column_info, tablefmt="github"):
 
         type_string = utils.resolve_metadata_type(column_schema[field])
 
-        description = (
-            column_schema[field]["description"] + " " + description_addendum
-        )
+        description = column_schema[field]["description"] + " " + description_addendum
         # A backslash before a newline means continue a string
         description = description.replace("\\\n", "")
         # Two newlines should be respected

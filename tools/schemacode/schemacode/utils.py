@@ -176,14 +176,11 @@ def resolve_metadata_type(definition):
 
         elif "type" in definition.get("additionalProperties", {}):
             # Values within objects
-            string += " of " + get_link(
-                definition["additionalProperties"]["type"] + "s"
-            )
+            string += " of " + get_link(definition["additionalProperties"]["type"] + "s")
 
     elif "anyOf" in definition:
         # Use dictionary to get unique substrings while preserving insertion order
-        substrings = {resolve_metadata_type(subdict): None
-                      for subdict in definition["anyOf"]}
+        substrings = {resolve_metadata_type(subdict): None for subdict in definition["anyOf"]}
 
         string = " or ".join(substrings)
 

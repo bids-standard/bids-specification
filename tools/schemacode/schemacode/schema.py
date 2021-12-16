@@ -12,9 +12,7 @@ from . import utils
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
-utils.set_logger_level(
-    lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO)
-)
+utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
 
 
@@ -151,9 +149,7 @@ def filter_schema(schema, **kwargs):
             if k in new_schema.keys():
                 filtered_item = deepcopy(new_schema[k])
                 if isinstance(filtered_item, dict):
-                    filtered_item = {
-                        k1: v1 for k1, v1 in filtered_item.items() if k1 in v
-                    }
+                    filtered_item = {k1: v1 for k1, v1 in filtered_item.items() if k1 in v}
                 else:
                     filtered_item = [i for i in filtered_item if i in v]
                 new_schema[k] = filtered_item
