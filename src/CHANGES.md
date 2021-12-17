@@ -2,6 +2,8 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MAINT] Update links to starter kit website [#957](https://github.com/bids-standard/bids-specification/pull/957) ([effigies](https://github.com/effigies))
+-   \[FIX] Entity table: Clarify meaning of empty cells [#955](https://github.com/bids-standard/bids-specification/pull/955) ([Lestropie](https://github.com/Lestropie))
 -   \[MISC] Add Eric Earl as a Maintainer [#953](https://github.com/bids-standard/bids-specification/pull/953) ([ericearl](https://github.com/ericearl))
 -   \[FIX] Spelling errors in appendices [#951](https://github.com/bids-standard/bids-specification/pull/951) ([Lestropie](https://github.com/Lestropie))
 -   \[FIX] Broken hyperlink in entity list file [#949](https://github.com/bids-standard/bids-specification/pull/949) ([Lestropie](https://github.com/Lestropie))
@@ -16,6 +18,7 @@
 -   \[INFRA] Run linkchecker in stock docker image [#932](https://github.com/bids-standard/bids-specification/pull/932) ([effigies](https://github.com/effigies))
 -   \[INFRA] add (optional) pre-commit config file [#929](https://github.com/bids-standard/bids-specification/pull/929) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Clarify that EDF/BDF files MUST have lower case extensions in BIDS [#927](https://github.com/bids-standard/bids-specification/pull/927) ([adam2392](https://github.com/adam2392))
+-   \[ENH] Generate glossary page from schema [#923](https://github.com/bids-standard/bids-specification/pull/923) ([tsalo](https://github.com/tsalo))
 -   \[ENH] add `hemi` entity to schema [#917](https://github.com/bids-standard/bids-specification/pull/917) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[INFRA] PDF version of spec: fix handling of internal links [#915](https://github.com/bids-standard/bids-specification/pull/915) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] update and reformat table for template in coordinate system page [#903](https://github.com/bids-standard/bids-specification/pull/903) ([Remi-Gau](https://github.com/Remi-Gau))

@@ -4,7 +4,8 @@ This section compiles the entities (key-value pairs) described throughout this
 specification, and establishes a common order within a filename.
 For example, if a file has an acquisition and reconstruction label, the
 acquisition entity must precede the reconstruction entity.
-REQUIRED and OPTIONAL entities for a given file type are denoted.
+REQUIRED and OPTIONAL entities for a given file type are denoted;
+empty cells imply that entities MUST NOT be specified.
 Entity formats indicate whether the value is alphanumeric
 (`<label>`) or numeric (`<index>`).
 
