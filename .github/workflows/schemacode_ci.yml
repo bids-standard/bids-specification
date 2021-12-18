@@ -88,6 +88,7 @@ jobs:
           python -m pip install -e ./tools/schemacode[tests]
 
       - name: "Run flake8"
+        working-directory: ./tools/schemacode/
         shell: bash {0}
         run: |
-          flake8 ./tools/schemacode/
+          flake8 .
