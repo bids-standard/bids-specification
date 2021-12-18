@@ -71,7 +71,7 @@ jobs:
 
   flake8-lint:
     runs-on: ubuntu-latest
-    name: Lint
+    name: Lint schemacode
     steps:
       - name: Check out source repository
         uses: actions/checkout@v2
