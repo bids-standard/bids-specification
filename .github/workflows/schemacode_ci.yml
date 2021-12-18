@@ -2,14 +2,17 @@ name: "schemacode_ci"
 
 on:
   push:
-    paths:
-      - 'tools/schemacode/**'
-      - 'src/schema/**'
     branches:
       - "master"
+    paths:
+      - "tools/schemacode/**"
+      - "src/schema/**"
   pull_request:
     branches:
       - "*"
+    paths:
+      - "tools/schemacode/**"
+      - "src/schema/**"
 
 jobs:
   check_skip:
