@@ -75,11 +75,19 @@ jobs:
     steps:
       - name: Check out source repository
         uses: actions/checkout@v2
+
       - name: Set up Python environment
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
-          python-version: "3.8"
-      - name: Flake8 Lint
-        uses: py-actions/flake8@v2
-        with:
-          path: "tools/schemacode/"
+          python-version: "3.7"
+
+      - name: "Install the schemacode package"
+        shell: bash {0}
+        run: |
+          python -m pip install --progress-bar off --upgrade pip setuptools wheel
+          python -m pip install -e ./tools/schemacode[tests]
+
+      - name: "Run flake8"
+        shell: bash {0}
+        run: |
+          flake8 ./tools/schemacode/
