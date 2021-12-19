@@ -549,7 +549,7 @@ for more information.
     1.  The metadata and the data filenames possess the same suffix;
     1.  The metadata filename does not include any entity absent from the data filename.
 
-1.  A metadata file MUST NOT have a file name that would be otherwise applicable
+1.  A metadata file MUST NOT have a filename that would be otherwise applicable
     to some data file based on rules 2.2 and 2.3 but is made inapplicable based on its
     location in the directory structure as per rule 2.1.
 
