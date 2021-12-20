@@ -18,6 +18,9 @@ jobs:
           # the mkdocs build outputs are in ~/project/site
           root: ~/project
           paths: site
+      - store_artifacts:
+          path: ~/project/site/
+          destination: dev_docs
 
   linkchecker:
     docker:
