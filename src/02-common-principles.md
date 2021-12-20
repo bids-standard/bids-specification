@@ -602,20 +602,20 @@ Example 1: Demonstration of inheritance principle
 
 Contents of file "task-rest_bold.json":
 
-{{ MACROS___make_metadata_table(
-   {
-        "EchoTime": 40.0,
-        "RepetitionTime": 1000.0,
-   }
-) }}
+```JSON
+{
+    "EchoTime": 40.0,
+    "RepetitionTime": 1000.0
+}
+```
 
 Contents of file "sub-01/func/sub-01_task-rest_acq-longtr_bold.json":
 
-{{ MACROS___make_metadata_table(
-   {
-        "RepetitionTime": 3000.0,
-   }
-) }}
+```JSON
+{
+    "RepetitionTime": 3000.0
+}
+```
 
 When reading image `sub-01/func/sub-01_task-rest_acq-default_bold.nii.gz`, only
 metadata file `task-rest_bold.json` is read; file
