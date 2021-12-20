@@ -37,12 +37,12 @@ The OME-TIFF file allows for multi-page TIFF files to store multiple image plane
 multi-resolution pyramidal tiled images. An OME-XML data block is also embedded inside the
 file’s header.
 
-The BIDS standard accepts microscopy data in different file formats to accommodate datasets
+The BIDS standard accepts microscopy data in a number of file formats to accommodate datasets
 stored in 2D image formats and whole-slide imaging formats, to accommodate lossless and lossy
 compression, and to avoid unnecessary conversions of the original data from a non-tiled to a
 tiled format, or vice-versa.
 
-For BIDS, Microscopy raw data MUST be stored in one of the following formats:
+Microscopy raw data MUST be stored in one of the following formats:
 
 -   [Portable Network Graphics](http://www.libpng.org/pub/png/) (`.png`)
 
@@ -89,7 +89,7 @@ Microscopy data currently support the following imaging modalities:
 
 In the context of Microscopy, a session ([`ses-<label>`](../99-appendices/09-entities.md#ses))
 can refer to all the acquisitions between the start and the end of an imaging experiment
-for ex vivo imaging or a subject lab visit for biopsy procedure and/or in vivo imaging.
+for ex vivo imaging, or a subject lab visit for biopsy procedure and/or in vivo imaging.
 Consistent with other data types in BIDS, the session entity is optional.
 
 The [`sample-<label>`](../99-appendices/09-entities.md#sample) entity is REQUIRED for
