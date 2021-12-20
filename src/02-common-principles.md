@@ -559,16 +559,18 @@ for more information.
 1.  If multiple metadata files are applicable to a given data file:
 
     1.  For [tabular files](#tabular-files) and other simple metadata files
-        (e.g. [`bvec` / `bval` files for diffusion MRI](#04-modality-specific-files/01-magnetic-resonance-imaging#required-gradient-orientation-information),
+        (for instance, [`bvec` / `bval` files for diffusion MRI](#04-modality-specific-files/01-magnetic-resonance-imaging#required-gradient-orientation-information),
         only the file lowest in the filesystem hierarchy SHALL be treated as being
         associated with that data file.
 
     1.  For [JSON files](#key-value-files-dictionaries):
+
         1.  Files are loaded from the top of the directory hierarchy downwards,
             such that values from the top level are inherited by all data files
             at lower levels to which it is applicable unless overridden
             by a value for the same key present in another metadata file at a lower level
             (though it is RECOMMENDED to minimise the extent of such overrides).
+
         1.  There is no notion of "unsetting" a key/value pair.
 
 Corollaries:
@@ -577,6 +579,7 @@ Corollaries:
     MUST be defined in or below the directory corresponding to that participant / session;
     similarly, a metadata file that is applicable to multiple participants / sessions
     MUST NOT be placed within a directory corresponding to only one such participant / session.
+
 1.  It is permissible for a single metadata file to be applicable to multiple data
     files at that level of the hierarchy or below. Where such metadata content is consistent
     across multiple data files, it is RECOMMENDED to store metadata in this
@@ -592,9 +595,9 @@ Example 1: Demonstration of inheritance principle
             "sub-01_task-rest_acq-longtr_bold.nii.gz": "",
             "sub-01_task-rest_acq-longtr_bold.json": "",
             }
-        }
-    }
+        },
     "task-rest_bold.json": "",
+    }
 ) }}
 
 Contents of file "task-rest_bold.json":
@@ -602,7 +605,7 @@ Contents of file "task-rest_bold.json":
 {{ MACROS___make_metadata_table(
    {
         "EchoTime": 40.0,
-        "RepetitionTime", 1000.0
+        "RepetitionTime": 1000.0,
    }
 ) }}
 
@@ -610,7 +613,7 @@ Contents of file "sub-01/func/sub-01_task-rest_acq-longtr_bold.json":
 
 {{ MACROS___make_metadata_table(
    {
-        "RepetitionTime", 3000.0
+        "RepetitionTime": 3000.0,
    }
 ) }}
 
