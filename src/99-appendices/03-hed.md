@@ -104,7 +104,7 @@ Example: An accompanying `*_events.json` sidecar describing the `mycodes` catego
 
 Each column of `*_events.tsv` containing non-categorical values usually represents a
 particular type of data, for example the `speed` of a stimulus object across the
-screen or the file name of the stimulus image.
+screen or the filename of the stimulus image.
 These variables could be annotated in the HED column of `*_events.tsv`.
 However, that approach requires repeating the values appearing in the individual
 columns in the HED column.
@@ -155,7 +155,7 @@ Example: An accompanying `*_events.json` sidecar describing both categorical and
        "HED": "Attribute/Response start delay/# ms, Action/Button press"
    },
    "stim_file": {
-       "LongName": "Stimulus file name",
+       "LongName": "Stimulus filename",
        "Description": "Relative path of the stimulus image file",
        "HED": "Attribute/File/#"
    }

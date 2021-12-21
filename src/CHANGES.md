@@ -188,7 +188,7 @@
 -   \[FIX] clarify that \<physio|stim>.json is REQUIRED [#542](https://github.com/bids-standard/bids-specification/pull/542) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Replace all non-breaking spaces with vanilla spaces [#536](https://github.com/bids-standard/bids-specification/pull/536) ([nicholst](https://github.com/nicholst))
 -   \[FIX] Clarify indices are nonnegative integers. [#535](https://github.com/bids-standard/bids-specification/pull/535) ([nicholst](https://github.com/nicholst))
--   \[FIX] Clarify use of session entity in file names [#532](https://github.com/bids-standard/bids-specification/pull/532) ([Moo-Marc](https://github.com/Moo-Marc))
+-   \[FIX] Clarify use of session entity in filenames [#532](https://github.com/bids-standard/bids-specification/pull/532) ([Moo-Marc](https://github.com/Moo-Marc))
 -   \[ENH] Add the ability of users to specify an explicit HED.xml schema for validation. [#527](https://github.com/bids-standard/bids-specification/pull/527) ([VisLab](https://github.com/VisLab))
 -   \[FIX] clarify that scans.json is allowed and recommended [#523](https://github.com/bids-standard/bids-specification/pull/523) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] add copyright holder to license.  [#521](https://github.com/bids-standard/bids-specification/pull/521) ([sappelhoff](https://github.com/sappelhoff))
@@ -342,7 +342,7 @@
 -   \[FIX] Clarify continuous recording metadata fields [#167](https://github.com/bids-standard/bids-specification/pull/167) ([effigies](https://github.com/effigies))
 -   \[FIX] changed reference of `dcm2nii` to `dcm2niix` [#166](https://github.com/bids-standard/bids-specification/pull/166) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[FIX] Removing a leftover file [#162](https://github.com/bids-standard/bids-specification/pull/162) ([chrisgorgo](https://github.com/chrisgorgo))
--   \[FIX] Specify marker file names for KIT data (MEG) [#62](https://github.com/bids-standard/bids-specification/pull/62) ([monkeyman192](https://github.com/monkeyman192))
+-   \[FIX] Specify marker filenames for KIT data (MEG) [#62](https://github.com/bids-standard/bids-specification/pull/62) ([monkeyman192](https://github.com/monkeyman192))
 -   \[FIX] Remove father-level for meg filetypes other than BTi/4D data [#19](https://github.com/bids-standard/bids-specification/pull/19) ([teonbrooks](https://github.com/teonbrooks))
 
 ## [v1.2.0](https://github.com/bids-standard/bids-specification/tree/v1.2.0) (2019-03-04)
@@ -461,7 +461,7 @@
 -   Added `InversionTime` metadata key.
 -   Clarification on the source vs raw language.
 -   Added `trial_type` column to the event files.
--   Added missing `sub-<participant_label>` in behavioral data file names.
+-   Added missing `sub-<participant_label>` in behavioral data filenames.
 -   Added ability to store stimuli files.
 -   Clarified the language describing allowed subject labels.
 -   Added quantitative proton density maps.

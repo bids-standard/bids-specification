@@ -26,7 +26,7 @@ share the following (non-required) ones:
 Preprocessed `bold` NIfTI file in the original coordinate space of the original run.
 The location of the file in the original datasets is encoded in the `RawSources` metadata,
 and [`_desc-<label>`](../99-appendices/09-entities.md#desc)
-is used to prevent clashing with the original file name.
+is used to prevent clashing with the original filename.
 
 {{ MACROS___make_filetree_example(
    {
