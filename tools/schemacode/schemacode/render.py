@@ -379,7 +379,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     def _remove_numeric_suffixes(string):
         import re
 
-        suffix_str = re.findall(r"\\((.+)\\)", string)
+        suffix_str = re.findall(r"\((.+)\)", string)
         # The "Format" row should be skipped
         if not suffix_str:
             return string

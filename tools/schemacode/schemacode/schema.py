@@ -78,39 +78,23 @@ def load_schema(schema_path):
     schema["rules"] = {}
 
     # Load object definitions. All are present in single files.
-    object_group_files = sorted(glob(str(objects_dir / "*.yaml")))
-    for object_group_file in object_group_files:
-        group_name = op.splitext(op.basename(object_group_file))[0]
-        lgr.debug(f"Loading {group_name} objects.")
-        with open(object_group_file, "r") as fo:
-            dict_ = yaml.load(fo, Loader=yaml.SafeLoader)
-            dict_ = dereference_yaml(dict_, dict_)
-            schema["objects"][group_name] = dict_
+    for object_group_file in sorted(objects_dir.glob("*.yaml")):
+        lgr.debug(f"Loading {object_group_file.stem} objects.")
+        dict_ = yaml.safe_load(object_group_file.read_text())
+        schema["objects"][object_group_file.stem] = dereference_yaml(dict_, dict_)
 
     # Grab single-file rule groups
-    rule_group_files = sorted(glob(str(rules_dir / "*.yaml")))
-    rule_group_folders = sorted(glob(str(rules_dir / "*")))
-    rule_group_folders = [f for f in rule_group_folders if op.isdir(f)]
-    for rule_group_file in rule_group_files:
-        group_name = op.splitext(op.basename(rule_group_file))[0]
-        lgr.debug(f"Loading {group_name} rules.")
-        with open(rule_group_file, "r") as fo:
-            dict_ = yaml.load(fo, Loader=yaml.SafeLoader)
-            dict_ = dereference_yaml(dict_, dict_)
-            schema["rules"][group_name] = dict_
+    for rule_group_file in sorted(rules_dir.glob("*.yaml")):
+        lgr.debug(f"Loading {rule_group_file.stem} rules.")
+        dict_ = yaml.safe_load(rule_group_file.read_text())
+        schema["rules"][rule_group_file.stem] = dereference_yaml(dict_, dict_)
 
     # Load folders of rule subgroups.
-    for rule_group_folder in rule_group_folders:
-        group_name = op.basename(rule_group_folder)
-        rule_subgroup_files = sorted(glob(op.join(rule_group_folder, "*.yaml")))
-        schema["rules"][group_name] = {}
-        for rule_subgroup_file in rule_subgroup_files:
-            subgroup_name = op.splitext(op.basename(rule_subgroup_file))[0]
-            lgr.debug(f"Loading {subgroup_name} rules.")
-            with open(rule_subgroup_file, "r") as fo:
-                dict_ = yaml.load(fo, Loader=yaml.SafeLoader)
-                dict_ = dereference_yaml(dict_, dict_)
-                schema["rules"][group_name][subgroup_name] = dict_
+    for rule_group_file in sorted(rules_dir.glob("*/*.yaml")):
+        rule = schema["rules"].setdefault(rule_group_file.parent.name, {})
+        lgr.debug(f"Loading {rule_group_file.stem} rules.")
+        dict_ = yaml.safe_load(rule_group_file.read_text())
+        rule[rule_group_file.stem] = dereference_yaml(dict_, dict_)
 
     return schema
 
