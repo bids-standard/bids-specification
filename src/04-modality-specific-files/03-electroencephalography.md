@@ -6,14 +6,9 @@ Please see [Citing BIDS](../01-introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-The following example EEG datasets have been formatted using this specification
+Several [example EEG datasets](https://github.com/bids-standard/bids-examples#eeg-datasets)
+have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
-
--   Single session per subject: [`eeg_matchingpennies`](https://doi.org/10.17605/OSF.IO/CJ2DR)
--   Multiple sessions per subject: [`eeg_rishikesh`](https://doi.org/10.5281/zenodo.1490922)
--   Combined with fMRI: [`eeg_rest_fmri`](https://osf.io/94c5t/files/)
-
-Further datasets are available from the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
 
 ## EEG recording data
 
@@ -23,19 +18,12 @@ The EEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, EEG data MUST be
 stored in one of the following formats:
 
--   [European data format](https://www.edfplus.info/)
-    (including [`edf+`](https://www.edfplus.info/specs/edfplus.html);
-    each recording consisting of a `.edf` file)
-
--   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
-    (Each recording consisting of a  `.vhdr`, `.vmrk`, `.eeg` file triplet)
-
--   The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab)
-    (Each recording consisting of a `.set` file with an optional `.fdt` file)
-
--   [Biosemi](https://www.biosemi.com/) data format
-    (including [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html);
-    each recording consisting of a `.bdf` file)
+| **Format**                                                                                   | **Extension(s)**         | **Description**                                                                                                                                                                                      |
+| -------------------------------------------------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [European data format](https://www.edfplus.info/)                                            | `.edf`                   | Each recording consists of a single `.edf` file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used.                           |
+| [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5) | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                                                 |
+| [EEGLAB](https://sccn.ucsd.edu/eeglab)                                                       | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab). Each recording consists of a `.set` file with an optional `.fdt` file.                                                 |
+| [Biosemi](https://www.biosemi.com/)                                                          | `.bdf`                   | Each recording consists of a single `.bdf` file. [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html) files are permitted. The capital `.BDF` extension MUST NOT be used. |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -197,7 +185,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["channels"]) }}
 
 This file is RECOMMENDED as it provides easily searchable information across
-BIDS datasets for for example, general curation, response to queries or batch
+BIDS datasets for example, general curation, response to queries or batch
 analysis.
 To avoid confusion, the channels SHOULD be listed in the order they
 appear in the EEG data file.

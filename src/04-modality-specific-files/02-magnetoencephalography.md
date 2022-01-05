@@ -6,6 +6,14 @@ Please see [Citing BIDS](../01-introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
+The following example MEG datasets have been formatted using this specification
+and can be used for practical guidance when curating a new dataset.
+
+-   [`multimodal MEG and MRI`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
+
+Further datasets are available from
+the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
+
 ## MEG recording data
 
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["meg", "markers", "events"]) }}
@@ -211,7 +219,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["channels"]) }}
 
 This file is RECOMMENDED as it provides easily searchable information across
-BIDS datasets for for example, general curation, response to queries or batch
+BIDS datasets for example, general curation, response to queries or batch
 analysis.
 To avoid confusion, the channels SHOULD be listed in the order they
 appear in the MEG data file.
@@ -449,7 +457,7 @@ Example:
    "sub-control01": {
       "ses-01":{
          "sub-control01_ses-01_acq-HEAD_headshape.pos": "",
-         "sub-control01_ses-01_acq-ECG_headshape.pos": "",
+         "sub-control01_ses-01_acq-EEG_headshape.pos": "",
          },
       }
    }

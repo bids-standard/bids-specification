@@ -259,7 +259,7 @@ samples.json
 ```
 
 The purpose of this file is to describe properties of samples, indicated by the `sample` entity.
-This file is REQUIRED if `sample-<label>` is present in any file name within the dataset.
+This file is REQUIRED if `sample-<label>` is present in any filename within the dataset.
 Each sample MUST be described by one and only one row.
 
 {{ MACROS___make_columns_table(
@@ -475,6 +475,6 @@ code organization of these scripts at the moment.
 
 [object]: https://www.json.org/json-en.html
 
-[string]: https://www.w3schools.com/js/js_json_syntax.asp
+[string]: https://www.w3schools.com/js/js_json_datatypes.asp
 
 [uri]: ./02-common-principles.md#uniform-resource-indicator

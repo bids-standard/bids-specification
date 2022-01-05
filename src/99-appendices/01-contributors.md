@@ -68,7 +68,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 -   Erin W. Dickie 📖🤔👀📢💬
 -   Eugene P. Duff 📖
 -   Elizabeth DuPre 📖💡🔍🤔💬
--   Eric A. Earl 🤔
+-   Eric Earl 📖💬🐛🚧🔧🤔
 -   Anders Eklund 📖📢💻
 -   Oscar Esteban 📖🔧🤔💬💻
 -   Franklin W. Feingold 📋📝✅💬🤔🎨📢👀🚇🖋📆
