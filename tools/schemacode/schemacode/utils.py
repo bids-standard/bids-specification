@@ -220,8 +220,7 @@ def describe_valid_values(definition):
         if "enum" in definition.keys():
             # Allow enums to be "objects" (dicts) or strings
             enum_values = [
-                list(v.keys())[0] if isinstance(v, dict) else v
-                for v in definition["enum"]
+                list(v.keys())[0] if isinstance(v, dict) else v for v in definition["enum"]
             ]
             enum_values = [f'`"{v}"`' for v in enum_values]
             description = f"Must be one of: {', '.join(enum_values)}."
