@@ -51,8 +51,7 @@ def make_entity_definitions(schema):
         if "enum" in entity_info.keys():
             # Allow enums to be "objects" (dicts) or strings
             enum_values = [
-                list(v.keys())[0] if isinstance(v, dict) else v
-                for v in entity_info["enum"]
+                list(v.keys())[0] if isinstance(v, dict) else v for v in entity_info["enum"]
             ]
             text += "Allowed values: `{}`".format("`, `".join(enum_values))
             text += "\n\n"
@@ -343,9 +342,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
                         dtype_rows.pop(existing_suffixes_str)
                         old_suffix_list = existing_suffixes_str.split(" ")
                         new_suffix_list = suffixes_str.split(" ")
-                        comb_suffix_list = sorted(
-                            list(set(new_suffix_list + old_suffix_list))
-                        )
+                        comb_suffix_list = sorted(list(set(new_suffix_list + old_suffix_list)))
 
                         # Identify if the list of suffixes comes from an existing alternate row
                         number_suffixes = list(filter(str.isnumeric, comb_suffix_list))
