@@ -3,10 +3,12 @@
 ## Common metadata fields
 
 MR Data described in the following sections share the following RECOMMENDED metadata
-fields (stored in sidecar JSON files). MRI acquisition parameters are divided
-into several categories based on
-["A checklist for fMRI acquisition methods reporting in the literature"](https://thewinnower.com/papers/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature)
-by Ben Inglis:
+fields (stored in sidecar JSON files).
+MRI acquisition parameters are divided into several categories based on
+"A checklist for fMRI acquisition methods reporting in the literature"
+([article](https://winnower-production.s3.amazonaws.com/papers/977/v4/pdf/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature.pdf),
+[checklist](https://winnower-production.s3.amazonaws.com/papers/977/assets/993e199d-6bc3-4418-be3a-f620af1188b7-Parameter_Reporting_V1p3.pdf))
+by Ben Inglis.
 
 ### Scanner Hardware
 
@@ -148,7 +150,7 @@ Useful for multimodal co-registration with MEG, (S)EEG, TMS, and so on.
 
 {{ MACROS___make_metadata_table(
    {
-      "AnatomicalLandmarkCoordinates_mri": "RECOMMENDED",
+      "AnatomicalLandmarkCoordinates__mri": "RECOMMENDED",
    }
 ) }}
 
@@ -234,7 +236,7 @@ The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
 key/value pair corresponds to a custom label the user
 MAY use to distinguish a different set of parameters used for acquiring the same
 modality. For example this should be used when a study includes two T1w images -
-one full brain low resolution and and one restricted field of view but high
+one full brain low resolution and one restricted field of view but high
 resolution. In such case two files could have the following names:
 `sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however the
 user is free to choose any other label than `highres` and `lowres` as long as
@@ -576,6 +578,15 @@ participant, task and run takes precedence.
 
 ## Diffusion imaging data
 
+Several [example datasets](https://github.com/bids-standard/bids-examples)
+contain diffusion imaging data formatted using this specification
+and that can be used for practical guidance when curating a new dataset:
+
+-   [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+-   [`eeg_rest_fmri`](https://github.com/bids-standard/bids-examples/tree/master/eeg_rest_fmri)
+-   [`ds114`](https://github.com/bids-standard/bids-examples/tree/master/ds114)
+-   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
+
 Diffusion-weighted imaging data acquired for a participant.
 Currently supported image types include:
 
@@ -777,6 +788,10 @@ JSON example:
 ```
 
 ## Arterial Spin Labeling perfusion data
+
+Several [example ASL datasets](https://github.com/bids-standard/bids-examples#asl-datasets)
+have been formatted using this specification
+and can be used for practical guidance when curating a new dataset.
 
 {{ MACROS___make_filename_template(datatypes=["perf"]) }}
 
@@ -1008,6 +1023,13 @@ For example:
 
 #### Case 1: Phase-difference map and at least one magnitude image
 
+[Example datasets](https://github.com/bids-standard/bids-examples)
+containing that type of fieldmap can be found here:
+
+-   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
+-   [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+-   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
+
 {{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["phasediff", "magnitude1", "magnitude2"]) }}
 
 where
@@ -1050,7 +1072,7 @@ Required fields:
 
 {{ MACROS___make_metadata_table(
    {
-      "EchoTime_fmap": "REQUIRED",
+      "EchoTime__fmap": "REQUIRED",
    }
 ) }}
 
@@ -1096,6 +1118,11 @@ See [Using `IntendedFor` metadata](#using-intendedfor-metadata)
 for details on the `IntendedFor` field.
 
 #### Case 4: Multiple phase encoded directions ("pepolar")
+
+An [example dataset](https://github.com/bids-standard/bids-examples)
+containing that type of fieldmap can be found here:
+
+-   [`ieeg_visual_multimodal`](https://github.com/bids-standard/bids-examples/tree/master/ieeg_visual_multimodal)
 
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
 EPI scans with different phase encoding directions to estimate the distortion
