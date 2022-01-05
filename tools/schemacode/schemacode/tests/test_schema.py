@@ -39,17 +39,28 @@ def test_formats(schema_obj):
         "index": ["01", "1", "10000", "00001"],
         "string": ["any string is valid."],
         "integer": ["5", "10", "-5", "-10"],
-        "number": ["5", "3.14", "-5", "-3.14"],
+        "number": [
+            "5",  # integers are allowed
+            "3.14",  # floats too
+            "-5",  # they can be negative
+            "-3.14",
+            "1e3",  # scientific notation is allowed
+            "-2.1E+5",
+        ],
         "boolean": ["true", "false"],
         "date": ["2022-01-05", "2022-01-05UTC", "2022-50-50"],
         "datetime": [
             "2022-01-05T13:16:30",
-            "2022-01-05T13:16:30.5",
-            "2022-01-05T13:16:30.000005",
-            "2022-01-05T13:16:30UTC",
+            "2022-01-05T13:16:30.5",  # subsecond resolution is allowed
+            "2022-01-05T13:16:30.000005",  # up to 6 decimal points
+            "2022-01-05T13:16:30UTC",  # timezones are allowed
             "2022-01-05T13:16:30.05UTC",
         ],
-        "time": ["13:16:30"],
+        "time": [
+            "13:16:30",
+            "09:00:00",
+            "9:00:00",  # leading zeros are not required for hours
+        ],
         "unit": ["any string is valid."],
         "stimuli_relative": ["any/arbitrary/path/file.txt"],
         "dataset_relative": ["any/arbitrary/path/file.txt"],
