@@ -44,7 +44,8 @@ def test_formats(schema_obj):
         "date": ["2022-01-05", "2022-01-05UTC", "2022-50-50"],
         "datetime": [
             "2022-01-05T13:16:30",
-            "2022-01-05T13:16:30.05",
+            "2022-01-05T13:16:30.5",
+            "2022-01-05T13:16:30.000005",
             "2022-01-05T13:16:30UTC",
             "2022-01-05T13:16:30.05UTC",
         ],
@@ -74,6 +75,38 @@ def test_formats(schema_obj):
     BAD_PATTERNS = {
         "label": ["test_01", "!", "010101-"],
         "index": ["test", "0.1", "0-1", "0_1"],
+        "string": [],
+        "integer": ["3.14", "-3.14", "1.", "-1.", "string", "s1", "1%"],
+        "number": ["string", "1%"],
+        "boolean": ["True", "False", "T", "F"],
+        "date": [
+            "05-01-2022",  # MM-DD-YYYY or DD-MM-YYYY
+            "05/01/2022",  # MM/DD/YYYY or DD/MM/YYYY
+        ],
+        "datetime": [
+            "2022-01-05T13:16:30.1000005",  # too many decimal points
+            "2022-01-05T13:16:30U",  # time zone too short
+            "2022-01-05T13:16:30UTCUTC",  # time zone too long
+            "2022-01-05T34:10:10",  # invalid time
+        ],
+        "time": [
+            "34:10:10",  # invalid time
+        ],
+        "unit": [],
+        "stimuli_relative": [
+            "/path/with/starting/slash/file.txt",
+            "stimuli/path/file.txt",
+        ],
+        "dataset_relative": [
+            "/path/with/starting/slash/file.txt",
+        ],
+        "participant_relative": [
+            "/path/with/starting/slash/file.txt",
+            "sub-01/path/file.txt",
+        ],
+        "rrid": [],
+        "uri": [],
+        "bids_uri": [],
     }
     for pattern, test_list in BAD_PATTERNS.items():
         pattern_format = schema_obj["objects"]["formats"][pattern]["pattern"]
