@@ -41,14 +41,14 @@ date:
   description: |
     A date in the form `"YYYY-MM-DD[Z]"`,
     where [Z] is an optional, valid timezone code.
-  pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}?([A-Z]{3,4})'
+  pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}([A-Z]{3,4})?'
 datetime:
   name: Datetime
   description: |
     A datetime in the form `"YYYY-MM-DDThh:mm:ss[.000000][Z]"`,
     where [.000000] is an optional subsecond resolution between 1 and 6 decimal points,
     and [Z] is an optional, valid timezone code.
-  pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}?(\.[0-9]{1,6})?([A-Z]{3,4})'
+  pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]{1,6})?([A-Z]{3,4})?'
 time:
   name: Time
   description: |
