@@ -1,9 +1,7 @@
 """Schema loading- and processing-related functions."""
 import logging
 import os
-import os.path as op
 from copy import deepcopy
-from glob import glob
 from pathlib import Path
 
 import yaml
