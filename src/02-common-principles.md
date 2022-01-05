@@ -550,18 +550,18 @@ for more information.
     1.  The metadata filename does not include any entity absent from the data filename.
 
 1.  A metadata file MUST NOT have a filename that would be otherwise applicable
-    to some data file based on rules 2.2 and 2.3 but is made inapplicable based on its
-    location in the directory structure as per rule 2.1.
+    to some data file based on rules 2.b and 2.c but is made inapplicable based on its
+    location in the directory structure as per rule 2.a.
 
 1.  There MUST NOT be multiple metadata files applicable to a data file at one level
     of the directory hierarchy.
 
-1.  If multiple metadata files are applicable to a given data file:
+1.  If multiple metadata files satisfy criteria 2.a-c above:
 
     1.  For [tabular files](#tabular-files) and other simple metadata files
-        (for instance, [`bvec` / `bval` files for diffusion MRI](#04-modality-specific-files/01-magnetic-resonance-imaging#required-gradient-orientation-information),
-        only the file lowest in the filesystem hierarchy SHALL be treated as being
-        associated with that data file.
+        (for instance, [`bvec` / `bval` files for diffusion MRI](#04-modality-specific-files/01-magnetic-resonance-imaging#required-gradient-orientation-information)),
+        accessing metadata associated with a data file MUST consider only the
+        applicable file that is lowest in the filesystem hierarchy.
 
     1.  For [JSON files](#key-value-files-dictionaries):
 
@@ -600,7 +600,7 @@ Example 1: Demonstration of inheritance principle
     }
 ) }}
 
-Contents of file "task-rest_bold.json":
+Contents of file `task-rest_bold.json`:
 
 ```JSON
 {
@@ -609,7 +609,7 @@ Contents of file "task-rest_bold.json":
 }
 ```
 
-Contents of file "sub-01/func/sub-01_task-rest_acq-longtr_bold.json":
+Contents of file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json`:
 
 ```JSON
 {
@@ -620,13 +620,13 @@ Contents of file "sub-01/func/sub-01_task-rest_acq-longtr_bold.json":
 When reading image `sub-01/func/sub-01_task-rest_acq-default_bold.nii.gz`, only
 metadata file `task-rest_bold.json` is read; file
 `sub-01/func/sub-01_task-rest_acq-longtr_bold.json` is inapplicable as it contains
-entity "`acq-longtr`" that is absent from the image path (rule 2.3). When reading image
+entity "`acq-longtr`" that is absent from the image path (rule 2.c). When reading image
 `sub-01/func/sub-01_task-rest_acq-longtr_bold.nii.gz`, metadata file
 `task-rest_bold.json` at the top level is read first, followed by file
-`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` at the bottom level (rule 5.2.1);
-the value for field "`RepetitionTime`" is therefore overridden to the value 3000.0.
+`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` at the bottom level (rule 5.b.i);
+the value for field "`RepetitionTime`" is therefore overridden to the value `3000.0`.
 The value for field "`EchoTime`" remains applicable to that image, and is not unset by its
-absence in the metadata file at the lower level (rule 5.2.2).
+absence in the metadata file at the lower level (rule 5.b.ii).
 
 Example 2: Impermissible use of multiple metadata files at one directory level (rule 4)
 
