@@ -2,6 +2,8 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] harmonize 'file name' into 'filename' [#962](https://github.com/bids-standard/bids-specification/pull/962) ([yarikoptic](https://github.com/yarikoptic))
+-   \[FIX] Reword front page [#958](https://github.com/bids-standard/bids-specification/pull/958) ([arokem](https://github.com/arokem))
 -   \[MAINT] Update links to starter kit website [#957](https://github.com/bids-standard/bids-specification/pull/957) ([effigies](https://github.com/effigies))
 -   \[FIX] Entity table: Clarify meaning of empty cells [#955](https://github.com/bids-standard/bids-specification/pull/955) ([Lestropie](https://github.com/Lestropie))
 -   \[MISC] Add Eric Earl as a Maintainer [#953](https://github.com/bids-standard/bids-specification/pull/953) ([ericearl](https://github.com/ericearl))
@@ -28,6 +30,7 @@
 -   \[FIX] small typo in json example [#897](https://github.com/bids-standard/bids-specification/pull/897) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[INFRA] tiny speedup of building PDF by moving `re.compile\(\)` outside of a loop [#896](https://github.com/bids-standard/bids-specification/pull/896) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA] Document \*.webm video files as binary [#895](https://github.com/bids-standard/bids-specification/pull/895) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
+-   \[SCHEMA] Reorganize schema code into a package [#892](https://github.com/bids-standard/bids-specification/pull/892) ([tsalo](https://github.com/tsalo))
 -   \[FIX] Clarify shifting dates RECOMMENDED, add example EDF [#891](https://github.com/bids-standard/bids-specification/pull/891) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] fix draft rendering css on mobile or when browser window is narrow [#889](https://github.com/bids-standard/bids-specification/pull/889) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Add an animated BIDS logo [#886](https://github.com/bids-standard/bids-specification/pull/886) ([adswa](https://github.com/adswa))
