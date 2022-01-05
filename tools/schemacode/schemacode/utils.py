@@ -1,5 +1,4 @@
-"""Utility functions for the bids-specification schema.
-"""
+"""Utility functions for the bids-specification schema."""
 import logging
 import os.path as op
 from pprint import pprint
@@ -15,9 +14,7 @@ def get_schema_path():
     str
         Absolute path to the folder containing schema-related files.
     """
-    return op.abspath(
-        op.join(op.dirname(op.dirname(op.dirname(__file__))), "src", "schema") + op.sep
-    )
+    return op.abspath(op.join(op.dirname(__file__), "data", "schema"))
 
 
 def combine_extensions(lst):
@@ -90,6 +87,7 @@ def set_logger_level(lgr, level):
 
 def drop_unused_entities(df):
     """Remove columns from a dataframe where all values in the column are NaNs.
+
     For entity tables, this limits each table to only entities that are used
     within the modality.
 
@@ -153,7 +151,18 @@ def get_link(string):
 
 
 def resolve_metadata_type(definition):
-    """Generate string of metadata type from dictionary."""
+    """Generate string of metadata type from dictionary.
+
+    Parameters
+    ----------
+    definition : :obj:`dict`
+        A schema object definition for a metadata term.
+
+    Returns
+    -------
+    string : :obj:`str`
+        A string describing the valid value types for the metadata term.
+    """
     if "type" in definition.keys():
         string = get_link(definition["type"])
 
@@ -167,14 +176,11 @@ def resolve_metadata_type(definition):
 
         elif "type" in definition.get("additionalProperties", {}):
             # Values within objects
-            string += " of " + get_link(
-                definition["additionalProperties"]["type"] + "s"
-            )
+            string += " of " + get_link(definition["additionalProperties"]["type"] + "s")
 
     elif "anyOf" in definition:
         # Use dictionary to get unique substrings while preserving insertion order
-        substrings = {resolve_metadata_type(subdict): None
-                      for subdict in definition["anyOf"]}
+        substrings = {resolve_metadata_type(subdict): None for subdict in definition["anyOf"]}
 
         string = " or ".join(substrings)
 
