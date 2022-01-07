@@ -441,6 +441,10 @@ epi:
     The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
     EPI scans with different phase encoding directions to estimate the underlying
     inhomogeneity/deformation map.
+eq:
+  name: Equations
+  description: |
+    Mathematical equations in [LEMS](http://lems.github.io/LEMS) format.
 events:
   name: Events
   description: |
@@ -505,6 +509,10 @@ meg:
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
+param:
+  name: Parameters
+  description: |
+    Parameters in [LEMS](http://lems.github.io/LEMS) format.
 pet:
   name: Positron Emission Tomography
   description: |
