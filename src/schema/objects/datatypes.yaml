@@ -31,6 +31,10 @@ ieeg:
 meg:
   name: Magnetoencephalography
   description: Magnetoencephalography
+model:
+  name: Computational models
+  description: |
+    Mathematical equations and parameter settings in [LEMS](http://lems.github.io/LEMS) format.
 perf:
   name: Perfusion imaging
   description: |
