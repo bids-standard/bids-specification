@@ -1,0 +1,16 @@
+---
+- suffixes:
+  - eq
+  - param
+  extensions:
+  - .xml
+  entities:
+    subject: optional
+    session: optional
+    task: optional
+    acquisition: optional
+    reconstruction: optional
+    run: optional
+    resolution: optional
+    description: optional
+    
