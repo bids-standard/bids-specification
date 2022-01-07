@@ -6,7 +6,7 @@ from pathlib import Path
 
 import yaml
 
-from . import utils
+import utils
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
