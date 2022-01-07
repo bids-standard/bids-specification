@@ -18,7 +18,7 @@ def get_paths(bids_dir):
 	return path_list
 
 def create_regex_schema(
-	schema_path='data/schema',
+	schema_path='schemacode/data/schema',
 	top_level_path = 'rules/top_level_files.yaml',
 	datatypes_path = 'rules/datatypes/',
 	debug=True,
@@ -129,7 +129,7 @@ def validate(bids_dir, regex_schema,
 
 
 def load_all(
-	schema_dir='data/schema',
+	schema_dir='schemacode/data/schema',
 	debug=False,
 	):
 	"""Create full path regexes while trying to go by preexisting code.
@@ -142,9 +142,9 @@ def load_all(
 	* More issues in comments.
 	"""
 
-	from schema import load_schema
+	from . import schema
 
-	schema = load_schema(schema_dir)
+	my_schema = schema.load_schema(schema_dir)
 	if debug:
 		print(
 			json.dumps(schema['rules'],
@@ -155,9 +155,9 @@ def load_all(
 
 	label = '([a-z,A-Z,0-9]*?)'
 
-	datatypes = schema['rules']['datatypes']
-	entity_order = schema["rules"]["entities"]
-	entity_definitions = schema["objects"]["entities"]
+	datatypes = my_schema['rules']['datatypes']
+	entity_order = my_schema["rules"]["entities"]
+	entity_definitions = my_schema["objects"]["entities"]
 
 	# This should be further broken up:
 	# IF there is a session dir, there should be a session field in the file name, so there should be two entries for all entities below the session directory.
@@ -330,7 +330,7 @@ def validate_all(bids_dir, regex_schema,
 def _test_regex(
 	bids_dir='~/DANDI/000108',
 	#bids_schema='/usr/share/bids-schema/',
-	bids_schema='data/schema',
+	bids_schema='schemacode/data/schema',
 	):
 	"""
 	Test with `python -c "from validator import *; _test_regex()"`
@@ -343,7 +343,7 @@ def _test_regex(
 def test_regex(
 	bids_dir='~/DANDI/000108',
 	#bids_schema='/usr/share/bids-schema/',
-	bids_schema='data/schema',
+	bids_schema='schemacode/data/schema',
 	):
 	"""
 	Test with `python -c "from validator import *; test_regex()"`
