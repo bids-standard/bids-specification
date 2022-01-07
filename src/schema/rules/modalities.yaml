@@ -22,3 +22,7 @@ beh:
 pet:
   datatypes:
   - pet
+comp:
+  datatypes:
+    - model
+    - code
