@@ -368,7 +368,7 @@ Columns:
 Connectivity:
   name: Connectivity
   description: |
-    Reference to one or more `_conndata-network_connectivity.tsv` file(s) where the 
+    Reference to one or more `_conndata-network_connectivity.tsv` file(s) where the
     structural connectivity used to produce a simulation result is specified.
   anyOf:
   - type: array
@@ -1535,9 +1535,9 @@ MTState:
 MachineCodeRepository:
   name: MachineCodeRepository
   description: |
-    Either reference to modality agnostic folder "code" or 
+    Either reference to modality agnostic folder "code" or
     [URI](/02-common-principles.html#uniform-resource-indicator) to a publicly
-    accessible repository where the machine code used to produce the simulation result is 
+    accessible repository where the machine code used to produce the simulation result is
     provided.
   anyOf:
   - type: array
@@ -2340,9 +2340,9 @@ SoftwareVersions:
 SourceCodeRepository:
   name: SourceCodeRepository
   description: |
-    Either reference to modality agnostic folder "code" or 
+    Either reference to modality agnostic folder "code" or
     [URI](/02-common-principles.html#uniform-resource-indicator) to a publicly
-    accessible repository where the source code used to produce the simulation result is 
+    accessible repository where the source code used to produce the simulation result is
     provided.
   anyOf:
   - type: array
