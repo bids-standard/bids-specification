@@ -18,7 +18,7 @@ def get_paths(bids_dir):
 	return path_list
 
 def create_regex_schema(
-	schema_path='/usr/share/bids-schema/',
+	schema_path='data/schema',
 	top_level_path = 'rules/top_level_files.yaml',
 	datatypes_path = 'rules/datatypes/',
 	debug=True,
@@ -129,7 +129,7 @@ def validate(bids_dir, regex_schema,
 
 
 def load_all(
-	schema_dir='/usr/share/bids-schema/',
+	schema_dir='data/schema',
 	debug=False,
 	):
 	"""Create full path regexes while trying to go by preexisting code.
@@ -329,7 +329,8 @@ def validate_all(bids_dir, regex_schema,
 
 def _test_regex(
 	bids_dir='~/DANDI/000108',
-	bids_schema='../../src/schema/',
+	#bids_schema='/usr/share/bids-schema/',
+	bids_schema='data/schema',
 	):
 	"""
 	Test with `python -c "from validator import *; _test_regex()"`
@@ -341,7 +342,8 @@ def _test_regex(
 
 def test_regex(
 	bids_dir='~/DANDI/000108',
-	bids_schema='../../src/schema/',
+	#bids_schema='/usr/share/bids-schema/',
+	bids_schema='data/schema',
 	):
 	"""
 	Test with `python -c "from validator import *; test_regex()"`
