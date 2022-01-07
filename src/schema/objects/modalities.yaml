@@ -24,3 +24,7 @@ pet:
   name: Positron Emission Tomography
   description: |
     Data acquired with PET.
+comp:
+  name: Computational Modelling
+  description: |
+    Computational models and data simulated with computational models.
