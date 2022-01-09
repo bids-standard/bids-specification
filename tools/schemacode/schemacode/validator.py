@@ -284,15 +284,12 @@ def validate_all(bids_dir, regex_schema,
 	tracking_paths = deepcopy(paths_list)
 	for path in paths_list:
 		if debug:
-			print('Checking file `{}`.'.format(path))
+			print(f'Checking file `{path}`.')
 			print('Trying file types:')
 		for regex_entry in tracking_schema:
 			regex = regex_entry['regex']
 			if debug:
-				print('\t* {}, with pattern: {}'.format(
-					path,
-					regex,
-					))
+				print(f'\t* {path}, with pattern: {regex}')
 			matched = re.match(regex,path)
 			if matched:
 				if debug:
@@ -305,7 +302,7 @@ def validate_all(bids_dir, regex_schema,
 				tracking_schema.remove(regex_entry)
 		else:
 			if debug:
-				print('The `{}` file could not be matched to any regex schema entry.'.format(path))
+				print(f'The `{patch}` file could not be matched to any regex schema entry.')
 
 	if report:
 		if isinstance(report,str):
@@ -316,15 +313,16 @@ def validate_all(bids_dir, regex_schema,
 			report_str,
 			datetime.datetime.now().strftime("%Y%m%d-%H%M%S"),
 			)
+		validated_files_count = len(paths_list) - len(tracking_paths)
 		with open(report_filename, 'w') as f:
-			f.write('{} files were successfully validated.'.format(len(paths_list)-len(tracking_paths)))
+			f.write(f'{validated_files_count} files were successfully validated.')
 			f.write('The following files were not matched by any regex schama entry:')
 			f.write('\n-'.join(tracking_paths))
 			f.write('The following mandatory regex schama entries did not match any files:')
 			f.write('\n')
 			for entry in tracking_schema:
 				if entry['mandatory']:
-					f.write('*{}'.format(file_type))
+					f.write(f'*{file_type}')
 			f.close()
 
 def _test_regex(
