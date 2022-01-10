@@ -15,7 +15,18 @@ association.
 See [https://www.hedtags.org/display_hed.html](https://www.hedtags.org/display_hed.html)
 to view the HED schema and the
 [HED documentation](https://hed-specification.readthedocs.io/en/latest/index.html)
-for additional resources. HED annotations
+for additional resources.
+
+Starting with HED version 8.0.0, HED allows users to annotate using individual
+terms or partial paths in the HED vocabulary (e.g., `Red` or `Visual-presentation`)
+rather than the full paths in the HED hierarchy (e.g.,
+`Property/Sensory-property/Sensory-attribute/Visual-attribute/Color/CSS-color/Red-color/Red`
+or
+`Property/Sensory-property/Sensory-presentation/Visual-presentation`).  
+
+Tools treat the short form and the long form interchangeably,
+converting when necessary based on the HED schema.
+**Using the short form for tags is strongly recommended whenever possible**.
 
 ## Annotating each event
 
@@ -134,27 +145,28 @@ According to the BIDS [inheritance principle](../02-common-principles.md#the-inh
 once a column key in a sidecar (e.g. the column name found in the `_events.tsv` files)
 is set, it cannot be unset.
 
-## HED schema and HED versions
+## HED schema versions
 
 The HED vocabulary is specified by a HED schema,
 which delineates the allowed HED path strings. 
-By default, BIDS uses the latest HED schema available in the
-[hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository
-maintained by the hed-standard group.
-
-You can override the default by providing a specific HED version number in the
-`dataset_description.json` file using the `HEDVersion` field.
-The preferred approach is to validate with the latest version (the default),
-but to use the `HEDVersion` field to specify which version was used for later reference.
+You should specify the version of HED used in tagging in the `HEDVersion`
+field of the `dataset_description.json` file located in the dataset root directory.
 
 Example: The following `dataset_description.json` file specifies that
-`HED8.0.0.xml` from the [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository
-should be used to validate the study event annotations.
+[`HED8.0.0.xml`](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.0.0.xml)
+file from the `hedxml` directory of the
+[`hed-specification`](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.0.0.xml)
+repository on GitHub should be used to validate the study event annotations.
 
 ```JSON
 {
-  "Name": "The mother of all experiments",
-  "BIDSVersion": "1.4.0",
+  "Name": "A great experiment",
+  "BIDSVersion": "1.6.0",
   "HEDVersion": "8.0.0"
 }
 ```
+
+If you omit the `HEDVersion` from the dataset description file
+or are running the BIDS validator behind a firewall and cannot access GitHub, 
+the HED validation will fall back to the latest version of the HED schema, 
+which it stores internally.
