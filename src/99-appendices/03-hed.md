@@ -158,7 +158,7 @@ which delineates the allowed HED path strings.
 The version of HED used in tagging a dataset should be provided in the `HEDVersion`
 field of the `dataset_description.json` file located in the dataset root directory.
 
-Example: The following `dataset_description.json` file specifies that
+Example: The following `dataset_description.json` file specifies that the
 [`HED8.0.0.xml`](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.0.0.xml)
 file from the `hedxml` directory of the
 [`hed-specification`](https://github.com/hed-standard/hed-specification)
