@@ -18,8 +18,8 @@ to view the HED schema and the
 for additional resources.
 
 Starting with HED version 8.0.0, HED allows users to annotate using individual
-terms or partial paths in the HED vocabulary (e.g., `Red` or `Visual-presentation`)
-rather than the full paths in the HED hierarchy (e.g.,
+terms or partial paths in the HED vocabulary (`Red` or `Visual-presentation`)
+rather than the full paths in the HED hierarchy (
 `Property/Sensory-property/Sensory-attribute/Visual-attribute/Color/CSS-color/Red-color/Red`
 or
 `Property/Sensory-property/Sensory-presentation/Visual-presentation`).
@@ -48,7 +48,7 @@ onset  duration  trial_type  response_time stim_file
 ```
 
 The `trial_type` column in the above example contains a limited number of distinct
-values (e.g., `go` and `stop`).
+values (`go` and `stop`).
 This type of column is referred to as a *categorical* column,
 and the column's meaning can be annotated by assigning HED tags to describe
 each of these distinct values.
@@ -147,7 +147,7 @@ If some recordings in the dataset have a column whose values deviate from a
 standard pattern, then the annotations for that column MUST be placed in
 sidecars at lower levels in the hierarchy.
 According to the BIDS [inheritance principle](../02-common-principles.md#the-inheritance-principle),
-once a column key in a sidecar (e.g., the column name found in the `_events.tsv` files)
+once a column key in a sidecar (the column name found in the `_events.tsv` files)
 is set, it cannot be unset by a sidecar appearing at a lower level in the dataset hierarchy.
 
 ## HED schema versions
