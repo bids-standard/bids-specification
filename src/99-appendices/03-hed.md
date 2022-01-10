@@ -3,120 +3,30 @@
 Hierarchical Event Descriptors (HED) are a controlled vocabulary of terms describing
 events in a machine-actionable form so that algorithms can use the information without
 manual recoding.
-HED was originally developed with EEG in mind, but is applicable to
-all behavioral experiments.
+HED annotation can be used to describe any experimental events by combining
+information from the dataset's `_events.tsv` files and `_events.json` sidecars.
 
-Each level of a hierarchical tag is delimited with a forward slash (`/`).
-A HED string contains one or more HED tags separated by commas (`,`).
-Parentheses (brackets, `()`) group tags and enable specification of multiple items
-and their attributes in a single **HED string** (see section 2.4 in
-[HED Tagging Strategy Guide](https://www.hedtags.org/hed-docs/HEDTaggingStrategyGuide.pdf)).
-For more information about HED and tools available to validate and match HED
-strings, please visit [www.hedtags.org](https://www.hedtags.org).
-Since dedicated fields already exist for the overall task classification in the
-sidecar JSON files (`CogAtlasID` and `CogPOID`), HED tags from the `Paradigm`
-HED subcategory should not be used to annotate events.
+## HED annotations and vocabulary.
+
+A HED annotation consists of terms selected from a controlled 
+hierarchical vocabulary (the HED schema). 
+Individual terms are comma-separated and may be grouped using parentheses to indicate
+association. 
+See [https://www.hedtags.org/display_hed.html](https://www.hedtags.org/display_hed.html)
+to view the HED schema and the
+[HED documentation](https://hed-specification.readthedocs.io/en/latest/index.html)
+for additional resources. HED annotations
 
 ## Annotating each event
 
-There are several ways to associate HED annotations with events within the BIDS
-framework.
-The most direct way is to use the `HED` column of the `*_events.tsv`
-file to annotate events.
+BIDS events appear in tab-separated value (`_events.tsv`)
+files in various places in the dataset hierarchy. 
+BIDS event files must have `onset` and a `duration` columns. 
+BIDS allows the user to include additional columns and to define their
+meanings in associated JSON sidecar files (`_events.json`).
 
-Example: An `*_events.tsv` annotated using HED tags for individual events.
-
-```Text
-onset  duration  HED
-1.1    n/a       Event/Category/Experimental stimulus, Event/Label/CrossFix,  Sensory presentation/Visual, Item/Object/2D Shape/Cross
-1.3    n/a       Event/Category/Participant response, Event/Label/ButtonPress, Action/Button press
-...
-```
-
-The direct approach requires that each line in the events file be annotated.
-Since there are typically thousands of events in each experiment,
-this method of annotation is not convenient unless the annotations are
-automatically generated.
-Usually annotations that appear in the `HED` column are specific to each individual event.
-Information that is common to groups of events can be annotated by category.
-Numerical values associated with each event can be annotated by value type.
-Annotating by category and by value greatly reduces the effort required to HED tag
-data and improves the clarity for data users.
-
-## Annotating events by categories
-
-In many experiments, the event instances fall into a much smaller number of
-categories, and often these categories are labeled with numerical codes or short names.
-This categorical information usually corresponds to one or more columns in `*_events.tsv`
-representing categorical values.
-Instead of tagging this information for each individual event,
-you can assign HED tags for each distinct categorical value
-in an accompanying `*_events.json` sidecar and allow the analysis tools to make
-the association with individual event instances during analysis.
-The column name in the `*_events.tsv` identifies the type of categorical variable.
-The following `*_events.tsv` file has one categorical variable called `mycodes` that
-takes on three possible values: `Fixation`, `Button`, and `Target`.
-
-Example: An `*_events.tsv` containing the `mycodes` categorical column.
-
-```Text
-onset  duration  mycodes
-1.1    n/a       Fixation
-1.3    n/a       Button
-1.8    n/a       Target
-...
-
-```
-
-Example: An accompanying `*_events.json` sidecar describing the `mycodes` categorical variable.
-
-```JSON
-{
-   "mycodes": {
-       "LongName": "Local event type names",
-       "Description": "Main types of events that comprise a trial",
-       "Levels": {
-          "Fixation": "Fixation cross is displayed",
-          "Target": "Target image appears",
-          "Button": "Subject presses a button"
-       },
-       "HED": {
-           "Fixation": "Event/Category/Experimental stimulus, Event/Label/CrossFix,
-               Event/Description/A cross appears at screen center to serve as a fixation point,
-               Sensory presentation/Visual, Item/Object/2D Shape/Cross,
-               Attribute/Visual/Fixation point, Attribute/Visual/Rendering type/Screen,
-               Attribute/Location/Screen/Center",
-           "Target": "Event/Label/TargetImage, Event/Category/Experimental stimulus,
-               Event/Description/A white airplane as the RSVP target superimposed on a satellite image is displayed.,
-               Item/Object/Vehicle/Aircraft/Airplane, Participant/Effect/Cognitive/Target,
-               Sensory presentation/Visual/Rendering type/Screen/2D),
-               (Item/Natural scene/Aerial/Satellite,
-               Sensory presentation/Visual/Rendering type/Screen/2D)",
-           "Button": "Event/Category/Participant response, Event/Label/PressButton,
-               Event/Description/The participant presses the button as soon as the target is visible,
-               Action/Button press"
-        }
-   }
-}
-```
-
-## Annotating events by value type
-
-Each column of `*_events.tsv` containing non-categorical values usually represents a
-particular type of data, for example the `speed` of a stimulus object across the
-screen or the filename of the stimulus image.
-These variables could be annotated in the HED column of `*_events.tsv`.
-However, that approach requires repeating the values appearing in the individual
-columns in the HED column.
-A better approach is to annotate the type of value contained in each of these
-columns in the `*_events.json` sidecar.
-Value variables are annotated in a manner similar to categorical values,
-except that the HED string must contain exactly one `#` specifying a placeholder
-for the actual column values.
-Tools are responsible for substituting the actual column values for the `#` during analysis.
-
-Example: An `*_events.tsv` containing a categorical column (`trial_type`) and two value
-columns (`response_time` and `stim_file`).
+Example: An excerpt from an `*_events.tsv` containing three columns in addition to
+the required `onset` and `duration` columns.
 
 ```Text
 onset  duration  trial_type  response_time stim_file
@@ -124,69 +34,110 @@ onset  duration  trial_type  response_time stim_file
 5.6    0.6       stop        1.739         images/blue_square.jpg
 ```
 
-Example: An accompanying `*_events.json` sidecar describing both categorical and value columns.
+The `trial_type` column in the above example contains a limited number of distinct
+values (e.g., `go` and `stop`). 
+This type of column is referred to as a *categorical* column, 
+and the column's meaning can be annotated by assigning HED tags to describe
+each of these distinct values. 
+The JSON sidecar provides a dictionary of annotations for these categorical values.
+
+In contrast, the `response_time` and `stim_file` columns could potentially contain
+distinct values in every row.
+These columns are referred to as *value* columns and
+are annotated by creating a HED tag string to describe the general
+characteristics of these values.
+The HED string must include a `#` placeholder which tools will replace by the actual
+column value when the annotations are assembled for analysis.
+
+Example: An accompanying `*_events.json` sidecar describing both categorical and
+value columns of the previous example.
+The `Duration` column is also annotated as a value column.
 
 ```JSON
 {
-   "trial_type": {
-       "LongName": "Event category",
-       "Description": "Indicator of type of action that is expected",
-       "Levels": {
-          "go": "A red square is displayed to indicate starting",
-          "stop": "A blue square is displayed to indicate stopping",
-       },
-       "HED": {
-          "go": "Event/Category/Experimental stimulus, Event/Label/RedSquare,
-          Event/Description/A red square is displayed to indicate starting,
-          Sensory presentation/Visual, Item/Object/2D Shape/Square,
-          Attribute/Visual/Color/Red, Attribute/Visual/Rendering type/Screen,
-          Attribute/Location/Screen/Center",
-          "stop": "Event/Category/Experimental stimulus, Event/Label/BlueSquare,
-          Event/Description/A blue square is displayed to indicate stopping,
-          Sensory presentation/Visual, Item/Object/2D Shape/Square,
-          Attribute/Visual/Color/Blue, Attribute/Visual/Rendering type/Screen,
-          Attribute/Location/Screen/Center",
+  "Duration": {
+    "LongName": "Image duration",
+    "Description": "Duration of the image presentations",
+    "Units": "s",
+    "HED": "Duration/# s"
+  }, 
+  "trial_type": {
+    "LongName": "Event category", 
+    "Description": "Indicator of type of action that is expected",
+    "Levels": {
+      "go": "A red square is displayed to indicate starting",
+      "stop": "A blue square is displayed to indicate stopping"
+    }, 
+    "HED": {
+          "go": "Sensory-event, Visual-presentation, ((Square, Blue),(Computer-screen, Center-of))",
+          "stop": "Sensory-event, Visual-presentation, ((Square, Blue), (Computer-screen, Center-of))"
        }
    },
    "response_time": {
        "LongName": "Response time after stimulus",
        "Description": "Time from stimulus presentation until subject presses button",
        "Units": "ms",
-       "HED": "Attribute/Response start delay/# ms, Action/Button press"
+       "HED": "(Delay/# ms, Agent-action, (Experiment-participant, (Press, Mouse-button))),"
    },
    "stim_file": {
        "LongName": "Stimulus filename",
        "Description": "Relative path of the stimulus image file",
-       "HED": "Attribute/File/#"
+       "HED": "Pathname/#"
    }
 }
 ```
 
-## Best practices
+Tools assemble an annotation for each event by concatenating the 
+annotations for each column.  
 
-Most studies will have event categorical variables and value variables that
-are common across many of the datasets in the study.
-You should try to annotate these columns in a `*_events.json` sidecar
-as high in the study hierarchy as possible to avoid duplicate annotations.
-Annotations that can be placed in sidecars are preferred to those placed
-directly in the HED column, because they are simpler, more compact, and
-less prone to inconsistent annotation.
-Downstream tools should not distinguish between tags specified using
-the explicit HED column and the categorical specifications, but should
-form the union before analysis.
-Further, the [inheritance principle](../02-common-principles.md#the-inheritance-principle)
-applies, so the data dictionaries can appear higher in the BIDS hierarchy.
+Example: The full assembled annotation for the first event in the above
+`_events.tsv` file with onset 1.2s is:
 
-You should try to annotate in as much detail as possible.
-The HED path structure makes it easy for analysis tools to extract tags
-at different levels of detail: For example a user can consider extracting
-events associated with 2D shapes for stimuli, ignoring the particular
-color or shape details for the stimuli.
+```
+Duration/0.6 s, Sensory-event, Visual-presentation,
+((Square, Blue), (Computer-screen, Center-of)),
+(Delay/1.435 ms, Agent-action, 
+(Experiment-participant, (Press, Mouse-button))),
+Pathname/images/red_square.jpg
+
+```
+
+## Annotation using the `HED` column
+
+Another tagging strategy is to annotate individual events directly by
+including a `HED` column in the `_events.tsv`. 
+This approach is necessary when each event has annotations that are unique
+and do not fit into a standard set of patterns. 
+Some acquisition/presentation software systems directly
+write annotations during the experiment, and these might also be placed in the
+`HED` column of the `_events.tsv` file.
+Tools that assemble the full annotation for events treat do not distinguish
+between HED annotations extracted from `_events.json` sidecars and those 
+appearing in the `HED` column of `_events.tsv` files. 
+The HED strings from all sources are concatenated to form the final 
+event annotations.
+
+Annotations placed in sidecars are preferred to those placed
+directly in the `HED` column, because they are simpler, more compact, 
+more easily edited, and less prone to inconsistent annotation.
+
+## HED and the BIDS inheritance principle
+
+Most studies have event files whose columns contain categorical and 
+numerical values that are similar across the recordings in the study.
+Ideally, these columns should be annotated in a single `*_events.json` sidecar
+placed at the top level in the dataset.
+If some recordings in the dataset have a column whose values deviate from a
+standard pattern, then the annotations for that column MUST be placed in
+sidecars at lower levels in the hierarchy.
+According to the BIDS [inheritance principle](../02-common-principles.md#the-inheritance-principle), 
+once a column key in a sidecar (e.g. the column name found in the `_events.tsv` files)
+is set, it cannot be unset.
 
 ## HED schema and HED versions
 
 The HED vocabulary is specified by a HED schema,
-which delineates the allowed HED path strings.
+which delineates the allowed HED path strings. 
 By default, BIDS uses the latest HED schema available in the
 [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository
 maintained by the hed-standard group.
@@ -197,13 +148,13 @@ The preferred approach is to validate with the latest version (the default),
 but to use the `HEDVersion` field to specify which version was used for later reference.
 
 Example: The following `dataset_description.json` file specifies that
-`HED7.1.1.xml` from the [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository
+`HED8.0.0.xml` from the [hed-specification](https://github.com/hed-standard/hed-specification/tree/master/hedxml) repository
 should be used to validate the study event annotations.
 
 ```JSON
 {
   "Name": "The mother of all experiments",
   "BIDSVersion": "1.4.0",
-  "HEDVersion": "7.1.1"
+  "HEDVersion": "8.0.0"
 }
 ```
