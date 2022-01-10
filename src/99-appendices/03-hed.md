@@ -141,15 +141,15 @@ more easily edited, and less prone to inconsistent annotation.
 
 Most studies have event files whose columns contain categorical and
 numerical values that are similar across the recordings in the study.
-It is RECOMMENDED to annotate these columns in a single
-`events.json` sidecar, placed at the top level in the dataset.
+If possible, users should annotate these columns in a single
+`events.json` sidecar placed at the top level in the dataset.
 
 If some recordings in the dataset have a column whose values deviate from a
 standard pattern, then the annotations for that column MUST be placed in
 sidecars at lower levels in the hierarchy.
 According to the BIDS [Inheritance Principle](../02-common-principles.md#the-inheritance-principle),
 once a column key in a sidecar (that is, the column name found in the `events.tsv` files) is set,
-it cannot be unset by a sidecar appearing at a lower level in the dataset hierarchy.
+information about that column cannot be overridden in a sidecar appearing at a lower level in the dataset hierarchy.
 
 ## HED schema versions
 
@@ -175,5 +175,5 @@ repository on GitHub should be used to validate the study event annotations.
 If you omit the `HEDVersion` field from the dataset description file,
 any present HED information will be validated using the latest version of the HED schema,
 which is bound to result in problems.
-Hence, it is strongly RECOMMENDED to supply the `HEDVersion` field when using HED
+Hence, it is strongly RECOMMENDED that the `HEDVersion` field be included when using HED
 in a BIDS dataset.
