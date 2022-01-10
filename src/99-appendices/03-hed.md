@@ -161,7 +161,7 @@ field of the `dataset_description.json` file located in the dataset root directo
 Example: The following `dataset_description.json` file specifies that
 [`HED8.0.0.xml`](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.0.0.xml)
 file from the `hedxml` directory of the
-[`hed-specification`](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.0.0.xml)
+[`hed-specification`](https://github.com/hed-standard/hed-specification)
 repository on GitHub should be used to validate the study event annotations.
 
 ```JSON
