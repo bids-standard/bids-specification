@@ -30,8 +30,9 @@ converting between the forms when necessary, based on the HED schema.
 
 ## Annotating events
 
-BIDS events appear in tab-separated value (`_events.tsv`)
-files in various places in the dataset hierarchy.
+Event-related data in BIDS appears in tab-separated value (`events.tsv`)
+files in various places in the dataset hierarchy
+(see [Events](../04-modality-specific-files/05-task-events.md)).
 
 `events.tsv` files MUST have `onset` and `duration` columns.
 Dataset curators MAY also include additional columns and define their
