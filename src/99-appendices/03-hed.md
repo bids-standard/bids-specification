@@ -18,7 +18,7 @@ to view the HED schema and the
 for additional resources.
 
 Starting with HED version 8.0.0, HED allows users to annotate using individual
-terms or partial paths in the HED vocabulary (`Red` or `Visual-presentation`)
+terms or partial paths in the HED vocabulary (for example `Red` or `Visual-presentation`)
 rather than the full paths in the HED hierarchy (
 `Property/Sensory-property/Sensory-attribute/Visual-attribute/Color/CSS-color/Red-color/Red`
 or
