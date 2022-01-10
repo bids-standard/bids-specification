@@ -38,7 +38,7 @@ files in various places in the dataset hierarchy
 Dataset curators MAY also include additional columns and define their
 meanings in associated JSON sidecar files (`events.json`).
 
-Example: An excerpt from an `*_events.tsv` containing three columns
+Example: An excerpt from an `events.tsv` file containing three columns
 (`trial_type`, `response_time`, and `stim_file`) in addition to
 the required `onset` and `duration` columns.
 
