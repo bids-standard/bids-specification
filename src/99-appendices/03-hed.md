@@ -141,8 +141,8 @@ more easily edited, and less prone to inconsistent annotation.
 
 Most studies have event files whose columns contain categorical and
 numerical values that are similar across the recordings in the study.
-Ideally, these columns should be annotated in a single `_events.json` sidecar
-placed at the top level in the dataset.
+It is RECOMMENDED to annotate these columns in a single
+`events.json` sidecar, placed at the top level in the dataset.
 
 If some recordings in the dataset have a column whose values deviate from a
 standard pattern, then the annotations for that column MUST be placed in
