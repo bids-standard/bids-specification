@@ -6,7 +6,7 @@ import json
 
 from copy import deepcopy
 
-def get_paths(bids_dir):
+def _get_paths(bids_dir):
 
 	bids_dir = os.path.abspath(os.path.expanduser(bids_dir))
 	path_list=[]
@@ -16,6 +16,23 @@ def get_paths(bids_dir):
 			file_path = file_path[len(bids_dir):]
 			path_list.append(file_path)
 	return path_list
+
+def _add_entity(regex_entities, entity_shorthand, variable_field, requirement_level):
+	"""Add entity pattern to filename template based on requirement level."""
+	if requirement_level == "required":
+		if len(regex_entities.strip()):
+			regex_entities += f'_{entity_shorthand}-{variable_field}'
+		else:
+			# Only the first entity doesn't need an underscore
+			regex_entities += f'{entity_shorthand}-{variable_field}'
+	else:
+		if len(regex_entities.strip()):
+			regex_entities += f'(|_{entity_shorthand}-{variable_field})'
+		else:
+			# Only the first entity doesn't need an underscore
+			regex_entities += f'(|{entity_shorthand}-{variable_field})'
+
+	return regex_entities
 
 def create_regex_schema(
 	schema_path='schemacode/data/schema',
@@ -88,7 +105,7 @@ def validate(bids_dir, regex_schema,
 	"""
 
 	tracking_schema = deepcopy(regex_schema)
-	paths_list = get_paths(bids_dir)
+	paths_list = _get_paths(bids_dir)
 	tracking_paths = deepcopy(paths_list)
 	for path in paths_list:
 		if debug:
@@ -140,6 +157,7 @@ def load_all(
 	* Couldn't find where the `label` type is defined as alphanumeric, hard-coding `entity_definitions["subject"]["format"]`-type entries as`[a-z,A-Z,0-9]*?` for the time being.
 	* Suggest to BIDS-specification to remove the periods from the extensions, the leading period is not part of the extension, but a delimiter defining the fact that it's an extension. Code sections marked as `Making it period-safe` should be edited when this fix is in, though they will work in any case.
 	* More issues in comments.
+	* Using pre 3.8 string formatting for legibility.
 	"""
 
 	from . import schema
@@ -178,16 +196,16 @@ def load_all(
 					indent=4,
 					),
 				)
-			regex_entities = []
+			regex_entities = ''
 			for entity in entity_order:
 				if entity in variant['entities']:
 					if debug:
 						print(
-						json.dumps(entity_definitions[entity],
-							sort_keys=True,
-							indent=4,
-							),
-						)
+						    json.dumps(entity_definitions[entity],
+							    sort_keys=True,
+							    indent=4,
+							    ),
+						    )
 					entity_shorthand = entity_definitions[entity]['entity']
 					if "enum" in entity_definitions[entity].keys():
 						# Entity key-value pattern with specific allowed values
@@ -197,21 +215,13 @@ def load_all(
 						)
 					else:
 						variable_field = label
-					if variant['entities'][entity] == 'optional':
-						regex_entities.append(
-								'(|{}-{})'.format(
-									entity_shorthand,
-									variable_field,
-								)
-							)
-					else:
-						regex_entities.append(
-								'{}-{}'.format(
-									entity_shorthand,
-									variable_field,
-								)
-							)
-			regex_entities = '_'.join(regex_entities)
+					regex_entities = _add_entity(
+						regex_entities,
+						entity_shorthand,
+						variable_field,
+						variant['entities'][entity],
+						)
+
 			if len(variant['suffixes']) == 1:
 				regex_suffixes = variant['suffixes'][0]
 			else:
@@ -240,9 +250,9 @@ def load_all(
 				regex_extensions = '({})'.format(
 					'|'.join(fixed_variant_extensions)
 					)
-			regex = '{}/{}{}_{}\.{}'.format(
-				datatype,
+			regex = '{}{}/{}_{}\.{}'.format(
 				regex_directories,
+				datatype,
 				regex_entities,
 				regex_suffixes,
 				regex_extensions,
@@ -280,7 +290,7 @@ def validate_all(bids_dir, regex_schema,
 	"""
 
 	tracking_schema = deepcopy(regex_schema)
-	paths_list = get_paths(bids_dir)
+	paths_list = _get_paths(bids_dir)
 	tracking_paths = deepcopy(paths_list)
 	for path in paths_list:
 		if debug:
@@ -317,6 +327,7 @@ def validate_all(bids_dir, regex_schema,
 		with open(report_filename, 'w') as f:
 			f.write(f'{validated_files_count} files were successfully validated.')
 			f.write('The following files were not matched by any regex schama entry:')
+			f.write('\n')
 			f.write('\n-'.join(tracking_paths))
 			f.write('The following mandatory regex schama entries did not match any files:')
 			f.write('\n')
@@ -339,7 +350,7 @@ def _test_regex(
 	validate(bids_dir, regex_schema)
 
 def test_regex(
-	bids_dir='~/datalad/openneuro',
+	bids_dir='~/datalad/openneuro/ds000030',
 	#bids_dir='~/DANDI/000108',
 	#bids_schema='/usr/share/bids-schema/',
 	bids_schema='schemacode/data/schema',
