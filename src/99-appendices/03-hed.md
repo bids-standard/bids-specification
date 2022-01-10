@@ -157,6 +157,8 @@ The HED vocabulary is specified by a HED schema,
 which delineates the allowed HED path strings.
 The version of HED used in tagging a dataset should be provided in the `HEDVersion`
 field of the `dataset_description.json` file located in the dataset root directory.
+This allows for a proper validation of the HED annotations
+(for example using the `bids-validator`).
 
 Example: The following `dataset_description.json` file specifies that the
 [`HED8.0.0.xml`](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.0.0.xml)
