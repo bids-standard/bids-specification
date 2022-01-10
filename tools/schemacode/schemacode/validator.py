@@ -302,7 +302,7 @@ def validate_all(bids_dir, regex_schema,
 				tracking_schema.remove(regex_entry)
 		else:
 			if debug:
-				print(f'The `{patch}` file could not be matched to any regex schema entry.')
+				print(f'The `{path}` file could not be matched to any regex schema entry.')
 
 	if report:
 		if isinstance(report,str):
@@ -339,7 +339,8 @@ def _test_regex(
 	validate(bids_dir, regex_schema)
 
 def test_regex(
-	bids_dir='~/DANDI/000108',
+	bids_dir='~/datalad/openneuro',
+	#bids_dir='~/DANDI/000108',
 	#bids_schema='/usr/share/bids-schema/',
 	bids_schema='schemacode/data/schema',
 	):
