@@ -56,14 +56,13 @@ The JSON sidecar provides a dictionary of annotations for these categorical valu
 
 In contrast, the `response_time` and `stim_file` columns could potentially contain
 distinct values in every row.
-These columns are referred to as *value* columns and
-are annotated by creating a HED tag string to describe the general
-characteristics of these values.
+These columns are referred to as *value* columns and are annotated by creating
+a HED tag string to describe a general pattern for these values.
 The HED annotation for a value column must include a `#` placeholder,
 which tools will replace by the actual column value when the annotations
 are assembled for analysis.
 
-Example: An accompanying `*_events.json` sidecar describing both categorical and
+Example: An accompanying `_events.json` sidecar describing both categorical and
 value columns of the previous example.
 The `Duration` column is also annotated as a value column.
 
@@ -141,7 +140,7 @@ more easily edited, and less prone to inconsistent annotation.
 
 Most studies have event files whose columns contain categorical and
 numerical values that are similar across the recordings in the study.
-Ideally, these columns should be annotated in a single `*_events.json` sidecar
+Ideally, these columns should be annotated in a single `_events.json` sidecar
 placed at the top level in the dataset.
 
 If some recordings in the dataset have a column whose values deviate from a
@@ -149,7 +148,7 @@ standard pattern, then the annotations for that column MUST be placed in
 sidecars at lower levels in the hierarchy.
 According to the BIDS [inheritance principle](../02-common-principles.md#the-inheritance-principle),
 once a column key in a sidecar (e.g., the column name found in the `_events.tsv` files)
-is set, it cannot be unset.
+is set, it cannot be unset by a sidecar appearing at a lower level in the dataset hierarchy.
 
 ## HED schema versions
 
