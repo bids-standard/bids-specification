@@ -33,9 +33,9 @@ converting between the forms when necessary, based on the HED schema.
 BIDS events appear in tab-separated value (`_events.tsv`)
 files in various places in the dataset hierarchy.
 
-BIDS event files must have `onset` and `duration` columns.
-Users may also include additional columns and define their
-meanings in associated JSON sidecar files (`_events.json`).
+`events.tsv` files MUST have `onset` and `duration` columns.
+Dataset curators MAY also include additional columns and define their
+meanings in associated JSON sidecar files (`events.json`).
 
 Example: An excerpt from an `*_events.tsv` containing three columns
 (`trial_type`, `response_time`, and `stim_file`) in addition to
