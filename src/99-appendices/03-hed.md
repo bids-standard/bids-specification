@@ -172,7 +172,8 @@ repository on GitHub should be used to validate the study event annotations.
 }
 ```
 
-If you omit the `HEDVersion` from the dataset description file
-or are running the BIDS validator behind a firewall and cannot access GitHub,
-the HED validation will fall back to the latest version of the HED schema,
-which it stores internally.
+If you omit the `HEDVersion` field from the dataset description file,
+any present HED information will be validated using the latest version of the HED schema,
+which is bound to result in problems.
+Hence, it is strongly RECOMMENDED to supply the `HEDVersion` field when using HED
+in a BIDS dataset.
