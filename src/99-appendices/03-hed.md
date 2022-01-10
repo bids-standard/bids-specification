@@ -24,9 +24,9 @@ rather than the full paths in the HED hierarchy (
 or
 `Property/Sensory-property/Sensory-presentation/Visual-presentation`).
 
-Tools treat the short and long HED tag forms interchangeably,
-converting when necessary based on the HED schema.
-**Using the short form for tags is strongly recommended whenever possible**.
+HED specific tools MUST treat the short and long HED tag forms interchangeably,
+converting between the forms when necessary, based on the HED schema.
+**Using the short form for tags is strongly RECOMMENDED whenever possible**.
 
 ## Annotating events
 
