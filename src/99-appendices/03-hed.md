@@ -8,7 +8,7 @@ information from the dataset's `_events.tsv` files and `_events.json` sidecars.
 
 ## HED annotations and vocabulary
 
-A HED annotation consists of terms selected from a controlled 
+A HED annotation consists of terms selected from a controlled
 hierarchical vocabulary (the HED schema).
 Individual terms are comma-separated and may be grouped using parentheses to indicate
 association.
@@ -74,14 +74,14 @@ The `Duration` column is also annotated as a value column.
     "Description": "Duration of the image presentations",
     "Units": "s",
     "HED": "Duration/# s"
-  }, 
+  },
   "trial_type": {
-    "LongName": "Event category", 
+    "LongName": "Event category",
     "Description": "Indicator of type of action that is expected",
     "Levels": {
       "go": "A red square is displayed to indicate starting",
       "stop": "A blue square is displayed to indicate stopping"
-    }, 
+    },
     "HED": {
           "go": "Sensory-event, Visual-presentation, ((Square, Blue),(Computer-screen, Center-of))",
           "stop": "Sensory-event, Visual-presentation, ((Square, Blue), (Computer-screen, Center-of))"
@@ -107,10 +107,10 @@ annotations for each column.
 Example: The fully assembled annotation for the first event in the above
 `_events.tsv` file with onset 1.2 s is:
 
-```
+```Text
 Duration/0.6 s, Sensory-event, Visual-presentation,
 ((Square, Blue), (Computer-screen, Center-of)),
-(Delay/1.435 ms, Agent-action, 
+(Delay/1.435 ms, Agent-action,
 (Experiment-participant, (Press, Mouse-button))),
 Pathname/images/red_square.jpg
 
@@ -147,14 +147,14 @@ placed at the top level in the dataset.
 If some recordings in the dataset have a column whose values deviate from a
 standard pattern, then the annotations for that column MUST be placed in
 sidecars at lower levels in the hierarchy.
-According to the BIDS [inheritance principle](../02-common-principles.md#the-inheritance-principle), 
+According to the BIDS [inheritance principle](../02-common-principles.md#the-inheritance-principle),
 once a column key in a sidecar (e.g., the column name found in the `_events.tsv` files)
 is set, it cannot be unset.
 
 ## HED schema versions
 
 The HED vocabulary is specified by a HED schema,
-which delineates the allowed HED path strings. 
+which delineates the allowed HED path strings.
 The version of HED used in tagging a dataset should be provided in the `HEDVersion`
 field of the `dataset_description.json` file located in the dataset root directory.
 
