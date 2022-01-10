@@ -147,9 +147,9 @@ It is RECOMMENDED to annotate these columns in a single
 If some recordings in the dataset have a column whose values deviate from a
 standard pattern, then the annotations for that column MUST be placed in
 sidecars at lower levels in the hierarchy.
-According to the BIDS [inheritance principle](../02-common-principles.md#the-inheritance-principle),
-once a column key in a sidecar (the column name found in the `_events.tsv` files)
-is set, it cannot be unset by a sidecar appearing at a lower level in the dataset hierarchy.
+According to the BIDS [Inheritance Principle](../02-common-principles.md#the-inheritance-principle),
+once a column key in a sidecar (that is, the column name found in the `events.tsv` files) is set,
+it cannot be unset by a sidecar appearing at a lower level in the dataset hierarchy.
 
 ## HED schema versions
 
