@@ -563,15 +563,12 @@ for more information.
         only the file lowest in the filesystem hierarchy SHALL be treated as being
         associated with that data file.
 
-    1.  For [JSON files](#key-value-files-dictionaries):
-
-        1.  Files are loaded from the top of the directory hierarchy downwards,
-            such that values from the top level are inherited by all data files
-            at lower levels to which it is applicable unless overridden
-            by a value for the same key present in another metadata file at a lower level
-            (though it is RECOMMENDED to minimise the extent of such overrides).
-
-        1.  There is no notion of "unsetting" a key/value pair.
+    1.  For [JSON files](#key-value-files-dictionaries), key-values are loaded
+        from files from the top of the directory hierarchy downwards, such that
+        key-values from the top level are inherited by all data files at lower
+        levels to which it is applicable unless overridden by a value for the
+        same key present in another metadata file at a lower level
+        (though it is RECOMMENDED to minimise the extent of such overrides).
 
 Corollaries:
 
@@ -584,6 +581,11 @@ Corollaries:
     files at that level of the hierarchy or below. Where such metadata content is consistent
     across multiple data files, it is RECOMMENDED to store metadata in this
     way, rather than duplicating that metadata content across multiple metadata files.
+
+1.  Where multiple applicable JSON files are loaded as per rule 5.2, key-values can
+    only be overwritten by files lower in the filesystem hierarchy; the absence of
+    a key-value in a later file does not imply the "unsetting" of that field
+    (and indeed there is no notion of such).
 
 Example 1: Demonstration of inheritance principle
 
@@ -623,10 +625,10 @@ metadata file `task-rest_bold.json` is read; file
 entity "`acq-longtr`" that is absent from the image path (rule 2.3). When reading image
 `sub-01/func/sub-01_task-rest_acq-longtr_bold.nii.gz`, metadata file
 `task-rest_bold.json` at the top level is read first, followed by file
-`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` at the bottom level (rule 5.2.1);
+`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` at the bottom level (rule 5.2);
 the value for field "`RepetitionTime`" is therefore overridden to the value 3000.0.
 The value for field "`EchoTime`" remains applicable to that image, and is not unset by its
-absence in the metadata file at the lower level (rule 5.2.2).
+absence in the metadata file at the lower level (rule 5.2; corollary 3).
 
 Example 2: Impermissible use of multiple metadata files at one directory level (rule 4)
 
