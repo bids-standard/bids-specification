@@ -96,7 +96,7 @@ rather than the image data).
 -   Field "`<model>`" is a unique identifier corresponding to the particular
     diffusion model. If the particular diffusion model is one that is included
     in this specification, then the [prescribed model label](intrinsic-model-parameters)
-    MUST be utilised; e.g. "`dti`" for the diffusion tensor model.
+    MUST be utilised; e.g. "`tensor`" for the diffusion tensor model.
 
 -   Files "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<intparam*>_<model>.nii[.gz]`"
     provide data corresponding to the various [intrinsic](#paramdef-intrinsic) parameters
@@ -251,7 +251,7 @@ ideally be integrated in a future version of the specification.
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `bs`        | Ball-and-Stick(s) model \[[Behrens2003](#behrens2003)\],\[[Behrens2007](#behrens2007)\],\[[Jbabdi2012](#jbabdi2012)\]                           | One [spherical coordinates](#data-spherical) image with parameter name "`sticks`", providing both fibre volume fractions and orientations using polar angles;<br>Optional scalar images with parameter names {"`bzero`", "`dmean`", "`dstd`"} providing the model-estimated *b*=0 signal intensity, mean stick diffusivity, and standard deviation of stick diffusivities respectively                              |
 | `csd`       | Constrained Spherical Deconvolution \[[Tournier2007](#tournier2007)\],\[[Descoteaux2009](#descoteaux2009)\],\[[Jeurissen2014](#jeurissen2014)\] | [Spherical harmonics](#data-sh) image<br>If a multi-tissue decomposition is performed, provide one individual 4D image per tissue, with "`_desc-<desc>`" filename field being an abbreviation of the tissue estimated by that particular ODF                                                                                                                                                                        |
-| `dti`       | Diffusion Tensor Imaging \[[Basser1994](#basser1994)\]                                                                                          | Single [parameter vectors](#data-param) image with parameter name "`all`" with 6 volumes in the order: *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>*<br>OR<br>Tensor coefficients as [parameter vectors](#data-param) image with parameter name "`tensor`";<br>Estimated *b*=0 intensity as [scalar](#data-scalar) image with parameter name "`bzero`" |
+| `tensor`    | Diffusion Tensor \[[Basser1994](#basser1994)\]                                                                                                  | Single [parameter vectors](#data-param) image with parameter name "`all`" with 6 volumes in the order: *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>*<br>OR<br>Tensor coefficients as [parameter vectors](#data-param) image with parameter name "`tensor`";<br>Estimated *b*=0 intensity as [scalar](#data-scalar) image with parameter name "`bzero`" |
 
 The JSON sidecar for the intrinsic diffusion model parameters may contain
 the following key/value pairs irrespective of the particular model:
@@ -315,7 +315,7 @@ Reserved keywords for models built into the specification are as follows:
 
     -   `Tissue`: String. A more verbose description for the tissue estimated via this specific ODF.
 
--   `dti` :
+-   `tensor` :
 
     -   `RESTORESigma`: Float
 
@@ -323,19 +323,19 @@ Reserved keywords for models built into the specification are as follows:
 
 | `<parameter>` value | Description                                                            | [Data representation](#data-representations) | Possible Model sources | Unit or scale                                                  |
 | ------------------- | ---------------------------------------------------------------------- | -------------------------------------------- | ---------------------- | -------------------------------------------------------------- |
-| `ad`                | Axial Diffusivity (also called parallel diffusivity)                   | [Scalar](#data-scalar)                       | { `dti` }              | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
+| `ad`                | Axial Diffusivity (also called parallel diffusivity)                   | [Scalar](#data-scalar)                       | { `tensor` }           | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
 | `afdtotal`          | Total Apparent Fibre Density (AFD) \[[Calamante2015](#calamante2015)\] | [Scalar](#data-scalar)                       | { `csd` }              | Unitless                                                       |
-| `cl`                | Tensor linearity \[[Westin1997](#westin1997)\]                         | [Scalar](#data-scalar)                       | { `dti` }              |                                                                |
-| `cp`                | Tensor planarity \[[Westin1997](#westin1997)\]                         | [Scalar](#data-scalar)                       | { `dti` }              |                                                                |
-| `cs`                | Tensor sphericity \[[Westin1997](#westin1997)\]                        | [Scalar](#data-scalar)                       | { `dti` }              |                                                                |
-| `evec`              | Eigenvector(s)                                                         | [3-vectors](#data-3vector)                   | { `dti` }              | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
-| `fa`                | Fractional Anisotropy \[[Basser1996](#basser1996)\]                    | [Scalar](#data-scalar)                       | { `dti` }              | Proportion \[0.0-1.0\]                                         |
+| `cl`                | Tensor linearity \[[Westin1997](#westin1997)\]                         | [Scalar](#data-scalar)                       | { `tensor` }           |                                                                |
+| `cp`                | Tensor planarity \[[Westin1997](#westin1997)\]                         | [Scalar](#data-scalar)                       | { `tensor` }           |                                                                |
+| `cs`                | Tensor sphericity \[[Westin1997](#westin1997)\]                        | [Scalar](#data-scalar)                       | { `tensor` }           |                                                                |
+| `evec`              | Eigenvector(s)                                                         | [3-vectors](#data-3vector)                   | { `tensor` }           | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
+| `fa`                | Fractional Anisotropy \[[Basser1996](#basser1996)\]                    | [Scalar](#data-scalar)                       | { `tensor` }           | Proportion \[0.0-1.0\]                                         |
 | `fsum`              | Sum of partial volume fractions of stick components                    | [Scalar](#data-scalar)                       | { `bs` }               | Volume fraction \[0.0-1.0\]                                    |
 | `gfa`               | Generalized Fractional Anisotropy \[[Tuch2004](#tuch2004)\]            | [Scalar](#data-scalar)                       | { `csd` }              | Proportion \[0.0-1.0\]                                         |
-| `md`                | Mean diffusivity (also called apparent diffusion coefficient, ADC)     | [Scalar](#data-scalar)                       | { `dti` }              | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
-| `mode`              | Mode of the tensor                                                     | [Scalar](#data-scalar)                       | { `dti` }              |                                                                |
+| `md`                | Mean diffusivity (also called apparent diffusion coefficient, ADC)     | [Scalar](#data-scalar)                       | { `tensor` }           | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
+| `mode`              | Mode of the tensor                                                     | [Scalar](#data-scalar)                       | { `tensor` }           |                                                                |
 | `peak`              | Direction(s) and amplitude(s) of ODF maximum (maxima)                  | [3-vectors](#data-3vector)                   | { `csd` }              | Same units as ODF                                              |
-| `rd`                | Radial Diffusivity (also called perpendicular diffusivity)             | [Scalar](#data-scalar)                       | { `dti` }              | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
+| `rd`                | Radial Diffusivity (also called perpendicular diffusivity)             | [Scalar](#data-scalar)                       | { `tensor` }           | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
 
 While not explicitly included in the table above, *any* [scalar](#data-scalar)
 [extrinsic](paramdef-extrinsic) parameter can theoretically be combined
@@ -435,11 +435,11 @@ another.
     my_diffusion_pipeline/
         sub-01/
             dwi/
-                sub-01_dti.nii.gz
-                sub-01_dti.json
+                sub-01_tensor.nii.gz
+                sub-01_tensor.json
     ```
 
-    Dimensions of NIfTI image "`sub-01_dti.nii.gz`": *I*x*J*x*K*x6 ([parameter vectors](#data-param))
+    Dimensions of NIfTI image "`sub-01_tensor.nii.gz`": *I*x*J*x*K*x6 ([parameter vectors](#data-param))
 
     Contents of JSON file:
 
