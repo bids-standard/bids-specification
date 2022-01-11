@@ -378,7 +378,7 @@ def write_report(validation_result,
 		if len(validation_result['schema_tracking']) >= 1:
 			for entry in validation_result['schema_tracking']:
 				if entry['mandatory']:
-					f.write(f'\t** `{entry[file_type]}`')
+					f.write(f'\t** `{entry["file_type"]}`')
 		else:
 			f.write('All mandatory BIDS files were found.')
 		f.close()
@@ -396,7 +396,8 @@ def _test_regex(
 	validate(bids_dir, regex_schema)
 
 def test_regex(
-	bids_dir='~/datalad/openneuro/ds000030',
+	bids_dir='~/datalad/000108',
+	#bids_dir='~/datalad/openneuro/ds000030',
 	#bids_dir='~/DANDI/000108',
 	#bids_schema='/usr/share/bids-schema/',
 	bids_schema='schemacode/data/schema',
