@@ -26,6 +26,9 @@ or
 
 HED specific tools MUST treat the short and long HED tag forms interchangeably,
 converting between the forms when necessary, based on the HED schema.
+Examples of test datasets using the various forms can be found in 
+[hed-examples/datasets](https://github.com/hed-standard/hed-examples/tree/main/datasets)
+on GitHub.
 **Using the short form for tags is strongly RECOMMENDED whenever possible**.
 
 ## Annotating events
