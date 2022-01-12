@@ -585,7 +585,7 @@ Corollaries:
 1.  Where multiple applicable JSON files are loaded as per rule 5.2, key-values can
     only be overwritten by files lower in the filesystem hierarchy; the absence of
     a key-value in a later file does not imply the "unsetting" of that field
-    (and indeed there is no notion of such).
+    (indeed removal of existing fields is not possible).
 
 Example 1: Demonstration of inheritance principle
 
