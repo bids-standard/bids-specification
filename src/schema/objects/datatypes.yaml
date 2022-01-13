@@ -40,4 +40,5 @@ perf:
     Blood perfusion imaging data, including arterial spin labeling (ASL)
 pet:
   name: Positron Emission Tomography
-  description:
+  description: |
+    Positron emission tomography data

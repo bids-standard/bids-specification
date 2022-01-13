@@ -20,7 +20,7 @@ sub-<label>/[ses-<label>]
         <matches>_events.json
 ```
 
-Where `<matches>` corresponds to task file name. For example:
+Where `<matches>` corresponds to task filename. For example:
 `sub-control01_task-nback`.
 
 Each task events file REQUIRES a corresponding task data file.

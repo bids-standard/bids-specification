@@ -187,7 +187,7 @@ Each of these files has an internal pointer to the next file.
 This is important when renaming these split recordings to the BIDS convention.
 Instead of a simple renaming, files should be read in and saved under their new
 names with dedicated tools like [MNE](https://mne.tools), which will ensure
-that not only the file names, but also the internal file pointers will be
+that not only the filenames, but also the internal file pointers will be
 updated.
 
 It is RECOMMENDED that FIFF files with multiple parts use the `split-<index>`
