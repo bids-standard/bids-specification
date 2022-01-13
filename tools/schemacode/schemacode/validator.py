@@ -162,6 +162,7 @@ def load_all(
 
 	from . import schema
 
+	schema_dir = os.path.abspath(os.path.expanduser(schema_dir))
 	my_schema = schema.load_schema(schema_dir)
 	if debug:
 		print(
@@ -400,7 +401,8 @@ def test_regex(
 	#bids_dir='~/datalad/openneuro/ds000030',
 	#bids_dir='~/DANDI/000108',
 	#bids_schema='/usr/share/bids-schema/',
-	bids_schema='schemacode/data/schema',
+	#bids_schema='schemacode/data/schema',
+	bids_schema='~/src/bids-schemadata',
 	):
 	"""
 	Test with `python -c "from validator import *; test_regex()"`
