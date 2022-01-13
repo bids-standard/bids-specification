@@ -7,14 +7,9 @@ Please see [Citing BIDS](../01-introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-<!---
-The following link is temporary and points to the bep031 branch of bids-examples,
-update to 'https://github.com/bids-standard/bids-examples' when examples are merged.
--->
 Microscopy datasets formatted using this specification are available on the
-[BIDS examples repository](https://github.com/neuropoly/bids-examples/tree/bep031)
-(`micr_SEM` and `micr_SPIM`) and can be used for practical guidance when curating
-a new dataset.
+[BIDS examples repository](https://github.com/bids-standard/bids-examples#microscopy-datasets)
+and can be used for practical guidance when curating a new dataset.
 
 Further Microscopy datasets are available:
 
