@@ -22,23 +22,7 @@ Several [example Motion datasets](https://github.com/bids-standard/bids-examples
 have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
-## BIDS-Motion terminology
-Some of the most important notions in BIDS-motion are defined below. The terminology
-is inherited from BIDS-Raw?.
 
-| **Keyword**                   | **Description**                                              |
-| -----------                   | ------------------------------------------------------------ |
-| Space                         | BIDS defines "space”  as an artificial frame of reference, created to describe different anatomies in a unifying manner. However, data collected in studies of physical or virtual motion usually have a reference frame that is anchored to the physical lab space or the virtual environment. |
-| Spatial axes                  | Describes the three spatial axes as forward-backward, left-right, and up-down, which respectively correspond to the anterior-posterior, left-right, and superior-inferior axes. |
-| Position (POS)                | The spatial location of an object in relation to an arbitrary origin |
-| Velocity (VEL)                | The speed of an object in relation to an arbitrary origin                                    |
-| Acceleration (ACC)            | The rate of change of velocity of an object in relation to an arbitrary origin                                    |
-| Orientation (ORNT)            | The spatial orientation of an object in relation to its center of rotation independent of the choice of origin            |
-| Angular velocity (ANGVEL)     | The speed of rotation of an object |
-| Angular acceleration (ANGACC) | The change in speed of rotation of an object |
-| Tracking system               | A group of tracking devices that share hardware properties (same recording device) and/or software properties (for example same sampling rates) .|
-| Tracked Point                 | A specific point on an object that is being tracked, which can be a body part or an inanimate object. |
-| Channel                       | A  time series of scalar values representing any `type` of motion data (for example position or orientation)  |
 
 ## Motion recording data
 
@@ -52,7 +36,8 @@ Template:
          ├─ sub-<label>[_ses-<label>]_task-<label>_events.tsv
          └─ sub-<label>[_ses-<label>]_task-<label>_events.json
 ```
-As there are a variety of data formats originating from various tracking systems and there is no single standard that all researchers agree on, this BEP proposes one easy to use and flexible way to store motion data. For the current BEP, motion data MUST be stored in a `*_motion.tsv` file. Note that it is not uncommon to have multiple tracking systems to record at the same time. Each tracking system should have its own `*[tracksys-<label>]_motion.tsv` file. One column per channel per tracking system is intended in the `*[tracksys-<label>]_motion.tsv` file. All relevant metadata about a tracking systems is stored in the sidecar `*_motion.json` file in the subfield trackingsystem. The data from each tracking system in their original format, if different from `.tsv`, can be stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data). The original data format might additionally hold more metadata than currently being specified in the `*_motion.json` file.
+
+As there are a variety of data formats originating from various tracking systems and there is no single standard that all researchers agree on, this BEP proposes one easy to use and flexible way to store motion data. or the current BEP, motion data MUST be stored in a `*_motion.tsv` file. A tracking system is defined as a group of tracking devices that share hardware properties (same recording device) and/or software properties (for example same sampling rates). For example if the position of multiple optical markers is processed via one recording unit, this would be definied as a tracking system. Note that it is not uncommon to have multiple tracking systems to record at the same time. Each tracking system should have its own `*[tracksys-<label>]_motion.tsv` file. One column per channel per tracking system is intended in the `*[tracksys-<label>]_motion.tsv` file. The header of each colum should correspond to one entry in a `*_channels.tsv` file. All relevant metadata about a tracking systems is stored in the sidecar `*_motion.json` file in the subfield trackingsystem. The data from each tracking system in their original format, if different from `.tsv`, can be stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data). The original data format might additionally hold more metadata than currently being specified in the `*_motion.json` file.
 
 ### Sidecar JSON (`*_motion.json`)
 Generic fields (shared with other BIDS modalities) MUST be present:
@@ -96,11 +81,11 @@ Specific fields in `TrackingSystems` :
 
 | **Key name**	| **Requirement level**	| **Data type**	| **Description**  |
 | --------------|-----------------------|---------------|----------------- |
-| SamplingFrequencyEffective  | REQUIRED          | number    | Effective sampling rate of the tracking system in Hz.  |
+| SamplingFrequencyEffective  | REQUIRED          | number    | Effective sampling rate of the tracking system in Hz. If avaliable, otherwise same as `SamplingFrequencyNominal`. |
 | SamplingFrequencyNominal  | REQUIRED          | number    | Nominal sampling rate of the tracking system in Hz.  |
 | SoftwareVersions          | RECOMMENDED | string  | Manufacturer’s   designation of the acquisition software.
 | RecordingDuration         | RECOMMENDED | number  | Length of the   recording in seconds (for example 3600).|
-| TrackedPointsCount        | RECOMMENDED | number  | Number of   different tracked points tracked in the system.|
+| TrackedPointsCount        | RECOMMENDED | number  | Number of   different tracked points tracked in the system. A tracked point is a specific point on an object that is being tracked, which can be a body part or an inanimate object.|
 | ANGACCChannelCount        | RECOMMENDED | number | Number of angular acceleration channels recorded by the system.    |  
 | ANGVELChannelCount        | RECOMMENDED | number | Number of angular velocity channels recorded by the system.        |  
 | JNTANGChannelCount        | RECOMMENDED | number | Number of joint angle channels recorded by the system.             |  
@@ -159,7 +144,7 @@ Example:
 			"DeviceSerialNumber": null,
 			"SoftwareVersions": null,
 			"ExternalSoftwareVersions": null,
-			"SamplingFrequencyNominal": 199.9070632,
+			"SamplingFrequencyEffective": 199.9070632,
 			"RecordingDuration": 10.76500232
 		}
 	}
@@ -169,7 +154,7 @@ Example:
 ```
 In this example, the `*_motion.json` contains two `TrackingSystems`. One is a [intertial measurement uni (imu)](https://en.wikipedia.org/wiki/Motion_capture#Inertial_systems) system, the other is a optical [motion capture system (omc)](https://en.wikipedia.org/wiki/Motion_capture#Optical_systems). Both have three times as many channels as they have tracked points, because every tracked point is recorded along the x,y and z axis.
 
-Note that the date and time information SHOULD be stored in the Study key file [(`scans.tsv`)](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#scans-file). Date time information MUST be expressed as indicated in Units. The [`scans.tsv`](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#scans-file) file contains the filename and the acquisition time of a recording, which can be used to synchronize streams. However, synchronization information between the two systems can also be stored using time stamps in the `*_motion.tsv` if avaliable?.
+Note that the date and time information SHOULD be stored in the Study key file [(`scans.tsv`)](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#scans-file). Date time information MUST be expressed as indicated in Units. The [`scans.tsv`](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#scans-file) file contains the filename and the acquisition time of a recording, which can be used to synchronize streams. *However, synchronization information between the two systems can also be stored using time stamps in the `*_motion.tsv` if avaliable?.*
 
 ## Channels description (`*_channels.tsv`)
 ```
@@ -178,10 +163,10 @@ Note that the date and time information SHOULD be stored in the Study key file [
       └─ motion\
          └─ sub-<label>[_ses-<label>]_task-<label>_channels.tsv
 ```
-This file is RECOMMENDED as it makes it easy to browse or query over larger collections of datasets. The required columns are channel `name` and `type`. Channels should appear in the table in the same order they do in the motion data file (`*_motion.tsv`). Any number of additional columns may be added to provide additional information about the channels. The `*_channels.tsv` file should give additional information about individual recorded channel, some of which my not be found summarised in `TrackingSystems`.
+This file is REQUIRED as it makes it easy to browse or query over larger collections of datasets. The REQUIRED columns are channel `name`, `type`, `tracked_point`, `tracking_system`, `component` and `unit`. Any number of additional columns may be added to provide additional information about the channels. The `*_channels.tsv` file should give additional information about individual recorded channel, some of which my not be found summarised in `TrackingSystems`.
 
 
-The columns of the Channels description table stored in `*_channels.tsv` are:
+The columns of the channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
@@ -200,8 +185,7 @@ SHOULD be present:
 | --------------|-----------------------|---------------|----------------- |
 | placement     | RECOMMENDED           | string        | Placement of the tracked point on the body (e.g., participant, avatar centroid, torso, left arm). It can refer to an external vocabulary for describing body parts. |
 | description   | OPTIONAL              | string        | Brief free-text description of the channel, or other information of interest. |
-| sampling_frequency  | OPTIONAL          | number          | Effective if avaliable, otherwise nominal, sampling rate of the channel in Hz. In case the sampling rates differ between channels or from SamplingFrequency in *_motion.json file, this can be specified here. |
-| status_description  | OPTIONAL          | string          | Freeform text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in [status]. |
+
 
 Restricted keyword list for column `type` in alphabetic order (shared with the other BIDS modalities?). Note that upper-case is REQUIRED:
 
@@ -213,6 +197,7 @@ Restricted keyword list for column `type` in alphabetic order (shared with the o
 | ORNT	         | Orientation |
 | POS	           | Position in space |
 | VEL	           | Velocity |
+| *TIMESTAMPS*     | *Timestamps of recorded samples* |
 
 Restricted keyword list for column `component` in alphabetic order (shared with the other BIDS modalities?). Note that upper-case is REQUIRED:
 
