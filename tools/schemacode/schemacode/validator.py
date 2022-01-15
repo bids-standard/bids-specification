@@ -6,6 +6,9 @@ import json
 
 from copy import deepcopy
 
+from . import schema
+
+
 def _get_paths(bids_dir):
 
 	bids_dir = os.path.abspath(os.path.expanduser(bids_dir))
@@ -36,62 +39,47 @@ def _add_entity(regex_entities, entity_shorthand, variable_field, requirement_le
 
 
 def load_top_level(
-	schema_path='schemacode/data/schema',
-	top_level_path = 'rules/top_level_files.yaml',
-	datatypes_path = 'rules/datatypes/',
+	schema_dir='schemacode/data/schema',
 	debug=True,
 	):
-	"""
-	Create a regex schema dictionary from the bids-specification YAML files directly.
+	"""Create full path top level file regexes while trying to go by preexisting code.
 
 	Notes
 	-----
-	Currently only a very small part of the schema is parsed.
-	Problems may arise with files further down the hierarchy where custom (fragile) logic might be needed for schema assembly.
-	Top-lefel files can be identified easily, but datatypes aren't named in a readable form in the YAML.
-	The code used to generate this HTML, might be usable for regex autogeneration as well:
-		https://bids-specification.readthedocs.io/en/latest/99-appendices/04-entity-table.html
 	"""
 
+	schema_dir = os.path.abspath(os.path.expanduser(schema_dir))
+	my_schema = schema.load_schema(schema_dir)
+	top_level_files = my_schema['rules']['top_level_files']
 
-	return [{'regex':'sjl', 'mandatory':False},]
-	schema_path = os.path.abspath(os.path.expanduser(schema_path))
-	top_level_path = os.path.join(schema_path,top_level_path)
-	datatypes_path = os.path.join(schema_path,datatypes_path)
-	regex_schema = {}
-	with open(top_level_path) as yaml_file:
-		yaml_data = yaml.load(yaml_file, Loader=yaml.FullLoader)
-	for file_type in yaml_data.keys():
-		if yaml_data[file_type]['extensions'] != ['None']:
-			extensions = yaml_data[file_type]['extensions']
-			# The presence of the dot is determined by them being extensions.
-			harmonized_extensions = []
+	regex_schema = []
+	for top_level_filename in top_level_files.keys():
+		top_level_file = top_level_files[top_level_filename]
+		if debug:
+			print(
+			json.dumps(top_level_file,
+				sort_keys=True,
+				indent=4,
+				),
+			)
+		# None value gets passed as list of strings...
+		extensions = top_level_file['extensions']
+		if extensions != ['None']:
+			periodsafe_extensions = []
 			for extension in extensions:
 				if extension[0] == '.':
-					harmonized_extensions.append(extension[1:])
+					periodsafe_extensions.append(extension[1:])
 				else:
-					harmonized_extensions.append(extension)
-			extensions_regex = '|'.join(harmonized_extensions)
-			pattern = '^/{file_type}\.({extensions})$'.format(
-					file_type=file_type,
-					extensions=extensions_regex,
-					)
+					periodsafe_extensions.append(extension)
+				extensions_regex = '|'.join(periodsafe_extensions)
+				regex = f'^/{top_level_filename}\.({extensions_regex})$'
 		else:
-			pattern = '^/{file_type}$'.format(file_type=file_type)
-		yaml_data[file_type]['regex'] = pattern
-		yaml_data[file_type]['unique'] = True
-	regex_schema.update(yaml_data)
-
-	for datatype_file in os.listdir(datatypes_path):
-		datatype_path = os.path.join(datatypes_path,datatype_file)
-		if debug:
-			print('Parsing `{}`'.format(datatype_path))
-		with open(datatype_path) as yaml_file:
-			yaml_data = yaml.load(yaml_file, Loader=yaml.FullLoader)
-		# Ufff, the hash-line is not parsed, and sufixes can be multiple, not really a way to refer to these types unambiguously.
-		# Unless we parse the hash-lines.....
-		if debug:
-			print(yaml_data)
+			regex = f'^/{top_level_filename}$'
+		regex_entry = {
+			'regex':regex,
+			'mandatory':top_level_file['required'],
+			}
+		regex_schema.append(regex_entry)
 
 	return regex_schema
 
@@ -99,7 +87,7 @@ def load_entities(
 	schema_dir='schemacode/data/schema',
 	debug=False,
 	):
-	"""Create full path regexes while trying to go by preexisting code.
+	"""Create full path entity regexes while trying to go by preexisting code.
 
 	Notes
 	-----
@@ -109,8 +97,6 @@ def load_entities(
 	* More issues in comments.
 	* Using pre 3.8 string formatting for legibility.
 	"""
-
-	from . import schema
 
 	schema_dir = os.path.abspath(os.path.expanduser(schema_dir))
 	my_schema = schema.load_schema(schema_dir)
@@ -219,8 +205,14 @@ def load_all(
 	"""Create full path regexes for all BIDS specification files.
 	"""
 
-	all_regex = load_entities(schema_dir, debug)
-	top_level_regex = load_top_level(schema_dir, debug)
+	all_regex = load_entities(
+		schema_dir=schema_dir,
+		debug=debug,
+		)
+	top_level_regex = load_top_level(
+		schema_dir=schema_dir,
+		debug=debug,
+		)
 	all_regex.extend(top_level_regex)
 
 	return all_regex
@@ -313,7 +305,8 @@ def write_report(validation_result,
 	"""
 
 	report_path = report_path.format(datetime.datetime.now().strftime(datetime_format))
-	validated_files_count = len(validation_result['path_listing']) - len(validation_result['path_tracking'])
+	total_file_count = len(validation_result['path_listing'])
+	validated_files_count = total_file_count - len(validation_result['path_tracking'])
 	with open(report_path, 'w') as f:
 		try:
 			for comparison in validation_result['itemwise']:
@@ -324,14 +317,14 @@ def write_report(validation_result,
 				f.write(f'- Comparing the `{comparison["path"]}` path to the `{comparison["regex"]}` resulted in {comparison_result}.\n')
 		except KeyError:
 			pass
-		f.write(f'\nSUMMARY:\n{validated_files_count} files were successfully validated, using the following regular expressions:')
+		f.write(f'\nSUMMARY:\n{validated_files_count} out of {total_file_count} files were successfully validated, using the following regular expressions:')
 		for regex_entry in validation_result['schema_listing']:
 			f.write(f'\n\t- `{regex_entry["regex"]}`')
 		f.write('\n')
 		f.write('The following files were not matched by any regex schema entry:')
 		f.write('\n\t* `')
 		f.write('`\n\t* `'.join(validation_result['path_tracking']))
-		f.write('The following mandatory regex schema entries did not match any files:')
+		f.write('\nThe following mandatory regex schema entries did not match any files:')
 		f.write('\n')
 		if len(validation_result['schema_tracking']) >= 1:
 			for entry in validation_result['schema_tracking']:
@@ -341,18 +334,6 @@ def write_report(validation_result,
 			f.write('All mandatory BIDS files were found.')
 		f.close()
 
-def _test_regex(
-	bids_dir='~/DANDI/000108',
-	#bids_schema='/usr/share/bids-schema/',
-	bids_schema='schemacode/data/schema',
-	):
-	"""
-	"""
-
-	regex_schema = create_regex_schema(bids_schema)
-	print(regex_schema)
-	validate(bids_dir, regex_schema)
-
 def test_regex(
 	#bids_dir='~/datalad/000108',
 	bids_dir='~/datalad/openneuro/ds000030',
@@ -360,6 +341,7 @@ def test_regex(
 	#bids_schema='/usr/share/bids-schema/',
 	#bids_schema='schemacode/data/schema',
 	bids_schema='~/src/bids-schemadata',
+	debug=False,
 	):
 	"""
 	Test with `python -c "from validator import *; test_regex()"`
@@ -368,6 +350,6 @@ def test_regex(
 	regex_schema = load_all(bids_schema)
 	#print(regex_schema)
 	validation_result = validate_all(bids_dir, regex_schema,
-			debug=False,
+			debug=debug,
 			)
 	write_report(validation_result)
