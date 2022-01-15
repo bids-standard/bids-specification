@@ -105,7 +105,7 @@ The `duration` column is also annotated as a value column.
 }
 ```
 
-Tools assemble an annotation for each event by concatenating the
+Dedicated HED tools MUST assemble an annotation for each event by concatenating the
 annotations for each column.
 
 Example: The fully assembled annotation for the first event in the above
