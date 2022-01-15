@@ -118,7 +118,7 @@ misunderstanding we clarify them here.
     the final `_`), right before the **File extension**, for example, it is `eeg` in
     `sub-05_task-matchingpennies_eeg.vhdr`.
 
-1.  **File extension** - a portion of the file name after the left-most
+1.  **File extension** - a portion of the filename after the left-most
     period (`.`) preceded by any other alphanumeric. For example, `.gitignore` does
     not have a file extension, but the file extension of `test.nii.gz` is `.nii.gz`.
     Note that the left-most period is included in the file extension.
@@ -133,10 +133,10 @@ misunderstanding we clarify them here.
 
 The following standard describes a way of arranging data and writing down
 metadata for a subset of neuroimaging experiments. Some aspects of the standard
-are compulsory. For example a particular file name format is required when
+are compulsory. For example a particular filename format is required when
 storing structural scans. Some aspects are regulated but optional. For example a
 T2 volume does not need to be included, but when it is available it should be
-saved under a particular file name specified in the standard. This standard
+saved under a particular filename specified in the standard. This standard
 aspires to describe a majority of datasets, but acknowledges that there will be
 cases that do not fit. In such cases one can include additional files and
 subfolders to the existing folder structure following common sense. For example
@@ -149,13 +149,13 @@ specification.
 
 ## File name structure
 
-A file name consists of a chain of *entities*, or key-value pairs, a *suffix* and an
+A filename consists of a chain of *entities*, or key-value pairs, a *suffix* and an
 *extension*.
 Two prominent examples of entities are `subject` and `session`.
 
 For a data file that was collected in a given `session` from a given
-`subject`, the file name MUST begin with the string `sub-<label>_ses-<label>`.
-If the `session` level is omitted in the folder structure, the file name MUST begin
+`subject`, the filename MUST begin with the string `sub-<label>_ses-<label>`.
+If the `session` level is omitted in the folder structure, the filename MUST begin
 with the string `sub-<label>`, without `ses-<label>`.
 
 Note that `sub-<label>` corresponds to the `subject` entity because it has
@@ -169,19 +169,19 @@ be added for all subjects if at least one subject in the dataset has more than
 one session.
 If a `/ses-<label>` subfolder is included as part of the directory hierarchy,
 then the same [`ses-<label>`](./99-appendices/09-entities.md#ses)
-key/value pair MUST also be included as part of the file names themselves.
+key/value pair MUST also be included as part of the filenames themselves.
 Acquisition time of session can
 be defined in the [sessions file](03-modality-agnostic-files.md#sessions-file).
 
 A chain of entities, followed by a suffix, connected by underscores (`_`)
-produces a human readable file name, such as `sub-01_task-rest_eeg.edf`.
-It is evident from the file name alone that the file contains resting state
+produces a human readable filename, such as `sub-01_task-rest_eeg.edf`.
+It is evident from the filename alone that the file contains resting state
 data from subject `01`.
 The suffix `eeg` and the extension `.edf` depend on the imaging modality and
 the data format and indicate further details of the file's contents.
 
-Entities within a file name MUST be unique.
-For example, the following file name is not valid because it uses the `acq`
+Entities within a filename MUST be unique.
+For example, the following filename is not valid because it uses the `acq`
 entity twice:
 `sub-01_acq-laser_acq-uneven_electrodes.tsv`
 
@@ -658,7 +658,7 @@ of `<index>`es.
 Please note that a given label or index is distinct from the "prefix"
 it refers to. For example `sub-01` refers to the `sub` entity (a
 subject) with the label `01`. The `sub-` prefix is not part of the subject
-label, but must be included in file names (similarly to other key names).
+label, but must be included in filenames (similarly to other key names).
 
 ## Uniform Resource Indicator
 
@@ -898,10 +898,10 @@ For example, an ASSET calibration scan might be named
 
 Non-standard files and directories should be named with care.
 Future BIDS efforts may standardize new entities and suffixes, changing the
-meaning of file names and setting requirements on their contents or metadata.
+meaning of filenames and setting requirements on their contents or metadata.
 Validation and parsing tools MAY treat the presence of non-standard files and
 directories as an error, so consult the details of these tools for mechanisms
-to suppress warnings or provide interpretations of your file names.
+to suppress warnings or provide interpretations of your filenames.
 
 <!-- Link Definitions -->
 

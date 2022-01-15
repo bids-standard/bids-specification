@@ -35,6 +35,7 @@ def define_env(env):
         macros.make_entity_definitions,
         "MACROS___make_entity_definitions",
     )
+    env.macro(macros.make_glossary, "MACROS___make_glossary")
     env.macro(macros.make_suffix_table, "MACROS___make_suffix_table")
     env.macro(macros.make_metadata_table, "MACROS___make_metadata_table")
     env.macro(macros.make_columns_table, "MACROS___make_columns_table")

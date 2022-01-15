@@ -457,7 +457,7 @@ Example:
    "sub-control01": {
       "ses-01":{
          "sub-control01_ses-01_acq-HEAD_headshape.pos": "",
-         "sub-control01_ses-01_acq-ECG_headshape.pos": "",
+         "sub-control01_ses-01_acq-EEG_headshape.pos": "",
          },
       }
    }

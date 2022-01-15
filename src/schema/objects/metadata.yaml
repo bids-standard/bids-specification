@@ -104,7 +104,8 @@ AnatomicalLandmarkCoordinates:
       type: number
     minItems: 3
     maxItems: 3
-AnatomicalLandmarkCoordinates_mri:
+# Redefinition of AnatomicalLandmarkCoordinates for MRI data
+AnatomicalLandmarkCoordinates__mri:
   name: AnatomicalLandmarkCoordinates
   description: |
     Key:value pairs of any number of additional anatomical landmarks and their
@@ -700,7 +701,8 @@ EchoTime2:
   type: number
   unit: s
   exclusiveMinimum: 0
-EchoTime_fmap:
+# Redefinition of EchoTime for fieldmap data
+EchoTime__fmap:
   name: EchoTime
   description: |
     The time (in seconds) when the echo corresponding to this map was acquired.
