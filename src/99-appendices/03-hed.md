@@ -130,7 +130,7 @@ Some acquisition or presentation software systems directly
 write annotations during the experiment, and these MAY also be placed in the
 `HED` column of the `events.tsv` file.
 
-Tools that assemble the full annotation for events treat do not distinguish
+Dedicated HED tools that assemble the full annotation for events treat MUST not distinguish
 between HED annotations extracted from `_events.json` sidecars and those
 appearing in the `HED` column of `_events.tsv` files.
 The HED strings from all sources are concatenated to form the final
