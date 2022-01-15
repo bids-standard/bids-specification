@@ -34,7 +34,8 @@ def _add_entity(regex_entities, entity_shorthand, variable_field, requirement_le
 
 	return regex_entities
 
-def create_regex_schema(
+
+def load_top_level(
 	schema_path='schemacode/data/schema',
 	top_level_path = 'rules/top_level_files.yaml',
 	datatypes_path = 'rules/datatypes/',
@@ -52,6 +53,8 @@ def create_regex_schema(
 		https://bids-specification.readthedocs.io/en/latest/99-appendices/04-entity-table.html
 	"""
 
+
+	return [{'regex':'sjl', 'mandatory':False},]
 	schema_path = os.path.abspath(os.path.expanduser(schema_path))
 	top_level_path = os.path.join(schema_path,top_level_path)
 	datatypes_path = os.path.join(schema_path,datatypes_path)
@@ -92,60 +95,7 @@ def create_regex_schema(
 
 	return regex_schema
 
-def validate(bids_dir, regex_schema,
-	report=True,
-	debug=True,
-	):
-	"""
-	Validate all paths described in the `regex_schema` dictionary.
-
-	Notes
-	-----
-	Multi-source validation could be accomplished by distributing the resulting tracking_schema dictionary and further eroding it.
-	"""
-
-	tracking_schema = deepcopy(regex_schema)
-	paths_list = _get_paths(bids_dir)
-	tracking_paths = deepcopy(paths_list)
-	for path in paths_list:
-		if debug:
-			print('Checking file `{}`.'.format(path))
-			print('Trying file types:')
-		for file_type in tracking_schema.keys():
-			regex = tracking_schema[file_type]['regex']
-			if debug:
-				print('\t* {}, with pattern: {}'.format(
-					file_type,
-					regex,
-					))
-			matched = re.match(regex,path)
-			if matched:
-				if debug:
-					print('\t > Identified `{}` as a {} file type.'.format(
-						path,
-						file_type,
-						))
-				# the following may be nondeterministic if a file matches more than one pattern.
-				# If this is the case, however, the schema is probably broken, because the matching is strict.
-				if tracking_schema[file_type]['unique']:
-					tracking_schema.pop(file_type)
-				break
-		if matched:
-			tracking_paths.remove(path)
-		else:
-			if debug:
-				print('The `{}` file could not be matched to any regex schema entry.'.format(path))
-
-	if report:
-		print('The following files were not matched by any regex schama entry:')
-		print('\n-'.join(tracking_paths))
-		print('The following mandatory regex schama entries did not match any files:')
-		for file_type in tracking_schema:
-			if tracking_schema[file_type]['required']:
-				print('*{}'.format(file_type))
-
-
-def load_all(
+def load_entities(
 	schema_dir='schemacode/data/schema',
 	debug=False,
 	):
@@ -164,13 +114,6 @@ def load_all(
 
 	schema_dir = os.path.abspath(os.path.expanduser(schema_dir))
 	my_schema = schema.load_schema(schema_dir)
-	if debug:
-		print(
-			json.dumps(schema['rules'],
-				sort_keys=True,
-				indent=4,
-				),
-			)
 
 	label = '([a-z,A-Z,0-9]*?)'
 
@@ -267,6 +210,20 @@ def load_all(
 			regex_schema.append(regex_entry)
 
 	return regex_schema
+
+
+def load_all(
+	schema_dir='schemacode/data/schema',
+	debug=False,
+	):
+	"""Create full path regexes for all BIDS specification files.
+	"""
+
+	all_regex = load_entities(schema_dir, debug)
+	top_level_regex = load_top_level(schema_dir, debug)
+	all_regex.extend(top_level_regex)
+
+	return all_regex
 
 def validate_all(bids_dir, regex_schema,
 	debug=False,
@@ -397,8 +354,8 @@ def _test_regex(
 	validate(bids_dir, regex_schema)
 
 def test_regex(
-	bids_dir='~/datalad/000108',
-	#bids_dir='~/datalad/openneuro/ds000030',
+	#bids_dir='~/datalad/000108',
+	bids_dir='~/datalad/openneuro/ds000030',
 	#bids_dir='~/DANDI/000108',
 	#bids_schema='/usr/share/bids-schema/',
 	#bids_schema='schemacode/data/schema',
