@@ -64,7 +64,7 @@ distinct values in every row.
 These columns are referred to as *value* columns and are annotated by creating
 a HED tag string to describe a general pattern for these values.
 The HED annotation for a value column must include a `#` placeholder,
-which tools will replace by the actual column value when the annotations
+which dedicated HED tools MUST replace by the actual column value when the annotations
 are assembled for analysis.
 
 Example: An accompanying `events.json` sidecar describing both categorical and
