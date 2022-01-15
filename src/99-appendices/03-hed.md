@@ -136,9 +136,11 @@ appearing in the `HED` column of `_events.tsv` files.
 The HED strings from all sources are concatenated to form the final
 event annotations.
 
-Annotations placed in sidecars are preferred to those placed
+Annotations placed in sidecars are the RECOMMENDED way
+to annotate data using HED.
+These annnotations are preferred to those placed
 directly in the `HED` column, because they are simpler, more compact,
-more easily edited, and less prone to inconsistent annotation.
+more easily edited, and less prone to inconsistencies.
 
 ## HED and the BIDS inheritance principle
 
