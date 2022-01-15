@@ -56,7 +56,8 @@ values (`go` and `stop`).
 This type of column is referred to as a *categorical* column,
 and the column's meaning can be annotated by assigning HED tags to describe
 each of these distinct values.
-The JSON sidecar provides a dictionary of annotations for these categorical values.
+The JSON sidecar provides a [JSON object](https://www.json.org/json-en.html) of annotations for these categorical values.
+That is, the object is a dictionary mapping the categorical values to corresponding HED annotations.
 
 In contrast, the `response_time` and `stim_file` columns could potentially contain
 distinct values in every row.
@@ -66,9 +67,9 @@ The HED annotation for a value column must include a `#` placeholder,
 which tools will replace by the actual column value when the annotations
 are assembled for analysis.
 
-Example: An accompanying `_events.json` sidecar describing both categorical and
+Example: An accompanying `events.json` sidecar describing both categorical and
 value columns of the previous example.
-The `Duration` column is also annotated as a value column.
+The `duration` column is also annotated as a value column.
 
 ```JSON
 {
@@ -108,7 +109,7 @@ Tools assemble an annotation for each event by concatenating the
 annotations for each column.
 
 Example: The fully assembled annotation for the first event in the above
-`_events.tsv` file with onset 1.2 s is:
+`events.tsv` file with onset `1.2` (the first row) is:
 
 ```Text
 Duration/0.6 s, Sensory-event, Visual-presentation,
@@ -116,19 +117,18 @@ Duration/0.6 s, Sensory-event, Visual-presentation,
 (Delay/1.435 ms, Agent-action,
 (Experiment-participant, (Press, Mouse-button))),
 Pathname/images/red_square.jpg
-
 ```
 
 ## Annotation using the `HED` column
 
 Another tagging strategy is to annotate individual events directly by
-including a `HED` column in the `_events.tsv`.
+including a `HED` column in the `events.tsv` file.
 This approach is necessary when each event has annotations that are unique
 and do not fit into a standard set of patterns.
 
-Some acquisition/presentation software systems directly
-write annotations during the experiment, and these might also be placed in the
-`HED` column of the `_events.tsv` file.
+Some acquisition or presentation software systems directly
+write annotations during the experiment, and these MAY also be placed in the
+`HED` column of the `events.tsv` file.
 
 Tools that assemble the full annotation for events treat do not distinguish
 between HED annotations extracted from `_events.json` sidecars and those
