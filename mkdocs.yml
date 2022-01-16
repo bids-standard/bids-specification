@@ -7,6 +7,14 @@ theme:
     logo: images/logo.png
     features:
       - navigation.sections
+copyright: Copyright &copy; 2018-2022, BIDS Contributors - CC BY 4.0
+extra:
+    generator : false
+    social:
+      - icon: fontawesome/brands/twitter
+        link: https://twitter.com/BIDSstandard/
+      - icon: fontawesome/brands/github
+        link: https://github.com/bids-standard/bids-specification/
 extra_javascript:
     - js/jquery-3.6.0.min.js
 markdown_extensions:
