@@ -2,19 +2,20 @@ site_name: Brain Imaging Data Structure v1.6.1-dev
 site_url: https://bids-specification.readthedocs.io/en/stable/
 theme:
     name: material
-    custom_dir: theme_customizations/
     favicon: images/favicon.png
     logo: images/logo.png
     features:
       - navigation.sections
-copyright: Copyright &copy; 2018-2022, BIDS Contributors - CC BY 4.0
+copyright: Copyright &copy; 2018-2022, BIDS Contributors - [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 extra:
-    generator : false
+    generator: false
     social:
       - icon: fontawesome/brands/twitter
         link: https://twitter.com/BIDSstandard/
       - icon: fontawesome/brands/github
         link: https://github.com/bids-standard/bids-specification/
+      - icon: fontawesome/brands/google
+        link: https://groups.google.com/g/bids-discussion
 extra_javascript:
     - js/jquery-3.6.0.min.js
 markdown_extensions:
