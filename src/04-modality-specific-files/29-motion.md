@@ -83,6 +83,7 @@ Specific fields in `TrackingSystems` :
 | --------------|-----------------------|---------------|----------------- |
 | SamplingFrequencyEffective  | REQUIRED          | number    | Effective sampling rate of the tracking system in Hz. If avaliable, otherwise same as `SamplingFrequencyNominal`. |
 | SamplingFrequencyNominal  | REQUIRED          | number    | Nominal sampling rate of the tracking system in Hz.  |
+| MissingValues  	    | RECOMMENDED | string  | How missing values are represented in the given tracking system, for example, “NaN”, “0”. |
 | SoftwareVersions          | RECOMMENDED | string  | Manufacturer’s   designation of the acquisition software.
 | RecordingDuration         | RECOMMENDED | number  | Length of the   recording in seconds (for example 3600).|
 | TrackedPointsCount        | RECOMMENDED | number  | Number of   different tracked points tracked in the system. A tracked point is a specific point on an object that is being tracked, which can be a body part or an inanimate object.|
