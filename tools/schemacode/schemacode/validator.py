@@ -16,6 +16,10 @@ def _get_paths(bids_dir):
 		'/.datalad',
 		'/.git',
 		]
+	exclude_files = [
+		'.gitattributes',
+		'.gitignore',
+		]
 	bids_dir = os.path.abspath(os.path.expanduser(bids_dir))
 	path_list=[]
 	for root, dirs, file_names in os.walk(bids_dir, topdown=False):
@@ -23,6 +27,8 @@ def _get_paths(bids_dir):
 		if any(exclude_subdir in root for exclude_subdir in exclude_subdirs):
 			continue
 		for file_name in file_names:
+			if file_name in exclude_files
+				continue
 			file_path = os.path.join(root,file_name)
 			file_path = file_path[len(bids_dir):]
 			path_list.append(file_path)
