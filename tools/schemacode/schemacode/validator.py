@@ -27,7 +27,7 @@ def _get_paths(bids_dir):
 		if any(exclude_subdir in root for exclude_subdir in exclude_subdirs):
 			continue
 		for file_name in file_names:
-			if file_name in exclude_files
+			if file_name in exclude_files:
 				continue
 			file_path = os.path.join(root,file_name)
 			file_path = file_path[len(bids_dir):]
