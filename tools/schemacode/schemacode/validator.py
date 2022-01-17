@@ -10,10 +10,18 @@ from . import schema
 
 
 def _get_paths(bids_dir):
-
+	"""Get all paths from a directory, excluding `.git` subdirectory."""
+	exclude_subdirs=[
+		'/.dandi',
+		'/.datalad',
+		'/.git',
+		]
 	bids_dir = os.path.abspath(os.path.expanduser(bids_dir))
 	path_list=[]
 	for root, dirs, file_names in os.walk(bids_dir, topdown=False):
+		# will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
+		if any(exclude_subdir in root for exclude_subdir in exclude_subdirs):
+			continue
 		for file_name in file_names:
 			file_path = os.path.join(root,file_name)
 			file_path = file_path[len(bids_dir):]
@@ -369,14 +377,14 @@ def write_report(validation_result,
 		if len(validation_result['schema_tracking']) >= 1:
 			for entry in validation_result['schema_tracking']:
 				if entry['mandatory']:
-					f.write(f'\t** `{entry["file_type"]}`')
+					f.write(f'\t** `{entry["regex"]}`\n')
 		else:
-			f.write('All mandatory BIDS files were found.')
+			f.write('All mandatory BIDS files were found.\n')
 		f.close()
 
 def test_regex(
-	#bids_dir='~/datalad/000108',
-	bids_dir='~/datalad/openneuro/ds000030',
+	bids_dir='~/datalad/000108',
+	#bids_dir='~/datalad/openneuro/ds000030',
 	#bids_dir='~/DANDI/000108',
 	#bids_schema='/usr/share/bids-schema/',
 	#bids_schema='schemacode/data/schema',
