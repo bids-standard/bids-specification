@@ -392,7 +392,8 @@ def write_report(validation_result,
 		f.close()
 
 def test_regex(
-	bids_dir='~/datalad/000108',
+	#bids_dir='~/datalad/000108',
+	bids_dir='~/datalad/000026/rawdata',
 	#bids_dir='~/datalad/openneuro/ds000030',
 	#bids_dir='~/DANDI/000108',
 	#bids_schema='/usr/share/bids-schema/',
