@@ -10,7 +10,7 @@ from . import schema
 
 
 def _get_paths(bids_dir):
-	"""Get all paths from a directory, excluding `.git` subdirectory."""
+	"""Get all paths from a directory, excluding hidden subdirectories from data distribution."""
 	exclude_subdirs=[
 		'/.dandi',
 		'/.datalad',
@@ -123,6 +123,9 @@ def load_entities(
 	-----
 
 	* Couldn't find where the `label` type is defined as alphanumeric, hard-coding `entity_definitions["subject"]["format"]`-type entries as`[a-z,A-Z,0-9]*?` for the time being.
+		Apparently there is a `label` (alphanumeric) versus `index` (integer) specification:
+		https://github.com/bids-standard/bids-specification/issues/956#issuecomment-992967479
+		but this is not yet used in the YAML.
 	* Suggest to BIDS-specification to remove the periods from the extensions, the leading period is not part of the extension, but a delimiter defining the fact that it's an extension. Code sections marked as `Making it period-safe` should be edited when this fix is in, though they will work in any case.
 	* More issues in comments.
 	* Using pre 3.8 string formatting for legibility.
