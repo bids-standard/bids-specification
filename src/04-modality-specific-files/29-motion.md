@@ -1,28 +1,13 @@
 # Motion
-This specification extends the Brain Imaging Data Structure (BIDS) Specification
-to motion data [BIDS Extension Proposal (BEP029)](../07-extensions.md#bids-extension-proposals).
-By default, these data consist of time series of object positions,
-orientations, or their time derivatives described by a coordinate system of up to
-three spatial dimensions.
-
-A wide variety of motion capture systems are used in human research, resulting in
-different native data modalities. The current BEP specifically
-deals with positions, orientations, and their time derivatives. For camera-based
-motion capture the raw camera footage falls out of scope. To share motion data
-recorded using an optical system, one would only represent the (position)
-output, not the input camera footage.
-
-The extension is not limited to motion data in physical space but also encompasses
-simulated movement in virtual space, as far as these are comparable to movements
-in physical space. The extension is also not limited to the positions/orientations
-of human body parts, other dynamic objects (physical or virtual) in the environment
-whose motion is tracked may be included as additional indications of motion.
+Support for Motion was developed as a
+[BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../01-introduction.md#citing-bids)
+on how to appropriately credit this extension when referring to it in the
+context of the academic literature.
 
 Several [example Motion datasets](https://github.com/bids-standard/bids-examples)
 have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
-
-
 
 ## Motion recording data
 
@@ -31,13 +16,28 @@ Template:
 └─ sub-<label>\
    └─ [ses-<label>]\
       └─ motion\
-         ├─ sub-<label>[_ses-<label>]_task-<label>[_tracksys-<label>]_motion.tsv
+         ├─ sub-<label>[_ses-<label>]_task-<label>_tracksys-<label>_motion.tsv
          ├─ sub-<label>[_ses-<label>]_task-<label>_motion.json
+	 ├─ sub-<label>[_ses-<label>]_task-<label>_channels.tsv
+         ├─ sub-<label>[_ses-<label>]_task-<label>_coordsys.json
          ├─ sub-<label>[_ses-<label>]_task-<label>_events.tsv
          └─ sub-<label>[_ses-<label>]_task-<label>_events.json
 ```
 
-As there are a variety of data formats originating from various tracking systems and there is no single standard that all researchers agree on, this BEP proposes one easy to use and flexible way to store motion data. or the current BEP, motion data MUST be stored in a `*_motion.tsv` file. A tracking system is defined as a group of tracking devices that share hardware properties (same recording device) and/or software properties (for example same sampling rates). For example if the position of multiple optical markers is processed via one recording unit, this would be definied as a tracking system. Note that it is not uncommon to have multiple tracking systems to record at the same time. Each tracking system should have its own `*[tracksys-<label>]_motion.tsv` file. One column per channel per tracking system is intended in the `*[tracksys-<label>]_motion.tsv` file. The header of each colum should correspond to one entry in a `*_channels.tsv` file. All relevant metadata about a tracking systems is stored in the sidecar `*_motion.json` file in the subfield trackingsystem. The data from each tracking system in their original format, if different from `.tsv`, can be stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data). The original data format might additionally hold more metadata than currently being specified in the `*_motion.json` file.
+A wide variety of motion capture systems are used in human research, resulting in
+different native data formats. The current BEP specifically
+deals with positions, orientations, and their time derivatives. For camera-based
+motion capture the raw camera footage falls out of scope. To share motion data
+recorded using an optical system, only the position or orientation output is
+formatted in BIDS, not the input camera footage.
+
+The extension is not limited to motion data in physical space but also encompasses
+simulated movement in virtual space, as far as these are comparable to movements
+in physical space. The extension is also not limited to the positions/orientations
+of human body parts, other dynamic objects (physical or virtual) in the environment
+whose motion is tracked may be included as additional indications of motion.
+
+For the current BEP, motion data MUST be stored in a `*_motion.tsv` file. A tracking system is defined as a group of tracking devices that share hardware properties (same recording device) and/or software properties (for example same sampling rates). For example if the position of multiple optical markers is processed via one recording unit, this would be definied as a tracking system. Note that it is not uncommon to have multiple tracking systems to record at the same time. Each tracking system should have its own `*[tracksys-<label>]_motion.tsv` file. One column per channel per tracking system is intended in the `*[tracksys-<label>]_motion.tsv` file. The header of each colum should correspond to one entry in a `*_channels.tsv` file. All relevant metadata about a tracking systems is stored in the sidecar `*_motion.json` file in the subfield trackingsystem. The data from each tracking system in their original format, if different from `.tsv`, can be stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data). The original data format might additionally hold more metadata than currently being specified in the `*_motion.json` file.
 
 ### Sidecar JSON (`*_motion.json`)
 Generic fields (shared with other BIDS modalities) MUST be present:
@@ -83,6 +83,7 @@ Specific fields in `TrackingSystems` :
 | --------------|-----------------------|---------------|----------------- |
 | SamplingFrequencyEffective  | REQUIRED          | number    | Effective sampling rate of the tracking system in Hz. If avaliable, otherwise same as `SamplingFrequencyNominal`. |
 | SamplingFrequencyNominal  | REQUIRED          | number    | Nominal sampling rate of the tracking system in Hz.  |
+| MissingValues  	    | RECOMMENDED | string  | How missing values are represented in the given tracking system, for example, “NaN”, “0”. |
 | SoftwareVersions          | RECOMMENDED | string  | Manufacturer’s   designation of the acquisition software.
 | RecordingDuration         | RECOMMENDED | number  | Length of the   recording in seconds (for example 3600).|
 | TrackedPointsCount        | RECOMMENDED | number  | Number of   different tracked points tracked in the system. A tracked point is a specific point on an object that is being tracked, which can be a body part or an inanimate object.|
