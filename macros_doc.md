@@ -35,7 +35,16 @@ MkDocs (the tool we use to turn the markdown version of the specification into
 HTML pages) supports macros. In the BIDS specification document, we use these
 macros to standardize the format of items such as tables and examples.
 
-Increasingly, parts of the BIDS specification are being formalized into a
+## What kind of input information are required by macros?
+
+It will depend for each macro.
+
+For some of them, all the inputs will be directly available in the markdown document
+where you have put the call to the macro.
+
+Other macros will need to be pointed to some external input (like a metadata term) 
+that they are supposed to help rendering. 
+For example, parts of the BIDS specification are formalized into a
 "schema" so that requirements in the specification can be automatically checked
 by validators. Several of the macros incorporate information from this schema to
 assure consistency.
