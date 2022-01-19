@@ -1,5 +1,14 @@
 # Using MkDocs macros in the BIDS specification
 
+We use [mkdocs-macros](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)
+to standardize how some aspects of the BIDS specification are rendered in HTML.
+Macros make it easy to achieve a consistent style throughout the specification,
+and changing a given macro will automatically change all appropriate paragraphs in the specification.
+
+Below you will find answers to frequently asked questions regarding macros.
+
+<!-- TODO add TOC -->
+
 ## What are macros and why use them?
 
 A macro is a rule or pattern that specifies how an input should be mapped to
@@ -9,15 +18,36 @@ such as Excel.
 
 MkDocs (the tool we use to turn the markdown version of the specification into
 HTML pages) supports macros. In the BIDS specification document, we use these
-macros to standarize the format of items such as tables and examples.
+macros to standardize the format of items such as tables and examples.
 
 Increasingly, parts of the BIDS specification are being formalized into a
 "schema" so that requirements in the specification can be automatically checked
-by validators. Several of the macros incorporate information from the schema to
+by validators. Several of the macros incorporate information from this schema to
 assure consistency.
 
-Table of macros here: | Name | Purpose | Uses schema | Link to example of use |
+## What macros are available? What can we use macros for?
+
+All the macros we use are in listed in this [python file](https://github.com/bids-standard/bids-specification/blob/master/tools/mkdocs_macros_bids/macros.py).
+
+Some of the main ones and what they do:
+
+| Name | Purpose | Uses schema | Link to example of use |
 | ---- | ------- | ----------- | ---------------------- |
+
+- create the filename templates for each valid combination of datatype / suffix
+  / extension
+- create a table of definition, format... for each of the (1) metadata terms
+  that goes into a specific JSON, (2) valid suffixes for a given modality, and
+  (3) valid columns that can go into a specific TSV file.
+- create the entity table in the appendix that list for each datatype / suffix,
+  which entity is required
+- format the folder / file trees example in a systematic manner
+- Create the Entities appendix page, which contains the definitions and other
+  relevant information for valid BIDS entities.
+- ...
+
+Under the hood the macros themselves call some more python code that is in the
+[`tools` folder](https://github.com/bids-standard/bids-specification/tree/master/tools).
 
 ## When should I use a macro?
 
@@ -43,7 +73,43 @@ add a completely new piece of metadata to the specification. In that case, you
 will need to create the input for the macro to be able to do its job. For that,
 you will need to update the schema itself.
 
-## How to
+## How-To and Examples
+
+### Writing folder content examples
+
+We also use macros to have a consistent style to render the examples of folder contents.
+
+These code for these macros are in the folder [tools/schemacode](tools/schemacode).
+
+To insert examples in the code you have make calls to the macro like this:
+
+```
+{{ MACROS___make_filetree_example(
+
+   {
+   "sub-01": {
+      "func": {
+         "sub-control01_task-nback_bold.json": "",
+         },
+      }
+   }
+
+) }}
+```
+
+And this will be turned into this.
+
+```Text
+└─ sub-01/
+   └─ func/
+      └─ sub-control01_task-nback_bold.json
+```
+
+When you have complex files and folder structure, we suggest you use this
+[Jupyter notebook](tools/filetree_example.ipynb) for sandboxing your example
+before you insert the macro call into the markdown document.
+
+### Generating tables
 
 Say you want to edit the content of table of the `Reconstruction` section for
 the PET page.
@@ -134,7 +200,7 @@ call above it would give a table that would look like this:
 | ------------ | ------------------------------------------ | --------- | -------------------------------------------- |
 | TermToRender | REQUIREMENT_LEVEL plus anything else after | string    | whatever description was in the metadata.yml |
 
-### Modifying a term in the table
+#### Modifying a term in the table
 
 So if you want to change the content of what will appear in the HTML table, you
 need to edit this `metadata.yml` file.
@@ -153,7 +219,7 @@ macro call.
        ...
 ```
 
-### Why would you NOT want to modify the content of the yml file directly ?
+#### Why would you NOT want to modify the content of the yml file directly ?
 
 Well the same term can be used in different parts of the BIDS specification and
 some details that might apply to, say, PET might not apply to how the term is
@@ -164,7 +230,7 @@ So always better to check if that term is not used somewhere else before making
 a change in the yml file. When in doubt add the change directly in the Macro
 call and ask the BIDS maintainers for help.
 
-### Adding a new term to the table
+#### Adding a new term to the table
 
 Say you wanted to add a new term `MoonPhase` to the table, on the second row.
 You would do it like this. But this would only work if the `metadata.yml` file
@@ -277,42 +343,16 @@ with a table in Markdown.
 If later we see that the same type of table keeps reoccuring the specification
 we could create a macro to generate them.
 
-## What macros are available? What can we use macros for?
-
-All the macros we use are in here:
-https://github.com/bids-standard/bids-specification/blob/master/tools/mkdocs_macros_bids/macros.py
-
-Some of the main ones and what they do:
-
-- create the filename templates for each valid combination of datatype / suffix
-  / extension
-- create a table of definition, format... for each of the (1) metadata terms
-  that goes into a specific JSON, (2) valid suffixes for a given modality, and
-  (3) valid columns that can go into a specific TSV file.
-- create the entity table in the appendix that list for each datatype / suffix,
-  which entity is required
-- format the folder / file trees example in a systematic manner
-- Create the Entities appendix page, which contains the definitions and other
-  relevant information for valid BIDS entities.
-- ...
-
-Under the hood the macros themselves call some more python code that is in the
-`tools` folder:
-
-https://github.com/bids-standard/bids-specification/tree/master/tools
-
-
 ## Links and references
 
 - [documentation for mkdocs](https://www.mkdocs.org) and how to install it locally,
 - [documentation for the material theme](https://squidfunk.github.io/mkdocs-material/) we use.
 - [documentation for the `macros` plugin](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)
----
 
-Macro section in the CONTRIBUTING.md
 
-https://github.com/bids-standard/bids-specification/blob/master/CONTRIBUTING.md#using-macros
 
-The official MkDocs documentation for the `macros` plugin:
 
-https://mkdocs-macros-plugin.readthedocs.io/en/latest/
+
+
+
+
