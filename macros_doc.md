@@ -27,6 +27,8 @@ the table falls into one of the categories listed in the macros table.
 
 If you want to add content with a macro and need help, do not hesitate to
 contact a member of the bids-maintainers for help.
+To do this, you can either mention an individual maintainer by their GitHub
+username or mention the whole team (`@bids-standard/maintainers`).
 
 Nope. No need to learn how to program to use those macros. But some macros
 require some specific "input", so you will just need to know what input to give
@@ -58,7 +60,7 @@ GitHub's way of directly rendering markdown documents makes it a bit harder to
 read, so if you opened the markdown document in your code editor it would look
 like this.
 
-```python
+```markdown
 #### Reconstruction
 
 {{ MACROS___make_metadata_table(
