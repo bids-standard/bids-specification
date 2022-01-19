@@ -161,13 +161,16 @@ and a guide for editing at <link>.
 
 ### Writing folder content examples
 
-We also use macros to have a consistent style to render the examples of folder
-contents.
+One of the simplest macro we use helps us create consistent "file tree" examples
+that would look like this in the final document:
 
-These code for these macros are in the folder
-[tools/schemacode](tools/schemacode).
+```Text
+└─ sub-01/
+   └─ func/
+      └─ sub-control01_task-nback_bold.json
+```
 
-To insert examples in the code you have make calls to the macro like this:
+To do this get this output, your macro call would look like this:
 
 ```
 {{ MACROS___make_filetree_example(
@@ -181,14 +184,6 @@ To insert examples in the code you have make calls to the macro like this:
    }
 
 ) }}
-```
-
-And this will be turned into this.
-
-```Text
-└─ sub-01/
-   └─ func/
-      └─ sub-control01_task-nback_bold.json
 ```
 
 When you have complex files and folder structure, we suggest you use this
