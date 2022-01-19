@@ -79,6 +79,8 @@ contact a member of the bids-maintainers for help.
 To do this, you can either mention an individual maintainer by their GitHub
 username or mention the whole team (`@bids-standard/maintainers`).
 
+## Do I need learn how to code in Python to use those macros?
+
 Nope. No need to learn how to program to use those macros. But some macros
 require some specific "input", so you will just need to know what input to give
 it. In many cases, it will be just a metadata term whose definition or
@@ -89,8 +91,75 @@ rest of the info it should use to do the rest of its work.
 
 The only exception to this is when you want to add new content. Say you want to
 add a completely new piece of metadata to the specification. In that case, you
-will need to create the input for the macro to be able to do its job. For that,
-you will need to update the schema itself.
+will need to create the input for the macro to be able to do its job.
+
+## Why use macros at all?
+
+> Seriously why did you have to make it so complicated just to have pretty
+> tables? Are macros that necessary ? Couldn't we just have everything in
+> Markdown?
+
+In principle we could, and before we started working on the schema that's
+exactly what we did. But there are several good reasons to use macros.
+
+When a definition gets repeated in different places, we could just copy-paste
+it. But when you start having several copies of that definition, if you have to
+modify it, you then need to edit several files and never forget any of them. So
+this becomes very error prone.
+
+So it becomes better to have one central place for that definition and grab that
+definition every time we need to reuse it.
+
+In practice this applies the 
+[DRY principle ("Don't Repeat Yourself")](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) 
+to the specification:
+
+> "Every piece of knowledge must have a single, unambiguous, authoritative
+> representation within a system".
+
+Having one centralized place where we put all our definitions can be useful when
+we want other tools (the BIDS validator, bids-matlab...) to use the content of
+the specification.
+
+This is where the BIDS schema (those .yml files we talked about above) comes in
+as it is meant to be a machine readable version of the specification.
+
+And so to avoid having to maintain the SAME definition in both the schema and
+specification, we started using macros to generate the specification from the
+schema.
+
+## Anything else I need to know if I need to insert a new macro call?
+
+One nice thing for the people who will come after you (or yourself in 6 months
+when you get back to the document you just edited) is to leave a comment before
+the macro to quickly explain what it does and where to find more information
+about it.
+
+<!-- - [ ] TODO for maintainers: actually add those comments in the current
+      specification. -->
+
+It could for example look like this:
+
+```markdown
+<!--
+This block generates a metadata table.
+The definitions of these fields can be found in src/schema/...
+and a guide for editing at <link>.
+-->
+
+{{ MACROS___make_metadata_table(
+   {
+      "AcquisitionMode": "REQUIRED",
+      "MoonPhase": "OPTIONAL",
+      "ImageDecayCorrected": "REQUIRED",
+      "ImageDecayCorrectionTime": "REQUIRED",
+
+      ...
+
+   }
+) }}
+
+```
 
 ## How-To and Examples
 
@@ -191,7 +260,7 @@ The macro will create the different columns of the table:
 - Data type
 - Description
 
-A general description of that Macro call would look like this:
+A general description of that macro call would look like this:
 
 ```python
 {{ MACROS___make_metadata_table(
@@ -201,18 +270,15 @@ A general description of that Macro call would look like this:
 ) }}
 ```
 
-To know what to put in the different columns, the macro will go and look into
-the `metadata.yaml` file in the BIDS schema and find the entry that correspond
-to the term you want to add.
-
-https://github.com/bids-standard/bids-specification/blob/master/src/schema/objects/metadata.yaml
+To know what to put in the different columns, the macro will go and look into the 
+[`metadata.yaml`](https://github.com/bids-standard/bids-specification/blob/master/src/schema/objects/metadata.yaml) 
+file in the BIDS schema and find the entry that correspond to the term you want to add.
 
 And in the above example, all the information about `AcquisitionMode` would be
-read from that section:
+read from [that section](https://github.com/bids-standard/bids-specification/blob/master/src/schema/objects/metadata.yaml#L20).
 
-https://github.com/bids-standard/bids-specification/blob/05f7ce1ae9cc72b087b57c39183e36afcf37cb00/src/schema/objects/metadata.yaml#L20
 
-If you had to write the markdown equivalent of the general example for the Macro
+If you had to write the markdown equivalent of the general example for the macro
 call above it would give a table that would look like this:
 
 | Key name     | Requirement level                          | Data type | Description                                  |
@@ -246,7 +312,7 @@ used for MRI. So we can use the schema for the common part and add extra content
 where necessary in the macro call.
 
 So always better to check if that term is not used somewhere else before making
-a change in the yml file. When in doubt add the change directly in the Macro
+a change in the yml file. When in doubt add the change directly in the macro
 call and ask the BIDS maintainers for help.
 
 #### Adding a new term to the table
@@ -281,77 +347,7 @@ https://the-turing-way.netlify.app/reproducible-research/renv/renv-yaml.html
 In practice, you should try to use a code editor that tells you when your syntax
 is wrong.
 
-## Why use macros at all?
-
-> Seriously why did you have to make it so complicated just to have pretty
-> tables? Are Macros that necessary ? Couldn't we just have everything in
-> Markdown?
-
-In principle we could, and before we started working on the schema that's
-exactly what we did. But there are several good reasons to use macros.
-
-When a definition gets repeated in different places, we could just copy-paste
-it. But when you start having several copies of that definition, if you have to
-modify it, you then need to edit several files and never forget any of them. So
-this becomes very error prone.
-
-So it becomes better to have one central place for that definition and grab that
-definition every time we need to reuse it.
-
-In practice this applies the DRY principle ("Don't Repeat Yourself") to the
-specification:
-
-> "Every piece of knowledge must have a single, unambiguous, authoritative
-> representation within a system".
-
-https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
-
-Having one centralized place where we put all our definitions can be useful when
-we want other tools (the BIDS validator, bids-matlab...) to use the content of
-the specification.
-
-This is where the BIDS schema (those .yml files we talked about above) comes in
-as it is meant to be a machine readable version of the specification.
-
-And so to avoid having to maintain the SAME definition in both the schema and
-specification, we started using macros to generate the specification from the
-schema.
-
-## Anything else I need to know if I need to insert a new macro call?
-
-One nice thing for the people who will come after you (or yourself in 6 months
-when you get back to the document you just edited) is to leave a comment before
-the macro to quickly explain what it does and where to find more information
-about it.
-
-<!-- - [ ] TODO for maintainers: actually add those comments in the current
-      specification. -->
-
-It could for example look like this:
-
-```markdown
-<!--
-This block generates a metadata table.
-The definitions of these fields can be found in src/schema/...
-and a guide for editing at <link>.
--->
-
-
-{{ MACROS___make_metadata_table(
-   {
-      "AcquisitionMode": "REQUIRED",
-      "MoonPhase": "OPTIONAL",
-      "ImageDecayCorrected": "REQUIRED",
-      "ImageDecayCorrectionTime": "REQUIRED",
-
-      ...
-
-   }
-) }}
-
-```
-
-## Should I create a macro if I need a new kind of table?
+#### Should I create a macro if I need a new kind of table?
 
 As a rule of thumb, no.
 
