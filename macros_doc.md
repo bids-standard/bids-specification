@@ -3,7 +3,8 @@
 We use [mkdocs-macros](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)
 to standardize how some aspects of the BIDS specification are rendered in HTML.
 Macros make it easy to achieve a consistent style throughout the specification,
-and changing a given macro will automatically change all appropriate paragraphs in the specification.
+and changing a given macro will automatically change all appropriate paragraphs
+in the specification.
 
 Below you will find answers to frequently asked questions regarding macros.
 
@@ -39,33 +40,33 @@ macros to standardize the format of items such as tables and examples.
 
 It will depend for each macro.
 
-For some of them, all the inputs will be directly available in the markdown document
-where you have put the call to the macro.
+For some of them, all the inputs will be directly available in the markdown
+document where you have put the call to the macro.
 
-Other macros will need to be pointed to some external input (like a metadata term) 
-that they are supposed to help rendering. 
-For example, parts of the BIDS specification are formalized into a
-"schema" so that requirements in the specification can be automatically checked
-by validators. Several of the macros incorporate information from this schema to
-assure consistency.
+Other macros will need to be pointed to some external input (like a metadata
+term) that they are supposed to help rendering. For example, parts of the BIDS
+specification are formalized into a "schema" so that requirements in the
+specification can be automatically checked by validators. Several of the macros
+incorporate information from this schema to assure consistency.
 
 ## What macros are available? What can we use macros for?
 
-All the macros we use are in listed in this 
+All the macros we use are in listed in this
 [python file](https://github.com/bids-standard/bids-specification/blob/master/tools/mkdocs_macros_bids/macros.py).
 
-| Name | Purpose | Uses schema | Link to example of use |
-| ---- | ------- | ----------- | ---------------------- |
-| make_filename_template | Generate a filename template from the schema, based on specific filters. | Yes | |
-| make_entity_table | Generate an entity table from the schema, based on specific filters. | Yes |  |
-| make_entity_definitions | Generate definitions and other relevant information for entities in the specification.  | Yes |  |
-| make_glossary |  | yes |  |
-| make_suffix_table | Generate a markdown table of suffix information. | yes |  |
-| make_metadata_table | Generate a markdown table of metadata field information. | Yes |  |
-| make_columns_table | Generate a markdown table of TSV column information. | Yes |  |
-| make_filetree_example | Generate a filetree snippet from example content. | Yes |  |
+| Name                    | Purpose                                                                                | Uses schema | Link to example of use |
+| ----------------------- | -------------------------------------------------------------------------------------- | ----------- | ---------------------- |
+| make_filename_template  | Generate a filename template from the schema, based on specific filters.               | Yes         |                        |
+| make_entity_table       | Generate an entity table from the schema, based on specific filters.                   | Yes         |                        |
+| make_entity_definitions | Generate definitions and other relevant information for entities in the specification. | Yes         |                        |
+| make_glossary           |                                                                                        | yes         |                        |
+| make_suffix_table       | Generate a markdown table of suffix information.                                       | yes         |                        |
+| make_metadata_table     | Generate a markdown table of metadata field information.                               | Yes         |                        |
+| make_columns_table      | Generate a markdown table of TSV column information.                                   | Yes         |                        |
+| make_filetree_example   | Generate a filetree snippet from example content.                                      | Yes         |                        |
 
-Note that under the hood the macros themselves call some more python code that is in the
+Note that under the hood the macros themselves call some more python code that
+is in the
 [`tools` folder](https://github.com/bids-standard/bids-specification/tree/master/tools).
 
 ## When should I use a macro?
@@ -75,9 +76,9 @@ you to use macros. Even adding a table may not require you to use macros unless
 the table falls into one of the categories listed in the macros table.
 
 If you want to add content with a macro and need help, do not hesitate to
-contact a member of the bids-maintainers for help.
-To do this, you can either mention an individual maintainer by their GitHub
-username or mention the whole team (`@bids-standard/maintainers`).
+contact a member of the bids-maintainers for help. To do this, you can either
+mention an individual maintainer by their GitHub username or mention the whole
+team (`@bids-standard/maintainers`).
 
 ## Do I need learn how to code in Python to use those macros?
 
@@ -110,8 +111,8 @@ this becomes very error prone.
 So it becomes better to have one central place for that definition and grab that
 definition every time we need to reuse it.
 
-In practice this applies the 
-[DRY principle ("Don't Repeat Yourself")](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) 
+In practice this applies the
+[DRY principle ("Don't Repeat Yourself")](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 to the specification:
 
 > "Every piece of knowledge must have a single, unambiguous, authoritative
@@ -147,27 +148,24 @@ The definitions of these fields can be found in src/schema/...
 and a guide for editing at <link>.
 -->
 
-{{ MACROS___make_metadata_table(
-   {
-      "AcquisitionMode": "REQUIRED",
-      "MoonPhase": "OPTIONAL",
-      "ImageDecayCorrected": "REQUIRED",
-      "ImageDecayCorrectionTime": "REQUIRED",
+{{ MACROS\_\_\_make_metadata_table( { "AcquisitionMode": "REQUIRED",
+"MoonPhase": "OPTIONAL", "ImageDecayCorrected": "REQUIRED",
+"ImageDecayCorrectionTime": "REQUIRED",
 
       ...
 
-   }
-) }}
-
+} ) }}
 ```
 
 ## How-To and Examples
 
 ### Writing folder content examples
 
-We also use macros to have a consistent style to render the examples of folder contents.
+We also use macros to have a consistent style to render the examples of folder
+contents.
 
-These code for these macros are in the folder [tools/schemacode](tools/schemacode).
+These code for these macros are in the folder
+[tools/schemacode](tools/schemacode).
 
 To insert examples in the code you have make calls to the macro like this:
 
@@ -270,13 +268,15 @@ A general description of that macro call would look like this:
 ) }}
 ```
 
-To know what to put in the different columns, the macro will go and look into the 
-[`metadata.yaml`](https://github.com/bids-standard/bids-specification/blob/master/src/schema/objects/metadata.yaml) 
-file in the BIDS schema and find the entry that correspond to the term you want to add.
+To know what to put in the different columns, the macro will go and look into
+the
+[`metadata.yaml`](https://github.com/bids-standard/bids-specification/blob/master/src/schema/objects/metadata.yaml)
+file in the BIDS schema and find the entry that correspond to the term you want
+to add.
 
 And in the above example, all the information about `AcquisitionMode` would be
-read from [that section](https://github.com/bids-standard/bids-specification/blob/master/src/schema/objects/metadata.yaml#L20).
-
+read from
+[that section](https://github.com/bids-standard/bids-specification/blob/master/src/schema/objects/metadata.yaml#L20).
 
 If you had to write the markdown equivalent of the general example for the macro
 call above it would give a table that would look like this:
@@ -360,14 +360,8 @@ we could create a macro to generate them.
 
 ## Links and references
 
-- [documentation for mkdocs](https://www.mkdocs.org) and how to install it locally,
-- [documentation for the material theme](https://squidfunk.github.io/mkdocs-material/) we use.
+- [documentation for mkdocs](https://www.mkdocs.org) and how to install it
+  locally,
+- [documentation for the material theme](https://squidfunk.github.io/mkdocs-material/)
+  we use.
 - [documentation for the `macros` plugin](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)
-
-
-
-
-
-
-
-
