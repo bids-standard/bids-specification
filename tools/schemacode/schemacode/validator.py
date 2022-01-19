@@ -16,9 +16,12 @@ def _get_paths(bids_dir):
 		'/.datalad',
 		'/.git',
 		]
+	# `.bidsignore` is obviously a BIDS file, but it is not covered by the YAML.
+	# https://github.com/bids-standard/bids-specification/issues/980
 	exclude_files = [
 		'.gitattributes',
 		'.gitignore',
+		'.bidsignore',
 		]
 	bids_dir = os.path.abspath(os.path.expanduser(bids_dir))
 	path_list=[]
