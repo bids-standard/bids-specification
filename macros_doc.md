@@ -301,6 +301,12 @@ Under the hood the macros themselves call some more python code that is in the
 
 https://github.com/bids-standard/bids-specification/tree/master/tools
 
+
+## Links and references
+
+- [documentation for mkdocs](https://www.mkdocs.org) and how to install it locally,
+- [documentation for the material theme](https://squidfunk.github.io/mkdocs-material/) we use.
+- [documentation for the `macros` plugin](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)
 ---
 
 Macro section in the CONTRIBUTING.md
