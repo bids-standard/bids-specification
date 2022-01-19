@@ -51,26 +51,21 @@ assure consistency.
 
 ## What macros are available? What can we use macros for?
 
-All the macros we use are in listed in this [python file](https://github.com/bids-standard/bids-specification/blob/master/tools/mkdocs_macros_bids/macros.py).
-
-Some of the main ones and what they do:
+All the macros we use are in listed in this 
+[python file](https://github.com/bids-standard/bids-specification/blob/master/tools/mkdocs_macros_bids/macros.py).
 
 | Name | Purpose | Uses schema | Link to example of use |
 | ---- | ------- | ----------- | ---------------------- |
+| make_filename_template | Generate a filename template from the schema, based on specific filters. | Yes | |
+| make_entity_table | Generate an entity table from the schema, based on specific filters. | Yes |  |
+| make_entity_definitions | Generate definitions and other relevant information for entities in the specification.  | Yes |  |
+| make_glossary |  | yes |  |
+| make_suffix_table | Generate a markdown table of suffix information. | yes |  |
+| make_metadata_table | Generate a markdown table of metadata field information. | Yes |  |
+| make_columns_table | Generate a markdown table of TSV column information. | Yes |  |
+| make_filetree_example | Generate a filetree snippet from example content. | Yes |  |
 
-- create the filename templates for each valid combination of datatype / suffix
-  / extension
-- create a table of definition, format... for each of the (1) metadata terms
-  that goes into a specific JSON, (2) valid suffixes for a given modality, and
-  (3) valid columns that can go into a specific TSV file.
-- create the entity table in the appendix that list for each datatype / suffix,
-  which entity is required
-- format the folder / file trees example in a systematic manner
-- Create the Entities appendix page, which contains the definitions and other
-  relevant information for valid BIDS entities.
-- ...
-
-Under the hood the macros themselves call some more python code that is in the
+Note that under the hood the macros themselves call some more python code that is in the
 [`tools` folder](https://github.com/bids-standard/bids-specification/tree/master/tools).
 
 ## When should I use a macro?
