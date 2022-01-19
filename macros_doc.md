@@ -7,7 +7,22 @@ and changing a given macro will automatically change all appropriate paragraphs 
 
 Below you will find answers to frequently asked questions regarding macros.
 
-<!-- TODO add TOC -->
+- [Using MkDocs macros in the BIDS specification](#using-mkdocs-macros-in-the-bids-specification)
+   - [What are macros and why use them?](#what-are-macros-and-why-use-them)
+   - [What kind of input information are required by macros?](#what-kind-of-input-information-are-required-by-macros)
+   - [What macros are available? What can we use macros for?](#what-macros-are-available-what-can-we-use-macros-for)
+   - [When should I use a macro?](#when-should-i-use-a-macro)
+   - [Do I need learn how to code in Python to use those macros?](#do-i-need-learn-how-to-code-in-python-to-use-those-macros)
+   - [Why use macros at all?](#why-use-macros-at-all)
+   - [Anything else I need to know if I need to insert a new macro call?](#anything-else-i-need-to-know-if-i-need-to-insert-a-new-macro-call)
+   - [How-To and Examples](#how-to-and-examples)
+      - [Writing folder content examples](#writing-folder-content-examples)
+      - [Generating tables](#generating-tables)
+         - [Modifying a term in the table](#modifying-a-term-in-the-table)
+         - [Why would you NOT want to modify the content of the yml file directly ?](#why-would-you-not-want-to-modify-the-content-of-the-yml-file-directly-)
+         - [Adding a new term to the table](#adding-a-new-term-to-the-table)
+         - [Should I create a macro if I need a new kind of table?](#should-i-create-a-macro-if-i-need-a-new-kind-of-table)
+   - [Links and references](#links-and-references)
 
 ## What are macros and why use them?
 
