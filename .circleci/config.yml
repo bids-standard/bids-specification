@@ -39,7 +39,6 @@ jobs:
             python -m pip install linkchecker
       - run:
           name: check links
-          # XXX: Remove --ignore-urls for bids-specification.readthedocs.io/en/stable after 1.7 release
           command: |
             git status
             if (! git log -1 --pretty=oneline | grep REL:) ; then
