@@ -8,7 +8,6 @@ CHANGES:
   extensions:
   - None
 LICENSE:
-  required: false
   extensions:
   - None
 dataset_description:
@@ -16,16 +15,5 @@ dataset_description:
   extensions:
   - .json
 genetic_info:
-  required: false
   extensions:
-  - .json
-participants:
-  required: false
-  extensions:
-  - .tsv
-  - .json
-samples:
-  required: false
-  extensions:
-  - .tsv
   - .json

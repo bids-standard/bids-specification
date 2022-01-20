@@ -1,0 +1,32 @@
+---
+# participants.tsv
+- suffixes:
+  - participants
+  extensions:
+  - .tsv
+  - .json
+# samples.tsv
+- suffixes:
+  - samples
+  extensions:
+  - .tsv
+  - .json
+# scans.tsv
+- suffixes:
+  - scans
+  extensions:
+  - .tsv
+  - .json
+  entities:
+    subject: required
+    # session is required if session is present in the dataset.
+    session: optional
+# sessions.tsv
+- suffixes:
+  - sessions
+  extensions:
+  - .tsv
+  - .json
+  entities:
+    subject: required
+    session: required
