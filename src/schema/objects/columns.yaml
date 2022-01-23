@@ -17,18 +17,8 @@ acq_time:
     Furthermore, if this header is provided, the acquisition times of all files that
     belong to a recording MUST be identical.
 
-    Datetime should be expressed as described in [Units](/02-common-principles.html#units).
+    Datetime format and their anonymization are described in [Units](/02-common-principles.html#units).
 
-    For anonymization purposes all dates within one subject should be shifted by a randomly
-    chosen (but consistent across all recordings) number of days.
-    This way relative timing would be preserved, but chances of identifying a person based
-    on the date and time of their scan would be decreased.
-    Dates that are shifted for anonymization purposes SHOULD be set to the year 1925 or earlier
-    to clearly distinguish them from unmodified data.
-    Note that some data formats do not support arbitrary recording dates.
-    For example, the [EDF](https://www.edfplus.info/)
-    data format can only contain recording dates after 1985.
-    Shifting dates is RECOMMENDED, but not required.
   type: string
   format: datetime
 age:
