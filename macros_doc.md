@@ -13,8 +13,7 @@ Below you will find answers to frequently asked questions regarding macros.
    - [What kind of input information are required by macros?](#what-kind-of-input-information-are-required-by-macros)
    - [What macros are available? What can we use macros for?](#what-macros-are-available-what-can-we-use-macros-for)
    - [When should I use a macro?](#when-should-i-use-a-macro)
-   - [Do I need learn how to code in Python to use those macros?](#do-i-need-learn-how-to-code-in-python-to-use-those-macros)
-   - [Why use macros at all?](#why-use-macros-at-all)
+   - [Do I need learn how to program to use those macros?](#do-i-need-learn-how-to-program-to-use-those-macros)
    - [Anything else I need to know if I need to insert a new macro call?](#anything-else-i-need-to-know-if-i-need-to-insert-a-new-macro-call)
    - [How-To and Examples](#how-to-and-examples)
       - [Writing folder content examples](#writing-folder-content-examples)
@@ -23,6 +22,7 @@ Below you will find answers to frequently asked questions regarding macros.
          - [Why would you NOT want to modify the content of the yml file directly ?](#why-would-you-not-want-to-modify-the-content-of-the-yml-file-directly-)
          - [Adding a new term to the table](#adding-a-new-term-to-the-table)
          - [Should I create a macro if I need a new kind of table?](#should-i-create-a-macro-if-i-need-a-new-kind-of-table)
+   - [Why use macros at all?](#why-use-macros-at-all)
    - [Links and references](#links-and-references)
 
 ## What are macros and why use them?
@@ -32,42 +32,63 @@ output. Macros are very useful for standardizing the output format for items
 such as tables. You might already be familiar with using macros from other tools
 such as Excel.
 
-MkDocs (the tool we use to turn the markdown version of the specification into
-HTML pages) supports macros. In the BIDS specification document, we use these
+MkDocs (the tool we use to turn the markdown version of the BIDS specification
+into HTML pages) supports macros. In the specification document, we use these
 macros to standardize the format of items such as tables and examples.
+
+The following is an example of a macro used to create consistent "file tree"
+layouts in the documentation. The macro takes a single parameter, the directory
+tree to be displayed in JSON format. If you insert the following in the BIDS
+markdown document:
+
+```python
+{{ MACROS___make_filetree_example(
+
+   {
+   "sub-01": {
+      "func": {
+         "sub-control01_task-nback_bold.json": "",
+         },
+      }
+   }
+
+) }}
+```
+
+The result would be rendered in the specification document as:
+
+```bash
+└─ sub-01/
+   └─ func/
+      └─ sub-control01_task-nback_bold.json
+```
 
 ## What kind of input information are required by macros?
 
-It will depend for each macro.
+Some macros only use the arguments you directly supply in the macro call.
 
-For some of them, all the inputs will be directly available in the markdown
-document where you have put the call to the macro.
-
-Other macros will need to be pointed to some external input (like a metadata
-term) that they are supposed to help rendering. For example, parts of the BIDS
-specification are formalized into a "schema" so that requirements in the
-specification can be automatically checked by validators. Several of the macros
-incorporate information from this schema to assure consistency.
+Other macros use information (such as metadata terms) from external sources, and
+you will need to provide links to this information as part of the call. For
+example, parts of the BIDS specification are formalized into a "schema" so that
+requirements in the specification can be automatically checked by validators.
+Several of the macros incorporate information from this schema to assure
+consistency.
 
 ## What macros are available? What can we use macros for?
 
 All the macros we use are in listed in this
 [python file](https://github.com/bids-standard/bids-specification/blob/master/tools/mkdocs_macros_bids/macros.py).
 
-| Name                    | Purpose                                                                                | Uses schema | Link to example of use |
-| ----------------------- | -------------------------------------------------------------------------------------- | ----------- | ---------------------- |
-| make_filename_template  | Generate a filename template from the schema, based on specific filters.               | Yes         |                        |
-| make_entity_table       | Generate an entity table from the schema, based on specific filters.                   | Yes         |                        |
-| make_entity_definitions | Generate definitions and other relevant information for entities in the specification. | Yes         |                        |
-| make_glossary           |                                                                                        | yes         |                        |
-| make_suffix_table       | Generate a markdown table of suffix information.                                       | yes         |                        |
-| make_metadata_table     | Generate a markdown table of metadata field information.                               | Yes         |                        |
-| make_columns_table      | Generate a markdown table of TSV column information.                                   | Yes         |                        |
-| make_filetree_example   | Generate a filetree snippet from example content.                                      | Yes         |                        |
-
-Note that under the hood the macros themselves call some more python code that
-is in the
-[`tools` folder](https://github.com/bids-standard/bids-specification/tree/master/tools).
+| Name                    | Purpose                                                                                | Uses schema | Example |
+| ----------------------- | -------------------------------------------------------------------------------------- | ----------- | ------- |
+| make_columns_table      | Generate a markdown table of TSV column information.                                   | Yes         |         |
+| make_entity_table       | Generate an entity table from the schema, based on specific filters.                   | Yes         |         |
+| make_entity_definitions | Generate definitions and other relevant information for entities in the specification. | Yes         |         |
+| make_filename_template  | Generate a filename template from the schema, based on specific filters.               | Yes         |         |
+| make_filetree_example   | Generate a filetree snippet from example content.                                      | No          |         |
+| make_glossary           |                                                                                        | Yes         |         |
+| make_metadata_table     | Generate a markdown table of metadata field information.                               | Yes         |         |
+| make_suffix_table       | Generate a markdown table of suffix information.                                       | Yes         |         |
 
 ## When should I use a macro?
 
@@ -80,54 +101,19 @@ contact a member of the bids-maintainers for help. To do this, you can either
 mention an individual maintainer by their GitHub username or mention the whole
 team (`@bids-standard/maintainers`).
 
-## Do I need learn how to code in Python to use those macros?
+## Do I need learn how to program to use those macros?
 
-Nope. No need to learn how to program to use those macros. But some macros
-require some specific "input", so you will just need to know what input to give
-it. In many cases, it will be just a metadata term whose definition or
-description should be displayed somewhere in the specification.
+Macros don't require programming knowledge to use. You do need to know what
+arguments the macro expects. The examples linked in the above table provide
+useful guidance in this respect.
 
-Once you have given the macro its input, it usually knows where to look for the
-rest of the info it should use to do the rest of its work.
+Macros that extract information from the schema also require you to use the
+correct terms in the schema. This process is illustrated in the next section.
 
-The only exception to this is when you want to add new content. Say you want to
-add a completely new piece of metadata to the specification. In that case, you
-will need to create the input for the macro to be able to do its job.
-
-## Why use macros at all?
-
-> Seriously why did you have to make it so complicated just to have pretty
-> tables? Are macros that necessary ? Couldn't we just have everything in
-> Markdown?
-
-In principle we could, and before we started working on the schema that's
-exactly what we did. But there are several good reasons to use macros.
-
-When a definition gets repeated in different places, we could just copy-paste
-it. But when you start having several copies of that definition, if you have to
-modify it, you then need to edit several files and never forget any of them. So
-this becomes very error prone.
-
-So it becomes better to have one central place for that definition and grab that
-definition every time we need to reuse it.
-
-In practice this applies the
-[DRY principle ("Don't Repeat Yourself")](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
-to the specification:
-
-> "Every piece of knowledge must have a single, unambiguous, authoritative
-> representation within a system".
-
-Having one centralized place where we put all our definitions can be useful when
-we want other tools (the BIDS validator, bids-matlab...) to use the content of
-the specification.
-
-This is where the BIDS schema (those .yml files we talked about above) comes in
-as it is meant to be a machine readable version of the specification.
-
-And so to avoid having to maintain the SAME definition in both the schema and
-specification, we started using macros to generate the specification from the
-schema.
+Note that under the hood the macros themselves call python code that can be
+found in the
+[`tools` folder](https://github.com/bids-standard/bids-specification/tree/master/tools).
+If you are interested in creating a new macro for users, this would be useful.
 
 ## Anything else I need to know if I need to insert a new macro call?
 
@@ -352,6 +338,41 @@ with a table in Markdown.
 
 If later we see that the same type of table keeps reoccuring the specification
 we could create a macro to generate them.
+
+## Why use macros at all?
+
+> Seriously why did you have to make it so complicated just to have pretty
+> tables? Are macros that necessary ? Couldn't we just have everything in
+> Markdown?
+
+In principle we could, and before we started working on the schema that's
+exactly what we did. But there are several good reasons to use macros.
+
+When a definition gets repeated in different places, we could just copy-paste
+it. But when you start having several copies of that definition, if you have to
+modify it, you then need to edit several files and never forget any of them. So
+this becomes very error prone.
+
+So it becomes better to have one central place for that definition and grab that
+definition every time we need to reuse it.
+
+In practice this applies the
+[DRY principle ("Don't Repeat Yourself")](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+to the specification:
+
+> "Every piece of knowledge must have a single, unambiguous, authoritative
+> representation within a system".
+
+Having one centralized place where we put all our definitions can be useful when
+we want other tools (the BIDS validator, bids-matlab...) to use the content of
+the specification.
+
+This is where the BIDS schema (those .yml files we talked about above) comes in
+as it is meant to be a machine readable version of the specification.
+
+And so to avoid having to maintain the SAME definition in both the schema and
+specification, we started using macros to generate the specification from the
+schema.
 
 ## Links and references
 
