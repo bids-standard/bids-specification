@@ -1,5 +1,12 @@
 # Physiological and other continuous recordings
 
+[Example datasets](https://github.com/bids-standard/bids-examples)
+with physiological data have been formatted using this specification
+and can be used for practical guidance when curating a new dataset:
+
+-   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
+-   [`ds210`](https://github.com/bids-standard/bids-examples/tree/master/ds210)
+
 Template:
 
 ```Text
@@ -17,7 +24,7 @@ For the template directory name, `<datatype>` can correspond to any data
 recording modality, for example `func`, `anat`, `dwi`, `meg`, `eeg`, `ieeg`,
 or `beh`.
 
-In the template file names, the `<matches>` part corresponds to task file name
+In the template filenames, the `<matches>` part corresponds to task filename
 before the suffix.
 For example for the file `sub-control01_task-nback_run-1_bold.nii.gz`,
 `<matches>` would correspond to `sub-control01_task-nback_run-1`.
@@ -107,11 +114,13 @@ Example `*_physio.json`:
 To store pulse or breathing measurements, or the scanner trigger signal, the
 following naming conventions SHOULD be used for the column names:
 
-| **Column name** | **Description**                                      |
-| --------------- | ---------------------------------------------------- |
-| cardiac         | continuous pulse measurement                         |
-| respiratory     | continuous breathing measurement                     |
-| trigger         | continuous measurement of the scanner trigger signal |
+{{ MACROS___make_columns_table(
+   {
+      "cardiac": "OPTIONAL",
+      "respiratory": "OPTIONAL",
+      "trigger": "OPTIONAL",
+   }
+) }}
 
 For any other data to be specified in columns, the column names can be chosen
 as deemed appropriate by the researcher.

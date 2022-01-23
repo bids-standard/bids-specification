@@ -11,6 +11,7 @@ jobs:
           command: |
             python -m pip install --upgrade pip
             pip install -r requirements.txt
+            pip install ~/project/tools/schemacode/
       - run:
           name: generate docs
           command: mkdocs build --clean --strict --verbose
@@ -18,10 +19,13 @@ jobs:
           # the mkdocs build outputs are in ~/project/site
           root: ~/project
           paths: site
+      - store_artifacts:
+          path: ~/project/site/
+          destination: dev_docs
 
   linkchecker:
     docker:
-      - image: yarikoptic/linkchecker:9.4.0.anchorfix1-1
+      - image: circleci/python:3.8
     steps:
       # checkout code to default ~/project
       - checkout
@@ -29,10 +33,10 @@ jobs:
           # mkdocs build outputs will be in ~/project/site
           at: ~/project
       - run:
-          name: install git
+          name: install linkchecker
           command: |
-            apt update -y
-            apt install git-all -y
+            python -m ensurepip
+            python -m pip install linkchecker
       - run:
           name: check links
           command: |
@@ -44,9 +48,11 @@ jobs:
               # failures for local file:/// -- yoh found no better way,
               linkchecker -t 1 --check-extern \
                 --ignore-url 'file:///.*' \
-                --ignore-url https://fonts.gstatic.com \
-                --ignore-url "https://github.com/bids-standard/bids-specification/(pull|tree)/.*" \
-                --ignore-url "https://github.com/[^/]*" \
+                --ignore-url 'https://fonts.gstatic.com' \
+                --ignore-url 'https://github.com/bids-standard/bids-specification/(pull|tree)/.*' \
+                --ignore-url 'https://github.com/[^/]*' \
+                --ignore-url 'https://doi.org/.*' \
+                --ignore-url 'https://bids-specification.readthedocs.io/en/stable/.*' \
                 ~/project/site/*html ~/project/site/*/*.html
             else
               echo "Release PR - do nothing"
@@ -201,12 +207,4 @@ workflows:
           filters:
             branches:
               only: master
-      # Ensure that build_docs_pdf always runs last, so that we can use the CircleCI API link for the "latest" artifact
-      # https://circleci.com/api/v1.1/project/github/bids-standard/bids-specification/latest/artifacts/0/bids-spec.pdf?branch=master
-      - build_docs_pdf:
-          requires:
-            - build_docs
-            - linkchecker
-            - github-changelog-generator
-            - remark
-            - Changelog-bot
+      - build_docs_pdf
