@@ -401,7 +401,7 @@ Such recordings MUST be documented with one row per file.
 {{ MACROS___make_columns_table(
    {
       "filename": ("REQUIRED", "There MUST be exactly one row for each file."),
-      "acq_time": ("OPTIONAL", "Acquisition time refers to when the first data point in each run was acquired. Furthermore, if this header is provided, the acquisition times of all files that to a recording MUST be identical.")
+      "acq_time": ("OPTIONAL", "Acquisition time refers to when the first data point in each run was acquired. Furthermore, if this header is provided, the acquisition times of all files that to a recording MUST be identical."),
    }
 ) }}
 
@@ -444,7 +444,7 @@ Column names in `sessions.tsv` files MUST be different from group level particip
 {{ MACROS___make_columns_table(
    {
       "session_id": ("REQUIRED", "There MUST be exactly one row for each session."),
-      "acq_time": ("OPTIONAL", "Acquisition time refers to when the first data point of the first run was acquired.")
+      "acq_time": ("OPTIONAL", "Acquisition time refers to when the first data point of the first run was acquired."),
       "pathology": "RECOMMENDED",
    }
 ) }}
