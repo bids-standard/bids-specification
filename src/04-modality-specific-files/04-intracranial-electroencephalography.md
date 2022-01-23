@@ -22,21 +22,13 @@ The iEEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, iEEG data MUST be
 stored in one of the following formats:
 
--   [European data format](https://www.edfplus.info/)
-    (including [`edf+`](https://www.edfplus.info/specs/edfplus.html);
-    each recording consisting of a `.edf` file)
-
--   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
-    (Each recording consisting of a  `.vhdr`, `.vmrk`, `.eeg` file triplet)
-
--   The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab)
-    (Each recording consisting of a `.set` file with an optional `.fdt` file)
-
--   [Neurodata Without Borders](https://nwb-schema.readthedocs.io)
-    (Each recording consisting of a `.nwb` file)
-
--   [MEF3](https://msel.mayo.edu/files/codes/MEF%203%20Specification.pdf)
-    (Each recording consisting of a `.mefd` directory)
+| **Format**                                                                                   | **Extension(s)**         | **Description**                                                                                                                                                            |
+| -------------------------------------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [European data format](https://www.edfplus.info/)                                            | `.edf`                   | Each recording consists of a `.edf` single file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used. |
+| [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5) | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                       |
+| [EEGLAB](https://sccn.ucsd.edu/eeglab)                                                       | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab). Each recording consists of a `.set` file with an optional `.fdt` file.                       |
+| [Neurodata Without Borders](https://nwb-schema.readthedocs.io)                               | `.nwb`                   | Each recording consists of a single `.nwb` file.                                                                                                                           |
+| [MEF3](https://osf.io/e3sf9/)                                                                | `.mefd`                  | Each recording consists of a `.mefd` directory.                                                                                                                            |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -236,8 +228,9 @@ MUST be present **in this specific order**:
 
 {{ MACROS___make_columns_table(
    {
-      "name__channels": ("REQUIRED", "The label must correspond to `_electrodes.tsv` name and all ieeg type channels are
-    required to have a position."),
+      "name__channels": ("REQUIRED", "When a corresponding electrode is specified in `_electrodes.tsv`, "
+                         "the name of that electrode MAY be specified here and the reference electrode "
+                         "name MAY be provided in the `reference` column."),
       "type__channels": "REQUIRED",
       "units": "REQUIRED",
       "low_cutoff": "REQUIRED",

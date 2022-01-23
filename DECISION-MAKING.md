@@ -20,6 +20,12 @@ BIDS governance.
 | Melanie Ganz ([@melanieganz](https://github.com/melanieganz))                |
 | Robert Oostenveld ([@robertoostenveld](https://github.com/robertoostenveld)) |
 | Russell Poldrack ([@poldrack](https://github.com/poldrack))                  |
+| Ariel Rokem ([@arokem](https://github.com/arokem))            |
+
+#### Past steering group members
+
+| Name                                                                         |
+|------------------------------------------------------------------------------|
 | Kirstie Whitaker ([@KirstieJane](https://github.com/KirstieJane))            |
 
 ### Maintainers Group
@@ -32,6 +38,7 @@ BIDS governance.
 | Taylor Salo ([@tsalo](https://github.com/tsalo))                               | 3h/week         | MRI                        |
 | Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                            | 3h/week         | Community development, MRI |
 | Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))            | 3h/week         | PET, Community development |
+| Eric Earl ([@ericearl](https://github.com/ericearl))                           | 2h/week         |                            |
 
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.

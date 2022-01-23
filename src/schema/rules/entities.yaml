@@ -8,6 +8,7 @@
 - acquisition
 - ceagent
 - tracer
+- stain
 - reconstruction
 - direction
 - run
@@ -22,6 +23,7 @@
 - space
 - split
 - recording
+- chunk
 - resolution
 - density
 - label

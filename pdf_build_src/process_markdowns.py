@@ -7,11 +7,12 @@ pandoc library documentation***) with pdf specific text rendering in mind as
 well.
 """
 
+from datetime import datetime
+import json
 import os
 import re
 import subprocess
 import sys
-from datetime import datetime
 
 import numpy as np
 
@@ -104,18 +105,105 @@ def add_header():
         file.writelines(data)
 
 
-def remove_internal_links(root_path, link_type):
-    """Find and replace all cross and same markdown internal links.
+def remove_internal_links_reference(root_path):
+    """Find and replace internal "reference-style" links.
 
+    Works on all ".md" files in `root_path`.
     The links will be replaced with plain text associated with it.
+    See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links
+
+    - `[reference-style links][some-ref]`, if "some-ref" points to a local ref
+    - `[some-ref][]`, if "some-ref" points to a local ref
+
+    For "reference-style links" we also need to remove the reference itself,
+    which we assume to be put at the bottom of the markdown document,
+    below a comment: `<!-- Link Definitions -->`.
+    These references look like this:
+
+    - `[some-ref]: #some-heading`
+    - `[some-ref]: ./some_section.md#some-heading`
+
+    "reference style links" of the form `[this is my link]`, where at the
+    bottom of the document a declaration
+    `[this is my link]: ./some_section#some-heading` is present,
+    MUST be written with a trailing pair of empty brackets:
+    `[this is my link][]`.
     """
-    if link_type == 'cross':
-        # regex that matches cross markdown links within a file
-        # TODO: add more documentation explaining regex
-        primary_pattern = re.compile(r'\[((?!http).[\w\s.\(\)`*/–]+)\]\(((?!http).+(\.md|\.yml|\.md#[\w\-\w]+))\)')  # noqa: E501
-    elif link_type == 'same':
-        # regex that matches references sections within the same markdown
-        primary_pattern = re.compile(r'\[([\w\s.\(\)`*/–]+)\]\(([#\w\-._\w]+)\)')
+    # match anything starting on a new line with "[" until you find "]"
+    # (this is important to not also match pictures, which
+    # start with "![")
+    # then, we expect a ": "
+    # then, if a "(" is present,
+    # check that the following does not continue with "http"
+    # (assuming that all links that start with http are external,
+    # and all remaining links are internal)
+    # if it doesn't, match anything until you find ")" and the end of
+    # the line
+    # if all of this works out, we found something
+    pattern_ref = re.compile(r"^\[([^\]]+)\]:\s((?!http).+)$")
+
+    for root, dirs, files in sorted(os.walk(root_path)):
+        for file in files:
+            links_to_remove = []
+            if file.endswith(".md"):
+                with open(os.path.join(root, file), 'r') as markdown:
+                    data = markdown.readlines()
+
+                # first find, which links need to be remove by scanning the
+                # references, and remove the reference
+                for ind, line in enumerate(data):
+
+                    match = pattern_ref.search(line)
+
+                    if match:
+                        links_to_remove.append(match.groups()[0])
+                        data[ind] = "\n"
+
+                # Now remove the links for the references we found (& removed)
+                for link in links_to_remove:
+                    # match as in pattern_ref above, except that:
+                    # line start and end don't matter(^ and $)
+                    # no ": " in between bracket parts
+                    # second bracket part uses square brackets
+                    # part within second bracket part MUST match a particular
+                    # link
+                    pattern = re.compile(r"\[([^\]]+)\]\[" + f"{link}" + r"\]")
+                    for ind, line in enumerate(data):
+
+                        match = pattern.search(line)
+
+                        if match:
+                            line = re.sub(pattern, match.groups()[0], line)
+
+                        data[ind] = line
+
+                # Now write the changed data back to file
+                with open(os.path.join(root, file), 'w') as markdown:
+                    markdown.writelines(data)
+
+
+def remove_internal_links_inline(root_path):
+    """Find and replace internal "inline-style" links.
+
+    Works on all ".md" files in `root_path`.
+    The links will be replaced with plain text associated with it.
+    See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links
+
+    We need to remove the following types of links:
+
+    - `[inline-style links](#some-heading)`
+    - `[inline-style links](./some_section.md#some-heading)`
+    """
+    # match anything starting with " [" or "[" until you find "]"
+    # (this is important to not also match pictures, which
+    # start with "![")
+    # then, if a "(" is present,
+    # check that the following does not continue with "http"
+    # (assuming that all links that start with http are external,
+    # and all remaining links are internal)
+    # if it doesn't, match anything until you find ")"
+    # if all of this works out, we found something
+    pattern_inline = re.compile(r"(\s|^)+\[([^\]]+)\]\((?!http)([^\)]+)\)")
 
     for root, dirs, files in sorted(os.walk(root_path)):
         for file in files:
@@ -124,16 +212,69 @@ def remove_internal_links(root_path, link_type):
                     data = markdown.readlines()
 
                 for ind, line in enumerate(data):
-                    match = primary_pattern.search(line)
+                    match = pattern_inline.search(line)
 
                     if match:
-                        line = re.sub(primary_pattern,
-                                      match.group().split('](')[0][1:], line)
+                        line = re.sub(pattern_inline,
+                                      f" {match.groups()[1]}", line)
 
                     data[ind] = line
 
                 with open(os.path.join(root, file), 'w') as markdown:
                     markdown.writelines(data)
+
+
+def assert_no_multiline_links(root_path):
+    """Check that markdown links are defined on single lines.
+
+    Works on all ".md" files in `root_path`.
+    This "style" is important for link removal/replacement to work
+    properly.
+
+    Links like this are not accepted: `some stuff [start of link
+    continues](http://ends-here.com)`
+
+    See Also
+    --------
+    remove_internal_links_reference
+    remove_internal_links_inline
+    """
+    pattern = re.compile(r'(\s|^)+\[([^\]]+)$')
+
+    problems = dict()
+    for root, dirs, files in sorted(os.walk(root_path)):
+        for file in files:
+            if file.endswith(".md"):
+                with open(os.path.join(root, file), 'r') as markdown:
+                    data = markdown.readlines()
+
+                code_context = False
+                macro_context = False
+                for ind, line in enumerate(data):
+
+                    # do not check "code blocks" or "macros"
+                    if line.strip().startswith("```"):
+                        code_context = not code_context
+
+                    if (not macro_context) and line.strip().startswith("{{"):
+                        macro_context = True
+
+                    if macro_context and line.strip().endswith("}}"):
+                        macro_context = False
+
+                    if code_context or macro_context:
+                        continue
+
+                    match = pattern.search(line)
+
+                    if match:
+                        problems[file] = problems.get(file, []) + [(ind, line)]
+
+    if len(problems) > 0:
+        msg = ("Found multiline markdown links! Please reformat as single"
+               " line links.\n\n")
+        msg += json.dumps(problems, indent=4)
+        raise AssertionError(msg)
 
 
 def modify_changelog():
@@ -174,7 +315,11 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
     new_table : list of list of str
         List of corrected lines of the input table with corrected number of dashes and aligned fences.
         To be later joined with pipe characters (``|``).
+    corrected : bool
+        Whether or not the table was corrected.
     """
+    corrected = True
+
     # nb_of_rows = len(table)
     nb_of_cols = len(table[0]) - 2
 
@@ -186,10 +331,11 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
 
     # sanity check: nb_of_chars is list of list, all nested lists must be of equal length
     if not len(set([len(i) for i in nb_of_chars])) == 1:
-        print('ERROR for current table ... "nb_of_chars" is misaligned, see:\n')
+        print('    - ERROR for current table ... "nb_of_chars" is misaligned, see:\n')
         print(nb_of_chars)
-        print('\nSkipping formatting of this table.\n')
-        return table
+        print('\n    - Skipping formatting of this table.')
+        corrected = False
+        return table, corrected
 
     # Convert the list to a numpy array and computes the maximum number of chars for each column
     nb_of_chars_arr = np.array(nb_of_chars)
@@ -251,7 +397,7 @@ def correct_table(table, offset=[0.0, 0.0], debug=False):
 
         new_table.append(row_content)
 
-    return new_table
+    return new_table, corrected
 
 
 def _contains_table_start(line, debug=False):
@@ -261,7 +407,7 @@ def _contains_table_start(line, debug=False):
     nb_of_pipes = line.count('|')
     nb_of_escaped_pipes = line.count(r'\|')
     nb_of_pipes = nb_of_pipes - nb_of_escaped_pipes
-    nb_of_dashes = line.count('-')
+    nb_of_dashes = line.count('--')
 
     if debug:
         print('Number of dashes / pipes : {} / {}'.format(nb_of_dashes, nb_of_pipes))
@@ -366,8 +512,9 @@ def correct_tables(root_path, debug=False):
                             table_mode = False
 
                             # Correct the given table
-                            table = correct_table(table, debug=debug)
-                            print('    - Table corrected')
+                            table, corrected = correct_table(table, debug=debug)
+                            if corrected:
+                                print('    - Table corrected')
                             if debug:
                                 print(table)
 
@@ -383,7 +530,8 @@ def correct_tables(root_path, debug=False):
                                 elif i == end_line:
                                     new_content.append('|'.join(table[count]) + ' \n\n')
                                     count += 1
-                            print('    - Appended corrected table lines to the new markdown content')
+                            if corrected:
+                                print('    - Appended corrected table lines to the new markdown content')
                     else:
                         new_content.append(line)
 
@@ -500,8 +648,9 @@ if __name__ == '__main__':
     modify_changelog()
 
     # Step 7: remove all internal links
-    remove_internal_links(duplicated_src_dir_path, 'cross')
-    remove_internal_links(duplicated_src_dir_path, 'same')
+    assert_no_multiline_links(duplicated_src_dir_path)
+    remove_internal_links_inline(duplicated_src_dir_path)
+    remove_internal_links_reference(duplicated_src_dir_path)
 
     # Step 8: correct number of dashes and fences alignment for rendering tables in PDF
     correct_tables(duplicated_src_dir_path)

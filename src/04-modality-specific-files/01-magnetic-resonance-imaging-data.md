@@ -3,9 +3,11 @@
 ## Common metadata fields
 
 MR Data described in the following sections share the following RECOMMENDED metadata
-fields (stored in sidecar JSON files). MRI acquisition parameters are divided
-into several categories based on
-["A checklist for fMRI acquisition methods reporting in the literature"](https://thewinnower.com/papers/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature)
+fields (stored in sidecar JSON files).
+MRI acquisition parameters are divided into several categories based on
+"A checklist for fMRI acquisition methods reporting in the literature"
+([article](https://winnower-production.s3.amazonaws.com/papers/977/v4/pdf/977-a-checklist-for-fmri-acquisition-methods-reporting-in-the-literature.pdf),
+[checklist](https://winnower-production.s3.amazonaws.com/papers/977/assets/993e199d-6bc3-4418-be3a-f620af1188b7-Parameter_Reporting_V1p3.pdf))
 by Ben Inglis.
 
 ### Scanner Hardware
@@ -15,7 +17,7 @@ by Ben Inglis.
       "Manufacturer": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0070 `Manufacturer`."),
       "ManufacturersModelName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`."),
       "DeviceSerialNumber": ("RECOMMENDED", "Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`."),
-      "StationName": "RECOMMENDED",
+      "StationName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1010 `Station Name`."),
       "SoftwareVersions": ("RECOMMENDED", "Corresponds to DICOM Tag 0018, 1020 `Software Versions`."),
       "HardcopyDeviceSoftwareVersion": "DEPRECATED",
       "MagneticFieldStrength": "RECOMMENDED, but REQUIRED for Arterial Spin Labeling",
@@ -148,7 +150,7 @@ Useful for multimodal co-registration with MEG, (S)EEG, TMS, and so on.
 
 {{ MACROS___make_metadata_table(
    {
-      "AnatomicalLandmarkCoordinates_mri": "RECOMMENDED",
+      "AnatomicalLandmarkCoordinates__mri": "RECOMMENDED",
    }
 ) }}
 
@@ -234,7 +236,7 @@ The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
 key/value pair corresponds to a custom label the user
 MAY use to distinguish a different set of parameters used for acquiring the same
 modality. For example this should be used when a study includes two T1w images -
-one full brain low resolution and and one restricted field of view but high
+one full brain low resolution and one restricted field of view but high
 resolution. In such case two files could have the following names:
 `sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however the
 user is free to choose any other label than `highres` and `lowres` as long as
@@ -1070,7 +1072,7 @@ Required fields:
 
 {{ MACROS___make_metadata_table(
    {
-      "EchoTime_fmap": "REQUIRED",
+      "EchoTime__fmap": "REQUIRED",
    }
 ) }}
 

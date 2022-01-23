@@ -22,19 +22,12 @@ The EEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, EEG data MUST be
 stored in one of the following formats:
 
--   [European data format](https://www.edfplus.info/)
-    (including [`edf+`](https://www.edfplus.info/specs/edfplus.html);
-    each recording consisting of a `.edf` file)
-
--   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
-    (Each recording consisting of a  `.vhdr`, `.vmrk`, `.eeg` file triplet)
-
--   The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab)
-    (Each recording consisting of a `.set` file with an optional `.fdt` file)
-
--   [Biosemi](https://www.biosemi.com/) data format
-    (including [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html);
-    each recording consisting of a `.bdf` file)
+| **Format**                                                                                   | **Extension(s)**         | **Description**                                                                                                                                                                                      |
+| -------------------------------------------------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [European data format](https://www.edfplus.info/)                                            | `.edf`                   | Each recording consists of a single `.edf` file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used.                           |
+| [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5) | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                                                 |
+| [EEGLAB](https://sccn.ucsd.edu/eeglab)                                                       | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab). Each recording consists of a `.set` file with an optional `.fdt` file.                                                 |
+| [Biosemi](https://www.biosemi.com/)                                                          | `.bdf`                   | Each recording consists of a single `.bdf` file. [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html) files are permitted. The capital `.BDF` extension MUST NOT be used. |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -196,7 +189,7 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["channels"]) }}
 
 This file is RECOMMENDED as it provides easily searchable information across
-BIDS datasets for for example, general curation, response to queries or batch
+BIDS datasets for example, general curation, response to queries or batch
 analysis.
 To avoid confusion, the channels SHOULD be listed in the order they
 appear in the EEG data file.

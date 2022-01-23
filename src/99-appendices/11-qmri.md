@@ -349,7 +349,7 @@ required metadata field (second column).
 
 A derived qMRI application becomes available if all the optional metadata fields
 listed for the respective file collection suffix are provided for the data. In addition,
-conditional rules based on the value of a given required metada field can be set
+conditional rules based on the value of a given required metadata field can be set
 for the description of a derived qMRI application. Note that the value of this
 required metadata is fixed across constituent images of a file collection and defined
 in [Method-specific priority levels for qMRI file collections](#method-specific-priority-levels-for-qmri-file-collections).
@@ -361,9 +361,11 @@ metadata field has the value of `SSFP`, and the `SpoilingRFPhaseIncrement` is
 provided as a metadata field, then the dataset becomes eligible for `DESPOT2`
 T2 fitting application.
 
-Please note that optional metadata fields listed in the [deriving the intended qMRI
-application from an ambiguous file collection table](#deriving-the-intended-qmri-application-from-an-ambiguous-file-collection) are included in the optional (third)
-column of [the priority levels table](#method-specific-priority-levels-for-qmri-file-collections) for the consistency of this appendix.
+Please note that optional metadata fields listed in the
+[deriving the intended qMRI application from an ambiguous file collection table](#deriving-the-intended-qmri-application-from-an-ambiguous-file-collection)
+are included in the optional (third) column of
+[the priority levels table](#method-specific-priority-levels-for-qmri-file-collections)
+for the consistency of this appendix.
 
 ## Introducing a new qMRI file collection
 
