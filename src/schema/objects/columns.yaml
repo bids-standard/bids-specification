@@ -12,13 +12,7 @@ abbreviation:
   type: string
 acq_time:
   name: acq_time
-  description: |
-    Acquisition time refers to when the first data point in each run was acquired.
-    Furthermore, if this header is provided, the acquisition times of all files that
-    belong to a recording MUST be identical.
-
-    Datetime format and their anonymization are described in [Units](/02-common-principles.html#units).
-
+  description: Datetime format and their anonymization are described in [Units](/02-common-principles.html#units).
   type: string
   format: datetime
 age:
