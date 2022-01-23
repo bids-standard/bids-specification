@@ -22,6 +22,7 @@ def _get_paths(bids_dir):
 		'.gitattributes',
 		'.gitignore',
 		'.bidsignore',
+		'dandiset.yaml',
 		]
 	bids_dir = os.path.abspath(os.path.expanduser(bids_dir))
 	path_list=[]
@@ -169,29 +170,35 @@ def load_entities(
 				)
 			regex_entities = ''
 			for entity in entity_order:
-				if entity in variant['entities']:
-					if debug:
-						print(
-						    json.dumps(entity_definitions[entity],
-							    sort_keys=True,
-							    indent=4,
-							    ),
-						    )
-					entity_shorthand = entity_definitions[entity]['entity']
-					if "enum" in entity_definitions[entity].keys():
-						# Entity key-value pattern with specific allowed values
-						# tested, works!
-						variable_field = "({})".format(
-							"|".join(entity_definitions[entity]["enum"]),
-						)
-					else:
-						variable_field = label
-					regex_entities = _add_entity(
-						regex_entities,
-						entity_shorthand,
-						variable_field,
-						variant['entities'][entity],
-						)
+				# Slightly awkward construction to account for new-style file specification.
+				# As in:
+				# https://github.com/bids-standard/bids-specification/pull/987
+				try:
+					if entity in variant['entities']:
+						if debug:
+							print(
+								json.dumps(entity_definitions[entity],
+									sort_keys=True,
+									indent=4,
+									),
+								)
+						entity_shorthand = entity_definitions[entity]['entity']
+						if "enum" in entity_definitions[entity].keys():
+							# Entity key-value pattern with specific allowed values
+							# tested, works!
+							variable_field = "({})".format(
+								"|".join(entity_definitions[entity]["enum"]),
+							)
+						else:
+							variable_field = label
+						regex_entities = _add_entity(
+							regex_entities,
+							entity_shorthand,
+							variable_field,
+							variant['entities'][entity],
+							)
+				except KeyError:
+					pass
 
 			if len(variant['suffixes']) == 1:
 				regex_suffixes = variant['suffixes'][0]
@@ -221,9 +228,16 @@ def load_entities(
 				regex_extensions = '({})'.format(
 					'|'.join(fixed_variant_extensions)
 					)
-			regex = '{}{}/{}_{}\.{}'.format(
+			# Hack for sessions file solution.
+			# As seen in:
+			# https://github.com/bids-standard/bids-specification/pull/987
+			if datatype == 'tabular_metadata':
+				datatype_hack = ''
+			else:
+				datatype_hack = datatype+'/'
+			regex = '{}{}{}_{}\.{}'.format(
 				regex_directories,
-				datatype,
+				datatype_hack,
 				regex_entities,
 				regex_suffixes,
 				regex_extensions,
@@ -395,8 +409,8 @@ def write_report(validation_result,
 		f.close()
 
 def test_regex(
-	#bids_dir='~/datalad/000108',
-	bids_dir='~/datalad/000026/rawdata',
+	bids_dir='~/datalad/000108',
+	#bids_dir='~/datalad/000026/rawdata',
 	#bids_dir='~/datalad/openneuro/ds000030',
 	#bids_dir='~/DANDI/000108',
 	#bids_schema='/usr/share/bids-schema/',
