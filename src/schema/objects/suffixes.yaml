@@ -617,6 +617,15 @@ sbref:
   name: Single-band reference image
   description: |
     Single-band reference for one or more multi-band `dwi` images.
+sessions:
+  name: Sessions file
+  description: |
+    In case of multiple sessions there is an option of adding additional sessions.tsv files
+    describing variables changing between sessions.
+    In such case one file per participant SHOULD be added.
+    These files MUST include a session_id column and describe each session by one and only one row.
+    Column names in sessions.tsv files MUST be different from group level participant key column
+    names in the participants.tsv file.
 stim:
   name: Continuous recording
   description: |

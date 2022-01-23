@@ -1,0 +1,8 @@
+---
+- suffixes:
+  - sessions
+  extensions:
+  - .tsv
+  - .json
+  entities:
+    subject: required
