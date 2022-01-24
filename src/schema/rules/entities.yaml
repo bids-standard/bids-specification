@@ -8,6 +8,7 @@
 - acquisition
 - ceagent
 - tracer
+- stain
 - reconstruction
 - direction
 - run
@@ -19,8 +20,10 @@
 - part
 - recording
 - processing
+- hemisphere
 - space
 - split
+- chunk
 - resolution
 - density
 - label
