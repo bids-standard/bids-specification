@@ -2,9 +2,26 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[DOC] update steering group composition [#976](https://github.com/bids-standard/bids-specification/pull/976) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[FIX] harmonize 'file name' into 'filename' [#962](https://github.com/bids-standard/bids-specification/pull/962) ([yarikoptic](https://github.com/yarikoptic))
+-   \[FIX] Reword front page [#958](https://github.com/bids-standard/bids-specification/pull/958) ([arokem](https://github.com/arokem))
+-   \[MAINT] Update links to starter kit website [#957](https://github.com/bids-standard/bids-specification/pull/957) ([effigies](https://github.com/effigies))
+-   \[FIX] Entity table: Clarify meaning of empty cells [#955](https://github.com/bids-standard/bids-specification/pull/955) ([Lestropie](https://github.com/Lestropie))
+-   \[MISC] Add Eric Earl as a Maintainer [#953](https://github.com/bids-standard/bids-specification/pull/953) ([ericearl](https://github.com/ericearl))
+-   \[FIX] Spelling errors in appendices [#951](https://github.com/bids-standard/bids-specification/pull/951) ([Lestropie](https://github.com/Lestropie))
+-   \[FIX] Broken hyperlink in entity list file [#949](https://github.com/bids-standard/bids-specification/pull/949) ([Lestropie](https://github.com/Lestropie))
+-   \[INFRA] fix "CircleCI redirector" GH-action: remove the 2nd (sanity) check [#944](https://github.com/bids-standard/bids-specification/pull/944) ([yarikoptic](https://github.com/yarikoptic))
+-   \[FIX] Typo: ECG_headshape [#942](https://github.com/bids-standard/bids-specification/pull/942) ([Moo-Marc](https://github.com/Moo-Marc))
+-   \[FIX] description: dwi is specialized T2 weighting, not T2\* [#939](https://github.com/bids-standard/bids-specification/pull/939) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] relax unrealistically strict requirements with ieeg channels.tsv 'name' column [#938](https://github.com/bids-standard/bids-specification/pull/938) ([sappelhoff](https://github.com/sappelhoff))
+-   \[INFRA] expand submenus on landing page automatically [#937](https://github.com/bids-standard/bids-specification/pull/937) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Add links from derivatives section to entity list [#936](https://github.com/bids-standard/bids-specification/pull/936) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Remove repeated words [#934](https://github.com/bids-standard/bids-specification/pull/934) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA/FIX] Use string concatenation in table macro [#933](https://github.com/bids-standard/bids-specification/pull/933) ([effigies](https://github.com/effigies))
 -   \[INFRA] Run linkchecker in stock docker image [#932](https://github.com/bids-standard/bids-specification/pull/932) ([effigies](https://github.com/effigies))
+-   \[INFRA] add (optional) pre-commit config file [#929](https://github.com/bids-standard/bids-specification/pull/929) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Clarify that EDF/BDF files MUST have lower case extensions in BIDS [#927](https://github.com/bids-standard/bids-specification/pull/927) ([adam2392](https://github.com/adam2392))
+-   \[ENH] Generate glossary page from schema [#923](https://github.com/bids-standard/bids-specification/pull/923) ([tsalo](https://github.com/tsalo))
 -   \[ENH] add `hemi` entity to schema [#917](https://github.com/bids-standard/bids-specification/pull/917) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[INFRA] PDF version of spec: fix handling of internal links [#915](https://github.com/bids-standard/bids-specification/pull/915) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] update and reformat table for template in coordinate system page [#903](https://github.com/bids-standard/bids-specification/pull/903) ([Remi-Gau](https://github.com/Remi-Gau))
@@ -14,10 +31,12 @@
 -   \[FIX] small typo in json example [#897](https://github.com/bids-standard/bids-specification/pull/897) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[INFRA] tiny speedup of building PDF by moving `re.compile\(\)` outside of a loop [#896](https://github.com/bids-standard/bids-specification/pull/896) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA] Document \*.webm video files as binary [#895](https://github.com/bids-standard/bids-specification/pull/895) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
+-   \[SCHEMA] Reorganize schema code into a package [#892](https://github.com/bids-standard/bids-specification/pull/892) ([tsalo](https://github.com/tsalo))
 -   \[FIX] Clarify shifting dates RECOMMENDED, add example EDF [#891](https://github.com/bids-standard/bids-specification/pull/891) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] fix draft rendering css on mobile or when browser window is narrow [#889](https://github.com/bids-standard/bids-specification/pull/889) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Add an animated BIDS logo [#886](https://github.com/bids-standard/bids-specification/pull/886) ([adswa](https://github.com/adswa))
 -   \[SCHEMA] Consolidate schema files by term type [#883](https://github.com/bids-standard/bids-specification/pull/883) ([tsalo](https://github.com/tsalo))
+-   \[ENH] BEP031: Microscopy [#881](https://github.com/bids-standard/bids-specification/pull/881) ([mariehbourget](https://github.com/mariehbourget))
 -   \[INFRA] jQuery 3.4.1 → 3.6.0 [#875](https://github.com/bids-standard/bids-specification/pull/875) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA] Add "codespell" tool to CI checks to catch typos sooner [#873](https://github.com/bids-standard/bids-specification/pull/873) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[INFRA] Several style fixes (Flake8) for Python code in the repo [#872](https://github.com/bids-standard/bids-specification/pull/872) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
@@ -174,7 +193,7 @@
 -   \[FIX] clarify that \<physio|stim>.json is REQUIRED [#542](https://github.com/bids-standard/bids-specification/pull/542) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] Replace all non-breaking spaces with vanilla spaces [#536](https://github.com/bids-standard/bids-specification/pull/536) ([nicholst](https://github.com/nicholst))
 -   \[FIX] Clarify indices are nonnegative integers. [#535](https://github.com/bids-standard/bids-specification/pull/535) ([nicholst](https://github.com/nicholst))
--   \[FIX] Clarify use of session entity in file names [#532](https://github.com/bids-standard/bids-specification/pull/532) ([Moo-Marc](https://github.com/Moo-Marc))
+-   \[FIX] Clarify use of session entity in filenames [#532](https://github.com/bids-standard/bids-specification/pull/532) ([Moo-Marc](https://github.com/Moo-Marc))
 -   \[ENH] Add the ability of users to specify an explicit HED.xml schema for validation. [#527](https://github.com/bids-standard/bids-specification/pull/527) ([VisLab](https://github.com/VisLab))
 -   \[FIX] clarify that scans.json is allowed and recommended [#523](https://github.com/bids-standard/bids-specification/pull/523) ([sappelhoff](https://github.com/sappelhoff))
 -   \[INFRA] add copyright holder to license.  [#521](https://github.com/bids-standard/bids-specification/pull/521) ([sappelhoff](https://github.com/sappelhoff))
@@ -328,7 +347,7 @@
 -   \[FIX] Clarify continuous recording metadata fields [#167](https://github.com/bids-standard/bids-specification/pull/167) ([effigies](https://github.com/effigies))
 -   \[FIX] changed reference of `dcm2nii` to `dcm2niix` [#166](https://github.com/bids-standard/bids-specification/pull/166) ([DimitriPapadopoulos](https://github.com/DimitriPapadopoulos))
 -   \[FIX] Removing a leftover file [#162](https://github.com/bids-standard/bids-specification/pull/162) ([chrisgorgo](https://github.com/chrisgorgo))
--   \[FIX] Specify marker file names for KIT data (MEG) [#62](https://github.com/bids-standard/bids-specification/pull/62) ([monkeyman192](https://github.com/monkeyman192))
+-   \[FIX] Specify marker filenames for KIT data (MEG) [#62](https://github.com/bids-standard/bids-specification/pull/62) ([monkeyman192](https://github.com/monkeyman192))
 -   \[FIX] Remove father-level for meg filetypes other than BTi/4D data [#19](https://github.com/bids-standard/bids-specification/pull/19) ([teonbrooks](https://github.com/teonbrooks))
 
 ## [v1.2.0](https://github.com/bids-standard/bids-specification/tree/v1.2.0) (2019-03-04)
@@ -447,7 +466,7 @@
 -   Added `InversionTime` metadata key.
 -   Clarification on the source vs raw language.
 -   Added `trial_type` column to the event files.
--   Added missing `sub-<participant_label>` in behavioral data file names.
+-   Added missing `sub-<participant_label>` in behavioral data filenames.
 -   Added ability to store stimuli files.
 -   Clarified the language describing allowed subject labels.
 -   Added quantitative proton density maps.

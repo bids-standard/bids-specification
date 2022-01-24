@@ -2,3 +2,4 @@
 *.png -text
 *.jpg -text
 *.webm -text
+tools/schemacode/schemacode/_version.py export-subst

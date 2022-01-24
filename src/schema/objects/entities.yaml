@@ -36,6 +36,15 @@ ceagent:
     with the same label.
   type: string
   format: label
+chunk:
+  name: Chunk
+  entity: chunk
+  description: |
+    The `chunk-<index>` key/value pair is used to distinguish between different
+    regions, 2D images or 3D volumes files, of the same physical sample with
+    different fields of view acquired in the same imaging experiment.
+  type: string
+  format: index
 density:
   name: Density
   entity: den
@@ -306,6 +315,18 @@ split:
     [Scans file](../03-modality-agnostic-files.md#scans-file).
   type: string
   format: index
+stain:
+  name: Stain
+  entity: stain
+  description: |
+    The `stain-<label>` key/pair values can be used to distinguish image files
+    from the same sample using different stains or antibodies for contrast enhancement.
+    Stains SHOULD be indicated in the `"SampleStaining"` key in the sidecar JSON file,
+    although the label may be different.
+    Description of antibodies SHOULD also be indicated in `"SamplePrimaryAntibodies"`
+    and/or `"SampleSecondaryAntobodies"` as appropriate.
+  type: string
+  format: label
 subject:
   name: Subject
   entity: sub
