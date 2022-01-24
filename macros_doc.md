@@ -6,12 +6,11 @@ Macros make it easy to achieve a consistent style throughout the specification,
 and changing a given macro will automatically change all appropriate paragraphs
 in the specification.
 
-Below you will find answers to frequently asked questions regarding macros.
+Below you will find answers to frequently asked questions regarding using macros in the BIDS specification.
 
-- [Using MkDocs macros in the BIDS specification](#using-mkdocs-macros-in-the-bids-specification)
    - [What are macros and why use them?](#what-are-macros-and-why-use-them)
    - [What kind of input information are required by macros?](#what-kind-of-input-information-are-required-by-macros)
-   - [What macros are available? What can we use macros for?](#what-macros-are-available-what-can-we-use-macros-for)
+   - [What macros are available?](#what-macros-are-available)
    - [When should I use a macro?](#when-should-i-use-a-macro)
    - [Do I need learn how to program to use those macros?](#do-i-need-learn-how-to-program-to-use-those-macros)
    - [Anything else I need to know if I need to insert a new macro call?](#anything-else-i-need-to-know-if-i-need-to-insert-a-new-macro-call)
@@ -74,7 +73,7 @@ requirements in the specification can be automatically checked by validators.
 Several of the macros incorporate information from this schema to assure
 consistency.
 
-## What macros are available? What can we use macros for?
+## What macros are available?
 
 All the macros we use are in listed in this
 [python file](https://github.com/bids-standard/bids-specification/blob/master/tools/mkdocs_macros_bids/macros.py).
@@ -301,7 +300,7 @@ call and ask the BIDS maintainers for help.
 Say you wanted to add a new term `MoonPhase` to the table, on the second row.
 You would do it like this. But this would only work if the `metadata.yml` file
 contains an entry for `MoonPhase`. If this is the case because the term already
-exist and is used somewhere in the BIDS specification, you are in luck and you
+exists and is used somewhere in the BIDS specification, you are in luck and you
 can just stop there.
 
 ```python
@@ -330,9 +329,7 @@ is wrong.
 
 #### Should I create a macro if I need a new kind of table?
 
-As a rule of thumb, no.
-
-Unless it is clear that this kind of table will reappear many times in the
+As a rule of thumb, no, unless it is clear that this kind of table will reappear many times in the
 future in the specification. But this is usually hard to predict so better start
 with a table in Markdown.
 
