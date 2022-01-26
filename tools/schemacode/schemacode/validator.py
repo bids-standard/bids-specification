@@ -38,6 +38,49 @@ def _get_paths(bids_dir):
 			path_list.append(file_path)
 	return path_list
 
+def _add_suffixes(regex_string, variant):
+	"""Add suffixes to a regex string."""
+	if len(variant['suffixes']) == 1:
+		regex_suffixes = variant['suffixes'][0]
+	else:
+		regex_suffixes = '({})'.format(
+			'|'.join(variant['suffixes'])
+			)
+	regex_string = f'{regex_string}_{regex_suffixes}'
+
+	return regex_string
+
+def _add_extensions(regex_string, variant):
+	"""Add extensions to a regex string."""
+	if len(variant['extensions']) == 1:
+		# This only happens in `rules/datatypes/meg.yaml` once:
+		if variant['extensions'][0] == '*':
+			regex_extensions = '.*?'
+		else:
+			# Making it period-safe:
+			if variant['extensions'][0][0] == '.':
+				regex_extensions = variant['extensions'][0][1:]
+			else:
+				regex_extensions = variant['extensions'][0]
+	else:
+		# Making it period-safe:
+		fixed_variant_extensions = []
+		for variant_extension in variant['extensions']:
+			if variant_extension[0] == '.':
+				fixed_variant_extensions.append(variant_extension[1:])
+			else:
+				fixed_variant_extensions.append(variant_extension)
+
+		regex_extensions = '({})'.format(
+			'|'.join(fixed_variant_extensions)
+			)
+	regex_string = f'{regex_string}\.{regex_extensions}'
+
+	return regex_string
+
+#def _add_subdirs(regex_file_name, entities, modality_datatypes):
+#	"""Add appropriate subdirectories as required by entities present."""
+
 def _add_entity(regex_entities, entity_shorthand, variable_field, requirement_level):
 	"""Add entity pattern to filename template based on requirement level."""
 	if requirement_level == "required":
@@ -149,6 +192,14 @@ def load_entities(
 	entity_order = my_schema["rules"]["entities"]
 	entity_definitions = my_schema["objects"]["entities"]
 
+	# Needed for non-modality file separation as per:
+	# https://github.com/bids-standard/bids-specification/pull/985#issuecomment-1019573787
+	modalities = my_schema['rules']['modalities']
+	modalities_list = []
+	for modality_key in modalities.keys():
+		for modality_datatype in modalities[modality_key]['datatypes']:
+			modalities_list.append(modality_datatype)
+
 	# This should be further broken up:
 	# IF there is a session dir, there should be a session field in the file name, so there should be two entries for all entities below the session directory.
 	regex_directories = "{}-{}/(|{}-{}/)".format(
@@ -200,34 +251,9 @@ def load_entities(
 				except KeyError:
 					pass
 
-			if len(variant['suffixes']) == 1:
-				regex_suffixes = variant['suffixes'][0]
-			else:
-				regex_suffixes = '({})'.format(
-					'|'.join(variant['suffixes'])
-					)
-			if len(variant['extensions']) == 1:
-				# This only happens in `rules/datatypes/meg.yaml` once:
-				if variant['extensions'][0] == '*':
-					regex_extensions = '.*?'
-				else:
-					# Making it period-safe:
-					if variant['extensions'][0][0] == '.':
-						regex_extensions = variant['extensions'][0][1:]
-					else:
-						regex_extensions = variant['extensions'][0]
-			else:
-				# Making it period-safe:
-				fixed_variant_extensions = []
-				for variant_extension in variant['extensions']:
-					if variant_extension[0] == '.':
-						fixed_variant_extensions.append(variant_extension[1:])
-					else:
-						fixed_variant_extensions.append(variant_extension)
+			regex_string = _add_suffixes(regex_entities, variant)
+			regex_string = _add_extensions(regex_string, variant)
 
-				regex_extensions = '({})'.format(
-					'|'.join(fixed_variant_extensions)
-					)
 			# Hack for sessions file solution.
 			# As seen in:
 			# https://github.com/bids-standard/bids-specification/pull/987
@@ -235,12 +261,10 @@ def load_entities(
 				datatype_hack = ''
 			else:
 				datatype_hack = datatype+'/'
-			regex = '{}{}{}_{}\.{}'.format(
+			regex = '{}{}{}'.format(
 				regex_directories,
 				datatype_hack,
-				regex_entities,
-				regex_suffixes,
-				regex_extensions,
+				regex_string,
 				)
 			# Adding decoration, not sure why `get_path()` path listings end up starting with `/`.
 			regex = '^/{}$'.format(regex)
