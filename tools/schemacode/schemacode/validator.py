@@ -78,8 +78,29 @@ def _add_extensions(regex_string, variant):
 
 	return regex_string
 
-#def _add_subdirs(regex_file_name, entities, modality_datatypes):
-#	"""Add appropriate subdirectories as required by entities present."""
+def _add_subdirs(regex_string, variant, datatype, entity_definitions, modality_datatypes):
+	"""Add appropriate subdirectories as required by entities present."""
+
+	label = '([a-z,A-Z,0-9]*?)'
+
+	# The list of which entities create directories could be dynamically specified by the YAML, but for now, it is not.
+	# Ordering is important, as "subject" follows "session" alphabetically, but is hierarchically above it.
+	dir_entities = ['subject', 'session']
+
+	regex_dirs = '/'
+	for dir_entity in dir_entities:
+		if dir_entity in variant['entities'].keys():
+			shorthand = entity_definitions[dir_entity]['entity']
+			if variant['entities'][dir_entity] == 'required':
+				regex_subdir = f'{shorthand}-{label}/'
+			else:
+				regex_subdir = f'(|{shorthand}-{label}/)'
+			regex_dirs = f'{regex_dirs}{regex_subdir}'
+	if datatype in modality_datatypes:
+		regex_dirs = f'{regex_dirs}{datatype}/'
+	regex_string = f'{regex_dirs}{regex_string}'
+
+	return regex_string
 
 def _add_entity(regex_entities, entity_shorthand, variable_field, requirement_level):
 	"""Add entity pattern to filename template based on requirement level."""
@@ -195,19 +216,10 @@ def load_entities(
 	# Needed for non-modality file separation as per:
 	# https://github.com/bids-standard/bids-specification/pull/985#issuecomment-1019573787
 	modalities = my_schema['rules']['modalities']
-	modalities_list = []
+	modality_datatypes = []
 	for modality_key in modalities.keys():
 		for modality_datatype in modalities[modality_key]['datatypes']:
-			modalities_list.append(modality_datatype)
-
-	# This should be further broken up:
-	# IF there is a session dir, there should be a session field in the file name, so there should be two entries for all entities below the session directory.
-	regex_directories = "{}-{}/(|{}-{}/)".format(
-		entity_definitions["subject"]["entity"],
-		label,
-		entity_definitions["session"]["entity"],
-		label,
-		)
+			modality_datatypes.append(modality_datatype)
 
 	regex_schema = []
 	for datatype in datatypes:
@@ -253,23 +265,11 @@ def load_entities(
 
 			regex_string = _add_suffixes(regex_entities, variant)
 			regex_string = _add_extensions(regex_string, variant)
+			regex_string = _add_subdirs(regex_string, variant, datatype, entity_definitions, modality_datatypes)
 
-			# Hack for sessions file solution.
-			# As seen in:
-			# https://github.com/bids-standard/bids-specification/pull/987
-			if datatype == 'tabular_metadata':
-				datatype_hack = ''
-			else:
-				datatype_hack = datatype+'/'
-			regex = '{}{}{}'.format(
-				regex_directories,
-				datatype_hack,
-				regex_string,
-				)
-			# Adding decoration, not sure why `get_path()` path listings end up starting with `/`.
-			regex = '^/{}$'.format(regex)
+			regex_string = f'^{regex_string}$'
 			regex_entry = {
-				'regex':regex,
+				'regex':regex_string,
 				'mandatory':False,
 				}
 			regex_schema.append(regex_entry)
