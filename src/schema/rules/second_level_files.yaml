@@ -29,4 +29,3 @@
   - .json
   entities:
     subject: required
-    session: required
