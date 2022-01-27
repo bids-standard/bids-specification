@@ -2,7 +2,11 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] add microscopy to modalities in schema [#984](https://github.com/bids-standard/bids-specification/pull/984) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[INFRA] Fix linkchecker [#982](https://github.com/bids-standard/bids-specification/pull/982) ([sappelhoff](https://github.com/sappelhoff))
 -   \[DOC] update steering group composition [#976](https://github.com/bids-standard/bids-specification/pull/976) ([Remi-Gau](https://github.com/Remi-Gau))
+-   customize footer on html spec [#975](https://github.com/bids-standard/bids-specification/pull/975) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Update HED appendix to comply with current HED version [#970](https://github.com/bids-standard/bids-specification/pull/970) ([VisLab](https://github.com/VisLab))
 -   \[FIX] harmonize 'file name' into 'filename' [#962](https://github.com/bids-standard/bids-specification/pull/962) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] Reword front page [#958](https://github.com/bids-standard/bids-specification/pull/958) ([arokem](https://github.com/arokem))
 -   \[MAINT] Update links to starter kit website [#957](https://github.com/bids-standard/bids-specification/pull/957) ([effigies](https://github.com/effigies))
