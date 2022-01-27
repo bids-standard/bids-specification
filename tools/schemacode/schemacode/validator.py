@@ -38,17 +38,22 @@ def _get_paths(bids_dir):
 			path_list.append(file_path)
 	return path_list
 
-def _add_suffixes(regex_string, variant):
-	"""Add suffixes to a regex string."""
-	if len(variant['suffixes']) == 1:
-		regex_suffixes = variant['suffixes'][0]
+def _add_entity(regex_entities, entity_shorthand, variable_field, requirement_level):
+	"""Add entity pattern to filename template based on requirement level."""
+	if requirement_level == "required":
+		if len(regex_entities.strip()):
+			regex_entities += f'_{entity_shorthand}-{variable_field}'
+		else:
+			# Only the first entity doesn't need an underscore
+			regex_entities += f'{entity_shorthand}-{variable_field}'
 	else:
-		regex_suffixes = '({})'.format(
-			'|'.join(variant['suffixes'])
-			)
-	regex_string = f'{regex_string}_{regex_suffixes}'
+		if len(regex_entities.strip()):
+			regex_entities += f'(|_{entity_shorthand}-{variable_field})'
+		else:
+			# Only the first entity doesn't need an underscore
+			regex_entities += f'(|{entity_shorthand}-{variable_field})'
 
-	return regex_string
+	return regex_entities
 
 def _add_extensions(regex_string, variant):
 	"""Add extensions to a regex string."""
@@ -102,22 +107,17 @@ def _add_subdirs(regex_string, variant, datatype, entity_definitions, modality_d
 
 	return regex_string
 
-def _add_entity(regex_entities, entity_shorthand, variable_field, requirement_level):
-	"""Add entity pattern to filename template based on requirement level."""
-	if requirement_level == "required":
-		if len(regex_entities.strip()):
-			regex_entities += f'_{entity_shorthand}-{variable_field}'
-		else:
-			# Only the first entity doesn't need an underscore
-			regex_entities += f'{entity_shorthand}-{variable_field}'
+def _add_suffixes(regex_string, variant):
+	"""Add suffixes to a regex string."""
+	if len(variant['suffixes']) == 1:
+		regex_suffixes = variant['suffixes'][0]
 	else:
-		if len(regex_entities.strip()):
-			regex_entities += f'(|_{entity_shorthand}-{variable_field})'
-		else:
-			# Only the first entity doesn't need an underscore
-			regex_entities += f'(|{entity_shorthand}-{variable_field})'
+		regex_suffixes = '({})'.format(
+			'|'.join(variant['suffixes'])
+			)
+	regex_string = f'{regex_string}_{regex_suffixes}'
 
-	return regex_entities
+	return regex_string
 
 
 def load_top_level(
