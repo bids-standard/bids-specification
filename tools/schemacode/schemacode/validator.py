@@ -9,6 +9,12 @@ from copy import deepcopy
 from . import schema
 
 
+# The list of which entities create directories could be dynamically specified by the YAML, but for now, it is not.
+# Ordering is important, as "subject" follows "session" alphabetically, but is hierarchically above it.
+DIR_ENTITIES = ['subject', 'session']
+
+
+
 def _get_paths(bids_dir):
 	"""Get all paths from a directory, excluding hidden subdirectories from data distribution."""
 	exclude_subdirs=[
@@ -38,20 +44,36 @@ def _get_paths(bids_dir):
 			path_list.append(file_path)
 	return path_list
 
-def _add_entity(regex_entities, entity_shorthand, variable_field, requirement_level):
+def _add_entity(regex_entities, entity, entity_shorthand, variable_field, requirement_level):
 	"""Add entity pattern to filename template based on requirement level."""
+
+	# We need to do this here, although it would be easier to backreference in the direcotry.
+	# This is because regex evaluates sequentially and we can not forward-reference a group.
+	if entity in DIR_ENTITIES:
+		variable_regex = f'(?P={entity})'
+	else:
+		variable_regex = f'(?P<{entity}>{variable_field})'
+
 	if requirement_level == "required":
 		if len(regex_entities.strip()):
-			regex_entities += f'_{entity_shorthand}-{variable_field}'
+			#regex_entities += f'_{entity_shorthand}-{variable_field}'
+			#regex_entities += f'_{entity_shorthand}-'
+			regex_entities += f'_{entity_shorthand}-{variable_regex}'
 		else:
 			# Only the first entity doesn't need an underscore
-			regex_entities += f'{entity_shorthand}-{variable_field}'
+			#regex_entities += f'{entity_shorthand}-{variable_field}'
+			#regex_entities += f'{entity_shorthand}-(?P<{entity}>{variable_field})'
+			regex_entities += f'{entity_shorthand}-{variable_regex}'
 	else:
 		if len(regex_entities.strip()):
-			regex_entities += f'(|_{entity_shorthand}-{variable_field})'
+			#regex_entities += f'(|_{entity_shorthand}-{variable_field})'
+			#regex_entities += f'(|_{entity_shorthand}-(?P<{entity}>{variable_field}))'
+			regex_entities += f'(|_{entity_shorthand}-{variable_regex})'
 		else:
 			# Only the first entity doesn't need an underscore
-			regex_entities += f'(|{entity_shorthand}-{variable_field})'
+			#regex_entities += f'(|{entity_shorthand}-{variable_field})'
+			#regex_entities += f'(|{entity_shorthand}-(?P<{entity}>{variable_field}))'
+			regex_entities += f'(|{entity_shorthand}-{variable_regex})'
 
 	return regex_entities
 
@@ -88,18 +110,14 @@ def _add_subdirs(regex_string, variant, datatype, entity_definitions, modality_d
 
 	label = '([a-z,A-Z,0-9]*?)'
 
-	# The list of which entities create directories could be dynamically specified by the YAML, but for now, it is not.
-	# Ordering is important, as "subject" follows "session" alphabetically, but is hierarchically above it.
-	dir_entities = ['subject', 'session']
-
 	regex_dirs = '/'
-	for dir_entity in dir_entities:
+	for dir_entity in DIR_ENTITIES:
 		if dir_entity in variant['entities'].keys():
 			shorthand = entity_definitions[dir_entity]['entity']
 			if variant['entities'][dir_entity] == 'required':
-				regex_subdir = f'{shorthand}-{label}/'
+				regex_subdir = f'{shorthand}-(?P<{dir_entity}>{label})/'
 			else:
-				regex_subdir = f'(|{shorthand}-{label}/)'
+				regex_subdir = f'(|{shorthand}-(?P<{dir_entity}>{label})/)'
 			regex_dirs = f'{regex_dirs}{regex_subdir}'
 	if datatype in modality_datatypes:
 		regex_dirs = f'{regex_dirs}{datatype}/'
@@ -257,6 +275,7 @@ def load_entities(
 							variable_field = label
 						regex_entities = _add_entity(
 							regex_entities,
+							entity,
 							entity_shorthand,
 							variable_field,
 							variant['entities'][entity],
