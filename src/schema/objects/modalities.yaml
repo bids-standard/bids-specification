@@ -24,3 +24,7 @@ pet:
   name: Positron Emission Tomography
   description: |
     Data acquired with PET.
+micr:
+  name: Microscopy
+  description: |
+    Data acquired with a microscope.
