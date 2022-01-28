@@ -14,15 +14,15 @@ and can be used for practical guidance when curating a new dataset.
 
 Template:
 
-  └─ sub-<label>\
-     └─ [ses-<label>]\
-        └─ motion\
-           ├─ sub-<label>[_ses-<label>]_task-<label>_tracksys-<label>_motion.tsv
-           ├─ sub-<label>[_ses-<label>]_task-<label>_motion.json
-  	       ├─ sub-<label>[_ses-<label>]_task-<label>_channels.tsv
-           ├─ sub-<label>[_ses-<label>]_task-<label>_coordsys.json
-           ├─ sub-<label>[_ses-<label>]_task-<label>_events.tsv
-           └─ sub-<label>[_ses-<label>]_task-<label>_events.json
+└─ sub-<label>\
+└─ \[ses-<label>]\
+└─ motion\
+├─ sub-<label>\[\_ses-<label>]\_task-<label>\_tracksys-<label>\_motion.tsv
+├─ sub-<label>\[\_ses-<label>]\_task-<label>\_motion.json
+├─ sub-<label>\[\_ses-<label>]\_task-<label>\_channels.tsv
+├─ sub-<label>\[\_ses-<label>]\_task-<label>\_coordsys.json
+├─ sub-<label>\[\_ses-<label>]\_task-<label>\_events.tsv
+└─ sub-<label>\[\_ses-<label>]\_task-<label>\_events.json
 
 A wide variety of motion capture systems are used in human research, resulting in
 different native data formats. The current BEP specifically
@@ -68,11 +68,11 @@ Motion specific fields MUST be present:
 
 Motion specific fields SHOULD be present:
 
-| **Key name**               | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                  |
-| -------------------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Key name**               | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                         |
+| -------------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | EpochLength                | RECOMMENDED           | number        | Duration of individual epochs in seconds (for example, 1) in case of epoched data. If recording was continuous,  leave out the field.                                                                                                                                                   |
 | MotionChannelCount         | RECOMMENDED           | number        | Number of motion channels included in the recording. A channel corresponds to a time series that has one value per time point. (for example, a time series of coordinates for positions in 3D consists of 3 channels, each corresponding to the x, y, and z coordinates, respectively.) |
-| RecordingType              | RECOMMENDED           | string        | Defines whether the recording is  "continuous” or  "epoched”; this latter limited to time windows about events of interest (for example, stimulus presentations, subject responses, and so on)                                                                                                |
+| RecordingType              | RECOMMENDED           | string        | Defines whether the recording is  "continuous” or  "epoched”; this latter limited to time windows about events of interest (for example, stimulus presentations, subject responses, and so on)                                                                                          |
 | SubjectArtefactDescription | RECOMMENDED           | string        | Freeform description of the observed subject artefact and its possible cause (for example, "nausea from 20 min”, ”fall at 10 min”). If this field is left empty, it will be interpreted as absence of artifacts.                                                                        |
 
 Note that the field `TrackingSystems` has some REQUIRED and RECOMMENDED fields in a nested json structure. These are to be described as follows:
@@ -160,10 +160,10 @@ Note that the date and time information SHOULD be stored in the Study key file [
 
 ## Channels description (`*_channels.tsv`)
 
-  └─ sub-<label>\
-     └─ [ses-<label>]\
-        └─ motion\
-           └─ sub-<label>[_ses-<label>]_task-<label>_channels.tsv
+└─ sub-<label>\
+└─ \[ses-<label>]\
+└─ motion\
+└─ sub-<label>\[\_ses-<label>]\_task-<label>\_channels.tsv
 
 This file is REQUIRED as it makes it easy to browse or query over larger collections of datasets. The REQUIRED columns are channel `name`, `type`, `tracked_point`, `tracking_system`, `component` and `unit`. Any number of additional columns may be added to provide additional information about the channels. The `*_channels.tsv` file should give additional information about individual recorded channel, some of which my not be found summarised in `TrackingSystems`.
 
@@ -178,14 +178,14 @@ MUST be present:
 | tracking_system | REQUIRED              | string        | Label of the tracking system the channel belongs to. Entry has to correspond to one of the entries in field `TrackingSystems` in `*_motion.json` and labels in key-value pair `*[_tracksys_<label>]` in file names. |
 | type            | REQUIRED              | string        | Type of data.                                                                                                                                                                                                       |
 | component       | REQUIRED              | string        | Component of the representational system described in `*_coordinatesystem.tsv` that the channel contains.                                                                                                           |
-| units           | REQUIRED              | string        | Physical unit of the value represented in this channel, for example, vm for virtual meters, radian or degrees for angular quantities. See the BIDS spec for guidelines for Units and Prefixes.                             |
+| units           | REQUIRED              | string        | Physical unit of the value represented in this channel, for example, vm for virtual meters, radian or degrees for angular quantities. See the BIDS spec for guidelines for Units and Prefixes.                      |
 
 SHOULD be present:
 
-| **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                     |
-| ------------ | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Key name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                            |
+| ------------ | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | placement    | RECOMMENDED           | string        | Placement of the tracked point on the body (for example, participant, avatar centroid, torso, left arm). It can refer to an external vocabulary for describing body parts. |
-| description  | OPTIONAL              | string        | Brief free-text description of the channel, or other information of interest.                                                                                       |
+| description  | OPTIONAL              | string        | Brief free-text description of the channel, or other information of interest.                                                                                              |
 
 Restricted keyword list for column `type` in alphabetic order (shared with the other BIDS modalities?). Note that upper-case is REQUIRED:
 
