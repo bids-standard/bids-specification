@@ -12,10 +12,9 @@ and can be used for practical guidance when curating a new dataset.
 
 ## iEEG recording data
 
-{{
-   MACROS___make_filename_template(
-      datatypes=["ieeg"],
-      suffixes=["ieeg", "events", "physio", "stim"])
+{{ MACROS___make_filename_template(
+   datatypes=["ieeg"],
+   suffixes=["ieeg", "events", "physio", "stim"])
 }}
 
 The iEEG community uses a variety of formats for storing raw data, and there is
