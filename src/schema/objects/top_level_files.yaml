@@ -1,0 +1,110 @@
+---
+# This file describes files which may appear at the top level of a dataset.
+# This does not include information about whether these files are required or optional.
+# For that information, see `rules/top_level_files.yaml`.
+CHANGES:
+  name: CHANGES
+  description: |
+    Version history of the dataset (describing changes, updates and corrections) MAY be provided in
+    the form of a `CHANGES` text file.
+    This file MUST follow the
+    [CPAN Changelog convention](https://metacpan.org/pod/release/HAARG/CPAN-Changes-0.400002/lib/\
+    CPAN/Changes/Spec.pod).
+    The `CHANGES` file MUST be either in ASCII or UTF-8 encoding.
+LICENSE:
+  name: LICENSE
+  description: |
+    A `LICENSE` file MAY be provided in addition to the short specification of the
+    used license in the `dataset_description.json` `"License"` field.
+    The `"License"` field and `LICENSE` file MUST correspond.
+    The `LICENSE` file MUST be either in ASCII or UTF-8 encoding.
+README:
+  name: README
+  description: |
+    In addition a free form text file (`README`) describing the dataset in more details SHOULD be
+    provided.
+    The `README` file MUST be either in ASCII or UTF-8 encoding.
+dataset_description:
+  name: Dataset Description
+  description: |
+    The file `dataset_description.json` is a JSON file describing the dataset.
+genetic_info:
+  name: Genetic Information
+  description: |
+    The `genetic_info.json` file describes the genetic information available in the
+    `participants.tsv` file and/or the genetic database described in
+    `dataset_description.json`.
+    Datasets containing the `Genetics` field in `dataset_description.json` or the
+    `genetic_id` column in `participants.tsv` MUST include this file.
+participants:
+  name: Participant Information
+  description: |
+    The purpose of this RECOMMENDED file is to describe properties of participants
+    such as age, sex, handedness.
+    If this file exists, it MUST contain the column `participant_id`,
+    which MUST consist of `sub-<label>` values identifying one row for each participant,
+    followed by a list of optional columns describing participants.
+    Each participant MUST be described by one and only one row.
+
+    Commonly used *optional* columns in `participant.tsv` files are `age`, `sex`,
+    and `handedness`. We RECOMMEND to make use of these columns, and
+    in case that you do use them, we RECOMMEND to use the following values
+    for them:
+
+    -   `age`: numeric value in years (float or integer value)
+
+    -   `sex`: string value indicating phenotypical sex, one of "male", "female",
+        "other"
+
+        -   for "male", use one of these values: `male`, `m`, `M`, `MALE`, `Male`
+
+        -   for "female", use one of these values: `female`, `f`, `F`, `FEMALE`,
+            `Female`
+
+        -   for "other", use one of these values: `other`, `o`, `O`, `OTHER`,
+            `Other`
+
+    -   `handedness`: string value indicating one of "left", "right",
+        "ambidextrous"
+
+        -   for "left", use one of these values: `left`, `l`, `L`, `LEFT`, `Left`
+
+        -   for "right", use one of these values: `right`, `r`, `R`, `RIGHT`,
+            `Right`
+
+        -   for "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`,
+            `AMBIDEXTROUS`, `Ambidextrous`
+
+    Throughout BIDS you can indicate missing values with `n/a` (for "not
+    available").
+
+samples:
+  name: Sample Information
+  description: |
+    The purpose of this file is to describe properties of samples, indicated by the `sample` entity.
+    This file is REQUIRED if `sample-<label>` is present in any file name within the dataset.
+    If this file exists, it MUST contain the three following columns:
+
+    -   `sample_id`: MUST consist of `sample-<label>` values identifying one row
+        for each sample
+
+    -   `participant_id`: MUST consist of `sub-<label>`
+
+    -   `sample_type`: MUST consist of sample type values, either `cell line`, `in vitro differentiated cells`,
+        `primary cell`, `cell-free sample`, `cloning host`, `tissue`, `whole organisms`, `organoid` or
+        `technical sample` from [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type)
+
+    Other optional columns MAY be used to describe the samples.
+    Each sample MUST be described by one and only one row.
+
+    Commonly used *optional* columns in `samples.tsv` files are `pathology` and
+    `derived_from`. We RECOMMEND to make use of these columns, and in case that
+    you do use them, we RECOMMEND to use the following values for them:
+
+    -   `pathology`: string value describing the pathology of the sample or type of control.
+        When different from `healthy`, pathology SHOULD be specified in `samples.tsv`.
+        The pathology MAY instead be specified in
+        [Sessions files](../03-modality-agnostic-files.md#sessions-file) in case it changes over time.
+
+    -   `derived_from`: `sample-<label>` key/value pair from which a sample is derived from,
+        for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`)

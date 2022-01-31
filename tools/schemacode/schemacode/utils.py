@@ -20,29 +20,35 @@ def get_schema_path():
 def combine_extensions(lst):
     """Combine extensions with their compressed versions in a list.
 
-    This is a basic solution to combining extensions with their
-    compressed versions in a list. Something more robust could
-    be written in the future.
+    Valid combinations are hardcoded in the function,
+    since some extensions look like compressed versions of one another, but are not.
 
     Parameters
     ----------
     lst : list of str
+        Raw list of extensions.
+
+    Returns
+    -------
+    new_lst : list of str
+        List of extensions, with compressed and uncompressed versions of the same extension
+        combined.
     """
+    COMPRESSION_EXTENSIONS = [".gz"]
+
     new_lst = []
-    # First, sort by length
-    lst = sorted(lst, key=len)
+    items_to_remove = []
     for item in lst:
-        temp_lst = new_lst[:]
+        for ext in COMPRESSION_EXTENSIONS:
+            if item.endswith(ext) and item.replace(ext, "") in lst:
+                temp_item = item.replace(ext, "") + "[" + ext + "]"
+                new_lst.append(temp_item)
+                items_to_remove.append(item)
+                items_to_remove.append(item.replace(ext, ""))
+                continue
 
-        item_found = False
-        for j, new_item in enumerate(temp_lst):
-            if new_item in item:
-                temp_item = new_item + "[" + item.replace(new_item, "", 1) + "]"
-                new_lst[j] = temp_item
-                item_found = True
-
-        if not item_found:
-            new_lst.append(item)
+    items_to_add = [item for item in lst if item not in items_to_remove]
+    new_lst += items_to_add
 
     return new_lst
 
