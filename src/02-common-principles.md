@@ -607,8 +607,8 @@ Contents of file `task-rest_bold.json`:
 
 ```JSON
 {
-    "EchoTime": 40.0,
-    "RepetitionTime": 1000.0
+    "EchoTime": 0.040,
+    "RepetitionTime": 1.0
 }
 ```
 
@@ -616,7 +616,7 @@ Contents of file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json`:
 
 ```JSON
 {
-    "RepetitionTime": 3000.0
+    "RepetitionTime": 3.0
 }
 ```
 
@@ -627,7 +627,7 @@ entity "`acq-longtr`" that is absent from the image path (rule 2.c). When readin
 `sub-01/func/sub-01_task-rest_acq-longtr_bold.nii.gz`, metadata file
 `task-rest_bold.json` at the top level is read first, followed by file
 `sub-01/func/sub-01_task-rest_acq-longtr_bold.json` at the bottom level (rule 5.b);
-the value for field "`RepetitionTime`" is therefore overridden to the value `3000.0`.
+the value for field "`RepetitionTime`" is therefore overridden to the value `3.0`.
 The value for field "`EchoTime`" remains applicable to that image, and is not unset by its
 absence in the metadata file at the lower level (rule 5.b; corollary 3).
 
