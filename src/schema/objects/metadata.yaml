@@ -250,8 +250,19 @@ BodyPart:
   name: BodyPart
   description: |
     Body part of the organ / body region scanned.
-    Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
   type: string
+BodyPartDetails:
+  name: BodyPartDetails
+  description: |
+    Additional details about body part or location (for example: `"corpus callosum"`).
+  type: string
+BodyPartDetailsOntology:
+  name: BodyPartDetailsOntology
+  description: |
+    [URI](/02-common-principles.html#uniform-resource-indicator) of ontology used for
+    BodyPartDetails (for example: `"https://www.ebi.ac.uk/ols/ontologies/uberon"`).
+  type: string
+  format: uri
 BolusCutOffDelayTime:
   name: BolusCutOffDelayTime
   description: |
@@ -322,6 +333,45 @@ CellType:
     Values SHOULD come from the
     [cell ontology](http://obofoundry.org/ontology/cl.html).
   type: string
+ChunkTransformationMatrix:
+  name: ChunkTransformationMatrix
+  description: |
+    3x3 or 4x4 affine transformation matrix describing spatial chunk transformation,
+    for 2D and 3D respectively (for examples: `[[2, 0, 0], [0, 3, 0], [0, 0, 1]]`
+    in 2D for 2x and 3x scaling along the first and second axis respectively; or
+    `[[1, 0, 0, 0], [0, 2, 0, 0], [0, 0, 3, 0], [0, 0, 0, 1]]` in 3D for 2x and 3x
+    scaling along the second and third axis respectively).
+    Note that non-spatial dimensions like time and channel are not included in the
+    transformation matrix.
+  anyOf:
+  - type: array
+    minItems: 3
+    maxItems: 3
+    items:
+      type: array
+      minItems: 3
+      maxItems: 3
+      items:
+        type: number
+  - type: array
+    minItems: 4
+    maxItems: 4
+    items:
+      type: array
+      minItems: 4
+      maxItems: 4
+      items:
+        type: number
+ChunkTransformationMatrixAxis:
+  name: ChunkTransformationMatrixAxis
+  description: |
+    Describe the axis of the ChunkTransformationMatrix
+    (for examples: `["X", "Y"]` or `["Z", "Y", "X"]`).
+  type: array
+  items:
+    type: string
+    minItems: 2
+    maxItems: 3
 Code:
   name: Code
   description: |
@@ -1074,6 +1124,13 @@ HowToAcknowledge:
     This field can also be used to define a publication that should be cited in
     publications that use the dataset.
   type: string
+ImageAcquisitionProtocol:
+  name: ImageAcquisitionProtocol
+  description: |
+    Description of the image acquisition protocol or
+    [URI](/02-common-principles.html#uniform-resource-indicator)
+    (for example from [protocols.io](https://www.protocols.io/)).
+  type: string
 ImageDecayCorrected:
   name: ImageDecayCorrected
   description: |
@@ -1086,6 +1143,12 @@ ImageDecayCorrectionTime:
     TimeZero in the default unit seconds.
   type: number
   unit: s
+Immersion:
+  name: Immersion
+  description: |
+    Lens immersion medium. If the file format is OME-TIFF, the value MUST be consistent
+    with the `Immersion` OME metadata field.
+  type: string
 InfusionRadioactivity:
   name: InfusionRadioactivity
   description: |
@@ -1514,6 +1577,13 @@ MagneticFieldStrength:
     Nominal field strength of MR magnet in Tesla.
     Corresponds to DICOM Tag 0018, 0087 `Magnetic Field Strength`.
   type: number
+Magnification:
+  name: Magnification
+  description: |
+    Lens magnification (for example: `40`). If the file format is OME-TIFF,
+    the value MUST be consistent with the `NominalMagnification` OME metadata field.
+  type: number
+  exclusiveMinimum: 0
 Manual:
   name: Manual
   description: |
@@ -1698,11 +1768,23 @@ NumberShots:
   - type: array
     items:
       type: number
+NumericalAperture:
+  name: NumericalAperture
+  description: |
+    Lens numerical aperture (for example: `1.4`). If the file format is OME-TIFF,
+    the value MUST be consistent with the `LensNA` OME metadata field.
+  type: number
+  exclusiveMinimum: 0
 OperatingSystem:
   name: OperatingSystem
   description: |
     Operating system used to run the stimuli presentation software
     (for formatting recommendations, see examples below this table).
+  type: string
+OtherAcquisitionParameters:
+  name: OtherAcquisitionParameters
+  description: |
+    Description of other relevant image acquisition parameters.
   type: string
 PASLType:
   name: PASLType
@@ -1809,6 +1891,32 @@ PhaseEncodingDirection:
   - i-
   - j-
   - k-
+PixelSize:
+  name: PixelSize
+  description: |
+    A 2- or 3-number array of the physical size of a pixel, either `[PixelSizeX, PixelSizeY]`
+    or `[PixelSizeX, PixelSizeY, PixelSizeZ]`, where X is the width, Y the height and Z the
+    depth.
+    If the file format is OME-TIFF, these values need to be consistent with `PhysicalSizeX`,
+    `PhysicalSizeY` and `PhysicalSizeZ` OME metadata fields, after converting in
+    `PixelSizeUnits` according to `PhysicalSizeXunit`, `PhysicalSizeYunit` and
+    `PhysicalSizeZunit` OME fields.
+  type: array
+  minItems: 2
+  maxItems: 3
+  items:
+    type: number
+    minimum: 0
+PixelSizeUnits:
+  name: PixelSizeUnits
+  description: |
+    Unit format of the specified `PixelSize`. MUST be one of: `"mm"` (millimeter), `"um"`
+    (micrometer) or `"nm"` (nanometer).
+  type: string
+  enum:
+  - mm
+  - um
+  - nm
 PlasmaAvail:
   name: PlasmaAvail
   description: |
@@ -2084,6 +2192,40 @@ SEEGChannelCount:
     Number of SEEG channels.
   type: integer
   minimum: 0
+SampleEmbedding:
+  name: SampleEmbedding
+  description: |
+    Description of the tissue sample embedding (for example: `"Epoxy resin"`).
+  type: string
+SampleEnvironment:
+  name: SampleEnvironment
+  description: |
+    Environment in which the sample was imaged. MUST be one of: `"in vivo"`, `"ex vivo"`
+    or `"in vitro"`.
+  type: string
+  enum:
+  - in vivo
+  - ex vivo
+  - in vitro
+SampleExtractionInstitution:
+  name: SampleExtractionInstitution
+  description: |
+    The name of the institution in charge of the extraction of the sample,
+    if different from the institution in charge of the equipment that produced the image.
+  type: string
+SampleExtractionProtocol:
+  name: SampleExtractionProtocol
+  description: |
+    Description of the sample extraction protocol or
+    [URI](/02-common-principles.html#uniform-resource-indicator)
+    (for example from [protocols.io](https://www.protocols.io/)).
+  type: string
+SampleFixation:
+  name: SampleFixation
+  description: |
+    Description of the tissue sample fixation
+    (for example: `"4% paraformaldehyde, 2% glutaraldehyde"`).
+  type: string
 SampleOrigin:
   name: SampleOrigin
   description: |
@@ -2098,6 +2240,47 @@ SampleOrigin:
   - bile
   - amniotic fluid
   - other biospecimen
+SamplePrimaryAntibody:
+  name: SamplePrimaryAntibody
+  description: |
+    Description(s) of the primary antibody used for immunostaining.
+    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalogue
+    number of a commercial antibody.
+    For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the
+    host-animal and immunogen used (for examples: `"RRID:AB_2122563"` or
+    `"Rabbit anti-Human HTR5A Polyclonal Antibody, Invitrogen, Catalog # PA1-2453"`).
+    MAY be an array of strings if different antibodies are used in each channel of the file.
+  anyOf:
+  - type: string
+  - type: array
+    items:
+      type: string
+SampleSecondaryAntibody:
+  name: SampleSecondaryAntibody
+  description: |
+    Description(s) of the secondary antibody used for immunostaining.
+    Either an [RRID](https://scicrunch.org/resources) or the name, supplier and catalogue
+    number of a commercial antibody.
+    For non-commercial antibodies either an [RRID](https://scicrunch.org/resources) or the
+    host-animal and immunogen used (for examples: `"RRID:AB_228322"` or
+    `"Goat anti-Mouse IgM Secondary Antibody, Invitrogen, Catalog # 31172"`).
+    MAY be an array of strings if different antibodies are used in each channel of the file.
+  anyOf:
+  - type: string
+  - type: array
+    items:
+      type: string
+SampleStaining:
+  name: SampleStaining
+  description: |
+    Description(s) of the tissue sample staining (for example: `"Osmium"`).
+    MAY be an array of strings if different stains are used in each channel of the file
+    (for example: `["LFB", "PLP"]`).
+  anyOf:
+  - type: string
+  - type: array
+    items:
+      type: string
 SamplingFrequency:
   name: SamplingFrequency
   description: |
@@ -2205,6 +2388,13 @@ SliceEncodingDirection:
   - i-
   - j-
   - k-
+SliceThickness:
+  name: SliceThickness
+  description: |
+    Slice thickness of the tissue sample in the unit micrometers (`"um"`) (for example: `5`).
+  type: number
+  unit: um
+  exclusiveMinimum: 0
 SliceTiming:
   name: SliceTiming
   description: |
@@ -2407,7 +2597,6 @@ StationName:
   name: StationName
   description: |
     Institution defined name of the machine that produced the measurements.
-    Corresponds to DICOM Tag 0008, 1010 `Station Name`.
   type: string
 StimulusPresentation:
   name: StimulusPresentation
@@ -2466,6 +2655,14 @@ TimeZero:
     This should be equal to `InjectionStart` or `ScanStart`.
   type: string
   pattern: ^(?:2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]$
+TissueDeformationScaling:
+  name: TissueDeformationScaling
+  description: |
+    Estimated deformation of the tissue, given as a percentage of the original
+    tissue size (for examples: for a shrinkage of 3%, the value is `97`;
+    and for an expansion of 100%, the value is `200`).
+  type: number
+  exclusiveMinimum: 0
 TissueOrigin:
   name: TissueOrigin
   description: |

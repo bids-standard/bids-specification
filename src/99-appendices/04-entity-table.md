@@ -37,3 +37,7 @@ while entity definitions are in [Appendix IX](09-entities.md).
 ## Behavioral Data
 
 {{ MACROS___make_entity_table(datatypes=["beh"], auxdatatypes=[]) }}
+
+## Microscopy
+
+{{ MACROS___make_entity_table(datatypes=["micr"], auxdatatypes=[]) }}
