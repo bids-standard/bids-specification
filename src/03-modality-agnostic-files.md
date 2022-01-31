@@ -36,7 +36,7 @@ Example:
 ```JSON
 {
   "Name": "The mother of all experiments",
-  "BIDSVersion": "1.4.0",
+  "BIDSVersion": "1.6.0",
   "DatasetType": "raw",
   "License": "CC0",
   "Authors": [
@@ -57,7 +57,7 @@ Example:
     "Alzheimer A., & Kraepelin, E. (2015). Neural correlates of presenile dementia in humans. Journal of Neuroscientific Data, 2, 234001. doi:1920.8/jndata.2015.7"
   ],
   "DatasetDOI": "doi:10.0.2.3/dfjj.10",
-  "HEDVersion": "7.1.1"
+  "HEDVersion": "8.0.0"
 }
 ```
 
@@ -94,7 +94,7 @@ Example:
 ```JSON
 {
   "Name": "FMRIPREP Outputs",
-  "BIDSVersion": "1.4.0",
+  "BIDSVersion": "1.6.0",
   "DatasetType": "derivative",
   "GeneratedBy": [
     {
