@@ -2993,7 +2993,8 @@ _EEGCoordSys:
       description: |
         ALS orientation and the origin exactly between LHJ and RHJ.
         For more information, see the
-        [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-hj-coordinate-system).
+        [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#\
+        eeglab-hj-coordinate-system).
   - Other:
       name: Other
       description: |
@@ -3085,7 +3086,8 @@ _NonTemplateCoordSys:
       name: scanner
       description: |
         The intrinsic coordinate system of the original image (the first entry of `RawSources`)
-        after reconstruction and conversion to NIfTI or equivalent for the case of surfaces and dual volume/surface files.
+        after reconstruction and conversion to NIfTI or equivalent for the case of surfaces and dual volume/surface
+        files.
 
         The `scanner` coordinate system is implicit and assumed by default if the derivative filename does not
         define **any** `space-<label>`.
@@ -3125,7 +3127,8 @@ _StandardTemplateCoordSys:
       description: |
         The `fsaverage` is a **dual template** providing both volumetric and surface coordinates references.
         The volumetric template corresponds to a FreeSurfer variant of `MNI305` space.
-        The `fsaverageSym` atlas also defines a symmetric surface reference system (formerly described as `fsaveragesym`).
+        The `fsaverageSym` atlas also defines a symmetric surface reference system
+        (formerly described as `fsaveragesym`).
 
         Used by Freesurfer.
   - fsLR:
