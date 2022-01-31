@@ -966,6 +966,10 @@ GeneticLevel:
     Describes the level of analysis.
     Values MUST be one of `"Genetic"`, `"Genomic"`, `"Epigenomic"`,
     `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.
+
+    For more information on these levels, see
+    [Multi-omics approaches to disease](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1215-1)
+    by Hasin et al. 2017.
   anyOf:
   - $ref: _GeneticLevelEnum
   - type: array
@@ -1596,15 +1600,35 @@ MTPulseShape:
     `"SINC"`, `"SINCHANN"` (sinc pulse with Hanning window),
     `"SINCGAUSS"` (sinc pulse with Gaussian window), `"FERMI"`.
   type: string
-  # TODO: Add definitions for these values.
   enum:
-  - HARD
-  - GAUSSIAN
-  - GAUSSHANN
-  - SINC
-  - SINCHANN
-  - SINCGAUSS
-  - FERMI
+  - HARD:
+      name: Hard pulse
+      description: |
+        A very brief, strong, rectangular pulse.
+  - GAUSSIAN:
+      name: Gaussian pulse
+      description: |
+        A Gaussian pulse.
+  - GAUSSHANN:
+      name: Gaussian-Hanning pulse.
+      description: |
+        A Gaussian pulse with a Hanning window.
+  - SINC:
+      name: Sinc pulse
+      description: |
+        A sinc-shaped pulse.
+  - SINCHANN:
+      name: Sinc-Hanning pulse
+      description: |
+        A sinc-shaped pulse with a Hanning window.
+  - SINCGAUSS:
+      name: Sinc-Gauss pulse
+      description: |
+        A sinc-shaped pulse with a Gaussian window.
+  - FERMI:
+      name: Fermi pulse
+      description: |
+        A Fermi-shaped pulse.
 MTState:
   name: MTState
   description: |
@@ -2462,14 +2486,37 @@ SliceEncodingDirection:
     When absent, the entries in `SliceTiming` must be in the order of increasing
     slice index as defined by the NIfTI header.
   type: string
-  # TODO: Add definitions for these values.
   enum:
-  - i
-  - j
-  - k
-  - i-
-  - j-
-  - k-
+  - i:
+      name: i
+      description: |
+        Slice encoding direction is along the first axis of the data in the NIFTI file,
+        with phase encoding going from the zero slice index to the maximum slice index.
+  - j:
+      name: j
+      description: |
+        Slice encoding direction is along the second axis of the data in the NIFTI file,
+        with phase encoding going from the zero slice index to the maximum slice index.
+  - k:
+      name: k
+      description: |
+        Slice encoding direction is along the third axis of the data in the NIFTI file,
+        with phase encoding going from the zero slice index to the maximum slice index.
+  - i-:
+      name: i-
+      description: |
+        Slice encoding direction is along the first axis of the data in the NIFTI file,
+        with phase encoding going from the maximum slice index to the zero slice index.
+  - j-:
+      name: j-
+      description: |
+        Slice encoding direction is along the second axis of the data in the NIFTI file,
+        with phase encoding going from the maximum slice index to the zero slice index.
+  - k-:
+      name: k-
+      description: |
+        Slice encoding direction is along the third axis of the data in the NIFTI file,
+        with phase encoding going from the maximum slice index to the zero slice index.
 SliceThickness:
   name: SliceThickness
   description: |
@@ -2584,9 +2631,12 @@ SpatialReference:
     a JSON object MUST be used.
   anyOf:
   - type: string
-    # TODO: Add definitions for these values.
     enum:
-    - orig
+    - orig:
+        name: orig
+        description: |
+          A (potentially unique) per-image space.
+          Useful for describing the source of transforms from an input image to a target space.
   - type: string
     format: uri
   - type: string
@@ -2596,7 +2646,11 @@ SpatialReference:
       anyOf:
       - type: string
         enum:
-        - orig
+        - orig:
+            name: orig
+            description: |
+              A (potentially unique) per-image space.
+              Useful for describing the source of transforms from an input image to a target space.
       - type: string
         format: uri
       - type: string
@@ -2838,12 +2892,23 @@ Type:
     Reserved values: `Brain` - brain mask, `Lesion` - lesion mask,
     `Face` - face mask, `ROI` - ROI mask
   type: string
-  # TODO: Add definitions for these values.
   enum:
-  - Brain
-  - Lesion
-  - Face
-  - ROI
+  - Brain:
+      name: Brain mask
+      description: |
+        A brain mask.
+  - Lesion:
+      name: Lesion mask
+      description: |
+        A lesion mask.
+  - Face:
+      name: Face mask
+      description: |
+        A face mask.
+  - ROI:
+      name: ROI mask
+      description: |
+        A region of interest mask.
 Units:
   name: Units
   description: |
@@ -2912,22 +2977,54 @@ _CoordUnits:
   - n/a
 _EEGCoordSys:
   type: string
-  # TODO: Add definitions for these values.
   enum:
-  - CapTrak
-  - EEGLAB
-  - EEGLAB-HJ
-  - Other
+  - CapTrak:
+      name: CapTrak
+      description: |
+        RAS orientation and the origin approximately between LPA and RPA
+  - EEGLAB:
+      name: EEGLAB
+      description: |
+        ALS orientation and the origin exactly between LPA and RPA.
+        For more information, see the
+        [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-coordinate-system).
+  - EEGLAB-HJ:
+      name: EEGLAB-HJ
+      description: |
+        ALS orientation and the origin exactly between LHJ and RHJ.
+        For more information, see the
+        [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-hj-coordinate-system).
+  - Other:
+      name: Other
+      description: |
+        Other coordinate system.
 _GeneticLevelEnum:
   type: string
-  # TODO: Add definitions for these values.
   enum:
-  - Genetic
-  - Genomic
-  - Epigenomic
-  - Transcriptomic
-  - Metabolomic
-  - Proteomic
+  - Genetic:
+      name: Genetic
+      description: |
+        Data report on a single genetic location (typically directly in the `participants.tsv` file).
+  - Genomic:
+      name: Genomic
+      description: |
+        Data link to participants' genome (multiple genetic locations).
+  - Epigenomic:
+      name: Epigenomic
+      description: |
+        Data link to participants' characterization of reversible modifications of DNA.
+  - Transcriptomic:
+      name: Transcriptomic
+      description: |
+        Data link to participants RNA levels.
+  - Metabolomic:
+      name: Metabolomic
+      description: |
+        Data link to participants' products of cellular metabolic functions.
+  - Proteomic:
+      name: Proteomic
+      description: |
+        Data link to participants peptides and proteins quantification.
 _LandmarkCoordinates:
   type: object
   additionalProperties:
@@ -2938,65 +3035,292 @@ _LandmarkCoordinates:
     maxItems: 3
 _MEGCoordSys:
   type: string
-  # TODO: Add definitions for these values.
   enum:
-  - CTF
-  - ElektaNeuromag
-  - 4DBti
-  - KitYokogawa
-  - ChietiItab
-  - Other
+  - CTF:
+      name: CTF
+      description: |
+        ALS orientation and the origin between the ears.
+  - ElektaNeuromag:
+      name: Elekta Neuromag
+      description: |
+        RAS orientation and the origin between the ears.
+  - 4DBti:
+      name: 4D BTI
+      description: |
+        ALS orientation and the origin between the ears.
+  - KitYokogawa:
+      name: KIT/Yokogawa
+      description: |
+        ALS orientation and the origin between the ears.
+  - ChietiItab:
+      name: Chieti ITAB
+      description: |
+        RAS orientation and the origin between the ears.
+  - Other:
+      name: Other
+      description: |
+        Other coordinate system.
 _StandardTemplateCoordSys:
   type: string
-  # TODO: Add definitions for these values.
   enum:
-  - ICBM452AirSpace
-  - ICBM452Warp5Space
-  - IXI549Space
-  - fsaverage
-  - fsaverageSym
-  - fsLR
-  - MNIColin27
-  - MNI152Lin
-  - MNI152NLin2009aSym
-  - MNI152NLin2009bSym
-  - MNI152NLin2009cSym
-  - MNI152NLin2009aAsym
-  - MNI152NLin2009bAsym
-  - MNI152NLin2009cAsym
-  - MNI152NLin6Sym
-  - MNI152NLin6ASym
-  - MNI305
-  - NIHPD
-  - OASIS30AntsOASISAnts
-  - OASIS30Atropos
-  - Talairach
-  - UNCInfant
+  - ICBM452AirSpace:
+      name: ICBM452AirSpace
+      description: |
+        Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains"
+        with "linear transforms of the subjects into the atlas space using a 12-parameter affine
+        transformation".
+  - ICBM452Warp5Space:
+      name: ICBM452Warp5Space
+      description: |
+        Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains"
+        "based on a 5th order polynomial transformation into the atlas space".
+  - IXI549Space:
+      name: IXI549Space
+      description: |
+        Reference space defined by the average of the "549 (...) subjects from the IXI dataset"
+        linearly transformed to ICBM MNI 452.
+
+        Used by SPM12.
+  - fsaverage:
+      name: fsaverage
+      description: |
+        The `fsaverage` is a **dual template** providing both volumetric and surface coordinates references.
+        The volumetric template corresponds to a FreeSurfer variant of `MNI305` space.
+        The `fsaverage` atlas also defines a surface reference system (formerly described as fsaverage[3|4|5|6|sym]).
+
+        Used by Freesurfer.
+  - fsaverageSym:
+      name: fsaverageSym
+      description: |
+        The `fsaverage` is a **dual template** providing both volumetric and surface coordinates references.
+        The volumetric template corresponds to a FreeSurfer variant of `MNI305` space.
+        The `fsaverageSym` atlas also defines a symmetric surface reference system (formerly described as `fsaveragesym`).
+
+        Used by Freesurfer.
+  - fsLR:
+      name: fsLR
+      description: |
+        The `fsLR` is a **dual template** providing both volumetric and surface coordinates references.
+        The volumetric template corresponds to `MNI152NLin6Asym`.
+        Surface templates are given at several sampling densities:
+        164k (used by HCP pipelines for 3T and 7T anatomical analysis),
+        59k (used by HCP pipelines for 7T MRI bold and DWI analysis),
+        32k (used by HCP pipelines for 3T MRI bold and DWI analysis), or
+        4k (used by HCP pipelines for MEG analysis) fsaverage_LR surface reconstructed from the T1w image.
+
+        Used by Freesurfer.
+  - MNIColin27:
+      name: MNIColin27
+      description: |
+        Average of 27 T1 scans of a single subject.
+
+        Used by SPM96.
+  - MNI152Lin:
+      name: MNI152Lin
+      description: |
+        Also known as ICBM (version with linear coregistration).
+
+        Used by SPM99 to SPM8.
+  - MNI152NLin2009aSym:
+      name: MNI152NLin2009aSym
+      description: |
+        Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009).
+        This is the first symmetric version.
+
+        Used by the DARTEL toolbox in SPM12b.
+  - MNI152NLin2009bSym:
+      name: MNI152NLin2009bSym
+      description: |
+        Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009).
+        This is the second symmetric version.
+
+        Used by the DARTEL toolbox in SPM12b.
+  - MNI152NLin2009cSym:
+      name: MNI152NLin2009cSym
+      description: |
+        Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009).
+        This is the third symmetric version.
+
+        Used by the DARTEL toolbox in SPM12b.
+  - MNI152NLin2009aAsym:
+      name: MNI152NLin2009aAsym
+      description: |
+        Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009).
+        This is the first asymmetric version.
+
+        Used by the DARTEL toolbox in SPM12b.
+  - MNI152NLin2009bAsym:
+      name: MNI152NLin2009bAsym
+      description: |
+        Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009).
+        This is the second asymmetric version.
+
+        Used by the DARTEL toolbox in SPM12b.
+  - MNI152NLin2009cAsym:
+      name: MNI152NLin2009cAsym
+      description: |
+        Also known as ICBM (non-linear coregistration with 40 iterations, released in 2009).
+        This is the third asymmetric version.
+
+        Used by the DARTEL toolbox in SPM12b.
+  - MNI152NLin6Sym:
+      name: MNI152NLin6Sym
+      description: |
+        Also known as symmetric ICBM 6th generation (non-linear coregistration).
+
+        Used by FSL.
+  - MNI152NLin6ASym:
+      name: MNI152NLin6ASym
+      description: |
+        A variation of `MNI152NLin6Sym` built by A. Janke that is released as the _MNI template_ of FSL.
+        Volumetric templates included with
+        [HCP-Pipelines](https://github.com/Washington-University/HCPpipelines/tree/master/global/templates)
+        correspond to this template too.
+
+        Used by FSL and HPC-Pipelines.
+  - MNI305:
+      name: MNI305
+      description: |
+        Also known as avg305.
+  - NIHPD:
+      name: NIHPD
+      description: |
+        Pediatric templates generated from the NIHPD sample.
+        Available for different age groups
+        (4.5-18.5 y.o., 4.5-8.5 y.o., 7-11 y.o., 7.5-13.5 y.o., 10-14 y.o., 13-18.5 y.o.).
+        This template also comes in either -symmetric or -asymmetric flavor.
+  - OASIS30AntsOASISAnts:
+      name: OASIS30AntsOASISAnts
+      description: |
+        OASIS30AntsOASISAnts
+  - OASIS30Atropos:
+      name: OASIS30Atropos
+      description: |
+        OASIS30Atropos
+  - Talairach:
+      name: Talairach
+      description: |
+        Piecewise linear scaling of the brain is implemented as described in TT88.
+  - UNCInfant:
+      name: UNCInfant
+      description: |
+        Infant Brain Atlases from Neonates to 1- and 2-year-olds.
 _StandardTemplateDeprecatedCoordSys:
   type: string
-  # TODO: Add definitions for these values.
   enum:
-  - fsaverage3
-  - fsaverage4
-  - fsaverage5
-  - fsaverage6
-  - fsaveragesym
-  - UNCInfant0V21
-  - UNCInfant1V21
-  - UNCInfant2V21
-  - UNCInfant0V22
-  - UNCInfant1V22
-  - UNCInfant2V22
-  - UNCInfant0V23
-  - UNCInfant1V23
-  - UNCInfant2V23
+  - fsaverage3:
+      name: fsaverage3
+      description: |
+        Images were sampled to the FreeSurfer surface reconstructed from the subject's T1w image,
+        and registered to an fsaverage template.
+        For new datasets, the recommended alternative is fsaverage.
+  - fsaverage4:
+      name: fsaverage4
+      description: |
+        Images were sampled to the FreeSurfer surface reconstructed from the subject's T1w image,
+        and registered to an fsaverage template.
+        For new datasets, the recommended alternative is fsaverage.
+  - fsaverage5:
+      name: fsaverage5
+      description: |
+        Images were sampled to the FreeSurfer surface reconstructed from the subject's T1w image,
+        and registered to an fsaverage template.
+        For new datasets, the recommended alternative is fsaverage.
+  - fsaverage6:
+      name: fsaverage6
+      description: |
+        Images were sampled to the FreeSurfer surface reconstructed from the subject's T1w image,
+        and registered to an fsaverage template.
+        For new datasets, the recommended alternative is fsaverage.
+  - fsaveragesym:
+      name: fsaveragesym
+      description: |
+        Images were sampled to the FreeSurfer surface reconstructed from the subject's T1w image,
+        and registered to an fsaverage template.
+        For new datasets, the recommended alternative is fsaverageSym.
+  - UNCInfant0V21:
+      name: UNCInfant0V21
+      description: |
+        Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
+        For new datasets, the recommended alternative is UNCInfant.
+  - UNCInfant1V21:
+      name: UNCInfant1V21
+      description: |
+        Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
+        For new datasets, the recommended alternative is UNCInfant.
+  - UNCInfant2V21:
+      name: UNCInfant2V21
+      description: |
+        Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
+        For new datasets, the recommended alternative is UNCInfant.
+  - UNCInfant0V22:
+      name: UNCInfant0V22
+      description: |
+        Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
+        For new datasets, the recommended alternative is UNCInfant.
+  - UNCInfant1V22:
+      name: UNCInfant1V22
+      description: |
+        Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
+        For new datasets, the recommended alternative is UNCInfant.
+  - UNCInfant2V22:
+      name: UNCInfant2V22
+      description: |
+        Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
+        For new datasets, the recommended alternative is UNCInfant.
+  - UNCInfant0V23:
+      name: UNCInfant0V23
+      description: |
+        Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
+        For new datasets, the recommended alternative is UNCInfant.
+  - UNCInfant1V23:
+      name: UNCInfant1V23
+      description: |
+        Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
+        For new datasets, the recommended alternative is UNCInfant.
+  - UNCInfant2V23:
+      name: UNCInfant2V23
+      description: |
+        Infant Brain Atlases from Neonates to 1- and 2-year-olds. See https://www.nitrc.org/projects/pediatricatlas.
+        For new datasets, the recommended alternative is UNCInfant.
 _iEEGCoordSys:
   type: string
-  # TODO: Add definitions for these values.
   enum:
-  - Pixels
-  - ACPC
-  - Other
+  - Pixels:
+      name: Pixels
+      description: |
+        If electrodes are localized in 2D space (only x and y are
+        specified and z is n/a), then the positions in this file must correspond to
+        the locations expressed in pixels on the photo/drawing/rendering of the
+        electrodes on the brain. In this case, coordinates must be (row,column)
+        pairs, with (0,0) corresponding to the upper left pixel and (N,0)
+        corresponding to the lower left pixel.
+  - ACPC:
+      name: ACPC
+      description: |
+        The origin of the coordinate system is at the Anterior Commissure
+        and the negative y-axis is passing through the Posterior Commissure. The
+        positive z-axis is passing through a mid-hemispheric point in the superior
+        direction. The anatomical landmarks are determined in the individual's
+        anatomical scan and no scaling or deformations have been applied to the
+        individual's anatomical scan. For more information, see the
+        [ACPC site](https://www.fieldtriptoolbox.org/faq/acpc/) on the FieldTrip
+        toolbox wiki.
+  - ScanRAS:
+      name: ScanRAS
+      description: |
+        The origin of the coordinate system is the center of the
+        gradient coil for the corresponding T1w image of the subject, and the x-axis
+        increases left to right, the y-axis increases posterior to anterior and
+        the z-axis increases inferior to superior. For more information see the
+        [Nipy Documentation](https://nipy.org/nibabel/coordinate_systems.html). It is
+        strongly encouraged to align the subject's T1w to ACPC so that the `ACPC`
+        coordinate system can be used. If the subject's T1w in the BIDS dataset
+        is not aligned to ACPC, `ScanRAS` should be used.
+  - Other:
+      name: Other
+      description: |
+        Other coordinate system.
 iEEGCoordinateProcessingDescription:
   name: iEEGCoordinateProcessingDescription
   description: |
