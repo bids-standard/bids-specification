@@ -22,6 +22,7 @@
     # session is required if session is present in the dataset.
     session: optional
 # sessions.tsv
+# This file may only exist if session is present in the dataset.
 - suffixes:
   - sessions
   extensions:
