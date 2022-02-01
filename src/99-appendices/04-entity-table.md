@@ -20,7 +20,7 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 ## Magnetic Resonance Imaging
 
-{{ MACROS___make_entity_table(datatypes=["anat", "dwi", "func", "fmap", "perf"], auxdatatypes=[]) }}
+{{ MACROS___make_entity_table(datatypes=["anat", "dwi", "func", "fmap", "perf"]) }}
 
 ## Biopotential Amplification (EEG and iEEG)
 
@@ -28,7 +28,7 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 ## Magnetoencephalography (MEG)
 
-{{ MACROS___make_entity_table(datatypes=["meg"], auxdatatypes=["channels", "events", "photo"]) }}
+{{ MACROS___make_entity_table(datatypes=["meg"]) }}
 
 ## Positron Emission Tomography (PET)
 
@@ -36,8 +36,8 @@ while entity definitions are in [Appendix IX](09-entities.md).
 
 ## Behavioral Data
 
-{{ MACROS___make_entity_table(datatypes=["beh"], auxdatatypes=[]) }}
+{{ MACROS___make_entity_table(datatypes=["beh"]) }}
 
 ## Microscopy
 
-{{ MACROS___make_entity_table(datatypes=["micr"], auxdatatypes=[]) }}
+{{ MACROS___make_entity_table(datatypes=["micr"]) }}
