@@ -81,7 +81,6 @@ AnatomicalLandmarkCoordinateUnits:
   name: AnatomicalLandmarkCoordinateUnits
   description: |
     Units of the coordinates of `AnatomicalLandmarkCoordinateSystem`.
-    MUST be `"m"`, `"cm"`, or `"mm"`.
   type: string
   enum:
   - m
@@ -126,7 +125,7 @@ AnatomicalLandmarkCoordinates__mri:
 ArterialSpinLabelingType:
   name: ArterialSpinLabelingType
   description: |
-    `"CASL"`, `"PCASL"`, `"PASL"`.
+    The arterial spin labeling type.
   type: string
   enum:
   - CASL
@@ -311,8 +310,7 @@ BrainLocation:
 CASLType:
   name: CASLType
   description: |
-    Describes if a separate coil is used for labeling:
-    `"single-coil"` or `"double-coil"`.
+    Describes if a separate coil is used for labeling.
   type: string
   enum:
   - single-coil
@@ -425,8 +423,6 @@ ContrastBolusIngredient:
   name: ContrastBolusIngredient
   description: |
     Active ingredient of agent.
-    Values MUST be one of: `"IODINE"`, `"GADOLINIUM"`, `"CARBON DIOXIDE"`,
-    `"BARIUM"`, `"XENON"`.
     Corresponds to DICOM Tag 0018, 1048 `Contrast/Bolus Ingredient`.
   type: string
   enum:
@@ -456,7 +452,6 @@ DatasetType:
   name: DatasetType
   description: |
     The interpretation of the dataset.
-    MUST be one of `"raw"` or `"derivative"`.
     For backwards compatibility, the default value is `"raw"`.
   type: string
   enum:
@@ -560,7 +555,6 @@ DigitizedHeadPointsCoordinateUnits:
   name: DigitizedHeadPointsCoordinateUnits
   description: |
     Units of the coordinates of `DigitizedHeadPointsCoordinateSystem`.
-    MUST be `"m"`, `"cm"`, or `"mm"`.
   type: string
   enum:
   - m
@@ -651,7 +645,6 @@ EEGCoordinateUnits:
   name: EEGCoordinateUnits
   description: |
     Units of the coordinates of `EEGCoordinateSystem`.
-    MUST be `"m"`, `"cm"`, or `"mm"`.
   type: string
   enum:
   - m
@@ -839,7 +832,6 @@ FiducialsCoordinateUnits:
   description: |
     Units in which the coordinates that are  listed in the field
     `FiducialsCoordinateSystem` are represented.
-    MUST be `"m"`, `"cm"`, or `"mm"`.
   type: string
   enum:
   - m
@@ -1083,7 +1075,6 @@ HeadCoilCoordinateUnits:
   name: HeadCoilCoordinateUnits
   description: |
     Units of the coordinates of `HeadCoilCoordinateSystem`.
-    MUST be `"m"`, `"cm"`, or `"mm"`.
   type: string
   enum:
   - m
@@ -1463,12 +1454,12 @@ M0Estimate:
 M0Type:
   name: M0Type
   description: |
-    Describes the presence of M0 information, as either:
-    `"Separate"` when a separate `*_m0scan.nii[.gz]` is present,
-    `"Included"` when an m0scan volume is contained within the current
-    `*_asl.nii[.gz]`,
-    `"Estimate"` when a single whole-brain M0 value is provided, or
-    `"Absent"` when no specific M0 information is present.
+    Describes the presence of M0 information.
+    `"Separate"` means that a separate `*_m0scan.nii[.gz]` is present.
+    `"Included"` means that an m0scan volume is contained within the current
+    `*_asl.nii[.gz]`.
+    `"Estimate"` means that a single whole-brain M0 value is provided.
+    `"Absent"` means that no specific M0 information is present.
   type: string
   enum:
   - Separate
@@ -1505,7 +1496,6 @@ MEGCoordinateUnits:
   name: MEGCoordinateUnits
   description: |
     Units of the coordinates of `MEGCoordinateSystem`.
-    MUST be `"m"`, `"cm"`, or `"mm"`.
   type: string
   enum:
   - m
@@ -1523,7 +1513,6 @@ MEGREFChannelCount:
 MRAcquisitionType:
   name: MRAcquisitionType
   description: |
-    Possible values: `"2D"` or `"3D"`.
     Type of sequence readout.
     Corresponds to DICOM Tag 0018, 0023 `MR Acquisition Type`.
   type: string
@@ -1564,10 +1553,9 @@ MTPulseShape:
   name: MTPulseShape
   description: |
     Shape of the magnetization transfer RF pulse waveform.
-    Accepted values: `"HARD"`, `"GAUSSIAN"`,
-    `"GAUSSHANN"` (gaussian pulse with Hanning window),
-    `"SINC"`, `"SINCHANN"` (sinc pulse with Hanning window),
-    `"SINCGAUSS"` (sinc pulse with Gaussian window), `"FERMI"`.
+    The value `"GAUSSHANN"` refers to a Gaussian pulse with a Hanning window.
+    The value `"SINCHANN"` refers to a sinc pulse with a Hanning window.
+    The value `"SINCGAUSS"` refers to a sinc pulse with a Gaussian window.
   type: string
   enum:
   - HARD
@@ -1807,8 +1795,7 @@ PASLType:
 PCASLType:
   name: PCASLType
   description: |
-    Type the gradient pulses used in the `"control"` condition:
-    `"balanced"` or `"unbalanced"`.
+    The type of gradient pulses used in the `"control"` condition.
   type: string
   enum:
   - balanced
@@ -1886,7 +1873,6 @@ PharmaceuticalName:
 PhaseEncodingDirection:
   name: PhaseEncodingDirection
   description: |
-    Possible values: `"i"`, `"j"`, `"k"`, `"i-"`, `"j-"`, `"k-"`.
     The letters `i`, `j`, `k` correspond to the first, second and third axis of
     the data in the NIFTI file.
     The polarity of the phase encoding is assumed to go from zero index to
@@ -2109,7 +2095,7 @@ RecordingDuration:
 RecordingType:
   name: RecordingType
   description: |
-    Defines whether the recording is `"continuous"`, `"discontinuous"` or
+    Defines whether the recording is `"continuous"`, `"discontinuous"`, or
     `"epoched"`, where `"epoched"` is limited to time windows about events of
     interest (for example, stimulus presentations or subject responses).
   type: string
@@ -2244,8 +2230,6 @@ SampleOrigin:
   name: SampleOrigin
   description: |
     Describes from which tissue the genetic information was extracted.
-    Values MUST be one of `"blood"`, `"saliva"`, `"brain"`, `"csf"`,
-    `"breast milk"`, `"bile"`, `"amniotic fluid"`, `"other biospecimen"`.
   type: string
   enum:
   - blood
@@ -2385,9 +2369,8 @@ SkullStripped:
 SliceEncodingDirection:
   name: SliceEncodingDirection
   description: |
-    Possible values: `"i"`, `"j"`, `"k"`, `"i-"`, `"j-"`, `"k-"`
-    (the axis of the NIfTI data along which slices were acquired,
-    and the direction in which `SliceTiming` is defined with respect to).
+    The axis of the NIfTI data along which slices were acquired,
+    and the direction in which `SliceTiming` is defined with respect to.
     `i`, `j`, `k` identifiers correspond to the first, second and third axis of
     the data in the NIfTI file.
     A `-` sign indicates that the contents of `SliceTiming` are defined in
@@ -2598,7 +2581,6 @@ SpoilingType:
   name: SpoilingType
   description: |
     Specifies which spoiling method(s) are used by a spoiled sequence.
-    Accepted values: `"RF"`, `"GRADIENT"` or `"COMBINED"`.
   type: string
   enum:
   - RF
@@ -2685,8 +2667,6 @@ TissueOrigin:
   name: TissueOrigin
   description: |
     Describes the type of tissue analyzed for `SampleOrigin` `brain`.
-    Values MUST be one of `"gray matter"`, `"white matter"`, `"csf"`,
-    `"meninges"`, `"macrovascular"` or `microvascular`.
   type: string
   enum:
   - gray matter
@@ -2767,8 +2747,10 @@ Type:
   name: Type
   description: |
     Short identifier of the mask.
-    Reserved values: `Brain` - brain mask, `Lesion` - lesion mask,
-    `Face` - face mask, `ROI` - ROI mask
+    The value `"Brain"` refers to a brain mask.
+    The value `"Lesion"` refers to a lesion mask.
+    The value `"Face"` refers to a face mask.
+    The value `"ROI"` refers to a region of interest mask.
   type: string
   enum:
   - Brain
@@ -2963,7 +2945,7 @@ iEEGCoordinateSystemDescription:
 iEEGCoordinateUnits:
   name: iEEGCoordinateUnits
   description: |
-    Units of the `*_electrodes.tsv`, MUST be `"m"`, `"mm"`, `"cm"` or `"pixels"`.
+    Units of the `*_electrodes.tsv`.
     MUST be `"pixels"` if `iEEGCoordinateSystem` is `Pixels`.
   type: string
   enum:
