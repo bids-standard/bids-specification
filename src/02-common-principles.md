@@ -583,7 +583,7 @@ Corollaries:
     across multiple data files, it is RECOMMENDED to store metadata in this
     way, rather than duplicating that metadata content across multiple metadata files.
 
-1.  Where multiple applicable JSON files are loaded as per rule 5.2, key-values can
+1.  Where multiple applicable JSON files are loaded as per rule 5.b, key-values can
     only be overwritten by files lower in the filesystem hierarchy; the absence of
     a key-value in a later file does not imply the "unsetting" of that field
     (indeed removal of existing fields is not possible).
