@@ -47,7 +47,7 @@ def _get_paths(bids_dir):
 def _add_entity(regex_entities, entity, entity_shorthand, variable_field, requirement_level):
 	"""Add entity pattern to filename template based on requirement level."""
 
-	# We need to do this here, although it would be easier to backreference in the direcotry.
+	# We need to do this here, although it would be easier to back-reference in the direcotry.
 	# This is because regex evaluates sequentially and we can not forward-reference a group.
 	if entity in DIR_ENTITIES:
 		variable_regex = f'(?P={entity})'
@@ -56,23 +56,15 @@ def _add_entity(regex_entities, entity, entity_shorthand, variable_field, requir
 
 	if requirement_level == "required":
 		if len(regex_entities.strip()):
-			#regex_entities += f'_{entity_shorthand}-{variable_field}'
-			#regex_entities += f'_{entity_shorthand}-'
 			regex_entities += f'_{entity_shorthand}-{variable_regex}'
 		else:
 			# Only the first entity doesn't need an underscore
-			#regex_entities += f'{entity_shorthand}-{variable_field}'
-			#regex_entities += f'{entity_shorthand}-(?P<{entity}>{variable_field})'
 			regex_entities += f'{entity_shorthand}-{variable_regex}'
 	else:
 		if len(regex_entities.strip()):
-			#regex_entities += f'(|_{entity_shorthand}-{variable_field})'
-			#regex_entities += f'(|_{entity_shorthand}-(?P<{entity}>{variable_field}))'
 			regex_entities += f'(|_{entity_shorthand}-{variable_regex})'
 		else:
 			# Only the first entity doesn't need an underscore
-			#regex_entities += f'(|{entity_shorthand}-{variable_field})'
-			#regex_entities += f'(|{entity_shorthand}-(?P<{entity}>{variable_field}))'
 			regex_entities += f'(|{entity_shorthand}-{variable_regex})'
 
 	return regex_entities
