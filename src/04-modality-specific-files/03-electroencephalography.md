@@ -187,15 +187,13 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["channels"]) }}
 
-This file is RECOMMENDED as it provides easily searchable information across
-BIDS datasets for example, general curation, response to queries or batch
-analysis.
-To avoid confusion, the channels SHOULD be listed in the order they
-appear in the EEG data file.
-Any number of additional columns may be added to provide additional information
-about the channels.
+This file is RECOMMENDED as it provides easily searchable information across BIDS datasets.
+For example for general curation, response to queries, or for batch analysis.
+To avoid confusion, the channels SHOULD be listed in the order they appear in the EEG data file.
+Any number of additional columns MAY be added to provide additional information about the channels.
 
-Note that electrode positions SHOULD NOT be added to this file, but to [`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-_electrodestsv).
+Note that electrode positions SHOULD NOT be added to this file, but to
+[`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-_electrodestsv).
 Furthermore, the entries in `*_electrodes.tsv` and `*_channels.tsv` do not have to match exactly,
 as for example in the case of recording a single `EOG` channel from a bipolar referencing scheme
 of two electrodes, or a data channel originating from an auxiliary, non-electrode device.
@@ -203,7 +201,7 @@ That is, in most cases `*_electrodes.tsv` will have more entries than `*_channel
 See the examples for `*_channels.tsv` below, and for `*_electrodes.tsv` in
 ["Electrodes description"](./03-electroencephalography.md#electrodes-description-_electrodestsv).
 
-The columns of the Channels description table stored in `*_channels.tsv` are:
+The columns of the channels description table stored in `*_channels.tsv` are:
 
 MUST be present **in this specific order**:
 
