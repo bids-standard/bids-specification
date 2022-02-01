@@ -507,6 +507,12 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
         type_string = utils.resolve_metadata_type(metadata_schema[field])
 
         description = metadata_schema[field]["description"] + " " + description_addendum
+
+        # Try to add info about valid values
+        valid_values_str = utils.describe_valid_values(metadata_schema[field])
+        if valid_values_str:
+            description += "\n\n\n\n" + valid_values_str
+
         # A backslash before a newline means continue a string
         description = description.replace("\\\n", "")
         # Two newlines should be respected
@@ -576,6 +582,12 @@ def make_columns_table(schema, column_info, tablefmt="github"):
         type_string = utils.resolve_metadata_type(column_schema[field])
 
         description = column_schema[field]["description"] + " " + description_addendum
+
+        # Try to add info about valid values
+        valid_values_str = utils.describe_valid_values(column_schema[field])
+        if valid_values_str:
+            description += "\n\n\n\n" + valid_values_str
+
         # A backslash before a newline means continue a string
         description = description.replace("\\\n", "")
         # Two newlines should be respected
