@@ -569,7 +569,7 @@ for more information.
         key-values from the top level are inherited by all data files at lower
         levels to which it is applicable unless overridden by a value for the
         same key present in another metadata file at a lower level
-        (though it is RECOMMENDED to minimise the extent of such overrides).
+        (though it is RECOMMENDED to minimize the extent of such overrides).
 
 Corollaries:
 
