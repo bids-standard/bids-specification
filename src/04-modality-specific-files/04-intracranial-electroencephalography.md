@@ -204,21 +204,17 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 {{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["channels"]) }}
 
-A channel represents one time series recorded with the recording system (for
-example, there can be a bipolar channel, recorded from two electrodes or contact
-points on the tissue).
+A channel represents one time series recorded with the recording system
+(for example, there can be a bipolar channel, recorded from two electrodes or contact points on the tissue).
 Although this information can often be extracted from the iEEG recording,
-listing it in a simple `.tsv` document makes it easy to browse or search (for example,
-searching for recordings with a sampling frequency of >=1000 Hz).
-Hence, the channels.tsv is RECOMMENDED.
-Channels SHOULD appear in the table in the same order they do in the iEEG data
-file.
-Any number of additional columns may be provided to provide additional
-information about the channels.
-Note that electrode positions SHOULD NOT be added to this file but to
-`*_electrodes.tsv`.
+listing it in a simple `.tsv` document makes it easy to browse or search
+(for example, searching for recordings with a sampling frequency of >=1000 Hz).
+Hence, the `channels.tsv` file is RECOMMENDED.
+Channels SHOULD appear in the table in the same order they do in the iEEG data file.
+Any number of additional columns MAY be provided to provide additional information about the channels.
+Note that electrode positions SHOULD NOT be added to this file but to `*_electrodes.tsv`.
 
-The columns of the Channels description table stored in `*_channels.tsv` are:
+The columns of the channels description table stored in `*_channels.tsv` are:
 
 MUST be present **in this specific order**:
 
