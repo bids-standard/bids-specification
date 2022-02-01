@@ -194,8 +194,7 @@ whenever possible. See also
 
 {{ MACROS___make_filename_template(datatypes=["anat"]) }}
 
-Anatomical (structural) data acquired for that participant. Currently supported
-non-parametric structural MR images include:
+Currently supported non-parametric structural MR images include:
 
 {{ MACROS___make_suffix_table(
       [
