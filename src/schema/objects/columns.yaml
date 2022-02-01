@@ -127,7 +127,7 @@ handedness:
 hemisphere:
   name: hemisphere
   description: |
-    The hemisphere in which the electrode is placed, one of `['L' or 'R']` (MUST be in upper-case).
+    The hemisphere in which the electrode is placed.
   type: string
   enum:
   - L
@@ -325,8 +325,6 @@ sample_type:
   description: |
     Biosample type defined by
     [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type).
-    One of: `"cell line"`, `"in vitro differentiated cells"`, `"primary cell"`, `"cell-free sample"`,
-    `"cloning host"`, `"tissue"`, `"whole organisms"`, `"organoid"`, or `"technical sample"`.
   type: string
   enum:
   - cell line
@@ -410,8 +408,8 @@ status:
   name: status
   description: |
     Data quality observed on the channel.
-    Must be one of: `good`, `bad`, or `n/a` (when quality is unknown).
-    A channel is considered `bad` if its data quality is compromised by excessive noise.
+    A channel is considered `"bad"` if its data quality is compromised by excessive noise.
+    If quality is unknown, then a value of `"n/a"` may be used.
     Description of noise type SHOULD be provided in `[status_description]`.
   type: string
   enum:

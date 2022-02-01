@@ -149,7 +149,7 @@ def _add_entity(filename_template, entity_pattern, requirement_level):
     return filename_template
 
 
-def make_filename_template(schema, **kwargs):
+def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
     """Create codeblocks containing example filename patterns for a given datatype.
 
     Parameters
@@ -157,6 +157,9 @@ def make_filename_template(schema, **kwargs):
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
+    n_dupes_to_combine : int
+        The minimum number of suffixes/extensions to combine in the template as
+        <suffix>/<extension>.
     kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
@@ -220,7 +223,7 @@ def make_filename_template(schema, **kwargs):
 
             # In cases of large numbers of suffixes,
             # we use the "suffix" variable and expect a table later in the spec
-            if len(group["suffixes"]) > 5:
+            if len(group["suffixes"]) >= n_dupes_to_combine:
                 suffix = "_<suffix>"
                 string += suffix
                 strings = [string]
@@ -232,7 +235,7 @@ def make_filename_template(schema, **kwargs):
             extensions = group["extensions"]
             extensions = [ext if ext != "*" else ".<extension>" for ext in extensions]
             extensions = utils.combine_extensions(extensions)
-            if len(extensions) > 5:
+            if len(extensions) >= n_dupes_to_combine:
                 # Combine exts when there are many, but keep JSON separate
                 if ".json" in extensions:
                     extensions = [".<extension>", ".json"]
@@ -504,6 +507,12 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
         type_string = utils.resolve_metadata_type(metadata_schema[field])
 
         description = metadata_schema[field]["description"] + " " + description_addendum
+
+        # Try to add info about valid values
+        valid_values_str = utils.describe_valid_values(metadata_schema[field])
+        if valid_values_str:
+            description += "\n\n\n\n" + valid_values_str
+
         # A backslash before a newline means continue a string
         description = description.replace("\\\n", "")
         # Two newlines should be respected
@@ -573,6 +582,12 @@ def make_columns_table(schema, column_info, tablefmt="github"):
         type_string = utils.resolve_metadata_type(column_schema[field])
 
         description = column_schema[field]["description"] + " " + description_addendum
+
+        # Try to add info about valid values
+        valid_values_str = utils.describe_valid_values(column_schema[field])
+        if valid_values_str:
+            description += "\n\n\n\n" + valid_values_str
+
         # A backslash before a newline means continue a string
         description = description.replace("\\\n", "")
         # Two newlines should be respected

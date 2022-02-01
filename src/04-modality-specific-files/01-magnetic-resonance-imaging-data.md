@@ -17,7 +17,7 @@ by Ben Inglis.
       "Manufacturer": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0070 `Manufacturer`."),
       "ManufacturersModelName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`."),
       "DeviceSerialNumber": ("RECOMMENDED", "Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`."),
-      "StationName": "RECOMMENDED",
+      "StationName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1010 `Station Name`."),
       "SoftwareVersions": ("RECOMMENDED", "Corresponds to DICOM Tag 0018, 1020 `Software Versions`."),
       "HardcopyDeviceSoftwareVersion": "DEPRECATED",
       "MagneticFieldStrength": "RECOMMENDED, but REQUIRED for Arterial Spin Labeling",
@@ -194,8 +194,7 @@ whenever possible. See also
 
 {{ MACROS___make_filename_template(datatypes=["anat"]) }}
 
-Anatomical (structural) data acquired for that participant. Currently supported
-non-parametric structural MR images include:
+Currently supported non-parametric structural MR images include:
 
 {{ MACROS___make_suffix_table(
       [
