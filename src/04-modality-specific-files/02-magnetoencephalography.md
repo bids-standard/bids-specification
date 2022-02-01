@@ -16,7 +16,10 @@ the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
 
 ## MEG recording data
 
-{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["meg", "markers", "events"]) }}
+{{ MACROS___make_filename_template(
+   datatypes=["meg"],
+   suffixes=["meg", "markers", "events", "physio", "stim"])
+}}
 
 Unprocessed MEG data MUST be stored in the native file format of the MEG
 instrument with which the data was collected.
