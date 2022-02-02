@@ -105,7 +105,7 @@ def test_formats(schema_obj):
             "24:00:00",  # should be 00:00:00
             "00:60:00",  # should be 01:00:00
             "00:00:60",  # should be 00:01:00
-            "01:23",     # lacks either hours or seconds
+            "01:23",  # lacks either hours or seconds
         ],
         "unit": [],
         "stimuli_relative": [
@@ -123,7 +123,7 @@ def test_formats(schema_obj):
             "RRID:",  # empty one
         ],
         "uri": [
-            "ftp://"  # lacks anything but protocol
+            "ftp://",  # lacks anything but protocol
         ],
         "bids_uri": [],
     }
@@ -132,4 +132,6 @@ def test_formats(schema_obj):
         search_pattern = f"^{pattern_format}$"
         search = re.compile(search_pattern)
         for test_string in test_list:
-            assert not bool(search.fullmatch(test_string))
+            assert not bool(
+                search.fullmatch(test_string)
+            ), f"'{test_string}' should not be a valid match for the pattern '{search.pattern}'"
