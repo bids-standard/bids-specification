@@ -205,7 +205,7 @@ vertices) or a combined volume/surface space.
 If the segmentation can be derived from different atlases,
 the [`atlas` entity](../99-appendices/09-entities.md#atlas) MAY be used to
 distinguish the different segmentations.
-If so, the `Atlas` metadata SHOULD also be defined. 
+If so, the `Atlas` metadata SHOULD also be defined.
 
 The following section describes discrete and probabilistic segmentations of
 volumes, followed by discrete segmentations of surface/combined spaces.
@@ -260,7 +260,7 @@ the [`label` entity](../99-appendices/09-entities.md#label)) SHOULD be used
 to specify the masked structure
 (see [Common image-derived labels](#common-image-derived-labels)),
 the [`atlas` entity](../99-appendices/09-entities.md#atlas) and the
-`Atlas` metadata SHOULD be defined,
+`Atlas` metadata SHOULD be defined.
 
 For example:
 
