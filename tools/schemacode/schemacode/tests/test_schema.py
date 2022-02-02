@@ -84,10 +84,10 @@ def test_formats(schema_obj):
 
     # Check that invalid strings do not match the search pattern.
     BAD_PATTERNS = {
-        "label": ["test_01", "!", "010101-"],
+        "label": ["test_01", "!", "010101-", "01-01", "-01"],
         "index": ["test", "0.1", "0-1", "0_1"],
         "string": [],
-        "integer": ["3.14", "-3.14", "1.", "-1.", "string", "s1", "1%"],
+        "integer": ["3.14", "-3.14", "1.", "-1.", "string", "s1", "1%", "one"],
         "number": ["string", "1%"],
         "boolean": ["True", "False", "T", "F"],
         "date": [
@@ -102,6 +102,10 @@ def test_formats(schema_obj):
         ],
         "time": [
             "34:10:10",  # invalid time
+            "24:00:00",  # should be 00:00:00
+            "00:60:00",  # should be 01:00:00
+            "00:00:60",  # should be 00:01:00
+            "01:23",     # lacks either hours or seconds
         ],
         "unit": [],
         "stimuli_relative": [
@@ -115,13 +119,17 @@ def test_formats(schema_obj):
             "/path/with/starting/slash/file.txt",
             "sub-01/path/file.txt",
         ],
-        "rrid": [],
-        "uri": [],
+        "rrid": [
+            "RRID:",  # empty one
+        ],
+        "uri": [
+            "ftp://"  # lacks anything but protocol
+        ],
         "bids_uri": [],
     }
     for pattern, test_list in BAD_PATTERNS.items():
         pattern_format = schema_obj["objects"]["formats"][pattern]["pattern"]
-        search_pattern = "^" + pattern_format + "$"
+        search_pattern = f"^{pattern_format}$"
         search = re.compile(search_pattern)
         for test_string in test_list:
             assert not bool(search.fullmatch(test_string))
