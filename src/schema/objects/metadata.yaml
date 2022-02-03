@@ -744,7 +744,7 @@ EffectiveEchoSpacing:
     between lines in the phase-encoding direction,
     defined based on the size of the reconstructed image in the phase direction.
     It is frequently, but incorrectly, referred to as "dwell time"
-    (see `"DwellTime"` parameter for actual dwell time).
+    (see the `"DwellTime"` parameter for actual dwell time).
     It is required for unwarping distortions using field maps.
     Note that beyond just in-plane acceleration,
     a variety of other manipulations to the phase encoding need to be accounted
@@ -758,7 +758,7 @@ ElectricalStimulation:
   description: |
     Boolean field to specify if electrical stimulation was done during the
     recording (options are `true` or `false`). Parameters for event-like
-    stimulation should be specified in the `_events.tsv` file.
+    stimulation should be specified in the `events.tsv` file.
   type: boolean
 ElectricalStimulationParameters:
   name: ElectricalStimulationParameters
