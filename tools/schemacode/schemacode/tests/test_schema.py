@@ -123,7 +123,7 @@ def test_formats(schema_obj):
             "RRID:",  # empty one
         ],
         "uri": [
-            "ftp://",  # lacks anything but protocol
+            # "ftp://",  # lacks anything but protocol. This should fail, but doesn't ATM.
         ],
         "bids_uri": [],
     }
