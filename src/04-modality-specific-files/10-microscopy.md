@@ -436,7 +436,11 @@ the photo to specific image(s) it was acquired for.
 
 {{ MACROS___make_metadata_table(
    {
-      "IntendedFor": "OPTIONAL",
+      "IntendedFor": (
+         "OPTIONAL",
+         "This field is OPTIONAL, in case the photos do not correspond "
+         "to any particular images, it does not have to be filled.",
+      ),
    }
 ) }}
 
