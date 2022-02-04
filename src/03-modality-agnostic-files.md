@@ -417,7 +417,7 @@ Such recordings MUST be documented with one row per file.
 {{ MACROS___make_columns_table(
    {
       "filename": ("REQUIRED", "There MUST be exactly one row for each file."),
-      "acq_time": "OPTIONAL",
+      "acq_time__scans": ("OPTIONAL"),
    }
 ) }}
 
@@ -460,7 +460,7 @@ Column names in `sessions.tsv` files MUST be different from group level particip
 {{ MACROS___make_columns_table(
    {
       "session_id": ("REQUIRED", "There MUST be exactly one row for each session."),
-      "acq_time": "OPTIONAL",
+      "acq_time__sessions": ("OPTIONAL"),
       "pathology": "RECOMMENDED",
    }
 ) }}
