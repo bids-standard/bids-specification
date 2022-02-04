@@ -103,6 +103,7 @@
 -   \[SCHEMA] Add suffix term files [#772](https://github.com/bids-standard/bids-specification/pull/772) ([tsalo](https://github.com/tsalo))
 -   \[ENH] Allow encoding the fieldmapping intent of the protocol [#622](https://github.com/bids-standard/bids-specification/pull/622) ([oesteban](https://github.com/oesteban))
 -   \[FIX] Correct iEEG example that contained double suffixes [#463](https://github.com/bids-standard/bids-specification/pull/463) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] introduce GeneratedBy to "core" BIDS [#440](https://github.com/bids-standard/bids-specification/pull/440) ([yarikoptic](https://github.com/yarikoptic))
 
 ## [v1.6.0](https://github.com/bids-standard/bids-specification/tree/v1.6.0) (2021-04-22)
 
