@@ -431,7 +431,6 @@ For example:
    }
 ) }}
 
-
 Photo data MAY be accompanied by a JSON file containing the `IntendedFor` field that link
 the photo to specific image(s) it was acquired for.
 
