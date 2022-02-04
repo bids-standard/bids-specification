@@ -353,6 +353,7 @@ def validate_all(bids_dir, regex_schema,
 	tracking_paths = deepcopy(paths_list)
 	if debug:
 		itemwise_results = []
+	matched = False
 	for target_path in paths_list:
 		if debug:
 			print(f'Checking file `{target_path}`.')
@@ -390,7 +391,8 @@ def validate_all(bids_dir, regex_schema,
 	results['schema_listing'] = regex_schema
 	results['path_tracking'] = tracking_paths
 	results['path_listing'] = paths_list
-	results['bids_entities'] = matched.groupdict()
+	if matched:
+		results['bids_entities'] = matched.groupdict()
 
 	return results
 
