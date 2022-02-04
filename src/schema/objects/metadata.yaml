@@ -1735,7 +1735,7 @@ NumberOfVolumesDiscardedByScanner:
     For example, a sequence that automatically discards the first 4 volumes
     before saving would have this field as 4.
     A sequence that does not discard dummy scans would have this set to 0.
-    Please note that the onsets recorded in the `_events.tsv` file should always
+    Please note that the onsets recorded in the `events.tsv` file should always
     refer to the beginning of the acquisition of the first volume in the
     corresponding imaging file - independent of the value of
     `"NumberOfVolumesDiscardedByScanner"` field.
@@ -1747,7 +1747,7 @@ NumberOfVolumesDiscardedByUser:
     Number of volumes ("dummy scans") discarded by the user before including the
     file in the dataset.
     If possible, including all of the volumes is strongly recommended.
-    Please note that the onsets recorded in the `_events.tsv` file should always
+    Please note that the onsets recorded in the `events.tsv` file should always
     refer to the beginning of the acquisition of the first volume in the
     corresponding imaging file - independent of the value of
     `"NumberOfVolumesDiscardedByUser"` field.
