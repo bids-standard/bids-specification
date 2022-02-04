@@ -345,6 +345,7 @@ def validate_all(bids_dir, regex_schema,
 	Notes
 	-----
 	* Multi-source validation could be accomplished by distributing the resulting tracking_schema dictionary and further eroding it.
+	* Currently only entities are captured in named groups, edit `load_top_level()` to name other groups as well.
 	"""
 
 	tracking_schema = deepcopy(regex_schema)
@@ -389,6 +390,7 @@ def validate_all(bids_dir, regex_schema,
 	results['schema_listing'] = regex_schema
 	results['path_tracking'] = tracking_paths
 	results['path_listing'] = paths_list
+	results['bids_entities'] = matched.groupdict()
 
 	return results
 
@@ -445,8 +447,8 @@ def write_report(validation_result,
 		f.close()
 
 def test_regex(
-	bids_dir='~/datalad/000108',
-	#bids_dir='~/datalad/000026/rawdata',
+	#bids_dir='~/data2/datalad/000108',
+	bids_dir='~/data2/datalad/000026/rawdata',
 	#bids_dir='~/datalad/openneuro/ds000030',
 	#bids_dir='~/DANDI/000108',
 	#bids_schema='/usr/share/bids-schema/',
