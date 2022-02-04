@@ -6,6 +6,7 @@
 -   \[MISC] minor wording and consistency improvements for channels.tsv in EEG, MEG, iEEG [#993](https://github.com/bids-standard/bids-specification/pull/993) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] typo: extra sentence in anat section [#991](https://github.com/bids-standard/bids-specification/pull/991) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] Optionally support echo entity for VFA suffix [#989](https://github.com/bids-standard/bids-specification/pull/989) ([TheChymera](https://github.com/TheChymera))
+-   \[FIX] update definition acq_time for sessions.tsv [#986](https://github.com/bids-standard/bids-specification/pull/986) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[FIX] add microscopy to modalities in schema [#984](https://github.com/bids-standard/bids-specification/pull/984) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[INFRA] Fix linkchecker [#982](https://github.com/bids-standard/bids-specification/pull/982) ([sappelhoff](https://github.com/sappelhoff))
 -   \[DOC] update steering group composition [#976](https://github.com/bids-standard/bids-specification/pull/976) ([Remi-Gau](https://github.com/Remi-Gau))
