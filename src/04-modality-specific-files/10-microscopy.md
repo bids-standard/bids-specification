@@ -431,11 +431,12 @@ For example:
    }
 ) }}
 
-Photo data MAY be accompanied by a JSON file containing the `IntendedFor` field that link
-the photo to specific image(s) it was acquired for.
+Photo data MAY be accompanied by a JSON file containing the following fields.
+The `IntendedFor` field is used to link the photo to specific image(s) it was acquired for.
 
 {{ MACROS___make_metadata_table(
    {
+      "PhotoDescription": "OPTIONAL",
       "IntendedFor": (
          "OPTIONAL",
          "This field is OPTIONAL, in case the photos do not correspond "
@@ -448,6 +449,7 @@ For example: `sub-01_ses-01_sample-01_acq-1_photo.json`
 
 ```JSON
 {
+   "PhotoDescription": "After clearing",
    "IntendedFor": [
         "ses-01/micr/sub-01_ses-01_sample-01_run-1_chunk-01_SPIM.ome.tif",
         "ses-01/micr/sub-01_ses-01_sample-01_run-1_chunk-02_SPIM.ome.tif",
