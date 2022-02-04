@@ -39,6 +39,7 @@
   - .jpg
   - .png
   - .tif
+  - .json
   entities:
     subject: required
     session: optional
