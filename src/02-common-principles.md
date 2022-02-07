@@ -554,22 +554,23 @@ for more information.
     to some data file based on rules 2.b and 2.c but is made inapplicable based on its
     location in the directory structure as per rule 2.a.
 
-1.  There MUST NOT be multiple metadata files applicable to a data file at one level
-    of the directory hierarchy.
+1.  If, for a given data file, multiple metadata files satisfy criteria 2.a-c above:
 
-1.  If multiple metadata files satisfy criteria 2.a-c above:
+    1.  The set of applicable metadata files is ordered as follows.
+        Within each level of the filesystem hierarchy independently, applicable files are
+        ordered from fewest to most entities; each subsequent filename MUST possess a
+        set of entities that is a strict superset of the previous filename.
+        These lists are concatenated in order of highest to lowest level in the
+        filesystem hierarchy.
 
     1.  For [tabular files](#tabular-files) and other simple metadata files
         (for instance, [`bvec` / `bval` files for diffusion MRI](#04-modality-specific-files/01-magnetic-resonance-imaging#required-gradient-orientation-information)),
         accessing metadata associated with a data file MUST consider only the
-        applicable file that is lowest in the filesystem hierarchy.
+        last file in the order established by rule 4.a.
 
-    1.  For [JSON files](#key-value-files-dictionaries), key-values are loaded
-        from files from the top of the directory hierarchy downwards, such that
-        key-values from the top level are inherited by all data files at lower
-        levels to which it is applicable unless overridden by a value for the
-        same key present in another metadata file at a lower level
-        (though it is RECOMMENDED to minimize the extent of such overrides).
+    1.  For [JSON files](#key-value-files-dictionaries), key-values MUST be loaded
+        from applicable files sequentially in the order established by rule 4.a,
+        overwriting any existing key-values when doing so.
 
 Corollaries:
 
@@ -579,14 +580,30 @@ Corollaries:
     MUST NOT be placed within a directory corresponding to only one such participant / session.
 
 1.  It is permissible for a single metadata file to be applicable to multiple data
-    files at that level of the hierarchy or below. Where such metadata content is consistent
-    across multiple data files, it is RECOMMENDED to store metadata in this
-    way, rather than duplicating that metadata content across multiple metadata files.
+    files. Where such metadata content is consistent across multiple data files, it is
+    RECOMMENDED to store metadata in this way, rather than duplicating that metadata
+    content across multiple metadata files.
 
-1.  Where multiple applicable JSON files are loaded as per rule 5.b, key-values can
-    only be overwritten by files lower in the filesystem hierarchy; the absence of
-    a key-value in a later file does not imply the "unsetting" of that field
-    (indeed removal of existing fields is not possible).
+1.  Where multiple applicable [JSON files](#key-value-files-dictionaries) are loaded
+    for one data file as per rules 4.a and 4.c:
+
+    1.  Where the same key is present in multiple applicable metadata files, the final
+        value associated with that key will be that of the file latest in the order in
+        which that key is defined; i.e. values associated with that key earlier in the
+        ordering are overridden
+        (though it is RECOMMENDED to minimize the extent of such overrides).
+
+    1.  The requirement that applicable metadata files follow a strict ordering according
+        to addition of entities applies individually within each level of the filesystem
+        hierarchy; it is not necessary for the complete ordered set of all applicable
+        metadata files across all filesystem levels to demonstrate strict addition of
+        entities between sequential filenames.
+
+    1.  A key-value being present in a metadata file earlier in the ordering but absent in
+        any file later in the ordering does not imply the "unsetting" of that key-value.
+
+    1.  Removal of key-values present in files earlier in the ordering based on the content
+        of files later in the ordering is not possible.
 
 Example 1: Demonstration of inheritance principle
 
@@ -626,66 +643,106 @@ metadata file `task-rest_bold.json` is read; file
 entity "`acq-longtr`" that is absent from the image path (rule 2.c). When reading image
 `sub-01/func/sub-01_task-rest_acq-longtr_bold.nii.gz`, metadata file
 `task-rest_bold.json` at the top level is read first, followed by file
-`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` at the bottom level (rule 5.b);
+`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` at the bottom level (rules 4.a, 4.c);
 the value for field "`RepetitionTime`" is therefore overridden to the value `3.0`.
 The value for field "`EchoTime`" remains applicable to that image, and is not unset by its
-absence in the metadata file at the lower level (rule 5.b; corollary 3).
+absence in the metadata file at the lower level (rule 4.c; corollary 3.b).
 
-Example 2: Impermissible use of multiple metadata files at one directory level (rule 4)
+Example 2: Complex inheritance scenario
 
 {{ MACROS___make_filetree_example(
     {
+    "bold.json": "",
     "sub-01": {
-        "ses-test":{
-            "anat": {
-                "sub-01_ses-test_T1w.nii.gz": "",
-                },
+        "ses-01":{
             "func": {
-                "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz": "",
-                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz": "",
-                "sub-01_ses-test_task-overtverbgeneration_bold.json": "",
-                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.json": "",
+                "sub-01_ses-01_task-ovg_bold.json": "",
+                "sub-01_ses-01_task-ovg_run-1_bold.nii.gz": "",
+                "sub-01_ses-01_task-ovg_run-2_bold.nii.gz": "",
+                "sub-01_ses-01_task-ovg_run-2_bold.json": "",
+                "sub-01_ses-01_task-rest_bold.nii.gz": "",
+                "sub-01_ses-01_task-rest_bold.json": "",
+                "sub-01_ses-01_bold.json": "",
                 }
-            }
-        }
+            },
+        "ses-02":{
+            "func": {
+                "sub-01_ses-02_task-ovg_bold.nii.gz": "",
+                "sub-01_ses-02_task-rest_bold.nii.gz": "",
+                }
+            },
+        "sub-01_bold.json": "",
+        },
+    "task-ovg_bold.json": "",
+    "task-rest_bold.json": "",
     }
 ) }}
 
-Example 3: Modification of filesystem structure from Example 2 to satisfy inheritance
-principle requirements
+The applicability and order in which each JSON file would be loaded for each data
+file is as follows:
+
+-   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-1_bold.nii.gz`: [
+    `bold.json`,
+    `task-ovg_bold.json`,
+    `sub-01/sub-01_bold.json`,
+    `sub-01/ses-01/func/sub-01_ses-01_bold.json`,
+    `sub-01/ses-01/func/sub-01_ses-01_task-ovg_bold.json` ]
+
+-   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-2_bold.nii.gz`: [
+    `bold.json`,
+    `task-ovg_bold.json`,
+    `sub-01/sub-01_bold.json`,
+    `sub-01/ses-01/func/sub-01_ses-01_bold.json`,
+    `sub-01/ses-01/func/sub-01_ses-01_task-ovg_bold.json`,
+    `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-2_bold.json` ]
+
+-   `sub-01/ses-01/func/sub-01_ses-01_task-rest_bold.nii.gz`: [
+    `bold.json`,
+    `task-rest_bold.json`,
+    `sub-01/sub-01_bold.json`,
+    `sub-01/ses-01/func/sub-01_ses-01_bold.json`,
+    `sub-01/ses-01/func/sub-01_ses-01_task-rest_bold.json` ]
+
+-   `sub-01/ses-02/func/sub-01_ses-02_task-ovg_bold.nii.gz`: [
+    `bold.json`,
+    `task-ovg_bold.json`,
+    `sub-01/sub-01_bold.json` ]
+
+-   `sub-01/ses-02/func/sub-01_ses-02_task-rest_bold.nii.gz`: [
+    `bold.json`,
+    `task-rest_bold.json`,
+    `sub-01/sub-01_bold.json` ]
+
+Example 3: Violation of inheritance principle
 
 {{ MACROS___make_filetree_example(
     {
     "sub-01": {
-        "ses-test":{
-            "sub-01_ses-test_task-overtverbgeneration_bold.json": "",
-            "anat": {
-                "sub-01_ses-test_T1w.nii.gz": "",
-                },
-            "func": {
-                "sub-01_ses-test_task-overtverbgeneration_run-1_bold.nii.gz": "",
-                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.nii.gz": "",
-                "sub-01_ses-test_task-overtverbgeneration_run-2_bold.json": "",
-                }
-            }
-        }
-    }
-) }}
-
-Example 4: Single metadata file applying to multiple data files (corollary 2)
-
-{{ MACROS___make_filetree_example(
-    {
-    "sub-01": {
-        "anat": {},
         "func": {
-            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
-            "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz": "",
-            "sub-01_task-xyz_acq-test1_bold.json": "",
+            "sub-01_acq-highres_bold.json": "",
+            "sub-01_acq-lowres_bold.json": "",
+            "sub-01_bold.json": "",
+            "sub-01_task-ovg_bold.json": "",
+            "sub-01_task-ovg_acq-highres_bold.nii.gz": "",
+            "sub-01_task-ovg_acq-lowres_bold.nii.gz": "",
+            "sub-01_task-rest_bold.json": "",
+            "sub-01_task-rest_acq-highres_bold.nii.gz": "",
+            "sub-01_task-rest_acq-lowres_bold.nii.gz": "",
             }
         }
     }
 ) }}
+
+Data file `sub-01_ses-01_task-ovg_acq-highres_bold.nii.gz` has three metadata
+files deemed applicable according to rule 2, all residing within the same directory: (
+`sub-01_bold.json`,
+`sub-01_task-ovg_bold.json`,
+`sub-01_acq-highres_bold.json`).
+It is however impossible to determine a unique ordering of these files that
+satisfies rule 4.a. The metadata contents to be associated with this data file
+would be ambiguous if files `sub-01_task-ovg_bold.json` and `sub-01_acq-highres_bold.json`
+were to contain differing values for the same key, as the ambiguous order in which
+they were loaded would determine those contents.
 
 ## Participant names and other labels
 
