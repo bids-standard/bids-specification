@@ -15,8 +15,20 @@ DIR_ENTITIES = ['subject', 'session']
 
 
 
-def _get_paths(bids_dir):
-	"""Get all paths from a directory, excluding hidden subdirectories from data distribution."""
+def _get_paths(bids_dirs):
+	"""Get all paths from a list of directories, excluding hidden subdirectories from data distribution.
+
+	Parameters
+	----------
+	bids_dirs : list or str
+		Directories from which to get paths, may also contain file paths, which will remain unchanged.
+
+	Notes
+	-----
+	* Figure out how to return paths from BIDS root.
+	* Deduplicate paths (if input dirs are subsets of other input dirs), might best be done at the very end.
+	* Specifying file paths currently breaks because they are truncated based on the bids_dir input.
+	"""
 	exclude_subdirs=[
 		'/.dandi',
 		'/.datalad',
@@ -30,18 +42,23 @@ def _get_paths(bids_dir):
 		'.bidsignore',
 		'dandiset.yaml',
 		]
-	bids_dir = os.path.abspath(os.path.expanduser(bids_dir))
+	if isinstance(bids_dirs, str):
+		bids_dirs = [bids_dirs]
+
 	path_list=[]
-	for root, dirs, file_names in os.walk(bids_dir, topdown=False):
-		# will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
-		if any(exclude_subdir in root for exclude_subdir in exclude_subdirs):
-			continue
-		for file_name in file_names:
-			if file_name in exclude_files:
+	for bids_dir in bids_dirs:
+		bids_dir = os.path.abspath(os.path.expanduser(bids_dir))
+		for root, dirs, file_names in os.walk(bids_dir, topdown=False):
+			# will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
+			if any(exclude_subdir in root for exclude_subdir in exclude_subdirs):
 				continue
-			file_path = os.path.join(root,file_name)
-			file_path = file_path[len(bids_dir):]
-			path_list.append(file_path)
+			for file_name in file_names:
+				if file_name in exclude_files:
+					continue
+				file_path = os.path.join(root,file_name)
+				# This will need to be replaced with bids root finding.
+				file_path = file_path[len(bids_dir):]
+				path_list.append(file_path)
 	return path_list
 
 def _add_entity(regex_entities, entity, entity_shorthand, variable_field, requirement_level):
@@ -321,7 +338,7 @@ def load_all(
 
 	return all_regex
 
-def validate_all(bids_dir, regex_schema,
+def validate_all(bids_dirs, regex_schema,
 	debug=False,
 	):
 	"""
@@ -349,7 +366,7 @@ def validate_all(bids_dir, regex_schema,
 	"""
 
 	tracking_schema = deepcopy(regex_schema)
-	paths_list = _get_paths(bids_dir)
+	paths_list = _get_paths(bids_dirs)
 	tracking_paths = deepcopy(paths_list)
 	if debug:
 		itemwise_results = []
@@ -450,7 +467,12 @@ def write_report(validation_result,
 
 def test_regex(
 	#bids_dir='~/data2/datalad/000108',
-	bids_dir='~/data2/datalad/000026/rawdata',
+	#bids_dir='~/data2/datalad/000026/rawdata',
+	bids_dir=[
+		'~/data2/datalad/000026/rawdata/sub-I38/ses-MRI/',
+		'~/data2/datalad/000026/rawdata/sub-EXC022/',
+		'/home/chymera/data2/datalad/000026/rawdata/sub-I38/ses-MRI/anat/sub-I38_ses-MRI-echo-1_flip-1_VFA.json',
+		],
 	#bids_dir='~/datalad/openneuro/ds000030',
 	#bids_dir='~/DANDI/000108',
 	#bids_schema='/usr/share/bids-schema/',
