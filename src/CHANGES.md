@@ -2,6 +2,8 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   BF: Use wikipedia for TIFF URL, adobe's page is 404ing now [#1007](https://github.com/bids-standard/bids-specification/pull/1007) ([yarikoptic](https://github.com/yarikoptic))
+-   \[FIX] update highlighting of examples, JSON keys and values, and TSV headers or values in the schema [#998](https://github.com/bids-standard/bids-specification/pull/998) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[SCHEMA, FIX] Remove mentions of auxdatatypes [#996](https://github.com/bids-standard/bids-specification/pull/996) ([tsalo](https://github.com/tsalo))
 -   \[MISC] minor wording and consistency improvements for channels.tsv in EEG, MEG, iEEG [#993](https://github.com/bids-standard/bids-specification/pull/993) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] typo: extra sentence in anat section [#991](https://github.com/bids-standard/bids-specification/pull/991) ([Remi-Gau](https://github.com/Remi-Gau))
