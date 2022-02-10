@@ -41,7 +41,7 @@ Microscopy raw data MUST be stored in one of the following formats:
 
 -   [Portable Network Graphics](http://www.libpng.org/pub/png/) (`.png`)
 
--   [Tag Image File Format](https://www.adobe.io/open/standards/TIFF.html) (`.tif`)
+-   [Tag Image File Format](https://en.wikipedia.org/wiki/TIFF) (`.tif`)
 
 -   [OME-TIFF](https://docs.openmicroscopy.org/ome-model/6.1.2/ome-tiff/specification.html#)
     (`.ome.tif` for standard TIFF files or `.ome.btf` for
