@@ -42,6 +42,9 @@ def _get_paths(bids_dirs):
 		'.bidsignore',
 		'dandiset.yaml',
 		]
+	# this is a bad hack, it should be replaced by a maximum depth limit once BIDS root auto-detection is enabled.
+	treat_as_file_suffix = [".ngff"]
+
 	if isinstance(bids_dirs, str):
 		bids_dirs = [bids_dirs]
 
@@ -49,6 +52,8 @@ def _get_paths(bids_dirs):
 	for bids_dir in bids_dirs:
 		bids_dir = os.path.abspath(os.path.expanduser(bids_dir))
 		for root, dirs, file_names in os.walk(bids_dir, topdown=False):
+			if any(root.endswith(i) for i in treat_as_file_suffix):
+				continue
 			# will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
 			if any(exclude_subdir in root for exclude_subdir in exclude_subdirs):
 				continue
@@ -466,13 +471,13 @@ def write_report(validation_result,
 		f.close()
 
 def test_regex(
-	#bids_dir='~/data2/datalad/000108',
-	#bids_dir='~/data2/datalad/000026/rawdata',
-	bids_dir=[
-		'~/data2/datalad/000026/rawdata/sub-I38/ses-MRI/',
-		'~/data2/datalad/000026/rawdata/sub-EXC022/',
-		'/home/chymera/data2/datalad/000026/rawdata/sub-I38/ses-MRI/anat/sub-I38_ses-MRI-echo-1_flip-1_VFA.json',
-		],
+	bids_dir='~/.data2/datalad/000108',
+	#bids_dir='~/.data2/datalad/000026/rawdata',
+	#bids_dir=[
+	#	'~/.data2/datalad/000026/rawdata/sub-I38/ses-MRI/',
+	#	'~/.data2/datalad/000026/rawdata/sub-EXC022/',
+	#	'/home/chymera/.data2/datalad/000026/rawdata/sub-I38/ses-MRI/anat/sub-I38_ses-MRI-echo-1_flip-1_VFA.json',
+	#	],
 	#bids_dir='~/datalad/openneuro/ds000030',
 	#bids_dir='~/DANDI/000108',
 	#bids_schema='/usr/share/bids-schema/',
