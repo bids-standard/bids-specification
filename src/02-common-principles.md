@@ -589,7 +589,7 @@ Corollaries:
 
     1.  Where the same key is present in multiple applicable metadata files, the final
         value associated with that key will be that of the file latest in the order in
-        which that key is defined; i.e. values associated with that key earlier in the
+        which that key is defined; any values associated with that key earlier in the
         ordering are overridden
         (though it is RECOMMENDED to minimize the extent of such overrides).
 
@@ -681,37 +681,37 @@ Example 2: Complex inheritance scenario
 The applicability and order in which each JSON file would be loaded for each data
 file is as follows:
 
--   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-1_bold.nii.gz`: [
-    `bold.json`,
-    `task-ovg_bold.json`,
-    `sub-01/sub-01_bold.json`,
-    `sub-01/ses-01/func/sub-01_ses-01_bold.json`,
-    `sub-01/ses-01/func/sub-01_ses-01_task-ovg_bold.json` ]
+-   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-1_bold.nii.gz`:
+    -   `bold.json`
+    -   `task-ovg_bold.json`
+    -   `sub-01/sub-01_bold.json`
+    -   `sub-01/ses-01/func/sub-01_ses-01_bold.json`
+    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_bold.json`
 
--   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-2_bold.nii.gz`: [
-    `bold.json`,
-    `task-ovg_bold.json`,
-    `sub-01/sub-01_bold.json`,
-    `sub-01/ses-01/func/sub-01_ses-01_bold.json`,
-    `sub-01/ses-01/func/sub-01_ses-01_task-ovg_bold.json`,
-    `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-2_bold.json` ]
+-   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-2_bold.nii.gz`:
+    -   `bold.json`
+    -   `task-ovg_bold.json`
+    -   `sub-01/sub-01_bold.json`
+    -   `sub-01/ses-01/func/sub-01_ses-01_bold.json`
+    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_bold.json`
+    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-2_bold.json`
 
--   `sub-01/ses-01/func/sub-01_ses-01_task-rest_bold.nii.gz`: [
-    `bold.json`,
-    `task-rest_bold.json`,
-    `sub-01/sub-01_bold.json`,
-    `sub-01/ses-01/func/sub-01_ses-01_bold.json`,
-    `sub-01/ses-01/func/sub-01_ses-01_task-rest_bold.json` ]
+-   `sub-01/ses-01/func/sub-01_ses-01_task-rest_bold.nii.gz`:
+    -   `bold.json`
+    -   `task-rest_bold.json`
+    -   `sub-01/sub-01_bold.json`
+    -   `sub-01/ses-01/func/sub-01_ses-01_bold.json`
+    -   `sub-01/ses-01/func/sub-01_ses-01_task-rest_bold.json`
 
--   `sub-01/ses-02/func/sub-01_ses-02_task-ovg_bold.nii.gz`: [
-    `bold.json`,
-    `task-ovg_bold.json`,
-    `sub-01/sub-01_bold.json` ]
+-   `sub-01/ses-02/func/sub-01_ses-02_task-ovg_bold.nii.gz`:
+    -   `bold.json`
+    -   `task-ovg_bold.json`
+    -   `sub-01/sub-01_bold.json`
 
--   `sub-01/ses-02/func/sub-01_ses-02_task-rest_bold.nii.gz`: [
-    `bold.json`,
-    `task-rest_bold.json`,
-    `sub-01/sub-01_bold.json` ]
+-   `sub-01/ses-02/func/sub-01_ses-02_task-rest_bold.nii.gz`:
+    -   `bold.json`
+    -   `task-rest_bold.json`
+    -   `sub-01/sub-01_bold.json`
 
 Example 3: Violation of inheritance principle
 
