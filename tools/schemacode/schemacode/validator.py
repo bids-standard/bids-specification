@@ -40,7 +40,8 @@ def _get_paths(bids_paths):
         '.bidsignore',
         'dandiset.yaml',
         ]
-    # this is a bad hack, it should be replaced by a maximum depth limit once BIDS root auto-detection is enabled.
+    # Inelegant hard-coded solution.
+    # Could be replaced by a maximum depth limit if BIDS root auto-detection is implemented.
     treat_as_file_suffix = [".ngff"]
 
     if isinstance(bids_paths, str):
@@ -49,6 +50,9 @@ def _get_paths(bids_paths):
     path_list=[]
     for bids_path in bids_paths:
         bids_path = os.path.abspath(os.path.expanduser(bids_path))
+        if os.path.isfile(bids_path):
+            path_list.append(bids_path)
+            continue
         for root, dirs, file_names in os.walk(bids_path, topdown=False):
             if any(root.endswith(i) for i in treat_as_file_suffix):
                 continue
@@ -60,7 +64,6 @@ def _get_paths(bids_paths):
                     continue
                 file_path = os.path.join(root,file_name)
                 # This will need to be replaced with bids root finding.
-                file_path = file_path[len(bids_path):]
                 path_list.append(file_path)
     return path_list
 
@@ -195,7 +198,7 @@ def load_top_level(
                 extensions_regex = '|'.join(periodsafe_extensions)
                 regex = f'^/{top_level_filename}\.({extensions_regex})$'
         else:
-            regex = f'^/{top_level_filename}$'
+            regex = f'.*?/{top_level_filename}$'
         regex_entry = {
             'regex':regex,
             'mandatory':top_level_file['required'],
@@ -299,7 +302,7 @@ def load_entities(
             regex_string = _add_extensions(regex_string, variant)
             regex_string = _add_subdirs(regex_string, variant, datatype, entity_definitions, modality_datatypes)
 
-            regex_string = f'^{regex_string}$'
+            regex_string = f'.*?{regex_string}$'
             regex_entry = {
                 'regex':regex_string,
                 'mandatory':False,
@@ -470,12 +473,11 @@ def write_report(validation_result,
 
 def test_regex(
     #bids_paths='~/.data2/datalad/000108',
-    bids_paths='~/.data2/datalad/000026/rawdata',
-    #bids_paths=[
-    #    '~/.data2/datalad/000026/rawdata/sub-I38/ses-MRI/',
-    #    '~/.data2/datalad/000026/rawdata/sub-EXC022/',
-    #    '/home/chymera/.data2/datalad/000026/rawdata/sub-I38/ses-MRI/anat/sub-I38_ses-MRI-echo-1_flip-1_VFA.json',
-    #    ],
+    #bids_paths='~/.data2/datalad/000026/rawdata',
+    bids_paths=[
+        '~/.data2/datalad/000026/rawdata/sub-EXC022/',
+        '/home/chymera/.data2/datalad/000026/rawdata/sub-I38/ses-MRI/anat/sub-I38_ses-MRI-echo-1_flip-1_VFA.json',
+        ],
     #bids_paths='~/datalad/openneuro/ds000030',
     #bids_paths='~/DANDI/000108',
     #bids_schema='/usr/share/bids-schema/',
