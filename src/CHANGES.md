@@ -1,6 +1,6 @@
 # Changelog
 
-## [v1.7.0](https://bids-specification.readthedocs.io/en/v1.7.0/) (2021-02-15)
+## [v1.7.0](https://bids-specification.readthedocs.io/en/v1.7.0/) (2022-02-15)
 
 -   BF: Use wikipedia for TIFF URL, adobe's page is 404ing now [#1007](https://github.com/bids-standard/bids-specification/pull/1007) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] update highlighting of examples, JSON keys and values, and TSV headers or values in the schema [#998](https://github.com/bids-standard/bids-specification/pull/998) ([Remi-Gau](https://github.com/Remi-Gau))
