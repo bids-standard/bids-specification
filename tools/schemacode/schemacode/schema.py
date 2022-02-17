@@ -98,14 +98,62 @@ def load_schema(schema_path):
         dict_ = yaml.safe_load(rule_group_file.read_text())
         schema["rules"][rule_group_file.stem] = dereference_yaml(dict_, dict_)
 
-    # Load folders of rule subgroups.
+    # Load folders of rule subgroups
     for rule_group_file in sorted(rules_dir.glob("*/*.yaml")):
-        rule = schema["rules"].setdefault(rule_group_file.parent.name, {})
+        datatype_rule = schema["rules"].setdefault(rule_group_file.parent.name, {})
+        suffix_rule = schema["rules"].setdefault("suffixes", {})
         lgr.debug(f"Loading {rule_group_file.stem} rules.")
-        dict_ = yaml.safe_load(rule_group_file.read_text())
-        rule[rule_group_file.stem] = dereference_yaml(dict_, dict_)
+        lst = yaml.safe_load(rule_group_file.read_text())
+
+        out = {}
+        for group in lst:
+            suffixes = group["suffixes"]
+            group_rules = {k: v for k, v in group.items() if k != "suffixes"}
+            suffix_group_rules = group_rules.copy()
+            suffix_group_rules["datatypes"] = [rule_group_file.stem]
+            for suffix in suffixes:
+                if suffix not in out.keys():
+                    out[suffix] = []
+
+                out[suffix].append(group_rules)
+
+                if suffix not in suffix_rule.keys():
+                    suffix_rule[suffix] = []
+
+                suffix_rule[suffix].append(suffix_group_rules)
+
+        datatype_rule[rule_group_file.stem] = dereference_yaml(out, out)
+        suffix_rule = dereference_yaml(suffix_rule, suffix_rule)
+
+    # Merge suffix rules based on datatypes
+    for suffix in suffix_rule.keys():
+        schema["rules"]["suffixes"][suffix] = merge_datatypes(suffix_rule[suffix])
 
     return schema
+
+
+def merge_datatypes(lst):
+    new_lst = []
+    merge = False
+
+    for dict_ in lst:
+        temp_dict = {k: v for k, v in dict_.items() if k != "datatypes"}
+        already_added = False
+        for existing_dict in new_lst:
+            merge = True
+            for k, v in temp_dict.items():
+                if existing_dict[k] != v:
+                    merge = False
+
+            if merge and not already_added:
+                existing_dict["datatypes"] += dict_["datatypes"]
+                already_added = True
+                continue
+
+        if not merge and not already_added:
+            new_lst.append(dict_)
+
+    return new_lst
 
 
 def filter_schema(schema, **kwargs):
