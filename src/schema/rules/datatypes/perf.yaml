@@ -7,6 +7,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - perf
   entities:
     subject: required
     session: optional
@@ -21,6 +23,8 @@
   extensions:
   - .tsv
   - .json
+  datatypes:
+  - perf
   entities:
     subject: required
     session: optional
@@ -34,6 +38,8 @@
   - asllabeling
   extensions:
   - .jpg
+  datatypes:
+  - perf
   entities:
     subject: required
     session: optional
@@ -48,6 +54,8 @@
   extensions:
   - .tsv.gz
   - .json
+  datatypes:
+  - perf
   entities:
     subject: required
     session: optional

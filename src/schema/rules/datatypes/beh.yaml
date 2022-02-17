@@ -6,6 +6,8 @@
   extensions:
   - .tsv.gz
   - .json
+  datatypes:
+  - beh
   entities:
     subject: required
     session: optional
@@ -21,6 +23,8 @@
   extensions:
   - .tsv
   - .json
+  datatypes:
+  - beh
   entities:
     subject: required
     session: optional

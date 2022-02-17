@@ -15,6 +15,8 @@
   - .mrk
   - .kdf
   - .mhd
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -30,6 +32,8 @@
   - meg
   extensions:
   - .dat
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -45,6 +49,8 @@
   - meg
   extensions:
   - .fif
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -59,6 +65,8 @@
   - headshape
   extensions:
   - "*"
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -70,6 +78,8 @@
   extensions:
   - .sqd
   - .mrk
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -82,6 +92,8 @@
   - coordsystem
   extensions:
   - .json
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -93,6 +105,8 @@
   extensions:
   - .json
   - .tsv
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -107,6 +121,8 @@
   extensions:
   - .json
   - .tsv
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -119,6 +135,8 @@
   - photo
   extensions:
   - .jpg
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -131,6 +149,8 @@
   extensions:
   - .tsv.gz
   - .json
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional

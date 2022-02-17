@@ -24,6 +24,8 @@
   - .png
   - .tif
   - .json
+  datatypes:
+  - micr
   entities:
     subject: required
     session: optional
@@ -39,6 +41,8 @@
   - .jpg
   - .png
   - .tif
+  datatypes:
+  - micr
   entities:
     subject: required
     session: optional

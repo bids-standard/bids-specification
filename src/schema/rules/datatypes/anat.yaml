@@ -17,6 +17,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -49,6 +51,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -64,6 +68,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -81,6 +87,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -98,6 +106,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -116,6 +126,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -133,6 +145,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -153,6 +167,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -172,6 +188,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional

@@ -11,6 +11,8 @@
   - .set
   - .fdt
   - .nwb
+  datatypes:
+  - ieeg
   entities:
     subject: required
     session: optional
@@ -23,6 +25,8 @@
   extensions:
   - .json
   - .tsv
+  datatypes:
+  - ieeg
   entities:
     subject: required
     session: optional
@@ -34,6 +38,8 @@
   - coordsystem
   extensions:
   - .json
+  datatypes:
+  - ieeg
   entities:
     subject: required
     session: optional
@@ -45,6 +51,8 @@
   extensions:
   - .json
   - .tsv
+  datatypes:
+  - ieeg
   entities:
     subject: required
     session: optional
@@ -56,6 +64,8 @@
   extensions:
   - .json
   - .tsv
+  datatypes:
+  - ieeg
   entities:
     subject: required
     session: optional
@@ -79,6 +89,8 @@
   extensions:
   - .tsv.gz
   - .json
+  datatypes:
+  - ieeg
   entities:
     subject: required
     session: optional

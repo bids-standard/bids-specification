@@ -10,6 +10,8 @@
   - .set
   - .fdt
   - .bdf
+  datatypes:
+  - eeg
   entities:
     subject: required
     session: optional
@@ -22,6 +24,8 @@
   extensions:
   - .json
   - .tsv
+  datatypes:
+  - eeg
   entities:
     subject: required
     session: optional
@@ -33,6 +37,8 @@
   - coordsystem
   extensions:
   - .json
+  datatypes:
+  - eeg
   entities:
     subject: required
     session: optional
@@ -44,6 +50,8 @@
   extensions:
   - .json
   - .tsv
+  datatypes:
+  - eeg
   entities:
     subject: required
     session: optional
@@ -55,6 +63,8 @@
   extensions:
   - .json
   - .tsv
+  datatypes:
+  - eeg
   entities:
     subject: required
     session: optional
@@ -66,6 +76,8 @@
   - photo
   extensions:
   - .jpg
+  datatypes:
+  - eeg
   entities:
     subject: required
     session: optional
@@ -78,6 +90,8 @@
   extensions:
   - .tsv.gz
   - .json
+  datatypes:
+  - eeg
   entities:
     subject: required
     session: optional
