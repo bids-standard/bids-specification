@@ -1,5 +1,4 @@
 ---
-# fNIRS recordings
 - suffixes:
     - nirs
   extensions:
@@ -10,7 +9,7 @@
     session: optional
     task: optional
     run: optional
-# Events
+
 - suffixes:
     - events
   extensions:
@@ -20,6 +19,7 @@
     session: optional
     task: optional
     run: optional
+
 - suffixes:
     - channels
   extensions:
@@ -29,6 +29,7 @@
     session: optional
     task: optional
     run: optional
+
 - suffixes:
     - coordsystem
   extensions:
@@ -38,6 +39,7 @@
     session: optional
     task: optional
     run: optional
+
 - suffixes:
     - optodes
   extensions:
@@ -47,3 +49,18 @@
     session: optional
     task: optional
     run: optional
+
+# Timeseries
+- suffixes:
+    - physio
+    - stim
+  extensions:
+    - .tsv.gz
+    - .json
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+    recording: optional
