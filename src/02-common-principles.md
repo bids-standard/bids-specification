@@ -605,7 +605,30 @@ Corollaries:
     1.  Removal of key-values present in files earlier in the ordering based on the content
         of files later in the ordering is not possible.
 
-Example 1: Demonstration of inheritance principle
+Example 1: Single metadata file applicable to multiple data files
+
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "anat": {
+            "sub-01_part-real_T2starw.nii.gz": "",
+            "sub-01_part-imag_T2starw.nii.gz": "",
+            "sub-01_T2starw.json": "",
+            }
+        }
+    }
+) }}
+
+For file `sub-01_T2starw.json`, there does not exist an immediately corresponding data file
+with the same basename but different file extension; for instance `sub-01_T2starw.nii.gz`.
+It is however applicable to both data files `sub-01_part-real_T2starw.nii.gz` and
+`sub-01_part-imag_T2starw.nii.gz` as per rule 2, since it possesses the same suffix "`T2starw`"
+and its entities are a subset of those present in the data filename in both cases. This storage
+structure is appropriate for such data given that the real and imaginary components of complex
+image data would be yielded by a single execution of an MRI sequence, with a fixed common set
+of acquisition parameters.
+
+Example 2: Ordered loading of JSON data
 
 {{ MACROS___make_filetree_example(
     {
@@ -648,7 +671,7 @@ the value for field "`RepetitionTime`" is therefore overridden to the value `3.0
 The value for field "`EchoTime`" remains applicable to that image, and is not unset by its
 absence in the metadata file at the lower level (rule 4.c; corollary 3.b).
 
-Example 2: Complex inheritance scenario
+Example 3: Complex inheritance scenario
 
 {{ MACROS___make_filetree_example(
     {
@@ -713,7 +736,7 @@ file is as follows:
     -   `task-rest_bold.json`
     -   `sub-01/sub-01_bold.json`
 
-Example 3: Violation of inheritance principle
+Example 4: Violation of inheritance principle
 
 {{ MACROS___make_filetree_example(
     {
