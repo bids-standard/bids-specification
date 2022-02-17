@@ -6,9 +6,12 @@ Please see [Citing BIDS](../01-introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
+Several [example fNIRS datasets](https://github.com/bids-standard/bids-examples#fnirs-datasets)
+have been formatted using this specification and can be used for practical guidance when curating a new dataset.
+
 ## fNIRS recording data
 
-{{ MACROS___make_filename_template(datatypes=["nirs"], suffixes=["nirs", "events"]) }}
+{{ MACROS___make_filename_template(datatypes=["nirs"], suffixes=["nirs", "events", "channels", "optodes", "coordsystem"]) }}
 
 Only the Shared Near Infrared Spectroscopy Format ([SNIRF](https://github.com/fNIRS/snirf))
 file specification is supported in BIDS. The SNIRF
@@ -52,21 +55,39 @@ and optode holders to position their sources and detectors, or for optodes to
 be directly attached to the scalp with adhesive. To facilitate description of
 the wide variety of possible configurations, several fields are RECOMMENDED within
 the `*_nirs.json` file.
-To clarify the usage and interaction of these fields, the following examples are provided.
--   If a commercial cap such as EasyCap actiCAP 64 Ch Standard-2
-was used, then the values `CapManufacturer = "EasyCap"`, `CapManufacturersModelName = "actiCAP
-64 Ch Standard-2"` and `NIRSPlacementScheme = "n/a"` should be used.
+To clarify the usage and interaction of these fields, the following examples are provided:
+
+-   If a commercial cap such as EasyCap actiCAP 64 Ch Standard-2 was used:
+    ```JSON
+    "CapManufacturer": "EasyCap",
+    "CapManufacturersModelName": "actiCAP 64 Ch Standard-2",
+    "NIRSPlacementScheme": "n/a"
+    ```
+
 -   If an EasyCap was used but with custom positions,
-as may be done by cutting custom holes in the cap,
-then the values `CapManufacturer = "EasyCap"`, `CapManufacturersModelName = "custom"` and
-`NIRSPlacementScheme = "n/a"` should be used.
--   If a completely custom cap was knitted, then
-`CapManufacturer = "custom"`, `CapManufacturersModelName = "custom"` and
-`NIRSPlacementScheme = "n/a"`.
+    as may be done by cutting custom holes in the cap,
+    was used:
+    ```JSON
+    "CapManufacturer": "EasyCap",
+    "CapManufacturersModelName": "custom",
+    "NIRSPlacementScheme": "n/a"
+    ```
+
+-   If a completely custom cap was knitted:
+    ```JSON
+    "CapManufacturer": "custom",
+    "CapManufacturersModelName": "custom",
+    "NIRSPlacementScheme": "n/a"
+    ```
+
 -   If no cap was used and optodes were taped to the scalp
-at positions Cz, C1 and C2, then the values `CapManufacturer = "none"`, `CapManufacturersModelName
-= "n/a"` and `NIRSPlacementScheme = "["Cz", "C1", "C2"]"` should be used.
-In these cases additional information regarding channels and optodes SHOULD be placed in `*_channels.tsv` and `*_optodes.tsv` files.
+    at positions Cz, C1 and C2:
+    ```JSON
+    "CapManufacturer": "none",
+    "CapManufacturersModelName": "n/a",
+    "NIRSPlacementScheme": ["Cz", "C1", "C2"],
+    ```
+    In these cases additional information regarding channels and optodes SHOULD be placed in `*_channels.tsv` and `*_optodes.tsv` files.
 
 Closely spaced or short-separation source-detector pairs are often included in fNIRS measurements to
 obtain a measure of systemic, rather than neural, activity. These source-detector
@@ -77,7 +98,7 @@ It is beyond the scope of the BIDS specification to define what constitutes a sh
 and detailed characteristics of channels may be stored within the SNIRF file
 (for example, in the `sourcePower` field).
 However, to improve searchability and ease of access for users, it is useful to
-know if short channels were included in the fNIRS measurements; this information
+know if short channels were included in the fNIRS measurements; the presence of short channels is
 is stored in the field `ShortChannelCount`.
 If the field `ShortChannelCount` is populated, then the optional column `short_channel`
 may be used in `*_channels.tsv` to describe which channels were specified as short.
@@ -113,61 +134,71 @@ Whenever possible, please avoid using ad hoc wording.
    }
 ) }}
 
-| **Key name**              | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                          |
-| ------------------------- | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CapManufacturer           | RECOMMENDED           | [string][]    | Name of the cap manufacturer (for example, `"Artinis"`) If a custom-made cap is used then the string `"custom"` should be used. If no cap was used, such as with optodes that are directly taped to the scalp, then the string `"none"` should be used and NIRSPlacementScheme field may be used to specify the optode placement scheme. |
-| CapManufacturersModelName | RECOMMENDED           | [string][]    | Manufacturer's designation of the fNIRS cap model (for example, `"Headband with print (S-M)"`). If a cap from a standard manufacturer was modified, then the field should be set to `"custom"`. If no cap was used, then the `CapManafacturer` field should be "none" and this field should be `"n/a"`                                   |
+{{ MACROS___make_metadata_table(
+   {
+      "CapManufacturer": ("RECOMMENDED", "If a custom-made cap is used then the string `custom` should be used. If no cap was used, such as with optodes that are directly taped to the scalp, then the string `none` should be used and the `NIRSPlacementScheme` field may be used to specify the optode placement."),
+      "CapManufacturersModelName": ("RECOMMENDED", "If there is no official model number then description may be provided (for example, `Headband with print (S-M)`). If a cap from a standard manufacturer was modified, then the field should be set to `custom`. If no cap was used, then the `CapManafacturer` field should be `none` and this field should be `n/a`."),
+   }
+) }}
 
 Specific fNIRS fields that MUST be present:
 
-| **Key name**            | **Requirement level**                                | **Data type**     | **Description**                                                                                                                                                                                                                                                                                              |
-| ----------------------- | ---------------------------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| SamplingFrequency       | REQUIRED                                             | [number][] or n/a | Sampling frequency (in Hz) of all the data in the recording, regardless of their type (for example, `12`).  If individual channels have different sampling rates, then the field here should be specified as `"n/a"` and the values  should be specified in the `sampling_frequency` column in channels.tsv. |
-| NIRSChannelCount        | REQUIRED                                             | [number][]        | Number of fNIRS channels.                                                                                                                                                                                                                                                                                    |
-| NIRSSourceOptodeCount   | REQUIRED                                             | [number][]        | Number of fNIRS sources.                                                                                                                                                                                                                                                                                     |
-| NIRSDetectorOptodeCount | REQUIRED                                             | [number][]        | Number of fNIRS detectors.                                                                                                                                                                                                                                                                                   |
-| ACCELChannelCount       | RECOMMENDED but REQUIRED if any channel type is ACC  | [number][]        | Number of accelerometer channels.                                                                                                                                                                                                                                                                            |
-| GYROChannelCount        | RECOMMENDED but REQUIRED if any channel type is GYRO | [number][]        | Number of gyrometer channels.                                                                                                                                                                                                                                                                                |
-| MAGNChannelCount        | RECOMMENDED but REQUIRED if any channel type is MAGN | [number][]        | Number of magnetometer channels.                                                                                                                                                                                                                                                                             |
+TODO: In the table below the SamplingFrequency data type should be "number or n/a".
+
+{{ MACROS___make_metadata_table(
+   {
+      "SamplingFrequency": ("REQUIRED", "Sampling frequency (in Hz) of all the data in the recording, regardless of their type (for example, `12`).  If individual channels have different sampling rates, then the field here should be specified as `n/a` and the values  should be specified in the `sampling_frequency` column in channels.tsv."),
+      "NIRSChannelCount": "REQUIRED",
+      "NIRSSourceOptodeCount": "REQUIRED",
+      "NIRSDetectorOptodeCount": "REQUIRED",
+      "ACCELChannelCount": "RECOMMENDED but REQUIRED if any channel type is ACC",
+      "GYROChannelCount": "RECOMMENDED but REQUIRED if any channel type is GYRO",
+      "MAGNChannelCount": "RECOMMENDED but REQUIRED if any channel type is MAGN",
+   }
+) }}
 
 Specific fNIRS fields that SHOULD be present:
 
-| **Key name**        | **Requirement level** | **Data type**         | **Description**                                                                                                                                                                                                                                                                                                                                                                        |
-| ------------------- | --------------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SourceType          | RECOMMENDED           | [number][] or `mixed` | Type of source. Preferably a specific model/part number is supplied. This is a freeform description, but the following keywords are suggested: LED, LASER, VCSEL. If individual channels have different SourceTypes, then the field here should be specified as `mixed`  and this column should be included in `optodes.tsv`.                                                          |
-| DetectorType        | RECOMMENDED           | [number][] or `mixed` | Type of detector. This is a free form description with the following suggested terms: SiPD, APD. Preferably a specific model/part number is supplied. If individual channels have different DetectorTypes, then the field here should be specified as `mixed`  and this column should be included in `optodes.tsv`.                                                                    |
-| ShortChannelCount   | RECOMMENDED           | [number][]            | The number of short channels. 0 indicates no short channels.                                                                                                                                                                                                                                                                                                                           |
-| NIRSPlacementScheme | RECOMMENDED           | [string][]            | Placement scheme of NIRS optodes. Either the name of a standardized placement system (for example, "10-20") or a list of standardized position names (for example, ["Cz", "Pz"]). This field should only be used if a cap was not used. If a standard cap was used, then it should be specified in CapManufacturer and CapManufacturersModelName and this field should be set to "n/a" |
+TODO: The SourceType and DetectorType data types should be "string or mixed".
+
+{{ MACROS___make_metadata_table(
+   {
+      "SourceType": "RECOMMENDED",
+      "DetectorType": "RECOMMENDED",
+      "ShortChannelCount": "RECOMMENDED",
+      "NIRSPlacementScheme": "RECOMMENDED",
+   }
+) }}
 
 Example:
 
 ```JSON
 {
-  "TaskName":"visual",
-  "InstitutionName":"Macquarie University. Australian Hearing Hub",
-  "InstitutionAddress":"6 University Ave, Macquarie University NSW 2109 Australia",
-  "Manufacturer":"NIRx",
-  "ManufacturersModelName":"NIRScout",
-  "TaskDescription":"visual gratings and noise patterns",
-  "Instructions":"look at the dot in the center of the screen and press the button when it changes color",
-  "SamplingFrequency":3.7,
-  "NIRSChannelCount":56,
-  "NIRSSourceOptodeCount":16,
-  "NIRSDetectorOptodeCount":16,
-  "ACCELChannelCount":0,
-  "SoftwareFilters":"n/a",
-  "RecordingDuration":233.639,
-  "DCOffsetCorrection":0,
-  "HardwareFilters":{"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dBOctave"}},
-  "CapManafacturer":"NIRx",
-  "CapManufacturersModelName":"Headband with print (S-M)",
+  "TaskName": "visual",
+  "InstitutionName": "Macquarie University. Australian Hearing Hub",
+  "InstitutionAddress": "6 University Ave, Macquarie University NSW 2109 Australia",
+  "Manufacturer": "NIRx",
+  "ManufacturersModelName": "NIRScout",
+  "TaskDescription": "visual gratings and noise patterns",
+  "Instructions": "look at the dot in the center of the screen and press the button when it changes color",
+  "SamplingFrequency": 3.7,
+  "NIRSChannelCount": 56,
+  "NIRSSourceOptodeCount": 16,
+  "NIRSDetectorOptodeCount": 16,
+  "ACCELChannelCount": 0,
+  "SoftwareFilters": "n/a",
+  "RecordingDuration": 233.639,
+  "HardwareFilters": {"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dBOctave"}},
+  "CapManafacturer": "NIRx",
+  "CapManufacturersModelName": "Headband with print (S-M)",
 }
 ```
 
 ### Participant file
 
-For fNIRS data, the modality agnostic participant.tsv and json files SHOULD contain
-the `age` field, as this is required for calculation of age-specific pathlength factors.
+The participants.tsv and participants.json files are RECOMMENDED to describe properties of participants such as
+age, sex, handedness. If the participants.tsv file exists, it MUST contain the column participant_id
+and SHOULD contain the age field, as this is required for calculation of age-specific pathlength factors.
 If the dataset contains multiple groups, for example patients and controls, then
 a column labeled `group` MAY be included (see [participants.tsv](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#participants-file)).
 
@@ -195,27 +226,31 @@ this is equivalent to SNIRF data type dOD.
 
 The following columns MUST be present:
 
-| **Column name**       | **Requirement level**                                                    | **Data type**       | **Definition**                                                                                                                                                                                                                                                              |
-| --------------------- | ------------------------------------------------------------------------ | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name                  | REQUIRED                                                                 | [string][]          | Name of the channel.                                                                                                                                                                                                                                                        |
-| type                  | REQUIRED                                                                 | [string][]          | Type of measurement; MUST be a valid measurement type keyword. See table below.                                                                                                                                                                                             |
-| source                | REQUIRED                                                                 | [string][] or `n/a` | Name of the source as specified in the `*_optodes.tsv` file. `n/a` for channels that do not contain fNIRS signals (for example, acceleration).                                                                                                                              |
-| detector              | REQUIRED                                                                 | [string][] or `n/a` | Name of the detector as specified in the `*_optodes.tsv` file. `n/a` for channels that do not contain fNIRS signals (for example, acceleration).                                                                                                                            |
-| wavelength_nominal    | REQUIRED                                                                 | [number][] or `n/a` | Specified wavelength of light in nm. `n/a` for channels that do not contain raw fNIRS signals (acceleration). This field is equivalent to `/nirs(i)/probe/wavelengths` in the SNIRF specification.                                                                          |
-| units                 | REQUIRED                                                                 | [string][]          | Physical unit of the value represented in this channel, specified according to the SI unit symbol and possibly prefix symbol, or as a derived SI unit (for example, V, or unitless for changes in optical densities). For guidelines for Units and Prefixes see Appendix V. |
-| sampling_frequency    | OPTIONAL but REQUIRED if `SamplingFrequency` is to `n/a` in `_nirs.json` | [number][]          | Sampling frequency of the channel in Hz.                                                                                                                                                                                                                                    |
-| orientation_component | OPTIONAL but REQUIRED if type is ACCEL, GYRO or MAGN                     | [string][]          | Description of the orientation of the ACCEL, GYRO, MAGN type. Either x, y, or z.                                                                                                                                                                                            |
+{{ MACROS___make_columns_table(
+   {
+      "name__channels": "REQUIRED",
+      "type__channels": ("REQUIRED", "See the table below for further details on the fNIRS specific types."),
+      "source__channels": "REQUIRED",
+      "detector__channels": "REQUIRED",
+      "wavelength_nominal": "REQUIRED",
+      "units__nirs": "REQUIRED",
+      "sampling_frequency__nirs": ("OPTIONAL but REQUIRED if `SamplingFrequency` is to `n/a` in `_nirs.json`"),
+      "orientation_component": "OPTIONAL but REQUIRED if `type` is `ACCEL`, `GYRO` or `MAGN`",
+   }
+) }}
 
 The following columns SHOULD be present:
 
-| **Column name**            | **Requirement level** | **Data type** | **Definition**                                                                                                                                                                                                          |
-| -------------------------- | --------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| wavelength_actual          | OPTIONAL              | [number][]    | Measured wavelength of light in nm. `n/a` for channels that do not contain raw NIRS signals (acceleration). This field is equivalent to `measurementList.wavelengthActual` in the SNIRF specification.                  |
-| description                | OPTIONAL              | [string][]    | Free-form text description of the channel, or other information of interest.                                                                                                                                            |
-| wavelength_emission_actual | OPTIONAL              | [number][]    | Measured emission wavelength of light in nm. `n/a` for channels that do not contain raw NIRS signals (acceleration). This field is equivalent to `measurementList.wavelengthEmissionActual` in the SNIRF specification. |
-| short_channel              | OPTIONAL              | [boolean][]   | Is the channel designated as short. The total number of channels listed as short channels should be stored in `ShortChannelCount` in `*_fnirs.csv`.                                                                     |
-| status                     | OPTIONAL              | [string][]    | Data quality observed on the channel (`good`, `bad`). A channel is considered `bad` if its data quality is compromised. Description of noise type SHOULD be provided in `status_description`.                           |
-| status_description         | OPTIONAL              | [string][]    | Free-form text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `status`.                                                             |
+{{ MACROS___make_columns_table(
+   {
+      "wavelength_actual": "OPTIONAL",
+      "description": "OPTIONAL",
+      "wavelength_emission_actual": "OPTIONAL",
+      "short_channel": "OPTIONAL",
+      "status": "OPTIONAL",
+      "status_description": "OPTIONAL",
+   }
+) }}
 
 ### Restricted keyword list for the channel types
 
@@ -227,7 +262,7 @@ should be stored according to their appropriate modality specification.
 For example, motion data that was simultaneously recorded with a different device should be specified
 according to BEP029 and not according to the fNIRS data type.
 Whereas, if the motion data was acquired in with the fNIRS device itself, it should be included here with the fNIRS data.
-Any of the channel types defined in other BIDS specification can be used here as well such as ACCEL or MAGN.
+Any of the channel types defined in other BIDS specification can be used here as well such as `ACCEL` or `MAGN`.
 As several of these data types are commonly acquired using fNIRS devices they are included as an example at the base of the table.
 Note that upper-case is REQUIRED.
 
@@ -270,28 +305,32 @@ digitizer. If you also have idealised positions, where you wish the optodes to b
 placed, these can be listed in the template values. SNIRF contains arrays for both
 the 3D and 2D locations of data. The BIDS format MUST store the 3D locations if
 available, and only the 2D locations if 3D positions are unavailable. The storage
-of 2D locations would be indicated by the z field containing an n/a value.
+of 2D locations would be indicated by the z field containing an `n/a` value.
 
 The following columns MUST be present:
 
-| **Column name** | **Requirement level** | **Data type**       | **Definition**                                              |
-| --------------- | --------------------- | ------------------- | ----------------------------------------------------------- |
-| name            | REQUIRED              | [string][]          | Name of the optode must be unique.                          |
-| type            | REQUIRED              | [string][]          | Either source or detector.                                  |
-| x               | REQUIRED              | [number][] or `n/a` | Measured position along the x-axis. `n/a` if not available. |
-| y               | REQUIRED              | [number][] or `n/a` | Measured position along the y-axis. `n/a` if not available. |
-| z               | REQUIRED              | [number][] or `n/a` | Measured position along the z-axis. `n/a` if not available. |
+{{ MACROS___make_columns_table(
+   {
+      "name__optodes": "REQUIRED",
+      "type__optodes": "REQUIRED",
+      "x__optodes": "REQUIRED",
+      "y__optodes": "REQUIRED",
+      "z__optodes": "REQUIRED",
+   }
+) }}
 
 The following columns MAY be present:
 
-| **Column name** | **Requirement level**               | **Data type**       | **Definition**                                                                                        |
-| --------------- | ----------------------------------- | ------------------- | ----------------------------------------------------------------------------------------------------- |
-| template_x      | OPTIONAL but REQUIRED if x is `n/a` | [number][] or `n/a` | Assumed or ideal position along the x axis.                                                           |
-| template_y      | OPTIONAL but REQUIRED if x is `n/a` | [number][] or `n/a` | Assumed or ideal position along the y axis.                                                           |
-| template_z      | OPTIONAL but REQUIRED if x is `n/a` | [number][] or `n/a` | Assumed or ideal position along the z axis.                                                           |
-| description     | OPTIONAL.                           | [string][]          | Free-form text description of the optode, or other information of interest.                           |
-| detector_type   | OPTIONAL.                           | [string][]          | The type of detector. Only to be used if the field `DetectorType` in `*_nirs.json` is set to `mixed`. |
-| source_type     | OPTIONAL.                           | [string][]          | The type of source. Only to be used if the field `SourceType` in `*_nirs.json` is set to `mixed`.     |
+{{ MACROS___make_columns_table(
+   {
+      "x__template": "OPTIONAL but REQUIRED if x is `n/a`",
+      "y__template": "OPTIONAL but REQUIRED if x is `n/a`",
+      "z__template": "OPTIONAL but REQUIRED if x is `n/a`",
+      "description__optode": "OPTIONAL",
+      "detector__optodes": "OPTIONAL",
+      "source__optodes": "OPTIONAL",
+   }
+) }}
 
 Example:
 ```Text
@@ -310,23 +349,26 @@ VisD4   detector     0.0322     0.2214    0.2299     0.02          0.22         
 
 A `*_coordsystem.json` file is used to specify the fiducials, the location of anatomical landmarks,
 and the coordinate system and units in which the position of optodes and landmarks is expressed.
-Ficiduals are objects with a well-defined location used to facilitate the localization of sensors
+Fiducials are objects with a well-defined location used to facilitate the localization of sensors
 and co-registration, anatomical landmarks are locations on a research subject such as the nasion
 (for a detailed definition see the coordinate system description in the BIDS specification).
 The `*_coordsystem.json` is REQUIRED if the optional `*_optodes.tsv` is specified. If a corresponding
 anatomical MRI is available, the locations of anatomical landmarks in that scan should also be stored
 in the `*_T1w.json` file which goes alongside the fNIRS data.
 
-Not all fNIRS systems provide 3D coordinate information or digitisation capabilities. In this case, the only x and y are specified and z is "n/a"
+Not all fNIRS systems provide 3D coordinate information or digitisation capabilities.
+In this case, the only x and y are specified and z is `"n/a"`.
 
 Fields relating to the fNIRS optode positions:
 
-| **Key name**                        | **Requirement level**                                          | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                      |
-| ----------------------------------- | -------------------------------------------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NIRSCoordinateSystem                | REQUIRED                                                       | [string][]    | Defines the coordinate system in which  the optode positions are expressed. See Appendix VIII for a list of restricted keywords for coordinate systems. If `"Other"`, provide definition of the coordinate system in NIRSCoordinateSystemDescription.                                                                                                |
-| NIRSCoordinateUnits                 | REQUIRED                                                       | [string][]    | Units in which the coordinates that are listed in the field NIRSCoordinateSystem are represented. MUST be m, cm, or mm.                                                                                                                                                                                                                              |
-| NIRSCoordinateSystemDescription     | RECOMMENDED, but REQUIRED if `NIRSCoordinateSystem` is `Other` | [string][]    | Free-form text description or link to document describing the NIRS coordinate system in detail (for example, "Coordinate system with the origin at anterior commissure (AC), negative y-axis going through the posterior commissure (PC), z-axis going to a mid-hemisperic point which lies superior to the AC-PC line, x-axis going to the right"). |
-| NIRSCoordinateProcessingDescription | RECOMMENDED                                                    | [string][]    | Free-form text description of any post-processing (such as projection) that has been done on the optode positions (for example, "surface_projection", "none").                                                                                                                                                                                       |
+{{ MACROS___make_metadata_table(
+   {
+      "NIRSCoordinateSystem": "REQUIRED",
+      "NIRSCoordinateUnits": "REQUIRED",
+      "NIRSCoordinateSystemDescription": "RECOMMENDED, but REQUIRED if `NIRSCoordinateSystem` is `Other`",
+      "NIRSCoordinateProcessingDescription": "RECOMMENDED",
+   }
+) }}
 
 Fields relating to the position of fiducials measured during an fNIRS session/run:
 
@@ -354,27 +396,9 @@ Fields relating to the position of anatomical landmarks measured during an fNIRS
 Example:
 ```text
 {
-  "IntendedFor":"/sub-01/ses-01/anat/sub-01_T1w.nii",
-  "NIRSCoordinateSystem":"Other",
-  "NIRSCoordinateUnits":"mm",
-  "NIRSCoordinateSystemDescription":"RAS orientation: Origin halfway between LPA and RPA, positive x-axis towards RPA, positive y-axis orthogonal to x-axis through Nasion,  z-axis orthogonal to xy-plane, pointing in superior direction.",
-  "FiducialsDescription":"Optodes and fiducials were digitized with Polhemus, fiducials were recorded as the centre of vitamin E capsules sticked on the left/right pre-auricular and on the nasion, these are also visible on the T1w MRI"
+  "NIRSCoordinateSystem": "Other",
+  "NIRSCoordinateUnits": "mm",
+  "NIRSCoordinateSystemDescription": "RAS orientation: Origin halfway between LPA and RPA, positive x-axis towards RPA, positive y-axis orthogonal to x-axis through Nasion, z-axis orthogonal to xy-plane, pointing in superior direction.",
+  "FiducialsDescription": "Optodes and fiducials were digitized with Polhemus, fiducials were recorded as the centre of vitamin E capsules sticked on the left/right pre-auricular and on the nasion, these are also visible on the T1w MRI"
 }
 ```
-
-## Example Datasets
-
--   [https://github.com/rob-luke/BIDS-NIRS-Tapping](https://github.com/rob-luke/BIDS-NIRS-Tapping) and at MNE-NIRS.
--   See [http://www.fieldtriptoolbox.org/example/bids_nirs/](http://www.fieldtriptoolbox.org/example/bids_nirs/) and the corresponding [ftp server](ftp://ftp.fieldtriptoolbox.org/pub/fieldtrip/example/bids_nirs/) location for three examples of fNIRS data in BIDS format. The conversion is done using FieldTrip data2bids and still preliminary. They will  have to be re-executed when this BEP and data2bids are updated.
-
-## Temporary
-
-{{ MACROS___make_filename_template(datatypes=["nirs"], suffixes=["nirs", "events", "channels", "optodes", "coordsystem"]) }}
-
-<!-- Link Definitions -->
-
-[number]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[string]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[boolean]: https://www.w3schools.com/js/js_json_datatypes.asp

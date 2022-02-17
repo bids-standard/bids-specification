@@ -43,6 +43,22 @@ color:
     Hexadecimal. Label color for visualization.
   type: string
   unit: hexadecimal
+detector__channels:
+  name: detector
+  description: |
+    Name of the detector as specified in the `*_optodes.tsv` file.
+    `n/a` for channels that do not contain fNIRS signals (for example, acceleration).
+  anyOf:
+  - type: string
+  - type: string
+    enum:
+    - n/a
+detector__optodes:
+  name: detector
+  description: |
+    The type of detector. Only to be used if the field `DetectorType` in `*_nirs.json` is set to `mixed`.
+  anyOf:
+  - type: string
 derived_from:
   name: derived_from
   description: |
@@ -54,6 +70,11 @@ description:
   name: description
   description: |
     Brief free-text description of the channel, or other information of interest.
+  type: string
+description__optode:
+  name: description
+  description: |
+    Free-form text description of the optode, or other information of interest..
   type: string
 dimension:
   name: dimension
@@ -211,6 +232,11 @@ name__electrodes:
   description: |
     Name of the electrode contact point.
   type: string
+name__optodes:
+  name: name
+  description: |
+    Name of the optode, must be unique.
+  type: string
 # name column for dseg.tsv files
 name__segmentations:
   name: name
@@ -246,6 +272,11 @@ onset:
     acquired data point.
   type: number
   unit: s
+orientation_component:
+  name: orientation_component
+  description: |
+    Description of the orientation of the `ACCEL`, `GYRO`, `MAGN` `type`. Either `x`, `y`, or `z`.
+  type: string
 pathology:
   name: pathology
   description: |
@@ -372,6 +403,13 @@ sex:
   - OTHER
   - Other
   - n/a
+short_channel:
+  name: short_channel
+  description: |
+    Is the channel designated as short.
+    The total number of channels listed as short channels
+    should be stored in `ShortChannelCount` in `*_fnirs.csv`.
+  type: boolean
 size:
   name: size
   description: |
@@ -390,6 +428,22 @@ software_filters:
   - type: string
     enum:
     - n/a
+source__channels:
+  name: source
+  description: |
+    Name of the source as specified in the `*_optodes.tsv` file.
+    `n/a` for channels that do not contain fNIRS signals (for example, acceleration).
+  anyOf:
+  - type: string
+  - type: string
+    enum:
+    - n/a
+source__optodes:
+  name: source
+  description: |
+    The type of source. Only to be used if the field `SourceType` in `*_nirs.json` is set to `mixed`.
+  anyOf:
+  - type: string
 species:
   name: species
   description: |
@@ -500,6 +554,16 @@ type__channels:
   - DAC
   - HLU
   - FITERR
+  - NIRSCWAMPLITUDE
+  - NIRSCWFLUORESCENSEAMPLITUDE
+  - NIRSCWOPTICALDENSITY
+  - NIRSCWHBO
+  - NIRSCWHBR
+  - NIRSCWMUA
+  - ACCEL
+  - GYRO
+  - MAGN
+  - MISC
   - OTHER
 # type column for electrodes.tsv files
 type__electrodes:
@@ -507,12 +571,27 @@ type__electrodes:
   description: |
     Type of the electrode (for example, cup, ring, clip-on, wire, needle).
   type: string
+type__optodes:
+  name: type
+  description: |
+    Either source or detector.
+  type: string
 units:
   name: units
   description: |
     Physical unit of the value represented in this channel,
     for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter
     (see [Units](/02-common-principles.html#units)).
+  type: string
+  format: unit
+units__nirs:
+  name: units
+  description: |
+    Physical unit of the value represented in this channel,
+    specified according to the SI unit symbol and possibly prefix symbol,
+    or as a derived SI unit (for example, `V`, or unitless for changes in optical densities).
+    For guidelines about units see the [Appendix](/99-appendices/05-units.html)
+    and [Common Principles](/02-common-principles.html#units) pages.
   type: string
   format: unit
 value:
@@ -535,6 +614,31 @@ volume_type:
   - m0scan
   - deltam
   - cbf
+wavelength_nominal:
+  name: wavelength_nominal
+  description: |
+    Specified wavelength of light in nm.
+    `n/a` for channels that do not contain raw fNIRS signals (acceleration).
+    This field is equivalent to `/nirs(i)/probe/wavelengths` in the SNIRF specification.
+  anyOf:
+  - type: number
+  - type: string
+    enum:
+    - n/a
+wavelength_actual:
+  name: wavelength_actual
+  description: |
+    Measured wavelength of light in nm.
+    `n/a` for channels that do not contain raw NIRS signals (acceleration).
+    This field is equivalent to `measurementList.wavelengthActual` in the SNIRF specification.
+  type: number
+wavelength_emission_actual:
+  name: wavelength_emission_actual
+  description: |
+    Measured emission wavelength of light in nm.
+    `n/a` for channels that do not contain raw NIRS signals (acceleration).
+    This field is equivalent to `measurementList.wavelengthEmissionActual` in the SNIRF specification.
+  type: number
 whole_blood_radioactivity:
   name: whole_blood_radioactivity
   description: |
@@ -555,6 +659,63 @@ z:
   name: z
   description: |
     Recorded position along the z-axis.
+  anyOf:
+  - type: number
+  - type: string
+    enum:
+    - n/a
+x__optodes:
+  name: x
+  description: |
+    Recorded position along the x-axis.
+    `"n/a"` if not available.
+  anyOf:
+  - type: number
+  - type: string
+    enum:
+    - n/a
+y__optodes:
+  name: y
+  description: |
+    Recorded position along the y-axis.
+    `"n/a"` if not available.
+  anyOf:
+  - type: number
+  - type: string
+    enum:
+    - n/a
+z__optodes:
+  name: z
+  description: |
+    Recorded position along the z-axis.
+    `"n/a"` if not available.
+  anyOf:
+  - type: number
+  - type: string
+    enum:
+    - n/a
+x__template:
+  name: template_x
+  description: |
+    Assumed or ideal position along the x axis.
+  anyOf:
+  - type: number
+  - type: string
+    enum:
+    - n/a
+y__template:
+  name: template_y
+  description: |
+    Assumed or ideal position along the y axis.
+  anyOf:
+  - type: number
+  - type: string
+    enum:
+    - n/a
+z__template:
+  name: template_z
+  description: |
+    Assumed or ideal position along the z axis.
   anyOf:
   - type: number
   - type: string
