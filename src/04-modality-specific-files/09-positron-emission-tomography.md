@@ -320,8 +320,7 @@ For example, if an autosampler is used to record continuous blood samples,
 and manual measurements are also taken,
 then the files may have recording labels `autosampler` and `manual`,
 respectively.
-If multiple recording methods are used on the same PET acquisition,
-the `recording` entity MUST be used to distinguish them.
+if the sampling method is unknown, then recording is assumed `manual`.
 All blood measurements should be reported according to a single time-scale
 in relation to time zero defined by the PET data (Figure 1).
 All definitions used below are in accordance with
