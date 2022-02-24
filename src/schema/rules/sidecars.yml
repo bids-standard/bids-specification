@@ -227,3 +227,74 @@ MRIAnatomyCommonMetadataFields:
         ContrastBolusIngredient: OPTIONAL
         RepetitionTimeExcitation: OPTIONAL
         RepetitionTimePreparation: OPTIONAL
+
+# Entities
+
+EntitiesTaskMetadata:
+    selectors:
+        - entities.task != "n/a"
+    fields:
+        TaskName: RECOMMENDED
+
+EntitiesCeMetadata:
+    selectors:
+        - entities.ce != "n/a"
+    fields:
+        ContrastBolusIngredient: OPTIONAL
+
+EntitiesTrcMetadata:
+    selectors:
+        - entities.trc != "n/a"
+    fields:
+        TracerName: REQUIRED
+
+EntitiesStainMetadata:
+    selectors:
+        - entities.stain != "n/a"
+    fields:
+        SampleStaining: RECOMMENDED
+        SamplePrimaryAntibodies: RECOMMENDED
+        SampleSecondaryAntibodies: RECOMMENDED
+
+EntitiesEchoMetadata:
+    selectors:
+        - entities.echo != "n/a"
+    fields:
+        EchoTime: REQUIRED
+
+EntitiesFlipMetadata:
+    selectors:
+        - entities.flip != "n/a"
+    fields:
+        FlipAngle: REQUIRED
+
+EntitiesInvMetadata:
+    selectors:
+        - entities.inv != "n/a"
+    fields:
+        InversionTime: REQUIRED
+
+EntitiesMTMetadata:
+    selectors:
+        - entities.mt != "n/a"
+    fields:
+        MTState: REQUIRED
+
+EntitiesPartMetadata:
+    selectors:
+        - entities.part == "phase"
+    fields:
+        # Can we require Units to be either "rad" or "arbitrary" here?
+        Units: REQUIRED
+
+EntitiesResMetadata:
+    selectors:
+        - entities.res != "n/a"
+    fields:
+        Resolution: REQUIRED
+
+EntitiesDenMetadata:
+    selectors:
+        - entities.den != "n/a"
+    fields:
+        Density: REQUIRED
