@@ -152,15 +152,14 @@ def _add_suffixes(regex_string, variant):
     return regex_string
 
 
-def load_top_level(
-    schema_dir='schemacode/data/schema',
+def load_top_level(schema_dir,
     debug=True,
     ):
     """Create full path regexes for top level files, as documented by a target BIDS YAML schema version.
 
     Parameters
     ----------
-    schema_dir : str, optional
+    schema_dir : str
         A string pointing to a BIDS directory for which paths should be validated.
     debug : tuple, optional
         Whether to print itemwise notices for checks on the console, and include them in the validation result.
@@ -171,7 +170,6 @@ def load_top_level(
         A list of dictionaries, with keys including 'regex' and 'mandatory'.
     """
 
-    schema_dir = os.path.abspath(os.path.expanduser(schema_dir))
     my_schema = schema.load_schema(schema_dir)
     top_level_files = my_schema['rules']['top_level_files']
 
@@ -206,15 +204,14 @@ def load_top_level(
 
     return regex_schema
 
-def load_entities(
-    schema_dir='schemacode/data/schema',
+def load_entities(schema_dir,
     debug=False,
     ):
     """Create full path regexes for entities, as documented by a target BIDS YAML schema version.
 
     Parameters
     ----------
-    schema_dir : str, optional
+    schema_dir : str
         A string pointing to a BIDS directory for which paths should be validated.
     debug : tuple, optional
         Whether to print itemwise notices for checks on the console, and include them in the validation result.
@@ -237,7 +234,6 @@ def load_entities(
         A list of dictionaries, with keys including 'regex' and 'mandatory'.
     """
 
-    schema_dir = os.path.abspath(os.path.expanduser(schema_dir))
     my_schema = schema.load_schema(schema_dir)
 
     label = '([a-z,A-Z,0-9]*?)'
@@ -313,8 +309,7 @@ def load_entities(
     return regex_schema
 
 
-def load_all(
-    schema_dir='schemacode/data/schema',
+def load_all(schema_dir,
     debug=False,
     ):
     """
@@ -472,28 +467,56 @@ def write_report(validation_result,
             f.write('All mandatory BIDS files were found.\n')
         f.close()
 
-def test_regex(
-    #bids_paths='~/.data2/datalad/000108',
-    #bids_paths='~/.data2/datalad/000026/rawdata',
-    bids_paths=[
-        '~/.data2/datalad/000026/rawdata/sub-EXC022/',
-        '/home/chymera/.data2/datalad/000026/rawdata/sub-I38/ses-MRI/anat/sub-I38_ses-MRI-echo-1_flip-1_VFA.json',
-        ],
-    #bids_paths='~/datalad/openneuro/ds000030',
-    #bids_paths='~/DANDI/000108',
-    #bids_schema='/usr/share/bids-schema/',
-    #bids_schema='schemacode/data/schema',
-    #bids_schema='~/src/bids-schemadata',
-    bids_schema='~/src/dandi-cli/dandi/support/bids/schemadata/1.7.0+012+dandi001',
+def _get_bids_schema_dir(schema_reference_root, schema_version,
+    debug=False,
+    ):
+    if '/' in schema_version:
+        if schema_version.startswith("{module_path}"):
+            module_path = os.path.abspath(os.path.dirname(__file__))
+            schema_dir = schema_version.format(module_path=module_path)
+        schema_dir = os.path.abspath(os.path.expanduser(schema_dir))
+        return schema_dir
+    if schema_reference_root.startswith("{module_path}"):
+        module_path = os.path.abspath(os.path.dirname(__file__))
+        schema_reference_root = schema_reference_root.format(module_path=module_path)
+    schema_reference_root = os.path.abspath(os.path.expanduser(schema_reference_root))
+    schema_dir = os.path.join(schema_reference_root, schema_version)
+    return schema_dir
+
+
+def validate_bids(bids_paths,
+    schema_reference_root='/usr/share/bids-schema/',
+    schema_version=None,
     debug=False,
     ):
     """
-    Test with `python -c "from validator import *; test_regex()"`
+    Validate paths according to BIDS schema.
+
+    Parameters
+    ----------
+    paths : str or list of str
+        Paths which to validate, may be individual files or directories.
+    schema_reference_root : str, optional
+        Path where schema versions are stored, and which contains directories named exactly according to the respective schema version, e.g. "1.7.0".
+        If the path starts with the string "{module_path}" it will be expanded relative to the module path.
+    schema_version : str or None, optional
+        Version of BIDS schema, or path to schema.
+        If a path is given, this will be expanded and used directly, not concatenated with `schema_reference_root`.
+        If the path starts with the string "{module_path}" it will be expanded relative to the module path.
+        If None, the `dataset_description.json` fie will be queried for the dataset schema version.
+
+    Examples
+    --------
+    >>> from schemacode import validator
+    >>> validator.validate_bids('~/.data2/datalad/000026/rawdata', schema_version='{module_path}/data/schema/', debug=False)"
+
+    Can be run from the Bash shell as `python -c "from schemacode import validator; validator.validate_bids('~/.data2/datalad/000026/rawdata', schema_version='{module_path}/data/schema/', debug=False)"`
     """
 
-    regex_schema = load_all(bids_schema)
-    #print(regex_schema)
+    bids_schema_dir = _get_bids_schema_dir(schema_reference_root, schema_version, debug)
+    regex_schema = load_all(bids_schema_dir)
     validation_result = validate_all(bids_paths, regex_schema,
             debug=debug,
             )
     write_report(validation_result)
+
