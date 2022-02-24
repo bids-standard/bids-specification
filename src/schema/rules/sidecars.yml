@@ -1,0 +1,103 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+
+---
+MRIScannerHardware:
+    selectors:
+        - modality == "MRI"
+    fields:
+        Manufacturer:
+            level: RECOMMENDED
+            addendum: Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
+        ManufacturersModelName:
+            level: RECOMMENDED
+            addendum: Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
+        DeviceSerialNumber:
+            level: RECOMMENDED
+            addendum: Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`.
+        StationName:
+            level: RECOMMENDED
+            addendum: Corresponds to DICOM Tag 0008, 1010 `Station Name`.
+        SoftwareVersions:
+            level: RECOMMENDED
+            addendum: Corresponds to DICOM Tag 0018, 1020 `Software Versions`.
+        HardcopyDeviceSoftwareVersion: DEPRECATED
+        MagneticFieldStrength:
+            level: RECOMMENDED, but REQUIRED for Arterial Spin Labeling
+        ReceiveCoilName: RECOMMENDED
+        ReceiveCoilActiveElements: RECOMMENDED
+        GradientSetType: RECOMMENDED
+        MRTransmitCoilSequence: RECOMMENDED
+        MatrixCoilMode: RECOMMENDED
+        CoilCombinationMethod: RECOMMENDED
+
+MRISequenceSpecifics:
+    selectors:
+        - modality == "MRI"
+    fields:
+        PulseSequenceType: RECOMMENDED
+        ScanningSequence: RECOMMENDED
+        SequenceVariant: RECOMMENDED
+        ScanOptions: RECOMMENDED
+        SequenceName: RECOMMENDED
+        PulseSequenceDetails: RECOMMENDED
+        NonlinearGradientCorrection: RECOMMENDED, but REQUIRED if [PET](./09-positron-emission-tomography.md) data are present
+        MRAcquisitionType: RECOMMENDED, but REQUIRED for Arterial Spin Labeling
+        MTState: RECOMMENDED
+        MTOffsetFrequency: OPTIONAL
+        MTPulseBandwidth: OPTIONAL
+        MTNumberOfPulses: OPTIONAL
+        MTPulseShape: OPTIONAL
+        MTPulseDuration: OPTIONAL
+        SpoilingState: RECOMMENDED
+        SpoilingType: OPTIONAL
+        SpoilingRFPhaseIncrement: OPTIONAL
+        SpoilingGradientMoment: OPTIONAL
+        SpoilingGradientDuration: OPTIONAL
+
+PETMRISequenceSpecifics:
+    selectors:
+        - modality == "MRI"
+        - "PET" in dataset.modalities
+    fields:
+        NonLinearGradientCorrection: REQUIRED
+
+ASLMRISequenceSpecifics:
+    selectors:
+        - modality == "MRI"
+        - datatype == "perf"
+    fields:
+        MRAcquisitionType: REQUIRED
+
+MTParameters:
+    selectors:
+        - sidecar.MTState == True
+    fields:
+        MTOffsetFrequency: RECOMMENDED
+        MTPulseBandwidth: RECOMMENDED
+        MTNumberOfPulses: RECOMMENDED
+        MTPulseShape: RECOMMENDED
+        MTPulseDuration: RECOMMENDED
+
+SpoilingType:
+    selectors:
+        - sidecar.SpoilingState == True
+    fields:
+        SpoilingType: RECOMMENDED
+
+SpoilingRF:
+    selectors:
+        - sidecar.SpoilingType in ["RF", "COMBINED"]
+    fields:
+        SpoilingRFPhaseIncrement: RECOMMENDED
+
+SpoilingGradient:
+    selectors:
+        - sidecar.SpoilingType in ["GRADIENT", "COMBINED"]
+    fields:
+        SpoilingGradientMoment: RECOMMENDED
+        SpoilingGradientDuration: RECOMMENDED
