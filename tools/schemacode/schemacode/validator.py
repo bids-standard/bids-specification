@@ -470,6 +470,8 @@ def write_report(validation_result,
 def _get_bids_schema_dir(schema_reference_root, schema_version,
     debug=False,
     ):
+    if not schema_version:
+        raise ValueError('`None` schema specification, i.e. reading version from dataset specification is not yet supported.')
     if '/' in schema_version:
         if schema_version.startswith("{module_path}"):
             module_path = os.path.abspath(os.path.dirname(__file__))
