@@ -9,7 +9,7 @@
 # MRI Common metadata fields
 MRIScannerHardware:
     selectors:
-        - modality == "MRI"
+    - modality == "MRI"
     fields:
         Manufacturer:
             level: RECOMMENDED
@@ -38,7 +38,7 @@ MRIScannerHardware:
 
 MRISequenceSpecifics:
     selectors:
-        - modality == "MRI"
+    - modality == "MRI"
     fields:
         PulseSequenceType: RECOMMENDED
         ScanningSequence: RECOMMENDED
@@ -46,7 +46,8 @@ MRISequenceSpecifics:
         ScanOptions: RECOMMENDED
         SequenceName: RECOMMENDED
         PulseSequenceDetails: RECOMMENDED
-        NonlinearGradientCorrection: RECOMMENDED, but REQUIRED if [PET](./09-positron-emission-tomography.md) data are present
+        NonlinearGradientCorrection: |
+            RECOMMENDED, but REQUIRED if [PET](./09-positron-emission-tomography.md) data are present
         MRAcquisitionType: RECOMMENDED, but REQUIRED for Arterial Spin Labeling
         MTState: RECOMMENDED
         MTOffsetFrequency: OPTIONAL
@@ -62,21 +63,21 @@ MRISequenceSpecifics:
 
 PETMRISequenceSpecifics:
     selectors:
-        - modality == "MRI"
-        - "PET" in dataset.modalities
+    - modality == "MRI"
+    - PET in dataset.modalities
     fields:
         NonLinearGradientCorrection: REQUIRED
 
 ASLMRISequenceSpecifics:
     selectors:
-        - modality == "MRI"
-        - datatype == "perf"
+    - modality == "MRI"
+    - datatype == "perf"
     fields:
         MRAcquisitionType: REQUIRED
 
 MTParameters:
     selectors:
-        - sidecar.MTState == True
+    - sidecar.MTState == True
     fields:
         MTOffsetFrequency: RECOMMENDED
         MTPulseBandwidth: RECOMMENDED
@@ -86,26 +87,26 @@ MTParameters:
 
 SpoilingType:
     selectors:
-        - sidecar.SpoilingState == True
+    - sidecar.SpoilingState == True
     fields:
         SpoilingType: RECOMMENDED
 
 SpoilingRF:
     selectors:
-        - sidecar.SpoilingType in ["RF", "COMBINED"]
+    - sidecar.SpoilingType in ["RF", "COMBINED"]
     fields:
         SpoilingRFPhaseIncrement: RECOMMENDED
 
 SpoilingGradient:
     selectors:
-        - sidecar.SpoilingType in ["GRADIENT", "COMBINED"]
+    - sidecar.SpoilingType in ["GRADIENT", "COMBINED"]
     fields:
         SpoilingGradientMoment: RECOMMENDED
         SpoilingGradientDuration: RECOMMENDED
 
 MRISpatialEncoding:
     selectors:
-        - modality == "MRI"
+    - modality == "MRI"
     fields:
         NumberShots: RECOMMENDED
         ParallelReductionFactorInPlane: RECOMMENDED
@@ -134,7 +135,7 @@ MRISpatialEncoding:
 
 MRITimingParameters:
     selectors:
-        - modality == "MRI"
+    - modality == "MRI"
     fields:
         EchoTime:
             level: RECOMMENDED
@@ -152,25 +153,25 @@ MRITimingParameters:
 
 SliceTimingASL:
     selectors:
-        - modality == "MRI"
-        - datatype == "perf"
-        - suffix in ["asl", "m0scan"]
-        - sidecar.MRAcquisitionType == "2D"
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix in ["asl", "m0scan"]
+    - sidecar.MRAcquisitionType == "2D"
     fields:
         SliceTiming: REQUIRED
 
 # This is technically for sparse sequences only, but I don't know how to encode that.
 SliceTimingSparse:
     selectors:
-        - modality == "MRI"
-        # NOTE: This is my idea for "field is defined", but I don't know if it's the best approach.
-        - sidecar.DelayTime != "n/a"
+    - modality == "MRI"
+    # NOTE: This is my idea for "field is defined", but I don't know if it's the best approach.
+    - sidecar.DelayTime != "n/a"
     fields:
         SliceTiming: REQUIRED
 
 MRIRFandContrast:
     selectors:
-        - modality == "MRI"
+    - modality == "MRI"
     fields:
         FlipAngle:
             level: RECOMMENDED
@@ -179,33 +180,33 @@ MRIRFandContrast:
 
 MRIFlipAngleLookLocker:
     selectors:
-        - modality == "MRI"
-        - sidecar.LookLocker == "true"
+    - modality == "MRI"
+    - sidecar.LookLocker == "true"
     fields:
         FlipAngle: REQUIRED
 
 MRISliceAcceleration:
     selectors:
-        - modality == "MRI"
+    - modality == "MRI"
     fields:
         MultibandAccelerationFactor: RECOMMENDED
 
 MRIAnatomicalLandmarks:
     selectors:
-        - modality == "MRI"
+    - modality == "MRI"
     fields:
         AnatomicalLandmarkCoordinates__mri: RECOMMENDED
 
 MRIEchoPlanarImagingAndB0Mapping:
     selectors:
-        - modality == "MRI"
+    - modality == "MRI"
     fields:
         B0FieldIdentifier: RECOMMENDED
         B0FieldSource: RECOMMENDED
 
 MRIInstitutionInformation:
     selectors:
-        - modality == "MRI"
+    - modality == "MRI"
     fields:
         InstitutionName:
             level: RECOMMENDED
@@ -221,8 +222,8 @@ MRIInstitutionInformation:
 
 MRIAnatomyCommonMetadataFields:
     selectors:
-        - modality == "MRI"
-        - datatype == "anat"
+    - modality == "MRI"
+    - datatype == "anat"
     fields:
         ContrastBolusIngredient: OPTIONAL
         RepetitionTimeExcitation: OPTIONAL
@@ -232,25 +233,25 @@ MRIAnatomyCommonMetadataFields:
 
 EntitiesTaskMetadata:
     selectors:
-        - entities.task != "n/a"
+    - entities.task != "n/a"
     fields:
         TaskName: RECOMMENDED
 
 EntitiesCeMetadata:
     selectors:
-        - entities.ce != "n/a"
+    - entities.ce != "n/a"
     fields:
         ContrastBolusIngredient: OPTIONAL
 
 EntitiesTrcMetadata:
     selectors:
-        - entities.trc != "n/a"
+    - entities.trc != "n/a"
     fields:
         TracerName: REQUIRED
 
 EntitiesStainMetadata:
     selectors:
-        - entities.stain != "n/a"
+    - entities.stain != "n/a"
     fields:
         SampleStaining: RECOMMENDED
         SamplePrimaryAntibodies: RECOMMENDED
@@ -258,43 +259,43 @@ EntitiesStainMetadata:
 
 EntitiesEchoMetadata:
     selectors:
-        - entities.echo != "n/a"
+    - entities.echo != "n/a"
     fields:
         EchoTime: REQUIRED
 
 EntitiesFlipMetadata:
     selectors:
-        - entities.flip != "n/a"
+    - entities.flip != "n/a"
     fields:
         FlipAngle: REQUIRED
 
 EntitiesInvMetadata:
     selectors:
-        - entities.inv != "n/a"
+    - entities.inv != "n/a"
     fields:
         InversionTime: REQUIRED
 
 EntitiesMTMetadata:
     selectors:
-        - entities.mt != "n/a"
+    - entities.mt != "n/a"
     fields:
         MTState: REQUIRED
 
 EntitiesPartMetadata:
     selectors:
-        - entities.part == "phase"
+    - entities.part == "phase"
     fields:
         # Can we require Units to be either "rad" or "arbitrary" here?
         Units: REQUIRED
 
 EntitiesResMetadata:
     selectors:
-        - entities.res != "n/a"
+    - entities.res != "n/a"
     fields:
         Resolution: REQUIRED
 
 EntitiesDenMetadata:
     selectors:
-        - entities.den != "n/a"
+    - entities.den != "n/a"
     fields:
         Density: REQUIRED
