@@ -217,3 +217,13 @@ MRIInstitutionInformation:
             level: RECOMMENDED
             addendum: Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.
 
+# Anatomy imaging data
+
+MRIAnatomyCommonMetadataFields:
+    selectors:
+        - modality == "MRI"
+        - datatype == "anat"
+    fields:
+        ContrastBolusIngredient: OPTIONAL
+        RepetitionTimeExcitation: OPTIONAL
+        RepetitionTimePreparation: OPTIONAL
