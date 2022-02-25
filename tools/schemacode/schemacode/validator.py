@@ -12,6 +12,25 @@ from . import schema
 # Ordering is important, as "subject" follows "session" alphabetically, but is hierarchically above it.
 DIR_ENTITIES = ['subject', 'session']
 
+def _get_bids_schema_dir(schema_reference_root, schema_version,
+    debug=False,
+    ):
+    if not schema_version:
+        raise ValueError('`None` schema specification, i.e. reading version from dataset specification is not yet supported.')
+    if '/' in schema_version:
+        if schema_version.startswith("{module_path}"):
+            module_path = os.path.abspath(os.path.dirname(__file__))
+            schema_dir = schema_version.format(module_path=module_path)
+        schema_dir = os.path.abspath(os.path.expanduser(schema_dir))
+        return schema_dir
+    if schema_reference_root.startswith("{module_path}"):
+        module_path = os.path.abspath(os.path.dirname(__file__))
+        schema_reference_root = schema_reference_root.format(module_path=module_path)
+    schema_reference_root = os.path.abspath(os.path.expanduser(schema_reference_root))
+    schema_dir = os.path.join(schema_reference_root, schema_version)
+    return schema_dir
+
+
 def _get_paths(bids_paths):
     """Get all paths from a list of directories, excluding hidden subdirectories from data distribution.
 
@@ -66,6 +85,7 @@ def _get_paths(bids_paths):
                 path_list.append(file_path)
     return path_list
 
+
 def _add_entity(regex_entities, entity, entity_shorthand, variable_field, requirement_level):
     """Add entity pattern to filename template based on requirement level."""
 
@@ -90,6 +110,7 @@ def _add_entity(regex_entities, entity, entity_shorthand, variable_field, requir
             regex_entities += f'(|{entity_shorthand}-{variable_regex})'
 
     return regex_entities
+
 
 def _add_extensions(regex_string, variant):
     """Add extensions to a regex string."""
@@ -119,6 +140,7 @@ def _add_extensions(regex_string, variant):
 
     return regex_string
 
+
 def _add_subdirs(regex_string, variant, datatype, entity_definitions, modality_datatypes):
     """Add appropriate subdirectories as required by entities present."""
 
@@ -138,6 +160,7 @@ def _add_subdirs(regex_string, variant, datatype, entity_definitions, modality_d
     regex_string = f'{regex_dirs}{regex_string}'
 
     return regex_string
+
 
 def _add_suffixes(regex_string, variant):
     """Add suffixes to a regex string."""
@@ -203,6 +226,7 @@ def load_top_level(schema_dir,
         regex_schema.append(regex_entry)
 
     return regex_schema
+
 
 def load_entities(schema_dir,
     debug=False,
@@ -340,6 +364,7 @@ def load_all(schema_dir,
 
     return all_regex
 
+
 def validate_all(bids_paths, regex_schema,
     debug=False,
     ):
@@ -466,24 +491,6 @@ def write_report(validation_result,
         else:
             f.write('All mandatory BIDS files were found.\n')
         f.close()
-
-def _get_bids_schema_dir(schema_reference_root, schema_version,
-    debug=False,
-    ):
-    if not schema_version:
-        raise ValueError('`None` schema specification, i.e. reading version from dataset specification is not yet supported.')
-    if '/' in schema_version:
-        if schema_version.startswith("{module_path}"):
-            module_path = os.path.abspath(os.path.dirname(__file__))
-            schema_dir = schema_version.format(module_path=module_path)
-        schema_dir = os.path.abspath(os.path.expanduser(schema_dir))
-        return schema_dir
-    if schema_reference_root.startswith("{module_path}"):
-        module_path = os.path.abspath(os.path.dirname(__file__))
-        schema_reference_root = schema_reference_root.format(module_path=module_path)
-    schema_reference_root = os.path.abspath(os.path.expanduser(schema_reference_root))
-    schema_dir = os.path.join(schema_reference_root, schema_version)
-    return schema_dir
 
 
 def validate_bids(bids_paths,
