@@ -96,9 +96,7 @@ def _get_paths(bids_paths):
     return path_list
 
 
-def _add_entity(
-    regex_entities, entity, entity_shorthand, variable_field, requirement_level
-):
+def _add_entity(regex_entities, entity, entity_shorthand, variable_field, requirement_level):
     """Add entity pattern to filename template based on requirement level."""
 
     # We need to do this here, although it would be easier to back-reference in the directory.
@@ -151,9 +149,7 @@ def _add_extensions(regex_string, variant):
     return regex_string
 
 
-def _add_subdirs(
-    regex_string, variant, datatype, entity_definitions, modality_datatypes
-):
+def _add_subdirs(regex_string, variant, datatype, entity_definitions, modality_datatypes):
     """Add appropriate subdirectories as required by entities present."""
 
     label = "([a-z,A-Z,0-9]*?)"
@@ -286,9 +282,7 @@ def load_entities(
 
     # Parsing tabular_metadata as a datatype, might be done automatically if the YAML is moved
     # to the same subdirectory
-    my_schema["rules"]["datatypes"]["tabular_metadata"] = my_schema["rules"][
-        "tabular_metadata"
-    ]
+    my_schema["rules"]["datatypes"]["tabular_metadata"] = my_schema["rules"]["tabular_metadata"]
     datatypes = my_schema["rules"]["datatypes"]
     entity_order = my_schema["rules"]["entities"]
     entity_definitions = my_schema["objects"]["entities"]
@@ -464,9 +458,7 @@ def validate_all(
                 tracking_schema.remove(regex_entry)
         else:
             if debug:
-                print(
-                    f"The `{target_path}` file could not be matched to any regex schema entry."
-                )
+                print(f"The `{target_path}` file could not be matched to any regex schema entry.")
     results = {}
     if debug:
         results["itemwise"] = itemwise_results
@@ -531,9 +523,7 @@ def write_report(
         f.write("The following files were not matched by any regex schema entry:")
         f.write("\n\t* `")
         f.write("`\n\t* `".join(validation_result["path_tracking"]))
-        f.write(
-            "\nThe following mandatory regex schema entries did not match any files:"
-        )
+        f.write("\nThe following mandatory regex schema entries did not match any files:")
         f.write("\n")
         if len(validation_result["schema_tracking"]) >= 1:
             for entry in validation_result["schema_tracking"]:
@@ -546,7 +536,7 @@ def write_report(
 
 def validate_bids(
     bids_paths,
-    schema_reference_root='/usr/share/bids-schema/',
+    schema_reference_root="/usr/share/bids-schema/",
     schema_version=None,
     debug=False,
 ):
