@@ -1,8 +1,8 @@
-from copy import deepcopy
 import datetime
 import json
 import os
 import re
+from copy import deepcopy
 
 from . import schema
 
