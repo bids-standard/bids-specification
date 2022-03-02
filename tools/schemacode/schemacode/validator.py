@@ -227,7 +227,7 @@ def load_top_level(
                 else:
                     periodsafe_extensions.append(extension)
                 extensions_regex = "|".join(periodsafe_extensions)
-                regex = f"^/{top_level_filename}\\.({extensions_regex})$"
+                regex = f".*?/{top_level_filename}\\.({extensions_regex})$"
         else:
             regex = f".*?/{top_level_filename}$"
         regex_entry = {
@@ -520,12 +520,15 @@ def write_report(
         for regex_entry in validation_result["schema_listing"]:
             f.write(f'\n\t- `{regex_entry["regex"]}`')
         f.write("\n")
-        f.write("The following files were not matched by any regex schema entry:")
-        f.write("\n\t* `")
-        f.write("`\n\t* `".join(validation_result["path_tracking"]))
-        f.write("\nThe following mandatory regex schema entries did not match any files:")
-        f.write("\n")
-        if len(validation_result["schema_tracking"]) >= 1:
+        if len(validation_result["path_tracking"]) > 0:
+            f.write("The following files were not matched by any regex schema entry:")
+            f.write("\n\t* `")
+            f.write("`\n\t* `".join(validation_result["path_tracking"]))
+        else:
+            f.write("All files were matched by a regex schema entry.")
+        if len(validation_result["schema_tracking"]) > 0:
+            f.write("\nThe following mandatory regex schema entries did not match any files:")
+            f.write("\n")
             for entry in validation_result["schema_tracking"]:
                 if entry["mandatory"]:
                     f.write(f'\t** `{entry["regex"]}`\n')
