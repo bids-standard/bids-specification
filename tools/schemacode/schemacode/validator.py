@@ -567,9 +567,10 @@ def validate_bids(
     >>> schema_version='{module_path}/data/schema/'
     >>> validator.validate_bids(bids_paths, schema_version=schema_version, debug=False)"
 
-    # fmt: off
-    Can be run from the Bash shell as `python -c "from schemacode import validator; validator.validate_bids('~/.data2/datalad/000026/rawdata', schema_version='{module_path}/data/schema/', debug=False)"`
-    # fmt: on
+    Can be run from the Bash shell as:
+        python -c "from schemacode import validator; validator.validate_bids\
+                ('~/.data2/datalad/000026/rawdata', schema_version='{module_path}/data/schema/',\
+                debug=False)"`
     """
 
     bids_schema_dir = _get_bids_schema_dir(schema_reference_root, schema_version, debug)
