@@ -4,37 +4,13 @@ import os
 import re
 from copy import deepcopy
 
-from . import schema
+from . import schema, utils
 
 # The list of which entities create directories could be dynamically specified by the YAML, but for
 # now, it is not.
 # Ordering is important, as "subject" follows "session" alphabetically, but is hierarchically
 # above it.
 DIR_ENTITIES = ["subject", "session"]
-
-
-def _get_bids_schema_dir(
-    schema_reference_root,
-    schema_version,
-    debug=False,
-):
-    if not schema_version:
-        raise ValueError(
-            "`None` schema specification, i.e. reading version from dataset specification is not "
-            "yet supported."
-        )
-    if "/" in schema_version:
-        if schema_version.startswith("{module_path}"):
-            module_path = os.path.abspath(os.path.dirname(__file__))
-            schema_dir = schema_version.format(module_path=module_path)
-        schema_dir = os.path.abspath(os.path.expanduser(schema_dir))
-        return schema_dir
-    if schema_reference_root.startswith("{module_path}"):
-        module_path = os.path.abspath(os.path.dirname(__file__))
-        schema_reference_root = schema_reference_root.format(module_path=module_path)
-    schema_reference_root = os.path.abspath(os.path.expanduser(schema_reference_root))
-    schema_dir = os.path.join(schema_reference_root, schema_version)
-    return schema_dir
 
 
 def _get_paths(bids_paths):
@@ -71,9 +47,6 @@ def _get_paths(bids_paths):
     # Inelegant hard-coded solution.
     # Could be replaced by a maximum depth limit if BIDS root auto-detection is implemented.
     treat_as_file_suffix = [".ngff"]
-
-    if isinstance(bids_paths, str):
-        bids_paths = [bids_paths]
 
     path_list = []
     for bids_path in bids_paths:
@@ -537,10 +510,107 @@ def write_report(
         f.close()
 
 
+def _find_dataset_description(my_path):
+    candidate = os.path.join(my_path, "dataset_description.json")
+    if my_path == "/":
+        return None
+    if os.path.isfile(candidate):
+        return candidate
+    else:
+        level_up = os.path.dirname(my_path.rstrip("/"))
+        return _find_dataset_description(level_up)
+
+
+def select_schema_dir(
+    bids_paths,
+    schema_reference_root,
+    schema_version,
+    force_select=False,
+):
+    """
+    Select schema directory, according to a fallback logic whereby the schema path is
+    either (1) `schema_version` if the value is a path, (2) a concatenation of
+    `schema_reference_root` and `schema_version`, (3) a concatenation of the detected
+    version specification from a `dataset_description.json` file if one is found in
+    parents of the input path, (4) the newest schema from the code distribution only
+    if `force_select` is enabled.
+
+    Parameters
+    ----------
+    bids_paths : list of str
+        Paths to be validated.
+        Entries in this list will be used to crawl the directory tree upwards until a
+        dataset_description.json file is found.
+    schema_reference_root : str, optional
+        Path where schema versions are stored, and which contains directories named exactly
+        according to the respective schema version, e.g. "1.7.0".
+        If the path starts with the string "{module_path}" it will be expanded relative to the
+        module path.
+    schema_version : str or None, optional
+        Version of BIDS schema, or path to schema.
+        If a path is given, this will be expanded and used directly, not concatenated with
+        `schema_reference_root`.
+        If the path starts with the string "{module_path}" it will be expanded relative to the
+        module path.
+        If None, the `dataset_description.json` fie will be queried for the dataset schema version.
+    force_select : bool, optional
+        Whether to fall back to newest version of schema if no version is given or found.
+
+    Returns
+    -------
+
+    """
+    # Expand module_path
+    module_path = os.path.abspath(os.path.dirname(__file__))
+    if schema_reference_root.startswith("{module_path}"):
+        schema_reference_root = schema_reference_root.format(module_path=module_path)
+    schema_reference_root = os.path.abspath(os.path.expanduser(schema_reference_root))
+    if schema_version:
+        if "/" in schema_version:
+            if schema_version.startswith("{module_path}"):
+                schema_dir = schema_version.format(module_path=module_path)
+            schema_dir = os.path.abspath(os.path.expanduser(schema_dir))
+            return schema_dir
+        schema_dir = os.path.join(schema_reference_root, schema_version)
+        return schema_dir
+    dataset_descriptions = []
+    for bids_path in bids_paths:
+        bids_path = os.path.abspath(os.path.expanduser(bids_path))
+        dataset_description = _find_dataset_description(bids_path)
+        if dataset_description:
+            if dataset_description in dataset_descriptions:
+                raise ValueError(
+                    "You have selected files belonging to 2 different datasets."
+                    "Please run the validator once per dataset."
+                )
+            else:
+                with open(dataset_description) as f:
+                    dataset_info = json.load(f)
+                    if force_select:
+                        try:
+                            schema_version = dataset_info["BIDSVersion"]
+                        except KeyError:
+                            return utils.get_schema_path()
+                    else:
+                        schema_version = dataset_info["BIDSVersion"]
+    schema_dir = os.path.join(schema_reference_root, schema_version)
+    if os.path.isdir(schema_dir):
+        return schema_dir
+    elif force_select:
+        return utils.get_schema_path()
+    else:
+        raise ValueError(
+            f"The expected schema directory {schema_dir} does not exist on the system."
+            "Please ensure the file exists or use the `force_select` option, in order"
+            "to auto-select the most recent schema as a fallback."
+        )
+
+
 def validate_bids(
     bids_paths,
     schema_reference_root="/usr/share/bids-schema/",
     schema_version=None,
+    force_select=False,
     debug=False,
 ):
     """
@@ -562,6 +632,8 @@ def validate_bids(
         If the path starts with the string "{module_path}" it will be expanded relative to the
         module path.
         If None, the `dataset_description.json` fie will be queried for the dataset schema version.
+    force_select : bool, optional
+        Whether to fall back to newest version of schema if no version is given or found.
 
     Examples
     --------
@@ -576,7 +648,10 @@ def validate_bids(
                 debug=False)"`
     """
 
-    bids_schema_dir = _get_bids_schema_dir(schema_reference_root, schema_version, debug)
+    if isinstance(bids_paths, str):
+        bids_paths = [bids_paths]
+
+    bids_schema_dir = select_schema_dir(bids_paths, schema_reference_root, schema_version)
     regex_schema = load_all(bids_schema_dir)
     validation_result = validate_all(
         bids_paths,
