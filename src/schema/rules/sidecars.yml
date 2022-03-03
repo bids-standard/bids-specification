@@ -164,8 +164,7 @@ SliceTimingASL:
 SliceTimingSparse:
     selectors:
     - modality == "MRI"
-    # NOTE: This is my idea for "field is defined", but I don't know if it's the best approach.
-    - sidecar.DelayTime != "n/a"
+    - sidecar.DelayTime isDefined
     fields:
         SliceTiming: REQUIRED
 
@@ -181,7 +180,7 @@ MRIRFandContrast:
 MRIFlipAngleLookLocker:
     selectors:
     - modality == "MRI"
-    - sidecar.LookLocker == "true"
+    - sidecar.LookLocker == True
     fields:
         FlipAngle: REQUIRED
 
@@ -233,25 +232,25 @@ MRIAnatomyCommonMetadataFields:
 
 EntitiesTaskMetadata:
     selectors:
-    - entities.task != "n/a"
+    - entities.task isDefined
     fields:
         TaskName: RECOMMENDED
 
 EntitiesCeMetadata:
     selectors:
-    - entities.ce != "n/a"
+    - entities.ce isDefined
     fields:
         ContrastBolusIngredient: OPTIONAL
 
 EntitiesTrcMetadata:
     selectors:
-    - entities.trc != "n/a"
+    - entities.trc isDefined
     fields:
         TracerName: REQUIRED
 
 EntitiesStainMetadata:
     selectors:
-    - entities.stain != "n/a"
+    - entities.stain isDefined
     fields:
         SampleStaining: RECOMMENDED
         SamplePrimaryAntibodies: RECOMMENDED
@@ -259,25 +258,25 @@ EntitiesStainMetadata:
 
 EntitiesEchoMetadata:
     selectors:
-    - entities.echo != "n/a"
+    - entities.echo isDefined
     fields:
         EchoTime: REQUIRED
 
 EntitiesFlipMetadata:
     selectors:
-    - entities.flip != "n/a"
+    - entities.flip isDefined
     fields:
         FlipAngle: REQUIRED
 
 EntitiesInvMetadata:
     selectors:
-    - entities.inv != "n/a"
+    - entities.inv isDefined
     fields:
         InversionTime: REQUIRED
 
 EntitiesMTMetadata:
     selectors:
-    - entities.mt != "n/a"
+    - entities.mt isDefined
     fields:
         MTState: REQUIRED
 
@@ -285,17 +284,19 @@ EntitiesPartMetadata:
     selectors:
     - entities.part == "phase"
     fields:
-        # Can we require Units to be either "rad" or "arbitrary" here?
-        Units: REQUIRED
+        Units:
+            level: REQUIRED
+            rules:
+            - value in ["rad", "arbitrary"]
 
 EntitiesResMetadata:
     selectors:
-    - entities.res != "n/a"
+    - entities.res isDefined
     fields:
         Resolution: REQUIRED
 
 EntitiesDenMetadata:
     selectors:
-    - entities.den != "n/a"
+    - entities.den isDefined
     fields:
         Density: REQUIRED
