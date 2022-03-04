@@ -440,7 +440,7 @@ the [NIDM](http://nidm.nidash.org/) model, and future enhancements to these mode
 iii. If provenance records are included, these records of provenance of a dataset 
 or a file MUST be described using a `[<prefix>_]prov.jsonld` file. 
 Since these [jsonld](https://json-ld.org/) documents are graph objects,
- they can be aggregated without the need to apply any inheritance principle. 
+they can be aggregated without the need to apply any inheritance principle. 
 
 iv. The provenance file MAY be used to reflect the provenance of a dataset, 
 a collection of files or a specific file at any level_of the bids hierarchy. 
