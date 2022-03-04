@@ -201,7 +201,7 @@ which we divide into several categories:
    {
       "TimeZero": "REQUIRED",
       "ScanStart": "REQUIRED",
-      "InjectionStart": ("REQUIRED","This corresponds to DICOM tag (0018,1072) `RadioPharamaceutical Stop Time` converted to seconds relative to TimeZero."),
+      "InjectionStart": ("REQUIRED", "This corresponds to DICOM Tag (0018,1072) `RadioPharamaceutical Stop Time` converted to seconds relative to TimeZero."),
       "FrameTimesStart": "REQUIRED",
       "FrameDuration": "REQUIRED",
       "InjectionEnd": ("RECOMMENDED","This corresponds to DICOM Tag (0018,1073) `Radiopharmaceutical Stop Time` converted to seconds relative to TimeZero."),
