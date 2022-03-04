@@ -204,8 +204,8 @@ which we divide into several categories:
       "InjectionStart": ("REQUIRED", "This corresponds to DICOM Tag (0018,1072) `RadioPharamaceutical Stop Time` converted to seconds relative to TimeZero."),
       "FrameTimesStart": "REQUIRED",
       "FrameDuration": "REQUIRED",
-      "InjectionEnd": ("RECOMMENDED","This corresponds to DICOM Tag (0018,1073) `Radiopharmaceutical Stop Time` converted to seconds relative to TimeZero."),
-      "ScanDate": ("DEPRECATED"," This corresponds to DICOM Tag (0008,0022) `Acquisition Date`."),
+      "InjectionEnd": ("RECOMMENDED", "This corresponds to DICOM Tag (0018,1073) `Radiopharmaceutical Stop Time` converted to seconds relative to TimeZero."),
+      "ScanDate": ("DEPRECATED", "This corresponds to DICOM Tag (0008,0022) `Acquisition Date`."),
    }
 ) }}
 
