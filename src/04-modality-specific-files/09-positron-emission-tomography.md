@@ -155,7 +155,7 @@ which we divide into several categories:
 {{ MACROS___make_metadata_table(
    {
       "TracerName": ("REQUIRED", "Corresponds to DICOM Tags (0008,0105) `Mapping Resource` and (0008,0122) `Mapping Resource Name`."),
-      "TracerRadionuclide": ("REQUIRED","Corresponds to DICOM Tags (0008,0104) `CodeValue` and (0008,0104) `CodeMeaning`."),
+      "TracerRadionuclide": ("REQUIRED", "Corresponds to DICOM Tags (0008,0104) `CodeValue` and (0008,0104) `CodeMeaning`."),
       "InjectedRadioactivity": "REQUIRED",
       "InjectedRadioactivityUnits": "REQUIRED",
       "InjectedMass": "REQUIRED",
