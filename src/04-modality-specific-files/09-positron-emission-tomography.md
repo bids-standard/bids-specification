@@ -186,8 +186,8 @@ which we divide into several categories:
 
 {{ MACROS___make_metadata_table(
    {
-      "PharmaceuticalName": ("RECOMMENDED","Corresponds to DICOM Tags (0008,0034) `Intervention Drug Name`."),
-      "PharmaceuticalDoseAmount": ("RECOMMENDED",Corresponds to DICOM Tags (0008,0028) `Intervention Drug Dose`.),
+      "PharmaceuticalName": ("RECOMMENDED", "Corresponds to DICOM Tag (0008,0034) `Intervention Drug Name`."),
+      "PharmaceuticalDoseAmount": ("RECOMMENDED", "Corresponds to DICOM Tag (0008,0028) `Intervention Drug Dose`."),
       "PharmaceuticalDoseUnits": "RECOMMENDED",
       "PharmaceuticalDoseRegimen": "RECOMMENDED",
       "PharmaceuticalDoseTime": ("RECOMMENDED", "Corresponds to a combination of DICOM Tags (0008,0027) `Intervention Drug Stop Time` and (0008,0035) `Intervention Drug Start Time`."),
