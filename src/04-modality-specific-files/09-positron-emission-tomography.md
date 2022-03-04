@@ -190,7 +190,7 @@ which we divide into several categories:
       "PharmaceuticalDoseAmount": ("RECOMMENDED",Corresponds to DICOM Tags (0008,0028) `Intervention Drug Dose`.),
       "PharmaceuticalDoseUnits": "RECOMMENDED",
       "PharmaceuticalDoseRegimen": "RECOMMENDED",
-      "PharmaceuticalDoseTime": ("RECOMMENDED","Corresponds to a combination of DICOM Tags (0008,0027) `Intervention Drug Stop Time` and (0008,0035) `Intervention Drug Start Time`."),
+      "PharmaceuticalDoseTime": ("RECOMMENDED", "Corresponds to a combination of DICOM Tags (0008,0027) `Intervention Drug Stop Time` and (0008,0035) `Intervention Drug Start Time`."),
       "Anaesthesia": "OPTIONAL",
    }
 ) }}
