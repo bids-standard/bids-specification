@@ -386,7 +386,8 @@ def validate_all(
     results : dict
         A dictionary reporting the target files for validation, the unmatched files and unmatched
         regexes, and optionally the itemwise comparison results.
-        Keys include "schema_tracking", "path_tracking", "path_listing", and, optionally "itemwise"
+        Keys include "schema_tracking", "path_tracking", "path_listing", "match_listing", and
+        optionally "itemwise"
 
     Notes
     -----
@@ -402,6 +403,7 @@ def validate_all(
     if debug:
         itemwise_results = []
     matched = False
+    match_listing = []
     for target_path in paths_list:
         if debug:
             print(f"Checking file `{target_path}`.")
@@ -429,6 +431,9 @@ def validate_all(
             # Might be fragile since it relies on where the loop broke:
             if regex_entry["mandatory"]:
                 tracking_schema.remove(regex_entry)
+            match_entry = matched.groupdict()
+            match_entry["path"] = target_path
+            match_listing.append(match_entry)
         else:
             if debug:
                 print(f"The `{target_path}` file could not be matched to any regex schema entry.")
@@ -439,8 +444,7 @@ def validate_all(
     results["schema_listing"] = regex_schema
     results["path_tracking"] = tracking_paths
     results["path_listing"] = paths_list
-    if matched:
-        results["bids_entities"] = matched.groupdict()
+    results["match_listing"] = match_listing
 
     return results
 
