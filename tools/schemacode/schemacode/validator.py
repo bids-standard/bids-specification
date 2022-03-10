@@ -663,3 +663,5 @@ def validate_bids(
         debug=debug,
     )
     write_report(validation_result)
+
+    return validation_result
