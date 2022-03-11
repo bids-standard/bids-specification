@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[MISC] clarify copyright for logo [#1019](https://github.com/bids-standard/bids-specification/pull/1019) ([sappelhoff](https://github.com/sappelhoff))
 -   \[SCHEMA] Tabular metadata rules for both top and second-level tabular files [#1006](https://github.com/bids-standard/bids-specification/pull/1006) ([TheChymera](https://github.com/TheChymera))
 -   \[ENH] Introduce the atlas entity for derivatives data [#997](https://github.com/bids-standard/bids-specification/pull/997) ([sebastientourbier](https://github.com/sebastientourbier))
 
