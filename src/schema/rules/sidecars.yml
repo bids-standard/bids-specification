@@ -79,7 +79,7 @@ PETRadioChemistry:
             level: RECOMMENDED
         InfusionRadioactivity:
             level: RECOMMENDED
-            addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
+            level_addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
         InfusionStart:
             level: RECOMMENDED
             addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
