@@ -13,27 +13,27 @@ PETScannerHardware:
     fields:
         Manufacturer:
             level: REQUIRED
-            addendum: Corresponds to DICOM Tag 0008, 0070 Manufacturer.
+            level_addendum: Corresponds to DICOM Tag 0008, 0070 Manufacturer.
         ManufacturersModelName:
             level: REQUIRED
-            addendum: Corresponds to DICOM Tag 0008, 1090 Manufacturers Model Name.
+            level_addendum: Corresponds to DICOM Tag 0008, 1090 Manufacturers Model Name.
         Units:
             level: REQUIRED
-            addendum: |
+            level_addendum: |
                 SI unit for radioactivity (Becquerel) should be used (for example, "Bq/mL").
                 Corresponds to DICOM Tag 0054, 1001 Units.
         InstitutionName:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0008, 0080 InstitutionName.
+            level_addendum: Corresponds to DICOM Tag 0008, 0080 InstitutionName.
         InstitutionAddress:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0008, 0081 InstitutionAddress.
+            level_addendum: Corresponds to DICOM Tag 0008, 0081 InstitutionAddress.
         InstitutionalDepartmentName:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0008, 1040 Institutional Department Name.
+            level_addendum: Corresponds to DICOM Tag 0008, 1040 Institutional Department Name.
         BodyPart:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0018, 0015 Body Part Examined.
+            level_addendum: Corresponds to DICOM Tag 0018, 0015 Body Part Examined.
 
 PETRadioChemistry:
     selectors:
@@ -82,16 +82,16 @@ PETRadioChemistry:
             level_addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
         InfusionStart:
             level: RECOMMENDED
-            addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
+            level_addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
         InfusionSpeed:
             level: RECOMMENDED
-            addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
+            level_addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
         InfusionSpeedUnits:
             level: RECOMMENDED
-            addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
+            level_addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
         InjectedVolume:
             level: RECOMMENDED
-            addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
+            level_addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
         Purity:
             level: RECOMMENDED
 
@@ -188,26 +188,26 @@ PETReconstruction:
             level: RECOMMENDED
         SinglesRate:
             level: RECOMMENDED
-            
+
 MRIScannerHardware:
     selectors:
-        - modality == "MRI"
+    - modality == "MRI"
     fields:
         Manufacturer:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
+            level_addendum: Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
         ManufacturersModelName:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
+            level_addendum: Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
         DeviceSerialNumber:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`.
+            level_addendum: Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`.
         StationName:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0008, 1010 `Station Name`.
+            level_addendum: Corresponds to DICOM Tag 0008, 1010 `Station Name`.
         SoftwareVersions:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0018, 1020 `Software Versions`.
+            level_addendum: Corresponds to DICOM Tag 0018, 1020 `Software Versions`.
         HardcopyDeviceSoftwareVersion: DEPRECATED
         MagneticFieldStrength:
             level: RECOMMENDED, but REQUIRED for Arterial Spin Labeling
@@ -220,7 +220,7 @@ MRIScannerHardware:
 
 MRISequenceSpecifics:
     selectors:
-        - modality == "MRI"
+    - modality == "MRI"
     fields:
         PulseSequenceType: RECOMMENDED
         ScanningSequence: RECOMMENDED
@@ -228,7 +228,9 @@ MRISequenceSpecifics:
         ScanOptions: RECOMMENDED
         SequenceName: RECOMMENDED
         PulseSequenceDetails: RECOMMENDED
-        NonlinearGradientCorrection: RECOMMENDED, but REQUIRED if [PET](./09-positron-emission-tomography.md) data are present
+        NonlinearGradientCorrection: |
+            RECOMMENDED, but REQUIRED if [PET](./09-positron-emission-tomography.md)
+            data are present
         MRAcquisitionType: RECOMMENDED, but REQUIRED for Arterial Spin Labeling
         MTState: RECOMMENDED
         MTOffsetFrequency: OPTIONAL
@@ -244,21 +246,21 @@ MRISequenceSpecifics:
 
 PETMRISequenceSpecifics:
     selectors:
-        - modality == "MRI"
-        - "PET" in dataset.modalities
+    - modality == "MRI"
+    - "PET" in dataset.modalities
     fields:
         NonLinearGradientCorrection: REQUIRED
 
 ASLMRISequenceSpecifics:
     selectors:
-        - modality == "MRI"
-        - datatype == "perf"
+    - modality == "MRI"
+    - datatype == "perf"
     fields:
         MRAcquisitionType: REQUIRED
 
 MTParameters:
     selectors:
-        - sidecar.MTState == True
+    - sidecar.MTState == True
     fields:
         MTOffsetFrequency: RECOMMENDED
         MTPulseBandwidth: RECOMMENDED
@@ -268,19 +270,19 @@ MTParameters:
 
 SpoilingType:
     selectors:
-        - sidecar.SpoilingState == True
+    - sidecar.SpoilingState == True
     fields:
         SpoilingType: RECOMMENDED
 
 SpoilingRF:
     selectors:
-        - sidecar.SpoilingType in ["RF", "COMBINED"]
+    - sidecar.SpoilingType in ["RF", "COMBINED"]
     fields:
         SpoilingRFPhaseIncrement: RECOMMENDED
 
 SpoilingGradient:
     selectors:
-        - sidecar.SpoilingType in ["GRADIENT", "COMBINED"]
+    - sidecar.SpoilingType in ["GRADIENT", "COMBINED"]
     fields:
         SpoilingGradientMoment: RECOMMENDED
         SpoilingGradientDuration: RECOMMENDED
