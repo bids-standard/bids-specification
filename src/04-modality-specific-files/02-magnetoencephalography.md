@@ -16,7 +16,10 @@ the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
 
 ## MEG recording data
 
-{{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["meg", "markers", "events"]) }}
+{{ MACROS___make_filename_template(
+   datatypes=["meg"],
+   suffixes=["meg", "markers", "events", "physio", "stim"])
+}}
 
 Unprocessed MEG data MUST be stored in the native file format of the MEG
 instrument with which the data was collected.
@@ -218,14 +221,13 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["channels"]) }}
 
-This file is RECOMMENDED as it provides easily searchable information across
-BIDS datasets for example, general curation, response to queries or batch
-analysis.
-To avoid confusion, the channels SHOULD be listed in the order they
-appear in the MEG data file.
-Missing values MUST be indicated with `n/a`.
+This file is RECOMMENDED as it provides easily searchable information across BIDS datasets.
+For example for general curation, response to queries, or for batch analysis.
+To avoid confusion, the channels SHOULD be listed in the order they appear in the MEG data file.
+Any number of additional columns MAY be added to provide additional information about the channels.
+Missing values MUST be indicated with `"n/a"`.
 
-The columns of the Channels description table stored in `*_channels.tsv` are:
+The columns of the channels description table stored in `*_channels.tsv` are:
 
 MUST be present **in this specific order**:
 

@@ -1,4 +1,4 @@
-site_name: Brain Imaging Data Structure v1.6.1-dev
+site_name: Brain Imaging Data Structure v1.7.1-dev
 site_url: https://bids-specification.readthedocs.io/en/stable/
 theme:
     name: material

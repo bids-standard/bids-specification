@@ -105,6 +105,7 @@
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    echo: optional
     flip: required
     part: optional
 

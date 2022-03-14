@@ -42,3 +42,19 @@
     tracer: optional
     reconstruction: optional
     run: optional
+
+# Timeseries
+- suffixes:
+  - physio
+  - stim
+  extensions:
+  - .tsv.gz
+  - .json
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    tracer: optional
+    reconstruction: optional
+    run: optional
+    recording: optional
