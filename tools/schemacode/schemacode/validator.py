@@ -259,6 +259,9 @@ def load_entities(
     datatypes = my_schema["rules"]["datatypes"]
     entity_order = my_schema["rules"]["entities"]
     entity_definitions = my_schema["objects"]["entities"]
+    # Descriptions are not needed and very large.
+    for i in entity_definitions.values():
+        i.pop('description', None)
 
     # Needed for non-modality file separation as per:
     # https://github.com/bids-standard/bids-specification/pull/985#issuecomment-1019573787
