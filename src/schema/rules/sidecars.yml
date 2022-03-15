@@ -13,27 +13,27 @@ PETScannerHardware:
     fields:
         Manufacturer:
             level: REQUIRED
-            level_addendum: Corresponds to DICOM Tag 0008, 0070 Manufacturer.
+            addendum: Corresponds to DICOM Tag 0008, 0070 Manufacturer.
         ManufacturersModelName:
             level: REQUIRED
-            level_addendum: Corresponds to DICOM Tag 0008, 1090 Manufacturers Model Name.
+            addendum: Corresponds to DICOM Tag 0008, 1090 Manufacturers Model Name.
         Units:
             level: REQUIRED
-            level_addendum: |
+            addendum: |
                 SI unit for radioactivity (Becquerel) should be used (for example, "Bq/mL").
                 Corresponds to DICOM Tag 0054, 1001 Units.
         InstitutionName:
             level: RECOMMENDED
-            level_addendum: Corresponds to DICOM Tag 0008, 0080 InstitutionName.
+            addendum: Corresponds to DICOM Tag 0008, 0080 InstitutionName.
         InstitutionAddress:
             level: RECOMMENDED
-            level_addendum: Corresponds to DICOM Tag 0008, 0081 InstitutionAddress.
+            addendum: Corresponds to DICOM Tag 0008, 0081 InstitutionAddress.
         InstitutionalDepartmentName:
             level: RECOMMENDED
-            level_addendum: Corresponds to DICOM Tag 0008, 1040 Institutional Department Name.
+            addendum: Corresponds to DICOM Tag 0008, 1040 Institutional Department Name.
         BodyPart:
             level: RECOMMENDED
-            level_addendum: Corresponds to DICOM Tag 0018, 0015 Body Part Examined.
+            addendum: Corresponds to DICOM Tag 0018, 0015 Body Part Examined.
 
 PETRadioChemistry:
     selectors:
@@ -195,19 +195,19 @@ MRIScannerHardware:
     fields:
         Manufacturer:
             level: RECOMMENDED
-            level_addendum: Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
+            addendum: Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
         ManufacturersModelName:
             level: RECOMMENDED
-            level_addendum: Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
+            addendum: Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
         DeviceSerialNumber:
             level: RECOMMENDED
-            level_addendum: Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`.
+            addendum: Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`.
         StationName:
             level: RECOMMENDED
-            level_addendum: Corresponds to DICOM Tag 0008, 1010 `Station Name`.
+            addendum: Corresponds to DICOM Tag 0008, 1010 `Station Name`.
         SoftwareVersions:
             level: RECOMMENDED
-            level_addendum: Corresponds to DICOM Tag 0018, 1020 `Software Versions`.
+            addendum: Corresponds to DICOM Tag 0018, 1020 `Software Versions`.
         HardcopyDeviceSoftwareVersion: DEPRECATED
         MagneticFieldStrength:
             level: RECOMMENDED, but REQUIRED for Arterial Spin Labeling
@@ -247,7 +247,7 @@ MRISequenceSpecifics:
 PETMRISequenceSpecifics:
     selectors:
     - modality == "MRI"
-    - "PET" in dataset.modalities
+    - PET in dataset.modalities
     fields:
         NonLinearGradientCorrection: REQUIRED
 
