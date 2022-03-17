@@ -1,5 +1,6 @@
 """Tests for the schemacode package."""
 import os
+import re
 
 import pytest
 
@@ -8,12 +9,26 @@ from schemacode import render
 
 def test_make_entity_definitions(schema_obj):
     schema_text = render.make_entity_definitions(schema_obj)
-    assert "Format: `sub-<label>`" in schema_text
-    assert "Format: `ses-<label>`" in schema_text
-    assert "Format: `sample-<label>`" in schema_text
-    assert "Format: `task-<label>`" in schema_text
-    assert "Format: `acq-<label>`" in schema_text
-    assert "Format: `ce-<label>`" in schema_text
+    expected_formats = [
+        "Format: `sub-<label>`",
+        "Format: `ses-<label>`",
+        "Format: `sample-<label>`",
+        "Format: `task-<label>`",
+        "Format: `acq-<label>`",
+        "Format: `ce-<label>`",
+        "Format: `trc-<label>`",
+        "Format: `stain-<label>`",
+        "Format: `rec-<label>`",
+        "Format: `dir-<label>`",
+        "Format: `run-<index>`",
+        "Format: `mod-<label>`",
+        "Format: `echo-<index>`",
+        "Format: `flip-<index>`",
+        "Format: `inv-<index>`",
+        "Format: `mt-<label>`",
+        ]
+    for expected_format in expected_formats:
+        assert expected_format in schema_text
 
 
 def test_make_glossary(schema_obj, schema_dir):
@@ -38,6 +53,7 @@ def test_make_glossary(schema_obj, schema_dir):
         if line.startswith('<a name="objects.'):
             # Are all objects objects?
             assert any([line.startswith(f'<a name="objects.{i}') for i in object_files])
+            # Are rules loaded incorrectly?
             assert not any([line.startswith(f'<a name="objects.{i}') for i in rules_only])
 
 
@@ -75,3 +91,83 @@ sub-<label>/
             datatype_bases_found += 1
     # Are all datatypes listed?
     assert datatype_bases_found == datatype_count
+
+def test_make_entity_table(schema_obj):
+    entity_table = render.make_entity_table(schema_obj)
+
+    # Non-exhaustive list covering both value and index formats
+    expected_entities = [
+            "[`acq-<label>`](09-entities.md#acq)",
+            "[`ses-<label>`](09-entities.md#ses)",
+            "[`sample-<label>`](09-entities.md#sample)",
+            "[`task-<label>`](09-entities.md#task)",
+            "[`acq-<label>`](09-entities.md#acq)",
+            "[`ce-<label>`](09-entities.md#ce)",
+            "[`trc-<label>`](09-entities.md#trc)",
+            "[`stain-<label>`](09-entities.md#stain)",
+            "[`rec-<label>`](09-entities.md#rec)",
+            "[`dir-<label>`](09-entities.md#dir)",
+            "[`run-<index>`](09-entities.md#run)",
+            ]
+
+    for expected_entity in expected_entities:
+        assert expected_entity in entity_table
+
+def test_make_suffix_table(schema_obj):
+    target_suffixes = [
+            "beh",
+            "cbv",
+            "dwi",
+            ]
+    suffix_table = render.make_suffix_table(schema_obj, target_suffixes)
+
+    expected_names = [
+            "Behavioral recording",
+            "Cerebral blood volume image",
+            "Diffusion-weighted image",
+            ]
+
+    for expected_name in expected_names:
+        assert expected_name in suffix_table
+
+def test_make_metadata_table(schema_obj):
+    target_metadata = {
+            "Authors":"required",
+            "BIDSVersion":"required",
+            "DatasetDOI":"optional",
+            }
+    metadata_table = render.make_metadata_table(schema_obj, target_metadata).split("\n")
+
+    metadata_tracking = list(target_metadata.keys())
+
+    for line in metadata_table:
+        for i in metadata_tracking:
+            if i in line:
+                # Is the requirement level displayed correctly?
+                assert target_metadata[i] in line
+                # Mark found
+                metadata_tracking.remove(i)
+
+    # Have we found all fields?
+    assert len(metadata_tracking) == 0
+
+def test_make_columns_table(schema_obj):
+    target_columns = {
+            "time":"required",
+            "trial_type":"required",
+            "units":"optional",
+            }
+    columns_table = render.make_columns_table(schema_obj, target_columns).split("\n")
+
+    columns_tracking = list(target_columns.keys())
+
+    for line in columns_table:
+        for i in columns_tracking:
+            if i in line:
+                # Is the requirement level displayed correctly?
+                assert target_columns[i] in line
+                # Mark found
+                columns_tracking.remove(i)
+
+    # Have we found all fields?
+    assert len(columns_tracking) == 0
