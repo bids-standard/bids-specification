@@ -9,16 +9,11 @@
 # Metadata for either physio or stim files
 BEHContinuous:
     selectors:
-    - suffix in ["beh", "events"]
+    - suffix in ["physio", "stim"]
     fields:
-        TaskName: RECOMMENDED
-        Instructions: RECOMMENDED
-        TaskDescription: RECOMMENDED
-        CogAtlasID: RECOMMENDED
-        CogPOID: RECOMMENDED
-        InstitutionName: RECOMMENDED
-        InstitutionAddress: RECOMMENDED
-        InstitutionalDepartmentName: RECOMMENDED
+        SamplingFrequency: REQUIRED
+        StartTime: REQUIRED
+        Columns: REQUIRED
 
 # Other RECOMMENDED metadata for physiological data
 BEHPhysio:
