@@ -2293,7 +2293,9 @@ SamplingFrequency:
 ScaleFactor:
   name: ScaleFactor
   description: |
-    Scale factor for each frame. Values must be set if the imaging data (.nii) are unscaled, otherwise set to 1.
+    Scale factor for each frame. This field MUST be defined if the imaging data (.nii[.gz]) are scaled. 
+    If this field is not defined, then it is assumed that the scaling factor is 1. Defining this field 
+    when the scaling factor is 1 is recommended, for the sake of clarity.
   type: array
   items:
     type: number
