@@ -191,5 +191,7 @@ MRIASLM0Scan:
     - datatype == "perf"
     - suffix == "m0scan"
     fields:
-        IntendedFor: REQUIRED
+        IntendedFor:
+            level: REQUIRED
+            addendum: This is used to refer to the ASL time series for which the `*_m0scan.nii[.gz]` is intended.
         AcquisitionVoxelSize: RECOMMENDED
