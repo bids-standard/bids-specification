@@ -26,7 +26,7 @@ def test_make_entity_definitions(schema_obj):
         "Format: `flip-<index>`",
         "Format: `inv-<index>`",
         "Format: `mt-<label>`",
-        ]
+    ]
     for expected_format in expected_formats:
         assert expected_format in schema_text
 
@@ -92,50 +92,53 @@ sub-<label>/
     # Are all datatypes listed?
     assert datatype_bases_found == datatype_count
 
+
 def test_make_entity_table(schema_obj):
     entity_table = render.make_entity_table(schema_obj)
 
     # Non-exhaustive list covering both value and index formats
     expected_entities = [
-            "[`acq-<label>`](09-entities.md#acq)",
-            "[`ses-<label>`](09-entities.md#ses)",
-            "[`sample-<label>`](09-entities.md#sample)",
-            "[`task-<label>`](09-entities.md#task)",
-            "[`acq-<label>`](09-entities.md#acq)",
-            "[`ce-<label>`](09-entities.md#ce)",
-            "[`trc-<label>`](09-entities.md#trc)",
-            "[`stain-<label>`](09-entities.md#stain)",
-            "[`rec-<label>`](09-entities.md#rec)",
-            "[`dir-<label>`](09-entities.md#dir)",
-            "[`run-<index>`](09-entities.md#run)",
-            ]
+        "[`acq-<label>`](09-entities.md#acq)",
+        "[`ses-<label>`](09-entities.md#ses)",
+        "[`sample-<label>`](09-entities.md#sample)",
+        "[`task-<label>`](09-entities.md#task)",
+        "[`acq-<label>`](09-entities.md#acq)",
+        "[`ce-<label>`](09-entities.md#ce)",
+        "[`trc-<label>`](09-entities.md#trc)",
+        "[`stain-<label>`](09-entities.md#stain)",
+        "[`rec-<label>`](09-entities.md#rec)",
+        "[`dir-<label>`](09-entities.md#dir)",
+        "[`run-<index>`](09-entities.md#run)",
+    ]
 
     for expected_entity in expected_entities:
         assert expected_entity in entity_table
 
+
 def test_make_suffix_table(schema_obj):
     target_suffixes = [
-            "beh",
-            "cbv",
-            "dwi",
-            ]
+        "beh",
+        "cbv",
+        "dwi",
+    ]
     suffix_table = render.make_suffix_table(schema_obj, target_suffixes)
 
     expected_names = [
-            "Behavioral recording",
-            "Cerebral blood volume image",
-            "Diffusion-weighted image",
-            ]
+        "Behavioral recording",
+        "Cerebral blood volume image",
+        "Diffusion-weighted image",
+    ]
 
     for expected_name in expected_names:
         assert expected_name in suffix_table
 
+
 def test_make_metadata_table(schema_obj):
     target_metadata = {
-            "Authors":"required",
-            "BIDSVersion":"required",
-            "DatasetDOI":"optional",
-            }
+        "Authors": "required",
+        "BIDSVersion": "required",
+        "DatasetDOI": "optional",
+    }
     metadata_table = render.make_metadata_table(schema_obj, target_metadata).split("\n")
 
     metadata_tracking = list(target_metadata.keys())
@@ -151,12 +154,13 @@ def test_make_metadata_table(schema_obj):
     # Have we found all fields?
     assert len(metadata_tracking) == 0
 
+
 def test_make_columns_table(schema_obj):
     target_columns = {
-            "time":"required",
-            "trial_type":"required",
-            "units":"optional",
-            }
+        "time": "required",
+        "trial_type": "required",
+        "units": "optional",
+    }
     columns_table = render.make_columns_table(schema_obj, target_columns).split("\n")
 
     columns_tracking = list(target_columns.keys())
