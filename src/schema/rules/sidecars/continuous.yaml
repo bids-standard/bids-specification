@@ -7,7 +7,7 @@
 
 ---
 # Metadata for either physio or stim files
-BEHContinuous:
+Continuous:
     selectors:
     - suffix in ["physio", "stim"]
     fields:
@@ -16,7 +16,7 @@ BEHContinuous:
         Columns: REQUIRED
 
 # Other RECOMMENDED metadata for physiological data
-BEHPhysio:
+Physio:
     selectors:
     - suffix == "physio"
     fields:

@@ -6,8 +6,8 @@
 
 
 ---
-# Metadata for either physio or stim files
-BEHContinuous:
+# Metadata for either beh or events files
+BEHTabularData:
     selectors:
     - suffix in ["beh", "events"]
     fields:
@@ -19,13 +19,3 @@ BEHContinuous:
         InstitutionName: RECOMMENDED
         InstitutionAddress: RECOMMENDED
         InstitutionalDepartmentName: RECOMMENDED
-
-# Other RECOMMENDED metadata for physiological data
-BEHPhysio:
-    selectors:
-    - suffix == "physio"
-    fields:
-        Manufacturer: RECOMMENDED
-        ManufacturersModelName: RECOMMENDED
-        SoftwareVersions: RECOMMENDED
-        DeviceSerialNumber: RECOMMENDED
