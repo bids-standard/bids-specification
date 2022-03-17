@@ -1,0 +1,29 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+
+---
+# Metadata for either physio or stim files
+BEHContinuous:
+    selectors:
+    - modality == "BEH"
+    - datatype == "beh"
+    fields:
+        SamplingFrequency: REQUIRED
+        StartTime: REQUIRED
+        Columns: REQUIRED
+
+# Other RECOMMENDED metadata for physiological data
+BEHPhysio:
+    selectors:
+    - modality == "MRI"
+    - datatype == "dwi"
+    - suffix == "physio"
+    fields:
+        Manufacturer: RECOMMENDED
+        ManufacturersModelName: RECOMMENDED
+        SoftwareVersions: RECOMMENDED
+        DeviceSerialNumber: RECOMMENDED
