@@ -64,7 +64,7 @@ MRISequenceSpecifics:
 PETMRISequenceSpecifics:
     selectors:
     - modality == "MRI"
-    - PET in dataset.modalities
+    - dataset.modalities contains "PET"
     fields:
         NonLinearGradientCorrection: REQUIRED
 
@@ -164,7 +164,7 @@ SliceTimingASL:
 SliceTimingSparse:
     selectors:
     - modality == "MRI"
-    - sidecar.DelayTime isDefined
+    - sidecar contains "DelayTime"
     fields:
         SliceTiming: REQUIRED
 
@@ -232,25 +232,25 @@ MRIAnatomyCommonMetadataFields:
 
 EntitiesTaskMetadata:
     selectors:
-    - entities.task isDefined
+    - entities contains "task"
     fields:
         TaskName: RECOMMENDED
 
 EntitiesCeMetadata:
     selectors:
-    - entities.ce isDefined
+    - entities contains "ce"
     fields:
         ContrastBolusIngredient: OPTIONAL
 
 EntitiesTrcMetadata:
     selectors:
-    - entities.trc isDefined
+    - entities contains "trc"
     fields:
         TracerName: REQUIRED
 
 EntitiesStainMetadata:
     selectors:
-    - entities.stain isDefined
+    - entities contains "stain"
     fields:
         SampleStaining: RECOMMENDED
         SamplePrimaryAntibodies: RECOMMENDED
@@ -258,25 +258,25 @@ EntitiesStainMetadata:
 
 EntitiesEchoMetadata:
     selectors:
-    - entities.echo isDefined
+    - entities contains "echo"
     fields:
         EchoTime: REQUIRED
 
 EntitiesFlipMetadata:
     selectors:
-    - entities.flip isDefined
+    - entities contains "flip"
     fields:
         FlipAngle: REQUIRED
 
 EntitiesInvMetadata:
     selectors:
-    - entities.inv isDefined
+    - entities contains "inv"
     fields:
         InversionTime: REQUIRED
 
 EntitiesMTMetadata:
     selectors:
-    - entities.mt isDefined
+    - entities contains "mt"
     fields:
         MTState: REQUIRED
 
@@ -291,12 +291,12 @@ EntitiesPartMetadata:
 
 EntitiesResMetadata:
     selectors:
-    - entities.res isDefined
+    - entities contains "res"
     fields:
         Resolution: REQUIRED
 
 EntitiesDenMetadata:
     selectors:
-    - entities.den isDefined
+    - entities contains "den"
     fields:
         Density: REQUIRED
