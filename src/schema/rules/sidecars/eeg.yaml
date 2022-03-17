@@ -115,7 +115,7 @@ EEGCoordsystemOther:
         EEGCoordinateSystemDescription: REQUIRED
 
 # Fields relating to the position of fiducials measured during an EEG session/run
-EEGCoordsystemOther:
+EEGCoordsystemFiducials:
     selectors:
     - modality == "eeg"
     - datatype == "eeg"
@@ -154,7 +154,7 @@ EEGCoordsystemLandmark:
             level: RECOMMENDED
             level_addendum: REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `"Other"`
 
-EEGCoordsystemLandmark:
+EEGCoordsystemAnatomicalLandmarkCoordinateSystemDescription:
     selectors:
     - modality == "eeg"
     - datatype == "eeg"

@@ -87,7 +87,7 @@ iEEGMoreRecommended:
         SubjectArtefactDescription: RECOMMENDED
 
 # Specific iEEG fields MAY be present
-iEEGMoreRecommended:
+iEEGOptional:
     selectors:
     - modality == "ieeg"
     - datatype == "ieeg"
@@ -97,7 +97,7 @@ iEEGMoreRecommended:
         ElectricalStimulationParameters: OPTIONAL
 
 # General fields
-EEGCoordsystemGeneral:
+iEEGCoordsystemGeneral:
     selectors:
     - modality == "ieeg"
     - datatype == "ieeg"
