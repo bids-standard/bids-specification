@@ -6,9 +6,10 @@
 
 
 ---
+# MRI Common metadata fields
 MRIScannerHardware:
     selectors:
-        - modality == "MRI"
+    - modality == "MRI"
     fields:
         Manufacturer:
             level: RECOMMENDED
@@ -37,7 +38,7 @@ MRIScannerHardware:
 
 MRISequenceSpecifics:
     selectors:
-        - modality == "MRI"
+    - modality == "MRI"
     fields:
         PulseSequenceType: RECOMMENDED
         ScanningSequence: RECOMMENDED
@@ -45,7 +46,8 @@ MRISequenceSpecifics:
         ScanOptions: RECOMMENDED
         SequenceName: RECOMMENDED
         PulseSequenceDetails: RECOMMENDED
-        NonlinearGradientCorrection: RECOMMENDED, but REQUIRED if [PET](./09-positron-emission-tomography.md) data are present
+        NonlinearGradientCorrection: |
+            RECOMMENDED, but REQUIRED if [PET](./09-positron-emission-tomography.md) data are present
         MRAcquisitionType: RECOMMENDED, but REQUIRED for Arterial Spin Labeling
         MTState: RECOMMENDED
         MTOffsetFrequency: OPTIONAL
@@ -61,21 +63,21 @@ MRISequenceSpecifics:
 
 PETMRISequenceSpecifics:
     selectors:
-        - modality == "MRI"
-        - "PET" in dataset.modalities
+    - modality == "MRI"
+    - dataset.modalities contains "PET"
     fields:
         NonLinearGradientCorrection: REQUIRED
 
 ASLMRISequenceSpecifics:
     selectors:
-        - modality == "MRI"
-        - datatype == "perf"
+    - modality == "MRI"
+    - datatype == "perf"
     fields:
         MRAcquisitionType: REQUIRED
 
 MTParameters:
     selectors:
-        - sidecar.MTState == True
+    - sidecar.MTState == True
     fields:
         MTOffsetFrequency: RECOMMENDED
         MTPulseBandwidth: RECOMMENDED
@@ -85,19 +87,216 @@ MTParameters:
 
 SpoilingType:
     selectors:
-        - sidecar.SpoilingState == True
+    - sidecar.SpoilingState == True
     fields:
         SpoilingType: RECOMMENDED
 
 SpoilingRF:
     selectors:
-        - sidecar.SpoilingType in ["RF", "COMBINED"]
+    - sidecar.SpoilingType in ["RF", "COMBINED"]
     fields:
         SpoilingRFPhaseIncrement: RECOMMENDED
 
 SpoilingGradient:
     selectors:
-        - sidecar.SpoilingType in ["GRADIENT", "COMBINED"]
+    - sidecar.SpoilingType in ["GRADIENT", "COMBINED"]
     fields:
         SpoilingGradientMoment: RECOMMENDED
         SpoilingGradientDuration: RECOMMENDED
+
+MRISpatialEncoding:
+    selectors:
+    - modality == "MRI"
+    fields:
+        NumberShots: RECOMMENDED
+        ParallelReductionFactorInPlane: RECOMMENDED
+        ParallelAcquisitionTechnique: RECOMMENDED
+        PartialFourier: RECOMMENDED
+        PartialFourierDirection: RECOMMENDED
+        PhaseEncodingDirection:
+            level: RECOMMENDED
+            level_addendum: |
+                This parameter is REQUIRED if corresponding fieldmap data is present
+                or when using multiple runs with different phase encoding directions
+                (which can be later used for field inhomogeneity correction).
+        EffectiveEchoSpacing:
+            level: RECOMMENDED
+            level_addendum: |
+                <sup>2</sup> This parameter is REQUIRED if corresponding fieldmap data
+                is present.
+        TotalReadoutTime:
+            level: RECOMMENDED
+            level_addendum: |
+                <sup>3</sup> This parameter is REQUIRED if corresponding 'field/distortion' maps
+                acquired with opposing phase encoding directions are present
+                (see [Case 4: Multiple phase encoded
+                directions](#case-4-multiple-phase-encoded-directions-pepolar)).
+        MixingTime: RECOMMENDED
+
+MRITimingParameters:
+    selectors:
+    - modality == "MRI"
+    fields:
+        EchoTime:
+            level: RECOMMENDED
+            level_addendum: |
+                REQUIRED if corresponding fieldmap data is present,
+                or the data comes from a multi-echo sequence or Arterial Spin Labeling.
+        InversionTime: RECOMMENDED
+        SliceTiming:
+            level: RECOMMENDED
+            level_addendum: |
+                REQUIRED for sparse sequences that do not have the `DelayTime` field set,
+                and Arterial Spin Labeling with `MRAcquisitionType` set on `2D`.
+        SliceEncodingDirection: RECOMMENDED
+        DwellTime: RECOMMENDED
+
+SliceTimingASL:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix in ["asl", "m0scan"]
+    - sidecar.MRAcquisitionType == "2D"
+    fields:
+        SliceTiming: REQUIRED
+
+# This is technically for sparse sequences only, but I don't know how to encode that.
+SliceTimingSparse:
+    selectors:
+    - modality == "MRI"
+    - sidecar contains "DelayTime"
+    fields:
+        SliceTiming: REQUIRED
+
+MRIRFandContrast:
+    selectors:
+    - modality == "MRI"
+    fields:
+        FlipAngle:
+            level: RECOMMENDED
+            level_addendum: REQUIRED if LookLocker is set to `true`.
+        NegativeContrast: OPTIONAL
+
+MRIFlipAngleLookLocker:
+    selectors:
+    - modality == "MRI"
+    - sidecar.LookLocker == True
+    fields:
+        FlipAngle: REQUIRED
+
+MRISliceAcceleration:
+    selectors:
+    - modality == "MRI"
+    fields:
+        MultibandAccelerationFactor: RECOMMENDED
+
+MRIAnatomicalLandmarks:
+    selectors:
+    - modality == "MRI"
+    fields:
+        AnatomicalLandmarkCoordinates__mri: RECOMMENDED
+
+MRIEchoPlanarImagingAndB0Mapping:
+    selectors:
+    - modality == "MRI"
+    fields:
+        B0FieldIdentifier: RECOMMENDED
+        B0FieldSource: RECOMMENDED
+
+MRIInstitutionInformation:
+    selectors:
+    - modality == "MRI"
+    fields:
+        InstitutionName:
+            level: RECOMMENDED
+            addendum: Corresponds to DICOM Tag 0008, 0080 `InstitutionName`.
+        InstitutionAddress:
+            level: RECOMMENDED
+            addendum: Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`.
+        InstitutionalDepartmentName:
+            level: RECOMMENDED
+            addendum: Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.
+
+# Anatomy imaging data
+
+MRIAnatomyCommonMetadataFields:
+    selectors:
+    - modality == "MRI"
+    - datatype == "anat"
+    fields:
+        ContrastBolusIngredient: OPTIONAL
+        RepetitionTimeExcitation: OPTIONAL
+        RepetitionTimePreparation: OPTIONAL
+
+# Entities
+
+EntitiesTaskMetadata:
+    selectors:
+    - entities contains "task"
+    fields:
+        TaskName: RECOMMENDED
+
+EntitiesCeMetadata:
+    selectors:
+    - entities contains "ce"
+    fields:
+        ContrastBolusIngredient: OPTIONAL
+
+EntitiesTrcMetadata:
+    selectors:
+    - entities contains "trc"
+    fields:
+        TracerName: REQUIRED
+
+EntitiesStainMetadata:
+    selectors:
+    - entities contains "stain"
+    fields:
+        SampleStaining: RECOMMENDED
+        SamplePrimaryAntibodies: RECOMMENDED
+        SampleSecondaryAntibodies: RECOMMENDED
+
+EntitiesEchoMetadata:
+    selectors:
+    - entities contains "echo"
+    fields:
+        EchoTime: REQUIRED
+
+EntitiesFlipMetadata:
+    selectors:
+    - entities contains "flip"
+    fields:
+        FlipAngle: REQUIRED
+
+EntitiesInvMetadata:
+    selectors:
+    - entities contains "inv"
+    fields:
+        InversionTime: REQUIRED
+
+EntitiesMTMetadata:
+    selectors:
+    - entities contains "mt"
+    fields:
+        MTState: REQUIRED
+
+EntitiesPartMetadata:
+    selectors:
+    - entities.part == "phase"
+    fields:
+        Units:
+            level: REQUIRED
+            rules:
+            - value in ["rad", "arbitrary"]
+
+EntitiesResMetadata:
+    selectors:
+    - entities contains "res"
+    fields:
+        Resolution: REQUIRED
+
+EntitiesDenMetadata:
+    selectors:
+    - entities contains "den"
+    fields:
+        Density: REQUIRED
