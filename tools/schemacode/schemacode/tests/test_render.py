@@ -1,8 +1,5 @@
 """Tests for the schemacode package."""
 import os
-import re
-
-import pytest
 
 from schemacode import render
 
@@ -45,7 +42,6 @@ def test_make_glossary(schema_obj, schema_dir):
             for rule_file in files:
                 rule_base, _ = os.path.splitext(rule_file)
                 rule_files.append(rule_base)
-    objects_only = list(filter(lambda a: a not in rule_files, object_files))
     rules_only = list(filter(lambda a: a not in object_files, rule_files))
 
     glossary = render.make_glossary(schema_obj)
