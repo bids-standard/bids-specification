@@ -61,7 +61,7 @@ MicroscopySample:
       SampleExtractionInstitution: OPTIONAL
 
 # Chunk Transformations
-MicroscopySample:
+MicroscopyChunkTransformations:
     selectors:
     - modality == "MICR"
     - datatype == "micr"
@@ -69,7 +69,7 @@ MicroscopySample:
     fields:
         ChunkTransformationMatrix: RECOMMENDED
 
-MicroscopySample:
+MicroscopyChunkTransformationsMatrixAxis:
     selectors:
     - modality == "MICR"
     - datatype == "micr"
