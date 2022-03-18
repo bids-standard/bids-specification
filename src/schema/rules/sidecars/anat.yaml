@@ -1,0 +1,18 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+
+---
+# Anatomy imaging data
+
+MRIAnatomyCommonMetadataFields:
+    selectors:
+    - modality == "MRI"
+    - datatype == "anat"
+    fields:
+        ContrastBolusIngredient: OPTIONAL
+        RepetitionTimeExcitation: OPTIONAL
+        RepetitionTimePreparation: OPTIONAL
