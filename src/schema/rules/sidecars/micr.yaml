@@ -1,0 +1,79 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+
+---
+# Device Hardware
+MicroscopyDeviceHardware:
+    selectors:
+    - modality == "MICR"
+    - datatype == "micr"
+    fields:
+        Manufacturer: RECOMMENDED
+        ManufacturersModelName: RECOMMENDED
+        DeviceSerialNumber: RECOMMENDED
+        StationName: RECOMMENDED
+        SoftwareVersions: RECOMMENDED
+        InstitutionName: RECOMMENDED
+        InstitutionAddress: RECOMMENDED
+        InstitutionalDepartmentName: RECOMMENDED
+
+# Image Acquisition
+MicroscopyImageAcquisition:
+    selectors:
+    - modality == "MICR"
+    - datatype == "micr"
+    fields:
+        PixelSize: REQUIRED
+        PixelSizeUnits: REQUIRED
+        Immersion: OPTIONAL
+        NumericalAperture: OPTIONAL
+        Magnification: OPTIONAL
+        ImageAcquisitionProtocol: OPTIONAL
+        OtherAcquisitionParameters: OPTIONAL
+
+# Sample
+MicroscopySample:
+    selectors:
+    - modality == "MICR"
+    - datatype == "micr"
+    fields:
+        BodyPart:
+            level: RECOMMENDED
+            addendum: |
+                From [DICOM Body Part Examined](http://dicom.nema.org/medical/dicom/current/
+                output/chtml/part16/chapter_L.html#chapter_L)
+                (for example `"BRAIN"`).
+      BodyPartDetails: RECOMMENDED
+      BodyPartDetailsOntology: OPTIONAL
+      SampleEnvironment: RECOMMENDED
+      SampleEmbedding: OPTIONAL
+      SampleFixation: OPTIONAL
+      SampleStaining: RECOMMENDED
+      SamplePrimaryAntibody: RECOMMENDED
+      SampleSecondaryAntibody: RECOMMENDED
+      SliceThickness: OPTIONAL
+      TissueDeformationScaling: OPTIONAL
+      SampleExtractionProtocol: OPTIONAL
+      SampleExtractionInstitution: OPTIONAL
+
+# Chunk Transformations
+MicroscopySample:
+    selectors:
+    - modality == "MICR"
+    - datatype == "micr"
+    - entities contains "chunk"
+    fields:
+        ChunkTransformationMatrix: RECOMMENDED
+
+MicroscopySample:
+    selectors:
+    - modality == "MICR"
+    - datatype == "micr"
+    - entities contains "chunk"
+    - sidecar contains "ChunkTransformationMatrix"
+    fields:
+        ChunkTransformationMatrixAxis: REQUIRED
