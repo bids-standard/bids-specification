@@ -247,7 +247,7 @@ MRISequenceSpecifics:
 PETMRISequenceSpecifics:
     selectors:
     - modality == "MRI"
-    - PET in dataset.modalities
+    - dataset.modalities contains "PET"
     fields:
         NonLinearGradientCorrection: REQUIRED
 
