@@ -37,7 +37,7 @@ units are expressed in mm.
 
 The coordinate systems below all relate to neuroscience and therefore to the
 head or brain coordinates.
-$Please be aware that all data acquisition starts with
+Please be aware that all data acquisition starts with
 "device coordinates" (scanner), which does not have to be identical to the
 initial "file format coordinates" (DICOM), which are again different from the
 "head" coordinates (for example, NIFTI).
@@ -194,6 +194,8 @@ Unless specified explicitly in the sidecar file in the
 `<CoordSysType>CoordinateUnits` field, the units are assumed to be mm.
 
 ### Standard template identifiers
+
+All BIDS standard template coordinate system data should be in ``scanner`` coordinates of the T1w template image with units corresponding to `<CoordSysType>CoordinateUnits`.
 
 | **Coordinate System**              | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | **Used by**              | **Reference**                                                                                                                      |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
