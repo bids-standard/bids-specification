@@ -363,7 +363,7 @@ source env/bin/activate
 ```
 
 Note however, that this will create a local directory called `env` within the bids-specification directory.
-Make sure not to commit that directory (your environment) when adding  and committing your changes via `git`
+Make sure not to commit that directory (your environment) when adding and committing your changes via `git`
 (this is not a problem when using `conda`, because `conda` saves the environment in a different place).
 
 Once you have activated your isolated Python environment,
