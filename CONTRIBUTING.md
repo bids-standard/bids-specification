@@ -358,7 +358,7 @@ Or alternatively using `venv`, as described in this [Real Python tutorial](https
 A short version of the commands needed to create and activate your `venv` virtual environment would look like:
 
 ```bash
-python3 -m venv env
+python -m venv env
 source env/bin/activate
 ```
 
