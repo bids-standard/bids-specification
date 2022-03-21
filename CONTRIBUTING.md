@@ -319,6 +319,8 @@ This location will have the same files you see on our
 Note that a file browser window may not show the hidden files
 (those that start with a period, like `.remarkrc`).
 
+Enter all commands below from the command line prompt located at the root of the local version of the specification.
+
 #### 3. Install mkdocs, the material theme and the required extensions
 
 In the following links, you can find more information about
