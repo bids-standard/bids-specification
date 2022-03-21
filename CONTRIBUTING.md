@@ -346,7 +346,7 @@ To install all of this make sure you have a recent version of Python on your com
 The [DataLad Handbook](http://handbook.datalad.org/en/latest/intro/installation.html#python-3-all-operating-systems) provides helpful instructions for setting up Python.
 
 In general, we strongly recommend that you install all dependencies in an isolated Python environment.
-For example using `conda`, as described in the section on Python in the DataLad Handbook, linked above.
+For example using `conda`, as described in this [Geohackweek tutorial](https://geohackweek.github.io/Introductory/01-conda-tutorial/).
 
 ```bash
 conda create --name bids-spec
