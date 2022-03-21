@@ -312,7 +312,11 @@ This can be done by clicking the green button on the right titled "Clone or
 download"
 or using [this link](https://github.com/bids-standard/bids-specification/archive/master.zip).
 
-Or you can use the following git command in a terminal: `git clone https://github.com/bids-standard/bids-specification.git`.
+Or you can use the following `git` command in a terminal:
+
+```bash
+git clone https://github.com/bids-standard/bids-specification.git
+```
 
 #### 2. In the terminal (command line) navigate to your local version of the specification
 
@@ -321,7 +325,11 @@ This location will have the same files you see on our
 Note that a file browser window may not show the hidden files
 (those that start with a period, like `.remarkrc`).
 
-If you cloned the repository using the git command above, you can then just do: `cd bids-specification`.
+If you cloned the repository using the `git` command above, you can then just do:
+
+```bash
+cd bids-specification
+```
 
 Enter all commands below from the command line prompt located at the root of the local version of the specification.
 
@@ -343,7 +351,7 @@ For example using `conda`, as described in the section on Python in the DataLad 
 ```bash
 conda create --name bids-spec
 conda activate bids-spec
-.```
+```
 
 Or alternatively using `venv`, as described in this [Real Python tutorial](https://realpython.com/python-virtual-environments-a-primer/).
 
@@ -352,8 +360,11 @@ A short version of the commands needed to create and activate your `venv` virtua
 ```bash
 python3 -m venv env
 source env/bin/activate
-.```
+```
 
+Note however, that this will create a local directory called `env` within the bids-specification directory.
+Make sure not to commit that directory (your environment) when adding  and committing your changes via `git`
+(this is not a problem when using `conda`, because `conda` saves the environment in a different place).
 
 Once you have activated your isolated Python environment,
 an easy way to install the correct version of mkdocs and all the other required extensions
