@@ -312,12 +312,16 @@ This can be done by clicking the green button on the right titled "Clone or
 download"
 or using [this link](https://github.com/bids-standard/bids-specification/archive/master.zip).
 
+Or you can use the following git command in a terminal: `git clone https://github.com/bids-standard/bids-specification.git`.
+
 #### 2. In the terminal (command line) navigate to your local version of the specification
 
 This location will have the same files you see on our
 [main specification page](https://github.com/bids-standard/bids-specification).
 Note that a file browser window may not show the hidden files
 (those that start with a period, like `.remarkrc`).
+
+If you cloned the repository using the git command above, you can then just do: `cd bids-specification`.
 
 Enter all commands below from the command line prompt located at the root of the local version of the specification.
 
@@ -335,7 +339,21 @@ The [DataLad Handbook](http://handbook.datalad.org/en/latest/intro/installation.
 
 In general, we strongly recommend that you install all dependencies in an isolated Python environment.
 For example using `conda`, as described in the section on Python in the DataLad Handbook, linked above.
+
+```bash
+conda create --name bids-spec
+conda activate bids-spec
+.```
+
 Or alternatively using `venv`, as described in this [Real Python tutorial](https://realpython.com/python-virtual-environments-a-primer/).
+
+A short version of the commands needed to create and activate your `venv` virtual environment would look like:
+
+```bash
+python3 -m venv env
+source env/bin/activate
+.```
+
 
 Once you have activated your isolated Python environment,
 an easy way to install the correct version of mkdocs and all the other required extensions
