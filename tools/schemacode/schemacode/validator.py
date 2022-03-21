@@ -66,6 +66,12 @@ def _get_paths(bids_paths):
                 file_path = os.path.join(root, file_name)
                 # This will need to be replaced with bids root finding.
                 path_list.append(file_path)
+
+    # Standardize Windows paths
+    if "\\" in path_list[0]:
+        for ix, i in enumerate(path_list):
+            path_list[ix] = i.replace("\\","/")
+
     return path_list
 
 
