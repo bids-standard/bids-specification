@@ -362,9 +362,8 @@ python3 -m venv env
 source env/bin/activate
 ```
 
-Note however, that this will create a local directory called `env` within the bids-specification directory.
-Make sure not to commit that directory (your environment) when adding and committing your changes via `git`
-(this is not a problem when using `conda`, because `conda` saves the environment in a different place).
+Note that this will create a local directory called `env` within the bids-specification directory
+but that its content will not be tracked by `git` because it is listed in the `.gitignore` file.
 
 Once you have activated your isolated Python environment,
 an easy way to install the correct version of mkdocs and all the other required extensions
