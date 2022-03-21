@@ -306,7 +306,20 @@ before you insert the macro call into the markdown document.
 We are using mkdocs to render our specification.
 Please follow these instructions if you would like to build the specification locally.
 
-#### 1. Install mkdocs, the material theme and the required extensions
+#### 1. Download the BIDS specification [repository](https://github.com/bids-standard/bids-specification/tree/master) onto your computer
+
+This can be done by clicking the green button on the right titled "Clone or
+download"
+or using [this link](https://github.com/bids-standard/bids-specification/archive/master.zip).
+
+#### 2. In the terminal (command line) navigate to your local version of the specification
+
+This location will have the same files you see on our
+[main specification page](https://github.com/bids-standard/bids-specification).
+Note that a file browser window may not show the hidden files
+(those that start with a period, like `.remarkrc`).
+
+#### 3. Install mkdocs, the material theme and the required extensions
 
 In the following links, you can find more information about
 
@@ -318,40 +331,21 @@ You will also need several other mkdocs plugins, like `branchcustomization` and 
 To install all of this make sure you have a recent version of Python on your computer.
 The [DataLad Handbook](http://handbook.datalad.org/en/latest/intro/installation.html#python-3-all-operating-systems) provides helpful instructions for setting up Python.
 
-An easy way to install the correct version of mkdocs and all the other required extensions
-is to use the `requirements.txt` file contained in this repository,
-by using the following command:
+In general, we strongly recommend that you install all dependencies in an isolated Python environment.
+For example using `conda`, as described in the section on Python in the DataLad Handbook, linked above.
+Or alternatively using `venv`, as described in this [Real Python tutorial](https://realpython.com/python-virtual-environments-a-primer/).
+
+Once you have activated your isolated Python environment,
+an easy way to install the correct version of mkdocs and all the other required extensions
+is to use the `requirements.txt` file contained in this repository as follows:
 
 ```bash
+pip install -U pip
 pip install -r requirements.txt
 ```
 
-However this will also install some other packages you might not want to have (like `numpy`).
-So if you only want to install what you need to build the specification,
-use the following command:
-
-```bash
-pip install \
- mkdocs \
- mkdocs-material \
- pymdown-extensions \
- mkdocs-branchcustomization-plugin \
- mkdocs-macros-plugin \
- tabulate
-```
-
-#### 2. Download the BIDS specification [repository](https://github.com/bids-standard/bids-specification/tree/master) onto your computer
-
-This can be done by clicking the green button on the right titled "Clone or
-download"
-or using [this link](https://github.com/bids-standard/bids-specification/archive/master.zip).
-
-#### 3. In the terminal (command line) navigate to your local version of the specification
-
-This location will have the same files you see on our
-[main specification page](https://github.com/bids-standard/bids-specification).
-Note: A finder window may not show the hidden files (those that start with a
-period, like `.remarkrc`)
+The first command ensures you are using an up to date version of `pip`,
+and the second command installs all dependencies.
 
 #### 4. Ready to build!
 
