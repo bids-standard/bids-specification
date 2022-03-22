@@ -160,6 +160,12 @@
   name: Portable Network Graphics
   description: |
     A [Portable Network Graphics](http://www.libpng.org/pub/png/) file.
+.pos:
+  name: Head Point Position
+  description: |
+    File containing digitized positions of the head points.
+
+    This may be produced by a 4D neuroimaging/BTi MEG system or a CTF MEG system.
 .raw:
   name: RAW
   description: |
