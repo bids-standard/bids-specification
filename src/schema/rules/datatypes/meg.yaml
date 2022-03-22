@@ -58,7 +58,7 @@
 - suffixes:
   - headshape
   extensions:
-  - "*"
+  - .*
   entities:
     subject: required
     session: optional
