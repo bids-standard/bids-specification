@@ -1,6 +1,6 @@
 ---
 # This file describes valid file extensions in the specification.
-"*":
+.*:
   name: Any Extension
   description: |
     Any extension is allowed.
