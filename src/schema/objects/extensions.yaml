@@ -20,50 +20,71 @@
   name: Text
   description: |
     A text file.
+.chn:
+  name: Text
+  description: |
+    A text file.
 .dat:
   name: Text
   description: |
     A text file.
 .ds/:
-  name: Text
+  name: CTF MEG Dataset Folder
   description: |
-    A text file.
+    A folder for MEG data, typically containing a `.meg4` file for the data and a `.res4` file for the resources.
 .edf:
-  name: Text
+  name: European Data Format
   description: |
-    A text file.
+    A [European data format](https://www.edfplus.info/) file.
+
+    Each recording consists of a single `.edf`` file.
+    [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted.
+    The capital `.EDF` extension MUST NOT be used.
 .eeg:
-  name: Text
+  name: BrainVision Binary Data
   description: |
-    A text file.
+    A binary data file in the
+    [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5).
+    These files come in three-file sets, including a `.vhdr`, a `.vmrk`, and a `.eeg` file.
 .fdt:
-  name: Text
+  name: EEGLAB FDT
   description: |
-    A text file.
+    A [EEGLAB](https://sccn.ucsd.edu/eeglab) file.
+
+    The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab).
+    Each recording consists of a `.set` file with an optional `.fdt` file.
 .fif:
-  name: Text
+  name: Functional Imaging File Format
   description: |
-    A text file.
+    An MEG file format used by Neuromag, Elekta, and MEGIN.
 .jpg:
-  name: Text
+  name: Joint Photographic Experts Group Format
   description: |
-    A text file.
+    A JPEG image file.
 .json:
-  name: Text
+  name: JavaScript Object Notation
   description: |
-    A text file.
+    A JSON file.
 .kdf:
-  name: Text
+  name: KRISS KDF
   description: |
-    A text file.
+    A KRISS (file with extension `.kdf`) file.
+
+    Each experimental run on the KRISS system produces a file with extension `.kdf`.
+    Additional files that may be available in the same folder include
+    the digitized positions of the head points (`\_digitizer.txt`),
+    the position of the center of the MEG coils (`.chn`),
+    and the event markers (`.trg`).
 .md:
-  name: Text
+  name: Markdown
   description: |
-    A text file.
+    A Markdown file.
 .mefd/:
-  name: Text
+  name: Multiscale Electrophysiology File Format Version 3.0
   description: |
-    A text file.
+    A folder in the [MEF3](https://osf.io/e3sf9/) format.
+
+    Each recording consists of a `.mefd` directory.
 .mrk:
   name: Text
   description: |
@@ -77,21 +98,23 @@
   description: |
     A compressed nifti file.
 .nwb:
-  name: Text
+  name: Neurodata Without Borders Format
   description: |
-    A text file.
+    A [Neurodata Without Borders](https://nwb-schema.readthedocs.io) file.
+
+    Each recording consists of a single `.nwb` file.
 .ome.btf:
-  name: Text
+  name: Open Microscopy Environment BigTIFF
   description: |
-    A text file.
+    A [BigTIFF](https://www.awaresystems.be/imaging/tiff/bigtiff.html) image file, for very large images.
 .ome.tif:
-  name: Text
+  name: Open Microscopy Environment Tag Image File Format
   description: |
-    A text file.
+    An [OME-TIFF](https://docs.openmicroscopy.org/ome-model/6.1.2/ome-tiff/specification.html#) image file.
 .png:
-  name: Text
+  name: Portable Network Graphics
   description: |
-    A text file.
+    A [Portable Network Graphics](http://www.libpng.org/pub/png/) file.
 .raw:
   name: Text
   description: |
@@ -101,14 +124,21 @@
   description: |
     A text file.
 .set:
-  name: Text
+  name: EEGLAB SET
   description: |
-    A text file.
+    A [EEGLAB](https://sccn.ucsd.edu/eeglab) file.
+
+    The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab).
+    Each recording consists of a `.set` file with an optional `.fdt` file.
 .sqd:
   name: Text
   description: |
     A text file.
 .tif:
+  name: Tag Image File Format
+  description: |
+    A [Tag Image File Format](https://en.wikipedia.org/wiki/TIFF) file.
+.trg:
   name: Text
   description: |
     A text file.
@@ -127,13 +157,17 @@
   description: |
     A text file.
 .vhdr:
-  name: Text
+  name: BrainVision Text Header
   description: |
-    A text file.
+    A text header file in the
+    [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5).
+    These files come in three-file sets, including a `.vhdr`, a `.vmrk`, and a `.eeg` file.
 .vmrk:
-  name: Text
+  name: BrainVision Marker
   description: |
-    A text file.
+    A text marker file in the
+    [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5).
+    These files come in three-file sets, including a `.vhdr`, a `.vmrk`, and a `.eeg` file.
 /:
   name: Folder
   description: |
