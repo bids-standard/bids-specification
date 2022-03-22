@@ -1,0 +1,145 @@
+---
+# This file describes valid file extensions in the specification.
+"*":
+  name: Any Extension
+  description: |
+    Any extension is allowed.
+.ave:
+  name: Text
+  description: |
+    A text file.
+.bdf:
+  name: Text
+  description: |
+    A text file.
+.bval:
+  name: Text
+  description: |
+    A text file.
+.bvec:
+  name: Text
+  description: |
+    A text file.
+.dat:
+  name: Text
+  description: |
+    A text file.
+.ds/:
+  name: Text
+  description: |
+    A text file.
+.edf:
+  name: Text
+  description: |
+    A text file.
+.eeg:
+  name: Text
+  description: |
+    A text file.
+.fdt:
+  name: Text
+  description: |
+    A text file.
+.fif:
+  name: Text
+  description: |
+    A text file.
+.jpg:
+  name: Text
+  description: |
+    A text file.
+.json:
+  name: Text
+  description: |
+    A text file.
+.kdf:
+  name: Text
+  description: |
+    A text file.
+.md:
+  name: Text
+  description: |
+    A text file.
+.mefd/:
+  name: Text
+  description: |
+    A text file.
+.mrk:
+  name: Text
+  description: |
+    A text file.
+.nii:
+  name: Nifti
+  description: |
+    A nifti file.
+.nii.gz:
+  name: Compressed Nifti
+  description: |
+    A compressed nifti file.
+.nwb:
+  name: Text
+  description: |
+    A text file.
+.ome.btf:
+  name: Text
+  description: |
+    A text file.
+.ome.tif:
+  name: Text
+  description: |
+    A text file.
+.png:
+  name: Text
+  description: |
+    A text file.
+.raw:
+  name: Text
+  description: |
+    A text file.
+.rst:
+  name: Text
+  description: |
+    A text file.
+.set:
+  name: Text
+  description: |
+    A text file.
+.sqd:
+  name: Text
+  description: |
+    A text file.
+.tif:
+  name: Text
+  description: |
+    A text file.
+.tsv:
+  name: Tab-Delimited
+  description: |
+    A tab-delimited file.
+.tsv.gz:
+  name: Compressed Tab-Delimited
+  description: |
+    A gzipped tab-delimited file.
+    This file extension is only used for very large tabular data, such as physiological recordings.
+    For smaller data, the unzipped `.tsv` extension is preferred.
+.txt:
+  name: Text
+  description: |
+    A text file.
+.vhdr:
+  name: Text
+  description: |
+    A text file.
+.vmrk:
+  name: Text
+  description: |
+    A text file.
+/:
+  name: Folder
+  description: |
+    A folder with no extension.
+    Corresponds to BTi/4D data.
+None:
+  name: No extension
+  description: |
+    A file with no extension.
