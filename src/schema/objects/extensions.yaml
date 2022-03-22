@@ -55,6 +55,12 @@
     the digitized positions of the head points (`\_digitizer.txt`),
     the position of the center of the MEG coils (`.chn`),
     and the event markers (`.trg`).
+.con:
+  name: KIT/Yokogawa/Ricoh Continuous Data
+  description: |
+    Raw continuous data from a KIT/Yokogawa/Ricoh MEG system.
+
+    Successor to the `.sqd` extension for raw continuous data.
 .dat:
   name: MEG Fine-Calibration Format
   description: |
@@ -127,6 +133,7 @@
     A file containing MEG sensor coil positions.
 
     Used by KIT, Yokogawa, and Ricoh MEG systems.
+    Successor to the `.sqd` extension for marker files.
 .nii:
   name: Nifti
   description: |
@@ -175,6 +182,7 @@
   name: SQD
   description: |
     A file containing either raw MEG data or MEG sensor coil positions.
+    While this extension is still valid, it has been succeeded by `.con` for raw MEG data and `.mrk` for marker information.
 
     Used by KIT, Yokogawa, and Ricoh MEG systems.
 .tif:
