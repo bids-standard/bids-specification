@@ -225,81 +225,10 @@ That would look like this:
 ## Using macros
 
 We use [mkdocs-macros](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)
-to render parts of the BIDS specification from the BIDS schema.
-Macros make it easy to achieve a consistent style throughout the specification,
-and changing a given macro will automatically change all appropriate paragraphs in the specification.
+to standardize how some aspects of the BIDS specification are rendered in HTML.
 
-For example, all tables on BIDS metadata are generated via macros that make use of data in the
-[yaml files](src/schema/metadata) in the [schema](src/schema/README.md).
-
-These macros are written in Python
-(see the folders [tools/schemacode](tools/schemacode) and [tools/mkdocs_macros_bids](tools/mkdocs_macros_bids)),
-and are called directly in the Markdown document where you want the output of the macro to be inserted.
-
-For example:
-
-```Text
-{{ MACROS___make_metadata_table(
-   {
-      "SamplingFrequency": "REQUIRED",
-      "StartTime": "RECOMMENDED, but REQUIRED for sparse sequences",
-   }
-) }}
-```
-
-This macro will create a table for the "SamplingFrequency" and "StartTime" metadata,
-filling the table with the content specified in their respective yaml files
-(see [SamplingFrequency.yaml](src/schema/metadata/SamplingFrequency.yaml) and [StartTime.yaml](src/schema/metadata/StartTime.yaml)).
-
-Some of the content created by the macro can be specified in the macro call itself, as opposed to in the yaml files.
-Here the `"REQUIRED"`, `"RECOMMENDED, but REQUIRED for sparse sequences"`
-specify the content of the requirement level column for each piece of metadata.
-
-This macro also allows you to append extra content to the description of that metadata
-by specifying it in the macro call:
-
-```Text
-{{ MACROS___make_metadata_table(
-   {
-      "SamplingFrequency": ("REQUIRED", "This extra content will be added to the description")
-      "StartTime": "RECOMMENDED, but REQUIRED for sparse sequences",
-   }
-) }}
-```
-
-### Writing folder content examples
-
-We also use macros to have a consistent style to render the examples of folder contents.
-
-These code for these macros are in the folder [tools/schemacode](tools/schemacode).
-
-To insert examples in the code you have make calls to the macro like this:
-
-```
-{{ MACROS___make_filetree_example(
-
-   {
-   "sub-01": {
-      "func": {
-         "sub-control01_task-nback_bold.json": "",
-         },
-      }
-   }
-
-) }}
-```
-
-And this will be turned into this.
-
-```Text
-└─ sub-01/
-   └─ func/
-      └─ sub-control01_task-nback_bold.json
-```
-
-When you have complex files and folder structure, we suggest you use this
-[Jupyter notebook](tools/filetree_example.ipynb) for sandboxing your example
-before you insert the macro call into the markdown document.
+<!-- TODO update link once we know we have found a final home for that doc -->
+We have dedicated documentation for [this](./macro_doc.md).
 
 ## Building the specification using mkdocs
 
