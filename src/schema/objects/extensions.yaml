@@ -182,7 +182,8 @@
   name: SQD
   description: |
     A file containing either raw MEG data or MEG sensor coil positions.
-    While this extension is still valid, it has been succeeded by `.con` for raw MEG data and `.mrk` for marker information.
+    While this extension is still valid, it has been succeeded by `.con` for raw MEG data and `.mrk` for
+    marker information.
 
     Used by KIT, Yokogawa, and Ricoh MEG systems.
 .tif:
