@@ -116,6 +116,11 @@
     A folder in the [MEF3](https://osf.io/e3sf9/) format.
 
     Each recording consists of a `.mefd` directory.
+.mhd:
+  name: ITAB Binary Header
+  description: |
+    Produced by ITAB-ARGOS153 systems. This file a binary header file, and is generated along with a
+    raw data file with the `.raw` extension.
 .mrk:
   name: MRK
   description: |
