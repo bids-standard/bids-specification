@@ -5,6 +5,7 @@
 -   \[MISC] clarify copyright for logo [#1019](https://github.com/bids-standard/bids-specification/pull/1019) ([sappelhoff](https://github.com/sappelhoff))
 -   \[SCHEMA] Tabular metadata rules for both top and second-level tabular files [#1006](https://github.com/bids-standard/bids-specification/pull/1006) ([TheChymera](https://github.com/TheChymera))
 -   \[ENH] Introduce the atlas entity for derivatives data [#997](https://github.com/bids-standard/bids-specification/pull/997) ([sebastientourbier](https://github.com/sebastientourbier))
+-   \[DOC] add documentation for macros [#963](https://github.com/bids-standard/bids-specification/pull/963) ([Remi-Gau](https://github.com/Remi-Gau))
 
 ## [v1.7.0](https://github.com/bids-standard/bids-specification/tree/v1.7.0) (2022-02-15)
 
@@ -423,7 +424,7 @@
 -   \[FIX] update HED appendix [#74](https://github.com/bids-standard/bids-specification/pull/74) ([sappelhoff](https://github.com/sappelhoff))
 -   \[FIX] unicode: replace greek mu and omega by micro and ohm signs [#73](https://github.com/bids-standard/bids-specification/pull/73) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] Update 01-contributors.md [#72](https://github.com/bids-standard/bids-specification/pull/72) ([francopestilli](https://github.com/francopestilli))
--   \[ENH] add ce-\<label> for fmri data [#70](https://github.com/bids-standard/bids-specification/pull/70) ([dasturge](https://github.com/dasturge))
+-   \[ENH] add `ce-\<label\>` for fmri data [#70](https://github.com/bids-standard/bids-specification/pull/70) ([dasturge](https://github.com/dasturge))
 -   \[INFRA] pin pip version [#68](https://github.com/bids-standard/bids-specification/pull/68) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[MISC] Fix link in index [#46](https://github.com/bids-standard/bids-specification/pull/46) ([chrisgorgo](https://github.com/chrisgorgo))
 -   \[MISC] edit contributing guide [#44](https://github.com/bids-standard/bids-specification/pull/44) ([Park-Patrick](https://github.com/Park-Patrick))
