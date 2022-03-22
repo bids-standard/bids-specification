@@ -5,6 +5,10 @@ from schemacode import render
 
 
 def test_make_entity_definitions(schema_obj):
+    """
+    Test whether expected format strings are present.
+    This should be stable with respect to schema format.
+    """
     schema_text = render.make_entity_definitions(schema_obj)
     expected_formats = [
         "Format: `sub-<label>`",
@@ -29,6 +33,11 @@ def test_make_entity_definitions(schema_obj):
 
 
 def test_make_glossary(schema_obj, schema_dir):
+    """
+    Test whether files under the schema objects subdirectory correspond to entries, and
+    that rules are not mis-loaded as objects.
+    This may need to be updated for schema hierarchy changes.
+    """
     # Test consistency
     object_files = []
     for root, dirs, files in os.walk(schema_dir, topdown=False):
@@ -54,6 +63,15 @@ def test_make_glossary(schema_obj, schema_dir):
 
 
 def test_make_filename_template(schema_obj, schema_dir):
+    """
+    Test whether:
+        * the base hierarchy structure of mandatory subject and optional session is
+        returned. This should be robust with respect to schema format.
+        * each directory contains at least one possible pattern.
+        This should be robust with respect to schema format.
+        * all files under the datatype rules subdirectory have corresponding entries.
+        This may need to be updated for schema hierarchy changes.
+    """
     filename_template = render.make_filename_template(schema_obj)
 
     # Test predefined substrings
@@ -90,6 +108,10 @@ sub-<label>/
 
 
 def test_make_entity_table(schema_obj):
+    """
+    Test whether expected entities are present and listed correctly.
+    This should be robust with respect to schema format.
+    """
     entity_table = render.make_entity_table(schema_obj)
 
     # Non-exhaustive list covering both value and index formats
@@ -112,6 +134,11 @@ def test_make_entity_table(schema_obj):
 
 
 def test_make_suffix_table(schema_obj):
+    """
+    Test whether expected suffixes are present and listed with correct names.
+    Values are hard-coded from the present YAML, but should nevertheless be robust
+    with respect to schema format, other than case changes for the names.
+    """
     target_suffixes = [
         "beh",
         "cbv",
@@ -130,6 +157,11 @@ def test_make_suffix_table(schema_obj):
 
 
 def test_make_metadata_table(schema_obj):
+    """
+    Test whether expected metadata fields are present and the requirement level is
+    applied correctly.
+    This should be robust with respect to schema format.
+    """
     target_metadata = {
         "Authors": "required",
         "BIDSVersion": "required",
@@ -152,6 +184,11 @@ def test_make_metadata_table(schema_obj):
 
 
 def test_make_columns_table(schema_obj):
+    """
+    Test whether expected columns are present and the requirement level is applied
+    correctly.
+    This should be robust with respect to schema format.
+    """
     target_columns = {
         "time": "required",
         "trial_type": "required",
