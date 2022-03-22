@@ -25,9 +25,9 @@
   description: |
     A text file.
 .dat:
-  name: Text
+  name: MEG Fine-Calibration Format
   description: |
-    A text file.
+    A fne-calibration file.
 .ds/:
   name: CTF MEG Dataset Folder
   description: |
