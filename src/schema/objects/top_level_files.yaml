@@ -21,9 +21,16 @@ LICENSE:
 README:
   name: README
   description: |
-    A REQUIRED free-form text file, `README` (with an OPTIONAL extension `.md`, `.rst`, or `.txt`),
-    SHOULD describe the dataset in more detail.
-    The `README` file MUST be either in ASCII or UTF-8 encoding.
+    A REQUIRED free-form text file, `README`, SHOULD describe the dataset in more detail.
+    The `README` file MUST be either in ASCII or UTF-8 encoding and MAY have one of the extensions:
+    `.md` ([Markdown](https://www.markdownguide.org/)),
+    `.rst` ([reStructuredText](https://docutils.sourceforge.io/rst.html)),
+    or `.txt` (unstructured text).
+    BIDS does not make any recommendations with regards to the
+    [Markdown flavor](https://www.markdownguide.org/extended-syntax/#lightweight-markup-languages)
+    and does not validate the syntax of Markdown and reStructuredText.
+    The `README` file SHOULD be structured such that its contents can be easily understood
+    even if the used format is not rendered.
     A guideline for creating a good `README` file can be found in the
     [bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/blob/master/templates/README).
 dataset_description:
