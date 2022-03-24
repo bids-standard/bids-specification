@@ -372,10 +372,14 @@ is to use the `requirements.txt` file contained in this repository as follows:
 ```bash
 pip install -U pip
 pip install -r requirements.txt
+pip install -e tools/schemacode/
 ```
 
 The first command ensures you are using an up to date version of `pip`,
 and the second command installs all dependencies.
+The third command ensures to install the BIDS schema code as an "editable" install,
+so that if you make changes to the schema files,
+these are automatically reflected in the sourcecode.
 
 #### 4. Ready to build!
 
