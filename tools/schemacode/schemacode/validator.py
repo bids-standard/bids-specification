@@ -55,6 +55,8 @@ def _get_paths(bids_paths):
             path_list.append(bids_path)
             continue
         for root, dirs, file_names in os.walk(bids_path, topdown=False):
+            if any(f"{i}/" in root for i in treat_as_file_suffix):
+                continue
             if any(root.endswith(i) for i in treat_as_file_suffix):
                 continue
             # will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
