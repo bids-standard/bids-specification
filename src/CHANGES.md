@@ -3,9 +3,11 @@
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
 -   \[MISC] clarify copyright for logo [#1019](https://github.com/bids-standard/bids-specification/pull/1019) ([sappelhoff](https://github.com/sappelhoff))
+-   \[SCHEMA] Tests for render listings [#1018](https://github.com/bids-standard/bids-specification/pull/1018) ([TheChymera](https://github.com/TheChymera))
 -   \[SCHEMA] Tabular metadata rules for both top and second-level tabular files [#1006](https://github.com/bids-standard/bids-specification/pull/1006) ([TheChymera](https://github.com/TheChymera))
 -   \[ENH] Introduce the atlas entity for derivatives data [#997](https://github.com/bids-standard/bids-specification/pull/997) ([sebastientourbier](https://github.com/sebastientourbier))
 -   \[DOC] add documentation for macros [#963](https://github.com/bids-standard/bids-specification/pull/963) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[SCHEMA] Add patterns for format validation [#885](https://github.com/bids-standard/bids-specification/pull/885) ([tsalo](https://github.com/tsalo))
 
 ## [v1.7.0](https://github.com/bids-standard/bids-specification/tree/v1.7.0) (2022-02-15)
 
