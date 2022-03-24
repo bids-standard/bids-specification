@@ -2,7 +2,7 @@ version: 2
 jobs:
   build_docs:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
     steps:
       # checkout code to default ~/project
       - checkout
@@ -25,7 +25,7 @@ jobs:
 
   linkchecker:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
     steps:
       # checkout code to default ~/project
       - checkout
@@ -123,7 +123,7 @@ jobs:
   # Run remark on the auto generated changes.md file
   remark:
     docker:
-      - image: node:latest
+      - image: cimg/node:lts
     steps:
       # checkout code to default ~/project
       - checkout
@@ -156,7 +156,7 @@ jobs:
   # Push built changelog to repo
   Changelog-bot:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: cimg/node:lts
     steps:
       - setup_remote_docker:
           version: 17.11.0-ce
