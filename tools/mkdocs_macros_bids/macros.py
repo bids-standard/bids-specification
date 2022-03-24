@@ -71,21 +71,6 @@ def make_entity_definitions():
     return text
 
 
-def make_glossary():
-    """Generate glossary.
-
-    Returns
-    -------
-    text : str
-        A multiline string containing descriptions and some formatting
-        information about the entities in the schema.
-    """
-    schemapath = utils.get_schema_path()
-    schema_obj = schema.load_schema(schemapath)
-    text = render.make_glossary(schema_obj)
-    return text
-
-
 def make_suffix_table(suffixes):
     """Generate a markdown table of suffix information.
 

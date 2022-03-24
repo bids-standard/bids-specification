@@ -29,6 +29,9 @@ plugins:
          - branch: /(?!^master$)/
            +extra_css:
              - css/watermark.css
+    - gen-files:
+        scripts:
+          - tools/generate_glossary.py
     - macros:
         module_name: tools/mkdocs_macros_bids/main
 docs_dir: 'src'
