@@ -169,7 +169,7 @@
 .raw:
   name: RAW
   description: |
-    When produced by a KIT / Yokogawa / Ricoh MEG system, this file contains stuff.
+    When produced by a KIT / Yokogawa / Ricoh MEG system, this file contains trial-based evoked fields.
 
     When produced by an ITAB-ARGOS153 system, this file contains raw data and is generated along with
     an associated binary header file  with the `.mhd` extension.
