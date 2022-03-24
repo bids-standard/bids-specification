@@ -102,6 +102,12 @@
   name: JavaScript Object Notation
   description: |
     A JSON file.
+
+    In the BIDS specification, JSON files are primarily used as "sidecar" files, in which metadata describing "data"
+    files are encoded.
+    These sidecar files follow the inheritance principle.
+
+    There are also a few special cases of JSON files being first-order data files, such as `genetic_info.json`.
 .kdf:
   name: KRISS KDF
   description: |
