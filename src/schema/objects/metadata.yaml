@@ -1686,7 +1686,7 @@ MolarActivityMeasTime:
     Time to which molar radioactivity measurement above applies in the default
     unit `"hh:mm:ss"`.
   type: string
-  pattern: ^(?:2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]$
+  format: time
 MolarActivityUnits:
   name: MolarActivityUnits
   description: |
@@ -2449,7 +2449,7 @@ SoftwareRRID:
     Examples: The RRID for Psychtoolbox is 'SCR_002881',
     and that of PsychoPy is 'SCR_006571'.
   type: string
-  pattern: .+_.+
+  format: rrid
 SoftwareVersion:
   name: SoftwareVersion
   description: |
@@ -2537,7 +2537,7 @@ SpecificRadioactivityMeasTime:
     Time to which specific radioactivity measurement above applies in the default
     unit `"hh:mm:ss"`.
   type: string
-  pattern: ^(?:2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]$
+  format: time
 SpecificRadioactivityUnits:
   name: SpecificRadioactivityUnits
   description: |
@@ -2656,7 +2656,7 @@ TimeZero:
     in the unit "hh:mm:ss".
     This should be equal to `"InjectionStart"` or `"ScanStart"`.
   type: string
-  pattern: ^(?:2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]$
+  format: time
 TissueDeformationScaling:
   name: TissueDeformationScaling
   description: |
