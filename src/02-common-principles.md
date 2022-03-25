@@ -677,18 +677,18 @@ Example 3: Complex inheritance scenario
     {
     "bold.json": "",
     "sub-01": {
-        "ses-01":{
+        "ses-01": {
             "func": {
+                "sub-01_ses-01_bold.json": "",
                 "sub-01_ses-01_task-ovg_bold.json": "",
                 "sub-01_ses-01_task-ovg_run-1_bold.nii.gz": "",
                 "sub-01_ses-01_task-ovg_run-2_bold.nii.gz": "",
                 "sub-01_ses-01_task-ovg_run-2_bold.json": "",
                 "sub-01_ses-01_task-rest_bold.nii.gz": "",
                 "sub-01_ses-01_task-rest_bold.json": "",
-                "sub-01_ses-01_bold.json": "",
                 }
             },
-        "ses-02":{
+        "ses-02": {
             "func": {
                 "sub-01_ses-02_task-ovg_bold.nii.gz": "",
                 "sub-01_ses-02_task-rest_bold.nii.gz": "",
@@ -696,13 +696,67 @@ Example 3: Complex inheritance scenario
             },
         "sub-01_bold.json": "",
         },
+    "sub-02": {
+        "ses-01": {
+            "func": {
+                "sub-02_ses-01_task-rest_bold.nii.gz": "",
+                "sub-02_ses-01_task-rest_bold.json": "",
+                }
+            }
+        },
     "task-ovg_bold.json": "",
     "task-rest_bold.json": "",
     }
 ) }}
 
-The applicability and order in which each JSON file would be loaded for each data
-file is as follows:
+For each metadata file, the set of data files to which its contents are
+applicable is as follows:
+
+-   `bold.json`:
+    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-1_bold.nii.gz"
+    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-2_bold.nii.gz"
+    -   `sub-01/ses-01/func/sub-01_ses-01_task-rest_bold.nii.gz"
+    -   `sub-01/ses-02/func/sub-01_ses-02_task-ovg_bold.nii.gz"
+    -   `sub-01/ses-02/func/sub-01_ses-02_task-rest_bold.nii.gz"
+    -   `sub-02/ses-01/func/sub-02_ses-01_task-rest_bold.nii.gz`
+
+-   `task-ovg_bold.json`:
+    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-1_bold.nii.gz"
+    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-2_bold.nii.gz"
+    -   `sub-01/ses-02/func/sub-01_ses-02_task-ovg_bold.nii.gz"
+
+-   `task-rest_bold.json`:
+    -   `sub-01/ses-01/func/sub-01_ses-01_task-rest_bold.nii.gz"
+    -   `sub-01/ses-02/func/sub-01_ses-02_task-rest_bold.nii.gz"
+    -   `sub-02/ses-01/func/sub-02_ses-01_task-rest_bold.nii.gz`
+
+-   `sub-01/sub-01_bold.json`:
+    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-1_bold.nii.gz"
+    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-2_bold.nii.gz"
+    -   `sub-01/ses-01/func/sub-01_ses-01_task-rest_bold.nii.gz"
+    -   `sub-01/ses-02/func/sub-01_ses-02_task-ovg_bold.nii.gz"
+    -   `sub-01/ses-02/func/sub-01_ses-02_task-rest_bold.nii.gz"
+
+-   `sub-01/ses-01/sub-01_ses-01_bold.json`:
+    -   `sub-01/ses-01/sub-01_ses-01_task-ovg_run-1_bold.nii.gz`
+    -   `sub-01/ses-01/sub-01_ses-01_task-ovg_run-2_bold.nii.gz
+    -   `sub-01/ses-01/sub-01_ses-01_task-rest_bold.nii.gz`
+
+-   `sub-01/ses-01/sub-01_ses-01_task-ovg_bold.json`:
+    -   `sub-01/ses-01/sub-01_ses-01_task-ovg_run-1_bold.nii.gz`
+    -   `sub-01/ses-01/sub-01_ses-01_task-ovg_run-2_bold.nii.gz`
+
+-   `sub-01/ses-01/sub-01_ses-01_task-ovg_run-2_bold.json`:
+    -   `sub-01/ses-01/sub-01_ses-01_task-ovg_run-2_bold.nii.gz`
+
+-   `sub-01/ses-01/sub-01_ses-01_task-rest_bold.json`:
+    -   `sub-01/ses-01/sub-01_ses-01_task-rest_bold.nii.gz`
+
+-   `sub-02/ses-01/sub-02_ses-01_task-rest_bold.json`:
+    -   `sub-02/ses-01/sub-02_ses-01_task-rest_bold.nii.gz`
+
+For each data file, the order in which the set of applicable metadata
+files would be loaded is as follows:
 
 -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-1_bold.nii.gz`:
     -   `bold.json`
@@ -735,6 +789,11 @@ file is as follows:
     -   `bold.json`
     -   `task-rest_bold.json`
     -   `sub-01/sub-01_bold.json`
+
+-   `sub-02/ses-01/func/sub-02_ses-01_task-rest_bold.nii.gz`:
+    -   `bold.json`
+    -   `task-rest_bold.json`
+    -   `sub-02/ses-01/func/sub-02_ses-01_task-rest_bold.json`
 
 Example 4: Violation of inheritance principle
 
