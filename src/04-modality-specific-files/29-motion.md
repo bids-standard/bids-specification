@@ -17,12 +17,12 @@ Template:
 └─ sub-<label>\
 └─ \[ses-<label>]\
 └─ motion\
-├─ sub-<label>\[\_ses-<label>]\_task-<label>\_tracksys-<label>\_motion.tsv
-├─ sub-<label>\[\_ses-<label>]\_task-<label>\_motion.json
-├─ sub-<label>\[\_ses-<label>]\_task-<label>\_channels.tsv
-├─ sub-<label>\[\_ses-<label>]\_task-<label>\_coordsys.json
-├─ sub-<label>\[\_ses-<label>]\_task-<label>\_events.tsv
-└─ sub-<label>\[\_ses-<label>]\_task-<label>\_events.json
+├─ sub-<label>\[\_ses-<label>][\_task-<label>\]_tracksys-<label>\_motion.tsv
+├─ sub-<label>\[\_ses-<label>][\_task-<label>\]_motion.json
+├─ sub-<label>\[\_ses-<label>][\_task-<label>\]_channels.tsv
+├─ sub-<label>\[\_ses-<label>][\_task-<label>\]_coordsys.json
+├─ sub-<label>\[\_ses-<label>][\_task-<label>\]_events.tsv
+└─ sub-<label>\[\_ses-<label>][\_task-<label>\]_events.json
 
 A wide variety of motion capture systems are used in human research, resulting in
 different native data formats. The current BEP specifically
@@ -81,8 +81,8 @@ Specific fields in `TrackingSystems` :
 
 | **Key name**               | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                     |
 | -------------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SamplingFrequencyEffective | REQUIRED              | number        | Effective sampling rate of the tracking system in Hz. If available, otherwise same as `SamplingFrequencyNominal`.                                                                                   |
-| SamplingFrequencyNominal   | REQUIRED              | number        | Nominal sampling rate of the tracking system in Hz.                                                                                                                                                 |
+| SamplingFrequencyEffective | REQUIRED              | number        | Effective sampling rate of the tracking system in Hz. If available, otherwise same as `SamplingFrequency`.                                                                                   |
+| SamplingFrequency   | REQUIRED              | number        | Nominal sampling rate of the tracking system in Hz.                                                                                                                                                 |
 | MissingValues              | RECOMMENDED           | string        | How missing values are represented in the given tracking system, for example, “NaN”, “0”.                                                                                                           |
 | SoftwareVersions           | RECOMMENDED           | string        | Manufacturer’s   designation of the acquisition software.                                                                                                                                           |
 | RecordingDuration          | RECOMMENDED           | number        | Length of the   recording in seconds (for example 3600).                                                                                                                                            |
@@ -102,51 +102,51 @@ Example:
 
 ```JSON
 {
-	"InstitutionName": "Kiel University",
-	"InstitutionalDepartmentName": "Department of Neurology",
-	"MotionChannelCount": 297,
-	"RecordingDuration": 10.76500232,
-	"TaskDescription": "walking backwards",
-	"TaskName": "backwards",
-	"TrackedPointsCountTotal": 67,
-	"TrackingSystems": {
-		"imu": {
-			"Manufacturer": "Noraxon Inc.",
-			"ManufacturersModelName": "myoMOTION",
-			"SamplingFrequencyNominal": 200,
-			"TrackedPointsCount": 16,
-			"POSChannelCount": 0,
-			"ORNTChannelCount": 0,
-			"VELChannelCount": 0,
-			"ANGVELChannelCount": 48,
-			"ACCChannelCount": 48,
-			"ANGACCChannelCount": 0,
-			"MAGNChannelCount": 48,
-			"JNTANGChannelCount": 0,
-			"DeviceSerialNumber": null,
-			"SoftwareVersions": null,
-			"ExternalSoftwareVersions": null,
-			"SamplingFrequencyEffective": 199.9105145,
-			"RecordingDuration": 11.18000224
+  "InstitutionName": "Kiel University",
+  "InstitutionalDepartmentName": "Department of Neurology",
+  "MotionChannelCount": 297,
+  "RecordingDuration": 10.76500232,
+  "TaskDescription": "walking backwards",
+  "TaskName": "backwards",
+  "TrackedPointsCountTotal": 67,
+  "TrackingSystems": {
+	  "imu": {
+		  "Manufacturer": "Noraxon Inc.",
+		  "ManufacturersModelName": "myoMOTION",
+		  "SamplingFrequency": 200,
+		  "TrackedPointsCount": 16,
+		  "POSChannelCount": 0,
+		  "ORNTChannelCount": 0,
+		  "VELChannelCount": 0,
+		  "ANGVELChannelCount": 48,
+		  "ACCChannelCount": 48,
+		  "ANGACCChannelCount": 0,
+		  "MAGNChannelCount": 48,
+		  "JNTANGChannelCount": 0,
+		  "DeviceSerialNumber": null,
+		  "SoftwareVersions": null,
+		  "ExternalSoftwareVersions": null,
+		  "SamplingFrequencyEffective": 199.9105145,
+		  "RecordingDuration": 11.18000224
 		},
-		"omc": {
-			"Manufacturer": "Qualisys",
-			"ManufacturersModelName": "AB",
-			"SamplingFrequencyNominal": 200,
-			"TrackedPointsCount": 51,
-			"POSChannelCount": 153,
-			"ORNTChannelCount": 0,
-			"VELChannelCount": 0,
-			"ANGVELChannelCount": 0,
-			"ACCChannelCount": 0,
-			"ANGACCChannelCount": 0,
-			"MAGNChannelCount": 0,
-			"JNTANGChannelCount": 0,
-			"DeviceSerialNumber": null,
-			"SoftwareVersions": null,
-			"ExternalSoftwareVersions": null,
-			"SamplingFrequencyEffective": 199.9070632,
-			"RecordingDuration": 10.76500232
+	  "omc": {
+		  "Manufacturer": "Qualisys",
+		  "ManufacturersModelName": "AB",
+		  "SamplingFrequency": 200,
+		  "TrackedPointsCount": 51,
+		  "POSChannelCount": 153,
+		  "ORNTChannelCount": 0,
+		  "VELChannelCount": 0,
+		  "ANGVELChannelCount": 0,
+		  "ACCChannelCount": 0,
+		  "ANGACCChannelCount": 0,
+		  "MAGNChannelCount": 0,
+		  "JNTANGChannelCount": 0,
+		  "DeviceSerialNumber": null,
+		  "SoftwareVersions": null,
+		  "ExternalSoftwareVersions": null,
+		  "SamplingFrequencyEffective": 199.9070632,
+		  "RecordingDuration": 10.76500232
 		}
 	}
 }
@@ -163,7 +163,7 @@ Note that the date and time information SHOULD be stored in the Study key file [
 └─ sub-<label>\
 └─ \[ses-<label>]\
 └─ motion\
-└─ sub-<label>\[\_ses-<label>]\_task-<label>\_channels.tsv
+└─ sub-<label>\[\_ses-<label>][\_task-<label>\]_channels.tsv
 
 This file is REQUIRED as it makes it easy to browse or query over larger collections of datasets. The REQUIRED columns are channel `name`, `type`, `tracked_point`, `tracking_system`, `component` and `unit`. Any number of additional columns may be added to provide additional information about the channels. The `*_channels.tsv` file should give additional information about individual recorded channel, some of which my not be found summarised in `TrackingSystems`.
 
