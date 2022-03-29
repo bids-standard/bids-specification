@@ -105,8 +105,8 @@ In contrast to raw BIDS datasets, derived BIDS datasets MUST include a
    }
 ) }}
 
-If a derived dataset is stored as a subfolder of the raw dataset, then the `Name` field
-of the first `GeneratedBy` object MUST be a substring of the derived dataset folder name.
+If a derived dataset is stored as a subdirectory of the raw dataset, then the `Name` field
+of the first `GeneratedBy` object MUST be a substring of the derived dataset directory name.
 That is, in a directory `<dataset>/derivatives/<pipeline>[-<variant>]/`, the first
 `GeneratedBy` object should have a `Name` of `<pipeline>`.
 

@@ -6,7 +6,7 @@ from schemacode import schema
 
 def test_load_schema(schema_dir):
     """Smoke test for schemacode.schema.load_schema."""
-    # Pointing to a nonexistent folder should raise a ValueError
+    # Pointing to a nonexistent directory should raise a ValueError
     bad_path = "/path/to/nowhere"
     with pytest.raises(ValueError):
         schema.load_schema(bad_path)

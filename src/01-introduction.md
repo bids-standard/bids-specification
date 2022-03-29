@@ -40,7 +40,7 @@ and the INCF Neuroimaging Data Sharing (NIDASH) Task Force.
 While working on BIDS we consulted
 many neuroscientists to make sure it covers most common experiments, but at the
 same time is intuitive and easy to adopt. The specification is intentionally
-based on simple file formats and folder structures to reflect current lab
+based on simple file formats and directory structures to reflect current lab
 practices and make it accessible to a wide range of scientists coming from
 different backgrounds.
 

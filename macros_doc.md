@@ -17,7 +17,7 @@ in the BIDS specification.
    - [Do I need learn how to program to use those macros?](#do-i-need-learn-how-to-program-to-use-those-macros)
    - [Anything else I need to know if I need to insert a new macro call?](#anything-else-i-need-to-know-if-i-need-to-insert-a-new-macro-call)
    - [How-To and Examples](#how-to-and-examples)
-      - [Writing folder content examples](#writing-folder-content-examples)
+      - [Writing directory content examples](#writing-directory-content-examples)
       - [Generating tables](#generating-tables)
          - [Modifying a term in the table](#modifying-a-term-in-the-table)
          - [Why would you NOT want to modify the content of the yml file directly ?](#why-would-you-not-want-to-modify-the-content-of-the-yml-file-directly-)
@@ -113,7 +113,7 @@ correct terms in the schema. This process is illustrated in the next section.
 
 Note that under the hood the macros themselves call python code that can be
 found in the
-[`tools` folder](https://github.com/bids-standard/bids-specification/tree/master/tools).
+[`tools` directory](https://github.com/bids-standard/bids-specification/tree/master/tools).
 If you are interested in creating a new macro for users, this would be useful.
 
 ## Anything else I need to know if I need to insert a new macro call?
@@ -146,7 +146,7 @@ and a guide for editing at <link>.
 
 ## How-To and Examples
 
-### Writing folder content examples
+### Writing directory content examples
 
 One of the simplest macro we use helps us create consistent "file tree" examples
 that would look like this in the final document:
@@ -173,7 +173,7 @@ To do this get this output, your macro call would look like this:
 ) }}
 ```
 
-When you have complex files and folder structure, we suggest you use this
+When you have complex files and directory structure, we suggest you use this
 [Jupyter notebook](tools/filetree_example.ipynb) for sandboxing your example
 before you insert the macro call into the markdown document.
 

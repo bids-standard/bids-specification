@@ -1,12 +1,12 @@
 ---
-# This file describes folders that may appear within a dataset folder
+# This file describes directories that may appear within a dataset directory
 # without following BIDS rules.
-# Information about whether these folders are required or not is present in
+# Information about whether these directories are required or not is present in
 # `rules/associated_data.yaml`.
 code:
   name: Code
   description: |
-    A folder in which to store any code used to generate the derivatives from the
+    A directory in which to store any code used to generate the derivatives from the
     source data.
 derivatives:
   name: Derivative data
@@ -20,10 +20,10 @@ sourcedata:
 stimuli:
   name: Stimulus files
   description: |
-    The stimulus files can be added in a `/stimuli` folder
-    (under the root folder of the dataset; with optional subfolders)
+    The stimulus files can be added in a `/stimuli` directory
+    (under the root directory of the dataset; with optional subdirectories)
     AND using a stim_file column in *_events.tsv mentioning which stimulus file was
     used for a given event.
 
     There are no restrictions on the file formats of the stimuli files, but they should be
-    stored in the `/stimuli` folder.
+    stored in the `/stimuli` directory.

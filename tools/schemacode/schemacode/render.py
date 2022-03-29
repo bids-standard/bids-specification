@@ -176,7 +176,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
     entity_order = schema["rules"]["entities"]
 
     paragraph = ""
-    # Parent folders
+    # Parent directories
     paragraph += "{}-<{}>/\n\t[{}-<{}>/]\n".format(
         schema["objects"]["entities"]["subject"]["entity"],
         schema["objects"]["entities"]["subject"]["format"],
@@ -263,7 +263,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     Parameters
     ----------
     schema_path : str
-        Folder containing schema, which is stored in yaml files.
+        Directory containing schema, which is stored in yaml files.
     entities_file : str, optional
         File in which entities are described.
         This is used for hyperlinks in the table, so the path to the file

@@ -415,7 +415,7 @@ specification, do not hesitate to make a suggestion by showing a draft in a GitH
 After discussion and approval by the community, you can then submit your image
 in a pull request.
 
-Images should be added to an `images` folder that is at the same level as the Markdown file
+Images should be added to an `images` directory that is at the same level as the Markdown file
 where your image will be added. For example if you want to add a figure `figure01.png` to
 `src/05-derivatives/01-introduction.md` then your image should go to
 `src/05-derivatives/images/figure01.png`.
@@ -629,7 +629,7 @@ reviewer as a co-author.
 ## Making a change to the BIDS-schema
 
 Several aspects of the specification are defined in a set of YAML files in the
-`src/schema` folder. The content of those files is described in a dedicated
+`src/schema` directory. The content of those files is described in a dedicated
 [README file](./src/schema/README.md).
 
 ### 1. Ensure that changes to the specification are matched in the schema
