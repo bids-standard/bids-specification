@@ -395,7 +395,7 @@ session subdirectory within the corresponding subject directory; and so on.
 
 Nothing in this specification should be interpreted to disallow the
 storage/distribution of non-compliant derivatives of BIDS datasets.
-In particular, if a BIDS dataset contains a `derivatives/` sub-directory,
+In particular, if a BIDS dataset contains a `derivatives/` subdirectory,
 the contents of that directory may be a heterogeneous mix of BIDS Derivatives
 datasets and non-compliant derivatives.
 
