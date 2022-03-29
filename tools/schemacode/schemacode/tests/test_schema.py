@@ -62,6 +62,11 @@ def test_formats(schema_obj):
             "9:00:00",  # leading zeros are not required for hours
         ],
         "unit": ["any string is valid."],
+        "file_relative": [
+            "file_in_same_directory.txt",
+            "../../relative/path/file.txt",
+            "sub-01/path/file.txt",
+        ],
         "stimuli_relative": ["any/arbitrary/path/file.txt"],
         "dataset_relative": ["any/arbitrary/path/file.txt"],
         "participant_relative": ["any/arbitrary/path/file.txt"],
@@ -108,6 +113,9 @@ def test_formats(schema_obj):
             "01:23",  # lacks either hours or seconds
         ],
         "unit": [],
+        "file_relative": [
+            "/path/with/starting/slash/file.txt",
+        ],
         "stimuli_relative": [
             "/path/with/starting/slash/file.txt",
             "stimuli/path/file.txt",
