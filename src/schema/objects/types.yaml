@@ -1,0 +1,44 @@
+---
+# This file describes the types of objects in the BIDS schema.
+# Each object type has its own YAML file describing valid possible values for objects of that type.
+associated_data:
+  name: Associated Data
+  description: |
+    Directories that may appear within a dataset directory without following BIDS rules.
+columns:
+  name: Column
+  description: |
+    Columns which may appear within tabular data files, such as TSV or TSV.GZ files.
+datatypes:
+  name: Data Type
+  description: |
+    A functional group of different types of data.
+    This is equivalent to the **Data Type** defined under Common Principles.
+entities:
+  name: Entity
+  description: |
+    A key-value pair in a BIDS filename.
+    Valid keys, and the order in which they must appear, is defined within the BIDS schema.
+formats:
+  name: Format
+  description: |
+    A regular expression defining valid values of different types.
+metadata:
+  name: Metadata Field
+  description: |
+    A field that may be present in a BIDS sidecar JSON file.
+modalities:
+  name: Modality
+  description: |
+    The category of brain data recorded by a file.
+    This is equivalent to the **Modality** defined under Common Principles.
+suffixes:
+  name: Suffix
+  description: |
+    An alphanumeric value within BIDS filenames, located after the entity `key-value_` pairs
+    (thus after the final `_`), right before the **File extension**.
+    This is equivalent to the **suffix** defined under Common Principles.
+top_level_files:
+  name: Top-Level File
+  description: |
+    A file which may appear at the top level of a dataset.
