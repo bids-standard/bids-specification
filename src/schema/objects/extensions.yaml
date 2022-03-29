@@ -141,13 +141,13 @@
     Used by KIT, Yokogawa, and Ricoh MEG systems.
     Successor to the `.sqd` extension for marker files.
 .nii:
-  name: Nifti
+  name: NIfTI
   description: |
-    A nifti file.
+    A NIfTI file.
 .nii.gz:
-  name: Compressed Nifti
+  name: Compressed NIfTI
   description: |
-    A compressed nifti file.
+    A compressed NIfTI file.
 .nwb:
   name: Neurodata Without Borders Format
   description: |
