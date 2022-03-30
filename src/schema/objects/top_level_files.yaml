@@ -25,7 +25,7 @@ README:
     The `README` file MUST be either in ASCII or UTF-8 encoding and MAY have one of the extensions:
     `.md` ([Markdown](https://www.markdownguide.org/)),
     `.rst` ([reStructuredText](https://docutils.sourceforge.io/rst.html)),
-    or `.txt` (unstructured text).
+    or `.txt`.
     BIDS does not make any recommendations with regards to the
     [Markdown flavor](https://www.markdownguide.org/extended-syntax/#lightweight-markup-languages)
     and does not validate the syntax of Markdown and reStructuredText.
