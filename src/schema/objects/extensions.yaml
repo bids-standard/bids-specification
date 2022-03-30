@@ -86,7 +86,7 @@
 .fdt:
   name: EEGLAB FDT
   description: |
-    A [EEGLAB](https://sccn.ucsd.edu/eeglab) file.
+    An [EEGLAB](https://sccn.ucsd.edu/eeglab) file.
 
     The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab).
     Each recording consists of a `.set` file with an optional `.fdt` file.
@@ -143,11 +143,11 @@
 .nii:
   name: NIfTI
   description: |
-    A NIfTI file.
+    A Neuroimaging Informatics Technology Initiative (NIfTI) data file.
 .nii.gz:
   name: Compressed NIfTI
   description: |
-    A compressed NIfTI file.
+    A compressed Neuroimaging Informatics Technology Initiative (NIfTI) data file.
 .nwb:
   name: Neurodata Without Borders Format
   description: |
@@ -186,7 +186,7 @@
 .set:
   name: EEGLAB SET
   description: |
-    A [EEGLAB](https://sccn.ucsd.edu/eeglab) file.
+    An [EEGLAB](https://sccn.ucsd.edu/eeglab) file.
 
     The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab).
     Each recording consists of a `.set` file with an optional `.fdt` file.
