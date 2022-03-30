@@ -58,6 +58,18 @@ entities:
         supplementary_fields:
         - format
         - enum
+extensions:
+  name: File Extension
+  description: |
+    A portion of the filename after the left-most
+    period (`.`) preceded by any other alphanumeric. For example, `.gitignore` does
+    not have a file extension, but the file extension of `test.nii.gz` is `.nii.gz`.
+    Note that the left-most period is included in the file extension.
+
+    This is equivalent to the **File extension** defined under Common Principles.
+  definition:
+    name: string
+    description: string
 formats:
   name: Format
   description: |
