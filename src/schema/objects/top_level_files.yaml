@@ -21,7 +21,7 @@ LICENSE:
 README:
   name: README
   description: |
-    A REQUIRED free-form text file, `README`, SHOULD describe the dataset in more detail.
+    A REQUIRED text file, `README`, SHOULD describe the dataset in more detail.
     The `README` file MUST be either in ASCII or UTF-8 encoding and MAY have one of the extensions:
     `.md` ([Markdown](https://www.markdownguide.org/)),
     `.rst` ([reStructuredText](https://docutils.sourceforge.io/rst.html)),
