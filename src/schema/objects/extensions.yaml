@@ -64,7 +64,7 @@
 .dat:
   name: MEG Fine-Calibration Format
   description: |
-    A fine-calibration file.
+    A fine-calibration file used for Neuromag/Elekta/MEGIN MEG recording hardware.
 .ds/:
   name: CTF MEG Dataset Folder
   description: |
