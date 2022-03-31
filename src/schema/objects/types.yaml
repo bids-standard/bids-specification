@@ -53,6 +53,7 @@ entities:
   definition:
     name: string
     description: string
+    entity: string
     type:
     - string:
         supplementary_fields:
