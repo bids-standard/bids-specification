@@ -143,11 +143,13 @@ Example:
 
 ### `README`
 
-A REQUIRED free-form text file, `README`, SHOULD describe the dataset in more detail.
+A REQUIRED text file, `README`, SHOULD describe the dataset in more detail.
 The `README` file MUST be either in ASCII or UTF-8 encoding and MAY have one of the extensions:
 `.md` ([Markdown](https://www.markdownguide.org/)),
 `.rst` ([reStructuredText](https://docutils.sourceforge.io/rst.html)),
-or `.txt` (unstructured text).
+or `.txt`.
+A BIDS dataset MUST NOT contain more than one `README` file (with or without extension)
+at its root directory.
 BIDS does not make any recommendations with regards to the
 [Markdown flavor](https://www.markdownguide.org/extended-syntax/#lightweight-markup-languages)
 and does not validate the syntax of Markdown and reStructuredText.
