@@ -1247,7 +1247,7 @@ InjectionStart:
   description: |
     Time of start of injection with respect to `"TimeZero"` in the default unit
     seconds.
-    This corresponds to DICOM Tag 0018, 1042 `Contrast/Bolus Start Time`
+    This corresponds to DICOM Tag 0018, 1072 `Contrast/Bolus Start Time`
     converted to seconds relative to `"TimeZero"`.
   type: number
   unit: s
@@ -2293,7 +2293,9 @@ SamplingFrequency:
 ScaleFactor:
   name: ScaleFactor
   description: |
-    Scale factor for each frame.
+    Scale factor for each frame. This field MUST be defined if the imaging data (`.nii[.gz]`) are scaled.
+    If this field is not defined, then it is assumed that the scaling factor is 1. Defining this field
+    when the scaling factor is 1 is RECOMMENDED, for the sake of clarity.
   type: array
   items:
     type: number

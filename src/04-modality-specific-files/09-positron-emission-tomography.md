@@ -154,8 +154,8 @@ which we divide into several categories:
 
 {{ MACROS___make_metadata_table(
    {
-      "TracerName": "REQUIRED",
-      "TracerRadionuclide": "REQUIRED",
+      "TracerName": ("REQUIRED", "Corresponds to DICOM Tags (0008,0105) `Mapping Resource` and (0008,0122) `Mapping Resource Name`."),
+      "TracerRadionuclide": ("REQUIRED", "Corresponds to DICOM Tags (0008,0104) `CodeValue` and (0008,0104) `CodeMeaning`."),
       "InjectedRadioactivity": "REQUIRED",
       "InjectedRadioactivityUnits": "REQUIRED",
       "InjectedMass": "REQUIRED",
@@ -186,11 +186,11 @@ which we divide into several categories:
 
 {{ MACROS___make_metadata_table(
    {
-      "PharmaceuticalName": "RECOMMENDED",
-      "PharmaceuticalDoseAmount": "RECOMMENDED",
+      "PharmaceuticalName": ("RECOMMENDED", "Corresponds to DICOM Tag (0008,0034) `Intervention Drug Name`."),
+      "PharmaceuticalDoseAmount": ("RECOMMENDED", "Corresponds to DICOM Tag (0008,0028) `Intervention Drug Dose`."),
       "PharmaceuticalDoseUnits": "RECOMMENDED",
       "PharmaceuticalDoseRegimen": "RECOMMENDED",
-      "PharmaceuticalDoseTime": "RECOMMENDED",
+      "PharmaceuticalDoseTime": ("RECOMMENDED", "Corresponds to a combination of DICOM Tags (0008,0027) `Intervention Drug Stop Time` and (0008,0035) `Intervention Drug Start Time`."),
       "Anaesthesia": "OPTIONAL",
    }
 ) }}
@@ -201,11 +201,11 @@ which we divide into several categories:
    {
       "TimeZero": "REQUIRED",
       "ScanStart": "REQUIRED",
-      "InjectionStart": "REQUIRED",
+      "InjectionStart": ("REQUIRED", "This corresponds to DICOM Tag (0018,1072) `Radiopharmaceutical Start Time`."),
       "FrameTimesStart": "REQUIRED",
       "FrameDuration": "REQUIRED",
-      "InjectionEnd": "RECOMMENDED",
-      "ScanDate": "DEPRECATED",
+      "InjectionEnd": ("RECOMMENDED", "This corresponds to DICOM Tag (0018,1073) `Radiopharmaceutical Stop Time` converted to seconds relative to TimeZero."),
+      "ScanDate": ("DEPRECATED", "This corresponds to DICOM Tag (0008,0022) `Acquisition Date`."),
    }
 ) }}
 
@@ -218,19 +218,19 @@ We refer to the common principles for the standards for describing dates and tim
       "AcquisitionMode": "REQUIRED",
       "ImageDecayCorrected": "REQUIRED",
       "ImageDecayCorrectionTime": "REQUIRED",
-      "ReconMethodName": "REQUIRED",
-      "ReconMethodParameterLabels": "REQUIRED",
-      "ReconMethodParameterUnits": "REQUIRED",
-      "ReconMethodParameterValues": "REQUIRED",
-      "ReconFilterType": "REQUIRED",
-      "ReconFilterSize": "REQUIRED",
-      "AttenuationCorrection": "REQUIRED",
+      "ReconMethodName": ("REQUIRED", "This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`."),
+      "ReconMethodParameterLabels": ("REQUIRED", "This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`."),
+      "ReconMethodParameterUnits": ("REQUIRED", "This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`."),
+      "ReconMethodParameterValues": ("REQUIRED", "This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`."),
+      "ReconFilterType": ("REQUIRED", "This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`."),
+      "ReconFilterSize": ("REQUIRED", "This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`."),
+      "AttenuationCorrection": ("REQUIRED", "This corresponds to DICOM Tag (0054,1101) `Attenuation Correction Method`."),
       "ReconMethodImplementationVersion": "RECOMMENDED",
       "AttenuationCorrectionMethodReference": "RECOMMENDED",
       "ScaleFactor": "RECOMMENDED",
-      "ScatterFraction": "RECOMMENDED",
-      "DecayCorrectionFactor": "RECOMMENDED",
-      "DoseCalibrationFactor": "RECOMMENDED",
+      "ScatterFraction": ("RECOMMENDED", "This corresponds to DICOM Tag (0054,1323) `Scatter Fraction Factor`."),
+      "DecayCorrectionFactor": ("RECOMMENDED", "This corresponds to DICOM Tag (0054,1321) `Decay Factor`."),
+      "DoseCalibrationFactor": ("RECOMMENDED", "This corresponds to DICOM Tag (0054,1322) `Dose Calibration Factor`."),
       "PromptRate": "RECOMMENDED",
       "RandomRate": "RECOMMENDED",
       "SinglesRate": "RECOMMENDED",
