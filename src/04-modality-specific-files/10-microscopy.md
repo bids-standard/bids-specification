@@ -57,6 +57,13 @@ as a successor to OME-TIFF for better remote sharing of large datasets.
 ### Modality suffixes
 Microscopy data currently support the following imaging modalities:
 
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_suffix_table(
       [
          "TEM",
