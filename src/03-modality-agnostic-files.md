@@ -14,6 +14,12 @@ Templates:
 The file `dataset_description.json` is a JSON file describing the dataset.
 Every dataset MUST include this file with the following fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "Name": "REQUIRED",
@@ -99,6 +105,12 @@ top level of every derived dataset:
 In contrast to raw BIDS datasets, derived BIDS datasets MUST include a
 `GeneratedBy` key:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "GeneratedBy": "REQUIRED"
@@ -348,6 +360,12 @@ MAY be accompanied by a JSON file describing the columns in detail
 
 In addition to the column descriptions, the JSON file MAY contain the following fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "MeasurementToolMetadata": "OPTIONAL",
