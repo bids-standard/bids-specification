@@ -454,6 +454,10 @@ manufacturer (see [Appendix VI](../99-appendices/06-meg-file-formats.md)).
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-control01": {
@@ -492,6 +496,10 @@ SHOULD be present as well.
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-control01": {},

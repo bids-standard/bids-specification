@@ -36,6 +36,10 @@ such as the CTF newDs command-line application or
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-control01": {
@@ -95,6 +99,10 @@ which may be nested inside a `ses-<label>` folder, as shown in the following exa
 
 #### Example with single session (omitted session folder)
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-01": {
@@ -122,6 +130,10 @@ which may be nested inside a `ses-<label>` folder, as shown in the following exa
 
 #### Example with multiple sessions
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-01": {
@@ -159,6 +171,10 @@ and placed in a `derivatives` subfolder.
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-control01": {
@@ -200,6 +216,10 @@ for the `acq_time` column in `scans.tsv` MUST all be identical, as described in
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-control01": {
@@ -243,6 +263,10 @@ files for each run inside (for example, `c,rfhp0.1Hz`, `config` and `hs_file`).
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-control01": {
@@ -262,6 +286,10 @@ Example:
 
 Where:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-control01_ses-001_task-rest_run-01_meg": {
@@ -286,6 +314,10 @@ Head points and marker points in *head space* are acquired using third-party har
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-control01": {
@@ -343,6 +375,10 @@ sub-<label>[_ses-<label>]_task-<label>[_acq-<label>]_digitizer.txt
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-control01": {
@@ -377,6 +413,10 @@ information).
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-control01": {

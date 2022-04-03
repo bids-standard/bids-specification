@@ -94,6 +94,10 @@ The label MUST be unique per subject and is RECOMMENDED to be unique throughout 
 For example: Three brain slices (`sample-01` to `sample-03`) extracted from subject `sub-01`,
 imaged by scanning electron microscopy (SEM) in PNG format
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -126,6 +130,10 @@ For example: One brain slice (`sample-01`) extracted from subject `sub-01` with 
 stains (`stain-01`, `stain-02` and `stain-03`) in three separate files, imaged by selective plane
 illumination microscopy (SPIM) in OME-TIFF format
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -179,6 +187,10 @@ Figure 1: Examples of chunks configurations.
 For example: Four chunks (`chunk-01` to `chunk-04`) from the same brain sample (`sample-01`)
 of subject `sub-01`, imaged by confocal microscopy (CONF) in OME-TIFF format
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -213,6 +225,10 @@ Lower resolutions files MUST be placed under the `derivatives` folder and use th
 
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "my_dataset": {
@@ -418,6 +434,10 @@ acquisition of different photos of the same sample.
 
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {

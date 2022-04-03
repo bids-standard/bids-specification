@@ -43,6 +43,10 @@ If a qMRI file collection is intended for creating structural quantitative maps 
 files belonging to that collection are stored in the `anat` subfolder.
 Below is an example file collection for `MP2RAGE`:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-01": {
@@ -63,6 +67,10 @@ As these images do not convey substantial structural information,
 respective file collections of RF fieldmaps are stored in the `fmap` subfolder.
 Below is an example file collection for RF transmit field map `TB1EPI`:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-01": {
@@ -89,6 +97,10 @@ For example a `T1map` can be generated from an `MP2RAGE` file collection using e
 
 If the map is post-generated:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "ds-example": {
@@ -110,6 +122,10 @@ If the map is post-generated:
 
 If the map is pre-generated, for example, by a Siemens scanner:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "ds-example": {
@@ -196,6 +212,10 @@ As qMRI maps are stored as derivatives, they are subjected to the metadata requi
 
 An example `dataset_description.json` for a qMRI map derivatives folder:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "ds-example": {
@@ -500,6 +520,10 @@ files:
 To properly identify constituents of this particular method, values of the `echo`
 entity MUST index the images as follows:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-01": {
@@ -534,6 +558,10 @@ and MAY be followed by freeform entries:
 | `_acq-tr1Test`   | `_acq-tr2Test`   | Acquisition `Test`   |
 | `_acq-tr1Retest` | `_acq-tr2Retest` | Acquisition `Retest` |
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-01": {
@@ -562,6 +590,10 @@ values of the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be 
 | `_acq-anatTest`             | `_acq-fampTest`           | Acquisition `Test`   |
 | `_acq-anatRetest`           | `_acq-fampRetest`         | Acquisition `Retest` |
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-01": {
@@ -594,6 +626,10 @@ entries:
 | `_acq-bodyPDw` | `_acq-headPDw` | `PDw` for `MPM`    |
 | `_acq-bodyT1w` | `_acq-headT1w` | `T1w` for `MPM`    |
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-01": {

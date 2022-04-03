@@ -68,6 +68,10 @@ as well as to make support for other file formats possible in the future.
 
 Example `*_physio.tsv.gz`:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-control01": {
@@ -88,6 +92,10 @@ Example `*_physio.tsv.gz`:
 
 Example `*_physio.json`:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-control01": {
@@ -140,6 +148,10 @@ For multi-echo data, a given `physio.tsv` file is applicable to all echos of
 a particular run.
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {

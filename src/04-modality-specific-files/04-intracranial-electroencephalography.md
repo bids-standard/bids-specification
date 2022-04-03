@@ -321,6 +321,10 @@ correspond.
 
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -489,6 +493,10 @@ Example of the operative photo of ECoG electrodes (here is an annotated example 
 which electrodes and vasculature are marked, taken from Hermes et al.,
 JNeuroMeth 2010).
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
