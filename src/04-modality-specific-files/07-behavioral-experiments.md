@@ -36,6 +36,12 @@ In addition to the metadata that is either:
 
 it is RECOMMENDED to add the following metadata to the JSON files of this folder:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "TaskName": "RECOMMENDED",

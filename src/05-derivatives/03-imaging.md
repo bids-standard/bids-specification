@@ -52,6 +52,12 @@ A guide for using macros can be found at
 
 The following metadata JSON fields are defined for preprocessed images:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "SkullStripped": "REQUIRED",
@@ -154,6 +160,12 @@ and the `Atlas` metadata SHOULD be defined.
 
 JSON metadata fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "RawSources": "REQUIRED",
@@ -229,6 +241,12 @@ Probabilistic segmentations of surfaces are currently [unspecified][].
 
 The following metadata fields apply to all segmentation files:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "Manual": "OPTIONAL",

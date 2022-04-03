@@ -261,6 +261,12 @@ Microscopy data MUST be described by metadata fields, stored in sidecar JSON fil
 
 #### Device Hardware
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "Manufacturer": "RECOMMENDED",
@@ -276,6 +282,12 @@ Microscopy data MUST be described by metadata fields, stored in sidecar JSON fil
 
 #### Image Acquisition
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "PixelSize": "REQUIRED",
@@ -290,6 +302,12 @@ Microscopy data MUST be described by metadata fields, stored in sidecar JSON fil
 
 #### Sample
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "BodyPart": ("RECOMMENDED", "From [DICOM Body Part Examined](http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html#chapter_L) (for example `\"BRAIN\"`)."),
@@ -324,6 +342,12 @@ of the same sample in an implicit coordinate system.
 
 -   Other transformations should be described in derivatives.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "ChunkTransformationMatrix": "RECOMMENDED if `<chunk-index>` is used in filenames",

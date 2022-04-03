@@ -214,6 +214,12 @@ sake of brevity.
 It is RECOMMENDED to include details of the stimulus presentation software,
 when applicable:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "StimulusPresentation": "RECOMMENDED",
@@ -222,6 +228,12 @@ when applicable:
 
 The object supplied for `StimulusPresentation` SHOULD include the following key-value pairs:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "OperatingSystem": "RECOMMENDED",
