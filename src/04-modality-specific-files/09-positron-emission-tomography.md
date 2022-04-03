@@ -60,6 +60,13 @@ In this example, tracer injection coincides with scan start.
 
 ## PET recording data
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(
    datatypes=["pet"],
    suffixes=["pet", "events", "physio", "stim"])
@@ -339,6 +346,13 @@ ses-02 59
 
 ## Blood recording data
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["pet"], suffixes=["blood"]) }}
 
 If collected, blood measurements of radioactivity are be stored in
