@@ -401,6 +401,12 @@ and a guide for using macros can be found at
 The following columns are defined for `_blood.tsv` files.
 The `time` column MUST always be the first column.
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "time": "REQUIRED",

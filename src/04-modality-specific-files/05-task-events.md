@@ -34,6 +34,12 @@ file describing the columns in detail (see
 The tabular files consists of one row per event and a set of REQUIRED
 and OPTIONAL columns:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "onset": "REQUIRED",
@@ -147,6 +153,12 @@ for a given event,
 There are no restrictions on the file formats of the stimuli files,
 but they should be stored in the `/stimuli` folder.
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "stim_file": "OPTIONAL",

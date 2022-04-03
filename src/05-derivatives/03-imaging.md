@@ -519,6 +519,12 @@ A guide for using macros can be found at
 
 These TSV lookup tables contain the following columns:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "index": "REQUIRED",
