@@ -362,10 +362,10 @@ Derivatives can be stored/distributed in two ways:
 
     Example of a derivative dataset including the raw dataset as source:
 
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
+    <!-- This block generates a file tree.
+    A guide for using macros can be found at
+    https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+    -->
     {{ MACROS___make_filetree_example(
         {
         "my_processed_data": {
