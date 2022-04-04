@@ -270,7 +270,9 @@ Alternatively one can organize their data in the following way
     "my_dataset-1": {
             "sourcedata": "",
             "...": "",
-            "sourcedata": {
+            "rawdata": {
+                "dataset_description.json": "",
+                "participants.tsv": "",
                 "sub-01": {},
                 "sub-02": {},
                 "...": "",
