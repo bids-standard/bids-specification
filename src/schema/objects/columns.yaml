@@ -423,8 +423,8 @@ stim_file:
     Represents the location of the stimulus file (such as an image, video, or
     audio file) presented at the given onset time.
     There are no restrictions on the file formats of the stimuli files,
-    but they should be stored in the `/stimuli` folder
-    (under the root folder of the dataset; with optional subfolders).
+    but they should be stored in the `/stimuli` directory
+    (under the root directory of the dataset; with optional subdirectories).
     The values under the `stim_file` column correspond to a path relative to
     `/stimuli`.
     For example `images/cat03.jpg` will be translated to `/stimuli/images/cat03.jpg`.

@@ -44,8 +44,8 @@ If multiple *Tasks* were performed within a single *Run*,
 the task description can be set to `task-multitask`.
 The `*_meg.json` file SHOULD contain details on the *Tasks*.
 
-Some manufacturers' data storage conventions use folders which contain data
-files of various nature: for example, CTF's `.ds` format, or BTi/4D's data folder.
+Some manufacturers' data storage conventions use directories which contain data
+files of various nature: for example, CTF's `.ds` format, or BTi/4D's data directory.
 Yet other manufacturers split their files once they exceed a certain size
 limit.
 For example Neuromag/Elekta/Megin, which can produce several files
@@ -475,7 +475,7 @@ Empty-room MEG recordings capture the environmental and recording system's
 noise.
 In the context of BIDS it is RECOMMENDED to perform an empty-room recording for
 each experimental session.
-It is RECOMMENDED to store the empty-room recording inside a subject folder
+It is RECOMMENDED to store the empty-room recording inside a subject directory
 named `sub-emptyroom`.
 The label for the [`task-<label>`](../99-appendices/09-entities.md#task) entity in the empty-room recording SHOULD be
 set to `noise`.

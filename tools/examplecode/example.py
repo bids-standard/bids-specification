@@ -45,7 +45,7 @@ class _TreeGenerator:
 
     def _tree_body(self, directory, prefix=""):
         """
-        Loops through the dictionary content representing a folder
+        Loops through the dictionary content representing a directory
         and append the content to the tree.
         This is done recursively any time a new dictionary is encountered.
         """
@@ -54,7 +54,7 @@ class _TreeGenerator:
 
         for index, entry in enumerate(directory):
 
-            # change connector if this is the last item in this folder
+            # change connector if this is the last item in this directory
             connector = self.ELBOW if index == entries_count - 1 else self.TEE
             self._add_dictionary(
                 directory, entry, index, entries_count, prefix, connector
