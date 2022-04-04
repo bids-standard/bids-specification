@@ -1,6 +1,6 @@
 ---
-# This file describes the requirement levels of folders which may appear
-# within a dataset folder without following BIDS format.
+# This file describes the requirement levels of directories which may appear
+# within a dataset directory without following BIDS format.
 code:
   required: false
 derivatives:

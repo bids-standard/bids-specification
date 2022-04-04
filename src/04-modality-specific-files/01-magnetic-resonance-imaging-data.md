@@ -203,7 +203,7 @@ diffusion and functional MRI may also be *intended for* estimating the
 *B<sub>0</sub>* field nonuniformity inside the scanner (in other words,
 *mapping the field*) without the acquisition of additional MRI schemes
 such as gradient-recalled echo (GRE) sequences that are stored under the
-`fmap/` folder of the BIDS structure.
+`fmap/` directory of the BIDS structure.
 
 The modality labels `dwi` (under `dwi/`), `bold` (under `func/`),
 `asl` (under `perf/`), `sbref` (under `dwi/`, `func/` or `perf/`), and

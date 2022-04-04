@@ -5,9 +5,9 @@ RECOMMENDED values for `manufacturer_specific_extensions`:
 
 | **Value**                                           | **Description**                                                                       |
 | --------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| [`ctf`](06-meg-file-formats.md#ctf)                 | CTF (folder with `.ds` extension)                                                     |
+| [`ctf`](06-meg-file-formats.md#ctf)                 | CTF (directory with `.ds` extension)                                                  |
 | [`fif`](06-meg-file-formats.md#neuromagelektamegin) | Neuromag / Elekta / MEGIN and BabyMEG (file with extension `.fif`)                    |
-| [`4d`](06-meg-file-formats.md#bti4d-neuroimaging)   | BTi / 4D Neuroimaging (folder containing multiple files without extensions)           |
+| [`4d`](06-meg-file-formats.md#bti4d-neuroimaging)   | BTi / 4D Neuroimaging (directory containing multiple files without extensions)        |
 | [`kit`](06-meg-file-formats.md#kityokogawaricoh)    | KIT / Yokogawa / Ricoh (file with extension `.sqd`, `.con`, `.raw`, `.ave` or `.mrk`) |
 | [`kdf`](06-meg-file-formats.md#kriss)               | KRISS (file with extension `.kdf`)                                                    |
 | [`itab`](06-meg-file-formats.md#itab)               | Chieti system (file with extension `.raw` and `.mhd`)                                 |
@@ -16,10 +16,10 @@ Below are specifications for each system brand.
 
 ## CTF
 
-Each experimental run with a CTF system yields a folder with a `.ds` extension,
+Each experimental run with a CTF system yields a directory with a `.ds` extension,
 containing several files. The OPTIONAL digitized positions of the head points
 are usually stored in a separate `.pos` file, not necessarily within the `.ds`
-folder.
+directory.
 
 ```Text
 [sub-<label>[_ses-<label>]_headshape.pos]
@@ -94,10 +94,10 @@ entity.
 Note that cross-talk files MUST be denoted using `acq-crosstalk` and
 fine-calibration files MUST be denoted using `acq-calibration`.
 
-The cross-talk and fine-calibration data MUST be stored in the subject-level `meg` folder,
-which may be nested inside a `ses-<label>` folder, as shown in the following examples.
+The cross-talk and fine-calibration data MUST be stored in the subject-level `meg` directory,
+which may be nested inside a `ses-<label>` directory, as shown in the following examples.
 
-#### Example with single session (omitted session folder)
+#### Example with single session (omitted session directory)
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -167,7 +167,7 @@ A guide for using macros can be found at
 
 After applying SSS (for example, by using the MaxFilter software),
 files SHOULD be renamed with the corresponding label (for example, `proc-sss`)
-and placed in a `derivatives` subfolder.
+and placed in a `derivatives` subdirectory.
 
 Example:
 
@@ -250,7 +250,7 @@ support recording dates earlier than `1901-12-13T08:45:53.000000` UTC or later t
 
 ## BTi/4D neuroimaging
 
-Each experimental run on a 4D neuroimaging/BTi system results in a folder
+Each experimental run on a 4D neuroimaging/BTi system results in a directory
 containing multiple files without extensions.
 
 ```Text
@@ -361,7 +361,7 @@ More about the KIT/Yokogawa/Ricoh data organization at:
 ## KRISS
 
 Each experimental run on the KRISS system produces a file with extension
-`.kdf`. Additional files can be available in the same folder: the digitized
+`.kdf`. Additional files can be available in the same directory: the digitized
 positions of the head points (`\_digitizer.txt`), the position of the center of
 the MEG coils (`.chn`) and the event markers (`.trg`).
 

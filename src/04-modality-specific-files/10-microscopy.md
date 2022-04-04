@@ -234,7 +234,7 @@ JSON metadata may be defined per sample or per chunk as appropriate, as per the
 In microscopy, many pyramidal file formats store multiple resolutions for the same acquisition.
 In the case where a multiple resolutions file format is converted to single resolution file format,
 only the higher resolution file is present in the raw data.
-Lower resolutions files MUST be placed under the `derivatives` folder and use the
+Lower resolutions files MUST be placed under the `derivatives` directory and use the
 [`res-<label>`](../99-appendices/09-entities.md#res) entity.
 
 For example:

@@ -6,7 +6,7 @@ from schemacode import schema
 
 def test_load_schema(schema_dir):
     """Smoke test for schemacode.schema.load_schema."""
-    # Pointing to a nonexistent folder should raise a ValueError
+    # Pointing to a nonexistent directory should raise a ValueError
     bad_path = "/path/to/nowhere"
     with pytest.raises(ValueError):
         schema.load_schema(bad_path)
@@ -62,6 +62,11 @@ def test_formats(schema_obj):
             "9:00:00",  # leading zeros are not required for hours
         ],
         "unit": ["any string is valid."],
+        "file_relative": [
+            "file_in_same_directory.txt",
+            "../../relative/path/file.txt",
+            "sub-01/path/file.txt",
+        ],
         "stimuli_relative": ["any/arbitrary/path/file.txt"],
         "dataset_relative": ["any/arbitrary/path/file.txt"],
         "participant_relative": ["any/arbitrary/path/file.txt"],
@@ -108,6 +113,9 @@ def test_formats(schema_obj):
             "01:23",  # lacks either hours or seconds
         ],
         "unit": [],
+        "file_relative": [
+            "/path/with/starting/slash/file.txt",
+        ],
         "stimuli_relative": [
             "/path/with/starting/slash/file.txt",
             "stimuli/path/file.txt",
