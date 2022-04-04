@@ -66,7 +66,7 @@ def load_schema(schema_path):
     Parameters
     ----------
     schema_path : str
-        Folder containing yaml files or yaml file.
+        Directory containing yaml files or yaml file.
 
     Returns
     -------
@@ -98,7 +98,7 @@ def load_schema(schema_path):
         dict_ = yaml.safe_load(rule_group_file.read_text())
         schema["rules"][rule_group_file.stem] = dereference_yaml(dict_, dict_)
 
-    # Load folders of rule subgroups.
+    # Load directories of rule subgroups.
     for rule_group_file in sorted(rules_dir.glob("*/*.yaml")):
         rule = schema["rules"].setdefault(rule_group_file.parent.name, {})
         lgr.debug(f"Loading {rule_group_file.stem} rules.")

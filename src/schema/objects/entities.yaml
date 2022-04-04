@@ -25,6 +25,16 @@ acquisition:
     remains at the discretion of the researcher.
   type: string
   format: label
+atlas:
+  name: Atlas
+  entity: atlas
+  description: |
+    The `atlas-<label>` key/value pair corresponds to a custom label the user
+    MAY use to distinguish a different atlas used for similar type of data.
+
+    This entity is only applicable to derivative data.
+  type: string
+  format: label
 ceagent:
   name: Contrast Enhancing Agent
   entity: ce

@@ -105,8 +105,8 @@ In contrast to raw BIDS datasets, derived BIDS datasets MUST include a
    }
 ) }}
 
-If a derived dataset is stored as a subfolder of the raw dataset, then the `Name` field
-of the first `GeneratedBy` object MUST be a substring of the derived dataset folder name.
+If a derived dataset is stored as a subdirectory of the raw dataset, then the `Name` field
+of the first `GeneratedBy` object MUST be a substring of the derived dataset directory name.
 That is, in a directory `<dataset>/derivatives/<pipeline>[-<variant>]/`, the first
 `GeneratedBy` object should have a `Name` of `<pipeline>`.
 
@@ -143,8 +143,18 @@ Example:
 
 ### `README`
 
-Every BIDS dataset SHOULD come with a free form text file (`README`) describing the dataset in more detail.
-The `README` file MUST be either in ASCII or UTF-8 encoding.
+A REQUIRED text file, `README`, SHOULD describe the dataset in more detail.
+The `README` file MUST be either in ASCII or UTF-8 encoding and MAY have one of the extensions:
+`.md` ([Markdown](https://www.markdownguide.org/)),
+`.rst` ([reStructuredText](https://docutils.sourceforge.io/rst.html)),
+or `.txt`.
+A BIDS dataset MUST NOT contain more than one `README` file (with or without extension)
+at its root directory.
+BIDS does not make any recommendations with regards to the
+[Markdown flavor](https://www.markdownguide.org/extended-syntax/#lightweight-markup-languages)
+and does not validate the syntax of Markdown and reStructuredText.
+The `README` file SHOULD be structured such that its contents can be easily understood
+even if the used format is not rendered.
 A guideline for creating a good `README` file can be found in the
 [bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/blob/master/templates/README).
 

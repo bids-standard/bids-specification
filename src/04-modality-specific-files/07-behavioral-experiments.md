@@ -5,7 +5,7 @@
 In addition to logs from behavioral experiments performed alongside imaging data
 acquisitions, one can also include data from experiments performed with no neural
 recordings.
-The results of those experiments can be stored in the `beh` folder using the same
+The results of those experiments can be stored in the `beh` directory using the same
 formats for event timing (`_events.tsv`), metadata (`_events.json`),
 physiological (`_physio.tsv.gz`, `_physio.json`)
 and other continuous recordings (`_stim.tsv.gz`, `_stim.json`)
@@ -31,10 +31,10 @@ In addition to the metadata that is either:
 
 -   RECOMMENDED for sidecar JSON files for [tabular data](../02-common-principles.md#tabular-data), or
 
--   REQUIRED for some data that can be found in the `beh` folder
+-   REQUIRED for some data that can be found in the `beh` directory
     (for example `SamplingFrequency` and `StartTime` for `*_<physio|stim>.tsv.gz` files),
 
-it is RECOMMENDED to add the following metadata to the JSON files of this folder:
+it is RECOMMENDED to add the following metadata to the JSON files of this directory:
 
 {{ MACROS___make_metadata_table(
    {

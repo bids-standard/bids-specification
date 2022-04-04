@@ -225,88 +225,44 @@ That would look like this:
 ## Using macros
 
 We use [mkdocs-macros](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)
-to render parts of the BIDS specification from the BIDS schema.
-Macros make it easy to achieve a consistent style throughout the specification,
-and changing a given macro will automatically change all appropriate paragraphs in the specification.
+to standardize how some aspects of the BIDS specification are rendered in HTML.
 
-For example, all tables on BIDS metadata are generated via macros that make use of data in the
-[yaml files](src/schema/metadata) in the [schema](src/schema/README.md).
-
-These macros are written in Python
-(see the folders [tools/schemacode](tools/schemacode) and [tools/mkdocs_macros_bids](tools/mkdocs_macros_bids)),
-and are called directly in the Markdown document where you want the output of the macro to be inserted.
-
-For example:
-
-```Text
-{{ MACROS___make_metadata_table(
-   {
-      "SamplingFrequency": "REQUIRED",
-      "StartTime": "RECOMMENDED, but REQUIRED for sparse sequences",
-   }
-) }}
-```
-
-This macro will create a table for the "SamplingFrequency" and "StartTime" metadata,
-filling the table with the content specified in their respective yaml files
-(see [SamplingFrequency.yaml](src/schema/metadata/SamplingFrequency.yaml) and [StartTime.yaml](src/schema/metadata/StartTime.yaml)).
-
-Some of the content created by the macro can be specified in the macro call itself, as opposed to in the yaml files.
-Here the `"REQUIRED"`, `"RECOMMENDED, but REQUIRED for sparse sequences"`
-specify the content of the requirement level column for each piece of metadata.
-
-This macro also allows you to append extra content to the description of that metadata
-by specifying it in the macro call:
-
-```Text
-{{ MACROS___make_metadata_table(
-   {
-      "SamplingFrequency": ("REQUIRED", "This extra content will be added to the description")
-      "StartTime": "RECOMMENDED, but REQUIRED for sparse sequences",
-   }
-) }}
-```
-
-### Writing folder content examples
-
-We also use macros to have a consistent style to render the examples of folder contents.
-
-These code for these macros are in the folder [tools/schemacode](tools/schemacode).
-
-To insert examples in the code you have make calls to the macro like this:
-
-```
-{{ MACROS___make_filetree_example(
-
-   {
-   "sub-01": {
-      "func": {
-         "sub-control01_task-nback_bold.json": "",
-         },
-      }
-   }
-
-) }}
-```
-
-And this will be turned into this.
-
-```Text
-└─ sub-01/
-   └─ func/
-      └─ sub-control01_task-nback_bold.json
-```
-
-When you have complex files and folder structure, we suggest you use this
-[Jupyter notebook](tools/filetree_example.ipynb) for sandboxing your example
-before you insert the macro call into the markdown document.
+<!-- TODO update link once we know we have found a final home for that doc -->
+We have dedicated documentation for [this](./macro_doc.md).
 
 ## Building the specification using mkdocs
 
 We are using mkdocs to render our specification.
 Please follow these instructions if you would like to build the specification locally.
 
-#### 1. Install mkdocs, the material theme and the required extensions
+#### 1. Download the BIDS specification [repository](https://github.com/bids-standard/bids-specification/tree/master) onto your computer
+
+This can be done by clicking the green button on the right titled "Clone or
+download"
+or using [this link](https://github.com/bids-standard/bids-specification/archive/master.zip).
+
+Or you can use the following `git` command in a terminal:
+
+```bash
+git clone https://github.com/bids-standard/bids-specification.git
+```
+
+#### 2. In the terminal (command line) navigate to your local version of the specification
+
+This location will have the same files you see on our
+[main specification page](https://github.com/bids-standard/bids-specification).
+Note that a file browser window may not show the hidden files
+(those that start with a period, like `.remarkrc`).
+
+If you cloned the repository using the `git` command above, you can then just do:
+
+```bash
+cd bids-specification
+```
+
+Enter all commands below from the command line prompt located at the root of the local version of the specification.
+
+#### 3. Install mkdocs, the material theme and the required extensions
 
 In the following links, you can find more information about
 
@@ -318,40 +274,41 @@ You will also need several other mkdocs plugins, like `branchcustomization` and 
 To install all of this make sure you have a recent version of Python on your computer.
 The [DataLad Handbook](http://handbook.datalad.org/en/latest/intro/installation.html#python-3-all-operating-systems) provides helpful instructions for setting up Python.
 
-An easy way to install the correct version of mkdocs and all the other required extensions
-is to use the `requirements.txt` file contained in this repository,
-by using the following command:
+In general, we strongly recommend that you install all dependencies in an isolated Python environment.
+For example using `conda`, as described in this [Geohackweek tutorial](https://geohackweek.github.io/Introductory/01-conda-tutorial/).
 
 ```bash
+conda create --name bids-spec
+conda activate bids-spec
+```
+
+Or alternatively using `venv`, as described in this [Real Python tutorial](https://realpython.com/python-virtual-environments-a-primer/).
+
+A short version of the commands needed to create and activate your `venv` virtual environment would look like:
+
+```bash
+python -m venv env
+source env/bin/activate
+```
+
+Note that this will create a local directory called `env` within the bids-specification directory
+but that its content will not be tracked by `git` because it is listed in the `.gitignore` file.
+
+Once you have activated your isolated Python environment,
+an easy way to install the correct version of mkdocs and all the other required extensions
+is to use the `requirements.txt` file contained in this repository as follows:
+
+```bash
+pip install -U pip
 pip install -r requirements.txt
+pip install -e tools/schemacode/
 ```
 
-However this will also install some other packages you might not want to have (like `numpy`).
-So if you only want to install what you need to build the specification,
-use the following command:
-
-```bash
-pip install \
- mkdocs \
- mkdocs-material \
- pymdown-extensions \
- mkdocs-branchcustomization-plugin \
- mkdocs-macros-plugin \
- tabulate
-```
-
-#### 2. Download the BIDS specification [repository](https://github.com/bids-standard/bids-specification/tree/master) onto your computer
-
-This can be done by clicking the green button on the right titled "Clone or
-download"
-or using [this link](https://github.com/bids-standard/bids-specification/archive/master.zip).
-
-#### 3. In the terminal (command line) navigate to your local version of the specification
-
-This location will have the same files you see on our
-[main specification page](https://github.com/bids-standard/bids-specification).
-Note: A finder window may not show the hidden files (those that start with a
-period, like `.remarkrc`)
+The first command ensures you are using an up to date version of `pip`,
+and the second command installs all dependencies.
+The third command ensures to install the BIDS schema code as an "editable" install,
+so that if you make changes to the schema files,
+these are automatically reflected in the sourcecode.
 
 #### 4. Ready to build!
 
@@ -458,7 +415,7 @@ specification, do not hesitate to make a suggestion by showing a draft in a GitH
 After discussion and approval by the community, you can then submit your image
 in a pull request.
 
-Images should be added to an `images` folder that is at the same level as the Markdown file
+Images should be added to an `images` directory that is at the same level as the Markdown file
 where your image will be added. For example if you want to add a figure `figure01.png` to
 `src/05-derivatives/01-introduction.md` then your image should go to
 `src/05-derivatives/images/figure01.png`.
@@ -672,7 +629,7 @@ reviewer as a co-author.
 ## Making a change to the BIDS-schema
 
 Several aspects of the specification are defined in a set of YAML files in the
-`src/schema` folder. The content of those files is described in a dedicated
+`src/schema` directory. The content of those files is described in a dedicated
 [README file](./src/schema/README.md).
 
 ### 1. Ensure that changes to the specification are matched in the schema

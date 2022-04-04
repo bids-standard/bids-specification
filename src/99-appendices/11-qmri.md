@@ -40,7 +40,7 @@ application by creating logical groups of input files through `suffix` and certa
 representing acquisition parameters (`echo`, `flip`, `inv`, `mt`) or file parts (`part`).
 
 If a qMRI file collection is intended for creating structural quantitative maps (for example, `T1map`),
-files belonging to that collection are stored in the `anat` subfolder.
+files belonging to that collection are stored in the `anat` subdirectory.
 Below is an example file collection for `MP2RAGE`:
 
 {{ MACROS___make_filetree_example(
@@ -60,7 +60,7 @@ Below is an example file collection for `MP2RAGE`:
 
 Commonly, RF fieldmaps (`B1+` and `B1-` maps) are used for the correction of structural quantitative maps.
 As these images do not convey substantial structural information,
-respective file collections of RF fieldmaps are stored in the `fmap` subfolder.
+respective file collections of RF fieldmaps are stored in the `fmap` subdirectory.
 Below is an example file collection for RF transmit field map `TB1EPI`:
 
 {{ MACROS___make_filetree_example(
@@ -84,7 +84,7 @@ Please visit the [file collections appendix](./10-file-collections.md#magnetic-r
 
 ### Quantitative maps are derivatives
 
-Regardless of how they are obtained (pre- or post-generated), qMRI maps are stored in the `derivatives` folder.
+Regardless of how they are obtained (pre- or post-generated), qMRI maps are stored in the `derivatives` directory.
 For example a `T1map` can be generated from an `MP2RAGE` file collection using either options.
 
 If the map is post-generated:
@@ -194,7 +194,7 @@ Explanation of the table:
 As qMRI maps are stored as derivatives, they are subjected to the metadata requirements of
 [derived datasets](../03-modality-agnostic-files.md#derived-dataset-and-pipeline-description).
 
-An example `dataset_description.json` for a qMRI map derivatives folder:
+An example `dataset_description.json` for a qMRI map derivatives directory:
 
 {{ MACROS___make_filetree_example(
    {
@@ -416,7 +416,7 @@ raw dataset directory along with the `MP2RAGE` file collection and to be used as
 for quantifying a `T1map`.
 
 If an additional `UNIT1` image is calculated offline, then the output is to be stored in the
-`derivatives` folder with necessary provenance information.
+`derivatives` directory with necessary provenance information.
 
 ##### `NumberShots` metadata field
 

@@ -202,6 +202,11 @@ structure may be concatenated in a single file.
 Segmentations may be defined in a volume (labeled voxels), a surface (labeled
 vertices) or a combined volume/surface space.
 
+If the segmentation can be derived from different atlases,
+the [`atlas` entity](../99-appendices/09-entities.md#atlas) MAY be used to
+distinguish the different segmentations.
+If so, the `Atlas` metadata SHOULD also be defined.
+
 The following section describes discrete and probabilistic segmentations of
 volumes, followed by discrete segmentations of surface/combined spaces.
 Probabilistic segmentations of surfaces are currently [unspecified][].
@@ -211,7 +216,7 @@ The following metadata fields apply to all segmentation files:
 {{ MACROS___make_metadata_table(
    {
       "Manual": "OPTIONAL",
-      "Atlas": "OPTIONAL",
+      "Atlas": "REQUIRED if `atlas` is present",
       "Resolution": "REQUIRED if `res` is present",
       "Density": "REQUIRED if `den` is present",
    }
@@ -230,7 +235,7 @@ Template:
 <pipeline_name>/
     sub-<label>/
         anat|func|dwi/
-            <source_entities>[_space-<space>][_res-<label>][_den-<label>]_dseg.nii.gz
+            <source_entities>[_space-<space>][_atlas-<label>][_res-<label>][_den-<label>]_dseg.nii.gz
 ```
 
 Example:
@@ -254,7 +259,9 @@ In this case, the mask suffix MUST be used,
 the [`label` entity](../99-appendices/09-entities.md#label)) SHOULD be used
 to specify the masked structure
 (see [Common image-derived labels](#common-image-derived-labels)),
-and the `Atlas` metadata SHOULD be defined.
+the [`atlas` entity](../99-appendices/09-entities.md#atlas) and the
+`Atlas` metadata SHOULD be defined.
+
 For example:
 
 {{ MACROS___make_filetree_example(
@@ -262,7 +269,8 @@ For example:
     "pipeline": {
         "sub-001": {
             "anat": {
-                "sub-001_space-orig_label-GM_mask.nii.gz": "",
+                "sub-001_space-orig_atlas-Desikan_label-GM_mask.nii.gz": "",
+                "sub-001_space-orig_atlas-Desikan_label-GM_mask.json": "",
                 },
             },
         }
@@ -284,7 +292,7 @@ Template:
 <pipeline_name>/
     sub-<label>/
         func|anat|dwi/
-            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_label-<label>]_probseg.nii.gz
+            <source_entities>[_space-<space>][_atlas-<label>][_res-<label>][_den-<label>][_label-<label>]_probseg.nii.gz
 ```
 
 Example:
@@ -350,7 +358,7 @@ Template:
 <pipeline_name>/
     sub-<label>/
         anat/
-            <source_entities>[_hemi-{L|R}][_space-<space>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
+            <source_entities>[_hemi-{L|R}][_space-<space>][_atlas-<label>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
 ```
 
 The [`hemi-<label>`](../99-appendices/09-entities.md#hemi) entity is REQUIRED for GIFTI files storing information about
