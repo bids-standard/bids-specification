@@ -112,7 +112,7 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 -   `4DBti`: ALS orientation and the origin between the ears
 -   `KitYokogawa`: ALS orientation and the origin between the ears
 -   `ChietiItab`: RAS orientation and the origin between the ears
--   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
+-   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers): RAS orientation and the origin at the center of the gradient coil for template NifTI images
 
 In the case that MEG was recorded simultaneously with EEG,
 the restricted keywords for
@@ -138,7 +138,7 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
     For more information, see the
     [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-hj-coordinate-system).
 
--   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
+-   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers): RAS orientation and the origin at the center of the gradient coil for template NifTI images
 
 In the case that EEG was recorded simultaneously with MEG,
 the restricted keywords for
@@ -182,7 +182,7 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
     is not aligned to ACPC, `ScanRAS` should be used.
 
 -   Any keyword from the list of
-    [Standard template identifiers](#standard-template-identifiers)
+    [Standard template identifiers](#standard-template-identifiers): RAS orientation and the origin at the center of the gradient coil for template NifTI images
 
 ## Image-based Coordinate Systems
 
@@ -194,11 +194,6 @@ Unless specified explicitly in the sidecar file in the
 `<CoordSysType>CoordinateUnits` field, the units are assumed to be mm.
 
 ### Standard template identifiers
-
-When using any of the below templates, coordinates should be in "world" (RAS+) space,
-and not voxel indices.
-If `<CoordSysType>CoordinateUnits` is not defined or applicable, then the units SHALL
-be assumed to be millimeters (mm).
 
 | **Coordinate System**              | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | **Used by**              | **Reference**                                                                                                                      |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
