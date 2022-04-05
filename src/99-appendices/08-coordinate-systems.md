@@ -195,7 +195,10 @@ Unless specified explicitly in the sidecar file in the
 
 ### Standard template identifiers
 
-All BIDS standard template coordinate system data should be in ``scanner`` coordinates of the T1w template image with units corresponding to `<CoordSysType>CoordinateUnits`.
+When using any of the below templates, coordinates should be in "world" (RAS+) space,
+and not voxel indices.
+If `<CoordSysType>CoordinateUnits` is not defined or applicable, then the units SHALL
+be assumed to be millimeters (mm).
 
 | **Coordinate System**              | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | **Used by**              | **Reference**                                                                                                                      |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
