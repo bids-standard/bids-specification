@@ -15,7 +15,7 @@ Chimap:
     In parts per million (ppm).
     QSM allows for determining the underlying magnetic susceptibility of tissue
     (Chi)
-    ([Wang & Liu, 2014](https://onlinelibrary.wiley.com/doi/10.1002/mrm.25358)).
+    ([Wang & Liu, 2014](https://doi.org/10.1002/mrm.25358)).
     Chi maps are REQUIRED to use this suffix regardless of the method used to
     generate them.
   unit: ppm
