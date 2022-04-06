@@ -32,6 +32,10 @@ to present both [`res`](../99-appendices/09-entities.md#res) and
 
 Examples:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline1": {
@@ -48,6 +52,12 @@ Examples:
 
 The following metadata JSON fields are defined for preprocessed images:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "SkullStripped": "REQUIRED",
@@ -94,6 +104,10 @@ Example of CIFTI-2 files (a format that combines regularly sampled data
 and non-parametric surfaces) having both [`res`](../99-appendices/09-entities.md#res)
 and [`den`](../99-appendices/09-entities.md#den) entities:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline1": {
@@ -146,6 +160,12 @@ and the `Atlas` metadata SHOULD be defined.
 
 JSON metadata fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "RawSources": "REQUIRED",
@@ -158,6 +178,10 @@ JSON metadata fields:
 
 Examples:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "func_loc": {
@@ -171,6 +195,10 @@ Examples:
    }
 ) }}
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "manual_masks": {
@@ -213,6 +241,12 @@ Probabilistic segmentations of surfaces are currently [unspecified][].
 
 The following metadata fields apply to all segmentation files:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "Manual": "OPTIONAL",
@@ -240,6 +274,10 @@ Template:
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -264,6 +302,10 @@ the [`atlas` entity](../99-appendices/09-entities.md#atlas) and the
 
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -297,6 +339,10 @@ Template:
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -316,6 +362,10 @@ for reserved key values for [`label`](../99-appendices/09-entities.md#label).
 A 4D probabilistic segmentation, in which each frame corresponds to a different
 tissue class, must provide a label mapping in its JSON sidecar. For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -365,6 +415,10 @@ The [`hemi-<label>`](../99-appendices/09-entities.md#hemi) entity is REQUIRED fo
 a structure that is restricted to a hemibrain.
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -380,6 +434,10 @@ For example:
 
 The REQUIRED extension for CIFTI parcellations is `.dlabel.nii`. For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -420,6 +478,10 @@ filename.
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -438,6 +500,10 @@ segmentations in relative subdirectories.
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -453,6 +519,12 @@ Example:
 
 These TSV lookup tables contain the following columns:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "index": "REQUIRED",

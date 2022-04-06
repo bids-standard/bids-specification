@@ -14,6 +14,12 @@ Templates:
 The file `dataset_description.json` is a JSON file describing the dataset.
 Every dataset MUST include this file with the following fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "Name": "REQUIRED",
@@ -99,6 +105,12 @@ top level of every derived dataset:
 In contrast to raw BIDS datasets, derived BIDS datasets MUST include a
 `GeneratedBy` key:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "GeneratedBy": "REQUIRED"
@@ -209,6 +221,12 @@ Commonly used *optional* columns in `participants.tsv` files are `age`, `sex`,
 of these columns, and in case that you do use them, we RECOMMEND to use the
 following values for them:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "participant_id": ("REQUIRED", "There MUST be exactly one row for each participant."),
@@ -288,6 +306,12 @@ The purpose of this file is to describe properties of samples, indicated by the 
 This file is REQUIRED if `sample-<label>` is present in any filename within the dataset.
 Each sample MUST be described by one and only one row.
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "sample_id": ("REQUIRED", "The combination of `sample_id` and `participant_id` MUST be unique."),
@@ -358,6 +382,12 @@ MAY be accompanied by a JSON file describing the columns in detail
 
 In addition to the column descriptions, the JSON file MAY contain the following fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "MeasurementToolMetadata": "OPTIONAL",
@@ -424,6 +454,12 @@ Some recordings consist of multiple parts, that span several files,
 for example through `echo-`, `part-`, or `split-` entities.
 Such recordings MUST be documented with one row per file.
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "filename": ("REQUIRED", "There MUST be exactly one row for each file."),
@@ -467,6 +503,12 @@ These files MUST include a `session_id` column and describe each session by one 
 Column names in `sessions.tsv` files MUST be different from group level participant key column names in the
 [`participants.tsv` file](./03-modality-agnostic-files.md#participants-file).
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "session_id": ("REQUIRED", "There MUST be exactly one row for each session."),

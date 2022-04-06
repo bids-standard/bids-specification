@@ -265,6 +265,10 @@ However, in the case that these data are to be included:
 
 Alternatively one can organize their data in the following way
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "my_dataset-1": {
@@ -360,6 +364,10 @@ Derivatives can be stored/distributed in two ways:
 
     Example of a derivative dataset including the raw dataset as source:
 
+    <!-- This block generates a file tree.
+    A guide for using macros can be found at
+    https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+    -->
     {{ MACROS___make_filetree_example(
         {
         "my_processed_data": {
@@ -461,6 +469,12 @@ Note that if a field name included in the data dictionary matches a column name 
 then that field MUST contain a description of the corresponding column,
 using an object containing the following fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
         "LongName": "OPTIONAL",
@@ -592,6 +606,10 @@ Corollaries:
 
 Example 1: Demonstration of inheritance principle
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "sub-01": {
@@ -635,6 +653,10 @@ absence in the metadata file at the lower level (rule 5.b; corollary 3).
 
 Example 2: Impermissible use of multiple metadata files at one directory level (rule 4)
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "sub-01": {
@@ -656,6 +678,10 @@ Example 2: Impermissible use of multiple metadata files at one directory level (
 Example 3: Modification of filesystem structure from Example 2 to satisfy inheritance
 principle requirements
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "sub-01": {
@@ -676,6 +702,10 @@ principle requirements
 
 Example 4: Single metadata file applying to multiple data files (corollary 2)
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "sub-01": {
@@ -823,6 +853,10 @@ This is an example of the directory and file structure. Because there is only on
 session, the session level is not required by the format. For details on
 individual files see descriptions in the next section:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "sub-control01": {
