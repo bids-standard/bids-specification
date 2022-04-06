@@ -240,7 +240,8 @@ run:
   name: Run
   entity: run
   description: |
-    If several scans with the same acquisition parameters are acquired in the same session,
+    If several data acquisitions (for example, MRI scans or EEG recordings)
+    with the same acquisition parameters are acquired in the same session,
     they MUST be indexed with the [`run-<index>`](../99-appendices/09-entities.md#run) entity:
     `_run-1`, `_run-2`, `_run-3`, and so on (only nonnegative integers are allowed as
     run labels).
