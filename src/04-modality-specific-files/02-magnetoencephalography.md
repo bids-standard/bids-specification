@@ -434,7 +434,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "DigitizedHeadPoints": "OPTIONAL",
+      "DigitizedHeadPoints__coordsystem": "OPTIONAL",
       "DigitizedHeadPointsCoordinateSystem": "OPTIONAL",
       "DigitizedHeadPointsCoordinateUnits": "OPTIONAL",
       "DigitizedHeadPointsCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `DigitizedHeadPointsCoordinateSystem` is `Other`",
