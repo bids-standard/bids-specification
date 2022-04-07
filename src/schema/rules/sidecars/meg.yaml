@@ -1,0 +1,255 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+
+---
+# Magnetoencephalography
+
+# Sidecar JSON (*_meg.json)
+MEGGeneric:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "meg"
+    fields:
+        TaskName:
+            level: REQUIRED
+            addendum: |
+                A RECOMMENDED convention is to name resting state task using labels
+                beginning with `rest`.
+
+MEGRecommended:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "meg"
+    fields:
+        InstitutionName: RECOMMENDED
+        InstitutionAddress: RECOMMENDED
+        InstitutionalDepartmentName: RECOMMENDED
+        Manufacturer:
+            level: RECOMMENDED
+            addendum: |
+                For MEG scanners, this must be one of:
+                `"CTF"`, `"Elekta/Neuromag"`, `"BTi/4D"`, `"KIT/Yokogawa"`,
+                `"ITAB"`, `"KRISS"`, `"Other"`.
+                See [Appendix VII](/99-appendices/07-meg-systems.html) for
+                preferred names.
+        ManufacturersModelName:
+            level: RECOMMENDED
+            addendum: |
+                See [Appendix VII](/99-appendices/07-meg-systems.html) for
+                preferred names.
+        SoftwareVersions: RECOMMENDED
+        TaskDescription: RECOMMENDED
+        Instructions:
+            level: RECOMMENDED
+            addendum: |
+                This is especially important in context of resting state recordings and
+                distinguishing between eyes open and eyes closed paradigms.
+        CogAtlasID: RECOMMENDED
+        CogPOID: RECOMMENDED
+        DeviceSerialNumber: RECOMMENDED
+
+# Specific MEG fields MUST be present
+MEGRequired:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "meg"
+    fields:
+        SamplingFrequency:
+            level: REQUIRED
+            addendum: |
+                The sampling frequency of data channels that deviate from the main sampling
+                frequency SHOULD be specified in the `channels.tsv` file.
+        PowerLineFrequency: REQUIRED
+        DewarPosition: REQUIRED
+        SoftwareFilters: REQUIRED
+        DigitizedLandmarks: REQUIRED
+        DigitizedHeadPoints: REQUIRED
+
+# Specific MEG fields SHOULD be present
+MEGMoreRecommended:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "meg"
+    fields:
+        MEGChannelCount: RECOMMENDED
+        MEGREFChannelCount: RECOMMENDED
+        EEGChannelCount: RECOMMENDED
+        ECOGChannelCount: RECOMMENDED
+        SEEGChannelCount: RECOMMENDED
+        EOGChannelCount: RECOMMENDED
+        ECGChannelCount: RECOMMENDED
+        EMGChannelCount: RECOMMENDED
+        MiscChannelCount: RECOMMENDED
+        TriggerChannelCount: RECOMMENDED
+        RecordingDuration: RECOMMENDED
+        RecordingType: RECOMMENDED
+        EpochLength: RECOMMENDED
+        ContinuousHeadLocalization: RECOMMENDED
+        HeadCoilFrequency: RECOMMENDED
+        MaxMovement: RECOMMENDED
+        SubjectArtefactDescription: RECOMMENDED
+        AssociatedEmptyRoom: RECOMMENDED
+        HardwareFilters: RECOMMENDED
+
+# Specific EEG fields
+# NOTE: I'm not sure if "EEG is present" is enough to indicate simultaneous EEG/MEG.
+MEGwithEEG:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "meg"
+    - dataset.modalities contains "EEG"
+    fields:
+        EEGPlacementScheme: OPTIONAL
+        CapManufacturer: OPTIONAL
+        CapManufacturersModelName: OPTIONAL
+        EEGReference: OPTIONAL
+
+# MEG and EEG sensors
+MEGCoordsystemWithEEG:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    fields:
+        MEGCoordinateSystem: REQUIRED
+        MEGCoordinateUnits: REQUIRED
+        MEGCoordinateSystemDescription:
+            level: OPTIONAL
+            level_addendum: REQUIRED if `MEGCoordinateSystem` is `Other`
+        EEGCoordinateSystem:
+            level: OPTIONAL
+            addendum: |
+                See [Recording EEG simultaneously with MEG]
+                (/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg).
+                Preferably the same as the `MEGCoordinateSystem`.
+        EEGCoordinateUnits: OPTIONAL
+        EEGCoordinateSystemDescription:
+            level: OPTIONAL
+            level_addendum: REQUIRED if `EEGCoordinateSystem` is `Other`
+            addendum: |
+                See [Recording EEG simultaneously with MEG]
+                (/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg).
+
+MEGCoordsystemWithEEGMEGCoordinateSystem:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    - sidecar.MEGCoordinateSystem == "Other"
+    fields:
+        MEGCoordinateSystemDescription: REQUIRED
+
+# NOTE: Not sure if this requires simult. EEG
+MEGCoordsystemWithEEGEEGCoordinateSystem:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    - sidecar.EEGCoordinateSystem == "Other"
+    fields:
+        EEGCoordinateSystemDescription: REQUIRED
+
+# Head localization coils
+MEGCoordsystemHeadLocalizationCoils:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    fields:
+        HeadCoilCoordinates: OPTIONAL
+        HeadCoilCoordinateSystem: OPTIONAL
+        HeadCoilCoordinateUnits: OPTIONAL
+        HeadCoilCoordinateSystemDescription:
+            level: OPTIONAL
+            level_addendum: REQUIRED if `HeadCoilCoordinateSystem` is `Other`
+
+MEGCoordsystemHeadLocalizationCoilsHeadCoilCoordinateSystem:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    - sidecar.HeadCoilCoordinateSystem == "Other"
+    fields:
+        HeadCoilCoordinateSystemDescription: REQUIRED
+
+# Digitized head points
+MEGCoordsystemDigitizedHeadPoints:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    fields:
+        DigitizedHeadPoints: OPTIONAL
+        DigitizedHeadPointsCoordinateSystem: OPTIONAL
+        DigitizedHeadPointsCoordinateUnits: OPTIONAL
+        DigitizedHeadPointsCoordinateSystemDescription:
+            level: OPTIONAL
+            level_addendum: REQUIRED if `DigitizedHeadPointsCoordinateSystem` is `Other`
+
+MEGCoordsystemDigitizedHeadPointsDigitizedHeadPointsCoordinateSystem:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    - sidecar.DigitizedHeadPointsCoordinateSystem == "Other"
+    fields:
+        DigitizedHeadPointsCoordinateSystemDescription: REQUIRED
+
+# Anatomical MRI
+MEGCoordsystemAnatomicalMRI:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    # NOTE: anat in modalities?
+    fields:
+        IntendedFor:
+            level: OPTIONAL
+            addendum: |
+                This is used to identify the structural MRI(s),
+                possibly of different types if a list is specified,
+                to be used with the MEG recording.
+
+# Anatomical landmarks
+MEGCoordsystemAnatomicalLandmarks:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    fields:
+        AnatomicalLandmarkCoordinates: OPTIONAL
+        AnatomicalLandmarkCoordinateSystem:
+            level: OPTIONAL
+            addendum: |
+                Preferably the same as the `MEGCoordinateSystem`.
+        AnatomicalLandmarkCoordinateUnits: OPTIONAL
+        AnatomicalLandmarkCoordinateSystemDescription:
+            level: OPTIONAL
+            level_addendum: REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `Other`
+
+MEGCoordsystemAnatomicalLandmarksAnatomicalLandmarkCoordinateSystem:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    - sidecar.AnatomicalLandmarkCoordinateSystem == "Other"  # not really sidecar
+    fields:
+        AnatomicalLandmarkCoordinateSystemDescription: REQUIRED
+
+# Fiducials information
+MEGCoordsystemFiducialsInformation:
+    selectors:
+    - modality == "meg"
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    fields:
+        FiducialsDescription: OPTIONAL
