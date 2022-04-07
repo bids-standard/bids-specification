@@ -60,6 +60,13 @@ In this example, tracer injection coincides with scan start.
 
 ## PET recording data
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(
    datatypes=["pet"],
    suffixes=["pet", "events", "physio", "stim"])
@@ -133,6 +140,12 @@ which we divide into several categories:
 
 #### Scanner Hardware
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "Manufacturer": ("REQUIRED", "Corresponds to DICOM Tag 0008, 0070 `Manufacturer`."),
@@ -152,10 +165,16 @@ which we divide into several categories:
 
 #### Radiochemistry
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
-      "TracerName": "REQUIRED",
-      "TracerRadionuclide": "REQUIRED",
+      "TracerName": ("REQUIRED", "Corresponds to DICOM Tags (0008,0105) `Mapping Resource` and (0008,0122) `Mapping Resource Name`."),
+      "TracerRadionuclide": ("REQUIRED", "Corresponds to DICOM Tags (0008,0104) `CodeValue` and (0008,0104) `CodeMeaning`."),
       "InjectedRadioactivity": "REQUIRED",
       "InjectedRadioactivityUnits": "REQUIRED",
       "InjectedMass": "REQUIRED",
@@ -184,28 +203,40 @@ which we divide into several categories:
 
 #### Pharmaceuticals
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
-      "PharmaceuticalName": "RECOMMENDED",
-      "PharmaceuticalDoseAmount": "RECOMMENDED",
+      "PharmaceuticalName": ("RECOMMENDED", "Corresponds to DICOM Tag (0008,0034) `Intervention Drug Name`."),
+      "PharmaceuticalDoseAmount": ("RECOMMENDED", "Corresponds to DICOM Tag (0008,0028) `Intervention Drug Dose`."),
       "PharmaceuticalDoseUnits": "RECOMMENDED",
       "PharmaceuticalDoseRegimen": "RECOMMENDED",
-      "PharmaceuticalDoseTime": "RECOMMENDED",
+      "PharmaceuticalDoseTime": ("RECOMMENDED", "Corresponds to a combination of DICOM Tags (0008,0027) `Intervention Drug Stop Time` and (0008,0035) `Intervention Drug Start Time`."),
       "Anaesthesia": "OPTIONAL",
    }
 ) }}
 
 #### Time
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "TimeZero": "REQUIRED",
       "ScanStart": "REQUIRED",
-      "InjectionStart": "REQUIRED",
+      "InjectionStart": ("REQUIRED", "This corresponds to DICOM Tag (0018,1072) `Radiopharmaceutical Start Time`."),
       "FrameTimesStart": "REQUIRED",
       "FrameDuration": "REQUIRED",
-      "InjectionEnd": "RECOMMENDED",
-      "ScanDate": "DEPRECATED",
+      "InjectionEnd": ("RECOMMENDED", "This corresponds to DICOM Tag (0018,1073) `Radiopharmaceutical Stop Time` converted to seconds relative to TimeZero."),
+      "ScanDate": ("DEPRECATED", "This corresponds to DICOM Tag (0008,0022) `Acquisition Date`."),
    }
 ) }}
 
@@ -213,24 +244,30 @@ We refer to the common principles for the standards for describing dates and tim
 
 #### Reconstruction
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "AcquisitionMode": "REQUIRED",
       "ImageDecayCorrected": "REQUIRED",
       "ImageDecayCorrectionTime": "REQUIRED",
-      "ReconMethodName": "REQUIRED",
-      "ReconMethodParameterLabels": "REQUIRED",
-      "ReconMethodParameterUnits": "REQUIRED",
-      "ReconMethodParameterValues": "REQUIRED",
-      "ReconFilterType": "REQUIRED",
-      "ReconFilterSize": "REQUIRED",
-      "AttenuationCorrection": "REQUIRED",
+      "ReconMethodName": ("REQUIRED", "This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`."),
+      "ReconMethodParameterLabels": ("REQUIRED", "This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`."),
+      "ReconMethodParameterUnits": ("REQUIRED", "This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`."),
+      "ReconMethodParameterValues": ("REQUIRED", "This partly matches the DICOM Tag (0054,1103) `Reconstruction Method`."),
+      "ReconFilterType": ("REQUIRED", "This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`."),
+      "ReconFilterSize": ("REQUIRED", "This partly matches the DICOM Tag (0018,1210) `Convolution Kernel`."),
+      "AttenuationCorrection": ("REQUIRED", "This corresponds to DICOM Tag (0054,1101) `Attenuation Correction Method`."),
       "ReconMethodImplementationVersion": "RECOMMENDED",
       "AttenuationCorrectionMethodReference": "RECOMMENDED",
       "ScaleFactor": "RECOMMENDED",
-      "ScatterFraction": "RECOMMENDED",
-      "DecayCorrectionFactor": "RECOMMENDED",
-      "DoseCalibrationFactor": "RECOMMENDED",
+      "ScatterFraction": ("RECOMMENDED", "This corresponds to DICOM Tag (0054,1323) `Scatter Fraction Factor`."),
+      "DecayCorrectionFactor": ("RECOMMENDED", "This corresponds to DICOM Tag (0054,1321) `Decay Factor`."),
+      "DoseCalibrationFactor": ("RECOMMENDED", "This corresponds to DICOM Tag (0054,1322) `Dose Calibration Factor`."),
       "PromptRate": "RECOMMENDED",
       "RandomRate": "RECOMMENDED",
       "SinglesRate": "RECOMMENDED",
@@ -309,6 +346,13 @@ ses-02 59
 
 ## Blood recording data
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["pet"], suffixes=["blood"]) }}
 
 If collected, blood measurements of radioactivity are be stored in
@@ -330,6 +374,12 @@ Innis et al. 2007 ([doi:10.1038/sj.jcbfm.9600493](https://doi.org/10.1038/sj.jcb
 Some metadata about the recording MUST be provided in an additional JSON
 file.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "PlasmaAvail": "REQUIRED",
@@ -347,6 +397,12 @@ file.
 
 The following metadata SHOULD or MUST be provided if corresponding flags are `true`.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "PlasmaFreeFraction": "RECOMMENDED if `PlasmaAvail` is `true`",
@@ -359,6 +415,12 @@ The following metadata SHOULD or MUST be provided if corresponding flags are `tr
 The following columns are defined for `_blood.tsv` files.
 The `time` column MUST always be the first column.
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "time": "REQUIRED",

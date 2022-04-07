@@ -134,7 +134,7 @@ ArterialSpinLabelingType:
 AssociatedEmptyRoom:
   name: AssociatedEmptyRoom
   description: |
-    Relative path in BIDS folder structure to empty-room file associated with
+    Relative path in BIDS directory structure to empty-room file associated with
     the subject's MEG recording.
     The path needs to use forward slashes instead of backward slashes
     (for example,
@@ -533,6 +533,15 @@ DigitizedHeadPoints:
     `true` or `false` value indicating whether head points outlining the
     scalp/face surface are contained within this recording.
   type: boolean
+DigitizedHeadPoints__coordsystem:
+  name: DigitizedHeadPoints
+  description: |
+    Relative path to the file containing the locations of digitized head points
+    collected during the session (for example, `"sub-01_headshape.pos"`).
+    RECOMMENDED for all MEG systems, especially for CTF and BTi/4D.
+    For Elekta/Neuromag the head points will be stored in the fif file.
+  type: string
+  format: file_relative
 DigitizedHeadPointsCoordinateSystem:
   name: DigitizedHeadPointsCoordinateSystem
   description: |
@@ -1247,7 +1256,7 @@ InjectionStart:
   description: |
     Time of start of injection with respect to `"TimeZero"` in the default unit
     seconds.
-    This corresponds to DICOM Tag 0018, 1042 `Contrast/Bolus Start Time`
+    This corresponds to DICOM Tag 0018, 1072 `Contrast/Bolus Start Time`
     converted to seconds relative to `"TimeZero"`.
   type: number
   unit: s
@@ -1279,7 +1288,7 @@ IntendedFor:
   description: |
     The paths to files for which the associated file is intended to be used.
     Contains one or more filenames with paths relative to the participant
-    subfolder.
+    subdirectory.
     Paths need to use forward slashes instead of backward slashes,
     regardless of operating system.
   anyOf:
@@ -1686,7 +1695,7 @@ MolarActivityMeasTime:
     Time to which molar radioactivity measurement above applies in the default
     unit `"hh:mm:ss"`.
   type: string
-  pattern: ^(?:2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]$
+  format: time
 MolarActivityUnits:
   name: MolarActivityUnits
   description: |
@@ -2293,7 +2302,9 @@ SamplingFrequency:
 ScaleFactor:
   name: ScaleFactor
   description: |
-    Scale factor for each frame.
+    Scale factor for each frame. This field MUST be defined if the imaging data (`.nii[.gz]`) are scaled.
+    If this field is not defined, then it is assumed that the scaling factor is 1. Defining this field
+    when the scaling factor is 1 is RECOMMENDED, for the sake of clarity.
   type: array
   items:
     type: number
@@ -2449,7 +2460,7 @@ SoftwareRRID:
     Examples: The RRID for Psychtoolbox is 'SCR_002881',
     and that of PsychoPy is 'SCR_006571'.
   type: string
-  pattern: .+_.+
+  format: rrid
 SoftwareVersion:
   name: SoftwareVersion
   description: |
@@ -2537,7 +2548,7 @@ SpecificRadioactivityMeasTime:
     Time to which specific radioactivity measurement above applies in the default
     unit `"hh:mm:ss"`.
   type: string
-  pattern: ^(?:2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]$
+  format: time
 SpecificRadioactivityUnits:
   name: SpecificRadioactivityUnits
   description: |
@@ -2656,7 +2667,7 @@ TimeZero:
     in the unit "hh:mm:ss".
     This should be equal to `"InjectionStart"` or `"ScanStart"`.
   type: string
-  pattern: ^(?:2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]$
+  format: time
 TissueDeformationScaling:
   name: TissueDeformationScaling
   description: |

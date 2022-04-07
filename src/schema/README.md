@@ -32,14 +32,14 @@ The types of objects currently supported in the schema are:
 -   suffixes,
 -   metadata,
 -   top-level files,
--   and non-BIDS associated folders.
+-   and non-BIDS associated directories.
 
-Each of these object types has a single file in the `objects/` folder.
+Each of these object types has a single file in the `objects/` directory.
 
 -   `modalities.yaml`: The modalities, or types of technology, used to acquire data in a BIDS dataset.
     These modalities are not reflected directly in the specification.
     For example, while both fMRI and DWI data are acquired with an MRI,
-    in a BIDS dataset they are stored in different folders reflecting the two different `datatypes`.
+    in a BIDS dataset they are stored in different directories reflecting the two different `datatypes`.
 
 -   `datatypes.yaml`: Data types supported by the specification.
     The only information provided in the file is:
@@ -48,7 +48,7 @@ Each of these object types has a single file in the `objects/` folder.
     1.  each datatype's full name
     1.  a free text description of the datatype.
 
--   `entities.yaml`: Entities (key/value pairs in folder and filenames).
+-   `entities.yaml`: Entities (key/value pairs in directory and filenames).
 
 -   `metadata.yaml`: All valid metadata fields that are explicitly supported in BIDS sidecar JSON files.
 
@@ -58,7 +58,7 @@ Each of these object types has a single file in the `objects/` folder.
 
 -   `top_level_files.yaml`: Valid top-level files which may appear in a BIDS dataset.
 
--   `associated_data.yaml`: Folders that may appear within a dataset folder without following BIDS rules.
+-   `associated_data.yaml`: Directories that may appear within a dataset directory without following BIDS rules.
 
 ### On re-used objects with different definitions
 
@@ -115,7 +115,7 @@ The `description` field is a freeform description of the modality.
 ### `datatypes.yaml`
 
 This file contains a dictionary in which each datatype is defined.
-Keys are the folder names associated with each datatype (for example, `anat` for anatomical MRI),
+Keys are the directory names associated with each datatype (for example, `anat` for anatomical MRI),
 and each associated value is a dictionary with two keys: `name` and `description`.
 
 The `name` field is the full name of the datatype.
@@ -218,7 +218,7 @@ There are additional fields which may define rules that apply to a given type.
 
        -   `dataset_relative` (relative paths from dataset root),
 
-       -   `participant_relative` (relative paths from participant folder).
+       -   `participant_relative` (relative paths from participant directory).
 
     -   `enum` defines a list of valid values for the field.
         The minimum string length (`minLength`) defaults to 1.
@@ -388,21 +388,21 @@ The `description` field is a freeform description of the file.
 
 ### `associated_data.yaml`
 
-This file contains a dictionary in which each non-BIDS folder is defined.
-Keys are folder names, and each associated value is a dictionary with two keys: `name` and `description`.
+This file contains a dictionary in which each non-BIDS directory is defined.
+Keys are directory names, and each associated value is a dictionary with two keys: `name` and `description`.
 
-The `name` field is the full name of the folder.
-The `description` field is a freeform description of the folder.
+The `name` field is the full name of the directory.
+The `description` field is a freeform description of the directory.
 
 ## Rule files
 
-The files in the `rules/` folder are less standardized than the files in `objects/`,
+The files in the `rules/` directory are less standardized than the files in `objects/`,
 because rules governing how different object types interact in a valid dataset are more variable
 than the object definitions.
 
 -   `modalities.yaml`: This file simply groups `datatypes` under their associated modality.
 
--   `datatypes/*.yaml`: Files in the `datatypes` folder contain information about valid filenames within a given datatype.
+-   `datatypes/*.yaml`: Files in the `datatypes` directory contain information about valid filenames within a given datatype.
     Specifically, each datatype's YAML file contains a list of dictionaries.
     Each dictionary contains a list of suffixes, entities, and file extensions which may constitute a valid BIDS filename.
 
@@ -410,7 +410,7 @@ than the object definitions.
 
 -   `top_level_files.yaml`: Requirement levels and valid file extensions of top-level files.
 
--   `associated_data.yaml`: Requirement levels of associated non-BIDS folders.
+-   `associated_data.yaml`: Requirement levels of associated non-BIDS directories.
 
 ### `modalities.yaml`
 
@@ -419,7 +419,7 @@ The `datatypes` dictionary contains a list of datatypes that fall under that mod
 
 ### `datatypes/*.yaml`
 
-The files in this folder are currently the least standardized of any part of the schema.
+The files in this directory are currently the least standardized of any part of the schema.
 
 Each file corresponds to a single `datatype`.
 Within the file is a list of dictionaries.
@@ -496,5 +496,5 @@ In cases where there is a data file and a metadata file, the `.json` extension f
 
 ### `associated_data.yaml`
 
-This file contains a dictionary in which each key is a folder and the value is a dictionary with one key: `required`.
-The `required` entry contains a boolean value to indicate if that folder is required for BIDS datasets or not.
+This file contains a dictionary in which each key is a directory and the value is a dictionary with one key: `required`.
+The `required` entry contains a boolean value to indicate if that directory is required for BIDS datasets or not.

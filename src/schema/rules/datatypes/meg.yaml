@@ -15,6 +15,8 @@
   - .mrk
   - .kdf
   - .mhd
+  - .trg
+  - .chn
   entities:
     subject: required
     session: optional
@@ -58,7 +60,8 @@
 - suffixes:
   - headshape
   extensions:
-  - "*"
+  - .*
+  - .pos
   entities:
     subject: required
     session: optional

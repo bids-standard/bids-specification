@@ -12,6 +12,13 @@ and can be used for practical guidance when curating a new dataset.
 
 ## iEEG recording data
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(
    datatypes=["ieeg"],
    suffixes=["ieeg", "events", "physio", "stim"])
@@ -92,6 +99,12 @@ please avoid using ad hoc wording.
 
 Generic fields MUST be present:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
@@ -104,6 +117,12 @@ SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "InstitutionName": "RECOMMENDED",
@@ -122,6 +141,12 @@ Whenever possible, please avoid using ad hoc wording.
 
 Specific iEEG fields MUST be present:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "iEEGReference": "REQUIRED",
@@ -133,6 +158,12 @@ Specific iEEG fields MUST be present:
 
 Specific iEEG fields SHOULD be present:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "DCOffsetCorrection": "DEPRECATED",
@@ -159,6 +190,12 @@ Specific iEEG fields SHOULD be present:
 
 Specific iEEG fields MAY be present:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "ElectricalStimulation": "OPTIONAL",
@@ -205,6 +242,13 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 ## Channels description (`*_channels.tsv`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["channels"]) }}
 
 A channel represents one time series recorded with the recording system
@@ -221,6 +265,12 @@ The columns of the channels description table stored in `*_channels.tsv` are:
 
 MUST be present **in this specific order**:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "name__channels": ("REQUIRED", "When a corresponding electrode is specified in `_electrodes.tsv`, "
@@ -235,6 +285,12 @@ MUST be present **in this specific order**:
 
 SHOULD be present:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "reference__ieeg": "OPTIONAL",
@@ -291,6 +347,13 @@ Example of free-form text for field `description`:
 
 ## Electrode description (`*_electrodes.tsv`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["electrodes"]) }}
 
 File that gives the location, size and other properties of iEEG electrodes. Note
@@ -321,6 +384,10 @@ correspond.
 
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -337,6 +404,12 @@ Units are specified in `space-<label>_coordsystem.json`.
 
 MUST be present **in this specific order**:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "name__electrodes": "REQUIRED",
@@ -349,6 +422,12 @@ MUST be present **in this specific order**:
 
 SHOULD be present:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "material": "RECOMMENDED",
@@ -360,6 +439,12 @@ SHOULD be present:
 
 MAY be present:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "type__electrodes": "OPTIONAL",
@@ -379,6 +464,13 @@ H01   27  -42  -21  5      AdTech
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["coordsystem"]) }}
 
 This `_coordsystem.json` file contains the coordinate system in which electrode
@@ -387,6 +479,12 @@ also be specified.
 
 General fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "IntendedFor": (
@@ -409,6 +507,12 @@ General fields:
 
 Fields relating to the iEEG electrode positions:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "iEEGCoordinateSystem": "REQUIRED",
@@ -462,6 +566,13 @@ Example:
 
 ## Photos of the electrode positions (`*_photo.jpg`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["ieeg"], suffixes=["photo"]) }}
 
 These can include photos of the electrodes on the brain surface, photos of
@@ -489,6 +600,10 @@ Example of the operative photo of ECoG electrodes (here is an annotated example 
 which electrodes and vasculature are marked, taken from Hermes et al.,
 JNeuroMeth 2010).
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -525,7 +640,7 @@ other task events. Electrical stimulation parameters can be described in columns
 called `electrical_stimulation_<label>`, with labels chosen by the researcher and
 optionally defined in more detail in an accompanying `_events.json` file (as
 per the main BIDS spec). Functions for complex stimulation patterns can, similar
-as when a video is presented, be stored in a folder in the `/stimuli/` folder.
+as when a video is presented, be stored in a directory in the `/stimuli/` directory.
 For example: `/stimuli/electrical_stimulation_functions/biphasic.tsv`
 
 Example:
