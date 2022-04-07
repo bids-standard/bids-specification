@@ -1,0 +1,105 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+
+---
+# Task imaging data
+
+# Required fields
+MRIFuncRequired:
+    selectors:
+    - modality == "MRI"
+    - datatype == "func"
+    fields:
+        RepetitionTime: REQUIRED
+        VolumeTiming: REQUIRED
+        TaskName:
+            level: REQUIRED
+            addendum: |
+                A RECOMMENDED convention is to name resting state task using labels
+                beginning with `rest`.
+
+# Timing Parameters
+MRIFuncTimingParameters:
+    selectors:
+    - modality == "MRI"
+    - datatype == "func"
+    fields:
+        NumberOfVolumesDiscardedByScanner: RECOMMENDED
+        NumberOfVolumesDiscardedByUser: RECOMMENDED
+        DelayTime: RECOMMENDED
+        AcquisitionDuration:
+            level: RECOMMENDED
+            level_addendum: |
+                REQUIRED for sequences that are described with the `VolumeTiming`
+                field and that do not have the `SliceTiming` field set to allow for
+                accurate calculation of "acquisition time"
+        DelayAfterTrigger: RECOMMENDED
+
+# The mutual exclusion table, spread across 5 definitions
+MRIFuncTimingParametersMutualExclusion1:
+    selectors:
+    - modality == "MRI"
+    - datatype == "func"
+    - sidecar contains "RepetitionTime"
+    fields:
+        AcquisitionDuration: PROHIBITED
+        VolumeTiming: PROHIBITED
+
+MRIFuncTimingParametersMutualExclusion2:
+    selectors:
+    - modality == "MRI"
+    - datatype == "func"
+    - sidecar contains "SliceTiming"
+    - sidecar contains "VolumeTiming"
+    fields:
+        RepetitionTime: PROHIBITED
+        DelayTime: PROHIBITED
+
+MRIFuncTimingParametersMutualExclusion3:
+    selectors:
+    - modality == "MRI"
+    - datatype == "func"
+    - sidecar contains "AcquisitionDuration"
+    - sidecar contains "VolumeTiming"
+    fields:
+        RepetitionTime: PROHIBITED
+        DelayTime: PROHIBITED
+
+MRIFuncTimingParametersMutualExclusion4:
+    selectors:
+    - modality == "MRI"
+    - datatype == "func"
+    - sidecar contains "RepetitionTime"
+    - sidecar contains "SliceTiming"
+    fields:
+        AcquisitionDuration: PROHIBITED
+        VolumeTiming: PROHIBITED
+
+MRIFuncTimingParametersMutualExclusion5:
+    selectors:
+    - modality == "MRI"
+    - datatype == "func"
+    - sidecar contains "RepetitionTime"
+    - sidecar contains "DelayTime"
+    fields:
+        AcquisitionDuration: PROHIBITED
+        VolumeTiming: PROHIBITED
+
+# fMRI task information
+MRIFuncTaskInformation:
+    selectors:
+    - modality == "MRI"
+    - datatype == "func"
+    fields:
+        Instructions:
+            level: RECOMMENDED
+            addendum: |
+                This is especially important in context of resting state recordings and
+                distinguishing between eyes open and eyes closed paradigms.
+        TaskDescription: RECOMMENDED
+        CogAtlasID: RECOMMENDED
+        CogPOID: RECOMMENDED
