@@ -1,0 +1,183 @@
+---
+# PET common metadata fields
+PETScannerHardware:
+    selectors:
+    - modality == "PET"
+    fields:
+        Manufacturer:
+            level: REQUIRED
+            addendum: Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
+        ManufacturersModelName:
+            level: REQUIRED
+            addendum: Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
+        Units:
+            level: REQUIRED
+            addendum: |
+                SI unit for radioactivity (Becquerel) should be used (for example, "Bq/mL").
+                Corresponds to DICOM Tag 0054, 1001 `Units`.
+        InstitutionName:
+            level: RECOMMENDED
+            addendum: Corresponds to DICOM Tag 0008, 0080 `InstitutionName`.
+        InstitutionAddress:
+            level: RECOMMENDED
+            addendum: Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`.
+        InstitutionalDepartmentName:
+            level: RECOMMENDED
+            addendum: Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.
+        BodyPart:
+            level: RECOMMENDED
+            addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
+
+PETRadioChemistry:
+    selectors:
+    - modality == "PET"
+    fields:
+        TracerName:
+            level: REQUIRED
+        TracerRadionuclide:
+            level: REQUIRED
+        InjectedRadioactivity:
+            level: REQUIRED
+        InjectedRadioactivityUnits:
+            level: REQUIRED
+        InjectedMass:
+            level: REQUIRED
+        InjectedMassUnits:
+            level: REQUIRED
+        SpecificRadioactivity:
+            level: REQUIRED
+        SpecificRadioactivityUnits:
+            level: REQUIRED
+        ModeOfAdministration:
+            level: REQUIRED
+        TracerRadLex:
+            level: RECOMMENDED
+        TracerSNOMED:
+            level: RECOMMENDED
+        TracerMolecularWeight:
+            level: RECOMMENDED
+        TracerMolecularWeightUnits:
+            level: RECOMMENDED
+        InjectedMassPerWeight:
+            level: RECOMMENDED
+        InjectedMassPerWeightUnits:
+            level: RECOMMENDED
+        SpecificRadioactivityMeasTime:
+            level: RECOMMENDED
+        MolarActivity:
+            level: RECOMMENDED
+        MolarActivityUnits:
+            level: RECOMMENDED
+        MolarActivityMeasTime:
+            level: RECOMMENDED
+        InfusionRadioactivity:
+            level: RECOMMENDED
+            level_addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
+        InfusionStart:
+            level: RECOMMENDED
+            level_addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
+        InfusionSpeed:
+            level: RECOMMENDED
+            level_addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
+        InfusionSpeedUnits:
+            level: RECOMMENDED
+            level_addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
+        InjectedVolume:
+            level: RECOMMENDED
+            level_addendum: REQUIRED if PETRadioChemistry.fields.ModeOfAdministration == 'bolus-infusion'
+        Purity:
+            level: RECOMMENDED
+
+# PET Infusion conditionally REQUIRED entities
+EntitiesBolusMetadata:
+    selectors:
+    - modality == 'PET'
+    - sidecar.ModeOfAdministration == 'bolus-infusion'
+    fields:
+        InfusionRadioactivity:
+            level: REQUIRED
+        InfusionStart:
+            level: REQUIRED
+        InfusionSpeed:
+            level: REQUIRED
+        InfusionSpeedUnits:
+            level: REQUIRED
+        InjectedVolume:
+            level: REQUIRED
+
+PETPharmaceuticals:
+    selectors:
+    - modality == "PET"
+    fields:
+        PharmaceuticalName:
+            level: RECOMMENDED
+        PharmaceuticalDoseAmount:
+            level: RECOMMENDED
+        PharmaCeuticalDoseUnits:
+            level: RECOMMENDED
+        PharmaCeuticalDoseRegimen:
+            level: RECOMMENDED
+        PharmaCeuticalDoseTime:
+            level: RECOMMENDED
+        Anaesthesia:
+            level: OPTIONAL
+
+PETTime:
+    selectors:
+    - modality == "PET"
+    fields:
+        TimeZero:
+            level: REQUIRED
+        ScanStart:
+            level: REQUIRED
+        InjectionStart:
+            level: REQUIRED
+        FramesTimesStart:
+            level: REQUIRED
+        FrameDuration:
+            level: REQUIRED
+        InjectionEnd:
+            level: RECOMMENDED
+        ScanDate:
+            level: DEPRECATED
+
+PETReconstruction:
+    selectors:
+    - modality == "PET"
+    fields:
+        AcquisitionMode:
+            level: REQUIRED
+        ImageDecayCorrected:
+            level: REQUIRED
+        ImageDecayCorrectionTime:
+            level: REQUIRED
+        ReconMethodName:
+            level: REQUIRED
+        ReconMethodParameterLabels:
+            level: REQUIRED
+        ReconMethodParameterUnits:
+            level: REQUIRED
+        ReconMethodParameterValues:
+            level: REQUIRED
+        ReconFilterType:
+            level: REQUIRED
+        ReconFilterSize:
+            level: REQUIRED
+        AttenuationCorrection:
+            level: REQUIRED
+        ReconMethodImplementationVersion:
+            level: RECOMMENDED
+        AttenuationCorrectionMethodReference:
+            level: RECOMMENDED
+        ScaleFactor:
+            level: RECOMMENDED
+        ScatterFraction:
+            level: RECOMMENDED
+        DecayCorrectionFactor:
+            level: RECOMMENDED
+        DoseCalibrationFactor:
+            level: RECOMMENDED
+        PromptRate:
+            level: RECOMMENDED
+        SinglesRate:
+            level: RECOMMENDED
