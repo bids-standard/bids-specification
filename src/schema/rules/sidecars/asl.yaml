@@ -1,0 +1,197 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+
+---
+# Fields described in text, but not in tables
+MRIASLTextOnly:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    fields:
+        MagneticFieldStrength: REQUIRED
+        MRAcquisitionType: REQUIRED
+        EchoTime: REQUIRED
+        SliceTiming:
+            level: RECOMMENDED
+            level_addendum: REQUIRED if `MRAcquisitionType` is defined as `2D`
+        RepetitionTimePreparation: REQUIRED
+        FlipAngle:
+            level: RECOMMENDED
+            level_addendum: REQUIRED if `LookLocker` is `true`
+
+MRIASLTextOnlySliceTiming:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.MRAcquisitionType == "2D"
+    fields:
+        SliceTiming: REQUIRED
+
+MRIASLTextOnlyFlipAngle:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.LookLocker == true
+    fields:
+        FlipAngle: REQUIRED
+
+# Common metadata fields applicable to both (P)CASL and PASL
+MRIASLCommonMetadataFields:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    fields:
+        ArterialSpinLabelingType: REQUIRED
+        PostLabelingDelay: REQUIRED
+        BackgroundSuppression: REQUIRED
+        M0Type: REQUIRED
+        TotalAcquiredPairs: REQUIRED
+        VascularCrushing: RECOMMENDED
+        AcquisitionVoxelSize: RECOMMENDED
+        M0Estimate:
+            level: OPTIONAL
+            level_addendum: REQUIRED if `M0Type` is `Estimate`
+        BackgroundSuppressionNumberPulses:
+            level: OPTIONAL
+            level_addendum: RECOMMENDED if `BackgroundSuppression` is `true`
+        BackgroundSuppressionPulseTime:
+            level: OPTIONAL
+            level_addendum: RECOMMENDED if `BackgroundSuppression` is `true`
+        VascularCrushingVENC:
+            level: OPTIONAL
+            level_addendum: RECOMMENDED if `VascularCrushing` is `true`
+        LabelingOrientation: RECOMMENDED
+        LabelingDistance: RECOMMENDED
+        LabelingLocationDescription: RECOMMENDED
+        LookLocker: OPTIONAL
+        LabelingEfficiency: OPTIONAL
+
+MRIASLCommonMetadataFieldsM0Type:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.M0Type == "Estimate"
+    fields:
+        M0Estimate: REQUIRED
+
+MRIASLCommonMetadataFieldsBackgroundSuppression:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.BackgroundSuppression == true
+    fields:
+        BackgroundSuppressionNumberPulses: RECOMMENDED
+        BackgroundSuppressionPulseTime: RECOMMENDED
+
+MRIASLCommonMetadataFieldsVascularCrushing:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.VascularCrushing == true
+    fields:
+        VascularCrushingVENC: RECOMMENDED
+
+MRIASLPCASLSpecific:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.ArterialSpinLabelingType in ["CASL", "PCASL"]
+    fields:
+        LabelingDuration: REQUIRED
+        LabelingPulseAverageGradient: RECOMMENDED
+        LabelingPulseMaximumGradient: RECOMMENDED
+        LabelingPulseAverageB1: RECOMMENDED
+        LabelingPulseDuration: RECOMMENDED
+        LabelingPulseFlipAngle: RECOMMENDED
+        LabelingPulseInterval: RECOMMENDED
+
+MRIASLPCASLSpecific2:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.ArterialSpinLabelingType == "PCASL"
+    fields:
+        PCASLType: RECOMMENDED
+
+MRIASLCASLSpecific:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.ArterialSpinLabelingType == "CASL"
+    fields:
+        CASLType: RECOMMENDED
+
+MRIASLPASLSpecific:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.ArterialSpinLabelingType == "PASL"
+    fields:
+        BolusCutOffFlag: REQUIRED
+        PASLType: RECOMMENDED
+        LabelingSlabThickness: RECOMMENDED
+        BolusCutOffDelayTime:
+            level: OPTIONAL
+            level_addendum: REQUIRED if `BolusCutOffFlag` is `true`
+        BolusCutOffTechnique:
+            level: OPTIONAL
+            level_addendum: REQUIRED if `BolusCutOffFlag` is `true`
+
+MRIASLPASLSpecificBolusCutOffFlag:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.ArterialSpinLabelingType == "PASL"
+    - sidecar.BolusCutOffFlag == true
+    fields:
+        BolusCutOffDelayTime: REQUIRED
+        BolusCutOffTechnique: REQUIRED
+
+# m0scan metadata fields
+MRIASLM0ScanTextOnly:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "m0scan"
+    fields:
+        EchoTime: REQUIRED
+        RepetitionTimePreparation: REQUIRED
+        FlipAngle:
+            level: RECOMMENDED
+            level_addendum: REQUIRED if `LookLocker` is `true`
+
+MRIASLM0ScanTextOnlyFlipAngle:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "m0scan"
+    - sidecar.LookLocker == true
+    fields:
+        FlipAngle: REQUIRED
+
+MRIASLM0Scan:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "m0scan"
+    fields:
+        IntendedFor:
+            level: REQUIRED
+            addendum: This is used to refer to the ASL time series for which the `*_m0scan.nii[.gz]` is intended.
+        AcquisitionVoxelSize: RECOMMENDED

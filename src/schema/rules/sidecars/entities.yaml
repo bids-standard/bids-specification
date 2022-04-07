@@ -1,0 +1,81 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+
+---
+
+# Entities
+
+EntitiesTaskMetadata:
+    selectors:
+    - entities contains "task"
+    fields:
+        TaskName: RECOMMENDED
+
+EntitiesCeMetadata:
+    selectors:
+    - entities contains "ce"
+    fields:
+        ContrastBolusIngredient: OPTIONAL
+
+EntitiesTrcMetadata:
+    selectors:
+    - entities contains "trc"
+    fields:
+        TracerName: REQUIRED
+
+EntitiesStainMetadata:
+    selectors:
+    - entities contains "stain"
+    fields:
+        SampleStaining: RECOMMENDED
+        SamplePrimaryAntibodies: RECOMMENDED
+        SampleSecondaryAntibodies: RECOMMENDED
+
+EntitiesEchoMetadata:
+    selectors:
+    - entities contains "echo"
+    fields:
+        EchoTime: REQUIRED
+
+EntitiesFlipMetadata:
+    selectors:
+    - entities contains "flip"
+    fields:
+        FlipAngle: REQUIRED
+
+EntitiesInvMetadata:
+    selectors:
+    - entities contains "inv"
+    fields:
+        InversionTime: REQUIRED
+
+EntitiesMTMetadata:
+    selectors:
+    - entities contains "mt"
+    fields:
+        MTState: REQUIRED
+
+EntitiesPartMetadata:
+    selectors:
+    - entities.part == "phase"
+    fields:
+        Units:
+            level: REQUIRED
+            rules:
+            - value in ["rad", "arbitrary"]
+
+EntitiesResMetadata:
+    selectors:
+    - entities contains "res"
+    fields:
+        Resolution: REQUIRED
+
+EntitiesDenMetadata:
+    selectors:
+    - entities contains "den"
+    fields:
+        Density: REQUIRED
