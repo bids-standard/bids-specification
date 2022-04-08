@@ -40,6 +40,7 @@ MRIFuncTimingParameters:
         DelayAfterTrigger: RECOMMENDED
 
 # The mutual exclusion table, spread across 5 definitions
+# NOTE: This introduces a PROHIBITED level
 MRIFuncTimingParametersMutualExclusion1:
     selectors:
     - modality == "MRI"
