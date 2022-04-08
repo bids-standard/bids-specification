@@ -620,6 +620,14 @@ def validate_bids(
         If string, the string will be used as the output path.
         If the variable evaluates as False, no log will be written.
 
+    Returns
+    -------
+    results : dict
+        A dictionary reporting the target files for validation, the unmatched files and unmatched
+        regexes, and optionally the itemwise comparison results.
+        Keys include "schema_tracking", "path_tracking", "path_listing", "match_listing", and
+        optionally "itemwise"
+
     Examples
     --------
     >>> from schemacode import validator
