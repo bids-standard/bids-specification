@@ -450,6 +450,7 @@ def write_report(
     """
 
     report_path = report_path.format(datetime.datetime.now().strftime(datetime_format))
+    report_path = os.path.abspath(os.path.expanduser(report_path))
     total_file_count = len(validation_result["path_listing"])
     validated_files_count = total_file_count - len(validation_result["path_tracking"])
     with open(report_path, "w") as f:
@@ -591,6 +592,7 @@ def validate_bids(
     schema_version=None,
     force_select=False,
     debug=False,
+    report_path=False,
 ):
     """
     Validate paths according to BIDS schema.
@@ -613,6 +615,10 @@ def validate_bids(
         If None, the `dataset_description.json` fie will be queried for the dataset schema version.
     force_select : bool, optional
         Whether to fall back to newest version of schema if no version is given or found.
+    report_path : bool or str, optional
+        If `True` a log will be written using the standard output path of `.write_report()`.
+        If string, the string will be used as the output path.
+        If the variable evaluates as False, no log will be written.
 
     Examples
     --------
@@ -637,6 +643,11 @@ def validate_bids(
         regex_schema,
         debug=debug,
     )
-    write_report(validation_result)
+
+    if report_path:
+        if isinstance(report_path, str):
+            write_report(validation_result, report_path=report_path)
+        else:
+            write_report(validation_result)
 
     return validation_result
