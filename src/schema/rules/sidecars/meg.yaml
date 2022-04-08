@@ -139,6 +139,7 @@ MEGCoordsystemWithEEG:
                 See [Recording EEG simultaneously with MEG]
                 (/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg).
 
+# NOTE: The JSON isn't really a sidecar, so "sidecar.MEGCoordinateSystem" is misleading.
 MEGCoordsystemWithEEGMEGCoordinateSystem:
     selectors:
     - modality == "meg"
@@ -210,7 +211,7 @@ MEGCoordsystemAnatomicalMRI:
     - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
-    # NOTE: anat in modalities?
+    - dataset.modalities contains "anat"
     fields:
         IntendedFor:
             level: OPTIONAL
@@ -241,7 +242,7 @@ MEGCoordsystemAnatomicalLandmarksAnatomicalLandmarkCoordinateSystem:
     - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
-    - sidecar.AnatomicalLandmarkCoordinateSystem == "Other"  # not really sidecar
+    - sidecar.AnatomicalLandmarkCoordinateSystem == "Other"
     fields:
         AnatomicalLandmarkCoordinateSystemDescription: REQUIRED
 
