@@ -71,8 +71,13 @@ def make_entity_definitions():
     return text
 
 
-def make_glossary():
+def make_glossary(page_file=None):
     """Generate glossary.
+
+    Parameters
+    ----------
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
 
     Returns
     -------
@@ -82,17 +87,20 @@ def make_glossary():
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    text = render.make_glossary(schema_obj)
+    text = render.make_glossary(schema_obj, page_file=page_file)
     return text
 
 
-def make_suffix_table(suffixes):
+def make_suffix_table(suffixes, page_file=None):
     """Generate a markdown table of suffix information.
 
     Parameters
     ----------
     suffixes : list of str
         A list of the suffixes to include in the table.
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
+
 
     Returns
     -------
@@ -102,11 +110,11 @@ def make_suffix_table(suffixes):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = render.make_suffix_table(schema_obj, suffixes)
+    table = render.make_suffix_table(schema_obj, suffixes, page_file=page_file)
     return table
 
 
-def make_metadata_table(field_info):
+def make_metadata_table(field_info, page_file=None):
     """Generate a markdown table of metadata field information.
 
     Parameters
@@ -118,6 +126,8 @@ def make_metadata_table(field_info):
         Until requirement levels can be codified in the schema,
         this argument will be dictionary, with the field names as keys and
         the requirement levels as values.
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
 
     Returns
     -------
@@ -127,11 +137,11 @@ def make_metadata_table(field_info):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = render.make_metadata_table(schema_obj, field_info)
+    table = render.make_metadata_table(schema_obj, field_info, page_file=page_file)
     return table
 
 
-def make_columns_table(column_info):
+def make_columns_table(column_info, page_file=None):
     """Generate a markdown table of TSV column information.
 
     Parameters
@@ -143,6 +153,8 @@ def make_columns_table(column_info):
         Until requirement levels can be codified in the schema,
         this argument will be a dictionary, with the column names as keys and
         the requirement levels as values.
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
 
     Returns
     -------
@@ -152,7 +164,7 @@ def make_columns_table(column_info):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = render.make_columns_table(schema_obj, column_info)
+    table = render.make_columns_table(schema_obj, column_info, page_file=page_file)
     return table
 
 

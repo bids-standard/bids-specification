@@ -56,7 +56,7 @@ def make_entity_definitions(schema):
     return text
 
 
-def make_glossary(schema):
+def make_glossary(schema, page_file=None):
     """Generate glossary.
 
     Parameters
@@ -64,6 +64,8 @@ def make_glossary(schema):
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
 
     Returns
     -------
@@ -119,6 +121,11 @@ def make_glossary(schema):
         obj_desc = obj_desc.replace("\n\n", "<br>")
         # Otherwise a newline corresponds to a space
         obj_desc = obj_desc.replace("\n", " ")
+        # Spec internal links need to be replaced
+        if page_file is not None:
+            relpath = os.sep.join([".."] * page_file.src_path.count(os.sep))
+            relpath = "." if not relpath else relpath
+            obj_desc = obj_desc.replace("SPEC_ROOT", relpath)
 
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
@@ -403,13 +410,15 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     return table_str
 
 
-def make_suffix_table(schema, suffixes, tablefmt="github"):
+def make_suffix_table(schema, suffixes, page_file=None, tablefmt="github"):
     """Produce suffix table (markdown) based on requested suffixes.
 
     Parameters
     ----------
     schema : dict
     suffixes : list of str
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
     tablefmt : str
 
     Returns
@@ -440,6 +449,11 @@ def make_suffix_table(schema, suffixes, tablefmt="github"):
         description = description.replace("\n\n", "<br>")
         # Otherwise a newline corresponds to a space
         description = description.replace("\n", " ")
+        # Spec internal links need to be replaced
+        if page_file is not None:
+            relpath = os.sep.join([".."] * page_file.src_path.count(os.sep))
+            relpath = "." if not relpath else relpath
+            description = description.replace("SPEC_ROOT", relpath)
 
         df.loc[suffix] = [suffix_info["name"], description]
 
@@ -452,7 +466,7 @@ def make_suffix_table(schema, suffixes, tablefmt="github"):
     return table_str
 
 
-def make_metadata_table(schema, field_info, tablefmt="github"):
+def make_metadata_table(schema, field_info, page_file=None, tablefmt="github"):
     """Produce metadata table (markdown) based on requested fields.
 
     Parameters
@@ -468,6 +482,8 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
         and the second string is additional table-specific information
         about the metadata field that will be appended to the field's base
         definition from the schema.
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
     tablefmt : string, optional
         The target table format. The default is "github" (GitHub format).
 
@@ -519,6 +535,11 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
         description = description.replace("\n\n", "<br>")
         # Otherwise a newline corresponds to a space
         description = description.replace("\n", " ")
+        # Spec internal links need to be replaced
+        if page_file is not None:
+            relpath = os.sep.join([".."] * page_file.src_path.count(os.sep))
+            relpath = "." if not relpath else relpath
+            description = description.replace("SPEC_ROOT", relpath)
 
         df.loc[field_name] = [requirement_info, type_string, description]
 
@@ -527,7 +548,7 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
     return table_str
 
 
-def make_columns_table(schema, column_info, tablefmt="github"):
+def make_columns_table(schema, column_info, page_file=None, tablefmt="github"):
     """Produce columns table (markdown) based on requested fields.
 
     Parameters
@@ -543,6 +564,8 @@ def make_columns_table(schema, column_info, tablefmt="github"):
         and the second string is additional table-specific information
         about the column that will be appended to the column's base
         definition from the schema.
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
     tablefmt : string, optional
         The target table format. The default is "github" (GitHub format).
 
@@ -582,6 +605,11 @@ def make_columns_table(schema, column_info, tablefmt="github"):
         type_string = utils.resolve_metadata_type(column_schema[field])
 
         description = column_schema[field]["description"] + " " + description_addendum
+
+        if page_file is not None:
+            relpath = os.sep.join([".."] * page_file.src_path.count(os.sep))
+            relpath = "." if not relpath else relpath
+            description = description.replace("SPEC_ROOT", relpath)
 
         # Try to add info about valid values
         valid_values_str = utils.describe_valid_values(column_schema[field])
