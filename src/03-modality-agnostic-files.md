@@ -464,7 +464,8 @@ and a guide for using macros can be found at
    {
       "filename": ("REQUIRED", "There MUST be exactly one row for each file."),
       "acq_time__scans": ("OPTIONAL"),
-   }
+   },
+   "."
 ) }}
 
 {{ MACROS___make_path_relative() }}

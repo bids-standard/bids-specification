@@ -131,7 +131,7 @@ def make_metadata_table(field_info):
     return table
 
 
-def make_columns_table(column_info):
+def make_columns_table(column_info, relpath=None):
     """Generate a markdown table of TSV column information.
 
     Parameters
@@ -143,6 +143,8 @@ def make_columns_table(column_info):
         Until requirement levels can be codified in the schema,
         this argument will be a dictionary, with the column names as keys and
         the requirement levels as values.
+    relpath : str | None
+        path from file where this func is called to src/
 
     Returns
     -------
@@ -152,7 +154,7 @@ def make_columns_table(column_info):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = render.make_columns_table(schema_obj, column_info)
+    table = render.make_columns_table(schema_obj, column_info, relpath=relpath)
     return table
 
 

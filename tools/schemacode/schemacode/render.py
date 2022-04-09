@@ -527,7 +527,7 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
     return table_str
 
 
-def make_columns_table(schema, column_info, tablefmt="github"):
+def make_columns_table(schema, column_info, tablefmt="github", relpath=None):
     """Produce columns table (markdown) based on requested fields.
 
     Parameters
@@ -582,6 +582,9 @@ def make_columns_table(schema, column_info, tablefmt="github"):
         type_string = utils.resolve_metadata_type(column_schema[field])
 
         description = column_schema[field]["description"] + " " + description_addendum
+
+        if relpath is not None:
+            description = description.replace("REPLACEME", relpath)
 
         # Try to add info about valid values
         valid_values_str = utils.describe_valid_values(column_schema[field])
