@@ -426,7 +426,7 @@ def validate_all(
 
 def write_report(
     validation_result,
-    report_path="bids-validator-report_{}.log",
+    report_path="/var/tmp/bids-validator/report_{}.log",
     datetime_format="%Y%m%d-%H%M%S",
 ):
     """Write a human-readable report based on the validation result.
@@ -451,6 +451,11 @@ def write_report(
 
     report_path = report_path.format(datetime.datetime.now().strftime(datetime_format))
     report_path = os.path.abspath(os.path.expanduser(report_path))
+    try:
+        os.makedirs(os.path.dirname(report_path))
+    except OSError:
+        pass
+
     total_file_count = len(validation_result["path_listing"])
     validated_files_count = total_file_count - len(validation_result["path_tracking"])
     with open(report_path, "w") as f:
