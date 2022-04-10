@@ -105,28 +105,45 @@ def _add_entity(regex_entities, entity, entity_shorthand, variable_field, requir
     return regex_entities
 
 
+def _extension_safety(extension):
+    """
+    Making extensions formatting-safe.
+    Issues covered by this function are listed under “Notes”
+
+    Parameters
+    ----------
+    extension : str
+        Extension string, as present in the BIDS YAML schema.
+
+    Returns
+    -------
+    str
+        Extension string, safe for use in validator Regex formatting.
+
+    Notes
+    -----
+    * Bash-wildcard safety: https://github.com/bids-standard/bids-specification/issues/990
+    * Period safety: https://github.com/bids-standard/bids-specification/issues/1055
+    * Hopefully this function will be deprecated soon, but it will not break safe entries.
+    """
+    if extension[0] == ".":
+        extension = extension[1:]
+    if "*" in extension:
+        extension = extension.replace("*",".*?")
+
+    return extension
+
+
 def _add_extensions(regex_string, variant):
     """Add extensions to a regex string."""
-    if len(variant["extensions"]) == 1:
-        # This only happens in `rules/datatypes/meg.yaml` once:
-        if variant["extensions"][0] == "*":
-            regex_extensions = ".*?"
-        else:
-            # Making it period-safe:
-            if variant["extensions"][0][0] == ".":
-                regex_extensions = variant["extensions"][0][1:]
-            else:
-                regex_extensions = variant["extensions"][0]
-    else:
-        # Making it period-safe:
-        fixed_variant_extensions = []
-        for variant_extension in variant["extensions"]:
-            if variant_extension[0] == ".":
-                fixed_variant_extensions.append(variant_extension[1:])
-            else:
-                fixed_variant_extensions.append(variant_extension)
-
+    fixed_variant_extensions = []
+    for variant_extension in variant["extensions"]:
+        variant_extension = _extension_safety(variant_extension)
+        fixed_variant_extensions.append(variant_extension)
+    if len(fixed_variant_extensions) > 1:
         regex_extensions = "({})".format("|".join(fixed_variant_extensions))
+    else:
+        regex_extensions = fixed_variant_extensions[0]
     regex_string = f"{regex_string}\\.{regex_extensions}"
 
     return regex_string
@@ -191,14 +208,12 @@ def load_top_level(
         # None value gets passed as list of strings...
         extensions = top_level_file["extensions"]
         if extensions != ["None"]:
-            periodsafe_extensions = []
+            safe_extensions = []
             for extension in extensions:
-                if extension[0] == ".":
-                    periodsafe_extensions.append(extension[1:])
-                else:
-                    periodsafe_extensions.append(extension)
-                extensions_regex = "|".join(periodsafe_extensions)
-                regex = f".*?/{top_level_filename}\\.({extensions_regex})$"
+                extension = _extension_safety(extension)
+                safe_extensions.append(extension)
+                extensions_regex = "|".join(safe_extensions)
+            regex = f".*?/{top_level_filename}\\.({extensions_regex})$"
         else:
             regex = f".*?/{top_level_filename}$"
         regex_entry = {
