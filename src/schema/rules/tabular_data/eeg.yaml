@@ -1,7 +1,7 @@
 ---
 EEGChannels:
     selectors:
-    - modality == "eeg"
+    - datatype == "eeg"
     - suffix == "channels"
     - extension == ".tsv"
     initial_columns: [name__channels, type, units]
@@ -40,7 +40,7 @@ EEGChannels:
 
 EEGElectrodes:
     selectors:
-    - modality == "eeg"
+    - datatype == "eeg"
     - suffix == "electrodes"
     - extension == ".tsv"
     initial_columns: [name__electrodes, x, y, z]
