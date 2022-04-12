@@ -1,0 +1,8 @@
+---
+M0Scan:
+    selectors:
+    - datatype == "perf"
+    - suffix == "m0scan"
+    columns:
+        volume_type: REQUIRED
+    additional_columns: not_allowed
