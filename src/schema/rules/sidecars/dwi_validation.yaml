@@ -1,0 +1,39 @@
+# Rules for DWI data that are not defined in tables.
+---
+
+# 29
+DWIVolumeCount:
+    code: VOLUME_COUNT_MISMATCH
+    description: |
+        The number of volumes in this scan does not match the number of volumes in the
+        corresponding .bvec and .bval files.
+    level: error
+    selectors:
+    - suffix == "dwi"
+    - associated contains "bval"
+    - associated contains "bvec"
+    checks:
+    - associated["bval"].shape[0] == data.shape[3]
+    - associated["bvec"].shape[0] == data.shape[3]
+
+# 32
+DWIMissingBvec:
+    code: DWI_MISSING_BVEC
+    description: |
+        DWI scans must have a corresponding .bvec file.
+    level: error
+    selectors:
+    - suffix == "dwi"
+    checks:
+    - associated contains "bvec"
+
+# 33
+DWIMissingBval:
+    code: DWI_MISSING_BVAL
+    description: |
+        DWI scans must have a corresponding .bval file.
+    level: error
+    selectors:
+    - suffix == "dwi"
+    checks:
+    - associated contains "bval"
