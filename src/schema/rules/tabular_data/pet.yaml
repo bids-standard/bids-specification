@@ -1,50 +1,50 @@
 ---
 Blood:
-  anyOf:
-  - selectors:
+    selectors:
     - modality == "pet"
     - suffix == "blood"
     - extension == ".tsv"
     columns:
-      time:
-        level: REQUIRED
-  - selectors:
+      time: REQUIRED
+      plasma_radioactivity: OPTIONAL
+      metabolite_parent_fraction: OPTIONAL
+      metabolite_polar_fraction: OPTIONAL
+      hplc_recovery_fractions: OPTIONAL
+      whole_blood_radioactivity: OPTIONAL
+
+BloodPlasma:
+    selectors:
     - modality == "pet"
     - suffix == "blood"
     - extension == ".tsv"
-    - sidecar.PlasmaAvail == true
+    - sidecar.PlasmaAvail
     columns:
-      plasma_radioactivity:
-        level: REQUIRED
-  - selectors:
+      plasma_radioactivity: REQUIRED
+
+BloodMetabolite:
+    selectors:
     - modality == "pet"
     - suffix == "blood"
     - extension == ".tsv"
-    - sidecar.MetaboliteAvail == true
+    - sidecar.MetaboliteAvail
     columns:
-      metabolite_parent_fraction:
-        level: REQUIRED
-  - selectors:
-    - modality == "pet"
-    - suffix == "blood"
-    - extension == ".tsv"
-    - sidecar.MetaboliteAvail == true
-    columns:
-      metabolite_polar_fraction:
-        level: REQUIRED
-  - selectors:
+      metabolite_parent_fraction: REQUIRED
+      metabolite_polar_fraction: RECOMMENDED
+ 
+ BloodMetaboliteCorrection:
+    selectors:
     - modality == "pet"
     - suffix == "blood"
     - extension == ".tsv"
     - sidecar.MetaboliteRecoveryCorrectionApplied == true
     columns:
-      hplc_recovery_fractions:
-        level: REQUIRED
-  - selectors:
+      hplc_recovery_fractions: REQUIRED
+ 
+ BloodWholeBlood:
+    selectors:
     - modality == "pet"
     - suffix == "blood"
     - extension == ".tsv"
     - sidecar.WholeBloodAvail == true
     columns:
-      whole_blood_radioactivity:
-        level: REQUIRED
+      whole_blood_radioactivity: REQUIRED
