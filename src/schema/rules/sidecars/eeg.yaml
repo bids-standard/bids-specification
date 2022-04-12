@@ -15,7 +15,7 @@ EEGGeneric:
     fields:
         TaskName:
             level: REQUIRED
-            addendum: |
+            level_addendum: |
                 A RECOMMENDED convention is to name resting state task using labels
                 beginning with `rest`.
 
@@ -34,7 +34,7 @@ EEGRecommended:
         TaskDescription: RECOMMENDED
         Instructions:
             level: RECOMMENDED
-            addendum: |
+            level_addendum: |
                 This is especially important in context of resting state recordings and
                 distinguishing between eyes open and eyes closed paradigms.
         CogAtlasID: RECOMMENDED
@@ -50,7 +50,7 @@ EEGRequired:
         EEGReference: REQUIRED
         SamplingFrequency:
             level: REQUIRED
-            addendum: |
+            level_addendum: |
                 The sampling frequency of data channels that deviate from the main sampling
                 frequency SHOULD be specified in the `channels.tsv` file.
         PowerLineFrequency: REQUIRED
@@ -88,7 +88,7 @@ EEGCoordsystemGeneral:
     fields:
         IntendedFor:
             level: OPTIONAL
-            addendum: |
+            level_addendum: |
                 This identifies the MRI or CT scan associated with the electrodes,
                 landmarks, and fiducials.
 
