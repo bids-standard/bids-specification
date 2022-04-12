@@ -1,0 +1,50 @@
+---
+Blood:
+  anyOf:
+  - selectors:
+    - modality == "pet"
+    - suffix == "blood"
+    - extension == ".tsv"
+    columns:
+      time:
+        level: REQUIRED
+  - selectors:
+    - modality == "pet"
+    - suffix == "blood"
+    - extension == ".tsv"
+    - sidecar.PlasmaAvail == true
+    columns:
+      plasma_radioactivity:
+        level: REQUIRED
+  - selectors:
+    - modality == "pet"
+    - suffix == "blood"
+    - extension == ".tsv"
+    - sidecar.MetaboliteAvail == true
+    columns:
+      metabolite_parent_fraction:
+        level: REQUIRED
+  - selectors:
+    - modality == "pet"
+    - suffix == "blood"
+    - extension == ".tsv"
+    - sidecar.MetaboliteAvail == true
+    columns:
+      metabolite_polar_fraction:
+        level: REQUIRED
+  - selectors:
+    - modality == "pet"
+    - suffix == "blood"
+    - extension == ".tsv"
+    - sidecar.MetaboliteRecoveryCorrectionApplied == true
+    columns:
+      hplc_recovery_fractions:
+        level: REQUIRED
+  - selectors:
+    - modality == "pet"
+    - suffix == "blood"
+    - extension == ".tsv"
+    - sidecar.WholeBloodAvail == true
+    columns:
+      whole_blood_radioactivity:
+        level: REQUIRED
