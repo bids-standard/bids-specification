@@ -1,23 +1,24 @@
+---
 - nifti_header:
   dim_info:
     freq:
-        type: int
+      type: int
     phase:
-        type: int
+      type: int
     slice:
-        type: int
+      type: int
   dim:
     type: array
     minItems: 8
     maxItems: 8
     items:
-        type: int
-   pixdim:
-      type: array
-      minItems: 8
-      maxItems: 8
-      items:
-        type: float
+      type: int
+  pixdim:
+    type: array
+    minItems: 8
+    maxItems: 8
+    items:
+      type: float
   xyzt_units:
     xyz:
       type: string
