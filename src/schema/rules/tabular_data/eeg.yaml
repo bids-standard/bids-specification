@@ -1,0 +1,55 @@
+---
+EEGChannels:
+    selectors:
+    - datatype == "eeg"
+    - suffix == "channels"
+    - extension == ".tsv"
+    initial_columns: [name__channels, type, units]
+    columns:
+        name__channels: REQUIRED
+        type__channels:
+            level: REQUIRED
+            enum:
+            - AUDIO
+            - EEG
+            - EOG
+            - ECG
+            - EMG
+            - EYEGAZE
+            - GSR
+            - HEOG
+            - MISC
+            - PPG
+            - PUPIL
+            - REF
+            - RESP
+            - SYSCLOCK
+            - TEMP
+            - TRIG
+            - VEOG
+        units: REQUIRED
+        description: OPTIONAL
+        sampling_frequency: OPTIONAL
+        reference: OPTIONAL
+        low_cutoff: OPTIONAL
+        high_cutoff: OPTIONAL
+        notch: OPTIONAL
+        status: OPTIONAL
+        status_descriptions: OPTIONAL
+    unknown_column_metadata: REQUIRED
+
+EEGElectrodes:
+    selectors:
+    - datatype == "eeg"
+    - suffix == "electrodes"
+    - extension == ".tsv"
+    initial_columns: [name__electrodes, x, y, z]
+    columns:
+        name__electrodes: REQUIRED
+        x: REQUIRED
+        y: REQUIRED
+        z: REQUIRED
+        type__electrodes: RECOMMENDED
+        material: RECOMMENDED
+        impedance: RECOMMENDED
+    unknown_column_metadata: REQUIRED
