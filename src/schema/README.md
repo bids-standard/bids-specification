@@ -512,3 +512,8 @@ adjust their code to be able to read it again.  Additions of new
 components to the schema should increment the last, `PATCH`, component
 of the version so that tools could selectively enable/disable loading
 specific components of the schema.
+With the release of `1.0.0` version of the schema,
+we expect that the `MAJOR` component
+will be incremented whenever schema organization introduces "breaking changes",
+`MINOR` - when adding new components to the schema,
+and `PATCH` - when fixing errors in existing components.
