@@ -36,7 +36,7 @@ EEGChannels:
         notch: OPTIONAL
         status: OPTIONAL
         status_descriptions: OPTIONAL
-    unknown_column_metadata: REQUIRED
+    additional_columns: allowed_if_defined
 
 EEGElectrodes:
     selectors:
@@ -52,4 +52,4 @@ EEGElectrodes:
         type__electrodes: RECOMMENDED
         material: RECOMMENDED
         impedance: RECOMMENDED
-    unknown_column_metadata: REQUIRED
+    additional_columns: allowed_if_defined
