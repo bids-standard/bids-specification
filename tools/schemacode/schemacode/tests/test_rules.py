@@ -40,4 +40,3 @@ def test_rule_objects(schema_obj):
 
             for use in instance:
                 assert use in schema_obj["objects"][object_type].keys(), path
-
