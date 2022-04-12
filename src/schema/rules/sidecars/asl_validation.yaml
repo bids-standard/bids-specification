@@ -69,7 +69,7 @@ ASLTotalAcquiredVolumesASLContextLength:
         volumes in the 'sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv'.
         'TotalAcquiredVolumes' is the original number of 3D volumes acquired for each volume defined in the
         'sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv'.
-    level: error
+    level: warning
     selectors:
     - sidecar contains "TotalAcquiredVolumes"
     - suffix == "asl"
