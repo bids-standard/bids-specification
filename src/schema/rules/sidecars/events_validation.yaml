@@ -11,6 +11,6 @@ EventsMissing:
     selectors:
     - entities contains "task"
     - entities.task != "rest"
-    - "rest" not in entities.task  # Alternative for including the word "rest"
+    - entities.task not contains "rest"  # Alternative for including the word "rest"
     checks:
     - associated contains "events"

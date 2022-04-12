@@ -8,9 +8,11 @@ ASLLabelingDurationNiftiLength:
         The number of values for 'LabelingDuration' for this file does not match the 4th dimension of the NIfTI header.
         'LabelingDuration' is the total duration of the labeling pulse train, in seconds,
         corresponding to the temporal width of the labeling bolus for `(P)CASL`.
-        In case all control-label volumes (or deltam or CBF) have the same `LabelingDuration`, a scalar must be specified.
+        In case all control-label volumes (or deltam or CBF) have the same `LabelingDuration`, a scalar must be
+        specified.
         In case the control-label volumes (or deltam or cbf) have a different `LabelingDuration`,
-        an array of numbers must be specified, for which any `m0scan` in the timeseries has a `LabelingDuration` of zero.
+        an array of numbers must be specified, for which any `m0scan` in the timeseries has a `LabelingDuration` of
+        zero.
         In case an array of numbers is provided, its length should be equal to the number of volumes specified in
         `*_aslcontext.tsv`. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`.
     level: error
@@ -78,13 +80,15 @@ ASLFlipAngleASLContextLength:
 ASLPostLabelingDelayNiftiLength:
     code: POST_LABELING_DELAY_NOT_MATCHING_NIFTI
     description: |
-        The number of values for 'PostLabelingDelay' for this file does not match the 4th dimension of the NIfTI header.
+        The number of values for 'PostLabelingDelay' for this file does not match the 4th dimension of the NIfTI
+        header.
         'PostLabelingDelay' is the time, in seconds, after the end of the labeling (for (P)CASL) or middle of the
         labeling pulse (for PASL) until the middle of the excitation pulse applied to the imaging slab
         (for 3D acquisition) or first slice (for 2D acquisition).
         Can be a number (for a single-PLD time series) or an array of numbers (for multi-PLD and Look-Locker).
         In the latter case, the array of numbers contains the PLD of each volume (i.e. each 'control' and 'label')
-        in the acquisition order. Any image within the time-series without a PLD (e.g. an 'm0scan') is indicated by a zero.
+        in the acquisition order. Any image within the time-series without a PLD (e.g. an 'm0scan') is indicated by a
+        zero.
         Based on DICOM Tags 0018,9079 Inversion Times and 0018,0082 InversionTime.
     level: error
     selectors:
@@ -166,7 +170,8 @@ ASLRepetitionTimePreparationASLContextLength:
 ASLBackgroundSuppressionNumberPulses:
     code: BACKGROUND_SUPPRESSION_PULSE_NUMBER_NOT_CONSISTENT
     description: |
-        The 'BackgroundSuppressionNumberPulses' field is not consistent with the length of 'BackgroundSuppressionPulseTime'.
+        The 'BackgroundSuppressionNumberPulses' field is not consistent with the length of
+        'BackgroundSuppressionPulseTime'.
         'BackgroundSuppressionNumberPulses' is the number of background suppression pulses used.
         Note that this excludes any effect of background suppression pulses applied before the labeling.
     level: warning
