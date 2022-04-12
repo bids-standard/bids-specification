@@ -15,9 +15,9 @@ ASLLabelingDurationNiftiLength:
         `*_aslcontext.tsv`. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`.
     level: error
     selectors:
+    - suffix == "asl"
     - sidecar contains "LabelingDuration"
     - type(sidecar.LabelingDuration) == "array"
-    - suffix == "asl"
     checks:
     - data.shape[3] == sidecar.LabelingDuration.size
 
@@ -30,6 +30,7 @@ ASLContextConsistent:
     level: error
     selectors:
     - suffix == "asl"
+    - associated contains "aslcontext"
     checks:
     - data.shape[3] == associated["aslcontext"].shape[0]
 
@@ -46,9 +47,9 @@ ASLFlipAngleNiftiLength:
         volume timing is critical for interpretation of the data, such as in ASL or variable flip angle fMRI sequences.
     level: error
     selectors:
+    - suffix == "asl"
     - sidecar contains "FlipAngle"
     - type(sidecar.FlipAngle) == "array"
-    - suffix == "asl"
     checks:
     - data.shape[3] == sidecar.FlipAngle.size
 
@@ -66,9 +67,10 @@ ASLFlipAngleASLContextLength:
        timing is critical for interpretation of the data, such as in ASL or variable flip angle fMRI sequences.
     level: error
     selectors:
+    - suffix == "asl"
+    - associated contains "aslcontext"
     - sidecar contains "FlipAngle"
     - type(sidecar.FlipAngle) == "array"
-    - suffix == "asl"
     checks:
     - associated["aslcontext"].shape[0] == sidecar.FlipAngle.size
 
@@ -86,9 +88,9 @@ ASLPostLabelingDelayNiftiLength:
         Based on DICOM Tags 0018,9079 Inversion Times and 0018,0082 InversionTime.
     level: error
     selectors:
+    - suffix == "asl"
     - sidecar contains "PostLabelingDelay"
     - type(sidecar.PostLabelingDelay) == "array"
-    - suffix == "asl"
     checks:
     - data.shape[3] == sidecar.PostLabelingDelay.size
 
@@ -108,9 +110,10 @@ ASLPostLabelingDelayASLContextLength:
         Based on DICOM Tags 0018,9079 Inversion Times and 0018,0082 InversionTime.
     level: error
     selectors:
+    - suffix == "asl"
+    - associated contains "aslcontext"
     - sidecar contains "PostLabelingDelay"
     - type(sidecar.PostLabelingDelay) == "array"
-    - suffix == "asl"
     checks:
     - associated["aslcontext"].shape[0] == sidecar.PostLabelingDelay.size
 
@@ -132,9 +135,10 @@ ASLLabelingDurationASLContextLength:
         Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`.
     level: error
     selectors:
+    - suffix == "asl"
+    - associated contains "aslcontext"
     - sidecar contains "LabelingDuration"
     - type(sidecar.LabelingDuration) == "array"
-    - suffix == "asl"
     checks:
     - associated["aslcontext"].shape[0] == sidecar.LabelingDuration.size
 
@@ -151,9 +155,10 @@ ASLRepetitionTimePreparationASLContextLength:
         volume timing is critical for interpretation of the data, such as in ASL.
     level: error
     selectors:
+    - suffix == "asl"
+    - associated contains "aslcontext"
     - sidecar contains "RepetitionTimePreparation"
     - type(sidecar.RepetitionTimePreparation) == "array"
-    - suffix == "asl"
     checks:
     - associated["aslcontext"].shape[0] == sidecar.RepetitionTimePreparation.size
 
@@ -166,10 +171,10 @@ ASLBackgroundSuppressionNumberPulses:
         Note that this excludes any effect of background suppression pulses applied before the labeling.
     level: warning
     selectors:
+    - suffix == "asl"
     - sidecar contains "BackgroundSuppressionNumberPulses"
     - sidecar contains "BackgroundSuppressionPulseTime"
     - type(sidecar.BackgroundSuppressionPulseTime) == "array"
-    - suffix == "asl"
     checks:
     - sidecar.BackgroundSuppressionPulseTime.size == sidecar.BackgroundSuppressionNumberPulses
 
@@ -183,7 +188,24 @@ ASLTotalAcquiredVolumesASLContextLength:
         'sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv'.
     level: warning
     selectors:
-    - sidecar contains "TotalAcquiredVolumes"
     - suffix == "asl"
+    - associated contains "aslcontext"
+    - sidecar contains "TotalAcquiredVolumes"
     checks:
     - associated["aslcontext"].shape[0] == sidecar.TotalAcquiredVolumes
+
+# 196
+ASLEchoTimeASLContextLength:
+    code: ECHO_TIME_NOT_CONSISTENT
+    description: |
+        The number of values for 'EchoTime' for this file does not match number of volumes in the
+        'sub-<label>[_ses-<label>][_acq-<label>][_rec-<label>][_run-<index>]_aslcontext.tsv'.
+        'EchoTime' is the echo time (TE) for the acquisition, specified in seconds.
+    level: warning
+    selectors:
+    - suffix == "asl"
+    - associated contains "aslcontext"
+    - sidecar contains "EchoTime"
+    - type(sidecar.EchoTime) == "array"
+    checks:
+    - associated["aslcontext"].shape[0] == sidecar.EchoTime.size
