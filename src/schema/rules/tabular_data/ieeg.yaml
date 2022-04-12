@@ -1,0 +1,64 @@
+---
+iEEGChannels:
+    selectors:
+    - datatype == "ieeg"
+    - suffix == "channels"
+    - extension == ".tsv"
+    initial_columns: [name__channels, type, units]
+    columns:
+        name__channels: REQUIRED
+        type__channels:
+            level: REQUIRED
+            enum:
+            - EEG
+            - ECOG
+            - SEEG
+            - DBS
+            - VEOG
+            - HEOG
+            - EOG
+            - ECG
+            - EMG
+            - TRIG
+            - AUDIO
+            - PD
+            - EYEGAZE
+            - PUPIL
+            - MISC
+            - SYSCLOCK
+            - ADC
+            - DAC
+            - REF
+            - OTHER
+        units: REQUIRED
+        low_cutoff: REQUIRED
+        high_cutoff: REQUIRED
+        reference: OPTIONAL
+        group: OPTIONAL
+        sampling_frequency: OPTIONAL
+        description: OPTIONAL
+        notch: OPTIONAL
+        status: OPTIONAL
+        status_descriptions: OPTIONAL
+    additional_columns: allowed_if_defined
+
+iEEGElectrodes:
+    selectors:
+    - datatype == "ieeg"
+    - suffix == "electrodes"
+    - extension == ".tsv"
+    initial_columns: [name__electrodes, x, y, z]
+    columns:
+        name__electrodes: REQUIRED
+        x: REQUIRED
+        y: REQUIRED
+        z: REQUIRED
+        size: REQUIRED
+        material: RECOMMENDED
+        manufacturer: RECOMMENDED
+        group: RECOMMENDED
+        hemisphere: RECOMMENDED
+        type__electrodes: OPTIONAL
+        impedance: OPTIONAL
+        dimension: OPTIONAL
+    additional_columns: allowed_if_defined
