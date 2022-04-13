@@ -37,9 +37,9 @@ MRIFuncTimingParameters:
                 REQUIRED for sequences that are described with the `VolumeTiming`
                 field and that do not have the `SliceTiming` field set to allow for
                 accurate calculation of "acquisition time"
-            code: 
+            code:
                 VOLUME_TIMING_MISSING_ACQUISITION_DURATION: |
-                The field 'VolumeTiming' requires 'AcquisitionDuration' or 'SliceTiming' to be defined.
+                    The field 'VolumeTiming' requires 'AcquisitionDuration' or 'SliceTiming' to be defined.
         DelayAfterTrigger: RECOMMENDED
 
 # The mutual exclusion table, spread across 5 definitions
