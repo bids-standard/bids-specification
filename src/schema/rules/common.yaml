@@ -1,0 +1,222 @@
+---
+# This file describes rules for broad "standard" errors in the specification.
+NiftiHeaderUnreadable:
+    code: NIFTI_HEADER_UNREADABLE
+    description: |
+        We were unable to parse header data from this NIfTI file.
+        Please ensure it is not corrupted or mislabeled.
+    level: error
+    validation: shallow
+    selectors:
+    - extension in [".nii", ".nii.gz"]
+JsonInvalid:
+    code: JSON_INVALID
+    description: |
+        Not a valid JSON file.
+    level: error
+    validation: shallow
+    selectors:
+    - extension == ".json"
+GzNotGzipped:
+    code: GZ_NOT_GZIPPED
+    description: |
+        This file ends in the .gz extension but is not actually gzipped.
+    level: error
+    validation: shallow
+    selectors:
+    - extension contains ".gz"
+BvalMultipleRows:
+    code: BVAL_MULTIPLE_ROWS
+    description: |
+        .bval files should contain exactly one row of volumes.
+    level: error
+    validation: deep
+    selectors:
+    - extension == ".bval"
+BvecNumberRows:
+    code: BVEC_NUMBER_ROWS
+    description: |
+        .bvec files should contain exactly three rows of volumes.
+    level: error
+    validation: deep
+    selectors:
+    - extension == ".bvec"
+NiftiTooSmall:
+    code: NIFTI_TOO_SMALL
+    description: |
+        This file is too small to contain the minimal NIfTI header.
+    level: error
+    validation: shallow
+    selectors:
+    - extension in [".nii", ".nii.gz"]
+OrphanedSymlink:
+    code: ORPHANED_SYMLINK
+    description: |
+        This file appears to be an orphaned symlink.
+        Make sure it correctly points to its referent.
+    level: error
+    validation: shallow
+FileRead:
+    code: FILE_READ
+    description: |
+        We were unable to read this file.
+        Make sure it contains data (file size > 0 kB) and is not corrupted,
+        incorrectly named, or incorrectly symlinked.
+    level: error
+BvecRowLength:
+    code: BVEC_ROW_LENGTH
+    description: |
+        Each row in a .bvec file should contain the same number of values.
+    level: error
+    validation: deep
+    selectors:
+    - extension == ".bvec"
+BFile:
+    code: B_FILE
+    description: |
+        .bval and .bvec files must be single space delimited
+        and contain only numerical values.
+    level: error
+    validation: deep
+    selectors:
+    - extension in [".bval", ".bvec"]
+JsonSchemaValidationError:
+    code: JSON_SCHEMA_VALIDATION_ERROR
+    description: |
+        Invalid JSON file. The file is not formatted according the schema.
+    level: error
+    validation: shallow
+    selectors:
+    - extension == ".json"
+NoValidDataFoundForSubject:
+    code: NO_VALID_DATA_FOUND_FOR_SUBJECT
+    description: |
+        No BIDS compatible data found for at least one subject.
+    level: error
+    validation: filename
+WrongNewLine:
+    code: WRONG_NEW_LINE
+    description: |
+        All TSV files must use Line Feed '\n' characters to denote new lines.
+        This files uses Carriage Return '\r'.
+    level: error
+    validation: shallow
+    selectors:
+    - extension == ".tsv"
+MalformedBvec:
+    code: MALFORMED_BVEC
+    description: |
+        The contents of this .bvec file are undefined or severely malformed.
+    level: error
+    validation: deep
+    selectors:
+    - extension == ".bvec"
+MalformedBval:
+    code: MALFORMED_BVAL
+    description: |
+        The contents of this .bval file are undefined or severely malformed.
+    level: error
+    validation: deep
+    selectors:
+    - extension == ".bval"
+SidecarWithoutDatafile:
+    code: SIDECAR_WITHOUT_DATAFILE
+    description: |
+        A json sidecar file was found without a corresponding data file.
+    level: error
+    validation: filename
+    selectors:
+    - extension == ".json"
+MissingSession:
+    code: MISSING_SESSION
+    description: |
+        Not all subjects contain the same sessions.
+    level: warning
+    validation: filename
+InaccessibleRemoteFile:
+    code: INACCESSIBLE_REMOTE_FILE
+    description: |
+        This file appears to be a symlink to a remote annexed file,
+        but could not be accessed from any of the configured remotes.
+    level: error
+    validation: shallow
+EmptyFile:
+    code: EMPTY_FILE
+    description: |
+        Empty files not allowed.
+    level: error
+    validation: shallow
+BrainvisionLinksBroken:
+    code: BRAINVISION_LINKS_BROKEN
+    description: |
+        Internal file pointers in BrainVision file triplet (*.eeg, *.vhdr,
+        and *.vmrk) are broken or some files do not exist.
+    level: error
+    validation: shallow
+    selectors:
+    - extension in [ ".eeg", ".vhdr", ".vmrk"]
+HedError:
+    code: HED_ERROR
+    description: |
+        The validation on this HED string returned an error.
+    level: error
+    validation: deep
+    selectors:
+    - suffix == "events"
+    - extension == ".tsv"
+HedWarning:
+    code: HED_WARNING
+    description: |
+        The validation on this HED string returned a warning.
+    level: warning
+    validation: deep
+    selectors:
+    - suffix == "events"
+    - extension == ".tsv"
+HedInternalError:
+    code: HED_INTERNAL_ERROR
+    description: |
+        An internal error occurred during HED validation.
+    level: error
+    validation: deep
+    selectors:
+    - suffix == "events"
+    - extension == ".tsv"
+HedInternalWarning:
+    code: HED_INTERNAL_WARNING
+    description: |
+        An internal warning occurred during HED validation.
+    level: warning
+    validation: deep
+    selectors:
+    - suffix == "events"
+    - extension == ".tsv"
+HedMissingValueInSidecar:
+    code: HED_MISSING_VALUE_IN_SIDECAR
+    description: |
+        The json sidecar does not contain this column value as
+        a possible key to a HED string.
+    level: warning
+    validation: deep
+    selectors:
+    - suffix == "events"
+    - extension == ".tsv"
+HedVersionNotDefined:
+    code: HED_VERSION_NOT_DEFINED
+    description: |
+        You should define 'HEDVersion' for this file.
+        If you don't provide this information, the HED validation will use
+        the latest version available.
+    level: warning
+    validation: deep
+    selectors:
+    - suffix == "events"
+    - extension == ".tsv"
+InvalidJsonEncoding:
+    code: INVALID_JSON_ENCODING
+    description: |
+        JSON files must be valid utf-8.
+    level: error
+    validation: shallow
+    selectors:
+    - extension == ".json"
