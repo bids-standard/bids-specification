@@ -153,7 +153,8 @@ MRITimingParameters:
                 REQUIRED if corresponding fieldmap data is present,
                 or the data comes from a multi-echo sequence or Arterial Spin Labeling.
             code:
-                ECHO_TIME_NOT_DEFINED: |
+                name: ECHO_TIME_NOT_DEFINED
+                message: |
                     You must define 'EchoTime' for this file. 'EchoTime' is the echo time (TE)
                     for the acquisition, specified in seconds. Corresponds to DICOM Tag
                     0018, 0081 Echo Time (please note that the DICOM term is in milliseconds
@@ -197,7 +198,8 @@ MRIRFandContrast:
             level: RECOMMENDED
             level_addendum: REQUIRED if LookLocker is set to `true`.
             code:
-                LOOK_LOCKER_FLIP_ANGLE_MISSING: |
+                name: LOOK_LOCKER_FLIP_ANGLE_MISSING
+                message: |
                     You should define 'FlipAngle' for this file, in
                     case of a LookLocker acquisition. 'FlipAngle' is the
                     flip angle (FA) for the acquisition, specified in degrees.
