@@ -193,5 +193,6 @@ MRIASLM0Scan:
     fields:
         IntendedFor:
             level: REQUIRED
-            description_addendum: This is used to refer to the ASL time series for which the `*_m0scan.nii[.gz]` is intended.
+            description_addendum: |
+                This is used to refer to the ASL time series for which the `*_m0scan.nii[.gz]` is intended.
         AcquisitionVoxelSize: RECOMMENDED
