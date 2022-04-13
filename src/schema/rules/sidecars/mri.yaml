@@ -13,19 +13,19 @@ MRIScannerHardware:
     fields:
         Manufacturer:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
+            description_addendum: Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
         ManufacturersModelName:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
+            description_addendum: Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
         DeviceSerialNumber:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`.
+            description_addendum: Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`.
         StationName:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0008, 1010 `Station Name`.
+            description_addendum: Corresponds to DICOM Tag 0008, 1010 `Station Name`.
         SoftwareVersions:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0018, 1020 `Software Versions`.
+            description_addendum: Corresponds to DICOM Tag 0018, 1020 `Software Versions`.
         HardcopyDeviceSoftwareVersion: DEPRECATED
         MagneticFieldStrength:
             level: RECOMMENDED, but REQUIRED for Arterial Spin Labeling
@@ -209,10 +209,10 @@ MRIInstitutionInformation:
     fields:
         InstitutionName:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0008, 0080 `InstitutionName`.
+            description_addendum: Corresponds to DICOM Tag 0008, 0080 `InstitutionName`.
         InstitutionAddress:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`.
+            description_addendum: Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`.
         InstitutionalDepartmentName:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.
+            description_addendum: Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.

@@ -17,7 +17,7 @@ MEGGeneric:
     fields:
         TaskName:
             level: REQUIRED
-            addendum: |
+            description_addendum: |
                 A RECOMMENDED convention is to name resting state task using labels
                 beginning with `rest`.
 
@@ -32,7 +32,7 @@ MEGRecommended:
         InstitutionalDepartmentName: RECOMMENDED
         Manufacturer:
             level: RECOMMENDED
-            addendum: |
+            description_addendum: |
                 For MEG scanners, this must be one of:
                 `"CTF"`, `"Elekta/Neuromag"`, `"BTi/4D"`, `"KIT/Yokogawa"`,
                 `"ITAB"`, `"KRISS"`, `"Other"`.
@@ -40,14 +40,14 @@ MEGRecommended:
                 preferred names.
         ManufacturersModelName:
             level: RECOMMENDED
-            addendum: |
+            description_addendum: |
                 See [Appendix VII](/99-appendices/07-meg-systems.html) for
                 preferred names.
         SoftwareVersions: RECOMMENDED
         TaskDescription: RECOMMENDED
         Instructions:
             level: RECOMMENDED
-            addendum: |
+            description_addendum: |
                 This is especially important in context of resting state recordings and
                 distinguishing between eyes open and eyes closed paradigms.
         CogAtlasID: RECOMMENDED
@@ -63,7 +63,7 @@ MEGRequired:
     fields:
         SamplingFrequency:
             level: REQUIRED
-            addendum: |
+            description_addendum: |
                 The sampling frequency of data channels that deviate from the main sampling
                 frequency SHOULD be specified in the `channels.tsv` file.
         PowerLineFrequency: REQUIRED
@@ -127,7 +127,7 @@ MEGCoordsystemWithEEG:
             level_addendum: REQUIRED if `MEGCoordinateSystem` is `Other`
         EEGCoordinateSystem:
             level: OPTIONAL
-            addendum: |
+            description_addendum: |
                 See [Recording EEG simultaneously with MEG]
                 (/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg).
                 Preferably the same as the `MEGCoordinateSystem`.
@@ -135,7 +135,7 @@ MEGCoordsystemWithEEG:
         EEGCoordinateSystemDescription:
             level: OPTIONAL
             level_addendum: REQUIRED if `EEGCoordinateSystem` is `Other`
-            addendum: |
+            description_addendum: |
                 See [Recording EEG simultaneously with MEG]
                 (/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg).
 
@@ -215,7 +215,7 @@ MEGCoordsystemAnatomicalMRI:
     fields:
         IntendedFor:
             level: OPTIONAL
-            addendum: |
+            description_addendum: |
                 This is used to identify the structural MRI(s),
                 possibly of different types if a list is specified,
                 to be used with the MEG recording.
@@ -230,7 +230,7 @@ MEGCoordsystemAnatomicalLandmarks:
         AnatomicalLandmarkCoordinates: OPTIONAL
         AnatomicalLandmarkCoordinateSystem:
             level: OPTIONAL
-            addendum: |
+            description_addendum: |
                 Preferably the same as the `MEGCoordinateSystem`.
         AnatomicalLandmarkCoordinateUnits: OPTIONAL
         AnatomicalLandmarkCoordinateSystemDescription:
