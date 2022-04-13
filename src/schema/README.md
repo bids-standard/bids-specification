@@ -498,3 +498,22 @@ In cases where there is a data file and a metadata file, the `.json` extension f
 
 This file contains a dictionary in which each key is a directory and the value is a dictionary with one key: `required`.
 The `required` entry contains a boolean value to indicate if that directory is required for BIDS datasets or not.
+
+## Version of the schema
+
+File `SCHEMA_VERSION` in the top of the directory contains a semantic
+version (`MAJOR.MINOR.PATCH`) for the schema (how it is organized).
+Note that while in `0.` series, breaking changes are
+permitted without changing the `MAJOR` (leading) component of the version.
+Going forward, the 2nd, `MINOR` indicator should be
+incremented whenever schema organization introduces "breaking changes":
+changes which would cause existing tools reading schema to
+adjust their code to be able to read it again.
+Additions of new components to the schema should increment the last,
+`PATCH`, component of the version so that tools could selectively
+enable/disable loading specific components of the schema.
+With the release of `1.0.0` version of the schema,
+we expect that the `MAJOR` component
+will be incremented whenever schema organization introduces "breaking changes",
+`MINOR` - when adding new components to the schema,
+and `PATCH` - when fixing errors in existing components.
