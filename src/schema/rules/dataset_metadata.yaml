@@ -13,6 +13,14 @@ dataset_description:
         ReferencesAndLinks: OPTIONAL
         DatasetDOI: OPTIONAL
         GeneratedBy: RECOMMENDED
+        GeneratedBy[].Name: REQUIRED
+        GeneratedBy[].Version: RECOMMENDED
+        GeneratedBy[].Description: OPTIONAL
+        GeneratedBy[].CodeURL: OPTIONAL
+        GeneratedBy[].Container: OPTIONAL
+        GeneratedBy[].Container.Type: RECOMMENDED
+        GeneratedBy[].Container.Tag: RECOMMENDED
+        GeneratedBy[].Container.URI: RECOMMENDED
         SourceDatasets: RECOMMENDED
 
 derivative_description:
@@ -28,6 +36,9 @@ dataset_description_with_genetics:
         dataset.genetic_info
     fields:
         Genetics: REQUIRED
+        Genetics.Dataset: REQUIRED
+        Genetics.Database: OPTIONAL
+        Genetics.Descriptors: OPTIONAL
 
 genetic_info:
     path: /genetic_info.json
