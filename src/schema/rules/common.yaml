@@ -1,5 +1,7 @@
 ---
 # This file describes rules for broad "standard" errors in the specification.
+
+# BIDS Validator Original Issue Code #26
 NiftiHeaderUnreadable:
     code: NIFTI_HEADER_UNREADABLE
     description: |
@@ -9,6 +11,8 @@ NiftiHeaderUnreadable:
     validation: shallow
     selectors:
     - extension in [".nii", ".nii.gz"]
+
+# BIDS Validator Original Issue Code #27
 JsonInvalid:
     code: JSON_INVALID
     description: |
@@ -17,6 +21,8 @@ JsonInvalid:
     validation: shallow
     selectors:
     - extension == ".json"
+
+# BIDS Validator Original Issue Code #28
 GzNotGzipped:
     code: GZ_NOT_GZIPPED
     description: |
@@ -25,6 +31,8 @@ GzNotGzipped:
     validation: shallow
     selectors:
     - extension contains ".gz"
+
+# BIDS Validator Original Issue Code #30
 BvalMultipleRows:
     code: BVAL_MULTIPLE_ROWS
     description: |
@@ -33,6 +41,8 @@ BvalMultipleRows:
     validation: deep
     selectors:
     - extension == ".bval"
+
+# BIDS Validator Original Issue Code #31
 BvecNumberRows:
     code: BVEC_NUMBER_ROWS
     description: |
@@ -41,6 +51,8 @@ BvecNumberRows:
     validation: deep
     selectors:
     - extension == ".bvec"
+
+# BIDS Validator Original Issue Code #36
 NiftiTooSmall:
     code: NIFTI_TOO_SMALL
     description: |
@@ -49,6 +61,8 @@ NiftiTooSmall:
     validation: shallow
     selectors:
     - extension in [".nii", ".nii.gz"]
+
+# BIDS Validator Original Issue Code #43
 OrphanedSymlink:
     code: ORPHANED_SYMLINK
     description: |
@@ -56,6 +70,8 @@ OrphanedSymlink:
         Make sure it correctly points to its referent.
     level: error
     validation: shallow
+
+# BIDS Validator Original Issue Code #44
 FileRead:
     code: FILE_READ
     description: |
@@ -63,6 +79,8 @@ FileRead:
         Make sure it contains data (file size > 0 kB) and is not corrupted,
         incorrectly named, or incorrectly symlinked.
     level: error
+
+# BIDS Validator Original Issue Code #46
 BvecRowLength:
     code: BVEC_ROW_LENGTH
     description: |
@@ -71,6 +89,8 @@ BvecRowLength:
     validation: deep
     selectors:
     - extension == ".bvec"
+
+# BIDS Validator Original Issue Code #47
 BFile:
     code: B_FILE
     description: |
@@ -80,6 +100,8 @@ BFile:
     validation: deep
     selectors:
     - extension in [".bval", ".bvec"]
+
+# BIDS Validator Original Issue Code #55
 JsonSchemaValidationError:
     code: JSON_SCHEMA_VALIDATION_ERROR
     description: |
@@ -88,12 +110,16 @@ JsonSchemaValidationError:
     validation: shallow
     selectors:
     - extension == ".json"
+
+# BIDS Validator Original Issue Code #67
 NoValidDataFoundForSubject:
     code: NO_VALID_DATA_FOUND_FOR_SUBJECT
     description: |
         No BIDS compatible data found for at least one subject.
     level: error
     validation: filename
+
+# BIDS Validator Original Issue Code #70
 WrongNewLine:
     code: WRONG_NEW_LINE
     description: |
@@ -103,6 +129,8 @@ WrongNewLine:
     validation: shallow
     selectors:
     - extension == ".tsv"
+
+# BIDS Validator Original Issue Code #74
 MalformedBvec:
     code: MALFORMED_BVEC
     description: |
@@ -111,6 +139,8 @@ MalformedBvec:
     validation: deep
     selectors:
     - extension == ".bvec"
+
+# BIDS Validator Original Issue Code #88
 MalformedBval:
     code: MALFORMED_BVAL
     description: |
@@ -119,6 +149,8 @@ MalformedBval:
     validation: deep
     selectors:
     - extension == ".bval"
+
+# BIDS Validator Original Issue Code #89
 SidecarWithoutDatafile:
     code: SIDECAR_WITHOUT_DATAFILE
     description: |
@@ -127,12 +159,16 @@ SidecarWithoutDatafile:
     validation: filename
     selectors:
     - extension == ".json"
+
+# BIDS Validator Original Issue Code #90
 MissingSession:
     code: MISSING_SESSION
     description: |
         Not all subjects contain the same sessions.
     level: warning
     validation: filename
+
+# BIDS Validator Original Issue Code #98
 InaccessibleRemoteFile:
     code: INACCESSIBLE_REMOTE_FILE
     description: |
@@ -140,12 +176,16 @@ InaccessibleRemoteFile:
         but could not be accessed from any of the configured remotes.
     level: error
     validation: shallow
+
+# BIDS Validator Original Issue Code #99
 EmptyFile:
     code: EMPTY_FILE
     description: |
         Empty files not allowed.
     level: error
     validation: shallow
+
+# BIDS Validator Original Issue Code #100
 BrainvisionLinksBroken:
     code: BRAINVISION_LINKS_BROKEN
     description: |
@@ -155,6 +195,8 @@ BrainvisionLinksBroken:
     validation: shallow
     selectors:
     - extension in [ ".eeg", ".vhdr", ".vmrk"]
+
+# BIDS Validator Original Issue Code #104
 HedError:
     code: HED_ERROR
     description: |
@@ -164,6 +206,8 @@ HedError:
     selectors:
     - suffix == "events"
     - extension == ".tsv"
+
+# BIDS Validator Original Issue Code #105
 HedWarning:
     code: HED_WARNING
     description: |
@@ -173,6 +217,8 @@ HedWarning:
     selectors:
     - suffix == "events"
     - extension == ".tsv"
+
+# BIDS Validator Original Issue Code #106
 HedInternalError:
     code: HED_INTERNAL_ERROR
     description: |
@@ -182,6 +228,8 @@ HedInternalError:
     selectors:
     - suffix == "events"
     - extension == ".tsv"
+
+# BIDS Validator Original Issue Code #107
 HedInternalWarning:
     code: HED_INTERNAL_WARNING
     description: |
@@ -191,6 +239,8 @@ HedInternalWarning:
     selectors:
     - suffix == "events"
     - extension == ".tsv"
+
+# BIDS Validator Original Issue Code #108
 HedMissingValueInSidecar:
     code: HED_MISSING_VALUE_IN_SIDECAR
     description: |
@@ -201,6 +251,8 @@ HedMissingValueInSidecar:
     selectors:
     - suffix == "events"
     - extension == ".tsv"
+
+# BIDS Validator Original Issue Code #109
 HedVersionNotDefined:
     code: HED_VERSION_NOT_DEFINED
     description: |
@@ -212,6 +264,8 @@ HedVersionNotDefined:
     selectors:
     - suffix == "events"
     - extension == ".tsv"
+
+# BIDS Validator Original Issue Code #123
 InvalidJsonEncoding:
     code: INVALID_JSON_ENCODING
     description: |
