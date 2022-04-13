@@ -1,0 +1,60 @@
+---
+CommonDerivativeFields:
+    selectors:
+        - isDerivative
+    fields:
+        - Description: RECOMMENDED
+        - Sources: OPTIONAL
+        - RawSources: OPTIONAL
+
+# should this apply to *eg space entities
+SpatialReference:
+    selectors:
+        - isDerivative
+        # - this file can use space entity
+    allOf:
+        - SpatialReferenceEntity:
+            selectors:
+                - entities contains "space"
+            fields:
+                - SpatialReference: RECOMMENDED
+        - SpatialReferenceNonStandard:
+            selectors:
+                - entities.space not in _StandardTemplateCoordSys
+            fields:
+                - SpatialReference: REQUIRED
+        - SpatialReferenceNoEntity:
+            selectors:
+                - enties does not contain "space"
+            fields:
+                - SpatialReference: REQUIRED
+
+# rules for invalidating fields on derived data
+
+ImageDerivatives:
+    selectors:
+        - isDerivative
+        - isImaging
+    fields:
+        - SkullStripped: REQUIRED
+    allOf:
+        - ImageDerivativeResEntity:
+            selectors:
+                - entities contains "res"
+            fields:
+                - Resolution: REQUIRED
+        - ImageDerivativeDenEntity:
+            selectors:
+                - entities contains "den"
+            fields:
+                - Density: REQUIRED
+        - ResInSidecar
+            selectors:
+                - type(sidecars.Resolution) == "object"
+            checks:
+                - sidecar.resolution contains entities.res
+        - DenInSidecar
+            selectors:
+                - type(sidecars.density) == "object"
+            checks:
+                - sidecar.density contains entities.den
