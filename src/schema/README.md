@@ -502,16 +502,16 @@ The `required` entry contains a boolean value to indicate if that directory is r
 ## Version of the schema
 
 File `SCHEMA_VERSION` in the top of the directory contains a semantic
-version (`MAJOR.MINOR.PATCH`) for the schema (how it is
-organized). Note that while in `0.` series, breaking changes are
-permitted without changing the `MAJOR` (leading) component of the
-version.  Going forward, the 2nd, `MINOR` indicator should be
-incremented whenever schema organization introduces "breaking
-changes": changes which would cause existing tools reading schema to
-adjust their code to be able to read it again.  Additions of new
-components to the schema should increment the last, `PATCH`, component
-of the version so that tools could selectively enable/disable loading
-specific components of the schema.
+version (`MAJOR.MINOR.PATCH`) for the schema (how it is organized).
+Note that while in `0.` series, breaking changes are
+permitted without changing the `MAJOR` (leading) component of the version.
+Going forward, the 2nd, `MINOR` indicator should be
+incremented whenever schema organization introduces "breaking changes":
+changes which would cause existing tools reading schema to
+adjust their code to be able to read it again.
+Additions of new components to the schema should increment the last,
+`PATCH`, component of the version so that tools could selectively
+enable/disable loading specific components of the schema.
 With the release of `1.0.0` version of the schema,
 we expect that the `MAJOR` component
 will be incremented whenever schema organization introduces "breaking changes",
