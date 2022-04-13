@@ -33,7 +33,7 @@ MRIASLTextOnlySliceTiming:
     fields:
         SliceTiming:
             level: REQUIRED
-            code:
+            issue::
                 name: SLICE_TIMING_NOT_DEFINED_2D_ASL
                 message: |
                     "You should define SliceTiming', in case 'SequenceType' is set to a
@@ -59,7 +59,7 @@ MRIASLTextOnlyFlipAngle:
     fields:
         FlipAngle:
             level: REQUIRED
-            code:
+            issue:
                 name: LOOK_LOCKER_FLIP_ANGLE_MISSING
                 message: |
                     "You should define 'FlipAngle' for this file, in case of a
@@ -115,7 +115,7 @@ MRIASLCommonMetadataFieldsM0Type:
     fields:
         M0Estimate:
             level: REQUIRED
-            code:
+            issue:
                 name: M0ESTIMATE_NOT_DEFINED
                 message: |
                     You must define 'M0Estimate' for this file, in case 'M0Type' is defined as 'Estimate'.
@@ -201,7 +201,7 @@ MRIASLPASLSpecificBolusCutOffFlag:
     fields:
         BolusCutOffDelayTime:
             level: REQUIRED
-            code:
+            issue:
                 name: PASL_BOLUS_CUT_OFF_DELAY_TIME
                 message: |
                     It is required to define 'BolusCutOffDelayTime' for this file,
@@ -215,7 +215,7 @@ MRIASLPASLSpecificBolusCutOffFlag:
                     0018,925F ASL Bolus Cut-off Delay Time.
         BolusCutOffTechnique:
             level: REQUIRED
-            code:
+            issue:
                 name: PASL_BOLUS_CUT_OFF_TECHINIQUE
                 message: |
                     It is required to define 'BolusCutOffTechnique' for this file,
@@ -245,7 +245,7 @@ MRIASLM0ScanTextOnlyFlipAngle:
     fields:
         FlipAngle:
             level: REQUIRED
-            code:
+            issue:
                 name: LOOK_LOCKER_FLIP_ANGLE_MISSING
                 message: |
                     You should define 'FlipAngle' for this file, in case of a LookLocker
