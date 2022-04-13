@@ -1,0 +1,40 @@
+dataset_description:
+    path: /dataset_description.json
+    fields:
+        Name: REQUIRED
+        BIDSVersion: REQUIRED
+        DatasetType: RECOMMENDED
+        License: RECOMMENDED
+        Authors: OPTIONAL
+        Acknowledgements: OPTIONAL
+        HowToAcknowledge: OPTIONAL
+        Funding: OPTIONAL
+        EthicsApprovals: OPTIONAL
+        ReferencesAndLinks: OPTIONAL
+        DatasetDOI: OPTIONAL
+        GeneratedBy: RECOMMENDED
+        SourceDatasets: RECOMMENDED
+
+derivative_description:
+    path: /dataset_description.json
+    selectors:
+        dataset.DatasetType == "derivative"
+    fields:
+        GeneratedBy: REQUIRED
+
+dataset_description_with_genetics:
+    path: /dataset_description.json
+    selectors:
+        dataset.genetic_info
+    fields:
+        Genetics: REQUIRED
+
+genetic_info:
+    path: /genetic_info.json
+    fields:
+        GeneticLevel: REQUIRED
+        SampleOrigin: REQUIRED
+        AnalyticalApproach: OPTIONAL
+        TissueOrigin: OPTIONAL
+        BrainLocation: OPTIONAL
+        CellType: OPTIONAL
