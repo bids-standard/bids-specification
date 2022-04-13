@@ -4,7 +4,7 @@ EEGChannels:
     - datatype == "eeg"
     - suffix == "channels"
     - extension == ".tsv"
-    initial_columns: [name__channels, type, units]
+    initial_columns: [name__channels, type__channels, units]
     columns:
         name__channels: REQUIRED
         type__channels:
