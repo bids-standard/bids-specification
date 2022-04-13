@@ -4,32 +4,10 @@ iEEGChannels:
     - datatype == "ieeg"
     - suffix == "channels"
     - extension == ".tsv"
-    initial_columns: [name__channels, type, units]
+    initial_columns: [name__channels, type__ieeg_channels, units]
     columns:
         name__channels: REQUIRED
-        type__channels:
-            level: REQUIRED
-            enum:
-            - EEG
-            - ECOG
-            - SEEG
-            - DBS
-            - VEOG
-            - HEOG
-            - EOG
-            - ECG
-            - EMG
-            - TRIG
-            - AUDIO
-            - PD
-            - EYEGAZE
-            - PUPIL
-            - MISC
-            - SYSCLOCK
-            - ADC
-            - DAC
-            - REF
-            - OTHER
+        type__ieeg_channels: REQUIRED
         units: REQUIRED
         low_cutoff: REQUIRED
         high_cutoff: REQUIRED

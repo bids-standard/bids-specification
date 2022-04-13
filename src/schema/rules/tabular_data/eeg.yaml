@@ -4,29 +4,10 @@ EEGChannels:
     - datatype == "eeg"
     - suffix == "channels"
     - extension == ".tsv"
-    initial_columns: [name__channels, type__channels, units]
+    initial_columns: [name__channels, type__eeg_channels, units]
     columns:
         name__channels: REQUIRED
-        type__channels:
-            level: REQUIRED
-            enum:
-            - AUDIO
-            - EEG
-            - EOG
-            - ECG
-            - EMG
-            - EYEGAZE
-            - GSR
-            - HEOG
-            - MISC
-            - PPG
-            - PUPIL
-            - REF
-            - RESP
-            - SYSCLOCK
-            - TEMP
-            - TRIG
-            - VEOG
+        type__eeg_channels: REQUIRED
         units: REQUIRED
         description: OPTIONAL
         sampling_frequency: OPTIONAL
