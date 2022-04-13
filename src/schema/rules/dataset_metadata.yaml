@@ -1,5 +1,6 @@
 dataset_description:
-    path: /dataset_description.json
+    selectors:
+    - path: /dataset_description.json
     fields:
         Name: REQUIRED
         BIDSVersion: REQUIRED
