@@ -209,7 +209,7 @@ BackgroundSuppression:
   name: BackgroundSuppression
   description: |
     Boolean indicating if background suppression is used.
-  type: boolean
+  type: bool
 BackgroundSuppressionNumberPulses:
   name: BackgroundSuppressionNumberPulses
   description: |
@@ -291,7 +291,7 @@ BolusCutOffFlag:
   description: |
     Boolean indicating if a bolus cut-off technique is used.
     Corresponds to DICOM Tag 0018, 925C `ASL Bolus Cut-off Flag`.
-  type: boolean
+  type: bool
 BolusCutOffTechnique:
   name: BolusCutOffTechnique
   description: |
@@ -421,7 +421,7 @@ ContinuousHeadLocalization:
   description: |
     `true` or `false` value indicating whether continuous head localisation
     was performed.
-  type: boolean
+  type: bool
 ContrastBolusIngredient:
   name: ContrastBolusIngredient
   description: |
@@ -507,7 +507,7 @@ Derivative:
     Indicates that values in the corresponding column are transformations of values
     from other columns (for example a summary score based on a subset of items in a
     questionnaire).
-  type: boolean
+  type: bool
 Description:
   name: Description
   description: |
@@ -532,7 +532,7 @@ DigitizedHeadPoints:
   description: |
     `true` or `false` value indicating whether head points outlining the
     scalp/face surface are contained within this recording.
-  type: boolean
+  type: bool
 DigitizedHeadPoints__coordsystem:
   name: DigitizedHeadPoints
   description: |
@@ -578,7 +578,7 @@ DigitizedLandmarks:
   description: |
     `true` or `false` value indicating whether anatomical landmark points
     (fiducials) are contained within this recording.
-  type: boolean
+  type: bool
 DispersionConstant:
   name: DispersionConstant
   description: |
@@ -591,7 +591,7 @@ DispersionCorrected:
   description: |
     Boolean flag specifying whether the blood data have been dispersion-corrected.
     NOTE: not customary for manual samples, and hence should be set to `false`.
-  type: boolean
+  type: bool
 DoseCalibrationFactor:
   name: DoseCalibrationFactor
   description: |
@@ -768,7 +768,7 @@ ElectricalStimulation:
     Boolean field to specify if electrical stimulation was done during the
     recording (options are `true` or `false`). Parameters for event-like
     stimulation should be specified in the `events.tsv` file.
-  type: boolean
+  type: bool
 ElectricalStimulationParameters:
   name: ElectricalStimulationParameters
   description: |
@@ -1146,7 +1146,7 @@ ImageDecayCorrected:
   name: ImageDecayCorrected
   description: |
     Boolean flag specifying whether the image data have been decay-corrected.
-  type: boolean
+  type: bool
 ImageDecayCorrectionTime:
   name: ImageDecayCorrectionTime
   description: |
@@ -1453,7 +1453,7 @@ LookLocker:
   name: LookLocker
   description: |
     Boolean indicating if a Look-Locker readout is used.
-  type: boolean
+  type: bool
 M0Estimate:
   name: M0Estimate
   description: |
@@ -1581,7 +1581,7 @@ MTState:
   description: |
     Boolean stating whether the magnetization transfer pulse is applied.
     Corresponds to DICOM Tag 0018, 9020 `Magnetization Transfer`.
-  type: boolean
+  type: bool
 MagneticFieldStrength:
   name: MagneticFieldStrength
   description: |
@@ -1600,7 +1600,7 @@ Manual:
   description: |
     Indicates if the segmentation was performed manually or via an automated
     process.
-  type: boolean
+  type: bool
 Manufacturer:
   name: Manufacturer
   description: |
@@ -1647,7 +1647,7 @@ MetaboliteAvail:
     Boolean that specifies if metabolite measurements are available.
     If `true`, the `metabolite_parent_fraction` column MUST be present in the
     corresponding `*_blood.tsv` file.
-  type: boolean
+  type: bool
 MetaboliteMethod:
   name: MetaboliteMethod
   description: |
@@ -1660,7 +1660,7 @@ MetaboliteRecoveryCorrectionApplied:
     with time postinjection.
     If `true`, the `hplc_recovery_fractions` column MUST be present in the
     corresponding `*_blood.tsv` file.
-  type: boolean
+  type: bool
 MiscChannelCount:
   name: MiscChannelCount
   description: |
@@ -1727,13 +1727,13 @@ NegativeContrast:
     This is commonly the case when Cerebral Blood Volume is estimated via
     usage of a contrast agent in conjunction with a T2\* weighted acquisition
     protocol.
-  type: boolean
+  type: bool
 NonlinearGradientCorrection:
   name: NonlinearGradientCorrection
   description: |
     Boolean stating if the image saved has been corrected for gradient
     nonlinearities by the scanner sequence.
-  type: boolean
+  type: bool
 NumberOfVolumesDiscardedByScanner:
   name: NumberOfVolumesDiscardedByScanner
   description: |
@@ -1932,7 +1932,7 @@ PlasmaAvail:
   name: PlasmaAvail
   description: |
     Boolean that specifies if plasma measurements are available.
-  type: boolean
+  type: bool
 PlasmaFreeFraction:
   name: PlasmaFreeFraction
   description: |
@@ -2378,7 +2378,7 @@ SkullStripped:
   name: SkullStripped
   description: |
     Whether the volume was skull stripped (non-brain voxels set to zero) or not.
-  type: boolean
+  type: bool
 SliceEncodingDirection:
   name: SliceEncodingDirection
   description: |
@@ -2589,7 +2589,7 @@ SpoilingState:
   description: |
     Boolean stating whether the pulse sequence uses any type of spoiling
     strategy to suppress residual transverse magnetization.
-  type: boolean
+  type: bool
 SpoilingType:
   name: SpoilingType
   description: |
@@ -2783,7 +2783,7 @@ VascularCrushing:
   description: |
     Boolean indicating if Vascular Crushing is used.
     Corresponds to DICOM Tag 0018, 9259 `ASL Crusher Flag`.
-  type: boolean
+  type: bool
 VascularCrushingVENC:
   name: VascularCrushingVENC
   description: |
@@ -2821,7 +2821,7 @@ WholeBloodAvail:
     Boolean that specifies if whole blood measurements are available.
     If `true`, the `whole_blood_radioactivity` column MUST be present in the
     corresponding `*_blood.tsv` file.
-  type: boolean
+  type: bool
 WithdrawalRate:
   name: WithdrawalRate
   description: |

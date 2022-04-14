@@ -295,7 +295,7 @@ There are additional fields which may define rules that apply to a given type.
         name: ExampleField
         description: |
             The description of "ExampleField".
-        type: boolean
+        type: bool
     ```
 
 Additionally, if multiple data types are possible for a given field
