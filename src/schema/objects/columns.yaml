@@ -157,7 +157,7 @@ index:
   name: index
   description: |
     The label integer index.
-  type: integer
+  type: int
 low_cutoff:
   name: low_cutoff
   description: |
@@ -179,7 +179,7 @@ mapping:
   name: mapping
   description: |
     Corresponding integer label in the standard BIDS label lookup.
-  type: integer
+  type: int
 material:
   name: material
   description: |
@@ -307,7 +307,7 @@ sample:
   description: |
     Onset of the event according to the sampling scheme of the recorded modality
     (that is, referring to the raw data file that the `events.tsv` file accompanies).
-  type: integer
+  type: int
 sample_id:
   name: sample_id
   description: |

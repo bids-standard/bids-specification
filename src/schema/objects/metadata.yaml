@@ -617,19 +617,19 @@ ECGChannelCount:
   name: ECGChannelCount
   description: |
     Number of ECG channels.
-  type: integer
+  type: int
   minimum: 0
 ECOGChannelCount:
   name: ECOGChannelCount
   description: |
     Number of ECoG channels.
-  type: integer
+  type: int
   minimum: 0
 EEGChannelCount:
   name: EEGChannelCount
   description: |
     Number of EEG channels recorded simultaneously (for example, `21`).
-  type: integer
+  type: int
   minimum: 0
 EEGCoordinateSystem:
   name: EEGCoordinateSystem
@@ -690,13 +690,13 @@ EMGChannelCount:
   name: EMGChannelCount
   description: |
     Number of EMG channels.
-  type: integer
+  type: int
   minimum: 0
 EOGChannelCount:
   name: EOGChannelCount
   description: |
     Number of EOG channels.
-  type: integer
+  type: int
   minimum: 0
 EchoTime:
   name: EchoTime
@@ -1481,7 +1481,7 @@ MEGChannelCount:
   name: MEGChannelCount
   description: |
     Number of MEG channels (for example, `275`).
-  type: integer
+  type: int
   minimum: 0
 MEGCoordinateSystem:
   name: MEGCoordinateSystem
@@ -1519,7 +1519,7 @@ MEGREFChannelCount:
     Number of MEG reference channels (for example, `23`).
     For systems without such channels (for example, Neuromag Vectorview),
     `MEGREFChannelCount` should be set to `0`.
-  type: integer
+  type: int
   minimum: 0
 MRAcquisitionType:
   name: MRAcquisitionType
@@ -1665,7 +1665,7 @@ MiscChannelCount:
   name: MiscChannelCount
   description: |
     Number of miscellaneous analog channels for auxiliary signals.
-  type: integer
+  type: int
   minimum: 0
 MixingTime:
   name: MixingTime
@@ -1747,7 +1747,7 @@ NumberOfVolumesDiscardedByScanner:
     refer to the beginning of the acquisition of the first volume in the
     corresponding imaging file - independent of the value of
     `"NumberOfVolumesDiscardedByScanner"` field.
-  type: integer
+  type: int
   minimum: 0
 NumberOfVolumesDiscardedByUser:
   name: NumberOfVolumesDiscardedByUser
@@ -1759,7 +1759,7 @@ NumberOfVolumesDiscardedByUser:
     refer to the beginning of the acquisition of the first volume in the
     corresponding imaging file - independent of the value of
     `"NumberOfVolumesDiscardedByUser"` field.
-  type: integer
+  type: int
   minimum: 0
 NumberShots:
   name: NumberShots
@@ -2201,7 +2201,7 @@ SEEGChannelCount:
   name: SEEGChannelCount
   description: |
     Number of SEEG channels.
-  type: integer
+  type: int
   minimum: 0
 SampleEmbedding:
   name: SampleEmbedding
@@ -2742,7 +2742,7 @@ TriggerChannelCount:
   name: TriggerChannelCount
   description: |
     Number of channels for digital (TTL bit level) triggers.
-  type: integer
+  type: int
   minimum: 0
 TubingLength:
   name: TubingLength

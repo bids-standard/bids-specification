@@ -199,7 +199,7 @@ There are additional fields which may define rules that apply to a given type.
         minItems: 3
         maxItems: 3
         items:
-            type: integer
+            type: int
     ```
 
 -   `string`: If `type` is `string`, then there MAY be any of the following
@@ -244,7 +244,7 @@ There are additional fields which may define rules that apply to a given type.
         name: ExampleField
         description: |
             The description of "ExampleField".
-        type: integer
+        type: int
         minimum: 0
     ```
 
