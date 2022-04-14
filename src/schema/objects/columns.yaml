@@ -10,25 +10,20 @@ abbreviation:
   description: |
     The unique label abbreviation
   type: string
-acq_time:
+acq_time__scans:
   name: acq_time
   description: |
     Acquisition time refers to when the first data point in each run was acquired.
-    Furthermore, if this header is provided, the acquisition times of all files that
-    belong to a recording MUST be identical.
-
-    Datetime should be expressed as described in [Units](/02-common-principles.html#units).
-
-    For anonymization purposes all dates within one subject should be shifted by a randomly
-    chosen (but consistent across all recordings) number of days.
-    This way relative timing would be preserved, but chances of identifying a person based
-    on the date and time of their scan would be decreased.
-    Dates that are shifted for anonymization purposes SHOULD be set to the year 1925 or earlier
-    to clearly distinguish them from unmodified data.
-    Note that some data formats do not support arbitrary recording dates.
-    For example, the [EDF](https://www.edfplus.info/)
-    data format can only contain recording dates after 1985.
-    Shifting dates is RECOMMENDED, but not required.
+    Furthermore, if this header is provided, the acquisition times of all files
+    from the same recording MUST be identical.
+    Datetime format and their anonymization are described in [Units](/02-common-principles.html#units).
+  type: string
+  format: datetime
+acq_time__sessions:
+  name: acq_time
+  description: |
+    Acquisition time refers to when the first data point of the first run was acquired.
+    Datetime format and their anonymization are described in [Units](/02-common-principles.html#units).
   type: string
   format: datetime
 age:
@@ -70,7 +65,7 @@ duration:
   name: duration
   description: |
     Duration of the event (measured from onset) in seconds.
-    Must always be either zero or positive (or `"n/a"` if unavailable).
+    Must always be either zero or positive (or `n/a` if unavailable).
     A "duration" value of zero implies that the delta function or event is so
     short as to be effectively modeled as an impulse.
   anyOf:
@@ -127,7 +122,7 @@ handedness:
 hemisphere:
   name: hemisphere
   description: |
-    The hemisphere in which the electrode is placed, one of `['L' or 'R']` (MUST be in upper-case).
+    The hemisphere in which the electrode is placed.
   type: string
   enum:
   - L
@@ -188,7 +183,7 @@ mapping:
 material:
   name: material
   description: |
-    Material of the electrode (for example, `"Tin"`, `"Ag/AgCl"`, `"Gold"`).
+    Material of the electrode (for example, `Tin`, `Ag/AgCl`, `Gold`).
   type: string
 metabolite_parent_fraction:
   name: metabolite_parent_fraction
@@ -269,7 +264,7 @@ participant_id:
 plasma_radioactivity:
   name: plasma_radioactivity
   description: |
-    Radioactivity in plasma, in unit of plasma radioactivity (for example, `"kBq/mL"`).
+    Radioactivity in plasma, in unit of plasma radioactivity (for example, `kBq/mL`).
   type: number
 # reference column for channels.tsv files for EEG data
 reference__eeg:
@@ -283,7 +278,7 @@ reference__eeg:
 reference__ieeg:
   name: reference
   description: |
-    Specification of the reference (for example, 'mastoid', 'ElectrodeName01', 'intracranial', 'CAR', 'other', 'n/a').
+    Specification of the reference (for example, `mastoid`, `ElectrodeName01`, `intracranial`, `CAR`, `other`, `n/a`).
     If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.
   anyOf:
   - type: string
@@ -300,7 +295,7 @@ response_time:
   description: |
     Response time measured in seconds.
     A negative response time can be used to represent preemptive responses and
-    "n/a" denotes a missed response.
+    `n/a` denotes a missed response.
   anyOf:
   - type: number
     unit: s
@@ -325,8 +320,6 @@ sample_type:
   description: |
     Biosample type defined by
     [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type).
-    One of: `"cell line"`, `"in vitro differentiated cells"`, `"primary cell"`, `"cell-free sample"`,
-    `"cloning host"`, `"tissue"`, `"whole organisms"`, `"organoid"`, or `"technical sample"`.
   type: string
   enum:
   - cell line
@@ -389,7 +382,7 @@ software_filters:
   name: software_filters
   description: |
     List of temporal and/or spatial software filters applied
-    (for example, "SSS", `"SpatialCompensation"`).
+    (for example, `SSS`, `SpatialCompensation`).
     Note that parameters should be defined in the general MEG sidecar .json file.
     Indicate `n/a` in the absence of software filters applied.
   anyOf:
@@ -410,8 +403,8 @@ status:
   name: status
   description: |
     Data quality observed on the channel.
-    Must be one of: `good`, `bad`, or `n/a` (when quality is unknown).
     A channel is considered `bad` if its data quality is compromised by excessive noise.
+    If quality is unknown, then a value of `n/a` may be used.
     Description of noise type SHOULD be provided in `[status_description]`.
   type: string
   enum:
@@ -430,11 +423,11 @@ stim_file:
     Represents the location of the stimulus file (such as an image, video, or
     audio file) presented at the given onset time.
     There are no restrictions on the file formats of the stimuli files,
-    but they should be stored in the `/stimuli` folder
-    (under the root folder of the dataset; with optional subfolders).
+    but they should be stored in the `/stimuli` directory
+    (under the root directory of the dataset; with optional subdirectories).
     The values under the `stim_file` column correspond to a path relative to
     `/stimuli`.
-    For example `"images/cat03.jpg"` will be translated to `"/stimuli/images/cat03.jpg"`.
+    For example `images/cat03.jpg` will be translated to `/stimuli/images/cat03.jpg`.
   type: string
   format: stimuli_relative
 strain:
@@ -463,8 +456,8 @@ trial_type:
   description: |
     Primary categorisation of each trial to identify them as instances of the
     experimental conditions.
-    For example: for a response inhibition task, it could take on values "go" and
-    "no-go" to refer to response initiation and response inhibition experimental
+    For example: for a response inhibition task, it could take on values `go` and
+    `no-go` to refer to response initiation and response inhibition experimental
     conditions.
   type: string
 trigger:
@@ -546,7 +539,7 @@ whole_blood_radioactivity:
   name: whole_blood_radioactivity
   description: |
     Radioactivity in whole blood samples,
-    in unit of radioactivity measurements in whole blood samples (for example, `"kBq/mL"`).
+    in unit of radioactivity measurements in whole blood samples (for example, `kBq/mL`).
   type: number
 x:
   name: x

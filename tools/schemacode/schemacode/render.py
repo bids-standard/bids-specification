@@ -176,7 +176,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
     entity_order = schema["rules"]["entities"]
 
     paragraph = ""
-    # Parent folders
+    # Parent directories
     paragraph += "{}-<{}>/\n\t[{}-<{}>/]\n".format(
         schema["objects"]["entities"]["subject"]["entity"],
         schema["objects"]["entities"]["subject"]["format"],
@@ -263,7 +263,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     Parameters
     ----------
     schema_path : str
-        Folder containing schema, which is stored in yaml files.
+        Directory containing schema, which is stored in yaml files.
     entities_file : str, optional
         File in which entities are described.
         This is used for hyperlinks in the table, so the path to the file
@@ -507,6 +507,12 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
         type_string = utils.resolve_metadata_type(metadata_schema[field])
 
         description = metadata_schema[field]["description"] + " " + description_addendum
+
+        # Try to add info about valid values
+        valid_values_str = utils.describe_valid_values(metadata_schema[field])
+        if valid_values_str:
+            description += "\n\n\n\n" + valid_values_str
+
         # A backslash before a newline means continue a string
         description = description.replace("\\\n", "")
         # Two newlines should be respected
@@ -576,6 +582,12 @@ def make_columns_table(schema, column_info, tablefmt="github"):
         type_string = utils.resolve_metadata_type(column_schema[field])
 
         description = column_schema[field]["description"] + " " + description_addendum
+
+        # Try to add info about valid values
+        valid_values_str = utils.describe_valid_values(column_schema[field])
+        if valid_values_str:
+            description += "\n\n\n\n" + valid_values_str
+
         # A backslash before a newline means continue a string
         description = description.replace("\\\n", "")
         # Two newlines should be respected

@@ -113,7 +113,7 @@ def make_metadata_table(field_info):
     ----------
     field_names : dict
         A list of the field names.
-        Field names correspond to filenames in the "metadata" folder of the
+        Field names correspond to filenames in the "metadata" directory of the
         schema.
         Until requirement levels can be codified in the schema,
         this argument will be dictionary, with the field names as keys and
@@ -138,7 +138,7 @@ def make_columns_table(column_info):
     ----------
     column_info : dict
         A list of the column names.
-        Column names correspond to filenames in the "columns" folder of the
+        Column names correspond to filenames in the "columns" directory of the
         schema.
         Until requirement levels can be codified in the schema,
         this argument will be a dictionary, with the column names as keys and
@@ -162,7 +162,7 @@ def make_filetree_example(filetree_info, use_pipe=True):
     Parameters
     ----------
     filetree_info : dict
-        Dictionary to represent the folder content.
+        Dictionary to represent the directory content.
     use_pipe : bool
         Set to ``False`` to avoid using pdf unfriendly pipes: "│ └─ ├─"
 

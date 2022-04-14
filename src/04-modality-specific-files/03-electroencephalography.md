@@ -12,7 +12,17 @@ and can be used for practical guidance when curating a new dataset.
 
 ## EEG recording data
 
-{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["eeg", "events"]) }}
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template(
+   datatypes=["eeg"],
+   suffixes=["eeg", "events", "physio", "stim"])
+}}
 
 The EEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, EEG data MUST be
@@ -76,6 +86,12 @@ be specified.
 
 Generic fields MUST be present:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
@@ -86,6 +102,12 @@ SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "InstitutionName": "RECOMMENDED",
@@ -104,6 +126,12 @@ Whenever possible, please avoid using ad hoc wording.
 
 Specific EEG fields MUST be present:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "EEGReference": "REQUIRED",
@@ -115,6 +143,12 @@ Specific EEG fields MUST be present:
 
 SHOULD be present:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "CapManufacturer": "RECOMMENDED",
@@ -182,17 +216,22 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 ## Channels description (`*_channels.tsv`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["channels"]) }}
 
-This file is RECOMMENDED as it provides easily searchable information across
-BIDS datasets for example, general curation, response to queries or batch
-analysis.
-To avoid confusion, the channels SHOULD be listed in the order they
-appear in the EEG data file.
-Any number of additional columns may be added to provide additional information
-about the channels.
+This file is RECOMMENDED as it provides easily searchable information across BIDS datasets.
+For example for general curation, response to queries, or for batch analysis.
+To avoid confusion, the channels SHOULD be listed in the order they appear in the EEG data file.
+Any number of additional columns MAY be added to provide additional information about the channels.
 
-Note that electrode positions SHOULD NOT be added to this file, but to [`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-_electrodestsv).
+Note that electrode positions SHOULD NOT be added to this file, but to
+[`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-_electrodestsv).
 Furthermore, the entries in `*_electrodes.tsv` and `*_channels.tsv` do not have to match exactly,
 as for example in the case of recording a single `EOG` channel from a bipolar referencing scheme
 of two electrodes, or a data channel originating from an auxiliary, non-electrode device.
@@ -200,10 +239,16 @@ That is, in most cases `*_electrodes.tsv` will have more entries than `*_channel
 See the examples for `*_channels.tsv` below, and for `*_electrodes.tsv` in
 ["Electrodes description"](./03-electroencephalography.md#electrodes-description-_electrodestsv).
 
-The columns of the Channels description table stored in `*_channels.tsv` are:
+The columns of the channels description table stored in `*_channels.tsv` are:
 
 MUST be present **in this specific order**:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "name__channels": "REQUIRED",
@@ -214,6 +259,12 @@ MUST be present **in this specific order**:
 
 SHOULD be present:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "description": "OPTIONAL",
@@ -269,6 +320,13 @@ UADC001  MISC  n/a    envelope of audio signal        n/a           good    n/a
 
 ## Electrodes description (`*_electrodes.tsv`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["electrodes"]) }}
 
 File that gives the location of EEG electrodes. Note that coordinates are
@@ -280,6 +338,12 @@ file MUST be specified as well**. The order of the required columns in the
 
 MUST be present **in this specific order**:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "name__electrodes": "REQUIRED",
@@ -291,6 +355,12 @@ MUST be present **in this specific order**:
 
 SHOULD be present:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "type__electrodes": "RECOMMENDED",
@@ -321,6 +391,13 @@ the recording.
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["coordsystem"]) }}
 
 A `*_coordsystem.json` file is used to specify the fiducials, the location of
@@ -359,6 +436,12 @@ head.
 
 General fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "IntendedFor": (
@@ -371,6 +454,12 @@ General fields:
 
 Fields relating to the EEG electrode positions:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "EEGCoordinateSystem": "REQUIRED",
@@ -381,6 +470,12 @@ Fields relating to the EEG electrode positions:
 
 Fields relating to the position of fiducials measured during an EEG session/run:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "FiducialsDescription": "OPTIONAL",
@@ -393,6 +488,12 @@ Fields relating to the position of fiducials measured during an EEG session/run:
 
 Fields relating to the position of anatomical landmark measured during an EEG session/run:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "AnatomicalLandmarkCoordinates": "RECOMMENDED",
@@ -429,6 +530,13 @@ Example:
 
 Photos of the anatomical landmarks and/or fiducials.
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["photo"]) }}
 
 Photos of the anatomical landmarks and/or fiducials are OPTIONAL.

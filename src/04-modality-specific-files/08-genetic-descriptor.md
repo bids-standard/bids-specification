@@ -27,6 +27,12 @@ Datasets linked to a genetic database entry include the following REQUIRED or OP
 `dataset_description.json` keys (a dot in the key name denotes a key in a sub-[object][],
 see the example further below):
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "Genetics.Dataset": "REQUIRED",
@@ -90,6 +96,12 @@ Datasets containing the `Genetics` field in `dataset_description.json` or the
 `genetic_id` column in `participants.tsv` MUST include this file with the following
 fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "GeneticLevel": "REQUIRED",

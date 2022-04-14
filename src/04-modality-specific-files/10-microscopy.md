@@ -18,6 +18,13 @@ Further Microscopy datasets are available:
 
 ## Microscopy imaging data
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["micr"], suffixes=["TEM", "SEM", "uCT", "BF", "DF",
 "PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM"], n_dupes_to_combine=4) }}
 
@@ -41,7 +48,7 @@ Microscopy raw data MUST be stored in one of the following formats:
 
 -   [Portable Network Graphics](http://www.libpng.org/pub/png/) (`.png`)
 
--   [Tag Image File Format](https://www.adobe.io/open/standards/TIFF.html) (`.tif`)
+-   [Tag Image File Format](https://en.wikipedia.org/wiki/TIFF) (`.tif`)
 
 -   [OME-TIFF](https://docs.openmicroscopy.org/ome-model/6.1.2/ome-tiff/specification.html#)
     (`.ome.tif` for standard TIFF files or `.ome.btf` for
@@ -57,6 +64,13 @@ as a successor to OME-TIFF for better remote sharing of large datasets.
 ### Modality suffixes
 Microscopy data currently support the following imaging modalities:
 
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_suffix_table(
       [
          "TEM",
@@ -94,6 +108,10 @@ The label MUST be unique per subject and is RECOMMENDED to be unique throughout 
 For example: Three brain slices (`sample-01` to `sample-03`) extracted from subject `sub-01`,
 imaged by scanning electron microscopy (SEM) in PNG format
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -126,6 +144,10 @@ For example: One brain slice (`sample-01`) extracted from subject `sub-01` with 
 stains (`stain-01`, `stain-02` and `stain-03`) in three separate files, imaged by selective plane
 illumination microscopy (SPIM) in OME-TIFF format
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -179,6 +201,10 @@ Figure 1: Examples of chunks configurations.
 For example: Four chunks (`chunk-01` to `chunk-04`) from the same brain sample (`sample-01`)
 of subject `sub-01`, imaged by confocal microscopy (CONF) in OME-TIFF format
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -208,11 +234,15 @@ JSON metadata may be defined per sample or per chunk as appropriate, as per the
 In microscopy, many pyramidal file formats store multiple resolutions for the same acquisition.
 In the case where a multiple resolutions file format is converted to single resolution file format,
 only the higher resolution file is present in the raw data.
-Lower resolutions files MUST be placed under the `derivatives` folder and use the
+Lower resolutions files MUST be placed under the `derivatives` directory and use the
 [`res-<label>`](../99-appendices/09-entities.md#res) entity.
 
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "my_dataset": {
@@ -245,6 +275,12 @@ Microscopy data MUST be described by metadata fields, stored in sidecar JSON fil
 
 #### Device Hardware
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "Manufacturer": "RECOMMENDED",
@@ -260,6 +296,12 @@ Microscopy data MUST be described by metadata fields, stored in sidecar JSON fil
 
 #### Image Acquisition
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "PixelSize": "REQUIRED",
@@ -274,6 +316,12 @@ Microscopy data MUST be described by metadata fields, stored in sidecar JSON fil
 
 #### Sample
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "BodyPart": ("RECOMMENDED", "From [DICOM Body Part Examined](http://dicom.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html#chapter_L) (for example `\"BRAIN\"`)."),
@@ -308,6 +356,12 @@ of the same sample in an implicit coordinate system.
 
 -   Other transformations should be described in derivatives.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "ChunkTransformationMatrix": "RECOMMENDED if `<chunk-index>` is used in filenames",
@@ -409,6 +463,13 @@ Photos of the tissue sample, overview microscopy scans or blockface images from 
 MAY be included for visualization of large samples or to indicate the location of chunks
 in a sample.
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["micr"], suffixes=["photo"], n_dupes_to_combine=3) }}
 
 The file `<extension>` for photos MUST be either `.jpg`, `.png` or `.tif`.
@@ -418,6 +479,10 @@ acquisition of different photos of the same sample.
 
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
