@@ -31,7 +31,24 @@ MRIASLTextOnlySliceTiming:
     - suffix == "asl"
     - sidecar.MRAcquisitionType == "2D"
     fields:
-        SliceTiming: REQUIRED
+        SliceTiming:
+            level: REQUIRED
+            issue:
+                name: SLICE_TIMING_NOT_DEFINED_2D_ASL
+                message: |
+                    "You should define SliceTiming', in case 'SequenceType' is set to a
+                    2D sequence. 'SliceTiming' is the time at which each slice was
+                    acquired within each volume (frame) of the acquisition. Slice timing
+                    is not slice order -- rather, it is a list of times containing the
+                    time (in seconds) of each slice acquisition in relation to the beginning
+                    of volume acquisition. The list goes through the slices along the slice
+                    axis in the slice encoding dimension (see below). Note that to ensure the
+                    proper interpretation of the `SliceTiming` field, it is important to check
+                    if the OPTIONAL `SliceEncodingDirection` exists. In particular, if
+                    `SliceEncodingDirection` is negative, the entries in `SliceTiming` are
+                    defined in reverse order with respect to the slice axis, such that the
+                    final entry in the `SliceTiming` list is the time of acquisition of slice 0.
+                    Without this parameter slice time correction will not be possible."
 
 MRIASLTextOnlyFlipAngle:
     selectors:
@@ -40,7 +57,22 @@ MRIASLTextOnlyFlipAngle:
     - suffix == "asl"
     - sidecar.LookLocker == true
     fields:
-        FlipAngle: REQUIRED
+        FlipAngle:
+            level: REQUIRED
+            issue:
+                name: LOOK_LOCKER_FLIP_ANGLE_MISSING
+                message: |
+                    "You should define 'FlipAngle' for this file, in case of a
+                    LookLocker acquisition. 'FlipAngle' is the flip angle (FA)
+                    for the acquisition, specified in degrees. Corresponds to
+                    DICOM Tag 0018, 1314 `Flip Angle`. The data type number may
+                    apply to files from any MRI modality concerned with a single
+                    value for this field, or to the files in a file collection
+                    where the value of this field is iterated using the flip entity.
+                    The data type array provides a value for each volume in a 4D
+                    dataset and should only be used when the volume timing is critical
+                    for interpretation of the data, such as in ASL or variable flip
+                    angle fMRI sequences."
 
 # Common metadata fields applicable to both (P)CASL and PASL
 MRIASLCommonMetadataFields:
@@ -81,7 +113,14 @@ MRIASLCommonMetadataFieldsM0Type:
     - suffix == "asl"
     - sidecar.M0Type == "Estimate"
     fields:
-        M0Estimate: REQUIRED
+        M0Estimate:
+            level: REQUIRED
+            issue:
+                name: M0ESTIMATE_NOT_DEFINED
+                message: |
+                    You must define 'M0Estimate' for this file, in case 'M0Type' is defined as 'Estimate'.
+                    'M0Estimate' is a single numerical whole-brain M0 value (referring to the M0 of blood),
+                    only if obtained externally (for example retrieved from CSF in a separate measurement).
 
 MRIASLCommonMetadataFieldsBackgroundSuppression:
     selectors:
@@ -160,8 +199,29 @@ MRIASLPASLSpecificBolusCutOffFlag:
     - sidecar.ArterialSpinLabelingType == "PASL"
     - sidecar.BolusCutOffFlag == true
     fields:
-        BolusCutOffDelayTime: REQUIRED
-        BolusCutOffTechnique: REQUIRED
+        BolusCutOffDelayTime:
+            level: REQUIRED
+            issue:
+                name: PASL_BOLUS_CUT_OFF_DELAY_TIME
+                message: |
+                    It is required to define 'BolusCutOffDelayTime' for this file,
+                    when 'BolusCutOffFlag' is set to true. 'BolusCutOffDelayTime' is
+                    the duration between the end of the labeling and the start of the
+                    bolus cut-off saturation pulse(s), in seconds. This can be a number
+                    or array of numbers, of which the values must be non-negative and
+                    monotonically increasing, depending on the number of bolus cut-off
+                    saturation pulses. For Q2TIPS, only the values for the first and last
+                    bolus cut-off saturation pulses are provided. Based on DICOM Tag
+                    0018,925F ASL Bolus Cut-off Delay Time.
+        BolusCutOffTechnique:
+            level: REQUIRED
+            issue:
+                name: PASL_BOLUS_CUT_OFF_TECHINIQUE
+                message: |
+                    It is required to define 'BolusCutOffTechnique' for this file,
+                    when 'BolusCutOffFlag' is set to true. 'BolusCutOffTechnique',
+                    is the name of the technique used (e.g. Q2TIPS, QUIPSS, QUIPSSII).
+                    Corresponds to DICOM Tag 0018,925E ASL Bolus Cut-off Technique.
 
 # m0scan metadata fields
 MRIASLM0ScanTextOnly:
@@ -183,7 +243,20 @@ MRIASLM0ScanTextOnlyFlipAngle:
     - suffix == "m0scan"
     - sidecar.LookLocker == true
     fields:
-        FlipAngle: REQUIRED
+        FlipAngle:
+            level: REQUIRED
+            issue:
+                name: LOOK_LOCKER_FLIP_ANGLE_MISSING
+                message: |
+                    You should define 'FlipAngle' for this file, in case of a LookLocker
+                    acquisition. 'FlipAngle' is the flip angle (FA) for the acquisition,
+                    specified in degrees. Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.
+                    The data type number may apply to files from any MRI modality concerned
+                    with a single value for this field, or to the files in a file collection
+                    where the value of this field is iterated using the flip entity. The
+                    data type array provides a value for each volume in a 4D dataset and
+                    should only be used when the volume timing is critical for interpretation
+                    of the data, such as in ASL or variable flip angle fMRI sequences.
 
 MRIASLM0Scan:
     selectors:

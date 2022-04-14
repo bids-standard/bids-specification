@@ -1,5 +1,6 @@
 ---
-- suffixes:
+eeg:
+  suffixes:
   - eeg
   extensions:
   - .json
@@ -19,7 +20,8 @@
     acquisition: optional
     run: optional
 
-- suffixes:
+channels:
+  suffixes:
   - channels
   extensions:
   - .json
@@ -33,7 +35,8 @@
     acquisition: optional
     run: optional
 
-- suffixes:
+coordsystem:
+  suffixes:
   - coordsystem
   extensions:
   - .json
@@ -45,7 +48,8 @@
     acquisition: optional
     space: optional
 
-- suffixes:
+electrodes:
+  suffixes:
   - electrodes
   extensions:
   - .json
@@ -58,7 +62,8 @@
     acquisition: optional
     space: optional
 
-- suffixes:
+events:
+  suffixes:
   - events
   extensions:
   - .json
@@ -72,7 +77,8 @@
     acquisition: optional
     run: optional
 
-- suffixes:
+photo:
+  suffixes:
   - photo
   extensions:
   - .jpg
@@ -83,8 +89,8 @@
     session: optional
     acquisition: optional
 
-# Timeseries
-- suffixes:
+timeseries:
+  suffixes:
   - physio
   - stim
   extensions:

@@ -1,6 +1,6 @@
 ---
-# Microscopy
-- suffixes:
+microscopy:
+  suffixes:
   - TEM
   - SEM
   - uCT
@@ -35,7 +35,8 @@
     run: optional
     chunk: optional
 
-- suffixes:
+photo:
+  suffixes:
   - photo
   extensions:
   - .jpg

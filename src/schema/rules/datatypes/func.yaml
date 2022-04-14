@@ -1,6 +1,6 @@
 ---
-# Func
-- suffixes:
+func:
+  suffixes:
   - bold
   - cbv
   - sbref
@@ -22,8 +22,8 @@
     echo: optional
     part: optional
 
-# Phase (deprecated)
-- suffixes:
+phase:
+  suffixes:
   - phase  # deprecated
   extensions:
   - .nii.gz
@@ -42,8 +42,8 @@
     run: optional
     echo: optional
 
-# Events
-- suffixes:
+events:
+  suffixes:
   - events
   extensions:
   - .tsv
@@ -60,8 +60,8 @@
     direction: optional
     run: optional
 
-# Timeseries
-- suffixes:
+timeseries:
+  suffixes:
   - physio
   - stim
   extensions:

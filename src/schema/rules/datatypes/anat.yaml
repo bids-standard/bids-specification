@@ -1,6 +1,6 @@
 ---
-# Nonparametric
-- suffixes:
+nonparametric:
+  suffixes:
   - T1w
   - T2w
   - PDw
@@ -28,8 +28,8 @@
     reconstruction: optional
     part: optional
 
-# Parametric
-- suffixes:
+parametric:
+  suffixes:
   - T1map
   - T2map
   - T2starmap
@@ -61,8 +61,8 @@
     ceagent: optional
     reconstruction: optional
 
-# Defacemask
-- suffixes:
+defacemask:
+  suffixes:
   - defacemask
   extensions:
   - .nii.gz
@@ -79,8 +79,8 @@
     reconstruction: optional
     modality: optional
 
-# Multi-echo
-- suffixes:
+multiecho:
+  suffixes:
   - MESE
   - MEGRE
   extensions:
@@ -99,8 +99,8 @@
     echo: required
     part: optional
 
-# Multi-flip
-- suffixes:
+multiflip:
+  suffixes:
   - VFA
   extensions:
   - .nii.gz
@@ -119,8 +119,8 @@
     flip: required
     part: optional
 
-# Multi-inv
-- suffixes:
+multiinversion:
+  suffixes:
   - IRT1
   extensions:
   - .nii.gz
@@ -138,8 +138,8 @@
     inversion: required
     part: optional
 
-# MP2RAGE
-- suffixes:
+mp2rage:
+  suffixes:
   - MP2RAGE
   extensions:
   - .nii.gz
@@ -159,8 +159,8 @@
     inversion: required
     part: optional
 
-# VFA+MT
-- suffixes:
+vfamt:
+  suffixes:
   - MPM
   - MTS
   extensions:
@@ -181,8 +181,8 @@
     mtransfer: required
     part: optional
 
-# MTR
-- suffixes:
+mtr:
+  suffixes:
   - MTR
   extensions:
   - .nii.gz
