@@ -280,7 +280,7 @@ There are additional fields which may define rules that apply to a given type.
         name: ExampleField
         description: |
             The description of "ExampleField".
-        type: object
+        type: map
         properties:
             OptionalField:
                 type: str

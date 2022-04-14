@@ -96,7 +96,7 @@ AnatomicalLandmarkCoordinates:
     "RPA": [20.2,11.3,9.1]}`.
     Each array MUST contain three numeric values corresponding to x, y, and z
     axis of the coordinate system in that exact order.
-  type: object
+  type: map
   additionalProperties:
     type: array
     items:
@@ -115,7 +115,7 @@ AnatomicalLandmarkCoordinates__mri:
     "RPA": [202,113,91]}`).
     Each array MUST contain three numeric values corresponding to x, y, and z
     axis of the coordinate system in that exact order.
-  type: object
+  type: map
   additionalProperties:
     type: array
     items:
@@ -498,7 +498,7 @@ Density:
     and values should be descriptions of those ``den`` values.
   anyOf:
   - type: str
-  - type: object
+  - type: map
     additionalProperties:
       type: str
 Derivative:
@@ -859,7 +859,7 @@ FiducialsCoordinates:
     "RPA": [20.2,11.3,9.1]}`).
     Each array MUST contain three numeric values corresponding to x, y, and z
     axis of the coordinate system in that exact order.
-  type: object
+  type: map
   additionalProperties:
     type: array
     items:
@@ -933,7 +933,7 @@ GeneratedBy:
   type: array
   minItems: 1
   items:
-    type: object
+    type: map
     properties:
       Name:
         type: str
@@ -945,7 +945,7 @@ GeneratedBy:
         type: str
         format: uri
       Container:
-        type: object
+        type: map
         properties:
           Type:
             type: str
@@ -995,7 +995,7 @@ Genetics:
   name: Genetics
   description: |
     An object containing information about the genetics descriptor.
-  type: object
+  type: map
   properties:
     Database:
       $ref: Genetics.Database
@@ -1018,7 +1018,7 @@ HED:
     see: [Appendix III](/99-appendices/03-hed.html) for details.
   anyOf:
   - type: str
-  - type: object
+  - type: map
     additionalProperties:
       type: str
 HEDVersion:
@@ -1049,9 +1049,9 @@ HardwareFilters:
     For example, `{"Highpass RC filter": {"Half amplitude cutoff (Hz)":
     0.0159, "Roll-off": "6dB/Octave"}}`.
   anyOf:
-  - type: object
+  - type: map
     additionalProperties:
-      type: object
+      type: map
   - type: str
     enum:
     - n/a
@@ -1106,7 +1106,7 @@ HeadCoilCoordinates:
     "coil3": [21.9,11.0,8.1]}`).
     Each array MUST contain three numeric values corresponding to x, y, and z
     axis of the coordinate system in that exact order.
-  type: object
+  type: map
   additionalProperties:
     type: array
     items:
@@ -1432,7 +1432,7 @@ Levels:
   description: |
     For categorical variables: An object of possible values (keys) and their
     descriptions (values).
-  type: object
+  type: map
   additionalProperties:
     type: str
 License:
@@ -1634,7 +1634,7 @@ MeasurementToolMetadata:
     Contains two fields: `"Description"` and `"TermURL"`.
     `"Description"` is a free text description of the measurement tool.
     `"TermURL"` is a URL to an entity in an ontology corresponding to this tool.
-  type: object
+  type: map
   properties:
     TermURL:
       type: str
@@ -2194,7 +2194,7 @@ Resolution:
     and values should be descriptions of those ``res`` values.
   anyOf:
   - type: str
-  - type: object
+  - type: map
     additionalProperties:
       type: str
 SEEGChannelCount:
@@ -2441,9 +2441,9 @@ SoftwareFilters:
     (for example, `{"Anti-aliasing filter":
     {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`).
   anyOf:
-  - type: object
+  - type: map
     additionalProperties:
-      type: object
+      type: map
   - type: str
     enum:
     - n/a
@@ -2483,7 +2483,7 @@ SourceDatasets:
     values.
   type: array
   items:
-    type: object
+    type: map
     properties:
       URL:
         type: str
@@ -2521,7 +2521,7 @@ SpatialReference:
     format: uri
   - type: str
     format: dataset_relative
-  - type: object
+  - type: map
     additionalProperties:
       anyOf:
       - type: str
@@ -2619,7 +2619,7 @@ StimulusPresentation:
     `"OperatingSystem"`, `"SoftwareName"`, `"SoftwareRRID"`, `"SoftwareVersion"` and
     `"Code"`.
     See table below for more information.
-  type: object
+  type: map
   properties:
     OperatingSystem:
       $ref: OperatingSystem
@@ -2853,7 +2853,7 @@ _GeneticLevelEnum:
   - Metabolomic
   - Proteomic
 _LandmarkCoordinates:
-  type: object
+  type: map
   additionalProperties:
     type: array
     items:
