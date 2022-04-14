@@ -34,6 +34,9 @@ context:
             ignored:
                 description: "Set of ignored files"
                 type: array
+            modalities:
+                description: "Modalities present in the dataset"
+                type: array
             subjects:
                 description: "Collections of subjects in dataset"
                 type: object
