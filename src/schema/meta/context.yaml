@@ -186,3 +186,26 @@ context:
                     name: "sform code"
                     description: "Use of the affine fields."
                     type: integer
+
+        # Aspects of associated files that are needed to perform assertions on the
+        # "main" file
+        aslcontext:
+            description: "ASL context object"
+            properties:
+                n_rows:
+                    description: "Number of rows in aslcontext.tsv"
+                    type: integer
+                volume_type:
+                    description: "Contents of the volume_type column"
+                    type: array
+                    items:
+                        type: string
+
+        events:
+            description: "Associated events file"
+            properties:
+                onset:
+                    description: "Contents of the onset column"
+                    type: array
+                    items:
+                        type: string
