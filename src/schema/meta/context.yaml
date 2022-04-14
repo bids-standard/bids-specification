@@ -69,41 +69,69 @@ context:
         # values in that column
         type: object
     nifti_header:
-        dim_info:
-            freq:
+        name: "NIfTI Header"
+        description: "Parsed contents of NIfTI header referenced elsewhere in schema."
+        type: object
+        properties:
+            dim_info:
+                name: "Dimension Information"
+                description: "Metadata about dimensions data."
+                type: object
+                properties:
+                    freq:
+                        name: "Frequency"
+                        description: "These fields encode which spatial dimension (1,2, or 3)."
+                        type: int
+                    phase:
+                        name: "Phase"
+                        description: "Corresponds to which acquisition dimension for MRI data."
+                        type: int
+                    slice:
+                        name: "Slice"
+                        description: "Slice dimensions."
+                        type: int
+            dim:
+                name: "Data Dimensions"
+                description: "Data array dimensions."
+                type: array
+                minItems: 8
+                maxItems: 8
+                items:
                 type: int
-            phase:
+            pixdim:
+                name: "Pixel Dimension"
+                description: "Grid spacings (unit per dimension)."
+                type: array
+                minItems: 8
+                maxItems: 8
+                items:
+                type: float
+            xyzt_units:
+                name: "XYZT Units"
+                description: "Units of pixdim[1..4]"
+                xyz:
+                    name: "XYZ Units"
+                    description: "String representing the unit used by all 3 spatial dimensions data."
+                    type: string
+                    enum:
+                        - "unknown"
+                        - "meter"
+                        - "mm"
+                        - "um"
+                t:
+                    name: "Time Unit"
+                    description: "String representing the unit used by temporal dimension data."
+                    type: string
+                    enum:
+                        - "unknown"
+                        - "sec"
+                        - "msec"
+                        - "usec"
+            qform_code:
+                name: "qform code"
+                description: "Use of the quaternion fields."
                 type: int
-            slice:
+            sform_code:
+                name: "sform code"
+                description: "Use of the affine fields."
                 type: int
-        dim:
-            type: array
-            minItems: 8
-            maxItems: 8
-            items:
-            type: int
-        pixdim:
-            type: array
-            minItems: 8
-            maxItems: 8
-            items:
-            type: float
-        xyzt_units:
-            xyz:
-                type: string
-                enum:
-                - "unknown"
-                - "meter"
-                - "mm"
-                - "um"
-            t:
-                type: string
-                enum:
-                - "unknown"
-                - "sec"
-                - "msec"
-                - "usec"
-        qform_code:
-            type: int
-        sform_code:
-            type: int
