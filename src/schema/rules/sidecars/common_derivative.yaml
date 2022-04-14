@@ -1,72 +1,56 @@
 ---
 CommonDerivativeFields:
     selectors:
-        - dataset.DatasetType == "derivative"
+    - dataset.DatasetType == "derivative"
     fields:
-        - Description: RECOMMENDED
-        - Sources: OPTIONAL
-        - RawSources: OPTIONAL
+    - Description: RECOMMENDED
+    - Sources: OPTIONAL
+    - RawSources: OPTIONAL
 
 SpatialReference:
     selectors:
-        - dataset.DatasetType == "derivative"
-        # - this file can use space entity
+    - dataset.DatasetType == "derivative"
+    # - this file can use space entity
 SpatialReferenceEntity:
     selectors:
-        - dataset.DatasetType == "derivative"
-        - entities contains "space"
+    - dataset.DatasetType == "derivative"
+    - entities contains "space"
     fields:
         SpatialReference: RECOMMENDED
 SpatialReferenceNonStandard:
     selectors:
-        - dataset.DatasetType == "derivative"
-        - not(entities.space in _StandardTemplateCoordSys)
+    - dataset.DatasetType == "derivative"
+    - not(entities.space in _StandardTemplateCoordSys)
     fields:
         SpatialReference: REQUIRED
 SpatialReferenceNoEntity:
     selectors:
-        - dataset.DatasetType == "derivative"
-        - not(entities contains "space")
+    - dataset.DatasetType == "derivative"
+    - not(entities contains "space")
     fields:
         SpatialReference: REQUIRED
 
 # Derivatives -> Imaging data types
 ImageDerivatives:
     selectors:
-        - dataset.DatasetType == "derivative"
-        - modality in ["mri", "pet"]
-        - extension in [".nii", ".nii.gz"]
+    - dataset.DatasetType == "derivative"
+    - modality in ["mri", "pet"]
+    - extension in [".nii", ".nii.gz"]
     fields:
         SkullStripped: REQUIRED
 ImageDerivativeResEntity:
     selectors:
-        - dataset.DatasetType == "derivative"
-        - modality in ["mri", "pet"]
-        - extension in [".nii", ".nii.gz"]
-        - entities contains "res"
+    - dataset.DatasetType == "derivative"
+    - modality in ["mri", "pet"]
+    - extension in [".nii", ".nii.gz"]
+    - entities contains "res"
     fields:
         Resolution: REQUIRED
 ImageDerivativeDenEntity:
     selectors:
-        - dataset.DatasetType == "derivative"
-        - modality in ["mri", "pet"]
-        - extension in [".nii", ".nii.gz"]
-        - entities contains "den"
+    - dataset.DatasetType == "derivative"
+    - modality in ["mri", "pet"]
+    - extension in [".nii", ".nii.gz"]
+    - entities contains "den"
     fields:
         Density: REQUIRED
-ResInSidecar:
-    selectors:
-        - dataset.DatasetType == "derivative"
-        - modality in ["mri", "pet"]
-        - extension in ["nii", " nii.gz"]
-        - type(sidecars.Resolution) == "object"
-    checks:
-        - sidecar.resolution contains entities.res
-DenInSidecar
-    selectors:
-        - dataset.DatasetType == "derivative"
-        - modality in ["mri", "pet"]
-        - extension in [".nii", ".nii.gz"]
-        - type(sidecars.density) == "object"
-    checks:
-        - sidecar.density contains entities.den
