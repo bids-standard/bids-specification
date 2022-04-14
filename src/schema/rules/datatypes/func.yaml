@@ -8,6 +8,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - func
   entities:
     subject: required
     session: optional
@@ -27,6 +29,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - func
   entities:
     subject: required
     session: optional
@@ -44,6 +48,8 @@
   extensions:
   - .tsv
   - .json
+  datatypes:
+  - func
   entities:
     subject: required
     session: optional
@@ -61,6 +67,8 @@
   extensions:
   - .tsv.gz
   - .json
+  datatypes:
+  - func
   entities:
     subject: required
     session: optional

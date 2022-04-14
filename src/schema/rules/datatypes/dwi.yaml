@@ -8,6 +8,8 @@
   - .json
   - .bvec
   - .bval
+  datatypes:
+  - dwi
   entities:
     subject: required
     session: optional
@@ -23,6 +25,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - dwi
   entities:
     subject: required
     session: optional
@@ -38,6 +42,8 @@
   extensions:
   - .tsv.gz
   - .json
+  datatypes:
+  - dwi
   entities:
     subject: required
     session: optional
