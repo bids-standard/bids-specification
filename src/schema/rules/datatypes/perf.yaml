@@ -1,6 +1,6 @@
 ---
-# First group
-- suffixes:
+asl:
+  suffixes:
   - asl
   - m0scan
   extensions:
@@ -17,8 +17,8 @@
     direction: optional
     run: optional
 
-# Second group
-- suffixes:
+aslcontext:
+  suffixes:
   - aslcontext
   extensions:
   - .tsv
@@ -33,8 +33,8 @@
     direction: optional
     run: optional
 
-# Third group
-- suffixes:
+asllabeling:
+  suffixes:
   - asllabeling
   extensions:
   - .jpg
@@ -47,8 +47,8 @@
     reconstruction: optional
     run: optional
 
-# Timeseries
-- suffixes:
+timeseries:
+  suffixes:
   - physio
   - stim
   extensions:

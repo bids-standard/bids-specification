@@ -1,6 +1,6 @@
 ---
-# Continuous data
-- suffixes:
+timeseries:
+  suffixes:
   - stim
   - physio
   extensions:
@@ -17,7 +17,8 @@
     recording: optional
 
 # Non-continuous data
-- suffixes:
+noncontinuous:
+  suffixes:
   - events
   - beh
   extensions:
