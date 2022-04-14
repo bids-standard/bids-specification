@@ -18,152 +18,152 @@
 #
 ---
 context:
-    type: map
+    type: object
     properties:
         dataset:
             description: "Properties and contents of the entire dataset"
-            type: map
+            type: object
             properties:
                 dataset_description:
                     description: "Contents of /dataset_description.json"
-                    type: map
+                    type: object
                 files:
                     description: "List of all files in dataset"
-                    type: seq
+                    type: array
                 tree:
                     description: "Tree view of all files in dataset"
-                    type: map
+                    type: object
                 ignored:
                     description: "Set of ignored files"
-                    type: seq
+                    type: array
                 modalities:
                     description: "Modalities present in the dataset"
-                    type: seq
+                    type: array
                 subjects:
                     description: "Collections of subjects in dataset"
-                    type: map
+                    type: object
                     properties:
                         sub_dirs:
                             description: "Subjects as determined by sub-*/ directories"
-                            type: seq
+                            type: array
                             items:
-                                type: str
+                                type: string
                         participant_id:
                             description: "The participant_id column of participants.tsv"
-                            type: seq
+                            type: array
                             items:
-                                type: str
+                                type: string
                         phenotype:
                             description: "The union of participant_id columns in phenotype files"
-                            type: seq
+                            type: array
                             items:
-                                type: str
+                                type: string
         subject:
             description: "Properties and contents of the current subject"
-            type: map
+            type: object
             properties:
                 sessions:
                     description: "Collections of sessions in subject"
-                    type: map
+                    type: object
                     properties:
                         ses_dirs:
                             description: "Sessions as determined by ses-*/ directories"
-                            type: seq
+                            type: array
                             items:
-                                type: str
+                                type: string
                         session_id:
                             description: "The session_id column of sessions.tsv"
-                            type: seq
+                            type: array
                             items:
-                                type: str
+                                type: string
                         phenotype:
                             description: "The union of session_id columns in phenotype files"
-                            type: seq
+                            type: array
                             items:
-                                type: str
+                                type: string
 
         # Properties of the current file
         path:
             description: "Path of the current file"
-            type: str
+            type: string
         entities:
             description: "Entities parsed from the current filename"
-            type: map
+            type: object
         datatype:
             description: "Datatype of current file, e.g., anat"
-            type: str
+            type: string
         modality:
             description: "Modality of current file, e.g., MRI"
-            type: str
+            type: string
         sidecar:
             description: "Sidecar metadata constructed via the inheritance principle"
-            type: map
+            type: object
         associations:
             description: |
                 Associated files, indexed by suffix, selected according to the inheritance principle
-            type: map
+            type: object
             properties:
                 events:
                     description: "Path to associated events file"
-                    type: str
+                    type: string
                 aslcontext:
                     description: "Path to associated aslcontext file"
-                    type: str
+                    type: string
 
         # The following properties are populated if the current file is of an appropriate type
         columns:
             description: "TSV columns, indexed by column header, values are arrays with column contents"
-            type: map
+            type: object
             additionalProperties:
-                type: seq
+                type: array
         json:
             description: "Contents of the current JSON file"
-            type: map
+            type: object
         nifti_header:
             name: "NIfTI Header"
             description: "Parsed contents of NIfTI header referenced elsewhere in schema."
-            type: map
+            type: object
             properties:
                 dim_info:
                     name: "Dimension Information"
                     description: "Metadata about dimensions data."
-                    type: map
+                    type: object
                     properties:
                         freq:
                             name: "Frequency"
                             description: "These fields encode which spatial dimension (1, 2, or 3)."
-                            type: int
+                            type: integer
                         phase:
                             name: "Phase"
                             description: "Corresponds to which acquisition dimension for MRI data."
-                            type: int
+                            type: integer
                         slice:
                             name: "Slice"
                             description: "Slice dimensions."
-                            type: int
+                            type: integer
                 dim:
                     name: "Data Dimensions"
                     description: "Data seq dimensions."
-                    type: seq
+                    type: array
                     minItems: 8
                     maxItems: 8
                     items:
-                        type: int
+                        type: integer
                 pixdim:
                     name: "Pixel Dimension"
                     description: "Grid spacings (unit per dimension)."
-                    type: seq
+                    type: array
                     minItems: 8
                     maxItems: 8
                     items:
-                        type: float
+                        type: number
                 xyzt_units:
                     name: "XYZT Units"
                     description: "Units of pixdim[1..4]"
                     xyz:
                         name: "XYZ Units"
                         description: "String representing the unit used by all 3 spatial dimensions data."
-                        type: str
+                        type: string
                         enum:
                             - "unknown"
                             - "meter"
@@ -172,7 +172,7 @@ context:
                     t:
                         name: "Time Unit"
                         description: "String representing the unit used by temporal dimension data."
-                        type: str
+                        type: string
                         enum:
                             - "unknown"
                             - "sec"
@@ -181,8 +181,8 @@ context:
                 qform_code:
                     name: "qform code"
                     description: "Use of the quaternion fields."
-                    type: int
+                    type: integer
                 sform_code:
                     name: "sform code"
                     description: "Use of the affine fields."
-                    type: int
+                    type: integer
