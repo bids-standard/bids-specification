@@ -105,8 +105,10 @@ context:
                 description: "Path to associated aslcontext file"
                 type: path
     columns:
-        description: "TSV columns, indexed by column header, values are arrays with data contents"
+        description: "TSV columns, indexed by column header, values are arrays with column contents"
         type: object
+        additionalProperties:
+            type: array
     nifti_header:
         name: "NIfTI Header"
         description: "Parsed contents of NIfTI header referenced elsewhere in schema."
