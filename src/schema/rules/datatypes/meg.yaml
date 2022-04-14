@@ -1,7 +1,6 @@
 ---
-# MEG data files
-# First group
-- suffixes:
+meg:
+  suffixes:
   - meg
   extensions:
   - /  # corresponds to BTi/4D data
@@ -28,9 +27,8 @@
     processing: optional
     split: optional
 
-# Second group
-# Specifically, it's dat files with "acq-calibration"
-- suffixes:
+calibration:
+  suffixes:
   - meg
   extensions:
   - .dat
@@ -45,9 +43,8 @@
       enum:
       - calibration
 
-# Third group
-# fif files with "acq-crosstalk"
-- suffixes:
+crosstalk:
+  suffixes:
   - meg
   extensions:
   - .fif
@@ -62,8 +59,8 @@
       enum:
       - crosstalk
 
-# Headshape files
-- suffixes:
+headshape:
+  suffixes:
   - headshape
   extensions:
   - .*
@@ -75,8 +72,8 @@
     session: optional
     acquisition: optional
 
-# Marker files
-- suffixes:
+markers:
+  suffixes:
   - markers
   extensions:
   - .sqd
@@ -90,8 +87,8 @@
     acquisition: optional
     space: optional
 
-# Coordinate systems
-- suffixes:
+coordsystem:
+  suffixes:
   - coordsystem
   extensions:
   - .json
@@ -102,8 +99,8 @@
     session: optional
     acquisition: optional
 
-# Channel files
-- suffixes:
+channels:
+  suffixes:
   - channels
   extensions:
   - .json
@@ -118,8 +115,8 @@
     run: optional
     processing: optional
 
-# Events files
-- suffixes:
+events:
+  suffixes:
   - events
   extensions:
   - .json
@@ -133,8 +130,8 @@
     acquisition: optional
     run: optional
 
-# Head photos
-- suffixes:
+photo:
+  suffixes:
   - photo
   extensions:
   - .jpg
@@ -145,8 +142,8 @@
     session: optional
     acquisition: optional
 
-# Timeseries
-- suffixes:
+timeseries:
+  suffixes:
   - physio
   - stim
   extensions:

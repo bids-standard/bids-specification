@@ -1,6 +1,6 @@
 ---
-# PET recordings
-- suffixes:
+pet:
+  suffixes:
   - pet
   extensions:
   - .nii.gz
@@ -16,8 +16,8 @@
     reconstruction: optional
     run: optional
 
-# Blood recordings
-- suffixes:
+blood:
+  suffixes:
   - blood
   extensions:
   - .tsv
@@ -33,8 +33,8 @@
     run: optional
     recording: required
 
-# Events
-- suffixes:
+events:
+  suffixes:
   - events
   extensions:
   - .tsv
@@ -49,8 +49,8 @@
     reconstruction: optional
     run: optional
 
-# Timeseries
-- suffixes:
+timeseries:
+  suffixes:
   - physio
   - stim
   extensions:
