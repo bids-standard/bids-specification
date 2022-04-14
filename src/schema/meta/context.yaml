@@ -19,54 +19,93 @@
 ---
 context:
     dataset:
-        dataset_description:
-            type: object
-        files:
-            type: list
-        tree:
-            type: object
-        ignored:
-            type: set
-        subjects:
-            sub_dirs:
-                type: list
-                # source: sub-*/
-            participant_id:
-                type: list
-                # source: participants.tsv
-            phenotype:
-                type: list
-                # source: union of participant_ids in all phenotype files
+        description: "Properties and contents of the entire dataset"
+        type: object
+        properties:
+            dataset_description:
+                description: "Contents of /dataset_description.json"
+                type: object
+            files:
+                description: "List of all files in dataset"
+                type: array
+            tree:
+                description: "Tree view of all files in dataset"
+                type: object
+            ignored:
+                description: "Set of ignored files"
+                type: array
+            subjects:
+                description: "Collections of subjects in dataset"
+                type: object
+                properties:
+                    sub_dirs:
+                        description: "Subjects as determined by sub-*/ directories"
+                        type: array
+                        items:
+                            type: string
+                    participant_id:
+                        description: "The participant_id column of participants.tsv"
+                        type: array
+                        items:
+                            type: string
+                    phenotype:
+                        description: "The union of participant_id columns in phenotype files"
+                        type: array
+                        items:
+                            type: string
     subject:
-        sessions:
-            ses_dirs:
-                type: list
-                # source: ses-*/
-            session_id:
-                type: list
-                # source: sessions.tsv
-            phenotype:
-                type: list
-                # source: union of session_ids in all phenotype files
+        description: "Properties and contents of the current subject"
+        type: object
+        properties:
+            sessions:
+                description: "Collections of sessions in subject"
+                type: object
+                properties:
+                    ses_dirs:
+                        description: "Sessions as determined by ses-*/ directories"
+                        type: array
+                        items:
+                            type: string
+                    session_id:
+                        description: "The session_id column of sessions.tsv"
+                        type: array
+                        items:
+                            type: string
+                    phenotype:
+                        description: "The union of session_id columns in phenotype files"
+                        type: array
+                        items:
+                            type: string
 
+    # Properties of the current file
+    path:
+        description: "Path of the current file"
+        type: string
     entities:
+        description: "Entities parsed from the current filename"
         type: object
     datatype:
-        type: str
+        description: "Datatype of current file, e.g., anat"
+        type: string
     modality:
-        type: str
-    path:
-        type: str
+        description: "Modality of current file, e.g., MRI"
+        type: string
     sidecar:
+        description: "Sidecar metadata constructed via the inheritance principle"
         type: object
     associations:
-        events:
-            type: path
-        aslcontext:
-            type: path
+        description: |
+            Associated files, indexed by suffix, selected according to the inheritance principle
+        type: object
+        properties:
+            events:
+                description: "Path to associated events file"
+                type: path
+            aslcontext:
+                description: "Path to associated aslcontext file"
+                type: path
     columns:
-        # TSV files generate an object that maps column headers to arrays of
-        # values in that column
+        description: "TSV columns, indexed by column header, values are arrays with data contents"
         type: object
     nifti_header:
         name: "NIfTI Header"
@@ -97,7 +136,7 @@ context:
                 minItems: 8
                 maxItems: 8
                 items:
-                type: int
+                    type: int
             pixdim:
                 name: "Pixel Dimension"
                 description: "Grid spacings (unit per dimension)."
@@ -105,7 +144,7 @@ context:
                 minItems: 8
                 maxItems: 8
                 items:
-                type: float
+                    type: float
             xyzt_units:
                 name: "XYZT Units"
                 description: "Units of pixdim[1..4]"
