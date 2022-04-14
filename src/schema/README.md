@@ -83,7 +83,7 @@ reference__eeg:
     Name of the reference electrode(s).
     This column is not needed when it is common to all channels.
     In that case the reference electrode(s) can be specified in `*_eeg.json` as `EEGReference`).
-  type: string
+  type: str
 # reference column for channels.tsv files for iEEG data
 reference__ieeg:
   name: reference
@@ -91,8 +91,8 @@ reference__ieeg:
     Specification of the reference (for example, 'mastoid', 'ElectrodeName01', 'intracranial', 'CAR', 'other', 'n/a').
     If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.
   anyOf:
-  - type: string
-  - type: string
+  - type: str
+  - type: str
     enum:
     - n/a
 ```
@@ -228,7 +228,7 @@ There are additional fields which may define rules that apply to a given type.
             name: ExampleField
             description: |
                 The description of "ExampleField".
-            type: string
+            type: str
             enum:
                 - PossibleValue1
                 - PossibleValue2
@@ -283,7 +283,7 @@ There are additional fields which may define rules that apply to a given type.
         type: object
         properties:
             OptionalField:
-                type: string
+                type: str
         additionalProperties:
             type: number
     ```
@@ -335,7 +335,7 @@ _ReferenceField:
     name: _ReferenceField
     description: |
         Description of "_ReferenceField".
-    type: string
+    type: str
     enum:
         - PossibleValue1
         - PossibleValue2
@@ -347,7 +347,7 @@ ExampleField:
     name: ExampleField
     description: |
         The description of "ExampleField".
-    type: string
+    type: str
     enum:
         - PossibleValue1
         - PossibleValue2
@@ -468,7 +468,7 @@ As an example, let us look at part of `meg.yaml`:
     session: optional
     acquisition:
       requirement: required
-      type: string
+      type: str
       enum:
       - crosstalk
 ```

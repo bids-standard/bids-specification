@@ -23,7 +23,7 @@ acquisition:
     At what level of detail to make the distinction (for example,
     just between `RARE` and `FLASH`, or between `RARE`, `FLASH`, and `FLASHsubsampled`)
     remains at the discretion of the researcher.
-  type: string
+  type: str
   format: label
 atlas:
   name: Atlas
@@ -33,7 +33,7 @@ atlas:
     MAY use to distinguish a different atlas used for similar type of data.
 
     This entity is only applicable to derivative data.
-  type: string
+  type: str
   format: label
 ceagent:
   name: Contrast Enhancing Agent
@@ -44,7 +44,7 @@ ceagent:
     The label is the name of the contrast agent.
     The key `"ContrastBolusIngredient"` MAY also be added in the JSON file,
     with the same label.
-  type: string
+  type: str
   format: label
 chunk:
   name: Chunk
@@ -53,7 +53,7 @@ chunk:
     The `chunk-<index>` key/value pair is used to distinguish between different
     regions, 2D images or 3D volumes files, of the same physical sample with
     different fields of view acquired in the same imaging experiment.
-  type: string
+  type: str
   format: index
 density:
   name: Density
@@ -64,7 +64,7 @@ density:
     interpretation.
 
     This entity is only applicable to derivative data.
-  type: string
+  type: str
   format: label
 description:
   name: Description
@@ -74,7 +74,7 @@ description:
     distinguishing entity, the `_desc-<label>` keyword-value SHOULD be used.
 
     This entity is only applicable to derivative data.
-  type: string
+  type: str
   format: label
 direction:
   name: Phase-Encoding Direction
@@ -83,7 +83,7 @@ direction:
     The `dir-<label>` key/value can be set to an arbitrary alphanumeric label
     (for example, `dir-LR` or `dir-AP`) to distinguish different phase-encoding
     directions.
-  type: string
+  type: str
   format: label
 echo:
   name: Echo
@@ -96,7 +96,7 @@ echo:
     denotes the number/index (in the form of a nonnegative integer), not the
     `"EchoTime"` value which needs to be stored in the field `"EchoTime"` of the separate
     JSON file.
-  type: string
+  type: str
   format: index
 flip:
   name: Flip Angle
@@ -108,7 +108,7 @@ flip:
     This entity represents the `"FlipAngle"` metadata field. Please note that the `<index>`
     denotes the number/index (in the form of a nonnegative integer), not the `"FlipAngle"`
     value which needs to be stored in the field `"FlipAngle"` of the separate JSON file.
-  type: string
+  type: str
   format: index
 hemisphere:
   name: Hemisphere
@@ -117,7 +117,7 @@ hemisphere:
     The `hemi-<label>` entity indicates which hemibrain is described by the file.
     Allowed label values for this entity are `L` and `R`, for the left and right
     hemibrains, respectively.
-  type: string
+  type: str
   format: label
   enum:
   - "L"
@@ -132,7 +132,7 @@ inversion:
     This entity represents the `"InversionTime` metadata field. Please note that the `<index>`
     denotes the number/index (in the form of a nonnegative integer), not the `"InversionTime"`
     value which needs to be stored in the field `"InversionTime"` of the separate JSON file.
-  type: string
+  type: str
   format: index
 label:
   name: Label
@@ -143,7 +143,7 @@ label:
     that describe a single tissue type.
 
     This entity is only applicable to derivative data.
-  type: string
+  type: str
   format: label
 modality:
   name: Corresponding Modality
@@ -152,7 +152,7 @@ modality:
     The `mod-<label>` key/value pair corresponds to modality label for defacing
     masks, for example, T1w, inplaneT1, referenced by a defacemask image.
     For example, `sub-01_mod-T1w_defacemask.nii.gz`.
-  type: string
+  type: str
   format: label
 mtransfer:
   name: Magnetization Transfer
@@ -164,7 +164,7 @@ mtransfer:
     This entity represents the `"MTState"` metadata field. Allowed label values for this
     entity are `on` and `off`, for images acquired in presence and absence of an MT pulse,
     respectively.
-  type: string
+  type: str
   enum:
   - "on"
   - "off"
@@ -186,7 +186,7 @@ part:
 
     When there is only a magnitude image of a given type, the `part` key MAY be
     omitted.
-  type: string
+  type: str
   enum:
   - mag
   - phase
@@ -204,7 +204,7 @@ processing:
     which some installations impose to be run on raw data because of active
     shielding software corrections before the MEG data can actually be
     exploited.
-  type: string
+  type: str
   format: label
 reconstruction:
   name: Reconstruction
@@ -213,7 +213,7 @@ reconstruction:
     The `rec-<label>` key/value can be used to distinguish
     different reconstruction algorithms (for example `MoCo` for the ones using motion
     correction).
-  type: string
+  type: str
   format: label
 recording:
   name: Recording
@@ -223,7 +223,7 @@ recording:
     sampling frequencies).
     In such case use different labels.
     For example: `_recording-contrast`, `_recording-saturation`.
-  type: string
+  type: str
   format: label
 resolution:
   name: Resolution
@@ -234,7 +234,7 @@ resolution:
     interpretation.
 
     This entity is only applicable to derivative data.
-  type: string
+  type: str
   format: label
 run:
   name: Run
@@ -251,7 +251,7 @@ run:
     or different acquisition parameters indicated by
     [`acq-<label>`](../99-appendices/09-entities.md#acq),
     then `run` is not needed to distinguish the scans and MAY be omitted.
-  type: string
+  type: str
   format: index
 sample:
   name: Sample
@@ -263,7 +263,7 @@ sample:
     samples from the same subject.
     The label MUST be unique per subject and is RECOMMENDED to be unique
     throughout the dataset.
-  type: string
+  type: str
   format: label
 session:
   name: Session
@@ -284,7 +284,7 @@ session:
     data acquisitions are planned and performed on all -or most- subjects,
     often in the case of some intervention between sessions
     (for example, training).
-  type: string
+  type: str
   format: label
 space:
   name: Space
@@ -302,7 +302,7 @@ space:
 
     For EEG/MEG/iEEG data, this entity can be applied to raw data, but
     for other data types, it is restricted to derivative data.
-  type: string
+  type: str
   format: label
 split:
   name: Split
@@ -324,7 +324,7 @@ split:
     remember to list all files separately in `scans.tsv` and that the entries for the
     `acq_time` column in `scans.tsv` MUST all be identical, as described in
     [Scans file](../03-modality-agnostic-files.md#scans-file).
-  type: string
+  type: str
   format: index
 stain:
   name: Stain
@@ -336,14 +336,14 @@ stain:
     although the label may be different.
     Description of antibodies SHOULD also be indicated in `"SamplePrimaryAntibodies"`
     and/or `"SampleSecondaryAntobodies"` as appropriate.
-  type: string
+  type: str
   format: label
 subject:
   name: Subject
   entity: sub
   description: |
     A person or animal participating in the study.
-  type: string
+  type: str
   format: label
 task:
   name: Task
@@ -353,7 +353,7 @@ task:
     numbers (other characters, including spaces and underscores, are not
     allowed).
     Those labels MUST be consistent across subjects and sessions.
-  type: string
+  type: str
   format: label
 tracer:
   name: Tracer
@@ -363,5 +363,5 @@ tracer:
     sequences using different tracers.
     The key `"TracerName"` MUST also be included in the associated JSON file,
     although the label may be different.
-  type: string
+  type: str
   format: label

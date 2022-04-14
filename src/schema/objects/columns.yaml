@@ -4,12 +4,12 @@ HED:
   description: |
     Hierarchical Event Descriptor (HED) Tag.
     See [Appendix III](/99-appendices/03-hed.html) for details.
-  type: string
+  type: str
 abbreviation:
   name: abbreviation
   description: |
     The unique label abbreviation
-  type: string
+  type: str
 acq_time__scans:
   name: acq_time
   description: |
@@ -17,14 +17,14 @@ acq_time__scans:
     Furthermore, if this header is provided, the acquisition times of all files
     from the same recording MUST be identical.
     Datetime format and their anonymization are described in [Units](/02-common-principles.html#units).
-  type: string
+  type: str
   format: datetime
 acq_time__sessions:
   name: acq_time
   description: |
     Acquisition time refers to when the first data point of the first run was acquired.
     Datetime format and their anonymization are described in [Units](/02-common-principles.html#units).
-  type: string
+  type: str
   format: datetime
 age:
   name: age
@@ -41,26 +41,26 @@ color:
   name: color
   description: |
     Hexadecimal. Label color for visualization.
-  type: string
+  type: str
   unit: hexadecimal
 derived_from:
   name: derived_from
   description: |
     `sample-<label>` key/value pair from which a sample is derived,
     for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`).
-  type: string
+  type: str
   pattern: ^sample-[0-9a-zA-Z]+$
 description:
   name: description
   description: |
     Brief free-text description of the channel, or other information of interest.
-  type: string
+  type: str
 dimension:
   name: dimension
   description: |
     Size of the group (grid/strip/probe) that this electrode belongs to.
     Must be of form `[AxB]` with the smallest dimension first (for example, `[1x8]`).
-  type: string
+  type: str
 duration:
   name: duration
   description: |
@@ -72,14 +72,14 @@ duration:
   - type: number
     unit: s
     minimum: 0
-  - type: string
+  - type: str
     enum:
     - n/a
 filename:
   name: filename
   description: |
     Relative paths to files.
-  type: string
+  type: str
   format: participant_relative
 group:
   name: group
@@ -88,7 +88,7 @@ group:
     This is relevant because one group has one cable-bundle and noise can be shared.
     This can be a name or number.
   anyOf:
-  - type: string
+  - type: str
   - type: number
 handedness:
   name: handedness
@@ -101,7 +101,7 @@ handedness:
 
     For "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`, `AMBIDEXTROUS`,
     `Ambidextrous`.
-  type: string
+  type: str
   enum:
   - left
   - l
@@ -123,7 +123,7 @@ hemisphere:
   name: hemisphere
   description: |
     The hemisphere in which the electrode is placed.
-  type: string
+  type: str
   enum:
   - L
   - R
@@ -138,7 +138,7 @@ high_cutoff:
   - type: number
     unit: Hz
     minimum: 0
-  - type: string
+  - type: str
     enum:
     - n/a
 hplc_recovery_fractions:
@@ -166,7 +166,7 @@ low_cutoff:
   anyOf:
   - type: number
     unit: Hz
-  - type: string
+  - type: str
     enum:
     - n/a
 manufacturer:
@@ -174,7 +174,7 @@ manufacturer:
   description: |
     The manufacturer for each electrode.
     Can be used if electrodes were manufactured by more than one company.
-  type: string
+  type: str
 mapping:
   name: mapping
   description: |
@@ -184,7 +184,7 @@ material:
   name: material
   description: |
     Material of the electrode (for example, `Tin`, `Ag/AgCl`, `Gold`).
-  type: string
+  type: str
 metabolite_parent_fraction:
   name: metabolite_parent_fraction
   description: |
@@ -204,19 +204,19 @@ name__channels:
   name: name
   description: |
     Label of the channel.
-  type: string
+  type: str
 # name column for electrodes.tsv files
 name__electrodes:
   name: name
   description: |
     Name of the electrode contact point.
-  type: string
+  type: str
 # name column for dseg.tsv files
 name__segmentations:
   name: name
   description: |
     The unique label name.
-  type: string
+  type: str
 notch:
   name: notch
   description: |
@@ -225,7 +225,7 @@ notch:
   anyOf:
   - type: number
     unit: Hz
-  - type: string
+  - type: str
     enum:
     - n/a
 onset:
@@ -253,13 +253,13 @@ pathology:
     When different from `healthy`, pathology SHOULD be specified.
     The pathology may be specified in either `samples.tsv` or
     `sessions.tsv`, depending on whether the pathology changes over time.
-  type: string
+  type: str
 participant_id:
   name: participant_id
   description: |
     A participant identifier of the form `sub-<label>`,
     matching a participant entity found in the dataset.
-  type: string
+  type: str
   pattern: ^sub-[0-9a-zA-Z]+$
 plasma_radioactivity:
   name: plasma_radioactivity
@@ -273,7 +273,7 @@ reference__eeg:
     Name of the reference electrode(s).
     This column is not needed when it is common to all channels.
     In that case the reference electrode(s) can be specified in `*_eeg.json` as `EEGReference`).
-  type: string
+  type: str
 # reference column for channels.tsv files for iEEG data
 reference__ieeg:
   name: reference
@@ -281,8 +281,8 @@ reference__ieeg:
     Specification of the reference (for example, `mastoid`, `ElectrodeName01`, `intracranial`, `CAR`, `other`, `n/a`).
     If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.
   anyOf:
-  - type: string
-  - type: string
+  - type: str
+  - type: str
     enum:
     - n/a
 respiratory:
@@ -299,7 +299,7 @@ response_time:
   anyOf:
   - type: number
     unit: s
-  - type: string
+  - type: str
     enum:
     - n/a
 sample:
@@ -313,14 +313,14 @@ sample_id:
   description: |
     A sample identifier of the form `sample-<label>`,
     matching a sample entity found in the dataset.
-  type: string
+  type: str
   pattern: ^sample-[0-9a-zA-Z]+$
 sample_type:
   name: sample_type
   description: |
     Biosample type defined by
     [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type).
-  type: string
+  type: str
   enum:
   - cell line
   - in vitro differentiated cells
@@ -342,7 +342,7 @@ session_id:
   description: |
     A session identifier of the form `ses-<label>`,
     matching a session found in the dataset.
-  type: string
+  type: str
   pattern: ^ses-[0-9a-zA-Z]+$
 sex:
   name: sex
@@ -354,7 +354,7 @@ sex:
     For "female", use one of these values: `female`, `f`, `F`, `FEMALE`, `Female`.
 
     For "other", use one of these values: `other`, `o`, `O`, `OTHER`, `Other`.
-  type: string
+  type: str
   enum:
   - male
   - m
@@ -386,8 +386,8 @@ software_filters:
     Note that parameters should be defined in the general MEG sidecar .json file.
     Indicate `n/a` in the absence of software filters applied.
   anyOf:
-  - type: string
-  - type: string
+  - type: str
+  - type: str
     enum:
     - n/a
 species:
@@ -398,7 +398,7 @@ species:
     (for example, `homo sapiens`, `mus musculus`, `rattus norvegicus`).
     For backwards compatibility, if `species` is absent, the participant is assumed to be
     `homo sapiens`.
-  type: string
+  type: str
 status:
   name: status
   description: |
@@ -406,7 +406,7 @@ status:
     A channel is considered `bad` if its data quality is compromised by excessive noise.
     If quality is unknown, then a value of `n/a` may be used.
     Description of noise type SHOULD be provided in `[status_description]`.
-  type: string
+  type: str
   enum:
   - good
   - bad
@@ -416,7 +416,7 @@ status_description:
   description: |
     Freeform text description of noise or artifact affecting data quality on the channel.
     It is meant to explain why the channel was declared bad in `[status]`.
-  type: string
+  type: str
 stim_file:
   name: stim_file
   description: |
@@ -428,21 +428,21 @@ stim_file:
     The values under the `stim_file` column correspond to a path relative to
     `/stimuli`.
     For example `images/cat03.jpg` will be translated to `/stimuli/images/cat03.jpg`.
-  type: string
+  type: str
   format: stimuli_relative
 strain:
   name: strain
   description: |
     For species different from `homo sapiens`, string value indicating
     the strain of the species, for example: `C57BL/6J`.
-  type: string
+  type: str
 strain_rrid:
   name: strain_rrid
   description: |
     For species different from `homo sapiens`, research resource identifier
     ([RRID](https://scicrunch.org/resources/Organisms/search))
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
-  type: string
+  type: str
   format: rrid
 time:
   name: time
@@ -459,7 +459,7 @@ trial_type:
     For example: for a response inhibition task, it could take on values `go` and
     `no-go` to refer to response initiation and response inhibition experimental
     conditions.
-  type: string
+  type: str
 trigger:
   name: trigger
   description: |
@@ -471,7 +471,7 @@ type__eeg_channels:
   description: |
     Type of channel; MUST use the channel types listed below.
     Note that the type MUST be in upper-case.
-  type: string
+  type: str
   enum:
   - AUDIO
   - EEG
@@ -495,7 +495,7 @@ type__meg_channels:
   description: |
     Type of channel; MUST use the channel types listed below.
     Note that the type MUST be in upper-case.
-  type: string
+  type: str
   enum:
   - MEGMAG
   - MEGGRADAXIAL
@@ -530,7 +530,7 @@ type__ieg_channels:
   description: |
     Type of channel; MUST use the channel types listed below.
     Note that the type MUST be in upper-case.
-  type: string
+  type: str
   enum:
   - EEG
   - ECOG
@@ -557,14 +557,14 @@ type__electrodes:
   name: type
   description: |
     Type of the electrode (for example, cup, ring, clip-on, wire, needle).
-  type: string
+  type: str
 units:
   name: units
   description: |
     Physical unit of the value represented in this channel,
     for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter
     (see [Units](/02-common-principles.html#units)).
-  type: string
+  type: str
   format: unit
 value:
   name: value
@@ -573,13 +573,13 @@ value:
     trigger that was recorded at the onset of the event).
   anyOf:
   - type: number
-  - type: string
+  - type: str
 volume_type:
   name: volume_type
   description: |
     The `*_aslcontext.tsv` table consists of a single column of labels identifying
     the `volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
-  type: string
+  type: str
   enum:
   - control
   - label
@@ -608,6 +608,6 @@ z:
     Recorded position along the z-axis.
   anyOf:
   - type: number
-  - type: string
+  - type: str
     enum:
     - n/a

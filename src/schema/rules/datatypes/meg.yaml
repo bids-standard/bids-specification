@@ -41,7 +41,7 @@
     session: optional
     acquisition:
       requirement: required
-      type: string
+      type: str
       enum:
       - calibration
 
@@ -58,7 +58,7 @@
     session: optional
     acquisition:
       requirement: required
-      type: string
+      type: str
       enum:
       - crosstalk
 
