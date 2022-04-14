@@ -15,7 +15,7 @@ iEEGGeneric:
     fields:
         TaskName:
             level: REQUIRED
-            addendum: |
+            description_addendum: |
                 A RECOMMENDED convention is to name resting state task using labels
                 beginning with `rest`.
 
@@ -30,13 +30,13 @@ iEEGRecommended:
         InstitutionalDepartmentName: RECOMMENDED
         Manufacturer:
             level: RECOMMENDED
-            addendum: For example, `"TDT"`, `"Blackrock"`.
+            description_addendum: For example, `"TDT"`, `"Blackrock"`.
         ManufacturersModelName: RECOMMENDED
         SoftwareVersions: RECOMMENDED
         TaskDescription: RECOMMENDED
         Instructions:
             level: RECOMMENDED
-            addendum: |
+            description_addendum: |
                 This is especially important in context of resting state recordings and
                 distinguishing between eyes open and eyes closed paradigms.
         CogAtlasID: RECOMMENDED
@@ -53,7 +53,7 @@ iEEGRequired:
         iEEGReference: REQUIRED
         SamplingFrequency:
             level: REQUIRED
-            addendum: |
+            description_addendum: |
                 The sampling frequency of data channels that deviate from the main sampling
                 frequency SHOULD be specified in the `channels.tsv` file.
         PowerLineFrequency: REQUIRED
@@ -105,7 +105,7 @@ iEEGCoordsystemGeneral:
     fields:
         IntendedFor:
             level: OPTIONAL
-            addendum: |
+            description_addendum: |
                 If only a surface reconstruction is available, this should point to
                 the surface reconstruction file.
                 Note that this file should have the same coordinate system
