@@ -21,7 +21,7 @@ SpatialReferenceEntity:
 SpatialReferenceNonStandard:
     selectors:
     - dataset.DatasetType == "derivative"
-    - not(entities.space in _StandardTemplateCoordSys)
+    - not(entities.space in schema.objects.metadata._StandardTemplateCoordSys)
     fields:
         SpatialReference: REQUIRED
 SpatialReferenceNoEntity:
