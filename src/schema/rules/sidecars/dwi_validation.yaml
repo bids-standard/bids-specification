@@ -13,8 +13,8 @@ DWIVolumeCount:
     - associated contains "bval"
     - associated contains "bvec"
     checks:
-    - associated["bval"].n_rows == nifti_header.pixdim[4]
-    - associated["bvec"].n_rows == nifti_header.pixdim[4]
+    - bval.n_rows == nifti_header.pixdim[4]
+    - bvec.n_rows == nifti_header.pixdim[4]
 
 # 30
 DWIBvalRows:

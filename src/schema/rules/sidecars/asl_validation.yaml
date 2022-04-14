@@ -74,7 +74,7 @@ ASLFlipAngleASLContextLength:
     - sidecar contains "FlipAngle"
     - type(sidecar.FlipAngle) == "array"
     checks:
-    - associated["aslcontext"].n_rows == sidecar.FlipAngle.size
+    - aslcontext.n_rows == sidecar.FlipAngle.size
 
 # 173
 ASLPostLabelingDelayNiftiLength:
@@ -119,7 +119,7 @@ ASLPostLabelingDelayASLContextLength:
     - sidecar contains "PostLabelingDelay"
     - type(sidecar.PostLabelingDelay) == "array"
     checks:
-    - associated["aslcontext"].n_rows == sidecar.PostLabelingDelay.size
+    - aslcontext.n_rows == sidecar.PostLabelingDelay.size
 
 # 175
 ASLLabelingDurationASLContextLength:
@@ -144,7 +144,7 @@ ASLLabelingDurationASLContextLength:
     - sidecar contains "LabelingDuration"
     - type(sidecar.LabelingDuration) == "array"
     checks:
-    - associated["aslcontext"].n_rows == sidecar.LabelingDuration.size
+    - aslcontext.n_rows == sidecar.LabelingDuration.size
 
 # 177
 ASLRepetitionTimePreparationASLContextLength:
@@ -164,7 +164,7 @@ ASLRepetitionTimePreparationASLContextLength:
     - sidecar contains "RepetitionTimePreparation"
     - type(sidecar.RepetitionTimePreparation) == "array"
     checks:
-    - associated["aslcontext"].n_rows == sidecar.RepetitionTimePreparation.size
+    - aslcontext.n_rows == sidecar.RepetitionTimePreparation.size
 
 # 180
 ASLBackgroundSuppressionNumberPulses:
@@ -197,7 +197,7 @@ ASLTotalAcquiredVolumesASLContextLength:
     - associated contains "aslcontext"
     - sidecar contains "TotalAcquiredVolumes"
     checks:
-    - associated["aslcontext"].n_rows == sidecar.TotalAcquiredVolumes
+    - aslcontext.n_rows == sidecar.TotalAcquiredVolumes
 
 # 196
 ASLEchoTimeASLContextLength:
@@ -213,7 +213,7 @@ ASLEchoTimeASLContextLength:
     - sidecar contains "EchoTime"
     - type(sidecar.EchoTime) == "array"
     checks:
-    - associated["aslcontext"].n_rows == sidecar.EchoTime.size
+    - aslcontext.n_rows == sidecar.EchoTime.size
 
 # 198
 ASLM0TypeAbsentScan:
@@ -240,7 +240,7 @@ ASLM0TypeAbsentASLContext:
     selectors:
     - suffix == "asl"
     - associated contains "aslcontext"
-    - associated["aslcontext"]["volume_type"] contains "m0scan"
+    - aslcontext.volume_type contains "m0scan"
     checks:
     - sidecar.M0Type != "absent"
 
