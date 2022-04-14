@@ -33,7 +33,7 @@ MRIASLTextOnlySliceTiming:
     fields:
         SliceTiming:
             level: REQUIRED
-            issue::
+            issue:
                 name: SLICE_TIMING_NOT_DEFINED_2D_ASL
                 message: |
                     "You should define SliceTiming', in case 'SequenceType' is set to a
