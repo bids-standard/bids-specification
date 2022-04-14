@@ -34,7 +34,7 @@ ASLContextConsistent:
     - suffix == "asl"
     - associated contains "aslcontext"
     checks:
-    - data.shape[3] == associated["aslcontext"].shape[0]
+    - nifti_header.pixdim[4] == aslcontext.n_rows
 
 # 168
 ASLFlipAngleNiftiLength:
