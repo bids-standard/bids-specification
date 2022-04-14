@@ -31,7 +31,7 @@ AcquisitionVoxelSize:
     within reconstruction or image processing.
     Any point spread function effects, for example due to T2-blurring,
     that would decrease the effective resolution are not considered here.
-  type: array
+  type: seq
   minItems: 3
   maxItems: 3
   items:
@@ -54,7 +54,7 @@ AnalyticalApproach:
     Methylation (CpG).
   anyOf:
   - type: str
-  - type: array
+  - type: seq
     items:
       type: str
 AnatomicalLandmarkCoordinateSystem:
@@ -98,7 +98,7 @@ AnatomicalLandmarkCoordinates:
     axis of the coordinate system in that exact order.
   type: map
   additionalProperties:
-    type: array
+    type: seq
     items:
       type: float
     minItems: 3
@@ -117,7 +117,7 @@ AnatomicalLandmarkCoordinates__mri:
     axis of the coordinate system in that exact order.
   type: map
   additionalProperties:
-    type: array
+    type: seq
     items:
       type: float
     minItems: 3
@@ -140,7 +140,7 @@ AssociatedEmptyRoom:
     (for example,
     "sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds").
   anyOf:
-  - type: array
+  - type: seq
     items:
       type: str
       format: dataset_relative
@@ -165,7 +165,7 @@ Authors:
   name: Authors
   description: |
     List of individuals who contributed to the creation/curation of the dataset.
-  type: array
+  type: seq
   items:
     type: str
 B0FieldIdentifier:
@@ -181,7 +181,7 @@ B0FieldIdentifier:
     when the former is not defined (for example, in GE devices.)
   anyOf:
   - type: str
-  - type: array
+  - type: seq
     items:
       type: str
 B0FieldSource:
@@ -197,7 +197,7 @@ B0FieldSource:
     acquisitions.
   anyOf:
   - type: str
-  - type: array
+  - type: seq
     items:
       type: str
 BIDSVersion:
@@ -226,7 +226,7 @@ BackgroundSuppressionPulseTime:
     labeling.
     In case of multi-PLD with different background suppression pulse times,
     only the pulse time of the first PLD should be defined.
-  type: array
+  type: seq
   items:
     type: float
     minimum: 0
@@ -239,7 +239,7 @@ BasedOn:
   anyOf:
   - type: str
     format: participant_relative
-  - type: array
+  - type: seq
     items:
       type: str
       format: participant_relative
@@ -281,7 +281,7 @@ BolusCutOffDelayTime:
   - type: float
     minimum: 0
     unit: s
-  - type: array
+  - type: seq
     items:
       type: float
       unit: s
@@ -347,20 +347,20 @@ ChunkTransformationMatrix:
     Note that non-spatial dimensions like time and channel are not included in the
     transformation matrix.
   anyOf:
-  - type: array
+  - type: seq
     minItems: 3
     maxItems: 3
     items:
-      type: array
+      type: seq
       minItems: 3
       maxItems: 3
       items:
         type: float
-  - type: array
+  - type: seq
     minItems: 4
     maxItems: 4
     items:
-      type: array
+      type: seq
       minItems: 4
       maxItems: 4
       items:
@@ -370,7 +370,7 @@ ChunkTransformationMatrixAxis:
   description: |
     Describe the axis of the ChunkTransformationMatrix
     (for examples: `["X", "Y"]` or `["Z", "Y", "X"]`).
-  type: array
+  type: seq
   items:
     type: str
     minItems: 2
@@ -413,7 +413,7 @@ Columns:
   name: Columns
   description: |
     Names of columns in file.
-  type: array
+  type: seq
   items:
     type: str
 ContinuousHeadLocalization:
@@ -464,7 +464,7 @@ DecayCorrectionFactor:
   name: DecayCorrectionFactor
   description: |
     Decay correction factor for each frame.
-  type: array
+  type: seq
   items:
     type: float
 DelayAfterTrigger:
@@ -719,7 +719,7 @@ EchoTime:
   - type: float
     unit: s
     exclusiveMinimum: 0
-  - type: array
+  - type: seq
     items:
       type: float
       unit: s
@@ -814,7 +814,7 @@ EthicsApprovals:
   description: |
     List of ethics committee approvals of the research protocols and/or
     protocol identifiers.
-  type: array
+  type: seq
   items:
     type: str
 FiducialsCoordinateSystem:
@@ -861,7 +861,7 @@ FiducialsCoordinates:
     axis of the coordinate system in that exact order.
   type: map
   additionalProperties:
-    type: array
+    type: seq
     items:
       type: float
     minItems: 3
@@ -895,7 +895,7 @@ FlipAngle:
     unit: degree
     exclusiveMinimum: 0
     maximum: 360
-  - type: array
+  - type: seq
     items:
       type: float
       unit: degree
@@ -907,7 +907,7 @@ FrameDuration:
     Time duration of each frame in default unit seconds.
     This corresponds to DICOM Tag 0018, 1242 `Actual Frame Duration` converted
     to seconds.
-  type: array
+  type: seq
   items:
     type: float
   unit: s
@@ -915,7 +915,7 @@ FrameTimesStart:
   name: FrameTimesStart
   description: |
     Start times for all frames relative to `"TimeZero"` in default unit seconds.
-  type: array
+  type: seq
   items:
     type: float
   unit: s
@@ -923,14 +923,14 @@ Funding:
   name: Funding
   description: |
     List of sources of funding (grant numbers).
-  type: array
+  type: seq
   items:
     type: str
 GeneratedBy:
   name: GeneratedBy
   description: |
     Used to specify provenance of the dataset.
-  type: array
+  type: seq
   minItems: 1
   items:
     type: map
@@ -962,7 +962,7 @@ GeneticLevel:
     `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.
   anyOf:
   - $ref: _GeneticLevelEnum
-  - type: array
+  - type: seq
     items:
       $ref: _GeneticLevelEnum
 Genetics.Database:
@@ -988,7 +988,7 @@ Genetics.Descriptors:
     when possible.
   anyOf:
   - type: str
-  - type: array
+  - type: seq
     items:
       type: str
 Genetics:
@@ -1108,7 +1108,7 @@ HeadCoilCoordinates:
     axis of the coordinate system in that exact order.
   type: map
   additionalProperties:
-    type: array
+    type: seq
     items:
       type: float
     minItems: 3
@@ -1123,7 +1123,7 @@ HeadCoilFrequency:
   anyOf:
   - type: float
     unit: Hz
-  - type: array
+  - type: seq
     items:
       type: float
       unit: Hz
@@ -1294,7 +1294,7 @@ IntendedFor:
   anyOf:
   - type: str
     format: participant_relative
-  - type: array
+  - type: seq
     items:
       type: str
       format: participant_relative
@@ -1339,7 +1339,7 @@ LabelingDuration:
   - type: float
     minimum: 0
     unit: s
-  - type: array
+  - type: seq
     items:
       type: float
       unit: s
@@ -1369,7 +1369,7 @@ LabelingOrientation:
     The direction cosines of a normal vector perpendicular to the ASL labeling
     slab or plane with respect to the patient.
     Corresponds to DICOM Tag 0018, 9255 `ASL Slab Orientation`.
-  type: array
+  type: seq
   items:
     type: float
 LabelingPulseAverageB1:
@@ -1776,7 +1776,7 @@ NumberShots:
     in the qMRI appendix for corresponding calculations.
   anyOf:
   - type: float
-  - type: array
+  - type: seq
     items:
       type: float
 NumericalAperture:
@@ -1843,7 +1843,7 @@ PharmaceuticalDoseAmount:
     Dose amount of pharmaceutical coadministered with tracer.
   anyOf:
   - type: float
-  - type: array
+  - type: seq
     items:
       type: float
 PharmaceuticalDoseRegimen:
@@ -1865,7 +1865,7 @@ PharmaceuticalDoseTime:
   anyOf:
   - type: float
     unit: s
-  - type: array
+  - type: seq
     items:
       type: float
       unit: s
@@ -1912,7 +1912,7 @@ PixelSize:
     `PhysicalSizeY` and `PhysicalSizeZ` OME metadata fields, after converting in
     `PixelSizeUnits` according to `PhysicalSizeXunit`, `PhysicalSizeYunit` and
     `PhysicalSizeZunit` OME fields.
-  type: array
+  type: seq
   minItems: 2
   maxItems: 3
   items:
@@ -1966,7 +1966,7 @@ PostLabelingDelay:
   - type: float
     exclusiveMinimum: 0
     unit: s
-  - type: array
+  - type: seq
     items:
       type: float
       exclusiveMinimum: 0
@@ -1987,7 +1987,7 @@ PromptRate:
   name: PromptRate
   description: |
     Prompt rate for each frame (same units as `Units`, for example, `"Bq/mL"`).
-  type: array
+  type: seq
   items:
     type: float
 PulseSequenceDetails:
@@ -2017,7 +2017,7 @@ RandomRate:
   name: RandomRate
   description: |
     Random rate for each frame (same units as `"Units"`, for example, `"Bq/mL"`).
-  type: array
+  type: seq
   items:
     type: float
 RawSources:
@@ -2025,7 +2025,7 @@ RawSources:
   description: |
     A list of paths relative to dataset root pointing to the BIDS-Raw file(s)
     that were used in the creation of this derivative.
-  type: array
+  type: seq
   items:
     type: str
     format: dataset_relative
@@ -2052,7 +2052,7 @@ ReconFilterSize:
   anyOf:
   - type: float
     unit: mm
-  - type: array
+  - type: seq
     items:
       type: float
       unit: mm
@@ -2062,7 +2062,7 @@ ReconFilterType:
     Type of post-recon smoothing (for example, `["Shepp"]`).
   anyOf:
   - type: str
-  - type: array
+  - type: seq
     items:
       type: str
 ReconMethodImplementationVersion:
@@ -2079,14 +2079,14 @@ ReconMethodParameterLabels:
   name: ReconMethodParameterLabels
   description: |
     Names of reconstruction parameters (for example, `["subsets", "iterations"]`).
-  type: array
+  type: seq
   items:
     type: str
 ReconMethodParameterUnits:
   name: ReconMethodParameterUnits
   description: |
     Unit of reconstruction parameters (for example, `["none", "none"]`).
-  type: array
+  type: seq
   items:
     type: str
     format: unit
@@ -2094,7 +2094,7 @@ ReconMethodParameterValues:
   name: ReconMethodParameterValues
   description: |
     Values of reconstruction parameters (for example, `[21, 3]`).
-  type: array
+  type: seq
   items:
     type: float
 RecordingDuration:
@@ -2122,7 +2122,7 @@ ReferencesAndLinks:
     [URI](/02-common-principles.html#uniform-resource-indicator).
   items:
     type: str
-  type: array
+  type: seq
 RepetitionTime:
   name: RepetitionTime
   description: |
@@ -2181,7 +2181,7 @@ RepetitionTimePreparation:
   - type: float
     minimum: 0
     unit: s
-  - type: array
+  - type: seq
     items:
       type: float
       minimum: 0
@@ -2263,7 +2263,7 @@ SamplePrimaryAntibody:
     MAY be an array of strings if different antibodies are used in each channel of the file.
   anyOf:
   - type: str
-  - type: array
+  - type: seq
     items:
       type: str
 SampleSecondaryAntibody:
@@ -2278,7 +2278,7 @@ SampleSecondaryAntibody:
     MAY be an array of strings if different antibodies are used in each channel of the file.
   anyOf:
   - type: str
-  - type: array
+  - type: seq
     items:
       type: str
 SampleStaining:
@@ -2289,7 +2289,7 @@ SampleStaining:
     (for example: `["LFB", "PLP"]`).
   anyOf:
   - type: str
-  - type: array
+  - type: seq
     items:
       type: str
 SamplingFrequency:
@@ -2305,7 +2305,7 @@ ScaleFactor:
     Scale factor for each frame. This field MUST be defined if the imaging data (`.nii[.gz]`) are scaled.
     If this field is not defined, then it is assumed that the scaling factor is 1. Defining this field
     when the scaling factor is 1 is RECOMMENDED, for the sake of clarity.
-  type: array
+  type: seq
   items:
     type: float
 ScanDate:
@@ -2323,7 +2323,7 @@ ScanOptions:
     Corresponds to DICOM Tag 0018, 0022 `Scan Options`.
   anyOf:
   - type: str
-  - type: array
+  - type: seq
     items:
       type: str
 ScanStart:
@@ -2339,14 +2339,14 @@ ScanningSequence:
     Corresponds to DICOM Tag 0018, 0020 `Scanning Sequence`.
   anyOf:
   - type: str
-  - type: array
+  - type: seq
     items:
       type: str
 ScatterFraction:
   name: ScatterFraction
   description: |
     Scatter fraction for each frame (Units: 0-100%).
-  type: array
+  type: seq
   items:
     type: float
     minimum: 0
@@ -2364,14 +2364,14 @@ SequenceVariant:
     Corresponds to DICOM Tag 0018, 0021 `Sequence Variant`.
   anyOf:
   - type: str
-  - type: array
+  - type: seq
     items:
       type: str
 SinglesRate:
   name: SinglesRate
   description: |
     Singles rate for each frame (same units as `Units`, for example, `"Bq/mL"`).
-  type: array
+  type: seq
   items:
     type: float
 SkullStripped:
@@ -2425,7 +2425,7 @@ SliceTiming:
     slice axis, such that the final entry in the `"SliceTiming"` list is the time
     of acquisition of slice 0. Without this parameter slice time correction will
     not be possible.
-  type: array
+  type: seq
   items:
     type: float
     minimum: 0
@@ -2481,7 +2481,7 @@ SourceDatasets:
     `"Version"` with
     [string](https://www.w3schools.com/js/js_json_datatypes.asp)
     values.
-  type: array
+  type: seq
   items:
     type: map
     properties:
@@ -2503,7 +2503,7 @@ Sources:
     However, in case both X and Y are directly used in the creation of Z,
     then Z should list X and Y in `"Sources"`,
     regardless of whether X was used to generate Y.
-  type: array
+  type: seq
   items:
     type: str
     format: dataset_relative
@@ -2795,7 +2795,7 @@ VascularCrushingVENC:
   anyOf:
   - type: float
     unit: cm/s
-  - type: array
+  - type: seq
     items:
       type: float
       unit: cm/s
@@ -2810,7 +2810,7 @@ VolumeTiming:
     This field is mutually exclusive with `"RepetitionTime"` and `"DelayTime"`.
     If defined, this requires acquisition time (TA) be defined via either
     `"SliceTiming"` or `"AcquisitionDuration"` be defined.
-  type: array
+  type: seq
   minItems: 1
   items:
     type: float
@@ -2855,7 +2855,7 @@ _GeneticLevelEnum:
 _LandmarkCoordinates:
   type: map
   additionalProperties:
-    type: array
+    type: seq
     items:
       type: float
     minItems: 3

@@ -195,7 +195,7 @@ There are additional fields which may define rules that apply to a given type.
         name: ExampleField
         description: |
             The description of "ExampleField".
-        type: array
+        type: seq
         minItems: 3
         maxItems: 3
         items:
@@ -310,7 +310,7 @@ ExampleField:
         The description of "ExampleField".
     anyOf:
         - type: float
-        - type: array
+        - type: seq
             items:
             type: float
 ```
