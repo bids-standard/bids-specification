@@ -6,20 +6,20 @@ nifti_header:
     properties:
         dim_info:
             name: "Dimension Information"
-            description:
+            description: "Metadata about dimensions data."
             type: object
             properties:
                 freq:
                     name: "Frequency"
-                    description: "These fields encode which spatial dimension (1,2, or 3)"
+                    description: "These fields encode which spatial dimension (1,2, or 3)."
                     type: int
                 phase:
                     name: "Phase"
-                    description: "Corresponds to which acquisition dimension for MRI data"
+                    description: "Corresponds to which acquisition dimension for MRI data."
                     type: int
                 slice:
                     name: "Slice"
-                    description: "Slice dimensions"
+                    description: "Slice dimensions."
                     type: int
         dim:
             name: "Data Dimensions"
@@ -42,7 +42,7 @@ nifti_header:
             description: "Units of pixdim[1..4]"
             xyz:
                 name: "XYZ Units"
-                description: "String representing the unit used by all 3 spatial dimensions data"
+                description: "String representing the unit used by all 3 spatial dimensions data."
                 type: string
             enum:
                 - "unknown"
@@ -51,7 +51,7 @@ nifti_header:
                 - "um"
             t:
                 name: "Time Unit"
-                description: "String representing the unit used by temporal dimension data"
+                description: "String representing the unit used by temporal dimension data."
                 type: string
                 enum:
                     - "unknown"
