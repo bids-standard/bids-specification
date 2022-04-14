@@ -6,7 +6,7 @@ dataset_description:
         BIDSVersion: REQUIRED
         DatasetType: RECOMMENDED
         License: RECOMMENDED
-        Authors: OPTIONAL
+        Authors: RECOMMENDED
         Acknowledgements: OPTIONAL
         HowToAcknowledge: OPTIONAL
         Funding: OPTIONAL
