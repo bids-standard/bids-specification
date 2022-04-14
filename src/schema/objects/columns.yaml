@@ -30,13 +30,13 @@ age:
   name: age
   description: |
     Numeric value in years (float or integer value).
-  type: number
+  type: float
   unit: year
 cardiac:
   name: cardiac
   description: |
     continuous pulse measurement
-  type: number
+  type: float
 color:
   name: color
   description: |
@@ -69,7 +69,7 @@ duration:
     A "duration" value of zero implies that the delta function or event is so
     short as to be effectively modeled as an impulse.
   anyOf:
-  - type: number
+  - type: float
     unit: s
     minimum: 0
   - type: str
@@ -89,7 +89,7 @@ group:
     This can be a name or number.
   anyOf:
   - type: str
-  - type: number
+  - type: float
 handedness:
   name: handedness
   description: |
@@ -135,7 +135,7 @@ high_cutoff:
     Note that hardware anti-aliasing in A/D conversion of all MEG/EEG electronics
     applies a low-pass filter; specify its frequency here if applicable.
   anyOf:
-  - type: number
+  - type: float
     unit: Hz
     minimum: 0
   - type: str
@@ -145,13 +145,13 @@ hplc_recovery_fractions:
   name: hplc_recovery_fractions
   description: |
     HPLC recovery fractions (the fraction of activity that gets loaded onto the HPLC).
-  type: number
+  type: float
   unit: arbitrary
 impedance:
   name: impedance
   description: |
     Impedance of the electrode, units MUST be in `kOhm`.
-  type: number
+  type: float
   unit: kOhm
 index:
   name: index
@@ -164,7 +164,7 @@ low_cutoff:
     Frequencies used for the high-pass filter applied to the channel in Hz.
     If no high-pass filter applied, use `n/a`.
   anyOf:
-  - type: number
+  - type: float
     unit: Hz
   - type: str
     enum:
@@ -189,14 +189,14 @@ metabolite_parent_fraction:
   name: metabolite_parent_fraction
   description: |
     Parent fraction of the radiotracer (0-1).
-  type: number
+  type: float
   minimum: 0
   maximum: 1
 metabolite_polar_fraction:
   name: metabolite_polar_fraction
   description: |
     Polar metabolite fraction of the radiotracer (0-1).
-  type: number
+  type: float
   minimum: 0
   maximum: 1
 # name column for channels.tsv files
@@ -223,7 +223,7 @@ notch:
     Frequencies used for the notch filter applied to the channel, in Hz.
     If no notch filter applied, use `n/a`.
   anyOf:
-  - type: number
+  - type: float
     unit: Hz
   - type: str
     enum:
@@ -244,7 +244,7 @@ onset:
     (for example, "dummy volumes" in BOLD fMRI),
     a time of 0 corresponds to the first stored data point and not the first
     acquired data point.
-  type: number
+  type: float
   unit: s
 pathology:
   name: pathology
@@ -265,7 +265,7 @@ plasma_radioactivity:
   name: plasma_radioactivity
   description: |
     Radioactivity in plasma, in unit of plasma radioactivity (for example, `kBq/mL`).
-  type: number
+  type: float
 # reference column for channels.tsv files for EEG data
 reference__eeg:
   name: reference
@@ -289,7 +289,7 @@ respiratory:
   name: respiratory
   description: |
     continuous breathing measurement
-  type: number
+  type: float
 response_time:
   name: response_time
   description: |
@@ -297,7 +297,7 @@ response_time:
     A negative response time can be used to represent preemptive responses and
     `n/a` denotes a missed response.
   anyOf:
-  - type: number
+  - type: float
     unit: s
   - type: str
     enum:
@@ -335,7 +335,7 @@ sampling_frequency:
   name: sampling_frequency
   description: |
     Sampling rate of the channel in Hz.
-  type: number
+  type: float
   unit: Hz
 session_id:
   name: session_id
@@ -376,7 +376,7 @@ size:
   name: size
   description: |
     Surface area of the electrode, units MUST be in `mm^2`.
-  type: number
+  type: float
   unit: mm2
 software_filters:
   name: software_filters
@@ -449,7 +449,7 @@ time:
   description: |
     Time, in seconds, relative to `TimeZero` defined by the `*_pet.json`.
     For example, 5.
-  type: number
+  type: float
   unit: s
 trial_type:
   name: trial_type
@@ -464,7 +464,7 @@ trigger:
   name: trigger
   description: |
     continuous measurement of the scanner trigger signal
-  type: number
+  type: float
 # type column in channels.tsv files
 type__eeg_channels:
   name: type
@@ -572,7 +572,7 @@ value:
     Marker value associated with the event (for example, the value of a TTL
     trigger that was recorded at the onset of the event).
   anyOf:
-  - type: number
+  - type: float
   - type: str
 volume_type:
   name: volume_type
@@ -591,23 +591,23 @@ whole_blood_radioactivity:
   description: |
     Radioactivity in whole blood samples,
     in unit of radioactivity measurements in whole blood samples (for example, `kBq/mL`).
-  type: number
+  type: float
 x:
   name: x
   description: |
     Recorded position along the x-axis.
-  type: number
+  type: float
 y:
   name: y
   description: |
     Recorded position along the y-axis.
-  type: number
+  type: float
 z:
   name: z
   description: |
     Recorded position along the z-axis.
   anyOf:
-  - type: number
+  - type: float
   - type: str
     enum:
     - n/a

@@ -259,7 +259,7 @@ There are additional fields which may define rules that apply to a given type.
         name: ExampleField
         description: |
             The description of "ExampleField".
-        type: number
+        type: float
         minimum: 0
         # k stands for "kilo", m stands for "meter", "/" means "per", and
         # s stands for "seconds"
@@ -285,7 +285,7 @@ There are additional fields which may define rules that apply to a given type.
             OptionalField:
                 type: str
         additionalProperties:
-            type: number
+            type: float
     ```
 
 -   `boolean`: If `type` is `boolean`, then the field's value MUST be one
@@ -309,10 +309,10 @@ ExampleField:
     description: |
         The description of "ExampleField".
     anyOf:
-        - type: number
+        - type: float
         - type: array
             items:
-            type: number
+            type: float
 ```
 
 Furthermore, if the data type description of a field is reused across fields,
