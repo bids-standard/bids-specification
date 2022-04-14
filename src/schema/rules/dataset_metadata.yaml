@@ -1,6 +1,6 @@
 dataset_description:
     selectors:
-    - path: /dataset_description.json
+    - path == /dataset_description.json
     fields:
         Name: REQUIRED
         BIDSVersion: REQUIRED
@@ -25,16 +25,16 @@ dataset_description:
         SourceDatasets: RECOMMENDED
 
 derivative_description:
-    path: /dataset_description.json
     selectors:
-        dataset.DatasetType == "derivative"
+    - path == /dataset_description.json
+    - dataset.dataset_description.DatasetType == "derivative"
     fields:
         GeneratedBy: REQUIRED
 
 dataset_description_with_genetics:
-    path: /dataset_description.json
     selectors:
-        dataset.genetic_info
+    - path == /dataset_description.json
+    - dataset.files contains "/genetic_info.json"
     fields:
         Genetics: REQUIRED
         Genetics.Dataset: REQUIRED
@@ -42,7 +42,8 @@ dataset_description_with_genetics:
         Genetics.Descriptors: OPTIONAL
 
 genetic_info:
-    path: /genetic_info.json
+    selectors:
+    - path == /genetic_info.json
     fields:
         GeneticLevel: REQUIRED
         SampleOrigin: REQUIRED
