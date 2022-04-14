@@ -119,11 +119,20 @@ MRISpatialEncoding:
                 This parameter is REQUIRED if corresponding fieldmap data is present
                 or when using multiple runs with different phase encoding directions
                 (which can be later used for field inhomogeneity correction).
+            issue:
+                name: PHASE_ENCODING_DIRECTION_MUST_DEFINE
+                issue: |
+                    You have to define 'PhaseEncodingDirection' for this file.
         EffectiveEchoSpacing:
             level: RECOMMENDED
             level_addendum: |
                 <sup>2</sup> This parameter is REQUIRED if corresponding fieldmap data
                 is present.
+            issue:
+                name: EFFECTIVE_ECHO_SPACING_NOT_DEFINED
+                message: |
+                    You should define 'EffectiveEchoSpacing' for this file. If you don't
+                    provide this information field map correction will not be possible.
         TotalReadoutTime:
             level: RECOMMENDED
             level_addendum: |
@@ -131,6 +140,10 @@ MRISpatialEncoding:
                 acquired with opposing phase encoding directions are present
                 (see [Case 4: Multiple phase encoded
                 directions](#case-4-multiple-phase-encoded-directions-pepolar)).
+            issue:
+                name: TOTAL_READOUT_TIME_MUST_DEFINE
+                message: |
+                    You have to define 'TotalReadoutTime' for this file.
         MixingTime: RECOMMENDED
 
 MRITimingParameters:
@@ -142,6 +155,18 @@ MRITimingParameters:
             level_addendum: |
                 REQUIRED if corresponding fieldmap data is present,
                 or the data comes from a multi-echo sequence or Arterial Spin Labeling.
+            issue:
+                name: ECHO_TIME_NOT_DEFINED
+                message: |
+                    You must define 'EchoTime' for this file. 'EchoTime' is the echo time (TE)
+                    for the acquisition, specified in seconds. Corresponds to DICOM Tag
+                    0018, 0081 Echo Time (please note that the DICOM term is in milliseconds
+                    not seconds). The data type number may apply to files from any MRI modality
+                    concerned with a single value for this field, or to the files in a file
+                    collection where the value of this field is iterated using the echo entity.
+                    The data type array provides a value for each volume in a 4D dataset and
+                    should only be used when the volume timing is critical for interpretation
+                    of the data, such as in ASL or variable echo time fMRI sequences.
         InversionTime: RECOMMENDED
         SliceTiming:
             level: RECOMMENDED
@@ -175,6 +200,20 @@ MRIRFandContrast:
         FlipAngle:
             level: RECOMMENDED
             level_addendum: REQUIRED if LookLocker is set to `true`.
+            issue:
+                name: LOOK_LOCKER_FLIP_ANGLE_MISSING
+                message: |
+                    You should define 'FlipAngle' for this file, in
+                    case of a LookLocker acquisition. 'FlipAngle' is the
+                    flip angle (FA) for the acquisition, specified in degrees.
+                    Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`. The data
+                    type number may apply to files from any MRI modality concerned
+                    with a single value for this field, or to the files in a file
+                    collection where the value of this field is iterated using the
+                    flip entity. The data type array provides a value for each volume
+                    in a 4D dataset and should only be used when the volume timing is
+                    critical for interpretation of the data, such as in ASL or
+                    variable flip angle fMRI sequences.
         NegativeContrast: OPTIONAL
 
 MRIFlipAngleLookLocker:

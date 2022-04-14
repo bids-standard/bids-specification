@@ -54,7 +54,7 @@ EEGRequired:
                 The sampling frequency of data channels that deviate from the main sampling
                 frequency SHOULD be specified in the `channels.tsv` file.
         PowerLineFrequency: REQUIRED
-        SoftwareFilters": REQUIRED
+        SoftwareFilters: REQUIRED
 
 EEGMoreRecommended:
     selectors:
