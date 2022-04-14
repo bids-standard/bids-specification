@@ -188,7 +188,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
         paragraph += "\t\t{}/\n".format(datatype)
 
         # Unique filename patterns
-        for group in schema["rules"]["datatypes"][datatype]:
+        for group in schema["rules"]["datatypes"][datatype].values():
             string = "\t\t\t"
             for ent in entity_order:
                 if "enum" in schema["objects"]["entities"][ent].keys():
@@ -302,7 +302,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         duplicate_row_counter = 0
 
         # each dtype could have multiple specs
-        for i_dtype_spec, dtype_spec in enumerate(dtype_specs):
+        for dtype_spec in dtype_specs.values():
             suffixes = dtype_spec.get("suffixes")
 
             # Skip this part of the schema if no suffixes are found.
