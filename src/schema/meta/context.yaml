@@ -111,11 +111,32 @@ context:
             type: object
             properties:
                 events:
-                    description: "Path to associated events file"
-                    type: string
+                    description: "Events file"
+                    type: object
+                    properties:
+                        path:
+                            description: "Path to associated events file"
+                            type: string
+                        onset:
+                            description: "Contents of the onset column"
+                            type: array
+                            items:
+                                type: string
                 aslcontext:
-                    description: "Path to associated aslcontext file"
-                    type: string
+                    description: "ASL context file"
+                    type: object
+                    properties:
+                        path:
+                            description: "Path to associated aslcontext file"
+                            type: string
+                        n_rows:
+                            description: "Number of rows in aslcontext.tsv"
+                            type: integer
+                        volume_type:
+                            description: "Contents of the volume_type column"
+                            type: array
+                            items:
+                                type: string
 
         # The following properties are populated if the current file is of an appropriate type
         columns:
@@ -193,26 +214,3 @@ context:
                     name: "sform code"
                     description: "Use of the affine fields."
                     type: integer
-
-        # Aspects of associated files that are needed to perform assertions on the
-        # "main" file
-        aslcontext:
-            description: "ASL context object"
-            properties:
-                n_rows:
-                    description: "Number of rows in aslcontext.tsv"
-                    type: integer
-                volume_type:
-                    description: "Contents of the volume_type column"
-                    type: array
-                    items:
-                        type: string
-
-        events:
-            description: "Associated events file"
-            properties:
-                onset:
-                    description: "Contents of the onset column"
-                    type: array
-                    items:
-                        type: string
