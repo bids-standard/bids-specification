@@ -92,9 +92,16 @@ context:
         datatype:
             description: "Datatype of current file, e.g., anat"
             type: string
+        suffix:
+            description: "Suffix of current file"
+            type: string
+        extension:
+            description: "Extension of current file including initial dot"
+            type: string
         modality:
             description: "Modality of current file, e.g., MRI"
             type: string
+
         sidecar:
             description: "Sidecar metadata constructed via the inheritance principle"
             type: object
