@@ -11,6 +11,7 @@ SpatialReference:
     selectors:
     - dataset.DatasetType == "derivative"
     # - this file can use space entity
+    - datatype_rules_match.entities contains "space"
 SpatialReferenceEntity:
     selectors:
     - dataset.DatasetType == "derivative"
@@ -29,6 +30,38 @@ SpatialReferenceNoEntity:
     - not(entities contains "space")
     fields:
         SpatialReference: REQUIRED
+
+# this needs to come before density and resolution overrides selected in a
+# different way
+MaskDerivatives:
+    selectors:
+    - dataset.DatasetType == "derivative"
+    - datatype_rules_match.name is "mask"
+    fields:
+        RawSources: REQUIRED
+        Type: RECOMMENDED
+        Atlas: OPTIONAL 
+        Resolution: OPTIONAL
+        Density: OPTIONAL
+
+MaskDerivativesAtlas:
+    selectors:
+    - dataset.DatasetType == "derivative"
+    - datatype_rules_match.name is "mask"
+    - entities contains "label"
+    fields:
+        atlas: RECOMMENDED
+
+SegmentationCommon
+    selectors:
+    - dataset.DatasetType == "derivative"
+    # isSegmentation?
+    fields: 
+        Type: RECOMMENDED
+        Atlas: OPTIONAL 
+        Resolution: OPTIONAL
+        Density: OPTIONAL
+
 
 # Derivatives -> Imaging data types
 ImageDerivatives:
@@ -54,3 +87,5 @@ ImageDerivativeDenEntity:
     - entities contains "den"
     fields:
         Density: REQUIRED
+
+       

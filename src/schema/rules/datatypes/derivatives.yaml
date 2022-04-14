@@ -1,0 +1,36 @@
+---
+- name: "derivatives_common"
+  # all datatypes
+  additional_entities:
+    space: OPTIONAL
+    desc: OPTIONAL
+
+- name: "volumetric_preproc"
+  # nii, niigz in pet and mri
+  additional_entities:
+    space: OPTIONAL
+    res: OPTIONAL
+    den: OPTIONAL
+    desc: OPTIONAL
+
+- name: "mask"
+  # anat, func, dwi
+  suffixes:
+  - desg
+  extensions:
+  additional_entities:
+    space: OPTIONAL
+    res: OPTIONAL
+    den: OPTIONAL
+    label: OPTIONAL
+    desc: OPTIONAL
+- name: "discreate_segmentation"
+  # anat, func, dwi
+  suffixes:
+  - desg
+  extensions:
+  - .nii.gz
+  additional_entities:
+    space: OPTIONAL
+    res: OPTIONAL
+    den: OPTIONAL
