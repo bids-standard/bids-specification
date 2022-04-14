@@ -7,23 +7,20 @@ CommonDerivativeFields:
     - Sources: OPTIONAL
     - RawSources: OPTIONAL
 
-SpatialReference:
-    selectors:
-    - dataset.DatasetType == "derivative"
-    # - this file can use space entity
-    - datatype_rules_match.entities contains "space"
 SpatialReferenceEntity:
     selectors:
     - dataset.DatasetType == "derivative"
     - entities contains "space"
     fields:
         SpatialReference: RECOMMENDED
+
 SpatialReferenceNonStandard:
     selectors:
     - dataset.DatasetType == "derivative"
-    - not(entities.space in _StandardTemplateCoordSys)
+    - not(entities.space in schema.objects.metadata._StandardTemplateCoordSys)
     fields:
         SpatialReference: REQUIRED
+
 SpatialReferenceNoEntity:
     selectors:
     - dataset.DatasetType == "derivative"
@@ -36,7 +33,7 @@ SpatialReferenceNoEntity:
 MaskDerivatives:
     selectors:
     - dataset.DatasetType == "derivative"
-    - datatype_rules_match.name is "mask"
+    - suffix == "mask"
     fields:
         RawSources: REQUIRED
         Type: RECOMMENDED
@@ -47,21 +44,20 @@ MaskDerivatives:
 MaskDerivativesAtlas:
     selectors:
     - dataset.DatasetType == "derivative"
-    - datatype_rules_match.name is "mask"
+    - suffix == "mask"
     - entities contains "label"
     fields:
         atlas: RECOMMENDED
 
-SegmentationCommon
+SegmentationCommon:
     selectors:
     - dataset.DatasetType == "derivative"
-    # isSegmentation?
+    - suffix in ["dseg", "probseg"]
     fields: 
         Type: RECOMMENDED
         Atlas: OPTIONAL 
         Resolution: OPTIONAL
         Density: OPTIONAL
-
 
 # Derivatives -> Imaging data types
 ImageDerivatives:
@@ -71,21 +67,20 @@ ImageDerivatives:
     - extension in [".nii", ".nii.gz"]
     fields:
         SkullStripped: REQUIRED
+
 ImageDerivativeResEntity:
     selectors:
     - dataset.DatasetType == "derivative"
     - modality in ["mri", "pet"]
-    - extension in [".nii", ".nii.gz"]
     - entities contains "res"
     fields:
         Resolution: REQUIRED
+
 ImageDerivativeDenEntity:
     selectors:
     - dataset.DatasetType == "derivative"
     - modality in ["mri", "pet"]
-    - extension in [".nii", ".nii.gz"]
     - entities contains "den"
     fields:
         Density: REQUIRED
 
-       
