@@ -21,7 +21,7 @@ ASLLabelingDurationNiftiLength:
     - sidecar contains "LabelingDuration"
     - type(sidecar.LabelingDuration) == "array"
     checks:
-    - data.shape[3] == sidecar.LabelingDuration.size
+    - nifti_header.pixdim[4] == sidecar.LabelingDuration.size
 
 # 165
 ASLContextConsistent:
@@ -53,7 +53,7 @@ ASLFlipAngleNiftiLength:
     - sidecar contains "FlipAngle"
     - type(sidecar.FlipAngle) == "array"
     checks:
-    - data.shape[3] == sidecar.FlipAngle.size
+    - nifti_header.pixdim[4] == sidecar.FlipAngle.size
 
 # 172
 ASLFlipAngleASLContextLength:
@@ -74,7 +74,7 @@ ASLFlipAngleASLContextLength:
     - sidecar contains "FlipAngle"
     - type(sidecar.FlipAngle) == "array"
     checks:
-    - associated["aslcontext"].shape[0] == sidecar.FlipAngle.size
+    - associated["aslcontext"].n_rows == sidecar.FlipAngle.size
 
 # 173
 ASLPostLabelingDelayNiftiLength:
@@ -96,7 +96,7 @@ ASLPostLabelingDelayNiftiLength:
     - sidecar contains "PostLabelingDelay"
     - type(sidecar.PostLabelingDelay) == "array"
     checks:
-    - data.shape[3] == sidecar.PostLabelingDelay.size
+    - nifti_header.pixdim[4] == sidecar.PostLabelingDelay.size
 
 # 174
 ASLPostLabelingDelayASLContextLength:
@@ -119,7 +119,7 @@ ASLPostLabelingDelayASLContextLength:
     - sidecar contains "PostLabelingDelay"
     - type(sidecar.PostLabelingDelay) == "array"
     checks:
-    - associated["aslcontext"].shape[0] == sidecar.PostLabelingDelay.size
+    - associated["aslcontext"].n_rows == sidecar.PostLabelingDelay.size
 
 # 175
 ASLLabelingDurationASLContextLength:
@@ -144,7 +144,7 @@ ASLLabelingDurationASLContextLength:
     - sidecar contains "LabelingDuration"
     - type(sidecar.LabelingDuration) == "array"
     checks:
-    - associated["aslcontext"].shape[0] == sidecar.LabelingDuration.size
+    - associated["aslcontext"].n_rows == sidecar.LabelingDuration.size
 
 # 177
 ASLRepetitionTimePreparationASLContextLength:
@@ -164,7 +164,7 @@ ASLRepetitionTimePreparationASLContextLength:
     - sidecar contains "RepetitionTimePreparation"
     - type(sidecar.RepetitionTimePreparation) == "array"
     checks:
-    - associated["aslcontext"].shape[0] == sidecar.RepetitionTimePreparation.size
+    - associated["aslcontext"].n_rows == sidecar.RepetitionTimePreparation.size
 
 # 180
 ASLBackgroundSuppressionNumberPulses:
@@ -197,7 +197,7 @@ ASLTotalAcquiredVolumesASLContextLength:
     - associated contains "aslcontext"
     - sidecar contains "TotalAcquiredVolumes"
     checks:
-    - associated["aslcontext"].shape[0] == sidecar.TotalAcquiredVolumes
+    - associated["aslcontext"].n_rows == sidecar.TotalAcquiredVolumes
 
 # 196
 ASLEchoTimeASLContextLength:
@@ -213,7 +213,7 @@ ASLEchoTimeASLContextLength:
     - sidecar contains "EchoTime"
     - type(sidecar.EchoTime) == "array"
     checks:
-    - associated["aslcontext"].shape[0] == sidecar.EchoTime.size
+    - associated["aslcontext"].n_rows == sidecar.EchoTime.size
 
 # 198
 ASLM0TypeAbsentScan:
