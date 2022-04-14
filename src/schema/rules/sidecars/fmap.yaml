@@ -21,7 +21,7 @@ MRIFieldmapIntendedFor:
     fields:
         IntendedFor:
             level: OPTIONAL
-            level_addendum: |
+            description_addendum: |
                 This field is OPTIONAL, and in case the fieldmaps do not correspond
                 to any particular scans, it does not have to be filled.
 
@@ -72,7 +72,7 @@ MRIFieldmapDirectFieldMapping:
     fields:
         Units:
             level: REQUIRED
-            level_addendum: |
+            description_addendum: |
                 Fieldmaps must be in units of Hertz (`"Hz"`),
                 radians per second (`"rad/s"`), or Tesla (`"T"`).
 

@@ -6,27 +6,27 @@ PETScannerHardware:
     fields:
         Manufacturer:
             level: REQUIRED
-            addendum: Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
+            description_addendum: Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
         ManufacturersModelName:
             level: REQUIRED
-            addendum: Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
+            description_addendum: Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
         Units:
             level: REQUIRED
-            addendum: |
+            description_addendum: |
                 SI unit for radioactivity (Becquerel) should be used (for example, "Bq/mL").
                 Corresponds to DICOM Tag 0054, 1001 `Units`.
         InstitutionName:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0008, 0080 `InstitutionName`.
+            description_addendum: Corresponds to DICOM Tag 0008, 0080 `InstitutionName`.
         InstitutionAddress:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`.
+            description_addendum: Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`.
         InstitutionalDepartmentName:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.
+            description_addendum: Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.
         BodyPart:
             level: RECOMMENDED
-            addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
+            description_addendum: Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`.
 
 PETRadioChemistry:
     selectors:

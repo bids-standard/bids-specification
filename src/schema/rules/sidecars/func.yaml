@@ -18,7 +18,7 @@ MRIFuncRequired:
         VolumeTiming: REQUIRED
         TaskName:
             level: REQUIRED
-            level_addendum: |
+            description_addendum: |
                 A RECOMMENDED convention is to name resting state task using labels
                 beginning with `rest`.
 
@@ -102,7 +102,7 @@ MRIFuncTaskInformation:
     fields:
         Instructions:
             level: RECOMMENDED
-            addendum: |
+            description_addendum: |
                 This is especially important in context of resting state recordings and
                 distinguishing between eyes open and eyes closed paradigms.
         TaskDescription: RECOMMENDED

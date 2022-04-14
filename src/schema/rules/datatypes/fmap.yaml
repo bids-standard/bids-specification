@@ -12,6 +12,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - fmap
   entities:
     subject: required
     session: optional
@@ -26,6 +28,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - fmap
   entities:
     subject: required
     session: optional
@@ -41,6 +45,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - fmap
   entities:
     subject: required
     session: optional
@@ -59,6 +65,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - fmap
   entities:
     subject: required
     session: optional
@@ -81,6 +89,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - fmap
   entities:
     subject: required
     session: optional
@@ -100,6 +110,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - fmap
   entities:
     subject: required
     session: optional
@@ -120,6 +132,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - fmap
   entities:
     subject: required
     session: optional

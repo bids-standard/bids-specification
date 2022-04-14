@@ -466,7 +466,31 @@ trigger:
     continuous measurement of the scanner trigger signal
   type: number
 # type column in channels.tsv files
-type__channels:
+type__eeg_channels:
+  name: type
+  description: |
+    Type of channel; MUST use the channel types listed below.
+    Note that the type MUST be in upper-case.
+  type: string
+  enum:
+  - AUDIO
+  - EEG
+  - EOG
+  - ECG
+  - EMG
+  - EYEGAZE
+  - GSR
+  - HEOG
+  - MISC
+  - PPG
+  - PUPIL
+  - REF
+  - RESP
+  - SYSCLOCK
+  - TEMP
+  - TRIG
+  - VEOG
+type__meg_channels:
   name: type
   description: |
     Type of channel; MUST use the channel types listed below.
@@ -500,6 +524,33 @@ type__channels:
   - DAC
   - HLU
   - FITERR
+  - OTHER
+type__ieg_channels:
+  name: type
+  description: |
+    Type of channel; MUST use the channel types listed below.
+    Note that the type MUST be in upper-case.
+  type: string
+  enum:
+  - EEG
+  - ECOG
+  - SEEG
+  - DBS
+  - VEOG
+  - HEOG
+  - EOG
+  - ECG
+  - EMG
+  - TRIG
+  - AUDIO
+  - PD
+  - EYEGAZE
+  - PUPIL
+  - MISC
+  - SYSCLOCK
+  - ADC
+  - DAC
+  - REF
   - OTHER
 # type column for electrodes.tsv files
 type__electrodes:
