@@ -1,27 +1,28 @@
 ---
-EEGChannels:
+iEEGChannels:
     selectors:
-    - datatype == "eeg"
+    - datatype == "ieeg"
     - suffix == "channels"
     - extension == ".tsv"
-    initial_columns: [name__channels, type__eeg_channels, units]
+    initial_columns: [name__channels, type__ieeg_channels, units]
     columns:
         name__channels: REQUIRED
-        type__eeg_channels: REQUIRED
+        type__ieeg_channels: REQUIRED
         units: REQUIRED
-        description: OPTIONAL
-        sampling_frequency: OPTIONAL
+        low_cutoff: REQUIRED
+        high_cutoff: REQUIRED
         reference: OPTIONAL
-        low_cutoff: OPTIONAL
-        high_cutoff: OPTIONAL
+        group: OPTIONAL
+        sampling_frequency: OPTIONAL
+        description: OPTIONAL
         notch: OPTIONAL
         status: OPTIONAL
         status_descriptions: OPTIONAL
     additional_columns: allowed_if_defined
 
-EEGElectrodes:
+iEEGElectrodes:
     selectors:
-    - datatype == "eeg"
+    - datatype == "ieeg"
     - suffix == "electrodes"
     - extension == ".tsv"
     initial_columns: [name__electrodes, x, y, z]
@@ -30,7 +31,12 @@ EEGElectrodes:
         x: REQUIRED
         y: REQUIRED
         z: REQUIRED
-        type__electrodes: RECOMMENDED
+        size: REQUIRED
         material: RECOMMENDED
-        impedance: RECOMMENDED
+        manufacturer: RECOMMENDED
+        group: RECOMMENDED
+        hemisphere: RECOMMENDED
+        type__electrodes: OPTIONAL
+        impedance: OPTIONAL
+        dimension: OPTIONAL
     additional_columns: allowed_if_defined

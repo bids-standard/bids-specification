@@ -359,13 +359,12 @@ If collected, blood measurements of radioactivity are be stored in
 [Tabular files](../02-common-principles.md#tabular-files) and located in
 the `pet/` directory along with the corresponding PET data.
 
-The OPTIONAL `recording` entity is used to distinguish sampling methods.
+The REQUIRED `recording` entity is used to distinguish sampling methods.
 For example, if an autosampler is used to record continuous blood samples,
 and manual measurements are also taken,
 then the files may have recording labels `autosampler` and `manual`,
 respectively.
-If multiple recording methods are used on the same PET acquisition,
-the `recording` entity MUST be used to distinguish them.
+If the sampling method is unknown, then recording SHOULD be set as `manual`.
 All blood measurements should be reported according to a single time-scale
 in relation to time zero defined by the PET data (Figure 1).
 All definitions used below are in accordance with

@@ -1,0 +1,20 @@
+---
+MEGChannels:
+    selectors:
+    - datatype == "eeg"
+    - suffix == "channels"
+    - extension == ".tsv"
+    initial_columns: [name__channels, type__meg_channels, units]
+    columns:
+        name__channels: REQUIRED
+        type__meg_channels: REQUIRED
+        units: REQUIRED
+        description: OPTIONAL
+        sampling_frequency: OPTIONAL
+        low_cutoff: OPTIONAL
+        high_cutoff: OPTIONAL
+        notch: OPTIONAL
+        software_filters: OPTIONAL
+        status: OPTIONAL
+        status_descriptions: OPTIONAL
+    additional_columns: allowed_if_defined
