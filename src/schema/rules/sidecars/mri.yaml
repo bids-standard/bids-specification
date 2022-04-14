@@ -119,7 +119,7 @@ MRISpatialEncoding:
                 This parameter is REQUIRED if corresponding fieldmap data is present
                 or when using multiple runs with different phase encoding directions
                 (which can be later used for field inhomogeneity correction).
-            issue::
+            issue:
                 name: PHASE_ENCODING_DIRECTION_MUST_DEFINE
                 issue: |
                     You have to define 'PhaseEncodingDirection' for this file.
