@@ -1,0 +1,109 @@
+#
+# The context provides the namespaces available to rules.
+# These namespaces are used by selectors to define the scope of application
+# for a rule, as well as assertions, to determine whether the rule is satisfied.
+#
+# Not all components of the context will be defined; for example a NIfTI header
+# will only be defined when examining a NIfTI file.
+#
+# The dataset namespace is constructed once and is available when visiting all
+# files.
+#
+# The subject namespace is constructed once per subject, and is available when
+# visiting all files within that subject.
+#
+# All other (current) namespaces are defined on individual files.
+# Sidecar metadata and file associations are built according to the inheritance
+# principle.
+#
+---
+context:
+    dataset:
+        dataset_description:
+            type: object
+        files:
+            type: list
+        tree:
+            type: object
+        ignored:
+            type: set
+        subjects:
+            sub_dirs:
+                type: list
+                # source: sub-*/
+            participant_id:
+                type: list
+                # source: participants.tsv
+            phenotype:
+                type: list
+                # source: union of participant_ids in all phenotype files
+    subject:
+        sessions:
+            ses_dirs:
+                type: list
+                # source: ses-*/
+            session_id:
+                type: list
+                # source: sessions.tsv
+            phenotype:
+                type: list
+                # source: union of session_ids in all phenotype files
+
+    entities:
+        type: object
+    datatype:
+        type: str
+    modality:
+        type: str
+    path:
+        type: str
+    sidecar:
+        type: object
+    associations:
+        events:
+            type: path
+        aslcontext:
+            type: path
+    columns:
+        # TSV files generate an object that maps column headers to arrays of
+        # values in that column
+        type: object
+    nifti_header:
+        dim_info:
+            freq:
+                type: int
+            phase:
+                type: int
+            slice:
+                type: int
+        dim:
+            type: array
+            minItems: 8
+            maxItems: 8
+            items:
+            type: int
+        pixdim:
+            type: array
+            minItems: 8
+            maxItems: 8
+            items:
+            type: float
+        xyzt_units:
+            xyz:
+                type: string
+                enum:
+                - "unknown"
+                - "meter"
+                - "mm"
+                - "um"
+            t:
+                type: string
+                enum:
+                - "unknown"
+                - "sec"
+                - "msec"
+                - "usec"
+        qform_code:
+            type: int
+        sform_code:
+            type: int
