@@ -19,7 +19,7 @@ ASLLabelingDurationNiftiLength:
     selectors:
     - suffix == "asl"
     - sidecar contains "LabelingDuration"
-    - type(sidecar.LabelingDuration) == "seq"
+    - type(sidecar.LabelingDuration) == "array"
     checks:
     - nifti_header.pixdim[4] == sidecar.LabelingDuration.size
 
@@ -51,7 +51,7 @@ ASLFlipAngleNiftiLength:
     selectors:
     - suffix == "asl"
     - sidecar contains "FlipAngle"
-    - type(sidecar.FlipAngle) == "seq"
+    - type(sidecar.FlipAngle) == "array"
     checks:
     - nifti_header.pixdim[4] == sidecar.FlipAngle.size
 
@@ -72,7 +72,7 @@ ASLFlipAngleASLContextLength:
     - suffix == "asl"
     - associations contains "aslcontext"
     - sidecar contains "FlipAngle"
-    - type(sidecar.FlipAngle) == "seq"
+    - type(sidecar.FlipAngle) == "array"
     checks:
     - aslcontext.n_rows == sidecar.FlipAngle.size
 
@@ -94,7 +94,7 @@ ASLPostLabelingDelayNiftiLength:
     selectors:
     - suffix == "asl"
     - sidecar contains "PostLabelingDelay"
-    - type(sidecar.PostLabelingDelay) == "seq"
+    - type(sidecar.PostLabelingDelay) == "array"
     checks:
     - nifti_header.pixdim[4] == sidecar.PostLabelingDelay.size
 
@@ -117,7 +117,7 @@ ASLPostLabelingDelayASLContextLength:
     - suffix == "asl"
     - associations contains "aslcontext"
     - sidecar contains "PostLabelingDelay"
-    - type(sidecar.PostLabelingDelay) == "seq"
+    - type(sidecar.PostLabelingDelay) == "array"
     checks:
     - aslcontext.n_rows == sidecar.PostLabelingDelay.size
 
@@ -142,7 +142,7 @@ ASLLabelingDurationASLContextLength:
     - suffix == "asl"
     - associations contains "aslcontext"
     - sidecar contains "LabelingDuration"
-    - type(sidecar.LabelingDuration) == "seq"
+    - type(sidecar.LabelingDuration) == "array"
     checks:
     - aslcontext.n_rows == sidecar.LabelingDuration.size
 
@@ -162,7 +162,7 @@ ASLRepetitionTimePreparationASLContextLength:
     - suffix == "asl"
     - associations contains "aslcontext"
     - sidecar contains "RepetitionTimePreparation"
-    - type(sidecar.RepetitionTimePreparation) == "seq"
+    - type(sidecar.RepetitionTimePreparation) == "array"
     checks:
     - aslcontext.n_rows == sidecar.RepetitionTimePreparation.size
 
@@ -179,7 +179,7 @@ ASLBackgroundSuppressionNumberPulses:
     - suffix == "asl"
     - sidecar contains "BackgroundSuppressionNumberPulses"
     - sidecar contains "BackgroundSuppressionPulseTime"
-    - type(sidecar.BackgroundSuppressionPulseTime) == "seq"
+    - type(sidecar.BackgroundSuppressionPulseTime) == "array"
     checks:
     - sidecar.BackgroundSuppressionPulseTime.size == sidecar.BackgroundSuppressionNumberPulses
 
@@ -211,7 +211,7 @@ ASLEchoTimeASLContextLength:
     - suffix == "asl"
     - associations contains "aslcontext"
     - sidecar contains "EchoTime"
-    - type(sidecar.EchoTime) == "seq"
+    - type(sidecar.EchoTime) == "array"
     checks:
     - aslcontext.n_rows == sidecar.EchoTime.size
 
