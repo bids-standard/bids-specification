@@ -2,7 +2,7 @@
 SegmentationLookup:
   selectors:
   - dataset.DatasetType == "derivative"
-  - suffix in ["dseg" "probseg"]
+  - suffix in ["dseg", "probseg"]
   columns:
     index: REQUIRED
     name: REQUIRED
