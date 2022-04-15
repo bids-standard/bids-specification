@@ -91,9 +91,9 @@ ASLPostLabelingDelayNiftiLength:
             labeling pulse (for PASL) until the middle of the excitation pulse applied to the imaging slab
             (for 3D acquisition) or first slice (for 2D acquisition).
             Can be a number (for a single-PLD time series) or an array of numbers (for multi-PLD and Look-Locker).
-            In the latter case, the array of numbers contains the PLD of each volume (i.e. each 'control' and 'label')
-            in the acquisition order. Any image within the time-series without a PLD (e.g. an 'm0scan') is indicated by a
-            zero.
+            In the latter case, the array of numbers contains the PLD of each volume (that is, each 'control' and 'label')
+            in the acquisition order. Any image within the time-series without a PLD (for example, an 'm0scan') is
+            indicated by a zero.
             Based on DICOM Tags 0018,9079 Inversion Times and 0018,0082 InversionTime.
         level: error
     selectors:
@@ -114,9 +114,9 @@ ASLPostLabelingDelayASLContextLength:
             middle of the labeling pulse (for PASL) until the middle of the excitation pulse applied to
             the imaging slab (for 3D acquisition) or first slice (for 2D acquisition).
             Can be a number (for a single-PLD time series) or an array of numbers (for multi-PLD and Look-Locker).
-            In the latter case, the array of numbers contains the PLD of each volume (i.e. each 'control' and 'label')
+            In the latter case, the array of numbers contains the PLD of each volume (that is, each 'control' and 'label')
             in the acquisition order.
-            Any image within the time-series without a PLD (e.g. an 'm0scan') is indicated by a zero.
+            Any image within the time-series without a PLD (for example, an 'm0scan') is indicated by a zero.
             Based on DICOM Tags 0018,9079 Inversion Times and 0018,0082 InversionTime.
         level: error
     selectors:
