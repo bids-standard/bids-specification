@@ -45,7 +45,7 @@ dataset_description_with_genetics:
   - dataset.files contains "/genetic_info.json"
   fields:
     Genetics: REQUIRED
-    Genetics{}.Dataset: REQUIRED
+    Genetics{}.Dataset:
       level: REQUIRED
       issue:
         name: NO_GENETIC_DATABASE
