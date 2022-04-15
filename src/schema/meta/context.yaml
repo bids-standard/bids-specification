@@ -137,6 +137,47 @@ context:
                             type: array
                             items:
                                 type: string
+                m0scan:
+                    description: "M0 scan file"
+                    type: object
+                    properties:
+                        path:
+                            description: "Path to associated M0 scan file"
+                            type: string
+                magnitude:
+                    description: "Magnitude image file"
+                    type: object
+                    properties:
+                        path:
+                            description: "Path to associated magnitude file"
+                            type: string
+                magnitude1:
+                    description: "Magnitude1 image file"
+                    type: object
+                    properties:
+                        path:
+                            description: "Path to associated magnitude1 file"
+                            type: string
+                bval:
+                    description: "B value file"
+                    type: object
+                    properties:
+                        path:
+                            description: "Path to associated bval file"
+                            type: string
+                        n_cols:
+                            description: "Number of columns in bval file"
+                            type: integer
+                bvec:
+                    description: "B vector file"
+                    type: object
+                    properties:
+                        path:
+                            description: "Path to associated bvec file"
+                            type: string
+                        n_cols:
+                            description: "Number of columns in bvec file"
+                            type: integer
 
         # The following properties are populated if the current file is of an appropriate type
         columns:
