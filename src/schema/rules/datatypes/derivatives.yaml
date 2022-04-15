@@ -126,7 +126,7 @@ func_discrete_segmentation:
 
 dwi_discrete_segmentation:
   suffixes:
-  - desg
+  - dseg
   extensions:
   - .nii.gz
   entities:
