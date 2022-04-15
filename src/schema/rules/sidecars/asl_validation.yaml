@@ -21,7 +21,7 @@ ASLLabelingDurationNiftiLength:
     - sidecar contains "LabelingDuration"
     - type(sidecar.LabelingDuration) == "array"
     checks:
-    - nifti_header.pixdim[4] == sidecar.LabelingDuration.size
+    - nifti_header.dim[4] == len(sidecar.LabelingDuration)
 
 # 165
 ASLContextConsistent:
@@ -34,7 +34,7 @@ ASLContextConsistent:
     - suffix == "asl"
     - associations contains "aslcontext"
     checks:
-    - nifti_header.pixdim[4] == aslcontext.n_rows
+    - nifti_header.dim[4] == associations.aslcontext.n_rows
 
 # 168
 ASLFlipAngleNiftiLength:
@@ -53,7 +53,7 @@ ASLFlipAngleNiftiLength:
     - sidecar contains "FlipAngle"
     - type(sidecar.FlipAngle) == "array"
     checks:
-    - nifti_header.pixdim[4] == sidecar.FlipAngle.size
+    - nifti_header.dim[4] == len(sidecar.FlipAngle)
 
 # 172
 ASLFlipAngleASLContextLength:
