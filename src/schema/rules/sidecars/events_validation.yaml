@@ -1,0 +1,16 @@
+# Rules for events data that are not defined in tables.
+---
+
+# 25
+EventsMissing:
+    code: EVENTS_TSV_MISSING
+    description: |
+        Task scans should have a corresponding events.tsv file.
+        If this is a resting state scan you can ignore this warning or rename the task to include the word "rest".
+    level: warning  # could be an error with the proper selectors, I think
+    selectors:
+    - entities contains "task"
+    - entities.task != "rest"
+    - entities.task not contains "rest"  # Alternative for including the word "rest"
+    checks:
+    - associations contains "events"
