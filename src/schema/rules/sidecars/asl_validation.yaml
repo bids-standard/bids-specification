@@ -32,7 +32,7 @@ ASLContextConsistent:
     level: error
     selectors:
     - suffix == "asl"
-    - associated contains "aslcontext"
+    - associations contains "aslcontext"
     checks:
     - nifti_header.pixdim[4] == aslcontext.n_rows
 
@@ -70,7 +70,7 @@ ASLFlipAngleASLContextLength:
     level: error
     selectors:
     - suffix == "asl"
-    - associated contains "aslcontext"
+    - associations contains "aslcontext"
     - sidecar contains "FlipAngle"
     - type(sidecar.FlipAngle) == "seq"
     checks:
@@ -115,7 +115,7 @@ ASLPostLabelingDelayASLContextLength:
     level: error
     selectors:
     - suffix == "asl"
-    - associated contains "aslcontext"
+    - associations contains "aslcontext"
     - sidecar contains "PostLabelingDelay"
     - type(sidecar.PostLabelingDelay) == "seq"
     checks:
@@ -140,7 +140,7 @@ ASLLabelingDurationASLContextLength:
     level: error
     selectors:
     - suffix == "asl"
-    - associated contains "aslcontext"
+    - associations contains "aslcontext"
     - sidecar contains "LabelingDuration"
     - type(sidecar.LabelingDuration) == "seq"
     checks:
@@ -160,7 +160,7 @@ ASLRepetitionTimePreparationASLContextLength:
     level: error
     selectors:
     - suffix == "asl"
-    - associated contains "aslcontext"
+    - associations contains "aslcontext"
     - sidecar contains "RepetitionTimePreparation"
     - type(sidecar.RepetitionTimePreparation) == "seq"
     checks:
@@ -194,7 +194,7 @@ ASLTotalAcquiredVolumesASLContextLength:
     level: warning
     selectors:
     - suffix == "asl"
-    - associated contains "aslcontext"
+    - associations contains "aslcontext"
     - sidecar contains "TotalAcquiredVolumes"
     checks:
     - aslcontext.n_rows == sidecar.TotalAcquiredVolumes
@@ -209,7 +209,7 @@ ASLEchoTimeASLContextLength:
     level: warning
     selectors:
     - suffix == "asl"
-    - associated contains "aslcontext"
+    - associations contains "aslcontext"
     - sidecar contains "EchoTime"
     - type(sidecar.EchoTime) == "seq"
     checks:
@@ -225,8 +225,8 @@ ASLM0TypeAbsentScan:
     level: error
     selectors:
     - suffix == "asl"
-    - associated contains "aslcontext"
-    - associated contains "m0scan"
+    - associations contains "aslcontext"
+    - associations contains "m0scan"
     checks:
     - sidecar.M0Type != "absent"
 
@@ -239,7 +239,7 @@ ASLM0TypeAbsentASLContext:
     level: error
     selectors:
     - suffix == "asl"
-    - associated contains "aslcontext"
+    - associations contains "aslcontext"
     - aslcontext.volume_type contains "m0scan"
     checks:
     - sidecar.M0Type != "absent"
@@ -253,7 +253,7 @@ ASLM0TypeIncorrect:
     level: error
     selectors:
     - suffix == "asl"
-    - associated contains "aslcontext"
+    - associations contains "aslcontext"
     - sidecar.M0Type == "separate"
     checks:
-    - associated contains "m0scan"
+    - associations contains "m0scan"

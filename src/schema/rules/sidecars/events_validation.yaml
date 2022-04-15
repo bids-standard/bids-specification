@@ -13,4 +13,4 @@ EventsMissing:
     - entities.task != "rest"
     - entities.task not contains "rest"  # Alternative for including the word "rest"
     checks:
-    - associated contains "events"
+    - associations contains "events"

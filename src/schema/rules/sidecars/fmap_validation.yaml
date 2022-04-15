@@ -10,15 +10,15 @@ FmapFieldmapWithoutMagnitude:
     selectors:
     - suffix == "fieldmap"
     checks:
-    - associated contains "magnitude"
+    - associations contains "magnitude"
 
 # 92
 FmapPhasediffWithoutMagnitude:
     code: MISSING_MAGNITUDE1_FILE
     description: |
-        Each '_phasediff.nii[.gz]' file should be associated with a '_magnitude1.nii[.gz]' file.
+        Each '_phasediff.nii[.gz]' file should be associations with a '_magnitude1.nii[.gz]' file.
     level: warning
     selectors:
     - suffix == "phasediff"
     checks:
-    - associated contains "magnitude1"
+    - associations contains "magnitude1"

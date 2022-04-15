@@ -10,8 +10,8 @@ DWIVolumeCount:
     level: error
     selectors:
     - suffix == "dwi"
-    - associated contains "bval"
-    - associated contains "bvec"
+    - associations contains "bval"
+    - associations contains "bvec"
     checks:
     - bval.n_rows == nifti_header.pixdim[4]
     - bvec.n_rows == nifti_header.pixdim[4]
@@ -47,7 +47,7 @@ DWIMissingBvec:
     selectors:
     - suffix == "dwi"
     checks:
-    - associated contains "bvec"
+    - associations contains "bvec"
 
 # 33
 DWIMissingBval:
@@ -58,4 +58,4 @@ DWIMissingBval:
     selectors:
     - suffix == "dwi"
     checks:
-    - associated contains "bval"
+    - associations contains "bval"
