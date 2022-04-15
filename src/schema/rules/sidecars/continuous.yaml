@@ -11,16 +11,16 @@ Continuous:
     selectors:
     - suffix in ["physio", "stim"]
     fields:
-        SamplingFrequency: REQUIRED
-        StartTime: REQUIRED
-        Columns: REQUIRED
+        SamplingFrequency: required
+        StartTime: required
+        Columns: required
 
-# Other RECOMMENDED metadata for physiological data
+# Other recommended metadata for physiological data
 Physio:
     selectors:
     - suffix == "physio"
     fields:
-        Manufacturer: RECOMMENDED
-        ManufacturersModelName: RECOMMENDED
-        SoftwareVersions: RECOMMENDED
-        DeviceSerialNumber: RECOMMENDED
+        Manufacturer: recommended
+        ManufacturersModelName: recommended
+        SoftwareVersions: recommended
+        DeviceSerialNumber: recommended

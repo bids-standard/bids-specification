@@ -10,16 +10,16 @@
 # NOTE: I don't think this can be schemafied, since it depends on owner intent.
 MRIDiffusionMultipart:
     selectors:
-    - modality == "MRI"
+    - modality == "mri"
     - datatype == "dwi"
     fields:
-        MultipartID: REQUIRED
+        MultipartID: required
 
-# Other RECOMMENDED metadata
+# Other recommended metadata
 MRIDiffusionOtherMetadata:
     selectors:
-    - modality == "MRI"
+    - modality == "mri"
     - datatype == "dwi"
     fields:
-        PhaseEncodingDirection: RECOMMENDED
-        TotalReadoutTime: RECOMMENDED
+        PhaseEncodingDirection: recommended
+        TotalReadoutTime: recommended

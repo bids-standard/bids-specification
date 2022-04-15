@@ -12,7 +12,7 @@ MRIFieldmapB0FieldIdentifier:
     - modality == "MRI"
     - datatype == "fmap"
     fields:
-        B0FieldIdentifier: RECOMMENDED
+        B0FieldIdentifier: recommended
 
 MRIFieldmapIntendedFor:
     selectors:
@@ -20,9 +20,9 @@ MRIFieldmapIntendedFor:
     - datatype == "fmap"
     fields:
         IntendedFor:
-            level: OPTIONAL
+            level: optional
             description_addendum: |
-                This field is OPTIONAL, and in case the fieldmaps do not correspond
+                This field is optional, and in case the fieldmaps do not correspond
                 to any particular scans, it does not have to be filled.
 
 # Case 1: Phase-difference map and at least one magnitude image
@@ -32,8 +32,8 @@ MRIFieldmapPhaseDifferencePhasediff:
     - datatype == "fmap"
     - suffix == "phasediff"
     fields:
-        EchoTime1: REQUIRED
-        EchoTime2: REQUIRED
+        EchoTime1: required
+        EchoTime2: required
 
 MRIFieldmapPhaseDifferenceMagnitude1:
     selectors:
@@ -41,7 +41,7 @@ MRIFieldmapPhaseDifferenceMagnitude1:
     - datatype == "fmap"
     - suffix == "magnitude1"
     fields:
-        EchoTime1: REQUIRED
+        EchoTime1: required
 
 MRIFieldmapPhaseDifferenceMagnitude2:
     selectors:
@@ -49,7 +49,7 @@ MRIFieldmapPhaseDifferenceMagnitude2:
     - datatype == "fmap"
     - suffix == "magnitude2"
     fields:
-        EchoTime2: REQUIRED
+        EchoTime2: required
 
 # Case 2: Two phase maps and two magnitude images
 # NOTE: Need to check for presence of related files.
@@ -61,7 +61,7 @@ MRIFieldmapTwoPhase:
     - datatype == "fmap"
     - suffix in ["phase1", "phase2", "magnitude1", "magnitude2"]
     fields:
-        EchoTime__fmap: REQUIRED
+        EchoTime__fmap: required
 
 # Case 3: Direct field mapping
 MRIFieldmapDirectFieldMapping:
@@ -71,7 +71,7 @@ MRIFieldmapDirectFieldMapping:
     - suffix in ["phase", "fieldmap"]
     fields:
         Units:
-            level: REQUIRED
+            level: required
             description_addendum: |
                 Fieldmaps must be in units of Hertz (`"Hz"`),
                 radians per second (`"rad/s"`), or Tesla (`"T"`).
@@ -83,5 +83,5 @@ MRIFieldmapPepolar:
     - datatype == "fmap"
     - suffix == "epi"
     fields:
-        PhaseEncodingDirection: REQUIRED
-        TotalReadoutTime: REQUIRED
+        PhaseEncodingDirection: required
+        TotalReadoutTime: required
