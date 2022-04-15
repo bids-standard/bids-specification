@@ -13,58 +13,58 @@ EntitiesTaskMetadata:
     selectors:
     - entities contains "task"
     fields:
-        TaskName: RECOMMENDED
+        TaskName: recommended
 
 EntitiesCeMetadata:
     selectors:
     - entities contains "ce"
     fields:
-        ContrastBolusIngredient: OPTIONAL
+        ContrastBolusIngredient: optional
 
 EntitiesTrcMetadata:
     selectors:
     - entities contains "trc"
     fields:
-        TracerName: REQUIRED
+        TracerName: required
 
 EntitiesStainMetadata:
     selectors:
     - entities contains "stain"
     fields:
-        SampleStaining: RECOMMENDED
-        SamplePrimaryAntibodies: RECOMMENDED
-        SampleSecondaryAntibodies: RECOMMENDED
+        SampleStaining: recommended
+        SamplePrimaryAntibodies: recommended
+        SampleSecondaryAntibodies: recommended
 
 EntitiesEchoMetadata:
     selectors:
     - entities contains "echo"
     fields:
-        EchoTime: REQUIRED
+        EchoTime: required
 
 EntitiesFlipMetadata:
     selectors:
     - entities contains "flip"
     fields:
-        FlipAngle: REQUIRED
+        FlipAngle: required
 
 EntitiesInvMetadata:
     selectors:
     - entities contains "inv"
     fields:
-        InversionTime: REQUIRED
+        InversionTime: required
 
 EntitiesMTMetadata:
     selectors:
     - entities contains "mt"
     fields:
-        MTState: REQUIRED
+        MTState: required
 
 EntitiesPartMetadata:
     selectors:
     - entities.part == "phase"
     fields:
         Units:
-            level: REQUIRED
+            level: required
             rules:
             - value in ["rad", "arbitrary"]
 
@@ -72,10 +72,10 @@ EntitiesResMetadata:
     selectors:
     - entities contains "res"
     fields:
-        Resolution: REQUIRED
+        Resolution: required
 
 EntitiesDenMetadata:
     selectors:
     - entities contains "den"
     fields:
-        Density: REQUIRED
+        Density: required

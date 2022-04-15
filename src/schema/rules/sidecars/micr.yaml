@@ -9,71 +9,71 @@
 # Device Hardware
 MicroscopyDeviceHardware:
     selectors:
-    - modality == "MICR"
+    - modality == "micr"
     - datatype == "micr"
     fields:
-        Manufacturer: RECOMMENDED
-        ManufacturersModelName: RECOMMENDED
-        DeviceSerialNumber: RECOMMENDED
-        StationName: RECOMMENDED
-        SoftwareVersions: RECOMMENDED
-        InstitutionName: RECOMMENDED
-        InstitutionAddress: RECOMMENDED
-        InstitutionalDepartmentName: RECOMMENDED
+        Manufacturer: recommended
+        ManufacturersModelName: recommended
+        DeviceSerialNumber: recommended
+        StationName: recommended
+        SoftwareVersions: recommended
+        InstitutionName: recommended
+        InstitutionAddress: recommended
+        InstitutionalDepartmentName: recommended
 
 # Image Acquisition
 MicroscopyImageAcquisition:
     selectors:
-    - modality == "MICR"
+    - modality == "micr"
     - datatype == "micr"
     fields:
-        PixelSize: REQUIRED
-        PixelSizeUnits: REQUIRED
-        Immersion: OPTIONAL
-        NumericalAperture: OPTIONAL
-        Magnification: OPTIONAL
-        ImageAcquisitionProtocol: OPTIONAL
-        OtherAcquisitionParameters: OPTIONAL
+        PixelSize: required
+        PixelSizeUnits: required
+        Immersion: optional
+        NumericalAperture: optional
+        Magnification: optional
+        ImageAcquisitionProtocol: optional
+        OtherAcquisitionParameters: optional
 
 # Sample
 MicroscopySample:
     selectors:
-    - modality == "MICR"
+    - modality == "micr"
     - datatype == "micr"
     fields:
         BodyPart:
-            level: RECOMMENDED
+            level: recommended
             description_addendum: |
                 From [DICOM Body Part Examined](http://dicom.nema.org/medical/dicom/current/
                 output/chtml/part16/chapter_L.html#chapter_L)
                 (for example `"BRAIN"`).
-        BodyPartDetails: RECOMMENDED
-        BodyPartDetailsOntology: OPTIONAL
-        SampleEnvironment: RECOMMENDED
-        SampleEmbedding: OPTIONAL
-        SampleFixation: OPTIONAL
-        SampleStaining: RECOMMENDED
-        SamplePrimaryAntibody: RECOMMENDED
-        SampleSecondaryAntibody: RECOMMENDED
-        SliceThickness: OPTIONAL
-        TissueDeformationScaling: OPTIONAL
-        SampleExtractionProtocol: OPTIONAL
-        SampleExtractionInstitution: OPTIONAL
+        BodyPartDetails: recommended
+        BodyPartDetailsOntology: optional
+        SampleEnvironment: recommended
+        SampleEmbedding: optional
+        SampleFixation: optional
+        SampleStaining: recommended
+        SamplePrimaryAntibody: recommended
+        SampleSecondaryAntibody: recommended
+        SliceThickness: optional
+        TissueDeformationScaling: optional
+        SampleExtractionProtocol: optional
+        SampleExtractionInstitution: optional
 
 # Chunk Transformations
 MicroscopyChunkTransformations:
     selectors:
-    - modality == "MICR"
+    - modality == "micr"
     - datatype == "micr"
     - entities contains "chunk"
     fields:
-        ChunkTransformationMatrix: RECOMMENDED
+        ChunkTransformationMatrix: recommended
 
 MicroscopyChunkTransformationsMatrixAxis:
     selectors:
-    - modality == "MICR"
+    - modality == "micr"
     - datatype == "micr"
     - entities contains "chunk"
     - sidecar contains "ChunkTransformationMatrix"
     fields:
-        ChunkTransformationMatrixAxis: REQUIRED
+        ChunkTransformationMatrixAxis: required

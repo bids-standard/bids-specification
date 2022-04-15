@@ -3,10 +3,11 @@
 
 # 91
 FmapFieldmapWithoutMagnitude:
-    code: _FIELDMAP_WITHOUT_MAGNITUDE_FILE
-    description: |
-        '_fieldmap.nii[.gz]' file does not have accompanying '_magnitude.nii[.gz]' file.
-    level: error
+    issue:
+        code: _FIELDMAP_WITHOUT_MAGNITUDE_FILE
+        message: |
+            '_fieldmap.nii[.gz]' file does not have accompanying '_magnitude.nii[.gz]' file.
+        level: error
     selectors:
     - suffix == "fieldmap"
     checks:
@@ -14,10 +15,11 @@ FmapFieldmapWithoutMagnitude:
 
 # 92
 FmapPhasediffWithoutMagnitude:
-    code: MISSING_MAGNITUDE1_FILE
-    description: |
-        Each '_phasediff.nii[.gz]' file should be associations with a '_magnitude1.nii[.gz]' file.
-    level: warning
+    issue:
+        code: MISSING_MAGNITUDE1_FILE
+        message: |
+            Each '_phasediff.nii[.gz]' file should be associations with a '_magnitude1.nii[.gz]' file.
+        level: warning
     selectors:
     - suffix == "phasediff"
     checks:

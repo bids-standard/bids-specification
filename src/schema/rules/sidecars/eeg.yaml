@@ -14,32 +14,32 @@ EEGGeneric:
     - suffix == "eeg"
     fields:
         TaskName:
-            level: REQUIRED
+            level: required
             description_addendum: |
-                A RECOMMENDED convention is to name resting state task using labels
+                A recommended convention is to name resting state task using labels
                 beginning with `rest`.
 
-EEGRecommended:
+EEGrecommended:
     selectors:
     - modality == "eeg"
     - datatype == "eeg"
     - suffix == "eeg"
     fields:
-        InstitutionName: RECOMMENDED
-        InstitutionAddress: RECOMMENDED
-        InstitutionalDepartmentName: RECOMMENDED
-        Manufacturer: RECOMMENDED
-        ManufacturersModelName: RECOMMENDED
-        SoftwareVersions: RECOMMENDED
-        TaskDescription: RECOMMENDED
+        InstitutionName: recommended
+        InstitutionAddress: recommended
+        InstitutionalDepartmentName: recommended
+        Manufacturer: recommended
+        ManufacturersModelName: recommended
+        SoftwareVersions: recommended
+        TaskDescription: recommended
         Instructions:
-            level: RECOMMENDED
+            level: recommended
             description_addendum: |
                 This is especially important in context of resting state recordings and
                 distinguishing between eyes open and eyes closed paradigms.
-        CogAtlasID: RECOMMENDED
-        CogPOID: RECOMMENDED
-        DeviceSerialNumber: RECOMMENDED
+        CogAtlasID: recommended
+        CogPOID: recommended
+        DeviceSerialNumber: recommended
 
 EEGRequired:
     selectors:
@@ -47,37 +47,37 @@ EEGRequired:
     - datatype == "eeg"
     - suffix == "eeg"
     fields:
-        EEGReference: REQUIRED
+        EEGReference: required
         SamplingFrequency:
-            level: REQUIRED
+            level: required
             description_addendum: |
                 The sampling frequency of data channels that deviate from the main sampling
                 frequency SHOULD be specified in the `channels.tsv` file.
-        PowerLineFrequency: REQUIRED
-        SoftwareFilters: REQUIRED
+        PowerLineFrequency: required
+        SoftwareFilters: required
 
-EEGMoreRecommended:
+EEGMorerecommended:
     selectors:
     - modality == "eeg"
     - datatype == "eeg"
     - suffix == "eeg"
     fields:
-        CapManufacturer: RECOMMENDED
-        CapManufacturersModelName: RECOMMENDED
-        EEGChannelCount: RECOMMENDED
-        ECGChannelCount: RECOMMENDED
-        EMGChannelCount: RECOMMENDED
-        EOGChannelCount: RECOMMENDED
-        MiscChannelCount: RECOMMENDED
-        TriggerChannelCount: RECOMMENDED
-        RecordingDuration: RECOMMENDED
-        RecordingType: RECOMMENDED
-        EpochLength: RECOMMENDED
-        EEGGround: RECOMMENDED
-        HeadCircumference: RECOMMENDED
-        EEGPlacementScheme: RECOMMENDED
-        HardwareFilters: RECOMMENDED
-        SubjectArtefactDescription: RECOMMENDED
+        CapManufacturer: recommended
+        CapManufacturersModelName: recommended
+        EEGChannelCount: recommended
+        ECGChannelCount: recommended
+        EMGChannelCount: recommended
+        EOGChannelCount: recommended
+        MiscChannelCount: recommended
+        TriggerChannelCount: recommended
+        RecordingDuration: recommended
+        RecordingType: recommended
+        EpochLength: recommended
+        EEGGround: recommended
+        HeadCircumference: recommended
+        EEGPlacementScheme: recommended
+        HardwareFilters: recommended
+        SubjectArtefactDescription: recommended
 
 # General fields
 EEGCoordsystemGeneral:
@@ -87,7 +87,7 @@ EEGCoordsystemGeneral:
     - suffix == "coordsystem"
     fields:
         IntendedFor:
-            level: OPTIONAL
+            level: optional
             description_addendum: |
                 This identifies the MRI or CT scan associated with the electrodes,
                 landmarks, and fiducials.
@@ -99,20 +99,21 @@ EEGCoordsystemPositions:
     - datatype == "eeg"
     - suffix == "coordsystem"
     fields:
-        EEGCoordinateSystem: REQUIRED
-        EEGCoordinateUnits: REQUIRED
+        EEGCoordinateSystem: required
+        EEGCoordinateUnits: required
         EEGCoordinateSystemDescription:
-            level: RECOMMENDED
-            level_addendum: REQUIRED if `EEGCoordinateSystem` is `"Other"`
+            level: recommended
+            level_addendum: required if `EEGCoordinateSystem` is `"Other"`
 
 EEGCoordsystemOther:
     selectors:
     - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
+    - sidecar contains "EEGCoordinateSystem"
     - sidecar.EEGCoordinateSystem == "Other"
     fields:
-        EEGCoordinateSystemDescription: REQUIRED
+        EEGCoordinateSystemDescription: required
 
 # Fields relating to the position of fiducials measured during an EEG session/run
 EEGCoordsystemFiducials:
@@ -121,13 +122,13 @@ EEGCoordsystemFiducials:
     - datatype == "eeg"
     - suffix == "coordsystem"
     fields:
-        FiducialsDescription: OPTIONAL
-        FiducialsCoordinates: RECOMMENDED
-        FiducialsCoordinateSystem: RECOMMENDED
-        FiducialsCoordinateUnits: RECOMMENDED
+        FiducialsDescription: optional
+        FiducialsCoordinates: recommended
+        FiducialsCoordinateSystem: recommended
+        FiducialsCoordinateUnits: recommended
         FiducialsCoordinateSystemDescription:
-            level: RECOMMENDED
-            level_addendum: REQUIRED if `FiducialsCoordinateSystem` is `"Other"`
+            level: recommended
+            level_addendum: required if `FiducialsCoordinateSystem` is `"Other"`
 
 EEGCoordsystemOtherFiducialCoordinateSystem:
     selectors:
@@ -136,7 +137,7 @@ EEGCoordsystemOtherFiducialCoordinateSystem:
     - suffix == "coordsystem"
     - FiducialsCoordinateSystem == "Other"
     fields:
-        FiducialsCoordinateSystemDescription: REQUIRED
+        FiducialsCoordinateSystemDescription: required
 
 # Fields relating to the position of anatomical landmark measured during an EEG session/run
 EEGCoordsystemLandmark:
@@ -145,20 +146,21 @@ EEGCoordsystemLandmark:
     - datatype == "eeg"
     - suffix == "coordsystem"
     fields:
-        AnatomicalLandmarkCoordinates: RECOMMENDED
+        AnatomicalLandmarkCoordinates: recommended
         AnatomicalLandmarkCoordinateSystem:
-            level: RECOMMENDED
+            level: recommended
             description_addendum: Preferably the same as the `EEGCoordinateSystem`.
-        AnatomicalLandmarkCoordinateUnits: RECOMMENDED
+        AnatomicalLandmarkCoordinateUnits: recommended
         AnatomicalLandmarkCoordinateSystemDescription:
-            level: RECOMMENDED
-            level_addendum: REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `"Other"`
+            level: recommended
+            level_addendum: required if `AnatomicalLandmarkCoordinateSystem` is `"Other"`
 
 EEGCoordsystemAnatomicalLandmarkCoordinateSystemDescription:
     selectors:
     - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
+    - sidecar contains "AnatomicalLandmarkCoordinateSystem"
     - sidecar.AnatomicalLandmarkCoordinateSystem == "Other"
     fields:
-        AnatomicalLandmarkCoordinateSystemDescription: REQUIRED
+        AnatomicalLandmarkCoordinateSystemDescription: required

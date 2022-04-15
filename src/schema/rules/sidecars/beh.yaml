@@ -11,11 +11,11 @@ BEHTabularData:
     selectors:
     - suffix in ["beh", "events"]
     fields:
-        TaskName: RECOMMENDED
-        Instructions: RECOMMENDED
-        TaskDescription: RECOMMENDED
-        CogAtlasID: RECOMMENDED
-        CogPOID: RECOMMENDED
-        InstitutionName: RECOMMENDED
-        InstitutionAddress: RECOMMENDED
-        InstitutionalDepartmentName: RECOMMENDED
+        TaskName: recommended
+        Instructions: recommended
+        TaskDescription: recommended
+        CogAtlasID: recommended
+        CogPOID: recommended
+        InstitutionName: recommended
+        InstitutionAddress: recommended
+        InstitutionalDepartmentName: recommended

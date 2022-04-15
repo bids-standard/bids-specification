@@ -14,34 +14,34 @@ iEEGGeneric:
     - suffix == "ieeg"
     fields:
         TaskName:
-            level: REQUIRED
+            level: required
             description_addendum: |
-                A RECOMMENDED convention is to name resting state task using labels
+                A recommended convention is to name resting state task using labels
                 beginning with `rest`.
 
-iEEGRecommended:
+iEEGrecommended:
     selectors:
     - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "ieeg"
     fields:
-        InstitutionName: RECOMMENDED
-        InstitutionAddress: RECOMMENDED
-        InstitutionalDepartmentName: RECOMMENDED
+        InstitutionName: recommended
+        InstitutionAddress: recommended
+        InstitutionalDepartmentName: recommended
         Manufacturer:
-            level: RECOMMENDED
+            level: recommended
             description_addendum: For example, `"TDT"`, `"Blackrock"`.
-        ManufacturersModelName: RECOMMENDED
-        SoftwareVersions: RECOMMENDED
-        TaskDescription: RECOMMENDED
+        ManufacturersModelName: recommended
+        SoftwareVersions: recommended
+        TaskDescription: recommended
         Instructions:
-            level: RECOMMENDED
+            level: recommended
             description_addendum: |
                 This is especially important in context of resting state recordings and
                 distinguishing between eyes open and eyes closed paradigms.
-        CogAtlasID: RECOMMENDED
-        CogPOID: RECOMMENDED
-        DeviceSerialNumber: RECOMMENDED
+        CogAtlasID: recommended
+        CogPOID: recommended
+        DeviceSerialNumber: recommended
 
 # Specific iEEG fields MUST be present
 iEEGRequired:
@@ -50,14 +50,14 @@ iEEGRequired:
     - datatype == "ieeg"
     - suffix == "ieeg"
     fields:
-        iEEGReference: REQUIRED
+        iEEGReference: required
         SamplingFrequency:
-            level: REQUIRED
+            level: required
             description_addendum: |
                 The sampling frequency of data channels that deviate from the main sampling
                 frequency SHOULD be specified in the `channels.tsv` file.
-        PowerLineFrequency: REQUIRED
-        SoftwareFilters": REQUIRED
+        PowerLineFrequency: required
+        SoftwareFilters": required
 
 # Specific iEEG fields SHOULD be present
 iEEGMoreRecommended:
@@ -66,25 +66,25 @@ iEEGMoreRecommended:
     - datatype == "ieeg"
     - suffix == "ieeg"
     fields:
-        DCOffsetCorrection: DEPRECATED
-        HardwareFilters: RECOMMENDED
-        ElectrodeManufacturer: RECOMMENDED
-        ElectrodeManufacturersModelName: RECOMMENDED
-        ECOGChannelCount: RECOMMENDED
-        SEEGChannelCount: RECOMMENDED
-        EEGChannelCount: RECOMMENDED
-        EOGChannelCount: RECOMMENDED
-        ECGChannelCount: RECOMMENDED
-        EMGChannelCount: RECOMMENDED
-        MiscChannelCount: RECOMMENDED
-        TriggerChannelCount: RECOMMENDED
-        RecordingDuration: RECOMMENDED
-        RecordingType: RECOMMENDED
-        EpochLength: RECOMMENDED
-        iEEGGround: RECOMMENDED
-        iEEGPlacementScheme: RECOMMENDED
-        iEEGElectrodeGroups: RECOMMENDED
-        SubjectArtefactDescription: RECOMMENDED
+        DCOffsetCorrection: deprecated
+        HardwareFilters: recommended
+        ElectrodeManufacturer: recommended
+        ElectrodeManufacturersModelName: recommended
+        ECOGChannelCount: recommended
+        SEEGChannelCount: recommended
+        EEGChannelCount: recommended
+        EOGChannelCount: recommended
+        ECGChannelCount: recommended
+        EMGChannelCount: recommended
+        MiscChannelCount: recommended
+        TriggerChannelCount: recommended
+        RecordingDuration: recommended
+        RecordingType: recommended
+        EpochLength: recommended
+        iEEGGround: recommended
+        iEEGPlacementScheme: recommended
+        iEEGElectrodeGroups: recommended
+        SubjectArtefactDescription: recommended
 
 # Specific iEEG fields MAY be present
 iEEGOptional:
@@ -93,8 +93,8 @@ iEEGOptional:
     - datatype == "ieeg"
     - suffix == "ieeg"
     fields:
-        ElectricalStimulation: OPTIONAL
-        ElectricalStimulationParameters: OPTIONAL
+        ElectricalStimulation: optional
+        ElectricalStimulationParameters: optional
 
 # General fields
 iEEGCoordsystemGeneral:
@@ -104,7 +104,7 @@ iEEGCoordsystemGeneral:
     - suffix == "coordsystem"
     fields:
         IntendedFor:
-            level: OPTIONAL
+            level: optional
             description_addendum: |
                 If only a surface reconstruction is available, this should point to
                 the surface reconstruction file.
@@ -125,19 +125,20 @@ iEEGCoordsystemPositions:
     - datatype == "ieeg"
     - suffix == "coordsystem"
     fields:
-        iEEGCoordinateSystem: REQUIRED
-        iEEGCoordinateUnits: REQUIRED
+        iEEGCoordinateSystem: required
+        iEEGCoordinateUnits: required
         iEEGCoordinateSystemDescription:
-            level: RECOMMENDED
-            level_addendum: REQUIRED if `iEEGCoordinateSystem` is `"Other"`
-        iEEGCoordinateProcessingDescription: RECOMMENDED
-        iEEGCoordinateProcessingReference: RECOMMENDED
+            level: recommended
+            level_addendum: required if `iEEGCoordinateSystem` is `"Other"`
+        iEEGCoordinateProcessingDescription: recommended
+        iEEGCoordinateProcessingReference: recommended
 
 iEEGCoordsystemOther:
     selectors:
     - modality == "ieeg"
     - datatype == "ieeg"
     - suffix == "coordsystem"
+    - sidecar contains "iEEGCoordinateSystem"
     - sidecar.iEEGCoordinateSystem == "Other"
     fields:
-        iEEGCoordinateSystemDescription: REQUIRED
+        iEEGCoordinateSystemDescription: required
