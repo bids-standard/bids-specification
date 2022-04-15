@@ -37,7 +37,7 @@ MaskDerivatives:
     fields:
         RawSources: REQUIRED
         Type: RECOMMENDED
-        Atlas: OPTIONAL 
+        Atlas: OPTIONAL
         Resolution: OPTIONAL
         Density: OPTIONAL
 
@@ -53,9 +53,9 @@ SegmentationCommon:
     selectors:
     - dataset.DatasetType == "derivative"
     - suffix in ["dseg", "probseg"]
-    fields: 
+    fields:
         Type: RECOMMENDED
-        Atlas: OPTIONAL 
+        Atlas: OPTIONAL
         Resolution: OPTIONAL
         Density: OPTIONAL
 
@@ -83,4 +83,3 @@ ImageDerivativeDenEntity:
     - entities contains "den"
     fields:
         Density: REQUIRED
-
