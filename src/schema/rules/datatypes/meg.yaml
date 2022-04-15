@@ -135,6 +135,8 @@ photo:
   - photo
   extensions:
   - .jpg
+  - .png
+  - .tif
   datatypes:
   - meg
   entities:

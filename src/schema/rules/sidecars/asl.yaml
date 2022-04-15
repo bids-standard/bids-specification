@@ -36,8 +36,8 @@ MRIASLTextOnlySliceTiming:
             issue:
                 name: SLICE_TIMING_NOT_DEFINED_2D_ASL
                 message: |
-                    "You should define SliceTiming', in case 'SequenceType' is set to a
-                    2D sequence. 'SliceTiming' is the time at which each slice was
+                    You should define `SliceTiming` for this file, because `SequenceType` is sets
+                    to a 2D sequence. `SliceTiming` is the time at which each slice was
                     acquired within each volume (frame) of the acquisition. Slice timing
                     is not slice order -- rather, it is a list of times containing the
                     time (in seconds) of each slice acquisition in relation to the beginning
@@ -48,7 +48,7 @@ MRIASLTextOnlySliceTiming:
                     `SliceEncodingDirection` is negative, the entries in `SliceTiming` are
                     defined in reverse order with respect to the slice axis, such that the
                     final entry in the `SliceTiming` list is the time of acquisition of slice 0.
-                    Without this parameter slice time correction will not be possible."
+                    Without this parameter slice time correction will not be possible.
 
 MRIASLTextOnlyFlipAngle:
     selectors:
@@ -62,8 +62,8 @@ MRIASLTextOnlyFlipAngle:
             issue:
                 name: LOOK_LOCKER_FLIP_ANGLE_MISSING
                 message: |
-                    "You should define 'FlipAngle' for this file, in case of a
-                    LookLocker acquisition. 'FlipAngle' is the flip angle (FA)
+                    You should define `FlipAngle` for this file, in case of a
+                    LookLocker acquisition. `FlipAngle` is the flip angle (FA)
                     for the acquisition, specified in degrees. Corresponds to
                     DICOM Tag 0018, 1314 `Flip Angle`. The data type number may
                     apply to files from any MRI modality concerned with a single
@@ -72,7 +72,7 @@ MRIASLTextOnlyFlipAngle:
                     The data type array provides a value for each volume in a 4D
                     dataset and should only be used when the volume timing is critical
                     for interpretation of the data, such as in ASL or variable flip
-                    angle fMRI sequences."
+                    angle fMRI sequences.
 
 # Common metadata fields applicable to both (P)CASL and PASL
 MRIASLCommonMetadataFields:
@@ -118,9 +118,10 @@ MRIASLCommonMetadataFieldsM0Type:
             issue:
                 name: M0ESTIMATE_NOT_DEFINED
                 message: |
-                    You must define 'M0Estimate' for this file, in case 'M0Type' is defined as 'Estimate'.
-                    'M0Estimate' is a single numerical whole-brain M0 value (referring to the M0 of blood),
-                    only if obtained externally (for example retrieved from CSF in a separate measurement).
+                    You must define `M0Estimate` for this file, because `M0Type` is set to
+                    'Estimate'. `M0Estimate` is a single numerical whole-brain M0 value
+                    (referring to the M0 of blood), only if obtained externally (for example
+                    retrieved from CSF in a separate measurement).
 
 MRIASLCommonMetadataFieldsBackgroundSuppression:
     selectors:
@@ -218,10 +219,11 @@ MRIASLPASLSpecificBolusCutOffFlag:
             issue:
                 name: PASL_BOLUS_CUT_OFF_TECHINIQUE
                 message: |
-                    It is required to define 'BolusCutOffTechnique' for this file,
-                    when 'BolusCutOffFlag' is set to true. 'BolusCutOffTechnique',
-                    is the name of the technique used (e.g. Q2TIPS, QUIPSS, QUIPSSII).
-                    Corresponds to DICOM Tag 0018,925E ASL Bolus Cut-off Technique.
+                    It is required to define `BolusCutOffTechnique` for this file,
+                    when `BolusCutOffFlag` is set to `true`. `BolusCutOffTechnique`,
+                    is the name of the technique used
+                    (for example, Q2TIPS, QUIPSS or QUIPSSII).
+                    Corresponds to DICOM Tag 0018,925E `ASL Bolus Cut-off Technique`.
 
 # m0scan metadata fields
 MRIASLM0ScanTextOnly:
@@ -248,9 +250,9 @@ MRIASLM0ScanTextOnlyFlipAngle:
             issue:
                 name: LOOK_LOCKER_FLIP_ANGLE_MISSING
                 message: |
-                    You should define 'FlipAngle' for this file, in case of a LookLocker
-                    acquisition. 'FlipAngle' is the flip angle (FA) for the acquisition,
-                    specified in degrees. Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.
+                    You should define `FlipAngle` for this file, in case of a LookLocker
+                    acquisition. `FlipAngle` is the flip angle (FA) for the acquisition,
+                    specified in degrees. Corresponds to DICOM Tag 0018, 1314 `Flip Angle`.
                     The data type number may apply to files from any MRI modality concerned
                     with a single value for this field, or to the files in a file collection
                     where the value of this field is iterated using the flip entity. The

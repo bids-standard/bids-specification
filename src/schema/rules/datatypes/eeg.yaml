@@ -82,6 +82,8 @@ photo:
   - photo
   extensions:
   - .jpg
+  - .png
+  - .tif
   datatypes:
   - eeg
   entities:
