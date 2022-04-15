@@ -555,6 +555,38 @@ Note that because we do not have requirement levels, severity must be explicitly
 Selectors and checks use the same expression syntax. The difference is that selectors determine
 whether the rule is applied while checks determine whether it passes.
 
+### `tabular_data/*.yaml`
+
+Tabular data rules are essentially identical to sidecar rules, except that in place of fields
+there are columns. Additional properties include `initial_columns` that shows a required
+set (and order) of columns that should be the first in a table. The `additional_columns`
+property can take values of `allowed`, `allowed_if_defined` and `not_allowed`.
+
+```YAML
+EEGChannels:
+  selectors:
+  - datatype == "eeg"
+  - suffix == "channels"
+  - extension == ".tsv"
+  initial_columns:
+  - name__channels
+  - type__eeg_channels
+  - units
+  columns:
+    name__channels: required
+    type__eeg_channels: required
+    units: required
+    description: optional
+    sampling_frequency: optional
+    reference: optional
+    low_cutoff: optional
+    high_cutoff: optional
+    notch: optional
+    status: optional
+    status_descriptions: optional
+  additional_columns: allowed_if_defined
+```
+
 ### `entities.yaml`
 
 This file contains a list of entities in the order in which they must appear in filenames.
