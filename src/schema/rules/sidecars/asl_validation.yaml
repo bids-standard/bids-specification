@@ -6,7 +6,8 @@ ASLLabelingDurationNiftiLength:
     issue:
         code: LABELING_DURATION_LENGTH_NOT_MATCHING_NIFTI
         message: |
-            The number of values for 'LabelingDuration' for this file does not match the 4th dimension of the NIfTI header.
+            The number of values for 'LabelingDuration' for this file does not match the 4th dimension
+            of the NIfTI header.
             'LabelingDuration' is the total duration of the labeling pulse train, in seconds,
             corresponding to the temporal width of the labeling bolus for `(P)CASL`.
             In case all control-label volumes (or deltam or CBF) have the same `LabelingDuration`, a scalar must be
@@ -49,7 +50,8 @@ ASLFlipAngleNiftiLength:
             The data type number may apply to files from any MRI modality concerned with a single value for this field,
             or to the files in a file collection where the value of this field is iterated using the flip entity.
             The data type array provides a value for each volume in a 4D dataset and should only be used when the
-            volume timing is critical for interpretation of the data, such as in ASL or variable flip angle fMRI sequences.
+            volume timing is critical for interpretation of the data, such as in ASL or variable flip
+            angle fMRI sequences.
         level: error
     selectors:
     - suffix == "asl"
@@ -91,7 +93,8 @@ ASLPostLabelingDelayNiftiLength:
             labeling pulse (for PASL) until the middle of the excitation pulse applied to the imaging slab
             (for 3D acquisition) or first slice (for 2D acquisition).
             Can be a number (for a single-PLD time series) or an array of numbers (for multi-PLD and Look-Locker).
-            In the latter case, the array of numbers contains the PLD of each volume (that is, each 'control' and 'label')
+            In the latter case, the array of numbers contains the PLD of each volume
+            (that is, each 'control' and 'label')
             in the acquisition order. Any image within the time-series without a PLD (for example, an 'm0scan') is
             indicated by a zero.
             Based on DICOM Tags 0018,9079 Inversion Times and 0018,0082 InversionTime.
@@ -114,7 +117,8 @@ ASLPostLabelingDelayASLContextLength:
             middle of the labeling pulse (for PASL) until the middle of the excitation pulse applied to
             the imaging slab (for 3D acquisition) or first slice (for 2D acquisition).
             Can be a number (for a single-PLD time series) or an array of numbers (for multi-PLD and Look-Locker).
-            In the latter case, the array of numbers contains the PLD of each volume (that is, each 'control' and 'label')
+            In the latter case, the array of numbers contains the PLD of each volume
+            (that is, each 'control' and 'label')
             in the acquisition order.
             Any image within the time-series without a PLD (for example, an 'm0scan') is indicated by a zero.
             Based on DICOM Tags 0018,9079 Inversion Times and 0018,0082 InversionTime.
