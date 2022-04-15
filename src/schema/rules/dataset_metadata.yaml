@@ -1,3 +1,4 @@
+---
 dataset_description:
   selectors:
   - path == "/dataset_description.json"
