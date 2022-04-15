@@ -26,9 +26,9 @@ dataset_description:
     GeneratedBy[].Description: OPTIONAL
     GeneratedBy[].CodeURL: OPTIONAL
     GeneratedBy[].Container: OPTIONAL
-    GeneratedBy[].Container.Type: RECOMMENDED
-    GeneratedBy[].Container.Tag: RECOMMENDED
-    GeneratedBy[].Container.URI: RECOMMENDED
+    GeneratedBy[].Container{}.Type: RECOMMENDED
+    GeneratedBy[].Container{}.Tag: RECOMMENDED
+    GeneratedBy[].Container{}.URI: RECOMMENDED
     SourceDatasets: RECOMMENDED
 
 derivative_description:
@@ -44,15 +44,15 @@ dataset_description_with_genetics:
   - dataset.files contains "/genetic_info.json"
   fields:
     Genetics: REQUIRED
-    Genetics.Dataset: REQUIRED
+    Genetics{}.Dataset: REQUIRED
       level: REQUIRED
       issue:
         name: NO_GENETIC_DATABASE
         message: |
           A genetic_info.json file is present but no Database field present in Genetics
           object in dataset_description.json.
-    Genetics.Database: OPTIONAL
-    Genetics.Descriptors: OPTIONAL
+    Genetics{}.Database: OPTIONAL
+    Genetics{}.Descriptors: OPTIONAL
 
 genetic_info:
   selectors:
