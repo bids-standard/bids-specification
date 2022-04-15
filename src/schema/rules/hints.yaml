@@ -1,0 +1,22 @@
+---
+SuspiciouslyLongDesign:
+  code: SUSPICIOUSLY_LONG_EVENT_DESIGN
+  message: |
+    The onset of the last event is after the total duration of the corresponding scan.
+    This design is suspiciously long.
+  selectors:
+    - suffix == "bold"
+    - associations contains "events"
+  checks:
+    - associations.events.onset[-1] > nifti_header.pixdim[4] * nifti_header.dim[4]
+
+SuspiciouslyShortDesign:
+  code: SUSPICIOUSLY_SHORT_EVENT_DESIGN
+  message: |
+    The onset of the last event is less than half the total duration of the corresponding scan.
+    This design is suspiciously short.
+  selectors:
+    - suffix == "bold"
+    - associations contains "events"
+  checks:
+    - associations.events.onset[-1] < nifti_header.pixdim[4] * nifti_header.dim[4] / 2
