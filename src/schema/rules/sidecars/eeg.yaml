@@ -89,7 +89,7 @@ EEGCoordsystemGeneral:
         IntendedFor:
             level: OPTIONAL
             addendum: |
-                This identifies the MRI or CT scan associations with the electrodes,
+                This identifies the MRI or CT scan associated with the electrodes,
                 landmarks, and fiducials.
 
 # Fields relating to the EEG electrode positions
