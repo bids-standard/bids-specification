@@ -36,6 +36,7 @@ func_volumetric:
     desc: OPTIONAL
 
 anat_parametric_mask:
+  $ref: schema.rules.datatypes.anat.parametric
   suffixes:
   - mask
   extensions:
@@ -49,6 +50,7 @@ anat_parametric_mask:
     desc: OPTIONAL
 
 anat_nonparametric_mask:
+  $ref: schema.rules.datatypes.anat.nonparametric
   suffixes:
   - mask
   extensions:
@@ -62,6 +64,7 @@ anat_nonparametric_mask:
     desc: OPTIONAL
 
 dwi_mask:
+  $ref: schema.rules.datatypes.dwi.dwi
   suffixes:
   - mask
   extensions:
@@ -75,6 +78,7 @@ dwi_mask:
     desc: OPTIONAL
 
 func_mask:
+  $ref: schema.rules.datatypes.func.func
   suffixes:
   - mask
   extensions:
@@ -88,6 +92,7 @@ func_mask:
     desc: OPTIONAL
 
 anat_parametric_discrete_segmentation:
+  $ref: schema.rules.datatypes.anat.parametric
   suffixes:
   - dseg
   extensions:
@@ -99,6 +104,7 @@ anat_parametric_discrete_segmentation:
     den: OPTIONAL
 
 anat_nonparametric_discrete_segmentation:
+  $ref: schema.rules.datatypes.anat.nonparametric
   suffixes:
   - dseg
   extensions:
@@ -110,8 +116,9 @@ anat_nonparametric_discrete_segmentation:
     den: OPTIONAL
 
 func_discrete_segmentation:
+  $ref: schema.rules.datatypes.func.func
   suffixes:
-  - desg
+  - dseg
   extensions:
   - .nii.gz
   entities:
@@ -121,6 +128,7 @@ func_discrete_segmentation:
     den: OPTIONAL
 
 dwi_discrete_segmentation:
+  $ref: schema.rules.datatypes.dwi.dwi
   suffixes:
   - dseg
   extensions:
@@ -132,6 +140,7 @@ dwi_discrete_segmentation:
     den: OPTIONAL
 
 anat_parametric_probabilistic_segmentation:
+  $ref: schema.rules.datatypes.anat.parametric
   suffixes:
   - probseg
   extensions:
@@ -144,6 +153,7 @@ anat_parametric_probabilistic_segmentation:
     label: OPTIONAL
 
 anat_nonparametric_probabilistic_segmentation:
+  $ref: schema.rules.datatypes.anat.nonparametric
   suffixes:
   - probseg
   extensions:
@@ -156,6 +166,7 @@ anat_nonparametric_probabilistic_segmentation:
     label: OPTIONAL
 
 func_probabilistic_segmentation:
+  $ref: schema.rules.datatypes.func.func
   suffixes:
   - probseg
   extensions:
@@ -168,6 +179,7 @@ func_probabilistic_segmentation:
     label: OPTIONAL
 
 dwi_probabilistic_segmentation:
+  $ref: schema.rules.datatypes.dwi.dwi
   suffixes:
   - probseg
   extensions:
@@ -180,6 +192,7 @@ dwi_probabilistic_segmentation:
     label: OPTIONAL
 
 anat_parametic_discrete_surface:
+  $ref: schema.rules.datatypes.anat.parametric
   suffixes:
   - dseg
   extensions:
@@ -193,6 +206,7 @@ anat_parametic_discrete_surface:
     den: OPTIONAL
 
 anat_nonparametic_discrete_surface:
+  $ref: schema.rules.datatypes.anat.nonparametric
   suffixes:
   - dseg
   extensions:
