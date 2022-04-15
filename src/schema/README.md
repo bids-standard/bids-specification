@@ -406,6 +406,12 @@ than the object definitions.
     Specifically, each datatype's YAML file contains a list of dictionaries.
     Each dictionary contains a list of suffixes, entities, and file extensions which may constitute a valid BIDS filename.
 
+-   `sidecars/*.yaml`: Files in the `sidecars` directory contain information about valid JSON
+    sidecar entries for files within a datatype.
+
+-   `checks/*.yaml`: Files in the `checks` directory contain assertions on data, organized
+    broadly by datatype, but not constrained.
+
 -   `entities.yaml`: This file simply defines the order in which entities, when present, MUST appear in filenames.
 
 -   `top_level_files.yaml`: Requirement levels and valid file extensions of top-level files.
@@ -480,6 +486,70 @@ While the valid extension is the same for both groups (`.fif`), the entities are
 Specifically, files in the first group may have `task`, `run`, `processing`, and `split` entities,
 while files in the second group may not.
 Also, when files in the second group have the `acq` entity, the associated value MUST be `crosstalk`.
+
+### `sidecars/*.yaml`
+
+Sidecar files introduce the idea of "selectors" to determine whether a set of fields is added
+to the sidecar schema that will be applied to the sidecar.
+From here, the `fields` property lists will be accumulated to set requirement levels.
+Rules that show up later in the document can override the rules that come before.
+By default, fields take a requirement level, but the object can be expanded to include
+level, additional level and description text for rendering the field in a table, and
+issue codes and messages if more specific error messages are warranted.
+
+```YAML
+RuleName:
+  selectors:
+  - datatype == "anat"
+  fields:
+    MyField1: required
+    MyField2:
+      level: recommended
+      level_addendum: Text to be added to the requirement level field.
+      description_addendum: Text to be added to the description field.
+      issue:
+        code: ISSUE_CODE_STRING
+        message: |
+          Common message text users will see if the field is missing.
+
+RuleNameOverride:
+  selectors:
+  - datatype == "anat"
+  - suffix == "T1w"
+  fields:
+    MyField2:
+      level: required
+      issue:
+        code: DIFFERENT_ISSUE_STRING
+        message: |
+          T1w images require MyField to be defined, so override
+```
+
+### `checks/*.yaml`
+
+Check rules are similar to sidecar rules with selectors. These allow the issue field to
+be placed at the top level, and introduce a list of `checks` or assertions that cause the
+issue to fail if any evaluate to `False`.
+
+```YAML
+EventsMissing:
+  issue:
+    code: EVENTS_TSV_MISSING
+    message: |
+      Task scans should have a corresponding events.tsv file.
+      If this is a resting state scan you can ignore this warning or rename the task to include the word "rest".
+    severity: warning
+  selectors:
+  - entities contains "task"
+  - not(entities.task contains "rest")  # Alternative for including the word "rest"
+  checks:
+  - associations contains "events"
+```
+
+Note that because we do not have requirement levels, severity must be explicitly specified.
+
+Selectors and checks use the same expression syntax. The difference is that selectors determine
+whether the rule is applied while checks determine whether it passes.
 
 ### `entities.yaml`
 
