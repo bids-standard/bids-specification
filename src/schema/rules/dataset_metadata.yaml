@@ -6,7 +6,14 @@ dataset_description:
     BIDSVersion: REQUIRED
     DatasetType: RECOMMENDED
     License: RECOMMENDED
-    Authors: RECOMMENDED
+    Authors:
+      level: RECOMMENDED
+      issue:
+        name: NO_AUTHORS
+        message: |
+          The Authors field of dataset_description.json should contain an array of fields -
+          with one author per field. This was triggered because there are no authors, which
+          will make DOI registration from dataset metadata impossible.
     Acknowledgements: OPTIONAL
     HowToAcknowledge: OPTIONAL
     Funding: OPTIONAL
@@ -38,6 +45,12 @@ dataset_description_with_genetics:
   fields:
     Genetics: REQUIRED
     Genetics.Dataset: REQUIRED
+      level: REQUIRED
+      issue:
+        name: NO_GENETIC_DATABASE
+        message: |
+          A genetic_info.json file is present but no Database field present in Genetics
+          object in dataset_description.json.
     Genetics.Database: OPTIONAL
     Genetics.Descriptors: OPTIONAL
 
