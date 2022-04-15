@@ -234,22 +234,22 @@ context:
                     description: "Units of pixdim[1..4]"
                     xyz:
                         name: "XYZ Units"
-                        description: "String representing the unit used by all 3 spatial dimensions data."
+                        description: "String representing the unit of voxel spacing."
                         type: string
                         enum:
-                            - "unknown"
-                            - "meter"
-                            - "mm"
-                            - "um"
+                        - "unknown"
+                        - "meter"
+                        - "mm"
+                        - "um"
                     t:
                         name: "Time Unit"
-                        description: "String representing the unit used by temporal dimension data."
+                        description: "String representing the unit of inter-volume intervals."
                         type: string
                         enum:
-                            - "unknown"
-                            - "sec"
-                            - "msec"
-                            - "usec"
+                        - "unknown"
+                        - "sec"
+                        - "msec"
+                        - "usec"
                 qform_code:
                     name: "qform code"
                     description: "Use of the quaternion fields."
