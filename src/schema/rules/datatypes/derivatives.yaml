@@ -1,36 +1,168 @@
 ---
-- name: "derivatives_common"
-  # all datatypes
-  additional_entities:
-    space: OPTIONAL
-    desc: OPTIONAL
-
-- name: "volumetric_preproc"
-  # nii, niigz in pet and mri
-  additional_entities:
+anat_parametric_volumetric:
+  $ref: schema.rules.datatypes.anat.parametric
+  entities:
+    $ref: schema.rules.datatypes.anat.parametric.entities
     space: OPTIONAL
     res: OPTIONAL
     den: OPTIONAL
     desc: OPTIONAL
 
-- name: "mask"
-  # anat, func, dwi
+anat_nonparametric_volumetric:
+  $ref: schema.rules.datatypes.anat.nonparametric
+  entities:
+    $ref: schema.rules.datatypes.anat.nonparametric.entities
+    space: OPTIONAL
+    res: OPTIONAL
+    den: OPTIONAL
+    desc: OPTIONAL
+
+dwi_volumetric:
+  $ref: schema.rules.datatypes.dwi.dwi
+  entities:
+    $ref: schema.rules.datatypes.dwi.dwi.entities
+    space: OPTIONAL
+    res: OPTIONAL
+    den: OPTIONAL
+    desc: OPTIONAL
+
+func_volumetric:
+  $ref: schema.rules.datatypes.func.func
+  entities:
+    $ref: schema.rules.datatypes.func.func.entities
+    space: OPTIONAL
+    res: OPTIONAL
+    den: OPTIONAL
+    desc: OPTIONAL
+
+anat_parametric_mask:
   suffixes:
-  - desg
+  - mask
   extensions:
-  additional_entities:
+  - .nii.gz
+  entities:
+    $ref: schema.rules.datatypes.anat.parametric.entities
     space: OPTIONAL
     res: OPTIONAL
     den: OPTIONAL
     label: OPTIONAL
     desc: OPTIONAL
-- name: "discreate_segmentation"
-  # anat, func, dwi
+
+anat_nonparametric_mask:
+  suffixes:
+  - mask
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: schema.rules.datatypes.anat.nonparametric.entities
+    space: OPTIONAL
+    res: OPTIONAL
+    den: OPTIONAL
+    label: OPTIONAL
+    desc: OPTIONAL
+
+dwi_mask:
+  suffixes:
+  - mask
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: schema.rules.datatypes.dwi.dwi.entities
+    space: OPTIONAL
+    res: OPTIONAL
+    den: OPTIONAL
+    label: OPTIONAL
+    desc: OPTIONAL
+
+func_mask:
+  suffixes:
+  - mask
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: schema.rules.datatypes.func.func.entities
+    space: OPTIONAL
+    res: OPTIONAL
+    den: OPTIONAL
+    label: OPTIONAL
+    desc: OPTIONAL
+
+anat_parametric_discrete_segmentation:
+  suffixes:
+  - mask
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: schema.rules.datatypes.anat.parametric.entities
+    space: OPTIONAL
+    res: OPTIONAL
+    den: OPTIONAL
+    label: OPTIONAL
+    desc: OPTIONAL
+
+anat_nonparametric_discrete_segmentation:
+  suffixes:
+  - mask
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: schema.rules.datatypes.anat.nonparametric.entities
+    space: OPTIONAL
+    res: OPTIONAL
+    den: OPTIONAL
+    label: OPTIONAL
+    desc: OPTIONAL
+
+func_discrete_segmentation:
   suffixes:
   - desg
   extensions:
   - .nii.gz
-  additional_entities:
+  entities:
+    $ref: schema.rules.datatypes.func.func.entities
     space: OPTIONAL
     res: OPTIONAL
     den: OPTIONAL
+
+dwi_discrete_segmentation:
+  suffixes:
+  - desg
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: schema.rules.datatypes.dwi.dwi.entities
+    space: OPTIONAL
+    res: OPTIONAL
+    den: OPTIONAL
+
+anat_parametric_probabilistic_segmentation:
+  $ref: schema.rules.datatypes.derivatives.anat_parametric_discrete_segmentation
+  suffixes:
+  - probseg
+  entities:
+    $ref: schema.rules.datatypes.derivatives.anat_parametric_discrete_segmentation.entities
+    label: OPTIONAL
+
+anat_nonparametric_probabilistic_segmentation:
+  $ref: schema.rules.datatypes.derivatives.anat_nonparametric_discrete_segmentation
+  suffixes:
+  - probseg
+  entities:
+    $ref: schema.rules.datatypes.derivatives.anat_nonparametric_discrete_segmentation.entities
+    label: OPTIONAL
+
+func_probabilistic_segmentation:
+  $ref: schema.rules.datatypes.derivatives.func_discrete_segmentation
+  suffixes:
+  - probseg
+  entities:
+    $ref: schema.rules.datatypes.derivatives.func_discrete_segmentation.entities
+    label: OPTIONAL
+
+dwi_probabilistic_segmentation:
+  $ref: schema.rules.datatypes.derivatives.dwi_discrete_segmentation
+  suffixes:
+  - probseg
+  entities:
+    $ref: schema.rules.datatypes.derivatives.dwi_discrete_segmentation.entities
+    label: OPTIONAL
