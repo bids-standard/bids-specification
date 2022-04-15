@@ -106,6 +106,9 @@ context:
             description: "Sidecar metadata constructed via the inheritance principle"
             type: object
         associations:
+            # Note that this is not intended to be an exhaustive list of associated files
+            # or to expose every attribute of those files. It is specifically those files
+            # and attributes for which a rule needs to be applied from an originating file.
             description: |
                 Associated files, indexed by suffix, selected according to the inheritance principle
             type: object
