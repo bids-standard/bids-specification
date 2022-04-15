@@ -430,7 +430,7 @@ The `datatypes` dictionary contains a list of datatypes that fall under that mod
 The files in this directory are currently the least standardized of any part of the schema.
 
 Each file corresponds to a single `datatype`.
-Within the file is a list of dictionaries.
+Within the file is a dictionary of dictionaries.
 Each dictionary corresponds to a group of suffixes that have the same rules regarding filenames.
 
 The dictionaries have three keys: `suffixes`, `extensions`, and `entities`.
@@ -454,7 +454,8 @@ That information is present in `rules/entities.yaml`.
 As an example, let us look at part of `meg.yaml`:
 
 ```yaml
-- suffixes:
+meg:
+  suffixes:
   - meg
   extensions:
   - .fif
@@ -467,7 +468,8 @@ As an example, let us look at part of `meg.yaml`:
     processing: optional
     split: optional
 
-- suffixes:
+crosstalk:
+  suffixes:
   - meg
   extensions:
   - .fif
