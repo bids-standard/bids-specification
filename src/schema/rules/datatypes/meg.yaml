@@ -122,6 +122,8 @@
   - photo
   extensions:
   - .jpg
+  - .png
+  - .tif
   entities:
     subject: required
     session: optional
