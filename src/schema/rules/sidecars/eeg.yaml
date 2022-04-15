@@ -19,7 +19,7 @@ EEGGeneric:
                 A recommended convention is to name resting state task using labels
                 beginning with `rest`.
 
-EEGrecommended:
+EEGRecommended:
     selectors:
     - modality == "eeg"
     - datatype == "eeg"
@@ -56,7 +56,7 @@ EEGRequired:
         PowerLineFrequency: required
         SoftwareFilters: required
 
-EEGMorerecommended:
+EEGMoreRecommended:
     selectors:
     - modality == "eeg"
     - datatype == "eeg"

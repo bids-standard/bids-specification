@@ -19,7 +19,7 @@ iEEGGeneric:
                 A recommended convention is to name resting state task using labels
                 beginning with `rest`.
 
-iEEGrecommended:
+iEEGRecommended:
     selectors:
     - modality == "ieeg"
     - datatype == "ieeg"
