@@ -172,3 +172,141 @@ def test_formats(schema_obj):
             assert not bool(
                 search.fullmatch(test_string)
             ), f"'{test_string}' should not be a valid match for the pattern '{search.pattern}'"
+
+
+def test_dereferencing():
+    orig = {
+        "ReferencedObject": {
+            "Property1": "value1",
+            "Property2": "value2",
+        },
+        "ReferencingObject": {
+            "$ref": "ReferencedObject",
+            "Property2": "value4",
+        },
+    }
+    dereffed = schema.dereference_yaml(orig, orig.copy())
+    assert dereffed == {
+        "ReferencedObject": {
+            "Property1": "value1",
+            "Property2": "value2",
+        },
+        "ReferencingObject": {
+            "Property1": "value1",
+            "Property2": "value4",
+        },
+    }
+
+    orig = {
+        "raw.func": {
+            "suffix": ["bold", "cbv"],
+            "extensions": [".nii", ".nii.gz"],
+            "datatype": ["func"],
+            "entities": {
+                "subject": "required",
+                "session": "optional",
+                "task": "required",
+                "dir": "optional",
+            },
+        },
+        "derived.func": {
+            "$ref": "raw.func",
+            "entities": {
+                "$ref": "raw.func.entities",
+                "space": "optional",
+                "desc": "optional",
+            },
+        },
+    }
+
+    sch = schema.Namespace.build(orig)
+    expanded = schema.expand(orig)
+    dereffed = schema.dereference_yaml(sch, expanded)
+    assert dereffed == {
+        "raw": {
+            "func": {
+                "suffix": ["bold", "cbv"],
+                "extensions": [".nii", ".nii.gz"],
+                "datatype": ["func"],
+                "entities": {
+                    "subject": "required",
+                    "session": "optional",
+                    "task": "required",
+                    "dir": "optional",
+                },
+            }
+        },
+        "derived": {
+            "func": {
+                "suffix": ["bold", "cbv"],
+                "extensions": [".nii", ".nii.gz"],
+                "datatype": ["func"],
+                "entities": {
+                    "subject": "required",
+                    "session": "optional",
+                    "task": "required",
+                    "dir": "optional",
+                    "space": "optional",
+                    "desc": "optional",
+                },
+            }
+        },
+    }
+
+    orig = {
+        "_DERIV_ENTS": {
+            "space": "optional",
+            "desc": "optional",
+        },
+        "raw.func": {
+            "suffix": ["bold", "cbv"],
+            "extensions": [".nii", ".nii.gz"],
+            "datatype": ["func"],
+            "entities": {
+                "subject": "required",
+                "session": "optional",
+                "task": "required",
+                "dir": "optional",
+            },
+        },
+        "derived.func": {
+            "$ref": "raw.func",
+            "entities": {
+                "$ref": "_DERIV_ENTS",
+            },
+        },
+    }
+
+    sch = schema.Namespace.build(orig)
+    expanded = schema.expand(orig)
+    dereffed = schema.dereference_yaml(sch, expanded)
+    assert dereffed == {
+        "_DERIV_ENTS": {
+            "space": "optional",
+            "desc": "optional",
+        },
+        "raw": {
+            "func": {
+                "suffix": ["bold", "cbv"],
+                "extensions": [".nii", ".nii.gz"],
+                "datatype": ["func"],
+                "entities": {
+                    "subject": "required",
+                    "session": "optional",
+                    "task": "required",
+                    "dir": "optional",
+                },
+            }
+        },
+        "derived": {
+            "func": {
+                "suffix": ["bold", "cbv"],
+                "extensions": [".nii", ".nii.gz"],
+                "datatype": ["func"],
+                "entities": {
+                    "space": "optional",
+                    "desc": "optional",
+                },
+            }
+        },
+    }
