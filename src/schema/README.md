@@ -316,14 +316,14 @@ ExampleField:
 ```
 
 Furthermore, if the data type description of a field is reused across fields,
-then it may be defined in a separate field and referenced in each target field with the `$ref` keyword.
-Here is an example of a field definition using `$ref`:
+then it may be defined in a separate field and referenced in each target field with the `_ref` keyword.
+Here is an example of a field definition using `_ref`:
 ```yaml
 ExampleField:
     name: ExampleField
     description: |
         The description of "ExampleField".
-    $ref: _ReferenceField
+    _ref: _ReferenceField
 ```
 The target field (`_ReferenceField` in this case) MUST be located in
 the metadata YAML file, and MUST contain all information
@@ -341,7 +341,7 @@ _ReferenceField:
         - PossibleValue2
 ```
 
-The result of including `$ref` makes the `ExampleField` above equivalent to the following format:
+The result of including `_ref` makes the `ExampleField` above equivalent to the following format:
 ```yaml
 ExampleField:
     name: ExampleField

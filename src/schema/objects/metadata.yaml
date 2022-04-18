@@ -66,10 +66,10 @@ AnatomicalLandmarkCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"AnatomicalLandmarkCoordinateSystemDescription"`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+  - _ref: _MEGCoordSys
+  - _ref: _EEGCoordSys
+  - _ref: _StandardTemplateCoordSys
+  - _ref: _StandardTemplateDeprecatedCoordSys
 AnatomicalLandmarkCoordinateSystemDescription:
   name: AnatomicalLandmarkCoordinateSystemDescription
   description: |
@@ -552,10 +552,10 @@ DigitizedHeadPointsCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"DigitizedHeadPointsCoordinateSystemDescription"`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+  - _ref: _MEGCoordSys
+  - _ref: _EEGCoordSys
+  - _ref: _StandardTemplateCoordSys
+  - _ref: _StandardTemplateDeprecatedCoordSys
 DigitizedHeadPointsCoordinateSystemDescription:
   name: DigitizedHeadPointsCoordinateSystemDescription
   description: |
@@ -642,10 +642,10 @@ EEGCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `EEGCoordinateSystemDescription`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+  - _ref: _MEGCoordSys
+  - _ref: _EEGCoordSys
+  - _ref: _StandardTemplateCoordSys
+  - _ref: _StandardTemplateDeprecatedCoordSys
 EEGCoordinateSystemDescription:
   name: EEGCoordinateSystemDescription
   description: |
@@ -828,10 +828,10 @@ FiducialsCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"FiducialsCoordinateSystemDescription"`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+  - _ref: _MEGCoordSys
+  - _ref: _EEGCoordSys
+  - _ref: _StandardTemplateCoordSys
+  - _ref: _StandardTemplateDeprecatedCoordSys
 FiducialsCoordinateSystemDescription:
   name: FiducialsCoordinateSystemDescription
   description: |
@@ -961,10 +961,10 @@ GeneticLevel:
     Values MUST be one of `"Genetic"`, `"Genomic"`, `"Epigenomic"`,
     `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.
   anyOf:
-  - $ref: _GeneticLevelEnum
+  - _ref: _GeneticLevelEnum
   - type: array
     items:
-      $ref: _GeneticLevelEnum
+      _ref: _GeneticLevelEnum
 Genetics.Database:
   name: Genetics.Database
   description: |
@@ -998,11 +998,11 @@ Genetics:
   type: object
   properties:
     Database:
-      $ref: Genetics.Database
+      _ref: Genetics.Database
     Dataset:
-      $ref: Genetics.Dataset
+      _ref: Genetics.Dataset
     Descriptors:
-      $ref: Genetics.Descriptors
+      _ref: Genetics.Descriptors
 GradientSetType:
   name: GradientSetType
   description: |
@@ -1072,10 +1072,10 @@ HeadCoilCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `HeadCoilCoordinateSystemDescription`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+  - _ref: _MEGCoordSys
+  - _ref: _EEGCoordSys
+  - _ref: _StandardTemplateCoordSys
+  - _ref: _StandardTemplateDeprecatedCoordSys
 HeadCoilCoordinateSystemDescription:
   name: HeadCoilCoordinateSystemDescription
   description: |
@@ -1492,10 +1492,10 @@ MEGCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"MEGCoordinateSystemDescription"`.
   anyOf:
-  - $ref: _MEGCoordSys
-  - $ref: _EEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+  - _ref: _MEGCoordSys
+  - _ref: _EEGCoordSys
+  - _ref: _StandardTemplateCoordSys
+  - _ref: _StandardTemplateDeprecatedCoordSys
 MEGCoordinateSystemDescription:
   name: MEGCoordinateSystemDescription
   description: |
@@ -2622,15 +2622,15 @@ StimulusPresentation:
   type: object
   properties:
     OperatingSystem:
-      $ref: OperatingSystem
+      _ref: OperatingSystem
     SoftwareName:
-      $ref: SoftwareName
+      _ref: SoftwareName
     SoftwareRRID:
-      $ref: SoftwareRRID
+      _ref: SoftwareRRID
     SoftwareVersion:
-      $ref: SoftwareVersion
+      _ref: SoftwareVersion
     Code:
-      $ref: Code
+      _ref: Code
 SubjectArtefactDescription:
   name: SubjectArtefactDescription
   description: |
@@ -2945,9 +2945,9 @@ iEEGCoordinateSystem:
     [2D coordinate systems](/04-modality-specific-files/04-intracranial\
     -electroencephalography.html#allowed-2d-coordinate-systems).
   anyOf:
-  - $ref: _iEEGCoordSys
-  - $ref: _StandardTemplateCoordSys
-  - $ref: _StandardTemplateDeprecatedCoordSys
+  - _ref: _iEEGCoordSys
+  - _ref: _StandardTemplateCoordSys
+  - _ref: _StandardTemplateDeprecatedCoordSys
 iEEGCoordinateSystemDescription:
   name: iEEGCoordinateSystemDescription
   description: |

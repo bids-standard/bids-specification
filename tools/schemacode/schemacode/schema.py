@@ -21,17 +21,17 @@ def _get_entry_name(path):
         return path.name
 
 
-def dereference_yaml(schema, struct):
-    """Recursively search a dictionary-like object for $ref keys.
+def dereference_yaml(schema, struct, ref_key="_ref"):
+    """Recursively search a dictionary-like object for _ref keys.
 
-    Each $ref key is replaced with the contents of the referenced field in the overall
+    Each _ref key is replaced with the contents of the referenced field in the overall
     dictionary-like object.
     """
     if isinstance(struct, dict):
-        if "$ref" in struct:
-            ref_field = struct["$ref"]
+        if ref_key in struct:
+            ref_field = struct[ref_key]
             template = schema[ref_field]
-            struct.pop("$ref")
+            struct.pop(ref_key)
             # Result is template object with local overrides
             struct = {**template, **struct}
 
