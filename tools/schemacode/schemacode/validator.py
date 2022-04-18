@@ -35,6 +35,9 @@ def _get_paths(bids_paths):
         "/.dandi",
         "/.datalad",
         "/.git",
+        "\\.dandi",
+        "\\.datalad",
+        "\\.git",
     ]
     # `.bidsignore` is not, in fact, a BIDS file, as per:
     # https://github.com/bids-standard/bids-specification/issues/980
