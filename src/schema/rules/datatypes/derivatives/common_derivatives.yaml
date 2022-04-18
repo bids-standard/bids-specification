@@ -1,413 +1,413 @@
 ---
 anat_nonparametric_common:
-  $ref: schema.rules.datatypes.anat.nonparametric
+  _ref: schema.rules.datatypes.anat.nonparametric
   entities:
-    $ref: schema.rules.datatypes.anat.nonparametric.entities
+    _ref: schema.rules.datatypes.anat.nonparametric.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 anat_parametric_common:
-  $ref: schema.rules.datatypes.anat.parametric
+  _ref: schema.rules.datatypes.anat.parametric
   entities:
-    $ref: schema.rules.datatypes.anat.parametric.entities
+    _ref: schema.rules.datatypes.anat.parametric.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 anat_defacemask_common:
-  $ref: schema.rules.datatypes.anat.defacemask
+  _ref: schema.rules.datatypes.anat.defacemask
   entities:
-    $ref: schema.rules.datatypes.anat.defacemask.entities
+    _ref: schema.rules.datatypes.anat.defacemask.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 anat_multiecho_common:
-  $ref: schema.rules.datatypes.anat.multiecho
+  _ref: schema.rules.datatypes.anat.multiecho
   entities:
-    $ref: schema.rules.datatypes.anat.multiecho.entities
+    _ref: schema.rules.datatypes.anat.multiecho.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 anat_multiflip_common:
-  $ref: schema.rules.datatypes.anat.multiflip
+  _ref: schema.rules.datatypes.anat.multiflip
   entities:
-    $ref: schema.rules.datatypes.anat.multiflip.entities
+    _ref: schema.rules.datatypes.anat.multiflip.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 anat_multiinversion_common:
-  $ref: schema.rules.datatypes.anat.multiinversion
+  _ref: schema.rules.datatypes.anat.multiinversion
   entities:
-    $ref: schema.rules.datatypes.anat.multiinversion.entities
+    _ref: schema.rules.datatypes.anat.multiinversion.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 anat_mp2rage_common:
-  $ref: schema.rules.datatypes.anat.mp2rage
+  _ref: schema.rules.datatypes.anat.mp2rage
   entities:
-    $ref: schema.rules.datatypes.anat.mp2rage.entities
+    _ref: schema.rules.datatypes.anat.mp2rage.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 anat_vfamt_common:
-  $ref: schema.rules.datatypes.anat.vfamt
+  _ref: schema.rules.datatypes.anat.vfamt
   entities:
-    $ref: schema.rules.datatypes.anat.vfamt.entities
+    _ref: schema.rules.datatypes.anat.vfamt.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 anat_mtr_common:
-  $ref: schema.rules.datatypes.anat.mtr
+  _ref: schema.rules.datatypes.anat.mtr
   entities:
-    $ref: schema.rules.datatypes.anat.mtr.entities
+    _ref: schema.rules.datatypes.anat.mtr.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 beh_timeseries_common:
-  $ref: schema.rules.datatypes.beh.timeseries
+  _ref: schema.rules.datatypes.beh.timeseries
   entities:
-    $ref: schema.rules.datatypes.beh.timeseries.entities
+    _ref: schema.rules.datatypes.beh.timeseries.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 beh_noncontinuous_common:
-  $ref: schema.rules.datatypes.beh.noncontinuous
+  _ref: schema.rules.datatypes.beh.noncontinuous
   entities:
-    $ref: schema.rules.datatypes.beh.noncontinuous.entities
+    _ref: schema.rules.datatypes.beh.noncontinuous.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 dwi_dwi_common:
-  $ref: schema.rules.datatypes.dwi.dwi
+  _ref: schema.rules.datatypes.dwi.dwi
   entities:
-    $ref: schema.rules.datatypes.dwi.dwi.entities
+    _ref: schema.rules.datatypes.dwi.dwi.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 dwi_sbref_common:
-  $ref: schema.rules.datatypes.dwi.sbref
+  _ref: schema.rules.datatypes.dwi.sbref
   entities:
-    $ref: schema.rules.datatypes.dwi.sbref.entities
+    _ref: schema.rules.datatypes.dwi.sbref.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 dwi_timeseries_common:
-  $ref: schema.rules.datatypes.dwi.timeseries
+  _ref: schema.rules.datatypes.dwi.timeseries
   entities:
-    $ref: schema.rules.datatypes.dwi.timeseries.entities
+    _ref: schema.rules.datatypes.dwi.timeseries.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 eeg_eeg_common:
-  $ref: schema.rules.datatypes.eeg.eeg
+  _ref: schema.rules.datatypes.eeg.eeg
   entities:
-    $ref: schema.rules.datatypes.eeg.eeg.entities
+    _ref: schema.rules.datatypes.eeg.eeg.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 eeg_channels_common:
-  $ref: schema.rules.datatypes.eeg.channels
+  _ref: schema.rules.datatypes.eeg.channels
   entities:
-    $ref: schema.rules.datatypes.eeg.channels.entities
+    _ref: schema.rules.datatypes.eeg.channels.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 eeg_coordsystem_common:
-  $ref: schema.rules.datatypes.eeg.coordsystem
+  _ref: schema.rules.datatypes.eeg.coordsystem
   entities:
-    $ref: schema.rules.datatypes.eeg.coordsystem.entities
+    _ref: schema.rules.datatypes.eeg.coordsystem.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 eeg_electrodes_common:
-  $ref: schema.rules.datatypes.eeg.electrodes
+  _ref: schema.rules.datatypes.eeg.electrodes
   entities:
-    $ref: schema.rules.datatypes.eeg.electrodes.entities
+    _ref: schema.rules.datatypes.eeg.electrodes.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 eeg_events_common:
-  $ref: schema.rules.datatypes.eeg.events
+  _ref: schema.rules.datatypes.eeg.events
   entities:
-    $ref: schema.rules.datatypes.eeg.events.entities
+    _ref: schema.rules.datatypes.eeg.events.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 eeg_photo_common:
-  $ref: schema.rules.datatypes.eeg.photo
+  _ref: schema.rules.datatypes.eeg.photo
   entities:
-    $ref: schema.rules.datatypes.eeg.photo.entities
+    _ref: schema.rules.datatypes.eeg.photo.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 eeg_timeseries_common:
-  $ref: schema.rules.datatypes.eeg.timeseries
+  _ref: schema.rules.datatypes.eeg.timeseries
   entities:
-    $ref: schema.rules.datatypes.eeg.timeseries.entities
+    _ref: schema.rules.datatypes.eeg.timeseries.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 fmap_fieldmaps_common:
-  $ref: schema.rules.datatypes.fmap.fieldmaps
+  _ref: schema.rules.datatypes.fmap.fieldmaps
   entities:
-    $ref: schema.rules.datatypes.fmap.fieldmaps.entities
+    _ref: schema.rules.datatypes.fmap.fieldmaps.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 fmap_pepolar_common:
-  $ref: schema.rules.datatypes.fmap.pepolar
+  _ref: schema.rules.datatypes.fmap.pepolar
   entities:
-    $ref: schema.rules.datatypes.fmap.pepolar.entities
+    _ref: schema.rules.datatypes.fmap.pepolar.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 fmap_TB1DAM_common:
-  $ref: schema.rules.datatypes.fmap.TB1DAM
+  _ref: schema.rules.datatypes.fmap.TB1DAM
   entities:
-    $ref: schema.rules.datatypes.fmap.TB1DAM.entities
+    _ref: schema.rules.datatypes.fmap.TB1DAM.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 fmap_TB1EPI_common:
-  $ref: schema.rules.datatypes.fmap.TB1EPI
+  _ref: schema.rules.datatypes.fmap.TB1EPI
   entities:
-    $ref: schema.rules.datatypes.fmap.TB1EPI.entities
+    _ref: schema.rules.datatypes.fmap.TB1EPI.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 fmap_RFFieldMaps_common:
-  $ref: schema.rules.datatypes.fmap.RFFieldMaps
+  _ref: schema.rules.datatypes.fmap.RFFieldMaps
   entities:
-    $ref: schema.rules.datatypes.fmap.RFFieldMaps.entities
+    _ref: schema.rules.datatypes.fmap.RFFieldMaps.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 fmap_TB1SRGE_common:
-  $ref: schema.rules.datatypes.fmap.TB1SRGE
+  _ref: schema.rules.datatypes.fmap.TB1SRGE
   entities:
-    $ref: schema.rules.datatypes.fmap.TB1SRGE.entities
+    _ref: schema.rules.datatypes.fmap.TB1SRGE.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 fmap_parametric_common:
-  $ref: schema.rules.datatypes.fmap.parametric
+  _ref: schema.rules.datatypes.fmap.parametric
   entities:
-    $ref: schema.rules.datatypes.fmap.parametric.entities
+    _ref: schema.rules.datatypes.fmap.parametric.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 func_func_common:
-  $ref: schema.rules.datatypes.func.func
+  _ref: schema.rules.datatypes.func.func
   entities:
-    $ref: schema.rules.datatypes.func.func.entities
+    _ref: schema.rules.datatypes.func.func.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 func_phase_common:
-  $ref: schema.rules.datatypes.func.phase
+  _ref: schema.rules.datatypes.func.phase
   entities:
-    $ref: schema.rules.datatypes.func.phase.entities
+    _ref: schema.rules.datatypes.func.phase.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 func_events_common:
-  $ref: schema.rules.datatypes.func.events
+  _ref: schema.rules.datatypes.func.events
   entities:
-    $ref: schema.rules.datatypes.func.events.entities
+    _ref: schema.rules.datatypes.func.events.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 func_timeseries_common:
-  $ref: schema.rules.datatypes.func.timeseries
+  _ref: schema.rules.datatypes.func.timeseries
   entities:
-    $ref: schema.rules.datatypes.func.timeseries.entities
+    _ref: schema.rules.datatypes.func.timeseries.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 ieeg_ieeg_common:
-  $ref: schema.rules.datatypes.ieeg.ieeg
+  _ref: schema.rules.datatypes.ieeg.ieeg
   entities:
-    $ref: schema.rules.datatypes.ieeg.ieeg.entities
+    _ref: schema.rules.datatypes.ieeg.ieeg.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 ieeg_channels_common:
-  $ref: schema.rules.datatypes.ieeg.channels
+  _ref: schema.rules.datatypes.ieeg.channels
   entities:
-    $ref: schema.rules.datatypes.ieeg.channels.entities
+    _ref: schema.rules.datatypes.ieeg.channels.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 ieeg_coordsystem_common:
-  $ref: schema.rules.datatypes.ieeg.coordsystem
+  _ref: schema.rules.datatypes.ieeg.coordsystem
   entities:
-    $ref: schema.rules.datatypes.ieeg.coordsystem.entities
+    _ref: schema.rules.datatypes.ieeg.coordsystem.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 ieeg_electrodes_common:
-  $ref: schema.rules.datatypes.ieeg.electrodes
+  _ref: schema.rules.datatypes.ieeg.electrodes
   entities:
-    $ref: schema.rules.datatypes.ieeg.electrodes.entities
+    _ref: schema.rules.datatypes.ieeg.electrodes.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 ieeg_events_common:
-  $ref: schema.rules.datatypes.ieeg.events
+  _ref: schema.rules.datatypes.ieeg.events
   entities:
-    $ref: schema.rules.datatypes.ieeg.events.entities
+    _ref: schema.rules.datatypes.ieeg.events.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 ieeg_photo_common:
-  $ref: schema.rules.datatypes.ieeg.photo
+  _ref: schema.rules.datatypes.ieeg.photo
   entities:
-    $ref: schema.rules.datatypes.ieeg.photo.entities
+    _ref: schema.rules.datatypes.ieeg.photo.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 ieeg_timeseries_common:
-  $ref: schema.rules.datatypes.ieeg.timeseries
+  _ref: schema.rules.datatypes.ieeg.timeseries
   entities:
-    $ref: schema.rules.datatypes.ieeg.timeseries.entities
+    _ref: schema.rules.datatypes.ieeg.timeseries.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 meg_meg_common:
-  $ref: schema.rules.datatypes.meg.meg
+  _ref: schema.rules.datatypes.meg.meg
   entities:
-    $ref: schema.rules.datatypes.meg.meg.entities
+    _ref: schema.rules.datatypes.meg.meg.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 meg_calibration_common:
-  $ref: schema.rules.datatypes.meg.calibration
+  _ref: schema.rules.datatypes.meg.calibration
   entities:
-    $ref: schema.rules.datatypes.meg.calibration.entities
+    _ref: schema.rules.datatypes.meg.calibration.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 meg_crosstalk_common:
-  $ref: schema.rules.datatypes.meg.crosstalk
+  _ref: schema.rules.datatypes.meg.crosstalk
   entities:
-    $ref: schema.rules.datatypes.meg.crosstalk.entities
+    _ref: schema.rules.datatypes.meg.crosstalk.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 meg_headshape_common:
-  $ref: schema.rules.datatypes.meg.headshape
+  _ref: schema.rules.datatypes.meg.headshape
   entities:
-    $ref: schema.rules.datatypes.meg.headshape.entities
+    _ref: schema.rules.datatypes.meg.headshape.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 meg_markers_common:
-  $ref: schema.rules.datatypes.meg.markers
+  _ref: schema.rules.datatypes.meg.markers
   entities:
-    $ref: schema.rules.datatypes.meg.markers.entities
+    _ref: schema.rules.datatypes.meg.markers.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 meg_coordsystem_common:
-  $ref: schema.rules.datatypes.meg.coordsystem
+  _ref: schema.rules.datatypes.meg.coordsystem
   entities:
-    $ref: schema.rules.datatypes.meg.coordsystem.entities
+    _ref: schema.rules.datatypes.meg.coordsystem.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 meg_channels_common:
-  $ref: schema.rules.datatypes.meg.channels
+  _ref: schema.rules.datatypes.meg.channels
   entities:
-    $ref: schema.rules.datatypes.meg.channels.entities
+    _ref: schema.rules.datatypes.meg.channels.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 meg_events_common:
-  $ref: schema.rules.datatypes.meg.events
+  _ref: schema.rules.datatypes.meg.events
   entities:
-    $ref: schema.rules.datatypes.meg.events.entities
+    _ref: schema.rules.datatypes.meg.events.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 meg_photo_common:
-  $ref: schema.rules.datatypes.meg.photo
+  _ref: schema.rules.datatypes.meg.photo
   entities:
-    $ref: schema.rules.datatypes.meg.photo.entities
+    _ref: schema.rules.datatypes.meg.photo.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 meg_timeseries_common:
-  $ref: schema.rules.datatypes.meg.timeseries
+  _ref: schema.rules.datatypes.meg.timeseries
   entities:
-    $ref: schema.rules.datatypes.meg.timeseries.entities
+    _ref: schema.rules.datatypes.meg.timeseries.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 micr_microscopy_common:
-  $ref: schema.rules.datatypes.micr.microscopy
+  _ref: schema.rules.datatypes.micr.microscopy
   entities:
-    $ref: schema.rules.datatypes.micr.microscopy.entities
+    _ref: schema.rules.datatypes.micr.microscopy.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 micr_photo_common:
-  $ref: schema.rules.datatypes.micr.photo
+  _ref: schema.rules.datatypes.micr.photo
   entities:
-    $ref: schema.rules.datatypes.micr.photo.entities
+    _ref: schema.rules.datatypes.micr.photo.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 perf_asl_common:
-  $ref: schema.rules.datatypes.perf.asl
+  _ref: schema.rules.datatypes.perf.asl
   entities:
-    $ref: schema.rules.datatypes.perf.asl.entities
+    _ref: schema.rules.datatypes.perf.asl.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 perf_aslcontext_common:
-  $ref: schema.rules.datatypes.perf.aslcontext
+  _ref: schema.rules.datatypes.perf.aslcontext
   entities:
-    $ref: schema.rules.datatypes.perf.aslcontext.entities
+    _ref: schema.rules.datatypes.perf.aslcontext.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 perf_asllabeling_common:
-  $ref: schema.rules.datatypes.perf.asllabeling
+  _ref: schema.rules.datatypes.perf.asllabeling
   entities:
-    $ref: schema.rules.datatypes.perf.asllabeling.entities
+    _ref: schema.rules.datatypes.perf.asllabeling.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 perf_timeseries_common:
-  $ref: schema.rules.datatypes.perf.timeseries
+  _ref: schema.rules.datatypes.perf.timeseries
   entities:
-    $ref: schema.rules.datatypes.perf.timeseries.entities
+    _ref: schema.rules.datatypes.perf.timeseries.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 pet_pet_common:
-  $ref: schema.rules.datatypes.pet.pet
+  _ref: schema.rules.datatypes.pet.pet
   entities:
-    $ref: schema.rules.datatypes.pet.pet.entities
+    _ref: schema.rules.datatypes.pet.pet.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 pet_blood_common:
-  $ref: schema.rules.datatypes.pet.blood
+  _ref: schema.rules.datatypes.pet.blood
   entities:
-    $ref: schema.rules.datatypes.pet.blood.entities
+    _ref: schema.rules.datatypes.pet.blood.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 pet_events_common:
-  $ref: schema.rules.datatypes.pet.events
+  _ref: schema.rules.datatypes.pet.events
   entities:
-    $ref: schema.rules.datatypes.pet.events.entities
+    _ref: schema.rules.datatypes.pet.events.entities
     space: OPTIONAL
     desc: OPTIONAL
 
 pet_timeseries_common:
-  $ref: schema.rules.datatypes.pet.timeseries
+  _ref: schema.rules.datatypes.pet.timeseries
   entities:
-    $ref: schema.rules.datatypes.pet.timeseries.entities
+    _ref: schema.rules.datatypes.pet.timeseries.entities
     space: OPTIONAL
     desc: OPTIONAL
