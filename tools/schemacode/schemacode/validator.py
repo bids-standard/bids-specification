@@ -534,8 +534,9 @@ def select_schema_dir(
     either (1) `schema_version` if the value is a path, (2) a concatenation of
     `schema_reference_root` and `schema_version`, (3) a concatenation of the detected
     version specification from a `dataset_description.json` file if one is found in
-    parents of the input path, (4) the newest schema from the code distribution only
-    if `force_select` is enabled.
+    parents of the input path, (4) `schema_min_version` if no other version can be found
+    or if the detected version from `dataset_description.json` is smaller than
+    `schema_min_version`.
 
     Parameters
     ----------
@@ -612,7 +613,6 @@ def validate_bids(
     bids_paths,
     schema_reference_root="/usr/share/bids-schema/",
     schema_version=None,
-    force_select=False,
     debug=False,
     report_path=False,
 ):
@@ -635,8 +635,6 @@ def validate_bids(
         If the path starts with the string "{module_path}" it will be expanded relative to the
         module path.
         If None, the `dataset_description.json` fie will be queried for the dataset schema version.
-    force_select : bool, optional
-        Whether to fall back to newest version of schema if no version is given or found.
     report_path : bool or str, optional
         If `True` a log will be written using the standard output path of `.write_report()`.
         If string, the string will be used as the output path.
