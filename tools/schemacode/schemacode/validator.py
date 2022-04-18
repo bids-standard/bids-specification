@@ -527,7 +527,7 @@ def select_schema_dir(
     bids_paths,
     schema_reference_root,
     schema_version,
-    force_select=False,
+    schema_min_version="1.7.0",
 ):
     """
     Select schema directory, according to a fallback logic whereby the schema path is
@@ -555,8 +555,10 @@ def select_schema_dir(
         If the path starts with the string "{module_path}" it will be expanded relative to the
         module path.
         If None, the `dataset_description.json` fie will be queried for the dataset schema version.
-    force_select : bool, optional
-        Whether to fall back to newest version of schema if no version is given or found.
+    schema_min_version : str, optional
+        Minimal version to use UNLESS the schema version is manually specified.
+        If the version is auto-detected and the version is smaller than schema_min_version,
+        schema_min_version will be selected instead.
 
     Returns
     -------
@@ -588,23 +590,21 @@ def select_schema_dir(
             else:
                 with open(dataset_description) as f:
                     dataset_info = json.load(f)
-                    if force_select:
-                        try:
-                            schema_version = dataset_info["BIDSVersion"]
-                        except KeyError:
-                            return utils.get_schema_path()
-                    else:
+                    try:
                         schema_version = dataset_info["BIDSVersion"]
+                    except KeyError:
+                        schema_version = schema_min_version
+        if schema_min_version:
+            if schema_version < schema_min_version:
+                schema_version = schema_min_version
     schema_dir = os.path.join(schema_reference_root, schema_version)
     if os.path.isdir(schema_dir):
         return schema_dir
-    elif force_select:
-        return utils.get_schema_path()
     else:
         raise ValueError(
             f"The expected schema directory {schema_dir} does not exist on the system."
-            "Please ensure the file exists or use the `force_select` option, in order"
-            "to auto-select the most recent schema as a fallback."
+            "Please ensure the file exists or manually specify a schema version for "
+            "which the schemacode files are available on your system."
         )
 
 
