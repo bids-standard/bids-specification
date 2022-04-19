@@ -1,0 +1,11 @@
+---
+SegmentationLookup:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - suffix in ["dseg", "probseg"]
+  columns:
+    index: REQUIRED
+    name: REQUIRED
+    abbreviation: OPTIONAL
+    color: OPTIONAL
+    mapping: OPTIONAL

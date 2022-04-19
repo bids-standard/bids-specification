@@ -1,0 +1,18 @@
+---
+ResInSidecar:
+    selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - modality in ["mri", "pet"]
+    - extension in ["nii", " nii.gz"]
+    - type(sidecar.Resolution) == "object"
+    checks:
+    - sidecar.Resolution contains entities.resolution
+
+DenInSidecar:
+    selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - modality in ["mri", "pet"]
+    - extension in [".nii", ".nii.gz"]
+    - type(sidecar.Density) == "object"
+    checks:
+    - sidecar.Density contains entities.density
