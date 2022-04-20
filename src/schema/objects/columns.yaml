@@ -525,7 +525,7 @@ type__meg_channels:
   - HLU
   - FITERR
   - OTHER
-type__ieg_channels:
+type__ieeg_channels:
   name: type
   description: |
     Type of channel; MUST use the channel types listed below.
