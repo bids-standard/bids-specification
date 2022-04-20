@@ -1,48 +1,48 @@
 ---
 anat_parametric_volumetric:
-  _ref: schema.rules.datatypes.anat.parametric
+  $ref: schema.rules.datatypes.anat.parametric
   entities:
-    _ref: schema.rules.datatypes.anat.parametric.entities
+    $ref: schema.rules.datatypes.anat.parametric.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
     desc: OPTIONAL
 
 anat_nonparametric_volumetric:
-  _ref: schema.rules.datatypes.anat.nonparametric
+  $ref: schema.rules.datatypes.anat.nonparametric
   entities:
-    _ref: schema.rules.datatypes.anat.nonparametric.entities
+    $ref: schema.rules.datatypes.anat.nonparametric.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
     desc: OPTIONAL
 
 dwi_volumetric:
-  _ref: schema.rules.datatypes.dwi.dwi
+  $ref: schema.rules.datatypes.dwi.dwi
   entities:
-    _ref: schema.rules.datatypes.dwi.dwi.entities
+    $ref: schema.rules.datatypes.dwi.dwi.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
     desc: OPTIONAL
 
 func_volumetric:
-  _ref: schema.rules.datatypes.func.func
+  $ref: schema.rules.datatypes.func.func
   entities:
-    _ref: schema.rules.datatypes.func.func.entities
+    $ref: schema.rules.datatypes.func.func.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
     desc: OPTIONAL
 
 anat_parametric_mask:
-  _ref: schema.rules.datatypes.anat.parametric
+  $ref: schema.rules.datatypes.anat.parametric
   suffixes:
   - mask
   extensions:
   - .nii.gz
   entities:
-    _ref: schema.rules.datatypes.anat.parametric.entities
+    $ref: schema.rules.datatypes.anat.parametric.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
@@ -50,13 +50,13 @@ anat_parametric_mask:
     desc: OPTIONAL
 
 anat_nonparametric_mask:
-  _ref: schema.rules.datatypes.anat.nonparametric
+  $ref: schema.rules.datatypes.anat.nonparametric
   suffixes:
   - mask
   extensions:
   - .nii.gz
   entities:
-    _ref: schema.rules.datatypes.anat.nonparametric.entities
+    $ref: schema.rules.datatypes.anat.nonparametric.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
@@ -64,13 +64,13 @@ anat_nonparametric_mask:
     desc: OPTIONAL
 
 dwi_mask:
-  _ref: schema.rules.datatypes.dwi.dwi
+  $ref: schema.rules.datatypes.dwi.dwi
   suffixes:
   - mask
   extensions:
   - .nii.gz
   entities:
-    _ref: schema.rules.datatypes.dwi.dwi.entities
+    $ref: schema.rules.datatypes.dwi.dwi.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
@@ -78,13 +78,13 @@ dwi_mask:
     desc: OPTIONAL
 
 func_mask:
-  _ref: schema.rules.datatypes.func.func
+  $ref: schema.rules.datatypes.func.func
   suffixes:
   - mask
   extensions:
   - .nii.gz
   entities:
-    _ref: schema.rules.datatypes.func.func.entities
+    $ref: schema.rules.datatypes.func.func.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
@@ -92,128 +92,128 @@ func_mask:
     desc: OPTIONAL
 
 anat_parametric_discrete_segmentation:
-  _ref: schema.rules.datatypes.anat.parametric
+  $ref: schema.rules.datatypes.anat.parametric
   suffixes:
   - dseg
   extensions:
   - .nii.gz
   entities:
-    _ref: schema.rules.datatypes.anat.parametric.entities
+    $ref: schema.rules.datatypes.anat.parametric.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
 
 anat_nonparametric_discrete_segmentation:
-  _ref: schema.rules.datatypes.anat.nonparametric
+  $ref: schema.rules.datatypes.anat.nonparametric
   suffixes:
   - dseg
   extensions:
   - .nii.gz
   entities:
-    _ref: schema.rules.datatypes.anat.nonparametric.entities
+    $ref: schema.rules.datatypes.anat.nonparametric.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
 
 func_discrete_segmentation:
-  _ref: schema.rules.datatypes.func.func
+  $ref: schema.rules.datatypes.func.func
   suffixes:
   - dseg
   extensions:
   - .nii.gz
   entities:
-    _ref: schema.rules.datatypes.func.func.entities
+    $ref: schema.rules.datatypes.func.func.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
 
 dwi_discrete_segmentation:
-  _ref: schema.rules.datatypes.dwi.dwi
+  $ref: schema.rules.datatypes.dwi.dwi
   suffixes:
   - dseg
   extensions:
   - .nii.gz
   entities:
-    _ref: schema.rules.datatypes.dwi.dwi.entities
+    $ref: schema.rules.datatypes.dwi.dwi.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
 
 anat_parametric_probabilistic_segmentation:
-  _ref: schema.rules.datatypes.anat.parametric
+  $ref: schema.rules.datatypes.anat.parametric
   suffixes:
   - probseg
   extensions:
   - .nii.gz
   entities:
-    _ref: schema.rules.datatypes.anat.parametric.entities
+    $ref: schema.rules.datatypes.anat.parametric.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
     label: OPTIONAL
 
 anat_nonparametric_probabilistic_segmentation:
-  _ref: schema.rules.datatypes.anat.nonparametric
+  $ref: schema.rules.datatypes.anat.nonparametric
   suffixes:
   - probseg
   extensions:
   - .nii.gz
   entities:
-    _ref: schema.rules.datatypes.anat.nonparametric.entities
+    $ref: schema.rules.datatypes.anat.nonparametric.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
     label: OPTIONAL
 
 func_probabilistic_segmentation:
-  _ref: schema.rules.datatypes.func.func
+  $ref: schema.rules.datatypes.func.func
   suffixes:
   - probseg
   extensions:
   - .nii.gz
   entities:
-    _ref: schema.rules.datatypes.func.func.entities
+    $ref: schema.rules.datatypes.func.func.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
     label: OPTIONAL
 
 dwi_probabilistic_segmentation:
-  _ref: schema.rules.datatypes.dwi.dwi
+  $ref: schema.rules.datatypes.dwi.dwi
   suffixes:
   - probseg
   extensions:
   - .nii.gz
   entities:
-    _ref: schema.rules.datatypes.dwi.dwi.entities
+    $ref: schema.rules.datatypes.dwi.dwi.entities
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
     label: OPTIONAL
 
 anat_parametic_discrete_surface:
-  _ref: schema.rules.datatypes.anat.parametric
+  $ref: schema.rules.datatypes.anat.parametric
   suffixes:
   - dseg
   extensions:
   - .label.gii
   - .dlabel.nii
   entities:
-    _ref: schema.rules.datatypes.anat.parametric.entities
+    $ref: schema.rules.datatypes.anat.parametric.entities
     hemisphere:: OPTIONAL
     space: OPTIONAL
     resolution: OPTIONAL
     density: OPTIONAL
 
 anat_nonparametic_discrete_surface:
-  _ref: schema.rules.datatypes.anat.nonparametric
+  $ref: schema.rules.datatypes.anat.nonparametric
   suffixes:
   - dseg
   extensions:
   - .label.gii
   - .dlabel.nii
   entities:
-    _ref: schema.rules.datatypes.anat.nonparametric.entities
+    $ref: schema.rules.datatypes.anat.nonparametric.entities
     hemisphere:: OPTIONAL
     space: OPTIONAL
     resolution: OPTIONAL
