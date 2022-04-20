@@ -1,0 +1,16 @@
+BandpassFilter:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - suffix in ["alff", "falff"]
+  fields:
+    BandpassFilter: OPTIONAL
+Neighborhood:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - suffix in ["reho"]
+  fields:
+    Neighborhood: OPTIONAL
+Threshold:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - suffix in ["reho"]

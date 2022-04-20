@@ -1,0 +1,28 @@
+functional_derivatives_maps:
+  _ref: rules.datatypes.func.func
+  extensions:
+  - ".nii"
+  - ".nii.gz"
+  - ".gii"
+  - ".dscalar.nii"
+  entities:
+    _ref: rules.datatypes.func.func.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+    desc: OPTIONAL
+  suffixes:
+  - "mean"
+  - "std"
+  - "tsnr"
+  - "sfs"
+  - "alff"
+  - "falff"
+  - "reho"
+  - "dcb"
+  - "dcw"
+  - "ecb"
+  - "ecw"  
+  - "lfcdb"
+  - "lfcdw"
+  - "vmhc"
