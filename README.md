@@ -3,8 +3,8 @@
 [![@BIDSstandard](http://img.shields.io/twitter/follow/bidsstandard.svg?style=social)](https://twitter.com/BIDSstandard)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3686061.svg)](https://doi.org/10.5281/zenodo.3686061)
 
-![BIDS logo](./BIDS_logo/BIDS_logo_white_transparent_background_crop.png#gh-dark-mode-only)
-![BIDS logo](./BIDS_logo/BIDS_logo_black_transparent_background_crop.png#gh-light-mode-only)
+<img src="./BIDS_logo/BIDS_logo_white_transparent_background_crop.png#gh-dark-mode-only" alt="bids-logo" width="600"/>
+<img src="./BIDS_logo/BIDS_logo_black_transparent_background_crop.png#gh-light-mode-only" alt="bids-logo" width="600"/>
 
 The [Brain Imaging Data Structure (BIDS)](https://bids.neuroimaging.io) is an emerging standard for the
 organisation of neuroimaging data.
