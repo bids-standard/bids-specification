@@ -602,8 +602,8 @@ def select_schema_dir(
             if schema_version < schema_min_version:
                 lgr.warning(
                     f"BIDSVersion {schema_version} is less than the minimal working "
-                    "{schema_min_version}. "
-                    "Falling back to {schema_min_version}. "
+                    f"{schema_min_version}. "
+                    f"Falling back to {schema_min_version}. "
                     "To force the usage of earlier versions specify them explicitly "
                     "when calling the validator."
                 )
