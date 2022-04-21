@@ -105,7 +105,7 @@ sub-<label>/
             datatype_bases_found += 1
     # Are all datatypes listed?
     # correct for derivatives files in count
-    assert datatype_bases_found == datatype_count - 2
+    assert datatype_bases_found == datatype_count - 3
 
 
 def test_make_entity_table(schema_obj):

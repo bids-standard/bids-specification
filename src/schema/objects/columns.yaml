@@ -456,7 +456,7 @@ strain_rrid:
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
   type: string
   format: rrid
-structure_name
+structure_name:
   name: name
   description: Structure name
   type: string
