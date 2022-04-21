@@ -1,8 +1,8 @@
-from copy import deepcopy
 import datetime
 import json
 import os
 import re
+from copy import deepcopy
 
 from . import schema, utils
 
@@ -81,9 +81,7 @@ def _get_paths(bids_paths):
     return path_list
 
 
-def _add_entity(
-    regex_entities, entity, entity_shorthand, variable_field, requirement_level
-):
+def _add_entity(regex_entities, entity, entity_shorthand, variable_field, requirement_level):
     """Add entity pattern to filename template based on requirement level."""
 
     # We need to do this here, although it would be easier to back-reference in the directory.
@@ -155,9 +153,7 @@ def _add_extensions(regex_string, variant):
     return regex_string
 
 
-def _add_subdirs(
-    regex_string, variant, datatype, entity_definitions, modality_datatypes
-):
+def _add_subdirs(regex_string, variant, datatype, entity_definitions, modality_datatypes):
     """Add appropriate subdirectories as required by entities present."""
 
     label = "([a-z,A-Z,0-9]*?)"
@@ -268,9 +264,7 @@ def load_entities(
 
     # Parsing tabular_metadata as a datatype, might be done automatically if the YAML is moved
     # to the same subdirectory
-    my_schema["rules"]["datatypes"]["tabular_metadata"] = my_schema["rules"][
-        "tabular_metadata"
-    ]
+    my_schema["rules"]["datatypes"]["tabular_metadata"] = my_schema["rules"]["tabular_metadata"]
     datatypes = my_schema["rules"]["datatypes"]
     entity_order = my_schema["rules"]["entities"]
     entity_definitions = my_schema["objects"]["entities"]
@@ -432,9 +426,7 @@ def validate_all(
             match_listing.append(match_entry)
         else:
             if debug:
-                print(
-                    f"The `{target_path}` file could not be matched to any regex schema entry."
-                )
+                print(f"The `{target_path}` file could not be matched to any regex schema entry.")
     results = {}
     if debug:
         results["itemwise"] = itemwise_results
@@ -508,9 +500,7 @@ def write_report(
         else:
             f.write("All files were matched by a regex schema entry.")
         if len(validation_result["schema_tracking"]) > 0:
-            f.write(
-                "\nThe following mandatory regex schema entries did not match any files:"
-            )
+            f.write("\nThe following mandatory regex schema entries did not match any files:")
             f.write("\n")
             for entry in validation_result["schema_tracking"]:
                 if entry["mandatory"]:
