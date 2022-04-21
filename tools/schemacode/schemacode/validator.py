@@ -1,10 +1,12 @@
+from copy import deepcopy
 import datetime
 import json
 import os
 import re
-from copy import deepcopy
 
 from . import schema, utils
+
+lgr = utils.get_logger()
 
 # The list of which entities create directories could be dynamically specified by the YAML, but for
 # now, it is not.
@@ -32,12 +34,9 @@ def _get_paths(bids_paths):
         input.
     """
     exclude_subdirs = [
-        "/.dandi",
-        "/.datalad",
-        "/.git",
-        "\\.dandi",
-        "\\.datalad",
-        "\\.git",
+        rf"{os.sep}.dandi",
+        rf"{os.sep}.datalad",
+        rf"{os.sep}.git",
     ]
     # `.bidsignore` is not, in fact, a BIDS file, as per:
     # https://github.com/bids-standard/bids-specification/issues/980
@@ -77,12 +76,14 @@ def _get_paths(bids_paths):
     # Standardize Windows paths
     if "\\" in path_list[0]:
         for ix, i in enumerate(path_list):
-            path_list[ix] = i.replace("\\","/")
+            path_list[ix] = i.replace("\\", "/")
 
     return path_list
 
 
-def _add_entity(regex_entities, entity, entity_shorthand, variable_field, requirement_level):
+def _add_entity(
+    regex_entities, entity, entity_shorthand, variable_field, requirement_level
+):
     """Add entity pattern to filename template based on requirement level."""
 
     # We need to do this here, although it would be easier to back-reference in the directory.
@@ -132,9 +133,9 @@ def _extension_safety(extension):
     if extension == "None":
         return ""
     if "." in extension:
-        extension = extension.replace(".","\\.")
+        extension = extension.replace(".", "\\.")
     if "*" in extension:
-        extension = extension.replace("*",".*?")
+        extension = extension.replace("*", ".*?")
 
     return extension
 
@@ -154,7 +155,9 @@ def _add_extensions(regex_string, variant):
     return regex_string
 
 
-def _add_subdirs(regex_string, variant, datatype, entity_definitions, modality_datatypes):
+def _add_subdirs(
+    regex_string, variant, datatype, entity_definitions, modality_datatypes
+):
     """Add appropriate subdirectories as required by entities present."""
 
     label = "([a-z,A-Z,0-9]*?)"
@@ -213,11 +216,7 @@ def load_top_level(
         # None value gets passed as list of strings...
         extensions = top_level_file["extensions"]
         if extensions != ["None"]:
-            safe_extensions = []
-            for extension in extensions:
-                extension = _extension_safety(extension)
-                safe_extensions.append(extension)
-                extensions_regex = "|".join(safe_extensions)
+            extensions_regex = "|".join(map(_extension_safety, extensions))
             regex = f".*?/{top_level_filename}({extensions_regex})$"
         else:
             regex = f".*?/{top_level_filename}$"
@@ -269,13 +268,15 @@ def load_entities(
 
     # Parsing tabular_metadata as a datatype, might be done automatically if the YAML is moved
     # to the same subdirectory
-    my_schema["rules"]["datatypes"]["tabular_metadata"] = my_schema["rules"]["tabular_metadata"]
+    my_schema["rules"]["datatypes"]["tabular_metadata"] = my_schema["rules"][
+        "tabular_metadata"
+    ]
     datatypes = my_schema["rules"]["datatypes"]
     entity_order = my_schema["rules"]["entities"]
     entity_definitions = my_schema["objects"]["entities"]
     # Descriptions are not needed and very large.
     for i in entity_definitions.values():
-        i.pop('description', None)
+        i.pop("description", None)
 
     # Needed for non-modality file separation as per:
     # https://github.com/bids-standard/bids-specification/pull/985#issuecomment-1019573787
@@ -431,7 +432,9 @@ def validate_all(
             match_listing.append(match_entry)
         else:
             if debug:
-                print(f"The `{target_path}` file could not be matched to any regex schema entry.")
+                print(
+                    f"The `{target_path}` file could not be matched to any regex schema entry."
+                )
     results = {}
     if debug:
         results["itemwise"] = itemwise_results
@@ -505,7 +508,9 @@ def write_report(
         else:
             f.write("All files were matched by a regex schema entry.")
         if len(validation_result["schema_tracking"]) > 0:
-            f.write("\nThe following mandatory regex schema entries did not match any files:")
+            f.write(
+                "\nThe following mandatory regex schema entries did not match any files:"
+            )
             f.write("\n")
             for entry in validation_result["schema_tracking"]:
                 if entry["mandatory"]:
@@ -597,9 +602,21 @@ def select_schema_dir(
                     try:
                         schema_version = dataset_info["BIDSVersion"]
                     except KeyError:
+                        lgr.warning(
+                            "BIDSVersion is not specified in "
+                            "`dataset_description.json`. "
+                            f"Falling back to {schema_min_version}."
+                        )
                         schema_version = schema_min_version
         if schema_min_version:
             if schema_version < schema_min_version:
+                lgr.warning(
+                    f"BIDSVersion {schema_version} is less than the minimal working "
+                    "{schema_min_version}. "
+                    "Falling back to {schema_min_version}. "
+                    "To force the usage of earlier versions specify them explicitly "
+                    "when calling the validator."
+                )
                 schema_version = schema_min_version
     schema_dir = os.path.join(schema_reference_root, schema_version)
     if os.path.isdir(schema_dir):
