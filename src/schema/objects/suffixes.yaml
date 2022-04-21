@@ -31,7 +31,7 @@ CONF:
   description: |
     Confocal microscopy imaging data
 curv:
-  name: Curviature Index
+  name: Curvature Index
   description: Cortical surface curvature indices
 defects:
   name: Defects
