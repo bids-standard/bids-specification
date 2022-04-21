@@ -1,8 +1,8 @@
 ---
-Morphometric
+morphometric
   selectors:
-  - dataset.DatasetType == "derivative"
-  - suffix in ["morph"]
+  - dataset.datasettype == "derivative"
+  - suffix == "morph"
   columns:
     index: RECOMMENDED
     structure_name: RECOMMENDED
@@ -12,4 +12,4 @@ Morphometric
     thickness: OPTIONAL
     area: OPTIONAL
     curvature: OPTIONAL
- additional_columns: allowed 
+ additional_columns: allowed
