@@ -12,4 +12,4 @@ morphometric:
     thickness: OPTIONAL
     area: OPTIONAL
     curvature: OPTIONAL
- additional_columns: allowed
+  additional_columns: allowed
