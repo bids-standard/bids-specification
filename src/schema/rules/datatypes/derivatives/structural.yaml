@@ -1,0 +1,116 @@
+---
+anat_parametic_recon_surface:
+  $ref: rules.datatypes.anat.parametric
+  suffixes:
+  - wm
+  - smoothwm
+  - pial
+  - midthickness
+  - inflated
+  - vinflated
+  - sphere
+  - flat
+  extensions:
+  - .surf.gii
+  entities:
+    $ref: rules.datatypes.anat.nonparametric.entities
+    hemisphere: REQUIRED
+    space__surface: OPTIONAL
+    space__volume: OPTIONAL
+    description: OPTIONAL
+
+anat_nonparametic_recon_surface:
+  $ref: rules.datatypes.anat.nonparametric
+  suffixes:
+  - wm
+  - smoothwm
+  - pial
+  - midthickness
+  - inflated
+  - vinflated
+  - sphere
+  - flat
+  extensions:
+  - .surf.gii
+  entities:
+    $ref: rules.datatypes.anat.nonparametric.entities
+    hemisphere: REQUIRED
+    space__surface: OPTIONAL
+    space__volume: OPTIONAL
+    description: OPTIONAL
+
+anat_parametric_scalar:
+  $ref: rules.datatypes.anat.parametric
+  suffixes:
+  - curv
+  - thickness
+  - area
+  - dist
+  - defects
+  - sulc
+  - myelinmap
+  - distortion
+  extensions:
+  - .shape.gii
+  - .dscalar.gii
+  entities:
+    $ref: rules.datatypes.anat.parametric.entities
+    hemisphere: REQUIRED
+    space__surface: OPTIONAL
+    description: OPTIONAL
+anat_nonparametric_scalar:
+  $ref: rules.datatypes.anat.nonparametric
+  suffixes:
+  - curv
+  - thickness
+  - area
+  - dist
+  - defects
+  - sulc
+  - myelinmap
+  - distortion
+  extensions:
+  - .shape.gii
+  - .dscalar.gii
+  entities:
+    $ref: rules.datatypes.anat.nonparametric.entities
+    hemisphere: REQUIRED
+    space__surface: OPTIONAL
+    description: OPTIONAL
+
+anat_parametric_morphometric:
+  $ref: rules.datatypes.anat.parametric
+  suffixes:
+  - morph
+  extensions:
+  - .tsv
+  entities:
+    $ref: rules.datatypes.anat.parametric.entities
+    description: OPTIONAL
+anat_nonparametric_morphometric:
+  $ref: rules.datatypes.anat.nonparametric
+  suffixes:
+  - morph
+  extensions:
+  - .tsv
+  entities:
+    $ref: rules.datatypes.anat.nonparametric.entities
+    description: OPTIONAL
+func_morphometric:
+  $ref: rules.datatypes.func.func
+  suffixes:
+  - morph
+  extensions:
+  - .tsv
+  entities:
+    $ref: rules.datatypes.func.func.entities
+    description: OPTIONAL
+dwi_morphometric:
+  $ref: rules.datatypes.dwi.dwi
+  suffixes:
+  - morph
+  extensions:
+  - .tsv
+  entities:
+    $ref: rules.datatypes.dwi.dwi.entities
+    description: OPTIONAL

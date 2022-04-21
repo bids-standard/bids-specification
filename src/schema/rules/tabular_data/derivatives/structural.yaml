@@ -1,0 +1,15 @@
+---
+Morphometric
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - suffix in ["morph"]
+  columns:
+    index: RECOMMENDED
+    structure_name: RECOMMENDED
+    centroid: OPTIONAL
+    surface_volume: OPTIONAL
+    intensity: OPTIONAL
+    thickness: OPTIONAL
+    area: OPTIONAL
+    curvature: OPTIONAL
+ additional_columns: allowed 

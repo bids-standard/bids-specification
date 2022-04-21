@@ -37,12 +37,20 @@ cardiac:
   description: |
     continuous pulse measurement
   type: number
+centroid:
+  name: centroid
+  description: Center coordinate of structure
+  type: number
 color:
   name: color
   description: |
     Hexadecimal. Label color for visualization.
   type: string
   unit: hexadecimal
+curvature:
+  name: curv
+  description: Curvature index of cortical structure
+  type: number
 derived_from:
   name: derived_from
   description: |
@@ -158,6 +166,10 @@ index:
   description: |
     The label integer index.
   type: integer
+intensity:
+  name: intensity
+  description: Intensity of voxels within structure
+  type: number
 low_cutoff:
   name: low_cutoff
   description: |
@@ -444,6 +456,18 @@ strain_rrid:
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
   type: string
   format: rrid
+structure_name
+  name: name
+  description: Structure name
+  type: string
+surface_area:
+  name: area
+  description: Surface area of cortical structure
+  type: number
+thickness:
+  name: thickness
+  description: Thickness of cortical structure
+  type: number
 time:
   name: time
   description: |
@@ -574,6 +598,10 @@ value:
   anyOf:
   - type: number
   - type: string
+volume:
+  name: volume
+  description: Volume of structure
+  type: number
 volume_type:
   name: volume_type
   description: |
@@ -611,3 +639,4 @@ z:
   - type: string
     enum:
     - n/a
+

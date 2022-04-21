@@ -5,6 +5,9 @@
   name: 2-photon excitation microscopy
   description: |
     2-photon excitation microscopy imaging data
+area:
+  name: Surface Aread
+  description: Discretized surface area across regions
 BF:
   name: Bright-field microscopy
   description: |
@@ -27,10 +30,22 @@ CONF:
   name: Confocal microscopy
   description: |
     Confocal microscopy imaging data
+curv:
+  name: Curviature Index
+  description: Cortical surface curvature indices
+defects:
+  name: Defects
+  description: Marked regions with surface defects
 DIC:
   name: Differential interference contrast microscopy
   description: |
     Differential interference contrast microscopy imaging data
+dist:
+  name: Distance
+  description: Distance from a point
+distortion:
+  name: Distortion Map
+  description: Distortion map calculated from a surface registration
 DF:
   name: Dark-field microscopy
   description: |
@@ -55,10 +70,17 @@ FLASH:
     When used in a file collection, it may result in conflicts across filenames of
     different applications.
     **Change:** Removed from suffixes.
+flat:
+  name: Flattened Surface
+  description: The flattened surface (used for visualization)
 FLUO:
   name: Fluorescence microscopy
   description: |
     Fluorescence microscopy imaging data
+inflated:
+  name: Inflated Midthickness
+  description: |
+    An inflation of the midthickness surface (useful for visualization)
 IRT1:
   name: Inversion recovery T1 mapping
   description: |
@@ -87,6 +109,9 @@ MESE:
     times and is primarily used for T2 mapping.
     Please note that this suffix is not intended for the logical grouping of
     images acquired using an Echo Planar Imaging (EPI) readout.
+midthickness:
+  name: Pial/White Matter Midpoint Thickness
+  description: The midpoints between wm and pial surfaces
 MP2RAGE:
   name: Magnetization Prepared Two Gradient Echoes
   description: |
@@ -146,6 +171,9 @@ MTsat:
     MTsat maps are REQUIRED to use this suffix regardless of the method used to
     generate them.
   unit: arbitrary
+myelinmap:
+  name: Myelin Map
+  description: Myelin map calculated from T1w to T2w ratio
 MWFmap:
   name: Myelin water fraction image
   description: |
@@ -208,6 +236,9 @@ PDw:
     In a gradient-echo acquisition, PD weighting dominates the contrast at long
     repetition and short echo times, and at small flip angles.
   unit: arbitrary
+pial:
+  name: Pial
+  description: The gray matter / pial matter border
 PLI:
   name: Polarized-light microscopy
   description: |
@@ -411,6 +442,9 @@ TEM:
   name: Transmission electron microscopy
   description: |
     Transmission electron microscopy imaging data
+thickness:
+  name: Cortical Thickness
+  description: Cortical thickness
 UNIT1:
   name: Homogeneous (flat) T1-weighted MP2RAGE image
   description: |
@@ -644,11 +678,28 @@ sessions:
     These files MUST include a session_id column and describe each session by one and only one row.
     Column names in sessions.tsv files MUST be different from group level participant key column
     names in the participants.tsv file.
+smoothwm:
+  name: Smoothed White Matter
+  description: The smoothed gray matter / white matter border
+sphere:
+  name: Sphere
+  description: |
+    The sphere (used for registration - see transforms for nomenclature)
 stim:
   name: Continuous recording
   description: |
     Continuous measures, such as parameters of a film or audio stimulus.
+sulc:
+  name: Sulcal Depth
+  description: Sulcal Depth
 uCT:
   name: Micro-CT
   description: |
     Micro-CT imaging data
+vinflated:
+  name: Very Inflated Midthickness
+  description: |
+    A very-inflated midthicknesss surface (also for visualization)
+wm:
+  name: White Matter
+  description: The gray matter / white matter border for the cortex

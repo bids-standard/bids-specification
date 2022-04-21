@@ -304,6 +304,22 @@ space:
     for other data types, it is restricted to derivative data.
   type: string
   format: label
+space__surface:
+  name: Surface Space
+  entity: space
+  description: |
+    The space entitiy that corresponds to the surface coordinate space subset of the
+    coordinate space options.
+  type: string
+  format: label
+space__volume:
+  name: Volume Space
+  entity: volspace
+  description: |
+    The volspace entitiy corresponds to the 3D coordinate space subset of the
+    coordinate space options.
+  type: string
+  format: label
 split:
   name: Split
   entity: split
