@@ -681,6 +681,13 @@ def validate_bids(
         regex_schema,
         debug=debug,
     )
+    # Record schema version.
+    # Not sure whether to incorporate in validation_result.
+    if bids_schema_dir == os.path.join(os.path.abspath(os.path.dirname(__file__)),"data/schema",):
+        schema_version = 9999
+    else:
+        _, schema_version = os.path.split(bids_schema_dir)
+    validation_result["bids_schema_version"] = schema_version
 
     if report_path:
         if isinstance(report_path, str):
