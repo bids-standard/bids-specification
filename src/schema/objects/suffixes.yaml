@@ -6,7 +6,7 @@
   description: |
     2-photon excitation microscopy imaging data
 area:
-  name: Surface Aread
+  name: Surface Area
   description: Discretized surface area across regions
 BF:
   name: Bright-field microscopy
@@ -31,7 +31,7 @@ CONF:
   description: |
     Confocal microscopy imaging data
 curv:
-  name: Curviature Index
+  name: Curvature Index
   description: Cortical surface curvature indices
 defects:
   name: Defects
