@@ -215,7 +215,7 @@ processing:
   name: proc
   display_name: Processed (on device)
   description: |
-    The proc label is analogous to rec for MR and denotes a variant of
+    The proc label denotes a variant of
     a file that was a result of particular processing performed on the device.
 
     This is useful for files produced in particular by Neuromag/Elekta/MEGIN's
@@ -231,6 +231,8 @@ reconstruction:
   description: |
     The `rec-<label>` entity can be used to distinguish different reconstruction algorithms
     (for example, `MoCo` for the ones using motion correction).
+    Also consider `proc-<label>` entity to represent additional processing performed on the data
+    after initial reconstruction (for example, spatial smoothing).
   type: string
   format: label
 recording:
