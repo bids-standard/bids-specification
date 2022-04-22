@@ -452,6 +452,49 @@ def make_suffix_table(schema, suffixes, tablefmt="github"):
     return table_str
 
 
+def make_obj_table(subschema, field_info, tablefmt="github"):
+    # Use the "name" field in the table, to allow for filenames to not match
+    # "names".
+    df = pd.DataFrame(
+        index=[subschema[f]["name"] for f in subschema.keys()],
+        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+    )
+    df.index.name = "**Key name**"
+    for field in subschema.keys():
+        field_name = subschema[field]["name"]
+        requirement_info = field_info[field]
+        description_addendum = ""
+        if isinstance(requirement_info, tuple):
+            requirement_info, description_addendum = requirement_info
+
+        requirement_info = requirement_info.replace(
+            "DEPRECATED",
+            "[DEPRECATED](/02-common-principles.html#definitions)",
+        )
+
+        type_string = utils.resolve_metadata_type(subschema[field])
+
+        description = subschema[field]["description"] + " " + description_addendum
+
+        # Try to add info about valid values
+        valid_values_str = utils.describe_valid_values(subschema[field])
+        if valid_values_str:
+            description += "\n\n\n\n" + valid_values_str
+
+        # A backslash before a newline means continue a string
+        description = description.replace("\\\n", "")
+        # Two newlines should be respected
+        description = description.replace("\n\n", "<br>")
+        # Otherwise a newline corresponds to a space
+        description = description.replace("\n", " ")
+
+        df.loc[field_name] = [requirement_info, type_string, description]
+
+    # Print it as markdown
+    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    return table_str
+
+
 def make_metadata_table(schema, field_info, tablefmt="github"):
     """Produce metadata table (markdown) based on requested fields.
 
@@ -480,50 +523,27 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
     # The filter function doesn't work here.
     metadata_schema = schema["objects"]["metadata"]
 
-    retained_fields = [f for f in fields if f in metadata_schema.keys()]
+    # retained_fields = [f for f in fields if f in metadata_schema.keys()]
     dropped_fields = [f for f in fields if f not in metadata_schema.keys()]
     if dropped_fields:
         print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
 
-    # Use the "name" field in the table, to allow for filenames to not match
-    # "names".
-    df = pd.DataFrame(
-        index=[metadata_schema[f]["name"] for f in retained_fields],
-        columns=["**Requirement Level**", "**Data type**", "**Description**"],
-    )
-    df.index.name = "**Key name**"
-    for field in retained_fields:
-        field_name = metadata_schema[field]["name"]
-        requirement_info = field_info[field]
-        description_addendum = ""
-        if isinstance(requirement_info, tuple):
-            requirement_info, description_addendum = requirement_info
+    table_str = make_obj_table(metadata_schema)
+    return table_str
 
-        requirement_info = requirement_info.replace(
-            "DEPRECATED",
-            "[DEPRECATED](/02-common-principles.html#definitions)",
-        )
 
-        type_string = utils.resolve_metadata_type(metadata_schema[field])
+def make_subobject_table(schema, object_tuple, field_info, tablefmt="github"):
+    assert isinstance(object_tuple, tuple)
+    assert all([isinstance(i, str) for i in object_tuple])
 
-        description = metadata_schema[field]["description"] + " " + description_addendum
+    temp_dict = schema[object_tuple[0]]
+    for i in range(1, len(object_tuple)):
+        level_str = object_tuple[i]
+        temp_dict = temp_dict[level_str]
 
-        # Try to add info about valid values
-        valid_values_str = utils.describe_valid_values(metadata_schema[field])
-        if valid_values_str:
-            description += "\n\n\n\n" + valid_values_str
-
-        # A backslash before a newline means continue a string
-        description = description.replace("\\\n", "")
-        # Two newlines should be respected
-        description = description.replace("\n\n", "<br>")
-        # Otherwise a newline corresponds to a space
-        description = description.replace("\n", " ")
-
-        df.loc[field_name] = [requirement_info, type_string, description]
-
-    # Print it as markdown
-    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    temp_dict = temp_dict["properties"]
+    assert isinstance(temp_dict, dict)
+    table_str = make_obj_table(temp_dict, field_info=field_info, tablefmt=tablefmt)
     return table_str
 
 
