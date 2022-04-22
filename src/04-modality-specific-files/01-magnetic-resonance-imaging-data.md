@@ -761,6 +761,10 @@ The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
 key/value pair corresponds to a custom label the user may use to
 distinguish different sets of parameters.
 
+The OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec)
+key/value can be used to distinguish
+different reconstruction algorithms (for example ones using motion correction).
+
 The OPTIONAL [`dir-<label>`](../99-appendices/09-entities.md#dir)
 key/value pair corresponds to a custom label the user may use to
 distinguish different sets of phase-encoding directions.
