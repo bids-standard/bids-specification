@@ -12,6 +12,7 @@
     subject: required
     session: optional
     acquisition: optional
+    reconstruction: optional
     direction: optional
     run: optional
     part: optional
@@ -27,6 +28,7 @@
     subject: required
     session: optional
     acquisition: optional
+    reconstruction: optional
     direction: optional
     run: optional
     part: optional
@@ -42,6 +44,7 @@
     subject: required
     session: optional
     acquisition: optional
+    reconstruction: optional
     direction: optional
     run: optional
     part: optional
