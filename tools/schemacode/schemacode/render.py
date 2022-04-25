@@ -584,7 +584,7 @@ def make_columns_table(schema, column_info, tablefmt="github", relpath=None):
         description = column_schema[field]["description"] + " " + description_addendum
 
         if relpath is not None:
-            description = description.replace("REPLACEME", relpath)
+            description = description.replace("PATH_TO_SRC", relpath)
 
         # Try to add info about valid values
         valid_values_str = utils.describe_valid_values(column_schema[field])

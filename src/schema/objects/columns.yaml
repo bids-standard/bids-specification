@@ -17,8 +17,8 @@ acq_time__scans:
     Furthermore, if this header is provided, the acquisition times of all files
     from the same recording MUST be identical.
     Datetime format and their anonymization are described in [Units](/02-common-principles.html#units).
-    {{ MACROS___make_path_relative() }} ... does this even work? REPLACEME ... and this? -->
-    [Units](REPLACEME/02-common-principles.md#units)
+    {{ MACROS___make_path_relative() }} ... does this even work? PATH_TO_SRC ... and this? -->
+    [Units](PATH_TO_SRC/02-common-principles.md#units)
   type: string
   format: datetime
 acq_time__sessions:
