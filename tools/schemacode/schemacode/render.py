@@ -56,7 +56,7 @@ def make_entity_definitions(schema):
     return text
 
 
-def make_glossary(schema, relpath):
+def make_glossary(schema, relpath=None):
     """Generate glossary.
 
     Parameters

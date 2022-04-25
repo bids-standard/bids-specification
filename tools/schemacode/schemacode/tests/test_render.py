@@ -53,7 +53,7 @@ def test_make_glossary(schema_obj, schema_dir):
                 rule_files.append(rule_base)
     rules_only = list(filter(lambda a: a not in object_files, rule_files))
 
-    glossary = render.make_glossary(schema_obj)
+    glossary = render.make_glossary(schema_obj, relpath=None)
     for line in glossary.split("\n"):
         if line.startswith('<a name="objects.'):
             # Are all objects objects?
