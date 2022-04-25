@@ -3,7 +3,7 @@ HED:
   name: HED
   description: |
     Hierarchical Event Descriptor (HED) Tag.
-    See [Appendix III](/99-appendices/03-hed.html) for details.
+    See [Appendix III](PATH_TO_SRC/99-appendices/03-hed.html) for details.
   type: string
 abbreviation:
   name: abbreviation
@@ -16,16 +16,16 @@ acq_time__scans:
     Acquisition time refers to when the first data point in each run was acquired.
     Furthermore, if this header is provided, the acquisition times of all files
     from the same recording MUST be identical.
-    Datetime format and their anonymization are described in [Units](/02-common-principles.html#units).
-    see: PATH_TO_SRC ... try:
-    [Units](PATH_TO_SRC/02-common-principles.md#units)
+    Datetime format and their anonymization are described in
+    [Units](PATH_TO_SRC/02-common-principles.html#units).
   type: string
   format: datetime
 acq_time__sessions:
   name: acq_time
   description: |
     Acquisition time refers to when the first data point of the first run was acquired.
-    Datetime format and their anonymization are described in [Units](/02-common-principles.html#units).
+    Datetime format and their anonymization are described in
+    [Units](PATH_TO_SRC/02-common-principles.html#units).
   type: string
   format: datetime
 age:
@@ -514,7 +514,7 @@ units:
   description: |
     Physical unit of the value represented in this channel,
     for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter
-    (see [Units](/02-common-principles.html#units)).
+    (see [Units](PATH_TO_SRC/02-common-principles.html#units)).
   type: string
   format: unit
 value:
