@@ -71,8 +71,13 @@ def make_entity_definitions():
     return text
 
 
-def make_glossary():
+def make_glossary(relpath=None):
     """Generate glossary.
+
+    Parameters
+    ----------
+    relpath : str | None
+        path from file where this func is called to src/
 
     Returns
     -------
@@ -82,7 +87,7 @@ def make_glossary():
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    text = render.make_glossary(schema_obj)
+    text = render.make_glossary(schema_obj, relpath)
     return text
 
 

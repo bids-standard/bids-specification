@@ -56,7 +56,7 @@ def make_entity_definitions(schema):
     return text
 
 
-def make_glossary(schema):
+def make_glossary(schema, relpath):
     """Generate glossary.
 
     Parameters
@@ -64,6 +64,8 @@ def make_glossary(schema):
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
+    relpath : str | None
+        path from file where this func is called to src/
 
     Returns
     -------
@@ -119,6 +121,9 @@ def make_glossary(schema):
         obj_desc = obj_desc.replace("\n\n", "<br>")
         # Otherwise a newline corresponds to a space
         obj_desc = obj_desc.replace("\n", " ")
+        # Spec internal links need to be replaced
+        if relpath is not None:
+            obj_desc = obj_desc.replace("PATH_TO_SRC", relpath)
 
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
@@ -545,6 +550,8 @@ def make_columns_table(schema, column_info, tablefmt="github", relpath=None):
         definition from the schema.
     tablefmt : string, optional
         The target table format. The default is "github" (GitHub format).
+    relpath : str | None
+        path from file where this func is called to src/
 
     Returns
     -------
