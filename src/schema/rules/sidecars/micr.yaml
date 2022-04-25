@@ -65,7 +65,7 @@ MicroscopyChunkTransformations:
     selectors:
     - modality == "micr"
     - datatype == "micr"
-    - entities contains "chunk"
+    - '"chunk" in entities'
     fields:
         ChunkTransformationMatrix: recommended
 
@@ -73,7 +73,7 @@ MicroscopyChunkTransformationsMatrixAxis:
     selectors:
     - modality == "micr"
     - datatype == "micr"
-    - entities contains "chunk"
-    - sidecar contains "ChunkTransformationMatrix"
+    - '"chunk" in entities'
+    - '"ChunkTransformationMatrix" in sidecar'
     fields:
         ChunkTransformationMatrixAxis: required

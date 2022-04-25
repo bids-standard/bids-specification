@@ -2,17 +2,17 @@
 ResInSidecar:
     selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - modality in ["mri", "pet"]
-    - extension in ["nii", " nii.gz"]
-    - type(sidecar.Resolution) == "object"
+    - '["mri", "pet"].includes(modality)'
+    - '["nii", " nii.gz"].includes(extension)'
+    - typeof(sidecar.Resolution) == "object"
     checks:
-    - sidecar.Resolution contains entities.resolution
+    - entities.resolution in sidecar.Resolution
 
 DenInSidecar:
     selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - modality in ["mri", "pet"]
-    - extension in [".nii", ".nii.gz"]
-    - type(sidecar.Density) == "object"
+    - '["mri", "pet"].includes(modality)'
+    - '[".nii", ".nii.gz"].includes(extension)'
+    - typeof(sidecar.Density) == "object"
     checks:
-    - sidecar.Density contains entities.density
+    - entities.density in sidecar.Density

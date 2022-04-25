@@ -29,7 +29,7 @@ MRIASLTextOnlySliceTiming:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - sidecar contains "MRAcquisitionType"
+    - 'sidecar'.includes('"MRAcquisitionType")'
     - sidecar.MRAcquisitionType == "2D"
     fields:
         SliceTiming:
@@ -56,7 +56,7 @@ MRIASLTextOnlyFlipAngle:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - sidecar contains "LookLocker"
+    - '"LookLocker in sidecar'
     - sidecar.LookLocker == true
     fields:
         FlipAngle:
@@ -113,7 +113,7 @@ MRIASLCommonMetadataFieldsM0Type:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - sidecar contains "M0Type"
+    - '"M0Type" in sidecar'
     - sidecar.M0Type == "Estimate"
     fields:
         M0Estimate:
@@ -131,7 +131,7 @@ MRIASLCommonMetadataFieldsBackgroundSuppression:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - sidecar contains "BackgroundSuppression"
+    - '"BackgroundSuppression" in sidecar'.
     - sidecar.BackgroundSuppression == true
     fields:
         BackgroundSuppressionNumberPulses: recommended
@@ -142,7 +142,7 @@ MRIASLCommonMetadataFieldsVascularCrushing:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - sidecar contains "VascularCrushing"
+    - '"VascularCrushing" in sidecar'
     - sidecar.VascularCrushing == true
     fields:
         VascularCrushingVENC: recommended
@@ -152,8 +152,8 @@ MRIASLPCASLSpecific:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - sidecar contains "ArterialSpinLabelingType"
-    - sidecar.ArterialSpinLabelingType in ["CASL", "PCASL"]
+    - "ArterialSpinLabelingType" in sidecar'
+    - '["CASL", "PCASL"].includes(sidecar.ArterialSpinLabelingType)'
     fields:
         LabelingDuration: required
         LabelingPulseAverageGradient: recommended
@@ -168,7 +168,7 @@ MRIASLPCASLSpecific2:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - sidecar contains "ArterialSpinLabelingType"
+    - '"ArterialSpinLabelingType" in sidecar'
     - sidecar.ArterialSpinLabelingType == "PCASL"
     fields:
         PCASLType: recommended
@@ -178,7 +178,7 @@ MRIASLCASLSpecific:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - sidecar contains "ArterialSpinLabelingType"
+    - '"ArterialSpinLabelingType" in sidecar'
     - sidecar.ArterialSpinLabelingType == "CASL"
     fields:
         CASLType: recommended
@@ -188,7 +188,7 @@ MRIASLPASLSpecific:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - sidecar contains "ArterialSpinLabelingType"
+    - '"ArterialSpinLabelingType" in sidecar'
     - sidecar.ArterialSpinLabelingType == "PASL"
     fields:
         BolusCutOffFlag: required
@@ -206,9 +206,9 @@ MRIASLPASLSpecificBolusCutOffFlag:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - sidecar contains "ArterialSpinLabelingType"
+    - '"ArterialSpinLabelingType" in sidecar'
     - sidecar.ArterialSpinLabelingType == "PASL"
-    - sidecar contains "BolusCutOffFlag"
+    - '"BolusCutOffFlag" in sidecar'
     - sidecar.BolusCutOffFlag == true
     fields:
         BolusCutOffDelayTime:
@@ -254,7 +254,7 @@ MRIASLM0ScanTextOnlyFlipAngle:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "m0scan"
-    - sidecar contains "LookLocker"
+    - '"LookLocker" in sidecar'
     - sidecar.LookLocker == true
     fields:
         FlipAngle:

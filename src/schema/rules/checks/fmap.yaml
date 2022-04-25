@@ -11,7 +11,7 @@ FmapFieldmapWithoutMagnitude:
   selectors:
   - suffix == "fieldmap"
   checks:
-  - associations contains "magnitude"
+  - 'associations'.includes('"magnitude")'
 
 # 92
 FmapPhasediffWithoutMagnitude:
@@ -23,4 +23,4 @@ FmapPhasediffWithoutMagnitude:
   selectors:
   - suffix == "phasediff"
   checks:
-  - associations contains "magnitude1"
+  - 'associations'.includes('"magnitude1")'

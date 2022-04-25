@@ -20,10 +20,10 @@ ASLLabelingDurationNiftiLength:
     level: error
   selectors:
   - suffix == "asl"
-  - sidecar contains "LabelingDuration"
-  - type(sidecar.LabelingDuration) == "array"
+  - 'sidecar'.includes('"LabelingDuration")'
+  - sidecar.LabelingDuration.constructor.isArray(sidecar.LabelingDuration)
   checks:
-  - nifti_header.dim[4] == len(sidecar.LabelingDuration)
+  - nifti_header.dim[4] == sidecar.LabelingDuration.length
 
 # 165
 ASLContextConsistent:
@@ -35,7 +35,7 @@ ASLContextConsistent:
     level: error
   selectors:
   - suffix == "asl"
-  - associations contains "aslcontext"
+  - 'associations'.includes('"aslcontext")'
   checks:
   - nifti_header.dim[4] == associations.aslcontext.n_rows
 
@@ -55,10 +55,10 @@ ASLFlipAngleNiftiLength:
     level: error
   selectors:
   - suffix == "asl"
-  - sidecar contains "FlipAngle"
-  - type(sidecar.FlipAngle) == "array"
+  - 'sidecar'.includes('"FlipAngle")'
+  - sidecar.FlipAngle.constructor.isArray(sidecar.FlipAngle)
   checks:
-  - nifti_header.dim[4] == len(sidecar.FlipAngle)
+  - nifti_header.dim[4] == sidecar.FlipAngle.length
 
 # 172
 ASLFlipAngleASLContextLength:
@@ -76,11 +76,11 @@ ASLFlipAngleASLContextLength:
     level: error
   selectors:
   - suffix == "asl"
-  - associations contains "aslcontext"
-  - sidecar contains "FlipAngle"
-  - type(sidecar.FlipAngle) == "array"
+  - 'associations'.includes('"aslcontext")'
+  - 'sidecar'.includes('"FlipAngle")'
+  - sidecar.FlipAngle.constructor.isArray(sidecar.FlipAngle)
   checks:
-  - aslcontext.n_rows == sidecar.FlipAngle.size
+  - aslcontext.n_rows == sidecar.FlipAngle.length
 
 # 173
 ASLPostLabelingDelayNiftiLength:
@@ -101,10 +101,10 @@ ASLPostLabelingDelayNiftiLength:
     level: error
   selectors:
   - suffix == "asl"
-  - sidecar contains "PostLabelingDelay"
-  - type(sidecar.PostLabelingDelay) == "array"
+  - 'associations'.includes('"aslcontext")'
+  - sidecar.PostLabelingDelay.constructor.isArray(sidecar.PostLabelingDelay)
   checks:
-  - nifti_header.pixdim[4] == sidecar.PostLabelingDelay.size
+  - nifti_header.pixdim[4] == sidecar.PostLabelingDelay.length
 
 # 174
 ASLPostLabelingDelayASLContextLength:
@@ -125,11 +125,10 @@ ASLPostLabelingDelayASLContextLength:
     level: error
   selectors:
   - suffix == "asl"
-  - associations contains "aslcontext"
-  - sidecar contains "PostLabelingDelay"
-  - type(sidecar.PostLabelingDelay) == "array"
+  - 'associations'.includes('"aslcontext")'
+  - sidecar.PostLabelingDelay.constructor.isArray(sidecar.PostLabelingDelay)
   checks:
-  - aslcontext.n_rows == sidecar.PostLabelingDelay.size
+  - aslcontext.n_rows == sidecar.PostLabelingDelay.length
 
 # 175
 ASLLabelingDurationASLContextLength:
@@ -151,11 +150,11 @@ ASLLabelingDurationASLContextLength:
     level: error
   selectors:
   - suffix == "asl"
-  - associations contains "aslcontext"
-  - sidecar contains "LabelingDuration"
-  - type(sidecar.LabelingDuration) == "array"
+  - 'associations'.includes('"aslcontext")'
+  - 'sidecar'.includes('"LabelingDuration")'
+  - sidecar.LabelingDuration.cobstructor.isArray(sidecar.LabelingDuration)
   checks:
-  - aslcontext.n_rows == sidecar.LabelingDuration.size
+  - aslcontext.n_rows == sidecar.LabelingDuration.length
 
 # 177
 ASLRepetitionTimePreparationASLContextLength:
@@ -172,11 +171,11 @@ ASLRepetitionTimePreparationASLContextLength:
     level: error
   selectors:
   - suffix == "asl"
-  - associations contains "aslcontext"
-  - sidecar contains "RepetitionTimePreparation"
-  - type(sidecar.RepetitionTimePreparation) == "array"
+  - 'associations'.includes('"aslcontext")'
+  - 'sidecar'.includes('"RepetitionTimePreparation")'
+  - sidecar.RepetitionTimePreparation.constructor.isArray(sidecar.RepetitionTimePreparation)
   checks:
-  - aslcontext.n_rows == sidecar.RepetitionTimePreparation.size
+  - aslcontext.n_rows == sidecar.RepetitionTimePreparation.length
 
 # 180
 ASLBackgroundSuppressionNumberPulses:
@@ -190,11 +189,11 @@ ASLBackgroundSuppressionNumberPulses:
     level: warning
   selectors:
   - suffix == "asl"
-  - sidecar contains "BackgroundSuppressionNumberPulses"
-  - sidecar contains "BackgroundSuppressionPulseTime"
-  - type(sidecar.BackgroundSuppressionPulseTime) == "array"
+  - 'sidecar'.includes('"BackgroundSuppressionNumberPulses")'
+  - 'sidecar'.includes('"BackgroundSuppressionPulseTime")'
+  - sidecar.BackgroundSuppressionPulseTime.constructor.isArray(sidecar.BackgroundSuppressionPulseTime)
   checks:
-  - sidecar.BackgroundSuppressionPulseTime.size == sidecar.BackgroundSuppressionNumberPulses
+  - sidecar.BackgroundSuppressionPulseTime.length == sidecar.BackgroundSuppressionNumberPulses
 
 # 181
 ASLTotalAcquiredVolumesASLContextLength:
@@ -208,8 +207,8 @@ ASLTotalAcquiredVolumesASLContextLength:
     level: warning
   selectors:
   - suffix == "asl"
-  - associations contains "aslcontext"
-  - sidecar contains "TotalAcquiredVolumes"
+  - 'associations'.includes('"aslcontext")'
+  - 'sidecar'.includes('"TotalAcquiredVolumes")'
   checks:
   - aslcontext.n_rows == sidecar.TotalAcquiredVolumes
 
@@ -224,11 +223,11 @@ ASLEchoTimeASLContextLength:
     level: warning
   selectors:
   - suffix == "asl"
-  - associations contains "aslcontext"
-  - sidecar contains "EchoTime"
-  - type(sidecar.EchoTime) == "array"
+  - 'associations'.includes('"aslcontext")'
+  - 'sidecar'.includes('"EchoTime")'
+  - sidecar.EchoTime.constructor.isArray(sidecar.EchoTime)
   checks:
-  - aslcontext.n_rows == sidecar.EchoTime.size
+  - aslcontext.n_rows == sidecar.EchoTime.length
 
 # 198
 ASLM0TypeAbsentScan:
@@ -241,9 +240,9 @@ ASLM0TypeAbsentScan:
     level: error
   selectors:
   - suffix == "asl"
-  - associations contains "aslcontext"
-  - associations contains "m0scan"
-  - sidecar contains "M0Type"
+  - 'associations'.includes('"aslcontext")'
+  - 'associations'.includes('"m0scan")'
+  - 'sidecar'.includes('"M0Type")'
   checks:
   - sidecar.M0Type != "absent"
 
@@ -257,9 +256,9 @@ ASLM0TypeAbsentASLContext:
     level: error
   selectors:
   - suffix == "asl"
-  - associations contains "aslcontext"
-  - aslcontext.volume_type contains "m0scan"
-  - sidecar contains "M0Type"
+  - 'associations'.includes('"aslcontext")'
+  - 'aslcontext.volume_type'.includes('"m0scan")'
+  - 'sidecar'.includes('"M0Type")'
   checks:
   - sidecar.M0Type != "absent"
 
@@ -273,8 +272,8 @@ ASLM0TypeIncorrect:
     level: error
   selectors:
   - suffix == "asl"
-  - associations contains "aslcontext"
-  - sidecar contains "M0Type"
+  - 'associations'.includes('"aslcontext")'
+  - 'sidecar'.includes('"M0Type")'
   - sidecar.M0Type == "separate"
   checks:
-  - associations contains "m0scan"
+  - 'associations'.includes('"m0scan")'

@@ -64,7 +64,7 @@ MRISequenceSpecifics:
 PETMRISequenceSpecifics:
     selectors:
     - modality == "mri"
-    - dataset.modalities contains "PET"
+    - dataset.modalities.includes("PET")
     fields:
         NonLinearGradientCorrection: required
 
@@ -77,7 +77,7 @@ ASLMRISequenceSpecifics:
 
 MTParameters:
     selectors:
-    - sidecar contains "MTState"
+    - '"MTState" in sidecar'
     - sidecar.MTState == "True"
     fields:
         MTOffsetFrequency: recommended
@@ -88,22 +88,22 @@ MTParameters:
 
 SpoilingType:
     selectors:
-    - sidecar contains "SpoilingState"
+    - '"SpoilingState" in sidecar'
     - sidecar.SpoilingState == True
     fields:
         SpoilingType: recommended
 
 SpoilingRF:
     selectors:
-    - sidecar contains "SpoilingType"
-    - sidecar.SpoilingType in ["RF", "COMBINED"]
+    - '"SpoilingType" in sidecar'
+    - '["RF", "COMBINED"].includes(sidecar.SpoilingType)'
     fields:
         SpoilingRFPhaseIncrement: recommended
 
 SpoilingGradient:
     selectors:
-    - sidecar contains "SpoilingType"
-    - sidecar.SpoilingType in ["GRADIENT", "COMBINED"]
+    - '"SpoilingType" in sidecar'
+    - '["GRADIENT", "COMBINED"].includes(sidecar.SpoilingType)'
     fields:
         SpoilingGradientMoment: recommended
         SpoilingGradientDuration: recommended
@@ -184,8 +184,8 @@ SliceTimingASL:
     selectors:
     - modality == "mri"
     - datatype == "perf"
-    - suffix in ["asl", "m0scan"]
-    - sidecar contains "MRAcquisitionType"
+    - '["asl", "m0scan"].includes(suffix)'
+    - '"MRAcquisitionType" in sidecar'
     - sidecar.MRAcquisitionType == "2D"
     fields:
         SliceTiming: required
@@ -194,7 +194,7 @@ SliceTimingASL:
 SliceTimingSparse:
     selectors:
     - modality == "mri"
-    - sidecar contains "DelayTime"
+    - '"DelayTime" in sidecar'
     fields:
         SliceTiming: required
 
@@ -224,7 +224,7 @@ MRIRFandContrast:
 MRIFlipAngleLookLocker:
     selectors:
     - modality == "mri"
-    - sidecar contains "LookLocker"
+    - '"LookLocker" in sidecar'
     - sidecar.LookLocker == True
     fields:
         FlipAngle: required
