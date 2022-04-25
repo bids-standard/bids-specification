@@ -444,7 +444,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "IntendedFor": (
+      "IntendedFor__ds_relative": (
          "OPTIONAL",
          "This identifies the MRI or CT scan associated with the electrodes, "
          "landmarks, and fiducials.",
