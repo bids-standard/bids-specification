@@ -254,7 +254,8 @@ and a guide for using macros can be found at
       "name__channels": "REQUIRED",
       "type__channels": "REQUIRED",
       "units": "REQUIRED",
-   }
+   },
+   ".."
 ) }}
 
 SHOULD be present:
@@ -275,7 +276,8 @@ and a guide for using macros can be found at
       "notch": "OPTIONAL",
       "status": "OPTIONAL",
       "status_description": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 Restricted keyword list for field `type` in alphabetic order (shared with the
@@ -350,7 +352,8 @@ and a guide for using macros can be found at
       "x": "REQUIRED",
       "y": "REQUIRED",
       "z": "REQUIRED",
-   }
+   },
+   ".."
 ) }}
 
 SHOULD be present:
@@ -366,7 +369,8 @@ and a guide for using macros can be found at
       "type__electrodes": "RECOMMENDED",
       "material": "RECOMMENDED",
       "impedance": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 ### Example `electrodes.tsv`

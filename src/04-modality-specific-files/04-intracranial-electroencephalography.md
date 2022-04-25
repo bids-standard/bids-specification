@@ -280,7 +280,8 @@ and a guide for using macros can be found at
       "units": "REQUIRED",
       "low_cutoff": "REQUIRED",
       "high_cutoff": "REQUIRED",
-   }
+   },
+   ".."
 ) }}
 
 SHOULD be present:
@@ -300,7 +301,8 @@ and a guide for using macros can be found at
       "notch": "OPTIONAL",
       "status": "OPTIONAL",
       "status_description": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 **Example** `sub-01_channels.tsv`:
@@ -417,7 +419,8 @@ and a guide for using macros can be found at
       "y": "REQUIRED",
       "z": ("REQUIRED", "If electrodes are in 2D space this should be a column of `n/a` values."),
       "size": "REQUIRED",
-   }
+   },
+   ".."
 ) }}
 
 SHOULD be present:
@@ -434,7 +437,8 @@ and a guide for using macros can be found at
       "manufacturer": "RECOMMENDED",
       "group": ("RECOMMENDED", "Note that any group specified here should match a group specified in `_channels.tsv`."),
       "hemisphere": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 MAY be present:
@@ -450,7 +454,8 @@ and a guide for using macros can be found at
       "type__electrodes": "OPTIONAL",
       "impedance": "OPTIONAL",
       "dimension": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 Example:

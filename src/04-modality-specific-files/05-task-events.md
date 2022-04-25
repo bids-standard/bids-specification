@@ -49,7 +49,8 @@ and a guide for using macros can be found at
       "response_time": "OPTIONAL",
       "value": "OPTIONAL",
       "HED": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 <sup>5</sup> Note for MRI data:
@@ -162,7 +163,8 @@ and a guide for using macros can be found at
 {{ MACROS___make_columns_table(
    {
       "stim_file": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 ### Stimuli databases

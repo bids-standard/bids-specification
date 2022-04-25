@@ -532,7 +532,8 @@ and a guide for using macros can be found at
       "abbreviation": "OPTIONAL",
       "color": "OPTIONAL",
       "mapping": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 An example, custom `dseg.tsv` that defines three labels:

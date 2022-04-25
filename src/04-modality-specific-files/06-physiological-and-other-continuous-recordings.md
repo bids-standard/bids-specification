@@ -139,7 +139,8 @@ and a guide for using macros can be found at
       "cardiac": "OPTIONAL",
       "respiratory": "OPTIONAL",
       "trigger": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 For any other data to be specified in columns, the column names can be chosen

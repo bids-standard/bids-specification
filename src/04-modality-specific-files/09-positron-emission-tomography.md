@@ -429,7 +429,8 @@ and a guide for using macros can be found at
       "metabolite_polar_fraction": "RECOMMENDED if `MetaboliteAvail` is `true`",
       "hplc_recovery_fractions": "REQUIRED if `MetaboliteRecoveryCorrectionApplied` is `true`",
       "whole_blood_radioactivity": "REQUIRED if `WholeBloodAvail` is `true`",
-   }
+   },
+   ".."
 ) }}
 
 As with all [tabular files](../02-common-principles.md#tabular-files),

@@ -236,7 +236,8 @@ and a guide for using macros can be found at
       "handedness": "RECOMMENDED",
       "strain": "RECOMMENDED",
       "strain_rrid": "RECOMMENDED",
-   }
+   },
+   "."
 ) }}
 
 Throughout BIDS you can indicate missing values with `n/a` (for "not
@@ -319,7 +320,8 @@ and a guide for using macros can be found at
       "sample_type": "REQUIRED",
       "pathology": "RECOMMENDED",
       "derived_from": "RECOMMENDED",
-   }
+   },
+   "."
 ) }}
 
 `samples.tsv` example:
@@ -515,7 +517,8 @@ and a guide for using macros can be found at
       "session_id": ("REQUIRED", "There MUST be exactly one row for each session."),
       "acq_time__sessions": ("OPTIONAL"),
       "pathology": "RECOMMENDED",
-   }
+   },
+   "."
 ) }}
 
 `_sessions.tsv` example:

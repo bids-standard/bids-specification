@@ -286,7 +286,8 @@ and a guide for using macros can be found at
       "name__channels": "REQUIRED",
       "type__channels": "REQUIRED",
       "units": "REQUIRED",
-   }
+   },
+   ".."
 ) }}
 
 SHOULD be present:
@@ -307,7 +308,8 @@ and a guide for using macros can be found at
       "software_filters": "OPTIONAL",
       "status": "OPTIONAL",
       "status_description": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 Example:
