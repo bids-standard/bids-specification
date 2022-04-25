@@ -29,7 +29,7 @@ MRIASLTextOnlySliceTiming:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - 'sidecar'.includes('"MRAcquisitionType")'
+    - '"MRAcquisitionType" in sidecar'
     - sidecar.MRAcquisitionType == "2D"
     fields:
         SliceTiming:
@@ -131,7 +131,7 @@ MRIASLCommonMetadataFieldsBackgroundSuppression:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - '"BackgroundSuppression" in sidecar'.
+    - '"BackgroundSuppression" in sidecar'
     - sidecar.BackgroundSuppression == true
     fields:
         BackgroundSuppressionNumberPulses: recommended
@@ -152,7 +152,7 @@ MRIASLPCASLSpecific:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - "ArterialSpinLabelingType" in sidecar'
+    - '"ArterialSpinLabelingType" in sidecar'
     - '["CASL", "PCASL"].includes(sidecar.ArterialSpinLabelingType)'
     fields:
         LabelingDuration: required

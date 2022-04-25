@@ -42,7 +42,7 @@ derivative_description:
 dataset_description_with_genetics:
   selectors:
   - path == "/dataset_description.json"
-  - 'dataset.files'.includes('"/genetic_info.json")'
+  - 'dataset.files.includes("/genetic_info.json")'
   fields:
     Genetics: REQUIRED
     Genetics{}.Dataset:
