@@ -91,13 +91,16 @@ def make_glossary(relpath=None):
     return text
 
 
-def make_suffix_table(suffixes):
+def make_suffix_table(suffixes, relpath=None):
     """Generate a markdown table of suffix information.
 
     Parameters
     ----------
     suffixes : list of str
         A list of the suffixes to include in the table.
+    relpath : str | None
+        path from file where this func is called to src/
+
 
     Returns
     -------
@@ -107,7 +110,7 @@ def make_suffix_table(suffixes):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = render.make_suffix_table(schema_obj, suffixes)
+    table = render.make_suffix_table(schema_obj, suffixes, relpath)
     return table
 
 

@@ -408,13 +408,15 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     return table_str
 
 
-def make_suffix_table(schema, suffixes, tablefmt="github"):
+def make_suffix_table(schema, suffixes, relpath=None, tablefmt="github"):
     """Produce suffix table (markdown) based on requested suffixes.
 
     Parameters
     ----------
     schema : dict
     suffixes : list of str
+    relpath : str | None
+        path from file where this func is called to src/
     tablefmt : str
 
     Returns
@@ -445,6 +447,9 @@ def make_suffix_table(schema, suffixes, tablefmt="github"):
         description = description.replace("\n\n", "<br>")
         # Otherwise a newline corresponds to a space
         description = description.replace("\n", " ")
+        # Spec internal links need to be replaced
+        if relpath is not None:
+            description = description.replace("PATH_TO_SRC", relpath)
 
         df.loc[suffix] = [suffix_info["name"], description]
 

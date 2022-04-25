@@ -276,7 +276,8 @@ and a guide for using macros can be found at
          "PDT2",
          "UNIT1",
          "angio",
-      ]
+      ],
+      ".."
    )
 }}
 
@@ -412,7 +413,8 @@ and a guide for using macros can be found at
          "RB1map",
          "S0map",
          "M0map",
-      ]
+      ],
+      ".."
    )
 }}
 
@@ -449,7 +451,8 @@ and a guide for using macros can be found at
          "T2star",
          "FLASH",
          "PD",
-      ]
+      ],
+      ".."
    )
 }}
 
@@ -469,7 +472,8 @@ and a guide for using macros can be found at
          "bold",
          "cbv",
          "phase",
-      ]
+      ],
+      ".."
    )
 }}
 
@@ -736,7 +740,8 @@ and a guide for using macros can be found at
       [
          "dwi",
          "sbref",
-      ]
+      ],
+      ".."
    )
 }}
 
@@ -1172,7 +1177,8 @@ and a guide for using macros can be found at
          "phasediff",
          "fieldmap",
          "epi",
-      ]
+      ],
+      ".."
    )
 }}
 

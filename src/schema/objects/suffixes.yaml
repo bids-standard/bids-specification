@@ -463,7 +463,7 @@ blood:
   name: Blood recording data
   description: |
     Blood measurements of radioactivity stored in
-    [tabular files](/02-common-principles.html#tabular-files)
+    [tabular files](PATH_TO_SRC/02-common-principles.md#tabular-files)
     and located in the `pet/` directory along with the corresponding PET data.
 bold:
   name: Blood-Oxygen-Level Dependent image
@@ -579,11 +579,11 @@ pet:
 phase:
   name: Phase image
   description: |
-    [DEPRECATED](/02-common-principles.html#definitions).
+    [DEPRECATED](PATH_TO_SRC/02-common-principles.md#definitions).
     Phase information associated with magnitude information stored in BOLD
     contrast.
     This suffix should be replaced by the
-    [`part-phase`](/99-appendices/09-entities.html#part)
+    [`part-phase`](PATH_TO_SRC/99-appendices/09-entities.md#part)
     in conjunction with the `bold` suffix.
   anyOf:
   - unit: arbitrary
