@@ -138,7 +138,7 @@ AssociatedEmptyRoom:
     the subject's MEG recording.
     The path needs to use forward slashes instead of backward slashes
     (for example,
-    "sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds").
+    "sub-emptyroom/ses-rest/meg/sub-emptyroom_ses-rest_task-noise_run-01_meg.ds").
   anyOf:
   - type: array
     items:
