@@ -175,7 +175,3 @@ def make_filetree_example(filetree_info, use_pipe=True):
     """
     tree = example.DirectoryTree(filetree_info, use_pipe)
     return tree.generate()
-
-
-def make_path_relative():
-    return "This is a TEST"

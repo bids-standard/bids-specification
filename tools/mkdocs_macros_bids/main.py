@@ -40,4 +40,3 @@ def define_env(env):
     env.macro(macros.make_metadata_table, "MACROS___make_metadata_table")
     env.macro(macros.make_columns_table, "MACROS___make_columns_table")
     env.macro(macros.make_filetree_example, "MACROS___make_filetree_example")
-    env.macro(macros.make_path_relative, "MACROS___make_path_relative")

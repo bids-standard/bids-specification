@@ -468,8 +468,6 @@ and a guide for using macros can be found at
    "."
 ) }}
 
-{{ MACROS___make_path_relative() }}
-
 Additional fields can include external behavioral measures relevant to the
 scan.
 For example vigilance questionnaire score administered after a resting
