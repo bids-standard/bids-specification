@@ -144,8 +144,7 @@ def test_make_suffix_table(schema_obj):
         "cbv",
         "dwi",
     ]
-    suffix_table = render.make_suffix_table(schema_obj, target_suffixes,
-                                            relpath=".")
+    suffix_table = render.make_suffix_table(schema_obj, target_suffixes, relpath=".")
 
     expected_names = [
         "Behavioral recording",
