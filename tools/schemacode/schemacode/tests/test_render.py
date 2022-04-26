@@ -53,7 +53,7 @@ def test_make_glossary(schema_obj, schema_dir):
                 rule_files.append(rule_base)
     rules_only = list(filter(lambda a: a not in object_files, rule_files))
 
-    glossary = render.make_glossary(schema_obj, relpath=None)
+    glossary = render.make_glossary(schema_obj, relpath=".")
     for line in glossary.split("\n"):
         if line.startswith('<a name="objects.'):
             # Are all objects objects?
@@ -144,7 +144,8 @@ def test_make_suffix_table(schema_obj):
         "cbv",
         "dwi",
     ]
-    suffix_table = render.make_suffix_table(schema_obj, target_suffixes)
+    suffix_table = render.make_suffix_table(schema_obj, target_suffixes,
+                                            relpath=".")
 
     expected_names = [
         "Behavioral recording",
@@ -167,11 +168,11 @@ def test_make_metadata_table(schema_obj):
         "BIDSVersion": "required",
         "DatasetDOI": "optional",
     }
-    metadata_table = render.make_metadata_table(schema_obj, target_metadata).split("\n")
+    metadata_table = render.make_metadata_table(schema_obj, target_metadata, relpath=".")
 
     metadata_tracking = list(target_metadata.keys())
 
-    for line in metadata_table:
+    for line in metadata_table.split("\n"):
         for i in metadata_tracking:
             if i in line:
                 # Is the requirement level displayed correctly?
@@ -194,11 +195,11 @@ def test_make_columns_table(schema_obj):
         "trial_type": "required",
         "units": "optional",
     }
-    columns_table = render.make_columns_table(schema_obj, target_columns).split("\n")
+    columns_table = render.make_columns_table(schema_obj, target_columns, relpath=".")
 
     columns_tracking = list(target_columns.keys())
 
-    for line in columns_table:
+    for line in columns_table.split("\n"):
         for i in columns_tracking:
             if i in line:
                 # Is the requirement level displayed correctly?
