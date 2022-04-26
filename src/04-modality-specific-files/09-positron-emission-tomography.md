@@ -160,7 +160,8 @@ and a guide for using macros can be found at
       "InstitutionAddress": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`."),
       "InstitutionalDepartmentName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`."),
       "BodyPart": ("RECOMMENDED", "Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`."),
-   }
+   },
+   ".."
 ) }}
 
 #### Radiochemistry
@@ -198,7 +199,8 @@ and a guide for using macros can be found at
       "InfusionSpeedUnits": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
       "InjectedVolume": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
       "Purity": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 #### Pharmaceuticals
@@ -217,7 +219,8 @@ and a guide for using macros can be found at
       "PharmaceuticalDoseRegimen": "RECOMMENDED",
       "PharmaceuticalDoseTime": ("RECOMMENDED", "Corresponds to a combination of DICOM Tags (0008,0027) `Intervention Drug Stop Time` and (0008,0035) `Intervention Drug Start Time`."),
       "Anaesthesia": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 #### Time
@@ -237,7 +240,8 @@ and a guide for using macros can be found at
       "FrameDuration": "REQUIRED",
       "InjectionEnd": ("RECOMMENDED", "This corresponds to DICOM Tag (0018,1073) `Radiopharmaceutical Stop Time` converted to seconds relative to TimeZero."),
       "ScanDate": ("DEPRECATED", "This corresponds to DICOM Tag (0008,0022) `Acquisition Date`."),
-   }
+   },
+   ".."
 ) }}
 
 We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see [Units](../02-common-principles.md#units)).
@@ -271,7 +275,8 @@ and a guide for using macros can be found at
       "PromptRate": "RECOMMENDED",
       "RandomRate": "RECOMMENDED",
       "SinglesRate": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 All reconstruction-specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
@@ -392,7 +397,8 @@ and a guide for using macros can be found at
       "DispersionConstant": "RECOMMENDED",
       "Haematocrit": "RECOMMENDED",
       "BloodDensity": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 The following metadata SHOULD or MUST be provided if corresponding flags are `true`.
@@ -409,7 +415,8 @@ and a guide for using macros can be found at
       "PlasmaFreeFractionMethod": "RECOMMENDED if `PlasmaAvail` is `true`",
       "MetaboliteMethod": "REQUIRED if `MetaboliteAvail` is `true`",
       "MetaboliteRecoveryCorrectionApplied": "REQUIRED if `MetaboliteAvail` is `true`",
-   }
+   },
+   ".."
 ) }}
 
 The following columns are defined for `_blood.tsv` files.

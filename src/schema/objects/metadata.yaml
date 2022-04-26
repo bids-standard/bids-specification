@@ -61,7 +61,7 @@ AnatomicalLandmarkCoordinateSystem:
   name: AnatomicalLandmarkCoordinateSystem
   description: |
     Defines the coordinate system for the anatomical landmarks.
-    See [Appendix VIII](/99-appendices/08-coordinate-systems.html)
+    See [Appendix VIII](PATH_TO_SRC/99-appendices/08-coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `"AnatomicalLandmarkCoordinateSystemDescription"`.
@@ -262,7 +262,7 @@ BodyPartDetails:
 BodyPartDetailsOntology:
   name: BodyPartDetailsOntology
   description: |
-    [URI](/02-common-principles.html#uniform-resource-indicator) of ontology used for
+    [URI](PATH_TO_SRC/02-common-principles.md#uniform-resource-indicator) of ontology used for
     BodyPartDetails (for example: `"https://www.ebi.ac.uk/ols/ontologies/uberon"`).
   type: string
   format: uri
@@ -378,7 +378,7 @@ ChunkTransformationMatrixAxis:
 Code:
   name: Code
   description: |
-    [URI](/02-common-principles.html#uniform-resource-indicator)
+    [URI](PATH_TO_SRC/02-common-principles.md#uniform-resource-indicator)
     of the code used to present the stimuli.
     Persistent identifiers such as DOIs are preferred.
     If multiple versions of code may be hosted at the same location,
@@ -388,7 +388,7 @@ Code:
 CogAtlasID:
   name: CogAtlasID
   description: |
-    [URI](/02-common-principles.html#uniform-resource-indicator)
+    [URI](PATH_TO_SRC/02-common-principles.md#uniform-resource-indicator)
     of the corresponding [Cognitive Atlas](https://www.cognitiveatlas.org/)
     Task term.
   type: string
@@ -396,7 +396,7 @@ CogAtlasID:
 CogPOID:
   name: CogPOID
   description: |
-    [URI](/02-common-principles.html#uniform-resource-indicator)
+    [URI](PATH_TO_SRC/02-common-principles.md#uniform-resource-indicator)
     of the corresponding [CogPO](http://www.cogpo.org/) term.
   type: string
   format: uri
@@ -446,9 +446,9 @@ DatasetDOI:
   description: |
     The Digital Object Identifier of the dataset (not the corresponding paper).
     DOIs SHOULD be expressed as a valid
-    [URI](/02-common-principles.html#uniform-resource-indicator);
+    [URI](PATH_TO_SRC/02-common-principles.md#uniform-resource-indicator);
     bare DOIs such as `10.0.2.3/dfjj.10` are
-    [DEPRECATED](/02-common-principles.html#definitions).
+    [DEPRECATED](PATH_TO_SRC/02-common-principles.md#definitions).
   type: string
   format: uri
 DatasetType:
@@ -547,7 +547,7 @@ DigitizedHeadPointsCoordinateSystem:
   description: |
     Defines the coordinate system for the digitized head points.
     See
-    [Appendix VIII](/99-appendices/08-coordinate-systems.html)
+    [Appendix VIII](PATH_TO_SRC/99-appendices/08-coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `"DigitizedHeadPointsCoordinateSystemDescription"`.
@@ -637,7 +637,7 @@ EEGCoordinateSystem:
     Defines the coordinate system for the EEG sensors.
 
     See
-    [Appendix VIII](/99-appendices/08-coordinate-systems.html)
+    [Appendix VIII](PATH_TO_SRC/99-appendices/08-coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `EEGCoordinateSystemDescription`.
@@ -706,13 +706,13 @@ EchoTime:
     (please note that the DICOM term is in milliseconds not seconds).
     The data type number may apply to files from any MRI modality concerned with
     a single value for this field, or to the files in a
-    [file collection](/99-appendices/10-file-collections.html)
+    [file collection](PATH_TO_SRC/99-appendices/10-file-collections.md)
     where the value of this field is iterated using the
-    [echo entity](/99-appendices/09-entities.html#echo).
+    [echo entity](PATH_TO_SRC/99-appendices/09-entities.md#echo).
     The data type array provides a value for each volume in a 4D dataset and
     should only be used when the volume timing is critical for interpretation
     of the data, such as in
-    [ASL](/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#\
+    [ASL](PATH_TO_SRC/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#\
     arterial-spin-labeling-perfusion-data)
     or variable echo time fMRI sequences.
   anyOf:
@@ -823,7 +823,7 @@ FiducialsCoordinateSystem:
     Defines the coordinate system for the fiducials.
     Preferably the same as the `"EEGCoordinateSystem"`.
     See
-    [Appendix VIII](/99-appendices/08-coordinate-systems.html)
+    [Appendix VIII](PATH_TO_SRC/99-appendices/08-coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `"FiducialsCoordinateSystemDescription"`.
@@ -881,13 +881,13 @@ FlipAngle:
     Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.
     The data type number may apply to files from any MRI modality concerned with
     a single value for this field, or to the files in a
-    [file collection](/99-appendices/10-file-collections.html)
+    [file collection](PATH_TO_SRC/99-appendices/10-file-collections.md)
     where the value of this field is iterated using the
-    [flip entity](/99-appendices/09-entities.html#flip).
+    [flip entity](PATH_TO_SRC/99-appendices/09-entities.md#flip).
     The data type array provides a value for each volume in a 4D dataset and
     should only be used when the volume timing is critical for interpretation of
     the data, such as in
-    [ASL](/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#\
+    [ASL](PATH_TO_SRC/04-modality-specific-files/01-magnetic-resonance-imaging-data.md#\
     arterial-spin-labeling-perfusion-data)
     or variable flip angle fMRI sequences.
   anyOf:
@@ -968,14 +968,14 @@ GeneticLevel:
 Genetics.Database:
   name: Genetics.Database
   description: |
-    [URI](/02-common-principles.html#uniform-resource-indicator)
+    [URI](PATH_TO_SRC/02-common-principles.md#uniform-resource-indicator)
     of database where the dataset is hosted.
   type: string
   format: uri
 Genetics.Dataset:
   name: Genetics.Dataset
   description: |
-    [URI](/02-common-principles.html#uniform-resource-indicator)
+    [URI](PATH_TO_SRC/02-common-principles.md#uniform-resource-indicator)
     where data can be retrieved.
   type: string
   format: uri
@@ -984,7 +984,7 @@ Genetics.Descriptors:
   description: |
     List of relevant descriptors (for example, journal articles) for dataset
     using a valid
-    [URI](/02-common-principles.html#uniform-resource-indicator)
+    [URI](PATH_TO_SRC/02-common-principles.md#uniform-resource-indicator)
     when possible.
   anyOf:
   - type: string
@@ -1015,7 +1015,7 @@ HED:
   name: HED
   description: |
     Hierarchical Event Descriptor (HED) information,
-    see: [Appendix III](/99-appendices/03-hed.html) for details.
+    see: [Appendix III](PATH_TO_SRC/99-appendices/03-hed.md) for details.
   anyOf:
   - type: string
   - type: object
@@ -1067,7 +1067,7 @@ HeadCoilCoordinateSystem:
   description: |
     Defines the coordinate system for the head coils.
     See
-    [Appendix VIII](/99-appendices/08-coordinate-systems.html)
+    [Appendix VIII](PATH_TO_SRC/99-appendices/08-coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `HeadCoilCoordinateSystemDescription`.
@@ -1139,7 +1139,7 @@ ImageAcquisitionProtocol:
   name: ImageAcquisitionProtocol
   description: |
     Description of the image acquisition protocol or
-    [URI](/02-common-principles.html#uniform-resource-indicator)
+    [URI](PATH_TO_SRC/02-common-principles.md#uniform-resource-indicator)
     (for example from [protocols.io](https://www.protocols.io/)).
   type: string
 ImageDecayCorrected:
@@ -1440,7 +1440,7 @@ License:
   description: |
     The license for the dataset.
     The use of license name abbreviations is RECOMMENDED for specifying a license
-    (see [Appendix II](/99-appendices/02-licenses.html)).
+    (see [Appendix II](PATH_TO_SRC/99-appendices/02-licenses.md)).
     The corresponding full license text MAY be specified in an additional
     `LICENSE` file.
   type: string
@@ -1487,7 +1487,7 @@ MEGCoordinateSystem:
   name: MEGCoordinateSystem
   description: |
     Defines the coordinate system for the MEG sensors.
-    See [Appendix VIII](/99-appendices/08-coordinate-systems.html)
+    See [Appendix VIII](PATH_TO_SRC/99-appendices/08-coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `"MEGCoordinateSystemDescription"`.
@@ -2119,7 +2119,7 @@ ReferencesAndLinks:
   description: |
     List of references to publications that contain information on the dataset.
     A reference may be textual or a
-    [URI](/02-common-principles.html#uniform-resource-indicator).
+    [URI](PATH_TO_SRC/02-common-principles.md#uniform-resource-indicator).
   items:
     type: string
   type: array
@@ -2175,7 +2175,7 @@ RepetitionTimePreparation:
     The data type array provides a value for each volume in a 4D dataset and
     should only be used when the volume timing is critical for interpretation of
     the data, such as in
-    [ASL](/04-modality-specific-files/01-magnetic-resonance-imaging-data.html\
+    [ASL](PATH_TO_SRC/04-modality-specific-files/01-magnetic-resonance-imaging-data.md\
     #arterial-spin-labeling-perfusion-data).
   anyOf:
   - type: number
@@ -2228,7 +2228,7 @@ SampleExtractionProtocol:
   name: SampleExtractionProtocol
   description: |
     Description of the sample extraction protocol or
-    [URI](/02-common-principles.html#uniform-resource-indicator)
+    [URI](PATH_TO_SRC/02-common-principles.md#uniform-resource-indicator)
     (for example from [protocols.io](https://www.protocols.io/)).
   type: string
 SampleFixation:
@@ -2313,7 +2313,7 @@ ScanDate:
   description: |
     Date of scan in the format `"YYYY-MM-DD[Z]"`.
     This field is DEPRECATED, and this metadata SHOULD be recorded in the `acq_time` column of the
-    corresponding [Scans file](/03-modality-agnostic-files.html#scans-file).
+    corresponding [Scans file](PATH_TO_SRC/03-modality-agnostic-files.md#scans-file).
   type: string
   format: date
 ScanOptions:
@@ -2477,7 +2477,7 @@ SourceDatasets:
   description: |
     Used to specify the locations and relevant attributes of all source datasets.
     Valid keys in each object include `"URL"`, `"DOI"` (see
-    [URI](/02-common-principles.html#uniform-resource-indicator)), and
+    [URI](PATH_TO_SRC/02-common-principles.md#uniform-resource-indicator)), and
     `"Version"` with
     [string](https://www.w3schools.com/js/js_json_datatypes.asp)
     values.
@@ -2775,7 +2775,7 @@ Units:
   description: |
     Measurement units for the associated file.
     SI units in CMIXF formatting are RECOMMENDED
-    (see [Units](/02-common-principles.html#units)).
+    (see [Units](PATH_TO_SRC/02-common-principles.md#units)).
   type: string
   format: unit
 VascularCrushing:
@@ -2934,7 +2934,7 @@ iEEGCoordinateSystem:
   description: |
     Defines the coordinate system for the iEEG sensors.
     See
-    [Appendix VIII](/99-appendices/08-coordinate-systems.html)
+    [Appendix VIII](PATH_TO_SRC/99-appendices/08-coordinate-systems.md)
     for a list of restricted keywords for coordinate systems.
     If `"Other"`, provide definition of the coordinate system in
     `iEEGCoordinateSystemDescription`.

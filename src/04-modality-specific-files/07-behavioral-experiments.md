@@ -59,7 +59,8 @@ and a guide for using macros can be found at
       "InstitutionName": "RECOMMENDED",
       "InstitutionAddress": "RECOMMENDED",
       "InstitutionalDepartmentName": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 Example of the content of a `_beh.tsv` and its accompanying `_beh.json` sidecar file:

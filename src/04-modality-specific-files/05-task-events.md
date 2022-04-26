@@ -237,7 +237,8 @@ and a guide for using macros can be found at
 {{ MACROS___make_metadata_table(
    {
       "StimulusPresentation": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 The object supplied for `StimulusPresentation` SHOULD include the following key-value pairs:
@@ -255,7 +256,8 @@ and a guide for using macros can be found at
       "SoftwareRRID": "RECOMMENDED",
       "SoftwareVersion": "RECOMMENDED",
       "Code": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 The operating system description SHOULD include the following attributes:

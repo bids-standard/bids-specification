@@ -59,7 +59,8 @@ and a guide for using macros can be found at
       "SamplingFrequency": "REQUIRED",
       "StartTime": "REQUIRED",
       "Columns": "REQUIRED",
-   }
+   },
+   ".."
 ) }}
 
 Additional metadata may be included as in
@@ -195,7 +196,8 @@ and a guide for using macros can be found at
       "ManufacturersModelName": "RECOMMENDED",
       "SoftwareVersions": "RECOMMENDED",
       "DeviceSerialNumber": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 <!-- Link Definitions -->

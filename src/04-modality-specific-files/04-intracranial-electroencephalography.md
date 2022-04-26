@@ -108,7 +108,8 @@ and a guide for using macros can be found at
 {{ MACROS___make_metadata_table(
    {
       "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
-   }
+   },
+   ".."
 ) }}
 
 Note that the `TaskName` field does not have to be a "behavioral task" that subjects perform, but can reflect some information about the conditions present when the data was acquired (for example, `"rest"`, `"sleep"`, or `"seizure"`).
@@ -136,7 +137,8 @@ and a guide for using macros can be found at
       "CogAtlasID": "RECOMMENDED",
       "CogPOID": "RECOMMENDED",
       "DeviceSerialNumber": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 Specific iEEG fields MUST be present:
@@ -153,7 +155,8 @@ and a guide for using macros can be found at
       "SamplingFrequency": ("REQUIRED", "The sampling frequency of data channels that deviate from the main sampling frequency SHOULD be specified in the `channels.tsv` file."),
       "PowerLineFrequency": "REQUIRED",
       "SoftwareFilters": "REQUIRED",
-   }
+   },
+   ".."
 ) }}
 
 Specific iEEG fields SHOULD be present:
@@ -185,7 +188,8 @@ and a guide for using macros can be found at
       "iEEGPlacementScheme": "RECOMMENDED",
       "iEEGElectrodeGroups": "RECOMMENDED",
       "SubjectArtefactDescription": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 Specific iEEG fields MAY be present:
@@ -200,7 +204,8 @@ and a guide for using macros can be found at
    {
       "ElectricalStimulation": "OPTIONAL",
       "ElectricalStimulationParameters": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 Example:
@@ -507,7 +512,8 @@ and a guide for using macros can be found at
          "**Talairach**: `'/derivatives/surfaces/sub-Talairach/ses-01/anat/"
          "sub-Talairach_hemi-R_pial.surf.gii'`",
       )
-   }
+   },
+   ".."
 ) }}
 
 Fields relating to the iEEG electrode positions:
@@ -525,7 +531,8 @@ and a guide for using macros can be found at
       "iEEGCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `iEEGCoordinateSystem` is `"Other"`',
       "iEEGCoordinateProcessingDescription": "RECOMMENDED",
       "iEEGCoordinateProcessingReference": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 ### Recommended 3D coordinate systems

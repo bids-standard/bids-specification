@@ -95,7 +95,8 @@ and a guide for using macros can be found at
 {{ MACROS___make_metadata_table(
    {
       "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
-   }
+   },
+   ".."
 ) }}
 
 SHOULD be present: For consistency between studies and institutions, we
@@ -121,7 +122,8 @@ and a guide for using macros can be found at
       "CogAtlasID": "RECOMMENDED",
       "CogPOID": "RECOMMENDED",
       "DeviceSerialNumber": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 Specific EEG fields MUST be present:
@@ -138,7 +140,8 @@ and a guide for using macros can be found at
       "SamplingFrequency": ("REQUIRED", "The sampling frequency of data channels that deviate from the main sampling frequency SHOULD be specified in the `channels.tsv` file."),
       "PowerLineFrequency": "REQUIRED",
       "SoftwareFilters": "REQUIRED",
-   }
+   },
+   ".."
 ) }}
 
 SHOULD be present:
@@ -167,7 +170,8 @@ and a guide for using macros can be found at
       "EEGPlacementScheme": "RECOMMENDED",
       "HardwareFilters": "RECOMMENDED",
       "SubjectArtefactDescription": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 Example:
@@ -453,7 +457,8 @@ and a guide for using macros can be found at
          "This identifies the MRI or CT scan associated with the electrodes, "
          "landmarks, and fiducials.",
       )
-   }
+   },
+   ".."
 ) }}
 
 Fields relating to the EEG electrode positions:
@@ -469,7 +474,8 @@ and a guide for using macros can be found at
       "EEGCoordinateSystem": "REQUIRED",
       "EEGCoordinateUnits": "REQUIRED",
       "EEGCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `EEGCoordinateSystem` is `"Other"`',
-   }
+   },
+   ".."
 ) }}
 
 Fields relating to the position of fiducials measured during an EEG session/run:
@@ -487,7 +493,8 @@ and a guide for using macros can be found at
       "FiducialsCoordinateSystem": "RECOMMENDED",
       "FiducialsCoordinateUnits": "RECOMMENDED",
       "FiducialsCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `FiducialsCoordinateSystem` is `"Other"`',
-   }
+   },
+   ".."
 ) }}
 
 Fields relating to the position of anatomical landmark measured during an EEG session/run:
@@ -504,7 +511,8 @@ and a guide for using macros can be found at
       "AnatomicalLandmarkCoordinateSystem": ("RECOMMENDED", "Preferably the same as the `EEGCoordinateSystem`."),
       "AnatomicalLandmarkCoordinateUnits": "RECOMMENDED",
       "AnatomicalLandmarkCoordinateSystemDescription": 'RECOMMENDED, but REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `"Other"`',
-   }
+   },
+   ".."
 ) }}
 
 If the position of anatomical landmarks is measured using the same system or

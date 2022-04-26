@@ -24,7 +24,8 @@ and a guide for using macros can be found at
         ),
         "Sources": "OPTIONAL",
         "RawSources": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 ### Examples
@@ -104,7 +105,8 @@ and a guide for using macros can be found at
 {{ MACROS___make_metadata_table(
    {
       "SpatialReference": "RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise.",
-   }
+   },
+   ".."
 ) }}
 
 ### SpatialReference key allowed values

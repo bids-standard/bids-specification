@@ -292,7 +292,8 @@ and a guide for using macros can be found at
       "InstitutionName": "RECOMMENDED",
       "InstitutionAddress": "RECOMMENDED",
       "InstitutionalDepartmentName": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 #### Image Acquisition
@@ -312,7 +313,8 @@ and a guide for using macros can be found at
       "Magnification": "OPTIONAL",
       "ImageAcquisitionProtocol": "OPTIONAL",
       "OtherAcquisitionParameters": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 #### Sample
@@ -338,7 +340,8 @@ and a guide for using macros can be found at
       "TissueDeformationScaling": "OPTIONAL",
       "SampleExtractionProtocol": "OPTIONAL",
       "SampleExtractionInstitution": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 #### Chunk Transformations
@@ -367,7 +370,8 @@ and a guide for using macros can be found at
    {
       "ChunkTransformationMatrix": "RECOMMENDED if `<chunk-index>` is used in filenames",
       "ChunkTransformationMatrixAxis": "REQUIRED if `ChunkTransformationMatrix` is present",
-   }
+   },
+   ".."
 ) }}
 
 An example of chunk transformations JSON metadata for `chunk-01` and `chunk-05` of Figure 2

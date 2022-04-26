@@ -38,7 +38,8 @@ and a guide for using macros can be found at
       "Genetics.Dataset": "REQUIRED",
       "Genetics.Database": "OPTIONAL",
       "Genetics.Descriptors": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 Example:
@@ -110,7 +111,8 @@ and a guide for using macros can be found at
       "TissueOrigin": "OPTIONAL",
       "BrainLocation": "OPTIONAL",
       "CellType": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 To ensure dataset description consistency, we recommend following [Multi-omics approaches to disease](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1215-1) by Hasin et al. 2017 to determine the `GeneticLevel:`

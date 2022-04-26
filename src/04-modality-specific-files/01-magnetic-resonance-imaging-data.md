@@ -36,7 +36,8 @@ and a guide for using macros can be found at
       "MRTransmitCoilSequence": "RECOMMENDED",
       "MatrixCoilMode": "RECOMMENDED",
       "CoilCombinationMethod": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 Example for `ReceiveCoilActiveElements`:
@@ -83,7 +84,8 @@ and a guide for using macros can be found at
       "SpoilingRFPhaseIncrement": 'RECOMMENDED if the SpoilingType is `"RF"` or `"COMBINED"`.',
       "SpoilingGradientMoment": 'RECOMMENDED if the SpoilingType is `"GRADIENT"` or `"COMBINED"`.',
       "SpoilingGradientDuration": 'RECOMMENDED if the SpoilingType is `"GRADIENT"` or `"COMBINED"`.',
-   }
+   },
+   ".."
 ) }}
 
 ### In-Plane Spatial Encoding
@@ -119,7 +121,8 @@ and a guide for using macros can be found at
          "directions](#case-4-multiple-phase-encoded-directions-pepolar)).",
       ),
       "MixingTime": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 <sup>2</sup>Conveniently, for Siemens data, this value is easily obtained as
@@ -148,7 +151,8 @@ and a guide for using macros can be found at
       "SliceTiming": "RECOMMENDED, but REQUIRED for sparse sequences that do not have the `DelayTime` field set, and Arterial Spin Labeling with `MRAcquisitionType` set on `2D`.",
       "SliceEncodingDirection": "RECOMMENDED",
       "DwellTime": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 ### RF & Contrast
@@ -163,7 +167,8 @@ and a guide for using macros can be found at
    {
       "FlipAngle": "RECOMMENDED, but REQUIRED if `LookLocker` is set `true`",
       "NegativeContrast": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 ### Slice Acceleration
@@ -177,7 +182,8 @@ and a guide for using macros can be found at
 {{ MACROS___make_metadata_table(
    {
       "MultibandAccelerationFactor": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 ### Anatomical landmarks
@@ -193,7 +199,8 @@ and a guide for using macros can be found at
 {{ MACROS___make_metadata_table(
    {
       "AnatomicalLandmarkCoordinates__mri": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 ### Echo-Planar Imaging and *B<sub>0</sub>* mapping
@@ -220,7 +227,8 @@ and a guide for using macros can be found at
    {
       "B0FieldIdentifier": "RECOMMENDED",
       "B0FieldSource": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 ### Institution information
@@ -236,7 +244,8 @@ and a guide for using macros can be found at
       "InstitutionName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0080 `InstitutionName`."),
       "InstitutionAddress": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`."),
       "InstitutionalDepartmentName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.")
-   }
+   },
+   ".."
 ) }}
 
 When adding additional metadata please use the CamelCase version of
@@ -336,7 +345,8 @@ and a guide for using macros can be found at
       "ContrastBolusIngredient": "OPTIONAL",
       "RepetitionTimeExcitation": "OPTIONAL",
       "RepetitionTimePreparation": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 The [`part-<label>`](../99-appendices/09-entities.md#part) key/value pair is
@@ -607,7 +617,8 @@ and a guide for using macros can be found at
       "RepetitionTime": "REQUIRED",
       "VolumeTiming": "REQUIRED",
       "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`.")
-   }
+   },
+   ".."
 ) }}
 
 For the fields described above and in the following section, the term "Volume"
@@ -632,7 +643,8 @@ and a guide for using macros can be found at
       "DelayTime": "RECOMMENDED",
       "AcquisitionDuration": 'RECOMMENDED, but REQUIRED for sequences that are described with the `VolumeTiming` field and that do not have the `SliceTiming` field set to allow for accurate calculation of "acquisition time"',
       "DelayAfterTrigger": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 The following table recapitulates the different ways that specific fields have
@@ -668,7 +680,8 @@ and a guide for using macros can be found at
       "TaskDescription": "RECOMMENDED",
       "CogAtlasID": "RECOMMENDED",
       "CogPOID": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 See [Common metadata fields](#common-metadata-fields) for a list of
@@ -852,7 +865,8 @@ and a guide for using macros can be found at
 {{ MACROS___make_metadata_table(
    {
       "MultipartID": "REQUIRED",
-   }
+   },
+   ".."
 ) }}
 
 JSON example:
@@ -1058,7 +1072,8 @@ and a guide for using macros can be found at
       "LabelingLocationDescription": "RECOMMENDED",
       "LookLocker": "OPTIONAL",
       "LabelingEfficiency": "OPTIONAL",
-   }
+   },
+   ".."
 ) }}
 
 #### (P)CASL-specific metadata fields
@@ -1082,7 +1097,8 @@ and a guide for using macros can be found at
       "LabelingPulseDuration": "RECOMMENDED",
       "LabelingPulseFlipAngle": "RECOMMENDED",
       "LabelingPulseInterval": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 #### PASL-specific metadata fields
@@ -1102,7 +1118,8 @@ and a guide for using macros can be found at
       "LabelingSlabThickness": "RECOMMENDED",
       "BolusCutOffDelayTime": "OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`",
       "BolusCutOffTechnique": "OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`",
-   }
+   },
+   ".."
 ) }}
 
 ### `m0scan` metadata fields
@@ -1122,7 +1139,8 @@ and a guide for using macros can be found at
          "This is used to refer to the ASL time series for which the `*_m0scan.nii[.gz]` is intended."
       ),
       "AcquisitionVoxelSize": "RECOMMENDED",
-   }
+   },
+   ".."
 ) }}
 
 The following table recapitulates the ASL field dependencies. If Source field (column 1) contains the Value specified in column 2, then the Requirements in column 4 are
@@ -1226,7 +1244,8 @@ and a guide for using macros can be found at
          "This field is OPTIONAL, and in case the fieldmaps do not correspond "
          "to any particular scans, it does not have to be filled.",
       ),
-   }
+   },
+   ".."
 ) }}
 
 For example:
@@ -1277,7 +1296,8 @@ and a guide for using macros can be found at
    {
       "EchoTime1": "REQUIRED",
       "EchoTime2": "REQUIRED",
-   }
+   },
+   ".."
 ) }}
 
 In this particular case, the sidecar JSON file
@@ -1320,7 +1340,8 @@ and a guide for using macros can be found at
 {{ MACROS___make_metadata_table(
    {
       "EchoTime__fmap": "REQUIRED",
-   }
+   },
+   ".."
 ) }}
 
 Each phase map has a corresponding sidecar JSON file to specify its corresponding `EchoTime`.
@@ -1361,7 +1382,8 @@ and a guide for using macros can be found at
          'Fieldmaps must be in units of Hertz (`"Hz"`), '
          'radians per second (`"rad/s"`), or Tesla (`"T"`).',
       ),
-   }
+   },
+   ".."
 ) }}
 
 For example:
@@ -1419,7 +1441,8 @@ and a guide for using macros can be found at
    {
       "PhaseEncodingDirection": "REQUIRED",
       "TotalReadoutTime": "REQUIRED",
-   }
+   },
+   ".."
 ) }}
 
 For example:

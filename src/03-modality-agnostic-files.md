@@ -36,7 +36,8 @@ and a guide for using macros can be found at
       "DatasetDOI": "OPTIONAL",
       "GeneratedBy": "RECOMMENDED",
       "SourceDatasets": "RECOMMENDED",
-   }
+   },
+   "."
 ) }}
 
 Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
@@ -114,7 +115,8 @@ and a guide for using macros can be found at
 {{ MACROS___make_metadata_table(
    {
       "GeneratedBy": "REQUIRED"
-   }
+   },
+   "."
 ) }}
 
 If a derived dataset is stored as a subdirectory of the raw dataset, then the `Name` field
@@ -394,7 +396,8 @@ and a guide for using macros can be found at
    {
       "MeasurementToolMetadata": "OPTIONAL",
       "Derivative": "OPTIONAL",
-   }
+   },
+   "."
 ) }}
 
 As an example, consider the contents of a file called

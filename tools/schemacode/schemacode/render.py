@@ -462,7 +462,7 @@ def make_suffix_table(schema, suffixes, relpath=None, tablefmt="github"):
     return table_str
 
 
-def make_metadata_table(schema, field_info, tablefmt="github"):
+def make_metadata_table(schema, field_info, relpath=None, tablefmt="github"):
     """Produce metadata table (markdown) based on requested fields.
 
     Parameters
@@ -478,6 +478,8 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
         and the second string is additional table-specific information
         about the metadata field that will be appended to the field's base
         definition from the schema.
+    relpath : str | None
+        path from file where this func is called to src/
     tablefmt : string, optional
         The target table format. The default is "github" (GitHub format).
 
@@ -529,6 +531,9 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
         description = description.replace("\n\n", "<br>")
         # Otherwise a newline corresponds to a space
         description = description.replace("\n", " ")
+        # Spec internal links need to be replaced
+        if relpath is not None:
+            description = description.replace("PATH_TO_SRC", relpath)
 
         df.loc[field_name] = [requirement_info, type_string, description]
 

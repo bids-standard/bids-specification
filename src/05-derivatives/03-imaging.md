@@ -63,7 +63,8 @@ and a guide for using macros can be found at
       "SkullStripped": "REQUIRED",
       "Resolution": "REQUIRED if `res` is present",
       "Density": "REQUIRED if `den` is present",
-   }
+   },
+   ".."
 ) }}
 
 Example JSON file corresponding to
@@ -173,7 +174,8 @@ and a guide for using macros can be found at
       "Atlas": "RECOMMENDED if `label` entity is defined",
       "Resolution": "REQUIRED if `res` is present",
       "Density": "REQUIRED if `den` is present",
-   }
+   },
+   ".."
 ) }}
 
 Examples:
@@ -253,7 +255,8 @@ and a guide for using macros can be found at
       "Atlas": "REQUIRED if `atlas` is present",
       "Resolution": "REQUIRED if `res` is present",
       "Density": "REQUIRED if `den` is present",
-   }
+   },
+   ".."
 ) }}
 
 ### Discrete Segmentations

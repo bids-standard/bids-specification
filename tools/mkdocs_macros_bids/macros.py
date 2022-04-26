@@ -114,7 +114,7 @@ def make_suffix_table(suffixes, relpath=None):
     return table
 
 
-def make_metadata_table(field_info):
+def make_metadata_table(field_info, relpath=None):
     """Generate a markdown table of metadata field information.
 
     Parameters
@@ -126,6 +126,8 @@ def make_metadata_table(field_info):
         Until requirement levels can be codified in the schema,
         this argument will be dictionary, with the field names as keys and
         the requirement levels as values.
+    relpath : str | None
+        path from file where this func is called to src/
 
     Returns
     -------
@@ -135,7 +137,7 @@ def make_metadata_table(field_info):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = render.make_metadata_table(schema_obj, field_info)
+    table = render.make_metadata_table(schema_obj, field_info, relpath=relpath)
     return table
 
 
