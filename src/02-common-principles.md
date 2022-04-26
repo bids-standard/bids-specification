@@ -128,13 +128,17 @@ Each entity has the following attributes:
 
 1.  *Name*: A comprehensive name describing the context of information
     to be provided via the entity.
+
 1.  *Key*: A short string, typically a compression of the entity name,
     which uniquely identifies the entity when part of a file name.
+
 1.  *Value type*: The requisite form of the value that gets specified
     alongside the key whenever the entity appears in a file name.
     For each entity, the value is of one of two possible types:
+
     1.  *Index*: A non-negative integer, potentially zero-padded for
         consistent width.
+
     1.  *Label*: An alphanumeric string.
         Note that labels MUST not collide when casing is ignored
         (see [Case collision intolerance](#case-collision-intolerance)).
