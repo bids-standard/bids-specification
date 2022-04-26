@@ -33,8 +33,9 @@ misunderstanding we clarify them here.
     taken in one or more visits.
 
 1.  **Sample** - a sample pertaining to a subject such as tissue, primary cell
-    or cell-free sample. Sample labels MUST be unique within a subject and it
-    is RECOMMENDED that they be unique throughout the dataset.
+    or cell-free sample.
+    Sample labels MUST be unique within a subject and it is RECOMMENDED that
+    they be unique throughout the dataset.
 
 1.  **Data acquisition** - a continuous uninterrupted block of time during which
     a brain scanning instrument was acquiring data according to particular
@@ -139,9 +140,9 @@ Each entity has the following attributes:
         (see [Case collision intolerance](#case-collision-intolerance)).
 
 The entity *format* is a string that prescribes how the entity appears within
-any given file name. For a hypothetical entity with key "`key`", the format
-can be either "`key-<index>`" or "`key-<label>`", depending on the value
-type of that entity.
+any given file name.
+For a hypothetical entity with key "`key`", the format can be either
+"`key-<index>`" or "`key-<label>`", depending on the value type of that entity.
 
 An entity *instance* is the specific manifestation of an entity within the
 name of a specific file, based on the format of the entity but with a value
@@ -149,14 +150,16 @@ that provides identifying information to the particular file in whose name
 it appears.
 
 Depending on context, any one of the entity name, key, format, or a specific
-entity instance, may in some instances be referred to as simply an "entity".
+entity instance, may be referred to as simply an "entity".
 
 "Subject", "session", "sample", "task", and "run" from the list of definitions
-above are all examples of entities. The comprehensive list of supported
-entities is defined in [Appendix IX](99-appendices/09-entities.md);
+above are all examples of entities.
+The comprehensive list of supported entities is defined in
+[Appendix IX](99-appendices/09-entities.md);
 further, whether each is OPTIONAL, REQUIRED, or MUST NOT be provided for
 various data files, as well as their relative ordering in a file name, are
-defined in the Entity Table in [Appendix IV](99-appendices/04-entity-table.md).
+defined in the Entity Table in
+[Appendix IV](99-appendices/04-entity-table.md).
 
 ## Compulsory, optional, and additional data and metadata
 
@@ -180,33 +183,36 @@ specification.
 
 Data for each subject are placed in sub-directories named "`sub-<label>`",
 where string "`<label>`" is substituted with the unique identification
-label of each subject. Additional information on each participant MAY be
-provided in a [participants file](03-modality-agnostic-files.md#participants-file)
+label of each subject.
+Additional information on each participant MAY be provided in a
+[participants file](03-modality-agnostic-files.md#participants-file)
 in the root directory of the dataset.
 
 If data for the subject were acquired across multiple sessions, then within
 the subject directory resides sub-directories named "`ses-<label>`",
 where string "`<label>`" is substituted with a unique identification
-label for each session. In datasets where at least one subject has more than
-one session, this additional sub-directory later SHOULD be added for all
-subjects in the dataset. Additional information on each session MAY be
-provided in a [sessions file](03-modality-agnostic-files.md#sessions-file)
+label for each session.
+In datasets where at least one subject has more than one session, this
+additional sub-directory later SHOULD be added for all subjects in the dataset.
+Additional information on each session MAY be provided in a
+[sessions file](03-modality-agnostic-files.md#sessions-file)
 within the subject directory.
 
 Within the session sub-directory (or the subject sub-directory if no
 session sub-directories are present) are sub-directories named according to
-data type as defined above. A data type directory SHOULD NOT be defined if
-there are no files to be placed in that directory.
+data type as defined above.
+A data type directory SHOULD NOT be defined if there are no files to be placed
+in that directory.
 
 ## File names
 
 A file name consists of a chain of *entity instances* and a *suffix*
-all separated by underscores, and an *extension*. This pattern forms
-file names that are both human- and machine-readable. For instance, file
-"`sub-01_task-rest_eeg.edf`" contains instances of the "subject" and
-"task" entities, making it evident from the file name alone that it
-contains resting-state data from subject `01`; the suffix `eeg`
-and extension `.edf` depend on the imaging modality and the data
+all separated by underscores, and an *extension*.
+This pattern forms file names that are both human- and machine-readable.
+For instance, file "`sub-01_task-rest_eeg.edf`" contains instances of the
+"subject" and "task" entities, making it evident from the file name alone that it
+contains resting-state data from subject `01`;
+the suffix `eeg` and extension `.edf` depend on the imaging modality and the data
 format, and can therefore convey further details of the file's contents.
 
 For a data file that was collected in a given session from a given
@@ -221,8 +227,8 @@ it uses the "acquisition" entity twice.
 In cases where an entity and a metadata field convey similar contextual
 information, the presence of an entity should not be used as a replacement for
 the corresponding metadata field.
-For instance, in echo-planar imaging MRI,
-the [`dir-<label>`](./99-appendices/09-entities.md#dir) entity MAY be used
+For instance, in echo-planar imaging MRI, the
+[`dir-<label>`](./99-appendices/09-entities.md#dir) entity MAY be used
 to distinguish files with different phase-encoding directions,
 but the file's `PhaseEncodingDirection` MUST be specified as metadata.
 
