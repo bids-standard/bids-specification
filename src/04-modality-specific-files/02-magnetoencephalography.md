@@ -16,6 +16,13 @@ the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
 
 ## MEG recording data
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(
    datatypes=["meg"],
    suffixes=["meg", "markers", "events", "physio", "stim"])
@@ -44,8 +51,8 @@ If multiple *Tasks* were performed within a single *Run*,
 the task description can be set to `task-multitask`.
 The `*_meg.json` file SHOULD contain details on the *Tasks*.
 
-Some manufacturers' data storage conventions use folders which contain data
-files of various nature: for example, CTF's `.ds` format, or BTi/4D's data folder.
+Some manufacturers' data storage conventions use directories which contain data
+files of various nature: for example, CTF's `.ds` format, or BTi/4D's data directory.
 Yet other manufacturers split their files once they exceed a certain size
 limit.
 For example Neuromag/Elekta/Megin, which can produce several files
@@ -91,6 +98,12 @@ systems (see [coordinates section](#coordinate-system-json-_coordsystemjson) bel
 
 Generic fields MUST be present:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
@@ -101,6 +114,12 @@ SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad-hoc wording.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "InstitutionName": "RECOMMENDED",
@@ -130,6 +149,12 @@ Whenever possible, please avoid using ad-hoc wording.
 
 Specific MEG fields MUST be present:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "SamplingFrequency": ("REQUIRED", "The sampling frequency of data channels that deviate from the main sampling frequency SHOULD be specified in the `channels.tsv` file."),
@@ -143,6 +168,12 @@ Specific MEG fields MUST be present:
 
 SHOULD be present:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "MEGChannelCount": "RECOMMENDED",
@@ -171,6 +202,12 @@ Specific EEG fields
 (if recorded with MEG, see [Recording EEG simultaneously with MEG](#recording-eeg-simultaneously-with-meg)
 SHOULD be present:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "EEGPlacementScheme": "OPTIONAL",
@@ -219,6 +256,13 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 ## Channels description (`*_channels.tsv`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["channels"]) }}
 
 This file is RECOMMENDED as it provides easily searchable information across BIDS datasets.
@@ -231,6 +275,12 @@ The columns of the channels description table stored in `*_channels.tsv` are:
 
 MUST be present **in this specific order**:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "name__channels": "REQUIRED",
@@ -241,6 +291,12 @@ MUST be present **in this specific order**:
 
 SHOULD be present:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "description": "OPTIONAL",
@@ -313,6 +369,13 @@ UADC001 AUDIO V envelope of audio signal presented to participant
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["coordsystem"]) }}
 
 OPTIONAL. A JSON document specifying the coordinate system(s) used for the MEG,
@@ -320,6 +383,12 @@ EEG, head localization coils, and anatomical landmarks.
 
 MEG and EEG sensors:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "MEGCoordinateSystem": "REQUIRED",
@@ -340,6 +409,12 @@ MEG and EEG sensors:
 
 Head localization coils:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "HeadCoilCoordinates": "OPTIONAL",
@@ -351,9 +426,15 @@ Head localization coils:
 
 Digitized head points:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
-      "DigitizedHeadPoints": "OPTIONAL",
+      "DigitizedHeadPoints__coordsystem": "OPTIONAL",
       "DigitizedHeadPointsCoordinateSystem": "OPTIONAL",
       "DigitizedHeadPointsCoordinateUnits": "OPTIONAL",
       "DigitizedHeadPointsCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `DigitizedHeadPointsCoordinateSystem` is `Other`",
@@ -362,6 +443,12 @@ Digitized head points:
 
 Anatomical MRI:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "IntendedFor": (
@@ -375,6 +462,12 @@ Anatomical MRI:
 
 Anatomical landmarks:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "AnatomicalLandmarkCoordinates": "OPTIONAL",
@@ -402,6 +495,12 @@ session-specific labels for example, "NAS-session1": `[127,213,139]`,"NAS-sessio
 
 Fiducials information:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "FiducialsDescription": "OPTIONAL",
@@ -421,6 +520,13 @@ or:
 Photos of the anatomical landmarks and/or head localization coils
 (`*_photo.jpg`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["photo"]) }}
 
 Photos of the anatomical landmarks and/or head localization coils on the
@@ -441,6 +547,13 @@ actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ## Head shape and electrode description (`*_headshape.<ext>`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["meg"], suffixes=["headshape"]) }}
 
 This file is RECOMMENDED.
@@ -454,6 +567,10 @@ manufacturer (see [Appendix VI](../99-appendices/06-meg-file-formats.md)).
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-control01": {
@@ -475,7 +592,7 @@ Empty-room MEG recordings capture the environmental and recording system's
 noise.
 In the context of BIDS it is RECOMMENDED to perform an empty-room recording for
 each experimental session.
-It is RECOMMENDED to store the empty-room recording inside a subject folder
+It is RECOMMENDED to store the empty-room recording inside a subject directory
 named `sub-emptyroom`.
 The label for the [`task-<label>`](../99-appendices/09-entities.md#task) entity in the empty-room recording SHOULD be
 set to `noise`.
@@ -492,6 +609,10 @@ SHOULD be present as well.
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-control01": {},

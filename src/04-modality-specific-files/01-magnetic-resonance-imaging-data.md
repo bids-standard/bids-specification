@@ -12,6 +12,12 @@ by Ben Inglis.
 
 ### Scanner Hardware
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "Manufacturer": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0070 `Manufacturer`."),
@@ -50,6 +56,12 @@ that a given scan was collected with the intended coil elements selected
 
 ### Sequence Specifics
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "PulseSequenceType": "RECOMMENDED",
@@ -76,6 +88,12 @@ that a given scan was collected with the intended coil elements selected
 
 ### In-Plane Spatial Encoding
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "NumberShots": "RECOMMENDED",
@@ -117,6 +135,12 @@ and the center of the last "effective" echo, sometimes called the "FSL definitio
 
 ### Timing Parameters
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "EchoTime": "RECOMMENDED, but REQUIRED if corresponding fieldmap data is present, or the data comes from a multi echo sequence or Arterial Spin Labeling",
@@ -129,6 +153,12 @@ and the center of the last "effective" echo, sometimes called the "FSL definitio
 
 ### RF & Contrast
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "FlipAngle": "RECOMMENDED, but REQUIRED if `LookLocker` is set `true`",
@@ -138,6 +168,12 @@ and the center of the last "effective" echo, sometimes called the "FSL definitio
 
 ### Slice Acceleration
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "MultibandAccelerationFactor": "RECOMMENDED",
@@ -148,6 +184,12 @@ and the center of the last "effective" echo, sometimes called the "FSL definitio
 
 Useful for multimodal co-registration with MEG, (S)EEG, TMS, and so on.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "AnatomicalLandmarkCoordinates__mri": "RECOMMENDED",
@@ -161,13 +203,19 @@ diffusion and functional MRI may also be *intended for* estimating the
 *B<sub>0</sub>* field nonuniformity inside the scanner (in other words,
 *mapping the field*) without the acquisition of additional MRI schemes
 such as gradient-recalled echo (GRE) sequences that are stored under the
-`fmap/` folder of the BIDS structure.
+`fmap/` directory of the BIDS structure.
 
 The modality labels `dwi` (under `dwi/`), `bold` (under `func/`),
 `asl` (under `perf/`), `sbref` (under `dwi/`, `func/` or `perf/`), and
 any modality under `fmap/` are allowed to encode the MR protocol intent for
 fieldmap estimation using the following metadata:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "B0FieldIdentifier": "RECOMMENDED",
@@ -177,6 +225,12 @@ fieldmap estimation using the following metadata:
 
 ### Institution information
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "InstitutionName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0080 `InstitutionName`."),
@@ -192,10 +246,24 @@ whenever possible. See also
 
 ## Anatomy imaging data
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["anat"]) }}
 
 Currently supported non-parametric structural MR images include:
 
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_suffix_table(
       [
          "T1w",
@@ -256,6 +324,12 @@ JSON file. See [Common metadata fields](#common-metadata-fields) for a
 list of terms and their definitions. There are also some OPTIONAL JSON
 fields specific to anatomical scans:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "ContrastBolusIngredient": "OPTIONAL",
@@ -273,6 +347,10 @@ which are typically used in `part-mag`/`part-phase` or `part-real`/`part-imag`
 pairs of files.
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -307,6 +385,13 @@ different reconstruction algorithms (for example ones using motion correction).
 Structural MR images whose intensity is represented in a non-arbitrary scale
 constitute parametric maps. Currently supported parametric maps include:
 
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_suffix_table(
       [
          "T1map",
@@ -352,6 +437,13 @@ They are, however, still valid suffixes, to maintain backwards compatibility.
 The following suffixes are valid, but SHOULD NOT be used for new BIDS compatible
 datasets (created after version 1.5.0.):
 
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_suffix_table(
       [
          "T2star",
@@ -365,6 +457,13 @@ datasets (created after version 1.5.0.):
 
 Currently supported image contrasts include:
 
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_suffix_table(
       [
          "bold",
@@ -374,6 +473,13 @@ Currently supported image contrasts include:
    )
 }}
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["func"]) }}
 
 Functional imaging consists of techniques that support rapid temporal repetition.
@@ -426,6 +532,10 @@ for more information on `dir` field specification.
 Multi-echo data MUST be split into one file per echo using the
 [`echo-<index>`](../99-appendices/09-entities.md#echo) key-value pair. For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -456,6 +566,10 @@ name with the exception of the `part-<mag|phase>` or `part-<real|imag>` key/valu
 
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -478,6 +592,12 @@ JSON file.
 
 ### Required fields
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "RepetitionTime": "REQUIRED",
@@ -495,6 +615,12 @@ combined image rather than an image from each coil.
 
 #### Timing Parameters
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "NumberOfVolumesDiscardedByScanner": "RECOMMENDED",
@@ -526,6 +652,12 @@ sparse sequences.
 
 #### fMRI task information
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "Instructions": ("RECOMMENDED", "This is especially important in context of resting state recordings and distinguishing between eyes open and eyes closed paradigms."),
@@ -540,6 +672,10 @@ additional terms and their definitions.
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -589,6 +725,13 @@ and that can be used for practical guidance when curating a new dataset:
 Diffusion-weighted imaging data acquired for a participant.
 Currently supported image types include:
 
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_suffix_table(
       [
          "dwi",
@@ -597,6 +740,13 @@ Currently supported image types include:
    )
 }}
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["dwi"]) }}
 
 If more than one run of the same acquisition and direction has been acquired, the
@@ -688,6 +838,12 @@ not be able to be directly concatenated.
 BIDS permits defining arbitrary groupings of these multipart scans with the
 following metadata:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "MultipartID": "REQUIRED",
@@ -707,6 +863,10 @@ two runs each, and the intent of the researcher is that all of them are
 part of a unique multipart scan, then they will tag all four runs with the
 same `MultipartID` (shown at the right-hand side of the file listing):
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-1": {
@@ -723,6 +883,10 @@ same `MultipartID` (shown at the right-hand side of the file listing):
 If, conversely, the researcher wanted to store two multipart scans, one possibility
 is to combine matching phase-encoding directions:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-1": {
@@ -739,6 +903,10 @@ is to combine matching phase-encoding directions:
 Alternatively, the researcher's intent could be combining opposed phase-encoding
 runs instead:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-1": {
@@ -755,6 +923,10 @@ runs instead:
 The `MultipartID` metadata MAY be used with the
 [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair, for example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-1": {
@@ -792,6 +964,13 @@ Several [example ASL datasets](https://github.com/bids-standard/bids-examples#as
 have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["perf"]) }}
 
 The complete ASL time series should be stored as a 4D NIfTI file in the original acquisition order,
@@ -850,6 +1029,12 @@ See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#summary-i
 
 #### Common metadata fields applicable to both (P)CASL and PASL
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "ArterialSpinLabelingType": "REQUIRED",
@@ -875,6 +1060,12 @@ See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#summary-i
 
 These fields can only be used when `ArterialSpinLabelingType` is `"CASL"` or `"PCASL"`. See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#pcasl-sequence) for more information on the (P)CASL sequence and the Labeling Pulse fields.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "LabelingDuration": "REQUIRED",
@@ -893,6 +1084,12 @@ These fields can only be used when `ArterialSpinLabelingType` is `"CASL"` or `"P
 
 These fields can only be used when `ArterialSpinLabelingType` is `PASL`. See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#pasl-sequence) for more information on the PASL sequence and the BolusCutOff fields.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "BolusCutOffFlag": "REQUIRED",
@@ -907,6 +1104,12 @@ These fields can only be used when `ArterialSpinLabelingType` is `PASL`. See [Ap
 
 Some common metadata fields are REQUIRED for the `*_m0scan.json`: `EchoTime`, `RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "IntendedFor": (
@@ -952,6 +1155,13 @@ The current version of this standard considers four different scenarios:
 These four different types of field mapping strategies can be encoded
 using the following image types:
 
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_suffix_table(
       [
          "magnitude",
@@ -997,6 +1207,12 @@ tools that support older datasets.
 Fieldmap data MAY be linked to the specific scan(s) it was acquired for by
 filling the `IntendedFor` field in the corresponding JSON file.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "IntendedFor": (
@@ -1029,6 +1245,13 @@ containing that type of fieldmap can be found here:
 -   [`genetics_ukbb`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
 -   [`ds000117`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["phasediff", "magnitude1", "magnitude2"]) }}
 
 where
@@ -1038,6 +1261,12 @@ the OPTIONAL `_magnitude2` image to the longer echo time.
 
 Required fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "EchoTime1": "REQUIRED",
@@ -1065,10 +1294,23 @@ Similar to case 1, but instead of a precomputed phase-difference map, two
 separate phase images and two magnitude images corresponding to first and
 second echos are available.
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["phase1", "phase2", "magnitude1", "magnitude2"]) }}
 
 Required fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "EchoTime__fmap": "REQUIRED",
@@ -1089,10 +1331,23 @@ For example, `sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json`
 In some cases (for example GE), the scanner software will directly reconstruct a
 *B<sub>0</sub>* field map along with a magnitude image used for anatomical reference.
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["fieldmap", "magnitude"]) }}
 
 Required fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "Units": (
@@ -1131,6 +1386,13 @@ in the latter case, all timepoints share the same scanning parameters.
 Examples of software tools using these kinds of images are FSL TOPUP,
 AFNI `3dqwarp`, and SPM.
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["fmap"], suffixes=["epi"]) }}
 
 The [`dir-<label>`](../99-appendices/09-entities.md#dir) entity is REQUIRED
@@ -1141,6 +1403,12 @@ the REQUIRED `PhaseEncodingDirection` metadata field
 
 Required fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "PhaseEncodingDirection": "REQUIRED",
