@@ -76,8 +76,8 @@ def make_glossary(page_file=None):
 
     Parameters
     ----------
-    page_file : File object | None
-        path from file where this func is called to src/
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
 
     Returns
     -------
@@ -98,8 +98,8 @@ def make_suffix_table(suffixes, page_file=None):
     ----------
     suffixes : list of str
         A list of the suffixes to include in the table.
-    page_file : File object | None
-        path from file where this func is called to src/
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
 
 
     Returns
@@ -126,8 +126,8 @@ def make_metadata_table(field_info, page_file=None):
         Until requirement levels can be codified in the schema,
         this argument will be dictionary, with the field names as keys and
         the requirement levels as values.
-    page_file : File object | None
-        path from file where this func is called to src/
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
 
     Returns
     -------
@@ -153,8 +153,8 @@ def make_columns_table(column_info, page_file=None):
         Until requirement levels can be codified in the schema,
         this argument will be a dictionary, with the column names as keys and
         the requirement levels as values.
-    page_file : File object | None
-        path from file where this func is called to src/
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
 
     Returns
     -------

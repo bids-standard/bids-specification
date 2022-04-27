@@ -64,8 +64,8 @@ def make_glossary(schema, page_file=None):
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
-    page_file : File object | None
-        path from file where this func is called to src/
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
 
     Returns
     -------
@@ -417,8 +417,8 @@ def make_suffix_table(schema, suffixes, page_file=None, tablefmt="github"):
     ----------
     schema : dict
     suffixes : list of str
-    page_file : File object | None
-        path from file where this func is called to src/
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
     tablefmt : str
 
     Returns
@@ -482,8 +482,8 @@ def make_metadata_table(schema, field_info, page_file=None, tablefmt="github"):
         and the second string is additional table-specific information
         about the metadata field that will be appended to the field's base
         definition from the schema.
-    page_file : File object | None
-        path from file where this func is called to src/
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
     tablefmt : string, optional
         The target table format. The default is "github" (GitHub format).
 
@@ -564,8 +564,8 @@ def make_columns_table(schema, column_info, page_file=None, tablefmt="github"):
         and the second string is additional table-specific information
         about the column that will be appended to the column's base
         definition from the schema.
-    page_file : File object | None
-        path from file where this func is called to src/
+    page_file : MkDocs File object | None
+        The file where this macro is called, provided by the "page.file" variable.
     tablefmt : string, optional
         The target table format. The default is "github" (GitHub format).
 
