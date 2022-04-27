@@ -71,12 +71,12 @@ def make_entity_definitions():
     return text
 
 
-def make_glossary(relpath=None):
+def make_glossary(page_file=None):
     """Generate glossary.
 
     Parameters
     ----------
-    relpath : str | None
+    page_file : File object | None
         path from file where this func is called to src/
 
     Returns
@@ -87,18 +87,18 @@ def make_glossary(relpath=None):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    text = render.make_glossary(schema_obj, relpath)
+    text = render.make_glossary(schema_obj, page_file=page_file)
     return text
 
 
-def make_suffix_table(suffixes, relpath=None):
+def make_suffix_table(suffixes, page_file=None):
     """Generate a markdown table of suffix information.
 
     Parameters
     ----------
     suffixes : list of str
         A list of the suffixes to include in the table.
-    relpath : str | None
+    page_file : File object | None
         path from file where this func is called to src/
 
 
@@ -110,11 +110,11 @@ def make_suffix_table(suffixes, relpath=None):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = render.make_suffix_table(schema_obj, suffixes, relpath)
+    table = render.make_suffix_table(schema_obj, suffixes, page_file=page_file)
     return table
 
 
-def make_metadata_table(field_info, relpath=None):
+def make_metadata_table(field_info, page_file=None):
     """Generate a markdown table of metadata field information.
 
     Parameters
@@ -126,7 +126,7 @@ def make_metadata_table(field_info, relpath=None):
         Until requirement levels can be codified in the schema,
         this argument will be dictionary, with the field names as keys and
         the requirement levels as values.
-    relpath : str | None
+    page_file : File object | None
         path from file where this func is called to src/
 
     Returns
@@ -137,11 +137,11 @@ def make_metadata_table(field_info, relpath=None):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = render.make_metadata_table(schema_obj, field_info, relpath=relpath)
+    table = render.make_metadata_table(schema_obj, field_info, page_file=page_file)
     return table
 
 
-def make_columns_table(column_info, relpath=None):
+def make_columns_table(column_info, page_file=None):
     """Generate a markdown table of TSV column information.
 
     Parameters
@@ -153,7 +153,7 @@ def make_columns_table(column_info, relpath=None):
         Until requirement levels can be codified in the schema,
         this argument will be a dictionary, with the column names as keys and
         the requirement levels as values.
-    relpath : str | None
+    page_file : File object | None
         path from file where this func is called to src/
 
     Returns
@@ -164,7 +164,7 @@ def make_columns_table(column_info, relpath=None):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = render.make_columns_table(schema_obj, column_info, relpath=relpath)
+    table = render.make_columns_table(schema_obj, column_info, page_file=page_file)
     return table
 
 

@@ -56,7 +56,7 @@ def make_entity_definitions(schema):
     return text
 
 
-def make_glossary(schema, relpath=None):
+def make_glossary(schema, page_file=None):
     """Generate glossary.
 
     Parameters
@@ -64,7 +64,7 @@ def make_glossary(schema, relpath=None):
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
-    relpath : str | None
+    page_file : File object | None
         path from file where this func is called to src/
 
     Returns
@@ -122,8 +122,8 @@ def make_glossary(schema, relpath=None):
         # Otherwise a newline corresponds to a space
         obj_desc = obj_desc.replace("\n", " ")
         # Spec internal links need to be replaced
-        if relpath is not None:
-            obj_desc = obj_desc.replace("SPEC_ROOT", relpath)
+        if page_file is not None:
+            obj_desc = obj_desc.replace("SPEC_ROOT", page_file)
 
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
@@ -408,14 +408,14 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     return table_str
 
 
-def make_suffix_table(schema, suffixes, relpath=None, tablefmt="github"):
+def make_suffix_table(schema, suffixes, page_file=None, tablefmt="github"):
     """Produce suffix table (markdown) based on requested suffixes.
 
     Parameters
     ----------
     schema : dict
     suffixes : list of str
-    relpath : str | None
+    page_file : File object | None
         path from file where this func is called to src/
     tablefmt : str
 
@@ -448,8 +448,8 @@ def make_suffix_table(schema, suffixes, relpath=None, tablefmt="github"):
         # Otherwise a newline corresponds to a space
         description = description.replace("\n", " ")
         # Spec internal links need to be replaced
-        if relpath is not None:
-            description = description.replace("SPEC_ROOT", relpath)
+        if page_file is not None:
+            description = description.replace("SPEC_ROOT", page_file)
 
         df.loc[suffix] = [suffix_info["name"], description]
 
@@ -462,7 +462,7 @@ def make_suffix_table(schema, suffixes, relpath=None, tablefmt="github"):
     return table_str
 
 
-def make_metadata_table(schema, field_info, relpath=None, tablefmt="github"):
+def make_metadata_table(schema, field_info, page_file=None, tablefmt="github"):
     """Produce metadata table (markdown) based on requested fields.
 
     Parameters
@@ -478,7 +478,7 @@ def make_metadata_table(schema, field_info, relpath=None, tablefmt="github"):
         and the second string is additional table-specific information
         about the metadata field that will be appended to the field's base
         definition from the schema.
-    relpath : str | None
+    page_file : File object | None
         path from file where this func is called to src/
     tablefmt : string, optional
         The target table format. The default is "github" (GitHub format).
@@ -532,8 +532,8 @@ def make_metadata_table(schema, field_info, relpath=None, tablefmt="github"):
         # Otherwise a newline corresponds to a space
         description = description.replace("\n", " ")
         # Spec internal links need to be replaced
-        if relpath is not None:
-            description = description.replace("SPEC_ROOT", relpath)
+        if page_file is not None:
+            description = description.replace("SPEC_ROOT", page_file)
 
         df.loc[field_name] = [requirement_info, type_string, description]
 
@@ -542,7 +542,7 @@ def make_metadata_table(schema, field_info, relpath=None, tablefmt="github"):
     return table_str
 
 
-def make_columns_table(schema, column_info, relpath=None, tablefmt="github"):
+def make_columns_table(schema, column_info, page_file=None, tablefmt="github"):
     """Produce columns table (markdown) based on requested fields.
 
     Parameters
@@ -558,7 +558,7 @@ def make_columns_table(schema, column_info, relpath=None, tablefmt="github"):
         and the second string is additional table-specific information
         about the column that will be appended to the column's base
         definition from the schema.
-    relpath : str | None
+    page_file : File object | None
         path from file where this func is called to src/
     tablefmt : string, optional
         The target table format. The default is "github" (GitHub format).
@@ -600,8 +600,8 @@ def make_columns_table(schema, column_info, relpath=None, tablefmt="github"):
 
         description = column_schema[field]["description"] + " " + description_addendum
 
-        if relpath is not None:
-            description = description.replace("SPEC_ROOT", relpath)
+        if page_file is not None:
+            description = description.replace("SPEC_ROOT", page_file)
 
         # Try to add info about valid values
         valid_values_str = utils.describe_valid_values(column_schema[field])
