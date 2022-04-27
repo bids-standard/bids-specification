@@ -123,7 +123,9 @@ def make_glossary(schema, page_file=None):
         obj_desc = obj_desc.replace("\n", " ")
         # Spec internal links need to be replaced
         if page_file is not None:
-            obj_desc = obj_desc.replace("SPEC_ROOT", page_file)
+            relpath = os.sep.join([".."] * page_file.src_path.count(os.sep))
+            relpath = "." if not relpath else relpath
+            obj_desc = obj_desc.replace("SPEC_ROOT", relpath)
 
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
@@ -449,7 +451,9 @@ def make_suffix_table(schema, suffixes, page_file=None, tablefmt="github"):
         description = description.replace("\n", " ")
         # Spec internal links need to be replaced
         if page_file is not None:
-            description = description.replace("SPEC_ROOT", page_file)
+            relpath = os.sep.join([".."] * page_file.src_path.count(os.sep))
+            relpath = "." if not relpath else relpath
+            description = description.replace("SPEC_ROOT", relpath)
 
         df.loc[suffix] = [suffix_info["name"], description]
 
@@ -533,7 +537,9 @@ def make_metadata_table(schema, field_info, page_file=None, tablefmt="github"):
         description = description.replace("\n", " ")
         # Spec internal links need to be replaced
         if page_file is not None:
-            description = description.replace("SPEC_ROOT", page_file)
+            relpath = os.sep.join([".."] * page_file.src_path.count(os.sep))
+            relpath = "." if not relpath else relpath
+            description = description.replace("SPEC_ROOT", relpath)
 
         df.loc[field_name] = [requirement_info, type_string, description]
 
@@ -601,7 +607,9 @@ def make_columns_table(schema, column_info, page_file=None, tablefmt="github"):
         description = column_schema[field]["description"] + " " + description_addendum
 
         if page_file is not None:
-            description = description.replace("SPEC_ROOT", page_file)
+            relpath = os.sep.join([".."] * page_file.src_path.count(os.sep))
+            relpath = "." if not relpath else relpath
+            description = description.replace("SPEC_ROOT", relpath)
 
         # Try to add info about valid values
         valid_values_str = utils.describe_valid_values(column_schema[field])
