@@ -9,6 +9,13 @@ sys.path.append(code_path)
 
 from examplecode import example
 
+def _get_source_path(level=1):
+    import inspect
+    caller = inspect.currentframe().f_back
+    for _ in range(level):
+        caller = caller.f_back
+    return caller.f_locals["_Context__self"]["page"].file.src_path
+
 
 def make_filename_template(**kwargs):
     """Generate a filename template snippet from the schema, based on specific
@@ -71,13 +78,14 @@ def make_entity_definitions():
     return text
 
 
-def make_glossary(page_file=None):
+def make_glossary(src_path=None):
     """Generate glossary.
 
     Parameters
     ----------
-    page_file : MkDocs File object | None
-        The file where this macro is called, provided by the "page.file" variable.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
 
     Returns
     -------
@@ -85,22 +93,24 @@ def make_glossary(page_file=None):
         A multiline string containing descriptions and some formatting
         information about the entities in the schema.
     """
+    if src_path is None:
+        src_path = _get_source_path()
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    text = render.make_glossary(schema_obj, page_file=page_file)
+    text = render.make_glossary(schema_obj, src_path=src_path)
     return text
 
 
-def make_suffix_table(suffixes, page_file=None):
+def make_suffix_table(suffixes, src_path=None):
     """Generate a markdown table of suffix information.
 
     Parameters
     ----------
     suffixes : list of str
         A list of the suffixes to include in the table.
-    page_file : MkDocs File object | None
-        The file where this macro is called, provided by the "page.file" variable.
-
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
 
     Returns
     -------
@@ -108,13 +118,15 @@ def make_suffix_table(suffixes, page_file=None):
         A Markdown-format table containing the corresponding table for
         the requested fields.
     """
+    if src_path is None:
+        src_path = _get_source_path()
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = render.make_suffix_table(schema_obj, suffixes, page_file=page_file)
+    table = render.make_suffix_table(schema_obj, suffixes, src_path=src_path)
     return table
 
 
-def make_metadata_table(field_info, page_file=None):
+def make_metadata_table(field_info, src_path=None):
     """Generate a markdown table of metadata field information.
 
     Parameters
@@ -126,8 +138,9 @@ def make_metadata_table(field_info, page_file=None):
         Until requirement levels can be codified in the schema,
         this argument will be dictionary, with the field names as keys and
         the requirement levels as values.
-    page_file : MkDocs File object | None
-        The file where this macro is called, provided by the "page.file" variable.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
 
     Returns
     -------
@@ -135,13 +148,15 @@ def make_metadata_table(field_info, page_file=None):
         A Markdown-format table containing the corresponding table for
         the requested fields.
     """
+    if src_path is None:
+        src_path = _get_source_path()
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = render.make_metadata_table(schema_obj, field_info, page_file=page_file)
+    table = render.make_metadata_table(schema_obj, field_info, src_path=src_path)
     return table
 
 
-def make_columns_table(column_info, page_file=None):
+def make_columns_table(column_info, src_path=None):
     """Generate a markdown table of TSV column information.
 
     Parameters
@@ -153,8 +168,9 @@ def make_columns_table(column_info, page_file=None):
         Until requirement levels can be codified in the schema,
         this argument will be a dictionary, with the column names as keys and
         the requirement levels as values.
-    page_file : MkDocs File object | None
-        The file where this macro is called, provided by the "page.file" variable.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
 
     Returns
     -------
@@ -162,9 +178,11 @@ def make_columns_table(column_info, page_file=None):
         A Markdown-format table containing the corresponding table for
         the requested columns.
     """
+    if src_path is None:
+        src_path = _get_source_path()
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = render.make_columns_table(schema_obj, column_info, page_file=page_file)
+    table = render.make_columns_table(schema_obj, column_info, src_path=src_path)
     return table
 
 
