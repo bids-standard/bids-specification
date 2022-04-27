@@ -9,11 +9,54 @@ sys.path.append(code_path)
 
 from examplecode import example
 
+
 def _get_source_path(level=1):
+    """ Detect the path of the file we are rendering a macro in.
+
+    This (ab)uses the Python call stack to find its way to the Jinja2 function
+    that is calling the macro. From there, it looks at Jinja2's Context object,
+    which contains all the variables available to the Markdown snippet that is
+    calling the macro.
+
+    One variable provided by mkdocs-macros is called ``page``, which includes a
+    ``file`` attribute that would allow us to insert the page name into the text
+    of the page, or in this case, pass it as a variable. The ``file`` attribute
+    has a ``src_path`` attribute of its own that is a path relative to the ``src/``
+    directory.
+
+    The level parameter indicates how many steps above the calling function Jinja2
+    is. Currently it's always 1, but refactors may justify passing a larger number.
+
+    This allows us to use
+
+    ```{markdown}
+    {{ MACRO__make_glossary() }}
+    ```
+
+    instead of:
+
+    ```{markdown}
+    {{ MACRO__make_glossary(page.file.src_path) }}
+    ```
+
+    Why are we doing all this? We need to render links that are defined in the schema
+    relative to the source tree as paths relative to the Markdown file they're being
+    rendered in. So [SPEC_ROOT/02-common-principles.md](Common principles) becomes
+    [./02-common-principles.md](Common principles) or
+    [../02-common-principles.md](Common principles), depending on which file it
+    appears in.
+
+    If a future maintainer decides that this is terrible, or a bug can't be fixed,
+    just go back to explicitly using the ``page.file`` variable throughout the macros.
+    """
     import inspect
+    # currentframe = _get_source_path()
+    # caller = the macro calling this function, e.g. make_glossary()
     caller = inspect.currentframe().f_back
+    # We need to go one level higher to find Jinja2
     for _ in range(level):
         caller = caller.f_back
+    # Jinja2 equivalent: {{ page.file.src_path }}
     return caller.f_locals["_Context__self"]["page"].file.src_path
 
 
