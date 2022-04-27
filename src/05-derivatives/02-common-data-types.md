@@ -25,7 +25,7 @@ and a guide for using macros can be found at
         "Sources": "OPTIONAL",
         "RawSources": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 ### Examples
@@ -106,7 +106,7 @@ and a guide for using macros can be found at
    {
       "SpatialReference": "RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise.",
    },
-   ".."
+   page.file
 ) }}
 
 ### SpatialReference key allowed values

@@ -295,7 +295,7 @@ and a guide for using macros can be found at
       "EstimationAlgorithm": "RECOMMENDED",
       "Units": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 Example:

@@ -37,7 +37,7 @@ and a guide for using macros can be found at
       "GeneratedBy": "RECOMMENDED",
       "SourceDatasets": "RECOMMENDED",
    },
-   "."
+   page.file
 ) }}
 
 Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
@@ -116,7 +116,7 @@ and a guide for using macros can be found at
    {
       "GeneratedBy": "REQUIRED"
    },
-   "."
+   page.file
 ) }}
 
 If a derived dataset is stored as a subdirectory of the raw dataset, then the `Name` field
@@ -239,7 +239,7 @@ and a guide for using macros can be found at
       "strain": "RECOMMENDED",
       "strain_rrid": "RECOMMENDED",
    },
-   "."
+   page.file
 ) }}
 
 Throughout BIDS you can indicate missing values with `n/a` (for "not
@@ -323,7 +323,7 @@ and a guide for using macros can be found at
       "pathology": "RECOMMENDED",
       "derived_from": "RECOMMENDED",
    },
-   "."
+   page.file
 ) }}
 
 `samples.tsv` example:
@@ -397,7 +397,7 @@ and a guide for using macros can be found at
       "MeasurementToolMetadata": "OPTIONAL",
       "Derivative": "OPTIONAL",
    },
-   "."
+   page.file
 ) }}
 
 As an example, consider the contents of a file called
@@ -470,7 +470,7 @@ and a guide for using macros can be found at
       "filename": ("REQUIRED", "There MUST be exactly one row for each file."),
       "acq_time__scans": ("OPTIONAL"),
    },
-   "."
+   page.file
 ) }}
 
 Additional fields can include external behavioral measures relevant to the
@@ -521,7 +521,7 @@ and a guide for using macros can be found at
       "acq_time__sessions": ("OPTIONAL"),
       "pathology": "RECOMMENDED",
    },
-   "."
+   page.file
 ) }}
 
 `_sessions.tsv` example:

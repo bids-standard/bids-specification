@@ -487,7 +487,7 @@ and a guide for using macros can be found at
         "TermURL": "RECOMMENDED",
         "HED": "OPTIONAL",
    },
-   "."
+   page.file
 ) }}
 
 Please note that while both `Units` and `Levels` are RECOMMENDED, typically only one

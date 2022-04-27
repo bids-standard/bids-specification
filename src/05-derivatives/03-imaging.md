@@ -64,7 +64,7 @@ and a guide for using macros can be found at
       "Resolution": "REQUIRED if `res` is present",
       "Density": "REQUIRED if `den` is present",
    },
-   ".."
+   page.file
 ) }}
 
 Example JSON file corresponding to
@@ -175,7 +175,7 @@ and a guide for using macros can be found at
       "Resolution": "REQUIRED if `res` is present",
       "Density": "REQUIRED if `den` is present",
    },
-   ".."
+   page.file
 ) }}
 
 Examples:
@@ -256,7 +256,7 @@ and a guide for using macros can be found at
       "Resolution": "REQUIRED if `res` is present",
       "Density": "REQUIRED if `den` is present",
    },
-   ".."
+   page.file
 ) }}
 
 ### Discrete Segmentations
@@ -536,7 +536,7 @@ and a guide for using macros can be found at
       "color": "OPTIONAL",
       "mapping": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 An example, custom `dseg.tsv` that defines three labels:

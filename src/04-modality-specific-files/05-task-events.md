@@ -50,7 +50,7 @@ and a guide for using macros can be found at
       "value": "OPTIONAL",
       "HED": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 <sup>5</sup> Note for MRI data:
@@ -164,7 +164,7 @@ and a guide for using macros can be found at
    {
       "stim_file": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 ### Stimuli databases
@@ -238,7 +238,7 @@ and a guide for using macros can be found at
    {
       "StimulusPresentation": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 The object supplied for `StimulusPresentation` SHOULD include the following key-value pairs:
@@ -257,7 +257,7 @@ and a guide for using macros can be found at
       "SoftwareVersion": "RECOMMENDED",
       "Code": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 The operating system description SHOULD include the following attributes:

@@ -39,7 +39,7 @@ and a guide for using macros can be found at
       "Genetics.Database": "OPTIONAL",
       "Genetics.Descriptors": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 Example:
@@ -112,7 +112,7 @@ and a guide for using macros can be found at
       "BrainLocation": "OPTIONAL",
       "CellType": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 To ensure dataset description consistency, we recommend following [Multi-omics approaches to disease](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1215-1) by Hasin et al. 2017 to determine the `GeneticLevel:`

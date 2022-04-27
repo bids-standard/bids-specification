@@ -109,7 +109,7 @@ and a guide for using macros can be found at
    {
       "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
    },
-   ".."
+   page.file
 ) }}
 
 Note that the `TaskName` field does not have to be a "behavioral task" that subjects perform, but can reflect some information about the conditions present when the data was acquired (for example, `"rest"`, `"sleep"`, or `"seizure"`).
@@ -138,7 +138,7 @@ and a guide for using macros can be found at
       "CogPOID": "RECOMMENDED",
       "DeviceSerialNumber": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 Specific iEEG fields MUST be present:
@@ -156,7 +156,7 @@ and a guide for using macros can be found at
       "PowerLineFrequency": "REQUIRED",
       "SoftwareFilters": "REQUIRED",
    },
-   ".."
+   page.file
 ) }}
 
 Specific iEEG fields SHOULD be present:
@@ -189,7 +189,7 @@ and a guide for using macros can be found at
       "iEEGElectrodeGroups": "RECOMMENDED",
       "SubjectArtefactDescription": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 Specific iEEG fields MAY be present:
@@ -205,7 +205,7 @@ and a guide for using macros can be found at
       "ElectricalStimulation": "OPTIONAL",
       "ElectricalStimulationParameters": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 Example:
@@ -286,7 +286,7 @@ and a guide for using macros can be found at
       "low_cutoff": "REQUIRED",
       "high_cutoff": "REQUIRED",
    },
-   ".."
+   page.file
 ) }}
 
 SHOULD be present:
@@ -307,7 +307,7 @@ and a guide for using macros can be found at
       "status": "OPTIONAL",
       "status_description": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 **Example** `sub-01_channels.tsv`:
@@ -425,7 +425,7 @@ and a guide for using macros can be found at
       "z": ("REQUIRED", "If electrodes are in 2D space this should be a column of `n/a` values."),
       "size": "REQUIRED",
    },
-   ".."
+   page.file
 ) }}
 
 SHOULD be present:
@@ -443,7 +443,7 @@ and a guide for using macros can be found at
       "group": ("RECOMMENDED", "Note that any group specified here should match a group specified in `_channels.tsv`."),
       "hemisphere": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 MAY be present:
@@ -460,7 +460,7 @@ and a guide for using macros can be found at
       "impedance": "OPTIONAL",
       "dimension": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 Example:
@@ -513,7 +513,7 @@ and a guide for using macros can be found at
          "sub-Talairach_hemi-R_pial.surf.gii'`",
       )
    },
-   ".."
+   page.file
 ) }}
 
 Fields relating to the iEEG electrode positions:
@@ -532,7 +532,7 @@ and a guide for using macros can be found at
       "iEEGCoordinateProcessingDescription": "RECOMMENDED",
       "iEEGCoordinateProcessingReference": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 ### Recommended 3D coordinate systems

@@ -60,7 +60,7 @@ and a guide for using macros can be found at
       "StartTime": "REQUIRED",
       "Columns": "REQUIRED",
    },
-   ".."
+   page.file
 ) }}
 
 Additional metadata may be included as in
@@ -141,7 +141,7 @@ and a guide for using macros can be found at
       "respiratory": "OPTIONAL",
       "trigger": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 For any other data to be specified in columns, the column names can be chosen
@@ -197,7 +197,7 @@ and a guide for using macros can be found at
       "SoftwareVersions": "RECOMMENDED",
       "DeviceSerialNumber": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 <!-- Link Definitions -->

@@ -8,4 +8,4 @@ This section compiles the object definitions in the schema.
   and a guide for using macros can be found at
   https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_glossary("..") }}
+{{ MACROS___make_glossary(page.file) }}

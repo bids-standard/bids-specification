@@ -91,7 +91,7 @@ and a guide for using macros can be found at
          "OCT",
          "SPIM",
       ],
-      ".."
+      page.file
    )
 }}
 
@@ -293,7 +293,7 @@ and a guide for using macros can be found at
       "InstitutionAddress": "RECOMMENDED",
       "InstitutionalDepartmentName": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 #### Image Acquisition
@@ -314,7 +314,7 @@ and a guide for using macros can be found at
       "ImageAcquisitionProtocol": "OPTIONAL",
       "OtherAcquisitionParameters": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 #### Sample
@@ -341,7 +341,7 @@ and a guide for using macros can be found at
       "SampleExtractionProtocol": "OPTIONAL",
       "SampleExtractionInstitution": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 #### Chunk Transformations
@@ -371,7 +371,7 @@ and a guide for using macros can be found at
       "ChunkTransformationMatrix": "RECOMMENDED if `<chunk-index>` is used in filenames",
       "ChunkTransformationMatrixAxis": "REQUIRED if `ChunkTransformationMatrix` is present",
    },
-   ".."
+   page.file
 ) }}
 
 An example of chunk transformations JSON metadata for `chunk-01` and `chunk-05` of Figure 2

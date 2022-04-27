@@ -108,7 +108,7 @@ and a guide for using macros can be found at
    {
       "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
    },
-   ".."
+   page.file
 ) }}
 
 SHOULD be present: For consistency between studies and institutions, we
@@ -146,7 +146,7 @@ and a guide for using macros can be found at
       "CogPOID": "RECOMMENDED",
       "DeviceSerialNumber": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 Specific MEG fields MUST be present:
@@ -166,7 +166,7 @@ and a guide for using macros can be found at
       "DigitizedLandmarks": "REQUIRED",
       "DigitizedHeadPoints": "REQUIRED",
    },
-   ".."
+   page.file
 ) }}
 
 SHOULD be present:
@@ -199,7 +199,7 @@ and a guide for using macros can be found at
       "AssociatedEmptyRoom": "RECOMMENDED",
       "HardwareFilters": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 Specific EEG fields
@@ -219,7 +219,7 @@ and a guide for using macros can be found at
       "CapManufacturersModelName": "OPTIONAL",
       "EEGReference": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 Example:
@@ -292,7 +292,7 @@ and a guide for using macros can be found at
       "type__channels": "REQUIRED",
       "units": "REQUIRED",
    },
-   ".."
+   page.file
 ) }}
 
 SHOULD be present:
@@ -314,7 +314,7 @@ and a guide for using macros can be found at
       "status": "OPTIONAL",
       "status_description": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 Example:
@@ -412,7 +412,7 @@ and a guide for using macros can be found at
          "See [Recording EEG simultaneously with MEG](/04-modality-specific-files/02-magnetoencephalography.html#recording-eeg-simultaneously-with-meg).",
       ),
    },
-   ".."
+   page.file
 ) }}
 
 Head localization coils:
@@ -430,7 +430,7 @@ and a guide for using macros can be found at
       "HeadCoilCoordinateUnits": "OPTIONAL",
       "HeadCoilCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `HeadCoilCoordinateSystem` is `Other`",
    },
-   ".."
+   page.file
 ) }}
 
 Digitized head points:
@@ -448,7 +448,7 @@ and a guide for using macros can be found at
       "DigitizedHeadPointsCoordinateUnits": "OPTIONAL",
       "DigitizedHeadPointsCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `DigitizedHeadPointsCoordinateSystem` is `Other`",
    },
-   ".."
+   page.file
 ) }}
 
 Anatomical MRI:
@@ -468,7 +468,7 @@ and a guide for using macros can be found at
          "to be used with the MEG recording.",
       )
    },
-   ".."
+   page.file
 ) }}
 
 Anatomical landmarks:
@@ -486,7 +486,7 @@ and a guide for using macros can be found at
       "AnatomicalLandmarkCoordinateUnits": "OPTIONAL",
       "AnatomicalLandmarkCoordinateSystemDescription": "OPTIONAL, but REQUIRED if `AnatomicalLandmarkCoordinateSystem` is `Other`",
    },
-   ".."
+   page.file
 ) }}
 
 It is also RECOMMENDED that the MRI voxel coordinates of the actual anatomical
@@ -517,7 +517,7 @@ and a guide for using macros can be found at
    {
       "FiducialsDescription": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 For more information on the definition of anatomical landmarks, please visit:

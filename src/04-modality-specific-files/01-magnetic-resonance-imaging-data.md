@@ -37,7 +37,7 @@ and a guide for using macros can be found at
       "MatrixCoilMode": "RECOMMENDED",
       "CoilCombinationMethod": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 Example for `ReceiveCoilActiveElements`:
@@ -85,7 +85,7 @@ and a guide for using macros can be found at
       "SpoilingGradientMoment": 'RECOMMENDED if the SpoilingType is `"GRADIENT"` or `"COMBINED"`.',
       "SpoilingGradientDuration": 'RECOMMENDED if the SpoilingType is `"GRADIENT"` or `"COMBINED"`.',
    },
-   ".."
+   page.file
 ) }}
 
 ### In-Plane Spatial Encoding
@@ -122,7 +122,7 @@ and a guide for using macros can be found at
       ),
       "MixingTime": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 <sup>2</sup>Conveniently, for Siemens data, this value is easily obtained as
@@ -152,7 +152,7 @@ and a guide for using macros can be found at
       "SliceEncodingDirection": "RECOMMENDED",
       "DwellTime": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 ### RF & Contrast
@@ -168,7 +168,7 @@ and a guide for using macros can be found at
       "FlipAngle": "RECOMMENDED, but REQUIRED if `LookLocker` is set `true`",
       "NegativeContrast": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 ### Slice Acceleration
@@ -183,7 +183,7 @@ and a guide for using macros can be found at
    {
       "MultibandAccelerationFactor": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 ### Anatomical landmarks
@@ -200,7 +200,7 @@ and a guide for using macros can be found at
    {
       "AnatomicalLandmarkCoordinates__mri": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 ### Echo-Planar Imaging and *B<sub>0</sub>* mapping
@@ -228,7 +228,7 @@ and a guide for using macros can be found at
       "B0FieldIdentifier": "RECOMMENDED",
       "B0FieldSource": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 ### Institution information
@@ -245,7 +245,7 @@ and a guide for using macros can be found at
       "InstitutionAddress": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`."),
       "InstitutionalDepartmentName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.")
    },
-   ".."
+   page.file
 ) }}
 
 When adding additional metadata please use the CamelCase version of
@@ -286,7 +286,7 @@ and a guide for using macros can be found at
          "UNIT1",
          "angio",
       ],
-      ".."
+      page.file
    )
 }}
 
@@ -346,7 +346,7 @@ and a guide for using macros can be found at
       "RepetitionTimeExcitation": "OPTIONAL",
       "RepetitionTimePreparation": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 The [`part-<label>`](../99-appendices/09-entities.md#part) key/value pair is
@@ -424,7 +424,7 @@ and a guide for using macros can be found at
          "S0map",
          "M0map",
       ],
-      ".."
+      page.file
    )
 }}
 
@@ -462,7 +462,7 @@ and a guide for using macros can be found at
          "FLASH",
          "PD",
       ],
-      ".."
+      page.file
    )
 }}
 
@@ -483,7 +483,7 @@ and a guide for using macros can be found at
          "cbv",
          "phase",
       ],
-      ".."
+      page.file
    )
 }}
 
@@ -618,7 +618,7 @@ and a guide for using macros can be found at
       "VolumeTiming": "REQUIRED",
       "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`.")
    },
-   ".."
+   page.file
 ) }}
 
 For the fields described above and in the following section, the term "Volume"
@@ -644,7 +644,7 @@ and a guide for using macros can be found at
       "AcquisitionDuration": 'RECOMMENDED, but REQUIRED for sequences that are described with the `VolumeTiming` field and that do not have the `SliceTiming` field set to allow for accurate calculation of "acquisition time"',
       "DelayAfterTrigger": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 The following table recapitulates the different ways that specific fields have
@@ -681,7 +681,7 @@ and a guide for using macros can be found at
       "CogAtlasID": "RECOMMENDED",
       "CogPOID": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 See [Common metadata fields](#common-metadata-fields) for a list of
@@ -754,7 +754,7 @@ and a guide for using macros can be found at
          "dwi",
          "sbref",
       ],
-      ".."
+      page.file
    )
 }}
 
@@ -866,7 +866,7 @@ and a guide for using macros can be found at
    {
       "MultipartID": "REQUIRED",
    },
-   ".."
+   page.file
 ) }}
 
 JSON example:
@@ -1073,7 +1073,7 @@ and a guide for using macros can be found at
       "LookLocker": "OPTIONAL",
       "LabelingEfficiency": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 #### (P)CASL-specific metadata fields
@@ -1098,7 +1098,7 @@ and a guide for using macros can be found at
       "LabelingPulseFlipAngle": "RECOMMENDED",
       "LabelingPulseInterval": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 #### PASL-specific metadata fields
@@ -1119,7 +1119,7 @@ and a guide for using macros can be found at
       "BolusCutOffDelayTime": "OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`",
       "BolusCutOffTechnique": "OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`",
    },
-   ".."
+   page.file
 ) }}
 
 ### `m0scan` metadata fields
@@ -1140,7 +1140,7 @@ and a guide for using macros can be found at
       ),
       "AcquisitionVoxelSize": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 The following table recapitulates the ASL field dependencies. If Source field (column 1) contains the Value specified in column 2, then the Requirements in column 4 are
@@ -1196,7 +1196,7 @@ and a guide for using macros can be found at
          "fieldmap",
          "epi",
       ],
-      ".."
+      page.file
    )
 }}
 
@@ -1245,7 +1245,7 @@ and a guide for using macros can be found at
          "to any particular scans, it does not have to be filled.",
       ),
    },
-   ".."
+   page.file
 ) }}
 
 For example:
@@ -1297,7 +1297,7 @@ and a guide for using macros can be found at
       "EchoTime1": "REQUIRED",
       "EchoTime2": "REQUIRED",
    },
-   ".."
+   page.file
 ) }}
 
 In this particular case, the sidecar JSON file
@@ -1341,7 +1341,7 @@ and a guide for using macros can be found at
    {
       "EchoTime__fmap": "REQUIRED",
    },
-   ".."
+   page.file
 ) }}
 
 Each phase map has a corresponding sidecar JSON file to specify its corresponding `EchoTime`.
@@ -1383,7 +1383,7 @@ and a guide for using macros can be found at
          'radians per second (`"rad/s"`), or Tesla (`"T"`).',
       ),
    },
-   ".."
+   page.file
 ) }}
 
 For example:
@@ -1442,7 +1442,7 @@ and a guide for using macros can be found at
       "PhaseEncodingDirection": "REQUIRED",
       "TotalReadoutTime": "REQUIRED",
    },
-   ".."
+   page.file
 ) }}
 
 For example:

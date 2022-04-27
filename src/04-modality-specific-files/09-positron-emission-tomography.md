@@ -161,7 +161,7 @@ and a guide for using macros can be found at
       "InstitutionalDepartmentName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`."),
       "BodyPart": ("RECOMMENDED", "Corresponds to DICOM Tag 0018, 0015 `Body Part Examined`."),
    },
-   ".."
+   page.file
 ) }}
 
 #### Radiochemistry
@@ -200,7 +200,7 @@ and a guide for using macros can be found at
       "InjectedVolume": "RECOMMENDED, but REQUIRED if `ModeOfAdministration`  is `bolus-infusion`",
       "Purity": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 #### Pharmaceuticals
@@ -220,7 +220,7 @@ and a guide for using macros can be found at
       "PharmaceuticalDoseTime": ("RECOMMENDED", "Corresponds to a combination of DICOM Tags (0008,0027) `Intervention Drug Stop Time` and (0008,0035) `Intervention Drug Start Time`."),
       "Anaesthesia": "OPTIONAL",
    },
-   ".."
+   page.file
 ) }}
 
 #### Time
@@ -241,7 +241,7 @@ and a guide for using macros can be found at
       "InjectionEnd": ("RECOMMENDED", "This corresponds to DICOM Tag (0018,1073) `Radiopharmaceutical Stop Time` converted to seconds relative to TimeZero."),
       "ScanDate": ("DEPRECATED", "This corresponds to DICOM Tag (0008,0022) `Acquisition Date`."),
    },
-   ".."
+   page.file
 ) }}
 
 We refer to the common principles for the standards for describing dates and timestamps, including possibilities for anonymization (see [Units](../02-common-principles.md#units)).
@@ -276,7 +276,7 @@ and a guide for using macros can be found at
       "RandomRate": "RECOMMENDED",
       "SinglesRate": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 All reconstruction-specific parameters that are not specified, but one wants to include, should go into the `ReconMethodParameterValues` field.
@@ -398,7 +398,7 @@ and a guide for using macros can be found at
       "Haematocrit": "RECOMMENDED",
       "BloodDensity": "RECOMMENDED",
    },
-   ".."
+   page.file
 ) }}
 
 The following metadata SHOULD or MUST be provided if corresponding flags are `true`.
@@ -416,7 +416,7 @@ and a guide for using macros can be found at
       "MetaboliteMethod": "REQUIRED if `MetaboliteAvail` is `true`",
       "MetaboliteRecoveryCorrectionApplied": "REQUIRED if `MetaboliteAvail` is `true`",
    },
-   ".."
+   page.file
 ) }}
 
 The following columns are defined for `_blood.tsv` files.
@@ -437,7 +437,7 @@ and a guide for using macros can be found at
       "hplc_recovery_fractions": "REQUIRED if `MetaboliteRecoveryCorrectionApplied` is `true`",
       "whole_blood_radioactivity": "REQUIRED if `WholeBloodAvail` is `true`",
    },
-   ".."
+   page.file
 ) }}
 
 As with all [tabular files](../02-common-principles.md#tabular-files),
