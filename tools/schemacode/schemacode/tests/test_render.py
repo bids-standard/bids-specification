@@ -67,9 +67,7 @@ def test_make_glossary(schema_obj, schema_dir):
             # Are all objects objects?
             assert any([line.startswith(f'<a name="objects.{i}') for i in object_files])
             # Are rules loaded incorrectly?
-            assert not any(
-                [line.startswith(f'<a name="objects.{i}') for i in rules_only]
-            )
+            assert not any([line.startswith(f'<a name="objects.{i}') for i in rules_only])
 
 
 def test_make_filename_template(schema_obj, schema_dir):
@@ -154,9 +152,7 @@ def test_make_suffix_table(schema_obj):
         "cbv",
         "dwi",
     ]
-    suffix_table = render.make_suffix_table(
-        schema_obj, target_suffixes, page_file=test_file
-    )
+    suffix_table = render.make_suffix_table(schema_obj, target_suffixes, page_file=test_file)
 
     expected_names = [
         "Behavioral recording",
@@ -179,9 +175,7 @@ def test_make_metadata_table(schema_obj):
         "BIDSVersion": "required",
         "DatasetDOI": "optional",
     }
-    metadata_table = render.make_metadata_table(
-        schema_obj, target_metadata, page_file=test_file
-    )
+    metadata_table = render.make_metadata_table(schema_obj, target_metadata, page_file=test_file)
 
     metadata_tracking = list(target_metadata.keys())
 
@@ -208,9 +202,7 @@ def test_make_columns_table(schema_obj):
         "trial_type": "required",
         "units": "optional",
     }
-    columns_table = render.make_columns_table(
-        schema_obj, target_columns, page_file=test_file
-    )
+    columns_table = render.make_columns_table(schema_obj, target_columns, page_file=test_file)
 
     columns_tracking = list(target_columns.keys())
 
