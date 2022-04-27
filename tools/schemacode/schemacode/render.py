@@ -542,7 +542,7 @@ def make_metadata_table(schema, field_info, relpath=None, tablefmt="github"):
     return table_str
 
 
-def make_columns_table(schema, column_info, tablefmt="github", relpath=None):
+def make_columns_table(schema, column_info, relpath=None, tablefmt="github"):
     """Produce columns table (markdown) based on requested fields.
 
     Parameters
@@ -558,10 +558,10 @@ def make_columns_table(schema, column_info, tablefmt="github", relpath=None):
         and the second string is additional table-specific information
         about the column that will be appended to the column's base
         definition from the schema.
-    tablefmt : string, optional
-        The target table format. The default is "github" (GitHub format).
     relpath : str | None
         path from file where this func is called to src/
+    tablefmt : string, optional
+        The target table format. The default is "github" (GitHub format).
 
     Returns
     -------
