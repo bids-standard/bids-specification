@@ -123,7 +123,7 @@ def make_glossary(schema, relpath=None):
         obj_desc = obj_desc.replace("\n", " ")
         # Spec internal links need to be replaced
         if relpath is not None:
-            obj_desc = obj_desc.replace("PATH_TO_SRC", relpath)
+            obj_desc = obj_desc.replace("SPEC_ROOT", relpath)
 
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
@@ -449,7 +449,7 @@ def make_suffix_table(schema, suffixes, relpath=None, tablefmt="github"):
         description = description.replace("\n", " ")
         # Spec internal links need to be replaced
         if relpath is not None:
-            description = description.replace("PATH_TO_SRC", relpath)
+            description = description.replace("SPEC_ROOT", relpath)
 
         df.loc[suffix] = [suffix_info["name"], description]
 
@@ -533,7 +533,7 @@ def make_metadata_table(schema, field_info, relpath=None, tablefmt="github"):
         description = description.replace("\n", " ")
         # Spec internal links need to be replaced
         if relpath is not None:
-            description = description.replace("PATH_TO_SRC", relpath)
+            description = description.replace("SPEC_ROOT", relpath)
 
         df.loc[field_name] = [requirement_info, type_string, description]
 
@@ -601,7 +601,7 @@ def make_columns_table(schema, column_info, tablefmt="github", relpath=None):
         description = column_schema[field]["description"] + " " + description_addendum
 
         if relpath is not None:
-            description = description.replace("PATH_TO_SRC", relpath)
+            description = description.replace("SPEC_ROOT", relpath)
 
         # Try to add info about valid values
         valid_values_str = utils.describe_valid_values(column_schema[field])
