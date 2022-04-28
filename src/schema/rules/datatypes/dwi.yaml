@@ -1,6 +1,6 @@
 ---
-# DWI
-- suffixes:
+dwi:
+  suffixes:
   - dwi
   extensions:
   - .nii.gz
@@ -8,6 +8,8 @@
   - .json
   - .bvec
   - .bval
+  datatypes:
+  - dwi
   entities:
     subject: required
     session: optional
@@ -16,13 +18,15 @@
     run: optional
     part: optional
 
-# Single-band reference images
-- suffixes:
+sbref:
+  suffixes:
   - sbref
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - dwi
   entities:
     subject: required
     session: optional
@@ -31,13 +35,15 @@
     run: optional
     part: optional
 
-# Timeseries
-- suffixes:
+timeseries:
+  suffixes:
   - physio
   - stim
   extensions:
   - .tsv.gz
   - .json
+  datatypes:
+  - dwi
   entities:
     subject: required
     session: optional

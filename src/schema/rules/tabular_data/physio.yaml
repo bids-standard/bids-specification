@@ -1,0 +1,9 @@
+---
+PhysioColumns:
+    selectors:
+    - suffix == "physio"
+    columns:
+        cardiac: OPTIONAL
+        respiratory: OPTIONAL
+        trigger: OPTIONAL
+    additional_columns: allowed
