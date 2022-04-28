@@ -27,18 +27,19 @@ Datasets linked to a genetic database entry include the following REQUIRED or OP
 `dataset_description.json` keys (a dot in the key name denotes a key in a sub-[object][],
 see the example further below):
 
-<!-- This block generates a metadata table.
+<!-- This block generates a table describing subfields within a metadata field.
 The definitions of these fields can be found in
   src/schema/objects/metadata.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
+{{ MACROS___make_subobject_table(
+   ("objects", "metadata", "Genetics"),
    {
-      "Genetics.Dataset": "REQUIRED",
-      "Genetics.Database": "OPTIONAL",
-      "Genetics.Descriptors": "OPTIONAL",
-   }
+      "Dataset": "REQUIRED",
+      "Database": "REQUIRED",
+      "Descriptors": "REQUIRED",
+   },
 ) }}
 
 Example:

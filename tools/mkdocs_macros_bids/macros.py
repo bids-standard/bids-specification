@@ -131,6 +131,33 @@ def make_metadata_table(field_info):
     return table
 
 
+def make_subobject_table(object_tuple, field_info):
+    """Generate a markdown table of a metadata object's field information.
+
+    Parameters
+    ----------
+    object_tuple : tuple of string
+        A tuple pointing to the object to render.
+    field_names : dict
+        A list of the field names.
+        Field names correspond to filenames in the "metadata" directory of the
+        schema.
+        Until requirement levels can be codified in the schema,
+        this argument will be dictionary, with the field names as keys and
+        the requirement levels as values.
+
+    Returns
+    -------
+    table : str
+        A Markdown-format table containing the corresponding table for
+        the requested fields.
+    """
+    schemapath = utils.get_schema_path()
+    schema_obj = schema.load_schema(schemapath)
+    table = render.make_subobject_table(schema_obj, object_tuple, field_info)
+    return table
+
+
 def make_columns_table(column_info):
     """Generate a markdown table of TSV column information.
 

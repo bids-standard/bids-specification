@@ -523,16 +523,45 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
     # The filter function doesn't work here.
     metadata_schema = schema["objects"]["metadata"]
 
-    # retained_fields = [f for f in fields if f in metadata_schema.keys()]
+    retained_fields = [f for f in fields if f in metadata_schema.keys()]
     dropped_fields = [f for f in fields if f not in metadata_schema.keys()]
     if dropped_fields:
         print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
 
-    table_str = make_obj_table(metadata_schema)
+    metadata_schema = {k: v for k, v in metadata_schema.items() if k in retained_fields}
+
+    table_str = make_obj_table(
+        metadata_schema,
+        field_info=field_info,
+        tablefmt=tablefmt,
+    )
     return table_str
 
 
 def make_subobject_table(schema, object_tuple, field_info, tablefmt="github"):
+    """Create a table of properties within an object.
+
+    Parameters
+    ----------
+    schema
+    object_tuple : tuple of strings
+        A tuple of keys within the schema linking down to the object
+        that will be rendered.
+        For example, ("objects", "metadata", "Genetics") will result in a table
+        rendering the properties specified in
+        schema["object"]["metadata"]["Genetics"].
+    field_info : dict of strings or tuples
+        A dictionary mapping metadata keys to requirement levels in the
+        rendered metadata table.
+        The dictionary values may be strings, in which case the string
+        is the requirement level information, or two-item tuples of strings,
+        in which case the first string is the requirement level information
+        and the second string is additional table-specific information
+        about the metadata field that will be appended to the field's base
+        definition from the schema.
+    tablefmt : string, optional
+        The target table format. The default is "github" (GitHub format).
+    """
     assert isinstance(object_tuple, tuple)
     assert all([isinstance(i, str) for i in object_tuple])
 
