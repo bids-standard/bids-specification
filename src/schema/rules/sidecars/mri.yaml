@@ -89,7 +89,7 @@ MTParameters:
 SpoilingType:
     selectors:
     - '"SpoilingState" in sidecar'
-    - sidecar.SpoilingState == True
+    - sidecar.SpoilingState == true
     fields:
         SpoilingType: recommended
 

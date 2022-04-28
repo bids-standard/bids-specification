@@ -4,7 +4,7 @@ ResInSidecar:
     - dataset.dataset_description.DatasetType == "derivative"
     - '["mri", "pet"].includes(modality)'
     - '["nii", " nii.gz"].includes(extension)'
-    - typeof(sidecar.Resolution) == "object"
+    - type(sidecar.Resolution) == "object"
     checks:
     - entities.resolution in sidecar.Resolution
 
@@ -13,6 +13,6 @@ DenInSidecar:
     - dataset.dataset_description.DatasetType == "derivative"
     - '["mri", "pet"].includes(modality)'
     - '[".nii", ".nii.gz"].includes(extension)'
-    - typeof(sidecar.Density) == "object"
+    - type(sidecar.Density) == "object"
     checks:
     - entities.density in sidecar.Density
