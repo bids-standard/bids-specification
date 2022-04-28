@@ -106,7 +106,7 @@ MEGwithEEG:
     - modality == "meg"
     - datatype == "meg"
     - suffix == "meg"
-    - dataset.modalities contains "EEG"
+    - dataset.modalities.includes('"EEG")
     fields:
         EEGPlacementScheme: optional
         CapManufacturer: optional
@@ -145,7 +145,7 @@ MEGCoordsystemWithEEGMEGCoordinateSystem:
     - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
-    - sidecar contains "MEGCoordinateSystem"
+    - '"MEGCoordinateSystem" in sidecar'
     - sidecar.MEGCoordinateSystem == "Other"
     fields:
         MEGCoordinateSystemDescription: required
@@ -156,7 +156,7 @@ MEGCoordsystemWithEEGEEGCoordinateSystem:
     - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
-    - sidecar contains "EEGCoordinateSystem"
+    - '"EEGCoordinateSystem" in sidecar'
     - sidecar.EEGCoordinateSystem == "Other"
     fields:
         EEGCoordinateSystemDescription: required
@@ -180,7 +180,7 @@ MEGCoordsystemHeadLocalizationCoilsHeadCoilCoordinateSystem:
     - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
-    - sidecar contains "HeadCoilCoordinateSystem"
+    - '"HeadCoilCoordinateSystem" in sidecar'
     - sidecar.HeadCoilCoordinateSystem == "Other"
     fields:
         HeadCoilCoordinateSystemDescription: required
@@ -204,7 +204,7 @@ MEGCoordsystemDigitizedHeadPointsDigitizedHeadPointsCoordinateSystem:
     - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
-    - sidecar contains "DigitizedHeadPointsCoordinateSystem"
+    - '"DigitizedHeadPointsCoordinateSystem" in sidecar'
     - sidecar.DigitizedHeadPointsCoordinateSystem == "Other"
     fields:
         DigitizedHeadPointsCoordinateSystemDescription: required
@@ -215,7 +215,7 @@ MEGCoordsystemAnatomicalMRI:
     - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
-    - dataset.modalities contains "anat"
+    - dataset.modalities.includes("anat")
     fields:
         IntendedFor:
             level: optional
@@ -246,7 +246,7 @@ MEGCoordsystemAnatomicalLandmarksAnatomicalLandmarkCoordinateSystem:
     - modality == "meg"
     - datatype == "meg"
     - suffix == "coordsystem"
-    - sidecar contains "AnatomicalLandmarkCoordinateSystem"
+    - '"AnatomicalLandmarkCoordinateSystem" in sidecar'
     - sidecar.AnatomicalLandmarkCoordinateSystem == "Other"
     fields:
         AnatomicalLandmarkCoordinateSystemDescription: required

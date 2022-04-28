@@ -11,25 +11,25 @@
 
 EntitiesTaskMetadata:
     selectors:
-    - entities contains "task"
+    - '"task" in entities'
     fields:
         TaskName: recommended
 
 EntitiesCeMetadata:
     selectors:
-    - entities contains "ce"
+    - '"ce" in entities'
     fields:
         ContrastBolusIngredient: optional
 
 EntitiesTrcMetadata:
     selectors:
-    - entities contains "trc"
+    - '"trc" in entities'
     fields:
         TracerName: required
 
 EntitiesStainMetadata:
     selectors:
-    - entities contains "stain"
+    - '"stain" in entities'
     fields:
         SampleStaining: recommended
         SamplePrimaryAntibodies: recommended
@@ -37,25 +37,25 @@ EntitiesStainMetadata:
 
 EntitiesEchoMetadata:
     selectors:
-    - entities contains "echo"
+    - '"echo" in entities'
     fields:
         EchoTime: required
 
 EntitiesFlipMetadata:
     selectors:
-    - entities contains "flip"
+    - '"flip" in entities'
     fields:
         FlipAngle: required
 
 EntitiesInvMetadata:
     selectors:
-    - entities contains "inv"
+    - '"inv" in entities'
     fields:
         InversionTime: required
 
 EntitiesMTMetadata:
     selectors:
-    - entities contains "mt"
+    - '"mt" in entities'
     fields:
         MTState: required
 
@@ -66,16 +66,16 @@ EntitiesPartMetadata:
         Units:
             level: required
             rules:
-            - value in ["rad", "arbitrary"]
+            - '["rad", "arbitrary"].includes(value)'
 
 EntitiesResMetadata:
     selectors:
-    - entities contains "res"
+    - '"res" in entities'
     fields:
         Resolution: required
 
 EntitiesDenMetadata:
     selectors:
-    - entities contains "den"
+    - '"den" in entities'
     fields:
         Density: required

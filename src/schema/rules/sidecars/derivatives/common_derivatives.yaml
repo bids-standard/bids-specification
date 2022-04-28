@@ -10,21 +10,21 @@ CommonDerivativeFields:
 SpatialReferenceEntity:
   selectors:
   - dataset.DatasetType == "derivative"
-  - entities contains "space"
+  - '"space" in entities'
   fields:
     SpatialReference: RECOMMENDED
 
 SpatialReferenceNonStandard:
   selectors:
   - dataset.DatasetType == "derivative"
-  - not(entities.space in schema.objects.metadata._StandardTemplateCoordSys)
+  - 'schema.objects.metadata._StandardTemplateCoordSys).includes(not(entities.space)'
   fields:
     SpatialReference: REQUIRED
 
 SpatialReferenceNoEntity:
   selectors:
   - dataset.DatasetType == "derivative"
-  - not(entities contains "space")
+  - '!("space" in entities)'
   fields:
     SpatialReference: REQUIRED
 
@@ -45,14 +45,14 @@ MaskDerivativesAtlas:
   selectors:
   - dataset.DatasetType == "derivative"
   - suffix == "mask"
-  - entities contains "label"
+  - '"label" in entities'
   fields:
     atlas: RECOMMENDED
 
 SegmentationCommon:
   selectors:
   - dataset.DatasetType == "derivative"
-  - suffix in ["dseg", "probseg"]
+  - '["dseg", "probseg"].includes(suffix)'
   fields:
     Type: RECOMMENDED
     Atlas: OPTIONAL
@@ -63,23 +63,23 @@ SegmentationCommon:
 ImageDerivatives:
   selectors:
   - dataset.DatasetType == "derivative"
-  - modality in ["mri", "pet"]
-  - extension in [".nii", ".nii.gz"]
+  - '["mri", "pet"].includes(modality)'
+  - '[".nii", ".nii.gz"].includes(extension)'
   fields:
     SkullStripped: REQUIRED
 
 ImageDerivativeResEntity:
   selectors:
   - dataset.DatasetType == "derivative"
-  - modality in ["mri", "pet"]
-  - entities contains "res"
+  - '["mri", "pet"].includes(modality)'
+  - '"res" in entities'
   fields:
     Resolution: REQUIRED
 
 ImageDerivativeDenEntity:
   selectors:
   - dataset.DatasetType == "derivative"
-  - modality in ["mri", "pet"]
-  - entities contains "den"
+  - '["mri", "pet"].includes(modality)'
+  - '"den" in entities'
   fields:
     Density: REQUIRED

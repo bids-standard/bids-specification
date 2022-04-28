@@ -110,7 +110,7 @@ EEGCoordsystemOther:
     - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
-    - sidecar contains "EEGCoordinateSystem"
+    - '"EEGCoordinateSystem" in sidecar'
     - sidecar.EEGCoordinateSystem == "Other"
     fields:
         EEGCoordinateSystemDescription: required
@@ -160,7 +160,7 @@ EEGCoordsystemAnatomicalLandmarkCoordinateSystemDescription:
     - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
-    - sidecar contains "AnatomicalLandmarkCoordinateSystem"
+    - '"AnatomicalLandmarkCoordinateSystem" in sidecar'
     - sidecar.AnatomicalLandmarkCoordinateSystem == "Other"
     fields:
         AnatomicalLandmarkCoordinateSystemDescription: required
