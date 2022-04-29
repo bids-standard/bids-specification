@@ -252,7 +252,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_columns_table(
    {
       "name__channels": "REQUIRED",
-      "type__channels": "REQUIRED",
+      "type__eeg_channels": "REQUIRED",
       "units": "REQUIRED",
    }
 ) }}

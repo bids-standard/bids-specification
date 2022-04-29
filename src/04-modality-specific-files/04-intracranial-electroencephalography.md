@@ -276,7 +276,7 @@ and a guide for using macros can be found at
       "name__channels": ("REQUIRED", "When a corresponding electrode is specified in `_electrodes.tsv`, "
                          "the name of that electrode MAY be specified here and the reference electrode "
                          "name MAY be provided in the `reference` column."),
-      "type__channels": "REQUIRED",
+      "type__ieeg_channels": "REQUIRED",
       "units": "REQUIRED",
       "low_cutoff": "REQUIRED",
       "high_cutoff": "REQUIRED",

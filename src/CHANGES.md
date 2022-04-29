@@ -2,6 +2,11 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[INFRA] Fix internal links implicitly [#1096](https://github.com/bids-standard/bids-specification/pull/1096) ([effigies](https://github.com/effigies))
+-   \[MISC] make dataset_description.Authors RECOMMENDED [#1092](https://github.com/bids-standard/bids-specification/pull/1092) ([sappelhoff](https://github.com/sappelhoff))
+-   ENH: use \__file\_\_ instead of getcwd to determine HERE, provide informative message on # of files [#1091](https://github.com/bids-standard/bids-specification/pull/1091) ([yarikoptic](https://github.com/yarikoptic))
+-   \[INFRA] Set light and dark mode image for logo in README [#1085](https://github.com/bids-standard/bids-specification/pull/1085) ([anibalsolon](https://github.com/anibalsolon))
+-   \[ENH] State of the schema sprint [#1075](https://github.com/bids-standard/bids-specification/pull/1075) ([effigies](https://github.com/effigies))
 -   \[DOC] Preface each macro call with comment [#1052](https://github.com/bids-standard/bids-specification/pull/1052) ([Remi-Gau](https://github.com/Remi-Gau))
 -   ENH: allow for .png and .tif in eeg/ieeg/meg as allowed for micr [#1049](https://github.com/bids-standard/bids-specification/pull/1049) ([yarikoptic](https://github.com/yarikoptic))
 -   \[SCHEMA] Add a new `file\_relative` format [#1046](https://github.com/bids-standard/bids-specification/pull/1046) ([tsalo](https://github.com/tsalo))

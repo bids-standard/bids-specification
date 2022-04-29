@@ -1,0 +1,285 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+
+---
+# Fields described in text, but not in tables
+MRIASLTextOnly:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    fields:
+        MagneticFieldStrength: required
+        MRAcquisitionType: required
+        EchoTime: required
+        SliceTiming:
+            level: recommended
+            level_addendum: required if `MRAcquisitionType` is defined as `2D`
+        RepetitionTimePreparation: required
+        FlipAngle:
+            level: recommended
+            level_addendum: required if `LookLocker` is `true`
+
+MRIASLTextOnlySliceTiming:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - '"MRAcquisitionType" in sidecar'
+    - sidecar.MRAcquisitionType == "2D"
+    fields:
+        SliceTiming:
+            level: required
+            issue:
+                code: SLICE_TIMING_NOT_DEFINED_2D_ASL
+                message: |
+                    You should define `SliceTiming` for this file, because `SequenceType` is sets
+                    to a 2D sequence. `SliceTiming` is the time at which each slice was
+                    acquired within each volume (frame) of the acquisition. Slice timing
+                    is not slice order -- rather, it is a list of times containing the
+                    time (in seconds) of each slice acquisition in relation to the beginning
+                    of volume acquisition. The list goes through the slices along the slice
+                    axis in the slice encoding dimension (see below). Note that to ensure the
+                    proper interpretation of the `SliceTiming` field, it is important to check
+                    if the optional `SliceEncodingDirection` exists. In particular, if
+                    `SliceEncodingDirection` is negative, the entries in `SliceTiming` are
+                    defined in reverse order with respect to the slice axis, such that the
+                    final entry in the `SliceTiming` list is the time of acquisition of slice 0.
+                    Without this parameter slice time correction will not be possible.
+
+MRIASLTextOnlyFlipAngle:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - '"LookLocker in sidecar'
+    - sidecar.LookLocker == true
+    fields:
+        FlipAngle:
+            level: required
+            issue:
+                code: LOOK_LOCKER_FLIP_ANGLE_MISSING
+                message: |
+                    You should define `FlipAngle` for this file, in case of a
+                    LookLocker acquisition. `FlipAngle` is the flip angle (FA)
+                    for the acquisition, specified in degrees. Corresponds to
+                    DICOM Tag 0018, 1314 `Flip Angle`. The data type number may
+                    apply to files from any MRI modality concerned with a single
+                    value for this field, or to the files in a file collection
+                    where the value of this field is iterated using the flip entity.
+                    The data type array provides a value for each volume in a 4D
+                    dataset and should only be used when the volume timing is critical
+                    for interpretation of the data, such as in ASL or variable flip
+                    angle fMRI sequences.
+
+# Common metadata fields applicable to both (P)CASL and PASL
+MRIASLCommonMetadataFields:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    fields:
+        ArterialSpinLabelingType: required
+        PostLabelingDelay: required
+        BackgroundSuppression: required
+        M0Type: required
+        TotalAcquiredPairs: required
+        VascularCrushing: recommended
+        AcquisitionVoxelSize: recommended
+        M0Estimate:
+            level: optional
+            level_addendum: required if `M0Type` is `Estimate`
+        BackgroundSuppressionNumberPulses:
+            level: optional
+            level_addendum: recommended if `BackgroundSuppression` is `true`
+        BackgroundSuppressionPulseTime:
+            level: optional
+            level_addendum: recommended if `BackgroundSuppression` is `true`
+        VascularCrushingVENC:
+            level: optional
+            level_addendum: recommended if `VascularCrushing` is `true`
+        LabelingOrientation: recommended
+        LabelingDistance: recommended
+        LabelingLocationDescription: recommended
+        LookLocker: optional
+        LabelingEfficiency: optional
+
+MRIASLCommonMetadataFieldsM0Type:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - '"M0Type" in sidecar'
+    - sidecar.M0Type == "Estimate"
+    fields:
+        M0Estimate:
+            level: required
+            issue:
+                code: M0ESTIMATE_NOT_DEFINED
+                message: |
+                    You must define `M0Estimate` for this file, because `M0Type` is set to
+                    'Estimate'. `M0Estimate` is a single numerical whole-brain M0 value
+                    (referring to the M0 of blood), only if obtained externally (for example
+                    retrieved from CSF in a separate measurement).
+
+MRIASLCommonMetadataFieldsBackgroundSuppression:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - '"BackgroundSuppression" in sidecar'
+    - sidecar.BackgroundSuppression == true
+    fields:
+        BackgroundSuppressionNumberPulses: recommended
+        BackgroundSuppressionPulseTime: recommended
+
+MRIASLCommonMetadataFieldsVascularCrushing:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - '"VascularCrushing" in sidecar'
+    - sidecar.VascularCrushing == true
+    fields:
+        VascularCrushingVENC: recommended
+
+MRIASLPCASLSpecific:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - '"ArterialSpinLabelingType" in sidecar'
+    - '["CASL", "PCASL"].includes(sidecar.ArterialSpinLabelingType)'
+    fields:
+        LabelingDuration: required
+        LabelingPulseAverageGradient: recommended
+        LabelingPulseMaximumGradient: recommended
+        LabelingPulseAverageB1: recommended
+        LabelingPulseDuration: recommended
+        LabelingPulseFlipAngle: recommended
+        LabelingPulseInterval: recommended
+
+MRIASLPCASLSpecific2:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - '"ArterialSpinLabelingType" in sidecar'
+    - sidecar.ArterialSpinLabelingType == "PCASL"
+    fields:
+        PCASLType: recommended
+
+MRIASLCASLSpecific:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - '"ArterialSpinLabelingType" in sidecar'
+    - sidecar.ArterialSpinLabelingType == "CASL"
+    fields:
+        CASLType: recommended
+
+MRIASLPASLSpecific:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - '"ArterialSpinLabelingType" in sidecar'
+    - sidecar.ArterialSpinLabelingType == "PASL"
+    fields:
+        BolusCutOffFlag: required
+        PASLType: recommended
+        LabelingSlabThickness: recommended
+        BolusCutOffDelayTime:
+            level: optional
+            level_addendum: required if `BolusCutOffFlag` is `true`
+        BolusCutOffTechnique:
+            level: optional
+            level_addendum: required if `BolusCutOffFlag` is `true`
+
+MRIASLPASLSpecificBolusCutOffFlag:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - '"ArterialSpinLabelingType" in sidecar'
+    - sidecar.ArterialSpinLabelingType == "PASL"
+    - '"BolusCutOffFlag" in sidecar'
+    - sidecar.BolusCutOffFlag == true
+    fields:
+        BolusCutOffDelayTime:
+            level: required
+            issue:
+                code: PASL_BOLUS_CUT_OFF_DELAY_TIME
+                message: |
+                    It is required to define 'BolusCutOffDelayTime' for this file,
+                    when 'BolusCutOffFlag' is set to true. 'BolusCutOffDelayTime' is
+                    the duration between the end of the labeling and the start of the
+                    bolus cut-off saturation pulse(s), in seconds. This can be a number
+                    or array of numbers, of which the values must be non-negative and
+                    monotonically increasing, depending on the number of bolus cut-off
+                    saturation pulses. For Q2TIPS, only the values for the first and last
+                    bolus cut-off saturation pulses are provided. Based on DICOM Tag
+                    0018,925F ASL Bolus Cut-off Delay Time.
+        BolusCutOffTechnique:
+            level: required
+            issue:
+                code: PASL_BOLUS_CUT_OFF_TECHINIQUE
+                message: |
+                    It is required to define `BolusCutOffTechnique` for this file,
+                    when `BolusCutOffFlag` is set to `true`. `BolusCutOffTechnique`,
+                    is the name of the technique used
+                    (for example, Q2TIPS, QUIPSS or QUIPSSII).
+                    Corresponds to DICOM Tag 0018,925E `ASL Bolus Cut-off Technique`.
+
+# m0scan metadata fields
+MRIASLM0ScanTextOnly:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "m0scan"
+    fields:
+        EchoTime: required
+        RepetitionTimePreparation: required
+        FlipAngle:
+            level: recommended
+            level_addendum: required if `LookLocker` is `true`
+
+MRIASLM0ScanTextOnlyFlipAngle:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "m0scan"
+    - '"LookLocker" in sidecar'
+    - sidecar.LookLocker == true
+    fields:
+        FlipAngle:
+            level: required
+            issue:
+                code: LOOK_LOCKER_FLIP_ANGLE_MISSING
+                message: |
+                    You should define `FlipAngle` for this file, in case of a LookLocker
+                    acquisition. `FlipAngle` is the flip angle (FA) for the acquisition,
+                    specified in degrees. Corresponds to DICOM Tag 0018, 1314 `Flip Angle`.
+                    The data type number may apply to files from any MRI modality concerned
+                    with a single value for this field, or to the files in a file collection
+                    where the value of this field is iterated using the flip entity. The
+                    data type array provides a value for each volume in a 4D dataset and
+                    should only be used when the volume timing is critical for interpretation
+                    of the data, such as in ASL or variable flip angle fMRI sequences.
+
+MRIASLM0Scan:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "m0scan"
+    fields:
+        IntendedFor:
+            level: required
+            description_addendum: |
+                This is used to refer to the ASL time series for which the `*_m0scan.nii[.gz]` is intended.
+        AcquisitionVoxelSize: recommended
