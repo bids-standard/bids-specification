@@ -78,7 +78,7 @@ consistency.
 ## What macros are available?
 
 All the macros we use are in listed in this
-[python file](https://github.com/bids-standard/bids-specification/blob/master/tools/mkdocs_macros_bids/macros.py).
+[Python file](https://github.com/bids-standard/bids-specification/blob/master/tools/mkdocs_macros_bids/macros.py).
 
 | Name                    | Purpose                                                                                | Uses schema | Example                                                                                                                                                                                     |
 | ----------------------- | -------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
