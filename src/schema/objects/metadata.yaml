@@ -974,14 +974,14 @@ Genetics:
     Database:
       name: Database
       description: |
-        [URI](SPEC_ROOT/02-common-principles.html#uniform-resource-indicator)
+        [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
         of database where the dataset is hosted.
       type: string
       format: uri
     Dataset:
       name: Dataset
       description: |
-        [URI](SPEC_ROOT/02-common-principles.html#uniform-resource-indicator)
+        [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
         where data can be retrieved.
       type: string
       format: uri
@@ -990,7 +990,7 @@ Genetics:
       description: |
         List of relevant descriptors (for example, journal articles) for dataset
         using a valid
-        [URI](SPEC_ROOT/02-common-principles.html#uniform-resource-indicator)
+        [URI](SPEC_ROOT/02-common-principles.md#uniform-resource-indicator)
         when possible.
       anyOf:
       - type: string
