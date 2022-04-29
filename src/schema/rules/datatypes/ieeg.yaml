@@ -1,5 +1,6 @@
 ---
-- suffixes:
+ieeg:
+  suffixes:
   - ieeg
   extensions:
   - .mefd/
@@ -11,6 +12,8 @@
   - .set
   - .fdt
   - .nwb
+  datatypes:
+  - ieeg
   entities:
     subject: required
     session: optional
@@ -18,11 +21,14 @@
     acquisition: optional
     run: optional
 
-- suffixes:
+channels:
+  suffixes:
   - channels
   extensions:
   - .json
   - .tsv
+  datatypes:
+  - ieeg
   entities:
     subject: required
     session: optional
@@ -30,32 +36,41 @@
     acquisition: optional
     run: optional
 
-- suffixes:
+coordsystem:
+  suffixes:
   - coordsystem
   extensions:
   - .json
+  datatypes:
+  - ieeg
   entities:
     subject: required
     session: optional
     acquisition: optional
     space: optional
 
-- suffixes:
+electrodes:
+  suffixes:
   - electrodes
   extensions:
   - .json
   - .tsv
+  datatypes:
+  - ieeg
   entities:
     subject: required
     session: optional
     acquisition: optional
     space: optional
 
-- suffixes:
+events:
+  suffixes:
   - events
   extensions:
   - .json
   - .tsv
+  datatypes:
+  - ieeg
   entities:
     subject: required
     session: optional
@@ -63,7 +78,8 @@
     acquisition: optional
     run: optional
 
-- suffixes:
+photo:
+  suffixes:
   - photo
   extensions:
   - .jpg
@@ -74,13 +90,15 @@
     session: optional
     acquisition: optional
 
-# Timeseries
-- suffixes:
+timeseries:
+  suffixes:
   - physio
   - stim
   extensions:
   - .tsv.gz
   - .json
+  datatypes:
+  - ieeg
   entities:
     subject: required
     session: optional
