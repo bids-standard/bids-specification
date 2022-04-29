@@ -483,7 +483,7 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
     return table_str
 
 
-def make_obj_table(subschema, field_info, tablefmt="github"):
+def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
     # Use the "name" field in the table, to allow for filenames to not match
     # "names".
     df = pd.DataFrame(
@@ -518,6 +518,8 @@ def make_obj_table(subschema, field_info, tablefmt="github"):
         description = description.replace("\n\n", "<br>")
         # Otherwise a newline corresponds to a space
         description = description.replace("\n", " ")
+        # Spec internal links need to be replaced
+        description = description.replace("SPEC_ROOT", get_relpath(src_path))
 
         df.loc[field_name] = [requirement_info, type_string, description]
 
@@ -567,6 +569,7 @@ def make_metadata_table(schema, field_info, src_path=None, tablefmt="github"):
     table_str = make_obj_table(
         metadata_schema,
         field_info=field_info,
+        src_path=src_path,
         tablefmt=tablefmt,
     )
 
@@ -610,10 +613,13 @@ def make_subobject_table(schema, object_tuple, field_info, src_path=None, tablef
 
     temp_dict = temp_dict["properties"]
     assert isinstance(temp_dict, dict)
-    table_str = make_obj_table(temp_dict, field_info=field_info, tablefmt=tablefmt)
+    table_str = make_obj_table(
+        temp_dict,
+        field_info=field_info,
+        src_path=src_path,
+        tablefmt=tablefmt,
+    )
 
-    # Print it as markdown
-    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
     return table_str
 
 
