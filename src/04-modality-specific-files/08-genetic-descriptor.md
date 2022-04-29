@@ -37,8 +37,8 @@ and a guide for using macros can be found at
    ("objects", "metadata", "Genetics"),
    {
       "Dataset": "REQUIRED",
-      "Database": "REQUIRED",
-      "Descriptors": "REQUIRED",
+      "Database": "OPTIONAL",
+      "Descriptors": "OPTIONAL",
    },
 ) }}
 
