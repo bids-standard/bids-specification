@@ -2,11 +2,12 @@
 import os
 import sys
 
+from schemacode import render, schema, utils
+
 code_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(code_path)
 
 from examplecode import example
-from schemacode import schema, utils
 
 
 def make_filename_template(**kwargs):
@@ -28,7 +29,7 @@ def make_filename_template(**kwargs):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    codeblock = schema.make_filename_template(schema_obj, **kwargs)
+    codeblock = render.make_filename_template(schema_obj, **kwargs)
     return codeblock
 
 
@@ -50,7 +51,7 @@ def make_entity_table(**kwargs):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = schema.make_entity_table(schema_obj, **kwargs)
+    table = render.make_entity_table(schema_obj, **kwargs)
     return table
 
 
@@ -66,7 +67,22 @@ def make_entity_definitions():
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    text = schema.make_entity_definitions(schema_obj)
+    text = render.make_entity_definitions(schema_obj)
+    return text
+
+
+def make_glossary():
+    """Generate glossary.
+
+    Returns
+    -------
+    text : str
+        A multiline string containing descriptions and some formatting
+        information about the entities in the schema.
+    """
+    schemapath = utils.get_schema_path()
+    schema_obj = schema.load_schema(schemapath)
+    text = render.make_glossary(schema_obj)
     return text
 
 
@@ -86,7 +102,7 @@ def make_suffix_table(suffixes):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = schema.make_suffix_table(schema_obj, suffixes)
+    table = render.make_suffix_table(schema_obj, suffixes)
     return table
 
 
@@ -97,7 +113,7 @@ def make_metadata_table(field_info):
     ----------
     field_names : dict
         A list of the field names.
-        Field names correspond to filenames in the "metadata" folder of the
+        Field names correspond to filenames in the "metadata" directory of the
         schema.
         Until requirement levels can be codified in the schema,
         this argument will be dictionary, with the field names as keys and
@@ -111,7 +127,7 @@ def make_metadata_table(field_info):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = schema.make_metadata_table(schema_obj, field_info)
+    table = render.make_metadata_table(schema_obj, field_info)
     return table
 
 
@@ -122,7 +138,7 @@ def make_columns_table(column_info):
     ----------
     column_info : dict
         A list of the column names.
-        Column names correspond to filenames in the "columns" folder of the
+        Column names correspond to filenames in the "columns" directory of the
         schema.
         Until requirement levels can be codified in the schema,
         this argument will be a dictionary, with the column names as keys and
@@ -136,7 +152,7 @@ def make_columns_table(column_info):
     """
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = schema.make_columns_table(schema_obj, column_info)
+    table = render.make_columns_table(schema_obj, column_info)
     return table
 
 
@@ -146,7 +162,7 @@ def make_filetree_example(filetree_info, use_pipe=True):
     Parameters
     ----------
     filetree_info : dict
-        Dictionary to represent the folder content.
+        Dictionary to represent the directory content.
     use_pipe : bool
         Set to ``False`` to avoid using pdf unfriendly pipes: "│ └─ ├─"
 

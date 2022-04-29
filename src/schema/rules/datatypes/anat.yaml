@@ -1,6 +1,6 @@
 ---
-# Nonparametric
-- suffixes:
+nonparametric:
+  suffixes:
   - T1w
   - T2w
   - PDw
@@ -17,6 +17,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -26,8 +28,8 @@
     reconstruction: optional
     part: optional
 
-# Parametric
-- suffixes:
+parametric:
+  suffixes:
   - T1map
   - T2map
   - T2starmap
@@ -49,6 +51,8 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -57,13 +61,15 @@
     ceagent: optional
     reconstruction: optional
 
-# Defacemask
-- suffixes:
+defacemask:
+  suffixes:
   - defacemask
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -73,14 +79,16 @@
     reconstruction: optional
     modality: optional
 
-# Multi-echo
-- suffixes:
+multiecho:
+  suffixes:
   - MESE
   - MEGRE
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -91,13 +99,15 @@
     echo: required
     part: optional
 
-# Multi-flip
-- suffixes:
+multiflip:
+  suffixes:
   - VFA
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -105,16 +115,19 @@
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    echo: optional
     flip: required
     part: optional
 
-# Multi-inv
-- suffixes:
+multiinversion:
+  suffixes:
   - IRT1
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -125,13 +138,15 @@
     inversion: required
     part: optional
 
-# MP2RAGE
-- suffixes:
+mp2rage:
+  suffixes:
   - MP2RAGE
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -144,14 +159,16 @@
     inversion: required
     part: optional
 
-# VFA+MT
-- suffixes:
+vfamt:
+  suffixes:
   - MPM
   - MTS
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
@@ -164,13 +181,15 @@
     mtransfer: required
     part: optional
 
-# MTR
-- suffixes:
+mtr:
+  suffixes:
   - MTR
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional

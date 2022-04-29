@@ -18,3 +18,7 @@
 /src/05-derivatives/05-functional-derivatives.md @effigies
 /src/05-derivatives/06-diffusion-derivatives.md @francopestilli @oesteban @Lestropie
 /src/99-appendices/06-meg-file-formats.md @monkeyman192
+
+# The schema
+/src/schema/ @tsalo @erdalkaraca
+/tools/schemacode/ @tsalo @erdalkaraca
