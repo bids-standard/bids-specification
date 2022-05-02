@@ -134,11 +134,13 @@ ArterialSpinLabelingType:
 AssociatedEmptyRoom:
   name: AssociatedEmptyRoom
   description: |
-    Relative path in BIDS directory structure to empty-room file associated with
+    A path pointing to an empty-room file associated with
     the subject's MEG recording.
+    The path is relative to the BIDS dataset root.
     The path needs to use forward slashes instead of backward slashes
     (for example,
-    "sub-emptyroom/ses-/meg/sub-emptyroom_ses-_task-noise_run-_meg.ds").
+    "sub-emptyroom/ses-rest/meg/sub-emptyroom_ses-rest_task-noise_run-01_meg.ds").
+    Supplying a list of several paths to empty-room files is possible.
   anyOf:
   - type: array
     items:
@@ -1298,6 +1300,21 @@ IntendedFor:
     items:
       type: string
       format: participant_relative
+IntendedFor__ds_relative:
+  name: IntendedFor
+  description: |
+    The paths to files for which the associated file is intended to be used.
+    Contains one or more filenames with paths relative to the dataset
+    root.
+    Paths need to use forward slashes instead of backward slashes,
+    regardless of operating system.
+  anyOf:
+  - type: string
+    format: dataset_relative
+  - type: array
+    items:
+      type: string
+      format: dataset_relative
 InversionTime:
   name: InversionTime
   description: |
