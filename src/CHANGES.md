@@ -3,8 +3,10 @@
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
 -   \[INFRA] Fix internal links implicitly [#1096](https://github.com/bids-standard/bids-specification/pull/1096) ([effigies](https://github.com/effigies))
+-   \[FIX] IntendedFor in (i)EEG is dataset relative [#1093](https://github.com/bids-standard/bids-specification/pull/1093) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] make dataset_description.Authors RECOMMENDED [#1092](https://github.com/bids-standard/bids-specification/pull/1092) ([sappelhoff](https://github.com/sappelhoff))
 -   ENH: use \__file\_\_ instead of getcwd to determine HERE, provide informative message on # of files [#1091](https://github.com/bids-standard/bids-specification/pull/1091) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] adding optional \_rec-label to DWI [#1090](https://github.com/bids-standard/bids-specification/pull/1090) ([dorahermes](https://github.com/dorahermes))
 -   \[INFRA] Set light and dark mode image for logo in README [#1085](https://github.com/bids-standard/bids-specification/pull/1085) ([anibalsolon](https://github.com/anibalsolon))
 -   \[ENH] State of the schema sprint [#1075](https://github.com/bids-standard/bids-specification/pull/1075) ([effigies](https://github.com/effigies))
 -   \[DOC] Preface each macro call with comment [#1052](https://github.com/bids-standard/bids-specification/pull/1052) ([Remi-Gau](https://github.com/Remi-Gau))
@@ -16,6 +18,7 @@
 -   \[SCHEMA] Add extensions to schema [#1036](https://github.com/bids-standard/bids-specification/pull/1036) ([tsalo](https://github.com/tsalo))
 -   \[ENH] Allow README file extensions. [#1033](https://github.com/bids-standard/bids-specification/pull/1033) ([mateuszpawlik](https://github.com/mateuszpawlik))
 -   \[MISC] Rewrite and update html build instructions [#1032](https://github.com/bids-standard/bids-specification/pull/1032) ([sappelhoff](https://github.com/sappelhoff))
+-   \[FIX] Clarify that BIDS standard template data is to be in scanner coordinates (MEG, iEEG, EEG) [#1031](https://github.com/bids-standard/bids-specification/pull/1031) ([alexrockhill](https://github.com/alexrockhill))
 -   \[FIX] Add coordsystem-specific definition of DigitizedHeadPoints [#1023](https://github.com/bids-standard/bids-specification/pull/1023) ([tsalo](https://github.com/tsalo))
 -   \[FIX] PET Spec; added known DICOM tags, fixed tag error, updated citation, clarified scale factor. [#1021](https://github.com/bids-standard/bids-specification/pull/1021) ([bendhouseart](https://github.com/bendhouseart))
 -   \[MISC] clarify copyright for logo [#1019](https://github.com/bids-standard/bids-specification/pull/1019) ([sappelhoff](https://github.com/sappelhoff))
