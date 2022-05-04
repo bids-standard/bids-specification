@@ -50,6 +50,7 @@ def _get_source_path(level=1):
     just go back to explicitly using the ``page.file`` variable throughout the macros.
     """
     import inspect
+
     # currentframe = _get_source_path()
     # caller = the macro calling this function, e.g. make_glossary()
     caller = inspect.currentframe().f_back
@@ -196,6 +197,39 @@ def make_metadata_table(field_info, src_path=None):
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
     table = render.make_metadata_table(schema_obj, field_info, src_path=src_path)
+    return table
+
+
+def make_subobject_table(object_tuple, field_info, src_path=None):
+    """Generate a markdown table of a metadata object's field information.
+
+    Parameters
+    ----------
+    object_tuple : tuple of string
+        A tuple pointing to the object to render.
+    field_names : dict
+        A list of the field names.
+        Field names correspond to filenames in the "metadata" directory of the
+        schema.
+        Until requirement levels can be codified in the schema,
+        this argument will be dictionary, with the field names as keys and
+        the requirement levels as values.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Returns
+    -------
+    table : str
+        A Markdown-format table containing the corresponding table for
+        the requested fields.
+    """
+    if src_path is None:
+        src_path = _get_source_path()
+
+    schemapath = utils.get_schema_path()
+    schema_obj = schema.load_schema(schemapath)
+    table = render.make_subobject_table(schema_obj, object_tuple, field_info, src_path=src_path)
     return table
 
 

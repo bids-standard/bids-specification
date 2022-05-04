@@ -483,6 +483,51 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
     return table_str
 
 
+def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
+    # Use the "name" field in the table, to allow for filenames to not match
+    # "names".
+    df = pd.DataFrame(
+        index=[subschema[f]["name"] for f in subschema.keys()],
+        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+    )
+    df.index.name = "**Key name**"
+    for field in subschema.keys():
+        field_name = subschema[field]["name"]
+        requirement_info = field_info[field]
+        description_addendum = ""
+        if isinstance(requirement_info, tuple):
+            requirement_info, description_addendum = requirement_info
+
+        requirement_info = requirement_info.replace(
+            "DEPRECATED",
+            "[DEPRECATED](/02-common-principles.html#definitions)",
+        )
+
+        type_string = utils.resolve_metadata_type(subschema[field])
+
+        description = subschema[field]["description"] + " " + description_addendum
+
+        # Try to add info about valid values
+        valid_values_str = utils.describe_valid_values(subschema[field])
+        if valid_values_str:
+            description += "\n\n\n\n" + valid_values_str
+
+        # A backslash before a newline means continue a string
+        description = description.replace("\\\n", "")
+        # Two newlines should be respected
+        description = description.replace("\n\n", "<br>")
+        # Otherwise a newline corresponds to a space
+        description = description.replace("\n", " ")
+        # Spec internal links need to be replaced
+        description = description.replace("SPEC_ROOT", get_relpath(src_path))
+
+        df.loc[field_name] = [requirement_info, type_string, description]
+
+    # Print it as markdown
+    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    return table_str
+
+
 def make_metadata_table(schema, field_info, src_path=None, tablefmt="github"):
     """Produce metadata table (markdown) based on requested fields.
 
@@ -519,47 +564,62 @@ def make_metadata_table(schema, field_info, src_path=None, tablefmt="github"):
     if dropped_fields:
         print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
 
-    # Use the "name" field in the table, to allow for filenames to not match
-    # "names".
-    df = pd.DataFrame(
-        index=[metadata_schema[f]["name"] for f in retained_fields],
-        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+    metadata_schema = {k: v for k, v in metadata_schema.items() if k in retained_fields}
+
+    table_str = make_obj_table(
+        metadata_schema,
+        field_info=field_info,
+        src_path=src_path,
+        tablefmt=tablefmt,
     )
-    df.index.name = "**Key name**"
-    for field in retained_fields:
-        field_name = metadata_schema[field]["name"]
-        requirement_info = field_info[field]
-        description_addendum = ""
-        if isinstance(requirement_info, tuple):
-            requirement_info, description_addendum = requirement_info
 
-        requirement_info = requirement_info.replace(
-            "DEPRECATED",
-            "[DEPRECATED](/02-common-principles.html#definitions)",
-        )
+    return table_str
 
-        type_string = utils.resolve_metadata_type(metadata_schema[field])
 
-        description = metadata_schema[field]["description"] + " " + description_addendum
+def make_subobject_table(schema, object_tuple, field_info, src_path=None, tablefmt="github"):
+    """Create a table of properties within an object.
 
-        # Try to add info about valid values
-        valid_values_str = utils.describe_valid_values(metadata_schema[field])
-        if valid_values_str:
-            description += "\n\n\n\n" + valid_values_str
+    Parameters
+    ----------
+    schema
+    object_tuple : tuple of strings
+        A tuple of keys within the schema linking down to the object
+        that will be rendered.
+        For example, ("objects", "metadata", "Genetics") will result in a table
+        rendering the properties specified in
+        schema["object"]["metadata"]["Genetics"].
+    field_info : dict of strings or tuples
+        A dictionary mapping metadata keys to requirement levels in the
+        rendered metadata table.
+        The dictionary values may be strings, in which case the string
+        is the requirement level information, or two-item tuples of strings,
+        in which case the first string is the requirement level information
+        and the second string is additional table-specific information
+        about the metadata field that will be appended to the field's base
+        definition from the schema.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+    tablefmt : string, optional
+        The target table format. The default is "github" (GitHub format).
+    """
+    assert isinstance(object_tuple, tuple)
+    assert all([isinstance(i, str) for i in object_tuple])
 
-        # A backslash before a newline means continue a string
-        description = description.replace("\\\n", "")
-        # Two newlines should be respected
-        description = description.replace("\n\n", "<br>")
-        # Otherwise a newline corresponds to a space
-        description = description.replace("\n", " ")
-        # Spec internal links need to be replaced
-        description = description.replace("SPEC_ROOT", get_relpath(src_path))
+    temp_dict = schema[object_tuple[0]]
+    for i in range(1, len(object_tuple)):
+        level_str = object_tuple[i]
+        temp_dict = temp_dict[level_str]
 
-        df.loc[field_name] = [requirement_info, type_string, description]
+    temp_dict = temp_dict["properties"]
+    assert isinstance(temp_dict, dict)
+    table_str = make_obj_table(
+        temp_dict,
+        field_info=field_info,
+        src_path=src_path,
+        tablefmt=tablefmt,
+    )
 
-    # Print it as markdown
-    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
     return table_str
 
 
