@@ -1,4 +1,5 @@
 import datetime
+from functools import lru_cache
 import json
 import os
 import re
@@ -186,16 +187,17 @@ def _add_suffixes(regex_string, variant):
 
 
 def load_top_level(
-    schema_dir,
+    my_schema,
 ):
     """
     Create full path regexes for top level files, as documented by a target BIDS YAML schema
     version.
 
+
     Parameters
     ----------
-    schema_dir : str
-        A string pointing to a BIDS directory for which paths should be validated.
+    my_schema : dict
+        A nested dictionary, as returned by `schemacode.schema.load_schema()`.
 
     Returns
     -------
@@ -203,7 +205,6 @@ def load_top_level(
         A list of dictionaries, with keys including 'regex' and 'mandatory'.
     """
 
-    my_schema = schema.load_schema(schema_dir)
     top_level_files = my_schema["rules"]["top_level_files"]
 
     regex_schema = []
@@ -226,14 +227,14 @@ def load_top_level(
 
 
 def load_entities(
-    schema_dir,
+    my_schema,
 ):
     """Create full path regexes for entities, as documented by a target BIDS YAML schema version.
 
     Parameters
     ----------
-    schema_dir : str
-        A string pointing to a BIDS directory for which paths should be validated.
+    my_schema : dict
+        A nested dictionary, as returned by `schemacode.schema.load_schema()`.
 
     Notes
     -----
@@ -258,13 +259,13 @@ def load_entities(
         A list of dictionaries, with keys including 'regex' and 'mandatory'.
     """
 
-    my_schema = schema.load_schema(schema_dir)
-
     label = "([a-z,A-Z,0-9]*?)"
 
     # Parsing tabular_metadata as a datatype, might be done automatically if the YAML is moved
     # to the same subdirectory
-    my_schema["rules"]["datatypes"]["tabular_metadata"] = my_schema["rules"]["tabular_metadata"]
+    my_schema["rules"]["datatypes"]["tabular_metadata"] = my_schema["rules"][
+        "tabular_metadata"
+    ]
     datatypes = my_schema["rules"]["datatypes"]
     entity_order = my_schema["rules"]["entities"]
     entity_definitions = my_schema["objects"]["entities"]
@@ -325,6 +326,7 @@ def load_entities(
     return regex_schema
 
 
+@lru_cache()
 def load_all(
     schema_dir,
 ):
@@ -342,11 +344,12 @@ def load_all(
         A list of dictionaries, with keys including 'regex' and 'mandatory'.
     """
 
+    my_schema = schema.load_schema(schema_dir)
     all_regex = load_entities(
-        schema_dir=schema_dir,
+        my_schema=my_schema,
     )
     top_level_regex = load_top_level(
-        schema_dir=schema_dir,
+        my_schema=my_schema,
     )
     all_regex.extend(top_level_regex)
 
@@ -426,7 +429,9 @@ def validate_all(
             match_listing.append(match_entry)
         else:
             if debug:
-                print(f"The `{target_path}` file could not be matched to any regex schema entry.")
+                print(
+                    f"The `{target_path}` file could not be matched to any regex schema entry."
+                )
     results = {}
     if debug:
         results["itemwise"] = itemwise_results
@@ -441,8 +446,8 @@ def validate_all(
 
 def write_report(
     validation_result,
-    report_path="/var/tmp/bids-validator/report_{}.log",
-    datetime_format="%Y%m%d-%H%M%S",
+    report_path="/var/tmp/bids-validator/report_{datetime}-{pid}.log",
+    datetime_format="%Y%m%d%H%M%SZ",
 ):
     """Write a human-readable report based on the validation result.
 
@@ -454,8 +459,10 @@ def write_report(
         The "itemwise" value, if present, should be a list of dictionaries, with keys including
         "path", "regex", and "match".
     report_path : str, optional
-        A path under which the report is to be saved, the `{}` string, if included, will be
-        expanded to current datetime, as per the `datetime_format` parameter.
+        A path under which the report is to be saved, `datetime`, and `pid`
+        are available as variables for string formatting, and will be expanded to the
+        current datetime (as per the `datetime_format` parameter)
+        and process ID, respectively.
     datetime_format : str, optional
         A datetime format, optionally used for the report path.
 
@@ -464,7 +471,11 @@ def write_report(
     * Not using f-strings in order to prevent arbitrary code execution.
     """
 
-    report_path = report_path.format(datetime.datetime.now().strftime(datetime_format))
+
+    report_path = report_path.format(
+        datetime=datetime.datetime.utcnow().strftime(datetime_format),
+        pid=os.getpid(),
+    )
     report_path = os.path.abspath(os.path.expanduser(report_path))
     try:
         os.makedirs(os.path.dirname(report_path))
@@ -500,7 +511,9 @@ def write_report(
         else:
             f.write("All files were matched by a regex schema entry.")
         if len(validation_result["schema_tracking"]) > 0:
-            f.write("\nThe following mandatory regex schema entries did not match any files:")
+            f.write(
+                "\nThe following mandatory regex schema entries did not match any files:"
+            )
             f.write("\n")
             for entry in validation_result["schema_tracking"]:
                 if entry["mandatory"]:
@@ -508,6 +521,7 @@ def write_report(
         else:
             f.write("All mandatory BIDS files were found.\n")
         f.close()
+    lgr.info("BIDS validation log written to %s", report_path)
 
 
 def _find_dataset_description(my_path):
@@ -583,7 +597,7 @@ def select_schema_dir(
         if dataset_description:
             if dataset_description in dataset_descriptions:
                 raise ValueError(
-                    "You have selected files belonging to 2 different datasets."
+                    "You have selected files belonging to 2 different datasets. "
                     "Please run the validator once per dataset."
                 )
             else:
@@ -595,17 +609,27 @@ def select_schema_dir(
                         lgr.warning(
                             "BIDSVersion is not specified in "
                             "`dataset_description.json`. "
-                            f"Falling back to {schema_min_version}."
+                            "Falling back to %s.",
+                            schema_min_version,
                         )
                         schema_version = schema_min_version
-        if schema_min_version:
+        if not schema_version:
+            lgr.warning(
+                "No BIDSVersion could be found for the dataset. Falling back to %s.",
+                schema_min_version,
+            )
+            schema_version = schema_min_version
+        elif schema_min_version:
             if schema_version < schema_min_version:
                 lgr.warning(
-                    f"BIDSVersion {schema_version} is less than the minimal working "
-                    f"{schema_min_version}. "
-                    f"Falling back to {schema_min_version}. "
+                    "BIDSVersion %s is less than the minimal working "
+                    "%s. "
+                    "Falling back to %s. "
                     "To force the usage of earlier versions specify them explicitly "
-                    "when calling the validator."
+                    "when calling the validator.",
+                    schema_version,
+                    schema_min_version,
+                    schema_min_version,
                 )
                 schema_version = schema_min_version
     schema_dir = os.path.join(schema_reference_root, schema_version)
@@ -613,10 +637,38 @@ def select_schema_dir(
         return schema_dir
     else:
         raise ValueError(
-            f"The expected schema directory {schema_dir} does not exist on the system."
+            f"The expected schema directory {schema_dir} does not exist on the system. "
             "Please ensure the file exists or manually specify a schema version for "
             "which the schemacode files are available on your system."
         )
+
+
+def log_errors(validation_result):
+    """
+    Raise errors for validation result.
+
+    Parameters
+    ----------
+    validation_result : dict
+        A dictionary as returned by `validate_all()` with keys including "schema_tracking",
+        "path_tracking", "path_listing", and, optionally "itemwise".
+        The "itemwise" value, if present, should be a list of dictionaries, with keys including
+        "path", "regex", and "match".
+    """
+    total_file_count = len(validation_result["path_listing"])
+    validated_files_count = total_file_count - len(validation_result["path_tracking"])
+    if validated_files_count == 0:
+        lgr.error("No valid BIDS files were found.")
+    if len(validation_result["schema_tracking"]) > 0:
+        for entry in validation_result["schema_tracking"]:
+            if entry["mandatory"]:
+                lgr.error(
+                    "The `%s` regex pattern file required by BIDS was not found.",
+                    entry["regex"],
+                )
+    if len(validation_result["path_tracking"]) > 0:
+        for i in validation_result["path_tracking"]:
+            lgr.warning("The `%s` file was not matched by any regex schema entry.", i)
 
 
 def validate_bids(
@@ -664,35 +716,27 @@ def validate_bids(
     >>> bids_paths = '~/.data2/datalad/000026/rawdata'
     >>> schema_version='{module_path}/data/schema/'
     >>> validator.validate_bids(bids_paths, schema_version=schema_version, debug=False)"
-
-    Can be run from the Bash shell as:
-        python -c "from schemacode import validator; validator.validate_bids\
-                ('~/.data2/datalad/000026/rawdata', schema_version='{module_path}/data/schema/',\
-                report_path=True, debug=False)"`
     """
 
     if isinstance(bids_paths, str):
         bids_paths = [bids_paths]
 
-    bids_schema_dir = select_schema_dir(bids_paths, schema_reference_root, schema_version)
+    bids_schema_dir = select_schema_dir(
+        bids_paths, schema_reference_root, schema_version
+    )
     regex_schema = load_all(bids_schema_dir)
     validation_result = validate_all(
         bids_paths,
         regex_schema,
         debug=debug,
     )
-    # Record schema version.
-    # Not sure whether to incorporate in validation_result.
-    if bids_schema_dir == os.path.join(os.path.abspath(os.path.dirname(__file__)),"data/schema",):
-        schema_version = 9999
-    else:
-        _, schema_version = os.path.split(bids_schema_dir)
-    validation_result["bids_schema_version"] = schema_version
 
     if report_path:
         if isinstance(report_path, str):
             write_report(validation_result, report_path=report_path)
         else:
             write_report(validation_result)
+
+    log_errors(validation_result)
 
     return validation_result
