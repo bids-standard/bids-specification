@@ -219,6 +219,7 @@ def test__add_suffixes():
 def test_load_all():
     from schemacode.validator import load_all
 
+    #schema_path = "/usr/share/bids-schema/1.7.0/"
     schema_path = os.path.join(
         os.path.abspath(os.path.dirname(__file__)),
         "../data/schema",
@@ -304,7 +305,8 @@ def test_bids_datasets(bids_examples, tmp_path):
         "qmri_tb1tfl",
         "qmri_vfa",
     ]
-    schema_path = "{module_path}/support/bids/schemadata/1.7.0+012+dandi001"
+    schema_path = "{module_path}/data/schema/"
+    #schema_path = "/usr/share/bids-schema/1.7.0/"
 
     # Validate per dataset, with automatic schema selection:
     for i in os.listdir(bids_examples):

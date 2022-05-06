@@ -283,13 +283,30 @@ def load_entities(
 
     regex_schema = []
     for datatype in datatypes:
-        for variant in datatypes[datatype]:
+        print(datatype)
+        print(datatypes[datatype])
+        print(datatype)
+        print(datatypes[datatype])
+        print(datatype)
+        print(datatypes[datatype])
+        print(type(datatypes[datatype]))
+        for variant in datatypes[datatype].values():
             regex_entities = ""
             for entity in entity_order:
                 # Slightly awkward construction to account for new-style file specification.
                 # As in:
                 # https://github.com/bids-standard/bids-specification/pull/987
                 try:
+                    print(variant)
+                    print(variant)
+                    print(variant)
+                    print(variant)
+                    print(variant)
+                    print(variant)
+                    print(variant)
+                    print(variant)
+                    print(variant)
+                    print(variant)
                     if entity in variant["entities"]:
                         entity_shorthand = entity_definitions[entity]["entity"]
                         if "enum" in entity_definitions[entity].keys():
