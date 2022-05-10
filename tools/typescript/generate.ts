@@ -87,7 +87,7 @@ export function generatePrimitiveDefinition(
         ts.factory.createUnionTypeNode(
           definition.enum.map((enumValue) =>
             ts.factory.createLiteralTypeNode(
-              ts.factory.createStringLiteral(mapSchemaType(enumValue))
+              ts.factory.createStringLiteral(enumValue)
             )
           )
         )
@@ -117,7 +117,7 @@ export function generatePrimitiveDefinition(
       definition.items.hasOwnProperty('type')
     ) {
       arrayDefinition = ts.factory.createArrayTypeNode(
-        ts.factory.createTypeReferenceNode(definition.items.type)
+        ts.factory.createTypeReferenceNode(mapSchemaType(definition.items.type))
       )
     }
     return ts.factory.createPropertySignature(
