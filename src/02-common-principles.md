@@ -91,7 +91,7 @@ misunderstanding we clarify them here.
     Note that "uninterrupted" may look different by modality due to the nature of the
     recording.
     For example, in [MRI](04-modality-specific-files/01-magnetic-resonance-imaging-data.md)
-    or [MEG] (04-modality-specific-files/02-magnetoencephalography.md),
+    or [MEG](04-modality-specific-files/02-magnetoencephalography.md),
     if a subject leaves the scanner, the acquisition must be restarted.
     For some types of [PET](04-modality-specific-files/09-positron-emission-tomography.md) acquisitions,
     a subject may leave and re-enter the scanner without interrupting the scan.
