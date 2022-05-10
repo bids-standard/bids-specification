@@ -102,7 +102,7 @@ Deno.test('generateTypes() supports typed object type', () => {
 
   assertEquals(
     print(file),
-    `interface dim_info {
+    `export interface dim_info {
     freq: number;
     phase: number;
     slice: number;
@@ -141,10 +141,10 @@ Deno.test('generateTypes() supports object trees', () => {
 
   assertEquals(
     print(file),
-    `interface DatasetSubjects {
+    `export interface DatasetSubjects {
     sub_dirs: string[];
 }
-interface dataset {
+export interface dataset {
     dataset_description: object;
     subjects: DatasetSubjects;
 }
