@@ -13,7 +13,7 @@ function capitalize(str) {
  * Convert schema primitives to nearest JS equivalent
  */
 function mapSchemaType(typename) {
-  if ('integer') return 'number'
+  if (typename === 'integer') return 'number'
   return typename
 }
 
