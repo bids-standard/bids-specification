@@ -2,6 +2,8 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] MEG link typo [#1100](https://github.com/bids-standard/bids-specification/pull/1100) ([xi](https://github.com/xi))
+-   \[SCHEMA] Create macro to render fields within objects [#1097](https://github.com/bids-standard/bids-specification/pull/1097) ([tsalo](https://github.com/tsalo))
 -   \[INFRA] Fix internal links implicitly [#1096](https://github.com/bids-standard/bids-specification/pull/1096) ([effigies](https://github.com/effigies))
 -   \[FIX] IntendedFor in (i)EEG is dataset relative [#1093](https://github.com/bids-standard/bids-specification/pull/1093) ([sappelhoff](https://github.com/sappelhoff))
 -   \[MISC] make dataset_description.Authors RECOMMENDED [#1092](https://github.com/bids-standard/bids-specification/pull/1092) ([sappelhoff](https://github.com/sappelhoff))
