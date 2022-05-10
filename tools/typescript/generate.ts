@@ -1,11 +1,26 @@
 /**
- * Use the TypeScript compiler to
+ * Use the TypeScript compiler to output type definitions based on yaml schema
+ *
+ * See https://ts-morph.com/ documentation for compiler usage
  */
 import { ts } from 'https://deno.land/x/ts_morph@14.0.0/bootstrap/mod.ts'
 
 function capitalize(str) {
   return `${str.charAt(0).toUpperCase()}${str.slice(1)}`
 }
+
+/**
+ * Convert schema primitives to nearest JS equivalent
+ */
+function mapSchemaType(typename) {
+  if ('integer') return 'number'
+  return typename
+}
+
+// Flag for exporting interfaces
+const interfaceExport = ts.factory.createModifiersFromModifierFlags(
+  ts.ModifierFlags.Export
+)
 
 export function generateObjectDefinition(name, definition): Array<ts.Node> {
   const customTypeInterfaces = []
@@ -46,7 +61,7 @@ export function generateObjectDefinition(name, definition): Array<ts.Node> {
   customTypeInterfaces.push(
     ts.factory.createInterfaceDeclaration(
       undefined,
-      undefined,
+      interfaceExport,
       name,
       undefined,
       undefined,
@@ -63,7 +78,7 @@ export function generatePrimitiveDefinition(
   name: string,
   definition: Record<string, any>
 ): Node {
-  if (definition.type === 'string') {
+  if (mapSchemaType(definition.type) === 'string') {
     if (definition.hasOwnProperty('enum')) {
       return ts.factory.createPropertySignature(
         undefined,
@@ -72,7 +87,7 @@ export function generatePrimitiveDefinition(
         ts.factory.createUnionTypeNode(
           definition.enum.map((enumValue) =>
             ts.factory.createLiteralTypeNode(
-              ts.factory.createStringLiteral(enumValue)
+              ts.factory.createStringLiteral(mapSchemaType(enumValue))
             )
           )
         )
@@ -85,14 +100,14 @@ export function generatePrimitiveDefinition(
         ts.factory.createTypeReferenceNode('string')
       )
     }
-  } else if (definition.type === 'integer' || definition.type === 'number') {
+  } else if (mapSchemaType(definition.type) === 'number') {
     return ts.factory.createPropertySignature(
       undefined,
       name,
       undefined,
       ts.factory.createTypeReferenceNode('number')
     )
-  } else if (definition.type === 'array') {
+  } else if (mapSchemaType(definition.type) === 'array') {
     let arrayDefinition = ts.factory.createArrayTypeNode(
       ts.factory.createTypeReferenceNode('any')
     )
@@ -111,7 +126,7 @@ export function generatePrimitiveDefinition(
       undefined,
       arrayDefinition
     )
-  } else if (definition.type === 'object') {
+  } else if (mapSchemaType(definition.type) === 'object') {
     return ts.factory.createPropertySignature(
       undefined,
       name,
@@ -135,19 +150,6 @@ export function generateTypes(schemaObj: Record<string, any>): Array<ts.Node> {
     } else {
       tsNodes.push(generatePrimitiveDefinition(prop, schemaObj[prop]))
     }
-  }
-  for (const node of tsNodes) {
-    const resultFile = ts.createSourceFile(
-      'someFileName.ts',
-      '',
-      ts.ScriptTarget.Latest,
-      /*setParentNodes*/ false,
-      ts.ScriptKind.TS
-    )
-    const printer = ts.createPrinter({
-      newLine: ts.NewLineKind.LineFeed,
-      omitTrailingSemicolon: true,
-    })
   }
   return tsNodes
 }
