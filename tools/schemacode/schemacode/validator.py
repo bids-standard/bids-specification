@@ -676,16 +676,14 @@ def log_errors(validation_result):
     validated_files_count = total_file_count - len(validation_result["path_tracking"])
     if validated_files_count == 0:
         lgr.error("No valid BIDS files were found.")
-    if len(validation_result["schema_tracking"]) > 0:
-        for entry in validation_result["schema_tracking"]:
-            if entry["mandatory"]:
-                lgr.error(
-                    "The `%s` regex pattern file required by BIDS was not found.",
-                    entry["regex"],
-                )
-    if len(validation_result["path_tracking"]) > 0:
-        for i in validation_result["path_tracking"]:
-            lgr.warning("The `%s` file was not matched by any regex schema entry.", i)
+    for entry in validation_result["schema_tracking"]:
+        if entry["mandatory"]:
+            lgr.error(
+                "The `%s` regex pattern file required by BIDS was not found.",
+                entry["regex"],
+            )
+    for i in validation_result["path_tracking"]:
+        lgr.warning("The `%s` file was not matched by any regex schema entry.", i) 
 
 
 def validate_bids(
