@@ -601,6 +601,7 @@ def select_schema_dir(
     schema_reference_root = os.path.abspath(os.path.expanduser(schema_reference_root))
     if schema_version:
         if "/" in schema_version:
+            schema_dir = schema_version
             if schema_version.startswith("{module_path}"):
                 schema_dir = schema_version.format(module_path=module_path)
             schema_dir = os.path.abspath(os.path.expanduser(schema_dir))
