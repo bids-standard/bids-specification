@@ -543,67 +543,29 @@ for more information.
 
 ## The Inheritance Principle
 
-1.  Any metadata file (such as `.json`, `.bvec` or `.tsv`) MAY be defined at any directory level.
+In many BIDS datasets, any data file and its corresponding metadata file
+will possess an identical set of entities and suffix,
+differing only in their file extensions.
+This implicitly associates each data file with one metadata file,
+and one metadata file per data file.
+More advanced usages are however permissible:
+any data file may "inherit" metadata information from one or more metadata files,
+provided that the location of the metadata file in the file system
+makes it applicable to that data file.
 
-1.  For a given data file, any metadata file is applicable to that data file if:
-    1.  It is stored at the same directory level or higher;
-    1.  The metadata and the data filenames possess the same suffix;
-    1.  The metadata filename does not include any entity absent from the data filename.
+Where more than one metadata file is applicable to a data file,
+the contents of the file closest in filesystem position to the data file
+(lowest in the directory hierarchy, most entities in the file name)
+takes precedence.
+In the case of [JSON files](#key-value-files-dictionaries), this involves
+loading *all* key-values from *all* applicable files;
+where a key is present in multiple files,
+only the value for that key in the highest precedence file will be preserved.
 
-1.  A metadata file MUST NOT have a filename that would be otherwise applicable
-    to some data file based on rules 2.b and 2.c but is made inapplicable based on its
-    location in the directory structure as per rule 2.a.
+The precise rules governing the behaviour of the Inheritance Principle
+are described in detail in [Appendix XV](#99-appendices/15-inheritance-principle.md).
 
-1.  If, for a given data file, multiple metadata files satisfy criteria 2.a-c above:
-
-    1.  The set of applicable metadata files is ordered as follows.
-        Within each level of the filesystem hierarchy independently, applicable files are
-        ordered from fewest to most entities; each subsequent filename MUST possess a
-        set of entities that is a strict superset of the previous filename.
-        These lists are concatenated in order of highest to lowest level in the
-        filesystem hierarchy.
-
-    1.  For [tabular files](#tabular-files) and other simple metadata files
-        (for instance, [`bvec` / `bval` files for diffusion MRI](#04-modality-specific-files/01-magnetic-resonance-imaging#required-gradient-orientation-information)),
-        accessing metadata associated with a data file MUST consider only the
-        last file in the order established by rule 4.a.
-
-    1.  For [JSON files](#key-value-files-dictionaries), key-values MUST be loaded
-        from applicable files sequentially in the order established by rule 4.a,
-        overwriting any existing key-values when doing so.
-
-Corollaries:
-
-1.  As per rule 3, metadata files applicable only to a specific participant / session
-    MUST be defined in or below the directory corresponding to that participant / session;
-    similarly, a metadata file that is applicable to multiple participants / sessions
-    MUST NOT be placed within a directory corresponding to only one such participant / session.
-
-1.  It is permissible for a single metadata file to be applicable to multiple data
-    files. Where such metadata content is consistent across multiple data files, it is
-    RECOMMENDED to store metadata in this way, rather than duplicating that metadata
-    content across multiple metadata files.
-
-1.  Where multiple applicable [JSON files](#key-value-files-dictionaries) are loaded
-    for one data file as per rules 4.a and 4.c:
-
-    1.  Where the same key is present in multiple applicable metadata files, the final
-        value associated with that key will be that of the file latest in the order in
-        which that key is defined; any values associated with that key earlier in the
-        ordering are overridden
-        (though it is RECOMMENDED to minimize the extent of such overrides).
-
-    1.  The requirement that applicable metadata files follow a strict ordering according
-        to addition of entities applies individually within each level of the filesystem
-        hierarchy; it is not necessary for the complete ordered set of all applicable
-        metadata files across all filesystem levels to demonstrate strict addition of
-        entities between sequential filenames.
-
-    1.  A key-value being present in a metadata file earlier in the ordering but absent in
-        any file later in the ordering does not imply the "unsetting" of that key-value.
-
-    1.  Removal of key-values present in files earlier in the ordering based on the content
-        of files later in the ordering is not possible.
+### Examples
 
 Example 1: Single metadata file applicable to multiple data files
 
@@ -622,13 +584,13 @@ Example 1: Single metadata file applicable to multiple data files
 For file `sub-01_T2starw.json`, there does not exist an immediately corresponding data file
 with the same basename but different file extension; for instance `sub-01_T2starw.nii.gz`.
 It is however applicable to both data files `sub-01_part-real_T2starw.nii.gz` and
-`sub-01_part-imag_T2starw.nii.gz` as per rule 2, since it possesses the same suffix "`T2starw`"
-and its entities are a subset of those present in the data filename in both cases. This storage
-structure is appropriate for such data given that the real and imaginary components of complex
-image data would be yielded by a single execution of an MRI sequence, with a fixed common set
-of acquisition parameters.
+`sub-01_part-imag_T2starw.nii.gz`, since it possesses the same suffix "`T2starw`"
+and its entities are a subset of those present in the data filename in both cases.
+This storage structure is appropriate for such data given that the real and imaginary
+components of complex image data would be yielded by a single execution of an MRI sequence,
+with a fixed common set of acquisition parameters.
 
-Example 2: Ordered loading of JSON data
+Example 2: Single data file with multiple applicable metadata files
 
 {{ MACROS___make_filetree_example(
     {
@@ -660,171 +622,16 @@ Contents of file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json`:
 }
 ```
 
-When reading image `sub-01/func/sub-01_task-rest_acq-default_bold.nii.gz`, only
-metadata file `task-rest_bold.json` is read; file
-`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` is inapplicable as it contains
-entity "`acq-longtr`" that is absent from the image path (rule 2.c). When reading image
-`sub-01/func/sub-01_task-rest_acq-longtr_bold.nii.gz`, metadata file
-`task-rest_bold.json` at the top level is read first, followed by file
-`sub-01/func/sub-01_task-rest_acq-longtr_bold.json` at the bottom level (rules 4.a, 4.c);
+When reading image `sub-01/func/sub-01_task-rest_acq-default_bold.nii.gz`,
+only metadata file `task-rest_bold.json` is read;
+file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json` is inapplicable as it contains
+entity "`acq-longtr`" that is absent from the image path.
+When reading image `sub-01/func/sub-01_task-rest_acq-longtr_bold.nii.gz`,
+metadata file `task-rest_bold.json` at the top level is read first,
+followed by file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json` at the bottom level;
 the value for field "`RepetitionTime`" is therefore overridden to the value `3.0`.
-The value for field "`EchoTime`" remains applicable to that image, and is not unset by its
-absence in the metadata file at the lower level (rule 4.c; corollary 3.b).
-
-Example 3: Complex inheritance scenario
-
-{{ MACROS___make_filetree_example(
-    {
-    "bold.json": "",
-    "sub-01": {
-        "ses-01": {
-            "func": {
-                "sub-01_ses-01_bold.json": "",
-                "sub-01_ses-01_task-ovg_bold.json": "",
-                "sub-01_ses-01_task-ovg_run-1_bold.nii.gz": "",
-                "sub-01_ses-01_task-ovg_run-2_bold.nii.gz": "",
-                "sub-01_ses-01_task-ovg_run-2_bold.json": "",
-                "sub-01_ses-01_task-rest_bold.nii.gz": "",
-                "sub-01_ses-01_task-rest_bold.json": "",
-                }
-            },
-        "ses-02": {
-            "func": {
-                "sub-01_ses-02_task-ovg_bold.nii.gz": "",
-                "sub-01_ses-02_task-rest_bold.nii.gz": "",
-                }
-            },
-        "sub-01_bold.json": "",
-        },
-    "sub-02": {
-        "ses-01": {
-            "func": {
-                "sub-02_ses-01_task-rest_bold.nii.gz": "",
-                "sub-02_ses-01_task-rest_bold.json": "",
-                }
-            }
-        },
-    "task-ovg_bold.json": "",
-    "task-rest_bold.json": "",
-    }
-) }}
-
-For each metadata file, the set of data files to which its contents are
-applicable is as follows:
-
--   `bold.json`:
-    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-1_bold.nii.gz"
-    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-2_bold.nii.gz"
-    -   `sub-01/ses-01/func/sub-01_ses-01_task-rest_bold.nii.gz"
-    -   `sub-01/ses-02/func/sub-01_ses-02_task-ovg_bold.nii.gz"
-    -   `sub-01/ses-02/func/sub-01_ses-02_task-rest_bold.nii.gz"
-    -   `sub-02/ses-01/func/sub-02_ses-01_task-rest_bold.nii.gz`
-
--   `task-ovg_bold.json`:
-    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-1_bold.nii.gz"
-    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-2_bold.nii.gz"
-    -   `sub-01/ses-02/func/sub-01_ses-02_task-ovg_bold.nii.gz"
-
--   `task-rest_bold.json`:
-    -   `sub-01/ses-01/func/sub-01_ses-01_task-rest_bold.nii.gz"
-    -   `sub-01/ses-02/func/sub-01_ses-02_task-rest_bold.nii.gz"
-    -   `sub-02/ses-01/func/sub-02_ses-01_task-rest_bold.nii.gz`
-
--   `sub-01/sub-01_bold.json`:
-    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-1_bold.nii.gz"
-    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-2_bold.nii.gz"
-    -   `sub-01/ses-01/func/sub-01_ses-01_task-rest_bold.nii.gz"
-    -   `sub-01/ses-02/func/sub-01_ses-02_task-ovg_bold.nii.gz"
-    -   `sub-01/ses-02/func/sub-01_ses-02_task-rest_bold.nii.gz"
-
--   `sub-01/ses-01/sub-01_ses-01_bold.json`:
-    -   `sub-01/ses-01/sub-01_ses-01_task-ovg_run-1_bold.nii.gz`
-    -   `sub-01/ses-01/sub-01_ses-01_task-ovg_run-2_bold.nii.gz
-    -   `sub-01/ses-01/sub-01_ses-01_task-rest_bold.nii.gz`
-
--   `sub-01/ses-01/sub-01_ses-01_task-ovg_bold.json`:
-    -   `sub-01/ses-01/sub-01_ses-01_task-ovg_run-1_bold.nii.gz`
-    -   `sub-01/ses-01/sub-01_ses-01_task-ovg_run-2_bold.nii.gz`
-
--   `sub-01/ses-01/sub-01_ses-01_task-ovg_run-2_bold.json`:
-    -   `sub-01/ses-01/sub-01_ses-01_task-ovg_run-2_bold.nii.gz`
-
--   `sub-01/ses-01/sub-01_ses-01_task-rest_bold.json`:
-    -   `sub-01/ses-01/sub-01_ses-01_task-rest_bold.nii.gz`
-
--   `sub-02/ses-01/sub-02_ses-01_task-rest_bold.json`:
-    -   `sub-02/ses-01/sub-02_ses-01_task-rest_bold.nii.gz`
-
-For each data file, the order in which the set of applicable metadata
-files would be loaded is as follows:
-
--   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-1_bold.nii.gz`:
-    -   `bold.json`
-    -   `task-ovg_bold.json`
-    -   `sub-01/sub-01_bold.json`
-    -   `sub-01/ses-01/func/sub-01_ses-01_bold.json`
-    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_bold.json`
-
--   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-2_bold.nii.gz`:
-    -   `bold.json`
-    -   `task-ovg_bold.json`
-    -   `sub-01/sub-01_bold.json`
-    -   `sub-01/ses-01/func/sub-01_ses-01_bold.json`
-    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_bold.json`
-    -   `sub-01/ses-01/func/sub-01_ses-01_task-ovg_run-2_bold.json`
-
--   `sub-01/ses-01/func/sub-01_ses-01_task-rest_bold.nii.gz`:
-    -   `bold.json`
-    -   `task-rest_bold.json`
-    -   `sub-01/sub-01_bold.json`
-    -   `sub-01/ses-01/func/sub-01_ses-01_bold.json`
-    -   `sub-01/ses-01/func/sub-01_ses-01_task-rest_bold.json`
-
--   `sub-01/ses-02/func/sub-01_ses-02_task-ovg_bold.nii.gz`:
-    -   `bold.json`
-    -   `task-ovg_bold.json`
-    -   `sub-01/sub-01_bold.json`
-
--   `sub-01/ses-02/func/sub-01_ses-02_task-rest_bold.nii.gz`:
-    -   `bold.json`
-    -   `task-rest_bold.json`
-    -   `sub-01/sub-01_bold.json`
-
--   `sub-02/ses-01/func/sub-02_ses-01_task-rest_bold.nii.gz`:
-    -   `bold.json`
-    -   `task-rest_bold.json`
-    -   `sub-02/ses-01/func/sub-02_ses-01_task-rest_bold.json`
-
-Example 4: Violation of inheritance principle
-
-{{ MACROS___make_filetree_example(
-    {
-    "sub-01": {
-        "func": {
-            "sub-01_acq-highres_bold.json": "",
-            "sub-01_acq-lowres_bold.json": "",
-            "sub-01_bold.json": "",
-            "sub-01_task-ovg_bold.json": "",
-            "sub-01_task-ovg_acq-highres_bold.nii.gz": "",
-            "sub-01_task-ovg_acq-lowres_bold.nii.gz": "",
-            "sub-01_task-rest_bold.json": "",
-            "sub-01_task-rest_acq-highres_bold.nii.gz": "",
-            "sub-01_task-rest_acq-lowres_bold.nii.gz": "",
-            }
-        }
-    }
-) }}
-
-Data file `sub-01_ses-01_task-ovg_acq-highres_bold.nii.gz` has three metadata
-files deemed applicable according to rule 2, all residing within the same directory: (
-`sub-01_bold.json`,
-`sub-01_task-ovg_bold.json`,
-`sub-01_acq-highres_bold.json`).
-It is however impossible to determine a unique ordering of these files that
-satisfies rule 4.a. The metadata contents to be associated with this data file
-would be ambiguous if files `sub-01_task-ovg_bold.json` and `sub-01_acq-highres_bold.json`
-were to contain differing values for the same key, as the ambiguous order in which
-they were loaded would determine those contents.
+The value for field "`EchoTime`" remains applicable to this image,
+and is not unset by its absence in the metadata file at the lower level.
 
 ## Participant names and other labels
 
