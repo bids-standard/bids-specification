@@ -1,6 +1,6 @@
 ---
-# Microscopy
-- suffixes:
+microscopy:
+  suffixes:
   - TEM
   - SEM
   - uCT
@@ -24,6 +24,8 @@
   - .png
   - .tif
   - .json
+  datatypes:
+  - micr
   entities:
     subject: required
     session: optional
@@ -33,13 +35,16 @@
     run: optional
     chunk: optional
 
-- suffixes:
+photo:
+  suffixes:
   - photo
   extensions:
   - .jpg
   - .png
   - .tif
   - .json
+  datatypes:
+  - micr
   entities:
     subject: required
     session: optional

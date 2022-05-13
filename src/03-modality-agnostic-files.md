@@ -27,7 +27,7 @@ and a guide for using macros can be found at
       "HEDVersion": "RECOMMENDED",
       "DatasetType": "RECOMMENDED",
       "License": "RECOMMENDED",
-      "Authors": "OPTIONAL",
+      "Authors": "RECOMMENDED",
       "Acknowledgements": "OPTIONAL",
       "HowToAcknowledge": "OPTIONAL",
       "Funding": "OPTIONAL",

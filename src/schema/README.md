@@ -1,9 +1,9 @@
 # BIDS-schema
 
-Portions of the BIDS specification are defined using YAML files, in order to
+Portions of the BIDS specification are defined using YAML files in order to
 make the specification machine-readable.
 
-Currently, the portions of the specification that rely on this schema are
+Currently the portions of the specification that rely on this schema are
 the entity tables, entity definitions, filename templates, and metadata tables.
 Any changes to the specification should be mirrored in the schema.
 
@@ -73,7 +73,7 @@ For objects with `snake_case` names, two underscores must be used.
 There should also be a comment near the object definition in the YAML file describing the nature of the different objects.
 
 For example, the TSV column `"reference"` means different things when used for EEG data, as compared to iEEG data.
-As such, there are two definitions in `columns.yaml` for the `"reference"` column: `"reference__eeg"` and `"reference_ieeg"`.
+As such, there are two definitions in `columns.yaml` for the `"reference"` column: `"reference__eeg"` and `"reference__ieeg"`.
 
 ```yaml
 # reference column for channels.tsv files for EEG data

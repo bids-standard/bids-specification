@@ -3,7 +3,7 @@ HED:
   name: HED
   description: |
     Hierarchical Event Descriptor (HED) Tag.
-    See [Appendix III](/99-appendices/03-hed.html) for details.
+    See [Appendix III](SPEC_ROOT/99-appendices/03-hed.md) for details.
   type: string
 abbreviation:
   name: abbreviation
@@ -16,14 +16,16 @@ acq_time__scans:
     Acquisition time refers to when the first data point in each run was acquired.
     Furthermore, if this header is provided, the acquisition times of all files
     from the same recording MUST be identical.
-    Datetime format and their anonymization are described in [Units](/02-common-principles.html#units).
+    Datetime format and their anonymization are described in
+    [Units](SPEC_ROOT/02-common-principles.md#units).
   type: string
   format: datetime
 acq_time__sessions:
   name: acq_time
   description: |
     Acquisition time refers to when the first data point of the first run was acquired.
-    Datetime format and their anonymization are described in [Units](/02-common-principles.html#units).
+    Datetime format and their anonymization are described in
+    [Units](SPEC_ROOT/02-common-principles.md#units).
   type: string
   format: datetime
 age:
@@ -466,7 +468,31 @@ trigger:
     continuous measurement of the scanner trigger signal
   type: number
 # type column in channels.tsv files
-type__channels:
+type__eeg_channels:
+  name: type
+  description: |
+    Type of channel; MUST use the channel types listed below.
+    Note that the type MUST be in upper-case.
+  type: string
+  enum:
+  - AUDIO
+  - EEG
+  - EOG
+  - ECG
+  - EMG
+  - EYEGAZE
+  - GSR
+  - HEOG
+  - MISC
+  - PPG
+  - PUPIL
+  - REF
+  - RESP
+  - SYSCLOCK
+  - TEMP
+  - TRIG
+  - VEOG
+type__meg_channels:
   name: type
   description: |
     Type of channel; MUST use the channel types listed below.
@@ -501,6 +527,33 @@ type__channels:
   - HLU
   - FITERR
   - OTHER
+type__ieeg_channels:
+  name: type
+  description: |
+    Type of channel; MUST use the channel types listed below.
+    Note that the type MUST be in upper-case.
+  type: string
+  enum:
+  - EEG
+  - ECOG
+  - SEEG
+  - DBS
+  - VEOG
+  - HEOG
+  - EOG
+  - ECG
+  - EMG
+  - TRIG
+  - AUDIO
+  - PD
+  - EYEGAZE
+  - PUPIL
+  - MISC
+  - SYSCLOCK
+  - ADC
+  - DAC
+  - REF
+  - OTHER
 # type column for electrodes.tsv files
 type__electrodes:
   name: type
@@ -512,7 +565,7 @@ units:
   description: |
     Physical unit of the value represented in this channel,
     for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter
-    (see [Units](/02-common-principles.html#units)).
+    (see [Units](SPEC_ROOT/02-common-principles.md#units)).
   type: string
   format: unit
 value:

@@ -276,7 +276,7 @@ and a guide for using macros can be found at
       "name__channels": ("REQUIRED", "When a corresponding electrode is specified in `_electrodes.tsv`, "
                          "the name of that electrode MAY be specified here and the reference electrode "
                          "name MAY be provided in the `reference` column."),
-      "type__channels": "REQUIRED",
+      "type__ieeg_channels": "REQUIRED",
       "units": "REQUIRED",
       "low_cutoff": "REQUIRED",
       "high_cutoff": "REQUIRED",
@@ -487,14 +487,14 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "IntendedFor": (
+      "IntendedFor__ds_relative": (
          "OPTIONAL",
          "If only a surface reconstruction is available, this should point to "
          "the surface reconstruction file. "
          "Note that this file should have the same coordinate system "
          "specified in `iEEGCoordinateSystem`. "
-         "For example, **T1**: `'sub-<label>/ses-<label>/anat/"
-         "sub-01_T1w.nii.gz'`  "
+         "For example, **T1**: `'/sub-<label>/ses-<label>/anat/"
+         "sub-01_T1w.nii.gz'`"
          "**Surface**: `'/derivatives/surfaces/sub-<label>/ses-<label>/anat/"
          "sub-01_hemi-R_desc-T1w_pial.surf.gii'` "
          "**Operative photo**: `'/sub-<label>/ses-<label>/ieeg/"

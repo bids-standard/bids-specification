@@ -1,0 +1,220 @@
+---
+anat_parametric_volumetric:
+  $ref: rules.datatypes.anat.parametric
+  entities:
+    $ref: rules.datatypes.anat.parametric.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+    desc: OPTIONAL
+
+anat_nonparametric_volumetric:
+  $ref: rules.datatypes.anat.nonparametric
+  entities:
+    $ref: rules.datatypes.anat.nonparametric.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+    desc: OPTIONAL
+
+dwi_volumetric:
+  $ref: rules.datatypes.dwi.dwi
+  entities:
+    $ref: rules.datatypes.dwi.dwi.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+    desc: OPTIONAL
+
+func_volumetric:
+  $ref: rules.datatypes.func.func
+  entities:
+    $ref: rules.datatypes.func.func.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+    desc: OPTIONAL
+
+anat_parametric_mask:
+  $ref: rules.datatypes.anat.parametric
+  suffixes:
+  - mask
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: rules.datatypes.anat.parametric.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+    label: OPTIONAL
+    desc: OPTIONAL
+
+anat_nonparametric_mask:
+  $ref: rules.datatypes.anat.nonparametric
+  suffixes:
+  - mask
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: rules.datatypes.anat.nonparametric.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+    label: OPTIONAL
+    desc: OPTIONAL
+
+dwi_mask:
+  $ref: rules.datatypes.dwi.dwi
+  suffixes:
+  - mask
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: rules.datatypes.dwi.dwi.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+    label: OPTIONAL
+    desc: OPTIONAL
+
+func_mask:
+  $ref: rules.datatypes.func.func
+  suffixes:
+  - mask
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: rules.datatypes.func.func.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+    label: OPTIONAL
+    desc: OPTIONAL
+
+anat_parametric_discrete_segmentation:
+  $ref: rules.datatypes.anat.parametric
+  suffixes:
+  - dseg
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: rules.datatypes.anat.parametric.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+
+anat_nonparametric_discrete_segmentation:
+  $ref: rules.datatypes.anat.nonparametric
+  suffixes:
+  - dseg
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: rules.datatypes.anat.nonparametric.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+
+func_discrete_segmentation:
+  $ref: rules.datatypes.func.func
+  suffixes:
+  - dseg
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: rules.datatypes.func.func.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+
+dwi_discrete_segmentation:
+  $ref: rules.datatypes.dwi.dwi
+  suffixes:
+  - dseg
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: rules.datatypes.dwi.dwi.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+
+anat_parametric_probabilistic_segmentation:
+  $ref: rules.datatypes.anat.parametric
+  suffixes:
+  - probseg
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: rules.datatypes.anat.parametric.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+    label: OPTIONAL
+
+anat_nonparametric_probabilistic_segmentation:
+  $ref: rules.datatypes.anat.nonparametric
+  suffixes:
+  - probseg
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: rules.datatypes.anat.nonparametric.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+    label: OPTIONAL
+
+func_probabilistic_segmentation:
+  $ref: rules.datatypes.func.func
+  suffixes:
+  - probseg
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: rules.datatypes.func.func.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+    label: OPTIONAL
+
+dwi_probabilistic_segmentation:
+  $ref: rules.datatypes.dwi.dwi
+  suffixes:
+  - probseg
+  extensions:
+  - .nii.gz
+  entities:
+    $ref: rules.datatypes.dwi.dwi.entities
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+    label: OPTIONAL
+
+anat_parametic_discrete_surface:
+  $ref: rules.datatypes.anat.parametric
+  suffixes:
+  - dseg
+  extensions:
+  - .label.gii
+  - .dlabel.nii
+  entities:
+    $ref: rules.datatypes.anat.parametric.entities
+    hemisphere:: OPTIONAL
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
+
+anat_nonparametic_discrete_surface:
+  $ref: rules.datatypes.anat.nonparametric
+  suffixes:
+  - dseg
+  extensions:
+  - .label.gii
+  - .dlabel.nii
+  entities:
+    $ref: rules.datatypes.anat.nonparametric.entities
+    hemisphere:: OPTIONAL
+    space: OPTIONAL
+    resolution: OPTIONAL
+    density: OPTIONAL
