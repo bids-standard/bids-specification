@@ -25,6 +25,16 @@ acquisition:
     remains at the discretion of the researcher.
   type: string
   format: label
+atlas:
+  name: Atlas
+  entity: atlas
+  description: |
+    The `atlas-<label>` key/value pair corresponds to a custom label the user
+    MAY use to distinguish a different atlas used for similar type of data.
+
+    This entity is only applicable to derivative data.
+  type: string
+  format: label
 ceagent:
   name: Contrast Enhancing Agent
   entity: ce
@@ -230,7 +240,8 @@ run:
   name: Run
   entity: run
   description: |
-    If several scans with the same acquisition parameters are acquired in the same session,
+    If several data acquisitions (for example, MRI scans or EEG recordings)
+    with the same acquisition parameters are acquired in the same session,
     they MUST be indexed with the [`run-<index>`](../99-appendices/09-entities.md#run) entity:
     `_run-1`, `_run-2`, `_run-3`, and so on (only nonnegative integers are allowed as
     run labels).

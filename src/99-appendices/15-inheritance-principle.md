@@ -80,6 +80,11 @@ as reference for both software implementations and advanced BIDS users.
 
 ### Example 1: Complex inheritance scenario
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+
 {{ MACROS___make_filetree_example(
     {
     "bold.json": "",
@@ -207,6 +212,11 @@ files would be loaded is as follows:
     -   `sub-02/ses-01/func/sub-02_ses-01_task-rest_bold.json`
 
 ### Example 2: Violation due to order ambiguity
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 
 {{ MACROS___make_filetree_example(
     {
