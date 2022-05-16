@@ -1,4 +1,5 @@
 import logging
+import shutil
 import tempfile
 from subprocess import run
 
