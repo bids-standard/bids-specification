@@ -283,13 +283,6 @@ def load_entities(
 
     regex_schema = []
     for datatype in datatypes:
-        print(datatype)
-        print(datatypes[datatype])
-        print(datatype)
-        print(datatypes[datatype])
-        print(datatype)
-        print(datatypes[datatype])
-        print(type(datatypes[datatype]))
         for variant in datatypes[datatype].values():
             regex_entities = ""
             for entity in entity_order:
@@ -297,16 +290,6 @@ def load_entities(
                 # As in:
                 # https://github.com/bids-standard/bids-specification/pull/987
                 try:
-                    print(variant)
-                    print(variant)
-                    print(variant)
-                    print(variant)
-                    print(variant)
-                    print(variant)
-                    print(variant)
-                    print(variant)
-                    print(variant)
-                    print(variant)
                     if entity in variant["entities"]:
                         entity_shorthand = entity_definitions[entity]["entity"]
                         if "enum" in entity_definitions[entity].keys():
@@ -556,7 +539,7 @@ def select_schema_dir(
     bids_paths,
     schema_reference_root,
     schema_version,
-    schema_min_version="1.7.0",
+    schema_min_version="1.7.0+229",
 ):
     """
     Select schema directory, according to a fallback logic whereby the schema path is
@@ -693,6 +676,7 @@ def validate_bids(
     schema_version=None,
     debug=False,
     report_path=False,
+    suppress_errors=False,
 ):
     """
     Validate paths according to BIDS schema.
@@ -747,12 +731,13 @@ def validate_bids(
         debug=debug,
     )
 
+    log_errors(validation_result)
+
     if report_path:
         if isinstance(report_path, str):
             write_report(validation_result, report_path=report_path)
         else:
             write_report(validation_result)
 
-    log_errors(validation_result)
 
     return validation_result
