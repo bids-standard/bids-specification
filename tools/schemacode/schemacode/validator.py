@@ -492,8 +492,8 @@ def write_report(
                 else:
                     comparison_result = "no match"
                 f.write(
-                    f'- Comparing the `{comparison["path"]}` path to the `{comparison["regex"]}` "\
-                    resulted in {comparison_result}.\n'
+                    f'- Comparing the `{comparison["path"]}` path to the `{comparison["regex"]}` '\
+                    f'pattern resulted in {comparison_result}.\n'
                 )
         except KeyError:
             pass

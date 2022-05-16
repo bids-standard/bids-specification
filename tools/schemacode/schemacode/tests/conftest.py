@@ -28,7 +28,7 @@ def get_gitrepo_fixture(url):
 
     return fixture
 
-bids_examples = get_gitrepo_fixture("https://github.com/dandi/bids-examples")
+bids_examples = get_gitrepo_fixture("https://github.com/bids-standard/bids-examples")
 
 @pytest.fixture(scope="session")
 def schema_dir():
