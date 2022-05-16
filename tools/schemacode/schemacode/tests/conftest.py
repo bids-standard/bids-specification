@@ -1,11 +1,13 @@
-import pytest
-import tempfile
 import logging
+import tempfile
 from subprocess import run
+
+import pytest
 
 from schemacode import schema, utils
 
 lgr = logging.getLogger()
+
 
 @pytest.mark.no_network
 def get_gitrepo_fixture(url):
@@ -28,7 +30,9 @@ def get_gitrepo_fixture(url):
 
     return fixture
 
+
 bids_examples = get_gitrepo_fixture("https://github.com/bids-standard/bids-examples")
+
 
 @pytest.fixture(scope="session")
 def schema_dir():
@@ -41,4 +45,3 @@ def schema_dir():
 def schema_obj(schema_dir):
     """Schema object."""
     return schema.load_schema(schema_dir)
-

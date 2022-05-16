@@ -219,7 +219,7 @@ def test__add_suffixes():
 def test_load_all():
     from schemacode.validator import load_all
 
-    #schema_path = "/usr/share/bids-schema/1.7.0/"
+    # schema_path = "/usr/share/bids-schema/1.7.0/"
     schema_path = os.path.join(
         os.path.abspath(os.path.dirname(__file__)),
         "../data/schema",

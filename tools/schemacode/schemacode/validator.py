@@ -1,9 +1,9 @@
 import datetime
-from functools import lru_cache
 import json
 import os
 import re
 from copy import deepcopy
+from functools import lru_cache
 
 from . import schema, utils
 
@@ -263,9 +263,7 @@ def load_entities(
 
     # Parsing tabular_metadata as a datatype, might be done automatically if the YAML is moved
     # to the same subdirectory
-    my_schema["rules"]["datatypes"]["tabular_metadata"] = my_schema["rules"][
-        "tabular_metadata"
-    ]
+    my_schema["rules"]["datatypes"]["tabular_metadata"] = my_schema["rules"]["tabular_metadata"]
     datatypes = my_schema["rules"]["datatypes"]
     entity_order = my_schema["rules"]["entities"]
     entity_definitions = my_schema["objects"]["entities"]
@@ -429,9 +427,7 @@ def validate_all(
             match_listing.append(match_entry)
         else:
             if debug:
-                print(
-                    f"The `{target_path}` file could not be matched to any regex schema entry."
-                )
+                print(f"The `{target_path}` file could not be matched to any regex schema entry.")
     results = {}
     if debug:
         results["itemwise"] = itemwise_results
@@ -471,7 +467,6 @@ def write_report(
     * Not using f-strings in order to prevent arbitrary code execution.
     """
 
-
     report_path = report_path.format(
         datetime=datetime.datetime.utcnow().strftime(datetime_format),
         pid=os.getpid(),
@@ -492,8 +487,8 @@ def write_report(
                 else:
                     comparison_result = "no match"
                 f.write(
-                    f'- Comparing the `{comparison["path"]}` path to the `{comparison["regex"]}` '\
-                    f'pattern resulted in {comparison_result}.\n'
+                    f'- Comparing the `{comparison["path"]}` path to the `{comparison["regex"]}` '
+                    f"pattern resulted in {comparison_result}.\n"
                 )
         except KeyError:
             pass
@@ -511,9 +506,7 @@ def write_report(
         else:
             f.write("All files were matched by a regex schema entry.")
         if len(validation_result["schema_tracking"]) > 0:
-            f.write(
-                "\nThe following mandatory regex schema entries did not match any files:"
-            )
+            f.write("\nThe following mandatory regex schema entries did not match any files:")
             f.write("\n")
             for entry in validation_result["schema_tracking"]:
                 if entry["mandatory"]:
@@ -667,7 +660,7 @@ def log_errors(validation_result):
                 entry["regex"],
             )
     for i in validation_result["path_tracking"]:
-        lgr.warning("The `%s` file was not matched by any regex schema entry.", i) 
+        lgr.warning("The `%s` file was not matched by any regex schema entry.", i)
 
 
 def validate_bids(
@@ -721,9 +714,7 @@ def validate_bids(
     if isinstance(bids_paths, str):
         bids_paths = [bids_paths]
 
-    bids_schema_dir = select_schema_dir(
-        bids_paths, schema_reference_root, schema_version
-    )
+    bids_schema_dir = select_schema_dir(bids_paths, schema_reference_root, schema_version)
     regex_schema = load_all(bids_schema_dir)
     validation_result = validate_all(
         bids_paths,
@@ -738,6 +729,5 @@ def validate_bids(
             write_report(validation_result, report_path=report_path)
         else:
             write_report(validation_result)
-
 
     return validation_result
