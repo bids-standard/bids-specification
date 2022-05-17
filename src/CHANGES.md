@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[ENH] Add Microscopy-BIDS citation [#1102](https://github.com/bids-standard/bids-specification/pull/1102) ([mariehbourget](https://github.com/mariehbourget))
 -   \[FIX] MEG link typo [#1100](https://github.com/bids-standard/bids-specification/pull/1100) ([xi](https://github.com/xi))
 -   \[FIX] Standardized tabular_metadata.yaml syntax to conform to: f04b47ff [#1098](https://github.com/bids-standard/bids-specification/pull/1098) ([TheChymera](https://github.com/TheChymera))
 -   \[SCHEMA] Create macro to render fields within objects [#1097](https://github.com/bids-standard/bids-specification/pull/1097) ([tsalo](https://github.com/tsalo))
