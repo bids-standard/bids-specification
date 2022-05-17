@@ -5,8 +5,12 @@
  */
 import { ts } from 'https://deno.land/x/ts_morph@14.0.0/bootstrap/mod.ts'
 
-function capitalize(str) {
-  return `${str.charAt(0).toUpperCase()}${str.slice(1)}`
+export function toCamel(str) {
+  return str
+    .split('_')
+    .filter((x) => x.length > 0)
+    .map((x) => x.charAt(0).toUpperCase() + x.slice(1))
+    .join('')
 }
 
 /**
@@ -23,14 +27,17 @@ const interfaceExport = ts.factory.createModifiersFromModifierFlags(
 )
 
 export function generateObjectDefinition(name, definition): Array<ts.Node> {
+  const interfaceName = toCamel(name)
   const customTypeInterfaces = []
   // Construct all properties of the interface
   const interfaceProps = Object.entries(definition.properties).map(
     ([key, value]) => {
       // Test for an nested interface we can define
       if (value.type === 'object' && value.hasOwnProperty('properties')) {
+        // Create a name for this nested interface using snake case terms and convert to title case
+        const customInterfaceName = toCamel(`${name}_${key}`)
         const customInterface = generateObjectDefinition(
-          `${capitalize(name)}${capitalize(key)}`,
+          customInterfaceName,
           value
         )
         if (Array.isArray(customInterface)) {
@@ -62,7 +69,7 @@ export function generateObjectDefinition(name, definition): Array<ts.Node> {
     ts.factory.createInterfaceDeclaration(
       undefined,
       interfaceExport,
-      name,
+      interfaceName,
       undefined,
       undefined,
       interfaceProps

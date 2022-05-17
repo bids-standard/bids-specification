@@ -1,5 +1,11 @@
 import { assertEquals } from 'https://deno.land/std@0.138.0/testing/asserts.ts'
-import { generateTypes, print, createSourceFile } from './generate.ts'
+import { toCamel, generateTypes, print, createSourceFile } from './generate.ts'
+
+Deno.test('toCamel() supports expected specification names', () => {
+  assertEquals(toCamel('dim_info'), 'DimInfo')
+  assertEquals(toCamel('dataset'), 'Dataset')
+  assertEquals(toCamel('Dataset_nifti_PixDim'), 'DatasetNiftiPixDim')
+})
 
 Deno.test('generateTypes() supports primitive string', () => {
   const file = createSourceFile('test.ts')
@@ -102,7 +108,7 @@ Deno.test('generateTypes() supports typed object type', () => {
 
   assertEquals(
     print(file),
-    `export interface dim_info {
+    `export interface DimInfo {
     freq: number;
     phase: number;
     slice: number;
@@ -144,7 +150,7 @@ Deno.test('generateTypes() supports object trees', () => {
     `export interface DatasetSubjects {
     sub_dirs: string[];
 }
-export interface dataset {
+export interface Dataset {
     dataset_description: object;
     subjects: DatasetSubjects;
 }
