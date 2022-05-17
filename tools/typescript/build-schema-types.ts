@@ -6,8 +6,8 @@ import { parse } from 'https://deno.land/std@0.138.0/encoding/yaml.ts'
 import { join } from 'https://deno.land/std@0.138.0/path/mod.ts'
 import { createSourceFile, generateTypes, print } from './generate.ts'
 
-const contextPath = join('..', '..', 'src', 'schema', 'meta', 'context.yaml')
-const libraryPath = join('output')
+const contextPath = join('src', 'schema', 'meta', 'context.yaml')
+const libraryPath = join('tools', 'typescript', 'output')
 
 async function buildContextTypes() {
   const contextSchema = parse(await Deno.readTextFile(contextPath)) as Record<
