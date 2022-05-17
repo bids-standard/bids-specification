@@ -140,6 +140,15 @@ For example:
     **The genetics-BIDS extension: Easing the search for genetic data associated with human brain imaging**.
     GigaScience, 9 (10). [doi:10.1093/gigascience/giaa104](https://doi.org/10.1093/gigascience/giaa104)
 
+#### Microscopy
+
+-   Bourget M.-H., Kamentsky L., Ghosh S.S., Mazzamuto G., Lazari A., Markiewicz C.J., Oostenveld R.,
+    Niso G., Halchenko Y.O., Lipp I., Takerkart S., Toussaint P.-J., Khan A.R., Nilsonne G.,
+    Castelli F.M., The BIDS Maintainers and Cohen-Adad J. (2022).
+    **Microscopy-BIDS: An Extension to the Brain Imaging Data Structure for Microscopy Data**.
+    Frontiers in Neuroscience, 16 (871228).
+    [doi: 10.3389/fnins.2022.871228](https://doi.org/10.3389/fnins.2022.871228)
+
 ### Research Resource Identifier (RRID)
 
 BIDS has also a
