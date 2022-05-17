@@ -157,7 +157,7 @@ def _add_extensions(regex_string, variant):
 def _add_subdirs(regex_string, variant, datatype, entity_definitions, modality_datatypes):
     """Add appropriate subdirectories as required by entities present."""
 
-    label = "([a-z,A-Z,0-9]*?)"
+    label = "([a-zA-Z0-9]*?)"
 
     regex_dirs = "/"
     for dir_entity in DIR_ENTITIES:
@@ -240,7 +240,7 @@ def load_entities(
     -----
 
     * Couldn't find where the `label` type is defined as alphanumeric, hard-coding
-        `entity_definitions["subject"]["format"]`-type entries as`[a-z,A-Z,0-9]*?` for the time
+        `entity_definitions["subject"]["format"]`-type entries as`[a-zA-Z0-9]*?` for the time
         being.
         Apparently there is a `label` (alphanumeric) versus `index` (integer) specification:
         https://github.com/bids-standard/bids-specification/issues/956#issuecomment-992967479
@@ -259,7 +259,7 @@ def load_entities(
         A list of dictionaries, with keys including 'regex' and 'mandatory'.
     """
 
-    label = "([a-z,A-Z,0-9]*?)"
+    label = "([a-zA-Z0-9]*?)"
 
     # Parsing tabular_metadata as a datatype, might be done automatically if the YAML is moved
     # to the same subdirectory
