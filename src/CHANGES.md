@@ -4,6 +4,7 @@
 
 -   \[ENH] Add Microscopy-BIDS citation [#1102](https://github.com/bids-standard/bids-specification/pull/1102) ([mariehbourget](https://github.com/mariehbourget))
 -   \[FIX] MEG link typo [#1100](https://github.com/bids-standard/bids-specification/pull/1100) ([xi](https://github.com/xi))
+-   \[SCHEMA] Generate schema context object TypeScript definitions [#1099](https://github.com/bids-standard/bids-specification/pull/1099) ([nellh](https://github.com/nellh))
 -   \[FIX] Standardized tabular_metadata.yaml syntax to conform to: f04b47ff [#1098](https://github.com/bids-standard/bids-specification/pull/1098) ([TheChymera](https://github.com/TheChymera))
 -   \[SCHEMA] Create macro to render fields within objects [#1097](https://github.com/bids-standard/bids-specification/pull/1097) ([tsalo](https://github.com/tsalo))
 -   \[INFRA] Fix internal links implicitly [#1096](https://github.com/bids-standard/bids-specification/pull/1096) ([effigies](https://github.com/effigies))
