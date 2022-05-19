@@ -48,6 +48,12 @@ and a JSON file for storing the following metadata fields.
 Note that when supplying a `*_<physio|stim>.tsv.gz` file, an accompanying
 `*_<physio|stim>.json` MUST be supplied as well.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "SamplingFrequency": "REQUIRED",
@@ -68,6 +74,10 @@ as well as to make support for other file formats possible in the future.
 
 Example `*_physio.tsv.gz`:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-control01": {
@@ -88,6 +98,10 @@ Example `*_physio.tsv.gz`:
 
 Example `*_physio.json`:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-control01": {
@@ -114,6 +128,12 @@ Example `*_physio.json`:
 To store pulse or breathing measurements, or the scanner trigger signal, the
 following naming conventions SHOULD be used for the column names:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "cardiac": "OPTIONAL",
@@ -140,6 +160,10 @@ For multi-echo data, a given `physio.tsv` file is applicable to all echos of
 a particular run.
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -158,6 +182,12 @@ For example:
 The following RECOMMENDED metadata can also be added in the side-car JSON files
 of any `*_<physio>.tsv.gz` file.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "Manufacturer": "RECOMMENDED",
