@@ -1,7 +1,6 @@
 ---
-# MEG data files
-# First group
-- suffixes:
+meg:
+  suffixes:
   - meg
   extensions:
   - /  # corresponds to BTi/4D data
@@ -17,6 +16,8 @@
   - .mhd
   - .trg
   - .chn
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -26,12 +27,13 @@
     processing: optional
     split: optional
 
-# Second group
-# Specifically, it's dat files with "acq-calibration"
-- suffixes:
+calibration:
+  suffixes:
   - meg
   extensions:
   - .dat
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -41,12 +43,13 @@
       enum:
       - calibration
 
-# Third group
-# fif files with "acq-crosstalk"
-- suffixes:
+crosstalk:
+  suffixes:
   - meg
   extensions:
   - .fif
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -56,23 +59,27 @@
       enum:
       - crosstalk
 
-# Headshape files
-- suffixes:
+headshape:
+  suffixes:
   - headshape
   extensions:
   - .*
   - .pos
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
     acquisition: optional
 
-# Marker files
-- suffixes:
+markers:
+  suffixes:
   - markers
   extensions:
   - .sqd
   - .mrk
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -80,22 +87,26 @@
     acquisition: optional
     space: optional
 
-# Coordinate systems
-- suffixes:
+coordsystem:
+  suffixes:
   - coordsystem
   extensions:
   - .json
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
     acquisition: optional
 
-# Channel files
-- suffixes:
+channels:
+  suffixes:
   - channels
   extensions:
   - .json
   - .tsv
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -104,12 +115,14 @@
     run: optional
     processing: optional
 
-# Events files
-- suffixes:
+events:
+  suffixes:
   - events
   extensions:
   - .json
   - .tsv
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -117,23 +130,29 @@
     acquisition: optional
     run: optional
 
-# Head photos
-- suffixes:
+photo:
+  suffixes:
   - photo
   extensions:
   - .jpg
+  - .png
+  - .tif
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
     acquisition: optional
 
-# Timeseries
-- suffixes:
+timeseries:
+  suffixes:
   - physio
   - stim
   extensions:
   - .tsv.gz
   - .json
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
