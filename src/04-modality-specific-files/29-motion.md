@@ -14,15 +14,17 @@ and can be used for practical guidance when curating a new dataset.
 
 Template:
 
+```markdown
 └─ sub-<label>\
 └─ \[ses-<label>]\
 └─ motion\
-├─ sub-<label>\[\_ses-<label>]\_task-<label>\_tracksys-<label>\_motion.tsv
-├─ sub-<label>\[\_ses-<label>]\_task-<label>\_motion.json
-├─ sub-<label>\[\_ses-<label>]\_task-<label>\_channels.tsv
-├─ sub-<label>\[\_ses-<label>]\_task-<label>\_coordsys.json
-├─ sub-<label>\[\_ses-<label>]\_task-<label>\_events.tsv
-└─ sub-<label>\[\_ses-<label>]\_task-<label>\_events.json
+├─ sub-<label>\[\_ses-<label>][\_task-<label>\]_tracksys-<label>\_motion.tsv
+├─ sub-<label>\[\_ses-<label>][\_task-<label>\]_motion.json
+├─ sub-<label>\[\_ses-<label>][\_task-<label>\]_channels.tsv
+├─ sub-<label>\[\_ses-<label>][\_task-<label>\]_coordsys.json
+├─ sub-<label>\[\_ses-<label>][\_task-<label>\]_events.tsv
+└─ sub-<label>\[\_ses-<label>][\_task-<label>\]_events.json
+```
 
 A wide variety of motion capture systems are used in human research, resulting in
 different native data formats. The current BEP specifically
@@ -79,76 +81,99 @@ Note that the field `TrackingSystems` has some REQUIRED and RECOMMENDED fields i
 
 Specific fields in `TrackingSystems` :
 
-| **Key name**               | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                     |
-| -------------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SamplingFrequencyEffective | REQUIRED              | number        | Effective sampling rate of the tracking system in Hz. If available, otherwise same as `SamplingFrequencyNominal`.                                                                                   |
-| SamplingFrequencyNominal   | REQUIRED              | number        | Nominal sampling rate of the tracking system in Hz.                                                                                                                                                 |
-| MissingValues              | RECOMMENDED           | string        | How missing values are represented in the given tracking system, for example, “NaN”, “0”.                                                                                                           |
-| SoftwareVersions           | RECOMMENDED           | string        | Manufacturer’s   designation of the acquisition software.                                                                                                                                           |
-| RecordingDuration          | RECOMMENDED           | number        | Length of the   recording in seconds (for example 3600).                                                                                                                                            |
-| TrackedPointsCount         | RECOMMENDED           | number        | Number of   different tracked points tracked in the system. A tracked point is a specific point on an object that is being tracked, which can be a body part or an inanimate object.                |
-| ANGACCChannelCount         | RECOMMENDED           | number        | Number of angular acceleration channels recorded by the system.                                                                                                                                     |
-| ANGVELChannelCount         | RECOMMENDED           | number        | Number of angular velocity channels recorded by the system.                                                                                                                                         |
-| JNTANGChannelCount         | RECOMMENDED           | number        | Number of joint angle channels recorded by the system.                                                                                                                                              |
-| MAGNChannelCount           | RECOMMENDED           | number        | Number of magnetic field strength channels recorded by the system.                                                                                                                                  |
-| ORNTChannelCount           | RECOMMENDED           | number        | Number of orientation channels recorded by the system.                                                                                                                                              |
-| POSChannelCount            | RECOMMENDED           | number        | Number of position channels recorded by the system.                                                                                                                                                 |
-| VELChannelCount            | RECOMMENDED           | number        | Number of linear velocity channels recorded by the system.                                                                                                                                          |
-| ExternalSoftwareVersions   | OPTIONAL              | string        | Names and   versions of additional software used for presentation or recording, other   than the software designated by the manufacture of the motion capture system   in field "SoftwareVersions”. |
-| Manufacturer               | OPTIONAL              | string        | Manufacturer of   the motion tracking system.                                                                                                                                                       |
-| ManufacturersModelName     | OPTIONAL              | string        | Manufacturer’s   designation of the motion tracking hardware model.                                                                                                                                 |
+| **Key name**               | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| -------------------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| TrackingSystemName         | REQUIRED              | string        | Name of the tracking system. The value should match the “tracksys” value of the corresponding `*_motion.tsv` file name.                                                                                                                                                                                                                                                                                                                                                                                                          |
+| SamplingFrequencyEffective | REQUIRED              | number        | Effective sampling rate of the tracking system in Hz. If available, otherwise same as `SamplingFrequency`.                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| SamplingFrequency          | REQUIRED              | number        | Nominal sampling rate of the tracking system in Hz.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| MissingValues              | RECOMMENDED           | string        | How missing values are represented in the given tracking system, for example, “NaN”, “0”.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| SoftwareVersions           | RECOMMENDED           | string        | Manufacturer’s   designation of the acquisition software.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| RecordingDuration          | RECOMMENDED           | number        | Length of the   recording in seconds (for example 3600).                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| TrackedPointsCount         | RECOMMENDED           | number        | Number of   different tracked points tracked in the system. A tracked point is a specific point on an object that is being tracked, which can be a body part or an inanimate object.                                                                                                                                                                                                                                                                                                                                             |
+| ANGACCChannelCount         | RECOMMENDED           | number        | Number of angular acceleration channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ANGVELChannelCount         | RECOMMENDED           | number        | Number of angular velocity channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| JNTANGChannelCount         | RECOMMENDED           | number        | Number of joint angle channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| MAGNChannelCount           | RECOMMENDED           | number        | Number of magnetic field strength channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ORNTChannelCount           | RECOMMENDED           | number        | Number of orientation channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| POSChannelCount            | RECOMMENDED           | number        | Number of position channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| VELChannelCount            | RECOMMENDED           | number        | Number of linear velocity channels recorded by the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ExternalSoftwareVersions   | OPTIONAL              | string        | Names and   versions of additional software used for presentation or recording, other   than the software designated by the manufacture of the motion capture system   in field "SoftwareVersions”.                                                                                                                                                                                                                                                                                                                              |
+| Manufacturer               | OPTIONAL              | string        | Manufacturer of   the motion tracking system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ManufacturersModelName     | OPTIONAL              | string        | Manufacturer’s   designation of the motion tracking hardware model.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| SpatialAxes                | RECOMMENDED           | string        | Refers to the coordinate system in which the motion data are to be interpreted, if the recorded data can be mapped to a fixed reference frame. A sequence of characters F/B (forward-backward), L/R (left-right), and U/D (up-down). The position of a character in the sequence determines which of the X,Y,Z axes it maps to. For example, “FRD” for  X-forward,  Y-right, Z-down. For 1D or 2D cases, only specify the used axes and use the character “_” for unused axes (“F_R” when the Y axis is not used, for instance). |
+| RotationRule               | RECOMMENDED           | string        | In case orientation channels are present, indicate whether rotations are applied clockwise around an axis when seen from the positive direction (left-hand rule) or counter-clockwise (right-hand rule)                                                                                                                                                                                                                                                                                                                          |
+| RotationOrder              | RECOMMENDED           | string        | Specify the sequence in which the elemental rotations are applied around the extrinsic axes. A 3D rotation is represented about 3 different axes (Tait-Bryan convention).                                                                                                                                                                                                                                                                                                                                                        |
+
+Restricted keyword list for field `RotationRule`:
+
+| **Keyword** | **Description**                |
+| ----------- | ------------------------------ |
+| left-hand   | Left-hand rule for rotations.  |
+| right-hand  | Right-hand rule for rotations. |
+
+Restricted keyword list for field `RotationOrder`:
+
+| **Keyword** | **Description**                   |
+| ----------- | --------------------------------- |
+| XYZ         | Sequence of axis to do rotations. |
+| XZY         | Sequence of axis to do rotations. |
+| YXZ         | Sequence of axis to do rotations. |
+| YZX         | Sequence of axis to do rotations. |
+| ZXY         | Sequence of axis to do rotations. |
+| ZYX         | Sequence of axis to do rotations. |
 
 Example:
 
 ```JSON
 {
-	"InstitutionName": "Kiel University",
-	"InstitutionalDepartmentName": "Department of Neurology",
-	"MotionChannelCount": 297,
-	"RecordingDuration": 10.76500232,
-	"TaskDescription": "walking backwards",
-	"TaskName": "backwards",
-	"TrackedPointsCountTotal": 67,
-	"TrackingSystems": {
-		"imu": {
-			"Manufacturer": "Noraxon Inc.",
-			"ManufacturersModelName": "myoMOTION",
-			"SamplingFrequencyNominal": 200,
-			"TrackedPointsCount": 16,
-			"POSChannelCount": 0,
-			"ORNTChannelCount": 0,
-			"VELChannelCount": 0,
-			"ANGVELChannelCount": 48,
-			"ACCChannelCount": 48,
-			"ANGACCChannelCount": 0,
-			"MAGNChannelCount": 48,
-			"JNTANGChannelCount": 0,
-			"DeviceSerialNumber": null,
-			"SoftwareVersions": null,
-			"ExternalSoftwareVersions": null,
-			"SamplingFrequencyEffective": 199.9105145,
-			"RecordingDuration": 11.18000224
-		},
-		"omc": {
-			"Manufacturer": "Qualisys",
-			"ManufacturersModelName": "AB",
-			"SamplingFrequencyNominal": 200,
-			"TrackedPointsCount": 51,
-			"POSChannelCount": 153,
-			"ORNTChannelCount": 0,
-			"VELChannelCount": 0,
-			"ANGVELChannelCount": 0,
-			"ACCChannelCount": 0,
-			"ANGACCChannelCount": 0,
-			"MAGNChannelCount": 0,
-			"JNTANGChannelCount": 0,
-			"DeviceSerialNumber": null,
-			"SoftwareVersions": null,
-			"ExternalSoftwareVersions": null,
-			"SamplingFrequencyEffective": 199.9070632,
-			"RecordingDuration": 10.76500232
-		}
-	}
+  "InstitutionName": "Kiel University",
+  "InstitutionalDepartmentName": "Department of Neurology",
+  "MotionChannelCount": 297,
+  "RecordingType":"continuous",
+  "TaskDescription": "walking backwards",
+  "TaskName": "backwards",
+  "TrackedPointsCountTotal": 67,
+  "TrackingSystems": [
+	   {
+      "TrackingSystemName":"imu",
+		  "Manufacturer": "Noraxon Inc.",
+		  "ManufacturersModelName": "myoMOTION",
+		  "SamplingFrequency": 200,
+      "SamplingFrequencyEffective": 199.9105145,
+		  "TrackedPointsCount": 16,
+		  "POSChannelCount": 0,
+		  "ORNTChannelCount": 0,
+		  "VELChannelCount": 0,
+		  "ANGVELChannelCount": 48,
+		  "ACCChannelCount": 48,
+		  "ANGACCChannelCount": 0,
+		  "MAGNChannelCount": 48,
+		  "JNTANGChannelCount": 0,
+		  "DeviceSerialNumber": null,
+		  "SoftwareVersions": null,
+		  "ExternalSoftwareVersions": null,
+		  "RecordingDuration": 11.18000224},
+
+	  {
+      "TrackingSystemName":"omc",
+		  "Manufacturer": "Qualisys",
+		  "ManufacturersModelName": "AB",
+		  "SamplingFrequency": 200,
+      "SamplingFrequencyEffective": 199.9070632,
+		  "TrackedPointsCount": 51,
+		  "POSChannelCount": 153,
+		  "ORNTChannelCount": 0,
+		  "VELChannelCount": 0,
+		  "ANGVELChannelCount": 0,
+		  "ACCChannelCount": 0,
+		  "ANGACCChannelCount": 0,
+		  "MAGNChannelCount": 0,
+		  "JNTANGChannelCount": 0,
+		  "DeviceSerialNumber": null,
+		  "SoftwareVersions": null,
+		  "ExternalSoftwareVersions": null,
+		  "RecordingDuration": 10.76500232}
+	]
 }
 
 
@@ -160,10 +185,12 @@ Note that the date and time information SHOULD be stored in the Study key file [
 
 ## Channels description (`*_channels.tsv`)
 
+```markdown
 └─ sub-<label>\
 └─ \[ses-<label>]\
 └─ motion\
-└─ sub-<label>\[\_ses-<label>]\_task-<label>\_channels.tsv
+└─ sub-<label>\[\_ses-<label>][\_task-<label>\]_channels.tsv
+```
 
 This file is REQUIRED as it makes it easy to browse or query over larger collections of datasets. The REQUIRED columns are channel `name`, `type`, `tracked_point`, `tracking_system`, `component` and `unit`. Any number of additional columns may be added to provide additional information about the channels. The `*_channels.tsv` file should give additional information about individual recorded channel, some of which my not be found summarised in `TrackingSystems`.
 
@@ -227,26 +254,4 @@ m1_pos_x	 LeftThigh	    OPTpos		     POS	    x		  m
 m1_pos_y	 LeftThigh	    OPTpos		     POS	    y		  m
 m1_pos_z	 LeftThigh	    OPTpos		     POS	    z		  m
 
-```
-
-## Coordinate System JSON (`*_coordsystem.json`)
-
-This file is RECOMMENDED as it help to interpret the data for unambiguous results. The `*_coordsystem.json` describes the coordinate system and the rotation representation system.
-
-SHOULD be present:
-
-| **Key name**           | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| ---------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| MotionCoordinateSystem | RECOMMENDED           | string        | Refers to the coordinate system in which the motion data are to be interpreted, if the recorded data can be mapped to a fixed reference frame. It contains a sequence of characters F/B (forward-backward), L/R (left-right), and U/D (up-down). The position of a character in the sequence determines which of the X,Y, Z axes it maps to. For example, “FRD” for  X-forward,  Y-right, Z-down. For 1D or 2D cases, only specify the used axes and use the character “_” for unused axes (“F_R” when the Y axis is not used, for instance). |
-| MotionRotationRule     | RECOMMENDED           | string        | In case orientation channels are present, indicate whether rotations are applied clockwise around an axis when seen from the positive direction (left-hand rule) or counter-clockwise (right-hand rule).                                                                                                                                                                                                                                                                                                                                      |
-| MotionRotationOrder    | RECOMMENDED           | string        | Specify the sequence in which the elemental rotations are applied around the extrinsic axes. A 3D rotation is represented about 3 different axes (Tait-Bryan convention).                                                                                                                                                                                                                                                                                                                                                                     |
-
-Example:
-
-```JSON
-{
-  "MotionCoordinateSystem": "RUF",
-	"MotionRotationOrder": "ZXY",
-	"MotionRotationRule": "left-hand"
-}
 ```
