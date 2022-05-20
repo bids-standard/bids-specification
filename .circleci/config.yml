@@ -2,19 +2,23 @@ version: 2
 jobs:
   build_docs:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
     steps:
       # checkout code to default ~/project
       - checkout
       - run:
           name: install dependencies
           command: |
+            python -m venv env
+            source env/bin/activate
             python -m pip install --upgrade pip
             pip install -r requirements.txt
-            pip install ~/project/tools/schemacode/
+            pip install -e ~/project/tools/schemacode/
       - run:
           name: generate docs
-          command: mkdocs build --clean --strict --verbose
+          command: |
+            source env/bin/activate
+            mkdocs build --clean --strict --verbose
       - persist_to_workspace:
           # the mkdocs build outputs are in ~/project/site
           root: ~/project
@@ -25,7 +29,7 @@ jobs:
 
   linkchecker:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
     steps:
       # checkout code to default ~/project
       - checkout
@@ -35,11 +39,14 @@ jobs:
       - run:
           name: install linkchecker
           command: |
-            python -m ensurepip
+            python -m venv env
+            source env/bin/activate
+            python -m pip install --upgrade pip
             python -m pip install linkchecker
       - run:
           name: check links
           command: |
+            source env/bin/activate
             git status
             if (! git log -1 --pretty=oneline | grep REL:) ; then
               chmod a+rX -R ~
@@ -123,7 +130,7 @@ jobs:
   # Run remark on the auto generated changes.md file
   remark:
     docker:
-      - image: node:latest
+      - image: cimg/node:lts
     steps:
       # checkout code to default ~/project
       - checkout
@@ -156,7 +163,7 @@ jobs:
   # Push built changelog to repo
   Changelog-bot:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: cimg/base:stable
     steps:
       - setup_remote_docker:
           version: 17.11.0-ce

@@ -13,7 +13,10 @@ and can be used for practical guidance when curating a new dataset.
 ## Motion recording data
 
 Template:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 57f8b1e39c8dfd69adeba5da25fd87b188940992
 ```markdown
 └─ sub-<label>\
 └─ \[ses-<label>]\
@@ -25,7 +28,10 @@ Template:
 ├─ sub-<label>\[\_ses-<label>][\_task-<label>\]_events.tsv
 └─ sub-<label>\[\_ses-<label>][\_task-<label>\]_events.json
 ```
+<<<<<<< HEAD
 
+=======
+>>>>>>> 57f8b1e39c8dfd69adeba5da25fd87b188940992
 A wide variety of motion capture systems are used in human research, resulting in
 different native data formats. The current BEP specifically
 deals with positions, orientations, and their time derivatives. For camera-based
@@ -81,6 +87,7 @@ Note that the field `TrackingSystems` has some REQUIRED and RECOMMENDED fields i
 
 Specific fields in `TrackingSystems` :
 
+<<<<<<< HEAD
 | **Key name**               | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | -------------------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | TrackingSystemName         | REQUIRED              | string        | Name of the tracking system. The value should match the “tracksys” value of the corresponding `*_motion.tsv` file name.                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -121,6 +128,48 @@ Restricted keyword list for field `RotationOrder`:
 | YZX         | Sequence of axis to do rotations. |
 | ZXY         | Sequence of axis to do rotations. |
 | ZYX         | Sequence of axis to do rotations. |
+=======
+| **Key name**               | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                     |
+| -------------------------- | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| TrackingSystemName | REQUIRED              | string        | Name of the tracking system. The value should match the “tracksys” value of the corresponding `*_motion.tsv` file name.                                                                                    |
+| SamplingFrequencyEffective | REQUIRED              | number        | Effective sampling rate of the tracking system in Hz. If available, otherwise same as `SamplingFrequency`.                                                                                   |
+| SamplingFrequency   | REQUIRED              | number        | Nominal sampling rate of the tracking system in Hz.                                                                                                                                                 |
+| MissingValues              | RECOMMENDED           | string        | How missing values are represented in the given tracking system, for example, “NaN”, “0”.                                                                                                           |
+| SoftwareVersions           | RECOMMENDED           | string        | Manufacturer’s   designation of the acquisition software.                                                                                                                                           |
+| RecordingDuration          | RECOMMENDED           | number        | Length of the   recording in seconds (for example 3600).                                                                                                                                            |
+| TrackedPointsCount         | RECOMMENDED           | number        | Number of   different tracked points tracked in the system. A tracked point is a specific point on an object that is being tracked, which can be a body part or an inanimate object.                |
+| ANGACCChannelCount         | RECOMMENDED           | number        | Number of angular acceleration channels recorded by the system.                                                                                                                                     |
+| ANGVELChannelCount         | RECOMMENDED           | number        | Number of angular velocity channels recorded by the system.                                                                                                                                         |
+| JNTANGChannelCount         | RECOMMENDED           | number        | Number of joint angle channels recorded by the system.                                                                                                                                              |
+| MAGNChannelCount           | RECOMMENDED           | number        | Number of magnetic field strength channels recorded by the system.                                                                                                                                  |
+| ORNTChannelCount           | RECOMMENDED           | number        | Number of orientation channels recorded by the system.                                                                                                                                              |
+| POSChannelCount            | RECOMMENDED           | number        | Number of position channels recorded by the system.                                                                                                                                                 |
+| VELChannelCount            | RECOMMENDED           | number        | Number of linear velocity channels recorded by the system.                                                                                                                                          |
+| ExternalSoftwareVersions   | OPTIONAL              | string        | Names and   versions of additional software used for presentation or recording, other   than the software designated by the manufacture of the motion capture system   in field "SoftwareVersions”. |
+| Manufacturer               | OPTIONAL              | string        | Manufacturer of   the motion tracking system.                                                                                                                                                       |
+| ManufacturersModelName     | OPTIONAL              | string        | Manufacturer’s   designation of the motion tracking hardware model.                                                                                                                                 |
+| SpatialAxes     | RECOMMENDED              | string        | Refers to the coordinate system in which the motion data are to be interpreted, if the recorded data can be mapped to a fixed reference frame. A sequence of characters F/B (forward-backward), L/R (left-right), and U/D (up-down). The position of a character in the sequence determines which of the X,Y,Z axes it maps to. For example, “FRD” for  X-forward,  Y-right, Z-down. For 1D or 2D cases, only specify the used axes and use the character “_” for unused axes (“F_R” when the Y axis is not used, for instance).                                                                                                                |
+| RotationRule     | RECOMMENDED              | string        | In case orientation channels are present, indicate whether rotations are applied clockwise around an axis when seen from the positive direction (left-hand rule) or counter-clockwise (right-hand rule)                                                                                                                                 |
+| RotationOrder     | RECOMMENDED              | string        | Specify the sequence in which the elemental rotations are applied around the extrinsic axes. A 3D rotation is represented about 3 different axes (Tait-Bryan convention).                                                                                                                                 |
+
+Restricted keyword list for field `RotationRule`:
+
+| **Keyword**  | **Description**                  |
+| ------------ | -------------------------------- |
+| left-hand    | Left-hand rule for rotations.    |
+| right-hand   | Right-hand rule for rotations.   |
+
+Restricted keyword list for field `RotationOrder`:
+
+| **Keyword**  | **Description**                  |
+| ------------ | -------------------------------- |
+| XYZ          | Sequence of axis to do rotations.|
+| XZY          | Sequence of axis to do rotations.|
+| YXZ          | Sequence of axis to do rotations.|
+| YZX          | Sequence of axis to do rotations.|
+| ZXY          | Sequence of axis to do rotations.|
+| ZYX          | Sequence of axis to do rotations.|
+>>>>>>> 57f8b1e39c8dfd69adeba5da25fd87b188940992
 
 Example:
 
@@ -184,7 +233,10 @@ In this example, the `*_motion.json` contains two `TrackingSystems`. One is a [i
 Note that the date and time information SHOULD be stored in the Study key file [(`scans.tsv`)](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#scans-file). Date time information MUST be expressed as indicated in Units. The [`scans.tsv`](https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#scans-file) file contains the filename and the acquisition time of a recording, which can be used to synchronize streams. *However, synchronization information between the two systems can also be stored using time stamps in the `*_motion.tsv` if available?.*
 
 ## Channels description (`*_channels.tsv`)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 57f8b1e39c8dfd69adeba5da25fd87b188940992
 ```markdown
 └─ sub-<label>\
 └─ \[ses-<label>]\
