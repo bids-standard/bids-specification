@@ -167,7 +167,7 @@ This allows for a proper validation of the HED annotations
 (for example using the `bids-validator`).
 
 Example: The following `dataset_description.json` file specifies that the
-[`HED8.0.0.xml`](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.0.0.xml)
+[`HED8.1.0.xml`](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.1.0.xml)
 file from the `hedxml` directory of the
 [`hed-specification`](https://github.com/hed-standard/hed-specification)
 repository on GitHub should be used to validate the study event annotations.
@@ -175,8 +175,8 @@ repository on GitHub should be used to validate the study event annotations.
 ```JSON
 {
   "Name": "A great experiment",
-  "BIDSVersion": "1.6.0",
-  "HEDVersion": "8.0.0"
+  "BIDSVersion": "1.7.0",
+  "HEDVersion": "8.1.0"
 }
 ```
 
@@ -185,3 +185,39 @@ any present HED information will be validated using the latest version of the HE
 which is bound to result in problems.
 Hence, it is strongly RECOMMENDED that the `HEDVersion` field be included when using HED
 in a BIDS dataset.
+
+### Using HED library schemas
+
+HED also allows you to use one or more specialized vocabularies along with
+the base vocabulary. These specialized vocabularies are developed by
+communities of users and are available in the GitHub
+[hed-schema-library](https://github.com/hed-standard/hed-schema-library) repository.
+
+Example: The following `dataset_description.json` file specifies that the
+[`HED8.1.0.xml`](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.1.0.xml)
+base schema should be used along with the
+SCORE library for clinical neurological annotation and a test library
+located at [HED_score_0.0.1.xml](https://github.com/hed-standard/hed-schema-library/blob/main/library_schemas/score/hedxml/HED_score_0.0.1.xml) and [HED_testlib_1.0.2.xml](https://github.com/hed-standard/hed-schema-library/blob/main/library_schemas/testlib/hedxml/HED_testlib_1.0.2.xml), respectively.
+
+```JSON
+{
+  "Name": "A great experiment",
+  "BIDSVersion": "1.7.0",
+  "HEDVersion": {
+      "base": "8.1.0",
+      "libraries": {
+          "sc": "score_0.0.1",
+          "ts": "testlib_1.0.2"
+      }
+  }
+}
+```
+The `sc:` and `ts:` are user-chosen prefixes used to distinguish the sources
+of the terms in the HED annotation. In the following HED annotation:
+
+```Text
+Data-feature, sc:Photmyogenic-response, sc:Wicket-spikes
+```
+
+The tag `Data-feature` is from HED8.1.0,
+while `Photmyogenic-response` and `Wicket-spikes` are from HED_score_0.0.1.
