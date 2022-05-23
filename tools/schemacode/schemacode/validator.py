@@ -154,19 +154,19 @@ def _add_extensions(regex_string, variant):
     return regex_string
 
 
-def _add_subdirs(regex_string, variant, datatype, entity_definitions, modality_datatypes):
+def _add_subdirs(regex_string, variant, datatype, entity_definitions, formats, modality_datatypes):
     """Add appropriate subdirectories as required by entities present."""
-
-    label = "([a-zA-Z0-9]*?)"
 
     regex_dirs = "/"
     for dir_entity in DIR_ENTITIES:
         if dir_entity in variant["entities"].keys():
+            format_selection = formats[entity_definitions[dir_entity]["format"]]
+            variable_field = f"({format_selection['pattern']})"
             shorthand = entity_definitions[dir_entity]["entity"]
             if variant["entities"][dir_entity] == "required":
-                regex_subdir = f"{shorthand}-(?P<{dir_entity}>{label})/"
+                regex_subdir = f"{shorthand}-(?P<{dir_entity}>{variable_field})/"
             else:
-                regex_subdir = f"(|{shorthand}-(?P<{dir_entity}>{label})/)"
+                regex_subdir = f"(|{shorthand}-(?P<{dir_entity}>{variable_field})/)"
             regex_dirs = f"{regex_dirs}{regex_subdir}"
     if datatype in modality_datatypes:
         regex_dirs = f"{regex_dirs}{datatype}/"
@@ -239,12 +239,6 @@ def load_entities(
     Notes
     -----
 
-    * Couldn't find where the `label` type is defined as alphanumeric, hard-coding
-        `entity_definitions["subject"]["format"]`-type entries as`[a-zA-Z0-9]*?` for the time
-        being.
-        Apparently there is a `label` (alphanumeric) versus `index` (integer) specification:
-        https://github.com/bids-standard/bids-specification/issues/956#issuecomment-992967479
-        but this is not yet used in the YAML.
     * Suggest to BIDS-specification to remove the periods from the extensions, the leading period
         is not part of the extension, but a delimiter defining the fact that it's an extension.
         Code sections marked as `Making it period-safe` should be edited when this fix is in,
@@ -259,14 +253,14 @@ def load_entities(
         A list of dictionaries, with keys including 'regex' and 'mandatory'.
     """
 
-    label = "([a-zA-Z0-9]*?)"
-
     # Parsing tabular_metadata as a datatype, might be done automatically if the YAML is moved
     # to the same subdirectory
     my_schema["rules"]["datatypes"]["tabular_metadata"] = my_schema["rules"]["tabular_metadata"]
     datatypes = my_schema["rules"]["datatypes"]
     entity_order = my_schema["rules"]["entities"]
     entity_definitions = my_schema["objects"]["entities"]
+    formats = my_schema["objects"]["formats"]
+
     # Descriptions are not needed and very large.
     for i in entity_definitions.values():
         i.pop("description", None)
@@ -297,7 +291,8 @@ def load_entities(
                                 "|".join(entity_definitions[entity]["enum"]),
                             )
                         else:
-                            variable_field = label
+                            format_selection = formats[entity_definitions[entity]["format"]]
+                            variable_field = f"({format_selection['pattern']})"
                         regex_entities = _add_entity(
                             regex_entities,
                             entity,
@@ -311,7 +306,7 @@ def load_entities(
             regex_string = _add_suffixes(regex_entities, variant)
             regex_string = _add_extensions(regex_string, variant)
             regex_string = _add_subdirs(
-                regex_string, variant, datatype, entity_definitions, modality_datatypes
+                regex_string, variant, datatype, entity_definitions, formats, modality_datatypes
             )
 
             regex_string = f".*?{regex_string}$"
@@ -709,6 +704,12 @@ def validate_bids(
     >>> bids_paths = '~/.data2/datalad/000026/rawdata'
     >>> schema_version='{module_path}/data/schema/'
     >>> validator.validate_bids(bids_paths, schema_version=schema_version, debug=False)"
+
+    Notes
+    -----
+    * Needs to account for inheritance principle, probably somewhere deeper in the logic, might be
+        as simple as pattern parsing and multiplying patterns to which inheritance applies.
+        https://github.com/bids-standard/bids-specification/pull/969#issuecomment-1132119492
     """
 
     if isinstance(bids_paths, str):

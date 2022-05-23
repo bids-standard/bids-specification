@@ -133,6 +133,11 @@ def test__add_subdirs():
             "format": "label",
         },
     }
+    formats = {
+        "label": {
+            "pattern": "[0-9a-zA-Z]+",
+        }
+    }
     modality_datatypes = [
         "anat",
         "dwi",
@@ -147,11 +152,11 @@ def test__add_subdirs():
         "micr",
     ]
     _regex_string = _add_subdirs(
-        regex_string, variant, datatype, entity_definitions, modality_datatypes
+        regex_string, variant, datatype, entity_definitions, formats, modality_datatypes
     )
 
     assert (
-        _regex_string == "/sub-(?P<subject>([a-zA-Z0-9]*?))/sub-(?P=subject)"
+        _regex_string == "/sub-(?P<subject>([0-9a-zA-Z]+))/sub-(?P=subject)"
         "_sessions\\.(tsv|json)"
     )
 
