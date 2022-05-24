@@ -213,7 +213,9 @@ located at [HED_score_0.0.1.xml](https://github.com/hed-standard/hed-schema-libr
 }
 ```
 The `sc:` and `ts:` are user-chosen prefixes used to distinguish the sources
-of the terms in the HED annotation. In the following HED annotation:
+of the terms in the HED annotation.
+These prefixes must be alphanumeric.
+In the following HED annotation:
 
 ```Text
 Data-feature, sc:Photmyogenic-response, sc:Wicket-spikes
