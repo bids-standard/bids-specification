@@ -21,7 +21,7 @@ microscopy:
   extensions:
   - .ome.tif
   - .ome.btf
-  - .ngff/
+  - .ome.zarr/
   - .png
   - .tif
   - .json
