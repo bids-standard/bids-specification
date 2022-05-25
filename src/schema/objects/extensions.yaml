@@ -140,7 +140,7 @@
 
     Used by KIT, Yokogawa, and Ricoh MEG systems.
     Successor to the `.sqd` extension for marker files.
-.ngff/:
+.ome.zarr/:
   name: OME Next Generation File Format
   description: |
     An OME-NGFF file.
