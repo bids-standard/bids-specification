@@ -449,31 +449,23 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
     # The filter function doesn't work here.
     suffix_schema = schema["objects"]["suffixes"]
 
-    suffixes_found = [f for f in suffixes if f in suffix_schema.keys()]
-    suffixes_not_found = [f for f in suffixes if f not in suffix_schema.keys()]
+    all_suffixes = pd.DataFrame.from_records(list(suffix_schema.values()))
+    df = all_suffixes[all_suffixes.value.isin(suffixes)][["value", "display_name", "description"]]
+
+    suffixes_not_found = set(suffixes) - set(df.value)
     if suffixes_not_found:
         raise Exception("Warning: Missing suffixes: {}".format(", ".join(suffixes_not_found)))
 
-    df = pd.DataFrame(
-        index=suffixes_found,
-        columns=["**Name**", "**Description**"],
-    )
-    # Index by suffix because name cannot be assumed to be unique
-    df.index.name = "`suffix`"
-    for suffix in suffixes_found:
-        suffix_info = suffix_schema[suffix]
-        description = suffix_info["description"]
-        # A backslash before a newline means continue a string
-        description = description.replace("\\\n", "")
-        # Two newlines should be respected
-        description = description.replace("\n\n", "<br>")
-        # Otherwise a newline corresponds to a space
-        description = description.replace("\n", " ")
-        # Spec internal links need to be replaced
-        description = description.replace("SPEC_ROOT", get_relpath(src_path))
+    def preproc(desc):
+        return (
+            desc.replace("\\\n", "")      # A backslash before a newline means continue a string
+                .replace("\n\n", "<br>")  # Two newlines should be respected
+                .replace("\n", " ")       # Otherwise a newline corresponds to a space
+                .replace("SPEC_ROOT", get_relpath(src_path))  # Spec internal links need to be replaced
+        )
 
-        df.loc[suffix] = [suffix_info["name"], description]
-
+    df.description.apply(preproc)
+    df.columns = ["`suffix`", "**Name**", "**Description**"]
     df = df.reset_index(drop=False)
     df = df.set_index("**Name**")
     df = df[["`suffix`", "**Description**"]]
