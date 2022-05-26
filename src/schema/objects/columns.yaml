@@ -423,7 +423,7 @@ size:
   description: |
     Surface area of the electrode, units MUST be in `mm^2`.
   type: number
-  unit: mm2
+  unit: 'mm^2'
 software_filters:
   name: software_filters
   display_name: Software filters
