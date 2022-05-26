@@ -1,0 +1,27 @@
+---
+root:
+  name: "root"
+  description: "the root directory of a dataset"
+  type: directory
+  # you can call datasets whetever you want.
+  pattern: '.*'
+  children:
+  - subject_dirs
+  - $ref: rules.top_level_files
+  - $ref: rules.associated_data
+
+subject_dirs:
+  type: 'directory'
+  entities:
+  - subject
+  children:
+  - session_dirs
+  - datatype_dirs
+  - $ref: rules.tabular_metadata
+
+session_dirs:
+  type: 'directory'
+  entities:
+  - session
+  children:
+  - datatype_dirs
