@@ -1,7 +1,7 @@
 ---
 # This file defines valid BIDS file suffixes.
 # For rules regarding how suffixes relate to datatypes, see files in `rules/datatypes/`.
-2PE:
+TwoPE:
   value: 2PE
   display_name: 2-photon excitation microscopy
   description: |
