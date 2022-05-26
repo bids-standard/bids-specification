@@ -135,7 +135,7 @@ def make_glossary(schema, src_path=None):
         obj = all_objects[obj_key]
         obj_marker = obj["key"]
         obj_def = obj["definition"]
-        obj_name = obj_def["name"]
+        obj_name = obj_def.get("display_name", obj_def.get("name"))
         obj_desc = obj_def["description"]
         # A backslash before a newline means continue a string
         obj_desc = obj_desc.replace("\\\n", "")
