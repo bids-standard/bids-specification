@@ -1,7 +1,7 @@
 ---
 README:
   required: true
-  literal: 'README'
+  pattern: 'README'
   extensions:
   - None
   - .md
@@ -9,33 +9,33 @@ README:
   - .txt
 CHANGES:
   required: true
-  literal: 'CHANGES'
+  pattern: 'CHANGES'
   extensions:
   - None
 LICENSE:
   required: false
-  literal: 'LICENSE'
+  pattern: 'LICENSE'
   extensions:
   - None
 dataset_description:
   required: true
-  literal: 'dataset_description'
+  pattern: 'dataset_description'
   extensions:
   - .json
 genetic_info:
   required: false
-  literal: 'genetic_info'
+  pattern: 'genetic_info'
   extensions:
   - .json
 participants:
   required: false
-  literal: 'participants'
+  pattern: 'participants'
   extensions:
   - .tsv
   - .json
 samples:
   required: false
-  literal: 'samples'
+  pattern: 'samples'
   extensions:
   - .tsv
   - .json
