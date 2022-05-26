@@ -19,7 +19,7 @@ LICENSE:
   - None
 dataset_description:
   required: true
-  literal: 'dataset_description':
+  literal: 'dataset_description'
   extensions:
   - .json
 genetic_info:
@@ -39,5 +39,3 @@ samples:
   extensions:
   - .tsv
   - .json
-
-
