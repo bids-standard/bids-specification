@@ -32,6 +32,7 @@
 -   \[SCHEMA] Tabular metadata rules for both top and second-level tabular files [#1006](https://github.com/bids-standard/bids-specification/pull/1006) ([TheChymera](https://github.com/TheChymera))
 -   \[FIX] Change recording entity to REQUIRED for pet/blood modality [#1005](https://github.com/bids-standard/bids-specification/pull/1005) ([ghisvail](https://github.com/ghisvail))
 -   \[ENH] Introduce the atlas entity for derivatives data [#997](https://github.com/bids-standard/bids-specification/pull/997) ([sebastientourbier](https://github.com/sebastientourbier))
+-   BIDS Validator XS [#969](https://github.com/bids-standard/bids-specification/pull/969) ([TheChymera](https://github.com/TheChymera))
 -   \[DOC] add documentation for macros [#963](https://github.com/bids-standard/bids-specification/pull/963) ([Remi-Gau](https://github.com/Remi-Gau))
 -   \[SCHEMA] Add patterns for format validation [#885](https://github.com/bids-standard/bids-specification/pull/885) ([tsalo](https://github.com/tsalo))
 -   \[FIX] run entity - "scans" -> "data acquisitions" [#760](https://github.com/bids-standard/bids-specification/pull/760) ([yarikoptic](https://github.com/yarikoptic))
