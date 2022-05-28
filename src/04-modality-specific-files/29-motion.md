@@ -21,7 +21,6 @@ Template:
       ├─ sub-<label>\[\_ses-<label>]_task-<label>_tracksys-<label>_motion.tsv
       ├─ sub-<label>\[\_ses-<label>]_task-<label>_tracksys-<label>_motion.json
       ├─ sub-<label>\[\_ses-<label>]_task-<label>_tracksys-<label>_channels.tsv
-      ├─ sub-<label>\[\_ses-<label>]_task-<label>_tracksys-<label>_coordsys.json
       ├─ sub-<label>\[\_ses-<label>]_task-<label>_events.tsv
       └─ sub-<label>\[\_ses-<label>]_task-<label>_events.json
 ```
