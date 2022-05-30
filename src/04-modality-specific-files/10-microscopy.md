@@ -56,7 +56,7 @@ Microscopy raw data MUST be stored in one of the following formats:
 
 -   [NGFF/OME-ZARR](https://ngff.openmicroscopy.org/latest/) (`.ome.zarr` directories)
 
-If different from PNG, TIFF, OME-TIFF, or NGFF the original unprocessed data in the native format MAY be
+If different from PNG, TIFF, OME-TIFF, or NGFF, the original unprocessed data in the native format MAY be
 stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
 
 ### Modality suffixes
