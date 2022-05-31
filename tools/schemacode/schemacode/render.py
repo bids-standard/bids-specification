@@ -458,10 +458,10 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
 
     def preproc(desc):
         return (
-            desc.replace("\\\n", "")      # A backslash before a newline means continue a string
-                .replace("\n\n", "<br>")  # Two newlines should be respected
-                .replace("\n", " ")       # Otherwise a newline corresponds to a space
-                .replace("SPEC_ROOT", get_relpath(src_path))  # Spec internal links need to be replaced
+            desc.replace("\\\n", "")  # A backslash before a newline means continue a string
+            .replace("\n\n", "<br>")  # Two newlines should be respected
+            .replace("\n", " ")  # Otherwise a newline corresponds to a space
+            .replace("SPEC_ROOT", get_relpath(src_path))  # Spec internal links need to be replaced
         )
 
     df.description = df.description.apply(preproc)
