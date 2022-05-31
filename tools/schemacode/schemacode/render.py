@@ -464,7 +464,7 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
                 .replace("SPEC_ROOT", get_relpath(src_path))  # Spec internal links need to be replaced
         )
 
-    df.description.apply(preproc)
+    df.description = df.description.apply(preproc)
     df.columns = ["`suffix`", "**Name**", "**Description**"]
     df = df.reset_index(drop=False)
     df = df.set_index("**Name**")
