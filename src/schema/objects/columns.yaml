@@ -95,7 +95,7 @@ filename:
     Relative paths to files.
   type: string
   format: participant_relative
-channel_group:
+group__channel:
   name: group
   display_name: Channel group
   description: |

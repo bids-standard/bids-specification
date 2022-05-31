@@ -294,7 +294,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_columns_table(
    {
       "reference__ieeg": "OPTIONAL",
-      "channel_group": ("OPTIONAL", "Note that any groups specified in `_electrodes.tsv` must match those present here."),
+      "group__channel": ("OPTIONAL", "Note that any groups specified in `_electrodes.tsv` must match those present here."),
       "sampling_frequency": "OPTIONAL",
       "description": "OPTIONAL",
       "notch": "OPTIONAL",
@@ -432,7 +432,7 @@ and a guide for using macros can be found at
    {
       "material": "RECOMMENDED",
       "manufacturer": "RECOMMENDED",
-      "channel_group": ("RECOMMENDED", "Note that any group specified here should match a group specified in `_channels.tsv`."),
+      "group__channel": ("RECOMMENDED", "Note that any group specified here should match a group specified in `_channels.tsv`."),
       "hemisphere": "RECOMMENDED",
    }
 ) }}
