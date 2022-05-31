@@ -37,6 +37,17 @@ def dereference_yaml(schema, struct):
 
         struct = {key: dereference_yaml(schema, val) for key, val in struct.items()}
 
+        # For the rare case of multiple sets of valid values (enums) from multiple references,
+        # anyOf is used. Here we try to flatten our anyOf of enums into a single enum list.
+        if "anyOf" in struct.keys():
+            if all("enum" in obj for obj in struct["anyOf"]):
+                all_enum = [v["enum"] for v in struct["anyOf"]]
+                all_enum = [item for sublist in all_enum for item in sublist]
+
+                struct.pop("anyOf")
+                struct["type"] = "string"
+                struct["enum"] = all_enum
+
     elif isinstance(struct, list):
         struct = [dereference_yaml(schema, item) for item in struct]
 
@@ -55,7 +66,7 @@ def load_schema(schema_path):
     Parameters
     ----------
     schema_path : str
-        Folder containing yaml files or yaml file.
+        Directory containing yaml files or yaml file.
 
     Returns
     -------
@@ -87,7 +98,7 @@ def load_schema(schema_path):
         dict_ = yaml.safe_load(rule_group_file.read_text())
         schema["rules"][rule_group_file.stem] = dereference_yaml(dict_, dict_)
 
-    # Load folders of rule subgroups.
+    # Load directories of rule subgroups.
     for rule_group_file in sorted(rules_dir.glob("*/*.yaml")):
         rule = schema["rules"].setdefault(rule_group_file.parent.name, {})
         lgr.debug(f"Loading {rule_group_file.stem} rules.")

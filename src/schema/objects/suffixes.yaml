@@ -1,16 +1,40 @@
 ---
 # This file defines valid BIDS file suffixes.
 # For rules regarding how suffixes relate to datatypes, see files in `rules/datatypes/`.
+2PE:
+  name: 2-photon excitation microscopy
+  description: |
+    2-photon excitation microscopy imaging data
+BF:
+  name: Bright-field microscopy
+  description: |
+    Bright-field microscopy imaging data
 Chimap:
   name: Quantitative susceptibility map (QSM)
   description: |
     In parts per million (ppm).
     QSM allows for determining the underlying magnetic susceptibility of tissue
     (Chi)
-    ([Wang & Liu, 2014](https://onlinelibrary.wiley.com/doi/10.1002/mrm.25358)).
+    ([Wang & Liu, 2014](https://doi.org/10.1002/mrm.25358)).
     Chi maps are REQUIRED to use this suffix regardless of the method used to
     generate them.
   unit: ppm
+CARS:
+  name: Coherent anti-Stokes Raman spectroscopy
+  description: |
+    Coherent anti-Stokes Raman spectroscopy imaging data
+CONF:
+  name: Confocal microscopy
+  description: |
+    Confocal microscopy imaging data
+DIC:
+  name: Differential interference contrast microscopy
+  description: |
+    Differential interference contrast microscopy imaging data
+DF:
+  name: Dark-field microscopy
+  description: |
+    Dark-field microscopy imaging data
 FLAIR:
   name: Fluid attenuated inversion recovery image
   description: |
@@ -31,6 +55,10 @@ FLASH:
     When used in a file collection, it may result in conflicts across filenames of
     different applications.
     **Change:** Removed from suffixes.
+FLUO:
+  name: Fluorescence microscopy
+  description: |
+    Fluorescence microscopy imaging data
 IRT1:
   name: Inversion recovery T1 mapping
   description: |
@@ -66,6 +94,10 @@ MP2RAGE:
     different flip angles and inversion times to create a parametric T1map by
     combining the magnitude and phase images
     ([Marques et al. 2010](https://doi.org/10.1016/j.neuroimage.2009.10.002)).
+MPE:
+  name: Multi-photon excitation microscopy
+  description: |
+    Multi-photon excitation microscopy imaging data
 MPM:
   name: Multi-parametric Mapping
   description: |
@@ -125,6 +157,18 @@ MWFmap:
   unit: arbitrary
   minValue: 0
   maxValue: 100
+NLO:
+  name: Nonlinear optical microscopy
+  description: |
+    Nonlinear optical microscopy imaging data
+OCT:
+  name: Optical coherence tomography
+  description: |
+    Optical coherence tomography imaging data
+PC:
+  name: Phase-contrast microscopy
+  description: |
+    Phase-contrast microscopy imaging data
 PD:
   name: Proton density image
   description: |
@@ -164,6 +208,10 @@ PDw:
     In a gradient-echo acquisition, PD weighting dominates the contrast at long
     repetition and short echo times, and at small flip angles.
   unit: arbitrary
+PLI:
+  name: Polarized-light microscopy
+  description: |
+    Polarized-light microscopy imaging data
 R1map:
   name: Longitudinal relaxation rate image
   description: |
@@ -213,6 +261,18 @@ S0map:
     [the tedana documentation](https://tedana.readthedocs.io/en/latest/\
     approach.html#monoexponential-decay-model-fit).
     S0 maps are RECOMMENDED to use this suffix if derived from an ME-FMRI dataset.
+SEM:
+  name: Scanning electron microscopy
+  description: |
+    Scanning electron microscopy imaging data
+SPIM:
+  name: Selective plane illumination microscopy
+  description: |
+    Selective plane illumination microscopy imaging data
+SR:
+  name: Super-resolution microscopy
+  description: |
+    Super-resolution microscopy imaging data
 T1map:
   name: Longitudinal relaxation time image
   description: |
@@ -347,6 +407,10 @@ TB1map:
     multiplicative factors such that FlipAngle<sub>effective</sub> =
     B1+<sub>intensity</sub>\*FlipAngle<sub>nominal</sub> .
   unit: arbitrary
+TEM:
+  name: Transmission electron microscopy
+  description: |
+    Transmission electron microscopy imaging data
 UNIT1:
   name: Homogeneous (flat) T1-weighted MP2RAGE image
   description: |
@@ -399,7 +463,7 @@ blood:
   name: Blood recording data
   description: |
     Blood measurements of radioactivity stored in
-    [tabular files](/02-common-principles.html#tabular-files)
+    [tabular files](SPEC_ROOT/02-common-principles.md#tabular-files)
     and located in the `pet/` directory along with the corresponding PET data.
 bold:
   name: Blood-Oxygen-Level Dependent image
@@ -515,11 +579,11 @@ pet:
 phase:
   name: Phase image
   description: |
-    [DEPRECATED](/02-common-principles.html#definitions).
+    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
     Phase information associated with magnitude information stored in BOLD
     contrast.
     This suffix should be replaced by the
-    [`part-phase`](/99-appendices/09-entities.html#part)
+    [`part-phase`](SPEC_ROOT/99-appendices/09-entities.md#part)
     in conjunction with the `bold` suffix.
   anyOf:
   - unit: arbitrary
@@ -544,8 +608,7 @@ phasediff:
 photo:
   name: Photo File
   description: |
-    Photos of the anatomical landmarks and/or head localization coils
-    (`*_photo.jpg`).
+    Photos of the anatomical landmarks, head localization coils or tissue sample.
 physio:
   name: Physiological recording
   description: |
@@ -554,7 +617,38 @@ sbref:
   name: Single-band reference image
   description: |
     Single-band reference for one or more multi-band `dwi` images.
+scans:
+  name: Scans file
+  description: |
+    The purpose of this file is to describe timing and other properties of each imaging acquisition
+    sequence (each run file) within one session.
+    Each neural recording file SHOULD be described by exactly one row. Some recordings consist of
+    multiple parts, that span several files, for example through echo-, part-, or split- entities.
+    Such recordings MUST be documented with one row per file.
+    Relative paths to files should be used under a compulsory filename header.
+    If acquisition time is included it should be listed under the acq_time header.
+    Acquisition time refers to when the first data point in each run was acquired.
+    Furthermore, if this header is provided, the acquisition times of all files that belong to a
+    recording MUST be identical.
+    Datetime should be expressed as described in Units.
+    Additional fields can include external behavioral measures relevant to the scan.
+    For example vigilance questionnaire score administered after a resting state scan.
+    All such included additional fields SHOULD be documented in an accompanying _scans.json file
+    that describes these fields in detail (see Tabular files).
+sessions:
+  name: Sessions file
+  description: |
+    In case of multiple sessions there is an option of adding additional sessions.tsv files
+    describing variables changing between sessions.
+    In such case one file per participant SHOULD be added.
+    These files MUST include a session_id column and describe each session by one and only one row.
+    Column names in sessions.tsv files MUST be different from group level participant key column
+    names in the participants.tsv file.
 stim:
   name: Continuous recording
   description: |
     Continuous measures, such as parameters of a film or audio stimulus.
+uCT:
+  name: Micro-CT
+  description: |
+    Micro-CT imaging data

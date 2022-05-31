@@ -15,14 +15,24 @@ acquisition:
     resolution.
     In such case two files could have the following names:
     `sub-01_acq-highres_T1w.nii.gz` and `sub-01_acq-lowres_T1w.nii.gz`, however
-    the user is free to choose any other label than highres and lowres as long
+    the user is free to choose any other label than `highres` and `lowres` as long
     as they are consistent across subjects and sessions.
     In case different sequences are used to record the same modality
-    (for example, RARE and FLASH for T1w)
+    (for example, `RARE` and `FLASH` for T1w)
     this field can also be used to make that distinction.
     At what level of detail to make the distinction (for example,
-    just between RARE and FLASH, or between RARE, FLASH, and FLASHsubsampled)
+    just between `RARE` and `FLASH`, or between `RARE`, `FLASH`, and `FLASHsubsampled`)
     remains at the discretion of the researcher.
+  type: string
+  format: label
+atlas:
+  name: Atlas
+  entity: atlas
+  description: |
+    The `atlas-<label>` key/value pair corresponds to a custom label the user
+    MAY use to distinguish a different atlas used for similar type of data.
+
+    This entity is only applicable to derivative data.
   type: string
   format: label
 ceagent:
@@ -32,10 +42,19 @@ ceagent:
     The `ce-<label>` key/value can be used to distinguish
     sequences using different contrast enhanced images.
     The label is the name of the contrast agent.
-    The key `ContrastBolusIngredient` MAY also be added in the JSON file,
+    The key `"ContrastBolusIngredient"` MAY also be added in the JSON file,
     with the same label.
   type: string
   format: label
+chunk:
+  name: Chunk
+  entity: chunk
+  description: |
+    The `chunk-<index>` key/value pair is used to distinguish between different
+    regions, 2D images or 3D volumes files, of the same physical sample with
+    different fields of view acquired in the same imaging experiment.
+  type: string
+  format: index
 density:
   name: Density
   entity: den
@@ -73,9 +92,9 @@ echo:
     If files belonging to an entity-linked file collection are acquired at different
     echo times, the `_echo-<index>` key/value pair MUST be used to distinguish
     individual files.
-    This entity represents the `EchoTime` metadata field. Please note that the `<index>`
+    This entity represents the `"EchoTime"` metadata field. Please note that the `<index>`
     denotes the number/index (in the form of a nonnegative integer), not the
-    `EchoTime` value which needs to be stored in the field `EchoTime` of the separate
+    `"EchoTime"` value which needs to be stored in the field `"EchoTime"` of the separate
     JSON file.
   type: string
   format: index
@@ -86,9 +105,9 @@ flip:
     If files belonging to an entity-linked file collection are acquired at different
     flip angles, the `_flip-<index>` key/value pair MUST be used to distinguish
     individual files.
-    This entity represents the `FlipAngle` metadata field. Please note that the `<index>`
-    denotes the number/index (in the form of a nonnegative integer), not the `FlipAngle`
-    value which needs to be stored in the field `FlipAngle` of the separate JSON file.
+    This entity represents the `"FlipAngle"` metadata field. Please note that the `<index>`
+    denotes the number/index (in the form of a nonnegative integer), not the `"FlipAngle"`
+    value which needs to be stored in the field `"FlipAngle"` of the separate JSON file.
   type: string
   format: index
 hemisphere:
@@ -110,9 +129,9 @@ inversion:
     If files belonging to an entity-linked file collection are acquired at different
     inversion times, the `_inv-<index>` key/value pair MUST be used to distinguish
     individual files.
-    This entity represents the `InversionTime` metadata field. Please note that the `<index>`
-    denotes the number/index (in the form of a nonnegative integer), not the `InversionTime`
-    value which needs to be stored in the field `InversionTime` of the separate JSON file.
+    This entity represents the `"InversionTime` metadata field. Please note that the `<index>`
+    denotes the number/index (in the form of a nonnegative integer), not the `"InversionTime"`
+    value which needs to be stored in the field `"InversionTime"` of the separate JSON file.
   type: string
   format: index
 label:
@@ -142,7 +161,7 @@ mtransfer:
     If files belonging to an entity-linked file collection are acquired at different
     magnetization transfer (MT) states, the `_mt-<label>` key/value pair MUST be used to
     distinguish individual files.
-    This entity represents the `MTState` metadata field. Allowed label values for this
+    This entity represents the `"MTState"` metadata field. Allowed label values for this
     entity are `on` and `off`, for images acquired in presence and absence of an MT pulse,
     respectively.
   type: string
@@ -163,7 +182,7 @@ part:
 
     Phase images MAY be in radians or in arbitrary units.
     The sidecar JSON file MUST include the units of the `phase` image.
-    The possible options are `rad` or `arbitrary`.
+    The possible options are `"rad"` or `"arbitrary"`.
 
     When there is only a magnitude image of a given type, the `part` key MAY be
     omitted.
@@ -181,7 +200,7 @@ processing:
     a file that was a result of particular processing performed on the device.
 
     This is useful for files produced in particular by Elekta's MaxFilter
-    (for example, sss, tsss, trans, quat or mc),
+    (for example, `sss`, `tsss`, `trans`, `quat` or `mc`),
     which some installations impose to be run on raw data because of active
     shielding software corrections before the MEG data can actually be
     exploited.
@@ -192,7 +211,7 @@ reconstruction:
   entity: rec
   description: |
     The `rec-<label>` key/value can be used to distinguish
-    different reconstruction algorithms (for example ones using motion
+    different reconstruction algorithms (for example `MoCo` for the ones using motion
     correction).
   type: string
   format: label
@@ -211,7 +230,7 @@ resolution:
   entity: res
   description: |
     Resolution of regularly sampled N-dimensional data.
-    MUST have a corresponding `Resolution` metadata field to provide
+    MUST have a corresponding `"Resolution"` metadata field to provide
     interpretation.
 
     This entity is only applicable to derivative data.
@@ -221,7 +240,8 @@ run:
   name: Run
   entity: run
   description: |
-    If several scans with the same acquisition parameters are acquired in the same session,
+    If several data acquisitions (for example, MRI scans or EEG recordings)
+    with the same acquisition parameters are acquired in the same session,
     they MUST be indexed with the [`run-<index>`](../99-appendices/09-entities.md#run) entity:
     `_run-1`, `_run-2`, `_run-3`, and so on (only nonnegative integers are allowed as
     run labels).
@@ -306,6 +326,18 @@ split:
     [Scans file](../03-modality-agnostic-files.md#scans-file).
   type: string
   format: index
+stain:
+  name: Stain
+  entity: stain
+  description: |
+    The `stain-<label>` key/pair values can be used to distinguish image files
+    from the same sample using different stains or antibodies for contrast enhancement.
+    Stains SHOULD be indicated in the `"SampleStaining"` key in the sidecar JSON file,
+    although the label may be different.
+    Description of antibodies SHOULD also be indicated in `"SamplePrimaryAntibodies"`
+    and/or `"SampleSecondaryAntobodies"` as appropriate.
+  type: string
+  format: label
 subject:
   name: Subject
   entity: sub
@@ -329,7 +361,7 @@ tracer:
   description: |
     The `trc-<label>` key/value can be used to distinguish
     sequences using different tracers.
-    The key `TracerName` MUST also be included in the associated JSON file,
+    The key `"TracerName"` MUST also be included in the associated JSON file,
     although the label may be different.
   type: string
   format: label

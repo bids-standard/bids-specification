@@ -7,12 +7,12 @@ import numpy as np
 
 
 def get_schema_path():
-    """Get the path to the schema folder.
+    """Get the path to the schema directory.
 
     Returns
     -------
     str
-        Absolute path to the folder containing schema-related files.
+        Absolute path to the directory containing schema-related files.
     """
     return op.abspath(op.join(op.dirname(__file__), "data", "schema"))
 
@@ -20,29 +20,35 @@ def get_schema_path():
 def combine_extensions(lst):
     """Combine extensions with their compressed versions in a list.
 
-    This is a basic solution to combining extensions with their
-    compressed versions in a list. Something more robust could
-    be written in the future.
+    Valid combinations are hardcoded in the function,
+    since some extensions look like compressed versions of one another, but are not.
 
     Parameters
     ----------
     lst : list of str
+        Raw list of extensions.
+
+    Returns
+    -------
+    new_lst : list of str
+        List of extensions, with compressed and uncompressed versions of the same extension
+        combined.
     """
+    COMPRESSION_EXTENSIONS = [".gz"]
+
     new_lst = []
-    # First, sort by length
-    lst = sorted(lst, key=len)
+    items_to_remove = []
     for item in lst:
-        temp_lst = new_lst[:]
+        for ext in COMPRESSION_EXTENSIONS:
+            if item.endswith(ext) and item.replace(ext, "") in lst:
+                temp_item = item.replace(ext, "") + "[" + ext + "]"
+                new_lst.append(temp_item)
+                items_to_remove.append(item)
+                items_to_remove.append(item.replace(ext, ""))
+                continue
 
-        item_found = False
-        for j, new_item in enumerate(temp_lst):
-            if new_item in item:
-                temp_item = new_item + "[" + item.replace(new_item, "", 1) + "]"
-                new_lst[j] = temp_item
-                item_found = True
-
-        if not item_found:
-            new_lst.append(item)
+    items_to_add = [item for item in lst if item not in items_to_remove]
+    new_lst += items_to_add
 
     return new_lst
 
@@ -191,3 +197,67 @@ def resolve_metadata_type(definition):
         string = "unknown"
 
     return string
+
+
+def describe_valid_values(definition):
+    """Build a sentence describing valid values for an object from its definition.
+
+    This only covers booleans, enums, integers, and numbers.
+    Currently uncovered are anyOfs, arrays, and objects.
+
+    Parameters
+    ----------
+    definition : :obj:`dict`
+        An object definition, following the BIDS schema object rules.
+
+    Returns
+    -------
+    :obj:`str`
+        A sentence describing valid values for the object.
+    """
+    description = ""
+    if "anyOf" in definition.keys():
+        return description
+
+    if definition["type"] == "boolean":
+        description = 'Must be one of: `"true"`, `"false"`.'
+
+    elif definition["type"] == "string":
+        if "enum" in definition.keys():
+            # Allow enums to be "objects" (dicts) or strings
+            enum_values = [
+                list(v.keys())[0] if isinstance(v, dict) else v for v in definition["enum"]
+            ]
+            enum_values = [f'`"{v}"`' for v in enum_values]
+            description = f"Must be one of: {', '.join(enum_values)}."
+
+    elif definition["type"] in ("integer", "number"):
+        if "minimum" in definition.keys():
+            minstr = f"greater than or equal to {definition['minimum']}"
+        elif "exclusiveMinimum" in definition.keys():
+            minstr = f"greater than {definition['exclusiveMinimum']}"
+        else:
+            minstr = ""
+
+        if "maximum" in definition.keys():
+            maxstr = f"less than or equal to {definition['maximum']}"
+        elif "exclusiveMaximum" in definition.keys():
+            maxstr = f"less than {definition['exclusiveMaximum']}"
+        else:
+            maxstr = ""
+
+        if minstr and maxstr:
+            minmaxstr = f"{minstr} and {maxstr}"
+        elif minstr:
+            minmaxstr = minstr
+        elif maxstr:
+            minmaxstr = maxstr
+        else:
+            minmaxstr = ""
+
+        if minmaxstr:
+            description = f"Must be a number {minmaxstr}."
+        else:
+            description = ""
+
+    return description

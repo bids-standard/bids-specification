@@ -31,6 +31,9 @@ ieeg:
 meg:
   name: Magnetoencephalography
   description: Magnetoencephalography
+micr:
+  name: Microscopy
+  description: Microscopy
 perf:
   name: Perfusion imaging
   description: |

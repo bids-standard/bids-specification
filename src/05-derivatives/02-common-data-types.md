@@ -10,6 +10,12 @@ JSON file is also REQUIRED.
 Each derivative type defines their own set of fields, but all of them
 share the following (non-required) ones:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
         "Description": (
@@ -28,6 +34,10 @@ The location of the file in the original datasets is encoded in the `Sources` me
 and [`_desc-<label>`](../99-appendices/09-entities.md#desc)
 is used to prevent clashing with the original filename.
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -88,6 +98,12 @@ If the [`space` entity](../99-appendices/09-entities.md#space) is omitted,
 or the space is not in the [Standard template identifiers][templates] table,
 then the `SpatialReference` metadata is REQUIRED.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "SpatialReference": "RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise.",
@@ -110,6 +126,10 @@ For CIFTI-2 images, the relevant structures are BrainStructure values defined in
 Preprocessed `bold` NIfTI file in `individual` coordinate space. Please mind
 that in this case `SpatialReference` key is REQUIRED.
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -134,6 +154,10 @@ reference, the `VolumeReference` key is used as a default, and only the
 surface references need to be specified by BrainStructure names.
 Here referred to via "https" [URIs][].
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -191,6 +215,10 @@ processing for the same input data.
 
 Examples of preprocessed data:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline1": {
@@ -208,6 +236,10 @@ Examples of preprocessed data:
    }
 ) }}
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline2": {
