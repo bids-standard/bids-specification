@@ -1,6 +1,5 @@
 ---
 root:
-  description: "the root directory of a dataset"
   type: directory
   # you can call datasets whetever you want.
   pattern: '.*'
