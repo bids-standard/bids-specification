@@ -37,17 +37,10 @@
             ]
         },
         {
-            "name": "Adina S. Wagner",
-            "login": "TMP_adina_s_wagner",
-            "contributions": [
-                "design"
-            ]
-        },
-        {
             "login": "adswa",
             "name": "Adina Wagner",
             "contributions": [
-                "code"
+                "design"
             ],
             "profile": "http://www.adina-wagner.com",
             "avatar_url": [
@@ -56,23 +49,16 @@
         },
         {
             "login": "agahkarakuzu",
-            "name": "Agah",
-            "contributions": [
-                "code"
-            ],
-            "profile": "https://agahkarakuzu.github.io",
-            "avatar_url": [
-                "https://avatars.githubusercontent.com/u/9632322?v=4"
-            ]
-        },
-        {
             "name": "Agah Karakuzu",
-            "login": "TMP_agah_karakuzu",
             "contributions": [
                 "question",
                 "doc",
                 "data",
                 "ideas"
+            ],
+            "profile": "https://agahkarakuzu.github.io",
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/9632322?v=4"
             ]
         },
         {
@@ -432,7 +418,20 @@
             "login": "effigies",
             "name": "Chris Markiewicz",
             "contributions": [
-                "code"
+                "question",
+                "bug",
+                "code",
+                "doc",
+                "design",
+                "example",
+                "ideas",
+                "plugin",
+                "review",
+                "tool",
+                "talk",
+                "data",
+                "eventOrganizing",
+                "maintenance"
             ],
             "profile": "https://github.com/effigies",
             "avatar_url": [
@@ -473,26 +472,6 @@
             "login": "TMP_christopher_j_honey",
             "contributions": [
                 "doc"
-            ]
-        },
-        {
-            "name": "Christopher J. Markiewicz",
-            "login": "TMP_christopher_j_markiewicz",
-            "contributions": [
-                "question",
-                "bug",
-                "code",
-                "doc",
-                "design",
-                "example",
-                "ideas",
-                "plugin",
-                "review",
-                "tool",
-                "talk",
-                "data",
-                "eventOrganizing",
-                "maintenance"
             ]
         },
         {
@@ -746,24 +725,17 @@
         },
         {
             "login": "edickie",
-            "name": "Erin W Dickie",
-            "contributions": [
-                "code"
-            ],
-            "profile": "http://imaging-genetics.camh.ca/",
-            "avatar_url": [
-                "https://avatars.githubusercontent.com/u/13203958?v=4"
-            ]
-        },
-        {
             "name": "Erin W. Dickie",
-            "login": "TMP_erin_w_dickie",
             "contributions": [
                 "doc",
                 "ideas",
                 "review",
                 "talk",
                 "question"
+            ],
+            "profile": "http://imaging-genetics.camh.ca/",
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/13203958?v=4"
             ]
         },
         {
@@ -843,18 +815,7 @@
         },
         {
             "login": "franklin-feingold",
-            "name": "Franklin Feingold",
-            "contributions": [
-                "code"
-            ],
-            "profile": "https://github.com/franklin-feingold",
-            "avatar_url": [
-                "https://avatars.githubusercontent.com/u/35307458?v=4"
-            ]
-        },
-        {
             "name": "Franklin W. Feingold",
-            "login": "TMP_franklin_w_feingold",
             "contributions": [
                 "eventOrganizing",
                 "blog",
@@ -867,6 +828,10 @@
                 "infra",
                 "content",
                 "projectManagement"
+            ],
+            "profile": "https://github.com/franklin-feingold",
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/35307458?v=4"
             ]
         },
         {
@@ -977,27 +942,6 @@
             "profile": "https://www.fil.ion.ucl.ac.uk/team/spm-team/",
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/5950855?v=4"
-            ]
-        },
-        {
-            "name": "Guiomar Niso",
-            "login": "TMP_guiomar_niso",
-            "contributions": [
-                "ideas",
-                "design",
-                "fundingFinding",
-                "review",
-                "eventOrganizing",
-                "blog",
-                "tool",
-                "bug",
-                "code",
-                "data",
-                "tutorial",
-                "question",
-                "doc",
-                "example",
-                "talk"
             ]
         },
         {
@@ -1226,20 +1170,13 @@
             ]
         },
         {
-            "name": "Jeffrey S. Grethe",
-            "login": "TMP_jeffrey_s_grethe",
+            "login": "jgrethe",
+            "name": "Jeffrey S. Grethe, Ph.D.",
             "contributions": [
                 "question",
                 "bug",
                 "tutorial",
                 "talk"
-            ]
-        },
-        {
-            "login": "jgrethe",
-            "name": "Jeffrey S. Grethe, Ph.D.",
-            "contributions": [
-                "code"
             ],
             "profile": "http://profiles.ucsd.edu/jeffrey.grethe",
             "avatar_url": [
@@ -1296,18 +1233,11 @@
             ]
         },
         {
-            "name": "Jon Haitz Legarreta",
-            "login": "TMP_jon_haitz_legarreta",
-            "contributions": [
-                "code",
-                "doc"
-            ]
-        },
-        {
             "login": "jhlegarreta",
             "name": "Jon Haitz Legarreta Gorroño",
             "contributions": [
-                "code"
+                "code",
+                "doc"
             ],
             "profile": "https://github.com/jhlegarreta",
             "avatar_url": [
@@ -1361,7 +1291,21 @@
             "login": "guiomar",
             "name": "Julia Guiomar Niso Galán",
             "contributions": [
-                "code"
+                "ideas",
+                "design",
+                "fundingFinding",
+                "review",
+                "eventOrganizing",
+                "blog",
+                "tool",
+                "bug",
+                "code",
+                "data",
+                "tutorial",
+                "question",
+                "doc",
+                "example",
+                "talk"
             ],
             "profile": "http://guiomarniso.com",
             "avatar_url": [
@@ -1410,15 +1354,6 @@
             "login": "TMP_katja_heuer",
             "contributions": [
                 "tool"
-            ]
-        },
-        {
-            "name": "Kay Robbins",
-            "login": "TMP_kay_robbins",
-            "contributions": [
-                "code",
-                "doc",
-                "bug"
             ]
         },
         {
@@ -1632,21 +1567,14 @@
             ]
         },
         {
-            "name": "Martin Noergaard",
-            "login": "TMP_martin_noergaard",
+            "login": "mnoergaard",
+            "name": "Martin Norgaard",
             "contributions": [
                 "doc",
                 "data",
                 "code",
                 "ideas",
                 "talk"
-            ]
-        },
-        {
-            "login": "mnoergaard",
-            "name": "Martin Norgaard",
-            "contributions": [
-                "code"
             ],
             "profile": "https://profiles.stanford.edu/martin-noergaard",
             "avatar_url": [
@@ -1743,18 +1671,7 @@
         },
         {
             "login": "melanieganz",
-            "name": "Melanie Ganz",
-            "contributions": [
-                "code"
-            ],
-            "profile": "https://sites.google.com/view/melanieganz/home",
-            "avatar_url": [
-                "https://avatars.githubusercontent.com/u/25242978?v=4"
-            ]
-        },
-        {
             "name": "Melanie Ganz-Benjaminsen",
-            "login": "TMP_melanie_ganz-benjaminsen",
             "contributions": [
                 "doc",
                 "data",
@@ -1763,6 +1680,10 @@
                 "projectManagement",
                 "fundingFinding",
                 "talk"
+            ],
+            "profile": "https://sites.google.com/view/melanieganz/home",
+            "avatar_url": [
+                "https://avatars.githubusercontent.com/u/25242978?v=4"
             ]
         },
         {
@@ -2217,19 +2138,12 @@
             "login": "satra",
             "name": "Satrajit Ghosh",
             "contributions": [
+                "doc",
                 "code"
             ],
             "profile": "http://satra.cogitatum.org",
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/184063?v=4"
-            ]
-        },
-        {
-            "name": "Satrajit S. Ghosh",
-            "login": "TMP_satrajit_s_ghosh",
-            "contributions": [
-                "doc",
-                "code"
             ]
         },
         {
@@ -2419,17 +2333,6 @@
             ]
         },
         {
-            "name": "Thomas E. Nichols",
-            "login": "TMP_thomas_e_nichols",
-            "contributions": [
-                "doc",
-                "talk",
-                "tool",
-                "review",
-                "maintenance"
-            ]
-        },
-        {
             "name": "Thomas Kirk",
             "login": "TMP_thomas_kirk",
             "contributions": [
@@ -2438,9 +2341,13 @@
         },
         {
             "login": "nicholst",
-            "name": "Thomas Nichols",
+            "name": "Thomas E. Nichols",
             "contributions": [
-                "code"
+                "doc",
+                "talk",
+                "tool",
+                "review",
+                "maintenance"
             ],
             "profile": "http://www.nisox.org",
             "avatar_url": [
@@ -2556,9 +2463,11 @@
         },
         {
             "login": "VisLab",
-            "name": "VisLab",
+            "name": "Kay Robbins",
             "contributions": [
-                "code"
+                "code",
+                "doc",
+                "bug"
             ],
             "profile": "https://github.com/VisLab",
             "avatar_url": [
