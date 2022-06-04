@@ -4,43 +4,727 @@ cff-version: 1.2.0
 
 title: bids-specification
 
-abstract: The Brain Imaging Data Structure (BIDS) is a simple and intuitive way to organize and describe data.
+abstract: The Brain Imaging Data Structure (BIDS) is a simple and intuitive way to
+  organize and describe data.
 
 version: v1.7.1-dev
 
 license: CC-BY-4.0
 
-repository-code: "https://github.com/bids-standard/bids-specification"
+repository-code: https://github.com/bids-standard/bids-specification
 
-message: "Please cite it as below."
+message: Please cite it as below.
 
 identifiers:
-  - description:  bids-specification
-    type: doi
-    value: "10.5281/zenodo.3686061"
-
-authors:
-
-# template to add yourself
-#
-# full list of available keys can be found here
-#
-# https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsperson
-#
-
-#  - family-names:
-#    given-names:
-#    orcid: https://orcid.org/XXXX-XXXX-XXXX-XXXX
-#    website:
-#    affiliation:
-
-  - family-names: Gau
-    given-names: Rémi
-    orcid: https://orcid.org/0000-0002-1535-9767
-    affiliation: "Université catholique de Louvain"
+- description: bids-specification
+  type: doi
+  value: 10.5281/zenodo.3686061
 
 keywords:
-  - brain imaging data structure
-  - bids
-  - standards
-  - data-standards
+- brain imaging data structure
+- bids
+- standards
+- data-standards
+
+authors:
+- given-names: Stefan
+  family-names: Appelhoff
+  website: https://www.stefanappelhoff.com
+  orcid: https://orcid.org/0000-0001-8002-0877
+  affiliation: Max Planck Institute for Human Development
+  email: stefan.appelhoff@mailbox.org
+- given-names: Chris
+  family-names: Markiewicz
+  website: https://github.com/effigies
+  email: effigies@gmail.com
+- given-names: Taylor
+  family-names: Salo
+  website: http://tsalo.github.io
+  orcid: https://orcid.org/0000-0001-9813-3167
+  affiliation: University of California Davis
+  email: tsalo006@fiu.edu
+- given-names: Chris
+  family-names: Gorgolewski
+  website: http://chrisgorgolewski.org
+  orcid: https://orcid.org/0000-0003-3321-7583
+  affiliation: Google LLC
+  email: krzysztof.gorgolewski@gmail.com
+- given-names: BIDS
+  family-names: Maintenance User
+  website: https://bids.neuroimaging.io/
+- given-names: Franklin
+  family-names: W. Feingold
+  website: https://github.com/franklin-feingold
+  orcid: https://orcid.org/0000-0002-6533-2909
+  affiliation: 'Stanford University '
+- given-names: Remi
+  family-names: Gau
+  website: https://remi-gau.github.io/
+  orcid: https://orcid.org/0000-0002-1535-9767
+  affiliation: Université catholique de Louvain
+  email: remi.gau@tuebingen.mpg.de
+- given-names: Yaroslav
+  family-names: Halchenko
+  website: http://www.onerussian.com
+  orcid: https://orcid.org/0000-0003-3456-2493
+  affiliation: Dartmouth College
+  email: debian@onerussian.com
+- given-names: Horea
+  family-names: Christian
+  website: http://chymera.eu
+  email: chr@chymera.eu
+- given-names: Marie-Hélène
+  family-names: Bourget
+  website: https://github.com/mariehbourget
+- given-names: Robert
+  family-names: Oostenveld
+  website: https://github.com/robertoostenveld
+- given-names: Oscar
+  family-names: Esteban
+  website: https://github.com/oesteban
+  email: code@oscaresteban.es
+- given-names: Ross
+  family-names: Blair
+  website: https://github.com/rwblair
+- given-names: Robert
+  family-names: Smith
+  website: http://www.mrtrix.org
+  email: robert.smith@florey.edu.au
+- given-names: eort
+  website: https://github.com/eort
+- given-names: Thomas
+  family-names: E. Nichols
+  website: http://www.nisox.org
+- given-names: Chris
+  family-names: Holdgraf
+  website: http://chrisholdgraf.com
+  orcid: https://orcid.org/0000-0002-9420-9301
+- given-names: Dimitri
+  family-names: Papadopoulos Orfanos
+  website: https://github.com/DimitriPapadopoulos
+- given-names: Greydon
+  family-names: Gilmore
+  website: http://greydongilmore.com
+  orcid: https://orcid.org/0000-0001-7523-5734
+  email: ggilmore@uwo.ca
+- given-names: Adam
+  family-names: Li
+  website: https://adam2392.github.io/
+- given-names: Anthony
+  family-names: Galassi
+  website: https://github.com/bendhouseart
+  orcid: https://orcid.org/0000-0001-6550-4574
+- given-names: Wouter
+  family-names: Potters
+  website: https://www.wouterpotters.nl
+- given-names: Franco
+  family-names: Pestilli
+  website: https://liberalarts.utexas.edu/psychology/faculty/fp4834
+- given-names: Richard
+  family-names: Höchenberger
+  website: https://hoechenberger.net/
+  orcid: https://orcid.org/0000-0002-0380-4798
+  affiliation: Inria Saclay - Île-de-France Research Centre
+  email: richard.hoechenberger@gmail.com
+- given-names: Rob
+  family-names: Luke
+  website: https://github.com/rob-luke
+- given-names: Nell
+  family-names: Hardcastle
+  website: https://github.com/nellh
+  orcid: https://orcid.org/0000-0002-3837-0707
+- given-names: Hugo
+  family-names: Boniface
+  website: https://github.com/Hboni
+- given-names: Sébastien
+  family-names: Tourbier
+  website: https://github.com/sebastientourbier
+  orcid: https://orcid.org/0000-0002-4441-899X
+  affiliation: Centre Hospitalier Universitaire Vaudois (CHUV)
+  email: sebastien.tourbier1@gmail.com
+- given-names: Teon
+  family-names: L Brooks
+  website: https://teonbrooks.com
+- given-names: Elizabeth
+  family-names: DuPre
+  website: http://emdupre.me
+- given-names: josator2
+  website: https://github.com/josator2
+- given-names: monkeyman192
+  website: https://github.com/monkeyman192
+- given-names: Martin
+  family-names: Norgaard
+  website: https://profiles.stanford.edu/martin-noergaard
+  email: martin.noergaard@nru.dk
+- given-names: Patrick
+  family-names: Park
+  website: https://github.com/Park-Patrick
+- given-names: Alex
+  family-names: Rockhill
+  website: https://github.com/alexrockhill
+  orcid: https://orcid.org/0000-0003-3868-7453
+  email: aprockhill@mailbox.org
+- given-names: Satrajit
+  family-names: Ghosh
+  website: http://satra.cogitatum.org
+- given-names: Dora
+  family-names: Hermes
+  website: https://github.com/dorahermes
+- given-names: Agah
+  family-names: Karakuzu
+  website: https://agahkarakuzu.github.io
+  email: agahkarakuzu@gmail.com
+- given-names: Erin
+  family-names: W. Dickie
+  website: http://imaging-genetics.camh.ca/
+- given-names: Jon
+  family-names: Haitz Legarreta Gorroño
+  website: https://github.com/jhlegarreta
+- given-names: Kay
+  family-names: Robbins
+  website: https://github.com/VisLab
+- given-names: Kirstie
+  family-names: Whitaker
+  website: https://whitakerlab.github.io
+  orcid: https://orcid.org/0000-0001-8498-4059
+  affiliation: University of Cambridge
+  email: kwhitaker@turing.ac.uk
+- given-names: Andrew
+  family-names: Janke
+  website: http://apjanke.net
+  email: andrew@apjanke.net
+- given-names: Eric
+  family-names: Earl
+  website: https://ericearl.github.io/
+  orcid: https://orcid.org/0000-0001-5512-0083
+  affiliation: National Institute of Mental Health
+  email: eric.earl@nih.gov
+- given-names: D.
+  family-names: Sturgeon
+  website: https://dasturge.github.io
+- given-names: Adina
+  family-names: Wagner
+  website: http://www.adina-wagner.com
+  orcid: https://orcid.org/0000-0003-2917-3450
+  affiliation: Research Centre Juelich
+  email: adina.wagner@t-online.de
+- given-names: Arshitha
+  family-names: Basavaraj
+  website: http://cmn.nimh.nih.gov/dsst
+  orcid: https://orcid.org/0000-0002-6984-7969
+  affiliation: National Institute of Mental Health
+  email: arsh2794@gmail.com
+- given-names: ezemikulan
+  website: https://github.com/ezemikulan
+- given-names: Jean-Baptiste
+  family-names: Poline
+  website: https://github.com/jbpoline
+  orcid: https://orcid.org/0000-0002-9794-749X
+- given-names: Marc
+  family-names: Lalancette
+  website: https://github.com/Moo-Marc
+- given-names: Melanie
+  family-names: Ganz-Benjaminsen
+  website: https://sites.google.com/view/melanieganz/home
+- given-names: Patricia
+  family-names: Clement
+  website: https://github.com/patsycle
+- given-names: Ghislain
+  family-names: Vaillant
+  website: https://github.com/ghisvail
+  orcid: https://orcid.org/0000-0003-0267-3033
+- given-names: Anibal
+  family-names: Sólon
+  website: https://anibalsolon.com/
+  orcid: https://orcid.org/0000-0002-2050-0614
+  email: anibalsolon@gmail.com
+- given-names: Ariel
+  family-names: Rokem
+  website: http://arokem.org
+  email: arokem@gmail.com
+- given-names: Erdal
+  family-names: Karaca
+  website: https://github.com/erdalkaraca
+- given-names: Guillaume
+  family-names: Flandin
+  website: https://www.fil.ion.ucl.ac.uk/team/spm-team/
+  orcid: https://orcid.org/0000-0003-0077-7859
+  affiliation: University College London
+- given-names: Jean-Christophe
+  family-names: Houde
+  website: http://scil.dinf.usherbrooke.ca/jchoude
+  orcid: https://orcid.org/0000-0003-3026-021X
+  affiliation: Université de Sherbrooke
+  email: jean.christophe.houde@gmail.com
+- given-names: Jeffrey
+  family-names: S. Grethe, Ph.D.
+  website: http://profiles.ucsd.edu/jeffrey.grethe
+- given-names: JegouA
+  website: https://github.com/JegouA
+- given-names: Julia
+  family-names: Guiomar Niso Galán
+  website: http://guiomarniso.com
+  orcid: https://orcid.org/0000-0001-5872-8924
+  affiliation: Indiana University
+- given-names: Mainak
+  family-names: Jas
+  website: http://jasmainak.github.io/
+  orcid: https://orcid.org/0000-0002-3199-9027
+- given-names: Mateusz
+  family-names: Pawlik
+  website: https://github.com/mateuszpawlik
+  email: mateusz.pawlik@plus.ac.at
+- given-names: Samuel
+  family-names: Nastase
+  website: https://snastase.github.io/
+  orcid: https://orcid.org/0000-0001-7013-5275
+  affiliation: Princeton University
+  email: sam.nastase@gmail.com
+- given-names: Tobias
+  family-names: Bengfort
+  website: http://tobib.spline.de
+  email: tobias.bengfort@posteo.de
+- given-names: Aaron
+  family-names: Oliver-Taylor
+- given-names: Adeen
+  family-names: Flinker
+- given-names: Aki
+  family-names: Nikolaidis
+- given-names: Alberto
+  family-names: Lazari
+- given-names: Alejandro
+  family-names: de la Vega
+- given-names: Alexander
+  family-names: Jones
+- given-names: Alexander
+  family-names: L. Cohen
+- given-names: Alexander
+  family-names: von Lautz
+- given-names: Alexandre
+  family-names: Gramfort
+- given-names: Alexandre
+  family-names: Hutton
+- given-names: Alexandru
+  family-names: Foias
+- given-names: Ali
+  family-names: Khan
+- given-names: Ana
+  family-names: Fouto
+- given-names: Anders
+  family-names: Eklund
+- given-names: Andrea
+  family-names: Pigorini
+- given-names: Andrew
+  family-names: Hoopes
+- given-names: Andrew
+  family-names: Jahn
+- given-names: Arjen
+  family-names: Stolk
+- given-names: Arnaud
+  family-names: Delorme
+- given-names: Ashley
+  family-names: G. Gillman
+- given-names: Athanasia
+  family-names: Monika Mowinckel
+- given-names: Aysegul
+  family-names: Gunduz
+- given-names: Azeez
+  family-names: Adebimpe
+- given-names: B.
+  family-names: Nolan Nichols
+- given-names: Balint
+  family-names: Kincses
+- given-names: Benjamin
+  family-names: Dichter
+- given-names: Benjamin
+  family-names: Gagl
+- given-names: Bertrand
+  family-names: Thirion
+- given-names: Bradley
+  family-names: Voytek
+- given-names: Brett
+  family-names: L. Foster
+- given-names: Brian
+  family-names: A. Wandell
+- given-names: Brian
+  family-names: N. Lundstrom
+- given-names: Camille
+  family-names: Maumet
+- given-names: Chloé
+  family-names: Pasturel
+- given-names: Chris
+  family-names: Benjamin
+- given-names: Chris
+  family-names: Gahnström
+- given-names: Chris
+  family-names: Rorden
+- given-names: Christian
+  family-names: Büchel
+- given-names: Christian
+  family-names: Horea
+- given-names: Christophe
+  family-names: Phillips
+- given-names: Christopher
+  family-names: J. Honey
+- given-names: Christopher
+  family-names: Lee-Messer
+- given-names: Clara
+  family-names: Moreau
+- given-names: Cyril
+  family-names: Pernet
+- given-names: Dan
+  family-names: Levitas
+- given-names: Dan
+  family-names: Lurie
+- given-names: Daniel
+  family-names: A. Handwerker
+- given-names: David
+  family-names: Alsop
+- given-names: David
+  family-names: Boas
+- given-names: David
+  family-names: Groppe
+- given-names: David
+  family-names: Keator
+- given-names: David
+  family-names: McAlpine
+- given-names: David
+  family-names: Thomas
+- given-names: Dejan
+  family-names: Draschkow
+- given-names: Dianne
+  family-names: Patterson
+- given-names: Dmitry
+  family-names: Petrov
+- given-names: Dorien
+  family-names: Huijser
+- given-names: Dylan
+  family-names: Nielson
+- given-names: Eduard
+  family-names: Ort
+- given-names: Elizabeth
+  family-names: Bock
+- given-names: Eric
+  family-names: Achten
+- given-names: Eric
+  family-names: Bridgeford
+- given-names: Ethan
+  family-names: Blackwood
+- given-names: Eugene
+  family-names: P. Duff
+- given-names: Ezequiel
+  family-names: Mikulan
+- given-names: Felipe
+  family-names: Orihuela-Espina
+- given-names: Fidel
+  family-names: Alfaro Almagro
+- given-names: Filip
+  family-names: Szczepankiewicz
+- given-names: Filippo
+  family-names: Maria Castelli
+- given-names: François
+  family-names: Tadel
+- given-names: Gang
+  family-names: Chen
+- given-names: Gaël
+  family-names: Varoquaux
+- given-names: Giacomo
+  family-names: Mazzamuto
+- given-names: Gilles
+  family-names: de Hollander
+- given-names: Gio
+  family-names: Piantoni
+- given-names: Giulio
+  family-names: Castegnaro
+- given-names: Giuseppe
+  family-names: Gallitto
+- given-names: Graham
+  family-names: Searle
+- given-names: Gregory
+  family-names: Kiar
+- given-names: Gunnar
+  family-names: Schaefer
+- given-names: Gustav
+  family-names: Nilsonne
+- given-names: Hamish
+  family-names: Innes-Brown
+- given-names: Hanzhang
+  family-names: Lu
+- given-names: Hao
+  family-names: Ting Wang
+- given-names: Helena
+  family-names: Cockx
+- given-names: Henk
+  family-names: Mutsaerts
+- given-names: Hernando
+  family-names: Ombao
+- given-names: Ilkay
+  family-names: Isik
+- given-names: Ilona
+  family-names: Lipp
+- given-names: International
+  family-names: Neuroinformatics Coordinating Facility
+- given-names: Iris
+  family-names: Groen
+- given-names: Isla
+  family-names: Staden
+- given-names: Jaap
+  family-names: von der Aar
+- given-names: Jakub
+  family-names: Kaczmarzyk
+- given-names: James
+  family-names: Gholam
+- given-names: James
+  family-names: Kent
+- given-names: Jan
+  family-names: Petr
+- given-names: Jan-Mathijs
+  family-names: Schoffelen
+- given-names: Jean-Philippe
+  family-names: Lachaux
+- given-names: Jeanette
+  family-names: Mumford
+- given-names: Jeffrey
+  family-names: G. Ojemann
+- given-names: Jeremy
+  family-names: Moreau
+- given-names: Jessica
+  family-names: A. Turner
+- given-names: John
+  family-names: Detre
+- given-names: John
+  family-names: Pellman
+- given-names: Joke
+  family-names: Durnez
+- given-names: Jonathan
+  family-names: C. Lau
+- given-names: Jonathan
+  family-names: Winawer
+- given-names: Joost
+  family-names: Kuijer
+- given-names: Jose
+  family-names: Manuel Saborit
+- given-names: Joseph
+  family-names: Wexler
+- given-names: Joseph
+  family-names: Woods
+- given-names: Julia
+  family-names: Sprenger
+- given-names: Julien
+  family-names: Cohen-Adad
+- given-names: Julius
+  family-names: Welzel
+- given-names: Kai
+  family-names: J. Miller
+- given-names: Kangjoo
+  family-names: Lee
+- given-names: Katja
+  family-names: Heuer
+- given-names: Kevin
+  family-names: Larcher
+- given-names: Klara
+  family-names: Gregorova
+- given-names: Kristofer
+  family-names: Bouchard
+- given-names: Krzysztof
+  family-names: J. Gorgolewski
+- given-names: Laura
+  family-names: and John Arnold Foundation
+- given-names: Leandro
+  family-names: Beltrachini
+- given-names: Lee
+  family-names: Kamentsky
+- given-names: Lennart
+  family-names: Walger
+- given-names: Lennart
+  family-names: Wittkuhn
+- given-names: Liberty
+  family-names: Hamilton
+- given-names: Luca
+  family-names: Pollonini
+- given-names: Luis
+  family-names: Hernandez-Garcia
+- given-names: Lyuba
+  family-names: Zehl
+- given-names: Manjari
+  family-names: Narayan
+- given-names: Manuel
+  family-names: Mercier
+- given-names: Marco
+  family-names: Castellaro
+- given-names: Maria
+  family-names: de la Iglesia
+- given-names: Mark
+  family-names: Mikkelsen
+- given-names: Markus
+  family-names: Morawski
+- given-names: Martin
+  family-names: Craig
+- given-names: Martin
+  family-names: Szinte
+- given-names: Martin
+  family-names: Wilson
+- given-names: Mathias
+  family-names: Goncalves
+- given-names: Mathieu
+  family-names: Boudreau
+- given-names: Matt
+  family-names: Sanderson
+- given-names: Matthias
+  family-names: Günther
+- given-names: Matthias
+  family-names: Van Osch
+- given-names: Maureen
+  family-names: J Shader
+- given-names: Maurice
+  family-names: Pasternak
+- given-names: Max
+  family-names: A. van den Boom
+- given-names: Michael
+  family-names: Chappell
+- given-names: Michael
+  family-names: Hanke
+- given-names: Michael
+  family-names: P. Harms
+- given-names: Michael
+  family-names: P. Milham
+- given-names: Michael
+  family-names: P. Notter
+- given-names: Michael
+  family-names: Schirner
+- given-names: Mikael
+  family-names: Naveau
+- given-names: Nader
+  family-names: Pouratian
+- given-names: Natalia
+  family-names: Petridou
+- given-names: National
+  family-names: Institute of Mental Health
+- given-names: Nicholas
+  family-names: Traut
+- given-names: Nick
+  family-names: F. Ramsey
+- given-names: Nicole
+  family-names: C. Swann
+- given-names: Olivier
+  family-names: David
+- given-names: Orrin
+  family-names: Devinsky
+- given-names: Pamela
+  family-names: LaMontagne
+- given-names: Parul
+  family-names: Sethi
+- given-names: Patrick
+  family-names: Park
+- given-names: Paule-Joanne
+  family-names: Toussaint
+- given-names: Peer
+  family-names: Herholz
+- given-names: Petra
+  family-names: Ritter
+- given-names: Pierre
+  family-names: Rioux
+- given-names: Pieter
+  family-names: Vandemaele
+- given-names: Pradeep
+  family-names: Reddy Raamana
+- given-names: R.
+  family-names: Cameron Craddock
+- given-names: Richard
+  family-names: N. Henson
+- given-names: Robert
+  family-names: E. Smith
+- given-names: Robert
+  family-names: Knight
+- given-names: Robert
+  family-names: Luke
+- given-names: Roberto
+  family-names: Toro
+- given-names: Russell
+  family-names: A. Poldrack
+- given-names: Rémi
+  family-names: Adon
+- given-names: Samir
+  family-names: Das
+- given-names: Samuel
+  family-names: Garcia
+- given-names: Sara
+  family-names: Elgayar
+- given-names: Sasha
+  family-names: D'Ambrosio
+- given-names: Sein
+  family-names: Jeung
+- given-names: Shashank
+  family-names: Bansal
+- given-names: Sjoerd
+  family-names: Vos
+- given-names: Soichi
+  family-names: Hayashi
+- given-names: Stephan
+  family-names: Bickel
+- given-names: Suyash
+  family-names: Bhogawar
+- given-names: Sylvain
+  family-names: Baillet
+- given-names: Sylvain
+  family-names: Takerkart
+- given-names: Sören
+  family-names: Grothkopp
+- given-names: Tal
+  family-names: Pal Attia
+- given-names: Tal
+  family-names: Yarkoni
+- given-names: Tamas
+  family-names: Spisak
+- given-names: Tamás
+  family-names: Józsa
+- given-names: Teon
+  family-names: L. Brooks
+- given-names: Thomas
+  family-names: Kirk
+- given-names: Thomas
+  family-names: Okell
+- given-names: Tibor
+  family-names: Auer
+- given-names: Timo
+  family-names: Berg
+- given-names: Timo
+  family-names: Dickscheid
+- given-names: Tom
+  family-names: Hampshire
+- given-names: Tor
+  family-names: Wager
+- given-names: Travis
+  family-names: Riddle
+- given-names: Tristan
+  family-names: Glatard
+- given-names: Ulrike
+  family-names: Bingel
+- given-names: Vanessa
+  family-names: Sochat
+- given-names: Vasudev
+  family-names: Raguram
+- given-names: Vince
+  family-names: D. Calhoun
+- given-names: Vladimir
+  family-names: Litvak
+- given-names: Wietske
+  family-names: van der Zwaag
+- given-names: William
+  family-names: Clarke
+- given-names: William
+  family-names: Triplett
+- given-names: Wouter
+  family-names: V. Potters
+- given-names: Xiangrui
+  family-names: Li
+- given-names: Yaroslav
+  family-names: O. Halchenko
+- given-names: Yoni
+  family-names: Ashar
+- given-names: Yuan
+  family-names: Wang
+- given-names: Zachary
+  family-names: Michael
+- given-names: Étienne
+  family-names: Bergeron
