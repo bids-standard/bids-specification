@@ -22,3 +22,6 @@ help: ## Show what this Makefile can do
 
 validate_cff: CITATION.cff
 	cffconvert --validate
+
+update_contrib_readme:
+	npx all-contributors generate
