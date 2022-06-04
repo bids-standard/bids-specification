@@ -1,207 +1,46 @@
-abstract: The Brain Imaging Data Structure (BIDS) is a simple and intuitive way to
-  organize and describe data.
-authors:
-- family-names: Ghosh
-  given-names: Satrajit
-  website: http://satra.cogitatum.org
-- family-names: Lalancette
-  given-names: Marc
-  website: https://github.com/Moo-Marc
-- family-names: Earl
-  given-names: Eric
-  website: https://ericearl.github.io/
-- family-names: Holdgraf
-  given-names: Chris
-  website: https://predictablynoisy.com/
-- family-names: Houde
-  given-names: Jean-Christophe
-  website: http://scil.dinf.usherbrooke.ca/jchoude
-- given-names: JegouA
-  website: https://github.com/JegouA
-- family-names: Jas
-  given-names: Mainak
-  website: http://jasmainak.github.io/
-- family-names: Poline
-  given-names: Jean-Baptiste
-  website: https://github.com/jbpoline
-- family-names: Gau
-  given-names: Remi
-  website: https://remi-gau.github.io/
-- family-names: Maintenance User
-  given-names: BIDS
-  website: https://bids.neuroimaging.io/
-- family-names: 'Karakuzu'
-  given-names: Agah
-  website: https://agahkarakuzu.github.io
-- family-names: Appelhoff
-  given-names: Stefan
-  website: https://www.stefanappelhoff.com
-- family-names: Christian
-  given-names: Horea
-  website: http://chymera.eu
-- given-names: VisLab
-  website: https://github.com/VisLab
-- family-names: Wagner
-  given-names: Adina
-  website: http://www.adina-wagner.com
-- given-names: eort
-  website: https://github.com/eort
-- given-names: ezemikulan
-  website: https://github.com/ezemikulan
-- family-names: Flandin
-  given-names: Guillaume
-  website: https://www.fil.ion.ucl.ac.uk/team/spm-team/
-- family-names: Gorgolewski
-  given-names: Chris
-  website: http://chrisgorgolewski.org
-- family-names: Park
-  given-names: Patrick
-  website: https://github.com/Park-Patrick
-- family-names: Rockhill
-  given-names: Alex
-  website: https://github.com/alexrockhill
-- family-names: Gilmore
-  given-names: Greydon
-  website: http://greydongilmore.com
-- family-names: W Dickie
-  given-names: Erin
-  website: http://imaging-genetics.camh.ca/
-- family-names: Potters
-  given-names: Wouter
-  website: https://www.wouterpotters.nl
-- family-names: Clement
-  given-names: Patricia
-  website: https://github.com/patsycle
-- family-names: DuPre
-  given-names: Elizabeth
-  website: https://elizabeth-dupre.com/
-- given-names: monkeyman192
-  website: https://github.com/monkeyman192
-- family-names: Oostenveld
-  given-names: Robert
-  website: https://github.com/robertoostenveld
-- family-names: Nichols
-  given-names: Thomas
-  website: http://www.nisox.org
-- family-names: Norgaard
-  given-names: Martin
-  website: https://profiles.stanford.edu/martin-noergaard
-- family-names: Bengfort
-  given-names: Tobias
-  website: http://tobib.spline.de
-- family-names: Papadopoulos Orfanos
-  given-names: Dimitri
-  website: https://github.com/DimitriPapadopoulos
-- family-names: Galassi
-  given-names: Anthony
-  website: https://github.com/bendhouseart
-- family-names: S. Grethe, Ph.D.
-  given-names: Jeffrey
-  website: http://profiles.ucsd.edu/jeffrey.grethe
-- family-names: Ganz
-  given-names: Melanie
-  website: https://sites.google.com/view/melanieganz/home
-- family-names: Bourget
-  given-names: Marie-Hélène
-  website: https://github.com/mariehbourget
-- family-names: Janke
-  given-names: Andrew
-  website: http://apjanke.net
-- family-names: Blair
-  given-names: Ross
-  website: https://github.com/rwblair
-- family-names: Esteban
-  given-names: Oscar
-  website: https://github.com/oesteban
-- family-names: L Brooks
-  given-names: Teon
-  website: https://teonbrooks.com
-- family-names: Solon
-  given-names: Anibal
-  website: https://anibalsolon.com/
-- family-names: Whitaker
-  given-names: Kirstie
-  website: https://whitakerlab.github.io
-- family-names: Luke
-  given-names: Rob
-  website: https://github.com/rob-luke
-- family-names: Sturgeon
-  given-names: D.
-  website: https://dasturge.github.io
-- family-names: Hardcastle
-  given-names: Nell
-  website: https://github.com/nellh
-- family-names: Haitz Legarreta
-  given-names: Jon
-  website: https://github.com/jhlegarreta
-- family-names: Smith
-  given-names: Robert
-  website: http://www.mrtrix.org
-- family-names: Pestilli
-  given-names: Franco
-  website: https://liberalarts.utexas.edu/psychology/faculty/fp4834
-- family-names: Nastase
-  given-names: Samuel
-  website: https://snastase.github.io/
-- family-names: Halchenko
-  given-names: Yaroslav
-  website: http://www.onerussian.com
-- family-names: Boniface
-  given-names: Hugo
-  website: https://github.com/Hboni
-- family-names: Karaca
-  given-names: Erdal
-  website: https://github.com/erdalkaraca
-- family-names: Tourbier
-  given-names: Sébastien
-  website: https://github.com/sebastientourbier
-- family-names: Pawlik
-  given-names: Mateusz
-  website: https://github.com/mateuszpawlik
-- family-names: Feingold
-  given-names: Franklin
-  website: https://github.com/franklin-feingold
-- family-names: Basavaraj
-  given-names: Arshitha
-  website: http://cmn.nimh.nih.gov/dsst
-- given-names: josator2
-  website: https://github.com/josator2
-- family-names: Vaillant
-  given-names: Ghislain
-  website: https://github.com/ghisvail
-- family-names: Hermes
-  given-names: Dora
-  website: https://github.com/dorahermes
-- family-names: Rokem
-  given-names: Ariel
-  website: http://arokem.org
-- family-names: "Guiomar Niso Gal\xE1n"
-  given-names: Julia
-  website: http://guiomarniso.com
-- family-names: Salo
-  given-names: Taylor
-  website: http://tsalo.github.io
-- family-names: Hoechenberger
-  given-names: Richard
-  website: https://hoechenberger.net/
-- family-names: Li
-  given-names: Adam
-  website: https://adam2392.github.io/
-- family-names: Markiewicz
-  given-names: Chris
-  website: https://github.com/effigies
+# schema: https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md
+
 cff-version: 1.2.0
-identifiers:
-- description: bids-specification
-  type: doi
-  value: 10.5281/zenodo.3686061
-keywords:
-- brain imaging data structure
-- bids
-- standards
-- data-standards
-license: CC-BY-4.0
-message: Please cite it as below.
-repository-code: https://github.com/bids-standard/bids-specification
+
 title: bids-specification
+
+abstract: The Brain Imaging Data Structure (BIDS) is a simple and intuitive way to organize and describe data.
+
 version: v1.7.1-dev
+
+license: CC-BY-4.0
+
+repository-code: "https://github.com/bids-standard/bids-specification"
+
+message: "Please cite it as below."
+
+identifiers:
+  - description:  bids-specification
+    type: doi
+    value: "10.5281/zenodo.3686061"
+
+authors:
+
+# template to add yourself
+#
+# full list of available keys can be found here
+#
+# https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsperson
+#
+
+#  - family-names:
+#    given-names:
+#    orcid: https://orcid.org/XXXX-XXXX-XXXX-XXXX
+#    website:
+#    affiliation:
+
+  - family-names: Gau
+    given-names: Rémi
+    orcid: https://orcid.org/0000-0002-1535-9767
+    affiliation: "Université catholique de Louvain"
+
+keywords:
+  - brain imaging data structure
+  - bids
+  - standards
+  - data-standards
