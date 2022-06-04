@@ -15,7 +15,7 @@
         "name": "Taylor Salo",
         "email": "tsalo006@fiu.edu",
         "bio": "I am a Psychology Ph.D. student at FIU working with @angielaird in the @NBCLab. I am interested in performing reproducible, transparent research with fMRI.",
-        "blog": "tsalo.github.io",
+        "blog": "http://tsalo.github.io",
         "orcid": "0000-0001-9813-3167",
         "affiliation": "University of California Davis"
     },
@@ -50,7 +50,7 @@
         "name": "Yaroslav Halchenko",
         "email": "debian@onerussian.com",
         "bio": "Cheers!",
-        "blog": "www.onerussian.com",
+        "blog": "http://www.onerussian.com",
         "orcid": "0000-0003-3456-2493",
         "affiliation": "Dartmouth College"
     },
@@ -93,7 +93,7 @@
     "choldgraf": {
         "name": "Chris Holdgraf",
         "bio": "I work with Project Jupyter and other open communities to build tools and solve problems for scientific research and education.",
-        "blog": "chrisholdgraf.com",
+        "blog": "http://chrisholdgraf.com",
         "orcid": "0000-0002-9420-9301"
     },
     "DimitriPapadopoulos": {
@@ -104,7 +104,7 @@
         "name": "Greydon Gilmore",
         "email": "ggilmore@uwo.ca",
         "bio": "Ph.D. Candidate in Biomedical Engineering",
-        "blog": "greydongilmore.com",
+        "blog": "http://greydongilmore.com",
         "orcid": "0000-0001-7523-5734"
     },
     "adam2392": {
@@ -162,7 +162,7 @@
     "emdupre": {
         "name": "Elizabeth DuPre",
         "bio": "Neuroscience graduate student at McGill University",
-        "blog": "emdupre.me"
+        "blog": "http://emdupre.me"
     },
     "josator2": {
         "name": "josator2",
@@ -246,7 +246,7 @@
         "name": "Adina Wagner",
         "email": "adina.wagner@t-online.de",
         "bio": "Psychoinformagician in training",
-        "blog": "www.adina-wagner.com",
+        "blog": "http://www.adina-wagner.com",
         "orcid": "0000-0003-2917-3450",
         "affiliation": "Research Centre Juelich"
     },
@@ -310,7 +310,7 @@
     },
     "jchoude": {
         "name": "Jean-Christophe Houde",
-        "email": "jean dot christophe dot houde at gmail dot com",
+        "email": "jean.christophe.houde@gmail.com",
         "blog": "http://scil.dinf.usherbrooke.ca/jchoude",
         "orcid": "0000-0003-3026-021X",
         "affiliation": "Université de Sherbrooke"
@@ -326,7 +326,7 @@
     "guiomar": {
         "name": "Julia Guiomar Niso Galán",
         "bio": "Open neuroimaging: standards (BIDS), tools (Brainlife, Brainstorm, Hermes), data repositories (OMEGA).\r\nChair BIDS Steering Group",
-        "blog": "guiomarniso.com",
+        "blog": "http://guiomarniso.com",
         "orcid": "0000-0001-5872-8924",
         "affiliation": "Indiana University"
     },
