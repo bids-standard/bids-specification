@@ -1,0 +1,46 @@
+# schema: https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md
+
+cff-version: 1.2.0
+
+title: bids-specification
+
+abstract: The Brain Imaging Data Structure (BIDS) is a simple and intuitive way to organize and describe data.
+
+version: v1.7.1-dev
+
+license: CC-BY-4.0
+
+repository-code: "https://github.com/bids-standard/bids-specification"
+
+message: "Please cite it as below."
+
+identifiers:
+  - description:  bids-specification
+    type: doi
+    value: "10.5281/zenodo.3686061"
+
+authors:
+
+# template to add yourself
+#
+# full list of available keys can be found here
+#
+# https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsperson
+#
+
+#  - family-names:
+#    given-names:
+#    orcid: https://orcid.org/XXXX-XXXX-XXXX-XXXX
+#    website:
+#    affiliation:
+
+  - family-names: Gau
+    given-names: Rémi
+    orcid: https://orcid.org/0000-0002-1535-9767
+    affiliation: "Université catholique de Louvain"
+
+keywords:
+  - brain imaging data structure
+  - bids
+  - standards
+  - data-standards
