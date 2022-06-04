@@ -12,12 +12,11 @@ authors:
   website: https://ericearl.github.io/
 - family-names: Holdgraf
   given-names: Chris
-  website: chrisholdgraf.com
+  website: https://predictablynoisy.com/
 - family-names: Houde
   given-names: Jean-Christophe
   website: http://scil.dinf.usherbrooke.ca/jchoude
-- family-names: ''
-  given-names: JegouA
+- given-names: JegouA
   website: https://github.com/JegouA
 - family-names: Jas
   given-names: Mainak
@@ -31,7 +30,7 @@ authors:
 - family-names: Maintenance User
   given-names: BIDS
   website: https://bids.neuroimaging.io/
-- family-names: ''
+- family-names: 'Karakuzu'
   given-names: Agah
   website: https://agahkarakuzu.github.io
 - family-names: Appelhoff
@@ -40,17 +39,14 @@ authors:
 - family-names: Christian
   given-names: Horea
   website: http://chymera.eu
-- family-names: ''
-  given-names: VisLab
+- given-names: VisLab
   website: https://github.com/VisLab
 - family-names: Wagner
   given-names: Adina
-  website: www.adina-wagner.com
-- family-names: ''
-  given-names: eort
+  website: http://www.adina-wagner.com
+- given-names: eort
   website: https://github.com/eort
-- family-names: ''
-  given-names: ezemikulan
+- given-names: ezemikulan
   website: https://github.com/ezemikulan
 - family-names: Flandin
   given-names: Guillaume
@@ -58,19 +54,19 @@ authors:
 - family-names: Gorgolewski
   given-names: Chris
   website: http://chrisgorgolewski.org
-- family-names: ''
-  given-names: Park-Patrick
+- family-names: Park
+  given-names: Patrick
   website: https://github.com/Park-Patrick
 - family-names: Rockhill
   given-names: Alex
   website: https://github.com/alexrockhill
 - family-names: Gilmore
   given-names: Greydon
-  website: greydongilmore.com
+  website: http://greydongilmore.com
 - family-names: W Dickie
   given-names: Erin
   website: http://imaging-genetics.camh.ca/
-- family-names: ''
+- family-names: Potters
   given-names: Wouter
   website: https://www.wouterpotters.nl
 - family-names: Clement
@@ -78,9 +74,8 @@ authors:
   website: https://github.com/patsycle
 - family-names: DuPre
   given-names: Elizabeth
-  website: emdupre.me
-- family-names: ''
-  given-names: monkeyman192
+  website: https://elizabeth-dupre.com/
+- given-names: monkeyman192
   website: https://github.com/monkeyman192
 - family-names: Oostenveld
   given-names: Robert
@@ -103,11 +98,11 @@ authors:
 - family-names: S. Grethe, Ph.D.
   given-names: Jeffrey
   website: http://profiles.ucsd.edu/jeffrey.grethe
-- family-names: ''
-  given-names: melanieganz
+- family-names: Ganz
+  given-names: Melanie
   website: https://sites.google.com/view/melanieganz/home
-- family-names: ''
-  given-names: mariehbourget
+- family-names: Bourget
+  given-names: Marie-Hélène
   website: https://github.com/mariehbourget
 - family-names: Janke
   given-names: Andrew
@@ -121,7 +116,7 @@ authors:
 - family-names: L Brooks
   given-names: Teon
   website: https://teonbrooks.com
-- family-names: "S\xF3lon"
+- family-names: Solon
   given-names: Anibal
   website: https://anibalsolon.com/
 - family-names: Whitaker
@@ -136,7 +131,7 @@ authors:
 - family-names: Hardcastle
   given-names: Nell
   website: https://github.com/nellh
-- family-names: "Haitz Legarreta Gorro\xF1o"
+- family-names: Haitz Legarreta
   given-names: Jon
   website: https://github.com/jhlegarreta
 - family-names: Smith
@@ -150,7 +145,7 @@ authors:
   website: https://snastase.github.io/
 - family-names: Halchenko
   given-names: Yaroslav
-  website: www.onerussian.com
+  website: http://www.onerussian.com
 - family-names: Boniface
   given-names: Hugo
   website: https://github.com/Hboni
@@ -158,7 +153,7 @@ authors:
   given-names: Erdal
   website: https://github.com/erdalkaraca
 - family-names: Tourbier
-  given-names: "S\xE9bastien"
+  given-names: Sébastien
   website: https://github.com/sebastientourbier
 - family-names: Pawlik
   given-names: Mateusz
@@ -169,25 +164,24 @@ authors:
 - family-names: Basavaraj
   given-names: Arshitha
   website: http://cmn.nimh.nih.gov/dsst
-- family-names: ''
-  given-names: josator2
+- given-names: josator2
   website: https://github.com/josator2
 - family-names: Vaillant
   given-names: Ghislain
   website: https://github.com/ghisvail
-- family-names: ''
-  given-names: dorahermes
+- family-names: Hermes
+  given-names: Dora
   website: https://github.com/dorahermes
 - family-names: Rokem
   given-names: Ariel
   website: http://arokem.org
 - family-names: "Guiomar Niso Gal\xE1n"
   given-names: Julia
-  website: guiomarniso.com
+  website: http://guiomarniso.com
 - family-names: Salo
   given-names: Taylor
-  website: tsalo.github.io
-- family-names: "H\xF6chenberger"
+  website: http://tsalo.github.io
+- family-names: Hoechenberger
   given-names: Richard
   website: https://hoechenberger.net/
 - family-names: Li
