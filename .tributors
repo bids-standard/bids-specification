@@ -32,7 +32,7 @@
         "blog": "https://bids.neuroimaging.io/"
     },
     "franklin-feingold": {
-        "name": "Franklin Feingold",
+        "name": "Franklin W. Feingold",
         "bio": "BIDS: https://github.com/bids-standard/bids-specification\r\n\r\nOpenNeuro: https://github.com/OpenNeuroOrg/openneuro ",
         "orcid": "0000-0002-6533-2909",
         "affiliation": "Stanford University ",
@@ -61,7 +61,7 @@
         "blog": "http://chymera.eu"
     },
     "mariehbourget": {
-        "name": "mariehbourget",
+        "name": "Marie-Hélène Bourget",
         "blog": "https://github.com/mariehbourget"
     },
     "robertoostenveld": {
@@ -87,7 +87,7 @@
         "blog": "https://github.com/eort"
     },
     "nicholst": {
-        "name": "Thomas Nichols",
+        "name": "Thomas E. Nichols",
         "blog": "http://www.nisox.org"
     },
     "choldgraf": {
@@ -118,7 +118,7 @@
         "blog": "https://github.com/bendhouseart"
     },
     "wouterpotters": {
-        "name": "Wouter",
+        "name": "Wouter Potters",
         "bio": "Technical Physician",
         "blog": "https://www.wouterpotters.nl"
     },
@@ -179,7 +179,7 @@
         "blog": "https://profiles.stanford.edu/martin-noergaard"
     },
     "Park-Patrick": {
-        "name": "Park-Patrick",
+        "name": "Patrick Park",
         "blog": "https://github.com/Park-Patrick"
     },
     "alexrockhill": {
@@ -195,16 +195,16 @@
         "blog": "http://satra.cogitatum.org"
     },
     "dorahermes": {
-        "name": "dorahermes",
+        "name": "Dora Hermes",
         "blog": "https://github.com/dorahermes"
     },
     "agahkarakuzu": {
-        "name": "Agah",
+        "name": "Agah Karakuzu",
         "email": "agahkarakuzu@gmail.com",
         "blog": "https://agahkarakuzu.github.io"
     },
     "edickie": {
-        "name": "Erin W Dickie",
+        "name": "Erin W. Dickie",
         "blog": "http://imaging-genetics.camh.ca/"
     },
     "jhlegarreta": {
@@ -213,7 +213,7 @@
         "blog": "https://github.com/jhlegarreta"
     },
     "VisLab": {
-        "name": "VisLab",
+        "name": "Kay Robbins",
         "blog": "https://github.com/VisLab"
     },
     "KirstieJane": {
@@ -273,7 +273,7 @@
         "blog": "https://github.com/Moo-Marc"
     },
     "melanieganz": {
-        "name": "melanieganz",
+        "name": "Melanie Ganz-Benjaminsen",
         "blog": "https://sites.google.com/view/melanieganz/home"
     },
     "patsycle": {
