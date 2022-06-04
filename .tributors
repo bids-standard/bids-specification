@@ -8,7 +8,8 @@
     },
     "effigies": {
         "name": "Chris Markiewicz",
-        "email": "effigies@gmail.com"
+        "email": "effigies@gmail.com",
+        "blog": "https://github.com/effigies"
     },
     "tsalo": {
         "name": "Taylor Salo",
@@ -34,7 +35,8 @@
         "name": "Franklin Feingold",
         "bio": "BIDS: https://github.com/bids-standard/bids-specification\r\n\r\nOpenNeuro: https://github.com/OpenNeuroOrg/openneuro ",
         "orcid": "0000-0002-6533-2909",
-        "affiliation": "Stanford University "
+        "affiliation": "Stanford University ",
+        "blog": "https://github.com/franklin-feingold"
     },
     "Remi-Gau": {
         "name": "Remi Gau",
@@ -59,17 +61,21 @@
         "blog": "http://chymera.eu"
     },
     "mariehbourget": {
-        "name": "mariehbourget"
+        "name": "mariehbourget",
+        "blog": "https://github.com/mariehbourget"
     },
     "robertoostenveld": {
-        "name": "Robert Oostenveld"
+        "name": "Robert Oostenveld",
+        "blog": "https://github.com/robertoostenveld"
     },
     "oesteban": {
         "name": "Oscar Esteban",
-        "email": "code@oscaresteban.es"
+        "email": "code@oscaresteban.es",
+        "blog": "https://github.com/oesteban"
     },
     "rwblair": {
-        "name": "Ross Blair"
+        "name": "Ross Blair",
+        "blog": "https://github.com/rwblair"
     },
     "Lestropie": {
         "name": "Robert Smith",
@@ -77,7 +83,8 @@
         "blog": "http://www.mrtrix.org"
     },
     "eort": {
-        "name": "eort"
+        "name": "eort",
+        "blog": "https://github.com/eort"
     },
     "nicholst": {
         "name": "Thomas Nichols",
@@ -90,7 +97,8 @@
         "orcid": "0000-0002-9420-9301"
     },
     "DimitriPapadopoulos": {
-        "name": "Dimitri Papadopoulos Orfanos"
+        "name": "Dimitri Papadopoulos Orfanos",
+        "blog": "https://github.com/DimitriPapadopoulos"
     },
     "greydongilmore": {
         "name": "Greydon Gilmore",
@@ -106,7 +114,8 @@
     },
     "bendhouseart": {
         "name": "Anthony Galassi",
-        "orcid": "0000-0001-6550-4574"
+        "orcid": "0000-0001-6550-4574",
+        "blog": "https://github.com/bendhouseart"
     },
     "wouterpotters": {
         "name": "Wouter",
@@ -126,21 +135,25 @@
         "affiliation": "Inria Saclay - Île-de-France Research Centre"
     },
     "rob-luke": {
-        "name": "Rob Luke"
+        "name": "Rob Luke",
+        "blog": "https://github.com/rob-luke"
     },
     "nellh": {
         "name": "Nell Hardcastle",
-        "orcid": "0000-0002-3837-0707"
+        "orcid": "0000-0002-3837-0707",
+        "blog": "https://github.com/nellh"
     },
     "Hboni": {
-        "name": "Hugo Boniface"
+        "name": "Hugo Boniface",
+        "blog": "https://github.com/Hboni"
     },
     "sebastientourbier": {
         "name": "Sébastien Tourbier",
         "email": "sebastien.tourbier1@gmail.com",
         "bio": "Scientist with special interests in computational image analysis and reproducible workflows with medical application",
         "orcid": "0000-0002-4441-899X",
-        "affiliation": "Centre Hospitalier Universitaire Vaudois (CHUV)"
+        "affiliation": "Centre Hospitalier Universitaire Vaudois (CHUV)",
+        "blog": "https://github.com/sebastientourbier"
     },
     "teonbrooks": {
         "name": "Teon L Brooks",
@@ -152,10 +165,12 @@
         "blog": "emdupre.me"
     },
     "josator2": {
-        "name": "josator2"
+        "name": "josator2",
+        "blog": "https://github.com/josator2"
     },
     "monkeyman192": {
-        "name": "monkeyman192"
+        "name": "monkeyman192",
+        "blog": "https://github.com/monkeyman192"
     },
     "mnoergaard": {
         "name": "Martin Norgaard",
@@ -164,13 +179,15 @@
         "blog": "https://profiles.stanford.edu/martin-noergaard"
     },
     "Park-Patrick": {
-        "name": "Park-Patrick"
+        "name": "Park-Patrick",
+        "blog": "https://github.com/Park-Patrick"
     },
     "alexrockhill": {
         "name": "Alex Rockhill",
         "email": "aprockhill@mailbox.org",
         "bio": "Graduate Student in the Swann Lab",
-        "orcid": "0000-0003-3868-7453"
+        "orcid": "0000-0003-3868-7453",
+        "blog": "https://github.com/alexrockhill"
     },
     "satra": {
         "name": "Satrajit Ghosh",
@@ -178,7 +195,8 @@
         "blog": "http://satra.cogitatum.org"
     },
     "dorahermes": {
-        "name": "dorahermes"
+        "name": "dorahermes",
+        "blog": "https://github.com/dorahermes"
     },
     "agahkarakuzu": {
         "name": "Agah",
@@ -191,10 +209,12 @@
     },
     "jhlegarreta": {
         "name": "Jon Haitz Legarreta Gorroño",
-        "bio": "PhD student at the Université de Sherbrooke"
+        "bio": "PhD student at the Université de Sherbrooke",
+        "blog": "https://github.com/jhlegarreta"
     },
     "VisLab": {
-        "name": "VisLab"
+        "name": "VisLab",
+        "blog": "https://github.com/VisLab"
     },
     "KirstieJane": {
         "name": "Kirstie Whitaker",
@@ -225,7 +245,7 @@
     "adswa": {
         "name": "Adina Wagner",
         "email": "adina.wagner@t-online.de",
-        "bio": "Psychoinformagician in training \r\n:bug:",
+        "bio": "Psychoinformagician in training",
         "blog": "www.adina-wagner.com",
         "orcid": "0000-0003-2917-3450",
         "affiliation": "Research Centre Juelich"
@@ -239,27 +259,32 @@
         "affiliation": "National Institute of Mental Health"
     },
     "ezemikulan": {
-        "name": "ezemikulan"
+        "name": "ezemikulan",
+        "blog": "https://github.com/ezemikulan"
     },
     "jbpoline": {
         "name": "Jean-Baptiste Poline",
-        "orcid": "0000-0002-9794-749X"
+        "orcid": "0000-0002-9794-749X",
+        "blog": "https://github.com/jbpoline"
     },
     "Moo-Marc": {
         "name": "Marc Lalancette",
-        "bio": "MEG lab manager\r\nMSc Physics, UBC 2003"
+        "bio": "MEG lab manager, MSc Physics, UBC 2003",
+        "blog": "https://github.com/Moo-Marc"
     },
     "melanieganz": {
         "name": "melanieganz",
         "blog": "https://sites.google.com/view/melanieganz/home"
     },
     "patsycle": {
-        "name": "Patricia Clement"
+        "name": "Patricia Clement",
+        "blog": "https://github.com/patsycle"
     },
     "ghisvail": {
         "name": "Ghislain Vaillant",
         "bio": "Former research scientist turned software engineer, on a mission to improve tooling for medical research one project at a time.",
-        "orcid": "0000-0003-0267-3033"
+        "orcid": "0000-0003-0267-3033",
+        "blog": "https://github.com/ghisvail"
     },
     "anibalsolon": {
         "name": "Anibal Sólon",
@@ -274,7 +299,8 @@
         "blog": "http://arokem.org"
     },
     "erdalkaraca": {
-        "name": "Erdal Karaca"
+        "name": "Erdal Karaca",
+        "blog": "https://github.com/erdalkaraca"
     },
     "gllmflndn": {
         "name": "Guillaume Flandin",
@@ -294,7 +320,8 @@
         "blog": "http://profiles.ucsd.edu/jeffrey.grethe"
     },
     "JegouA": {
-        "name": "JegouA"
+        "name": "JegouA",
+        "blog": "https://github.com/JegouA"
     },
     "guiomar": {
         "name": "Julia Guiomar Niso Galán",
@@ -310,7 +337,8 @@
     },
     "mateuszpawlik": {
         "name": "Mateusz Pawlik",
-        "email": "mateusz.pawlik@plus.ac.at"
+        "email": "mateusz.pawlik@plus.ac.at",
+        "blog": "https://github.com/mateuszpawlik"
     },
     "snastase": {
         "name": "Samuel Nastase",
@@ -323,5 +351,671 @@
         "name": "Tobias Bengfort",
         "email": "tobias.bengfort@posteo.de",
         "blog": "http://tobib.spline.de"
+    },
+    "TMP_aaron_oliver-taylor": {
+        "name": "Aaron Oliver-Taylor"
+    },
+    "TMP_adeen_flinker": {
+        "name": "Adeen Flinker"
+    },
+    "TMP_aki_nikolaidis": {
+        "name": "Aki Nikolaidis"
+    },
+    "TMP_alberto_lazari": {
+        "name": "Alberto Lazari"
+    },
+    "TMP_alejandro_de_la_vega": {
+        "name": "Alejandro de la Vega"
+    },
+    "TMP_alexander_jones": {
+        "name": "Alexander Jones"
+    },
+    "TMP_alexander_l_cohen": {
+        "name": "Alexander L. Cohen"
+    },
+    "TMP_alexander_von_lautz": {
+        "name": "Alexander von Lautz"
+    },
+    "TMP_alexandre_gramfort": {
+        "name": "Alexandre Gramfort"
+    },
+    "TMP_alexandre_hutton": {
+        "name": "Alexandre Hutton"
+    },
+    "TMP_alexandru_foias": {
+        "name": "Alexandru Foias"
+    },
+    "TMP_ali_khan": {
+        "name": "Ali Khan"
+    },
+    "TMP_ana_fouto": {
+        "name": "Ana Fouto"
+    },
+    "TMP_anders_eklund": {
+        "name": "Anders Eklund"
+    },
+    "TMP_andrea_pigorini": {
+        "name": "Andrea Pigorini"
+    },
+    "TMP_andrew_hoopes": {
+        "name": "Andrew Hoopes"
+    },
+    "TMP_andrew_jahn": {
+        "name": "Andrew Jahn"
+    },
+    "TMP_arjen_stolk": {
+        "name": "Arjen Stolk"
+    },
+    "TMP_arnaud_delorme": {
+        "name": "Arnaud Delorme"
+    },
+    "TMP_ashley_g_gillman": {
+        "name": "Ashley G. Gillman"
+    },
+    "TMP_athanasia_monika_mowinckel": {
+        "name": "Athanasia Monika Mowinckel"
+    },
+    "TMP_aysegul_gunduz": {
+        "name": "Aysegul Gunduz"
+    },
+    "TMP_azeez_adebimpe": {
+        "name": "Azeez Adebimpe"
+    },
+    "TMP_b_nolan_nichols": {
+        "name": "B. Nolan Nichols"
+    },
+    "TMP_balint_kincses": {
+        "name": "Balint Kincses"
+    },
+    "TMP_benjamin_dichter": {
+        "name": "Benjamin Dichter"
+    },
+    "TMP_benjamin_gagl": {
+        "name": "Benjamin Gagl"
+    },
+    "TMP_bertrand_thirion": {
+        "name": "Bertrand Thirion"
+    },
+    "TMP_bradley_voytek": {
+        "name": "Bradley Voytek"
+    },
+    "TMP_brett_l_foster": {
+        "name": "Brett L. Foster"
+    },
+    "TMP_brian_a_wandell": {
+        "name": "Brian A. Wandell"
+    },
+    "TMP_brian_n_lundstrom": {
+        "name": "Brian N. Lundstrom"
+    },
+    "TMP_camille_maumet": {
+        "name": "Camille Maumet"
+    },
+    "TMP_chloé_pasturel": {
+        "name": "Chloé Pasturel"
+    },
+    "TMP_chris_benjamin": {
+        "name": "Chris Benjamin"
+    },
+    "TMP_chris_gahnström": {
+        "name": "Chris Gahnström"
+    },
+    "TMP_chris_rorden": {
+        "name": "Chris Rorden"
+    },
+    "TMP_christian_büchel": {
+        "name": "Christian Büchel"
+    },
+    "TMP_christian_horea": {
+        "name": "Christian Horea"
+    },
+    "TMP_christophe_phillips": {
+        "name": "Christophe Phillips"
+    },
+    "TMP_christopher_j_honey": {
+        "name": "Christopher J. Honey"
+    },
+    "TMP_christopher_lee-messer": {
+        "name": "Christopher Lee-Messer"
+    },
+    "TMP_clara_moreau": {
+        "name": "Clara Moreau"
+    },
+    "TMP_cyril_pernet": {
+        "name": "Cyril Pernet"
+    },
+    "TMP_dan_levitas": {
+        "name": "Dan Levitas"
+    },
+    "TMP_dan_lurie": {
+        "name": "Dan Lurie"
+    },
+    "TMP_daniel_a_handwerker": {
+        "name": "Daniel A. Handwerker"
+    },
+    "TMP_david_alsop": {
+        "name": "David Alsop"
+    },
+    "TMP_david_boas": {
+        "name": "David Boas"
+    },
+    "TMP_david_groppe": {
+        "name": "David Groppe"
+    },
+    "TMP_david_keator": {
+        "name": "David Keator"
+    },
+    "TMP_david_mcalpine": {
+        "name": "David McAlpine"
+    },
+    "TMP_david_thomas": {
+        "name": "David Thomas"
+    },
+    "TMP_dejan_draschkow": {
+        "name": "Dejan Draschkow"
+    },
+    "TMP_dianne_patterson": {
+        "name": "Dianne Patterson"
+    },
+    "TMP_dmitry_petrov": {
+        "name": "Dmitry Petrov"
+    },
+    "TMP_dorien_huijser": {
+        "name": "Dorien Huijser"
+    },
+    "TMP_dylan_nielson": {
+        "name": "Dylan Nielson"
+    },
+    "TMP_eduard_ort": {
+        "name": "Eduard Ort"
+    },
+    "TMP_elizabeth_bock": {
+        "name": "Elizabeth Bock"
+    },
+    "TMP_eric_achten": {
+        "name": "Eric Achten"
+    },
+    "TMP_eric_bridgeford": {
+        "name": "Eric Bridgeford"
+    },
+    "TMP_ethan_blackwood": {
+        "name": "Ethan Blackwood"
+    },
+    "TMP_eugene_p_duff": {
+        "name": "Eugene P. Duff"
+    },
+    "TMP_ezequiel_mikulan": {
+        "name": "Ezequiel Mikulan"
+    },
+    "TMP_felipe_orihuela-espina": {
+        "name": "Felipe Orihuela-Espina"
+    },
+    "TMP_fidel_alfaro_almagro": {
+        "name": "Fidel Alfaro Almagro"
+    },
+    "TMP_filip_szczepankiewicz": {
+        "name": "Filip Szczepankiewicz"
+    },
+    "TMP_filippo_maria_castelli": {
+        "name": "Filippo Maria Castelli"
+    },
+    "TMP_françois_tadel": {
+        "name": "François Tadel"
+    },
+    "TMP_gang_chen": {
+        "name": "Gang Chen"
+    },
+    "TMP_gaël_varoquaux": {
+        "name": "Gaël Varoquaux"
+    },
+    "TMP_giacomo_mazzamuto": {
+        "name": "Giacomo Mazzamuto"
+    },
+    "TMP_gilles_de_hollander": {
+        "name": "Gilles de Hollander"
+    },
+    "TMP_gio_piantoni": {
+        "name": "Gio Piantoni"
+    },
+    "TMP_giulio_castegnaro": {
+        "name": "Giulio Castegnaro"
+    },
+    "TMP_giuseppe_gallitto": {
+        "name": "Giuseppe Gallitto"
+    },
+    "TMP_graham_searle": {
+        "name": "Graham Searle"
+    },
+    "TMP_gregory_kiar": {
+        "name": "Gregory Kiar"
+    },
+    "TMP_gunnar_schaefer": {
+        "name": "Gunnar Schaefer"
+    },
+    "TMP_gustav_nilsonne": {
+        "name": "Gustav Nilsonne"
+    },
+    "TMP_hamish_innes-brown": {
+        "name": "Hamish Innes-Brown"
+    },
+    "TMP_hanzhang_lu": {
+        "name": "Hanzhang Lu"
+    },
+    "TMP_hao_ting_wang": {
+        "name": "Hao Ting Wang"
+    },
+    "TMP_helena_cockx": {
+        "name": "Helena Cockx"
+    },
+    "TMP_henk_mutsaerts": {
+        "name": "Henk Mutsaerts"
+    },
+    "TMP_hernando_ombao": {
+        "name": "Hernando Ombao"
+    },
+    "TMP_ilkay_isik": {
+        "name": "Ilkay Isik"
+    },
+    "TMP_ilona_lipp": {
+        "name": "Ilona Lipp"
+    },
+    "TMP_international_neuroinformatics_coordinating_facility": {
+        "name": "International Neuroinformatics Coordinating Facility"
+    },
+    "TMP_iris_groen": {
+        "name": "Iris Groen"
+    },
+    "TMP_isla_staden": {
+        "name": "Isla Staden"
+    },
+    "TMP_jaap_von_der_aar": {
+        "name": "Jaap von der Aar"
+    },
+    "TMP_jakub_kaczmarzyk": {
+        "name": "Jakub Kaczmarzyk"
+    },
+    "TMP_james_gholam": {
+        "name": "James Gholam"
+    },
+    "TMP_james_kent": {
+        "name": "James Kent"
+    },
+    "TMP_jan_petr": {
+        "name": "Jan Petr"
+    },
+    "TMP_jan-mathijs_schoffelen": {
+        "name": "Jan-Mathijs Schoffelen"
+    },
+    "TMP_jean-philippe_lachaux": {
+        "name": "Jean-Philippe Lachaux"
+    },
+    "TMP_jeanette_mumford": {
+        "name": "Jeanette Mumford"
+    },
+    "TMP_jeffrey_g_ojemann": {
+        "name": "Jeffrey G. Ojemann"
+    },
+    "TMP_jeremy_moreau": {
+        "name": "Jeremy Moreau"
+    },
+    "TMP_jessica_a_turner": {
+        "name": "Jessica A. Turner"
+    },
+    "TMP_john_detre": {
+        "name": "John Detre"
+    },
+    "TMP_john_pellman": {
+        "name": "John Pellman"
+    },
+    "TMP_joke_durnez": {
+        "name": "Joke Durnez"
+    },
+    "TMP_jonathan_c_lau": {
+        "name": "Jonathan C. Lau"
+    },
+    "TMP_jonathan_winawer": {
+        "name": "Jonathan Winawer"
+    },
+    "TMP_joost_kuijer": {
+        "name": "Joost Kuijer"
+    },
+    "TMP_jose_manuel_saborit": {
+        "name": "Jose Manuel Saborit"
+    },
+    "TMP_joseph_wexler": {
+        "name": "Joseph Wexler"
+    },
+    "TMP_joseph_woods": {
+        "name": "Joseph Woods"
+    },
+    "TMP_julia_sprenger": {
+        "name": "Julia Sprenger"
+    },
+    "TMP_julien_cohen-adad": {
+        "name": "Julien Cohen-Adad"
+    },
+    "TMP_julius_welzel": {
+        "name": "Julius Welzel"
+    },
+    "TMP_kai_j_miller": {
+        "name": "Kai J. Miller"
+    },
+    "TMP_kangjoo_lee": {
+        "name": "Kangjoo Lee"
+    },
+    "TMP_katja_heuer": {
+        "name": "Katja Heuer"
+    },
+    "TMP_kevin_larcher": {
+        "name": "Kevin Larcher"
+    },
+    "TMP_klara_gregorova": {
+        "name": "Klara Gregorova"
+    },
+    "TMP_kristofer_bouchard": {
+        "name": "Kristofer Bouchard"
+    },
+    "TMP_krzysztof_j_gorgolewski": {
+        "name": "Krzysztof J. Gorgolewski"
+    },
+    "TMP_laura_and_john_arnold_foundation": {
+        "name": "Laura and John Arnold Foundation"
+    },
+    "TMP_leandro_beltrachini": {
+        "name": "Leandro Beltrachini"
+    },
+    "TMP_lee_kamentsky": {
+        "name": "Lee Kamentsky"
+    },
+    "TMP_lennart_walger": {
+        "name": "Lennart Walger"
+    },
+    "TMP_lennart_wittkuhn": {
+        "name": "Lennart Wittkuhn"
+    },
+    "TMP_liberty_hamilton": {
+        "name": "Liberty Hamilton"
+    },
+    "TMP_luca_pollonini": {
+        "name": "Luca Pollonini"
+    },
+    "TMP_luis_hernandez-garcia": {
+        "name": "Luis Hernandez-Garcia"
+    },
+    "TMP_lyuba_zehl": {
+        "name": "Lyuba Zehl"
+    },
+    "TMP_manjari_narayan": {
+        "name": "Manjari Narayan"
+    },
+    "TMP_manuel_mercier": {
+        "name": "Manuel Mercier"
+    },
+    "TMP_marco_castellaro": {
+        "name": "Marco Castellaro"
+    },
+    "TMP_maria_de_la_iglesia": {
+        "name": "Maria de la Iglesia"
+    },
+    "TMP_mark_mikkelsen": {
+        "name": "Mark Mikkelsen"
+    },
+    "TMP_markus_morawski": {
+        "name": "Markus Morawski"
+    },
+    "TMP_martin_craig": {
+        "name": "Martin Craig"
+    },
+    "TMP_martin_szinte": {
+        "name": "Martin Szinte"
+    },
+    "TMP_martin_wilson": {
+        "name": "Martin Wilson"
+    },
+    "TMP_mathias_goncalves": {
+        "name": "Mathias Goncalves"
+    },
+    "TMP_mathieu_boudreau": {
+        "name": "Mathieu Boudreau"
+    },
+    "TMP_matt_sanderson": {
+        "name": "Matt Sanderson"
+    },
+    "TMP_matthias_günther": {
+        "name": "Matthias Günther"
+    },
+    "TMP_matthias_van_osch": {
+        "name": "Matthias Van Osch"
+    },
+    "TMP_maureen_j_shader": {
+        "name": "Maureen J Shader"
+    },
+    "TMP_maurice_pasternak": {
+        "name": "Maurice Pasternak"
+    },
+    "TMP_max_a_van_den_boom": {
+        "name": "Max A. van den Boom"
+    },
+    "TMP_michael_chappell": {
+        "name": "Michael Chappell"
+    },
+    "TMP_michael_hanke": {
+        "name": "Michael Hanke"
+    },
+    "TMP_michael_p_harms": {
+        "name": "Michael P. Harms"
+    },
+    "TMP_michael_p_milham": {
+        "name": "Michael P. Milham"
+    },
+    "TMP_michael_p_notter": {
+        "name": "Michael P. Notter"
+    },
+    "TMP_michael_schirner": {
+        "name": "Michael Schirner"
+    },
+    "TMP_mikael_naveau": {
+        "name": "Mikael Naveau"
+    },
+    "TMP_nader_pouratian": {
+        "name": "Nader Pouratian"
+    },
+    "TMP_natalia_petridou": {
+        "name": "Natalia Petridou"
+    },
+    "TMP_national_institute_of_mental_health": {
+        "name": "National Institute of Mental Health"
+    },
+    "TMP_nicholas_traut": {
+        "name": "Nicholas Traut"
+    },
+    "TMP_nick_f_ramsey": {
+        "name": "Nick F. Ramsey"
+    },
+    "TMP_nicole_c_swann": {
+        "name": "Nicole C. Swann"
+    },
+    "TMP_olivier_david": {
+        "name": "Olivier David"
+    },
+    "TMP_orrin_devinsky": {
+        "name": "Orrin Devinsky"
+    },
+    "TMP_pamela_lamontagne": {
+        "name": "Pamela LaMontagne"
+    },
+    "TMP_parul_sethi": {
+        "name": "Parul Sethi"
+    },
+    "TMP_patrick_park": {
+        "name": "Patrick Park"
+    },
+    "TMP_paule-joanne_toussaint": {
+        "name": "Paule-Joanne Toussaint"
+    },
+    "TMP_peer_herholz": {
+        "name": "Peer Herholz"
+    },
+    "TMP_petra_ritter": {
+        "name": "Petra Ritter"
+    },
+    "TMP_pierre_rioux": {
+        "name": "Pierre Rioux"
+    },
+    "TMP_pieter_vandemaele": {
+        "name": "Pieter Vandemaele"
+    },
+    "TMP_pradeep_reddy_raamana": {
+        "name": "Pradeep Reddy Raamana"
+    },
+    "TMP_r_cameron_craddock": {
+        "name": "R. Cameron Craddock"
+    },
+    "TMP_richard_n_henson": {
+        "name": "Richard N. Henson"
+    },
+    "TMP_robert_e_smith": {
+        "name": "Robert E. Smith"
+    },
+    "TMP_robert_knight": {
+        "name": "Robert Knight"
+    },
+    "TMP_robert_luke": {
+        "name": "Robert Luke"
+    },
+    "TMP_roberto_toro": {
+        "name": "Roberto Toro"
+    },
+    "TMP_russell_a_poldrack": {
+        "name": "Russell A. Poldrack"
+    },
+    "TMP_rémi_adon": {
+        "name": "Rémi Adon"
+    },
+    "TMP_samir_das": {
+        "name": "Samir Das"
+    },
+    "TMP_samuel_garcia": {
+        "name": "Samuel Garcia"
+    },
+    "TMP_sara_elgayar": {
+        "name": "Sara Elgayar"
+    },
+    "TMP_sasha_d_ambrosio": {
+        "name": "Sasha D'Ambrosio"
+    },
+    "TMP_sein_jeung": {
+        "name": "Sein Jeung"
+    },
+    "TMP_shashank_bansal": {
+        "name": "Shashank Bansal"
+    },
+    "TMP_sjoerd_vos": {
+        "name": "Sjoerd Vos"
+    },
+    "TMP_soichi_hayashi": {
+        "name": "Soichi Hayashi"
+    },
+    "TMP_stephan_bickel": {
+        "name": "Stephan Bickel"
+    },
+    "TMP_suyash_bhogawar": {
+        "name": "Suyash Bhogawar"
+    },
+    "TMP_sylvain_baillet": {
+        "name": "Sylvain Baillet"
+    },
+    "TMP_sylvain_takerkart": {
+        "name": "Sylvain Takerkart"
+    },
+    "TMP_sören_grothkopp": {
+        "name": "Sören Grothkopp"
+    },
+    "TMP_tal_pal_attia": {
+        "name": "Tal Pal Attia"
+    },
+    "TMP_tal_yarkoni": {
+        "name": "Tal Yarkoni"
+    },
+    "TMP_tamas_spisak": {
+        "name": "Tamas Spisak"
+    },
+    "TMP_tamás_józsa": {
+        "name": "Tamás Józsa"
+    },
+    "TMP_teon_l_brooks": {
+        "name": "Teon L. Brooks"
+    },
+    "TMP_thomas_kirk": {
+        "name": "Thomas Kirk"
+    },
+    "TMP_thomas_okell": {
+        "name": "Thomas Okell"
+    },
+    "TMP_tibor_auer": {
+        "name": "Tibor Auer"
+    },
+    "TMP_timo_berg": {
+        "name": "Timo Berg"
+    },
+    "TMP_timo_dickscheid": {
+        "name": "Timo Dickscheid"
+    },
+    "TMP_tom_hampshire": {
+        "name": "Tom Hampshire"
+    },
+    "TMP_tor_wager": {
+        "name": "Tor Wager"
+    },
+    "TMP_travis_riddle": {
+        "name": "Travis Riddle"
+    },
+    "TMP_tristan_glatard": {
+        "name": "Tristan Glatard"
+    },
+    "TMP_ulrike_bingel": {
+        "name": "Ulrike Bingel"
+    },
+    "TMP_vanessa_sochat": {
+        "name": "Vanessa Sochat"
+    },
+    "TMP_vasudev_raguram": {
+        "name": "Vasudev Raguram"
+    },
+    "TMP_vince_d_calhoun": {
+        "name": "Vince D. Calhoun"
+    },
+    "TMP_vladimir_litvak": {
+        "name": "Vladimir Litvak"
+    },
+    "TMP_wietske_van_der_zwaag": {
+        "name": "Wietske van der Zwaag"
+    },
+    "TMP_william_clarke": {
+        "name": "William Clarke"
+    },
+    "TMP_william_triplett": {
+        "name": "William Triplett"
+    },
+    "TMP_wouter_v_potters": {
+        "name": "Wouter V. Potters"
+    },
+    "TMP_xiangrui_li": {
+        "name": "Xiangrui Li"
+    },
+    "TMP_yaroslav_o_halchenko": {
+        "name": "Yaroslav O. Halchenko"
+    },
+    "TMP_yoni_ashar": {
+        "name": "Yoni Ashar"
+    },
+    "TMP_yuan_wang": {
+        "name": "Yuan Wang"
+    },
+    "TMP_zachary_michael": {
+        "name": "Zachary Michael"
+    },
+    "TMP_étienne_bergeron": {
+        "name": "Étienne Bergeron"
     }
 }
