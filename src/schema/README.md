@@ -422,15 +422,17 @@ The `datatypes` dictionary contains a list of datatypes that fall under that mod
 The files in this directory are currently the least standardized of any part of the schema.
 
 Each file corresponds to a single `datatype`.
-Within the file is a list of dictionaries.
-Each dictionary corresponds to a group of suffixes that have the same rules regarding filenames.
-
-The dictionaries have three keys: `suffixes`, `extensions`, and `entities`.
+Within the file is a dictionary.
+Each dictionary entry corresponds to a group of suffixes that have the same rules regarding filenames.
+Key of the entry corresponds to ???.
+Value of the entry is a dictionary with four keys: `suffixes`, `extensions`, `datatypes`, and `entities`.
 
 The `suffixes` entry is a list of file suffixes for which all of the extensions in the `extensions` entry
 and all of the entity rules in the `entities` entry apply.
 
 The `extensions` entry is a list of valid file extensions.
+
+The `datatypes` entry is a list of the datatypes (ATM has a single entry and 1-to-1 correspondence to the filename).
 
 The `entities` entry is a dictionary in which the keys are entity names and the values are whether the entity is
 required or optional for that suffix.
@@ -446,10 +448,18 @@ That information is present in `rules/entities.yaml`.
 As an example, let us look at part of `meg.yaml`:
 
 ```yaml
-- suffixes:
+---
+meg:
+  suffixes:
   - meg
   extensions:
+  - /  # corresponds to BTi/4D data
+  - .ds/
+  - .json
   - .fif
+  #  ... more extensions
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -459,10 +469,13 @@ As an example, let us look at part of `meg.yaml`:
     processing: optional
     split: optional
 
-- suffixes:
+crosstalk:
+  suffixes:
   - meg
   extensions:
   - .fif
+  datatypes:
+  - meg
   entities:
     subject: required
     session: optional
@@ -473,8 +486,8 @@ As an example, let us look at part of `meg.yaml`:
       - crosstalk
 ```
 
-In this case, the first group has one suffix: `meg`.
-The second group has the same suffix (`meg`), but describes different rules for files with that suffix.
+In this case, both groups have the same single suffix: `meg`.
+The second group describes different rules for files with that suffix.
 While the valid extension is the same for both groups (`.fif`), the entities are not.
 
 Specifically, files in the first group may have `task`, `run`, `processing`, and `split` entities,
