@@ -71,6 +71,9 @@ line.
 Instead the name of columns are specified in the JSON file.
 This is to improve compatibility with existing software (for example, FSL, PNM)
 as well as to make support for other file formats possible in the future.
+As in any TSV file, column names MUST NOT be blank (that is, an empty string),
+and MUST NOT be duplicated within a single JSON file describing a headerless
+TSV file.
 
 Example `*_physio.tsv.gz`:
 
