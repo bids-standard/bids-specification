@@ -349,9 +349,9 @@ For this reason, the marker file extension was later modernized to `.mrk` to bet
 However again, to preserve backwards compatibility, `.sqd` is still a valid extension for the marker file(s).
 
 If there are multiple files with marker coils, the marker files must have the
-`acq-<label>` parameter and no more that two marker files may be associated with
+`acq-<label>` entity and no more that two marker files may be associated with
 one raw data file.
-While the acquisition parameter can take any value, it is RECOMMENDED that if
+While the acquisition entity can take any value, it is RECOMMENDED that if
 the two marker measurements occur before and after the raw data acquisition,
 `pre` and `post` are used to differentiate the two situations.
 

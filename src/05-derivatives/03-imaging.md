@@ -357,7 +357,7 @@ A guide for using macros can be found at
 ) }}
 
 See [Common image-derived labels](#common-image-derived-labels)
-for reserved key values for [`label`](../99-appendices/09-entities.md#label).
+for reserved values for the [`label`](../99-appendices/09-entities.md#label) entity.
 
 A 4D probabilistic segmentation, in which each frame corresponds to a different
 tissue class, must provide a label mapping in its JSON sidecar. For example:
