@@ -685,6 +685,70 @@ def log_errors(validation_result):
     for i in validation_result["path_tracking"]:
         lgr.warning("The `%s` file was not matched by any regex schema entry.", i)
 
+def _apply_inheritance(
+    regex_schema,
+    inheritance_key="\\.json)$",
+    ):
+    """
+    Expand regex list to account for inheritance.
+
+    Parameters
+    ----------
+    regex_schema : list of dict
+        List of dictionaries with keys which include 'regex', and 'mandatory', and values
+        which are valid regex strings and booleans, respectively.
+    inheritance_key : str, optional
+        Tail of the regex string identifying files to which inheritance applies.
+
+    Returns
+    -------
+    expanded_schema : list of str
+    """
+
+    # Order is important as the string is eroded.
+    # Suffix is never removed alone, but whenever anything else is...
+    suffix_regex = ".*?(?P<remove>_\(.*?\))\(.*?"
+    removal_strings = [
+        "anat/",
+        "func/",
+        "pet/",
+        ["sub-(?P<subject>([0-9a-zA-Z]+))/", "sub-(?P=subject)"],
+        ]
+    session_head = ".*?/(|ses-(?P<session>([0-9a-zA-Z]+))/)(|_ses-(?P=session))_"
+
+    expanded_schema = []
+    for i in regex_schema:
+        expanded_schema.append(i)
+        regex_string = i["regex"]
+        print("=====================")
+        print(regex_string)
+        print("---------------------")
+        if regex_string.endswith(inheritance_key):
+            for j in removal_strings:
+                found = False
+                if not isinstance(j, str):
+                    for k in j:
+                        if k in regex_string:
+                            regex_string = regex_string.replace(k, "")
+                        else:
+                            break
+                    else:
+                        found = True
+                else:
+                    if j in regex_string:
+                        regex_string = regex_string.replace(j, "")
+                        #suffix_matched = re.match(suffix_regex, regex_string)
+                        #if suffix_matched:
+                        #    regex_string.replace(suffix_matched.groupdict()["remove"], "")
+                        found = True
+                if found:
+                    if regex_string.startswith(session_head):
+                        regex_string = regex_string.replace(session_head, ".*?")
+                    print(regex_string)
+                    expanded_schema.append({"regex":regex_string, "mandatory":i["mandatory"]})
+
+    return expanded_schema
+
 
 def _get_directory_suffixes(my_schema):
     """Query schema for suffixes which identify directory entities.
@@ -784,6 +848,7 @@ def validate_bids(
     )
     regex_schema, my_schema = load_all(bids_schema_dir)
     pseudofile_suffixes = _get_directory_suffixes(my_schema)
+    regex_schema = _apply_inheritance(regex_schema)
     validation_result = validate_all(
         bids_paths,
         regex_schema,
