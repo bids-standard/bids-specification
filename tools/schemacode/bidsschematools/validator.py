@@ -685,10 +685,11 @@ def log_errors(validation_result):
     for i in validation_result["path_tracking"]:
         lgr.warning("The `%s` file was not matched by any regex schema entry.", i)
 
+
 def _apply_inheritance(
     regex_schema,
     inheritance_key="\\.json)$",
-    ):
+):
     """
     Expand regex list to account for inheritance.
 
@@ -713,7 +714,7 @@ def _apply_inheritance(
         "func/",
         "pet/",
         ["sub-(?P<subject>([0-9a-zA-Z]+))/", "sub-(?P=subject)"],
-        ]
+    ]
     session_head = ".*?/(|ses-(?P<session>([0-9a-zA-Z]+))/)(|_ses-(?P=session))_"
 
     expanded_schema = []
@@ -737,15 +738,15 @@ def _apply_inheritance(
                 else:
                     if j in regex_string:
                         regex_string = regex_string.replace(j, "")
-                        #suffix_matched = re.match(suffix_regex, regex_string)
-                        #if suffix_matched:
+                        # suffix_matched = re.match(suffix_regex, regex_string)
+                        # if suffix_matched:
                         #    regex_string.replace(suffix_matched.groupdict()["remove"], "")
                         found = True
                 if found:
                     if regex_string.startswith(session_head):
                         regex_string = regex_string.replace(session_head, ".*?")
                     print(regex_string)
-                    expanded_schema.append({"regex":regex_string, "mandatory":i["mandatory"]})
+                    expanded_schema.append({"regex": regex_string, "mandatory": i["mandatory"]})
 
     return expanded_schema
 
