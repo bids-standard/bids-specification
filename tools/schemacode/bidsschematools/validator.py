@@ -235,6 +235,8 @@ def load_top_level(
 
 def load_entities(
     my_schema,
+    inheritance_regex=".*?\\\.json.*?",
+    debug=False,
 ):
     """Create full path regexes for entities, as documented by a target BIDS YAML schema version.
 
@@ -242,6 +244,10 @@ def load_entities(
     ----------
     my_schema : dict
         A nested dictionary, as returned by `bidsschematools.schema.load_schema()`.
+    inheritance_regex : str, optional
+        Valid regex string identifying filenames to which inheritance expansion should be applied.
+    debug : bool, optional
+        Whether to print debugging output.
 
     Notes
     -----
@@ -252,7 +258,6 @@ def load_entities(
         though they will work in any case.
         https://github.com/bids-standard/bids-specification/issues/990
     * More issues in comments.
-    * Using pre 3.8 string formatting for legibility.
 
     Returns
     -------
@@ -320,6 +325,14 @@ def load_entities(
                 "mandatory": False,
             }
             regex_schema.append(regex_entry)
+            if re.match(inheritance_regex, regex_string):
+                expansion_list = _inheritance_expansion(regex_string, datatype, debug=debug)
+                for expansion in expansion_list:
+                    expansion_entry = {
+                        "regex": expansion,
+                        "mandatory": False,
+                    }
+                    regex_schema.append(expansion_entry)
 
     return regex_schema
 
@@ -327,6 +340,7 @@ def load_entities(
 @lru_cache()
 def load_all(
     schema_dir,
+    debug=False,
 ):
     """
     Create full path regexes for all BIDS specification files.
@@ -335,6 +349,8 @@ def load_all(
     ----------
     schema_dir : str, optional
         A string pointing to a BIDS directory for which paths should be validated.
+    debug : bool, optional
+        Whether to print debugging output.
 
     Returns
     -------
@@ -347,6 +363,7 @@ def load_all(
     my_schema = schema.load_schema(schema_dir)
     all_regex = load_entities(
         my_schema=my_schema,
+        debug=debug,
     )
     top_level_regex = load_top_level(
         my_schema=my_schema,
@@ -686,69 +703,73 @@ def log_errors(validation_result):
         lgr.warning("The `%s` file was not matched by any regex schema entry.", i)
 
 
-def _apply_inheritance(
-    regex_schema,
-    inheritance_key="\\.json)$",
+def _inheritance_expansion(
+    regex_string,
+    datatype=None,
+    debug=False,
 ):
     """
-    Expand regex list to account for inheritance.
+    Generate regex strings applying BIDS inheritance expansion to an input string.
 
     Parameters
     ----------
-    regex_schema : list of dict
-        List of dictionaries with keys which include 'regex', and 'mandatory', and values
-        which are valid regex strings and booleans, respectively.
-    inheritance_key : str, optional
-        Tail of the regex string identifying files to which inheritance applies.
+    regex_string : str
+        String representing the regex to which inheritance expansion should be applied.
+    datatype : str, optional
+        Datatype string to remove as part of inheritance expansion.
+    debug : bool, optional
+        Whether to print which expansions were generated.
 
     Returns
     -------
-    expanded_schema : list of str
+    expanded_regexes : list of str
     """
 
     # Order is important as the string is eroded.
-    # Suffix is never removed alone, but whenever anything else is...
-    suffix_regex = ".*?(?P<remove>_\(.*?\))\(.*?"
-    removal_strings = [
-        "anat/",
-        "func/",
-        "pet/",
-        ["sub-(?P<subject>([0-9a-zA-Z]+))/", "sub-(?P=subject)"],
+    # Session is eroded *together with* and *after* subject, as it is always optional
+    # and the erosion is:
+    #   * only required if a dangling leading underscore is present after subject removal.
+    #   * only BIDS-valid after the subject field is eroded from the filename.
+    expansions = [
+        {
+            "regex": [
+                ".*?(?P<remove>sub-\(\?P<subject>\(\[0\-9a\-zA\-Z\]\+\)\)/).*?",
+                ".*?(?P<remove>sub-\(\?P=subject\))",
+                ".*?/(?P<remove>\(\|ses-\(\?P<session>\(\[0\-9a\-zA\-Z\]\+\)\)/\)\(\|_ses-\(\?P=session\)\)_).*?",
+            ],
+            "replace": ["", "", ""],
+        },
     ]
-    session_head = ".*?/(|ses-(?P<session>([0-9a-zA-Z]+))/)(|_ses-(?P=session))_"
+    if datatype:
+        # Inserting at the beginning, since datatype goes first.
+        expansions.insert(
+            0,
+            {
+                "regex": [
+                    f".*?(?P<remove>{datatype}/).*?",
+                ],
+                "replace": [
+                    "",
+                ],
+            },
+        )
 
-    expanded_schema = []
-    for i in regex_schema:
-        expanded_schema.append(i)
-        regex_string = i["regex"]
-        print("=====================")
-        print(regex_string)
-        print("---------------------")
-        if regex_string.endswith(inheritance_key):
-            for j in removal_strings:
-                found = False
-                if not isinstance(j, str):
-                    for k in j:
-                        if k in regex_string:
-                            regex_string = regex_string.replace(k, "")
-                        else:
-                            break
-                    else:
-                        found = True
-                else:
-                    if j in regex_string:
-                        regex_string = regex_string.replace(j, "")
-                        # suffix_matched = re.match(suffix_regex, regex_string)
-                        # if suffix_matched:
-                        #    regex_string.replace(suffix_matched.groupdict()["remove"], "")
-                        found = True
-                if found:
-                    if regex_string.startswith(session_head):
-                        regex_string = regex_string.replace(session_head, ".*?")
-                    print(regex_string)
-                    expanded_schema.append({"regex": regex_string, "mandatory": i["mandatory"]})
+    expanded_regexes = []
+    if debug:
+        print(f"Applying inheritance expansion to:\n`{regex_string}`")
+    for expansion in expansions:
+        modified = False
+        for ix, regex in enumerate(expansion["regex"]):
+            matched = re.match(regex, regex_string)
+            if matched:
+                matched = matched.groupdict()["remove"]
+                regex_string = regex_string.replace(matched, expansion["replace"][ix])
+                modified = True
+        if modified == True:
+            expanded_regexes.append(regex_string)
+            print(f"\t* Generated expansion:\n\t{regex_string}")
 
-    return expanded_schema
+    return expanded_regexes
 
 
 def _get_directory_suffixes(my_schema):
