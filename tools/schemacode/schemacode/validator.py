@@ -663,10 +663,10 @@ def log_errors(validation_result):
 def _query_pseudofile_suffixes(my_schema):
     """Query schema for suffixes which identify directory entities.
 
-    Paramaters
+    Parameters
     ----------
     my_schema : dict
-        Nested direcotry as produced by `schemacode.schema.load_schema()`.
+        Nested directory as produced by `schemacode.schema.load_schema()`.
 
     Returns
     -------
