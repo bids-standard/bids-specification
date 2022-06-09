@@ -6,3 +6,5 @@ rules:
   indentation:
     # See https://github.com/yaml/pyyaml/issues/545 for why
     indent-sequences: false
+  comments:
+    level: error
