@@ -16,9 +16,10 @@ lgr = utils.get_logger()
 DIR_ENTITIES = ["subject", "session"]
 
 
-def _get_paths(bids_paths,
-    pseudofile_suffixes = [],
-    ):
+def _get_paths(
+    bids_paths,
+    pseudofile_suffixes=[],
+):
     """
     Get all paths from a list of directories, excluding hidden subdirectories from distribution.
 
@@ -28,7 +29,8 @@ def _get_paths(bids_paths,
         Directories from which to get paths, may also contain file paths, which will remain
         unchanged.
     pseudofile_suffixes : list of str
-        Directory suffixes prompting the validation of the directory name and limiting further directory walk.
+        Directory suffixes prompting the validation of the directory name and limiting further
+        directory walk.
 
     Notes
     -----
@@ -368,7 +370,8 @@ def validate_all(
         Whether to print itemwise notices for checks on the console, and include them in the
         validation result.
     pseudofile_suffixes : list of str
-        Directory suffixes prompting the validation of the directory name and limiting further directory walk.
+        Directory suffixes prompting the validation of the directory name and limiting further
+        directory walk.
 
     Returns
     -------
@@ -660,6 +663,7 @@ def log_errors(validation_result):
     for i in validation_result["path_tracking"]:
         lgr.warning("The `%s` file was not matched by any regex schema entry.", i)
 
+
 def _query_pseudofile_suffixes(my_schema):
     """Query schema for suffixes which identify directory entities.
 
@@ -686,6 +690,7 @@ def _query_pseudofile_suffixes(my_schema):
             if i != "/":
                 pseudofile_suffixes.append(i[:-1])
     return pseudofile_suffixes
+
 
 def validate_bids(
     bids_paths,
