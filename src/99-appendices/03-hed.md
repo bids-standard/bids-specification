@@ -224,7 +224,7 @@ The following `dataset_description.json` indicates that only the SCORE library v
 {
   "Name": "A great experiment",
   "BIDSVersion": "1.7.0",
-  "HEDVersion": "sc:score_0.0.1"
+  "HEDVersion": "score_0.0.1"
 }
 ```
 
