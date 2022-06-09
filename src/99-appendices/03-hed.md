@@ -233,5 +233,5 @@ The following `dataset_description.json` indicates that only the SCORE library v
 The corresponding notations in the dataset do not have a prefix:
 
 ```Text
-:Photomyogenic-response, Wicket-spikes
+Photomyogenic-response, Wicket-spikes
 ```
