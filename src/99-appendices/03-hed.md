@@ -181,10 +181,9 @@ repository on GitHub should be used to validate the study event annotations.
 ```
 
 If you omit the `HEDVersion` field from the dataset description file,
-any present HED information will be validated using the latest version of the HED schema,
-which is bound to result in problems.
-Hence, it is strongly RECOMMENDED that the `HEDVersion` field be included when using HED
-in a BIDS dataset.
+any present HED information will be validated using the latest version of the HED schema.
+This is bound to result in problems, and hence, it is strongly RECOMMENDED that the
+`HEDVersion` field be included when using HED in a BIDS dataset.
 
 ### Using HED library schemas
 
@@ -195,10 +194,10 @@ communities of users and are available in the GitHub
 Library schema are specified by *library-name*_*library-version*.
 
 Example: The following `dataset_description.json` file specifies that the
-[`HED8.1.0.xml`](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.1.0.xml)
+[HED8.1.0.xml](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.1.0.xml)
 base schema should be used along with the
-SCORE library for clinical neurological annotation and a test library
-located at [HED_score_0.0.1.xml](https://github.com/hed-standard/hed-schema-library/blob/main/library_schemas/score/hedxml/HED_score_0.0.1.xml) and [HED_testlib_1.0.2.xml](https://github.com/hed-standard/hed-schema-library/blob/main/library_schemas/testlib/hedxml/HED_testlib_1.0.2.xml), respectively.
+SCORE library for clinical neurological annotation and a test library.
+These later schemas are located at [HED_score_0.0.1.xml](https://github.com/hed-standard/hed-schema-library/blob/main/library_schemas/score/hedxml/HED_score_0.0.1.xml) and [HED_testlib_1.0.2.xml](https://github.com/hed-standard/hed-schema-library/blob/main/library_schemas/testlib/hedxml/HED_testlib_1.0.2.xml), respectively.
 
 ```JSON
 {
@@ -210,10 +209,13 @@ located at [HED_score_0.0.1.xml](https://github.com/hed-standard/hed-schema-libr
 The `sc:` and `ts:` are user-chosen prefixes used to distinguish the sources
 of the terms in the HED annotation.
 These prefixes must be alphanumeric.
-In the following HED annotation:
+
+The following HED annotation from this dataset uses the `sc:` prefix with
+`Photomyogenic-response` and `Wicket-spikes` because these terms are from the
+SCORE library, while `Data-feature` is from the standard HED schema.
 
 ```Text
-Data-feature, sc:Photmyogenic-response, sc:Wicket-spikes
+Data-feature, sc:Photomyogenic-response, sc:Wicket-spikes
 ```
 
 If only one schema is being used for annotation, the prefix can be omitted entirely.
@@ -231,5 +233,5 @@ The following `dataset_description.json` indicates that only the SCORE library v
 The corresponding notations in the dataset do not have a prefix:
 
 ```Text
-Photmyogenic-response, Wicket-spikes
+:Photomyogenic-response, Wicket-spikes
 ```
