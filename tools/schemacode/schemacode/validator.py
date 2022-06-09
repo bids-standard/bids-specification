@@ -16,7 +16,9 @@ lgr = utils.get_logger()
 DIR_ENTITIES = ["subject", "session"]
 
 
-def _get_paths(bids_paths):
+def _get_paths(bids_paths,
+    pseudofile_suffixes = [],
+    ):
     """
     Get all paths from a list of directories, excluding hidden subdirectories from distribution.
 
@@ -25,6 +27,8 @@ def _get_paths(bids_paths):
     bids_paths : list or str
         Directories from which to get paths, may also contain file paths, which will remain
         unchanged.
+    pseudofile_suffixes : list of str
+        Directory suffixes prompting the validation of the directory name and limiting further directory walk.
 
     Notes
     -----
@@ -47,9 +51,6 @@ def _get_paths(bids_paths):
         ".bidsignore",
         "dandiset.yaml",
     ]
-    # Inelegant hard-coded solution.
-    # Could be replaced by a maximum depth limit if BIDS root auto-detection is implemented.
-    treat_as_file_suffix = [".ngff"]
 
     path_list = []
     for bids_path in bids_paths:
@@ -57,13 +58,10 @@ def _get_paths(bids_paths):
         if os.path.isfile(bids_path):
             path_list.append(bids_path)
             continue
-        for root, dirs, file_names in os.walk(bids_path, topdown=False):
-            if any(root.endswith(i) for i in treat_as_file_suffix):
-                continue
-            if any(f"{i}/" in root for i in treat_as_file_suffix):
-                continue
-            if any(f"{i}\\" in root for i in treat_as_file_suffix):
-                continue
+        for root, dirs, file_names in os.walk(bids_path, topdown=True):
+            if any(root.endswith(i) for i in pseudofile_suffixes):
+                path_list.append(f"{root}/")
+                dirs[:] = []
             # will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
             if any(exclude_subdir in root for exclude_subdir in exclude_subdirs):
                 continue
@@ -335,6 +333,8 @@ def load_all(
     -------
     all_regex : list of dict
         A list of dictionaries, with keys including 'regex' and 'mandatory'.
+    my_schema : list of dict
+        Nested dictionaries representing the full schema.
     """
 
     my_schema = schema.load_schema(schema_dir)
@@ -346,13 +346,14 @@ def load_all(
     )
     all_regex.extend(top_level_regex)
 
-    return all_regex
+    return all_regex, my_schema
 
 
 def validate_all(
     bids_paths,
     regex_schema,
     debug=False,
+    pseudofile_suffixes=[],
 ):
     """
     Validate `bids_paths` based on a `regex_schema` dictionary list, including regexes.
@@ -366,6 +367,8 @@ def validate_all(
     debug : tuple, optional
         Whether to print itemwise notices for checks on the console, and include them in the
         validation result.
+    pseudofile_suffixes : list of str
+        Directory suffixes prompting the validation of the directory name and limiting further directory walk.
 
     Returns
     -------
@@ -384,7 +387,7 @@ def validate_all(
     """
 
     tracking_schema = deepcopy(regex_schema)
-    paths_list = _get_paths(bids_paths)
+    paths_list = _get_paths(bids_paths, pseudofile_suffixes=pseudofile_suffixes)
     tracking_paths = deepcopy(paths_list)
     if debug:
         itemwise_results = []
@@ -657,6 +660,32 @@ def log_errors(validation_result):
     for i in validation_result["path_tracking"]:
         lgr.warning("The `%s` file was not matched by any regex schema entry.", i)
 
+def _query_pseudofile_suffixes(my_schema):
+    """Query schema for suffixes which identify directory entities.
+
+    Paramaters
+    ----------
+    my_schema : dict
+        Nested direcotry as produced by `schemacode.schema.load_schema()`.
+
+    Returns
+    -------
+    list of str
+        Directory pseudofile suffixes excluding trailing slashes.
+
+    Notes
+    -----
+    * Yes this seems super-awkward to do explicitly, after all, the trailing slash is
+        already in so it should automagically work, but no:
+        - Subdirectory names need to be dynamically excluded from validation input.
+        - Backslash directory delimiters are still in use, which is regrettable.
+    """
+    pseudofile_suffixes = []
+    for i in my_schema["objects"]["extensions"]:
+        if i.endswith("/"):
+            if i != "/":
+                pseudofile_suffixes.append(i[:-1])
+    return pseudofile_suffixes
 
 def validate_bids(
     bids_paths,
@@ -716,11 +745,13 @@ def validate_bids(
         bids_paths = [bids_paths]
 
     bids_schema_dir = select_schema_dir(bids_paths, schema_reference_root, schema_version)
-    regex_schema = load_all(bids_schema_dir)
+    regex_schema, my_schema = load_all(bids_schema_dir)
+    pseudofile_suffixes = _query_pseudofile_suffixes(my_schema)
     validation_result = validate_all(
         bids_paths,
         regex_schema,
         debug=debug,
+        pseudofile_suffixes=pseudofile_suffixes,
     )
 
     log_errors(validation_result)
