@@ -188,10 +188,11 @@ in a BIDS dataset.
 
 ### Using HED library schemas
 
-HED also allows you to use one or more specialized vocabularies along with
+HED also allows you to use one or more specialized vocabularies along with or instead of
 the base vocabulary. These specialized vocabularies are developed by
 communities of users and are available in the GitHub
 [hed-schema-library](https://github.com/hed-standard/hed-schema-library) repository.
+Library schema are specified by *library-name*_*library-version*.
 
 Example: The following `dataset_description.json` file specifies that the
 [`HED8.1.0.xml`](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.1.0.xml)
@@ -203,13 +204,7 @@ located at [HED_score_0.0.1.xml](https://github.com/hed-standard/hed-schema-libr
 {
   "Name": "A great experiment",
   "BIDSVersion": "1.7.0",
-  "HEDVersion": {
-      "base": "8.1.0",
-      "libraries": {
-          "sc": "score_0.0.1",
-          "ts": "testlib_1.0.2"
-      }
-  }
+  "HEDVersion": ["8.1.0", "sc:score_0.0.1", "ts:testlib_1.0.2"]
 }
 ```
 The `sc:` and `ts:` are user-chosen prefixes used to distinguish the sources
@@ -221,5 +216,20 @@ In the following HED annotation:
 Data-feature, sc:Photmyogenic-response, sc:Wicket-spikes
 ```
 
-The tag `Data-feature` is from HED8.1.0,
-while `Photmyogenic-response` and `Wicket-spikes` are from HED_score_0.0.1.
+If only one schema is being used for annotation, the prefix can be omitted entirely.
+The following `dataset_description.json` indicates that only the SCORE library version
+0.0.1 will be used for HED annotation in this dataset.
+
+```JSON
+{
+  "Name": "A great experiment",
+  "BIDSVersion": "1.7.0",
+  "HEDVersion": "sc:score_0.0.1"
+}
+```
+
+The corresponding notations in the dataset do not have a prefix:
+
+```Text
+Photmyogenic-response, Wicket-spikes
+```

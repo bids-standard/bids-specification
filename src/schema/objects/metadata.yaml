@@ -1025,12 +1025,9 @@ HEDVersion:
     May include a single schema or a base schema and one or more library schema.
   anyOf:
   - type: string
-  - type: object
-    properties:
-      base:
-        type: string
-      libraries:
-        type: object
+  - type: array
+    items:
+      type: string
 Haematocrit:
   name: Haematocrit
   description: |
