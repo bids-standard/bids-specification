@@ -235,7 +235,7 @@ def load_top_level(
 
 def load_entities(
     my_schema,
-    inheritance_regex=".*?\\\.json.*?",
+    inheritance_regex=r".*?\\\.json.*?",
     debug=False,
 ):
     """Create full path regexes for entities, as documented by a target BIDS YAML schema version.
@@ -733,9 +733,10 @@ def _inheritance_expansion(
     expansions = [
         {
             "regex": [
-                ".*?(?P<remove>sub-\(\?P<subject>\(\[0\-9a\-zA\-Z\]\+\)\)/).*?",
-                ".*?(?P<remove>sub-\(\?P=subject\))",
-                ".*?/(?P<remove>\(\|ses-\(\?P<session>\(\[0\-9a\-zA\-Z\]\+\)\)/\)\(\|_ses-\(\?P=session\)\)_).*?",
+                r".*?(?P<remove>sub-\(\?P<subject>\(\[0\-9a\-zA\-Z\]\+\)\)/).*?",
+                r".*?(?P<remove>sub-\(\?P=subject\))",
+                r".*?/(?P<remove>\(\|ses-\(\?P<session>\(\[0\-9a\-zA\-Z\]\+\)\)/\)\(\|_ses-\("
+                r"\?P=session\)\)_).*?",
             ],
             "replace": ["", "", ""],
         },
@@ -765,7 +766,7 @@ def _inheritance_expansion(
                 matched = matched.groupdict()["remove"]
                 regex_string = regex_string.replace(matched, expansion["replace"][ix])
                 modified = True
-        if modified == True:
+        if modified:
             expanded_regexes.append(regex_string)
             print(f"\t* Generated expansion:\n\t{regex_string}")
 
