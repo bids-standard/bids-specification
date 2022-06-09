@@ -188,14 +188,14 @@ This is bound to result in problems, and hence, it is strongly RECOMMENDED that 
 ### Using HED library schemas
 
 HED also allows you to use one or more specialized vocabularies along with or instead of
-the base vocabulary. These specialized vocabularies are developed by
+the standard vocabulary. These specialized vocabularies are developed by
 communities of users and are available in the GitHub
 [hed-schema-library](https://github.com/hed-standard/hed-schema-library) repository.
 Library schema are specified by *library-name*_*library-version*.
 
 Example: The following `dataset_description.json` file specifies that the
 [HED8.1.0.xml](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.1.0.xml)
-base schema should be used along with the
+standard schema should be used along with the
 SCORE library for clinical neurological annotation and a test library.
 These later schemas are located at [HED_score_0.0.1.xml](https://github.com/hed-standard/hed-schema-library/blob/main/library_schemas/score/hedxml/HED_score_0.0.1.xml) and [HED_testlib_1.0.2.xml](https://github.com/hed-standard/hed-schema-library/blob/main/library_schemas/testlib/hedxml/HED_testlib_1.0.2.xml), respectively.
 
