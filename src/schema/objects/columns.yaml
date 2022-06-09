@@ -48,7 +48,7 @@ color:
 derived_from:
   name: derived_from
   description: |
-    `sample-<label>` key/value pair from which a sample is derived,
+    `sample-<label>` entity from which a sample is derived,
     for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`).
   type: string
   pattern: ^sample-[0-9a-zA-Z]+$
