@@ -62,7 +62,9 @@ def _get_paths(
             continue
         for root, dirs, file_names in os.walk(bids_path, topdown=True):
             if any(root.endswith(i) for i in pseudofile_suffixes):
+                # Add the directory name to the validation paths list.
                 path_list.append(f"{root}/")
+                # Do not index the contents of the directory.
                 dirs[:] = []
             # will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
             if any(exclude_subdir in root for exclude_subdir in exclude_subdirs):
@@ -369,9 +371,11 @@ def validate_all(
     debug : tuple, optional
         Whether to print itemwise notices for checks on the console, and include them in the
         validation result.
-    pseudofile_suffixes : list of str
-        Directory suffixes prompting the validation of the directory name and limiting further
-        directory walk.
+    pseudofile_suffixes : list of str, optional
+        Any suffixes which identify BIDS-valid directory data.
+        These pseudo-file suffixes will be validated based on the directory name, with the
+        directory contents not being indexed for validation.
+        By default, no pseudo-file suffixes are checked.
 
     Returns
     -------
@@ -664,7 +668,7 @@ def log_errors(validation_result):
         lgr.warning("The `%s` file was not matched by any regex schema entry.", i)
 
 
-def _query_pseudofile_suffixes(my_schema):
+def _get_directory_suffixes(my_schema):
     """Query schema for suffixes which identify directory entities.
 
     Parameters
@@ -751,7 +755,7 @@ def validate_bids(
 
     bids_schema_dir = select_schema_dir(bids_paths, schema_reference_root, schema_version)
     regex_schema, my_schema = load_all(bids_schema_dir)
-    pseudofile_suffixes = _query_pseudofile_suffixes(my_schema)
+    pseudofile_suffixes = _get_directory_suffixes(my_schema)
     validation_result = validate_all(
         bids_paths,
         regex_schema,
