@@ -191,7 +191,7 @@ HED also allows you to use one or more specialized vocabularies along with or in
 the standard vocabulary. These specialized vocabularies are developed by
 communities of users and are available in the GitHub
 [hed-schema-library](https://github.com/hed-standard/hed-schema-library) repository.
-Library schema are specified by *library-name*_*library-version*.
+Library schema are specified in the form `<library-name<_>library-version>`.
 
 Example: The following `dataset_description.json` file specifies that the
 [HED8.1.0.xml](https://github.com/hed-standard/hed-specification/tree/master/hedxml/HED8.1.0.xml)
