@@ -3,7 +3,7 @@
 # These definitions include the field names, their descriptions, and valid values.
 # This file **does not** define how and when metadata fields can be used with a given file.
 ACCELChannelCount:
-  name: NIRSDetectorOptodeCount
+  name: ACCELChannelCount
   description: |
     Number of accelerometer channels.
   type: integer
@@ -1762,13 +1762,13 @@ NIRSSourceOptodeCount:
   description: |
     Number of fNIRS sources.
   type: integer
-  minimum: 0
+  minimum: 1
 NIRSDetectorOptodeCount:
   name: NIRSDetectorOptodeCount
   description: |
     Number of fNIRS detectors.
   type: integer
-  minimum: 0
+  minimum: 1
 NIRSPlacementScheme:
   name: NIRSPlacementScheme
   description: |
