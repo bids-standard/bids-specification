@@ -7,12 +7,12 @@ import numpy as np
 
 
 def get_schema_path():
-    """Get the path to the schema directory.
+    """Get the path to the schema folder.
 
     Returns
     -------
     str
-        Absolute path to the directory containing schema-related files.
+        Absolute path to the folder containing schema-related files.
     """
     return op.abspath(op.join(op.dirname(__file__), "data", "schema"))
 
