@@ -54,7 +54,7 @@ detector__channels:
     enum:
     - n/a
 detector__optodes:
-  name: detector
+  name: detector_type
   description: |
     The type of detector. Only to be used if the field `DetectorType` in `*_nirs.json` is set to `mixed`.
   anyOf:
@@ -429,7 +429,7 @@ software_filters:
     enum:
     - n/a
 source__channels:
-  name: source
+  name: source_type
   description: |
     Name of the source as specified in the `*_optodes.tsv` file.
     `n/a` for channels that do not contain fNIRS signals (for example, acceleration).
