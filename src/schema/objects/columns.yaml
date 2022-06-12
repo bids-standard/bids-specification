@@ -429,7 +429,7 @@ software_filters:
     enum:
     - n/a
 source__channels:
-  name: source_type
+  name: source
   description: |
     Name of the source as specified in the `*_optodes.tsv` file.
     `n/a` for channels that do not contain fNIRS signals (for example, acceleration).
@@ -439,7 +439,7 @@ source__channels:
     enum:
     - n/a
 source__optodes:
-  name: source
+  name: source_type
   description: |
     The type of source. Only to be used if the field `SourceType` in `*_nirs.json` is set to `mixed`.
   anyOf:
