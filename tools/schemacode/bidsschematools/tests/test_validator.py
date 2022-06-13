@@ -226,16 +226,18 @@ def test__add_suffixes():
 def test__inheritance_expansion():
     from schemacode.validator import _inheritance_expansion
 
-    base_entry = (".*?/sub-(?P<subject>([0-9a-zA-Z]+))/"
-    "(|ses-(?P<session>([0-9a-zA-Z]+))/)func/sub-(?P=subject)"
-    "(|_ses-(?P=session))_task-(?P<task>([0-9a-zA-Z]+))"
-    "(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
-    "(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
-    "(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
-    "(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
-    "(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
-    "(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
-    "_phase(\.nii\.gz|\.nii|\.json)$")
+    base_entry = (
+        r".*?/sub-(?P<subject>([0-9a-zA-Z]+))/"
+        r"(|ses-(?P<session>([0-9a-zA-Z]+))/)func/sub-(?P=subject)"
+        r"(|_ses-(?P=session))_task-(?P<task>([0-9a-zA-Z]+))"
+        r"(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
+        r"(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
+        r"(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
+        r"(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
+        r"(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
+        r"(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
+        r"_phase(\.nii\.gz|\.nii|\.json)$"
+    )
     expected_entries = [
         ".*?/sub-(?P<subject>([0-9a-zA-Z]+))/"
         "(|ses-(?P<session>([0-9a-zA-Z]+))/)"
@@ -256,10 +258,11 @@ def test__inheritance_expansion():
         "(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
         "(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
         "_phase(\\.nii\\.gz|\\.nii|\\.json)$",
-        ]
+    ]
 
     inheritance_expanded_entries = _inheritance_expansion(base_entry, datatype="func")
     assert inheritance_expanded_entries == expected_entries
+
 
 def test_load_all():
     from bidsschematools.validator import load_all
