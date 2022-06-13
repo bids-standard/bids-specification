@@ -768,7 +768,8 @@ def _inheritance_expansion(
                 modified = True
         if modified:
             expanded_regexes.append(regex_string)
-            print(f"\t* Generated expansion:\n\t{regex_string}")
+            if debug:
+                print(f"\t* Generated expansion:\n\t{regex_string}")
 
     return expanded_regexes
 
