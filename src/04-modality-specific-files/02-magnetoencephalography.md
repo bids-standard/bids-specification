@@ -593,9 +593,8 @@ noise.
 In the context of BIDS it is RECOMMENDED to perform an empty-room recording for
 each experimental session.
 
-If empty-room recordings are not done prior to each individual experimental session, but
-on a daily schedule, one empty-room recording may have to be used with multiple subjects and/or sessions. In that case
-it is RECOMMENDED to store the empty-room recording inside a subject directory
+If empty-room recordings are not collected for each individual experimental session, one empty-room recording may be used with multiple subjects and/or sessions. For example, they may be collected once a day. 
+In that case it is RECOMMENDED to store the empty-room recording inside a subject directory
 named `sub-emptyroom`.
 The label for the [`task-<label>`](../99-appendices/09-entities.md#task) entity in the empty-room recording SHOULD be
 set to `noise`.
