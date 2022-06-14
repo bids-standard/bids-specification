@@ -417,7 +417,7 @@ status_description:
   name: status_description
   description: |
     Freeform text description of noise or artifact affecting data quality on the channel.
-    It is meant to explain why the channel was declared bad in `[status]`.
+    It is meant to explain why the channel was declared bad in the `status` column.
   type: string
 stim_file:
   name: stim_file
