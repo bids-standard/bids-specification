@@ -1,59 +1,76 @@
 ---
-- suffixes:
+nirs:
+  suffixes:
   - nirs
   extensions:
   - .snirf
   - .json
+  datatypes:
+  - nirs
   entities:
     subject: required
     session: optional
     task: required
     run: optional
 
-- suffixes:
+channels:
+  suffixes:
   - channels
   extensions:
   - .tsv
+  datatypes:
+  - nirs
   entities:
     subject: required
     session: optional
     task: required
     run: optional
 
-- suffixes:
+coordsystem:
+  suffixes:
   - coordsystem
   extensions:
   - .json
+  datatypes:
+  - nirs
   entities:
     subject: required
     session: optional
 
-- suffixes:
+optodes:
+  suffixes:
   - optodes
   extensions:
   - .tsv
+  datatypes:
+  - nirs
   entities:
     subject: required
     session: optional
 
-- suffixes:
+events:
+  suffixes:
   - events
   extensions:
   - .tsv
   - .json
+  datatypes:
+  - nirs
   entities:
     subject: required
     session: optional
     task: required
     run: optional
 
-# Timeseries
-- suffixes:
+timeseries:
+  suffixes:
   - physio
   - stim
   extensions:
   - .tsv.gz
   - .json
+  datatypes:
+  - nirs
   entities:
     subject: required
     session: optional
