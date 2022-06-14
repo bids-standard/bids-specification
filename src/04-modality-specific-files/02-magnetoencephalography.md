@@ -610,7 +610,7 @@ It should be possible to query empty-room recordings just like usual subject
 recordings, hence all metadata sidecar files (such as the `channels.tsv`) file
 SHOULD be present as well.
 
-Example:
+Example 1:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -627,6 +627,31 @@ A guide for using macros can be found at
             "sub-emptyroom_ses-20170801_task-noise_meg.ds": "",
             "sub-emptyroom_ses-20170801_task-noise_meg.json": "",
             "sub-emptyroom_ses-20170801_task-noise_channels.tsv": "",
+            }
+         }
+      },
+   }
+) }}
+
+
+Example 2:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "sub-control01": {
+      "ses-01": {
+         "sub-01_ses-01_scans.tsv": "",
+         "meg": {
+            "sub-control01_ses-01_task-rest_meg.ds": "",
+            "sub-control01_ses-01_task-rest_meg.json": "",
+            "sub-control01_ses-01_task-rest_channels.tsv": "",
+            "sub-control01_ses-01_task-noise_meg.ds": "",
+            "sub-control01_ses-01_task-noise_meg.json": "",
+            "sub-control01_ses-01_task-noise_channels.tsv": "",
             }
          }
       },
