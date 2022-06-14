@@ -3,7 +3,7 @@ HED:
   name: HED
   description: |
     Hierarchical Event Descriptor (HED) Tag.
-    See [Appendix III](/99-appendices/03-hed.html) for details.
+    See [Appendix III](SPEC_ROOT/99-appendices/03-hed.md) for details.
   type: string
 abbreviation:
   name: abbreviation
@@ -16,14 +16,16 @@ acq_time__scans:
     Acquisition time refers to when the first data point in each run was acquired.
     Furthermore, if this header is provided, the acquisition times of all files
     from the same recording MUST be identical.
-    Datetime format and their anonymization are described in [Units](/02-common-principles.html#units).
+    Datetime format and their anonymization are described in
+    [Units](SPEC_ROOT/02-common-principles.md#units).
   type: string
   format: datetime
 acq_time__sessions:
   name: acq_time
   description: |
     Acquisition time refers to when the first data point of the first run was acquired.
-    Datetime format and their anonymization are described in [Units](/02-common-principles.html#units).
+    Datetime format and their anonymization are described in
+    [Units](SPEC_ROOT/02-common-principles.md#units).
   type: string
   format: datetime
 age:
@@ -62,7 +64,7 @@ detector__optodes:
 derived_from:
   name: derived_from
   description: |
-    `sample-<label>` key/value pair from which a sample is derived,
+    `sample-<label>` entity from which a sample is derived,
     for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`).
   type: string
   pattern: ^sample-[0-9a-zA-Z]+$
@@ -477,8 +479,8 @@ stim_file:
     Represents the location of the stimulus file (such as an image, video, or
     audio file) presented at the given onset time.
     There are no restrictions on the file formats of the stimuli files,
-    but they should be stored in the `/stimuli` folder
-    (under the root folder of the dataset; with optional subfolders).
+    but they should be stored in the `/stimuli` directory
+    (under the root directory of the dataset; with optional subdirectories).
     The values under the `stim_file` column correspond to a path relative to
     `/stimuli`.
     For example `images/cat03.jpg` will be translated to `/stimuli/images/cat03.jpg`.
@@ -520,7 +522,31 @@ trigger:
     continuous measurement of the scanner trigger signal
   type: number
 # type column in channels.tsv files
-type__channels:
+type__eeg_channels:
+  name: type
+  description: |
+    Type of channel; MUST use the channel types listed below.
+    Note that the type MUST be in upper-case.
+  type: string
+  enum:
+  - AUDIO
+  - EEG
+  - EOG
+  - ECG
+  - EMG
+  - EYEGAZE
+  - GSR
+  - HEOG
+  - MISC
+  - PPG
+  - PUPIL
+  - REF
+  - RESP
+  - SYSCLOCK
+  - TEMP
+  - TRIG
+  - VEOG
+type__meg_channels:
   name: type
   description: |
     Type of channel; MUST use the channel types listed below.
@@ -565,6 +591,33 @@ type__channels:
   - MAGN
   - MISC
   - OTHER
+type__ieeg_channels:
+  name: type
+  description: |
+    Type of channel; MUST use the channel types listed below.
+    Note that the type MUST be in upper-case.
+  type: string
+  enum:
+  - EEG
+  - ECOG
+  - SEEG
+  - DBS
+  - VEOG
+  - HEOG
+  - EOG
+  - ECG
+  - EMG
+  - TRIG
+  - AUDIO
+  - PD
+  - EYEGAZE
+  - PUPIL
+  - MISC
+  - SYSCLOCK
+  - ADC
+  - DAC
+  - REF
+  - OTHER
 # type column for electrodes.tsv files
 type__electrodes:
   name: type
@@ -581,7 +634,7 @@ units:
   description: |
     Physical unit of the value represented in this channel,
     for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter
-    (see [Units](/02-common-principles.html#units)).
+    (see [Units](SPEC_ROOT/02-common-principles.md#units)).
   type: string
   format: unit
 units__nirs:

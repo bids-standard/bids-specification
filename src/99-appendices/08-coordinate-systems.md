@@ -37,7 +37,7 @@ units are expressed in mm.
 
 The coordinate systems below all relate to neuroscience and therefore to the
 head or brain coordinates.
-$Please be aware that all data acquisition starts with
+Please be aware that all data acquisition starts with
 "device coordinates" (scanner), which does not have to be identical to the
 initial "file format coordinates" (DICOM), which are again different from the
 "head" coordinates (for example, NIFTI).
@@ -112,7 +112,7 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 -   `4DBti`: ALS orientation and the origin between the ears
 -   `KitYokogawa`: ALS orientation and the origin between the ears
 -   `ChietiItab`: RAS orientation and the origin between the ears
--   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
+-   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers): RAS orientation and the origin at the center of the gradient coil for template NifTI images
 
 In the case that MEG was recorded simultaneously with EEG,
 the restricted keywords for
@@ -138,7 +138,7 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
     For more information, see the
     [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-hj-coordinate-system).
 
--   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
+-   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers): RAS orientation and the origin at the center of the gradient coil for template NifTI images
 
 In the case that EEG was recorded simultaneously with MEG,
 the restricted keywords for
@@ -182,7 +182,7 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
     is not aligned to ACPC, `ScanRAS` should be used.
 
 -   Any keyword from the list of
-    [Standard template identifiers](#standard-template-identifiers)
+    [Standard template identifiers](#standard-template-identifiers): RAS orientation and the origin at the center of the gradient coil for template NifTI images
 
 ## Image-based Coordinate Systems
 

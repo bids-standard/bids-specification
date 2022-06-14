@@ -13,7 +13,7 @@ misunderstanding we clarify them here.
     purpose of a particular study. A dataset consists of data acquired from one
     or more subjects, possibly from multiple sessions.
 
-1.  **Subject** - a person or animal participating in the study.  Used
+1.  **Subject** - a person or animal participating in the study. Used
     interchangeably with term **Participant**.
 
 1.  **Session** - a logical grouping of neuroimaging and behavioral data
@@ -34,10 +34,8 @@ misunderstanding we clarify them here.
 
 1.  **Sample** - a sample pertaining to a subject such as tissue, primary cell
     or cell-free sample.
-    The `sample-<label>` key/value pair is used to distinguish between different
-    samples from the same subject.
-    The label MUST be unique per subject and is RECOMMENDED to be unique
-    throughout the dataset.
+    Sample labels MUST be unique within a subject and it is RECOMMENDED that
+    they be unique throughout the dataset.
 
 1.  **Data acquisition** - a continuous uninterrupted block of time during which
     a brain scanning instrument was acquiring data according to particular
@@ -91,7 +89,7 @@ misunderstanding we clarify them here.
     Note that "uninterrupted" may look different by modality due to the nature of the
     recording.
     For example, in [MRI](04-modality-specific-files/01-magnetic-resonance-imaging-data.md)
-    or [MEG] (04-modality-specific-files/02-magnetoencephalography.md),
+    or [MEG](04-modality-specific-files/02-magnetoencephalography.md),
     if a subject leaves the scanner, the acquisition must be restarted.
     For some types of [PET](04-modality-specific-files/09-positron-emission-tomography.md) acquisitions,
     a subject may leave and re-enter the scanner without interrupting the scan.
@@ -106,29 +104,67 @@ misunderstanding we clarify them here.
     The modality may overlap with, but should not be confused with
     the **data type**.
 
-1.  **`<index>`** - a nonnegative integer, possibly prefixed with arbitrary number of
-    0s for consistent indentation, for example, it is `01` in `run-01` following
-    `run-<index>` specification.
-
-1.  **`<label>`** - an alphanumeric value, possibly prefixed with arbitrary
-    number of 0s for consistent indentation, for example, it is `rest` in `task-rest`
-    following `task-<label>` specification. Note that labels MUST not collide when
-    casing is ignored (see [Case collision intolerance](#case-collision-intolerance)).
-
-1.  **`suffix`** - an alphanumeric value, located after the `key-value_` pairs (thus after
-    the final `_`), right before the **File extension**, for example, it is `eeg` in
-    `sub-05_task-matchingpennies_eeg.vhdr`.
+1.  **Suffix** - an alphanumeric string that forms part of a filename, located
+    after all [entities](#entities) and following a final `_`, right before the
+    **file extension**; for example, it is `eeg` in `sub-05_task-matchingpennies_eeg.vhdr`.
 
 1.  **File extension** - a portion of the filename after the left-most
     period (`.`) preceded by any other alphanumeric. For example, `.gitignore` does
     not have a file extension, but the file extension of `test.nii.gz` is `.nii.gz`.
     Note that the left-most period is included in the file extension.
 
-1.  **DEPRECATED** - A "deprecated" entity or metadata field SHOULD NOT be used in the
+1.  **DEPRECATED** - A "deprecated" [entity](#entities) or metadata field SHOULD NOT be used in the
     generation of new datasets.
     It remains in the standard in order to preserve the interpretability of existing datasets.
     Validating software SHOULD warn when deprecated practices are detected and provide a
     suggestion for updating the dataset to preserve the curator's intent.
+
+## Entities
+
+An "entity" is an attribute that can be associated with a file, contributing
+to the identification of that file as a component of its filename in the
+form of a hyphen-separated key-value pair.
+
+Each entity has the following attributes:
+
+1.  *Name*: A comprehensive name describing the context of information
+    to be provided via the entity.
+
+1.  *Key*: A short string, typically a compression of the entity name,
+    which uniquely identifies the entity when part of a filename.
+
+1.  *Value type*: The requisite form of the value that gets specified
+    alongside the key whenever the entity appears in a filename.
+    For each entity, the value is of one of two possible types:
+
+    1.  *Index*: A non-negative integer, potentially zero-padded for
+        consistent width.
+
+    1.  *Label*: An alphanumeric string.
+        Note that labels MUST not collide when casing is ignored
+        (see [Case collision intolerance](#case-collision-intolerance)).
+
+The entity *format* is a string that prescribes how the entity appears within
+any given filename.
+For a hypothetical entity with key "`key`", the format can be either
+"`key-<index>`" or "`key-<label>`", depending on the value type of that entity.
+
+An entity *instance* is the specific manifestation of an entity within the
+name of a specific file, based on the format of the entity but with a value
+that provides identifying information to the particular file in whose name
+it appears.
+
+Depending on context, any one of the entity name, key, format, or a specific
+entity instance, may be referred to as simply an "entity".
+
+"Subject", "session", "sample", "task", and "run" from the list of definitions
+above are all examples of entities.
+The comprehensive list of supported entities is defined in
+[Appendix IX](99-appendices/09-entities.md);
+further, whether each is OPTIONAL, REQUIRED, or MUST NOT be provided for
+various data files, as well as their relative ordering in a filename, are
+defined in the Entity Table in
+[Appendix IV](99-appendices/04-entity-table.md).
 
 ## Compulsory, optional, and additional data and metadata
 
@@ -140,7 +176,7 @@ T2 volume does not need to be included, but when it is available it should be
 saved under a particular filename specified in the standard. This standard
 aspires to describe a majority of datasets, but acknowledges that there will be
 cases that do not fit. In such cases one can include additional files and
-subfolders to the existing folder structure following common sense. For example
+subdirectories to the existing directory structure following common sense. For example
 one may want to include eye tracking data in a vendor specific format that is
 not covered by this standard. The most sensible place to put it is next to the
 continuous recording file with the same naming scheme but different extensions.
@@ -148,51 +184,58 @@ The solutions will change from case to case and publicly available datasets will
 be reviewed to include common data types in the future releases of the BIDS
 specification.
 
-## File name structure
+## Filesystem structure
 
-A filename consists of a chain of *entities*, or key-value pairs, a *suffix* and an
-*extension*.
-Two prominent examples of entities are `subject` and `session`.
+Data for each subject are placed in sub-directories named "`sub-<label>`",
+where string "`<label>`" is substituted with the unique identification
+label of each subject.
+Additional information on each participant MAY be provided in a
+[participants file](03-modality-agnostic-files.md#participants-file)
+in the root directory of the dataset.
 
-For a data file that was collected in a given `session` from a given
-`subject`, the filename MUST begin with the string `sub-<label>_ses-<label>`.
-If the `session` level is omitted in the folder structure, the filename MUST begin
-with the string `sub-<label>`, without `ses-<label>`.
+If data for the subject were acquired across multiple sessions, then within
+the subject directory resides sub-directories named "`ses-<label>`",
+where string "`<label>`" is substituted with a unique identification
+label for each session.
+In datasets where at least one subject has more than one session, this
+additional sub-directory later SHOULD be added for all subjects in the dataset.
+Additional information on each session MAY be provided in a
+[sessions file](03-modality-agnostic-files.md#sessions-file)
+within the subject directory.
 
-Note that `sub-<label>` corresponds to the `subject` entity because it has
-the `sub-` "key" and`<label>` "value", where `<label>` would in a real data file
-correspond to a unique identifier of that subject, such as `01`.
-The same holds for the `session` entity with its `ses-` key and its `<label>`
-value.
+Within the session sub-directory (or the subject sub-directory if no
+session sub-directories are present) are sub-directories named according to
+data type as defined above.
+A data type directory SHOULD NOT be defined if there are no files to be placed
+in that directory.
 
-The extra session layer (at least one `/ses-<label>` subfolder) SHOULD
-be added for all subjects if at least one subject in the dataset has more than
-one session.
-If a `/ses-<label>` subfolder is included as part of the directory hierarchy,
-then the same [`ses-<label>`](./99-appendices/09-entities.md#ses)
-key/value pair MUST also be included as part of the filenames themselves.
-Acquisition time of session can
-be defined in the [sessions file](03-modality-agnostic-files.md#sessions-file).
+## Filenames
 
-A chain of entities, followed by a suffix, connected by underscores (`_`)
-produces a human readable filename, such as `sub-01_task-rest_eeg.edf`.
-It is evident from the filename alone that the file contains resting state
-data from subject `01`.
-The suffix `eeg` and the extension `.edf` depend on the imaging modality and
-the data format and indicate further details of the file's contents.
+A filename consists of a chain of *entity instances* and a *suffix*
+all separated by underscores, and an *extension*.
+This pattern forms filenames that are both human- and machine-readable.
+For instance, file "`sub-01_task-rest_eeg.edf`" contains instances of the
+"subject" and "task" entities, making it evident from the filename alone that it
+contains resting-state data from subject `01`;
+the suffix `eeg` and extension `.edf` depend on the imaging modality and the data
+format, and can therefore convey further details of the file's contents.
 
-Entities within a filename MUST be unique.
-For example, the following filename is not valid because it uses the `acq`
-entity twice:
-`sub-01_acq-laser_acq-uneven_electrodes.tsv`
+For a data file that was collected in a given session from a given
+subject, the filename MUST begin with the string `sub-<label>_ses-<label>`.
+Conversely, if the session level is omitted in the directory structure, the file
+name MUST begin with the string `sub-<label>`, without `ses-<label>`.
 
-In cases where entities duplicate metadata,
-the presence of an entity should not be used as a replacement for
+Any given entity MUST NOT appear more than once in any filename. For example,
+filename "`sub-01_acq-laser_acq-uneven_electrodes.tsv`" is invalid because
+it uses the "acquisition" entity twice.
+
+In cases where an entity and a metadata field convey similar contextual
+information, the presence of an entity should not be used as a replacement for
 the corresponding metadata field.
-For instance, in echo-planar imaging MRI,
-the [`dir-<label>`](./99-appendices/09-entities.md#dir) entity MAY be used
+For instance, in echo-planar imaging MRI, the
+[`dir-<label>`](./99-appendices/09-entities.md#dir) entity MAY be used
 to distinguish files with different phase-encoding directions,
-but the file's `PhaseEncodingDirection` can only be specified as metadata.
+but the file's `PhaseEncodingDirection` MUST be specified as metadata.
 
 A summary of all entities in BIDS and the order in which they MUST be
 specified is available in the [entity table](./99-appendices/04-entity-table.md)
@@ -252,25 +295,31 @@ recommending a particular naming scheme for including different types of
 source data (such as the raw event logs or parameter files, before conversion to BIDS).
 However, in the case that these data are to be included:
 
-1.  These data MUST be kept in separate `sourcedata` folder with a similar
-    folder structure as presented below for the BIDS-managed data. For example:
+1.  These data MUST be kept in separate `sourcedata` directory with a similar
+    directory structure as presented below for the BIDS-managed data. For example:
     `sourcedata/sub-01/ses-pre/func/sub-01_ses-pre_task-rest_bold.dicom.tgz` or
     `sourcedata/sub-01/ses-pre/func/MyEvent.sce`.
 
-1.  A README file SHOULD be found at the root of the `sourcedata` folder or the
-    `derivatives` folder, or both.
+1.  A README file SHOULD be found at the root of the `sourcedata` directory or the
+    `derivatives` directory, or both.
     This file should describe the nature of the raw data or the derived data.
     We RECOMMEND including the PDF print-out with the actual sequence
-    parameters generated by the scanner in the `sourcedata`  folder.
+    parameters generated by the scanner in the `sourcedata`  directory.
 
 Alternatively one can organize their data in the following way
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "my_dataset-1": {
             "sourcedata": "",
             "...": "",
-            "sourcedata": {
+            "rawdata": {
+                "dataset_description.json": "",
+                "participants.tsv": "",
                 "sub-01": {},
                 "sub-02": {},
                 "...": "",
@@ -285,17 +334,17 @@ Alternatively one can organize their data in the following way
 ) }}
 
 In this example, where `sourcedata` and `derivatives` are not nested inside
-`rawdata`, **only the `rawdata` subfolder** needs to be a BIDS-compliant
+`rawdata`, **only the `rawdata` subdirectory** needs to be a BIDS-compliant
 dataset.
-The subfolders of `derivatives` MAY be BIDS-compliant derivatives datasets
+The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
 This specification does not prescribe anything about the contents of `sourcedata`
-folders in the above example - nor does it prescribe the `sourcedata`,
-`derivatives`, or `rawdata` folder names.
+directories in the above example - nor does it prescribe the `sourcedata`,
+`derivatives`, or `rawdata` directory names.
 The above example is just a convention that can be useful for organizing raw,
 source, and derived data while maintaining BIDS compliance of the raw data
-folder. When using this convention it is RECOMMENDED to set the `SourceDatasets`
-field in `dataset_description.json` of each subfolder of `derivatives` to:
+directory. When using this convention it is RECOMMENDED to set the `SourceDatasets`
+field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ```JSON
 {
@@ -307,18 +356,18 @@ field in `dataset_description.json` of each subfolder of `derivatives` to:
 
 Derivatives can be stored/distributed in two ways:
 
-1.  Under a `derivatives/` subfolder in the root of the source BIDS dataset
-    folder to make a clear distinction between raw data and results of data
+1.  Under a `derivatives/` subdirectory in the root of the source BIDS dataset
+    directory to make a clear distinction between raw data and results of data
     processing.
     A data processing pipeline will typically have a dedicated directory
     under which it stores all of its outputs.
     Different components of a pipeline can, however, also be stored under different
-    subfolders.
+    subdirectories.
     There are few restrictions on the directory names;
     it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where
     it is anticipated that the same pipeline will output more than one variant
     (for example, `AFNI-blurring` and `AFNI-noblurring`).
-    For the sake of consistency, the subfolder name SHOULD be
+    For the sake of consistency, the subdirectory name SHOULD be
     the `GeneratedBy.Name` field in `data_description.json`,
     optionally followed by a hyphen and a suffix (see
     [Derived dataset and pipeline description][derived-dataset-description]).
@@ -358,6 +407,10 @@ Derivatives can be stored/distributed in two ways:
 
     Example of a derivative dataset including the raw dataset as source:
 
+    <!-- This block generates a file tree.
+    A guide for using macros can be found at
+    https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+    -->
     {{ MACROS___make_filetree_example(
         {
         "my_processed_data": {
@@ -395,7 +448,7 @@ session subdirectory within the corresponding subject directory; and so on.
 
 Nothing in this specification should be interpreted to disallow the
 storage/distribution of non-compliant derivatives of BIDS datasets.
-In particular, if a BIDS dataset contains a `derivatives/` sub-directory,
+In particular, if a BIDS dataset contains a `derivatives/` subdirectory,
 the contents of that directory may be a heterogeneous mix of BIDS Derivatives
 datasets and non-compliant derivatives.
 
@@ -459,6 +512,12 @@ Note that if a field name included in the data dictionary matches a column name 
 then that field MUST contain a description of the corresponding column,
 using an object containing the following fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
         "LongName": "OPTIONAL",
@@ -498,9 +557,9 @@ Example:
 }
 ```
 
-### Key/value files (dictionaries)
+### Key-value files (dictionaries)
 
-JavaScript Object Notation (JSON) files MUST be used for storing key/value
+JavaScript Object Notation (JSON) files MUST be used for storing key-value
 pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
 format can be found at [https://www.json.org/](https://www.json.org/),
 and at [https://tools.ietf.org/html/std90](https://tools.ietf.org/html/std90).
@@ -590,6 +649,10 @@ Corollaries:
 
 Example 1: Demonstration of inheritance principle
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "sub-01": {
@@ -633,6 +696,10 @@ absence in the metadata file at the lower level (rule 5.b; corollary 3).
 
 Example 2: Impermissible use of multiple metadata files at one directory level (rule 4)
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "sub-01": {
@@ -654,6 +721,10 @@ Example 2: Impermissible use of multiple metadata files at one directory level (
 Example 3: Modification of filesystem structure from Example 2 to satisfy inheritance
 principle requirements
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "sub-01": {
@@ -674,6 +745,10 @@ principle requirements
 
 Example 4: Single metadata file applying to multiple data files (corollary 2)
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "sub-01": {
@@ -701,7 +776,7 @@ of `<index>`es.
 Please note that a given label or index is distinct from the "prefix"
 it refers to. For example `sub-01` refers to the `sub` entity (a
 subject) with the label `01`. The `sub-` prefix is not part of the subject
-label, but must be included in filenames (similarly to other key names).
+label, but must be included in filenames (similarly to other entities).
 
 ## Specification of paths
 
@@ -817,10 +892,14 @@ Describing dates and timestamps:
 
 ### Single session example
 
-This is an example of the folder and file structure. Because there is only one
+This is an example of the directory and file structure. Because there is only one
 session, the session level is not required by the format. For details on
 individual files see descriptions in the next section:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "sub-control01": {
@@ -862,7 +941,7 @@ individual files see descriptions in the next section:
 
 ## Unspecified data
 
-Additional files and folders containing raw data MAY be added as needed for
+Additional files and directories containing raw data MAY be added as needed for
 special cases.
 All non-standard file entities SHOULD conform to BIDS-style naming conventions, including
 alphabetic entities and suffixes and alphanumeric labels/indices.

@@ -1,0 +1,67 @@
+---
+dataset_description:
+  selectors:
+  - path == "/dataset_description.json"
+  fields:
+    Name: REQUIRED
+    BIDSVersion: REQUIRED
+    DatasetType: RECOMMENDED
+    License: RECOMMENDED
+    Authors:
+      level: RECOMMENDED
+      issue:
+        code: NO_AUTHORS
+        message: |
+          The Authors field of dataset_description.json should contain an array of fields -
+          with one author per field. This was triggered because there are no authors, which
+          will make DOI registration from dataset metadata impossible.
+    Acknowledgements: OPTIONAL
+    HowToAcknowledge: OPTIONAL
+    Funding: OPTIONAL
+    EthicsApprovals: OPTIONAL
+    ReferencesAndLinks: OPTIONAL
+    DatasetDOI: OPTIONAL
+    GeneratedBy: RECOMMENDED
+    GeneratedBy[].Name: REQUIRED
+    GeneratedBy[].Version: RECOMMENDED
+    GeneratedBy[].Description: OPTIONAL
+    GeneratedBy[].CodeURL: OPTIONAL
+    GeneratedBy[].Container: OPTIONAL
+    GeneratedBy[].Container{}.Type: RECOMMENDED
+    GeneratedBy[].Container{}.Tag: RECOMMENDED
+    GeneratedBy[].Container{}.URI: RECOMMENDED
+    SourceDatasets: RECOMMENDED
+
+derivative_description:
+  selectors:
+  - path == "/dataset_description.json"
+  - json.DatasetType == "derivative"
+  fields:
+    GeneratedBy: REQUIRED
+
+dataset_description_with_genetics:
+  selectors:
+  - path == "/dataset_description.json"
+  - 'dataset.files.includes("/genetic_info.json")'
+  fields:
+    Genetics: REQUIRED
+    Genetics{}.Dataset:
+      level: REQUIRED
+      issue:
+        code: NO_GENETIC_DATABASE
+        message: |
+          A genetic_info.json file is present but no Database field present in Genetics
+          object in dataset_description.json.
+    Genetics{}.Database: OPTIONAL
+    Genetics{}.Descriptors: OPTIONAL
+
+genetic_info:
+  selectors:
+  - path == "/genetic_info.json"
+  fields:
+    GeneticLevel: REQUIRED
+    SampleOrigin: REQUIRED
+    AnalyticalApproach: OPTIONAL
+    TissueOrigin: OPTIONAL
+    BrainLocation: OPTIONAL
+    CellType: OPTIONAL

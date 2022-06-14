@@ -10,6 +10,7 @@ well.
 from datetime import datetime
 import json
 import os
+import posixpath
 import re
 import subprocess
 import sys
@@ -562,6 +563,13 @@ def edit_titlepage():
         file.writelines(data)
 
 
+class MockPage:
+    pass
+
+class MockFile:
+    pass
+
+
 def process_macros(duplicated_src_dir_path):
     """Search for mkdocs macros in the specification, run the embedded
     functions, and replace the macros with their outputs.
@@ -593,6 +601,17 @@ def process_macros(duplicated_src_dir_path):
             filename = os.path.join(root, name)
             with open(filename, "r") as fo:
                 contents = fo.read()
+
+            # Create a mock MkDocs Page object that has a "file" attribute,
+            # which is a mock MkDocs File object with a str "src_path" attribute
+            # The src_path
+            mock_file = MockFile()
+            mock_file.src_path = posixpath.sep.join(filename.split(os.sep)[1:])
+
+            page = MockPage()
+            page.file = mock_file
+
+            _Context__self = {"page": page}
 
             # Replace code snippets in the text with their outputs
             matches = re.findall(re_code_snippets, contents)

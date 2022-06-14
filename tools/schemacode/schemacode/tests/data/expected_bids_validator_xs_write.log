@@ -1,0 +1,7 @@
+
+SUMMARY:
+0 out of 1 files were successfully validated, using the following regular expressions:
+	- `.*?/sub-(?P<subject>([a-zA-Z0-9]*?))/(|ses-(?P<session>([a-zA-Z0-9]*?))/)anat/sub-(?P=subject)(|_ses-(?P=session))(|_acq-(?P<acquisition>([a-zA-Z0-9]*?)))(|_ce-(?P<ceagent>([a-zA-Z0-9]*?)))(|_rec-(?P<reconstruction>([a-zA-Z0-9]*?)))(|_run-(?P<run>([a-zA-Z0-9]*?)))(|_part-(?P<part>(mag|phase|real|imag)))_(T1w|T2w|PDw|T2starw|FLAIR|inplaneT1|inplaneT2|PDT2|angio|T2star)\.(nii.gz|nii|json)$`
+The following files were not matched by any regex schema entry:
+	* `/home/chymera/.data2/datalad/000026/rawdata/sub-EXC022/anat/sub-EXC022_ses-MRI_flip-1_VFA.nii.gz
+The following mandatory regex schema entries did not match any files:
