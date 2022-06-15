@@ -1,4 +1,5 @@
 import os
+import shutil
 
 import pytest
 
@@ -350,3 +351,26 @@ def test_bids_datasets(bids_examples, tmp_path):
     )
     # Have all files been validated?
     assert len(result["path_tracking"]) == 0
+
+def test_broken_json_dataset(bids_examples, tmp_path):
+    from schemacode.validator import validate_bids
+
+    schema_path = "{module_path}/data/schema/"
+    dataset = "asl003"
+    dataset_path = os.path.join(bids_examples, dataset)
+    dataset_json = os.path.join(dataset_path, "dataset_description.json")
+
+    broken_json = os.path.join(
+        os.path.abspath(os.path.dirname(__file__)),
+        "data/broken_dataset_description.json",
+    )
+    shutil.copyfile(broken_json, dataset_json)
+
+    f = open(dataset_json, 'r')
+    file_contents = f.read()
+    print(file_contents)
+
+    result = validate_bids(
+        dataset_path,
+        report_path=True,
+    )

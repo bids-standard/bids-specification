@@ -537,7 +537,7 @@ def select_schema_dir(
     bids_paths,
     schema_reference_root,
     schema_version,
-    schema_min_version="1.7.0+229",
+    schema_min_version="schema",
 ):
     """
     Select schema directory, according to a fallback logic whereby the schema path is
@@ -571,6 +571,7 @@ def select_schema_dir(
         If the version is auto-detected and the version is smaller than schema_min_version,
         schema_min_version will be selected instead.
 
+
     Returns
     -------
 
@@ -580,6 +581,8 @@ def select_schema_dir(
     if schema_reference_root.startswith("{module_path}"):
         schema_reference_root = schema_reference_root.format(module_path=module_path)
     schema_reference_root = os.path.abspath(os.path.expanduser(schema_reference_root))
+
+    # Handle path schema specification
     if schema_version:
         if "/" in schema_version:
             schema_dir = schema_version
@@ -589,6 +592,7 @@ def select_schema_dir(
             return schema_dir
         schema_dir = os.path.join(schema_reference_root, schema_version)
         return schema_dir
+
     dataset_descriptions = []
     for bids_path in bids_paths:
         bids_path = os.path.abspath(os.path.expanduser(bids_path))
@@ -603,27 +607,39 @@ def select_schema_dir(
                 with open(dataset_description) as f:
                     dataset_info = json.load(f)
                     try:
-                        schema_version = dataset_info["BIDSVersion"]
-                    except KeyError:
-                        lgr.warning(
-                            "BIDSVersion is not specified in "
-                            "`dataset_description.json`. "
-                            "Falling back to %s.",
+                        dataset_info = json.load(f)
+                    except json.decoder.JSONDecodeError:
+                        lgr.error(
+                            "The `%s` file could not be loaded. "
+                            "Please check whether the file is valid JSON. "
+                            "Falling back to the `%s` BIDS version.",
+                            dataset_description,
                             schema_min_version,
                         )
                         schema_version = schema_min_version
+                    else:
+                        try:
+                            schema_version = dataset_info["BIDSVersion"]
+                        except KeyError:
+                            lgr.warning(
+                                "BIDSVersion is not specified in "
+                                "`dataset_description.json`. "
+                                "Falling back to `%s`.",
+                                schema_min_version,
+                            )
+                            schema_version = schema_min_version
         if not schema_version:
             lgr.warning(
-                "No BIDSVersion could be found for the dataset. Falling back to %s.",
+                "No BIDSVersion could be found for the dataset. Falling back to `%s`.",
                 schema_min_version,
             )
             schema_version = schema_min_version
         elif schema_min_version:
             if schema_version < schema_min_version:
                 lgr.warning(
-                    "BIDSVersion %s is less than the minimal working "
-                    "%s. "
-                    "Falling back to %s. "
+                    "BIDSVersion `%s` is less than the minimal working "
+                    "`%s`. "
+                    "Falling back to `%s`. "
                     "To force the usage of earlier versions specify them explicitly "
                     "when calling the validator.",
                     schema_version,
@@ -699,11 +715,12 @@ def _get_directory_suffixes(my_schema):
 
 def validate_bids(
     bids_paths,
-    schema_reference_root="/usr/share/bids-schema/",
+    schema_reference_root="{module_path}/data/",
     schema_version=None,
     debug=False,
     report_path=False,
     suppress_errors=False,
+    schema_min_version="schema",
 ):
     """
     Validate paths according to BIDS schema.
@@ -728,6 +745,9 @@ def validate_bids(
         If `True` a log will be written using the standard output path of `.write_report()`.
         If string, the string will be used as the output path.
         If the variable evaluates as False, no log will be written.
+    schema_min_version : str, optional
+        Minimal working schema version, used by the `schemacode.select_schema_dir()` function only if
+        no schema version is found or a lower schema version is specified by the dataset.
 
     Returns
     -------
@@ -754,9 +774,10 @@ def validate_bids(
     if isinstance(bids_paths, str):
         bids_paths = [bids_paths]
 
-    bids_schema_dir = select_schema_dir(bids_paths, schema_reference_root, schema_version)
+    bids_schema_dir = select_schema_dir(bids_paths, schema_reference_root, schema_version,
+            schema_min_version=schema_min_version,
+            )
     regex_schema, my_schema = load_all(bids_schema_dir)
-    pseudofile_suffixes = _get_directory_suffixes(my_schema)
     validation_result = validate_all(
         bids_paths,
         regex_schema,
