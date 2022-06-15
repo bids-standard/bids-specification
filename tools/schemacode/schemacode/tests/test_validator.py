@@ -352,6 +352,7 @@ def test_bids_datasets(bids_examples, tmp_path):
     # Have all files been validated?
     assert len(result["path_tracking"]) == 0
 
+
 def test_broken_json_dataset(bids_examples, tmp_path):
     from schemacode.validator import validate_bids
 
@@ -365,7 +366,7 @@ def test_broken_json_dataset(bids_examples, tmp_path):
     )
     shutil.copyfile(broken_json, dataset_json)
 
-    f = open(dataset_json, 'r')
+    f = open(dataset_json, "r")
     file_contents = f.read()
 
     # No assert, will simply raise JSON reader error if not catching it properly.

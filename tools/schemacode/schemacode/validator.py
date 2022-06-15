@@ -774,9 +774,12 @@ def validate_bids(
     if isinstance(bids_paths, str):
         bids_paths = [bids_paths]
 
-    bids_schema_dir = select_schema_dir(bids_paths, schema_reference_root, schema_version,
-            schema_min_version=schema_min_version,
-            )
+    bids_schema_dir = select_schema_dir(
+        bids_paths,
+        schema_reference_root,
+        schema_version,
+        schema_min_version=schema_min_version,
+    )
     regex_schema, my_schema = load_all(bids_schema_dir)
     validation_result = validate_all(
         bids_paths,
