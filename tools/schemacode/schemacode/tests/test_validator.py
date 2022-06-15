@@ -366,9 +366,6 @@ def test_broken_json_dataset(bids_examples, tmp_path):
     )
     shutil.copyfile(broken_json, dataset_json)
 
-    f = open(dataset_json, "r")
-    file_contents = f.read()
-
     # No assert, will simply raise JSON reader error if not catching it properly.
     _ = validate_bids(
         dataset_path,

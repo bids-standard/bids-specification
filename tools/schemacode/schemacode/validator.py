@@ -746,8 +746,8 @@ def validate_bids(
         If string, the string will be used as the output path.
         If the variable evaluates as False, no log will be written.
     schema_min_version : str, optional
-        Minimal working schema version, used by the `schemacode.select_schema_dir()` function only if
-        no schema version is found or a lower schema version is specified by the dataset.
+        Minimal working schema version, used by the `schemacode.select_schema_dir()` function only
+        if no schema version is found or a lower schema version is specified by the dataset.
 
     Returns
     -------
