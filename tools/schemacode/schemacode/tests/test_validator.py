@@ -355,7 +355,6 @@ def test_bids_datasets(bids_examples, tmp_path):
 def test_broken_json_dataset(bids_examples, tmp_path):
     from schemacode.validator import validate_bids
 
-    schema_path = "{module_path}/data/schema/"
     dataset = "asl003"
     dataset_path = os.path.join(bids_examples, dataset)
     dataset_json = os.path.join(dataset_path, "dataset_description.json")
@@ -368,9 +367,9 @@ def test_broken_json_dataset(bids_examples, tmp_path):
 
     f = open(dataset_json, 'r')
     file_contents = f.read()
-    print(file_contents)
 
-    result = validate_bids(
+    # No assert, will simply raise JSON reader error if not catching it properly.
+    _ = validate_bids(
         dataset_path,
         report_path=True,
     )

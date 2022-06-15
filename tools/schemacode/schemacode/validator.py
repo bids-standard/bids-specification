@@ -537,7 +537,7 @@ def select_schema_dir(
     bids_paths,
     schema_reference_root,
     schema_version,
-    schema_min_version="schema",
+    schema_min_version,
 ):
     """
     Select schema directory, according to a fallback logic whereby the schema path is
@@ -559,14 +559,14 @@ def select_schema_dir(
         according to the respective schema version, e.g. "1.7.0".
         If the path starts with the string "{module_path}" it will be expanded relative to the
         module path.
-    schema_version : str or None, optional
+    schema_version : str or None
         Version of BIDS schema, or path to schema.
         If a path is given, this will be expanded and used directly, not concatenated with
         `schema_reference_root`.
         If the path starts with the string "{module_path}" it will be expanded relative to the
         module path.
         If None, the `dataset_description.json` fie will be queried for the dataset schema version.
-    schema_min_version : str, optional
+    schema_min_version : str
         Minimal version to use UNLESS the schema version is manually specified.
         If the version is auto-detected and the version is smaller than schema_min_version,
         schema_min_version will be selected instead.
