@@ -3,7 +3,7 @@
 - suffixes:
     - eyetrack
   extensions:
-    - .<extension>
+    - .<datatype>
     - .json
   entities:
     subject: required

@@ -11,11 +11,21 @@ Eye-tracking-BIDS is fully consistent with the BIDS specification as a whole. Ho
 
 ## Eye-tracking data
 
-{{ MACROS___make_filename_template(datatypes=["eyetrack"], suffixes=["eyetrack", "events"]) }}
+```Text
+sub-<label>/
+    [ses-<label>/]
+        <datatype>/
+            sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_run-<index>]_eyetrack.<datatype>
+            sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_run-<index>]_eyetrack.json
+            sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_run-<index>]_events.json
+            sub-<label>[_ses-<label>][_task-<label>][_acq-<label>][_run-<index>]_events.tsv
+```
 
 The eye-tracking data files generally contain gaze position (x/y coordinates) and pupil size data. With Eye-Tracking-BIDS, we wish to promote the adoption of good practices in the management of scientific data. Hence, the current emphasis of Eye-Tracking-BIDS is not to impose a generic data format for the modality, but to standardize the way data is stored in repositories. 
 
-Eye-tracking data MUST be stored in the `eyetrack` directory. The current version of this extension *does not* include a specification of the extension format and data formatting of recorded eye-tracking data. Thus, data must be stored in an open format (for example EDF file converted in ASCII `.asc` format or `.tsv` etc) with the `_eyetrack` suffix.
+Eye-tracking data MUST be stored in the main data recording modality or `<datatype>` directory (for example func, anat, dwi, meg, eeg, ieeg, or beh). The current version of this extension *does not* include a specification of the extension format and data formatting of recorded eye-tracking data. Thus, data must be stored in an open format (for example EDF file converted in ASCII `.asc` format or `.tsv` etc) with the `_eyetrack` suffix.
+
+We encourage every user to put the raw data before conversion within the `/sourcedata` folder (for example put property EDF files in the sourcedata folder).
 
 The OPTIONAL [`task-<label>`](../99-appendices/09-entities.md#task) is used to indicate a task subject were asked to perform while eye-tracking records were obtained. Those labels MUST be consistent across subjects and sessions. For task based eye-tracking, a corresponding [task events](../04-modality-specific-files/05-task-events.md) file MUST be provided (please note that this file is not necessary for resting state tasks).
 
@@ -168,6 +178,10 @@ In both tasks, 64 stimulus matrices in 2 blocks of 32 matrices were presented. P
 
 **Resting State inside MRI Dataset**
 
-Eye-tracking data, measured from 3 healthy subjects by an EyeLink 1000 Plus eye-tracking system (SR Research Ltd. Ottawa, ON, Canada) inside a Siemens 3.0T MAGNETOM Prisma MRI. Two resting state scans were acquired for each subject. Subjects were instructed to stay still, think of nothing in particular, and maintain fixation on the cross. All lights were turned off except an assistant front-light inside the scanner room. Total duration of each fMRI scan was 6:50 min. The start of MRI acquisition was automatically recorded in the eye-tracking data using MRI trigger (e.g.  MSG `<time-stamp>` RS_starts.). The end of MRI acquisition was manually recorded by human operator by pressing button after the MRI acquisition was finished (e.g. MSG `<time-stamp>` RS_endtime_recorded_maually). For details see [here](https://doi.org/10.1101/2021.07.12.452041).
-   
-[BIDS dataset](https://github.com/Kangjoo/Eye-Tracking-BIDS/tree/main/rest_in_mri_raw_data)
+Eye-tracking data, measured with an Eyelink 2000 in a 3T Philips Achieva scanner. 20 participants were 
+invited to fixate at the screen center during 2 runs. They were told to keep the eyes open 
+and to let their mind wander. 
+Here we use this example dataset to present how to deal with eyetracking data when the main recording 
+modality is fMRI, therefore we provide T1w/T2w, functional and field map data in addition to eye tracking records.
+
+[BIDS dataset](https://openneuro.org/datasets/ds004158/versions/1.0.1)
