@@ -160,7 +160,7 @@ Eye-tracking data, measured with an Eyelink, from 2 German speaker learners read
 
 **Reading Hyperlinks Dataset**
 
-Eye-tracking data, measured with an Eyelink, from 8 subjects reading sentences with 320 embedded target words and invisible boundary manipulation. The task of participants was similar as in the Dataset in 4.1, silent reading with comprehension questions. The main interest of the study was to investigate word recognition processes of the target word under different conditions (for example, was the word presented in blue or black). The invisible boundary manipulation allowed the investigation of parafoveal preview benefits in relation to the conditions of interest. Here, the predominant characteristics of Hyperlinks. 
+Eye-tracking data, measured with an Eyelink, from 8 subjects reading sentences with 320 embedded target words and invisible boundary manipulation. The task of participants was similar as in the Dataset in the "Potsdam Sentence Corpus Dataset", silent reading with comprehension questions. The main interest of the study was to investigate word recognition processes of the target word under different conditions (for example, was the word presented in blue or black). The invisible boundary manipulation allowed the investigation of parafoveal preview benefits in relation to the conditions of interest. Here, the predominant characteristics of Hyperlinks. 
 For details see [here](https://doi.org/10.7717/peerj.2467).
 
 [BIDS dataset](https://github.com/greckla/Eye-Tracking-BIDS/tree/master/hyperlink/hyperlinks_raw_data_BIDS)<br />
