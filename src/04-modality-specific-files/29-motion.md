@@ -65,6 +65,7 @@ Specific MOTION fields MUST be present:
 | **Key name**       | **Requirement level** | **Data type** | **Description**                                                                                                       |
 | ------------------ | --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------- |
 | SamplingFrequency  | REQUIRED              | number        | Nominal sampling rate of the tracking system in Hz.                                                                   |
+| SamplingFrequencyEffective | REQUIRED              | number        | Effective sampling rate of the tracking system in Hz. If duration of the corresponding recording is available, effective sampling rate is computed by dividing the `RecordingDuration` in seconds by the number of samples included in the time series. If not available, the field takes the same value as field `SamplingFrequency`.                                                                                                                                                                                           |
 | TrackingSystemName | REQUIRED              | string        | Name of the tracking system. The value should match the `tracksys` value of the corresponding *_motion.tsv file name. |
 
 Motion specific fields SHOULD be present:
