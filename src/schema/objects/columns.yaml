@@ -671,7 +671,7 @@ wavelength_nominal:
   name: wavelength_nominal
   description: |
     Specified wavelength of light in nm.
-    `n/a` for channels that do not contain raw fNIRS signals (acceleration).
+    `n/a` for channels that do not contain raw fNIRS signals (for example, acceleration).
     This field is equivalent to `/nirs(i)/probe/wavelengths` in the SNIRF specification.
   anyOf:
   - type: number
