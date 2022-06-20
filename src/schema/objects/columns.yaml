@@ -584,16 +584,6 @@ type__meg_channels:
   - DAC
   - HLU
   - FITERR
-  - NIRSCWAMPLITUDE
-  - NIRSCWFLUORESCENSEAMPLITUDE
-  - NIRSCWOPTICALDENSITY
-  - NIRSCWHBO
-  - NIRSCWHBR
-  - NIRSCWMUA
-  - ACCEL
-  - GYRO
-  - MAGN
-  - MISC
   - OTHER
 type__ieeg_channels:
   name: type
@@ -621,6 +611,51 @@ type__ieeg_channels:
   - ADC
   - DAC
   - REF
+  - OTHER
+type__nirs_channels:
+  name: type
+  description: |
+    Type of channel; MUST use the channel types listed below.
+    Note that the type MUST be in upper-case.
+  type: string
+  enum:
+  - NIRSCWAMPLITUDE
+  - NIRSCWFLUORESCENSEAMPLITUDE
+  - NIRSCWOPTICALDENSITY
+  - NIRSCWHBO
+  - NIRSCWHBR
+  - NIRSCWMUA
+  - MEGMAG
+  - MEGGRADAXIAL
+  - MEGGRADPLANAR
+  - MEGREFMAG
+  - MEGREFGRADAXIAL
+  - MEGREFGRADPLANAR
+  - MEGOTHER
+  - EEG
+  - ECOG
+  - SEEG
+  - DBS
+  - VEOG
+  - HEOG
+  - EOG
+  - ECG
+  - EMG
+  - TRIG
+  - AUDIO
+  - PD
+  - EYEGAZE
+  - PUPIL
+  - MISC
+  - SYSCLOCK
+  - ADC
+  - DAC
+  - HLU
+  - FITERR
+  - ACCEL
+  - GYRO
+  - MAGN
+  - MISC
   - OTHER
 # type column for electrodes.tsv files
 type__electrodes:

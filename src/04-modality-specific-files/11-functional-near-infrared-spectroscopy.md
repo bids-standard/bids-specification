@@ -225,12 +225,12 @@ The following columns MUST be present:
 {{ MACROS___make_columns_table(
    {
       "name__channels": "REQUIRED",
-      "type__channels": ("REQUIRED", "See the table below for further details on the fNIRS specific types."),
+      "type__nirs_channels": "REQUIRED",
       "source__channels": "REQUIRED",
       "detector__channels": "REQUIRED",
       "wavelength_nominal": "REQUIRED",
       "units__nirs": "REQUIRED",
-      "sampling_frequency__nirs": ("OPTIONAL but REQUIRED if `SamplingFrequency` is to `n/a` in `_nirs.json`"),
+      "sampling_frequency": "OPTIONAL but REQUIRED if `SamplingFrequency` is to `n/a` in `_nirs.json`",
       "orientation_component": "OPTIONAL but REQUIRED if `type` is `ACCEL`, `GYRO` or `MAGN`",
    }
 ) }}
