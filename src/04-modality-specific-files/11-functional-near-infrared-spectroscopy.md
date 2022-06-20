@@ -252,13 +252,13 @@ The following columns SHOULD be present:
 
 All fNIRS channels types MUST correspond to a [valid SNIRF data type](https://github.com/fNIRS/snirf/blob/master/snirf_specification.md#appendix).
 Additional channels that are recorded simultaneously with the fNIRS
-device and stored in the same data file should be included as well.
+device and stored in the same data file SHOULD be included as well.
 However, additional channels that are  simultaneously recorded with a different device
-should be stored according to their appropriate modality specification.
+SHOULD be stored according to their appropriate modality specification.
 For example, motion data that was simultaneously recorded with a different device should be specified
 according to BEP029 and not according to the fNIRS data type.
 Whereas, if the motion data was acquired in with the fNIRS device itself, it should be included here with the fNIRS data.
-Any of the channel types defined in other BIDS specification can be used here as well such as `ACCEL` or `MAGN`.
+Any of the channel types defined in other BIDS specification MAY be used here as well such as `ACCEL` or `MAGN`.
 As several of these data types are commonly acquired using fNIRS devices they are included as an example at the base of the table.
 Note that upper-case is REQUIRED.
 
