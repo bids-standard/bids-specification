@@ -277,8 +277,12 @@ onset:
 orientation_component:
   name: orientation_component
   description: |
-    Description of the orientation of the `ACCEL`, `GYRO`, `MAGN` `type`. Either `x`, `y`, or `z`.
+    Description of the orientation of the `ACCEL`, `GYRO`, `MAGN` `type`.
   type: string
+  enum:
+  - x
+  - y
+  - z
 pathology:
   name: pathology
   description: |
