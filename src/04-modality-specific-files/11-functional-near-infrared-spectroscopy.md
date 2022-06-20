@@ -13,7 +13,7 @@ have been formatted using this specification and can be used for practical guida
 
 {{ MACROS___make_filename_template(datatypes=["nirs"], suffixes=["nirs", "events", "channels", "optodes", "coordsystem"]) }}
 
-Only the Shared Near Infrared Spectroscopy Format ([SNIRF](https://github.com/fNIRS/snirf))
+Only the *Shared Near Infrared Spectroscopy Format* ([SNIRF](https://github.com/fNIRS/snirf))
 file specification is supported in BIDS. The SNIRF
 specification supports one or more fNIRS datasets to be stored in a single
 `.snirf` file. However, to be BIDS compatible, each SNIRF file MUST contain
