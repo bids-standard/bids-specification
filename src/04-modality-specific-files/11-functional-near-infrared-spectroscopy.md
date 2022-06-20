@@ -354,8 +354,8 @@ The `*_coordsystem.json` is REQUIRED if the optional `*_optodes.tsv` is specifie
 anatomical MRI is available, the locations of anatomical landmarks in that scan should also be stored
 in the `*_T1w.json` file which goes alongside the fNIRS data.
 
-Not all fNIRS systems provide 3D coordinate information or digitisation capabilities.
-In this case, the only x and y are specified and z is `"n/a"`.
+Not all fNIRS systems provide 3D coordinate information or digitization capabilities.
+In this case, only x and y are specified and z is `"n/a"`.
 
 Fields relating to the fNIRS optode positions:
 
