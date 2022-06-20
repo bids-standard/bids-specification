@@ -145,7 +145,7 @@ Specific fNIRS fields that MUST be present:
 
 {{ MACROS___make_metadata_table(
    {
-      "SamplingFrequency__nirs": ("REQUIRED", "Sampling frequency (in Hz) of all the data in the recording, regardless of their type (for example, `12`).  If individual channels have different sampling rates, then the field here should be specified as `n/a` and the values  should be specified in the `sampling_frequency` column in channels.tsv."),
+      "SamplingFrequency__nirs": ("REQUIRED", "Sampling frequency (in Hz) of all the data in the recording, regardless of their type (for example, `12`). If individual channels have different sampling rates, then the field here MUST be specified as `n/a` and the values MUST be specified in the `sampling_frequency` column in channels.tsv."),
       "NIRSChannelCount": "REQUIRED",
       "NIRSSourceOptodeCount": "REQUIRED",
       "NIRSDetectorOptodeCount": "REQUIRED",
