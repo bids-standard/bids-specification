@@ -414,7 +414,7 @@ short_channel:
   description: |
     Is the channel designated as short.
     The total number of channels listed as short channels
-    should be stored in `ShortChannelCount` in `*_fnirs.csv`.
+    SHOULD be stored in `ShortChannelCount` in `*_fnirs.json`.
   type: boolean
 size:
   name: size
