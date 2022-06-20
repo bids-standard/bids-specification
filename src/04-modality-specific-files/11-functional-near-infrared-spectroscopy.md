@@ -319,9 +319,9 @@ The following columns MAY be present:
 
 {{ MACROS___make_columns_table(
    {
-      "x__template": "OPTIONAL but REQUIRED if x is `n/a`",
-      "y__template": "OPTIONAL but REQUIRED if x is `n/a`",
-      "z__template": "OPTIONAL but REQUIRED if x is `n/a`",
+      "x__template": "OPTIONAL but REQUIRED if `x` is `n/a`",
+      "y__template": "OPTIONAL but REQUIRED if `x` is `n/a`",
+      "z__template": "OPTIONAL but REQUIRED if `x` is `n/a`",
       "description__optode": "OPTIONAL",
       "detector__optodes": "OPTIONAL",
       "source__optodes": "OPTIONAL",
