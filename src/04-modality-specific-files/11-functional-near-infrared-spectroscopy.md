@@ -137,7 +137,7 @@ Whenever possible, please avoid using ad hoc wording.
 {{ MACROS___make_metadata_table(
    {
       "CapManufacturer": ("RECOMMENDED", "If a custom-made cap is used then the string `custom` MUST be used. If no cap was used, such as with optodes that are directly taped to the scalp, then the string `none` MUST be used and the `NIRSPlacementScheme` field MAY be used to specify the optode placement."),
-      "CapManufacturersModelName": ("RECOMMENDED", "If there is no official model number then description may be provided (for example, `Headband with print (S-M)`). If a cap from a standard manufacturer was modified, then the field should be set to `custom`. If no cap was used, then the `CapManafacturer` field should be `none` and this field should be `n/a`."),
+      "CapManufacturersModelName": ("RECOMMENDED", "If there is no official model number then a description may be provided (for example, `Headband with print (S-M)`). If a cap from a standard manufacturer was modified, then the field MUST be set to `custom`. If no cap was used, then the `CapManufacturer` field MUST be `none` and this field MUST be `n/a`."),
    }
 ) }}
 
