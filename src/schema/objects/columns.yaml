@@ -76,7 +76,7 @@ description:
 description__optode:
   name: description
   description: |
-    Free-form text description of the optode, or other information of interest..
+    Free-form text description of the optode, or other information of interest.
   type: string
 dimension:
   name: dimension
