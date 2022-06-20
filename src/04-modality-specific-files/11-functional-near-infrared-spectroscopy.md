@@ -297,7 +297,7 @@ file is specified, a `*_coordsystem.json` file MUST be specified as well.
 The order of the required columns in the `*_optodes.tsv` file MUST be as listed below.
 
 The x, y, and z positions are for measured locations, for example, with a polhemus
-digitizer. If you also have idealised positions, where you wish the optodes to be
+digitizer. If you also have idealized positions, where you wish the optodes to be
 placed, these can be listed in the template values. SNIRF contains arrays for both
 the 3D and 2D locations of data. The BIDS format MUST store the 3D locations if
 available, and only the 2D locations if 3D positions are unavailable. The storage
