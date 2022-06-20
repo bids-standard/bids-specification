@@ -218,7 +218,7 @@ The BIDS specification supports several types of fNIRS devices which output raw 
 different forms. The type of measurement is specified in the `type` column. For example,
 when measurements are taken with a continuous wave (CW) device that saves the data
 as optical density, the `type` should be `NIRSCWOPTICALDENSITY` and the `units` should be `unitless`,
-this is equivalent to SNIRF data type dOD.
+this is equivalent to SNIRF data type `dOD`.
 
 The following columns MUST be present:
 
