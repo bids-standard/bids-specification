@@ -11,6 +11,7 @@ nirs:
     subject: required
     session: optional
     task: required
+    acquisition: optional
     run: optional
 
 channels:
@@ -24,6 +25,7 @@ channels:
     subject: required
     session: optional
     task: required
+    acquisition: optional
     run: optional
 
 coordsystem:
@@ -36,6 +38,7 @@ coordsystem:
   entities:
     subject: required
     session: optional
+    acquisition: optional
 
 optodes:
   suffixes:
@@ -47,6 +50,7 @@ optodes:
   entities:
     subject: required
     session: optional
+    acquisition: optional
 
 events:
   suffixes:
@@ -60,7 +64,20 @@ events:
     subject: required
     session: optional
     task: required
+    acquisition: optional
     run: optional
+
+photo:
+  suffixes:
+  - photo
+  extensions:
+  - .jpg
+  - .png
+  - .tif
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
 
 timeseries:
   suffixes:
