@@ -631,8 +631,12 @@ type__electrodes:
 type__optodes:
   name: type
   description: |
-    Either source or detector.
+    The type of the optode.
   type: string
+  enum:
+  - source
+  - detector
+  - n/a
 units:
   name: units
   description: |
