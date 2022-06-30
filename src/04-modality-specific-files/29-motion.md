@@ -18,11 +18,11 @@ Template:
 └─ sub-<label>\
   └─ \[ses-<label>]\
     └─ motion\
-      ├─ sub-<label>\[\_ses-<label>]_task-<label>_tracksys-<label>_motion.tsv
-      ├─ sub-<label>\[\_ses-<label>]_task-<label>_tracksys-<label>_motion.json
-      ├─ sub-<label>\[\_ses-<label>]_task-<label>_tracksys-<label>_channels.tsv
-      ├─ sub-<label>\[\_ses-<label>]_task-<label>_events.tsv
-      └─ sub-<label>\[\_ses-<label>]_task-<label>_events.json
+	  ├─ sub-<label>[_ses-<label>]_task-<label>_tracksys-<label>_motion.tsv
+      ├─ sub-<label>[_ses-<label>]_task-<label>_tracksys-<label>_motion.json
+      ├─ sub-<label>[_ses-<label>]_task-<label>_tracksys-<label>_channels.tsv
+      ├─ sub-<label>[_ses-<label>]_task-<label>_tracksys-<label>_events.tsv
+      └─ sub-<label>[_ses-<label>]_task-<label>_tracksys-<label>_events.json
 ```
 
 A wide variety of motion capture systems are used in human research, resulting in
@@ -121,7 +121,7 @@ Example \*tracksys-<label>\_motion.json :
 	"SamplingFrequency": 60,
 	"SamplingFrequencyEffective": 60.00197437,
 	"TaskName": "BIDS Motion fictive example",
-	"TrackingSystemName": "IMU1",
+	"TrackingSystemName": "imu1",
 	"TaskDescription": "walking and talking",
 	"InstitutionAddress": "Fictive address",
 	"InstitutionName": "Fictive Institution",
@@ -155,7 +155,7 @@ Note that the date and time information SHOULD be stored in the Study key file [
 └─ sub-<label>\
   └─ \[ses-<label>]\
     └─ motion\
-      └─ sub-<label>\[\_ses-<label>][\_task-<label>\]_channels.tsv
+      └─ sub-<label>[_ses-<label>]_task-<label>[_tracksys-<label>]_channels.tsv
 ```
 
 This file is REQUIRED as it makes it easy to browse or query over larger collections of datasets. The REQUIRED columns are channel  `component`, `name`,  `tracked_point`, `type` and `unit`. Any number of additional columns may be added to provide additional information about the channels. The `*tracksys-<label>_channels.tsv` file should give additional information about individual recorded channel, some of which my not be found summarized in `*motion.json`.
@@ -164,13 +164,13 @@ The columns of the channels description table stored in `*_channels.tsv` are:
 
 MUST be present:
 
-| **Key name**  | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                              |
-| ------------- | --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| component     | REQUIRED              | string        | Component of the representational system described in `*_coordinatesystem.tsv` that the channel contains.                                                                                                    |
-| name          | REQUIRED              | string        | Label of the channel. Entries have to match headers in (any) `*_motion.tsv.`                                                                                                                                 |
-| tracked_point | REQUIRED              | string        | Label of the point that is being tracked, for example, label of a tracker or a marker (`LeftFoot`, `RightWrist`).                                                                                            |
-| type          | REQUIRED              | string        | Type of data.                                                                                                                                                                                                |
-| units         | REQUIRED              | string        | Physical unit of the value represented in this channel, for example, `rad` radian or `deg` degrees for angular quantities or `m` for position data. See the BIDS spec for guidelines for Units and Prefixes. |
+| **Key name**  | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ------------- | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| component     | REQUIRED              | string        | Component of the representational system described in `*_coordinatesystem.tsv` that the channel contains.                                                                                                                                                                                                                                                                                                            |
+| name          | REQUIRED              | string        | Label of the channel. Entries have to match headers in (any) `*_motion.tsv.`                                                                                                                                                                                                                                                                                                                                         |
+| tracked_point | REQUIRED              | string        | Label of the point that is being tracked, for example, label of a tracker or a marker (`LeftFoot`, `RightWrist`).                                                                                                                                                                                                                                                                                                    |
+| type          | REQUIRED              | string        | Type of data.                                                                                                                                                                                                                                                                                                                                                                                                        |
+| units         | REQUIRED              | string        | Physical or virtual unit of the value represented in this channel, for example, `rad` radian or `deg` degrees for angular quantities or `m` for position data. See the BIDS spec for guidelines for Units and Prefixes. If motion data is recorded in a virtual space and deviate from standard SI units, the unit used MUST be specified in the sidecar `*_motion.json` file (for example `vm` for virtual meters). |
 
 SHOULD be present:
 
@@ -205,7 +205,7 @@ Restricted keyword list for column `type` in alphabetic order (shared with the o
 | POS         | Position in space             |
 | VEL         | Velocity                      |
 
-Example `channels.tsv`:
+Example `*channels.tsv`:
 
 ```Text
 name        tracked_point  type   component units
