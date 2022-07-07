@@ -100,7 +100,7 @@ AnatomicalLandmarkCoordinates:
   name: AnatomicalLandmarkCoordinates
   display_name: Anatomical Landmark Coordinates
   description: |
-    Key:value pairs of the labels and 3-D digitized locations of anatomical landmarks,
+    Key-value pairs of the labels and 3-D digitized locations of anatomical landmarks,
     interpreted following the `"AnatomicalLandmarkCoordinateSystem"`
     (for example, `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6],
     "RPA": [20.2,11.3,9.1]}`.
@@ -118,7 +118,7 @@ AnatomicalLandmarkCoordinates__mri:
   name: AnatomicalLandmarkCoordinates
   display_name: Anatomical Landmark Coordinates
   description: |
-    Key:value pairs of any number of additional anatomical landmarks and their
+    Key-value pairs of any number of additional anatomical landmarks and their
     coordinates in voxel units (where first voxel has index 0,0,0)
     relative to the associated anatomical MRI
     (for example, `{"AC": [127,119,149], "PC": [128,93,141],
@@ -548,8 +548,8 @@ Density:
   display_name: Density
   description: |
     Specifies the interpretation of the density keyword.
-    If an object is used, then the keys should be values for the ``den`` entity
-    and values should be descriptions of those ``den`` values.
+    If an object is used, then the keys should be values for the `den` entity
+    and values should be descriptions of those `den` values.
   anyOf:
   - type: string
   - type: object
@@ -788,7 +788,7 @@ EchoTime:
     a single value for this field, or to the files in a
     [file collection](SPEC_ROOT/99-appendices/10-file-collections.md)
     where the value of this field is iterated using the
-    [echo entity](SPEC_ROOT/99-appendices/09-entities.md#echo).
+    [`echo` entity](SPEC_ROOT/99-appendices/09-entities.md#echo).
     The data type array provides a value for each volume in a 4D dataset and
     should only be used when the volume timing is critical for interpretation
     of the data, such as in
@@ -949,7 +949,7 @@ FiducialsCoordinates:
   name: FiducialsCoordinates
   display_name: Fiducials Coordinates
   description: |
-    Key:value pairs of the labels and 3-D digitized position of anatomical
+    Key-value pairs of the labels and 3-D digitized position of anatomical
     landmarks, interpreted following the `"FiducialsCoordinateSystem"`
     (for example, `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6],
     "RPA": [20.2,11.3,9.1]}`).
@@ -981,7 +981,7 @@ FlipAngle:
     a single value for this field, or to the files in a
     [file collection](SPEC_ROOT/99-appendices/10-file-collections.md)
     where the value of this field is iterated using the
-    [flip entity](SPEC_ROOT/99-appendices/09-entities.md#flip).
+    [`flip` entity](SPEC_ROOT/99-appendices/09-entities.md#flip).
     The data type array provides a value for each volume in a 4D dataset and
     should only be used when the volume timing is critical for interpretation of
     the data, such as in
@@ -1148,8 +1148,8 @@ HardwareFilters:
   display_name: Hardware Filters
   description: |
     Object of temporal hardware filters applied, or `"n/a"` if the data is not
-    available. Each key:value pair in the JSON object is a name of the filter and
-    an object in which its parameters are defined as key:value pairs.
+    available. Each key-value pair in the JSON object is a name of the filter and
+    an object in which its parameters are defined as key-value pairs.
     For example, `{"Highpass RC filter": {"Half amplitude cutoff (Hz)":
     0.0159, "Roll-off": "6dB/Octave"}}`.
   anyOf:
@@ -1204,7 +1204,7 @@ HeadCoilCoordinates:
   name: HeadCoilCoordinates
   display_name: Head Coil Coordinates
   description: |
-    Key:value pairs describing head localization coil labels and their
+    Key-value pairs describing head localization coil labels and their
     coordinates, interpreted following the `HeadCoilCoordinateSystem`
     (for example, `{"NAS": [12.7,21.3,13.9], "LPA": [5.2,11.3,9.6],
     "RPA": [20.2,11.3,9.1]}`).
@@ -2440,8 +2440,8 @@ Resolution:
   display_name: Resolution
   description: |
     Specifies the interpretation of the resolution keyword.
-    If an object is used, then the keys should be values for the ``res`` entity
-    and values should be descriptions of those ``res`` values.
+    If an object is used, then the keys should be values for the `res` entity
+    and values should be descriptions of those `res` values.
   anyOf:
   - type: string
   - type: object
@@ -2711,8 +2711,8 @@ SoftwareFilters:
     [Object](https://www.json.org/json-en.html)
     of temporal software filters applied, or `"n/a"` if the data is
     not available.
-    Each key:value pair in the JSON object is a name of the filter and an object
-    in which its parameters are defined as key:value pairs
+    Each key-value pair in the JSON object is a name of the filter and an object
+    in which its parameters are defined as key-value pairs
     (for example, `{"Anti-aliasing filter":
     {"half-amplitude cutoff (Hz)": 500, "Roll-off": "6dB/Octave"}}`).
   anyOf:
@@ -2907,7 +2907,7 @@ StimulusPresentation:
   name: StimulusPresentation
   display_name: Stimulus Presentation
   description: |
-    Object containing key value pairs related to the software used to present
+    Object containing key-value pairs related to the software used to present
     the stimuli during the experiment, specifically:
     `"OperatingSystem"`, `"SoftwareName"`, `"SoftwareRRID"`, `"SoftwareVersion"` and
     `"Code"`.

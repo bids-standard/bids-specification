@@ -155,6 +155,14 @@ mrk:
 
     Used by KIT, Yokogawa, and Ricoh MEG systems.
     Successor to the `.sqd` extension for marker files.
+OMEZARR:
+  value: .ome.zarr/
+  display_name: OME Next Generation File Format
+  description: |
+    An OME-NGFF file.
+
+    OME-NGFF is a [Zarr](https://zarr.readthedocs.io)-based format, organizing data arrays in nested directories.
+    This format was developed by the Open Microscopy Environment to provide data stream access to very large data.
 nii:
   value: .nii
   display_name: NIfTI

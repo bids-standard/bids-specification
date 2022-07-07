@@ -229,7 +229,7 @@ def test_load_all():
         os.path.abspath(os.path.dirname(__file__)),
         "../data/schema",
     )
-    schema_all = load_all(schema_path)
+    schema_all, _ = load_all(schema_path)
 
     # Check if expected keys are present in all entries
     for entry in schema_all:

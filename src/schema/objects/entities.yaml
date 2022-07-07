@@ -7,7 +7,7 @@ acquisition:
   name: acq
   display_name: Acquisition
   description: |
-    The `acq-<label>` key/value pair corresponds to a custom label the
+    The `acq-<label>` entity corresponds to a custom label the
     user MAY use to distinguish a different set of parameters used for
     acquiring the same modality.
     For example this should be used when a study includes two T1w images - one
@@ -39,7 +39,7 @@ ceagent:
   name: ce
   display_name: Contrast Enhancing Agent
   description: |
-    The `ce-<label>` key/value can be used to distinguish
+    The `ce-<label>` entity can be used to distinguish
     sequences using different contrast enhanced images.
     The label is the name of the contrast agent.
     The key `"ContrastBolusIngredient"` MAY also be added in the JSON file,
@@ -71,7 +71,7 @@ description:
   display_name: Description
   description: |
     When necessary to distinguish two files that do not otherwise have a
-    distinguishing entity, the `_desc-<label>` keyword-value SHOULD be used.
+    distinguishing entity, the `_desc-<label>` entity SHOULD be used.
 
     This entity is only applicable to derivative data.
   type: string
@@ -80,7 +80,7 @@ direction:
   name: dir
   display_name: Phase-Encoding Direction
   description: |
-    The `dir-<label>` key/value can be set to an arbitrary alphanumeric label
+    The `dir-<label>` entity can be set to an arbitrary alphanumeric label
     (for example, `dir-LR` or `dir-AP`) to distinguish different phase-encoding
     directions.
   type: string
@@ -90,7 +90,7 @@ echo:
   display_name: Echo
   description: |
     If files belonging to an entity-linked file collection are acquired at different
-    echo times, the `_echo-<index>` key/value pair MUST be used to distinguish
+    echo times, the `_echo-<index>` entity MUST be used to distinguish
     individual files.
     This entity represents the `"EchoTime"` metadata field. Please note that the `<index>`
     denotes the number/index (in the form of a nonnegative integer), not the
@@ -103,7 +103,7 @@ flip:
   display_name: Flip Angle
   description: |
     If files belonging to an entity-linked file collection are acquired at different
-    flip angles, the `_flip-<index>` key/value pair MUST be used to distinguish
+    flip angles, the `_flip-<index>` entity pair MUST be used to distinguish
     individual files.
     This entity represents the `"FlipAngle"` metadata field. Please note that the `<index>`
     denotes the number/index (in the form of a nonnegative integer), not the `"FlipAngle"`
@@ -127,7 +127,7 @@ inversion:
   display_name: Inversion Time
   description: |
     If files belonging to an entity-linked file collection are acquired at different
-    inversion times, the `_inv-<index>` key/value pair MUST be used to distinguish
+    inversion times, the `_inv-<index>` entity MUST be used to distinguish
     individual files.
     This entity represents the `"InversionTime` metadata field. Please note that the `<index>`
     denotes the number/index (in the form of a nonnegative integer), not the `"InversionTime"`
@@ -149,7 +149,7 @@ modality:
   name: mod
   display_name: Corresponding Modality
   description: |
-    The `mod-<label>` key/value pair corresponds to modality label for defacing
+    The `mod-<label>` entity corresponds to modality label for defacing
     masks, for example, T1w, inplaneT1, referenced by a defacemask image.
     For example, `sub-01_mod-T1w_defacemask.nii.gz`.
   type: string
@@ -159,7 +159,7 @@ mtransfer:
   display_name: Magnetization Transfer
   description: |
     If files belonging to an entity-linked file collection are acquired at different
-    magnetization transfer (MT) states, the `_mt-<label>` key/value pair MUST be used to
+    magnetization transfer (MT) states, the `_mt-<label>` entity MUST be used to
     distinguish individual files.
     This entity represents the `"MTState"` metadata field. Allowed label values for this
     entity are `on` and `off`, for images acquired in presence and absence of an MT pulse,
@@ -174,7 +174,7 @@ part:
   description: |
     This entity is used to indicate which component of the complex
     representation of the MRI signal is represented in voxel data.
-    The `part-<label>` key/value pair is associated with the DICOM Tag
+    The `part-<label>` entity is associated with the DICOM Tag
     `0008, 9208`.
     Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
     which are typically used in `part-mag`/`part-phase` or
@@ -184,7 +184,7 @@ part:
     The sidecar JSON file MUST include the units of the `phase` image.
     The possible options are `"rad"` or `"arbitrary"`.
 
-    When there is only a magnitude image of a given type, the `part` key MAY be
+    When there is only a magnitude image of a given type, the `part` entity MAY be
     omitted.
   type: string
   enum:
@@ -210,7 +210,7 @@ reconstruction:
   name: rec
   display_name: Reconstruction
   description: |
-    The `rec-<label>` key/value can be used to distinguish
+    The `rec-<label>` entity can be used to distinguish
     different reconstruction algorithms (for example `MoCo` for the ones using motion
     correction).
   type: string
@@ -259,7 +259,7 @@ sample:
   description: |
     A sample pertaining to a subject such as tissue, primary cell
     or cell-free sample.
-    The `sample-<label>` key/value pair is used to distinguish between different
+    The `sample-<label>` entity is used to distinguish between different
     samples from the same subject.
     The label MUST be unique per subject and is RECOMMENDED to be unique
     throughout the dataset.
@@ -359,7 +359,7 @@ tracer:
   name: trc
   display_name: Tracer
   description: |
-    The `trc-<label>` key/value can be used to distinguish
+    The `trc-<label>` entity can be used to distinguish
     sequences using different tracers.
     The key `"TracerName"` MUST also be included in the associated JSON file,
     although the label may be different.

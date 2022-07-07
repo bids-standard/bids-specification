@@ -284,8 +284,8 @@ If the structural images included in the dataset were defaced (to protect
 identity of participants) one MAY provide the binary mask that was used to
 remove facial features in the form of `_defacemask` files.
 In such cases,  the OPTIONAL [`mod-<label>`](../99-appendices/09-entities.md#mod)
-key/value pair corresponds to modality suffix,
-such as T1w or inplaneT1, referenced by the defacemask image.
+entity corresponds to modality suffix,
+such as `T1w` or `inplaneT1`, referenced by the defacemask image.
 For example, `sub-01_mod-T1w_defacemask.nii.gz`.
 
 If several scans with the same acquisition parameters are acquired in the same session,
@@ -300,7 +300,7 @@ or different acquisition parameters indicated by
 then `run` is not needed to distinguish the scans and MAY be omitted.
 
 The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
-key/value pair corresponds to a custom label the user
+entity corresponds to a custom label the user
 MAY use to distinguish a different set of parameters used for acquiring the same
 modality. For example this should be used when a study includes two T1w images -
 one full brain low resolution and one restricted field of view but high
@@ -314,7 +314,7 @@ distinction (for example, just between RARE and FLASH, or between RARE, FLASH, a
 FLASHsubsampled) remains at the discretion of the researcher.
 
 Similarly the OPTIONAL [`ce-<label>`](../99-appendices/09-entities.md#ce)
-key/value can be used to distinguish
+entity can be used to distinguish
 sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the
 JSON file, with the same label.
@@ -338,7 +338,7 @@ and a guide for using macros can be found at
    }
 ) }}
 
-The [`part-<label>`](../99-appendices/09-entities.md#part) key/value pair is
+The [`part-<label>`](../99-appendices/09-entities.md#part) entity is
 used to indicate which component of the complex representation of the MRI
 signal is represented in voxel data.
 This entity is associated with the DICOM Tag `0008, 9208`.
@@ -376,10 +376,10 @@ For example, for `sub-01_part-phase_T1w.json`:
 }
 ```
 
-When there is only a magnitude image of a given type, the `part` key MAY be omitted.
+When there is only a magnitude image of a given type, the `part` entity MAY be omitted.
 
 Similarly, the OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec)
-key/value can be used to distinguish
+entity can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
 
 Structural MR images whose intensity is represented in a non-arbitrary scale
@@ -492,18 +492,18 @@ type `sbref` (for example, `sub-control01_task-nback_sbref.nii.gz`).
 
 Each task has a unique label that MUST only consist of letters and/or numbers
 (other characters, including spaces and underscores, are not allowed) with the
-[`task-<label>`](../99-appendices/09-entities.md#task) key/value pair.
+[`task-<label>`](../99-appendices/09-entities.md#task) entity.
 Those labels MUST be consistent across subjects and sessions.
 
 If more than one run of the same task has been acquired the
-[`run-<index>`](../99-appendices/09-entities.md#run) key/value pair MUST be used:
+[`run-<index>`](../99-appendices/09-entities.md#run) entity MUST be used:
 `_run-1`, `_run-2`, `_run-3`, and so on. If only one run was acquired the
 `run-<index>` can be omitted. In the context of functional imaging a run is
 defined as the same task, but in some cases it can mean different set of stimuli
 (for example randomized order) and participant responses.
 
 The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
-key/value pair corresponds to a custom label one may
+entity corresponds to a custom label one may
 use to distinguish different set of parameters used for acquiring the same task.
 For example this should be used when a study includes two resting state images -
 one single band and one multiband. In such case two files could have the
@@ -513,24 +513,24 @@ other label than `singleband` and `multiband` as long as they are consistent
 across subjects and sessions and consist only of the legal label characters.
 
 Similarly the OPTIONAL [`ce-<label>`](../99-appendices/09-entities.md#ce)
-key/value can be used to distinguish
+entity can be used to distinguish
 sequences using different contrast enhanced images. The label is the name of the
-contrast agent. The key ContrastBolusIngredient MAY be also be added in the JSON
+contrast agent. The key "`ContrastBolusIngredient`" MAY be also be added in the JSON
 file, with the same label.
 
 Similarly the OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec)
-key/value can be used to distinguish
+entity can be used to distinguish
 different reconstruction algorithms (for example ones using motion correction).
 
 Similarly the OPTIONAL [`dir-<label>`](../99-appendices/09-entities.md#dir)
-and [`rec-<label>`](../99-appendices/09-entities.md#rec) key/values
+and [`rec-<label>`](../99-appendices/09-entities.md#rec) entities
 can be used to distinguish different phase-encoding directions and
 reconstruction algorithms (for example ones using motion correction).
 See [`fmap` Case 4](01-magnetic-resonance-imaging-data.md#case-4-multiple-phase-encoded-directions-pepolar)
 for more information on `dir` field specification.
 
 Multi-echo data MUST be split into one file per echo using the
-[`echo-<index>`](../99-appendices/09-entities.md#echo) key-value pair. For example:
+[`echo-<index>`](../99-appendices/09-entities.md#echo) entity. For example:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -562,7 +562,7 @@ Newly generated datasets SHOULD NOT use the `_phase` suffix, and the suffix will
 from the specification in the next major release.
 For backwards compatibility, `_phase` is considered equivalent to `_part-phase_bold`.
 When the `_phase` suffix is not used, each file shares the same
-name with the exception of the `part-<mag|phase>` or `part-<real|imag>` key/value.
+name with the exception of the `part-<mag|phase>` or `part-<real|imag>` entity.
 
 For example:
 
@@ -750,15 +750,15 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template(datatypes=["dwi"]) }}
 
 If more than one run of the same acquisition and direction has been acquired, the
-[`run-<index>`](../99-appendices/09-entities.md#run) key/value pair MUST be used:
+[`run-<index>`](../99-appendices/09-entities.md#run) entity MUST be used:
 `_run-1`, `_run-2`, `_run-3` (and so forth.)
-When there is only one scan of a given acquisition and direction, the run key MAY be
+When there is only one scan of a given acquisition and direction, the `run` entity MAY be
 omitted.
-The [`run-<index>`](../99-appendices/09-entities.md#run) key/value pair is RECOMMENDED
+The [`run-<index>`](../99-appendices/09-entities.md#run) entity is RECOMMENDED
 to encode the splits of multipart DWI scans (see [below](#multipart-split-dwi-schemes).)
 
 The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq)
-key/value pair corresponds to a custom label the user may use to
+entity corresponds to a custom label the user may use to
 distinguish different sets of parameters.
 
 The OPTIONAL [`rec-<label>`](../99-appendices/09-entities.md#rec)
@@ -766,7 +766,7 @@ key/value pair can be used to distinguish
 different pre-dicom reconstruction algorithms (for example one using sum of squares or another using a non-linear combination of the coils).
 
 The OPTIONAL [`dir-<label>`](../99-appendices/09-entities.md#dir)
-key/value pair corresponds to a custom label the user may use to
+entity corresponds to a custom label the user may use to
 distinguish different sets of phase-encoding directions.
 
 **Combining multi- and single-band acquisitions**.
@@ -776,7 +776,7 @@ The single-band reference image MAY be stored with suffix `sbref` (for example,
 to be stored.
 
 Otherwise, if some gradient information is associated to the single-band diffusion
-image and a multi-band diffusion image also exists, the `acq-<label>` key/value pair
+image and a multi-band diffusion image also exists, the `acq-<label>` entity
 MUST be used to distinguish both images.
 In such a case, two files could have the following names:
 `sub-01_acq-singleband_dwi.nii.gz` and `sub-01_acq-multiband_dwi.nii.gz`.
@@ -925,7 +925,7 @@ A guide for using macros can be found at
 ) }}
 
 The `MultipartID` metadata MAY be used with the
-[`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair, for example:
+[`acq-<label>`](../99-appendices/09-entities.md#acq) entity, for example:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -1183,10 +1183,10 @@ and a guide for using macros can be found at
 Two OPTIONAL entities, following more general rules of the specification,
 are allowed across all the four scenarios:
 
--   The OPTIONAL [`run-<index>`](../99-appendices/09-entities.md#run) key/value pair corresponds to a one-based index
+-   The OPTIONAL [`run-<index>`](../99-appendices/09-entities.md#run) entity corresponds to a one-based index
     to distinguish multiple fieldmaps with the same parameters.
 
--   The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair corresponds to a custom label
+-   The OPTIONAL [`acq-<label>`](../99-appendices/09-entities.md#acq) entity corresponds to a custom label
     the user may use to distinguish different set of parameters.
 
 ### Expressing the MR protocol intent for fieldmaps
@@ -1401,7 +1401,7 @@ and a guide for using macros can be found at
 
 The [`dir-<label>`](../99-appendices/09-entities.md#dir) entity is REQUIRED
 for these files.
-This key-value pair MUST be used in addition to
+This entity MUST be used in addition to
 the REQUIRED `PhaseEncodingDirection` metadata field
 (see [File name structure](../02-common-principles.md#file-name-structure)).
 

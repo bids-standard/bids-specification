@@ -56,7 +56,7 @@ derived_from:
   name: derived_from
   display_name: Derived from
   description: |
-    `sample-<label>` key/value pair from which a sample is derived,
+    `sample-<label>` entity from which a sample is derived,
     for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`).
   type: string
   pattern: ^sample-[0-9a-zA-Z]+$
@@ -465,7 +465,7 @@ status_description:
   display_name: Channel status description
   description: |
     Freeform text description of noise or artifact affecting data quality on the channel.
-    It is meant to explain why the channel was declared bad in `[status]`.
+    It is meant to explain why the channel was declared bad in the `status` column.
   type: string
 stim_file:
   name: stim_file
