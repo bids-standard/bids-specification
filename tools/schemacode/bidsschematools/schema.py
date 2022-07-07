@@ -132,6 +132,21 @@ class Namespace(Mapping):
     def __iter__(self):
         return iter(self._properties)
 
+    @classmethod
+    def from_directory(cls, path, fmt="yaml"):
+        mapping = {}
+        fullpath = Path(path)
+        if fmt == "yaml":
+            for subpath in fullpath.iterdir():
+                if subpath.is_dir():
+                    submapping = cls.from_directory(subpath)
+                    if submapping:
+                        mapping[subpath.name] = submapping
+                elif subpath.name.endswith("yaml"):
+                    mapping[subpath.stem] = yaml.safe_load(subpath.read_text())
+            return cls.build(mapping)
+        raise NotImplementedError(f"Unknown format: {fmt}")
+
 
 def dereference_yaml(schema, struct):
     """Recursively search a dictionary-like object for $ref keys.
