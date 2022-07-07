@@ -1,6 +1,6 @@
 # Appendix IX: Entities
 
-This section compiles the entities (key-value pairs) described throughout this
+This section compiles the entities (key-value pairs within file names) described throughout this
 specification, and describes each.
 
 A general introduction to entities is given in the section on

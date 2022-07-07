@@ -1,4 +1,5 @@
----
+=======
+# Rules for functional data that are not defined in tables.
 PhaseSuffixDeprecated:
   issue:
     code: PHASE_SUFFIX_DEPRECATED
