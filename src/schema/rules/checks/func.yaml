@@ -1,4 +1,4 @@
-=======
+---
 # Rules for functional data that are not defined in tables.
 PhaseSuffixDeprecated:
   issue:
