@@ -37,7 +37,8 @@ by the [Open Microscopy Environment](https://www.openmicroscopy.org/) for whole-
 the [OME-TIFF file specifications](https://docs.openmicroscopy.org/ome-model/6.1.2/ome-tiff/file-structure.html).
 The OME-TIFF file allows for multi-page TIFF files to store multiple image planes and supports
 multi-resolution pyramidal tiled images. An OME-XML data block is also embedded inside the
-file’s header.
+file’s header. Further, OME-ZARR (sometimes referred to as OME-NGFF or NGFF) has been developed to provide improved
+access and storage for large data via chunked and compressed N-dimensional arrays.
 
 The BIDS standard accepts microscopy data in a number of file formats to accommodate datasets
 stored in 2D image formats and whole-slide imaging formats, to accommodate lossless and lossy
@@ -54,12 +55,10 @@ Microscopy raw data MUST be stored in one of the following formats:
     (`.ome.tif` for standard TIFF files or `.ome.btf` for
     [BigTIFF](https://www.awaresystems.be/imaging/tiff/bigtiff.html) files)
 
-If different from PNG, TIFF or OME-TIFF, the original unprocessed data in the native format MAY be
-stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
+-   [OME-ZARR/NGFF](https://ngff.openmicroscopy.org/latest/) (`.ome.zarr` directories)
 
-Future versions may extend this list of supported file formats, for example with the
-Next-Generation File Formats currently developed by OME ([OME-NGFF](https://ngff.openmicroscopy.org/latest/))
-as a successor to OME-TIFF for better remote sharing of large datasets.
+If different from PNG, TIFF, OME-TIFF, or OME-ZARR, the original unprocessed data in the native format MAY be
+stored in the [`/sourcedata` directory](../02-common-principles.md#source-vs-raw-vs-derived-data).
 
 ### Modality suffixes
 Microscopy data currently support the following imaging modalities:
