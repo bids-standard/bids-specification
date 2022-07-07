@@ -58,7 +58,6 @@ datatype_dirs:
   - $ref: rules.datatypes.eeg.events
   - $ref: rules.datatypes.eeg.photo
   - $ref: rules.datatypes.eeg.timeseries
-type: 'directory'
 - pattern: 'fmap'
   type: 'directory'
   children:
