@@ -115,20 +115,20 @@ def test__add_subdirs():
     datatype = "tabular_metadata"
     entity_definitions = {
         "acquisition": {
-            "name": "Acquisition",
-            "entity": "acq",
+            "display_name": "Acquisition",
+            "name": "acq",
             "type": "string",
             "format": "label",
         },
         "session": {
-            "name": "Session",
-            "entity": "ses",
+            "display_name": "Session",
+            "name": "ses",
             "type": "string",
             "format": "label",
         },
         "subject": {
-            "name": "Subject",
-            "entity": "sub",
+            "display_name": "Subject",
+            "name": "sub",
             "type": "string",
             "format": "label",
         },

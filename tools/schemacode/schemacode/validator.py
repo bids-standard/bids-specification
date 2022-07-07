@@ -164,7 +164,7 @@ def _add_subdirs(regex_string, variant, datatype, entity_definitions, formats, m
         if dir_entity in variant["entities"].keys():
             format_selection = formats[entity_definitions[dir_entity]["format"]]
             variable_field = f"({format_selection['pattern']})"
-            shorthand = entity_definitions[dir_entity]["entity"]
+            shorthand = entity_definitions[dir_entity]["name"]
             if variant["entities"][dir_entity] == "required":
                 regex_subdir = f"{shorthand}-(?P<{dir_entity}>{variable_field})/"
             else:
@@ -285,7 +285,7 @@ def load_entities(
                 # https://github.com/bids-standard/bids-specification/pull/987
                 try:
                     if entity in variant["entities"]:
-                        entity_shorthand = entity_definitions[entity]["entity"]
+                        entity_shorthand = entity_definitions[entity]["name"]
                         if "enum" in entity_definitions[entity].keys():
                             # Entity key-value pattern with specific allowed values
                             # tested, works!

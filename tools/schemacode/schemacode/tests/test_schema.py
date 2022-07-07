@@ -25,8 +25,12 @@ def test_object_definitions(schema_obj):
             if obj_key.startswith("_"):
                 continue
 
-            assert "name" in obj_def.keys(), obj_key
+            assert "display_name" in obj_def, obj_key
             assert "description" in obj_def.keys(), obj_key
+            if obj_type in ("columns", "entities", "metadata"):
+                assert "name" in obj_def
+            elif obj_type in ("datatypes", "extensions", "suffixes"):
+                assert "value" in obj_def
 
 
 def test_formats(schema_obj):

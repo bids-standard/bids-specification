@@ -58,14 +58,14 @@ def make_entity_definitions(schema):
     text = ""
     for entity in entity_order:
         entity_info = entity_definitions[entity]
-        entity_shorthand = entity_info["entity"]
+        entity_shorthand = entity_info["name"]
         text += "\n"
         text += "## {}".format(entity_shorthand)
         text += "\n\n"
-        text += "Full name: {}".format(entity_info["name"])
+        text += "Full name: {}".format(entity_info["display_name"])
         text += "\n\n"
         text += "Format: `{}-<{}>`".format(
-            entity_info["entity"],
+            entity_info["name"],
             entity_info.get("format", "label"),
         )
         text += "\n\n"
@@ -135,7 +135,7 @@ def make_glossary(schema, src_path=None):
         obj = all_objects[obj_key]
         obj_marker = obj["key"]
         obj_def = obj["definition"]
-        obj_name = obj_def["name"]
+        obj_name = obj_def["display_name"]
         obj_desc = obj_def["description"]
         # A backslash before a newline means continue a string
         obj_desc = obj_desc.replace("\\\n", "")
@@ -204,9 +204,9 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
     paragraph = ""
     # Parent directories
     paragraph += "{}-<{}>/\n\t[{}-<{}>/]\n".format(
-        schema["objects"]["entities"]["subject"]["entity"],
+        schema["objects"]["entities"]["subject"]["name"],
         schema["objects"]["entities"]["subject"]["format"],
-        schema["objects"]["entities"]["session"]["entity"],
+        schema["objects"]["entities"]["session"]["name"],
         schema["objects"]["entities"]["session"]["format"],
     )
 
@@ -220,13 +220,13 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
                 if "enum" in schema["objects"]["entities"][ent].keys():
                     # Entity key-value pattern with specific allowed values
                     ent_format = "{}-<{}>".format(
-                        schema["objects"]["entities"][ent]["entity"],
+                        schema["objects"]["entities"][ent]["name"],
                         "|".join(schema["objects"]["entities"][ent]["enum"]),
                     )
                 else:
                     # Standard entity key-value pattern with simple label/index
                     ent_format = "{}-<{}>".format(
-                        schema["objects"]["entities"][ent]["entity"],
+                        schema["objects"]["entities"][ent]["name"],
                         schema["objects"]["entities"][ent].get("format", "label"),
                     )
 
@@ -235,7 +235,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
                         if "enum" in group["entities"][ent].keys():
                             # Overwrite the filename pattern based on the valid values
                             ent_format = "{}-<{}>".format(
-                                schema["objects"]["entities"][ent]["entity"],
+                                schema["objects"]["entities"][ent]["name"],
                                 "|".join(group["entities"][ent]["enum"]),
                             )
 
@@ -315,8 +315,8 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     all_entities = schema["rules"]["entities"]
     for entity in all_entities:
         entity_spec = schema["objects"]["entities"][entity]
-        entity_shorthand = entity_spec["entity"]
-        header.append(entity_spec["name"])
+        entity_shorthand = entity_spec["name"]
+        header.append(entity_spec["display_name"])
         formats.append(
             f'[`{entity_shorthand}-<{entity_spec.get("format", "label")}>`]'
             f"({ENTITIES_FILE}#{entity_shorthand})"
@@ -449,31 +449,23 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
     # The filter function doesn't work here.
     suffix_schema = schema["objects"]["suffixes"]
 
-    suffixes_found = [f for f in suffixes if f in suffix_schema.keys()]
-    suffixes_not_found = [f for f in suffixes if f not in suffix_schema.keys()]
+    all_suffixes = pd.DataFrame.from_records(list(suffix_schema.values()))
+    df = all_suffixes[all_suffixes.value.isin(suffixes)][["value", "display_name", "description"]]
+
+    suffixes_not_found = set(suffixes) - set(df.value)
     if suffixes_not_found:
         raise Exception("Warning: Missing suffixes: {}".format(", ".join(suffixes_not_found)))
 
-    df = pd.DataFrame(
-        index=suffixes_found,
-        columns=["**Name**", "**Description**"],
-    )
-    # Index by suffix because name cannot be assumed to be unique
-    df.index.name = "`suffix`"
-    for suffix in suffixes_found:
-        suffix_info = suffix_schema[suffix]
-        description = suffix_info["description"]
-        # A backslash before a newline means continue a string
-        description = description.replace("\\\n", "")
-        # Two newlines should be respected
-        description = description.replace("\n\n", "<br>")
-        # Otherwise a newline corresponds to a space
-        description = description.replace("\n", " ")
-        # Spec internal links need to be replaced
-        description = description.replace("SPEC_ROOT", get_relpath(src_path))
+    def preproc(desc):
+        return (
+            desc.replace("\\\n", "")  # A backslash before a newline means continue a string
+            .replace("\n\n", "<br>")  # Two newlines should be respected
+            .replace("\n", " ")  # Otherwise a newline corresponds to a space
+            .replace("SPEC_ROOT", get_relpath(src_path))  # Spec internal links need to be replaced
+        )
 
-        df.loc[suffix] = [suffix_info["name"], description]
-
+    df.description = df.description.apply(preproc)
+    df.columns = ["`suffix`", "**Name**", "**Description**"]
     df = df.reset_index(drop=False)
     df = df.set_index("**Name**")
     df = df[["`suffix`", "**Description**"]]
