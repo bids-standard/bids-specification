@@ -96,10 +96,7 @@ def load_schema(schema_path):
     for rule_group_file in sorted(rules_dir.glob("*.yaml")):
         lgr.debug(f"Loading {rule_group_file.stem} rules.")
         dict_ = yaml.safe_load(rule_group_file.read_text())
-        try:
-            schema["rules"][rule_group_file.stem] = dereference_yaml(dict_, dict_)
-        except KeyError:
-            schema["rules"][rule_group_file.stem] = dereference_yaml(schema, dict_)
+        schema["rules"][rule_group_file.stem] = dereference_yaml(dict_, dict_)
 
     # Load directories of rule subgroups.
     for rule_group_file in sorted(rules_dir.glob("*/*.yaml")):
