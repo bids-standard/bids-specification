@@ -5,6 +5,7 @@
 -   \[FIX] Fix MEG datatype for tabular data [#1131](https://github.com/bids-standard/bids-specification/pull/1131) ([rob-luke](https://github.com/rob-luke))
 -   \[FIX] fix style of a column reference [#1124](https://github.com/bids-standard/bids-specification/pull/1124) ([sappelhoff](https://github.com/sappelhoff))
 -   \[ENH] Ensure consistent indentation for comments in yaml files, address yamllint warning [#1117](https://github.com/bids-standard/bids-specification/pull/1117) ([yarikoptic](https://github.com/yarikoptic))
+-   SCHEMA: Unify metadata [#1107](https://github.com/bids-standard/bids-specification/pull/1107) ([effigies](https://github.com/effigies))
 -   \[ENH] NGFF format support [#1104](https://github.com/bids-standard/bids-specification/pull/1104) ([TheChymera](https://github.com/TheChymera))
 -   \[ENH] Add Microscopy-BIDS citation [#1102](https://github.com/bids-standard/bids-specification/pull/1102) ([mariehbourget](https://github.com/mariehbourget))
 -   \[FIX] MEG link typo [#1100](https://github.com/bids-standard/bids-specification/pull/1100) ([xi](https://github.com/xi))
