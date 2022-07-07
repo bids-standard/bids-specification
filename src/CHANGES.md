@@ -2,6 +2,10 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] Fix MEG datatype for tabular data [#1131](https://github.com/bids-standard/bids-specification/pull/1131) ([rob-luke](https://github.com/rob-luke))
+-   \[FIX] fix style of a column reference [#1124](https://github.com/bids-standard/bids-specification/pull/1124) ([sappelhoff](https://github.com/sappelhoff))
+-   \[ENH] Ensure consistent indentation for comments in yaml files, address yamllint warning [#1117](https://github.com/bids-standard/bids-specification/pull/1117) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] NGFF format support [#1104](https://github.com/bids-standard/bids-specification/pull/1104) ([TheChymera](https://github.com/TheChymera))
 -   \[ENH] Add Microscopy-BIDS citation [#1102](https://github.com/bids-standard/bids-specification/pull/1102) ([mariehbourget](https://github.com/mariehbourget))
 -   \[FIX] MEG link typo [#1100](https://github.com/bids-standard/bids-specification/pull/1100) ([xi](https://github.com/xi))
 -   \[SCHEMA] Generate schema context object TypeScript definitions [#1099](https://github.com/bids-standard/bids-specification/pull/1099) ([nellh](https://github.com/nellh))
@@ -34,6 +38,7 @@
 -   \[ENH] Introduce the atlas entity for derivatives data [#997](https://github.com/bids-standard/bids-specification/pull/997) ([sebastientourbier](https://github.com/sebastientourbier))
 -   BIDS Validator XS [#969](https://github.com/bids-standard/bids-specification/pull/969) ([TheChymera](https://github.com/TheChymera))
 -   \[DOC] add documentation for macros [#963](https://github.com/bids-standard/bids-specification/pull/963) ([Remi-Gau](https://github.com/Remi-Gau))
+-   \[FIX] Common principles: Add "entity" to list of definitions [#947](https://github.com/bids-standard/bids-specification/pull/947) ([Lestropie](https://github.com/Lestropie))
 -   \[SCHEMA] Add patterns for format validation [#885](https://github.com/bids-standard/bids-specification/pull/885) ([tsalo](https://github.com/tsalo))
 -   \[FIX] run entity - "scans" -> "data acquisitions" [#760](https://github.com/bids-standard/bids-specification/pull/760) ([yarikoptic](https://github.com/yarikoptic))
 
