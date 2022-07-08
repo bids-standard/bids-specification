@@ -791,6 +791,20 @@ def validate_bids(
         pseudofile_suffixes=pseudofile_suffixes,
     )
 
+    # Record schema version.
+    # Not sure whether to incorporate in validation_result.
+    if bids_schema_dir == os.path.join(
+        os.path.abspath(os.path.dirname(__file__)),
+        "data",
+        "schema",
+    ):
+        # Declare we are using live version,
+        # string will evaluate as larger than numbered versions.
+        schema_version = "99999.0.0"
+    else:
+        _, schema_version = os.path.split(bids_schema_dir)
+    validation_result["bids_schema_version"] = schema_version
+
     log_errors(validation_result)
 
     if report_path:
