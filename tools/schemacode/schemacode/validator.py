@@ -689,10 +689,11 @@ def _get_directory_suffixes(my_schema):
         - Backslash directory delimiters are still in use, which is regrettable.
     """
     pseudofile_suffixes = []
-    for i in my_schema["objects"]["extensions"]:
-        if i.endswith("/"):
-            if i != "/":
-                pseudofile_suffixes.append(i[:-1])
+    for i in my_schema["objects"]["extensions"].values():
+        i_value = i["value"]
+        if i_value.endswith("/"):
+            if i_value != "/":
+                pseudofile_suffixes.append(i_value[:-1])
     return pseudofile_suffixes
 
 
