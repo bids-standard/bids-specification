@@ -6,7 +6,8 @@ specified using two files:
 
 1.  a [gzip](https://datatracker.ietf.org/doc/html/rfc1952)
     compressed TSV file with data (without header line)
-2.  a JSON file for storing metadata fields (see below)
+
+1.  a JSON file for storing metadata fields (see below)
 
 [Example datasets](https://github.com/bids-standard/bids-examples)
 with physiological data have been formatted using this specification
