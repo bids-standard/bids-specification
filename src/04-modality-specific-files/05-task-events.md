@@ -67,7 +67,7 @@ For example in an EEG experiment with devices operating at 1000 Hz sampling freq
 dataset curators SHOULD specify **at least** 3 figures after the decimal point.
 
 An arbitrary number of additional columns can be added. Those allow describing
-other properties of events that could be later referred in modelling and
+other properties of events that could be later referenced in modelling and
 hypothesis extensions of BIDS.
 Note that the `trial_type` and any additional columns in a TSV file
 SHOULD be documented in an accompanying JSON sidecar file.
