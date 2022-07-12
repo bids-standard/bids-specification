@@ -606,7 +606,7 @@ In either case, the label for the [`task-<label>`](../99-appendices/09-entities.
 
 Example 1:
 
-One noise recording per day, applying to all subjects for that day.
+One empty-room recording per day, applying to all subjects for that day.
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
