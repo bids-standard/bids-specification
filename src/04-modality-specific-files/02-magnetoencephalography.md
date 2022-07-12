@@ -589,7 +589,7 @@ has to be updated, then for MEG it could be considered to be a new session.
 ## Empty-room MEG recordings
 
 Empty-room MEG recordings capture the environmental and recording system's noise.
-In the context of BIDS it is RECOMMENDED to perform an empty-room recording for each experimental session.
+In the context of BIDS it is RECOMMENDED to associate an empty-room recording to each experimental session.
 
 If empty-room recordings are not collected for each individual experimental session, one empty-room recording may be used with multiple subjects and/or sessions.
 For example, they may be collected once a day.
