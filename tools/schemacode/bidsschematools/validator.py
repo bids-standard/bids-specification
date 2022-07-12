@@ -872,7 +872,6 @@ def validate_bids(
     )
     regex_schema, my_schema = load_all(bids_schema_dir)
     pseudofile_suffixes = _get_directory_suffixes(my_schema)
-    regex_schema = _apply_inheritance(regex_schema)
     validation_result = validate_all(
         bids_paths,
         regex_schema,
