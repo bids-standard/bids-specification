@@ -477,10 +477,12 @@ files where commas are replaced by tabs. Tabs MUST be true tab characters and
 MUST NOT be a series of space characters. Each TSV file MUST start with a header
 line listing the names of all columns (with the exception of
 [physiological and other continuous recordings](04-modality-specific-files/06-physiological-and-other-continuous-recordings.md)).
-Names MUST be separated with tabs.
 It is RECOMMENDED that the column names in the header of the TSV file are
 written in [`snake_case`](https://en.wikipedia.org/wiki/Snake_case) with the
 first letter in lower case (for example, `variable_name`, not `Variable_name`).
+As for all other data in the TSV files, column names MUST be separated with tabs.
+Furthermore, column names MUST NOT be blank (that is, an empty string) and MUST NOT
+be duplicated within a single TSV file.
 String values containing tabs MUST be escaped using double
 quotes. Missing and non-applicable values MUST be coded as `n/a`. Numerical
 values MUST employ the dot (`.`) as decimal separator and MAY be specified
