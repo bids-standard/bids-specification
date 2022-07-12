@@ -66,7 +66,7 @@ Additional metadata may be included as in
 [any TSV file](../02-common-principles.md#tabular-files) to specify, for
 example, the units of the recorded time series.
 Please note that, in contrast to other TSV files in BIDS, the TSV files specified
-for phsyiological and other continuous recordings *do not* include a header
+for physiological and other continuous recordings *do not* include a header
 line.
 Instead the name of columns are specified in the JSON file.
 This is to improve compatibility with existing software (for example, FSL, PNM)
