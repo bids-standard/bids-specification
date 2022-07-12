@@ -235,7 +235,7 @@ def load_top_level(
 
 def load_entities(
     my_schema,
-    inheritance_regex=r".*?\\\.json.*?",
+    inheritance_regex=r".*?\\\.(tsv|bvec|json)(\$|\||\)).*?",
     debug=False,
 ):
     """Create full path regexes for entities, as documented by a target BIDS YAML schema version.
