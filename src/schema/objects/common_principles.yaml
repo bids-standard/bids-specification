@@ -5,11 +5,13 @@
 # rather than this file (`objects/common_principles.yaml`).
 data_acquisition:
   name: Data acquisition
+  display_name: Data acquisition
   description: |
     A continuous uninterrupted block of time during which a brain scanning instrument was acquiring data according to
     particular scanning sequence/protocol.
 data_type:
   name: Data type
+  display_name: Data type
   description: |
     A functional group of different types of data.
     BIDS defines the following data types:
@@ -30,11 +32,13 @@ data_type:
     (optionally) session directories.
 dataset:
   name: Dataset
+  display_name: Dataset
   description: |
     A set of neuroimaging and behavioral data acquired for a purpose of a particular study.
     A dataset consists of data acquired from one or more subjects, possibly from multiple sessions.
 deprecated:
   name: DEPRECATED
+  display_name: DEPRECATED
   description: |
     A "deprecated" entity or metadata field SHOULD NOT be used in the generation of new datasets.
     It remains in the standard in order to preserve the interpretability of existing datasets.
@@ -42,6 +46,7 @@ deprecated:
     dataset to preserve the curator's intent.
 event:
   name: Event
+  display_name: Event
   description: |
     Something that happens or may be perceived by a test subject as happening at a particular instant during the
     recording.
@@ -56,17 +61,20 @@ event:
     Note that not all tasks will have recorded events (for example, "resting state").
 extension:
   name: File extension
+  display_name: File extension
   description: |
     A portion of the file name after the left-most period (`.`) preceded by any other alphanumeric.
     For example, `.gitignore` does not have a file extension, but the file extension of `test.nii.gz` is `.nii.gz`.
     Note that the left-most period is included in the file extension.
 index:
   name: index
+  display_name: index
   description: |
     A nonnegative integer, possibly prefixed with arbitrary number of 0s for consistent indentation,
     for example, it is `01` in `run-01` following `run-<index>` specification.
 label:
   name: label
+  display_name: label
   description: |
     An alphanumeric value, possibly prefixed with arbitrary number of 0s for consistent indentation,
     for example, it is `rest` in `task-rest` following `task-<label>` specification.
@@ -74,6 +82,7 @@ label:
     (see [Case collision intolerance](#case-collision-intolerance)).
 modality:
   name: Modality
+  display_name: Modality
   description: |
     The category of brain data recorded by a file.
     For MRI data, different pulse sequences are considered distinct modalities, such as `T1w`, `bold` or `dwi`.
@@ -83,6 +92,7 @@ modality:
     The modality may overlap with, but should not be confused with the **data type**.
 run:
   name: Run
+  display_name: Run
   description: |
     An uninterrupted repetition of data acquisition that has the same acquisition parameters and task
     (however events can change from run to run due to different subject response or randomized nature of the stimuli).
@@ -95,12 +105,14 @@ run:
     a subject may leave and re-enter the scanner without interrupting the scan.
 sample:
   name: Sample
+  display_name: Sample
   description: |
     A sample pertaining to a subject such as tissue, primary cell or cell-free sample.
     The `sample-<label>` key/value pair is used to distinguish between different samples from the same subject.
     The label MUST be unique per subject and is RECOMMENDED to be unique throughout the dataset.
 session:
   name: Session
+  display_name: Session
   description: |
     A logical grouping of neuroimaging and behavioral data consistent across subjects.
     Session can (but doesn't have to) be synonymous to a visit in a longitudinal study.
@@ -116,11 +128,13 @@ session:
     a session may also indicate a group of related scans, taken in one or more visits.
 subject:
   name: Subject
+  display_name: Subject
   description: |
     A person or animal participating in the study.
     Used interchangeably with term **Participant**.
 task:
   name: Task
+  display_name: Task
   description: |
     A set of structured activities performed by the participant.
     Tasks are usually accompanied by stimuli and responses, and can greatly vary in complexity.
@@ -130,6 +144,7 @@ task:
     (with different sets of instructions) they will be considered one (combined) task.
 suffix:
   name: suffix
+  display_name: suffix
   description: |
     An alphanumeric value, located after the `key-value_` pairs (thus after the final `_`),
     right before the **File extension**,
