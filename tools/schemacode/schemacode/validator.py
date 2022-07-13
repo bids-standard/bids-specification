@@ -605,7 +605,6 @@ def select_schema_dir(
                 )
             else:
                 with open(dataset_description) as f:
-                    dataset_info = json.load(f)
                     try:
                         dataset_info = json.load(f)
                     except json.decoder.JSONDecodeError:
@@ -781,6 +780,7 @@ def validate_bids(
         schema_min_version=schema_min_version,
     )
     regex_schema, my_schema = load_all(bids_schema_dir)
+    pseudofile_suffixes = _get_directory_suffixes(my_schema)
     validation_result = validate_all(
         bids_paths,
         regex_schema,
