@@ -16,27 +16,27 @@ data_type:
     A functional group of different types of data.
     BIDS defines the following data types:
 
-      1.  `func` (task based and resting state functional MRI)
+        1.  `func` (task based and resting state functional MRI)
 
-      2.  `dwi` (diffusion weighted imaging)
+        2.  `dwi` (diffusion weighted imaging)
 
-      3.  `fmap` (field inhomogeneity mapping data such as field maps)
+        3.  `fmap` (field inhomogeneity mapping data such as field maps)
 
-      4.  `anat` (structural imaging such as T1, T2, PD, and so on)
+        4.  `anat` (structural imaging such as T1, T2, PD, and so on)
 
-      5.  `perf` (perfusion)
+        5.  `perf` (perfusion)
 
-      6.  `meg` (magnetoencephalography)
+        6.  `meg` (magnetoencephalography)
 
-      7.  `eeg` (electroencephalography)
+        7.  `eeg` (electroencephalography)
 
-      8.  `ieeg` (intracranial electroencephalography)
+        8.  `ieeg` (intracranial electroencephalography)
 
-      9.  `beh` (behavioral)
+        9.  `beh` (behavioral)
 
-      10. `pet` (positron emission tomography)
+        10. `pet` (positron emission tomography)
 
-      11. `micr` (microscopy)
+        11. `micr` (microscopy)
 
     Data files are contained in a directory named for the data type.
     In raw datasets, the data type directory is nested inside subject and
@@ -110,7 +110,7 @@ run:
     Run is a synonym of a data acquisition.
     Note that "uninterrupted" may look different by modality due to the nature of the recording.
     For example, in [MRI](04-modality-specific-files/01-magnetic-resonance-imaging-data.md)
-    or [MEG] (04-modality-specific-files/02-magnetoencephalography.md),
+    or [MEG](04-modality-specific-files/02-magnetoencephalography.md),
     if a subject leaves the scanner, the acquisition must be restarted.
     For some types of [PET](04-modality-specific-files/09-positron-emission-tomography.md) acquisitions,
     a subject may leave and re-enter the scanner without interrupting the scan.
@@ -119,8 +119,7 @@ sample:
   display_name: Sample
   description: |
     A sample pertaining to a subject such as tissue, primary cell or cell-free sample.
-    The `sample-<label>` key/value pair is used to distinguish between different samples from the same subject.
-    The label MUST be unique per subject and is RECOMMENDED to be unique throughout the dataset.
+    Sample labels MUST be unique within a subject and it is RECOMMENDED that they be unique throughout the dataset.
 session:
   name: Session
   display_name: Session
@@ -137,6 +136,13 @@ session:
     often in the case of some intervention between sessions (for example, training).
     In the [PET](04-modality-specific-files/09-positron-emission-tomography.md) context,
     a session may also indicate a group of related scans, taken in one or more visits.
+suffix:
+  name: suffix
+  display_name: suffix
+  description: |
+    An alphanumeric string that forms part of a filename, located after all [entities](#entities) and
+    following a final `_`, right before the **file extension**;
+    for example, it is `eeg` in `sub-05_task-matchingpennies_eeg.vhdr`.
 subject:
   name: Subject
   display_name: Subject
@@ -153,10 +159,3 @@ task:
     In the context of brain scanning, a task is always tied to one data acquisition.
     Therefore, even if during one acquisition the subject performed multiple conceptually different behaviors
     (with different sets of instructions) they will be considered one (combined) task.
-suffix:
-  name: suffix
-  display_name: suffix
-  description: |
-    An alphanumeric value, located after the `key-value_` pairs (thus after the final `_`),
-    right before the **File extension**,
-    for example, it is `eeg` in `sub-05_task-matchingpennies_eeg.vhdr`.
