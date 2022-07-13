@@ -22,6 +22,13 @@ included in this appendix:
 
 ### Anatomy imaging data
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(
     datatypes=["anat"],
     suffixes=[
@@ -49,6 +56,13 @@ included in this appendix:
 
 ### Fieldmap data
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(
     datatypes=["fmap"],
     suffixes=[

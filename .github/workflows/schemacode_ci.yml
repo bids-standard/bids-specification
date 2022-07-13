@@ -1,0 +1,94 @@
+name: "schemacode_ci"
+
+on:
+  push:
+    branches:
+      - "master"
+    paths:
+      - "tools/schemacode/**"
+      - "src/schema/**"
+  pull_request:
+    branches:
+      - "*"
+    paths:
+      - "tools/schemacode/**"
+      - "src/schema/**"
+
+jobs:
+  check_skip:
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.result_step.outputs.ci-skip }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - id: result_step
+        uses: mstachniuk/ci-skip@master
+        with:
+          commit-filter: "[skip ci];[ci skip];[skip github]"
+          commit-filter-separator: ";"
+
+  run_tests:
+    needs: check_skip
+    if: ${{ needs.check_skip.outputs.skip == 'false' }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+        fail-fast: false
+        matrix:
+            os: ["ubuntu-latest"]
+            python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
+    name: ${{ matrix.os }} with Python ${{ matrix.python-version }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: "Set up Python"
+        uses: actions/setup-python@v3
+        with:
+            python-version: ${{ matrix.python-version }}
+
+      - name: "Display Python version"
+        shell: bash {0}
+        run: python -c "import sys; print(sys.version)"
+
+      - name: "Install the schemacode package"
+        shell: bash {0}
+        run: |
+          python -m pip install --progress-bar off --upgrade pip setuptools wheel
+          python -m pip install -e ./tools/schemacode[tests]
+
+      - name: "Run tests"
+        shell: bash {0}
+        run: |
+          python -m pytest --pyargs schemacode --cov=schemacode ./tools/schemacode/
+
+      - name: "Upload coverage to CodeCov"
+        uses: codecov/codecov-action@v1
+        if: success()
+
+  flake8-lint:
+    runs-on: ubuntu-latest
+    name: Lint schemacode
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python environment
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.7"
+
+      - name: "Install the schemacode package"
+        shell: bash {0}
+        run: |
+          python -m pip install --progress-bar off --upgrade pip setuptools wheel
+          python -m pip install -e ./tools/schemacode[tests]
+
+      - name: "Run flake8"
+        working-directory: ./tools/schemacode/
+        shell: bash {0}
+        run: |
+          flake8 .

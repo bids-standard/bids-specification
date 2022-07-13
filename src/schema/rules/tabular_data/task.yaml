@@ -1,0 +1,15 @@
+---
+TaskEvents:
+    selectors:
+    - '"task" in entities'
+    - suffix == "events"
+    columns:
+        onset: REQUIRED
+        duration: REQUIRED
+        sample: OPTIONAL
+        trial_type: OPTIONAL
+        response_time: OPTIONAL
+        value: OPTIONAL
+        HED: OPTIONAL
+        stim_file: OPTIONAL
+    additional_columns: allowed

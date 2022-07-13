@@ -20,6 +20,12 @@ BIDS governance.
 | Melanie Ganz ([@melanieganz](https://github.com/melanieganz))                |
 | Robert Oostenveld ([@robertoostenveld](https://github.com/robertoostenveld)) |
 | Russell Poldrack ([@poldrack](https://github.com/poldrack))                  |
+| Ariel Rokem ([@arokem](https://github.com/arokem))            |
+
+#### Past steering group members
+
+| Name                                                                         |
+|------------------------------------------------------------------------------|
 | Kirstie Whitaker ([@KirstieJane](https://github.com/KirstieJane))            |
 
 ### Maintainers Group
