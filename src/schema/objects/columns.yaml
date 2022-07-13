@@ -1,7 +1,4 @@
 ---
-# This file describes valid columns for tabular data files in BIDS datasets.
-# While additional columns are generally allowed in BIDS TSV[.GZ] files,
-# certain names are reserved and require specific types of values.
 HED:
   name: HED
   display_name: HED Tag
