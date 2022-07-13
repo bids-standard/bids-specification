@@ -90,7 +90,7 @@ label:
     An alphanumeric value, possibly prefixed with arbitrary number of 0s for consistent indentation,
     for example, it is `rest` in `task-rest` following `task-<label>` specification.
     Note that labels MUST not collide when casing is ignored
-    (see [Case collision intolerance](#case-collision-intolerance)).
+    (see [Case collision intolerance](SPEC_ROOT/02-common-principles.md#case-collision-intolerance)).
 modality:
   name: Modality
   display_name: Modality
@@ -109,10 +109,10 @@ run:
     (however events can change from run to run due to different subject response or randomized nature of the stimuli).
     Run is a synonym of a data acquisition.
     Note that "uninterrupted" may look different by modality due to the nature of the recording.
-    For example, in [MRI](04-modality-specific-files/01-magnetic-resonance-imaging-data.md)
-    or [MEG](04-modality-specific-files/02-magnetoencephalography.md),
+    For example, in [MRI](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-imaging-data.md)
+    or [MEG](SPEC_ROOT/04-modality-specific-files/02-magnetoencephalography.md),
     if a subject leaves the scanner, the acquisition must be restarted.
-    For some types of [PET](04-modality-specific-files/09-positron-emission-tomography.md) acquisitions,
+    For some types of [PET](SPEC_ROOT/04-modality-specific-files/09-positron-emission-tomography.md) acquisitions,
     a subject may leave and re-enter the scanner without interrupting the scan.
 sample:
   name: Sample
@@ -134,13 +134,14 @@ session:
     Defining multiple sessions is appropriate when several identical or similar data acquisitions are planned and
     performed on all -or most- subjects,
     often in the case of some intervention between sessions (for example, training).
-    In the [PET](04-modality-specific-files/09-positron-emission-tomography.md) context,
+    In the [PET](SPEC_ROOT/04-modality-specific-files/09-positron-emission-tomography.md) context,
     a session may also indicate a group of related scans, taken in one or more visits.
 suffix:
   name: suffix
   display_name: suffix
   description: |
-    An alphanumeric string that forms part of a filename, located after all [entities](#entities) and
+    An alphanumeric string that forms part of a filename, located after all
+    [entities](SPEC_ROOT/02-common-principles.md#entities) and
     following a final `_`, right before the **file extension**;
     for example, it is `eeg` in `sub-05_task-matchingpennies_eeg.vhdr`.
 subject:
