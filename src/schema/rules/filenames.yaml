@@ -1,0 +1,119 @@
+---
+root:
+  type: 'directory'
+  # you can call datasets whetever you want.
+  pattern: '.*'
+  children:
+  - subject_dirs
+  - $ref: rules.top_level_files
+  - $ref: rules.associated_data
+
+subject_dirs:
+  type: 'directory'
+  entities:
+  - subject
+  children:
+  - session_dirs
+  - datatype_dirs
+  - $ref: rules.tabular_metadata
+
+session_dirs:
+  type: 'directory'
+  entities:
+  - session
+  children:
+  - datatype_dirs
+
+datatype_dirs:
+- pattern: 'anat'
+  type: 'directory'
+  children:
+  - $ref: rules.datatypes.anat.nonparametric
+  - $ref: rules.datatypes.anat.parametric
+  - $ref: rules.datatypes.anat.defacemask
+  - $ref: rules.datatypes.anat.multiecho
+  - $ref: rules.datatypes.anat.multiflip
+  - $ref: rules.datatypes.anat.multiinversion
+  - $ref: rules.datatypes.anat.mp2rage
+  - $ref: rules.datatypes.anat.vfamt
+  - $ref: rules.datatypes.anat.mtr
+- pattern: 'beh'
+  type: 'directory'
+  children:
+  - $ref: rules.datatypes.beh.timeseries
+  - $ref: rules.datatypes.beh.noncontinuous
+- pattern: 'dwi'
+  type: 'directory'
+  children:
+  - $ref: rules.datatypes.dwi.dwi
+  - $ref: rules.datatypes.dwi.sbref
+  - $ref: rules.datatypes.dwi.timeseries
+- pattern: 'eeg'
+  type: 'directory'
+  children:
+  - $ref: rules.datatypes.eeg.eeg
+  - $ref: rules.datatypes.eeg.channels
+  - $ref: rules.datatypes.eeg.coordsystem
+  - $ref: rules.datatypes.eeg.electrodes
+  - $ref: rules.datatypes.eeg.events
+  - $ref: rules.datatypes.eeg.photo
+  - $ref: rules.datatypes.eeg.timeseries
+- pattern: 'fmap'
+  type: 'directory'
+  children:
+  - $ref: rules.datatypes.fmap.fieldmaps
+  - $ref: rules.datatypes.fmap.pepolar
+  - $ref: rules.datatypes.fmap.TB1DAM
+  - $ref: rules.datatypes.fmap.TB1EPI
+  - $ref: rules.datatypes.fmap.RFFieldMaps
+  - $ref: rules.datatypes.fmap.TB1SRGE
+  - $ref: rules.datatypes.fmap.parametric
+- pattern: 'func'
+  type: 'directory'
+  children:
+  - $ref: rules.datatypes.func.func
+  - $ref: rules.datatypes.func.phase
+  - $ref: rules.datatypes.func.events
+  - $ref: rules.datatypes.func.timeseries
+- pattern: 'ieeg'
+  type: 'directory'
+  children:
+  - $ref: rules.datatypes.ieeg.ieeg
+  - $ref: rules.datatypes.ieeg.channels
+  - $ref: rules.datatypes.ieeg.coordsystem
+  - $ref: rules.datatypes.ieeg.electrodes
+  - $ref: rules.datatypes.ieeg.events
+  - $ref: rules.datatypes.ieeg.photo
+  - $ref: rules.datatypes.ieeg.timeseries
+- pattern: 'meg'
+  type: 'directory'
+  children:
+  - $ref: rules.datatypes.meg.meg
+  - $ref: rules.datatypes.meg.calibration
+  - $ref: rules.datatypes.meg.crosstalk
+  - $ref: rules.datatypes.meg.headshape
+  - $ref: rules.datatypes.meg.markers
+  - $ref: rules.datatypes.meg.coordsystem
+  - $ref: rules.datatypes.meg.channels
+  - $ref: rules.datatypes.meg.events
+  - $ref: rules.datatypes.meg.photo
+  - $ref: rules.datatypes.meg.timeseries
+- pattern: 'micr'
+  type: 'directory'
+  children:
+  - $ref: rules.datatypes.micr.microscopy
+  - $ref: rules.datatypes.micr.photo
+- pattern: 'perf'
+  type: 'directory'
+  children:
+  - $ref: rules.datatypes.perf.asl
+  - $ref: rules.datatypes.perf.aslcontext
+  - $ref: rules.datatypes.perf.asllabeling
+  - $ref: rules.datatypes.perf.timeseries
+- pattern: 'pet'
+  type: 'directory'
+  children:
+  - $ref: rules.datatypes.pet.pet
+  - $ref: rules.datatypes.pet.blood
+  - $ref: rules.datatypes.pet.events
+  - $ref: rules.datatypes.pet.timeseries
