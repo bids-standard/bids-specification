@@ -454,7 +454,7 @@ def test_validate_bids(bids_examples, tmp_path):
             selected_path = os.path.join(root, f)
             selected_paths.append(selected_path)
     # Do version fallback and terminal debug output work?
-    result = validate_bids(selected_paths, schema_version=None, debug=True)
+    result = validate_bids(selected_paths, schema_version=None)
     # Does default log path specification work?
     result = validate_bids(selected_paths, schema_version=schema_path, report_path=True)
 
@@ -462,7 +462,6 @@ def test_validate_bids(bids_examples, tmp_path):
     result = validate_bids(
         selected_paths,
         schema_version=schema_path,
-        debug=True,
         report_path=os.path.join(tmp_path, "test_bids.log"),
     )
     # Have all files been validated?
