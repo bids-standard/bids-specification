@@ -409,11 +409,11 @@ def validate_all(
     matched = False
     match_listing = []
     for target_path in paths_list:
-        lgr.debug(f"Checking file `{target_path}`.")
+        lgr.debug("Checking file `%s`.", target_path)
         lgr.debug("Trying file types:")
         for regex_entry in tracking_schema:
             target_regex = regex_entry["regex"]
-            lgr.debug(f"\t* {target_path}, with pattern: {target_regex}")
+            lgr.debug("\t* `%s`, with pattern: `%`", target_path, target_regex)
             matched = re.match(target_regex, target_path)
             itemwise_result = {}
             itemwise_result["path"] = target_path
@@ -434,7 +434,7 @@ def validate_all(
             match_entry["path"] = target_path
             match_listing.append(match_entry)
         else:
-            lgr.debug(f"The `{target_path}` file could not be matched to any regex schema entry.")
+            lgr.debug("The `%s` file could not be matched to any regex schema entry.", target_path)
     results = {}
     results["itemwise"] = itemwise_results
     results["schema_tracking"] = tracking_schema
@@ -734,7 +734,7 @@ def _inheritance_expansion(
         )
 
     expanded_regexes = []
-    lgr.debug(f"Applying inheritance expansion to:\n`{regex_string}`")
+    lgr.debug("Applying inheritance expansion to:\n`%s`", regex_string)
     for expansion in expansions:
         modified = False
         for ix, regex in enumerate(expansion["regex"]):
@@ -745,7 +745,7 @@ def _inheritance_expansion(
                 modified = True
         if modified:
             expanded_regexes.append(regex_string)
-            lgr.debug(f"\t* Generated expansion:\n\t{regex_string}")
+            lgr.debug("\t* Generated expansion:\n\t%s", regex_string)
 
     return expanded_regexes
 
