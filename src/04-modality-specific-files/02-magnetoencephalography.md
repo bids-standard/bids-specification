@@ -589,7 +589,7 @@ has to be updated, then for MEG it could be considered to be a new session.
 ## Empty-room MEG recordings
 
 Empty-room MEG recordings capture the environmental and recording system's noise.
-In the context of BIDS it is RECOMMENDED to associate an empty-room recording to each experimental session.
+In the context of BIDS it is RECOMMENDED to associate an empty-room recording to each experimental session (see `AssociatedEmptyRoom` field in the `*_meg.json` sidecar file).
 
 Empty-room recordings may be collected once per day, where a single empty-room recording may be shared between multiple subjects and/or sessions (see example 1).
 Empty-room recordings can also be collected for each individual experimental session (see example 2).
