@@ -350,6 +350,8 @@ def test_validate_bids(bids_examples, tmp_path):
     # Have all files been validated?
     assert len(result["path_tracking"]) == 0
 
+    # Is the schema version recorded correctly?
+    assert result["bids_schema_version"] == "99999.0.0-dev"
 
 @pytest.mark.skipif(
     os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
