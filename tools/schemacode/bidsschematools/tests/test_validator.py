@@ -315,6 +315,7 @@ def test_bids_datasets(bids_examples, tmp_path):
         "pet003",
         "qmri_tb1tfl",
         "qmri_vfa/derivatives/qMRLab",
+        "qmri_qsm",
     ]
     schema_path = "{module_path}/data/schema/"
 
