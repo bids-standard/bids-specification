@@ -5,7 +5,7 @@ import pytest
 
 
 def test__add_entity():
-    from schemacode.validator import _add_entity
+    from bidsschematools.validator import _add_entity
 
     # Test empty input and directory creation and required entity
     regex_entities = ""
@@ -54,7 +54,7 @@ def test__add_entity():
 
 
 def test__add_extensions():
-    from schemacode.validator import _add_extensions
+    from bidsschematools.validator import _add_extensions
 
     # Test single extension
     regex_string = (
@@ -107,7 +107,7 @@ def test__add_extensions():
 
 
 def test__add_subdirs():
-    from schemacode.validator import _add_subdirs
+    from bidsschematools.validator import _add_subdirs
 
     regex_string = "sub-(?P=subject)_sessions\\.(tsv|json)"
     variant = {
@@ -165,7 +165,7 @@ def test__add_subdirs():
 
 
 def test__add_suffixes():
-    from schemacode.validator import _add_suffixes
+    from bidsschematools.validator import _add_suffixes
 
     # Test single expansion
     regex_entities = "sub-(?P=subject)"
@@ -225,7 +225,7 @@ def test__add_suffixes():
 
 
 def test_load_all():
-    from schemacode.validator import load_all
+    from bidsschematools.validator import load_all
 
     # schema_path = "/usr/share/bids-schema/1.7.0/"
     schema_path = os.path.join(
@@ -241,7 +241,7 @@ def test_load_all():
 
 
 def test_write_report(tmp_path):
-    from schemacode.validator import write_report
+    from bidsschematools.validator import write_report
 
     validation_result = {}
 
@@ -303,7 +303,7 @@ def test_write_report(tmp_path):
     reason="no network",
 )
 def test_bids_datasets(bids_examples, tmp_path):
-    from schemacode.validator import validate_bids
+    from bidsschematools.validator import validate_bids
 
     whitelist = [
         "asl003",
@@ -354,7 +354,7 @@ def test_bids_datasets(bids_examples, tmp_path):
 
 
 def test_broken_json_dataset(bids_examples, tmp_path):
-    from schemacode.validator import validate_bids
+    from bidsschematools.validator import validate_bids
 
     dataset = "asl003"
     dataset_path = os.path.join(bids_examples, dataset)

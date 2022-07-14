@@ -1,7 +1,7 @@
-"""Tests for the schemacode package."""
+"""Tests for the bidsschematools package."""
 import os
 
-from schemacode import render
+from bidsschematools import render
 
 
 def test_make_entity_definitions(schema_obj):
