@@ -14,6 +14,8 @@ data_type:
   display_name: Data type
   description: |
     A functional group of different types of data.
+    Data files are contained in a directory named for the data type.
+    In raw datasets, the data type directory is nested inside subject and (optionally) session directories.
     BIDS defines the following data types:
 
         1.  `func` (task based and resting state functional MRI)
@@ -37,10 +39,6 @@ data_type:
         10. `pet` (positron emission tomography)
 
         11. `micr` (microscopy)
-
-      Data files are contained in a directory named for the data type.
-      In raw datasets, the data type directory is nested inside subject and
-      (optionally) session directories.
 dataset:
   name: Dataset
   display_name: Dataset
