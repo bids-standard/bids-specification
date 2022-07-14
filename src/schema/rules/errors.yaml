@@ -9,7 +9,7 @@ NiftiHeaderUnreadable:
         Please ensure it is not corrupted or mislabeled.
     level: error
     selectors:
-    - extension in [".nii", ".nii.gz"]
+    - [".nii", ".nii.gz"].includes(extension)
 
 # BIDS Validator Original Issue Code #27
 JsonInvalid:
@@ -27,7 +27,7 @@ GzNotGzipped:
         This file ends in the .gz extension but is not actually gzipped.
     level: error
     selectors:
-    - extension contains ".gz"
+    - extension.includes(".gz")
 
 # BIDS Validator Original Issue Code #30
 BvalMultipleRows:
@@ -54,7 +54,7 @@ NiftiTooSmall:
         This file is too small to contain the minimal NIfTI header.
     level: error
     selectors:
-    - extension in [".nii", ".nii.gz"]
+    - [".nii", ".nii.gz"].includes(extension)
 
 # BIDS Validator Original Issue Code #43
 OrphanedSymlink:
@@ -90,7 +90,7 @@ BFile:
         and contain only numerical values.
     level: error
     selectors:
-    - extension in [".bval", ".bvec"]
+    - [".bval", ".bvec"].includes(extension)
 
 # BIDS Validator Original Issue Code #55
 JsonSchemaValidationError:
@@ -176,7 +176,7 @@ BrainvisionLinksBroken:
         and *.vmrk) are broken or some files do not exist.
     level: error
     selectors:
-    - extension in [ ".eeg", ".vhdr", ".vmrk"]
+    - [ ".eeg", ".vhdr", ".vmrk"].includes(extension)
 
 # BIDS Validator Original Issue Code #104
 HedError:
