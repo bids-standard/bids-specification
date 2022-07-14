@@ -14,13 +14,13 @@ lgr = logging.getLogger()
 # good proportion modalities would be represented, as well as datasets exemplifying
 # tricky edge-cases, such as directory pseudo-files.
 BIDS_SELECTION = [
-    "asl003", # anat, perf, _asl, _T1w
-    "eeg_cbm", # eeg
-    "hcp_example_bids", # anat, fmap
-    "micr_SEM", # micr, SEM
-    "micr_SPIM", # micr, SPIM, .ome.tif
-    "pet003", # pet, anat
-    "qmri_tb1tfl", # fmap, _TB1TFL
+    "asl003",  # anat, perf, _asl, _T1w
+    "eeg_cbm",  # eeg
+    "hcp_example_bids",  # anat, fmap
+    "micr_SEM",  # micr, SEM
+    "micr_SPIM",  # micr, SPIM, .ome.tif
+    "pet003",  # pet, anat
+    "qmri_tb1tfl",  # fmap, _TB1TFL
 ]
 
 
