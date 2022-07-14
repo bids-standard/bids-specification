@@ -5,7 +5,7 @@ from subprocess import run
 
 import pytest
 
-from schemacode import schema, utils
+from bidsschematools import schema, utils
 
 lgr = logging.getLogger()
 

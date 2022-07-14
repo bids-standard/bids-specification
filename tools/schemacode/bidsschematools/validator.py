@@ -199,7 +199,7 @@ def load_top_level(
     Parameters
     ----------
     my_schema : dict
-        A nested dictionary, as returned by `schemacode.schema.load_schema()`.
+        A nested dictionary, as returned by `bidsschematools.schema.load_schema()`.
 
     Returns
     -------
@@ -236,7 +236,7 @@ def load_entities(
     Parameters
     ----------
     my_schema : dict
-        A nested dictionary, as returned by `schemacode.schema.load_schema()`.
+        A nested dictionary, as returned by `bidsschematools.schema.load_schema()`.
 
     Notes
     -----
@@ -653,7 +653,7 @@ def select_schema_dir(
         raise ValueError(
             f"The expected schema directory {schema_dir} does not exist on the system. "
             "Please ensure the file exists or manually specify a schema version for "
-            "which the schemacode files are available on your system."
+            "which the bidsschematools files are available on your system."
         )
 
 
@@ -689,7 +689,7 @@ def _get_directory_suffixes(my_schema):
     Parameters
     ----------
     my_schema : dict
-        Nested directory as produced by `schemacode.schema.load_schema()`.
+        Nested directory as produced by `bidsschematools.schema.load_schema()`.
 
     Returns
     -------
@@ -745,8 +745,8 @@ def validate_bids(
         If string, the string will be used as the output path.
         If the variable evaluates as False, no log will be written.
     schema_min_version : str, optional
-        Minimal working schema version, used by the `schemacode.select_schema_dir()` function only
-        if no schema version is found or a lower schema version is specified by the dataset.
+        Minimal working schema version, used by the `bidsschematools.select_schema_dir()` function
+        only if no schema version is found or a lower schema version is specified by the dataset.
 
     Returns
     -------
@@ -758,7 +758,7 @@ def validate_bids(
 
     Examples
     --------
-    >>> from schemacode import validator
+    >>> from bidsschematools import validator
     >>> bids_paths = '~/.data2/datalad/000026/rawdata'
     >>> schema_version='{module_path}/data/schema/'
     >>> validator.validate_bids(bids_paths, schema_version=schema_version, debug=False)"
