@@ -1,4 +1,5 @@
 import os
+import shutil
 
 import pytest
 
@@ -336,8 +337,8 @@ def test_bids_datasets(bids_examples, tmp_path):
         for f in files:
             selected_path = os.path.join(root, f)
             selected_paths.append(selected_path)
-    # Does terminal debug output work?
-    result = validate_bids(selected_paths, schema_version=schema_path, debug=True)
+    # Do version fallback and terminal debug output work?
+    result = validate_bids(selected_paths, schema_version=None, debug=True)
     # Does default log path specification work?
     result = validate_bids(selected_paths, schema_version=schema_path, report_path=True)
 
@@ -350,3 +351,23 @@ def test_bids_datasets(bids_examples, tmp_path):
     )
     # Have all files been validated?
     assert len(result["path_tracking"]) == 0
+
+
+def test_broken_json_dataset(bids_examples, tmp_path):
+    from schemacode.validator import validate_bids
+
+    dataset = "asl003"
+    dataset_path = os.path.join(bids_examples, dataset)
+    dataset_json = os.path.join(dataset_path, "dataset_description.json")
+
+    broken_json = os.path.join(
+        os.path.abspath(os.path.dirname(__file__)),
+        "data/broken_dataset_description.json",
+    )
+    shutil.copyfile(broken_json, dataset_json)
+
+    # No assert, will simply raise JSON reader error if not catching it properly.
+    _ = validate_bids(
+        dataset_path,
+        report_path=True,
+    )
