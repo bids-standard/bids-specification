@@ -224,7 +224,7 @@ def test__add_suffixes():
 
 
 def test__inheritance_expansion():
-    from schemacode.validator import _inheritance_expansion
+    from bidsschematools.validator import _inheritance_expansion
 
     # test .json
     base_entry = (
