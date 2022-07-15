@@ -3,30 +3,30 @@ CommonDerivativeFields:
   selectors:
   - dataset.DatasetType == "derivative"
   fields:
-    Description: RECOMMENDED
-    Sources: OPTIONAL
-    RawSources: OPTIONAL
+    Description: recommended
+    Sources: optional
+    RawSources: optional
 
 SpatialReferenceEntity:
   selectors:
   - dataset.DatasetType == "derivative"
   - '"space" in entities'
   fields:
-    SpatialReference: RECOMMENDED
+    SpatialReference: recommended
 
 SpatialReferenceNonStandard:
   selectors:
   - dataset.DatasetType == "derivative"
   - 'schema.objects.metadata._StandardTemplateCoordSys).includes(not(entities.space)'
   fields:
-    SpatialReference: REQUIRED
+    SpatialReference: required
 
 SpatialReferenceNoEntity:
   selectors:
   - dataset.DatasetType == "derivative"
   - '!("space" in entities)'
   fields:
-    SpatialReference: REQUIRED
+    SpatialReference: required
 
 # this needs to come before density and resolution overrides selected in a
 # different way
@@ -35,11 +35,11 @@ MaskDerivatives:
   - dataset.DatasetType == "derivative"
   - suffix == "mask"
   fields:
-    RawSources: REQUIRED
-    Type: RECOMMENDED
-    Atlas: OPTIONAL
-    Resolution: OPTIONAL
-    Density: OPTIONAL
+    RawSources: required
+    Type: recommended
+    Atlas: optional
+    Resolution: optional
+    Density: optional
 
 MaskDerivativesAtlas:
   selectors:
@@ -47,17 +47,17 @@ MaskDerivativesAtlas:
   - suffix == "mask"
   - '"label" in entities'
   fields:
-    atlas: RECOMMENDED
+    atlas: recommended
 
 SegmentationCommon:
   selectors:
   - dataset.DatasetType == "derivative"
   - '["dseg", "probseg"].includes(suffix)'
   fields:
-    Type: RECOMMENDED
-    Atlas: OPTIONAL
-    Resolution: OPTIONAL
-    Density: OPTIONAL
+    Type: recommended
+    Atlas: optional
+    Resolution: optional
+    Density: optional
 
 # Derivatives -> Imaging data types
 ImageDerivatives:
@@ -66,7 +66,7 @@ ImageDerivatives:
   - '["mri", "pet"].includes(modality)'
   - '[".nii", ".nii.gz"].includes(extension)'
   fields:
-    SkullStripped: REQUIRED
+    SkullStripped: required
 
 ImageDerivativeResEntity:
   selectors:
@@ -74,7 +74,7 @@ ImageDerivativeResEntity:
   - '["mri", "pet"].includes(modality)'
   - '"res" in entities'
   fields:
-    Resolution: REQUIRED
+    Resolution: required
 
 ImageDerivativeDenEntity:
   selectors:
@@ -82,4 +82,4 @@ ImageDerivativeDenEntity:
   - '["mri", "pet"].includes(modality)'
   - '"den" in entities'
   fields:
-    Density: REQUIRED
+    Density: required

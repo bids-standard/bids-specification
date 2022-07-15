@@ -13,9 +13,9 @@ MRIAnatomyCommonMetadataFields:
     - modality == "MRI"
     - datatype == "anat"
     fields:
-        ContrastBolusIngredient: OPTIONAL
-        RepetitionTimeExcitation: OPTIONAL
-        RepetitionTimePreparation: OPTIONAL
+        ContrastBolusIngredient: optional
+        RepetitionTimeExcitation: optional
+        RepetitionTimePreparation: optional
 
 PhaseEntityUnits:
     selectors:
@@ -23,7 +23,7 @@ PhaseEntityUnits:
     - datatype == "anat"
     - entities.part == "phase"
     fields:
-        Unit: REQUIRED
+        Unit: required
 
 PhaseSuffixUnits:
     selectors:
@@ -31,4 +31,4 @@ PhaseSuffixUnits:
     - datatype == "anat"
     - suffix == "phase"
     fields:
-        Unit: REQUIRED
+        Unit: required

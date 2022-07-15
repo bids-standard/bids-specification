@@ -3,411 +3,411 @@ anat_nonparametric_common:
   $ref: rules.datatypes.anat.nonparametric
   entities:
     $ref: rules.datatypes.anat.nonparametric.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 anat_parametric_common:
   $ref: rules.datatypes.anat.parametric
   entities:
     $ref: rules.datatypes.anat.parametric.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 anat_defacemask_common:
   $ref: rules.datatypes.anat.defacemask
   entities:
     $ref: rules.datatypes.anat.defacemask.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 anat_multiecho_common:
   $ref: rules.datatypes.anat.multiecho
   entities:
     $ref: rules.datatypes.anat.multiecho.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 anat_multiflip_common:
   $ref: rules.datatypes.anat.multiflip
   entities:
     $ref: rules.datatypes.anat.multiflip.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 anat_multiinversion_common:
   $ref: rules.datatypes.anat.multiinversion
   entities:
     $ref: rules.datatypes.anat.multiinversion.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 anat_mp2rage_common:
   $ref: rules.datatypes.anat.mp2rage
   entities:
     $ref: rules.datatypes.anat.mp2rage.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 anat_vfamt_common:
   $ref: rules.datatypes.anat.vfamt
   entities:
     $ref: rules.datatypes.anat.vfamt.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 anat_mtr_common:
   $ref: rules.datatypes.anat.mtr
   entities:
     $ref: rules.datatypes.anat.mtr.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 beh_timeseries_common:
   $ref: rules.datatypes.beh.timeseries
   entities:
     $ref: rules.datatypes.beh.timeseries.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 beh_noncontinuous_common:
   $ref: rules.datatypes.beh.noncontinuous
   entities:
     $ref: rules.datatypes.beh.noncontinuous.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 dwi_dwi_common:
   $ref: rules.datatypes.dwi.dwi
   entities:
     $ref: rules.datatypes.dwi.dwi.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 dwi_sbref_common:
   $ref: rules.datatypes.dwi.sbref
   entities:
     $ref: rules.datatypes.dwi.sbref.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 dwi_timeseries_common:
   $ref: rules.datatypes.dwi.timeseries
   entities:
     $ref: rules.datatypes.dwi.timeseries.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 eeg_eeg_common:
   $ref: rules.datatypes.eeg.eeg
   entities:
     $ref: rules.datatypes.eeg.eeg.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 eeg_channels_common:
   $ref: rules.datatypes.eeg.channels
   entities:
     $ref: rules.datatypes.eeg.channels.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 eeg_coordsystem_common:
   $ref: rules.datatypes.eeg.coordsystem
   entities:
     $ref: rules.datatypes.eeg.coordsystem.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 eeg_electrodes_common:
   $ref: rules.datatypes.eeg.electrodes
   entities:
     $ref: rules.datatypes.eeg.electrodes.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 eeg_events_common:
   $ref: rules.datatypes.eeg.events
   entities:
     $ref: rules.datatypes.eeg.events.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 eeg_photo_common:
   $ref: rules.datatypes.eeg.photo
   entities:
     $ref: rules.datatypes.eeg.photo.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 eeg_timeseries_common:
   $ref: rules.datatypes.eeg.timeseries
   entities:
     $ref: rules.datatypes.eeg.timeseries.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 fmap_fieldmaps_common:
   $ref: rules.datatypes.fmap.fieldmaps
   entities:
     $ref: rules.datatypes.fmap.fieldmaps.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 fmap_pepolar_common:
   $ref: rules.datatypes.fmap.pepolar
   entities:
     $ref: rules.datatypes.fmap.pepolar.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 fmap_TB1DAM_common:
   $ref: rules.datatypes.fmap.TB1DAM
   entities:
     $ref: rules.datatypes.fmap.TB1DAM.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 fmap_TB1EPI_common:
   $ref: rules.datatypes.fmap.TB1EPI
   entities:
     $ref: rules.datatypes.fmap.TB1EPI.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 fmap_RFFieldMaps_common:
   $ref: rules.datatypes.fmap.RFFieldMaps
   entities:
     $ref: rules.datatypes.fmap.RFFieldMaps.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 fmap_TB1SRGE_common:
   $ref: rules.datatypes.fmap.TB1SRGE
   entities:
     $ref: rules.datatypes.fmap.TB1SRGE.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 fmap_parametric_common:
   $ref: rules.datatypes.fmap.parametric
   entities:
     $ref: rules.datatypes.fmap.parametric.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 func_func_common:
   $ref: rules.datatypes.func.func
   entities:
     $ref: rules.datatypes.func.func.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 func_phase_common:
   $ref: rules.datatypes.func.phase
   entities:
     $ref: rules.datatypes.func.phase.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 func_events_common:
   $ref: rules.datatypes.func.events
   entities:
     $ref: rules.datatypes.func.events.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 func_timeseries_common:
   $ref: rules.datatypes.func.timeseries
   entities:
     $ref: rules.datatypes.func.timeseries.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 ieeg_ieeg_common:
   $ref: rules.datatypes.ieeg.ieeg
   entities:
     $ref: rules.datatypes.ieeg.ieeg.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 ieeg_channels_common:
   $ref: rules.datatypes.ieeg.channels
   entities:
     $ref: rules.datatypes.ieeg.channels.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 ieeg_coordsystem_common:
   $ref: rules.datatypes.ieeg.coordsystem
   entities:
     $ref: rules.datatypes.ieeg.coordsystem.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 ieeg_electrodes_common:
   $ref: rules.datatypes.ieeg.electrodes
   entities:
     $ref: rules.datatypes.ieeg.electrodes.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 ieeg_events_common:
   $ref: rules.datatypes.ieeg.events
   entities:
     $ref: rules.datatypes.ieeg.events.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 ieeg_photo_common:
   $ref: rules.datatypes.ieeg.photo
   entities:
     $ref: rules.datatypes.ieeg.photo.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 ieeg_timeseries_common:
   $ref: rules.datatypes.ieeg.timeseries
   entities:
     $ref: rules.datatypes.ieeg.timeseries.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 meg_meg_common:
   $ref: rules.datatypes.meg.meg
   entities:
     $ref: rules.datatypes.meg.meg.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 meg_calibration_common:
   $ref: rules.datatypes.meg.calibration
   entities:
     $ref: rules.datatypes.meg.calibration.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 meg_crosstalk_common:
   $ref: rules.datatypes.meg.crosstalk
   entities:
     $ref: rules.datatypes.meg.crosstalk.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 meg_headshape_common:
   $ref: rules.datatypes.meg.headshape
   entities:
     $ref: rules.datatypes.meg.headshape.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 meg_markers_common:
   $ref: rules.datatypes.meg.markers
   entities:
     $ref: rules.datatypes.meg.markers.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 meg_coordsystem_common:
   $ref: rules.datatypes.meg.coordsystem
   entities:
     $ref: rules.datatypes.meg.coordsystem.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 meg_channels_common:
   $ref: rules.datatypes.meg.channels
   entities:
     $ref: rules.datatypes.meg.channels.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 meg_events_common:
   $ref: rules.datatypes.meg.events
   entities:
     $ref: rules.datatypes.meg.events.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 meg_photo_common:
   $ref: rules.datatypes.meg.photo
   entities:
     $ref: rules.datatypes.meg.photo.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 meg_timeseries_common:
   $ref: rules.datatypes.meg.timeseries
   entities:
     $ref: rules.datatypes.meg.timeseries.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 micr_microscopy_common:
   $ref: rules.datatypes.micr.microscopy
   entities:
     $ref: rules.datatypes.micr.microscopy.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 micr_photo_common:
   $ref: rules.datatypes.micr.photo
   entities:
     $ref: rules.datatypes.micr.photo.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 perf_asl_common:
   $ref: rules.datatypes.perf.asl
   entities:
     $ref: rules.datatypes.perf.asl.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 perf_aslcontext_common:
   $ref: rules.datatypes.perf.aslcontext
   entities:
     $ref: rules.datatypes.perf.aslcontext.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 perf_asllabeling_common:
   $ref: rules.datatypes.perf.asllabeling
   entities:
     $ref: rules.datatypes.perf.asllabeling.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 perf_timeseries_common:
   $ref: rules.datatypes.perf.timeseries
   entities:
     $ref: rules.datatypes.perf.timeseries.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 pet_pet_common:
   $ref: rules.datatypes.pet.pet
   entities:
     $ref: rules.datatypes.pet.pet.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 pet_blood_common:
   $ref: rules.datatypes.pet.blood
   entities:
     $ref: rules.datatypes.pet.blood.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 pet_events_common:
   $ref: rules.datatypes.pet.events
   entities:
     $ref: rules.datatypes.pet.events.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
 
 pet_timeseries_common:
   $ref: rules.datatypes.pet.timeseries
   entities:
     $ref: rules.datatypes.pet.timeseries.entities
-    space: OPTIONAL
-    description: OPTIONAL
+    space: optional
+    desc: optional
