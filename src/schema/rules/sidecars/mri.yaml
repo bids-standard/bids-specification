@@ -204,7 +204,7 @@ MRIRFandContrast:
     fields:
         FlipAngle:
             level: recommended
-            level_addendum: required if LookLocker is set to `true`.
+            level_addendum: required if `LookLocker` is `true`
             issue:
                 name: LOOK_LOCKER_FLIP_ANGLE_MISSING
                 message: |
