@@ -37,8 +37,6 @@ def _get_paths(
     * Figure out how to return paths from BIDS root.
     * Deduplicate paths (if input dirs are subsets of other input dirs), might best be done at the
         very end.
-    * Specifying file paths currently breaks because they are truncated based on the bids_paths
-        input.
     """
     exclude_subdirs = [
         rf"{os.sep}.dandi",
@@ -55,12 +53,19 @@ def _get_paths(
     ]
 
     path_list = []
+    bids_root_found = False
     for bids_path in bids_paths:
         bids_path = os.path.abspath(os.path.expanduser(bids_path))
         if os.path.isfile(bids_path):
             path_list.append(bids_path)
             continue
         for root, dirs, file_names in os.walk(bids_path, topdown=True):
+            if "dataset_description.json" in file_names:
+                if bids_root_found:
+                    dirs[:] = []
+                    file_names[:] = []
+                else:
+                    bids_root_found = True
             if any(root.endswith(i) for i in pseudofile_suffixes):
                 # Add the directory name to the validation paths list.
                 path_list.append(f"{root}/")
