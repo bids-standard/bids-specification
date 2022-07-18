@@ -3,6 +3,7 @@
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
 -   \[FIX] cover bidsschematools not old name schemacode [#1149](https://github.com/bids-standard/bids-specification/pull/1149) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Filtering child datasets from parent validation [#1145](https://github.com/bids-standard/bids-specification/pull/1145) ([TheChymera](https://github.com/TheChymera))
 -   \[FIX] typo in physio [#1139](https://github.com/bids-standard/bids-specification/pull/1139) ([sappelhoff](https://github.com/sappelhoff))
 -   \[SCHEMA] logic update addressing literals being moved under the `value` key [#1137](https://github.com/bids-standard/bids-specification/pull/1137) ([TheChymera](https://github.com/TheChymera))
 -   \[INFRA] Rename schema tools package and build with SCHEMA_VERSION [#1135](https://github.com/bids-standard/bids-specification/pull/1135) ([effigies](https://github.com/effigies))
