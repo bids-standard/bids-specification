@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[FIX] cover bidsschematools not old name schemacode [#1149](https://github.com/bids-standard/bids-specification/pull/1149) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] typo in physio [#1139](https://github.com/bids-standard/bids-specification/pull/1139) ([sappelhoff](https://github.com/sappelhoff))
 -   \[SCHEMA] logic update addressing literals being moved under the `value` key [#1137](https://github.com/bids-standard/bids-specification/pull/1137) ([TheChymera](https://github.com/TheChymera))
 -   \[INFRA] Rename schema tools package and build with SCHEMA_VERSION [#1135](https://github.com/bids-standard/bids-specification/pull/1135) ([effigies](https://github.com/effigies))
@@ -10,7 +11,7 @@
 -   \[ENH] Catch and report invalid JSON in dataset_description [#1122](https://github.com/bids-standard/bids-specification/pull/1122) ([TheChymera](https://github.com/TheChymera))
 -   \[ENH] Ensure consistent indentation for comments in yaml files, address yamllint warning [#1117](https://github.com/bids-standard/bids-specification/pull/1117) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] clarify no blank and duplicated headers in TSV [#1116](https://github.com/bids-standard/bids-specification/pull/1116) ([sappelhoff](https://github.com/sappelhoff))
--   \[INFRA] Skipping tests which requre network access via env variable [#1109](https://github.com/bids-standard/bids-specification/pull/1109) ([TheChymera](https://github.com/TheChymera))
+-   \[INFRA] Skipping tests which require network access via env variable [#1109](https://github.com/bids-standard/bids-specification/pull/1109) ([TheChymera](https://github.com/TheChymera))
 -   \[SCHEMA] Unify metadata [#1107](https://github.com/bids-standard/bids-specification/pull/1107) ([effigies](https://github.com/effigies))
 -   \[ENH] NGFF format support [#1104](https://github.com/bids-standard/bids-specification/pull/1104) ([TheChymera](https://github.com/TheChymera))
 -   \[ENH] Add Microscopy-BIDS citation [#1102](https://github.com/bids-standard/bids-specification/pull/1102) ([mariehbourget](https://github.com/mariehbourget))
