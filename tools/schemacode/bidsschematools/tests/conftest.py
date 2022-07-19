@@ -15,7 +15,7 @@ lgr = logging.getLogger()
 # tricky edge-cases, such as directory pseudo-files.
 BIDS_SELECTION = [
     "asl003",  # anat, perf, _asl, _T1w
-    "eeg_cbm",  # eeg
+    "eeg_matchingpennies",  # eeg
     "hcp_example_bids",  # anat, fmap
     "micr_SEM",  # micr, SEM
     "micr_SPIM",  # micr, SPIM, .ome.tif
