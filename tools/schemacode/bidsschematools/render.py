@@ -1,6 +1,7 @@
 """Functions for rendering portions of the schema as text."""
 import logging
 import os
+import posixpath
 
 import pandas as pd
 from tabulate import tabulate
@@ -12,6 +13,26 @@ lgr = utils.get_logger()
 # Basic settings for output, for now just basic
 utils.set_logger_level(lgr, os.environ.get("BIDS_SCHEMA_LOG_LEVEL", logging.INFO))
 logging.basicConfig(format="%(asctime)-15s [%(levelname)8s] %(message)s")
+
+
+def get_relpath(src_path):
+    """Retrieve relative path to the source root from the perspective of a Markdown file.
+
+    As a convenience, ``None`` is interpreted as the empty string, and a value of ``'.'``
+    is returned.
+
+    Examples
+    --------
+    >>> get_relpath("02-common-principles.md")
+    '.'
+    >>> get_relpath("04-modality-specific-files/01-magnetic-resonance-imaging-data.md")
+    '..'
+    >>> get_relpath("we/lack/third_levels.md")
+    '../..'
+    >>> get_relpath(None)
+    '.'
+    """
+    return posixpath.relpath(".", posixpath.dirname(src_path or ""))
 
 
 def make_entity_definitions(schema):
@@ -37,14 +58,14 @@ def make_entity_definitions(schema):
     text = ""
     for entity in entity_order:
         entity_info = entity_definitions[entity]
-        entity_shorthand = entity_info["entity"]
+        entity_shorthand = entity_info["name"]
         text += "\n"
         text += "## {}".format(entity_shorthand)
         text += "\n\n"
-        text += "Full name: {}".format(entity_info["name"])
+        text += "Full name: {}".format(entity_info["display_name"])
         text += "\n\n"
         text += "Format: `{}-<{}>`".format(
-            entity_info["entity"],
+            entity_info["name"],
             entity_info.get("format", "label"),
         )
         text += "\n\n"
@@ -56,7 +77,7 @@ def make_entity_definitions(schema):
     return text
 
 
-def make_glossary(schema):
+def make_glossary(schema, src_path=None):
     """Generate glossary.
 
     Parameters
@@ -64,6 +85,9 @@ def make_glossary(schema):
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
 
     Returns
     -------
@@ -111,7 +135,7 @@ def make_glossary(schema):
         obj = all_objects[obj_key]
         obj_marker = obj["key"]
         obj_def = obj["definition"]
-        obj_name = obj_def["name"]
+        obj_name = obj_def["display_name"]
         obj_desc = obj_def["description"]
         # A backslash before a newline means continue a string
         obj_desc = obj_desc.replace("\\\n", "")
@@ -119,6 +143,8 @@ def make_glossary(schema):
         obj_desc = obj_desc.replace("\n\n", "<br>")
         # Otherwise a newline corresponds to a space
         obj_desc = obj_desc.replace("\n", " ")
+        # Spec internal links need to be replaced
+        obj_desc = obj_desc.replace("SPEC_ROOT", get_relpath(src_path))
 
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
@@ -176,11 +202,11 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
     entity_order = schema["rules"]["entities"]
 
     paragraph = ""
-    # Parent folders
+    # Parent directories
     paragraph += "{}-<{}>/\n\t[{}-<{}>/]\n".format(
-        schema["objects"]["entities"]["subject"]["entity"],
+        schema["objects"]["entities"]["subject"]["name"],
         schema["objects"]["entities"]["subject"]["format"],
-        schema["objects"]["entities"]["session"]["entity"],
+        schema["objects"]["entities"]["session"]["name"],
         schema["objects"]["entities"]["session"]["format"],
     )
 
@@ -188,19 +214,19 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
         paragraph += "\t\t{}/\n".format(datatype)
 
         # Unique filename patterns
-        for group in schema["rules"]["datatypes"][datatype]:
+        for group in schema["rules"]["datatypes"][datatype].values():
             string = "\t\t\t"
             for ent in entity_order:
                 if "enum" in schema["objects"]["entities"][ent].keys():
                     # Entity key-value pattern with specific allowed values
                     ent_format = "{}-<{}>".format(
-                        schema["objects"]["entities"][ent]["entity"],
+                        schema["objects"]["entities"][ent]["name"],
                         "|".join(schema["objects"]["entities"][ent]["enum"]),
                     )
                 else:
                     # Standard entity key-value pattern with simple label/index
                     ent_format = "{}-<{}>".format(
-                        schema["objects"]["entities"][ent]["entity"],
+                        schema["objects"]["entities"][ent]["name"],
                         schema["objects"]["entities"][ent].get("format", "label"),
                     )
 
@@ -209,7 +235,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
                         if "enum" in group["entities"][ent].keys():
                             # Overwrite the filename pattern based on the valid values
                             ent_format = "{}-<{}>".format(
-                                schema["objects"]["entities"][ent]["entity"],
+                                schema["objects"]["entities"][ent]["name"],
                                 "|".join(group["entities"][ent]["enum"]),
                             )
 
@@ -263,7 +289,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     Parameters
     ----------
     schema_path : str
-        Folder containing schema, which is stored in yaml files.
+        Directory containing schema, which is stored in yaml files.
     entities_file : str, optional
         File in which entities are described.
         This is used for hyperlinks in the table, so the path to the file
@@ -289,8 +315,8 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     all_entities = schema["rules"]["entities"]
     for entity in all_entities:
         entity_spec = schema["objects"]["entities"][entity]
-        entity_shorthand = entity_spec["entity"]
-        header.append(entity_spec["name"])
+        entity_shorthand = entity_spec["name"]
+        header.append(entity_spec["display_name"])
         formats.append(
             f'[`{entity_shorthand}-<{entity_spec.get("format", "label")}>`]'
             f"({ENTITIES_FILE}#{entity_shorthand})"
@@ -302,7 +328,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
         duplicate_row_counter = 0
 
         # each dtype could have multiple specs
-        for i_dtype_spec, dtype_spec in enumerate(dtype_specs):
+        for dtype_spec in dtype_specs.values():
             suffixes = dtype_spec.get("suffixes")
 
             # Skip this part of the schema if no suffixes are found.
@@ -403,13 +429,16 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     return table_str
 
 
-def make_suffix_table(schema, suffixes, tablefmt="github"):
+def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
     """Produce suffix table (markdown) based on requested suffixes.
 
     Parameters
     ----------
     schema : dict
     suffixes : list of str
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
     tablefmt : str
 
     Returns
@@ -420,29 +449,23 @@ def make_suffix_table(schema, suffixes, tablefmt="github"):
     # The filter function doesn't work here.
     suffix_schema = schema["objects"]["suffixes"]
 
-    suffixes_found = [f for f in suffixes if f in suffix_schema.keys()]
-    suffixes_not_found = [f for f in suffixes if f not in suffix_schema.keys()]
+    all_suffixes = pd.DataFrame.from_records(list(suffix_schema.values()))
+    df = all_suffixes[all_suffixes.value.isin(suffixes)][["value", "display_name", "description"]]
+
+    suffixes_not_found = set(suffixes) - set(df.value)
     if suffixes_not_found:
         raise Exception("Warning: Missing suffixes: {}".format(", ".join(suffixes_not_found)))
 
-    df = pd.DataFrame(
-        index=suffixes_found,
-        columns=["**Name**", "**Description**"],
-    )
-    # Index by suffix because name cannot be assumed to be unique
-    df.index.name = "`suffix`"
-    for suffix in suffixes_found:
-        suffix_info = suffix_schema[suffix]
-        description = suffix_info["description"]
-        # A backslash before a newline means continue a string
-        description = description.replace("\\\n", "")
-        # Two newlines should be respected
-        description = description.replace("\n\n", "<br>")
-        # Otherwise a newline corresponds to a space
-        description = description.replace("\n", " ")
+    def preproc(desc):
+        return (
+            desc.replace("\\\n", "")  # A backslash before a newline means continue a string
+            .replace("\n\n", "<br>")  # Two newlines should be respected
+            .replace("\n", " ")  # Otherwise a newline corresponds to a space
+            .replace("SPEC_ROOT", get_relpath(src_path))  # Spec internal links need to be replaced
+        )
 
-        df.loc[suffix] = [suffix_info["name"], description]
-
+    df.description = df.description.apply(preproc)
+    df.columns = ["`suffix`", "**Name**", "**Description**"]
     df = df.reset_index(drop=False)
     df = df.set_index("**Name**")
     df = df[["`suffix`", "**Description**"]]
@@ -452,7 +475,52 @@ def make_suffix_table(schema, suffixes, tablefmt="github"):
     return table_str
 
 
-def make_metadata_table(schema, field_info, tablefmt="github"):
+def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
+    # Use the "name" field in the table, to allow for filenames to not match
+    # "names".
+    df = pd.DataFrame(
+        index=[subschema[f]["name"] for f in subschema.keys()],
+        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+    )
+    df.index.name = "**Key name**"
+    for field in subschema.keys():
+        field_name = subschema[field]["name"]
+        requirement_info = field_info[field]
+        description_addendum = ""
+        if isinstance(requirement_info, tuple):
+            requirement_info, description_addendum = requirement_info
+
+        requirement_info = requirement_info.replace(
+            "DEPRECATED",
+            "[DEPRECATED](/02-common-principles.html#definitions)",
+        )
+
+        type_string = utils.resolve_metadata_type(subschema[field])
+
+        description = subschema[field]["description"] + " " + description_addendum
+
+        # Try to add info about valid values
+        valid_values_str = utils.describe_valid_values(subschema[field])
+        if valid_values_str:
+            description += "\n\n\n\n" + valid_values_str
+
+        # A backslash before a newline means continue a string
+        description = description.replace("\\\n", "")
+        # Two newlines should be respected
+        description = description.replace("\n\n", "<br>")
+        # Otherwise a newline corresponds to a space
+        description = description.replace("\n", " ")
+        # Spec internal links need to be replaced
+        description = description.replace("SPEC_ROOT", get_relpath(src_path))
+
+        df.loc[field_name] = [requirement_info, type_string, description]
+
+    # Print it as markdown
+    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    return table_str
+
+
+def make_metadata_table(schema, field_info, src_path=None, tablefmt="github"):
     """Produce metadata table (markdown) based on requested fields.
 
     Parameters
@@ -468,6 +536,9 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
         and the second string is additional table-specific information
         about the metadata field that will be appended to the field's base
         definition from the schema.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
     tablefmt : string, optional
         The target table format. The default is "github" (GitHub format).
 
@@ -485,49 +556,66 @@ def make_metadata_table(schema, field_info, tablefmt="github"):
     if dropped_fields:
         print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
 
-    # Use the "name" field in the table, to allow for filenames to not match
-    # "names".
-    df = pd.DataFrame(
-        index=[metadata_schema[f]["name"] for f in retained_fields],
-        columns=["**Requirement Level**", "**Data type**", "**Description**"],
+    metadata_schema = {k: v for k, v in metadata_schema.items() if k in retained_fields}
+
+    table_str = make_obj_table(
+        metadata_schema,
+        field_info=field_info,
+        src_path=src_path,
+        tablefmt=tablefmt,
     )
-    df.index.name = "**Key name**"
-    for field in retained_fields:
-        field_name = metadata_schema[field]["name"]
-        requirement_info = field_info[field]
-        description_addendum = ""
-        if isinstance(requirement_info, tuple):
-            requirement_info, description_addendum = requirement_info
 
-        requirement_info = requirement_info.replace(
-            "DEPRECATED",
-            "[DEPRECATED](/02-common-principles.html#definitions)",
-        )
-
-        type_string = utils.resolve_metadata_type(metadata_schema[field])
-
-        description = metadata_schema[field]["description"] + " " + description_addendum
-
-        # Try to add info about valid values
-        valid_values_str = utils.describe_valid_values(metadata_schema[field])
-        if valid_values_str:
-            description += "\n\n\n\n" + valid_values_str
-
-        # A backslash before a newline means continue a string
-        description = description.replace("\\\n", "")
-        # Two newlines should be respected
-        description = description.replace("\n\n", "<br>")
-        # Otherwise a newline corresponds to a space
-        description = description.replace("\n", " ")
-
-        df.loc[field_name] = [requirement_info, type_string, description]
-
-    # Print it as markdown
-    table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
     return table_str
 
 
-def make_columns_table(schema, column_info, tablefmt="github"):
+def make_subobject_table(schema, object_tuple, field_info, src_path=None, tablefmt="github"):
+    """Create a table of properties within an object.
+
+    Parameters
+    ----------
+    schema
+    object_tuple : tuple of strings
+        A tuple of keys within the schema linking down to the object
+        that will be rendered.
+        For example, ("objects", "metadata", "Genetics") will result in a table
+        rendering the properties specified in
+        schema["object"]["metadata"]["Genetics"].
+    field_info : dict of strings or tuples
+        A dictionary mapping metadata keys to requirement levels in the
+        rendered metadata table.
+        The dictionary values may be strings, in which case the string
+        is the requirement level information, or two-item tuples of strings,
+        in which case the first string is the requirement level information
+        and the second string is additional table-specific information
+        about the metadata field that will be appended to the field's base
+        definition from the schema.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+    tablefmt : string, optional
+        The target table format. The default is "github" (GitHub format).
+    """
+    assert isinstance(object_tuple, tuple)
+    assert all([isinstance(i, str) for i in object_tuple])
+
+    temp_dict = schema[object_tuple[0]]
+    for i in range(1, len(object_tuple)):
+        level_str = object_tuple[i]
+        temp_dict = temp_dict[level_str]
+
+    temp_dict = temp_dict["properties"]
+    assert isinstance(temp_dict, dict)
+    table_str = make_obj_table(
+        temp_dict,
+        field_info=field_info,
+        src_path=src_path,
+        tablefmt=tablefmt,
+    )
+
+    return table_str
+
+
+def make_columns_table(schema, column_info, src_path=None, tablefmt="github"):
     """Produce columns table (markdown) based on requested fields.
 
     Parameters
@@ -543,6 +631,9 @@ def make_columns_table(schema, column_info, tablefmt="github"):
         and the second string is additional table-specific information
         about the column that will be appended to the column's base
         definition from the schema.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
     tablefmt : string, optional
         The target table format. The default is "github" (GitHub format).
 
@@ -582,6 +673,8 @@ def make_columns_table(schema, column_info, tablefmt="github"):
         type_string = utils.resolve_metadata_type(column_schema[field])
 
         description = column_schema[field]["description"] + " " + description_addendum
+
+        description = description.replace("SPEC_ROOT", get_relpath(src_path))
 
         # Try to add info about valid values
         valid_values_str = utils.describe_valid_values(column_schema[field])

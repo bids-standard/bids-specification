@@ -1,0 +1,85 @@
+---
+CommonDerivativeFields:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  fields:
+    Description: RECOMMENDED
+    Sources: OPTIONAL
+    RawSources: OPTIONAL
+
+SpatialReferenceEntity:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - '"space" in entities'
+  fields:
+    SpatialReference: RECOMMENDED
+
+SpatialReferenceNonStandard:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - 'schema.objects.metadata._StandardTemplateCoordSys).includes(not(entities.space)'
+  fields:
+    SpatialReference: REQUIRED
+
+SpatialReferenceNoEntity:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - '!("space" in entities)'
+  fields:
+    SpatialReference: REQUIRED
+
+# this needs to come before density and resolution overrides selected in a
+# different way
+MaskDerivatives:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - suffix == "mask"
+  fields:
+    RawSources: REQUIRED
+    Type: RECOMMENDED
+    Atlas: OPTIONAL
+    Resolution: OPTIONAL
+    Density: OPTIONAL
+
+MaskDerivativesAtlas:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - suffix == "mask"
+  - '"label" in entities'
+  fields:
+    atlas: RECOMMENDED
+
+SegmentationCommon:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - '["dseg", "probseg"].includes(suffix)'
+  fields:
+    Type: RECOMMENDED
+    Atlas: OPTIONAL
+    Resolution: OPTIONAL
+    Density: OPTIONAL
+
+# Derivatives -> Imaging data types
+ImageDerivatives:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - '["mri", "pet"].includes(modality)'
+  - '[".nii", ".nii.gz"].includes(extension)'
+  fields:
+    SkullStripped: REQUIRED
+
+ImageDerivativeResEntity:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - '["mri", "pet"].includes(modality)'
+  - '"res" in entities'
+  fields:
+    Resolution: REQUIRED
+
+ImageDerivativeDenEntity:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - '["mri", "pet"].includes(modality)'
+  - '"den" in entities'
+  fields:
+    Density: REQUIRED

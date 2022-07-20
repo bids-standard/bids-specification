@@ -20,7 +20,7 @@ jobs:
     outputs:
       skip: ${{ steps.result_step.outputs.ci-skip }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - id: result_step
@@ -37,16 +37,16 @@ jobs:
         fail-fast: false
         matrix:
             os: ["ubuntu-latest"]
-            python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
+            python-version: ["3.7", "3.8", "3.9", "3.10"]
     name: ${{ matrix.os }} with Python ${{ matrix.python-version }}
     defaults:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: "Set up Python"
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
             python-version: ${{ matrix.python-version }}
 
@@ -63,7 +63,7 @@ jobs:
       - name: "Run tests"
         shell: bash {0}
         run: |
-          python -m pytest --pyargs schemacode --cov=schemacode ./tools/schemacode/
+          python -m pytest --pyargs bidsschematools --cov=bidsschematools
 
       - name: "Upload coverage to CodeCov"
         uses: codecov/codecov-action@v1
@@ -74,10 +74,10 @@ jobs:
     name: Lint schemacode
     steps:
       - name: Check out source repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Python environment
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: "3.7"
 

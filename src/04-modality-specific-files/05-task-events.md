@@ -34,6 +34,12 @@ file describing the columns in detail (see
 The tabular files consists of one row per event and a set of REQUIRED
 and OPTIONAL columns:
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "onset": "REQUIRED",
@@ -62,6 +68,10 @@ SHOULD be documented in an accompanying JSON sidecar file.
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-control01": {
@@ -102,6 +112,10 @@ sake of brevity.
 For multi-echo files, the `events.tsv` file is applicable to all echos of
 a particular run:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -127,18 +141,24 @@ for additional information and examples.
 Additional information about the stimuli can be added in the `events.tsv`
 and `events.json` files.
 
-This can be done by using a `/stimuli` folder or by reference to a stimuli database.
+This can be done by using a `/stimuli` directory or by reference to a stimuli database.
 
-### Stimuli folder
+### Stimuli directory
 
-The stimulus files can be added in a `/stimuli` folder
-(under the root folder of the dataset; with optional subfolders) AND using a
+The stimulus files can be added in a `/stimuli` directory
+(under the root directory of the dataset; with optional subdirectories) AND using a
 `stim_file` column in `events.tsv` mentioning which stimulus file was used
 for a given event,
 
 There are no restrictions on the file formats of the stimuli files,
-but they should be stored in the `/stimuli` folder.
+but they should be stored in the `/stimuli` directory.
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_columns_table(
    {
       "stim_file": "OPTIONAL",
@@ -153,6 +173,10 @@ The following example includes references to the
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-control01": {
@@ -202,6 +226,12 @@ sake of brevity.
 It is RECOMMENDED to include details of the stimulus presentation software,
 when applicable:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "StimulusPresentation": "RECOMMENDED",
@@ -210,6 +240,12 @@ when applicable:
 
 The object supplied for `StimulusPresentation` SHOULD include the following key-value pairs:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "OperatingSystem": "RECOMMENDED",

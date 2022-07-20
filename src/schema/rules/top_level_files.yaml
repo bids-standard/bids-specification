@@ -3,8 +3,11 @@ README:
   required: true
   extensions:
   - None
+  - .md
+  - .rst
+  - .txt
 CHANGES:
-  required: true
+  required: false
   extensions:
   - None
 LICENSE:

@@ -1,0 +1,263 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+
+---
+# MRI Common metadata fields
+MRIScannerHardware:
+    selectors:
+    - modality == "mri"
+    fields:
+        Manufacturer:
+            level: recommended
+            description_addendum: Corresponds to DICOM Tag 0008, 0070 `Manufacturer`.
+        ManufacturersModelName:
+            level: recommended
+            description_addendum: Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`.
+        DeviceSerialNumber:
+            level: recommended
+            description_addendum: Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`.
+        StationName:
+            level: recommended
+            description_addendum: Corresponds to DICOM Tag 0008, 1010 `Station Name`.
+        SoftwareVersions:
+            level: recommended
+            description_addendum: Corresponds to DICOM Tag 0018, 1020 `Software Versions`.
+        HardcopyDeviceSoftwareVersion: DEPRECATED
+        MagneticFieldStrength:
+            level: recommended, but required for Arterial Spin Labeling
+        ReceiveCoilName: recommended
+        ReceiveCoilActiveElements: recommended
+        GradientSetType: recommended
+        MRTransmitCoilSequence: recommended
+        MatrixCoilMode: recommended
+        CoilCombinationMethod: recommended
+
+MRISequenceSpecifics:
+    selectors:
+    - modality == "mri"
+    fields:
+        PulseSequenceType: recommended
+        ScanningSequence: recommended
+        SequenceVariant: recommended
+        ScanOptions: recommended
+        SequenceName: recommended
+        PulseSequenceDetails: recommended
+        NonlinearGradientCorrection: |
+            recommended, but required if [PET](./09-positron-emission-tomography.md) data are present
+        MRAcquisitionType: recommended, but required for Arterial Spin Labeling
+        MTState: recommended
+        MTOffsetFrequency: optional
+        MTPulseBandwidth: optional
+        MTNumberOfPulses: optional
+        MTPulseShape: optional
+        MTPulseDuration: optional
+        SpoilingState: recommended
+        SpoilingType: optional
+        SpoilingRFPhaseIncrement: optional
+        SpoilingGradientMoment: optional
+        SpoilingGradientDuration: optional
+
+PETMRISequenceSpecifics:
+    selectors:
+    - modality == "mri"
+    - dataset.modalities.includes("PET")
+    fields:
+        NonLinearGradientCorrection: required
+
+ASLMRISequenceSpecifics:
+    selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    fields:
+        MRAcquisitionType: required
+
+MTParameters:
+    selectors:
+    - '"MTState" in sidecar'
+    - sidecar.MTState == "True"
+    fields:
+        MTOffsetFrequency: recommended
+        MTPulseBandwidth: recommended
+        MTNumberOfPulses: recommended
+        MTPulseShape: recommended
+        MTPulseDuration: recommended
+
+SpoilingType:
+    selectors:
+    - '"SpoilingState" in sidecar'
+    - sidecar.SpoilingState == true
+    fields:
+        SpoilingType: recommended
+
+SpoilingRF:
+    selectors:
+    - '"SpoilingType" in sidecar'
+    - '["RF", "COMBINED"].includes(sidecar.SpoilingType)'
+    fields:
+        SpoilingRFPhaseIncrement: recommended
+
+SpoilingGradient:
+    selectors:
+    - '"SpoilingType" in sidecar'
+    - '["GRADIENT", "COMBINED"].includes(sidecar.SpoilingType)'
+    fields:
+        SpoilingGradientMoment: recommended
+        SpoilingGradientDuration: recommended
+
+MRISpatialEncoding:
+    selectors:
+    - modality == "mri"
+    fields:
+        NumberShots: recommended
+        ParallelReductionFactorInPlane: recommended
+        ParallelAcquisitionTechnique: recommended
+        PartialFourier: recommended
+        PartialFourierDirection: recommended
+        PhaseEncodingDirection:
+            level: recommended
+            level_addendum: |
+                This parameter is required if corresponding fieldmap data is present
+                or when using multiple runs with different phase encoding directions
+                (which can be later used for field inhomogeneity correction).
+            issue:
+                name: PHASE_ENCODING_DIRECTION_MUST_DEFINE
+                issue: |
+                    You have to define 'PhaseEncodingDirection' for this file.
+        EffectiveEchoSpacing:
+            level: recommended
+            level_addendum: |
+                <sup>2</sup> This parameter is required if corresponding fieldmap data
+                is present.
+            issue:
+                name: EFFECTIVE_ECHO_SPACING_NOT_DEFINED
+                message: |
+                    You should define 'EffectiveEchoSpacing' for this file. If you don't
+                    provide this information field map correction will not be possible.
+        TotalReadoutTime:
+            level: recommended
+            level_addendum: |
+                <sup>3</sup> This parameter is required if corresponding 'field/distortion' maps
+                acquired with opposing phase encoding directions are present
+                (see [Case 4: Multiple phase encoded
+                directions](#case-4-multiple-phase-encoded-directions-pepolar)).
+            issue:
+                name: TOTAL_READOUT_TIME_MUST_DEFINE
+                message: |
+                    You have to define 'TotalReadoutTime' for this file.
+        MixingTime: recommended
+
+MRITimingParameters:
+    selectors:
+    - modality == "mri"
+    fields:
+        EchoTime:
+            level: recommended
+            level_addendum: |
+                required if corresponding fieldmap data is present,
+                or the data comes from a multi-echo sequence or Arterial Spin Labeling.
+            issue:
+                name: ECHO_TIME_NOT_DEFINED
+                message: |
+                    You must define 'EchoTime' for this file. 'EchoTime' is the echo time (TE)
+                    for the acquisition, specified in seconds. Corresponds to DICOM Tag
+                    0018, 0081 Echo Time (please note that the DICOM term is in milliseconds
+                    not seconds). The data type number may apply to files from any MRI modality
+                    concerned with a single value for this field, or to the files in a file
+                    collection where the value of this field is iterated using the echo entity.
+                    The data type array provides a value for each volume in a 4D dataset and
+                    should only be used when the volume timing is critical for interpretation
+                    of the data, such as in ASL or variable echo time fMRI sequences.
+        InversionTime: recommended
+        SliceTiming:
+            level: recommended
+            level_addendum: |
+                required for sparse sequences that do not have the `DelayTime` field set,
+                and Arterial Spin Labeling with `MRAcquisitionType` set on `2D`.
+        SliceEncodingDirection: recommended
+        DwellTime: recommended
+
+SliceTimingASL:
+    selectors:
+    - modality == "mri"
+    - datatype == "perf"
+    - '["asl", "m0scan"].includes(suffix)'
+    - '"MRAcquisitionType" in sidecar'
+    - sidecar.MRAcquisitionType == "2D"
+    fields:
+        SliceTiming: required
+
+# This is technically for sparse sequences only, but I don't know how to encode that.
+SliceTimingSparse:
+    selectors:
+    - modality == "mri"
+    - '"DelayTime" in sidecar'
+    fields:
+        SliceTiming: required
+
+MRIRFandContrast:
+    selectors:
+    - modality == "mri"
+    fields:
+        FlipAngle:
+            level: recommended
+            level_addendum: required if LookLocker is set to `true`.
+            issue:
+                name: LOOK_LOCKER_FLIP_ANGLE_MISSING
+                message: |
+                    You should define 'FlipAngle' for this file, in
+                    case of a LookLocker acquisition. 'FlipAngle' is the
+                    flip angle (FA) for the acquisition, specified in degrees.
+                    Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`. The data
+                    type number may apply to files from any MRI modality concerned
+                    with a single value for this field, or to the files in a file
+                    collection where the value of this field is iterated using the
+                    flip entity. The data type array provides a value for each volume
+                    in a 4D dataset and should only be used when the volume timing is
+                    critical for interpretation of the data, such as in ASL or
+                    variable flip angle fMRI sequences.
+        NegativeContrast: optional
+
+MRIFlipAngleLookLocker:
+    selectors:
+    - modality == "mri"
+    - '"LookLocker" in sidecar'
+    - sidecar.LookLocker == True
+    fields:
+        FlipAngle: required
+
+MRISliceAcceleration:
+    selectors:
+    - modality == "mri"
+    fields:
+        MultibandAccelerationFactor: recommended
+
+MRIAnatomicalLandmarks:
+    selectors:
+    - modality == "mri"
+    fields:
+        AnatomicalLandmarkCoordinates__mri: recommended
+
+MRIEchoPlanarImagingAndB0Mapping:
+    selectors:
+    - modality == "mri"
+    fields:
+        B0FieldIdentifier: recommended
+        B0FieldSource: recommended
+
+MRIInstitutionInformation:
+    selectors:
+    - modality == "mri"
+    fields:
+        InstitutionName:
+            level: recommended
+            description_addendum: Corresponds to DICOM Tag 0008, 0080 `InstitutionName`.
+        InstitutionAddress:
+            level: recommended
+            description_addendum: Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`.
+        InstitutionalDepartmentName:
+            level: recommended
+            description_addendum: Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.

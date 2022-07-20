@@ -1,12 +1,12 @@
-"""Tests for the schemacode package."""
+"""Tests for the bidsschematools package."""
 import pytest
 
-from schemacode import schema
+from bidsschematools import schema
 
 
 def test_load_schema(schema_dir):
-    """Smoke test for schemacode.schema.load_schema."""
-    # Pointing to a nonexistent folder should raise a ValueError
+    """Smoke test for bidsschematools.schema.load_schema."""
+    # Pointing to a nonexistent directory should raise a ValueError
     bad_path = "/path/to/nowhere"
     with pytest.raises(ValueError):
         schema.load_schema(bad_path)
@@ -25,8 +25,12 @@ def test_object_definitions(schema_obj):
             if obj_key.startswith("_"):
                 continue
 
-            assert "name" in obj_def.keys(), obj_key
+            assert "display_name" in obj_def, obj_key
             assert "description" in obj_def.keys(), obj_key
+            if obj_type in ("columns", "entities", "metadata"):
+                assert "name" in obj_def
+            elif obj_type in ("datatypes", "extensions", "suffixes"):
+                assert "value" in obj_def
 
 
 def test_formats(schema_obj):
@@ -62,6 +66,11 @@ def test_formats(schema_obj):
             "9:00:00",  # leading zeros are not required for hours
         ],
         "unit": ["any string is valid."],
+        "file_relative": [
+            "file_in_same_directory.txt",
+            "../../relative/path/file.txt",
+            "sub-01/path/file.txt",
+        ],
         "stimuli_relative": ["any/arbitrary/path/file.txt"],
         "dataset_relative": ["any/arbitrary/path/file.txt"],
         "participant_relative": ["any/arbitrary/path/file.txt"],
@@ -108,6 +117,9 @@ def test_formats(schema_obj):
             "01:23",  # lacks either hours or seconds
         ],
         "unit": [],
+        "file_relative": [
+            "/path/with/starting/slash/file.txt",
+        ],
         "stimuli_relative": [
             "/path/with/starting/slash/file.txt",
             "stimuli/path/file.txt",
