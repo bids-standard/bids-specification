@@ -6,7 +6,7 @@ associated_data:
   description: |
     Directories that may appear within a dataset directory without following BIDS rules.
   definition:
-    name: string
+    display_name: string
     description: string
 columns:
   name: Column
@@ -14,6 +14,7 @@ columns:
     Columns which may appear within tabular data files, such as TSV or TSV.GZ files.
   definition:
     name: string
+    display_name: string
     description: string
     type:
     - string:
@@ -43,7 +44,8 @@ datatypes:
     A functional group of different types of data.
     This is equivalent to the **Data Type** defined under Common Principles.
   definition:
-    name: string
+    value: string
+    display_name: string
     description: string
 entities:
   name: Entity
@@ -52,6 +54,7 @@ entities:
     Valid keys, and the order in which they must appear, is defined within the BIDS schema.
   definition:
     name: string
+    display_name: string
     description: string
     entity: string
     type:
@@ -69,14 +72,15 @@ extensions:
 
     This is equivalent to the **File extension** defined under Common Principles.
   definition:
-    name: string
+    value: string
+    display_name: string
     description: string
 formats:
   name: Format
   description: |
     A regular expression defining valid values of different types.
   definition:
-    name: string
+    display_name: string
     description: string
     pattern: string
 metadata:
@@ -85,6 +89,7 @@ metadata:
     A field that may be present in a BIDS sidecar JSON file.
   definition:
     name: string
+    display_name: string
     description: string
     type:
     - string:
@@ -123,7 +128,7 @@ modalities:
     The category of brain data recorded by a file.
     This is equivalent to the **Modality** defined under Common Principles.
   definition:
-    name: string
+    display_name: string
     description: string
 suffixes:
   name: Suffix
@@ -132,7 +137,8 @@ suffixes:
     (thus after the final `_`), right before the **File extension**.
     This is equivalent to the **suffix** defined under Common Principles.
   definition:
-    name: string
+    value: string
+    display_name: string
     description: string
     unit: string
 top_level_files:
@@ -141,4 +147,5 @@ top_level_files:
     A file which may appear at the top level of a dataset.
   definition:
     name: string
+    display_name: string
     description: string

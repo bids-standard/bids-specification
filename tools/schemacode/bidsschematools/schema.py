@@ -74,6 +74,7 @@ def load_schema(schema_path):
         Schema in dictionary form.
     """
     schema_path = Path(schema_path)
+    meta_dir = schema_path / "meta/"
     objects_dir = schema_path / "objects/"
     rules_dir = schema_path / "rules/"
 
@@ -83,8 +84,15 @@ def load_schema(schema_path):
         )
 
     schema = {}
+    schema["meta"] = {}
     schema["objects"] = {}
     schema["rules"] = {}
+
+    # Load meta definitions. All are present in single files.
+    for meta_group_file in sorted(meta_dir.glob("*.yaml")):
+        lgr.debug(f"Loading {meta_group_file.stem} meta definitions.")
+        dict_ = yaml.safe_load(meta_group_file.read_text())
+        schema["meta"][meta_group_file.stem] = dereference_yaml(dict_, dict_)
 
     # Load object definitions. All are present in single files.
     for object_group_file in sorted(objects_dir.glob("*.yaml")):
