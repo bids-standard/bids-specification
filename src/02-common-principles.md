@@ -9,6 +9,10 @@ interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
 Throughout this specification we use a list of terms and abbreviations. To avoid
 misunderstanding we clarify them here.
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___define_common_principles() }}
 
 ## Entities
