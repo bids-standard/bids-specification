@@ -151,16 +151,21 @@ EEGCoordsystemLandmark:
             level: recommended
             description_addendum: Preferably the same as the `EEGCoordinateSystem`.
         AnatomicalLandmarkCoordinateUnits: recommended
-        AnatomicalLandmarkCoordinateSystemDescription:
-            level: recommended
-            level_addendum: required if `AnatomicalLandmarkCoordinateSystem` is `"Other"`
 
-EEGCoordsystemAnatomicalLandmarkCoordinateSystemDescription:
+EEGCoordsystemLandmarkDescriptionRec:
     selectors:
     - modality == "eeg"
     - datatype == "eeg"
     - suffix == "coordsystem"
-    - '"AnatomicalLandmarkCoordinateSystem" in sidecar'
+    - sidecar.AnatomicalLandmarkCoordinateSystem != "Other"
+    fields:
+        AnatomicalLandmarkCoordinateSystemDescription: recommended
+
+EEGCoordsystemLandmarkDescriptionReq:
+    selectors:
+    - modality == "eeg"
+    - datatype == "eeg"
+    - suffix == "coordsystem"
     - sidecar.AnatomicalLandmarkCoordinateSystem == "Other"
     fields:
         AnatomicalLandmarkCoordinateSystemDescription: required
