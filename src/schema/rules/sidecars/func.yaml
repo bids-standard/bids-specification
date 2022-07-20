@@ -13,6 +13,9 @@ MRIFuncRequired:
     selectors:
     - modality == "mri"
     - datatype == "func"
+    - '!("RepetitionTime" in sidecar)'
+    - '!("VolumeTiming" in sidecar)'
+    - '[".nii", ".nii.gz"].includes(extension)'
     fields:
         RepetitionTime: required
         VolumeTiming: required

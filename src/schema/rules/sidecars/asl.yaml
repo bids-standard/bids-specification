@@ -215,7 +215,7 @@ MRIASLPASLSpecific:
         PASLType: recommended
         LabelingSlabThickness: recommended
 
-MRIASLPASLSpecificBolusCutOffFlag:
+MRIASLPASLSpecificBolusCutOffFlagFalse:
     selectors:
     - modality == "MRI"
     - datatype == "perf"
@@ -226,7 +226,7 @@ MRIASLPASLSpecificBolusCutOffFlag:
         BolusCutOffDelayTime: optional
         BolusCutOffTechnique: optional
 
-MRIASLPASLSpecificBolusCutOffFlag:
+MRIASLPASLSpecificBolusCutOffFlagTrue:
     selectors:
     - modality == "MRI"
     - datatype == "perf"

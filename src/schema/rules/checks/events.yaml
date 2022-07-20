@@ -12,5 +12,6 @@ EventsMissing:
   selectors:
   - '"task" in entities'
   - '!(entities.task.includes("rest"))'
+  - suffix != "events"
   checks:
   - '"events" in associations'

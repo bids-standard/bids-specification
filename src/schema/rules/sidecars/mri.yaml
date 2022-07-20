@@ -77,7 +77,7 @@ ASLMRISequenceSpecifics:
 
 MTParameters:
     selectors:
-    - sidecar.MTState == "True"
+    - sidecar.MTState == true
     fields:
         MTOffsetFrequency: recommended
         MTPulseBandwidth: recommended
@@ -182,25 +182,29 @@ SliceTimingASL:
         SliceTiming: required
 
 # This is technically for sparse sequences only, but I don't know how to encode that.
-SliceTimingSparse:
-    selectors:
-    - modality == "mri"
-    fields:
-        SliceTiming: required
+#SliceTimingSparse:
+#    selectors:
+#    - modality == "mri"
+#    fields:
+#        SliceTiming: required
 
 MRIRFandContrast:
     selectors:
     - modality == "mri"
     fields:
-        FlipAngle:
-            level: recommended
-            level_addendum: required if `LookLocker` is `true`
         NegativeContrast: optional
 
-MRIFlipAngleLookLocker:
+MRIFlipAngleLookLockerFalse:
     selectors:
     - modality == "mri"
-    - sidecar.LookLocker == True
+    - sidecar.LookLocker == false
+    fields:
+        LookLocker: optional
+
+MRIFlipAngleLookLockerTrue:
+    selectors:
+    - modality == "mri"
+    - sidecar.LookLocker == true
     fields:
         FlipAngle:
             level: required
