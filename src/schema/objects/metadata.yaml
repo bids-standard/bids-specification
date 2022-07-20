@@ -2123,6 +2123,12 @@ PhaseEncodingDirection:
   - i-
   - j-
   - k-
+PhotoDescription:
+  name: PhotoDescription
+  display_name: Photo Description
+  description: |
+    Description of the photo.
+  type: string
 PixelSize:
   name: PixelSize
   display_name: Pixel Size

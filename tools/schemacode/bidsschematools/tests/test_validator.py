@@ -1,8 +1,11 @@
 import os
+import shutil
+
+import pytest
 
 
 def test__add_entity():
-    from schemacode.validator import _add_entity
+    from bidsschematools.validator import _add_entity
 
     # Test empty input and directory creation and required entity
     regex_entities = ""
@@ -51,7 +54,7 @@ def test__add_entity():
 
 
 def test__add_extensions():
-    from schemacode.validator import _add_extensions
+    from bidsschematools.validator import _add_extensions
 
     # Test single extension
     regex_string = (
@@ -104,7 +107,7 @@ def test__add_extensions():
 
 
 def test__add_subdirs():
-    from schemacode.validator import _add_subdirs
+    from bidsschematools.validator import _add_subdirs
 
     regex_string = "sub-(?P=subject)_sessions\\.(tsv|json)"
     variant = {
@@ -162,7 +165,7 @@ def test__add_subdirs():
 
 
 def test__add_suffixes():
-    from schemacode.validator import _add_suffixes
+    from bidsschematools.validator import _add_suffixes
 
     # Test single expansion
     regex_entities = "sub-(?P=subject)"
@@ -222,7 +225,7 @@ def test__add_suffixes():
 
 
 def test_load_all():
-    from schemacode.validator import load_all
+    from bidsschematools.validator import load_all
 
     # schema_path = "/usr/share/bids-schema/1.7.0/"
     schema_path = os.path.join(
@@ -238,7 +241,7 @@ def test_load_all():
 
 
 def test_write_report(tmp_path):
-    from schemacode.validator import write_report
+    from bidsschematools.validator import write_report
 
     validation_result = {}
 
@@ -295,8 +298,12 @@ def test_write_report(tmp_path):
     assert report_text == expected_report_text
 
 
+@pytest.mark.skipif(
+    os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
+    reason="no network",
+)
 def test_bids_datasets(bids_examples, tmp_path):
-    from schemacode.validator import validate_bids
+    from bidsschematools.validator import validate_bids
 
     whitelist = [
         "asl003",
@@ -308,6 +315,7 @@ def test_bids_datasets(bids_examples, tmp_path):
         "pet003",
         "qmri_tb1tfl",
         "qmri_vfa/derivatives/qMRLab",
+        "qmri_qsm",
     ]
     schema_path = "{module_path}/data/schema/"
 
@@ -330,8 +338,8 @@ def test_bids_datasets(bids_examples, tmp_path):
         for f in files:
             selected_path = os.path.join(root, f)
             selected_paths.append(selected_path)
-    # Does terminal debug output work?
-    result = validate_bids(selected_paths, schema_version=schema_path, debug=True)
+    # Do version fallback and terminal debug output work?
+    result = validate_bids(selected_paths, schema_version=None, debug=True)
     # Does default log path specification work?
     result = validate_bids(selected_paths, schema_version=schema_path, report_path=True)
 
@@ -344,3 +352,23 @@ def test_bids_datasets(bids_examples, tmp_path):
     )
     # Have all files been validated?
     assert len(result["path_tracking"]) == 0
+
+
+def test_broken_json_dataset(bids_examples, tmp_path):
+    from bidsschematools.validator import validate_bids
+
+    dataset = "asl003"
+    dataset_path = os.path.join(bids_examples, dataset)
+    dataset_json = os.path.join(dataset_path, "dataset_description.json")
+
+    broken_json = os.path.join(
+        os.path.abspath(os.path.dirname(__file__)),
+        "data/broken_dataset_description.json",
+    )
+    shutil.copyfile(broken_json, dataset_json)
+
+    # No assert, will simply raise JSON reader error if not catching it properly.
+    _ = validate_bids(
+        dataset_path,
+        report_path=True,
+    )
