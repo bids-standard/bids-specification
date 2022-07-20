@@ -485,13 +485,43 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
-      "micr": {
-         "sub-01_sample-01_acq-1_photo.jpg": "",
-         "sub-01_sample-01_acq-2_photo.jpg": "",
+      "ses-01": {
+         "micr": {
+            "sub-01_ses-01_sample-01_acq-1_photo.jpg": "",
+            "sub-01_ses_01_sample-01_acq-2_photo.jpg": "",
+            },
          },
       }
    }
 ) }}
+
+Photo data MAY be accompanied by a JSON file containing the following fields.
+The `IntendedFor` field is used to link the photo to specific image(s) it was acquired for.
+
+{{ MACROS___make_metadata_table(
+   {
+      "PhotoDescription": "OPTIONAL",
+      "IntendedFor": (
+         "OPTIONAL",
+         "This field is OPTIONAL, in case the photos do not correspond "
+         "to any particular images, it does not have to be filled.",
+      ),
+   }
+) }}
+
+For example: `sub-01_ses-01_sample-01_acq-1_photo.json`
+
+```JSON
+{
+   "PhotoDescription": "After clearing",
+   "IntendedFor": [
+        "ses-01/micr/sub-01_ses-01_sample-01_run-1_chunk-01_SPIM.ome.tif",
+        "ses-01/micr/sub-01_ses-01_sample-01_run-1_chunk-02_SPIM.ome.tif",
+        "ses-01/micr/sub-01_ses-01_sample-01_run-1_chunk-03_SPIM.ome.tif",
+        "ses-01/micr/sub-01_ses-01_sample-01_run-1_chunk-04_SPIM.ome.tif"
+    ]
+}
+```
 
 Below is an example of a spinal cord SEM overview, modified from Zaimi et al., 2018.
 [doi:10.1038/s41598-018-22181-4](https://doi.org/10.1038/s41598-018-22181-4).
