@@ -305,34 +305,24 @@ def test_write_report(tmp_path):
 def test_bids_datasets(bids_examples, tmp_path):
     from bidsschematools.validator import validate_bids
 
-    whitelist = [
-        "asl003",
-        "eeg_cbm",
-        "hcp_example_bids",
-        "micr_SEM",
-        "micr_SPIM",
-        "pet001",
-        "pet003",
-        "qmri_tb1tfl",
-        "qmri_vfa/derivatives/qMRLab",
-        "qmri_qsm",
-    ]
     schema_path = "{module_path}/data/schema/"
 
     # Validate per dataset:
     for i in os.listdir(bids_examples):
-        if i in whitelist:
-            result = validate_bids(
-                os.path.join(bids_examples, i),
-                schema_version=schema_path,
-                report_path=True,
-                debug=True,
-            )
-            # Have all files been validated?
-            assert len(result["path_tracking"]) == 0
+        if not i.startswith("."):
+            target = os.path.join(bids_examples, i)
+            if os.path.isdir(target):
+                result = validate_bids(
+                    target,
+                    schema_version=schema_path,
+                    report_path=True,
+                    debug=True,
+                )
+                # Have all files been validated?
+                assert len(result["path_tracking"]) == 0
 
     # Create input for file list based validation
-    selected_dir = os.path.join(bids_examples, whitelist[0])
+    selected_dir = os.path.join(bids_examples, os.listdir(bids_examples)[0])
     selected_paths = []
     for root, dirs, files in os.walk(selected_dir, topdown=False):
         for f in files:
