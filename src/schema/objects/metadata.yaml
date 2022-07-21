@@ -147,10 +147,10 @@ AssociatedEmptyRoom:
   name: AssociatedEmptyRoom
   display_name: Associated Empty Room
   description: |
-    One or more [BIDS URIs](SPEC_ROOT/02-common-principles.html#bids-uri)
+    One or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri)
     pointing to empty-room file(s) associated with the subject's MEG recording.
     Using forward-slash separated paths relative to the dataset root is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.html#definitions).
+    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
   anyOf:
   - type: array
     items:
@@ -265,7 +265,7 @@ BasedOn:
     List of files in a file collection to generate the map.
     Fieldmaps are also listed, if involved in the processing.
     This field is DEPRECATED, and this metadata SHOULD be recorded in the
-    `Sources` field using [BIDS URIs](SPEC_ROOT/02-common-principles.html#bids-uri)
+    `Sources` field using [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri)
     to distinguish sources from different datasets.
   anyOf:
   - type: string
@@ -509,7 +509,7 @@ DatasetLinks:
   name: DatasetLinks
   display_name: Dataset Links
   description: |
-    Used to map a given `<dataset-name>` from a [BIDS URI](SPEC_ROOT/02-common-principles.html#bids-uri)
+    Used to map a given `<dataset-name>` from a [BIDS URI](SPEC_ROOT/02-common-principles.md#bids-uri)
     of the form `bids:<dataset-name>:path/within/dataset` to a local or remote location.
     The `<dataset-name>`: `""` (an empty string) is a reserved keyword that MUST NOT be a key in
     `DatasetLinks` (example: `bids::path/within/dataset`).
@@ -1437,9 +1437,9 @@ IntendedFor:
   display_name: Intended For
   description: |
     The paths to files for which the associated file is intended to be used.
-    Contains one or more [BIDS URIs](SPEC_ROOT/02-common-principles.html#bids-uri).
+    Contains one or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri).
     Using forward-slash separated paths relative to the participant subdirectory is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.html#definitions).
+    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
   anyOf:
   - type: string
     format: bids_uri
@@ -1457,9 +1457,9 @@ IntendedFor__ds_relative:
   display_name: Intended For
   description: |
     The paths to files for which the associated file is intended to be used.
-    Contains one or more [BIDS URIs](SPEC_ROOT/02-common-principles.html#bids-uri).
+    Contains one or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri).
     Using forward-slash separated paths relative to the dataset root is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.html#definitions).
+    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
   anyOf:
   - type: string
     format: bids_uri
@@ -2291,7 +2291,7 @@ RawSources:
     A list of paths relative to dataset root pointing to the BIDS-Raw file(s)
     that were used in the creation of this derivative.
     This field is DEPRECATED, and this metadata SHOULD be recorded in the
-    `Sources` field using [BIDS URIs](SPEC_ROOT/02-common-principles.html#bids-uri)
+    `Sources` field using [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri)
     to distinguish sources from different datasets.
   type: array
   items:
@@ -2811,7 +2811,7 @@ Sources:
   display_name: Sources
   description: |
     A list of files with the paths specified using
-    [BIDS URIs](SPEC_ROOT/02-common-principles.html#bids-uri);
+    [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri);
     these files were directly used in the creation of this derivative data file.
     For example, if a derivative A is used in the creation of another
     derivative B, which is in turn used to generate C in a chain of A->B->C,
@@ -2820,7 +2820,7 @@ Sources:
     then Z should list X and Y in `"Sources"`,
     regardless of whether X was used to generate Y.
     Using paths specified relative to the dataset root is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.html#definitions).
+    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
   type: array
   items:
     anyOf:

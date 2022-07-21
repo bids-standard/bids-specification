@@ -36,12 +36,12 @@ MEGRecommended:
                 For MEG scanners, this must be one of:
                 `"CTF"`, `"Elekta/Neuromag"`, `"BTi/4D"`, `"KIT/Yokogawa"`,
                 `"ITAB"`, `"KRISS"`, `"Other"`.
-                See [Appendix VII](SPEC_ROOT/99-appendices/07-meg-systems.html) for
+                See [Appendix VII](SPEC_ROOT/99-appendices/07-meg-systems.md) for
                 preferred names.
         ManufacturersModelName:
             level: recommended
             description_addendum: |
-                See [Appendix VII](SPEC_ROOT/99-appendices/07-meg-systems.html) for
+                See [Appendix VII](SPEC_ROOT/99-appendices/07-meg-systems.md) for
                 preferred names.
         SoftwareVersions: recommended
         TaskDescription: recommended
