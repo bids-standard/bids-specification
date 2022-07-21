@@ -2003,7 +2003,7 @@ NumberShots:
     after the k-space center is sampled.
     Please see
     [`"NumberShots"` metadata field]\
-    (/99-appendices/11-qmri.html#numbershots-metadata-field)
+    (SPEC_ROOT/99-appendices/11-qmri.md#numbershots-metadata-field)
     in the qMRI appendix for corresponding calculations.
   anyOf:
   - type: number
@@ -2441,7 +2441,7 @@ RepetitionTimeExcitation:
     `"RepetitionTime"` as it is already defined as the amount of time that it takes
     to acquire a single volume in the
     [task imaging data](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-\
-    imaging-data.html#task-including-resting-state-imaging-data)
+    imaging-data.md#task-including-resting-state-imaging-data)
     section.
   type: number
   minimum: 0
@@ -3304,7 +3304,7 @@ iEEGCoordinateSystem:
     operative drawing), this MUST be `"Pixels"`.
     For more information, see the section on
     [2D coordinate systems](SPEC_ROOT/04-modality-specific-files/04-intracranial\
-    -electroencephalography.html#allowed-2d-coordinate-systems).
+    -electroencephalography.md#allowed-2d-coordinate-systems).
   anyOf:
   - $ref: _iEEGCoordSys
   - $ref: _StandardTemplateCoordSys
