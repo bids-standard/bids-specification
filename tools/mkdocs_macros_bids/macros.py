@@ -2,7 +2,7 @@
 import os
 import sys
 
-from schemacode import render, schema, utils
+from bidsschematools import render, schema, utils
 
 code_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(code_path)

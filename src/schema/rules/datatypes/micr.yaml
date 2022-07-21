@@ -21,6 +21,7 @@ microscopy:
   extensions:
   - .ome.tif
   - .ome.btf
+  - .ome.zarr/
   - .png
   - .tif
   - .json
@@ -42,6 +43,7 @@ photo:
   - .jpg
   - .png
   - .tif
+  - .json
   datatypes:
   - micr
   entities:

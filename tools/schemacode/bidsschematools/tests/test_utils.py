@@ -1,4 +1,4 @@
-from schemacode import utils
+from bidsschematools import utils
 
 
 def test_combine_extensions():
