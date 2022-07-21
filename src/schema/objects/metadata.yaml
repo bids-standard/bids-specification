@@ -507,6 +507,7 @@ DatasetDOI:
   format: uri
 DatasetLinks:
   name: DatasetLinks
+  display_name: Dataset Links
   description: |
     Used to map a given `<dataset-name>` from a [BIDS URI](/02-common-principles.html#bids-uri)
     of the form `bids:<dataset-name>:path/within/dataset` to a local or remote location.
