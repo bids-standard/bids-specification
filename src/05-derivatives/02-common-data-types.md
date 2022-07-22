@@ -57,7 +57,7 @@ A guide for using macros can be found at
 
 Note that `"raw"` must appear in the `DatasetLinks` metadata in
 `dataset_description.json`.
-For example, in the case that the given derivatives dataset is nested within the 
+For example, in the case that the given derivatives dataset is nested within the
 "derivatives" directory of a raw dataset, the entry in `DatasetLinks` may say:
 `"raw": "../../"`.
 
