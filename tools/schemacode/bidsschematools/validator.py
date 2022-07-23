@@ -816,7 +816,7 @@ def validate_bids(
     )
 
     # Record schema version.
-    bids_version = _determine_bids_version
+    bids_version = _determine_bids_version(bids_schema_dir)
     validation_result["bids_version"] = bids_version
 
     log_errors(validation_result)
