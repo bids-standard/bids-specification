@@ -11,19 +11,23 @@ Maybe for future extensions:
 - N additions, N deletions on master
 - N users involved in issues and PRs
 
-"""
+Requirements:
+- PyGitHub (https://github.com/PyGithub/PyGithub)
+- Matplotlib
+- Seaborn
+- Pandas
 
-import calendar
+"""
 
 # %%
 # Imports
+import calendar
 from datetime import datetime
 
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from github import Github
-from tqdm.auto import tqdm
 
 # %%
 # Settings
