@@ -205,7 +205,7 @@ def _determine_bids_version(bids_schema_dir):
         # Maybe the directory encodes the version, as in:
         # https://github.com/bids-standard/bids-schema
         _, bids_version = os.path.split(bids_schema_dir)
-        if not re.match("^.*?[0-9]*?\.[0-9]*?\.[0-9]*?.*?$", bids_version):
+        if not re.match(r"^.*?[0-9]*?\.[0-9]*?\.[0-9]*?.*?$", bids_version):
             # Then we don't know, really.
             bids_version = "unknown"
     return bids_version
