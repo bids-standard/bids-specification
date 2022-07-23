@@ -208,12 +208,6 @@ def _determine_bids_version(bids_schema_dir):
         if not re.match("^.*?[0-9]*?\.[0-9]*?\.[0-9]*?.*?$", bids_version):
             # Then we don't know, really.
             bids_version = "unknown"
-        # Check whether we are using bundled BIDS schema.
-        #if os.path.abspath(bids_schema_dir) == os.path.join(
-        #    os.path.abspath(os.path.dirname(__file__)),
-        #    "data",
-        #    "schema",
-        #):
     return bids_version
 
 
