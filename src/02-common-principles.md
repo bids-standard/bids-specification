@@ -821,8 +821,9 @@ bids:[<dataset-name>]:<relative-path>
 The scheme component `bids` identifies a BIDS URI,
 which defines a `path` component of the form `<dataset-name>:<relative-path>`.
 The `dataset-name` component is an identifier for a BIDS dataset,
-and the `relative-path` component is the location of a resource within the
+and the `relative-path` component is the location of a resource within that
 BIDS dataset, relative to the root of that dataset.
+The `relative-path` MUST NOT start with a forward-slash character (`/`).
 
 Examples:
 
