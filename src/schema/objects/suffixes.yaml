@@ -479,7 +479,7 @@ UNIT1:
     contain white salt-and-pepper noise that most segmentation algorithms will
     fail on.
     Therefore, it is important to dissociate it from `T1w`.
-    Please see [`MP2RAGE` specific notes](/99-appendices/11-qmri.html#unit1-images)
+    Please see [`MP2RAGE` specific notes](SPEC_ROOT/99-appendices/11-qmri.md#unit1-images)
     in the qMRI appendix for further information.
 VFA:
   value: VFA

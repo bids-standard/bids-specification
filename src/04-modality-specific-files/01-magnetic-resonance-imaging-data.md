@@ -1232,8 +1232,8 @@ For example:
 ```JSON
 {
    "IntendedFor": [
-        "ses-pre/func/sub-01_ses-pre_task-motor_run-1_bold.nii.gz",
-        "ses-pre/func/sub-01_ses-pre_task-motor_run-2_bold.nii.gz"
+        "bids::sub-01/ses-pre/func/sub-01_ses-pre_task-motor_run-1_bold.nii.gz",
+        "bids::sub-01/ses-pre/func/sub-01_ses-pre_task-motor_run-2_bold.nii.gz"
     ]
 }
 ```
@@ -1367,7 +1367,7 @@ For example:
 ```JSON
 {
    "Units": "rad/s",
-   "IntendedFor": "func/sub-01_task-motor_bold.nii.gz",
+   "IntendedFor": "bids::sub-01/func/sub-01_task-motor_bold.nii.gz",
    "B0FieldIdentifier": "b0map_fmap0"
 }
 ```
@@ -1426,7 +1426,7 @@ For example:
 {
    "PhaseEncodingDirection": "j-",
    "TotalReadoutTime": 0.095,
-   "IntendedFor": "func/sub-01_task-motor_bold.nii.gz",
+   "IntendedFor": "bids::sub-01/func/sub-01_task-motor_bold.nii.gz",
    "B0FieldIdentifier": "pepolar_fmap0"
 }
 ```
@@ -1438,5 +1438,3 @@ As for other EPI sequences, these field mapping sequences may have any of the
 [in-plane spatial encoding](#in-plane-spatial-encoding) metadata keys.
 However, please note that `PhaseEncodingDirection` and `TotalReadoutTime` keys
 are REQUIRED for these field mapping sequences.
-
-<!-- Link Definitions -->
