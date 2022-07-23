@@ -345,6 +345,8 @@ def test_bids_datasets(bids_examples, tmp_path):
 
 
 def test_broken_json_dataset(bids_examples, tmp_path):
+    """Perhaps this can be integrated into
+    https://github.com/bids-standard/bids-error-examples ."""
     from bidsschematools.validator import validate_bids
 
     dataset = "asl003"
@@ -362,3 +364,23 @@ def test_broken_json_dataset(bids_examples, tmp_path):
         dataset_path,
         report_path=True,
     )
+
+
+def test_error_datasets(bids_error_examples):
+    from bidsschematools.validator import validate_bids
+
+    schema_path = "{module_path}/data/schema/"
+
+    for i in os.listdir(bids_error_examples):
+        print(i)
+        if not i.startswith("."):
+            target = os.path.join(bids_error_examples, i)
+            if os.path.isdir(target):
+                result = validate_bids(
+                    target,
+                    schema_version=schema_path,
+                    report_path=True,
+                    debug=True,
+                )
+                # Are there non-validated files?
+                assert len(result["path_tracking"]) != 0

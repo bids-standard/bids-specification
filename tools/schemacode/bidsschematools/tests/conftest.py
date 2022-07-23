@@ -22,6 +22,12 @@ BIDS_SELECTION = [
     "pet003",  # pet, anat
     "qmri_tb1tfl",  # fmap, _TB1TFL
 ]
+# Errors are described in the README of the respective datasets:
+# https://github.com/bids-standard/bids-error-examples
+BIDS_ERROR_SELECTION = [
+    "invalid_asl003",
+    "invalid_pet001",
+]
 
 
 @pytest.mark.no_network
@@ -64,6 +70,10 @@ def get_gitrepo_fixture(url, whitelist):
 bids_examples = get_gitrepo_fixture(
     "https://github.com/bids-standard/bids-examples",
     whitelist=BIDS_SELECTION,
+)
+bids_error_examples = get_gitrepo_fixture(
+    "https://github.com/bids-standard/bids-error-examples",
+    whitelist=BIDS_ERROR_SELECTION,
 )
 
 
