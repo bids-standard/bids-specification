@@ -193,6 +193,30 @@ def _add_suffixes(regex_string, variant):
     return regex_string
 
 
+def _determine_bids_version(bids_schema_dir):
+    """Determine schema version, with directory name, file specification, and string fallback."""
+
+    bids_version_path = os.path.join(bids_schema_dir, "BIDS_VERSION")
+    try:
+        with open(bids_version_path) as f:
+            bids_version = f.readline().rstrip()
+    # If this file is not in the schema, fall back to placeholder heuristics:
+    except FileNotFoundError:
+        # Maybe the directory encodes the version, as in:
+        # https://github.com/bids-standard/bids-schema
+        _, bids_version = os.path.split(bids_schema_dir)
+        if not re.match("^.*?[0-9]*?\.[0-9]*?\.[0-9]*?.*?$", bids_version):
+            # Then we don't know, really.
+            bids_version = "unknown"
+        # Check whether we are using bundled BIDS schema.
+        #if os.path.abspath(bids_schema_dir) == os.path.join(
+        #    os.path.abspath(os.path.dirname(__file__)),
+        #    "data",
+        #    "schema",
+        #):
+    return bids_version
+
+
 def load_top_level(
     my_schema,
 ):
@@ -792,18 +816,8 @@ def validate_bids(
     )
 
     # Record schema version.
-    # Not sure whether to incorporate in validation_result.
-    if bids_schema_dir == os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        "data",
-        "schema",
-    ):
-        # Declare we are using live version,
-        # string will evaluate as larger than numbered versions.
-        schema_version = "99999.0.0-dev"
-    else:
-        _, schema_version = os.path.split(bids_schema_dir)
-    validation_result["bids_schema_version"] = schema_version
+    bids_version = _determine_bids_version
+    validation_result["bids_version"] = bids_version
 
     log_errors(validation_result)
 
