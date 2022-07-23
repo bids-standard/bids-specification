@@ -884,7 +884,7 @@ No protocol is currently proposed to automatically resolve all possible BIDS URI
 
 #### Future statement
 
-BIDS URIs are parsable as standard URIs with scheme `bids` and path
+BIDS URIs are parsable as standard [URIs][] with scheme `bids` and path
 `[<dataset-name>]:<relative-path>`.
 The authority, query and fragment components are unused.
 Future versions of BIDS may specify interpretations for these components,
@@ -1047,3 +1047,4 @@ to suppress warnings or provide interpretations of your filenames.
 [dataset_description.json]: 03-modality-agnostic-files.md#dataset_descriptionjson
 [derived-dataset-description]: 03-modality-agnostic-files.md#derived-dataset-and-pipeline-description
 [deprecated]: #definitions
+[uris]: #uniform-resource-indicator

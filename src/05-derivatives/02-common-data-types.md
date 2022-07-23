@@ -59,7 +59,7 @@ Note that `"raw"` must appear in the `DatasetLinks` metadata in
 `dataset_description.json`.
 For example, in the case that the given derivatives dataset is nested within the
 "derivatives" directory of a raw dataset, the entry in `DatasetLinks` may say:
-`"raw": "../../"`.
+`"raw": "../.."`.
 
 If this file was generated with prior knowledge from additional sources,
 such as the same subject's `T1w`,
