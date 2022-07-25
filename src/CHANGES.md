@@ -2,6 +2,7 @@
 
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
+-   \[SCHEMA] Fixed error in BIDS metadata.yml [#1163](https://github.com/bids-standard/bids-specification/pull/1163) ([tomhampshire](https://github.com/tomhampshire))
 -   \[SCHEMA] add missing display_name [#1153](https://github.com/bids-standard/bids-specification/pull/1153) ([sappelhoff](https://github.com/sappelhoff))
 -   \[SCHEMA] Mark CHANGES as optional [#1151](https://github.com/bids-standard/bids-specification/pull/1151) ([yarikoptic](https://github.com/yarikoptic))
 -   \[FIX] cover bidsschematools not old name schemacode [#1149](https://github.com/bids-standard/bids-specification/pull/1149) ([yarikoptic](https://github.com/yarikoptic))
