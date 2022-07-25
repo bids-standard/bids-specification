@@ -416,10 +416,10 @@ ChunkTransformationMatrixAxis:
     Describe the axis of the ChunkTransformationMatrix
     (for examples: `["X", "Y"]` or `["Z", "Y", "X"]`).
   type: array
+  minItems: 2
+  maxItems: 3
   items:
     type: string
-    minItems: 2
-    maxItems: 3
 Code:
   name: Code
   display_name: Code
