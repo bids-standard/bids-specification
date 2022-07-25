@@ -1,8 +1,9 @@
 """Tests for the bidsschematools package."""
 import os
+
 import pytest
 
-from bidsschematools import schema, __bids_version__
+from bidsschematools import __bids_version__, schema
 
 
 def test__get_bids_version(tmp_path):
