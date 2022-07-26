@@ -3,6 +3,7 @@ import shutil
 
 import pytest
 
+from .conftest import BIDS_ERROR_SELECTION
 
 def test__add_entity():
     from bidsschematools.validator import _add_entity
@@ -366,21 +367,18 @@ def test_broken_json_dataset(bids_examples, tmp_path):
     )
 
 
-def test_error_datasets(bids_error_examples):
+@pytest.mark.parametrize("dataset", BIDS_ERROR_SELECTION)
+def test_error_datasets(bids_error_examples, dataset):
     from bidsschematools.validator import validate_bids
 
     schema_path = "{module_path}/data/schema/"
 
-    for i in os.listdir(bids_error_examples):
-        print(i)
-        if not i.startswith("."):
-            target = os.path.join(bids_error_examples, i)
-            if os.path.isdir(target):
-                result = validate_bids(
-                    target,
-                    schema_version=schema_path,
-                    report_path=True,
-                    debug=True,
-                )
-                # Are there non-validated files?
-                assert len(result["path_tracking"]) != 0
+    target = os.path.join(bids_error_examples, dataset)
+    result = validate_bids(
+        target,
+        schema_version=schema_path,
+        report_path=True,
+        debug=True,
+    )
+    # Are there non-validated files?
+    assert len(result["path_tracking"]) != 0
