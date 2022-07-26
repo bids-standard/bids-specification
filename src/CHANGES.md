@@ -3,6 +3,7 @@
 ## [Unreleased](https://github.com/bids-standard/bids-specification/tree/HEAD)
 
 -   \[SCHEMA] Fixed error in BIDS metadata.yml [#1163](https://github.com/bids-standard/bids-specification/pull/1163) ([tomhampshire](https://github.com/tomhampshire))
+-   \[INFRA] Using label string as in contemporary schema [#1162](https://github.com/bids-standard/bids-specification/pull/1162) ([TheChymera](https://github.com/TheChymera))
 -   \[INFRA] Added error tests [#1159](https://github.com/bids-standard/bids-specification/pull/1159) ([TheChymera](https://github.com/TheChymera))
 -   \[SCHEMA] add missing display_name [#1153](https://github.com/bids-standard/bids-specification/pull/1153) ([sappelhoff](https://github.com/sappelhoff))
 -   \[SCHEMA] Mark CHANGES as optional [#1151](https://github.com/bids-standard/bids-specification/pull/1151) ([yarikoptic](https://github.com/yarikoptic))
