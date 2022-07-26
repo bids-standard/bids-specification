@@ -5,6 +5,7 @@ import pytest
 
 from .conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
 
+
 def test__add_entity():
     from bidsschematools.validator import _add_entity
 
@@ -303,27 +304,31 @@ def test_write_report(tmp_path):
     os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
     reason="no network",
 )
-def test_bids_datasets(bids_examples, tmp_path):
+@pytest.mark.parametrize("dataset", BIDS_SELECTION)
+def test_bids_datasets(bids_examples, tmp_path, dataset):
     from bidsschematools.validator import validate_bids
 
     schema_path = "{module_path}/data/schema/"
 
     # Validate per dataset:
-    for i in os.listdir(bids_examples):
-        if not i.startswith("."):
-            target = os.path.join(bids_examples, i)
-            if os.path.isdir(target):
-                result = validate_bids(
-                    target,
-                    schema_version=schema_path,
-                    report_path=True,
-                    debug=True,
-                )
-                # Have all files been validated?
-                assert len(result["path_tracking"]) == 0
+    target = os.path.join(bids_examples, dataset)
+    result = validate_bids(
+        target,
+        schema_version=schema_path,
+        report_path=True,
+        debug=True,
+    )
+    # Have all files been validated?
+    assert len(result["path_tracking"]) == 0
+
+
+def test_validate_bids(bids_examples, tmp_path):
+    from bidsschematools.validator import validate_bids
+
+    schema_path = "{module_path}/data/schema/"
 
     # Create input for file list based validation
-    selected_dir = os.path.join(bids_examples, os.listdir(bids_examples)[0])
+    selected_dir = os.path.join(bids_examples, BIDS_SELECTION[0])
     selected_paths = []
     for root, dirs, files in os.walk(selected_dir, topdown=False):
         for f in files:
