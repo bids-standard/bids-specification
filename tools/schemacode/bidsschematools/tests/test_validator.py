@@ -322,6 +322,10 @@ def test_bids_datasets(bids_examples, tmp_path, dataset):
     assert len(result["path_tracking"]) == 0
 
 
+@pytest.mark.skipif(
+    os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
+    reason="no network",
+)
 def test_validate_bids(bids_examples, tmp_path):
     from bidsschematools.validator import validate_bids
 
@@ -350,6 +354,10 @@ def test_validate_bids(bids_examples, tmp_path):
     assert len(result["path_tracking"]) == 0
 
 
+@pytest.mark.skipif(
+    os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
+    reason="no network",
+)
 def test_broken_json_dataset(bids_examples, tmp_path):
     """Perhaps this can be integrated into
     https://github.com/bids-standard/bids-error-examples ."""
