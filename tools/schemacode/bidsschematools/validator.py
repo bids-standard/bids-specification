@@ -168,7 +168,7 @@ def _add_subdirs(regex_string, variant, datatype, entity_definitions, formats, m
     for dir_entity in DIR_ENTITIES:
         if dir_entity in variant["entities"].keys():
             format_selection = formats[entity_definitions[dir_entity]["format"]]
-            variable_field = format_selection['pattern']
+            variable_field = format_selection["pattern"]
             shorthand = entity_definitions[dir_entity]["name"]
             if variant["entities"][dir_entity] == "required":
                 regex_subdir = f"{shorthand}-(?P<{dir_entity}>{variable_field})/"
@@ -297,7 +297,7 @@ def load_entities(
                             variable_field = "|".join(entity_definitions[entity]["enum"])
                         else:
                             format_selection = formats[entity_definitions[entity]["format"]]
-                            variable_field = format_selection['pattern']
+                            variable_field = format_selection["pattern"]
                         regex_entities = _add_entity(
                             regex_entities,
                             entity,

@@ -158,10 +158,7 @@ def test__add_subdirs():
         regex_string, variant, datatype, entity_definitions, formats, modality_datatypes
     )
 
-    assert (
-        _regex_string == "/sub-(?P<subject>[0-9a-zA-Z]+)/sub-(?P=subject)"
-        "_sessions\\.(tsv|json)"
-    )
+    assert _regex_string == "/sub-(?P<subject>[0-9a-zA-Z]+)/sub-(?P=subject)_sessions\\.(tsv|json)"
 
 
 def test__add_suffixes():
