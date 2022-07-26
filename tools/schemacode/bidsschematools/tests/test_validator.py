@@ -3,7 +3,7 @@ import shutil
 
 import pytest
 
-from .conftest import BIDS_ERROR_SELECTION
+from .conftest import BIDS_ERROR_SELECTION, BIDS_SELECTION
 
 def test__add_entity():
     from bidsschematools.validator import _add_entity
@@ -367,6 +367,10 @@ def test_broken_json_dataset(bids_examples, tmp_path):
     )
 
 
+@pytest.mark.skipif(
+    os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,
+    reason="no network",
+)
 @pytest.mark.parametrize("dataset", BIDS_ERROR_SELECTION)
 def test_error_datasets(bids_error_examples, dataset):
     from bidsschematools.validator import validate_bids
