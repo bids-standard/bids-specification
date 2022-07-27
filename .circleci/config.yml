@@ -27,7 +27,7 @@ jobs:
           path: ~/project/site/
           destination: dev_docs
 
-  linkchecker:
+  check_links:
     docker:
       - image: cimg/python:3.8
     steps:
@@ -89,10 +89,10 @@ jobs:
       - store_artifacts:
           path: bids-spec.pdf
 
-  # Auto changelog collector
-  github-changelog-generator:
+  # Automatically generate a changelog since migration from Google Docs to GitHub
+  github_changelog_generator:
     docker:
-      - image: ferrarimarco/github-changelog-generator:1.14.3
+      - image: ferrarimarco/github_changelog_generator:1.14.3
     steps:
       - setup_remote_docker:
           version: 18.06.0-ce
@@ -127,8 +127,8 @@ jobs:
           root: ~/.
           paths: changelog_build
 
-  # Run remark on the auto generated changes.md file
-  remark:
+  # Lint and fix the auto generated changes.md file
+  lint_generated_changelog:
     docker:
       - image: cimg/node:lts
     steps:
@@ -156,12 +156,12 @@ jobs:
               echo "Commit or Release, do nothing"
             fi
       - persist_to_workspace:
-          # fixed+linted changelog in ~/changelog_build/CHANGES.md
+          # linted and fixed changelog in ~/changelog_build/CHANGES.md
           root: ~/.
           paths: changelog_build
 
   # Push built changelog to repo
-  Changelog-bot:
+  commit_generated_changelog:
     docker:
       - image: cimg/base:stable
     steps:
@@ -195,22 +195,22 @@ workflows:
   search_build:
     jobs:
       - build_docs
-      - linkchecker:
+      - check_links:
           requires:
             - build_docs
-      - github-changelog-generator:
+      - github_changelog_generator:
           filters:
             branches:
               only: master
-      - remark:
+      - lint_generated_changelog:
           requires:
-            - github-changelog-generator
+            - github_changelog_generator
           filters:
             branches:
               only: master
-      - Changelog-bot:
+      - commit_generated_changelog:
           requires:
-            - remark
+            - lint_generated_changelog
           filters:
             branches:
               only: master
