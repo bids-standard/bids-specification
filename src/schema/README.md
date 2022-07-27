@@ -511,7 +511,7 @@ they must be relative to the `src` directory of the bids-specification repositor
 that is, ending with `.md`, **not** `.html`.
 
 For more information please see the following pull request and linked discussions:
-https://github.com/bids-standard/bids-specification/pull/1096
+[#1096](https://github.com/bids-standard/bids-specification/pull/1096)
 
 ## Version of the schema
 

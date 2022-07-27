@@ -687,7 +687,7 @@ for more information on merge methods).
 
 Note that for pull requests starting with `REL:`, no changelog is generated.
 
-To exclude pull requests from showing up in the changelog, they have to be labeld with
+To exclude pull requests from showing up in the changelog, they have to be labeled with
 the "exclude-from-changelog" label.
 
 ## Recognizing contributions
