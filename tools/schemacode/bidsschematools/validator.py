@@ -62,6 +62,7 @@ def _get_paths(
         for root, dirs, file_names in os.walk(bids_path, topdown=True):
             if "dataset_description.json" in file_names:
                 if bids_root_found:
+                    # Do not index the contents of the directory.
                     dirs[:] = []
                     file_names[:] = []
                 else:
@@ -69,8 +70,8 @@ def _get_paths(
             if any(root.endswith(i) for i in pseudofile_suffixes):
                 # Add the directory name to the validation paths list.
                 path_list.append(f"{root}/")
-                # Do not index the contents of the directory.
                 dirs[:] = []
+                file_names[:] = []
             # will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
             if any(exclude_subdir in root for exclude_subdir in exclude_subdirs):
                 continue
