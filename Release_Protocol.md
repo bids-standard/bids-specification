@@ -8,6 +8,11 @@ The protocol assumes that you have a [fork](https://help.github.com/en/articles/
 of the bids-standard/bids-specification repository and have [cloned](https://help.github.com/en/articles/cloning-a-repository)
 your fork locally to a directory called `bids-specification`.
 
+NOTE: Before you start a release, you have to ensure that the automatically generated changelog is
+**up to date**. See the relevant [section in CONTRIBUTING.md](CONTRIBUTING.md#how-is-the-changelog-generated)
+for further information. In practice this means ensuring that the most recently merged pull request was
+merged into the `master` branch using the "Merge commit" option.
+
 ### 1. Fetch the latest version of the [master branch of the BIDS-specification](https://github.com/bids-standard/bids-specification/tree/master)
 
 You should have a remote, which we will call `upstream`, for the
@@ -91,6 +96,7 @@ $ git push -u upstream rel/1.2.0
 ```
 
 ### 4. Open a pull request against the master branch
+
 Important note: The pull request title **must** be named "REL: vX.Y.Z" (for example, "REL: v1.2.0").
 
 **This will open a period of discussion for 5 business days regarding if we are ready to release.**
