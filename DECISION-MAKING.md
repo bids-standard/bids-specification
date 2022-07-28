@@ -30,15 +30,21 @@ BIDS governance.
 
 ### Maintainers Group
 
-| Name                                                                           | Time commitment | Scope                      |
-|--------------------------------------------------------------------------------|-----------------|----------------------------|
-| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         | Lead Maintainer            |
-| Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |                            |
-| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | 5h/week         | Community development      |
-| Taylor Salo ([@tsalo](https://github.com/tsalo))                               | 3h/week         | MRI                        |
-| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                            | 3h/week         | Community development, MRI |
-| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))            | 3h/week         | PET, Community development |
-| Eric Earl ([@ericearl](https://github.com/ericearl))                           | 2h/week         |                            |
+| Name                                                                           | Time commitment | Scope                            |
+|--------------------------------------------------------------------------------|-----------------|----------------------------------|
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         | Lead Maintainer                  |
+| Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |                                  |
+| Taylor Salo ([@tsalo](https://github.com/tsalo))                               | 3h/week         | MRI                              |
+| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                            | 3h/week         | Community development, MRI       |
+| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))            | 3h/week         | PET, Community development       |
+| Eric Earl ([@ericearl](https://github.com/ericearl))                           | 2h/week         |                                  |
+| Ross Blair ([@rwblair](https://github.com/rwblair))                            |                 | Maintainer of the bids-validator |
+
+#### Past maintainers group members
+
+| Name                                                                           |
+|--------------------------------------------------------------------------------|
+| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) |
 
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.
