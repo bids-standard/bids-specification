@@ -431,7 +431,6 @@ def test_bids_datasets(bids_examples, tmp_path, dataset):
         target,
         schema_version=schema_path,
         report_path=True,
-        debug=True,
     )
     # Have all files been validated?
     assert len(result["path_tracking"]) == 0
@@ -453,7 +452,7 @@ def test_validate_bids(bids_examples, tmp_path):
         for f in files:
             selected_path = os.path.join(root, f)
             selected_paths.append(selected_path)
-    # Do version fallback and terminal debug output work?
+    # Do version fallback work?
     result = validate_bids(selected_paths, schema_version=None)
     # Does default log path specification work?
     result = validate_bids(selected_paths, schema_version=schema_path, report_path=True)
@@ -509,7 +508,6 @@ def test_error_datasets(bids_error_examples, dataset):
         target,
         schema_version=schema_path,
         report_path=True,
-        debug=True,
     )
     # Are there non-validated files?
     assert len(result["path_tracking"]) != 0
