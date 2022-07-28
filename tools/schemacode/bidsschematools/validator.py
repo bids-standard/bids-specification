@@ -607,7 +607,8 @@ def select_schema_dir(
             f"You have selected files belonging to {len(dataset_descriptions)} "
             "different datasets. Please run the validator once per dataset."
         )
-    if dataset_description:
+    if dataset_descriptions:
+        dataset_description = dataset_descriptions[0]
         with open(dataset_description) as f:
             try:
                 dataset_info = json.load(f)
