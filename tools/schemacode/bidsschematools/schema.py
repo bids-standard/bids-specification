@@ -148,13 +148,14 @@ class Namespace(Mapping):
         raise NotImplementedError(f"Unknown format: {fmt}")
 
 
-def dereference_yaml(schema, struct):
+def dereference_mapping(schema, struct):
     """Recursively search a dictionary-like object for $ref keys.
 
     Each $ref key is replaced with the contents of the referenced field in the overall
     dictionary-like object.
     """
     if isinstance(struct, dict):
+        struct = struct.copy()
         if "$ref" in struct:
             ref_field = struct["$ref"]
             template = schema[ref_field]
@@ -162,7 +163,7 @@ def dereference_yaml(schema, struct):
             # Result is template object with local overrides
             struct = {**template, **struct}
 
-        struct = {key: dereference_yaml(schema, val) for key, val in struct.items()}
+        struct = {key: dereference_mapping(schema, val) for key, val in struct.items()}
 
         # For the rare case of multiple sets of valid values (enums) from multiple references,
         # anyOf is used. Here we try to flatten our anyOf of enums into a single enum list.
@@ -176,7 +177,7 @@ def dereference_yaml(schema, struct):
                 struct["enum"] = all_enum
 
     elif isinstance(struct, list):
-        struct = [dereference_yaml(schema, item) for item in struct]
+        struct = [dereference_mapping(schema, item) for item in struct]
 
     return struct
 
@@ -217,20 +218,20 @@ def load_schema(schema_path):
     for object_group_file in sorted(objects_dir.glob("*.yaml")):
         lgr.debug(f"Loading {object_group_file.stem} objects.")
         dict_ = yaml.safe_load(object_group_file.read_text())
-        schema["objects"][object_group_file.stem] = dereference_yaml(dict_, dict_)
+        schema["objects"][object_group_file.stem] = dereference_mapping(dict_, dict_)
 
     # Grab single-file rule groups
     for rule_group_file in sorted(rules_dir.glob("*.yaml")):
         lgr.debug(f"Loading {rule_group_file.stem} rules.")
         dict_ = yaml.safe_load(rule_group_file.read_text())
-        schema["rules"][rule_group_file.stem] = dereference_yaml(dict_, dict_)
+        schema["rules"][rule_group_file.stem] = dereference_mapping(dict_, dict_)
 
     # Load directories of rule subgroups.
     for rule_group_file in sorted(rules_dir.glob("*/*.yaml")):
         rule = schema["rules"].setdefault(rule_group_file.parent.name, {})
         lgr.debug(f"Loading {rule_group_file.stem} rules.")
         dict_ = yaml.safe_load(rule_group_file.read_text())
-        rule[rule_group_file.stem] = dereference_yaml(dict_, dict_)
+        rule[rule_group_file.stem] = dereference_mapping(dict_, dict_)
 
     return schema
 
