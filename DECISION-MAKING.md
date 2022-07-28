@@ -40,12 +40,6 @@ BIDS governance.
 | Eric Earl ([@ericearl](https://github.com/ericearl))                           | 2h/week         |                                  |
 | Ross Blair ([@rwblair](https://github.com/rwblair))                            |                 | Maintainer of the bids-validator |
 
-#### Past maintainers group members
-
-| Name                                                                           |
-|--------------------------------------------------------------------------------|
-| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) |
-
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.
 Such a scope can range from maintaining a modality supported in the specification to nurturing a
@@ -53,6 +47,12 @@ welcoming BIDS community.
 One or more scopes can be chosen by the maintainer and agreed upon by the Maintainers Group.
 A maintainer is primarily responsible for issues within their chosen scope(s), although
 contributions elsewhere are welcome, as well.
+
+#### Past maintainers group members
+
+| Name                                                                           |
+|--------------------------------------------------------------------------------|
+| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) |
 
 ### BEP Leads Group
 
