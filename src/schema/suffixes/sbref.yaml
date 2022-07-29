@@ -1,4 +1,0 @@
----
-name: Single-band reference image
-description: |
-  Single-band reference for one or more multi-band `dwi` images.

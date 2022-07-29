@@ -1,6 +1,0 @@
----
-name: ScanStart
-description: |
-  Time of start of scan with respect to `TimeZero` in the default unit seconds.
-type: number
-unit: s

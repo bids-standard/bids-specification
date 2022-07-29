@@ -1,6 +1,0 @@
----
-name: InstitutionAddress
-description: |
-  The address of the institution in charge of the equipment that produced the
-  measurements.
-type: string

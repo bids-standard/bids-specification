@@ -2,8 +2,10 @@ site/
 .DS_Store
 .idea
 venvs
+.vscode/
 
 pdf_build_src/bids-spec.pdf
+pdf_build_src/bids-spec_pandoc_log.json
 pdf_build_src/src_copy
 
 # JS/NPM

@@ -1,6 +1,0 @@
----
-name: TracerSNOMED
-description: |
-  ID of the tracer compound from the SNOMED Ontology
-  (subclass of Radioactive isotope).
-type: string

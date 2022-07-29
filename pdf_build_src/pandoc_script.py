@@ -7,14 +7,15 @@ import pathlib
 import subprocess
 
 
-def build_pdf(filename):
+def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
     """Construct command with required pandoc flags and run using subprocess.
 
     Parameters
     ----------
     filename : str
-        Name of the output file.
-
+        Name of the output file. Defaults to "bids-spec.pdf".
+    logfile : str
+        Name of the log file. Defaults to "bids-spec_pandoc_log.json".
     """
     # Files that are not supposed to be built into the PDF
     EXCLUDE = ["./index.md", "./schema/README.md", "./pregh-changes.md"]
@@ -38,7 +39,8 @@ def build_pdf(filename):
         '--include-in-header=./header.tex',
         '--include-in-header=./header_setup.tex',
         '--pdf-engine=xelatex',
-        '--output={}'.format(filename),
+        f'--log={logfile}',
+        f'--output={filename}',
     ]
 
     # location of this file: This is also the working directory when
@@ -65,4 +67,4 @@ def build_pdf(filename):
 
 
 if __name__ == "__main__":
-    build_pdf('bids-spec.pdf')
+    build_pdf()

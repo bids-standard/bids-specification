@@ -1,10 +1,14 @@
 # Longitudinal and multi-site studies
 
 Multiple sessions (visits) are encoded by adding an extra layer of directories
-and [file names](02-common-principles.md#file-name-structure)
+and [filenames](02-common-principles.md#file-name-structure)
 in the form of a session (for example `ses-<label>`) and
 with a [`*_sessions.tsv` file](03-modality-agnostic-files.md#sessions-file).
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "sub-control01": {
@@ -65,7 +69,7 @@ data coming from multiple sites or multiple centers (such extension is planned
 in [BIDS `2.0`](https://github.com/bids-standard/bids-2-devel).
 There are however ways to model your data without any loss in terms of metadata.
 
-### Treat each site/center as a separate dataset
+### Option 1: Treat each site/center as a separate dataset
 
 The simplest way of dealing with multiple sites is to treat data from each site
 as a separate and independent BIDS dataset with a separate participants.tsv and

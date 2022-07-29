@@ -1,5 +1,0 @@
----
-name: TracerRadLex
-description: |
-  ID of the tracer compound from the RadLex Ontology.
-type: string

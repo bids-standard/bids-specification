@@ -1,5 +1,0 @@
----
-name: Defacing Mask
-description: |
-  A binary mask that was used to remove facial features from an anatomical MRI
-  image.

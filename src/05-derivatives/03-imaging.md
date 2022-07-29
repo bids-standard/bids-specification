@@ -22,14 +22,20 @@ sufficiently similar in practice to treat them equivalently.
 
 When two or more instances of a given derivative are provided with resolution
 or surface sampling density being the only difference between them, then the
-`res` (for *resolution* of regularly sampled N-D data) and/or `den` (for
-*density* of non-parametric surfaces) SHOULD be used to avoid name conflicts.
+[`res`](../99-appendices/09-entities.md#res) (for *resolution* of regularly sampled N-D data) and/or
+[`den`](../99-appendices/09-entities.md#den) (for *density* of non-parametric surfaces)
+entities SHOULD be used to avoid name conflicts.
 Note that only files combining both regularly sampled (for example, gridded)
 and surface sampled data (and their downstream derivatives) are allowed
-to present both `res` and `den` entities simultaneously.
+to present both [`res`](../99-appendices/09-entities.md#res) and
+[`den`](../99-appendices/09-entities.md#den) entities simultaneously.
 
 Examples:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline1": {
@@ -46,6 +52,12 @@ Examples:
 
 The following metadata JSON fields are defined for preprocessed images:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "SkullStripped": "REQUIRED",
@@ -89,8 +101,13 @@ And one corresponding to `res-hi`
 ```
 
 Example of CIFTI-2 files (a format that combines regularly sampled data
-and non-parametric surfaces) having both `res` and `den` entities:
+and non-parametric surfaces) having both [`res`](../99-appendices/09-entities.md#res)
+and [`den`](../99-appendices/09-entities.md#den) entities:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline1": {
@@ -134,15 +151,21 @@ Template:
             <source_entities>[_space-<space>][_res-<label>][_den-<label>][_label-<label>][_desc-<label>]_mask.nii.gz
 ```
 
-A binary (1 - inside, 0 - outside) mask in the space defined by `<space>`.
+A binary (1 - inside, 0 - outside) mask in the space defined by the [`space` entity](../99-appendices/09-entities.md#space).
 If no transformation has taken place, the value of `space` SHOULD be set to `orig`.
-If the mask is an ROI mask derived from an atlas, then the `label` entity SHOULD
+If the mask is an ROI mask derived from an atlas, then the [`label` entity](../99-appendices/09-entities.md#label)) SHOULD
 be used to specify the masked structure
 (see [Common image-derived labels](#common-image-derived-labels)),
 and the `Atlas` metadata SHOULD be defined.
 
 JSON metadata fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "RawSources": "REQUIRED",
@@ -155,6 +178,10 @@ JSON metadata fields:
 
 Examples:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "func_loc": {
@@ -168,6 +195,10 @@ Examples:
    }
 ) }}
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "manual_masks": {
@@ -199,16 +230,27 @@ structure may be concatenated in a single file.
 Segmentations may be defined in a volume (labeled voxels), a surface (labeled
 vertices) or a combined volume/surface space.
 
+If the segmentation can be derived from different atlases,
+the [`atlas` entity](../99-appendices/09-entities.md#atlas) MAY be used to
+distinguish the different segmentations.
+If so, the `Atlas` metadata SHOULD also be defined.
+
 The following section describes discrete and probabilistic segmentations of
 volumes, followed by discrete segmentations of surface/combined spaces.
 Probabilistic segmentations of surfaces are currently [unspecified][].
 
 The following metadata fields apply to all segmentation files:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "Manual": "OPTIONAL",
-      "Atlas": "OPTIONAL",
+      "Atlas": "REQUIRED if `atlas` is present",
       "Resolution": "REQUIRED if `res` is present",
       "Density": "REQUIRED if `den` is present",
    }
@@ -227,11 +269,15 @@ Template:
 <pipeline_name>/
     sub-<label>/
         anat|func|dwi/
-            <source_entities>[_space-<space>][_res-<label>][_den-<label>]_dseg.nii.gz
+            <source_entities>[_space-<space>][_atlas-<label>][_res-<label>][_den-<label>]_dseg.nii.gz
 ```
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -247,18 +293,26 @@ Example:
 
 A segmentation can be used to generate a binary mask that functions as a
 discrete "label" for a single structure.
-In this case, the mask suffix MUST be used, the `label` entity SHOULD be used
+In this case, the mask suffix MUST be used,
+the [`label` entity](../99-appendices/09-entities.md#label)) SHOULD be used
 to specify the masked structure
 (see [Common image-derived labels](#common-image-derived-labels)),
-and the `Atlas` metadata SHOULD be defined.
+the [`atlas` entity](../99-appendices/09-entities.md#atlas) and the
+`Atlas` metadata SHOULD be defined.
+
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
         "sub-001": {
             "anat": {
-                "sub-001_space-orig_label-GM_mask.nii.gz": "",
+                "sub-001_space-orig_atlas-Desikan_label-GM_mask.nii.gz": "",
+                "sub-001_space-orig_atlas-Desikan_label-GM_mask.json": "",
                 },
             },
         }
@@ -270,7 +324,8 @@ For example:
 Probabilistic segmentations of brain tissue represent a single anatomical
 structure with values ranging from 0 to 1 in individual 3D volumes or across
 multiple frames.
-If a single structure is included, the `label` entity SHOULD be used to specify
+If a single structure is included,
+the [`label` entity](../99-appendices/09-entities.md#label) SHOULD be used to specify
 the structure.
 
 Template:
@@ -279,11 +334,15 @@ Template:
 <pipeline_name>/
     sub-<label>/
         func|anat|dwi/
-            <source_entities>[_space-<space>][_res-<label>][_den-<label>][_label-<label>]_probseg.nii.gz
+            <source_entities>[_space-<space>][_atlas-<label>][_res-<label>][_den-<label>][_label-<label>]_probseg.nii.gz
 ```
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -298,11 +357,15 @@ Example:
 ) }}
 
 See [Common image-derived labels](#common-image-derived-labels)
-for reserved key values for `label`.
+for reserved values for the [`label`](../99-appendices/09-entities.md#label) entity.
 
 A 4D probabilistic segmentation, in which each frame corresponds to a different
 tissue class, must provide a label mapping in its JSON sidecar. For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -345,13 +408,17 @@ Template:
 <pipeline_name>/
     sub-<label>/
         anat/
-            <source_entities>[_hemi-{L|R}][_space-<space>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
+            <source_entities>[_hemi-{L|R}][_space-<space>][_atlas-<label>][_res-<label>][_den-<label>]_dseg.{label.gii|dlabel.nii}
 ```
 
-The `hemi` tag is REQUIRED for GIFTI files storing information about
+The [`hemi-<label>`](../99-appendices/09-entities.md#hemi) entity is REQUIRED for GIFTI files storing information about
 a structure that is restricted to a hemibrain.
 For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -367,6 +434,10 @@ For example:
 
 The REQUIRED extension for CIFTI parcellations is `.dlabel.nii`. For example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -407,6 +478,10 @@ filename.
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -425,6 +500,10 @@ segmentations in relative subdirectories.
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline": {
@@ -440,13 +519,21 @@ Example:
 
 These TSV lookup tables contain the following columns:
 
-| **Column name** | **Requirement level** | **Description**                                               |
-| --------------- | --------------------- |-------------------------------------------------------------- |
-| index           | REQUIRED              | The label integer index                                       |
-| name            | REQUIRED              | The unique label name                                         |
-| abbreviation    | OPTIONAL              | The unique label abbreviation                                 |
-| color           | OPTIONAL              | Hexadecimal. Label color for visualization                    |
-| mapping         | OPTIONAL              | Corresponding integer label in the standard BIDS label lookup |
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table(
+   {
+      "index": "REQUIRED",
+      "name__segmentations": "REQUIRED",
+      "abbreviation": "OPTIONAL",
+      "color": "OPTIONAL",
+      "mapping": "OPTIONAL",
+   }
+) }}
 
 An example, custom `dseg.tsv` that defines three labels:
 

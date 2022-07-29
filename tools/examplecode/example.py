@@ -1,6 +1,6 @@
 """Make a filetree example.
 
-Adapated from by https://realpython.com/directory-tree-generator-python/
+Adapted from https://realpython.com/directory-tree-generator-python/
 
 See the companion Jupyter notebook ../filetree_example.ipynb to see demos
 on how to use this code.
@@ -8,6 +8,7 @@ on how to use this code.
 """
 
 import os
+
 
 class DirectoryTree:
     def __init__(self, filetree, use_pipe=True):
@@ -44,22 +45,22 @@ class _TreeGenerator:
 
     def _tree_body(self, directory, prefix=""):
         """
-        Loops through the dictionnary content representing a folder
+        Loops through the dictionary content representing a directory
         and append the content to the tree.
-        This is done recursively any time a new dictionnary is encountered.
+        This is done recursively any time a new dictionary is encountered.
         """
 
         entries_count = len(directory)
 
         for index, entry in enumerate(directory):
 
-            # change connector if this is the last item in this folder
+            # change connector if this is the last item in this directory
             connector = self.ELBOW if index == entries_count - 1 else self.TEE
-            self._add_dictionnary(
+            self._add_dictionary(
                 directory, entry, index, entries_count, prefix, connector
             )
 
-    def _add_dictionnary(
+    def _add_dictionary(
         self, directory, entry, index, entries_count, prefix, connector
     ):
         # We are dealing with a file

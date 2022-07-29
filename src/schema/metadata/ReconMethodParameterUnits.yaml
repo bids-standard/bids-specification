@@ -1,8 +1,0 @@
----
-name: ReconMethodParameterUnits
-description: |
-  Unit of reconstruction parameters (for example, `["none", "none"]`).
-type: array
-items:
-  type: string
-  format: unit

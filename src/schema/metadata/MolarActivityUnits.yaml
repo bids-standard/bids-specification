@@ -1,6 +1,0 @@
----
-name: MolarActivityUnits
-description: |
-  Unit of the specified molar radioactivity (for example, `"GBq/umol"`).
-type: string
-format: unit

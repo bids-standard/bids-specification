@@ -1,7 +1,0 @@
----
-name: ScaleFactor
-description: |
-  Scale factor for each frame.
-type: array
-items:
-  type: number

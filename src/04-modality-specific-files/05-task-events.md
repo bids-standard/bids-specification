@@ -20,7 +20,7 @@ sub-<label>/[ses-<label>]
         <matches>_events.json
 ```
 
-Where `<matches>` corresponds to task file name. For example:
+Where `<matches>` corresponds to task filename. For example:
 `sub-control01_task-nback`.
 
 Each task events file REQUIRES a corresponding task data file.
@@ -34,17 +34,25 @@ file describing the columns in detail (see
 The tabular files consists of one row per event and a set of REQUIRED
 and OPTIONAL columns:
 
-| **Column name** | **Requirement level** | **Data type**            | **Description**                                                                                                                                                                                                                                                               |
-| --------------- | --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| onset           | REQUIRED              | [number][]               | Onset (in seconds) of the event measured from the beginning of the acquisition of the first data point in the corresponding task data file. Negative numbers in "onset" are allowed<sup>5</sup>.                                                                              |
-| duration        | REQUIRED              | [number][]               | Duration of the event (measured from onset) in seconds. MUST be either zero or positive (or `"n/a"` if unavailable). A "duration" value of zero implies that the event is so short as to be effectively modeled as an impulse.                                                |
-| sample          | OPTIONAL              | [number][]               | Onset of the event according to the sampling scheme of the recorded modality (that is, referring to the raw data file that the `events.tsv` file accompanies).                                                                                                                |
-| trial_type      | OPTIONAL              | [string][]               | Primary categorisation of each trial to identify them as instances of the experimental conditions. For example: for a response inhibition task, it could take on values `"go"` and `"no-go"` to refer to response initiation and response inhibition experimental conditions. |
-| response_time   | OPTIONAL              | [number][]               | Response time measured in seconds. A negative response time can be used to represent preemptive responses and `"n/a"` denotes a missed response.                                                                                                                              |
-| value           | OPTIONAL              | [string][] or [number][] | Marker value associated with the event (for example, the value of a TTL trigger that was recorded at the onset of the event).                                                                                                                                                 |
-| HED             | OPTIONAL              | [string][]               | Hierarchical Event Descriptor (HED) tag. See [Appendix III](../99-appendices/03-hed.md) for details.                                                                                                                                                                          |
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table(
+   {
+      "onset": "REQUIRED",
+      "duration": "REQUIRED",
+      "sample": "OPTIONAL",
+      "trial_type": "OPTIONAL",
+      "response_time": "OPTIONAL",
+      "value": "OPTIONAL",
+      "HED": "OPTIONAL",
+   }
+) }}
 
-<sup>5</sup> Note for MRI data:
+Note for MRI data:
 If any acquired scans have been discarded before forming the imaging data file,
 ensure that an `onset` of 0 corresponds to the time the first image was stored.
 For example in case there is an in scanner training phase that
@@ -52,14 +60,24 @@ begins before the scanning sequence has started events from this sequence should
 have negative onset time counting down to the beginning of the acquisition of
 the first volume.
 
+Note regarding the precision of numeric metadata:
+It is RECOMMENDENDED that dataset curators specify numeric metadata like `onset` and
+`duration` with as much decimal precision as is reasonable in the context of the experiment.
+For example in an EEG experiment with devices operating at 1000 Hz sampling frequency,
+dataset curators SHOULD specify **at least** 3 figures after the decimal point.
+
 An arbitrary number of additional columns can be added. Those allow describing
-other properties of events that could be later referred in modelling and
+other properties of events that could be later referenced in modelling and
 hypothesis extensions of BIDS.
 Note that the `trial_type` and any additional columns in a TSV file
 SHOULD be documented in an accompanying JSON sidecar file.
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-control01": {
@@ -88,7 +106,7 @@ In the accompanying JSON sidecar, the `trial_type` column might look as follows:
         "Description": "Indicator of type of action that is expected",
         "Levels": {
             "start": "A red square is displayed to indicate starting",
-            "stop": "A blue square is displayed to indicate stopping",
+            "stop": "A blue square is displayed to indicate stopping"
         }
     }
 }
@@ -100,6 +118,10 @@ sake of brevity.
 For multi-echo files, the `events.tsv` file is applicable to all echos of
 a particular run:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -125,21 +147,29 @@ for additional information and examples.
 Additional information about the stimuli can be added in the `events.tsv`
 and `events.json` files.
 
-This can be done by using a `/stimuli` folder or by reference to a stimuli database.
+This can be done by using a `/stimuli` directory or by reference to a stimuli database.
 
-### Stimuli folder
+### Stimuli directory
 
-The stimulus files can be added in a `/stimuli` folder
-(under the root folder of the dataset; with optional subfolders) AND using a
+The stimulus files can be added in a `/stimuli` directory
+(under the root directory of the dataset; with optional subdirectories) AND using a
 `stim_file` column in `events.tsv` mentioning which stimulus file was used
 for a given event,
 
 There are no restrictions on the file formats of the stimuli files,
-but they should be stored in the `/stimuli` folder.
+but they should be stored in the `/stimuli` directory.
 
-| **Column name** | **Requirement level** | **Data type** | **Description**                                                                                                                                                                                                                                                                                            |
-| --------------- | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| stim_file       | OPTIONAL              | [string][]    | Represents the location of the stimulus file (such as an image, video, or audio file) presented at the given onset time. The values under the `stim_file` column correspond to a path relative to the folder `/stimuli`. For example `images/cat03.jpg` will be translated to `/stimuli/images/cat03.jpg`. |
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table(
+   {
+      "stim_file": "OPTIONAL",
+   }
+) }}
 
 ### Stimuli databases
 
@@ -149,6 +179,10 @@ The following example includes references to the
 
 Example:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-control01": {
@@ -198,6 +232,12 @@ sake of brevity.
 It is RECOMMENDED to include details of the stimulus presentation software,
 when applicable:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "StimulusPresentation": "RECOMMENDED",
@@ -206,6 +246,12 @@ when applicable:
 
 The object supplied for `StimulusPresentation` SHOULD include the following key-value pairs:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "OperatingSystem": "RECOMMENDED",
@@ -258,9 +304,3 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
     }
 }
 ```
-
-<!-- Link Definitions -->
-
-[number]: https://www.w3schools.com/js/js_json_datatypes.asp
-
-[string]: https://www.w3schools.com/js/js_json_datatypes.asp

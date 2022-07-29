@@ -1,9 +1,0 @@
----
-name: ReconFilterType
-description: |
-  Type of post-recon smoothing (for example, `["Shepp"]`).
-anyOf:
-  - type: string
-  - type: array
-    items:
-      type: string

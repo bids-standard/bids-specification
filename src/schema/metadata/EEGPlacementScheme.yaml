@@ -1,7 +1,0 @@
----
-name: EEGPlacementScheme
-description: |
-  Placement scheme of EEG electrodes.
-  Either the name of a standardized placement system (for example, `"10-20"`)
-  or a list of standardized electrode names (for example, `["Cz", "Pz"]`).
-type: string

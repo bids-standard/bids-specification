@@ -1,9 +1,0 @@
----
-name: Longitudinal relaxation time image
-description: |
-  In seconds (s).
-  T1 maps are REQUIRED to use this suffix regardless of the method used to
-  generate them.
-  See [this interactive book on T1 mapping](https://qmrlab.org/t1_book/intro)
-  for further reading on T1-mapping.
-unit: s

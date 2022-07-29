@@ -1,8 +1,0 @@
----
-name: PD and T2 weighted image
-description: |
-  In arbitrary units (arbitrary).
-  PDw and T2w images acquired using a dual echo FSE sequence through view
-  sharing process
-  ([Johnson et al. 1994](https://pubmed.ncbi.nlm.nih.gov/8010268/)).
-unit: arbitrary

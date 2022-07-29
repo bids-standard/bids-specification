@@ -1,6 +1,0 @@
----
-name: EMGChannelCount
-description: |
-  Number of EMG channels.
-type: integer
-minimum: 0

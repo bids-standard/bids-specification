@@ -1,6 +1,0 @@
----
-name: TubingLength
-description: |
-  The length of the blood tubing, from the subject to the detector in meters.
-type: number
-unit: m

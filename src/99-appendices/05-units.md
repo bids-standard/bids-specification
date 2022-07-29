@@ -27,7 +27,7 @@ It is RECOMMENDED that units be CMIXF-12 compliant or among these five Unicode
 characters.
 Please note the appropriate upper- or lower- casing when using CMIXF-12.
 
-For cases that are unspecified by this appendix or the[units section](../02-common-principles.md#units),
+For cases that are unspecified by this appendix or the [units section](../02-common-principles.md#units),
 the [CMIXF-12](https://people.csail.mit.edu/jaffer/MIXF/CMIXF-12) convention
 applies.
 

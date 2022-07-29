@@ -1,7 +1,0 @@
----
-name: EchoTime2
-description: |
-  The time (in seconds) when the second (longer) echo occurs.
-type: number
-unit: s
-exclusiveMinimum: 0

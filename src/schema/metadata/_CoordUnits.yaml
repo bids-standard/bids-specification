@@ -1,7 +1,0 @@
----
-type: string
-enum:
-  - m
-  - mm
-  - cm
-  - n/a

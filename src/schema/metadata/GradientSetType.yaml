@@ -1,8 +1,0 @@
----
-name: GradientSetType
-description: |
-  It should be possible to infer the gradient coil from the scanner model.
-  If not, for example because of a custom upgrade or use of a gradient
-  insert set, then the specifications of the actual gradient coil should be
-  reported independently.
-type: string

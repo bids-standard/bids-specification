@@ -12,6 +12,11 @@ A genetic descriptor links a BIDS dataset to associated genetic data,
 potentially in a separate repository,
 with details of where to find the genetic data and the type of data available.
 
+The following example dataset with genetics data have been formatted using this specification
+and can be used for practical guidance when curating a new dataset.
+
+-   [`UK biobank`](https://github.com/bids-standard/bids-examples/tree/master/genetics_ukbb)
+
 ## Dataset Description
 
 Genetic descriptors are encoded as an additional, OPTIONAL entry in the
@@ -22,12 +27,19 @@ Datasets linked to a genetic database entry include the following REQUIRED or OP
 `dataset_description.json` keys (a dot in the key name denotes a key in a sub-[object][],
 see the example further below):
 
-{{ MACROS___make_metadata_table(
+<!-- This block generates a table describing subfields within a metadata field.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_subobject_table(
+   ("objects", "metadata", "Genetics"),
    {
-      "Genetics.Dataset": "REQUIRED",
-      "Genetics.Database": "OPTIONAL",
-      "Genetics.Descriptors": "OPTIONAL",
-   }
+      "Dataset": "REQUIRED",
+      "Database": "OPTIONAL",
+      "Descriptors": "OPTIONAL",
+   },
 ) }}
 
 Example:
@@ -85,6 +97,12 @@ Datasets containing the `Genetics` field in `dataset_description.json` or the
 `genetic_id` column in `participants.tsv` MUST include this file with the following
 fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "GeneticLevel": "REQUIRED",

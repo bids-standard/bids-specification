@@ -40,9 +40,13 @@ application by creating logical groups of input files through `suffix` and certa
 representing acquisition parameters (`echo`, `flip`, `inv`, `mt`) or file parts (`part`).
 
 If a qMRI file collection is intended for creating structural quantitative maps (for example, `T1map`),
-files belonging to that collection are stored in the `anat` subfolder.
+files belonging to that collection are stored in the `anat` subdirectory.
 Below is an example file collection for `MP2RAGE`:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-01": {
@@ -60,9 +64,13 @@ Below is an example file collection for `MP2RAGE`:
 
 Commonly, RF fieldmaps (`B1+` and `B1-` maps) are used for the correction of structural quantitative maps.
 As these images do not convey substantial structural information,
-respective file collections of RF fieldmaps are stored in the `fmap` subfolder.
+respective file collections of RF fieldmaps are stored in the `fmap` subdirectory.
 Below is an example file collection for RF transmit field map `TB1EPI`:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-01": {
@@ -84,11 +92,15 @@ Please visit the [file collections appendix](./10-file-collections.md#magnetic-r
 
 ### Quantitative maps are derivatives
 
-Regardless of how they are obtained (pre- or post-generated), qMRI maps are stored in the `derivatives` folder.
+Regardless of how they are obtained (pre- or post-generated), qMRI maps are stored in the `derivatives` directory.
 For example a `T1map` can be generated from an `MP2RAGE` file collection using either options.
 
 If the map is post-generated:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "ds-example": {
@@ -110,6 +122,10 @@ If the map is post-generated:
 
 If the map is pre-generated, for example, by a Siemens scanner:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "ds-example": {
@@ -135,7 +151,8 @@ It is RECOMMENDED to share them along with the vendor outputs, whenever possible
 
 ### Example datasets
 
-You can find example file collections and qMRI maps organized according to BIDS at [https://osf.io/k4bs5/](https://osf.io/k4bs5/).
+You can find example file collections and qMRI maps organized according to BIDS
+in the [BIDS examples](https://github.com/bids-standard/bids-examples#qmri-datasets).
 
 ## Metadata requirements for qMRI data
 
@@ -193,8 +210,12 @@ Explanation of the table:
 As qMRI maps are stored as derivatives, they are subjected to the metadata requirements of
 [derived datasets](../03-modality-agnostic-files.md#derived-dataset-and-pipeline-description).
 
-An example `dataset_description.json` for a qMRI map derivatives folder:
+An example `dataset_description.json` for a qMRI map derivatives directory:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "ds-example": {
@@ -261,12 +282,19 @@ For example, without the information of `MagneticFieldStrength`, white-matter T1
 -   The JSON file accompanying a qMRI map which is obtained by using open-source software is RECOMMENDED
     to include additional metadata fields listed in the following table:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
-      "BasedOn": "RECOMMENDED",
+      "Sources": "RECOMMENDED",
       "EstimationReference": "RECOMMENDED",
       "EstimationAlgorithm": "RECOMMENDED",
       "Units": "RECOMMENDED",
+      "BasedOn": "DEPRECATED",
    }
 ) }}
 
@@ -284,11 +312,11 @@ sub-01_T1map.json:
 
 <<Parameter injected by the software/pipeline>>
 
-"BasedOn":["anat/sub-01_flip-1_VFA.nii.gz",
-           "anat/sub-01_flip-2_VFA.nii.gz",
-           "anat/sub-01_flip-3_VFA.nii.gz",
-           "anat/sub-01_flip-4_VFA.nii.gz",
-           "fmap/sub-01_TB1map.nii.gz"],
+"Sources":["bids:raw:sub-01/anat/sub-01_flip-1_VFA.nii.gz",
+           "bids:raw:sub-01/anat/sub-01_flip-2_VFA.nii.gz",
+           "bids:raw:sub-01/anat/sub-01_flip-3_VFA.nii.gz",
+           "bids:raw:sub-01/anat/sub-01_flip-4_VFA.nii.gz",
+           "bids:raw:sub-01/fmap/sub-01_TB1map.nii.gz"],
 "EstimationPaper":"Deoni et. al.MRM, 2015",
 "EstimationAlgorithm":"Linear",
 "Units": "second",
@@ -348,7 +376,7 @@ required metadata field (second column).
 
 A derived qMRI application becomes available if all the optional metadata fields
 listed for the respective file collection suffix are provided for the data. In addition,
-conditional rules based on the value of a given required metada field can be set
+conditional rules based on the value of a given required metadata field can be set
 for the description of a derived qMRI application. Note that the value of this
 required metadata is fixed across constituent images of a file collection and defined
 in [Method-specific priority levels for qMRI file collections](#method-specific-priority-levels-for-qmri-file-collections).
@@ -360,9 +388,11 @@ metadata field has the value of `SSFP`, and the `SpoilingRFPhaseIncrement` is
 provided as a metadata field, then the dataset becomes eligible for `DESPOT2`
 T2 fitting application.
 
-Please note that optional metadata fields listed in the [deriving the intended qMRI
-application from an ambiguous file collection table](#deriving-the-intended-qmri-application-from-an-ambiguous-file-collection) are included in the optional (third)
-column of [the priority levels table](#method-specific-priority-levels-for-qmri-file-collections) for the consistency of this appendix.
+Please note that optional metadata fields listed in the
+[deriving the intended qMRI application from an ambiguous file collection table](#deriving-the-intended-qmri-application-from-an-ambiguous-file-collection)
+are included in the optional (third) column of
+[the priority levels table](#method-specific-priority-levels-for-qmri-file-collections)
+for the consistency of this appendix.
 
 ## Introducing a new qMRI file collection
 
@@ -413,7 +443,7 @@ raw dataset directory along with the `MP2RAGE` file collection and to be used as
 for quantifying a `T1map`.
 
 If an additional `UNIT1` image is calculated offline, then the output is to be stored in the
-`derivatives` folder with necessary provenance information.
+`derivatives` directory with necessary provenance information.
 
 ##### `NumberShots` metadata field
 
@@ -497,6 +527,10 @@ files:
 To properly identify constituents of this particular method, values of the `echo`
 entity MUST index the images as follows:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-01": {
@@ -531,6 +565,10 @@ and MAY be followed by freeform entries:
 | `_acq-tr1Test`   | `_acq-tr2Test`   | Acquisition `Test`   |
 | `_acq-tr1Retest` | `_acq-tr2Retest` | Acquisition `Retest` |
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-01": {
@@ -559,6 +597,10 @@ values of the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be 
 | `_acq-anatTest`             | `_acq-fampTest`           | Acquisition `Test`   |
 | `_acq-anatRetest`           | `_acq-fampRetest`         | Acquisition `Retest` |
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-01": {
@@ -591,6 +633,10 @@ entries:
 | `_acq-bodyPDw` | `_acq-headPDw` | `PDw` for `MPM`    |
 | `_acq-bodyT1w` | `_acq-headT1w` | `T1w` for `MPM`    |
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "sub-01": {

@@ -1,9 +1,0 @@
----
-name: MatrixCoilMode
-description: |
-  (If used)
-  A method for reducing the number of independent channels by combining in
-  analog the signals from multiple coil elements.
-  There are typically different default modes when using un-accelerated or
-  accelerated (for example, `"GRAPPA"`, `"SENSE"`) imaging.
-type: string

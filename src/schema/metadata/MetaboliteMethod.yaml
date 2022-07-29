@@ -1,5 +1,0 @@
----
-name: MetaboliteMethod
-description: |
-  Method used to measure metabolites.
-type: string

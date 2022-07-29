@@ -1,6 +1,0 @@
----
-name: TB1AFI
-description: |
-  This method ([Yarnykh 2007](https://doi.org/10.1002/mrm.21120))
-  calculates a B1<sup>+</sup> map from two images acquired at interleaved (two)
-  TRs with identical RF pulses using a steady-state sequence.

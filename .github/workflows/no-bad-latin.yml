@@ -2,9 +2,9 @@
 # This action initially adopted from The Turing Way from in October 2020.
 # doi:10.5281/zenodo.3233853
 # https://github.com/alan-turing-institute/the-turing-way/blob/af98c94/.github/workflows/no-bad-latin.yml
-# 
+#
 # This action triggers the script tools/no-bad-latin.py to and will throw an error if any latin expression (like e.g. or i.e.) is detected:
-# 
+#
 #  This action will be triggered
 # -   on a push to master
 # -   on a PR to the master branch and will only check files that were modified in src
@@ -31,10 +31,10 @@ jobs:
     # This section collects together the steps involved in running the test
     steps:
     # Checkout the repository. Relies on another GH-Action.
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     # Set up the Python version. Relies on another GH-Action.
     - name: Setup Python 3.7
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v3
       with:
         python-version: 3.7
     # Install Python dependencies

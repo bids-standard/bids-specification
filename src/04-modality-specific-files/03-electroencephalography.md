@@ -6,36 +6,34 @@ Please see [Citing BIDS](../01-introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-The following example EEG datasets have been formatted using this specification
+Several [example EEG datasets](https://github.com/bids-standard/bids-examples#eeg-datasets)
+have been formatted using this specification
 and can be used for practical guidance when curating a new dataset.
-
--   Single session per subject: [`eeg_matchingpennies`](https://doi.org/10.17605/OSF.IO/CJ2DR)
--   Multiple sessions per subject: [`eeg_rishikesh`](https://doi.org/10.5281/zenodo.1490922)
--   Combined with fMRI: [`eeg_rest_fmri`](https://osf.io/94c5t/files/)
-
-Further datasets are available from the [BIDS examples repository](https://github.com/bids-standard/bids-examples).
 
 ## EEG recording data
 
-{{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["eeg", "events"]) }}
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filename_template(
+   datatypes=["eeg"],
+   suffixes=["eeg", "events", "physio", "stim"])
+}}
 
 The EEG community uses a variety of formats for storing raw data, and there is
 no single standard that all researchers agree on. For BIDS, EEG data MUST be
 stored in one of the following formats:
 
--   [European data format](https://www.edfplus.info/)
-    (including [`edf+`](https://www.edfplus.info/specs/edfplus.html);
-    each recording consisting of a `.edf` file)
-
--   [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5)
-    (Each recording consisting of a  `.vhdr`, `.vmrk`, `.eeg` file triplet)
-
--   The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab)
-    (Each recording consisting of a `.set` file with an optional `.fdt` file)
-
--   [Biosemi](https://www.biosemi.com/) data format
-    (including [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html);
-    each recording consisting of a `.bdf` file)
+| **Format**                                                                                   | **Extension(s)**         | **Description**                                                                                                                                                                                      |
+| -------------------------------------------------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [European data format](https://www.edfplus.info/)                                            | `.edf`                   | Each recording consists of a single `.edf` file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used.                           |
+| [BrainVision Core Data Format](https://www.brainproducts.com/productdetails.php?id=21&tab=5) | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                                                 |
+| [EEGLAB](https://sccn.ucsd.edu/eeglab)                                                       | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab). Each recording consists of a `.set` file with an optional `.fdt` file.                                                 |
+| [Biosemi](https://www.biosemi.com/)                                                          | `.bdf`                   | Each recording consists of a single `.bdf` file. [`bdf+`](https://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html) files are permitted. The capital `.BDF` extension MUST NOT be used. |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
 format. It is furthermore discouraged to use the other accepted formats over
@@ -88,6 +86,12 @@ be specified.
 
 Generic fields MUST be present:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`."),
@@ -98,6 +102,12 @@ SHOULD be present: For consistency between studies and institutions, we
 encourage users to extract the values of these fields from the actual raw data.
 Whenever possible, please avoid using ad hoc wording.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "InstitutionName": "RECOMMENDED",
@@ -116,6 +126,12 @@ Whenever possible, please avoid using ad hoc wording.
 
 Specific EEG fields MUST be present:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "EEGReference": "REQUIRED",
@@ -127,6 +143,12 @@ Specific EEG fields MUST be present:
 
 SHOULD be present:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "CapManufacturer": "RECOMMENDED",
@@ -194,17 +216,22 @@ Date time information MUST be expressed as indicated in [Units](../02-common-pri
 
 ## Channels description (`*_channels.tsv`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["channels"]) }}
 
-This file is RECOMMENDED as it provides easily searchable information across
-BIDS datasets for for example, general curation, response to queries or batch
-analysis.
-To avoid confusion, the channels SHOULD be listed in the order they
-appear in the EEG data file.
-Any number of additional columns may be added to provide additional information
-about the channels.
+This file is RECOMMENDED as it provides easily searchable information across BIDS datasets.
+For example for general curation, response to queries, or for batch analysis.
+To avoid confusion, the channels SHOULD be listed in the order they appear in the EEG data file.
+Any number of additional columns MAY be added to provide additional information about the channels.
 
-Note that electrode positions SHOULD NOT be added to this file, but to [`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-_electrodestsv).
+Note that electrode positions SHOULD NOT be added to this file, but to
+[`*_electrodes.tsv`](./03-electroencephalography.md#electrodes-description-_electrodestsv).
 Furthermore, the entries in `*_electrodes.tsv` and `*_channels.tsv` do not have to match exactly,
 as for example in the case of recording a single `EOG` channel from a bipolar referencing scheme
 of two electrodes, or a data channel originating from an auxiliary, non-electrode device.
@@ -212,28 +239,44 @@ That is, in most cases `*_electrodes.tsv` will have more entries than `*_channel
 See the examples for `*_channels.tsv` below, and for `*_electrodes.tsv` in
 ["Electrodes description"](./03-electroencephalography.md#electrodes-description-_electrodestsv).
 
-The columns of the Channels description table stored in `*_channels.tsv` are:
+The columns of the channels description table stored in `*_channels.tsv` are:
 
 MUST be present **in this specific order**:
 
-| **Column name** | **Requirement level** | **Description**                                                                                                                                                               |
-| --------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name            | REQUIRED              | Channel name (for example, FC1, Cz)                                                                                                                                           |
-| type            | REQUIRED              | Type of channel; MUST use the channel types listed below. Note that the type MUST be in upper-case.                                                                           |
-| units           | REQUIRED              | Physical unit of the value represented in this channel, for example, `V` for Volt, or `fT/cm` for femto Tesla per centimeter (see [Units](../02-common-principles.md#units)). |
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table(
+   {
+      "name__channels": "REQUIRED",
+      "type__eeg_channels": "REQUIRED",
+      "units": "REQUIRED",
+   }
+) }}
 
 SHOULD be present:
 
-| **Column name**    | **Requirement level** | **Description**                                                                                                                                                                                                                                                 |
-| ------------------ | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| description        | OPTIONAL              | Free-form text description of the channel, or other information of interest. See examples below.                                                                                                                                                                |
-| sampling_frequency | OPTIONAL              | Sampling rate of the channel in Hz.                                                                                                                                                                                                                             |
-| reference          | OPTIONAL              | Name of the reference electrode(s) (not needed when it is common to all channels, in that case it can be specified in `*_eeg.json` as `EEGReference`).                                                                                                          |
-| low_cutoff         | OPTIONAL              | Frequencies used for the high-pass filter applied to the channel in Hz. If no high-pass filter applied, use `n/a`.                                                                                                                                              |
-| high_cutoff        | OPTIONAL              | Frequencies used for the low-pass filter applied to the channel in Hz. If no low-pass filter applied, use `n/a`. Note that hardware anti-aliasing in A/D conversion of all EEG electronics applies a low-pass filter; specify its frequency here if applicable. |
-| notch              | OPTIONAL              | Frequencies used for the notch filter applied to the channel, in Hz. If no notch filter applied, use `n/a`.                                                                                                                                                     |
-| status             | OPTIONAL              | Data quality observed on the channel (`good`, `bad`). A channel is considered `bad` if its data quality is compromised by excessive noise. Description of noise type SHOULD be provided in `status_description`.                                                |
-| status_description | OPTIONAL              | Free-form text description of noise or artifact affecting data quality on the channel. It is meant to explain why the channel was declared bad in `status`.                                                                                                     |
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table(
+   {
+      "description": "OPTIONAL",
+      "sampling_frequency": "OPTIONAL",
+      "reference__eeg": "OPTIONAL",
+      "low_cutoff": "OPTIONAL",
+      "high_cutoff": "OPTIONAL",
+      "notch": "OPTIONAL",
+      "status": "OPTIONAL",
+      "status_description": "OPTIONAL",
+   }
+) }}
 
 Restricted keyword list for field `type` in alphabetic order (shared with the
 MEG and iEEG modality; however, only the types that are common in EEG data are listed here).
@@ -277,6 +320,13 @@ UADC001  MISC  n/a    envelope of audio signal        n/a           good    n/a
 
 ## Electrodes description (`*_electrodes.tsv`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["electrodes"]) }}
 
 File that gives the location of EEG electrodes. Note that coordinates are
@@ -288,20 +338,36 @@ file MUST be specified as well**. The order of the required columns in the
 
 MUST be present **in this specific order**:
 
-| **Column name** | **Requirement level** | **Description**                     |
-| --------------- | --------------------- | ----------------------------------- |
-| name            | REQUIRED              | Name of the electrode.              |
-| x               | REQUIRED              | Recorded position along the x-axis. |
-| y               | REQUIRED              | Recorded position along the y-axis. |
-| z               | REQUIRED              | Recorded position along the z-axis. |
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table(
+   {
+      "name__electrodes": "REQUIRED",
+      "x": "REQUIRED",
+      "y": "REQUIRED",
+      "z": "REQUIRED",
+   }
+) }}
 
 SHOULD be present:
 
-| **Column name** | **Requirement level** | **Description**                                                        |
-| --------------- | --------------------- | ---------------------------------------------------------------------- |
-| type            | RECOMMENDED           | Type of the electrode (for example, cup, ring, clip-on, wire, needle). |
-| material        | RECOMMENDED           | Material of the electrode  (for example, Tin, Ag/AgCl, Gold).          |
-| impedance       | RECOMMENDED           | Impedance of the electrode, units MUST be in `kOhm`.                   |
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/objects/columns.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table(
+   {
+      "type__electrodes": "RECOMMENDED",
+      "material": "RECOMMENDED",
+      "impedance": "RECOMMENDED",
+   }
+) }}
 
 ### Example `electrodes.tsv`
 
@@ -318,13 +384,21 @@ Cz     0.0000   0.0714   0.0699   cup      Ag/AgCl
 REF    -0.0742  -0.0200  -0.0100  cup      Ag/AgCl
 ```
 
-The [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair can be used to indicate acquisition of the same data. For
+The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity can be used to
+indicate acquisition of the same data. For
 example, this could be the recording of electrode positions with a different
 electrode position recording device, or repeated digitization before and after
 the recording.
 
 ## Coordinate System JSON (`*_coordsystem.json`)
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["coordsystem"]) }}
 
 A `*_coordsystem.json` file is used to specify the fiducials, the location of
@@ -363,9 +437,15 @@ head.
 
 General fields:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
-      "IntendedFor": (
+      "IntendedFor__ds_relative": (
          "OPTIONAL",
          "This identifies the MRI or CT scan associated with the electrodes, "
          "landmarks, and fiducials.",
@@ -375,6 +455,12 @@ General fields:
 
 Fields relating to the EEG electrode positions:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "EEGCoordinateSystem": "REQUIRED",
@@ -385,6 +471,12 @@ Fields relating to the EEG electrode positions:
 
 Fields relating to the position of fiducials measured during an EEG session/run:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "FiducialsDescription": "OPTIONAL",
@@ -397,6 +489,12 @@ Fields relating to the position of fiducials measured during an EEG session/run:
 
 Fields relating to the position of anatomical landmark measured during an EEG session/run:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "AnatomicalLandmarkCoordinates": "RECOMMENDED",
@@ -421,7 +519,7 @@ Example:
 
 ```JSON
 {
-  "IntendedFor":"/sub-01/ses-01/anat/sub-01_T1w.nii",
+  "IntendedFor":"bids::sub-01/ses-01/anat/sub-01_T1w.nii",
   "EEGCoordinateSystem":"Other",
   "EEGCoordinateUnits":"mm",
   "EEGCoordinateSystemDescription":"RAS orientation: Origin halfway between LPA and RPA, positive x-axis towards RPA, positive y-axis orthogonal to x-axis through Nasion,  z-axis orthogonal to xy-plane, pointing in superior direction.",
@@ -433,6 +531,13 @@ Example:
 
 Photos of the anatomical landmarks and/or fiducials.
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the folder
+  src/schema/rules/datatypes
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(datatypes=["eeg"], suffixes=["photo"]) }}
 
 Photos of the anatomical landmarks and/or fiducials are OPTIONAL.
@@ -440,7 +545,8 @@ Please note that the photos may need to be cropped or blurred to conceal
 identifying features prior to sharing, depending on the terms of the consent
 given by the participant.
 
-The [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair can be used to indicate acquisition of different photos of
+The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity can be used to
+indicate acquisition of different photos of
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA).
 
@@ -450,5 +556,3 @@ Picture of a NAS fiducial placed between the eyebrows, rather than at the
 actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
-
-<!-- Link Definitions -->
