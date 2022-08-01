@@ -21,6 +21,7 @@ BIDS_SELECTION = [
     "micr_SPIM",  # micr, SPIM, .ome.tif
     "pet003",  # pet, anat
     "qmri_tb1tfl",  # fmap, _TB1TFL
+    "qmri_vfa", # derivatives
 ]
 # Errors are described in the README of the respective datasets:
 # https://github.com/bids-standard/bids-error-examples
