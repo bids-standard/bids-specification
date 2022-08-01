@@ -229,7 +229,9 @@ def test_load_all():
     # schema_path = "/usr/share/bids-schema/1.7.0/"
     schema_path = os.path.join(
         os.path.abspath(os.path.dirname(__file__)),
-        os.pardir, "data", "schema",
+        os.pardir,
+        "data",
+        "schema",
     )
     schema_all, _ = load_all(schema_path)
 
@@ -353,11 +355,14 @@ def test_validate_bids(bids_examples, tmp_path):
     # Is the schema version recorded correctly?
     schema_path = os.path.join(
         os.path.abspath(os.path.dirname(__file__)),
-        os.pardir, "data", "schema",
+        os.pardir,
+        "data",
+        "schema",
     )
     with open(os.path.join(schema_path, "BIDS_VERSION")) as f:
         expected_version = f.readline().rstrip()
     assert result["bids_version"] == expected_version
+
 
 @pytest.mark.skipif(
     os.environ.get("SCHEMACODE_TESTS_NONETWORK") is not None,

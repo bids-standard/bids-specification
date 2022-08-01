@@ -10,7 +10,9 @@ def test__get_bids_version(tmp_path):
     # Is the version being read in correctly?
     schema_path = os.path.join(
         os.path.abspath(os.path.dirname(__file__)),
-        os.pardir, "data", "schema",
+        os.pardir,
+        "data",
+        "schema",
     )
     bids_version = schema._get_bids_version(schema_path)
     assert bids_version == __bids_version__
