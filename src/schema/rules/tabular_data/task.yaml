@@ -13,3 +13,6 @@ TaskEvents:
         HED: optional
         stim_file: optional
     additional_columns: allowed
+    initial_columns:
+    - onset
+    - duration
