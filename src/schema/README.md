@@ -212,6 +212,8 @@ There are additional fields which may define rules that apply to a given type.
 
        -   `uri` (uniform resource identifiers),
 
+       -   `bids_uri` (BIDS URIs),
+
        -   `date` (date-times),
 
        -   `unit` (standard units),
@@ -498,6 +500,18 @@ In cases where there is a data file and a metadata file, the `.json` extension f
 
 This file contains a dictionary in which each key is a directory and the value is a dictionary with one key: `required`.
 The `required` entry contains a boolean value to indicate if that directory is required for BIDS datasets or not.
+
+## Using links from a schema entry to places within the specification
+
+Sometimes a particular metadata entry will refer to other concepts within the
+BIDS specification using a link.
+Currently, in order for these links to get properly rendered with the MkDocs structure,
+they must be relative to the `src` directory of the bids-specification repository and
+ need to be prefixed with `SPEC_ROOT`. Furthermore, they must point to the Markdown document;
+that is, ending with `.md`, **not** `.html`.
+
+For more information please see the following pull request and linked discussions:
+[#1096](https://github.com/bids-standard/bids-specification/pull/1096)
 
 ## Version of the schema
 

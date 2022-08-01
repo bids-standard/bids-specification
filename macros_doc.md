@@ -366,7 +366,7 @@ Having one centralized place where we put all our definitions can be useful when
 we want other tools (the BIDS validator, bids-matlab...) to use the content of
 the specification.
 
-This is where the BIDS schema (those .yml files we talked about above) comes in
+This is where the BIDS schema (those `.yml` files we talked about above) comes in
 as it is meant to be a machine readable version of the specification.
 
 And so to avoid having to maintain the SAME definition in both the schema and
@@ -375,8 +375,8 @@ schema.
 
 ## Links and references
 
-- [documentation for mkdocs](https://www.mkdocs.org) and how to install it
+- [documentation for MkDocs](https://www.mkdocs.org) and how to install it
   locally,
-- [documentation for the material theme](https://squidfunk.github.io/mkdocs-material/)
+- [documentation for the Material theme](https://squidfunk.github.io/mkdocs-material/)
   we use.
 - [documentation for the `macros` plugin](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)

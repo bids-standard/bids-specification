@@ -37,8 +37,6 @@ def _get_paths(
     * Figure out how to return paths from BIDS root.
     * Deduplicate paths (if input dirs are subsets of other input dirs), might best be done at the
         very end.
-    * Specifying file paths currently breaks because they are truncated based on the bids_paths
-        input.
     """
     exclude_subdirs = [
         rf"{os.sep}.dandi",
@@ -55,12 +53,19 @@ def _get_paths(
     ]
 
     path_list = []
+    bids_root_found = False
     for bids_path in bids_paths:
         bids_path = os.path.abspath(os.path.expanduser(bids_path))
         if os.path.isfile(bids_path):
             path_list.append(bids_path)
             continue
         for root, dirs, file_names in os.walk(bids_path, topdown=True):
+            if "dataset_description.json" in file_names:
+                if bids_root_found:
+                    dirs[:] = []
+                    file_names[:] = []
+                else:
+                    bids_root_found = True
             if any(root.endswith(i) for i in pseudofile_suffixes):
                 # Add the directory name to the validation paths list.
                 path_list.append(f"{root}/")
@@ -163,7 +168,7 @@ def _add_subdirs(regex_string, variant, datatype, entity_definitions, formats, m
     for dir_entity in DIR_ENTITIES:
         if dir_entity in variant["entities"].keys():
             format_selection = formats[entity_definitions[dir_entity]["format"]]
-            variable_field = f"({format_selection['pattern']})"
+            variable_field = format_selection["pattern"]
             shorthand = entity_definitions[dir_entity]["name"]
             if variant["entities"][dir_entity] == "required":
                 regex_subdir = f"{shorthand}-(?P<{dir_entity}>{variable_field})/"
@@ -199,7 +204,7 @@ def load_top_level(
     Parameters
     ----------
     my_schema : dict
-        A nested dictionary, as returned by `schemacode.schema.load_schema()`.
+        A nested dictionary, as returned by `bidsschematools.schema.load_schema()`.
 
     Returns
     -------
@@ -236,7 +241,7 @@ def load_entities(
     Parameters
     ----------
     my_schema : dict
-        A nested dictionary, as returned by `schemacode.schema.load_schema()`.
+        A nested dictionary, as returned by `bidsschematools.schema.load_schema()`.
 
     Notes
     -----
@@ -289,12 +294,10 @@ def load_entities(
                         if "enum" in entity_definitions[entity].keys():
                             # Entity key-value pattern with specific allowed values
                             # tested, works!
-                            variable_field = "({})".format(
-                                "|".join(entity_definitions[entity]["enum"]),
-                            )
+                            variable_field = "|".join(entity_definitions[entity]["enum"])
                         else:
                             format_selection = formats[entity_definitions[entity]["format"]]
-                            variable_field = f"({format_selection['pattern']})"
+                            variable_field = format_selection["pattern"]
                         regex_entities = _add_entity(
                             regex_entities,
                             entity,
@@ -653,7 +656,7 @@ def select_schema_dir(
         raise ValueError(
             f"The expected schema directory {schema_dir} does not exist on the system. "
             "Please ensure the file exists or manually specify a schema version for "
-            "which the schemacode files are available on your system."
+            "which the bidsschematools files are available on your system."
         )
 
 
@@ -689,7 +692,7 @@ def _get_directory_suffixes(my_schema):
     Parameters
     ----------
     my_schema : dict
-        Nested directory as produced by `schemacode.schema.load_schema()`.
+        Nested directory as produced by `bidsschematools.schema.load_schema()`.
 
     Returns
     -------
@@ -745,8 +748,8 @@ def validate_bids(
         If string, the string will be used as the output path.
         If the variable evaluates as False, no log will be written.
     schema_min_version : str, optional
-        Minimal working schema version, used by the `schemacode.select_schema_dir()` function only
-        if no schema version is found or a lower schema version is specified by the dataset.
+        Minimal working schema version, used by the `bidsschematools.select_schema_dir()` function
+        only if no schema version is found or a lower schema version is specified by the dataset.
 
     Returns
     -------
@@ -758,7 +761,7 @@ def validate_bids(
 
     Examples
     --------
-    >>> from schemacode import validator
+    >>> from bidsschematools import validator
     >>> bids_paths = '~/.data2/datalad/000026/rawdata'
     >>> schema_version='{module_path}/data/schema/'
     >>> validator.validate_bids(bids_paths, schema_version=schema_version, debug=False)"

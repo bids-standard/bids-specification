@@ -1,11 +1,11 @@
-"""Tests for the schemacode package."""
+"""Tests for the bidsschematools package."""
 import pytest
 
-from schemacode import schema
+from bidsschematools import schema
 
 
 def test_load_schema(schema_dir):
-    """Smoke test for schemacode.schema.load_schema."""
+    """Smoke test for bidsschematools.schema.load_schema."""
     # Pointing to a nonexistent directory should raise a ValueError
     bad_path = "/path/to/nowhere"
     with pytest.raises(ValueError):
