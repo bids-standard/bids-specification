@@ -223,6 +223,124 @@ def test__add_suffixes():
     assert _regex_string == regex_string
 
 
+def test__inheritance_expansion():
+    from bidsschematools.validator import _inheritance_expansion
+
+    # test .json
+    base_entry = (
+        r".*?/sub-(?P<subject>([0-9a-zA-Z]+))/"
+        r"(|ses-(?P<session>([0-9a-zA-Z]+))/)func/sub-(?P=subject)"
+        r"(|_ses-(?P=session))_task-(?P<task>([0-9a-zA-Z]+))"
+        r"(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
+        r"(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
+        r"(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
+        r"(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
+        r"(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
+        r"(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
+        r"_phase(\.nii\.gz|\.nii|\.json)$"
+    )
+    expected_entries = [
+        ".*?/sub-(?P<subject>([0-9a-zA-Z]+))/"
+        "(|ses-(?P<session>([0-9a-zA-Z]+))/)"
+        "sub-(?P=subject)(|_ses-(?P=session))"
+        "_task-(?P<task>([0-9a-zA-Z]+))"
+        "(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
+        "(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
+        "(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
+        "(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
+        "(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
+        "(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
+        "_phase(\\.nii\\.gz|\\.nii|\\.json)$",
+        ".*?/task-(?P<task>([0-9a-zA-Z]+))"
+        "(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
+        "(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
+        "(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
+        "(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
+        "(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
+        "(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
+        "_phase(\\.nii\\.gz|\\.nii|\\.json)$",
+    ]
+
+    inheritance_expanded_entries = _inheritance_expansion(base_entry, datatype="func")
+    assert inheritance_expanded_entries == expected_entries
+
+    # test .tsv
+    base_entry = (
+        r".*?/sub-(?P<subject>([0-9a-zA-Z]+))/"
+        r"(|ses-(?P<session>([0-9a-zA-Z]+))/)func/sub-(?P=subject)"
+        r"(|_ses-(?P=session))_task-(?P<task>([0-9a-zA-Z]+))"
+        r"(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
+        r"(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
+        r"(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
+        r"(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
+        r"(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
+        r"(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
+        r"_phase(\.nii\.gz|\.nii|\.tsv)$"
+    )
+    expected_entries = [
+        ".*?/sub-(?P<subject>([0-9a-zA-Z]+))/"
+        "(|ses-(?P<session>([0-9a-zA-Z]+))/)"
+        "sub-(?P=subject)(|_ses-(?P=session))"
+        "_task-(?P<task>([0-9a-zA-Z]+))"
+        "(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
+        "(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
+        "(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
+        "(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
+        "(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
+        "(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
+        "_phase(\\.nii\\.gz|\\.nii|\\.tsv)$",
+        ".*?/task-(?P<task>([0-9a-zA-Z]+))"
+        "(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
+        "(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
+        "(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
+        "(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
+        "(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
+        "(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
+        "_phase(\\.nii\\.gz|\\.nii|\\.tsv)$",
+    ]
+
+    inheritance_expanded_entries = _inheritance_expansion(base_entry, datatype="func")
+    assert inheritance_expanded_entries == expected_entries
+
+    # test .bvec
+    base_entry = (
+        r".*?/sub-(?P<subject>([0-9a-zA-Z]+))/"
+        r"(|ses-(?P<session>([0-9a-zA-Z]+))/)func/sub-(?P=subject)"
+        r"(|_ses-(?P=session))_task-(?P<task>([0-9a-zA-Z]+))"
+        r"(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
+        r"(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
+        r"(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
+        r"(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
+        r"(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
+        r"(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
+        r"_phase(\.nii\.gz|\.nii|\.bvec)$"
+    )
+    expected_entries = [
+        ".*?/sub-(?P<subject>([0-9a-zA-Z]+))/"
+        "(|ses-(?P<session>([0-9a-zA-Z]+))/)"
+        "sub-(?P=subject)(|_ses-(?P=session))"
+        "_task-(?P<task>([0-9a-zA-Z]+))"
+        "(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
+        "(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
+        "(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
+        "(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
+        "(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
+        "(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
+        "_phase(\\.nii\\.gz|\\.nii|\\.bvec)$",
+        ".*?/task-(?P<task>([0-9a-zA-Z]+))"
+        "(|_acq-(?P<acquisition>([0-9a-zA-Z]+)))"
+        "(|_ce-(?P<ceagent>([0-9a-zA-Z]+)))"
+        "(|_rec-(?P<reconstruction>([0-9a-zA-Z]+)))"
+        "(|_dir-(?P<direction>([0-9a-zA-Z]+)))"
+        "(|_run-(?P<run>([0-9]*[1-9]+[0-9]*)))"
+        "(|_echo-(?P<echo>([0-9]*[1-9]+[0-9]*)))"
+        "_phase(\\.nii\\.gz|\\.nii|\\.bvec)$",
+    ]
+
+    inheritance_expanded_entries = _inheritance_expansion(base_entry, datatype="func")
+    assert inheritance_expanded_entries == expected_entries
+
+
 def test_load_all():
     from bidsschematools.validator import load_all
 
@@ -313,7 +431,6 @@ def test_bids_datasets(bids_examples, tmp_path, dataset):
         target,
         schema_version=schema_path,
         report_path=True,
-        debug=True,
     )
     # Have all files been validated?
     assert len(result["path_tracking"]) == 0
@@ -335,8 +452,8 @@ def test_validate_bids(bids_examples, tmp_path):
         for f in files:
             selected_path = os.path.join(root, f)
             selected_paths.append(selected_path)
-    # Do version fallback and terminal debug output work?
-    result = validate_bids(selected_paths, schema_version=None, debug=True)
+    # Do version fallback work?
+    result = validate_bids(selected_paths, schema_version=None)
     # Does default log path specification work?
     result = validate_bids(selected_paths, schema_version=schema_path, report_path=True)
 
@@ -344,7 +461,6 @@ def test_validate_bids(bids_examples, tmp_path):
     result = validate_bids(
         selected_paths,
         schema_version=schema_path,
-        debug=True,
         report_path=os.path.join(tmp_path, "test_bids.log"),
     )
     # Have all files been validated?
@@ -392,7 +508,6 @@ def test_error_datasets(bids_error_examples, dataset):
         target,
         schema_version=schema_path,
         report_path=True,
-        debug=True,
     )
     # Are there non-validated files?
     assert len(result["path_tracking"]) != 0
