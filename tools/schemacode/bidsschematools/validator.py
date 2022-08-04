@@ -75,7 +75,7 @@ def _get_paths(
                 dirs[:] = []
                 file_names[:] = []
             # will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
-            if os.path.basename(root) in exclude_subdirs
+            if os.path.basename(root) in exclude_subdirs:
                 continue
             for file_name in file_names:
                 if file_name in exclude_files:
@@ -526,12 +526,13 @@ def write_report(
 
 def _find_dataset_description(my_path):
     candidate = os.path.join(my_path, "dataset_description.json")
-    if my_path == "/":
+    # Windows support... otherwise we could do `if my_path == "/"`.
+    if my_path == "/" or not any(i in my_path for i in ["/", "\\"]):
         return None
     if os.path.isfile(candidate):
         return candidate
     else:
-        level_up = os.path.dirname(my_path.rstrip("/"))
+        level_up = os.path.dirname(my_path.rstrip("/\\"))
         return _find_dataset_description(level_up)
 
 
@@ -776,9 +777,8 @@ def _get_directory_suffixes(my_schema):
     pseudofile_suffixes = []
     for i in my_schema["objects"]["extensions"].values():
         i_value = i["value"]
-        if i_value.endswith("/"):
-            if i_value != "/":
-                pseudofile_suffixes.append(i_value[:-1])
+        if i_value.endswith("/") and i_value != "/":
+            pseudofile_suffixes.append(i_value[:-1])
     return pseudofile_suffixes
 
 
