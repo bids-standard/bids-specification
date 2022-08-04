@@ -319,6 +319,8 @@ sequences using different contrast enhanced images. The label is the name of the
 contrast agent. The key `ContrastBolusIngredient` MAY be also be added in the
 JSON file, with the same label.
 
+The OPTIONAL [`task-<label>`](../99-appendices/09-entities.md#task) entity can be used in order to allow tasks during structural MR acquisitions, e.g. pre-described motion paradigms such as nodding, to be described. Note, just as for functional imaging each task has a unique label that MUST only consist of letters and/or numbers (other characters, including spaces and underscores, are not allowed) . Those labels MUST be consistent across subjects and sessions.
+
 Some meta information about the acquisition MAY be provided in an additional
 JSON file. See [Common metadata fields](#common-metadata-fields) for a
 list of terms and their definitions. There are also some OPTIONAL JSON

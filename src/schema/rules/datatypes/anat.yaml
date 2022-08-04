@@ -27,6 +27,7 @@ nonparametric:
     ceagent: optional
     reconstruction: optional
     part: optional
+    task: optional
 
 parametric:
   suffixes:
@@ -60,6 +61,7 @@ parametric:
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    task: optional
 
 defacemask:
   suffixes:
@@ -78,6 +80,7 @@ defacemask:
     ceagent: optional
     reconstruction: optional
     modality: optional
+    task: optional
 
 multiecho:
   suffixes:
@@ -98,6 +101,7 @@ multiecho:
     reconstruction: optional
     echo: required
     part: optional
+    task: optional
 
 multiflip:
   suffixes:
@@ -118,6 +122,7 @@ multiflip:
     echo: optional
     flip: required
     part: optional
+    task: optional
 
 multiinversion:
   suffixes:
@@ -137,6 +142,7 @@ multiinversion:
     reconstruction: optional
     inversion: required
     part: optional
+    task: optional
 
 mp2rage:
   suffixes:
@@ -158,6 +164,7 @@ mp2rage:
     flip: optional
     inversion: required
     part: optional
+    task: optional
 
 vfamt:
   suffixes:
@@ -180,6 +187,7 @@ vfamt:
     flip: required
     mtransfer: required
     part: optional
+    task: optional
 
 mtr:
   suffixes:
@@ -199,3 +207,4 @@ mtr:
     reconstruction: optional
     mtransfer: required
     part: optional
+    task: optional
