@@ -1,6 +1,7 @@
 import datetime
 import json
 import os
+from pathlib import Path
 import re
 from copy import deepcopy
 from functools import lru_cache
@@ -57,7 +58,7 @@ def _get_paths(
     for bids_path in bids_paths:
         bids_path = os.path.abspath(os.path.expanduser(bids_path))
         if os.path.isfile(bids_path):
-            path_list.append(bids_path)
+            path_list.append(Path(bids_path).as_posix())
             continue
         for root, dirs, file_names in os.walk(bids_path, topdown=True):
             if "dataset_description.json" in file_names:
@@ -67,25 +68,21 @@ def _get_paths(
                     file_names[:] = []
                 else:
                     bids_root_found = True
-            if any(root.endswith(i) for i in pseudofile_suffixes):
+            if root.endswith(tuple(pseudofile_suffixes)):
                 # Add the directory name to the validation paths list.
-                path_list.append(f"{root}/")
+                path_list.append(Path(root).as_posix() + "/")
+                # Do not index the contents of the directory.
                 dirs[:] = []
                 file_names[:] = []
             # will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
-            if any(exclude_subdir in root for exclude_subdir in exclude_subdirs):
+            if os.path.basename(root) in exclude_subdirs
                 continue
             for file_name in file_names:
                 if file_name in exclude_files:
                     continue
                 file_path = os.path.join(root, file_name)
                 # This will need to be replaced with bids root finding.
-                path_list.append(file_path)
-
-    # Standardize Windows paths
-    if "\\" in path_list[0]:
-        for ix, i in enumerate(path_list):
-            path_list[ix] = i.replace("\\", "/")
+                path_list.append(Path(file_path).as_posix())
 
     return path_list
 
