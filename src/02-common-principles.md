@@ -184,6 +184,11 @@ The solutions will change from case to case and publicly available datasets will
 be reviewed to include common data types in the future releases of the BIDS
 specification.
 
+It is RECOMMENDED that non-compulsory metadata fields (like `notch` in `channels.tsv` files)
+and/or files (like `events.tsv`) are fully omitted *when they are unavailable or unapplicable*,
+instead of specified with an `n/a` value, or included as an empty file
+(for example an empty `events.tsv` file with only the headers included).
+
 ## Filesystem structure
 
 Data for each subject are placed in sub-directories named "`sub-<label>`",
