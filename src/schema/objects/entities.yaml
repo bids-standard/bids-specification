@@ -349,10 +349,13 @@ task:
   name: task
   display_name: Task
   description: |
-    Each task has a unique label that MUST only consist of letters and/or
-    numbers (other characters, including spaces and underscores, are not
-    allowed).
-    Those labels MUST be consistent across subjects and sessions.
+    A set of structured activities performed by the participant.
+    Tasks are usually accompanied by stimuli and responses, and can greatly vary in complexity.
+    For the purpose of this specification we consider the so-called "resting state" a task.
+    In the context of brain scanning, a task is always tied to one data acquisition.
+    Therefore, even if during one acquisition the subject performed multiple conceptually different behaviors
+    (with different sets of instructions) they will be considered one (combined) task.
+    The `task-<label>` MUST be consistent across subjects and sessions.
   type: string
   format: label
 tracer:
