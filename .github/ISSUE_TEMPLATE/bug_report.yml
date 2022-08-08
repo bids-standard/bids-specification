@@ -23,12 +23,10 @@ body:
   - type: textarea
     attributes:
       label: Describe your problem in detail.
-      render: markdown
 
   - type: textarea
     attributes:
       label: Describe what you expected.
-      render: markdown
 
   - type: textarea
     attributes:
