@@ -11,7 +11,7 @@ body:
     attributes:
       value: |
         - Have you checked our [contributing guide](https://github.com/bids-standard/bids-specification/blob/master/CONTRIBUTING.md)?
-          It's a helpful resource:
+          It's a helpful resource.
 
         - Is your idea backwards compatible?
           If not, please open an issue in the [bids-2-devel repository](https://github.com/bids-standard/bids-2-devel) instead.
