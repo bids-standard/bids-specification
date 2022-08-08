@@ -25,3 +25,6 @@ pet:
 micr:
   datatypes:
   - micr
+motion:
+  datatypes:
+  - motion

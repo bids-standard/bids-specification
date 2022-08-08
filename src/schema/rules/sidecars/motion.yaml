@@ -1,0 +1,43 @@
+---
+MotionBase:
+    selectors:
+    - datatype == "motion"
+    - suffix == "motion"
+    fields:
+        TaskName: required
+        TaskDescription: recommended
+        Instructions: recommended
+        CogAtlasID: recommended
+        CogPOID: recommended
+        InstitutionName: recommended
+        InstitutionAddress: recommended
+        InstitutionalDepartmentName: recommended
+        EpochLength: recommended
+        RecordingType: recommended
+        SubjectArtefactDescription: recommended
+        MotionChannelCount: recommended
+        TrackingSystemCount: recommended
+        TrackingSystemName: required
+        DeviceSerialNumber: recommended
+        SoftwareVersions: recommended
+        Manufacturer: optional
+        ManufacturersModelName: optional
+        TrackedPointsCount: recommended
+        RecordingDuration: recommended
+        SamplingFrequency: required
+        SamplingFrequencyEffective: required
+        SoftwareFilters: recommended
+        StartTime: recommended
+        ACCChannelCount: recommended
+        ANGACCChannelCount: recommended
+        ANGVELChannelCount: recommended
+        JNTANGChannelCount: recommended
+        MAGNChannelCount: recommended
+        MISChannelCount: recommended
+        ORNTChannelCount: recommended
+        POSChannelCount: recommended
+        VELChannelCount: recommended
+        MissingValues: recommended
+        RotationOrder: recommended
+        RotationRule: recommended
+        SpatialAxes: recommended

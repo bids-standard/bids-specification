@@ -1,0 +1,17 @@
+---
+MotionChannels:
+    selectors:
+    - modality == "motion"
+    - suffix == "channels"
+    columns:
+        component: required
+        name: required
+        tracked_point: required
+        type: required
+        units: required
+        placement: recommended
+        description: optional
+        sampling_frequency: optional
+        status: optional
+        status_description: optional
+    additional_columns: allowed

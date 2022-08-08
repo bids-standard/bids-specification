@@ -1,0 +1,14 @@
+---
+TrackSysParity:
+    selectors:
+    - datatype == "motion"
+    - suffix == "motion"
+    - '"tracksys" in entitites'
+    - '"TrackingSystemName" in json'
+    checks:
+    - json.TrackingSystemName === entities.tracksys
+    issue:
+        code: TRACKSYS_MISMATCH
+        message: |
+            The tracking system entity in the file does not match the tracking system name listed
+            in the metadata.

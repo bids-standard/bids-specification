@@ -365,3 +365,11 @@ tracer:
     although the label may be different.
   type: string
   format: label
+tracking_system:
+    name: tracksys
+    display_name: Tracking System
+    description: |
+      A tracking system is defined as a group of tracking devices that share hardware properties
+      (same recording device) and/or software properties (for example same sampling rates).
+    type: string
+    fromat: label

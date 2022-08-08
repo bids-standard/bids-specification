@@ -52,6 +52,18 @@ color:
     Hexadecimal. Label color for visualization.
   type: string
   unit: hexadecimal
+component:
+    name: component
+    display_name: Coordinate System Component
+    description: |
+        Component of the representational system described in `*_coordinatesystem.tsv` that the
+        channel contains. Must be one of: "x" ,"y", "z", "n/a"
+    type: string
+    enum:
+    - "x"
+    - "y"
+    - "z"
+    - "n/a"
 derived_from:
   name: derived_from
   display_name: Derived from
@@ -295,6 +307,13 @@ participant_id:
     matching a participant entity found in the dataset.
   type: string
   pattern: ^sub-[0-9a-zA-Z]+$
+placement:
+    name: placement
+    display_name: Tracked Point Placement
+    description: |
+      Placement of the tracked point on the body (for example, participant, avatar centroid,
+      torso, left arm). It can refer to an external vocabulary for describing body parts.
+    type: string
 plasma_radioactivity:
   name: plasma_radioactivity
   display_name: Plasma radioactivity
@@ -508,6 +527,13 @@ time:
     For example, 5.
   type: number
   unit: s
+tracked_point:
+    name: tracked_point
+    display_name: Tracked Point
+    description: |
+        Label of the point that is being tracked, for example, label of a tracker or a marker
+        (`LeftFoot`, `RightWrist`).
+    type: string
 trial_type:
   name: trial_type
   display_name: Trial type
@@ -586,6 +612,23 @@ type__meg_channels:
   - HLU
   - FITERR
   - OTHER
+type__motion_channels:
+  name: type
+  display_name: Channel type
+  description: |
+    Type of channel; MUST use the channel types listed below.
+    Note that the type MUST be in upper-case.
+  type: string
+  enum:
+  - ACC
+  - ANGVEL
+  - JNTANG
+  - LATENCY
+  - MAGN
+  - MISC
+  - ORNT
+  - POS
+  - VEL
 type__ieeg_channels:
   name: type
   display_name: Channel type

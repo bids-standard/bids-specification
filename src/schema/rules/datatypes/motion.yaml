@@ -1,0 +1,33 @@
+---
+motion:
+  suffixes:
+  - motion
+  - events
+  - sbref
+  extensions:
+  - .tsv
+  - .json
+  datatypes:
+  - motion
+  entities:
+    subject: required
+    session: optional
+    task: required
+    tracksys: required
+    acquisition: optional
+    run: optional
+
+motion_channels:
+  suffixes:
+  - channels
+  extensions:
+  - .tsv
+  datatypes:
+  - motion
+  entities:
+    subject: required
+    session: optional
+    task: required
+    tracksys: required
+    acquisition: optional
+    run: optional
