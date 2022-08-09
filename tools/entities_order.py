@@ -21,7 +21,7 @@ def main():
 
     for file_ in files_to_check:
 
-        print(f"\nChecking: {file_}")
+        print(f"Checking: {file_}")
 
         with open(file_, "r") as f:
 
