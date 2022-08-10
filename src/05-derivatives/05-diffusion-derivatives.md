@@ -435,11 +435,11 @@ another.
     my_diffusion_pipeline/
         sub-01/
             dwi/
-                sub-01_parameter-all_tensor.nii.gz
+                sub-01_param-all_tensor.nii.gz
                 sub-01_tensor.json
     ```
 
-    Dimensions of NIfTI image "`sub-01_parameter-all_tensor.nii.gz`": *I*x*J*x*K*x6 ([parameter vectors](#data-param))
+    Dimensions of NIfTI image "`sub-01_param-all_tensor.nii.gz`": *I*x*J*x*K*x6 ([parameter vectors](#data-param))
 
     Contents of JSON file:
 
@@ -461,18 +461,18 @@ another.
     my_diffusion_pipeline/
         sub-01/
             dwi/
-                sub-01_parameter-wm_csd.nii.gz
-                sub-01_parameter-wm_csd.json
-                sub-01_parameter-gm_csd.nii.gz
-                sub-01_parameter-gm_csd.json
-                sub-01_parameter-csf_csd.nii.gz
-                sub-01_parameter-csf_csd.json
+                sub-01_param-wm_csd.nii.gz
+                sub-01_param-wm_csd.json
+                sub-01_param-gm_csd.nii.gz
+                sub-01_param-gm_csd.json
+                sub-01_param-csf_csd.nii.gz
+                sub-01_param-csf_csd.json
                 sub-01_csd.json
     ```
 
-    Dimensions of NIfTI image "`sub-01_parameter-wm_csd.nii.gz`": *I*x*J*x*K*x45 ([spherical harmonics](#data-sh))
-    Dimensions of NIfTI image "`sub-01_parameter-gm_csd.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
-    Dimensions of NIfTI image "`sub-01_parameter-csf_csd.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
+    Dimensions of NIfTI image "`sub-01_param-wm_csd.nii.gz`": *I*x*J*x*K*x45 ([spherical harmonics](#data-sh))
+    Dimensions of NIfTI image "`sub-01_param-gm_csd.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
+    Dimensions of NIfTI image "`sub-01_param-csf_csd.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
 
     Contents of file "`sub-01_csd.json`" (common to all [intrinsic](#paramdef-intrinsic) model parameter images):
 
@@ -488,7 +488,7 @@ another.
     }
     ```
 
-    Contents of JSON file "`sub-01_parameter-wm_csd.json`":
+    Contents of JSON file "`sub-01_param-wm_csd.json`":
 
     ```JSON
     {
@@ -503,7 +503,7 @@ another.
     }
     ```
 
-    Contents of JSON file "`sub-01_parameter-gm_csd.json`":
+    Contents of JSON file "`sub-01_param-gm_csd.json`":
 
     ```JSON
     {
