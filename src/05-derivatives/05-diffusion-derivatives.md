@@ -83,14 +83,14 @@ rather than the image data).
 <pipeline_name>/
     sub-<participant_label>/
         dwi/
-            <source_keywords>[_space-<space>][_desc-<label>]_parameter-<intparam1>_<model>.nii[.gz]
-            <source_keywords>[_space-<space>][_desc-<label>]_parameter-<intparam2>_<model>.nii[.gz]
+            <source_keywords>[_space-<space>][_desc-<label>]_param-<intparam1>_<model>.nii[.gz]
+            <source_keywords>[_space-<space>][_desc-<label>]_param-<intparam2>_<model>.nii[.gz]
             <source_keywords>[_space-<space>][_desc-<label>]_<model>.json
 
-            [<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam1>_<model>.nii[.gz]]
-            [<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam1>_<model>.json]
-            [<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam2>_<model>.nii[.gz]]
-            [<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam2>_<model>.json]
+            [<source_keywords>[_space-<space>][_desc-<label>]_param-<extparam1>_<model>.nii[.gz]]
+            [<source_keywords>[_space-<space>][_desc-<label>]_param-<extparam1>_<model>.json]
+            [<source_keywords>[_space-<space>][_desc-<label>]_param-<extparam2>_<model>.nii[.gz]]
+            [<source_keywords>[_space-<space>][_desc-<label>]_param-<extparam2>_<model>.json]
 ```
 
 -   Field "`<model>`" is a unique identifier corresponding to the particular
@@ -98,17 +98,17 @@ rather than the image data).
     in this specification, then the [prescribed model label](intrinsic-model-parameters)
     MUST be utilised; e.g. "`tensor`" for the diffusion tensor model.
 
--   Files "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<intparam*>_<model>.nii[.gz]`"
+-   Files "`<source_keywords>[_space-<space>][_desc-<label>]_param-<intparam*>_<model>.nii[.gz]`"
     provide data corresponding to the various [intrinsic](#paramdef-intrinsic) parameters
     of the model. In cases where [intrinsic](#paramdef-intrinsic) model parameters are all
-    contained within a single image file, field "`_parameter-`" nevertheless MUST be
+    contained within a single image file, field "`_param-`" nevertheless MUST be
     included, with value "`all`"; e.g.:
 
     ```Text
     <pipeline_name>/
         sub-<participant_label>/
             dwi/
-                <source_keywords>[_space-<space>][_desc-<label>]_parameter-all_<model>.nii[.gz]
+                <source_keywords>[_space-<space>][_desc-<label>]_param-all_<model>.nii[.gz]
                 <source_keywords>[_space-<space>][_desc-<label>]_<model>.json
     ```
 
@@ -116,11 +116,11 @@ rather than the image data).
     provides basic model information and [input](#paramdef-input)
     model parameters.
 
--   OPTIONAL images "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam*>_<model>.nii[.gz]`"
+-   OPTIONAL images "`<source_keywords>[_space-<space>][_desc-<label>]_param-<extparam*>_<model>.nii[.gz]`"
     may be defined, in order to provide additional [extrinsic](#paramdef-extrinsic)
     model parameters.
 
--   OPTIONAL files "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<extparam*>_<model>.json`"
+-   OPTIONAL files "`<source_keywords>[_space-<space>][_desc-<label>]_param-<extparam*>_<model>.json`"
     may be defined to provide only information or parameters relevant to
     derivation of each relevant [extrinsic](#paramdef-extrinsic) model
     parameter image.
@@ -165,7 +165,7 @@ interpretation of that information; see [orientation specification](#orientation
         and reference frame for angles:
 
         1.  Distance from origin; value of embedded parameter MUST be
-            indicated in "`_parameter-*`" filename field;
+            indicated in "`_param-*`" filename field;
 
         1.  Inclination / polar angle, in radians, relative to the zenith
             direction being the positive direction of the *third* reference
@@ -202,7 +202,7 @@ interpretation of that information; see [orientation specification](#orientation
         Each 3-vector, once explicitly normalized, provides a direction
         on the unit sphere; the *norm* of each 3-vector additionally encodes
         the magnitude of some model parameter, the nature of which MUST be
-        indicated in the "`_parameter-*`" filename field.
+        indicated in the "`_param-*`" filename field.
 
     1.  Directions only
 
@@ -450,7 +450,7 @@ another.
         "ReferenceAxes": "xyz",
         "Parameters": {
             "FitMethod": "ols",
-            "OutlierRejection": False
+            "OutlierRejection": false
         }
     }
     ```
@@ -525,24 +525,24 @@ another.
     my_diffusion_pipeline/
         sub-01/
             dwi/
-                sub-01_desc-mean_parameter-bzero_bs.nii.gz
-                sub-01_desc-mean_parameter-dmean_bs.nii.gz
-                sub-01_desc-mean_parameter-dstd_bs.nii.gz
-                sub-01_desc-mean_parameter-sticks_bs.nii.gz
-                sub-01_desc-mean_parameter-sticks_bs.json
-                sub-01_desc-merged_parameter-sticks_bs.nii.gz
-                sub-01_desc-merged_parameter-sticks_bs.json
+                sub-01_desc-mean_param-bzero_bs.nii.gz
+                sub-01_desc-mean_param-dmean_bs.nii.gz
+                sub-01_desc-mean_param-dstd_bs.nii.gz
+                sub-01_desc-mean_param-sticks_bs.nii.gz
+                sub-01_desc-mean_param-sticks_bs.json
+                sub-01_desc-merged_param-sticks_bs.nii.gz
+                sub-01_desc-merged_param-sticks_bs.json
                 sub-01_bs.json
     ```
 
-    Dimensions of NIfTI image "`sub-01_desc-mean_parameter-bzero_bs.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-    Dimensions of NIfTI image "`sub-01_desc-mean_parameter-dmean_bs.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-    Dimensions of NIfTI image "`sub-01_desc-mean_parameter-dstd_bs.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-    Dimensions of NIfTI image "`sub-01_desc-mean_parameter-sticks_bs.nii.gz`": *I*x*J*x*K*x9 ([spherical coordinates](#data-spherical), distance from origin encodes fibre volume fraction)
-    Dimensions of NIfTI image "`sub-01_desc-merged_parameter-sticks_bs.nii.gz`": *I*x*J*x*K*x9x50 ([spherical coordinates](#data-spherical), distance from origin encodes fibre volume fraction; 50 bootstrap realisations)
+    Dimensions of NIfTI image "`sub-01_desc-mean_param-bzero_bs.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
+    Dimensions of NIfTI image "`sub-01_desc-mean_param-dmean_bs.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
+    Dimensions of NIfTI image "`sub-01_desc-mean_param-dstd_bs.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
+    Dimensions of NIfTI image "`sub-01_desc-mean_param-sticks_bs.nii.gz`": *I*x*J*x*K*x9 ([spherical coordinates](#data-spherical), distance from origin encodes fibre volume fraction)
+    Dimensions of NIfTI image "`sub-01_desc-merged_param-sticks_bs.nii.gz`": *I*x*J*x*K*x9x50 ([spherical coordinates](#data-spherical), distance from origin encodes fibre volume fraction; 50 bootstrap realisations)
 
-    Contents of JSON files "`sub-01_desc-mean_parameter-sticks_bs.json`"
-    and "`sub-01_desc-merged_parameter-sticks_bs.json`" (contents of two
+    Contents of JSON files "`sub-01_desc-mean_param-sticks_bs.json`"
+    and "`sub-01_desc-merged_param-sticks_bs.json`" (contents of two
     files are identical):
 
     ```JSON
