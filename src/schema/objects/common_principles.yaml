@@ -51,18 +51,18 @@ deprecated:
   description: |
     A "deprecated" entity or metadata field SHOULD NOT be used in the generation of new datasets.
     It remains in the standard in order to preserve the interpretability of existing datasets.
-    Validating software SHOULD warn when deprecated practices are detected 
+    Validating software SHOULD warn when deprecated practices are detected
     and provide a suggestion for updating the dataset to preserve the curator's intent.
 event:
   name: Event
   display_name: Event
   description: |
-    Something that happens or may be perceived by a test subject as happening 
+    Something that happens or may be perceived by a test subject as happening
     at a particular instant during the recording.
     Events are most commonly associated with on- or offset of stimulus presentations,
     or with the distinct marker of on- or offset of a subject's response or motor action.
     Other events may include unplanned incidents
-    (for example, sudden onset of noise and vibrations due to construction work, 
+    (for example, sudden onset of noise and vibrations due to construction work,
     laboratory device malfunction),
     changes in task instructions (for example, switching the response hand),
     or experiment control parameters (for example, changing the stimulus presentation rate over experimental blocks),
@@ -74,7 +74,7 @@ extension:
   display_name: File extension
   description: |
     A portion of the file name after the left-most period (`.`) preceded by any other alphanumeric.
-    For example, `.gitignore` does not have a file extension, 
+    For example, `.gitignore` does not have a file extension,
     but the file extension of `test.nii.gz` is `.nii.gz`.
     Note that the left-most period is included in the file extension.
 index:
@@ -96,7 +96,7 @@ modality:
   display_name: Modality
   description: |
     The category of brain data recorded by a file.
-    For MRI data, different pulse sequences are considered distinct modalities, 
+    For MRI data, different pulse sequences are considered distinct modalities,
     such as `T1w`, `bold` or `dwi`.
     For passive recording techniques, such as EEG, MEG or iEEG,
     the technique is sufficiently uniform to define the modalities `eeg`, `meg` and `ieeg`.
@@ -107,7 +107,7 @@ run:
   display_name: Run
   description: |
     An uninterrupted repetition of data acquisition that has the same acquisition parameters and task
-    (however events can change from run to run due to different subject response 
+    (however events can change from run to run due to different subject response
     or randomized nature of the stimuli).
     Run is a synonym of a data acquisition.
     Note that "uninterrupted" may look different by modality due to the nature of the recording.
@@ -130,13 +130,13 @@ session:
     A logical grouping of neuroimaging and behavioral data consistent across subjects.
     Session can (but doesn't have to) be synonymous to a visit in a longitudinal study.
     In general, subjects will stay in the scanner during one session.
-    However, for example, if a subject has to leave the scanner room 
+    However, for example, if a subject has to leave the scanner room
     and then be re-positioned on the scanner bed,
-    the set of MRI acquisitions will still be considered as a session 
+    the set of MRI acquisitions will still be considered as a session
     and match sessions acquired in other subjects.
     Similarly, in situations where different data types are obtained over several visits
     (for example fMRI on one day followed by DWI the day after) those can be grouped in one session.
-    Defining multiple sessions is appropriate when several identical or similar data acquisitions 
+    Defining multiple sessions is appropriate when several identical or similar data acquisitions
     are planned and performed on all -or most- subjects,
     often in the case of some intervention between sessions (for example, training).
     In the [PET](SPEC_ROOT/04-modality-specific-files/09-positron-emission-tomography.md) context,
