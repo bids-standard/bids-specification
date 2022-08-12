@@ -286,7 +286,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "TaskName": ("RECOMMENDED", "If used to denote resting scans, a RECOMMENDED convention is to use labels beginning with `rest`.")
+      "TaskName": ("RECOMMENDED", "If used to denote resting scans, a RECOMMENDED convention is to use labels beginning with `rest`."),
       "Instructions": ("RECOMMENDED", "This is especially important in context of resting state recordings and distinguishing between eyes open and eyes closed paradigms."),
       "TaskDescription": "RECOMMENDED",
       "CogAtlasID": "RECOMMENDED",
