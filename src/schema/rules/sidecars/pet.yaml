@@ -186,6 +186,7 @@ PETReconstruction:
 PETTask:
     selectors:
     - modality == "pet"
+    - '"task" in entities'
     fields:
         TaskName:
             level: recommended
