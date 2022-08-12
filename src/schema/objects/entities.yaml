@@ -361,7 +361,7 @@ task:
     (with different sets of instructions) they will be considered one (combined) task.
     The `task-<label>` MUST be consistent across subjects and sessions.
 
-    Files with the `task-<label>` entity SHOULD have an associated 
+    Files with the `task-<label>` entity SHOULD have an associated
     [events file](SPEC_ROOT/04-modality-specific-files/05-task-events.md#task-events),
     as well as certain metadata fields in the associated JSON file.
 
