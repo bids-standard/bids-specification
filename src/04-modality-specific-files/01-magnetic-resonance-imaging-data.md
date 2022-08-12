@@ -700,14 +700,6 @@ A guide for using macros can be found at
 }
 ```
 
-If this information is the same for all participants, sessions and runs it can
-be provided in `task-<label>_bold.json` (in the root directory of the
-dataset). However, if the information differs between subjects/runs it can be
-specified in the
-`sub-<label>/func/sub-<label>_task-<label>[_acq-<label>][_run-<index>]_bold.json` file.
-If both files are specified fields from the file corresponding to a particular
-participant, task and run takes precedence.
-
 ## Diffusion imaging data
 
 Several [example datasets](https://github.com/bids-standard/bids-examples)
