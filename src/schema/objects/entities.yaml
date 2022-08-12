@@ -356,6 +356,14 @@ task:
     Therefore, even if during one acquisition the subject performed multiple conceptually different behaviors
     (with different sets of instructions) they will be considered one (combined) task.
     The `task-<label>` MUST be consistent across subjects and sessions.
+
+    1. Files with a filename containing the `task-<label>` entity SHOULD have an associated `*events.tsv` file
+       and certain metadata fields MUST or SHOULD be present in the associated JSON file
+       depending on the datatype.
+    2. For resting state task:
+      - a RECOMMENDED convention is to use labels beginning with `rest`.",
+      - `*events.tsv` files are not necessary.
+
   type: string
   format: label
 tracer:
