@@ -73,6 +73,7 @@ def _get_paths(
                     path_list.append(Path(root).as_posix() + "/")
                     # Do not index the contents of the directory.
                     dirs[:] = []
+                    file_names[:] = []
                 # will break if BIDS ever puts meaningful data under `/.{dandi,datalad,git}*/`
                 if os.path.basename(root) in exclude_subdirs:
                     continue
@@ -600,7 +601,7 @@ def select_schema_dir(
     for bids_path in bids_paths:
         bids_path = os.path.abspath(os.path.expanduser(bids_path))
         dataset_description = _find_dataset_description(bids_path)
-        if dataset_description not in dataset_descriptions:
+        if dataset_description and dataset_description not in dataset_descriptions:
             dataset_descriptions.append(dataset_description)
     if len(dataset_descriptions) > 1:
         raise ValueError(
