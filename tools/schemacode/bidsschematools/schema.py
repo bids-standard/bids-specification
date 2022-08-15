@@ -94,6 +94,17 @@ class Namespace(Mapping):
     def __init__(self, *args, **kwargs):
         self._properties = dict(*args, **kwargs)
 
+    def to_dict(self):
+        ret = {}
+        for key, val in self._properties.items():
+            if isinstance(val, Namespace):
+                val = val.to_dict()
+            ret[key] = val
+        return ret
+
+    def __deepcopy__(self, memo):
+        return self.build(self.to_dict())
+
     @classmethod
     def build(cls, mapping):
         """Expand mapping recursively and return as namespace"""
@@ -137,7 +148,7 @@ class Namespace(Mapping):
         mapping = {}
         fullpath = Path(path)
         if fmt == "yaml":
-            for subpath in fullpath.iterdir():
+            for subpath in sorted(fullpath.iterdir()):
                 if subpath.is_dir():
                     submapping = cls.from_directory(subpath)
                     if submapping:
@@ -154,8 +165,8 @@ def dereference_mapping(schema, struct):
     Each $ref key is replaced with the contents of the referenced field in the overall
     dictionary-like object.
     """
-    if isinstance(struct, dict):
-        struct = struct.copy()
+    if isinstance(struct, Mapping):
+        struct = dict(struct)
         if "$ref" in struct:
             ref_field = struct["$ref"]
             template = schema[ref_field]
@@ -202,38 +213,14 @@ def load_schema(schema_path):
         Schema in dictionary form.
     """
     schema_path = Path(schema_path)
-    objects_dir = schema_path / "objects/"
-    rules_dir = schema_path / "rules/"
+    schema = Namespace.from_directory(schema_path)
+    if not schema.objects:
+        raise ValueError(f"objects subdirectory path not found in {schema_path}")
+    if not schema.rules:
+        raise ValueError(f"rules subdirectory path not found in {schema_path}")
 
-    if not objects_dir.is_dir() or not rules_dir.is_dir():
-        raise ValueError(
-            f"Schema path or paths do not exist:\n\t{str(objects_dir)}\n\t{str(rules_dir)}"
-        )
-
-    schema = {}
-    schema["objects"] = {}
-    schema["rules"] = {}
-
-    # Load object definitions. All are present in single files.
-    for object_group_file in sorted(objects_dir.glob("*.yaml")):
-        lgr.debug(f"Loading {object_group_file.stem} objects.")
-        dict_ = yaml.safe_load(object_group_file.read_text())
-        schema["objects"][object_group_file.stem] = dereference_mapping(dict_, dict_)
-
-    # Grab single-file rule groups
-    for rule_group_file in sorted(rules_dir.glob("*.yaml")):
-        lgr.debug(f"Loading {rule_group_file.stem} rules.")
-        dict_ = yaml.safe_load(rule_group_file.read_text())
-        schema["rules"][rule_group_file.stem] = dereference_mapping(dict_, dict_)
-
-    # Load directories of rule subgroups.
-    for rule_group_file in sorted(rules_dir.glob("*/*.yaml")):
-        rule = schema["rules"].setdefault(rule_group_file.parent.name, {})
-        lgr.debug(f"Loading {rule_group_file.stem} rules.")
-        dict_ = yaml.safe_load(rule_group_file.read_text())
-        rule[rule_group_file.stem] = dereference_mapping(dict_, dict_)
-
-    return schema
+    dereferenced = dereference_mapping(schema, schema)
+    return Namespace.build(dereferenced)
 
 
 def filter_schema(schema, **kwargs):

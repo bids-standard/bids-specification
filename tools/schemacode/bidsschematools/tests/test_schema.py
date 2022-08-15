@@ -1,5 +1,6 @@
 """Tests for the bidsschematools package."""
 import os
+from collections.abc import Mapping
 
 import pytest
 
@@ -33,12 +34,12 @@ def test_load_schema(schema_dir):
     """Smoke test for bidsschematools.schema.load_schema."""
     # Pointing to a nonexistent directory should raise a ValueError
     bad_path = "/path/to/nowhere"
-    with pytest.raises(ValueError):
+    with pytest.raises(FileNotFoundError):
         schema.load_schema(bad_path)
 
     # Otherwise the function should return a dictionary
     schema_obj = schema.load_schema(schema_dir)
-    assert isinstance(schema_obj, dict)
+    assert isinstance(schema_obj, Mapping)
 
 
 def test_object_definitions(schema_obj):
@@ -185,7 +186,7 @@ def test_dereferencing():
             "Property2": "value4",
         },
     }
-    dereffed = schema.dereference_yaml(orig, orig.copy())
+    dereffed = schema.dereference_mapping(orig, orig.copy())
     assert dereffed == {
         "ReferencedObject": {
             "Property1": "value1",
@@ -221,7 +222,7 @@ def test_dereferencing():
 
     sch = schema.Namespace.build(orig)
     expanded = schema.expand(orig)
-    dereffed = schema.dereference_yaml(sch, expanded)
+    dereffed = schema.dereference_mapping(sch, expanded)
     assert dereffed == {
         "raw": {
             "func": {
@@ -279,7 +280,7 @@ def test_dereferencing():
 
     sch = schema.Namespace.build(orig)
     expanded = schema.expand(orig)
-    dereffed = schema.dereference_yaml(sch, expanded)
+    dereffed = schema.dereference_mapping(sch, expanded)
     assert dereffed == {
         "_DERIV_ENTS": {
             "space": "optional",
