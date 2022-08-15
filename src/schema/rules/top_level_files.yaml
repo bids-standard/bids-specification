@@ -1,34 +1,43 @@
 ---
+# Note: the prescence of an extensions key implies entities are of type file in
+# addition to 'files' being present in the filename of this yaml.
 README:
   required: true
+  pattern: 'README'
   extensions:
   - None
   - .md
   - .rst
   - .txt
 CHANGES:
-  required: false
+  required: true
+  pattern: 'CHANGES'
   extensions:
   - None
 LICENSE:
   required: false
+  pattern: 'LICENSE'
   extensions:
   - None
 dataset_description:
   required: true
+  pattern: 'dataset_description'
   extensions:
   - .json
 genetic_info:
   required: false
+  pattern: 'genetic_info'
   extensions:
   - .json
 participants:
   required: false
+  pattern: 'participants'
   extensions:
   - .tsv
   - .json
 samples:
   required: false
+  pattern: 'samples'
   extensions:
   - .tsv
   - .json
