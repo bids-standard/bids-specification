@@ -113,7 +113,7 @@ MRISpatialEncoding:
         ParallelAcquisitionTechnique: recommended
         PartialFourier: recommended
         PartialFourierDirection: recommended
-        EffectiveEchoSpacing: 
+        EffectiveEchoSpacing:
             level: recommended
             level_addendum: |
                 <sup>2</sup> This parameter is required if corresponding fieldmap data
@@ -202,7 +202,7 @@ SliceTimingASL:
         SliceTiming: required
 
 # This is technically for sparse sequences only, but I don't know how to encode that.
-#SliceTimingSparse:
+# SliceTimingSparse:
 #    selectors:
 #    - modality == "mri"
 #    fields:
