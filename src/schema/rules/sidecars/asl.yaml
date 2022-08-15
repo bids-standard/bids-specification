@@ -58,7 +58,7 @@ MRIASLTextOnlyFlipAngleRec:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - sidecar.LookLocker == false
+    - '!(LookLocker in sidecar) || sidecar.LookLocker == false'
     fields:
         FlipAngle: Recommended
 
