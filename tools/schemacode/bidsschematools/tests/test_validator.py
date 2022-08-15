@@ -238,7 +238,7 @@ def test__inheritance_expansion(extension):
         r"(|_dir-(?P<direction>[0-9a-zA-Z]+))"
         r"(|_run-(?P<run>[0-9]*[1-9]+[0-9]*))"
         r"(|_echo-(?P<echo>[0-9]*[1-9]+[0-9]*))"
-        r"_phase(\.nii\.gz|\.nii|\.%s)$".format(extension)
+        r"_phase(\.nii\.gz|\.nii|\.{})$".format(extension)
     )
     expected_entries = [
         ".*?/sub-(?P<subject>[0-9a-zA-Z]+)/"
@@ -250,7 +250,7 @@ def test__inheritance_expansion(extension):
         "(|_dir-(?P<direction>[0-9a-zA-Z]+))"
         "(|_run-(?P<run>[0-9]*[1-9]+[0-9]*))"
         "(|_echo-(?P<echo>[0-9]*[1-9]+[0-9]*))"
-        "_phase(\\.nii\\.gz|\\.nii|\\.%s)$".format(extension),
+        "_phase(\\.nii\\.gz|\\.nii|\\.{})$".format(extension),
         ".*?/task-(?P<task>[0-9a-zA-Z]+)"
         "(|_acq-(?P<acquisition>[0-9a-zA-Z]+))"
         "(|_ce-(?P<ceagent>[0-9a-zA-Z]+))"
@@ -258,7 +258,7 @@ def test__inheritance_expansion(extension):
         "(|_dir-(?P<direction>[0-9a-zA-Z]+))"
         "(|_run-(?P<run>[0-9]*[1-9]+[0-9]*))"
         "(|_echo-(?P<echo>[0-9]*[1-9]+[0-9]*))"
-        "_phase(\\.nii\\.gz|\\.nii|\\.%s)$".format(extension),
+        "_phase(\\.nii\\.gz|\\.nii|\\.{})$".format(extension),
     ]
 
     inheritance_expanded_entries = _inheritance_expansion(base_entry, datatype="func")
