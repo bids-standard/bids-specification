@@ -9,7 +9,7 @@
 # Metadata for either beh or events files
 BEHTabularData:
     selectors:
-    - suffix in ["beh", "events"]
+    - '["beh", "events"].includes(suffix)'
     fields:
         TaskName: recommended
         Instructions: recommended

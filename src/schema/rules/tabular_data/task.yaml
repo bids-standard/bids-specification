@@ -1,7 +1,7 @@
 ---
 TaskEvents:
     selectors:
-    - entities contains "task"
+    - '"task" in entities'
     - suffix == "events"
     columns:
         onset: REQUIRED

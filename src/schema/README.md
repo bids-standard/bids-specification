@@ -48,7 +48,7 @@ Each of these object types has a single file in the `objects/` directory.
     1.  each datatype's full name
     1.  a free text description of the datatype.
 
--   `entities.yaml`: Entities (key/value pairs in directory and filenames).
+-   `entities.yaml`: Entities (key-value pairs in directory and filenames).
 
 -   `metadata.yaml`: All valid metadata fields that are explicitly supported in BIDS sidecar JSON files.
 
@@ -123,7 +123,7 @@ The `description` field is a freeform description of the datatype.
 
 ### `entities.yaml`
 
-This file contains a dictionary in which each entity (key/value pair in filenames) is defined.
+This file contains a dictionary in which each entity (key-value pair in filenames) is defined.
 Keys are long-form versions of the entities, which are distinct from both the entities as
 they appear in filenames _and_ their full names.
 For example, the key for the "Contrast Enhancing Agent" entity, which appears in filenames as `ce-<label>`,
@@ -155,11 +155,11 @@ The `format` field defines the specific format the value should take.
 Entities are broadly divided into either `label` or `index` types.
 
 When `format` is `index`, then the entity's associated value should be a non-zero integer, optionally with leading zeros.
-For example, `run` should have an index, so a valid key-value pair in a filename would be `run-01`.
+For example, `run` should have an index, so a valid entity would be `run-01`.
 
 When `format` is `label`, then the value should be an alphanumeric string.
 Beyond limitations on which characters are allowed, labels have few restrictions.
-For example, `acq` should have a label, so a valid key-value pair might be `acq-someLabel`.
+For example, `acq` should have a label, so a valid entity might be `acq-someLabel`.
 
 For a small number of entities, only certain labels are allowed.
 In those cases, instead of a `format` field, there will be an `enum` field, which will provide a list of allowed values.
@@ -211,6 +211,8 @@ There are additional fields which may define rules that apply to a given type.
         Valid values for `format` include:
 
        -   `uri` (uniform resource identifiers),
+
+       -   `bids_uri` (BIDS URIs),
 
        -   `date` (date-times),
 
@@ -269,7 +271,7 @@ There are additional fields which may define rules that apply to a given type.
 -   `object`: If `type` is `object`, then there MAY be any of the following
     fields at the same level as `type`: `additionalProperties`,
     `properties`.
-    Objects are defined as sets of key/value pairs.
+    Objects are defined as sets of key-value pairs.
     Keys MUST be strings, while values may have specific attributes,
     which is what `additionalProperties` describes.
     Here is an example of a field which MUST be an object,
@@ -498,6 +500,18 @@ In cases where there is a data file and a metadata file, the `.json` extension f
 
 This file contains a dictionary in which each key is a directory and the value is a dictionary with one key: `required`.
 The `required` entry contains a boolean value to indicate if that directory is required for BIDS datasets or not.
+
+## Using links from a schema entry to places within the specification
+
+Sometimes a particular metadata entry will refer to other concepts within the
+BIDS specification using a link.
+Currently, in order for these links to get properly rendered with the MkDocs structure,
+they must be relative to the `src` directory of the bids-specification repository and
+ need to be prefixed with `SPEC_ROOT`. Furthermore, they must point to the Markdown document;
+that is, ending with `.md`, **not** `.html`.
+
+For more information please see the following pull request and linked discussions:
+[#1096](https://github.com/bids-standard/bids-specification/pull/1096)
 
 ## Version of the schema
 

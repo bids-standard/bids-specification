@@ -1,7 +1,7 @@
-"""Tests for the schemacode package."""
+"""Tests for the bidsschematools package."""
 import os
 
-from schemacode import render
+from bidsschematools import render
 
 
 def test_make_entity_definitions(schema_obj):
@@ -104,7 +104,8 @@ sub-<label>/
             datatype_level = True
             datatype_bases_found += 1
     # Are all datatypes listed?
-    assert datatype_bases_found == datatype_count
+    # correct for derivatives files in count
+    assert datatype_bases_found == datatype_count - 2
 
 
 def test_make_entity_table(schema_obj):
@@ -208,3 +209,12 @@ def test_make_columns_table(schema_obj):
 
     # Have we found all fields?
     assert len(columns_tracking) == 0
+
+
+def test_define_common_principles(schema_obj):
+    """Ensure that define_common_principles returns a string."""
+    common_principles_str = render.define_common_principles(schema_obj)
+    # Must be a string
+    assert isinstance(common_principles_str, str)
+    # Must be fairly long
+    assert len(common_principles_str) > 100

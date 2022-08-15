@@ -232,24 +232,26 @@ context:
                 xyzt_units:
                     name: "XYZT Units"
                     description: "Units of pixdim[1..4]"
-                    xyz:
-                        name: "XYZ Units"
-                        description: "String representing the unit of voxel spacing."
-                        type: string
-                        enum:
-                        - "unknown"
-                        - "meter"
-                        - "mm"
-                        - "um"
-                    t:
-                        name: "Time Unit"
-                        description: "String representing the unit of inter-volume intervals."
-                        type: string
-                        enum:
-                        - "unknown"
-                        - "sec"
-                        - "msec"
-                        - "usec"
+                    type: object
+                    properties:
+                        xyz:
+                            name: "XYZ Units"
+                            description: "String representing the unit of voxel spacing."
+                            type: string
+                            enum:
+                            - "unknown"
+                            - "meter"
+                            - "mm"
+                            - "um"
+                        t:
+                            name: "Time Unit"
+                            description: "String representing the unit of inter-volume intervals."
+                            type: string
+                            enum:
+                            - "unknown"
+                            - "sec"
+                            - "msec"
+                            - "usec"
                 qform_code:
                     name: "qform code"
                     description: "Use of the quaternion fields."

@@ -59,7 +59,7 @@ MRIFieldmapTwoPhase:
     selectors:
     - modality == "MRI"
     - datatype == "fmap"
-    - suffix in ["phase1", "phase2", "magnitude1", "magnitude2"]
+    - '["phase1", "phase2", "magnitude1", "magnitude2"].includes(suffix)'
     fields:
         EchoTime__fmap: required
 
@@ -68,7 +68,7 @@ MRIFieldmapDirectFieldMapping:
     selectors:
     - modality == "MRI"
     - datatype == "fmap"
-    - suffix in ["phase", "fieldmap"]
+    - '["phase", "fieldmap"].includes(suffix)'
     fields:
         Units:
             level: required

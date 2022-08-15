@@ -4,21 +4,21 @@
 # Information about whether these directories are required or not is present in
 # `rules/associated_data.yaml`.
 code:
-  name: Code
+  display_name: Code
   description: |
     A directory in which to store any code used to generate the derivatives from the
     source data.
 derivatives:
-  name: Derivative data
+  display_name: Derivative data
   description: |
     Derivative data
 sourcedata:
-  name: Source data
+  display_name: Source data
   description: |
     Data before harmonization, reconstruction, and/or file format conversion
     (for example, E-Prime event logs or DICOM files).
 stimuli:
-  name: Stimulus files
+  display_name: Stimulus files
   description: |
     The stimulus files can be added in a `/stimuli` directory
     (under the root directory of the dataset; with optional subdirectories)

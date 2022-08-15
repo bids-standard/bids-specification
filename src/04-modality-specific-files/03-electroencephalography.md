@@ -384,7 +384,8 @@ Cz     0.0000   0.0714   0.0699   cup      Ag/AgCl
 REF    -0.0742  -0.0200  -0.0100  cup      Ag/AgCl
 ```
 
-The [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair can be used to indicate acquisition of the same data. For
+The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity can be used to
+indicate acquisition of the same data. For
 example, this could be the recording of electrode positions with a different
 electrode position recording device, or repeated digitization before and after
 the recording.
@@ -444,7 +445,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "IntendedFor": (
+      "IntendedFor__ds_relative": (
          "OPTIONAL",
          "This identifies the MRI or CT scan associated with the electrodes, "
          "landmarks, and fiducials.",
@@ -518,7 +519,7 @@ Example:
 
 ```JSON
 {
-  "IntendedFor":"/sub-01/ses-01/anat/sub-01_T1w.nii",
+  "IntendedFor":"bids::sub-01/ses-01/anat/sub-01_T1w.nii",
   "EEGCoordinateSystem":"Other",
   "EEGCoordinateUnits":"mm",
   "EEGCoordinateSystemDescription":"RAS orientation: Origin halfway between LPA and RPA, positive x-axis towards RPA, positive y-axis orthogonal to x-axis through Nasion,  z-axis orthogonal to xy-plane, pointing in superior direction.",
@@ -544,7 +545,8 @@ Please note that the photos may need to be cropped or blurred to conceal
 identifying features prior to sharing, depending on the terms of the consent
 given by the participant.
 
-The [`acq-<label>`](../99-appendices/09-entities.md#acq) key/value pair can be used to indicate acquisition of different photos of
+The [`acq-<label>`](../99-appendices/09-entities.md#acq) entity can be used to
+indicate acquisition of different photos of
 the same face (or other body part in different angles to show, for example, the
 location of the nasion (NAS) as opposed to the right periauricular point (RPA).
 
@@ -554,5 +556,3 @@ Picture of a NAS fiducial placed between the eyebrows, rather than at the
 actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
-
-<!-- Link Definitions -->

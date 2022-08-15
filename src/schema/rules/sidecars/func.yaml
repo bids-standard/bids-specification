@@ -49,7 +49,7 @@ MRIFuncTimingParametersMutualExclusion1:
     selectors:
     - modality == "mri"
     - datatype == "func"
-    - sidecar contains "RepetitionTime"
+    - '"RepetitionTime" in sidecar'
     fields:
         AcquisitionDuration: prohibited
         VolumeTiming: prohibited
@@ -58,8 +58,8 @@ MRIFuncTimingParametersMutualExclusion2:
     selectors:
     - modality == "mri"
     - datatype == "func"
-    - sidecar contains "SliceTiming"
-    - sidecar contains "VolumeTiming"
+    - '"SliceTiming" in sidecar'
+    - '"VolumeTiming" in sidecar'
     fields:
         RepetitionTime: prohibited
         DelayTime: prohibited
@@ -68,8 +68,8 @@ MRIFuncTimingParametersMutualExclusion3:
     selectors:
     - modality == "mri"
     - datatype == "func"
-    - sidecar contains "AcquisitionDuration"
-    - sidecar contains "VolumeTiming"
+    - '"AcquisitionDuration" in sidecar'
+    - '"VolumeTiming" in sidecar'
     fields:
         RepetitionTime: prohibited
         DelayTime: prohibited
@@ -78,8 +78,8 @@ MRIFuncTimingParametersMutualExclusion4:
     selectors:
     - modality == "mri"
     - datatype == "func"
-    - sidecar contains "RepetitionTime"
-    - sidecar contains "SliceTiming"
+    - '"RepetitionTime" in sidecar'
+    - '"SliceTiming" in sidecar'
     fields:
         AcquisitionDuration: prohibited
         VolumeTiming: prohibited
@@ -88,8 +88,8 @@ MRIFuncTimingParametersMutualExclusion5:
     selectors:
     - modality == "mri"
     - datatype == "func"
-    - sidecar contains "RepetitionTime"
-    - sidecar contains "DelayTime"
+    - '"RepetitionTime" in sidecar'
+    - '"DelayTime" in sidecar'
     fields:
         AcquisitionDuration: prohibited
         VolumeTiming: prohibited

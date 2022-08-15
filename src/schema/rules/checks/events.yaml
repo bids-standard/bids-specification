@@ -10,8 +10,7 @@ EventsMissing:
       If this is a resting state scan you can ignore this warning or rename the task to include the word "rest".
     level: warning  # could be an error with the proper selectors, I think
   selectors:
-  - entities contains "task"
-  - entities.task != "rest"
-  - entities.task not(contains "rest")  # Alternative for including the word "rest"
+  - '"task" in entities'
+  - '!(entities.task.includes("rest"))'
   checks:
-  - associations contains "events"
+  - '"events" in associations'
