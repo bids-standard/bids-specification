@@ -70,7 +70,7 @@ In addition, the following fields apply to the entire file in all cases:
 | Field name        | Definition                                                                                                                                                   |
 | :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | SamplingFrequency | REQUIRED. Sampling frequency (in Hz) of all columns in the file. Special value `"TR"` indicates one sample per volume of a corresponding BOLD series.        |
-| StartTime         | OPTIONAL. Start time in seconds in relation to the start of acquisition of the first volume in the corresponding imaging file (negative values are allowed). |
+| StartTime         | OPTIONAL. Start time (in seconds) in relation to the start of acquisition of the first volume in the corresponding imaging file (negative values are allowed). |
 
 Note that there are several differences with these fields in
 [Physiological and other continuous recordings](../04-modality-specific-files/06-physiological-and-other-continuous-recordings.md).
