@@ -159,7 +159,9 @@ EEGCoordsystemLandmarkDescriptionRec:
     - suffix == "coordsystem"
     - sidecar.AnatomicalLandmarkCoordinateSystem != "Other"
     fields:
-        AnatomicalLandmarkCoordinateSystemDescription: recommended
+        AnatomicalLandmarkCoordinateSystemDescription:
+            level: recommended
+            level_addendum: required if `AnatomicalLandmarkCoordinateSystem` is `"Other"`
 
 EEGCoordsystemLandmarkDescriptionReq:
     selectors:
