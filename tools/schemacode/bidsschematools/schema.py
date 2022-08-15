@@ -1,6 +1,7 @@
 """Schema loading- and processing-related functions."""
 import logging
 import os
+import re
 from copy import deepcopy
 from pathlib import Path
 
@@ -19,6 +20,24 @@ def _get_entry_name(path):
         return path.name[:-5]  # no .yaml
     else:
         return path.name
+
+
+def _get_bids_version(bids_schema_dir):
+    """Determine schema version, with directory name, file specification, and string fallback."""
+
+    bids_version_path = os.path.join(bids_schema_dir, "BIDS_VERSION")
+    try:
+        with open(bids_version_path) as f:
+            bids_version = f.readline().rstrip()
+    # If this file is not in the schema, fall back to placeholder heuristics:
+    except FileNotFoundError:
+        # Maybe the directory encodes the version, as in:
+        # https://github.com/bids-standard/bids-schema
+        _, bids_version = os.path.split(bids_schema_dir)
+        if not re.match(r"^.*?[0-9]*?\.[0-9]*?\.[0-9]*?.*?$", bids_version):
+            # Then we don't know, really.
+            bids_version = bids_schema_dir
+    return bids_version
 
 
 def dereference_yaml(schema, struct):

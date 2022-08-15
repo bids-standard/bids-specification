@@ -290,10 +290,11 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "BasedOn": "RECOMMENDED",
+      "Sources": "RECOMMENDED",
       "EstimationReference": "RECOMMENDED",
       "EstimationAlgorithm": "RECOMMENDED",
       "Units": "RECOMMENDED",
+      "BasedOn": "DEPRECATED",
    }
 ) }}
 
@@ -311,11 +312,11 @@ sub-01_T1map.json:
 
 <<Parameter injected by the software/pipeline>>
 
-"BasedOn":["anat/sub-01_flip-1_VFA.nii.gz",
-           "anat/sub-01_flip-2_VFA.nii.gz",
-           "anat/sub-01_flip-3_VFA.nii.gz",
-           "anat/sub-01_flip-4_VFA.nii.gz",
-           "fmap/sub-01_TB1map.nii.gz"],
+"Sources":["bids:raw:sub-01/anat/sub-01_flip-1_VFA.nii.gz",
+           "bids:raw:sub-01/anat/sub-01_flip-2_VFA.nii.gz",
+           "bids:raw:sub-01/anat/sub-01_flip-3_VFA.nii.gz",
+           "bids:raw:sub-01/anat/sub-01_flip-4_VFA.nii.gz",
+           "bids:raw:sub-01/fmap/sub-01_TB1map.nii.gz"],
 "EstimationPaper":"Deoni et. al.MRM, 2015",
 "EstimationAlgorithm":"Linear",
 "Units": "second",

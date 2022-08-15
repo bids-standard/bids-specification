@@ -50,10 +50,10 @@ TB1DAM:
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     flip: required
     inversion: optional
     part: optional
@@ -70,10 +70,10 @@ TB1EPI:
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     echo: required
     flip: required
     inversion: optional
@@ -94,10 +94,10 @@ RFFieldMaps:
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     echo: optional
     flip: optional
     inversion: optional
@@ -115,10 +115,10 @@ TB1SRGE:
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     echo: optional
     flip: required
     inversion: required
@@ -137,7 +137,7 @@ parametric:
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional

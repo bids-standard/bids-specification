@@ -1,7 +1,32 @@
 """Tests for the bidsschematools package."""
+import os
+
 import pytest
 
-from bidsschematools import schema
+from bidsschematools import __bids_version__, schema
+
+
+def test__get_bids_version(tmp_path):
+    # Is the version being read in correctly?
+    schema_path = os.path.join(
+        os.path.abspath(os.path.dirname(__file__)),
+        os.pardir,
+        "data",
+        "schema",
+    )
+    bids_version = schema._get_bids_version(schema_path)
+    assert bids_version == __bids_version__
+
+    # Does fallback to unknown development version work?
+    expected_version = "1.2.3-dev"
+    schema_path = os.path.join(tmp_path, "whatever", expected_version)
+    bids_version = schema._get_bids_version(schema_path)
+    assert bids_version == expected_version
+
+    # Does fallback to path quoting work?
+    schema_path = os.path.join(tmp_path, "whatever", "undocumented_schema_dir")
+    bids_version = schema._get_bids_version(schema_path)
+    assert bids_version == schema_path
 
 
 def test_load_schema(schema_dir):
