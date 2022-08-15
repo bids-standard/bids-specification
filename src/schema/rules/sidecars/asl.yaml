@@ -23,7 +23,7 @@ MRIASLTextOnlySliceTimingRec:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - sidecar.MRAcquisitionType == "2D"
+    - sidecar.MRAcquisitionType != "2D"
     fields:
         SliceTiming: recommended
 
