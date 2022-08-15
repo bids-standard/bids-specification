@@ -17,7 +17,7 @@ BIDS_SELECTION = [
     "asl003",  # anat, perf, _asl, _T1w
     "eeg_cbm",  # eeg
     "hcp_example_bids",  # anat, fmap
-    "micr_SEM",  # micr, SEM
+    "micr_SEMzarr",  # micr, SEM, OME-ZARR
     "micr_SPIM",  # micr, SPIM, .ome.tif
     "pet003",  # pet, anat
     "qmri_tb1tfl",  # fmap, _TB1TFL
