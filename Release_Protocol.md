@@ -62,6 +62,8 @@ If the version preceding the `-dev` is not the target version, update the versio
 In the figure below, we update `v1.2.0-dev` to `v1.2.0`.
 ![dev-to-stable](release_images/site_name_release_1.2dev-1.2.png "dev-to-stable")
 
+Additionally, implement the same change in the version name perform above in the `src/schema/BIDS_VERSION` file.
+
 Note: this will make our continuous integration ([CircleCI](https://circleci.com/)) fail. This fails because the URL of the new ReadTheDocs rendering has not been generated at this time. It will be generated once the GitHub release has been completed.
 
 Synchronize the [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md)
@@ -208,6 +210,8 @@ Note that the development version number should be larger than the last release,
 version of the next *intended* release, followed by `-dev`.
 For example, after the 1.3.0 release, either `1.3.1-dev` or `1.4.0-dev` would be reasonable, based
 on the expected next version.
+
+Additionally, the same version name set above in `mkdocs.yaml` should be set in the `src/schema/BIDS_VERSION` schema version file.
 
 ### 10. Uploading the stable PDF to Zenodo
 

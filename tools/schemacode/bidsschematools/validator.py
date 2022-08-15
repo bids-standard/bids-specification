@@ -853,6 +853,10 @@ def validate_bids(
         pseudofile_suffixes=pseudofile_suffixes,
     )
 
+    # Record schema version.
+    bids_version = schema._get_bids_version(bids_schema_dir)
+    validation_result["bids_version"] = bids_version
+
     log_errors(validation_result)
 
     if report_path:
