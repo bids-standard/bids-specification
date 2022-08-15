@@ -35,7 +35,7 @@ def get_relpath(src_path):
     return posixpath.relpath(".", posixpath.dirname(src_path or ""))
 
 
-def make_entity_definitions(schema):
+def make_entity_definitions(schema, src_path=None):
     """Generate definitions and other relevant information for entities in the specification.
 
     Each entity gets its own heading.
@@ -73,7 +73,9 @@ def make_entity_definitions(schema):
             text += "Allowed values: `{}`".format("`, `".join(entity_info["enum"]))
             text += "\n\n"
 
-        text += "Definition: {}".format(entity_info["description"])
+        description = entity_info["description"]
+        description = description.replace("SPEC_ROOT", get_relpath(src_path))
+        text += "Definition: {}".format(description)
     return text
 
 

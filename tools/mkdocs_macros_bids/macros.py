@@ -106,7 +106,7 @@ def make_entity_table(**kwargs):
     return table
 
 
-def make_entity_definitions():
+def make_entity_definitions(src_path=None):
     """Generate definitions and other relevant information for entities in the
     specification.
 
@@ -116,9 +116,11 @@ def make_entity_definitions():
         A multiline string containing descriptions and some formatting
         information about the entities in the schema.
     """
+    if src_path is None:
+        src_path = _get_source_path()
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    text = render.make_entity_definitions(schema_obj)
+    text = render.make_entity_definitions(schema_obj, src_path=src_path)
     return text
 
 
