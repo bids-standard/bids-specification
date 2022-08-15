@@ -693,3 +693,36 @@ def make_columns_table(schema, column_info, src_path=None, tablefmt="github"):
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
     return table_str
+
+
+def define_common_principles(schema, src_path=None):
+    """Enumerate the common principles defined in the schema.
+
+    Parameters
+    ----------
+    schema : dict
+        The BIDS schema.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Returns
+    -------
+    string : str
+        The definitions of the common principles in a multiline string.
+    """
+    string = ""
+    common_principles = schema["objects"]["common_principles"]
+    order = schema["rules"]["common_principles"]
+    for i_prin, principle in enumerate(order):
+        principle_name = common_principles[principle]["display_name"]
+        principle_desc = common_principles[principle]["description"].replace(
+            "SPEC_ROOT",
+            get_relpath(src_path),
+        )
+        substring = f"{i_prin + 1}. **{principle_name}** - {principle_desc}"
+        string += substring
+        if i_prin < len(order) - 1:
+            string += "\n\n"
+
+    return string

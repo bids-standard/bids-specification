@@ -280,3 +280,26 @@ def make_filetree_example(filetree_info, use_pipe=True):
     """
     tree = example.DirectoryTree(filetree_info, use_pipe)
     return tree.generate()
+
+
+def define_common_principles(src_path=None):
+    """Enumerate the common principles defined in the schema.
+
+    Parameters
+    ----------
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Returns
+    -------
+    string : str
+        The definitions of the common principles in a multiline string.
+    """
+    if src_path is None:
+        src_path = _get_source_path()
+
+    schemapath = utils.get_schema_path()
+    schema_obj = schema.load_schema(schemapath)
+    string = render.define_common_principles(schema_obj, src_path=src_path)
+    return string
