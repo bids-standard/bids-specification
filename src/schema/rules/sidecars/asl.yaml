@@ -277,7 +277,7 @@ MRIASLM0ScanTextOnlyFlipAngleRec:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "m0scan"
-    - sidecar.LookLocker == false
+    - '!(LookLocker in sidecar) || sidecar.LookLocker == false'
     fields:
         FlipAngle:
             level: recommended
