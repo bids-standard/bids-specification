@@ -37,7 +37,7 @@ units are expressed in mm.
 
 The coordinate systems below all relate to neuroscience and therefore to the
 head or brain coordinates.
-$Please be aware that all data acquisition starts with
+Please be aware that all data acquisition starts with
 "device coordinates" (scanner), which does not have to be identical to the
 initial "file format coordinates" (DICOM), which are again different from the
 "head" coordinates (for example, NIFTI).
@@ -112,7 +112,7 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
 -   `4DBti`: ALS orientation and the origin between the ears
 -   `KitYokogawa`: ALS orientation and the origin between the ears
 -   `ChietiItab`: RAS orientation and the origin between the ears
--   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
+-   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers): RAS orientation and the origin at the center of the gradient coil for template NifTI images
 
 In the case that MEG was recorded simultaneously with EEG,
 the restricted keywords for
@@ -138,7 +138,7 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
     For more information, see the
     [EEGLAB wiki page](https://eeglab.org/tutorials/ConceptsGuide/coordinateSystem.html#eeglab-hj-coordinate-system).
 
--   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers)
+-   Any keyword from the list of [Standard template identifiers](#standard-template-identifiers): RAS orientation and the origin at the center of the gradient coil for template NifTI images
 
 In the case that EEG was recorded simultaneously with MEG,
 the restricted keywords for
@@ -182,7 +182,7 @@ Restricted keywords for the `<CoordSysType>CoordinateSystem` field in the
     is not aligned to ACPC, `ScanRAS` should be used.
 
 -   Any keyword from the list of
-    [Standard template identifiers](#standard-template-identifiers)
+    [Standard template identifiers](#standard-template-identifiers): RAS orientation and the origin at the center of the gradient coil for template NifTI images
 
 ## Image-based Coordinate Systems
 
@@ -197,8 +197,8 @@ Unless specified explicitly in the sidecar file in the
 
 | **Coordinate System**              | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | **Used by**              | **Reference**                                                                                                                      |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| ICBM452AirSpace                    | Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" with "linear transforms of the subjects into the atlas space using a 12-parameter affine transformation"                                                                                                                                                                                                                                                                                                                 |                          | [https://www.loni.usc.edu/research/atlases](https://www.loni.usc.edu/research/atlases)                                             |
-| ICBM452Warp5Space                  | Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" "based on a 5th order polynomial transformation into the atlas space"                                                                                                                                                                                                                                                                                                                                                    |                          | [https://www.loni.usc.edu/research/atlases](https://www.loni.usc.edu/research/atlases)                                             |
+| ICBM452AirSpace                    | Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" with "linear transforms of the subjects into the atlas space using a 12-parameter affine transformation"                                                                                                                                                                                                                                                                                                                 |                          | [https://www.loni.usc.edu/research/atlases](http://web.archive.org/web/20220802122857/https://www.loni.usc.edu/research/atlases)   |
+| ICBM452Warp5Space                  | Reference space defined by the "average of 452 T1-weighted MRIs of normal young adult brains" "based on a 5th order polynomial transformation into the atlas space"                                                                                                                                                                                                                                                                                                                                                    |                          | [https://www.loni.usc.edu/research/atlases](http://web.archive.org/web/20220802122857/https://www.loni.usc.edu/research/atlases)   |
 | IXI549Space                        | Reference space defined by the average of the "549 (...) subjects from the IXI dataset" linearly transformed to ICBM MNI 452.                                                                                                                                                                                                                                                                                                                                                                                          | SPM12                    | [https://brain-development.org/](https://brain-development.org/)                                                                   |
 | fsaverage                          | The `fsaverage` is a **dual template** providing both volumetric and surface coordinates references. The volumetric template corresponds to a FreeSurfer variant of `MNI305` space. The `fsaverage` atlas also defines a surface reference system (formerly described as fsaverage\[3\|4\|5\|6\|sym\]).                                                                                                                                                                                                                | Freesurfer               |                                                                                                                                    |
 | fsaverageSym                       | The `fsaverage` is a **dual template** providing both volumetric and surface coordinates references. The volumetric template corresponds to a FreeSurfer variant of `MNI305` space. The `fsaverageSym` atlas also defines a symmetric surface reference system (formerly described as `fsaveragesym`).                                                                                                                                                                                                                 | Freesurfer               |                                                                                                                                    |

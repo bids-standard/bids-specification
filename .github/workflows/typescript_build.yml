@@ -1,0 +1,59 @@
+name: "typescript_build"
+
+on:
+  push:
+    branches:
+      - "master"
+    paths:
+      - "tools/typescript/**"
+      - "src/schema/**"
+  pull_request:
+    branches:
+      - "*"
+    paths:
+      - "tools/typescript/**"
+      - "src/schema/**"
+
+jobs:
+  check_skip:
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.result_step.outputs.ci-skip }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - id: result_step
+        uses: mstachniuk/ci-skip@master
+        with:
+          commit-filter: "[skip ci];[ci skip];[skip github]"
+          commit-filter-separator: ";"
+
+  build_module:
+    needs: check_skip
+    if: ${{ needs.check_skip.outputs.skip == 'false' }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+        fail-fast: false
+        matrix:
+            os: ["ubuntu-latest"]
+            deno-version: [1.21.3]
+    name: ${{ matrix.os }} with Deno ${{ matrix.deno-version }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Deno Version ${{ matrix.deno-version }}
+        uses: denolib/setup-deno@v2
+        with:
+          deno-version: ${{ matrix.deno-version }}
+      - name: Run tests
+        run: deno test --no-check
+      - name: Build module
+        run: deno run --allow-write --allow-read --no-check tools/typescript/build-schema-types.ts
+      - name: Save module
+        uses: actions/upload-artifact@v3
+        with:
+          name: typescript-module
+          path: tools/typescript/output

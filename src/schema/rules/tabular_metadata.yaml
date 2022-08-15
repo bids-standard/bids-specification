@@ -1,0 +1,18 @@
+---
+scans:
+  suffixes:
+  - scans
+  extensions:
+  - .tsv
+  - .json
+  entities:
+    subject: required
+    session: optional  # session is required if session is present in the dataset.
+sessions:  # This file may only exist if session is present in the dataset.
+  suffixes:
+  - sessions
+  extensions:
+  - .tsv
+  - .json
+  entities:
+    subject: required
