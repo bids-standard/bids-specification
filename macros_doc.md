@@ -17,7 +17,7 @@ in the BIDS specification.
    - [Do I need learn how to program to use those macros?](#do-i-need-learn-how-to-program-to-use-those-macros)
    - [Anything else I need to know if I need to insert a new macro call?](#anything-else-i-need-to-know-if-i-need-to-insert-a-new-macro-call)
    - [How-To and Examples](#how-to-and-examples)
-      - [Writing folder content examples](#writing-folder-content-examples)
+      - [Writing directory content examples](#writing-directory-content-examples)
       - [Generating tables](#generating-tables)
          - [Modifying a term in the table](#modifying-a-term-in-the-table)
          - [Why would you NOT want to modify the content of the yml file directly ?](#why-would-you-not-want-to-modify-the-content-of-the-yml-file-directly-)
@@ -78,18 +78,19 @@ consistency.
 ## What macros are available?
 
 All the macros we use are in listed in this
-[python file](https://github.com/bids-standard/bids-specification/blob/master/tools/mkdocs_macros_bids/macros.py).
+[Python file](https://github.com/bids-standard/bids-specification/blob/master/tools/mkdocs_macros_bids/macros.py).
 
-| Name                    | Purpose                                                                                | Uses schema | Example                                                                                                                                                                                     |
-| ----------------------- | -------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| make_columns_table      | Generate a markdown table of TSV column information.                                   | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/03-modality-agnostic-files.md?plain=1#L202)                                    |
-| make_entity_table       | Generate an entity table from the schema, based on specific filters.                   | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/99-appendices/04-entity-table.md?plain=1#L23)                                  |
-| make_entity_definitions | Generate definitions and other relevant information for entities in the specification. | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/99-appendices/09-entities.md?plain=1#L16)                                      |
-| make_filename_template  | Generate a filename template from the schema, based on specific filters.               | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/04-modality-specific-files/10-microscopy.md?plain=1#L21)                       |
-| make_filetree_example   | Generate a filetree snippet from example content.                                      | No          | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/02-common-principles.md?plain=1#L268)                                          |
-| make_glossary           |                                                                                        | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/99-appendices/14-glossary.md?plain=1#L9)                                       |
-| make_metadata_table     | Generate a markdown table of metadata field information.                               | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/02-common-principles.md?plain=1#L462)                                          |
-| make_suffix_table       | Generate a markdown table of suffix information.                                       | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md?plain=1#L199) |
+| Name                     | Purpose                                                                                | Uses schema | Example                                                                                                                                                                                     |
+| ------------------------ | -------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| make_columns_table       | Generate a markdown table of TSV column information.                                   | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/03-modality-agnostic-files.md?plain=1#L202)                                    |
+| make_entity_table        | Generate an entity table from the schema, based on specific filters.                   | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/99-appendices/04-entity-table.md?plain=1#L23)                                  |
+| make_entity_definitions  | Generate definitions and other relevant information for entities in the specification. | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/99-appendices/09-entities.md?plain=1#L16)                                      |
+| make_filename_template   | Generate a filename template from the schema, based on specific filters.               | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/04-modality-specific-files/10-microscopy.md?plain=1#L21)                       |
+| make_filetree_example    | Generate a filetree snippet from example content.                                      | No          | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/02-common-principles.md?plain=1#L268)                                          |
+| make_glossary            |                                                                                        | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/99-appendices/14-glossary.md?plain=1#L9)                                       |
+| make_metadata_table      | Generate a markdown table of metadata field information.                               | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/02-common-principles.md?plain=1#L462)                                          |
+| make_suffix_table        | Generate a markdown table of suffix information.                                       | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/9201b203ffaa72d83b2fa30d1c61f46f089f77de/src/04-modality-specific-files/01-magnetic-resonance-imaging-data.md?plain=1#L199) |
+| define_common_principles | List the common principles and definitions.                                            | Yes         | [link](https://github.com/bids-standard/bids-specification/blob/831ee55577b91aaa110153e9269e7829b095fb6f/src/02-common-principles.md?plain=1#L12)                                           |
 
 ## When should I use a macro?
 
@@ -113,7 +114,7 @@ correct terms in the schema. This process is illustrated in the next section.
 
 Note that under the hood the macros themselves call python code that can be
 found in the
-[`tools` folder](https://github.com/bids-standard/bids-specification/tree/master/tools).
+[`tools` directory](https://github.com/bids-standard/bids-specification/tree/master/tools).
 If you are interested in creating a new macro for users, this would be useful.
 
 ## Anything else I need to know if I need to insert a new macro call?
@@ -146,7 +147,7 @@ and a guide for editing at <link>.
 
 ## How-To and Examples
 
-### Writing folder content examples
+### Writing directory content examples
 
 One of the simplest macro we use helps us create consistent "file tree" examples
 that would look like this in the final document:
@@ -173,7 +174,7 @@ To do this get this output, your macro call would look like this:
 ) }}
 ```
 
-When you have complex files and folder structure, we suggest you use this
+When you have complex files and directory structure, we suggest you use this
 [Jupyter notebook](tools/filetree_example.ipynb) for sandboxing your example
 before you insert the macro call into the markdown document.
 
@@ -366,7 +367,7 @@ Having one centralized place where we put all our definitions can be useful when
 we want other tools (the BIDS validator, bids-matlab...) to use the content of
 the specification.
 
-This is where the BIDS schema (those .yml files we talked about above) comes in
+This is where the BIDS schema (those `.yml` files we talked about above) comes in
 as it is meant to be a machine readable version of the specification.
 
 And so to avoid having to maintain the SAME definition in both the schema and
@@ -375,8 +376,8 @@ schema.
 
 ## Links and references
 
-- [documentation for mkdocs](https://www.mkdocs.org) and how to install it
+- [documentation for MkDocs](https://www.mkdocs.org) and how to install it
   locally,
-- [documentation for the material theme](https://squidfunk.github.io/mkdocs-material/)
+- [documentation for the Material theme](https://squidfunk.github.io/mkdocs-material/)
   we use.
 - [documentation for the `macros` plugin](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)

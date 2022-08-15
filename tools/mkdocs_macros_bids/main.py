@@ -37,5 +37,7 @@ def define_env(env):
     )
     env.macro(macros.make_suffix_table, "MACROS___make_suffix_table")
     env.macro(macros.make_metadata_table, "MACROS___make_metadata_table")
+    env.macro(macros.make_subobject_table, "MACROS___make_subobject_table")
     env.macro(macros.make_columns_table, "MACROS___make_columns_table")
     env.macro(macros.make_filetree_example, "MACROS___make_filetree_example")
+    env.macro(macros.define_common_principles, "MACROS___define_common_principles")

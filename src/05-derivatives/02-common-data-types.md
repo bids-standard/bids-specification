@@ -10,6 +10,12 @@ JSON file is also REQUIRED.
 Each derivative type defines their own set of fields, but all of them
 share the following (non-required) ones:
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
         "Description": (
@@ -17,17 +23,21 @@ share the following (non-required) ones:
             "This describes the nature of the file.",
         ),
         "Sources": "OPTIONAL",
-        "RawSources": "OPTIONAL",
+        "RawSources": "DEPRECATED",
    }
 ) }}
 
 ### Examples
 
 Preprocessed `bold` NIfTI file in the original coordinate space of the original run.
-The location of the file in the original datasets is encoded in the `RawSources` metadata,
+The location of the file in the original datasets is encoded in the `Sources` metadata,
 and [`_desc-<label>`](../99-appendices/09-entities.md#desc)
 is used to prevent clashing with the original filename.
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -41,33 +51,39 @@ is used to prevent clashing with the original filename.
 
 ```JSON
 {
-    "RawSources": ["sub-01/func/sub-01_task-rest_bold.nii.gz"]
+    "Sources": ["bids:raw:sub-01/func/sub-01_task-rest_bold.nii.gz"]
 }
 ```
 
-If this file was generated with prior knowledge from additional sources, such as
-the same subject's `T1w`, then both files MAY be included in `RawSources`.
+Note that `"raw"` must appear in the `DatasetLinks` metadata in
+`dataset_description.json`.
+For example, in the case that the given derivatives dataset is nested within the
+"derivatives" directory of a raw dataset, the entry in `DatasetLinks` may say:
+`"raw": "../.."`.
+
+If this file was generated with prior knowledge from additional sources,
+such as the same subject's `T1w`,
+then both files MAY be included in `Sources`.
 
 ```JSON
 {
-    "RawSources": [
-        "sub-01/func/sub-01_task-rest_bold.nii.gz",
-        "sub-01/anat/sub-01_T1w.nii.gz"
+    "Sources": [
+        "bids:raw:sub-01/func/sub-01_task-rest_bold.nii.gz",
+        "bids:raw:sub-01/anat/sub-01_T1w.nii.gz"
     ]
 }
 ```
 
 On the other hand, if a preprocessed version of the T1w image was used, and it also
-occurs in the derivatives, `Sources` and `RawSources` can both be specified.
+occurs in the derivatives, `Sources` may include both the local, derivative file,
+and the raw original file.
 
 ```JSON
 {
     "Sources": [
-        "sub-01/anat/sub-01_desc-preproc_T1w.nii.gz"
+        "bids::sub-01/anat/sub-01_desc-preproc_T1w.nii.gz"
+        "bids:raw:sub-01/func/sub-01_task-rest_bold.nii.gz"
     ],
-    "RawSources": [
-        "sub-01/func/sub-01_task-rest_bold.nii.gz"
-    ]
 }
 ```
 
@@ -85,6 +101,12 @@ If the [`space` entity](../99-appendices/09-entities.md#space) is omitted,
 or the space is not in the [Standard template identifiers][templates] table,
 then the `SpatialReference` metadata is REQUIRED.
 
+<!-- This block generates a metadata table.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_metadata_table(
    {
       "SpatialReference": "RECOMMENDED if the derivative is aligned to a standard template listed in [Standard template identifiers][templates]. REQUIRED otherwise.",
@@ -93,10 +115,10 @@ then the `SpatialReference` metadata is REQUIRED.
 
 ### SpatialReference key allowed values
 
-| **Value**   | **Description**                                                                                                               |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `orig`      | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space. |
-| URI or path | This can be used to point to a specific file. Paths are written relative to the root of the derivative dataset.               |
+| **Value** | **Description**                                                                                                                                          |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"orig"`  | A (potentially unique) per-image space. Useful for describing the source of transforms from an input image to a target space.                            |
+| [URI][]   | This can be used to point to a specific file. Paths written relative to the root of the derivative dataset are [DEPRECATED][] in favor of [BIDS URIs][]. |
 
 In the case of images with multiple references, an [object][] must link the relevant structures to reference files.
 If a single volumetric reference is used for multiple structures, the `VolumeReference` key MAY be used to reduce duplication.
@@ -107,6 +129,10 @@ For CIFTI-2 images, the relevant structures are BrainStructure values defined in
 Preprocessed `bold` NIfTI file in `individual` coordinate space. Please mind
 that in this case `SpatialReference` key is REQUIRED.
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -120,7 +146,7 @@ that in this case `SpatialReference` key is REQUIRED.
 
 ```JSON
 {
-    "SpatialReference": "sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
+    "SpatialReference": "bids::sub-01/anat/sub-01_desc-combined_T1w.nii.gz"
 }
 ```
 
@@ -129,7 +155,12 @@ meshes defined in the Conte69 atlas along with the MNI152NLin6Asym template.
 In this example, because all volumetric structures are sampled to the same
 reference, the `VolumeReference` key is used as a default, and only the
 surface references need to be specified by BrainStructure names.
+Here referred to via "https" [URIs][].
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
    "sub-01": {
@@ -187,6 +218,10 @@ processing for the same input data.
 
 Examples of preprocessed data:
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline1": {
@@ -204,6 +239,10 @@ Examples of preprocessed data:
    }
 ) }}
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
    {
     "pipeline2": {
@@ -231,3 +270,9 @@ static volume, a `RepetitionTime` property would no longer be relevant).
 [templates]: ../99-appendices/08-coordinate-systems.md#standard-template-identifiers
 
 [object]: https://www.json.org/json-en.html
+
+[bids uris]: ../02-common-principles.md#bids-uri
+
+[deprecated]: ../02-common-principles.md#definitions
+
+[uris]: ../02-common-principles.md#uniform-resource-indicator

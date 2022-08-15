@@ -4,6 +4,7 @@ site/
 venvs
 src/99-appendices/14-glossary.md
 src/99-appendices/14-glossary.html
+.vscode/
 
 pdf_build_src/bids-spec.pdf
 pdf_build_src/bids-spec_pandoc_log.json

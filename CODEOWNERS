@@ -20,5 +20,5 @@
 /src/99-appendices/06-meg-file-formats.md @monkeyman192
 
 # The schema
-/src/schema/ @tsalo
-/tools/schemacode/ @tsalo
+/src/schema/ @tsalo @erdalkaraca
+/tools/schemacode/ @tsalo @erdalkaraca

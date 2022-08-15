@@ -1,6 +1,6 @@
 ---
-# Fieldmaps
-- suffixes:
+fieldmaps:
+  suffixes:
   - phasediff
   - phase1
   - phase2
@@ -12,20 +12,24 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - fmap
   entities:
     subject: required
     session: optional
     acquisition: optional
     run: optional
 
-# PEPolar
-- suffixes:
+pepolar:
+  suffixes:
   - epi
   - m0scan
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - fmap
   entities:
     subject: required
     session: optional
@@ -34,45 +38,49 @@
     direction: required
     run: optional
 
-# TB1DAM
-- suffixes:
+TB1DAM:
+  suffixes:
   - TB1DAM
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - fmap
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     flip: required
     inversion: optional
     part: optional
 
-# TB1EPI
-- suffixes:
+TB1EPI:
+  suffixes:
   - TB1EPI
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - fmap
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     echo: required
     flip: required
     inversion: optional
     part: optional
 
-# RFFieldMaps
-- suffixes:
+RFFieldMaps:
+  suffixes:
   - TB1AFI
   - TB1TFL
   - TB1RFM
@@ -81,49 +89,55 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - fmap
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     echo: optional
     flip: optional
     inversion: optional
     part: optional
 
-# TB1SRGE
-- suffixes:
+TB1SRGE:
+  suffixes:
   - TB1SRGE
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - fmap
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     echo: optional
     flip: required
     inversion: required
     part: optional
 
-# Parametric
-- suffixes:
+parametric:
+  suffixes:
   - TB1map
   - RB1map
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - fmap
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional

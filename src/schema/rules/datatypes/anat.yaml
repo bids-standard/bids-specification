@@ -1,6 +1,6 @@
 ---
-# Nonparametric
-- suffixes:
+nonparametric:
+  suffixes:
   - T1w
   - T2w
   - PDw
@@ -17,17 +17,19 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     part: optional
 
-# Parametric
-- suffixes:
+parametric:
+  suffixes:
   - T1map
   - T2map
   - T2starmap
@@ -49,135 +51,151 @@
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
 
-# Defacemask
-- suffixes:
+defacemask:
+  suffixes:
   - defacemask
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     modality: optional
 
-# Multi-echo
-- suffixes:
+multiecho:
+  suffixes:
   - MESE
   - MEGRE
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     echo: required
     part: optional
 
-# Multi-flip
-- suffixes:
+multiflip:
+  suffixes:
   - VFA
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     echo: optional
     flip: required
     part: optional
 
-# Multi-inv
-- suffixes:
+multiinversion:
+  suffixes:
   - IRT1
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     inversion: required
     part: optional
 
-# MP2RAGE
-- suffixes:
+mp2rage:
+  suffixes:
   - MP2RAGE
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     echo: optional
     flip: optional
     inversion: required
     part: optional
 
-# VFA+MT
-- suffixes:
+vfamt:
+  suffixes:
   - MPM
   - MTS
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     echo: optional
     flip: required
     mtransfer: required
     part: optional
 
-# MTR
-- suffixes:
+mtr:
+  suffixes:
   - MTR
   extensions:
   - .nii.gz
   - .nii
   - .json
+  datatypes:
+  - anat
   entities:
     subject: required
     session: optional
-    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
+    run: optional
     mtransfer: required
     part: optional
