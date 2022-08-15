@@ -223,8 +223,12 @@ MRIASLPASLSpecificBolusCutOffFlagFalse:
     - sidecar.ArterialSpinLabelingType == "PASL"
     - sidecar.BolusCutOffFlag == false
     fields:
-        BolusCutOffDelayTime: optional
-        BolusCutOffTechnique: optional
+        BolusCutOffDelayTime:
+            level: optional
+            level_addendum: required if `BolusCutOffFlag` is `true`
+        BolusCutOffTechnique:
+            level: optional
+            level_addendum: required if `BolusCutOffFlag` is `true`
 
 MRIASLPASLSpecificBolusCutOffFlagTrue:
     selectors:
@@ -276,7 +280,9 @@ MRIASLM0ScanTextOnlyFlipAngleRec:
     - suffix == "m0scan"
     - sidecar.LookLocker == false
     fields:
-        FlipAngle: recommended
+        FlipAngle:
+            level: recommended
+            level_addendum: required if `LookLocker` is `true`
 
 MRIASLM0ScanTextOnlyFlipAngleReq:
     selectors:

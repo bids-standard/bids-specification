@@ -113,7 +113,16 @@ MRISpatialEncoding:
         ParallelAcquisitionTechnique: recommended
         PartialFourier: recommended
         PartialFourierDirection: recommended
-        EffectiveEchoSpacing: recommended
+        EffectiveEchoSpacing: 
+            level: recommended
+            level_addendum: |
+                <sup>2</sup> This parameter is required if corresponding fieldmap data
+                is present.
+            issue:
+                name: EFFECTIVE_ECHO_SPACING_NOT_DEFINED
+                message: |
+                    You should define 'EffectiveEchoSpacing' for this file. If you don't
+                    provide this information field map correction will not be possible.
         MixingTime: recommended
 
 PhaseEncodingDirectionRec:
@@ -121,8 +130,19 @@ PhaseEncodingDirectionRec:
     - modality == "mri"
     - suffix != "epi"
     fields:
-        PhaseEncodingDirection: recommended
-        TotalReadoutTime: recommended
+        PhaseEncodingDirection:
+            level: recommended
+            level_addendum: |
+                This parameter is required if corresponding fieldmap data is present
+                or when using multiple runs with different phase encoding directions
+                (which can be later used for field inhomogeneity correction).
+        TotalReadoutTime:
+            level: recommended
+            level_addendum: |
+                <sup>3</sup> This parameter is required if corresponding 'field/distortion' maps
+                acquired with opposing phase encoding directions are present
+                (see [Case 4: Multiple phase encoded
+                directions](#case-4-multiple-phase-encoded-directions-pepolar)).
 
 PhaseEncodingDirectionReq:
     selectors:
