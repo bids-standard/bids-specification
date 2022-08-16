@@ -26,10 +26,15 @@ def test_rule_objects(schema_obj):
     """Ensure that all objects referenced in the schema rules are defined in
     its object portion.
     """
+    object_type_mapper = {"metadata": "fields"}
+
     object_types = list(schema_obj["objects"].keys())
     for object_type in object_types:
         # Find all uses of a given object type in the schema rules
-        type_instances_in_rules = _dict_key_lookup(schema_obj["rules"], object_type)
+        type_instances_in_rules = _dict_key_lookup(
+            schema_obj["rules"],
+            object_type_mapper.get(object_type, object_type),
+        )
         if not type_instances_in_rules:
             continue
 
@@ -42,6 +47,12 @@ def test_rule_objects(schema_obj):
             for use in instance:
                 # Skip derivatives folders, because the folder is treated as a "use" instead.
                 if use == "derivatives":
+                    continue
+
+                if "{}" in use:
+                    continue
+
+                if "[]" in use:
                     continue
 
                 assert use in schema_obj["objects"][object_type].keys(), path
