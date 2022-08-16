@@ -270,15 +270,14 @@ def load_entities(
 
     # Parsing tabular_metadata as a datatype, might be done automatically if the YAML is moved
     # to the same subdirectory
-    my_schema["rules"]["datatypes"]["tabular_metadata"] = my_schema["rules"]["tabular_metadata"]
-    datatypes = my_schema["rules"]["datatypes"]
+    datatypes = {"tabular_metadata": my_schema.rules.tabular_metadata, **my_schema.rules.datatypes}
     entity_order = my_schema["rules"]["entities"]
     entity_definitions = my_schema["objects"]["entities"]
     formats = my_schema["objects"]["formats"]
 
-    # Descriptions are not needed and very large.
-    for i in entity_definitions.values():
-        i.pop("description", None)
+    # # Descriptions are not needed and very large.
+    # for i in entity_definitions.values():
+    #     i.pop("description", None)
 
     # Needed for non-modality file separation as per:
     # https://github.com/bids-standard/bids-specification/pull/985#issuecomment-1019573787
@@ -290,6 +289,8 @@ def load_entities(
 
     regex_schema = []
     for datatype in datatypes:
+        if datatype == "derivatives":
+            continue
         for variant in datatypes[datatype].values():
             regex_entities = ""
             for entity in entity_order:
