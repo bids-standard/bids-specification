@@ -1,6 +1,4 @@
 """A Python package for working with the BIDS schema."""
-from . import render, schema, utils
-
 try:
     from importlib.resources import as_file, files
 except ImportError:  # PY<3.9
