@@ -1,6 +1,4 @@
 """Simple validation tests on schema rules."""
-import pytest
-
 from bidsschematools.schema import Namespace
 
 
@@ -24,7 +22,6 @@ def _dict_key_lookup(_dict, key, path=[]):
     return results
 
 
-@pytest.mark.xfail
 def test_rule_objects(schema_obj):
     """Ensure that all objects referenced in the schema rules are defined in
     its object portion.
@@ -40,9 +37,18 @@ def test_rule_objects(schema_obj):
 
     Additionally, this test only checks rules that fit the keys.
     """
+    OBJECT_TYPE_MAPPER = {
+        "metadata": "fields",  # metadata in objects is referred to as fields in rules
+    }
+
+    not_found = []  # A list of undefined, but referenced, objects
     object_types = list(schema_obj["objects"].keys())
     for object_type in object_types:
-        type_instances_in_rules = _dict_key_lookup(schema_obj["rules"], object_type)
+        # Find all uses of a given object type in the schema rules
+        type_instances_in_rules = _dict_key_lookup(
+            schema_obj["rules"],
+            OBJECT_TYPE_MAPPER.get(object_type, object_type),
+        )
         if not type_instances_in_rules:
             continue
 
@@ -52,8 +58,32 @@ def test_rule_objects(schema_obj):
                 instance = list(instance.keys())
 
             for use in instance:
-                # Skip derivatives folders, because the folder is treated as a "use" instead.
                 if use == "derivatives":
+                    # Skip derivatives folders, because the folder is treated as a "use" instead.
+                    continue
+                elif "[]" in use:
+                    # Rules may reference metadata fields with lists.
+                    # This test can't handle this yet, so skip.
+                    continue
+                elif "{}" in use:
+                    # Rules may reference sub-dictionaries in metadata fields.
+                    # This test can't handle this yet, so skip.
                     continue
 
-                assert use in schema_obj["objects"][object_type].keys(), path
+                if object_type in ["extensions", "suffixes"]:
+                    # Some object types are referenced via their "value" fields in the rules
+                    object_values = [
+                        schema_obj["objects"][object_type][k]["value"]
+                        for k in schema_obj["objects"][object_type].keys()
+                    ]
+                else:
+                    # But other object types are referenced via their keys
+                    object_values = list(schema_obj["objects"][object_type].keys())
+
+                # Build a list of items mentioned in rules, but not found in objects.
+                if use not in object_values:
+                    path.append(use)
+                    not_found.append(path)
+
+    if not_found:
+        raise Exception("\n".join([", ".join(sublist) for sublist in not_found]))
