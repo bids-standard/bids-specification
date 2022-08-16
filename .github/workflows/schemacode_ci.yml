@@ -65,8 +65,11 @@ jobs:
         run: |
           python -m pytest --pyargs bidsschematools -m "not validate_schema" --cov=bidsschematools
 
-      - name: "Upload coverage to CodeCov"
-        uses: codecov/codecov-action@v3
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: unit_${{ matrix.os }}_${{ matrix.python-version }}
+          path: coverage.xml
         if: success()
 
   flake8-lint:
@@ -81,14 +84,57 @@ jobs:
         with:
           python-version: "3.7"
 
-      - name: "Install the schemacode package"
+      - name: Install the schemacode package
         shell: bash {0}
         run: |
           python -m pip install --progress-bar off --upgrade pip setuptools wheel
           python -m pip install -e ./tools/schemacode[tests]
 
-      - name: "Run flake8"
+      - name: Run flake8
         working-directory: ./tools/schemacode/
         shell: bash {0}
         run: |
           flake8 .
+
+  validate_schema:
+    runs-on: ubuntu-latest
+    name: Validate schema
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set Up Python environment
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.9"
+
+    - name: Install the schemacode package
+      working-directory: ./tools
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install ./tools/schemacode[tests]
+
+    - name: Run schema validation tests
+      run: python -m pytest --pyargs bidsschematools -m "validate_schema" --cov=bidsschematools
+
+    - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: schema_validation
+          path: coverage.xml
+        if: success()
+
+  upload_to_codecov:
+    name: Upload coverage
+    needs: [run_tests,validate_schema]
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+
+      - name: Upload to CodeCov
+        uses: codecov/codecov-action@v2
+        with:
+          fail_ci_if_error: true
