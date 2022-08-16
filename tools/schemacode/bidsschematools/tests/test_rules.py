@@ -52,8 +52,7 @@ def test_rule_objects(schema_obj):
         if not type_instances_in_rules:
             continue
 
-        for type_instance in type_instances_in_rules:
-            path, instance = type_instance
+        for path, instance in type_instances_in_rules:
 
             is_list = True
             if isinstance(instance, Mapping):
