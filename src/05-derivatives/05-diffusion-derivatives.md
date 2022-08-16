@@ -83,7 +83,6 @@ rather than the image data).
 <pipeline_name>/
     sub-<participant_label>/
         dwi/
-<<<<<<< HEAD
             <source_keywords>[_space-<space>][_desc-<label>]_param-<param1>_model.nii[.gz]
             <source_keywords>[_space-<space>][_desc-<label>]_param-<param1>_model.json
             <source_keywords>[_space-<space>][_desc-<label>]_param-<param2>_model.nii[.gz]
@@ -428,13 +427,13 @@ another.
     my_diffusion_pipeline/
         sub-01/
             dwi/
-                sub-01_desc-dti_param-all_model.nii.gz
+                sub-01_desc-dti_param-tensor_model.nii.gz
                 sub-01_desc-dti_param-bzero_model.nii.gz
                 sub-01_desc-dti_param-fa_mdp.nii.gz
                 sub-01_desc-dti_model.json
     ```
 
-    Dimensions of NIfTI image "`sub-01_desc-dti_param-all_model.nii.gz`": *I*x*J*x*K*x6 ([parameter vectors](#data-param))
+    Dimensions of NIfTI image "`sub-01_desc-dti_param-tensor_model.nii.gz`": *I*x*J*x*K*x6 ([parameter vectors](#data-param))
     Dimensions of NIfTI image "`sub-01_desc-dti_param-bzero_model.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
     Dimensions of NIfTI image "`sub-01_desc-dti_param-fa_mdp.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
 
