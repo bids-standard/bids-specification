@@ -1,3 +1,4 @@
+---
 BandpassFilterOpt:
   selectors:
   - dataset.DatasetType == "derivative"
@@ -36,4 +37,3 @@ ThresholdReq:
   fields:
     Threshold: required
     Method: required
-    
