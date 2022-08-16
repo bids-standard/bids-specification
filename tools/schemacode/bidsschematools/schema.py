@@ -193,7 +193,7 @@ def dereference_mapping(schema, struct):
     return struct
 
 
-def load_schema(schema_path):
+def load_schema(schema_path=None):
     """Load the schema into a dictionary.
 
     This function allows the schema, like BIDS itself, to be specified in
@@ -204,16 +204,18 @@ def load_schema(schema_path):
 
     Parameters
     ----------
-    schema_path : str
-        Directory containing yaml files or yaml file.
+    schema_path : str, optional
+        Directory containing yaml files or yaml file. If ``None``, use the
+        default schema packaged with ``bidsschematools``.
 
     Returns
     -------
     dict
         Schema in dictionary form.
     """
-    schema_path = Path(schema_path)
-    schema = Namespace.from_directory(schema_path)
+    if schema_path is None:
+        schema_path = utils.get_schema_path()
+    schema = Namespace.from_directory(Path(schema_path))
     if not schema.objects:
         raise ValueError(f"objects subdirectory path not found in {schema_path}")
     if not schema.rules:
