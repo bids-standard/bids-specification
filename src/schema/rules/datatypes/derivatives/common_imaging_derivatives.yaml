@@ -6,7 +6,7 @@ anat_parametric_volumetric:
     space: optional
     resolution: optional
     density: optional
-    desc: optional
+    description: optional
 
 anat_nonparametric_volumetric:
   $ref: rules.datatypes.anat.nonparametric
