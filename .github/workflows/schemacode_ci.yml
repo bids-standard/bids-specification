@@ -63,7 +63,7 @@ jobs:
       - name: "Run tests"
         shell: bash {0}
         run: |
-          python -m pytest --pyargs bidsschematools --cov=bidsschematools
+          python -m pytest --pyargs bidsschematools -m "not validate_schema" --cov=bidsschematools
 
       - name: "Upload coverage to CodeCov"
         uses: codecov/codecov-action@v3

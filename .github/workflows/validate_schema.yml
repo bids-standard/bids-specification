@@ -29,4 +29,4 @@ jobs:
         python -m pip install pyyaml
 
     - name: check entities order
-      run: python tools/entities_order.py
+      run: python -m pytest --pyargs bidsschematools -m "validate_schema" --cov=bidsschematools
