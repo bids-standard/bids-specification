@@ -1,5 +1,5 @@
 """Simple validation tests on schema rules."""
-from bidsschematools.schema import Namespace
+from collections.abc import Mapping
 
 
 def _dict_key_lookup(_dict, key, path=[]):
@@ -8,7 +8,7 @@ def _dict_key_lookup(_dict, key, path=[]):
     Adapted from https://stackoverflow.com/a/60377584/2589328.
     """
     results = []
-    if isinstance(_dict, (dict, Namespace)):
+    if isinstance(_dict, Mapping):
         if key in _dict:
             results.append((path + [key], _dict[key]))
 
@@ -55,8 +55,8 @@ def test_rule_objects(schema_obj):
         for type_instance in type_instances_in_rules:
             path, instance = type_instance
             is_list = True
-            if isinstance(instance, dict):
-                instance = list(instance.keys())
+            if isinstance(instance, Mapping):
+                instance = list(instance)
                 is_list = False
 
             for i_use, use in enumerate(instance):
@@ -88,11 +88,10 @@ def test_rule_objects(schema_obj):
                     if is_list:
                         temp_path[-1] += f"[{i_use}]"
 
-                    temp_path.append(use)
-                    not_found.append(temp_path)
+                    not_found.append((temp_path, use))
 
     if not_found:
         not_found_string = "\n".join(
-            [".".join(sublist[:-1]) + " == " + sublist[-1] for sublist in not_found]
+            [f"{'.'.join(path)} == {val}" for path, val in not_found]
         )
-        raise Exception(not_found_string)
+        raise ValueError(not_found_string)
