@@ -5,7 +5,6 @@ import os.path as op
 from pprint import pprint
 
 
-
 def get_schema_path():
     """Get the path to the schema directory.
 

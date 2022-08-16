@@ -270,7 +270,10 @@ def load_entities(
 
     # Parsing tabular_metadata as a datatype, might be done automatically if the YAML is moved
     # to the same subdirectory
-    datatypes = {"tabular_metadata": my_schema.rules.tabular_metadata, **my_schema.rules.datatypes}
+    datatypes = {
+        "tabular_metadata": my_schema.rules.tabular_metadata,
+        **my_schema.rules.datatypes,
+    }
     entity_order = my_schema["rules"]["entities"]
     entity_definitions = my_schema["objects"]["entities"]
     formats = my_schema["objects"]["formats"]
@@ -320,7 +323,12 @@ def load_entities(
             regex_string = _add_suffixes(regex_entities, variant)
             regex_string = _add_extensions(regex_string, variant)
             regex_string = _add_subdirs(
-                regex_string, variant, datatype, entity_definitions, formats, modality_datatypes
+                regex_string,
+                variant,
+                datatype,
+                entity_definitions,
+                formats,
+                modality_datatypes,
             )
 
             regex_string = f".*?{regex_string}$"
@@ -437,7 +445,10 @@ def validate_all(
             match_entry["path"] = target_path
             match_listing.append(match_entry)
         else:
-            lgr.debug("The `%s` file could not be matched to any regex schema entry.", target_path)
+            lgr.debug(
+                "The `%s` file could not be matched to any regex schema entry.",
+                target_path,
+            )
     results = {}
     results["itemwise"] = itemwise_results
     results["schema_tracking"] = tracking_schema
