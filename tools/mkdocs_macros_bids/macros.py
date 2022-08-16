@@ -11,7 +11,7 @@ from examplecode import example
 
 
 def _get_source_path(level=1):
-    """ Detect the path of the file we are rendering a macro in.
+    """Detect the path of the file we are rendering a macro in.
 
     This (ab)uses the Python call stack to find its way to the Jinja2 function
     that is calling the macro. From there, it looks at Jinja2's Context object,
@@ -231,7 +231,9 @@ def make_subobject_table(object_tuple, field_info, src_path=None):
 
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = render.make_subobject_table(schema_obj, object_tuple, field_info, src_path=src_path)
+    table = render.make_subobject_table(
+        schema_obj, object_tuple, field_info, src_path=src_path
+    )
     return table
 
 
