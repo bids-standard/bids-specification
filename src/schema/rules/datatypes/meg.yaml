@@ -3,19 +3,19 @@ meg:
   suffixes:
   - meg
   extensions:
-  - /  # corresponds to BTi/4D data
-  - .ds/
-  - .json
-  - .fif
-  - .sqd
-  - .con
-  - .raw
-  - .ave
-  - .mrk
-  - .kdf
-  - .mhd
-  - .trg
-  - .chn
+  - Directory  # corresponds to BTi/4D data
+  - CTF
+  - json
+  - fif
+  - sqd
+  - con
+  - raw
+  - ave
+  - mrk
+  - kdf
+  - mhd
+  - trg
+  - chn
   datatypes:
   - meg
   entities:
@@ -31,7 +31,7 @@ calibration:
   suffixes:
   - meg
   extensions:
-  - .dat
+  - dat
   datatypes:
   - meg
   entities:
@@ -47,7 +47,7 @@ crosstalk:
   suffixes:
   - meg
   extensions:
-  - .fif
+  - fif
   datatypes:
   - meg
   entities:
@@ -63,8 +63,8 @@ headshape:
   suffixes:
   - headshape
   extensions:
-  - .*
-  - .pos
+  - Any
+  - pos
   datatypes:
   - meg
   entities:
@@ -76,8 +76,8 @@ markers:
   suffixes:
   - markers
   extensions:
-  - .sqd
-  - .mrk
+  - sqd
+  - mrk
   datatypes:
   - meg
   entities:
@@ -91,7 +91,7 @@ coordsystem:
   suffixes:
   - coordsystem
   extensions:
-  - .json
+  - json
   datatypes:
   - meg
   entities:
@@ -103,8 +103,8 @@ channels:
   suffixes:
   - channels
   extensions:
-  - .json
-  - .tsv
+  - json
+  - tsv
   datatypes:
   - meg
   entities:
@@ -119,8 +119,8 @@ events:
   suffixes:
   - events
   extensions:
-  - .json
-  - .tsv
+  - json
+  - tsv
   datatypes:
   - meg
   entities:
@@ -134,9 +134,9 @@ photo:
   suffixes:
   - photo
   extensions:
-  - .jpg
-  - .png
-  - .tif
+  - jpg
+  - png
+  - tif
   datatypes:
   - meg
   entities:
@@ -149,8 +149,8 @@ timeseries:
   - physio
   - stim
   extensions:
-  - .tsv.gz
-  - .json
+  - tsvgz
+  - json
   datatypes:
   - meg
   entities:

@@ -3,15 +3,15 @@ ieeg:
   suffixes:
   - ieeg
   extensions:
-  - .mefd/
-  - .json
-  - .edf
-  - .vhdr
-  - .eeg
-  - .vmrk
-  - .set
-  - .fdt
-  - .nwb
+  - mefd
+  - json
+  - edf
+  - vhdr
+  - eeg
+  - vmrk
+  - set
+  - fdt
+  - nwb
   datatypes:
   - ieeg
   entities:
@@ -25,8 +25,8 @@ channels:
   suffixes:
   - channels
   extensions:
-  - .json
-  - .tsv
+  - json
+  - tsv
   datatypes:
   - ieeg
   entities:
@@ -40,7 +40,7 @@ coordsystem:
   suffixes:
   - coordsystem
   extensions:
-  - .json
+  - json
   datatypes:
   - ieeg
   entities:
@@ -53,8 +53,8 @@ electrodes:
   suffixes:
   - electrodes
   extensions:
-  - .json
-  - .tsv
+  - json
+  - tsv
   datatypes:
   - ieeg
   entities:
@@ -67,8 +67,8 @@ events:
   suffixes:
   - events
   extensions:
-  - .json
-  - .tsv
+  - json
+  - tsv
   datatypes:
   - ieeg
   entities:
@@ -82,9 +82,9 @@ photo:
   suffixes:
   - photo
   extensions:
-  - .jpg
-  - .png
-  - .tif
+  - jpg
+  - png
+  - tif
   entities:
     subject: required
     session: optional
@@ -95,8 +95,8 @@ timeseries:
   - physio
   - stim
   extensions:
-  - .tsv.gz
-  - .json
+  - tsvgz
+  - json
   datatypes:
   - ieeg
   entities:

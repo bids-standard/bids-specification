@@ -5,9 +5,9 @@ func:
   - cbv
   - sbref
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+  - niigz
+  - nii
+  - json
   datatypes:
   - func
   entities:
@@ -26,9 +26,9 @@ phase:
   suffixes:
   - phase  # deprecated
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+  - niigz
+  - nii
+  - json
   datatypes:
   - func
   entities:
@@ -46,8 +46,8 @@ events:
   suffixes:
   - events
   extensions:
-  - .tsv
-  - .json
+  - tsv
+  - json
   datatypes:
   - func
   entities:
@@ -65,8 +65,8 @@ timeseries:
   - physio
   - stim
   extensions:
-  - .tsv.gz
-  - .json
+  - tsvgz
+  - json
   datatypes:
   - func
   entities:

@@ -3,11 +3,11 @@ dwi:
   suffixes:
   - dwi
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
-  - .bvec
-  - .bval
+  - niigz
+  - nii
+  - json
+  - bvec
+  - bval
   datatypes:
   - dwi
   entities:
@@ -23,9 +23,9 @@ sbref:
   suffixes:
   - sbref
   extensions:
-  - .nii.gz
-  - .nii
-  - .json
+  - niigz
+  - nii
+  - json
   datatypes:
   - dwi
   entities:
@@ -42,8 +42,8 @@ timeseries:
   - physio
   - stim
   extensions:
-  - .tsv.gz
-  - .json
+  - tsvgz
+  - json
   datatypes:
   - dwi
   entities:
