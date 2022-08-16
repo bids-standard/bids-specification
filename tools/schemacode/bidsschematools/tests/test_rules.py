@@ -92,4 +92,7 @@ def test_rule_objects(schema_obj):
                     not_found.append(temp_path)
 
     if not_found:
-        raise Exception("\n".join([".".join(sublist) for sublist in not_found]))
+        not_found_string = "\n".join(
+            [".".join(sublist[:-1]) + " == " + sublist[-1] for sublist in not_found]
+        )
+        raise Exception(not_found_string)

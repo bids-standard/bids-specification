@@ -47,7 +47,7 @@ MaskDerivativesAtlas:
   - suffix == "mask"
   - '"label" in entities'
   fields:
-    atlas: RECOMMENDED
+    Atlas: RECOMMENDED
 
 SegmentationCommon:
   selectors:
