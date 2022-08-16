@@ -1,4 +1,5 @@
 """Schema loading- and processing-related functions."""
+import json
 import logging
 import os
 import re
@@ -223,6 +224,10 @@ def load_schema(schema_path=None):
 
     dereferenced = dereference_mapping(schema, schema)
     return Namespace.build(dereferenced)
+
+
+def export_schema(schema):
+    return json.dumps(schema.to_dict())
 
 
 def filter_schema(schema, **kwargs):
