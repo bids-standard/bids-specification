@@ -113,11 +113,11 @@ PETPharmaceuticals:
             level: recommended
         PharmaceuticalDoseAmount:
             level: recommended
-        PharmaCeuticalDoseUnits:
+        PharmaceuticalDoseUnits:
             level: recommended
-        PharmaCeuticalDoseRegimen:
+        PharmaceuticalDoseRegimen:
             level: recommended
-        PharmaCeuticalDoseTime:
+        PharmaceuticalDoseTime:
             level: recommended
         Anaesthesia:
             level: optional
@@ -132,7 +132,7 @@ PETTime:
             level: required
         InjectionStart:
             level: required
-        FramesTimesStart:
+        FrameTimesStart:
             level: required
         FrameDuration:
             level: required

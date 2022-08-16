@@ -23,7 +23,7 @@ PhaseEntityUnits:
     - datatype == "anat"
     - entities.part == "phase"
     fields:
-        Unit: required
+        Units: required
 
 PhaseSuffixUnits:
     selectors:
@@ -31,4 +31,4 @@ PhaseSuffixUnits:
     - datatype == "anat"
     - suffix == "phase"
     fields:
-        Unit: required
+        Units: required
