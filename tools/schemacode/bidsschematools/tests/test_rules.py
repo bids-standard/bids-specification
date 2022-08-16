@@ -33,7 +33,6 @@ def test_rule_objects(schema_obj):
             continue
 
         for type_instance in type_instances_in_rules:
-            # Now we need to distinguish between rules and elements within rules
             path, instance = type_instance
             if isinstance(instance, dict):
                 instance = list(instance.keys())
