@@ -1,16 +1,39 @@
-BandpassFilter:
+BandpassFilterOpt:
   selectors:
   - dataset.DatasetType == "derivative"
-  - suffix in ["alff", "falff"]
+  - '!(["alff", "falff"].includes(suffix))'
   fields:
-    BandpassFilter: OPTIONAL
-Neighborhood:
+    BandpassFilter: optional
+BandpassFilterReq:
   selectors:
   - dataset.DatasetType == "derivative"
-  - suffix in ["reho"]
+  - '["alff", "falff"].includes(suffix)'
   fields:
-    Neighborhood: OPTIONAL
-Threshold:
+    BandpassFilter: required
+NeighborhoodOpt:
   selectors:
   - dataset.DatasetType == "derivative"
-  - suffix in ["reho"]
+  - '!(["reho"].includes(suffix))'
+  fields:
+    Neighborhood: optional
+NeighborhoodReq:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - '["reho"].includes(suffix)
+  fields:
+    Neighborhood: required
+ThresholdOpt:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - '!(["dcb", "dcw", "ecb", "ecw"].includes(suffix))'
+  fields:
+    Threshold: optional
+    Method: optional
+ThresholdReq:
+  selectors:
+  - dataset.DatasetType == "derivative"
+  - '["dcb", "dcw", "ecb", "ecw"].includes(suffix)'
+  fields:
+    Threshold: required
+    Method: required
+    

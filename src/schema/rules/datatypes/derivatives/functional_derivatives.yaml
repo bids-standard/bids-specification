@@ -22,7 +22,7 @@ functional_derivatives_maps:
   - "dcb"
   - "dcw"
   - "ecb"
-  - "ecw"  
+  - "ecw"
   - "lfcdb"
   - "lfcdw"
   - "vmhc"
