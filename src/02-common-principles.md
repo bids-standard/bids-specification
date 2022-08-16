@@ -655,12 +655,13 @@ and a `RepetitionTime` of `1.0`.
 
 When reading image `sub-01/func/sub-01_task-rest_acq-longtr_bold.nii.gz`,
 metadata file `task-rest_bold.json` is read *first*,
-and file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json` is read *second*
-(based on the rules of the Inheritance Principle in [Appendix XV](#99-appendices/15-inheritance-principle.md)).
+and file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json` is read *second*.
 This means that this image has associated with it an `EchoTime` of `0.040`
 but a `RepetitionTime` of `3.0`, as the value for the latter entry
 initially read from file `task-rest_bold.json` is *superseded* by the
 value stored in file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json`).
+Both of these behaviours are governed by the rules of the Inheritance Principle,
+detailed in [Appendix XV](#99-appendices/15-inheritance-principle.md))
 
 ## Participant names and other labels
 

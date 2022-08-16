@@ -31,9 +31,12 @@ as reference for both software implementations and advanced BIDS users.
         1.  Within each level of the filesystem hierarchy:
 
             1.  Obtain the list of applicable metadata files within that directory.
+
             1.  Sort this list in order of fewest to most entities.
+
             1.  There MUST NOT be multiple applicable metadata files that
                 possess the same number of entities.
+
             1.  The set of entities in any filename within this list MUST be a
                 strict superset of those present in the filename that precedes
                 it within this list.
