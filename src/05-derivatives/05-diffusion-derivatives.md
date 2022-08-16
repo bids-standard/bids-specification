@@ -83,19 +83,20 @@ rather than the image data).
 <pipeline_name>/
     sub-<participant_label>/
         dwi/
-            <source_keywords>[_space-<space>][_desc-<label>]_parameter-<param1>_model.nii[.gz]
-            <source_keywords>[_space-<space>][_desc-<label>]_parameter-<param1>_model.json
-            <source_keywords>[_space-<space>][_desc-<label>]_parameter-<param2>_model.nii[.gz]
-            <source_keywords>[_space-<space>][_desc-<label>]_parameter-<param2>_model.json
+<<<<<<< HEAD
+            <source_keywords>[_space-<space>][_desc-<label>]_param-<param1>_model.nii[.gz]
+            <source_keywords>[_space-<space>][_desc-<label>]_param-<param1>_model.json
+            <source_keywords>[_space-<space>][_desc-<label>]_param-<param2>_model.nii[.gz]
+            <source_keywords>[_space-<space>][_desc-<label>]_param-<param2>_model.json
             <source_keywords>[_space-<space>][_desc-<label>]_model.json
 
-            [<source_keywords>[_space-<space>][_desc-<label>]_parameter-<parama>_mdp.nii[.gz]]
-            [<source_keywords>[_space-<space>][_desc-<label>]_parameter-<parama>_mdp.json]
-            [<source_keywords>[_space-<space>][_desc-<label>]_parameter-<paramb>_mdp.nii[.gz]]
-            [<source_keywords>[_space-<space>][_desc-<label>]_parameter-<paramb>_mdp.json]
+            [<source_keywords>[_space-<space>][_desc-<label>]_param-<parama>_mdp.nii[.gz]]
+            [<source_keywords>[_space-<space>][_desc-<label>]_param-<parama>_mdp.json]
+            [<source_keywords>[_space-<space>][_desc-<label>]_param-<paramb>_mdp.nii[.gz]]
+            [<source_keywords>[_space-<space>][_desc-<label>]_param-<paramb>_mdp.json]
 ```
 
--   Files "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<param*>_model.nii[.gz]`"
+-   Files "`<source_keywords>[_space-<space>][_desc-<label>]_param-<param*>_model.nii[.gz]`"
     provide data corresponding to the various requisite [model parameters](#paramdef-model). 
     In cases where *all* [model parameters](#paramdef-model) are contained within a single image
     file, field "`_parameter-`" nevertheless MUST be included, with value "`all`"; e.g.:
@@ -104,17 +105,17 @@ rather than the image data).
     <pipeline_name>/
         sub-<participant_label>/
             dwi/
-                <source_keywords>[_space-<space>][_desc-<label>]_parameter-all_model.nii[.gz]
+                <source_keywords>[_space-<space>][_desc-<label>]_param-all_model.nii[.gz]
                 <source_keywords>[_space-<space>][_desc-<label>]_model.json
     ```
 
 -   File "`<source_keywords>[_space-<space>][_desc-<label>]_model.json`"
     provides basic model information and [input parameters](#paramdef-input).
 
--   OPTIONAL images "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<parama>_mdp.nii[.gz]`"
+-   OPTIONAL images "`<source_keywords>[_space-<space>][_desc-<label>]_param-<parama>_mdp.nii[.gz]`"
     may be defined, in order to provide additional [model-derived parameters](#paramdef-derived).
 
--   OPTIONAL files "`<source_keywords>[_space-<space>][_desc-<label>]_parameter-<param*>_mdp.json`"
+-   OPTIONAL files "`<source_keywords>[_space-<space>][_desc-<label>]_param-<param*>_mdp.json`"
     may be defined to provide information or parameters only relevant to
     each relevant [model-derived parameter](#paramdef-derived).
 
@@ -158,7 +159,7 @@ interpretation of that information; see [orientation specification](#orientation
         and reference frame for angles:
 
         1.  Distance from origin; value of embedded parameter MUST be
-            indicated in "`_parameter-*`" filename field;
+            indicated in "`_param-*`" filename field;
 
         1.  Inclination / polar angle, in radians, relative to the zenith
             direction being the positive direction of the *third* reference
@@ -195,7 +196,7 @@ interpretation of that information; see [orientation specification](#orientation
         Each 3-vector, once explicitly normalized, provides a direction
         on the unit sphere; the *norm* of each 3-vector additionally encodes
         the magnitude of some model or model-derived parameter, the nature of
-        which MUST be indicated in the "`_parameter-*`" filename field.
+        which MUST be indicated in the "`_param-*`" filename field.
 
     1.  Directions only
 
@@ -243,7 +244,7 @@ keywords for "`_parameter-`" fields, which are listed below.
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `bs`        | Ball-and-Stick(s) model \[[Behrens2003](#behrens2003)\],\[[Behrens2007](#behrens2007)\],\[[Jbabdi2012](#jbabdi2012)\]                           | One [spherical coordinates](#data-spherical) image with parameter name "`sticks`", providing both fibre volume fractions and orientations using polar angles;<br>Optional scalar images with parameter names {"`bzero`", "`dmean`", "`dstd`"} providing the model-estimated *b*=0 signal intensity, mean stick diffusivity, and standard deviation of stick diffusivities respectively                              |
 | `csd`       | Constrained Spherical Deconvolution \[[Tournier2007](#tournier2007)\],\[[Descoteaux2009](#descoteaux2009)\],\[[Jeurissen2014](#jeurissen2014)\] | [Spherical harmonics](#data-sh) image<br>If a multi-tissue decomposition is performed, provide one individual 4D image per tissue, with "`_desc-<desc>`" filename field being an abbreviation of the tissue estimated by that particular ODF                                                                                                                                                                        |
-| `dti`       | Diffusion Tensor Imaging \[[Basser1994](#basser1994)\]                                                                                          | Single [parameter vectors](#data-param) image with parameter name "`all`" with 6 volumes in the order: *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>*<br>OR<br>Tensor coefficients as [parameter vectors](#data-param) image with parameter name "`tensor`";<br>Estimated *b*=0 intensity as [scalar](#data-scalar) image with parameter name "`bzero`" |
+| `tensor`    | Diffusion Tensor \[[Basser1994](#basser1994)\]                                                                                                  | Single [parameter vectors](#data-param) image with parameter name "`all`" with 6 volumes in the order: *D<sub>xx</sub>*, *D<sub>xy</sub>*, *D<sub>xz</sub>*, *D<sub>yy</sub>*, *D<sub>yz</sub>*, *D<sub>zz</sub>*<br>OR<br>Tensor coefficients as [parameter vectors](#data-param) image with parameter name "`tensor`";<br>Estimated *b*=0 intensity as [scalar](#data-scalar) image with parameter name "`bzero`" |
 
 The JSON sidecar for the intrinsic diffusion model parameters may contain
 the following key/value pairs irrespective of the particular model:
@@ -263,7 +264,7 @@ Results of model bootstrapping can be provided by concatenating multiple
 realisations of model intrinsic parameters along an additional image axis.
 
 The corresponding sidecar JSON file may include dictionary field
-"`BootstrapParameters`", descibing those input parameters specific to
+"`BootstrapParameters`", describing those input parameters specific to
 the determination and export of multiple realisations of the model fit
 in each image voxel.
 
@@ -307,7 +308,7 @@ Reserved keywords for models built into the specification are as follows:
 
     -   `Tissue`: String. A more verbose description for the tissue estimated via this specific ODF.
 
--   `dti` :
+-   `tensor` :
 
     -   `RESTORESigma`: Float
 
@@ -315,19 +316,19 @@ Reserved keywords for models built into the specification are as follows:
 
 | `<parameter>` value | Description                                                            | [Data representation](#data-representations) | Possible Model sources | Unit or scale                                                  |
 | ------------------- | ---------------------------------------------------------------------- | -------------------------------------------- | ---------------------- | -------------------------------------------------------------- |
-| `ad`                | Axial Diffusivity (also called parallel diffusivity)                   | [Scalar](#data-scalar)                       | { `dti` }              | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
+| `ad`                | Axial Diffusivity (also called parallel diffusivity)                   | [Scalar](#data-scalar)                       | { `tensor` }           | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
 | `afdtotal`          | Total Apparent Fibre Density (AFD) \[[Calamante2015](#calamante2015)\] | [Scalar](#data-scalar)                       | { `csd` }              | Unitless                                                       |
-| `cl`                | Tensor linearity \[[Westin1997](#westin1997)\]                         | [Scalar](#data-scalar)                       | { `dti` }              |                                                                |
-| `cp`                | Tensor planarity \[[Westin1997](#westin1997)\]                         | [Scalar](#data-scalar)                       | { `dti` }              |                                                                |
-| `cs`                | Tensor sphericity \[[Westin1997](#westin1997)\]                        | [Scalar](#data-scalar)                       | { `dti` }              |                                                                |
-| `evec`              | Eigenvector(s)                                                         | [3-vectors](#data-3vector)                   | { `dti` }              | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
-| `fa`                | Fractional Anisotropy \[[Basser1996](#basser1996)\]                    | [Scalar](#data-scalar)                       | { `dti` }              | Proportion \[0.0-1.0\]                                         |
+| `cl`                | Tensor linearity \[[Westin1997](#westin1997)\]                         | [Scalar](#data-scalar)                       | { `tensor` }           |                                                                |
+| `cp`                | Tensor planarity \[[Westin1997](#westin1997)\]                         | [Scalar](#data-scalar)                       | { `tensor` }           |                                                                |
+| `cs`                | Tensor sphericity \[[Westin1997](#westin1997)\]                        | [Scalar](#data-scalar)                       | { `tensor` }           |                                                                |
+| `evec`              | Eigenvector(s)                                                         | [3-vectors](#data-3vector)                   | { `tensor` }           | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
+| `fa`                | Fractional Anisotropy \[[Basser1996](#basser1996)\]                    | [Scalar](#data-scalar)                       | { `tensor` }           | Proportion \[0.0-1.0\]                                         |
 | `fsum`              | Sum of partial volume fractions of stick components                    | [Scalar](#data-scalar)                       | { `bs` }               | Volume fraction \[0.0-1.0\]                                    |
 | `gfa`               | Generalized Fractional Anisotropy \[[Tuch2004](#tuch2004)\]            | [Scalar](#data-scalar)                       | { `csd` }              | Proportion \[0.0-1.0\]                                         |
-| `md`                | Mean diffusivity (also called apparent diffusion coefficient, ADC)     | [Scalar](#data-scalar)                       | { `dti` }              | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
-| `mode`              | Mode of the tensor                                                     | [Scalar](#data-scalar)                       | { `dti` }              |                                                                |
+| `md`                | Mean diffusivity (also called apparent diffusion coefficient, ADC)     | [Scalar](#data-scalar)                       | { `tensor` }           | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
+| `mode`              | Mode of the tensor                                                     | [Scalar](#data-scalar)                       | { `tensor` }           |                                                                |
 | `peak`              | Direction(s) and amplitude(s) of ODF maximum (maxima)                  | [3-vectors](#data-3vector)                   | { `csd` }              | Same units as ODF                                              |
-| `rd`                | Radial Diffusivity (also called perpendicular diffusivity)             | [Scalar](#data-scalar)                       | { `dti` }              | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
+| `rd`                | Radial Diffusivity (also called perpendicular diffusivity)             | [Scalar](#data-scalar)                       | { `tensor` }           | \mu m<sup>2</sup>.ms<sup>-1</sup> <sup>[1](#diffusivity)</sup> |
 
 While not explicitly included in the table above, *any* [scalar](#data-scalar)
 [extrinsic](paramdef-extrinsic) parameter can theoretically be combined
@@ -427,15 +428,15 @@ another.
     my_diffusion_pipeline/
         sub-01/
             dwi/
-                sub-01_desc-dti_parameter-all_model.nii.gz
-                sub-01_desc-dti_parameter-bzero_model.nii.gz
-                sub-01_desc-dti_parameter-fa_mdp.nii.gz
+                sub-01_desc-dti_param-all_model.nii.gz
+                sub-01_desc-dti_param-bzero_model.nii.gz
+                sub-01_desc-dti_param-fa_mdp.nii.gz
                 sub-01_desc-dti_model.json
     ```
 
-    Dimensions of NIfTI image "`sub-01_desc-dti_parameter-all_model.nii.gz`": *I*x*J*x*K*x6 ([parameter vectors](#data-param))
-    Dimensions of NIfTI image "`sub-01_desc-dti_parameter-bzero_model.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-    Dimensions of NIfTI image "`sub-01_desc-dti_parameter-fa_mdp.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
+    Dimensions of NIfTI image "`sub-01_desc-dti_param-all_model.nii.gz`": *I*x*J*x*K*x6 ([parameter vectors](#data-param))
+    Dimensions of NIfTI image "`sub-01_desc-dti_param-bzero_model.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
+    Dimensions of NIfTI image "`sub-01_desc-dti_param-fa_mdp.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
 
     Contents of JSON file:
 
@@ -446,7 +447,7 @@ another.
         "ReferenceAxes": "xyz",
         "Parameters": {
             "FitMethod": "ols",
-            "OutlierRejection": False
+            "OutlierRejection": false
         }
     }
     ```
@@ -457,18 +458,18 @@ another.
     my_diffusion_pipeline/
         sub-01/
             dwi/
-                sub-01_desc-csd_parameter-wm_model.nii.gz
-                sub-01_desc-csd_parameter-wm_model.json
-                sub-01_desc-csd_parameter-gm_model.nii.gz
-                sub-01_desc-csd_parameter-gm_model.json
-                sub-01_desc-csd_parameter-csf_model.nii.gz
-                sub-01_desc-csd_parameter-csf_model.json
+                sub-01_desc-csd_param-wm_model.nii.gz
+                sub-01_desc-csd_param-wm_model.json
+                sub-01_desc-csd_param-gm_model.nii.gz
+                sub-01_desc-csd_param-gm_model.json
+                sub-01_desc-csd_param-csf_model.nii.gz
+                sub-01_desc-csd_param-csf_model.json
                 sub-01_desc-csd_model.json
     ```
 
-    Dimensions of NIfTI image "`sub-01_desc-csd_parameter-wm_model.nii.gz`": *I*x*J*x*K*x45 ([spherical harmonics](#data-sh))
-    Dimensions of NIfTI image "`sub-01_desc-csd_parameter-gm_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
-    Dimensions of NIfTI image "`sub-01_desc-csd_parameter-csf_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
+    Dimensions of NIfTI image "`sub-01_desc-csd_param-wm_model.nii.gz`": *I*x*J*x*K*x45 ([spherical harmonics](#data-sh))
+    Dimensions of NIfTI image "`sub-01_desc-csd_param-gm_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
+    Dimensions of NIfTI image "`sub-01_desc-csd_param-csf_model.nii.gz`": *I*x*J*x*K*x1 ([spherical harmonics](#data-sh))
 
     Contents of file "`sub-01_desc-csd_model.json`" (common to all [model parameters](#paramdef-model)):
 
@@ -484,7 +485,7 @@ another.
     }
     ```
 
-    Contents of JSON file "`sub-01_desc-csd_parameter-wm_model.json`":
+    Contents of JSON file "`sub-01_desc-csd_param-wm_model.json`":
 
     ```JSON
     {
@@ -499,7 +500,7 @@ another.
     }
     ```
 
-    Contents of JSON file "`sub-01_desc-csd_parameter_gm_model.json`":
+    Contents of JSON file "`sub-01_desc-csd_param_gm_model.json`":
 
     ```JSON
     {
@@ -521,27 +522,27 @@ another.
     my_diffusion_pipeline/
         sub-01/
             dwi/
-                sub-01_desc-bs_parameter-bzero_model.nii.gz
-                sub-01_desc-bs_parameter-bzero_model.json
-                sub-01_desc-bs_parameter-md_mdp.nii.gz
-                sub-01_desc-bs_parameter-md_mdp.json
-                sub-01_desc-bs_parameter-stdd_mdp.nii.gz
-                sub-01_desc-bs_parameter-stdd_mdp.json
-                sub-01_desc-bs_parameter-sticks_mdp.nii.gz
-                sub-01_desc-bs_parameter-sticks_mdp.json
-                sub-01_desc-bs_parameter-sticks_model.nii.gz
-                sub-01_desc-bs_parameter-sticks_model.json
+                sub-01_desc-bs_param-bzero_model.nii.gz
+                sub-01_desc-bs_param-bzero_model.json
+                sub-01_desc-bs_param-md_mdp.nii.gz
+                sub-01_desc-bs_param-md_mdp.json
+                sub-01_desc-bs_param-stdd_mdp.nii.gz
+                sub-01_desc-bs_param-stdd_mdp.json
+                sub-01_desc-bs_param-sticks_mdp.nii.gz
+                sub-01_desc-bs_param-sticks_mdp.json
+                sub-01_desc-bs_param-sticks_model.nii.gz
+                sub-01_desc-bs_param-sticks_model.json
                 sub-01_desc-bs_model.json
     ```
 
-    Dimensions of NIfTI image "`sub-01_desc-bs_parameter-bzero_model.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-    Dimensions of NIfTI image "`sub-01_desc-bs_parameter-ms_mdp.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-    Dimensions of NIfTI image "`sub-01_desc-bs_parameter-stdd_mdp.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
-    Dimensions of NIfTI image "`sub-01_desc-bs_parameter-sticks_mdp.nii.gz`": *I*x*J*x*K*x9 ([spherical coordinates](#data-spherical), distance from origin encodes fibre volume fraction)
-    Dimensions of NIfTI image "`sub-01_desc-bs_parameter-sticks_model.nii.gz`": *I*x*J*x*K*x9x50 ([spherical coordinates](#data-spherical), distance from origin encodes fibre volume fraction; 50 bootstrap realisations)
+    Dimensions of NIfTI image "`sub-01_desc-bs_param-bzero_model.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
+    Dimensions of NIfTI image "`sub-01_desc-bs_param-ms_mdp.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
+    Dimensions of NIfTI image "`sub-01_desc-bs_param-stdd_mdp.nii.gz`": *I*x*J*x*K* ([scalar](#data-scalar))
+    Dimensions of NIfTI image "`sub-01_desc-bs_param-sticks_mdp.nii.gz`": *I*x*J*x*K*x9 ([spherical coordinates](#data-spherical), distance from origin encodes fibre volume fraction)
+    Dimensions of NIfTI image "`sub-01_desc-bs_param-sticks_model.nii.gz`": *I*x*J*x*K*x9x50 ([spherical coordinates](#data-spherical), distance from origin encodes fibre volume fraction; 50 bootstrap realisations)
 
-    Contents of JSON files "`sub-01_desc-bs_parameter-sticks_mdp.json`"
-    and "`sub-01_desc-bs_parameter-sticks_model.json`" (contents of two
+    Contents of JSON files "`sub-01_desc-bs_param-sticks_mdp.json`"
+    and "`sub-01_desc-bs_param-sticks_model.json`" (contents of two
     files are identical):
 
     ```JSON
