@@ -150,11 +150,15 @@ def make_glossary(schema, src_path=None):
 
         text += f'\n<a name="{obj_marker}"></a>'
         text += f"\n## {obj_key}\n\n"
-        text += f"name: {obj_name}\n\n"
-        text += f"description:\n>{obj_desc}\n\n"
+        text += f"**Name**: {obj_name}\n\n"
+        text += f'**Description**:\n{obj_desc}\n\n'
 
-        temp_obj_def = {k: v for k, v in obj_def.items() if k not in ("description", "name")}
-        text += f"schema information:\n```yaml\n{temp_obj_def}\n```"
+        temp_obj_def = {
+            k: v for k, v in obj_def.items() if k not in ("description", "display_name", "name")
+        }
+
+        if temp_obj_def:
+            text += f"**Schema Information**:\n```yaml\n{temp_obj_def}\n```"
 
     return text
 
