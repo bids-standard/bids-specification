@@ -4,12 +4,6 @@ try:
 except ImportError:  # PY<3.9
     from importlib_resources import as_file, files
 
-__all__ = [
-    "render",
-    "schema",
-    "utils",
-]
-
 version_file = files("bidsschematools.data") / "schema" / "SCHEMA_VERSION"
 with as_file(version_file) as f:
     __version__ = f.read_text().strip()
