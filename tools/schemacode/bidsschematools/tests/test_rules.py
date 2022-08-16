@@ -35,8 +35,13 @@ def test_rule_objects(schema_obj):
 
         for type_instance in type_instances_in_rules:
             path, instance = type_instance
+
             if isinstance(instance, dict):
                 instance = list(instance.keys())
 
             for use in instance:
+                # Skip derivatives folders, because the folder is treated as a "use" instead.
+                if use == "derivatives":
+                    continue
+
                 assert use in schema_obj["objects"][object_type].keys(), path
