@@ -54,10 +54,12 @@ def test_rule_objects(schema_obj):
 
         for type_instance in type_instances_in_rules:
             path, instance = type_instance
+            is_list = True
             if isinstance(instance, dict):
                 instance = list(instance.keys())
+                is_list = False
 
-            for use in instance:
+            for i_use, use in enumerate(instance):
                 if use == "derivatives":
                     # Skip derivatives folders, because the folder is treated as a "use" instead.
                     continue
@@ -82,8 +84,12 @@ def test_rule_objects(schema_obj):
 
                 # Build a list of items mentioned in rules, but not found in objects.
                 if use not in object_values:
-                    path.append(use)
-                    not_found.append(path)
+                    temp_path = path[:]
+                    if is_list:
+                        temp_path[-1] += f"[{i_use}]"
+
+                    temp_path.append(use)
+                    not_found.append(temp_path)
 
     if not_found:
-        raise Exception("\n".join([", ".join(sublist) for sublist in not_found]))
+        raise Exception("\n".join([".".join(sublist) for sublist in not_found]))
