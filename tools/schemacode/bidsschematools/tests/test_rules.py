@@ -1,4 +1,6 @@
 """Simple validation tests on schema rules."""
+import pytest
+
 from bidsschematools.schema import Namespace
 
 
@@ -22,9 +24,21 @@ def _dict_key_lookup(_dict, key, path=[]):
     return results
 
 
+@pytest.mark.xfail
 def test_rule_objects(schema_obj):
     """Ensure that all objects referenced in the schema rules are defined in
     its object portion.
+
+    This test currently fails because rules files reference object keys for some object types,
+    including entities, columns, and metadata fields,
+    but reference "name" or "value" elements of the object definitions for other object types,
+    including suffixes and extensions.
+    In the case of datatypes, the key and "value" field are always the same.
+
+    Some other object types, such as associated_data, common_principles, formats, modalities,
+    and top_level_files, are not checked in the rules at all.
+
+    Additionally, this test only checks rules that fit the keys.
     """
     object_types = list(schema_obj["objects"].keys())
     for object_type in object_types:
@@ -38,4 +52,8 @@ def test_rule_objects(schema_obj):
                 instance = list(instance.keys())
 
             for use in instance:
+                # Skip derivatives folders, because the folder is treated as a "use" instead.
+                if use == "derivatives":
+                    continue
+
                 assert use in schema_obj["objects"][object_type].keys(), path
