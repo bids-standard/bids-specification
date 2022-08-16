@@ -12,7 +12,7 @@ microscopy:
   - CONF
   - PLI
   - CARS
-  - 2PE
+  - TwoPE
   - MPE
   - SR
   - NLO
