@@ -27,11 +27,13 @@ def test_rule_objects(schema_obj):
     """
     object_types = list(schema_obj["objects"].keys())
     for object_type in object_types:
+        # Find all uses of a given object type in the schema rules
         type_instances_in_rules = _dict_key_lookup(schema_obj["rules"], object_type)
         if not type_instances_in_rules:
             continue
 
         for type_instance in type_instances_in_rules:
+            # Now we need to distinguish between rules and elements within rules
             path, instance = type_instance
             if isinstance(instance, dict):
                 instance = list(instance.keys())
