@@ -110,8 +110,8 @@ jobs:
     - name: Install the schemacode package
       working-directory: ./tools
       run: |
-        python -m pip install --upgrade pip
-        python -m pip install ./tools/schemacode[tests]
+        python -m pip install --progress-bar off --upgrade pip setuptools wheel
+        python -m pip install -e ./tools/schemacode[tests]
 
     - name: Run schema validation tests
       run: python -m pytest --pyargs bidsschematools -m "validate_schema" --cov=bidsschematools
