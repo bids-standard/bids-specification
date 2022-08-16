@@ -26,13 +26,20 @@ as reference for both software implementations and advanced BIDS users.
 
 1.  If, for a given data file, multiple metadata files satisfy criteria 2.a-c above:
 
-    1.  The set of applicable metadata files is ordered as follows.
-        Within each level of the filesystem hierarchy independently,
-        applicable files are ordered from fewest to most entities;
-        each subsequent filename MUST possess a set of entities that is a
-        strict superset of the previous filename.
-        These lists are concatenated in order of highest to lowest level in the
-        filesystem hierarchy.
+    1.  The set of applicable metadata files is ordered as follows:
+
+        1.  Within each level of the filesystem hierarchy:
+
+            1.  Obtain the list of applicable metadata files within that directory.
+            1.  Sort this list in order of fewest to most entities.
+            1.  There MUST NOT be multiple applicable metadata files that
+                possess the same number of entities.
+            1.  The set of entities in any filename within this list MUST be a
+                strict superset of those present in the filename that precedes
+                it within this list.
+
+        1.  These lists are concatenated in order of highest to lowest level in the
+            filesystem hierarchy.
 
     1.  For [tabular files](#tabular-files) and other simple metadata files
         (for instance, [`bvec` / `bval` files for diffusion MRI](#bvec-bval),
