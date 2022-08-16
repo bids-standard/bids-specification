@@ -568,23 +568,27 @@ More advanced usages are however permissible:
 any data file may "inherit" metadata information from one or more metadata files,
 provided that the location of the metadata file in the file system
 makes it applicable to that data file.
+This facilitates the prevention of redundant storage of metadata,
+as any such data may be defined at the appropriate level in the filesystem
+hierarchy in order to be associated with all data files to which its
+contents are applicable.
 
-Where more than one metadata file is applicable to a data file,
-the contents of the file closest in filesystem position to the data file
-(lowest in the directory hierarchy, most entities in the file name)
-takes precedence.
-In the case of [JSON files](#key-value-files-dictionaries), this involves
-loading *all* key-values from *all* applicable files;
-where a key is present in multiple files,
-only the value for that key in the highest precedence file will be preserved.
-
-The precise rules governing the behaviour of the Inheritance Principle
-are described in detail in [Appendix XV](#99-appendices/15-inheritance-principle.md).
+This behaviour is governed by the Inheritance Principle.
+The rules of the Inheritance Principle are detailed in [Appendix XV](#99-appendices/15-inheritance-principle.md).
+These rules dictate the circumstances in which the contents of metadata
+files are considered to be applicable to any given data file,
+the behaviour when multiple such files exist,
+and circumstances in which BIDS datasets are considered invalid
+due to intrinsic ambiguity in such inheritance.
 
 ### Examples
 
 Example 1: Single metadata file applicable to multiple data files
 
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filetree_example(
     {
     "sub-01": {
@@ -644,14 +648,19 @@ Contents of file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json`:
 
 When reading image `sub-01/func/sub-01_task-rest_acq-default_bold.nii.gz`,
 only metadata file `task-rest_bold.json` is read;
-file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json` is inapplicable as it contains
-entity "`acq-longtr`" that is absent from the image path.
+file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json` is considered *inapplicable*
+(see rules of the Inheritance Principle in [Appendix XV](#99-appendices/15-inheritance-principle.md)).
+That image is therefore considered to have an `EchoTime` of `0.040`
+and a `RepetitionTime` of `1.0`.
+
 When reading image `sub-01/func/sub-01_task-rest_acq-longtr_bold.nii.gz`,
-metadata file `task-rest_bold.json` at the top level is read first,
-followed by file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json` at the bottom level;
-the value for field "`RepetitionTime`" is therefore overridden to the value `3.0`.
-The value for field "`EchoTime`" remains applicable to this image,
-and is not unset by its absence in the metadata file at the lower level.
+metadata file `task-rest_bold.json` is read *first*,
+and file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json` is read *second*
+(based on the rules of the Inheritance Principle in [Appendix XV](#99-appendices/15-inheritance-principle.md)).
+This means that this image has associated with it an `EchoTime` of `0.040`
+but a `RepetitionTime` of `3.0`, as the value for the latter entry
+initially read from file `task-rest_bold.json` is *superseded* by the
+value stored in file `sub-01/func/sub-01_task-rest_acq-longtr_bold.json`).
 
 ## Participant names and other labels
 
