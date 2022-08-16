@@ -10,7 +10,7 @@ README:
   - .rst
   - .txt
 CHANGES:
-  required: true
+  required: false
   pattern: 'CHANGES'
   extensions:
   - None
