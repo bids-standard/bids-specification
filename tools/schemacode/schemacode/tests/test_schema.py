@@ -1,45 +1,19 @@
-"""Tests for the bidsschematools package."""
-import os
-from collections.abc import Mapping
-
+"""Tests for the schemacode package."""
 import pytest
 
-from bidsschematools import __bids_version__, schema
-
-
-def test__get_bids_version(tmp_path):
-    # Is the version being read in correctly?
-    schema_path = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        os.pardir,
-        "data",
-        "schema",
-    )
-    bids_version = schema._get_bids_version(schema_path)
-    assert bids_version == __bids_version__
-
-    # Does fallback to unknown development version work?
-    expected_version = "1.2.3-dev"
-    schema_path = os.path.join(tmp_path, "whatever", expected_version)
-    bids_version = schema._get_bids_version(schema_path)
-    assert bids_version == expected_version
-
-    # Does fallback to path quoting work?
-    schema_path = os.path.join(tmp_path, "whatever", "undocumented_schema_dir")
-    bids_version = schema._get_bids_version(schema_path)
-    assert bids_version == schema_path
+from schemacode import schema
 
 
 def test_load_schema(schema_dir):
-    """Smoke test for bidsschematools.schema.load_schema."""
+    """Smoke test for schemacode.schema.load_schema."""
     # Pointing to a nonexistent directory should raise a ValueError
     bad_path = "/path/to/nowhere"
-    with pytest.raises(FileNotFoundError):
+    with pytest.raises(ValueError):
         schema.load_schema(bad_path)
 
     # Otherwise the function should return a dictionary
     schema_obj = schema.load_schema(schema_dir)
-    assert isinstance(schema_obj, Mapping)
+    assert isinstance(schema_obj, dict)
 
 
 def test_object_definitions(schema_obj):
@@ -173,141 +147,3 @@ def test_formats(schema_obj):
             assert not bool(
                 search.fullmatch(test_string)
             ), f"'{test_string}' should not be a valid match for the pattern '{search.pattern}'"
-
-
-def test_dereferencing():
-    orig = {
-        "ReferencedObject": {
-            "Property1": "value1",
-            "Property2": "value2",
-        },
-        "ReferencingObject": {
-            "$ref": "ReferencedObject",
-            "Property2": "value4",
-        },
-    }
-    dereffed = schema.dereference_mapping(orig, orig.copy())
-    assert dereffed == {
-        "ReferencedObject": {
-            "Property1": "value1",
-            "Property2": "value2",
-        },
-        "ReferencingObject": {
-            "Property1": "value1",
-            "Property2": "value4",
-        },
-    }
-
-    orig = {
-        "raw.func": {
-            "suffix": ["bold", "cbv"],
-            "extensions": [".nii", ".nii.gz"],
-            "datatype": ["func"],
-            "entities": {
-                "subject": "required",
-                "session": "optional",
-                "task": "required",
-                "dir": "optional",
-            },
-        },
-        "derived.func": {
-            "$ref": "raw.func",
-            "entities": {
-                "$ref": "raw.func.entities",
-                "space": "optional",
-                "desc": "optional",
-            },
-        },
-    }
-
-    sch = schema.Namespace.build(orig)
-    expanded = schema.expand(orig)
-    dereffed = schema.dereference_mapping(sch, expanded)
-    assert dereffed == {
-        "raw": {
-            "func": {
-                "suffix": ["bold", "cbv"],
-                "extensions": [".nii", ".nii.gz"],
-                "datatype": ["func"],
-                "entities": {
-                    "subject": "required",
-                    "session": "optional",
-                    "task": "required",
-                    "dir": "optional",
-                },
-            }
-        },
-        "derived": {
-            "func": {
-                "suffix": ["bold", "cbv"],
-                "extensions": [".nii", ".nii.gz"],
-                "datatype": ["func"],
-                "entities": {
-                    "subject": "required",
-                    "session": "optional",
-                    "task": "required",
-                    "dir": "optional",
-                    "space": "optional",
-                    "desc": "optional",
-                },
-            }
-        },
-    }
-
-    orig = {
-        "_DERIV_ENTS": {
-            "space": "optional",
-            "desc": "optional",
-        },
-        "raw.func": {
-            "suffix": ["bold", "cbv"],
-            "extensions": [".nii", ".nii.gz"],
-            "datatype": ["func"],
-            "entities": {
-                "subject": "required",
-                "session": "optional",
-                "task": "required",
-                "dir": "optional",
-            },
-        },
-        "derived.func": {
-            "$ref": "raw.func",
-            "entities": {
-                "$ref": "_DERIV_ENTS",
-            },
-        },
-    }
-
-    sch = schema.Namespace.build(orig)
-    expanded = schema.expand(orig)
-    dereffed = schema.dereference_mapping(sch, expanded)
-    assert dereffed == {
-        "_DERIV_ENTS": {
-            "space": "optional",
-            "desc": "optional",
-        },
-        "raw": {
-            "func": {
-                "suffix": ["bold", "cbv"],
-                "extensions": [".nii", ".nii.gz"],
-                "datatype": ["func"],
-                "entities": {
-                    "subject": "required",
-                    "session": "optional",
-                    "task": "required",
-                    "dir": "optional",
-                },
-            }
-        },
-        "derived": {
-            "func": {
-                "suffix": ["bold", "cbv"],
-                "extensions": [".nii", ".nii.gz"],
-                "datatype": ["func"],
-                "entities": {
-                    "space": "optional",
-                    "desc": "optional",
-                },
-            }
-        },
-    }

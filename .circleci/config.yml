@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 jobs:
   build_docs:
     docker:
@@ -27,7 +27,7 @@ jobs:
           path: ~/project/site/
           destination: dev_docs
 
-  check_links:
+  linkchecker:
     docker:
       - image: cimg/python:3.8
     steps:
@@ -89,8 +89,8 @@ jobs:
       - store_artifacts:
           path: bids-spec.pdf
 
-  # Automatically generate a changelog since migration from Google Docs to GitHub
-  github_changelog_generator:
+  # Auto changelog collector
+  github-changelog-generator:
     docker:
       - image: ferrarimarco/github-changelog-generator:1.14.3
     steps:
@@ -112,14 +112,12 @@ jobs:
                 --output ~/changelog_build/CHANGES.md \
                 --base ~/project/src/pregh-changes.md \
                 --header-label "# Changelog" \
-                --release-branch master \
                 --no-issues \
+                --no-issues-wo-labels \
                 --no-filter-by-milestone \
                 --no-compare-link \
                 --pr-label "" \
-                --enhancement-label "" \
-                --bugs-label "" \
-                --exclude-labels "exclude-from-changelog"
+                --release-branch master
               cat ~/changelog_build/CHANGES.md
             else
               echo "Commit or Release, do nothing"
@@ -129,8 +127,8 @@ jobs:
           root: ~/.
           paths: changelog_build
 
-  # Lint and fix the auto generated changes.md file
-  lint_generated_changelog:
+  # Run remark on the auto generated changes.md file
+  remark:
     docker:
       - image: cimg/node:lts
     steps:
@@ -158,12 +156,12 @@ jobs:
               echo "Commit or Release, do nothing"
             fi
       - persist_to_workspace:
-          # linted and fixed changelog in ~/changelog_build/CHANGES.md
+          # fixed+linted changelog in ~/changelog_build/CHANGES.md
           root: ~/.
           paths: changelog_build
 
   # Push built changelog to repo
-  commit_generated_changelog:
+  Changelog-bot:
     docker:
       - image: cimg/base:stable
     steps:
@@ -197,22 +195,22 @@ workflows:
   search_build:
     jobs:
       - build_docs
-      - check_links:
+      - linkchecker:
           requires:
             - build_docs
-      - github_changelog_generator:
+      - github-changelog-generator:
           filters:
             branches:
               only: master
-      - lint_generated_changelog:
+      - remark:
           requires:
-            - github_changelog_generator
+            - github-changelog-generator
           filters:
             branches:
               only: master
-      - commit_generated_changelog:
+      - Changelog-bot:
           requires:
-            - lint_generated_changelog
+            - remark
           filters:
             branches:
               only: master

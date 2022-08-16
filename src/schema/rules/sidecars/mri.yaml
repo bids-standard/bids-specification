@@ -77,7 +77,6 @@ ASLMRISequenceSpecifics:
 
 MTParameters:
     selectors:
-    - '"MTState" in sidecar'
     - sidecar.MTState == "True"
     fields:
         MTOffsetFrequency: recommended
@@ -88,21 +87,18 @@ MTParameters:
 
 SpoilingType:
     selectors:
-    - '"SpoilingState" in sidecar'
     - sidecar.SpoilingState == true
     fields:
         SpoilingType: recommended
 
 SpoilingRF:
     selectors:
-    - '"SpoilingType" in sidecar'
     - '["RF", "COMBINED"].includes(sidecar.SpoilingType)'
     fields:
         SpoilingRFPhaseIncrement: recommended
 
 SpoilingGradient:
     selectors:
-    - '"SpoilingType" in sidecar'
     - '["GRADIENT", "COMBINED"].includes(sidecar.SpoilingType)'
     fields:
         SpoilingGradientMoment: recommended
@@ -117,38 +113,34 @@ MRISpatialEncoding:
         ParallelAcquisitionTechnique: recommended
         PartialFourier: recommended
         PartialFourierDirection: recommended
+        EffectiveEchoSpacing: recommended
+        MixingTime: recommended
+
+PhaseEncodingDirectionRec:
+    selectors:
+    - modality == "mri"
+    - suffix != "epi"
+    fields:
+        PhaseEncodingDirection: recommended
+        TotalReadoutTime: recommended
+
+PhaseEncodingDirectionReq:
+    selectors:
+    - modality == "mri"
+    - suffix == "epi"
+    fields:
         PhaseEncodingDirection:
-            level: recommended
-            level_addendum: |
-                This parameter is required if corresponding fieldmap data is present
-                or when using multiple runs with different phase encoding directions
-                (which can be later used for field inhomogeneity correction).
+            level: required
             issue:
                 name: PHASE_ENCODING_DIRECTION_MUST_DEFINE
                 issue: |
                     You have to define 'PhaseEncodingDirection' for this file.
-        EffectiveEchoSpacing:
-            level: recommended
-            level_addendum: |
-                <sup>2</sup> This parameter is required if corresponding fieldmap data
-                is present.
-            issue:
-                name: EFFECTIVE_ECHO_SPACING_NOT_DEFINED
-                message: |
-                    You should define 'EffectiveEchoSpacing' for this file. If you don't
-                    provide this information field map correction will not be possible.
         TotalReadoutTime:
-            level: recommended
-            level_addendum: |
-                <sup>3</sup> This parameter is required if corresponding 'field/distortion' maps
-                acquired with opposing phase encoding directions are present
-                (see [Case 4: Multiple phase encoded
-                directions](#case-4-multiple-phase-encoded-directions-pepolar)).
+            level: required
             issue:
                 name: TOTAL_READOUT_TIME_MUST_DEFINE
                 message: |
                     You have to define 'TotalReadoutTime' for this file.
-        MixingTime: recommended
 
 MRITimingParameters:
     selectors:
@@ -185,7 +177,6 @@ SliceTimingASL:
     - modality == "mri"
     - datatype == "perf"
     - '["asl", "m0scan"].includes(suffix)'
-    - '"MRAcquisitionType" in sidecar'
     - sidecar.MRAcquisitionType == "2D"
     fields:
         SliceTiming: required
@@ -194,7 +185,6 @@ SliceTimingASL:
 SliceTimingSparse:
     selectors:
     - modality == "mri"
-    - '"DelayTime" in sidecar'
     fields:
         SliceTiming: required
 
@@ -204,7 +194,16 @@ MRIRFandContrast:
     fields:
         FlipAngle:
             level: recommended
-            level_addendum: required if LookLocker is set to `true`.
+            level_addendum: required if `LookLocker` is `true`
+        NegativeContrast: optional
+
+MRIFlipAngleLookLocker:
+    selectors:
+    - modality == "mri"
+    - sidecar.LookLocker == True
+    fields:
+        FlipAngle:
+            level: required
             issue:
                 name: LOOK_LOCKER_FLIP_ANGLE_MISSING
                 message: |
@@ -219,15 +218,7 @@ MRIRFandContrast:
                     in a 4D dataset and should only be used when the volume timing is
                     critical for interpretation of the data, such as in ASL or
                     variable flip angle fMRI sequences.
-        NegativeContrast: optional
 
-MRIFlipAngleLookLocker:
-    selectors:
-    - modality == "mri"
-    - '"LookLocker" in sidecar'
-    - sidecar.LookLocker == True
-    fields:
-        FlipAngle: required
 
 MRISliceAcceleration:
     selectors:

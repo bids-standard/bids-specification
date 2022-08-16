@@ -16,20 +16,22 @@ MRIASLTextOnly:
         MagneticFieldStrength: required
         MRAcquisitionType: required
         EchoTime: required
-        SliceTiming:
-            level: recommended
-            level_addendum: required if `MRAcquisitionType` is defined as `2D`
         RepetitionTimePreparation: required
-        FlipAngle:
-            level: recommended
-            level_addendum: required if `LookLocker` is `true`
 
-MRIASLTextOnlySliceTiming:
+MRIASLTextOnlySliceTimingRec:
     selectors:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - '"MRAcquisitionType" in sidecar'
+    - sidecar.MRAcquisitionType == "2D"
+    fields:
+        SliceTiming: recommended
+
+MRIASLTextOnlySliceTimingReq:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
     - sidecar.MRAcquisitionType == "2D"
     fields:
         SliceTiming:
@@ -51,12 +53,21 @@ MRIASLTextOnlySliceTiming:
                     final entry in the `SliceTiming` list is the time of acquisition of slice 0.
                     Without this parameter slice time correction will not be possible.
 
-MRIASLTextOnlyFlipAngle:
+MRIASLTextOnlyFlipAngleRec:
     selectors:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - '"LookLocker in sidecar'
+    - sidecar.LookLocker == false
+    fields:
+        FlipAngle: Recommended
+        
+
+MRIASLTextOnlyFlipAngleReq:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
     - sidecar.LookLocker == true
     fields:
         FlipAngle:
@@ -90,30 +101,26 @@ MRIASLCommonMetadataFields:
         TotalAcquiredPairs: required
         VascularCrushing: recommended
         AcquisitionVoxelSize: recommended
-        M0Estimate:
-            level: optional
-            level_addendum: required if `M0Type` is `Estimate`
-        BackgroundSuppressionNumberPulses:
-            level: optional
-            level_addendum: recommended if `BackgroundSuppression` is `true`
-        BackgroundSuppressionPulseTime:
-            level: optional
-            level_addendum: recommended if `BackgroundSuppression` is `true`
-        VascularCrushingVENC:
-            level: optional
-            level_addendum: recommended if `VascularCrushing` is `true`
         LabelingOrientation: recommended
         LabelingDistance: recommended
         LabelingLocationDescription: recommended
         LookLocker: optional
         LabelingEfficiency: optional
 
-MRIASLCommonMetadataFieldsM0Type:
+MRIASLCommonMetadataFieldsM0TypeRec:
     selectors:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - '"M0Type" in sidecar'
+    - sidecar.M0Type != "Estimate"
+    fields:
+        M0Estimate: optional
+
+MRIASLCommonMetadataFieldsM0TypeReq:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
     - sidecar.M0Type == "Estimate"
     fields:
         M0Estimate:
@@ -126,23 +133,40 @@ MRIASLCommonMetadataFieldsM0Type:
                     (referring to the M0 of blood), only if obtained externally (for example
                     retrieved from CSF in a separate measurement).
 
-MRIASLCommonMetadataFieldsBackgroundSuppression:
+MRIASLCommonMetadataFieldsBackgroundSuppressionOpt:
     selectors:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - '"BackgroundSuppression" in sidecar'
+    - sidecar.BackgroundSuppression == false
+    fields:
+        BackgroundSuppressionNumberPulses: optional
+        BackgroundSuppressionPulseTime: optional
+
+MRIASLCommonMetadataFieldsBackgroundSuppressionReq:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
     - sidecar.BackgroundSuppression == true
     fields:
         BackgroundSuppressionNumberPulses: recommended
         BackgroundSuppressionPulseTime: recommended
 
-MRIASLCommonMetadataFieldsVascularCrushing:
+MRIASLCommonMetadataFieldsVascularCrushingOpt:
     selectors:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - '"VascularCrushing" in sidecar'
+    - sidecar.VascularCrushing == false 
+    fields:
+        VascularCrushingVENC: optional
+
+MRIASLCommonMetadataFieldsVascularCrushingRec:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
     - sidecar.VascularCrushing == true
     fields:
         VascularCrushingVENC: recommended
@@ -152,7 +176,6 @@ MRIASLPCASLSpecific:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - '"ArterialSpinLabelingType" in sidecar'
     - '["CASL", "PCASL"].includes(sidecar.ArterialSpinLabelingType)'
     fields:
         LabelingDuration: required
@@ -168,7 +191,6 @@ MRIASLPCASLSpecific2:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - '"ArterialSpinLabelingType" in sidecar'
     - sidecar.ArterialSpinLabelingType == "PCASL"
     fields:
         PCASLType: recommended
@@ -178,7 +200,6 @@ MRIASLCASLSpecific:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - '"ArterialSpinLabelingType" in sidecar'
     - sidecar.ArterialSpinLabelingType == "CASL"
     fields:
         CASLType: recommended
@@ -188,27 +209,29 @@ MRIASLPASLSpecific:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - '"ArterialSpinLabelingType" in sidecar'
     - sidecar.ArterialSpinLabelingType == "PASL"
     fields:
         BolusCutOffFlag: required
         PASLType: recommended
         LabelingSlabThickness: recommended
-        BolusCutOffDelayTime:
-            level: optional
-            level_addendum: required if `BolusCutOffFlag` is `true`
-        BolusCutOffTechnique:
-            level: optional
-            level_addendum: required if `BolusCutOffFlag` is `true`
 
 MRIASLPASLSpecificBolusCutOffFlag:
     selectors:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - '"ArterialSpinLabelingType" in sidecar'
     - sidecar.ArterialSpinLabelingType == "PASL"
-    - '"BolusCutOffFlag" in sidecar'
+    - sidecar.BolusCutOffFlag == false
+    fields:
+        BolusCutOffDelayTime: optional
+        BolusCutOffTechnique: optional
+
+MRIASLPASLSpecificBolusCutOffFlag:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "asl"
+    - sidecar.ArterialSpinLabelingType == "PASL"
     - sidecar.BolusCutOffFlag == true
     fields:
         BolusCutOffDelayTime:
@@ -245,16 +268,21 @@ MRIASLM0ScanTextOnly:
     fields:
         EchoTime: required
         RepetitionTimePreparation: required
-        FlipAngle:
-            level: recommended
-            level_addendum: required if `LookLocker` is `true`
 
-MRIASLM0ScanTextOnlyFlipAngle:
+MRIASLM0ScanTextOnlyFlipAngleRec:
     selectors:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "m0scan"
-    - '"LookLocker" in sidecar'
+    - sidecar.LookLocker == false
+    fields:
+        FlipAngle: recommended
+
+MRIASLM0ScanTextOnlyFlipAngleReq:
+    selectors:
+    - modality == "MRI"
+    - datatype == "perf"
+    - suffix == "m0scan"
     - sidecar.LookLocker == true
     fields:
         FlipAngle:

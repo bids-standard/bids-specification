@@ -73,10 +73,10 @@ AnatomicalLandmarkCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"AnatomicalLandmarkCoordinateSystemDescription"`.
   anyOf:
-  - $ref: objects.metadata._MEGCoordSys
-  - $ref: objects.metadata._EEGCoordSys
-  - $ref: objects.metadata._StandardTemplateCoordSys
-  - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+  - $ref: _MEGCoordSys
+  - $ref: _EEGCoordSys
+  - $ref: _StandardTemplateCoordSys
+  - $ref: _StandardTemplateDeprecatedCoordSys
 AnatomicalLandmarkCoordinateSystemDescription:
   name: AnatomicalLandmarkCoordinateSystemDescription
   display_name: Anatomical Landmark Coordinate System Description
@@ -147,22 +147,20 @@ AssociatedEmptyRoom:
   name: AssociatedEmptyRoom
   display_name: Associated Empty Room
   description: |
-    One or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri)
-    pointing to empty-room file(s) associated with the subject's MEG recording.
-    Using forward-slash separated paths relative to the dataset root is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
+    A path pointing to an empty-room file associated with
+    the subject's MEG recording.
+    The path is relative to the BIDS dataset root.
+    The path needs to use forward slashes instead of backward slashes
+    (for example,
+    "sub-emptyroom/ses-rest/meg/sub-emptyroom_ses-rest_task-noise_run-01_meg.ds").
+    Supplying a list of several paths to empty-room files is possible.
   anyOf:
   - type: array
     items:
-      anyOf:
-      - type: string
-        format: dataset_relative
-      - type: string
-        format: bids_uri
+      type: string
+      format: dataset_relative
   - type: string
     format: dataset_relative
-  - type: string
-    format: bids_uri
 Atlas:
   name: Atlas
   display_name: Atlas
@@ -264,9 +262,6 @@ BasedOn:
   description: |
     List of files in a file collection to generate the map.
     Fieldmaps are also listed, if involved in the processing.
-    This field is DEPRECATED, and this metadata SHOULD be recorded in the
-    `Sources` field using [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri)
-    to distinguish sources from different datasets.
   anyOf:
   - type: string
     format: participant_relative
@@ -416,10 +411,10 @@ ChunkTransformationMatrixAxis:
     Describe the axis of the ChunkTransformationMatrix
     (for examples: `["X", "Y"]` or `["Z", "Y", "X"]`).
   type: array
-  minItems: 2
-  maxItems: 3
   items:
     type: string
+    minItems: 2
+    maxItems: 3
 Code:
   name: Code
   display_name: Code
@@ -505,18 +500,6 @@ DatasetDOI:
     [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
   type: string
   format: uri
-DatasetLinks:
-  name: DatasetLinks
-  display_name: Dataset Links
-  description: |
-    Used to map a given `<dataset-name>` from a [BIDS URI](SPEC_ROOT/02-common-principles.md#bids-uri)
-    of the form `bids:<dataset-name>:path/within/dataset` to a local or remote location.
-    The `<dataset-name>`: `""` (an empty string) is a reserved keyword that MUST NOT be a key in
-    `DatasetLinks` (example: `bids::path/within/dataset`).
-  type: object
-  additionalProperties:
-    type: string
-    format: uri
 DatasetType:
   name: DatasetType
   display_name: Dataset Type
@@ -630,10 +613,10 @@ DigitizedHeadPointsCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"DigitizedHeadPointsCoordinateSystemDescription"`.
   anyOf:
-  - $ref: objects.metadata._MEGCoordSys
-  - $ref: objects.metadata._EEGCoordSys
-  - $ref: objects.metadata._StandardTemplateCoordSys
-  - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+  - $ref: _MEGCoordSys
+  - $ref: _EEGCoordSys
+  - $ref: _StandardTemplateCoordSys
+  - $ref: _StandardTemplateDeprecatedCoordSys
 DigitizedHeadPointsCoordinateSystemDescription:
   name: DigitizedHeadPointsCoordinateSystemDescription
   display_name: Digitized Head Points Coordinate System Description
@@ -731,10 +714,10 @@ EEGCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `EEGCoordinateSystemDescription`.
   anyOf:
-  - $ref: objects.metadata._MEGCoordSys
-  - $ref: objects.metadata._EEGCoordSys
-  - $ref: objects.metadata._StandardTemplateCoordSys
-  - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+  - $ref: _MEGCoordSys
+  - $ref: _EEGCoordSys
+  - $ref: _StandardTemplateCoordSys
+  - $ref: _StandardTemplateDeprecatedCoordSys
 EEGCoordinateSystemDescription:
   name: EEGCoordinateSystemDescription
   display_name: EEG Coordinate System Description
@@ -938,10 +921,10 @@ FiducialsCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"FiducialsCoordinateSystemDescription"`.
   anyOf:
-  - $ref: objects.metadata._MEGCoordSys
-  - $ref: objects.metadata._EEGCoordSys
-  - $ref: objects.metadata._StandardTemplateCoordSys
-  - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+  - $ref: _MEGCoordSys
+  - $ref: _EEGCoordSys
+  - $ref: _StandardTemplateCoordSys
+  - $ref: _StandardTemplateDeprecatedCoordSys
 FiducialsCoordinateSystemDescription:
   name: FiducialsCoordinateSystemDescription
   display_name: Fiducials Coordinate System Description
@@ -1081,10 +1064,10 @@ GeneticLevel:
     Values MUST be one of `"Genetic"`, `"Genomic"`, `"Epigenomic"`,
     `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.
   anyOf:
-  - $ref: objects.metadata._GeneticLevelEnum
+  - $ref: _GeneticLevelEnum
   - type: array
     items:
-      $ref: objects.metadata._GeneticLevelEnum
+      $ref: _GeneticLevelEnum
 Genetics:
   name: Genetics
   display_name: Genetics
@@ -1195,10 +1178,10 @@ HeadCoilCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `HeadCoilCoordinateSystemDescription`.
   anyOf:
-  - $ref: objects.metadata._MEGCoordSys
-  - $ref: objects.metadata._EEGCoordSys
-  - $ref: objects.metadata._StandardTemplateCoordSys
-  - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+  - $ref: _MEGCoordSys
+  - $ref: _EEGCoordSys
+  - $ref: _StandardTemplateCoordSys
+  - $ref: _StandardTemplateDeprecatedCoordSys
 HeadCoilCoordinateSystemDescription:
   name: HeadCoilCoordinateSystemDescription
   display_name: Head Coil Coordinate System Description
@@ -1437,41 +1420,33 @@ IntendedFor:
   display_name: Intended For
   description: |
     The paths to files for which the associated file is intended to be used.
-    Contains one or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri).
-    Using forward-slash separated paths relative to the participant subdirectory is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
+    Contains one or more filenames with paths relative to the participant
+    subdirectory.
+    Paths need to use forward slashes instead of backward slashes,
+    regardless of operating system.
   anyOf:
-  - type: string
-    format: bids_uri
   - type: string
     format: participant_relative
   - type: array
     items:
-      anyOf:
-      - type: string
-        format: bids_uri
-      - type: string
-        format: participant_relative
+      type: string
+      format: participant_relative
 IntendedFor__ds_relative:
   name: IntendedFor
   display_name: Intended For
   description: |
     The paths to files for which the associated file is intended to be used.
-    Contains one or more [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri).
-    Using forward-slash separated paths relative to the dataset root is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
+    Contains one or more filenames with paths relative to the dataset
+    root.
+    Paths need to use forward slashes instead of backward slashes,
+    regardless of operating system.
   anyOf:
-  - type: string
-    format: bids_uri
   - type: string
     format: dataset_relative
   - type: array
     items:
-      anyOf:
-      - type: string
-        format: bids_uri
-      - type: string
-        format: dataset_relative
+      type: string
+      format: dataset_relative
 InversionTime:
   name: InversionTime
   display_name: Inversion Time
@@ -1687,10 +1662,10 @@ MEGCoordinateSystem:
     If `"Other"`, provide definition of the coordinate system in
     `"MEGCoordinateSystemDescription"`.
   anyOf:
-  - $ref: objects.metadata._MEGCoordSys
-  - $ref: objects.metadata._EEGCoordSys
-  - $ref: objects.metadata._StandardTemplateCoordSys
-  - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+  - $ref: _MEGCoordSys
+  - $ref: _EEGCoordSys
+  - $ref: _StandardTemplateCoordSys
+  - $ref: _StandardTemplateDeprecatedCoordSys
 MEGCoordinateSystemDescription:
   name: MEGCoordinateSystemDescription
   display_name: MEG Coordinate System Description
@@ -2003,7 +1978,7 @@ NumberShots:
     after the k-space center is sampled.
     Please see
     [`"NumberShots"` metadata field]\
-    (SPEC_ROOT/99-appendices/11-qmri.md#numbershots-metadata-field)
+    (/99-appendices/11-qmri.html#numbershots-metadata-field)
     in the qMRI appendix for corresponding calculations.
   anyOf:
   - type: number
@@ -2148,12 +2123,6 @@ PhaseEncodingDirection:
   - i-
   - j-
   - k-
-PhotoDescription:
-  name: PhotoDescription
-  display_name: Photo Description
-  description: |
-    Description of the photo.
-  type: string
 PixelSize:
   name: PixelSize
   display_name: Pixel Size
@@ -2290,9 +2259,6 @@ RawSources:
   description: |
     A list of paths relative to dataset root pointing to the BIDS-Raw file(s)
     that were used in the creation of this derivative.
-    This field is DEPRECATED, and this metadata SHOULD be recorded in the
-    `Sources` field using [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri)
-    to distinguish sources from different datasets.
   type: array
   items:
     type: string
@@ -2440,8 +2406,8 @@ RepetitionTimeExcitation:
     `"RepetitionTimePreparation"` if needed) for anatomy imaging data rather than
     `"RepetitionTime"` as it is already defined as the amount of time that it takes
     to acquire a single volume in the
-    [task imaging data](SPEC_ROOT/04-modality-specific-files/01-magnetic-resonance-\
-    imaging-data.md#task-including-resting-state-imaging-data)
+    [task imaging data](/04-modality-specific-files/01-magnetic-resonance-\
+    imaging-data.html#task-including-resting-state-imaging-data)
     section.
   type: number
   minimum: 0
@@ -2810,8 +2776,7 @@ Sources:
   name: Sources
   display_name: Sources
   description: |
-    A list of files with the paths specified using
-    [BIDS URIs](SPEC_ROOT/02-common-principles.md#bids-uri);
+    A list of files with the paths specified relative to dataset root;
     these files were directly used in the creation of this derivative data file.
     For example, if a derivative A is used in the creation of another
     derivative B, which is in turn used to generate C in a chain of A->B->C,
@@ -2819,15 +2784,10 @@ Sources:
     However, in case both X and Y are directly used in the creation of Z,
     then Z should list X and Y in `"Sources"`,
     regardless of whether X was used to generate Y.
-    Using paths specified relative to the dataset root is
-    [DEPRECATED](SPEC_ROOT/02-common-principles.md#definitions).
   type: array
   items:
-    anyOf:
-    - type: string
-      format: dataset_relative
-    - type: string
-      format: bids_uri
+    type: string
+    format: dataset_relative
 SpatialReference:
   name: SpatialReference
   display_name: Spatial Reference
@@ -2955,15 +2915,15 @@ StimulusPresentation:
   type: object
   properties:
     OperatingSystem:
-      $ref: objects.metadata.OperatingSystem
+      $ref: OperatingSystem
     SoftwareName:
-      $ref: objects.metadata.SoftwareName
+      $ref: SoftwareName
     SoftwareRRID:
-      $ref: objects.metadata.SoftwareRRID
+      $ref: SoftwareRRID
     SoftwareVersion:
-      $ref: objects.metadata.SoftwareVersion
+      $ref: SoftwareVersion
     Code:
-      $ref: objects.metadata.Code
+      $ref: Code
 SubjectArtefactDescription:
   name: SubjectArtefactDescription
   display_name: Subject Artefact Description
@@ -2986,7 +2946,7 @@ TaskName:
     Name of the task.
     No two tasks should have the same name.
     The task label included in the file name is derived from this `"TaskName"` field
-    by removing all non-alphanumeric characters (that is, all except those matching `[0-9a-zA-Z]`).
+    by removing all non-alphanumeric (`[a-zA-Z0-9]`) characters.
     For example `"TaskName"` `"faces n-back"` will correspond to task label
     `facesnback`.
   type: string
@@ -3303,12 +3263,12 @@ iEEGCoordinateSystem:
     (of either a volume-rendering, surface-rendering, operative photo, or
     operative drawing), this MUST be `"Pixels"`.
     For more information, see the section on
-    [2D coordinate systems](SPEC_ROOT/04-modality-specific-files/04-intracranial\
-    -electroencephalography.md#allowed-2d-coordinate-systems).
+    [2D coordinate systems](/04-modality-specific-files/04-intracranial\
+    -electroencephalography.html#allowed-2d-coordinate-systems).
   anyOf:
-  - $ref: objects.metadata._iEEGCoordSys
-  - $ref: objects.metadata._StandardTemplateCoordSys
-  - $ref: objects.metadata._StandardTemplateDeprecatedCoordSys
+  - $ref: _iEEGCoordSys
+  - $ref: _StandardTemplateCoordSys
+  - $ref: _StandardTemplateDeprecatedCoordSys
 iEEGCoordinateSystemDescription:
   name: iEEGCoordinateSystemDescription
   display_name: iEEG Coordinate System Description

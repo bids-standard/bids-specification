@@ -1,7 +1,7 @@
-"""Tests for the bidsschematools package."""
+"""Tests for the schemacode package."""
 import os
 
-from bidsschematools import render
+from schemacode import render
 
 
 def test_make_entity_definitions(schema_obj):
@@ -209,12 +209,3 @@ def test_make_columns_table(schema_obj):
 
     # Have we found all fields?
     assert len(columns_tracking) == 0
-
-
-def test_define_common_principles(schema_obj):
-    """Ensure that define_common_principles returns a string."""
-    common_principles_str = render.define_common_principles(schema_obj)
-    # Must be a string
-    assert isinstance(common_principles_str, str)
-    # Must be fairly long
-    assert len(common_principles_str) > 100

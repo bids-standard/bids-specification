@@ -52,7 +52,7 @@ and a guide for using macros can be found at
    }
 ) }}
 
-Note for MRI data:
+<sup>5</sup> Note for MRI data:
 If any acquired scans have been discarded before forming the imaging data file,
 ensure that an `onset` of 0 corresponds to the time the first image was stored.
 For example in case there is an in scanner training phase that
@@ -60,14 +60,8 @@ begins before the scanning sequence has started events from this sequence should
 have negative onset time counting down to the beginning of the acquisition of
 the first volume.
 
-Note regarding the precision of numeric metadata:
-It is RECOMMENDENDED that dataset curators specify numeric metadata like `onset` and
-`duration` with as much decimal precision as is reasonable in the context of the experiment.
-For example in an EEG experiment with devices operating at 1000 Hz sampling frequency,
-dataset curators SHOULD specify **at least** 3 figures after the decimal point.
-
 An arbitrary number of additional columns can be added. Those allow describing
-other properties of events that could be later referenced in modelling and
+other properties of events that could be later referred in modelling and
 hypothesis extensions of BIDS.
 Note that the `trial_type` and any additional columns in a TSV file
 SHOULD be documented in an accompanying JSON sidecar file.

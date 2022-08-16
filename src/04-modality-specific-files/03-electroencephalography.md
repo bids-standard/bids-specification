@@ -519,7 +519,7 @@ Example:
 
 ```JSON
 {
-  "IntendedFor":"bids::sub-01/ses-01/anat/sub-01_T1w.nii",
+  "IntendedFor":"/sub-01/ses-01/anat/sub-01_T1w.nii",
   "EEGCoordinateSystem":"Other",
   "EEGCoordinateUnits":"mm",
   "EEGCoordinateSystemDescription":"RAS orientation: Origin halfway between LPA and RPA, positive x-axis towards RPA, positive y-axis orthogonal to x-axis through Nasion,  z-axis orthogonal to xy-plane, pointing in superior direction.",
@@ -556,3 +556,5 @@ Picture of a NAS fiducial placed between the eyebrows, rather than at the
 actual anatomical nasion: `sub-0001_ses-001_acq-NAS_photo.jpg`
 
 ![placement of NAS fiducial](images/sub-0001_ses-001_acq-NAS_photo.jpg "placement of NAS fiducial")
+
+<!-- Link Definitions -->

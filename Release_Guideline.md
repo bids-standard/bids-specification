@@ -3,7 +3,6 @@
 This document captures guidelines to follow when considering a new release of the BIDS specification.
 
 ## Background
-
 BIDS has generally followed a semantic versioning (semver) approach.
 The canonical semver text can be found at https://semver.org/, and an adaptation to documents can be found at https://semverdoc.org/.
 A specification falls somewhere between these two, as documentation does not require

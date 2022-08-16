@@ -22,10 +22,10 @@ nonparametric:
   entities:
     subject: required
     session: optional
+    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
-    run: optional
     part: optional
 
 parametric:
@@ -56,10 +56,10 @@ parametric:
   entities:
     subject: required
     session: optional
+    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
-    run: optional
 
 defacemask:
   suffixes:
@@ -73,10 +73,10 @@ defacemask:
   entities:
     subject: required
     session: optional
+    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
-    run: optional
     modality: optional
 
 multiecho:
@@ -92,10 +92,10 @@ multiecho:
   entities:
     subject: required
     session: optional
+    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
-    run: optional
     echo: required
     part: optional
 
@@ -111,10 +111,10 @@ multiflip:
   entities:
     subject: required
     session: optional
+    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
-    run: optional
     echo: optional
     flip: required
     part: optional
@@ -131,10 +131,10 @@ multiinversion:
   entities:
     subject: required
     session: optional
+    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
-    run: optional
     inversion: required
     part: optional
 
@@ -150,10 +150,10 @@ mp2rage:
   entities:
     subject: required
     session: optional
+    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
-    run: optional
     echo: optional
     flip: optional
     inversion: required
@@ -172,10 +172,10 @@ vfamt:
   entities:
     subject: required
     session: optional
+    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
-    run: optional
     echo: optional
     flip: required
     mtransfer: required
@@ -193,9 +193,9 @@ mtr:
   entities:
     subject: required
     session: optional
+    run: optional
     acquisition: optional
     ceagent: optional
     reconstruction: optional
-    run: optional
     mtransfer: required
     part: optional

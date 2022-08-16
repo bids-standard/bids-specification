@@ -490,7 +490,10 @@ based fMRI a corresponding task events file (see below) MUST be provided
 multiband acquisitions, one MAY also save the single-band reference image as
 type `sbref` (for example, `sub-control01_task-nback_sbref.nii.gz`).
 
-Each [`task-<label>`](../99-appendices/09-entities.md#task) MUST be consistent across subjects and sessions.
+Each task has a unique label that MUST only consist of letters and/or numbers
+(other characters, including spaces and underscores, are not allowed) with the
+[`task-<label>`](../99-appendices/09-entities.md#task) entity.
+Those labels MUST be consistent across subjects and sessions.
 
 If more than one run of the same task has been acquired the
 [`run-<index>`](../99-appendices/09-entities.md#run) entity MUST be used:
@@ -699,6 +702,14 @@ A guide for using macros can be found at
    "B0FieldSource": ["phasediff_fmap0", "pepolar_fmap0"]
 }
 ```
+
+If this information is the same for all participants, sessions and runs it can
+be provided in `task-<label>_bold.json` (in the root directory of the
+dataset). However, if the information differs between subjects/runs it can be
+specified in the
+`sub-<label>/func/sub-<label>_task-<label>[_acq-<label>][_run-<index>]_bold.json` file.
+If both files are specified fields from the file corresponding to a particular
+participant, task and run takes precedence.
 
 ## Diffusion imaging data
 
@@ -1221,8 +1232,8 @@ For example:
 ```JSON
 {
    "IntendedFor": [
-        "bids::sub-01/ses-pre/func/sub-01_ses-pre_task-motor_run-1_bold.nii.gz",
-        "bids::sub-01/ses-pre/func/sub-01_ses-pre_task-motor_run-2_bold.nii.gz"
+        "ses-pre/func/sub-01_ses-pre_task-motor_run-1_bold.nii.gz",
+        "ses-pre/func/sub-01_ses-pre_task-motor_run-2_bold.nii.gz"
     ]
 }
 ```
@@ -1356,7 +1367,7 @@ For example:
 ```JSON
 {
    "Units": "rad/s",
-   "IntendedFor": "bids::sub-01/func/sub-01_task-motor_bold.nii.gz",
+   "IntendedFor": "func/sub-01_task-motor_bold.nii.gz",
    "B0FieldIdentifier": "b0map_fmap0"
 }
 ```
@@ -1415,7 +1426,7 @@ For example:
 {
    "PhaseEncodingDirection": "j-",
    "TotalReadoutTime": 0.095,
-   "IntendedFor": "bids::sub-01/func/sub-01_task-motor_bold.nii.gz",
+   "IntendedFor": "func/sub-01_task-motor_bold.nii.gz",
    "B0FieldIdentifier": "pepolar_fmap0"
 }
 ```
@@ -1427,3 +1438,5 @@ As for other EPI sequences, these field mapping sequences may have any of the
 [in-plane spatial encoding](#in-plane-spatial-encoding) metadata keys.
 However, please note that `PhaseEncodingDirection` and `TotalReadoutTime` keys
 are REQUIRED for these field mapping sequences.
+
+<!-- Link Definitions -->

@@ -43,7 +43,6 @@ photo:
   - .jpg
   - .png
   - .tif
-  - .json
   datatypes:
   - micr
   entities:

@@ -111,7 +111,7 @@ unit:
   description: |
     A unit.
     SI units in CMIXF formatting are RECOMMENDED
-    (see [Units](SPEC_ROOT/02-common-principles.md#units)).
+    (see [Units](/02-common-principles.html#units)).
 
     Currently this matches any string.
 

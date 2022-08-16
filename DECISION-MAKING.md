@@ -30,15 +30,15 @@ BIDS governance.
 
 ### Maintainers Group
 
-| Name                                                                           | Time commitment | Scope                            |
-|--------------------------------------------------------------------------------|-----------------|----------------------------------|
-| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         | Lead Maintainer                  |
-| Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |                                  |
-| Taylor Salo ([@tsalo](https://github.com/tsalo))                               | 3h/week         | MRI                              |
-| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                            | 3h/week         | Community development, MRI       |
-| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))            | 3h/week         | PET, Community development       |
-| Eric Earl ([@ericearl](https://github.com/ericearl))                           | 2h/week         |                                  |
-| Ross Blair ([@rwblair](https://github.com/rwblair))                            |                 | Maintainer of the bids-validator |
+| Name                                                                           | Time commitment | Scope                      |
+|--------------------------------------------------------------------------------|-----------------|----------------------------|
+| Stefan Appelhoff ([@sappelhoff](https://github.com/sappelhoff))                | 5h/week         | Lead Maintainer            |
+| Chris Markiewicz ([@effigies](https://github.com/effigies))                    | 5h/week         |                            |
+| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) | 5h/week         | Community development      |
+| Taylor Salo ([@tsalo](https://github.com/tsalo))                               | 3h/week         | MRI                        |
+| Remi Gau ([@Remi-Gau](https://github.com/Remi-Gau))                            | 3h/week         | Community development, MRI |
+| Anthony Galassi  ([@bendhouseart](https://github.com/bendhouseart))            | 3h/week         | PET, Community development |
+| Eric Earl ([@ericearl](https://github.com/ericearl))                           | 2h/week         |                            |
 
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.
@@ -47,12 +47,6 @@ welcoming BIDS community.
 One or more scopes can be chosen by the maintainer and agreed upon by the Maintainers Group.
 A maintainer is primarily responsible for issues within their chosen scope(s), although
 contributions elsewhere are welcome, as well.
-
-#### Past maintainers group members
-
-| Name                                                                           |
-|--------------------------------------------------------------------------------|
-| Franklin Feingold ([@franklin-feingold](https://github.com/franklin-feingold)) |
 
 ### BEP Leads Group
 
@@ -99,7 +93,7 @@ and heavily depends on [GitHub Pull Request Review system](https://help.github.c
    others) or proposal to release a new version needs to be done via a Pull
    Request (PR) to the Repository.
 1. Anyone can open a PR (this action is not limited to Contributors).
-1. PRs adding new Contributors may also add their GitHub names to the
+1. PRs adding new Contributors must also add their GitHub names to the
    [CODEOWNERS](./CODEOWNERS) file.
 1. A PR is eligible to be merged if and only if these conditions are met:
    1. The last commit is at least 5 working days old to allow the community to
@@ -157,3 +151,8 @@ and heavily depends on [GitHub Pull Request Review system](https://help.github.c
    merged so if you think the PR needs your attention, please review it
    promptly or request more time via Request changes.
 1. Releases are triggered the same way as any other change - via a PR.
+1. PRs MUST be merged using the "Create a merge commit" option in GitHub (by using
+   the "merge pull request" option). This is necessary for our automatic
+   changelog generator to do its work reliably. See the [GitHub help page](https://help.github.com/en/articles/about-merge-methods-on-github)
+   for information on merge methods. See the changelog generator implementation
+   in our [circleci configuration file](./.circleci/config.yml).

@@ -1,6 +1,6 @@
 # Intracranial Electroencephalography
 
-Support for Intracranial Electroencephalography (iEEG) was developed as a
+Support Intracranial Electroencephalography (iEEG) was developed as a
 [BIDS Extension Proposal](../07-extensions.md#bids-extension-proposals).
 Please see [Citing BIDS](../01-introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
@@ -493,13 +493,13 @@ and a guide for using macros can be found at
          "the surface reconstruction file. "
          "Note that this file should have the same coordinate system "
          "specified in `iEEGCoordinateSystem`. "
-         "For example, **T1**: `'bids::sub-<label>/ses-<label>/anat/"
-         "sub-01_T1w.nii.gz'`  "
-         "**Surface**: `'bids::derivatives/surfaces/sub-<label>/ses-<label>/anat/"
+         "For example, **T1**: `'/sub-<label>/ses-<label>/anat/"
+         "sub-01_T1w.nii.gz'`"
+         "**Surface**: `'/derivatives/surfaces/sub-<label>/ses-<label>/anat/"
          "sub-01_hemi-R_desc-T1w_pial.surf.gii'` "
-         "**Operative photo**: `'bids::sub-<label>/ses-<label>/ieeg/"
+         "**Operative photo**: `'/sub-<label>/ses-<label>/ieeg/"
          "sub-0001_ses-01_acq-photo1_photo.jpg'` "
-         "**Talairach**: `'bids::derivatives/surfaces/sub-Talairach/ses-01/anat/"
+         "**Talairach**: `'/derivatives/surfaces/sub-Talairach/ses-01/anat/"
          "sub-Talairach_hemi-R_pial.surf.gii'`",
       )
    }
@@ -555,7 +555,7 @@ Example:
 
 ```json
 {
-    "IntendedFor": "bids::sub-01/ses-01/anat/sub-01_T1w.nii.gz",
+    "IntendedFor": "/sub-01/ses-01/anat/sub-01_T1w.nii.gz",
     "iEEGCoordinateSystem": "ACPC",
     "iEEGCoordinateUnits": "mm",
     "iEEGCoordinateSystemDescription": "Coordinate system with the origin at anterior commissure (AC), negative y-axis going through the posterior commissure (PC), z-axis going to a mid-hemisperic point which lies superior to the AC-PC line, x-axis going to the right",
@@ -653,3 +653,5 @@ onset duration trial_type             electrical_stimulation_type electrical_sti
 4.2   1        electrical_stimulation complex                     LT02-LT03                   n/a
 15.2  3        auditory_stimulus      n/a                         n/a                         n/a
 ```
+
+<!-- Link Definitions -->

@@ -2,7 +2,6 @@
 import logging
 import os
 import posixpath
-from collections.abc import Mapping
 
 import pandas as pd
 from tabulate import tabulate
@@ -36,7 +35,7 @@ def get_relpath(src_path):
     return posixpath.relpath(".", posixpath.dirname(src_path or ""))
 
 
-def make_entity_definitions(schema, src_path=None):
+def make_entity_definitions(schema):
     """Generate definitions and other relevant information for entities in the specification.
 
     Each entity gets its own heading.
@@ -74,9 +73,7 @@ def make_entity_definitions(schema, src_path=None):
             text += "Allowed values: `{}`".format("`, `".join(entity_info["enum"]))
             text += "\n\n"
 
-        description = entity_info["description"]
-        description = description.replace("SPEC_ROOT", get_relpath(src_path))
-        text += "Definition: {}".format(description)
+        text += "Definition: {}".format(entity_info["description"])
     return text
 
 
@@ -200,6 +197,8 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
         A multiline string containing the filename templates for file types
         in the schema, after filtering.
     """
+    schema = filter_schema(schema, **kwargs)
+
     entity_order = schema["rules"]["entities"]
 
     paragraph = ""
@@ -211,16 +210,11 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
         schema["objects"]["entities"]["session"]["format"],
     )
 
-    datatypes = filter_schema(schema.rules.datatypes, **kwargs)
-
-    for datatype in datatypes:
-        # XXX We should have a full rethink of the schema hierarchy...
-        if datatype == "derivatives":
-            continue
+    for datatype in schema["rules"]["datatypes"].keys():
         paragraph += "\t\t{}/\n".format(datatype)
 
         # Unique filename patterns
-        for group in datatypes[datatype].values():
+        for group in schema["rules"]["datatypes"][datatype].values():
             string = "\t\t\t"
             for ent in entity_order:
                 if "enum" in schema["objects"]["entities"][ent].keys():
@@ -335,8 +329,6 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
 
         # each dtype could have multiple specs
         for dtype_spec in dtype_specs.values():
-            if dtype == "derivatives":
-                continue
             suffixes = dtype_spec.get("suffixes")
 
             # Skip this part of the schema if no suffixes are found.
@@ -348,7 +340,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
             suffixes_str = " ".join(suffixes) if suffixes else ""
             dtype_row = [dtype] + ([""] * len(all_entities))
             for ent, ent_info in dtype_spec.get("entities", {}).items():
-                if isinstance(ent_info, Mapping):
+                if isinstance(ent_info, dict):
                     requirement_level = ent_info["requirement"]
                 else:
                     requirement_level = ent_info
@@ -612,7 +604,7 @@ def make_subobject_table(schema, object_tuple, field_info, src_path=None, tablef
         temp_dict = temp_dict[level_str]
 
     temp_dict = temp_dict["properties"]
-    assert isinstance(temp_dict, Mapping)
+    assert isinstance(temp_dict, dict)
     table_str = make_obj_table(
         temp_dict,
         field_info=field_info,
@@ -701,36 +693,3 @@ def make_columns_table(schema, column_info, src_path=None, tablefmt="github"):
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
     return table_str
-
-
-def define_common_principles(schema, src_path=None):
-    """Enumerate the common principles defined in the schema.
-
-    Parameters
-    ----------
-    schema : dict
-        The BIDS schema.
-    src_path : str | None
-        The file where this macro is called, which may be explicitly provided
-        by the "page.file.src_path" variable.
-
-    Returns
-    -------
-    string : str
-        The definitions of the common principles in a multiline string.
-    """
-    string = ""
-    common_principles = schema["objects"]["common_principles"]
-    order = schema["rules"]["common_principles"]
-    for i_prin, principle in enumerate(order):
-        principle_name = common_principles[principle]["display_name"]
-        principle_desc = common_principles[principle]["description"].replace(
-            "SPEC_ROOT",
-            get_relpath(src_path),
-        )
-        substring = f"{i_prin + 1}. **{principle_name}** - {principle_desc}"
-        string += substring
-        if i_prin < len(order) - 1:
-            string += "\n\n"
-
-    return string

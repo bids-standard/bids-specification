@@ -8,11 +8,6 @@ The protocol assumes that you have a [fork](https://help.github.com/en/articles/
 of the bids-standard/bids-specification repository and have [cloned](https://help.github.com/en/articles/cloning-a-repository)
 your fork locally to a directory called `bids-specification`.
 
-NOTE: Before you start a release, you have to ensure that the automatically generated changelog is
-**up to date**. See the relevant [section in CONTRIBUTING.md](CONTRIBUTING.md#how-is-the-changelog-generated)
-for further information. In practice this means ensuring that the most recently merged pull request was
-merged into the `master` branch using the "Merge commit" option.
-
 ### 1. Fetch the latest version of the [master branch of the BIDS-specification](https://github.com/bids-standard/bids-specification/tree/master)
 
 You should have a remote, which we will call `upstream`, for the
@@ -62,8 +57,6 @@ If the version preceding the `-dev` is not the target version, update the versio
 In the figure below, we update `v1.2.0-dev` to `v1.2.0`.
 ![dev-to-stable](release_images/site_name_release_1.2dev-1.2.png "dev-to-stable")
 
-Additionally, implement the same change in the version name perform above in the `src/schema/BIDS_VERSION` file.
-
 Note: this will make our continuous integration ([CircleCI](https://circleci.com/)) fail. This fails because the URL of the new ReadTheDocs rendering has not been generated at this time. It will be generated once the GitHub release has been completed.
 
 Synchronize the [Contributors appendix](https://github.com/bids-standard/bids-specification/blob/master/src/99-appendices/01-contributors.md)
@@ -98,7 +91,6 @@ $ git push -u upstream rel/1.2.0
 ```
 
 ### 4. Open a pull request against the master branch
-
 Important note: The pull request title **must** be named "REL: vX.Y.Z" (for example, "REL: v1.2.0").
 
 **This will open a period of discussion for 5 business days regarding if we are ready to release.**
@@ -210,8 +202,6 @@ Note that the development version number should be larger than the last release,
 version of the next *intended* release, followed by `-dev`.
 For example, after the 1.3.0 release, either `1.3.1-dev` or `1.4.0-dev` would be reasonable, based
 on the expected next version.
-
-Additionally, the same version name set above in `mkdocs.yaml` should be set in the `src/schema/BIDS_VERSION` schema version file.
 
 ### 10. Uploading the stable PDF to Zenodo
 
