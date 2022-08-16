@@ -73,6 +73,13 @@ CTF:
   display_name: CTF MEG Dataset Folder
   description: |
     A folder for MEG data, typically containing a `.meg4` file for the data and a `.res4` file for the resources.
+dlabelnii:
+  value: .dlabel.nii
+  display_name: CIFTI-2 Dense Label File
+  description: |
+    A CIFTI-2 dense label file.
+
+    This extension may only be used in derivative datasets.
 edf:
   value: .edf
   display_name: European Data Format
@@ -129,6 +136,13 @@ kdf:
     the digitized positions of the head points (`\_digitizer.txt`),
     the position of the center of the MEG coils (`.chn`),
     and the event markers (`.trg`).
+labelgii:
+  value: .label.gii
+  display_name: GIFTI label/annotation file
+  description: |
+    A GIFTI label/annotation file.
+
+    This extension may only be used in derivative datasets.
 md:
   value: .md
   display_name: Markdown

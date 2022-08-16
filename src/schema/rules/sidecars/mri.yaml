@@ -66,7 +66,7 @@ PETMRISequenceSpecifics:
     - modality == "mri"
     - dataset.modalities.includes("PET")
     fields:
-        NonLinearGradientCorrection: required
+        NonlinearGradientCorrection: required
 
 ASLMRISequenceSpecifics:
     selectors:

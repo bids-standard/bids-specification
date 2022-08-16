@@ -57,7 +57,7 @@ iEEGRequired:
                 The sampling frequency of data channels that deviate from the main sampling
                 frequency SHOULD be specified in the `channels.tsv` file.
         PowerLineFrequency: required
-        SoftwareFilters": required
+        SoftwareFilters: required
 
 # Specific iEEG fields SHOULD be present
 iEEGMoreRecommended:
