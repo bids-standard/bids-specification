@@ -63,7 +63,7 @@ jobs:
       - name: "Run tests"
         shell: bash {0}
         run: |
-          python -m pytest --pyargs bidsschematools -m "not validate_schema" --cov=bidsschematools
+          python -m pytest --pyargs bidsschematools -m "not validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
@@ -114,7 +114,7 @@ jobs:
         python -m pip install -e ./tools/schemacode[all]
 
     - name: Run schema validation tests
-      run: python -m pytest --pyargs bidsschematools -m "validate_schema" --cov=bidsschematools
+      run: python -m pytest --pyargs bidsschematools -m "validate_schema" --cov-append --cov-report=xml --cov=bidsschematools
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
