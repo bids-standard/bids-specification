@@ -200,7 +200,7 @@ anat_parametic_discrete_surface:
   - .dlabel.nii
   entities:
     $ref: rules.datatypes.anat.parametric.entities
-    hemisphere: optional
+    hemisphere:: optional
     space: optional
     resolution: optional
     density: optional
