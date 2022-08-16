@@ -117,24 +117,24 @@ jobs:
       run: python -m pytest --pyargs bidsschematools -m "validate_schema" --cov=bidsschematools
 
     - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: schema_validation
-          path: coverage.xml
-        if: success()
+      uses: actions/upload-artifact@v2
+      with:
+        name: schema_validation
+        path: coverage.xml
+      if: success()
 
   upload_to_codecov:
+    runs-on: "ubuntu-latest"
     name: Upload coverage
     needs: [run_tests,validate_schema]
-    runs-on: "ubuntu-latest"
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
 
-      - name: Download artifacts
-        uses: actions/download-artifact@v2
+    - name: Download artifacts
+      uses: actions/download-artifact@v2
 
-      - name: Upload to CodeCov
-        uses: codecov/codecov-action@v2
-        with:
-          fail_ci_if_error: true
+    - name: Upload to CodeCov
+      uses: codecov/codecov-action@v2
+      with:
+        fail_ci_if_error: true
