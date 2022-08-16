@@ -5,7 +5,7 @@ SegmentationLookup:
   - '["dseg", "probseg"].includes(suffix)'
   columns:
     index: REQUIRED
-    name: REQUIRED
+    name__segmentations: REQUIRED
     abbreviation: OPTIONAL
     color: OPTIONAL
     mapping: OPTIONAL

@@ -1,4 +1,5 @@
 """Simple validation tests on schema rules."""
+from bidsschematools.schema import Namespace
 
 
 def _dict_key_lookup(_dict, key, path=[]):
@@ -7,7 +8,7 @@ def _dict_key_lookup(_dict, key, path=[]):
     Adapted from https://stackoverflow.com/a/60377584/2589328.
     """
     results = []
-    if isinstance(_dict, dict):
+    if isinstance(_dict, (dict, Namespace)):
         if key in _dict:
             results.append((path + [key], _dict[key]))
 
