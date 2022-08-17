@@ -13,9 +13,11 @@ by Ben Inglis.
 ### Scanner Hardware
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_sidecar_table("mri.MRIScannerHardware") }}
@@ -38,70 +40,26 @@ that a given scan was collected with the intended coil elements selected
 ### Sequence Specifics
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "PulseSequenceType": "RECOMMENDED",
-      "ScanningSequence": "RECOMMENDED",
-      "SequenceVariant": "RECOMMENDED",
-      "ScanOptions": "RECOMMENDED",
-      "SequenceName": "RECOMMENDED",
-      "PulseSequenceDetails": "RECOMMENDED",
-      "NonlinearGradientCorrection": "RECOMMENDED, but REQUIRED if [PET](./09-positron-emission-tomography.md) data are present",
-      "MRAcquisitionType": "RECOMMENDED, but REQUIRED for Arterial Spin Labeling",
-      "MTState": "RECOMMENDED",
-      "MTOffsetFrequency": "RECOMMENDED if the MTstate is `True`.",
-      "MTPulseBandwidth": "RECOMMENDED if the MTstate is `True`.",
-      "MTNumberOfPulses": "RECOMMENDED if the MTstate is `True`.",
-      "MTPulseShape": "RECOMMENDED if the MTstate is `True`.",
-      "MTPulseDuration": "RECOMMENDED if the MTstate is `True`.",
-      "SpoilingState": "RECOMMENDED",
-      "SpoilingType": "RECOMMENDED if the SpoilingState is `True`.",
-      "SpoilingRFPhaseIncrement": 'RECOMMENDED if the SpoilingType is `"RF"` or `"COMBINED"`.',
-      "SpoilingGradientMoment": 'RECOMMENDED if the SpoilingType is `"GRADIENT"` or `"COMBINED"`.',
-      "SpoilingGradientDuration": 'RECOMMENDED if the SpoilingType is `"GRADIENT"` or `"COMBINED"`.',
-   }
-) }}
+{{ MACROS___make_sidecar_table("mri.MRISequenceSpecifics") }}
 
 ### In-Plane Spatial Encoding
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "NumberShots": "RECOMMENDED",
-      "ParallelReductionFactorInPlane": "RECOMMENDED",
-      "ParallelAcquisitionTechnique": "RECOMMENDED",
-      "PartialFourier": "RECOMMENDED",
-      "PartialFourierDirection": "RECOMMENDED",
-      "PhaseEncodingDirection": (
-         "RECOMMENDED",
-         "This parameter is REQUIRED if corresponding fieldmap data is present "
-         "or when using multiple runs with different phase encoding directions "
-         "(which can be later used for field inhomogeneity correction).",
-      ),
-      "EffectiveEchoSpacing": (
-         "RECOMMENDED",
-         "<sup>2</sup> This parameter is REQUIRED if corresponding fieldmap data is present.",
-      ),
-      "TotalReadoutTime": (
-         "RECOMMENDED",
-         "<sup>3</sup> This parameter is REQUIRED if corresponding 'field/distortion' maps "
-         "acquired with opposing phase encoding directions are present "
-         "(see [Case 4: Multiple phase encoded "
-         "directions](#case-4-multiple-phase-encoded-directions-pepolar)).",
-      ),
-      "MixingTime": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("mri.MRISpatialEncoding") }}
 
 <sup>2</sup>Conveniently, for Siemens data, this value is easily obtained as
 `1 / (BWPPPE * ReconMatrixPE)`, where BWPPPE is the
@@ -117,65 +75,52 @@ and the center of the last "effective" echo, sometimes called the "FSL definitio
 ### Timing Parameters
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "EchoTime": "RECOMMENDED, but REQUIRED if corresponding fieldmap data is present, or the data comes from a multi echo sequence or Arterial Spin Labeling",
-      "InversionTime": "RECOMMENDED",
-      "SliceTiming": "RECOMMENDED, but REQUIRED for sparse sequences that do not have the `DelayTime` field set, and Arterial Spin Labeling with `MRAcquisitionType` set on `2D`.",
-      "SliceEncodingDirection": "RECOMMENDED",
-      "DwellTime": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("mri.MRITimingParameters") }}
 
 ### RF & Contrast
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "FlipAngle": "RECOMMENDED, but REQUIRED if `LookLocker` is set `true`",
-      "NegativeContrast": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_sidecar_table("mri.MRIRFandContrast") }}
 
 ### Slice Acceleration
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "MultibandAccelerationFactor": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("mri.MRISliceAcceleration") }}
 
 ### Anatomical landmarks
 
 Useful for multimodal co-registration with MEG, (S)EEG, TMS, and so on.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "AnatomicalLandmarkCoordinates__mri": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("mri.MRIAnatomicalLandmarks") }}
 
 ### Echo-Planar Imaging and *B<sub>0</sub>* mapping
 
@@ -192,33 +137,26 @@ any modality under `fmap/` are allowed to encode the MR protocol intent for
 fieldmap estimation using the following metadata:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "B0FieldIdentifier": "RECOMMENDED",
-      "B0FieldSource": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("mri.MRIEchoPlanarImagingAndB0Mapping") }}
 
 ### Institution information
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "InstitutionName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0080 `InstitutionName`."),
-      "InstitutionAddress": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0081 `InstitutionAddress`."),
-      "InstitutionalDepartmentName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1040 `Institutional Department Name`.")
-   }
-) }}
+{{ MACROS___make_sidecar_table("mri.MRIInstitutionInformation") }}
 
 When adding additional metadata please use the CamelCase version of
 [DICOM ontology terms](https://scicrunch.org/scicrunch/interlex/dashboard)
