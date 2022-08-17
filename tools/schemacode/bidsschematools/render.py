@@ -8,7 +8,7 @@ import pandas as pd
 from tabulate import tabulate
 
 from . import utils
-from .schema import filter_schema
+from .schema import Namespace, filter_schema
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
@@ -211,7 +211,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
         schema["objects"]["entities"]["session"]["format"],
     )
 
-    datatypes = filter_schema(schema.rules.datatypes, **kwargs)
+    datatypes = Namespace(filter_schema(schema.rules.datatypes.to_dict(), **kwargs))
 
     for datatype in datatypes:
         # XXX We should have a full rethink of the schema hierarchy...
@@ -307,7 +307,7 @@ def make_entity_table(schema, tablefmt="github", **kwargs):
     table_str : str
         Markdown string containing the table.
     """
-    schema = filter_schema(schema, **kwargs)
+    schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
 
     ENTITIES_FILE = "09-entities.md"
 
