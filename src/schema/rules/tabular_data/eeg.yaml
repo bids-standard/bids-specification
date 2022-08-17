@@ -14,12 +14,12 @@ EEGChannels:
         units: required
         description: optional
         sampling_frequency: optional
-        reference: optional
+        reference__eeg: optional
         low_cutoff: optional
         high_cutoff: optional
         notch: optional
         status: optional
-        status_descriptions: optional
+        status_description: optional
     additional_columns: allowed_if_defined
 
 EEGElectrodes:

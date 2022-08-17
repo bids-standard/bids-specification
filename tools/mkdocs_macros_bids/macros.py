@@ -11,7 +11,7 @@ from examplecode import example
 
 
 def _get_source_path(level=1):
-    """ Detect the path of the file we are rendering a macro in.
+    """Detect the path of the file we are rendering a macro in.
 
     This (ab)uses the Python call stack to find its way to the Jinja2 function
     that is calling the macro. From there, it looks at Jinja2's Context object,
@@ -106,7 +106,7 @@ def make_entity_table(**kwargs):
     return table
 
 
-def make_entity_definitions():
+def make_entity_definitions(src_path=None):
     """Generate definitions and other relevant information for entities in the
     specification.
 
@@ -116,9 +116,11 @@ def make_entity_definitions():
         A multiline string containing descriptions and some formatting
         information about the entities in the schema.
     """
+    if src_path is None:
+        src_path = _get_source_path()
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    text = render.make_entity_definitions(schema_obj)
+    text = render.make_entity_definitions(schema_obj, src_path=src_path)
     return text
 
 
@@ -229,7 +231,9 @@ def make_subobject_table(object_tuple, field_info, src_path=None):
 
     schemapath = utils.get_schema_path()
     schema_obj = schema.load_schema(schemapath)
-    table = render.make_subobject_table(schema_obj, object_tuple, field_info, src_path=src_path)
+    table = render.make_subobject_table(
+        schema_obj, object_tuple, field_info, src_path=src_path
+    )
     return table
 
 
@@ -280,3 +284,26 @@ def make_filetree_example(filetree_info, use_pipe=True):
     """
     tree = example.DirectoryTree(filetree_info, use_pipe)
     return tree.generate()
+
+
+def define_common_principles(src_path=None):
+    """Enumerate the common principles defined in the schema.
+
+    Parameters
+    ----------
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Returns
+    -------
+    string : str
+        The definitions of the common principles in a multiline string.
+    """
+    if src_path is None:
+        src_path = _get_source_path()
+
+    schemapath = utils.get_schema_path()
+    schema_obj = schema.load_schema(schemapath)
+    string = render.define_common_principles(schema_obj, src_path=src_path)
+    return string

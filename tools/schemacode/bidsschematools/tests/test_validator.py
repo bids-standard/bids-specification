@@ -223,13 +223,78 @@ def test__add_suffixes():
     assert _regex_string == regex_string
 
 
+@pytest.mark.parametrize("extension", ["bvec", "json", "tsv"])
+def test__inheritance_expansion(extension):
+    from bidsschematools.validator import _inheritance_expansion
+
+    # test .json
+    base_entry = (
+        r".*?/sub-(?P<subject>[0-9a-zA-Z]+)/"
+        r"(|ses-(?P<session>[0-9a-zA-Z]+)/)func/sub-(?P=subject)"
+        r"(|_ses-(?P=session))_task-(?P<task>[0-9a-zA-Z]+)"
+        r"(|_acq-(?P<acquisition>[0-9a-zA-Z]+))"
+        r"(|_ce-(?P<ceagent>[0-9a-zA-Z]+))"
+        r"(|_rec-(?P<reconstruction>[0-9a-zA-Z]+))"
+        r"(|_dir-(?P<direction>[0-9a-zA-Z]+))"
+        r"(|_run-(?P<run>[0-9]*[1-9]+[0-9]*))"
+        r"(|_echo-(?P<echo>[0-9]*[1-9]+[0-9]*))"
+        r"_phase(\.nii\.gz|\.nii|\.{})$".format(extension)
+    )
+    expected_entries = [
+        ".*?/sub-(?P<subject>[0-9a-zA-Z]+)/"
+        "(|ses-(?P<session>[0-9a-zA-Z]+)/)sub-(?P=subject)"
+        "(|_ses-(?P=session))_task-(?P<task>[0-9a-zA-Z]+)"
+        "(|_acq-(?P<acquisition>[0-9a-zA-Z]+))"
+        "(|_ce-(?P<ceagent>[0-9a-zA-Z]+))"
+        "(|_rec-(?P<reconstruction>[0-9a-zA-Z]+))"
+        "(|_dir-(?P<direction>[0-9a-zA-Z]+))"
+        "(|_run-(?P<run>[0-9]*[1-9]+[0-9]*))"
+        "(|_echo-(?P<echo>[0-9]*[1-9]+[0-9]*))"
+        "_phase(\\.nii\\.gz|\\.nii|\\.{})$".format(extension),
+        ".*?/task-(?P<task>[0-9a-zA-Z]+)"
+        "(|_acq-(?P<acquisition>[0-9a-zA-Z]+))"
+        "(|_ce-(?P<ceagent>[0-9a-zA-Z]+))"
+        "(|_rec-(?P<reconstruction>[0-9a-zA-Z]+))"
+        "(|_dir-(?P<direction>[0-9a-zA-Z]+))"
+        "(|_run-(?P<run>[0-9]*[1-9]+[0-9]*))"
+        "(|_echo-(?P<echo>[0-9]*[1-9]+[0-9]*))"
+        "_phase(\\.nii\\.gz|\\.nii|\\.{})$".format(extension),
+    ]
+
+    inheritance_expanded_entries = _inheritance_expansion(base_entry, datatype="func")
+    assert inheritance_expanded_entries == expected_entries
+
+
+def test_inheritance_examples():
+    from bidsschematools.validator import validate_bids
+
+    correct_inheritance = [
+        "/lala/sub-01/ses-test/sub-01_ses-test_task-sometask_bold.json",
+        "/lala/sub-01/sub-01_task-sometask_bold.json",
+        "/lala/task-sometask_bold.json",
+    ]
+    incorrect_inheritance = [
+        "/lala/sub-01/sub-01_ses-test_task-sometask_bold.json",
+        "/lala/ses-test_task-sometask.json",
+    ]
+
+    result = validate_bids(
+        correct_inheritance + incorrect_inheritance,
+        accept_dummy_paths=True,
+    )
+
+    assert result["path_tracking"] == incorrect_inheritance
+
+
 def test_load_all():
     from bidsschematools.validator import load_all
 
     # schema_path = "/usr/share/bids-schema/1.7.0/"
     schema_path = os.path.join(
         os.path.abspath(os.path.dirname(__file__)),
-        "../data/schema",
+        os.pardir,
+        "data",
+        "schema",
     )
     schema_all, _ = load_all(schema_path)
 
@@ -313,7 +378,6 @@ def test_bids_datasets(bids_examples, tmp_path, dataset):
         target,
         schema_version=schema_path,
         report_path=True,
-        debug=True,
     )
     # Have all files been validated?
     assert len(result["path_tracking"]) == 0
@@ -335,8 +399,8 @@ def test_validate_bids(bids_examples, tmp_path):
         for f in files:
             selected_path = os.path.join(root, f)
             selected_paths.append(selected_path)
-    # Do version fallback and terminal debug output work?
-    result = validate_bids(selected_paths, schema_version=None, debug=True)
+    # Do version fallback work?
+    result = validate_bids(selected_paths, schema_version=None)
     # Does default log path specification work?
     result = validate_bids(selected_paths, schema_version=schema_path, report_path=True)
 
@@ -344,11 +408,21 @@ def test_validate_bids(bids_examples, tmp_path):
     result = validate_bids(
         selected_paths,
         schema_version=schema_path,
-        debug=True,
         report_path=os.path.join(tmp_path, "test_bids.log"),
     )
     # Have all files been validated?
     assert len(result["path_tracking"]) == 0
+
+    # Is the schema version recorded correctly?
+    schema_path = os.path.join(
+        os.path.abspath(os.path.dirname(__file__)),
+        os.pardir,
+        "data",
+        "schema",
+    )
+    with open(os.path.join(schema_path, "BIDS_VERSION")) as f:
+        expected_version = f.readline().rstrip()
+    assert result["bids_version"] == expected_version
 
 
 @pytest.mark.skipif(
@@ -392,7 +466,6 @@ def test_error_datasets(bids_error_examples, dataset):
         target,
         schema_version=schema_path,
         report_path=True,
-        debug=True,
     )
     # Are there non-validated files?
     assert len(result["path_tracking"]) != 0

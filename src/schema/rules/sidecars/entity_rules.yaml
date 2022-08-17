@@ -32,8 +32,8 @@ EntitiesStainMetadata:
     - '"stain" in entities'
     fields:
         SampleStaining: recommended
-        SamplePrimaryAntibodies: recommended
-        SampleSecondaryAntibodies: recommended
+        SamplePrimaryAntibody: recommended
+        SampleSecondaryAntibody: recommended
 
 EntitiesEchoMetadata:
     selectors:

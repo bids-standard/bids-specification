@@ -2,18 +2,18 @@
 README:
   required: true
   extensions:
-  - None
+  - ""
   - .md
   - .rst
   - .txt
 CHANGES:
   required: false
   extensions:
-  - None
+  - ""
 LICENSE:
   required: false
   extensions:
-  - None
+  - ""
 dataset_description:
   required: true
   extensions:
