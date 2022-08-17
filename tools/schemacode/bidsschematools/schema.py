@@ -5,6 +5,7 @@ import os
 import re
 from collections.abc import Mapping
 from copy import deepcopy
+from functools import lru_cache
 from pathlib import Path
 
 import yaml
@@ -194,6 +195,7 @@ def dereference_mapping(schema, struct):
     return struct
 
 
+@lru_cache
 def load_schema(schema_path=None):
     """Load the schema into a dictionary.
 
