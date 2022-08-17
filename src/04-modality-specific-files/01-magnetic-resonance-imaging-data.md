@@ -18,26 +18,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "Manufacturer": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 0070 `Manufacturer`."),
-      "ManufacturersModelName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1090 `Manufacturers Model Name`."),
-      "DeviceSerialNumber": ("RECOMMENDED", "Corresponds to DICOM Tag 0018, 1000 `DeviceSerialNumber`."),
-      "StationName": ("RECOMMENDED", "Corresponds to DICOM Tag 0008, 1010 `Station Name`."),
-      "SoftwareVersions": ("RECOMMENDED", "Corresponds to DICOM Tag 0018, 1020 `Software Versions`."),
-      "HardcopyDeviceSoftwareVersion": "DEPRECATED",
-      "MagneticFieldStrength": "RECOMMENDED, but REQUIRED for Arterial Spin Labeling",
-      "ReceiveCoilName": "RECOMMENDED",
-      "ReceiveCoilActiveElements": (
-         "RECOMMENDED",
-         "See an example below the table.",
-      ),
-      "GradientSetType": "RECOMMENDED",
-      "MRTransmitCoilSequence": "RECOMMENDED",
-      "MatrixCoilMode": "RECOMMENDED",
-      "CoilCombinationMethod": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("mri.MRIScannerHardware") }}
 
 Example for `ReceiveCoilActiveElements`:
 

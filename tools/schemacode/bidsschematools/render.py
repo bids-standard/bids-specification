@@ -488,7 +488,7 @@ def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
     # Use the "name" field in the table, to allow for filenames to not match
     # "names".
     df = pd.DataFrame(
-        index=[subschema[f]["name"] for f in subschema.keys()],
+        index=[subschema[f]["name"] for f in field_info],
         columns=["**Requirement Level**", "**Data type**", "**Description**"],
     )
     df.index.name = "**Key name**"
@@ -526,6 +526,59 @@ def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
+    return table_str
+
+
+def make_sidecar_table(schema, table_name, src_path=None, tablefmt="github"):
+    """Produce metadata table (markdown) based on requested fields.
+
+    Parameters
+    ----------
+    schema : dict
+        The BIDS schema.
+    table_name : qualified name in schema.rules.sidecars
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+    tablefmt : string, optional
+        The target table format. The default is "github" (GitHub format).
+
+    Returns
+    -------
+    table_str : str
+        The tabulated table as a Markdown string.
+    """
+    fields = schema.rules.sidecars[table_name].fields
+    metadata = schema.objects.metadata
+
+    retained_fields = [f for f in fields if f in metadata]
+    dropped_fields = [f for f in fields if f not in metadata]
+    if dropped_fields:
+        print("Warning: Missing fields: {}".format(", ".join(dropped_fields)))
+
+    metadata_schema = {k: v for k, v in metadata.items() if k in retained_fields}
+    field_info = {}
+    for field, val in fields.items():
+        if isinstance(val, str):
+            level = val
+            level_addendum = None
+            description_addendum = None
+        else:
+            level = val["level"]
+            level_addendum = val.get("level_addendum")
+            description_addendum = val.get("description_addendum")
+        if level_addendum:
+            level = f"{level}, but {level_addendum}"
+
+        field_info[field] = (level, description_addendum) if description_addendum else level
+
+    table_str = make_obj_table(
+        metadata_schema,
+        field_info=field_info,
+        src_path=src_path,
+        tablefmt=tablefmt,
+    )
+
     return table_str
 
 

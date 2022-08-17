@@ -196,6 +196,35 @@ def make_metadata_table(field_info, src_path=None):
     return table
 
 
+def make_sidecar_table(table_name, src_path=None):
+    """Generate a markdown table of metadata field information.
+
+    Parameters
+    ----------
+    field_names : dict
+        A list of the field names.
+        Field names correspond to filenames in the "metadata" directory of the
+        schema.
+        Until requirement levels can be codified in the schema,
+        this argument will be dictionary, with the field names as keys and
+        the requirement levels as values.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Returns
+    -------
+    table : str
+        A Markdown-format table containing the corresponding table for
+        the requested fields.
+    """
+    if src_path is None:
+        src_path = _get_source_path()
+    schema_obj = schema.load_schema()
+    table = render.make_sidecar_table(schema_obj, table_name, src_path=src_path)
+    return table
+
+
 def make_subobject_table(object_tuple, field_info, src_path=None):
     """Generate a markdown table of a metadata object's field information.
 
