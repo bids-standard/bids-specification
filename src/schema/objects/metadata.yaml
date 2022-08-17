@@ -2058,10 +2058,19 @@ ParallelReductionFactorInPlane:
   name: ParallelReductionFactorInPlane
   display_name: Parallel Reduction Factor In Plane
   description: |
-    The parallel imaging (for instance, GRAPPA) factor.
+    The parallel imaging (for instance, GRAPPA) factor in plane.
     Use the denominator of the fraction of k-space encoded for each slice.
     For example, 2 means half of k-space is encoded.
     Corresponds to DICOM Tag 0018, 9069 `Parallel Reduction Factor In-plane`.
+  type: number
+ParallelReductionFactorOutOfPlane:
+  name: ParallelReductionFactorOutOfPlane
+  display_name: Parallel Reduction Factor Out of Plane
+  description: |
+    The parallel imaging (for instance, GRAPPA) factor in the second phase encoding dimension of 3D sequences.
+    Use the denominator of the fraction of k-space encoded in the second phase encoding dimension.
+    For example, 2 means half of k-space is encoded.
+    Corresponds to DICOM Tag 0018, 9155 `Parallel Reduction Factor out-of-plane`.
   type: number
 PartialFourier:
   name: PartialFourier

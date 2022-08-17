@@ -114,6 +114,7 @@ MRISpatialEncoding:
     fields:
         NumberShots: recommended
         ParallelReductionFactorInPlane: recommended
+        ParallelReductionFactorOutOfPlane: recommended
         ParallelAcquisitionTechnique: recommended
         PartialFourier: recommended
         PartialFourierDirection: recommended
