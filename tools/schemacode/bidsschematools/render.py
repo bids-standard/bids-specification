@@ -564,7 +564,11 @@ def make_sidecar_table(schema, table_name, src_path=None, tablefmt="github"):
     table_str : str
         The tabulated table as a Markdown string.
     """
-    fields = schema.rules.sidecars[table_name].fields
+    if isinstance(table_name, str):
+        table_name = [table_name]
+    fields = {}
+    for table in table_name:
+        fields.update(schema.rules.sidecars[table].fields)
     metadata = schema.objects.metadata
 
     retained_fields = [f for f in fields if f in metadata]
