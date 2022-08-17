@@ -296,18 +296,16 @@ def append_filename_template_legend(text=None):
     if text is None:
         return
 
-    text += """\n\n
-    **Legend:**
-    \n
-    - Filename entities or folders between square brackets
-      (for example `[_ses-<label>]`) are OPTIONAL.
-    - See the glossary for a definition of
-      [`label`](../99-appendices/14-glossary.md#label)
-      and [`index`](../99-appendices/14-glossary.md#index).
-    - See the [entity page](../99-appendices/09-entities.md)
-      for a definition of each entity.
-    \n
-    """
+    text += """
+
+**Legend:**
+
+- Filename entities or folders between square brackets (for example `[_ses-<label>]`) are OPTIONAL.
+- See the glossary for a definition of [`label`](../99-appendices/14-glossary.md#label)
+  and [`index`](../99-appendices/14-glossary.md#index).
+- See the [entity page](../99-appendices/09-entities.md) for a definition of each entity.
+
+"""
 
     return text
 
