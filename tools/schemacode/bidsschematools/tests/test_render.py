@@ -176,7 +176,7 @@ def test_make_metadata_table(schema_obj):
         for i in metadata_tracking:
             if i in line:
                 # Is the requirement level displayed correctly?
-                assert target_metadata[i] in line
+                assert target_metadata[i].upper() in line
                 # Mark found
                 metadata_tracking.remove(i)
 
