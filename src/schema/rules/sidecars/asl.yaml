@@ -60,7 +60,7 @@ MRIASLTextOnlyFlipAngleRec:
     - suffix == "asl"
     - '!(LookLocker in sidecar) || sidecar.LookLocker == false'
     fields:
-        FlipAngle: Recommended
+        FlipAngle: recommended
 
 MRIASLTextOnlyFlipAngleReq:
     selectors:
