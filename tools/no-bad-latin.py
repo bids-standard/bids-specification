@@ -97,19 +97,18 @@ def read_and_check_files(files):
                   containing the offending line.
     """
     failing_files = {}
-    bad_latin = [
-        "i.e.", "i.e ", " ie ",
-        "e.g.", "e.g ",
-        "e.t.c.", " etc", "et cetera"
-    ]
+    bad_latin = ["i.e.", "i.e ", " ie ", "e.g.", "e.g ", "e.t.c.", " etc", "et cetera"]
 
     for filename in files:
         if os.path.basename(filename) in IGNORE_LIST:
             pass
         else:
             try:
-                with open(os.path.join(ABSOLUTE_HERE, filename),
-                          encoding="utf8", errors="ignore") as f:
+                with open(
+                    os.path.join(ABSOLUTE_HERE, filename),
+                    encoding="utf8",
+                    errors="ignore",
+                ) as f:
                     text = f.read()
                     text = remove_comments(text)
 
