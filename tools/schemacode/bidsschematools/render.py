@@ -200,6 +200,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
         A multiline string containing the filename templates for file types
         in the schema, after filtering.
     """
+    schema = Namespace(filter_schema(schema.to_dict(), **kwargs))
     entity_order = schema["rules"]["entities"]
 
     paragraph = ""
@@ -211,7 +212,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
         schema["objects"]["entities"]["session"]["format"],
     )
 
-    datatypes = Namespace(filter_schema(schema.rules.datatypes.to_dict(), **kwargs))
+    datatypes = schema.rules.datatypes
 
     for datatype in datatypes:
         # XXX We should have a full rethink of the schema hierarchy...
