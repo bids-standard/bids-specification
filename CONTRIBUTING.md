@@ -302,7 +302,6 @@ is to use the `requirements.txt` file contained in this repository as follows:
 ```bash
 pip install -U pip
 pip install -r requirements.txt
-pip install -e tools/schemacode/
 ```
 
 The first command ensures you are using an up to date version of `pip`,
