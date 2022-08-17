@@ -9,8 +9,7 @@ from pathlib import Path
 
 import yaml
 
-from . import utils
-from . import __version__, __bids_version__
+from . import __bids_version__, __version__, utils
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
