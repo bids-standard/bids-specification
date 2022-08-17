@@ -588,7 +588,11 @@ def make_sidecar_table(schema, table_name, src_path=None, tablefmt="github"):
             level_addendum = val.get("level_addendum")
             description_addendum = val.get("description_addendum")
         if level_addendum:
-            level = f"{level}, but {level_addendum}"
+            if level_addendum.startswith(("required", "recommended", "optional")):
+                level = f"{level}, but {level_addendum}"
+            else:
+                # Typically begins with "if"
+                level = f"{level} {level_addendum}"
 
         field_info[field] = (level, description_addendum) if description_addendum else level
 
