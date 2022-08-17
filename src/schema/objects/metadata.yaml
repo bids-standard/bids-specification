@@ -2502,7 +2502,7 @@ RotationRule:
   description: |
     In case orientation channels are present, indicate whether rotations are applied
     clockwise around an axis when seen from the positive direction (left-hand rule) or
-    counter-clockwise (right-hand rule). Must be one of: "left-hand", "right-hand". 
+    counter-clockwise (right-hand rule). Must be one of: "left-hand", "right-hand".
   type: string
   enum:
   - left-hand
