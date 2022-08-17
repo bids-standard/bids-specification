@@ -156,6 +156,12 @@ MRIASLPCASLSpecific:
     - '["CASL", "PCASL"].includes(sidecar.ArterialSpinLabelingType)'
     fields:
         LabelingDuration: required
+        PCASLType:
+            level: optional
+            level_addendum: recommended if `ArterialSpinLabelingType` is `"PCASL"`
+        CASLType:
+            level: optional
+            level_addendum: recommended if `ArterialSpinLabelingType` is `"CASL"`
         LabelingPulseAverageGradient: recommended
         LabelingPulseMaximumGradient: recommended
         LabelingPulseAverageB1: recommended

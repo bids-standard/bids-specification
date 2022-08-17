@@ -244,18 +244,14 @@ list of terms and their definitions. There are also some OPTIONAL JSON
 fields specific to anatomical scans:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "ContrastBolusIngredient": "OPTIONAL",
-      "RepetitionTimeExcitation": "OPTIONAL",
-      "RepetitionTimePreparation": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_sidecar_table("anat.MRIAnatomyCommonMetadataFields") }}
 
 The [`part-<label>`](../99-appendices/09-entities.md#part) entity is
 used to indicate which component of the complex representation of the MRI
@@ -509,18 +505,14 @@ JSON file.
 ### Required fields
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "RepetitionTime": "REQUIRED",
-      "VolumeTiming": "REQUIRED",
-      "TaskName": ("REQUIRED", "A RECOMMENDED convention is to name resting state task using labels beginning with `rest`.")
-   }
-) }}
+{{ MACROS___make_sidecar_table("func.MRIFuncRequired") }}
 
 For the fields described above and in the following section, the term "Volume"
 refers to a reconstruction of the object being imaged (for example, brain or part of a
@@ -532,20 +524,14 @@ combined image rather than an image from each coil.
 #### Timing Parameters
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "NumberOfVolumesDiscardedByScanner": "RECOMMENDED",
-      "NumberOfVolumesDiscardedByUser": "RECOMMENDED",
-      "DelayTime": "RECOMMENDED",
-      "AcquisitionDuration": 'RECOMMENDED, but REQUIRED for sequences that are described with the `VolumeTiming` field and that do not have the `SliceTiming` field set to allow for accurate calculation of "acquisition time"',
-      "DelayAfterTrigger": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("func.MRIFuncTimingParameters") }}
 
 The following table recapitulates the different ways that specific fields have
 to be populated for functional sequences. Note that all these options can be
@@ -569,19 +555,14 @@ sparse sequences.
 #### fMRI task information
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "Instructions": ("RECOMMENDED", "This is especially important in context of resting state recordings and distinguishing between eyes open and eyes closed paradigms."),
-      "TaskDescription": "RECOMMENDED",
-      "CogAtlasID": "RECOMMENDED",
-      "CogPOID": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("func.MRIFuncTaskInformation") }}
 
 See [Common metadata fields](#common-metadata-fields) for a list of
 additional terms and their definitions.
@@ -751,16 +732,14 @@ BIDS permits defining arbitrary groupings of these multipart scans with the
 following metadata:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "MultipartID": "REQUIRED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("dwi.MRIDiffusionMultipart") }}
 
 JSON example:
 
@@ -942,95 +921,56 @@ See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#summary-i
 #### Common metadata fields applicable to both (P)CASL and PASL
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "ArterialSpinLabelingType": "REQUIRED",
-      "PostLabelingDelay": "REQUIRED",
-      "BackgroundSuppression": "REQUIRED",
-      "M0Type": "REQUIRED",
-      "TotalAcquiredPairs": "REQUIRED",
-      "VascularCrushing": "RECOMMENDED",
-      "AcquisitionVoxelSize": "RECOMMENDED",
-      "M0Estimate": "OPTIONAL, but REQUIRED when `M0Type` is defined as `Estimate`",
-      "BackgroundSuppressionNumberPulses": "OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`",
-      "BackgroundSuppressionPulseTime": "OPTIONAL, RECOMMENDED if `BackgroundSuppression` is `true`",
-      "VascularCrushingVENC": "OPTIONAL, RECOMMENDED if `VascularCrushing` is `true`",
-      "LabelingOrientation": "RECOMMENDED",
-      "LabelingDistance": "RECOMMENDED",
-      "LabelingLocationDescription": "RECOMMENDED",
-      "LookLocker": "OPTIONAL",
-      "LabelingEfficiency": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_sidecar_table("asl.MRIASLCommonMetadataFields") }}
 
 #### (P)CASL-specific metadata fields
 
 These fields can only be used when `ArterialSpinLabelingType` is `"CASL"` or `"PCASL"`. See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#pcasl-sequence) for more information on the (P)CASL sequence and the Labeling Pulse fields.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "LabelingDuration": "REQUIRED",
-      "PCASLType": 'RECOMMENDED if `ArterialSpinLabelingType` is `"PCASL"`',
-      "CASLType": 'RECOMMENDED if `ArterialSpinLabelingType` is `"CASL"`',
-      "LabelingPulseAverageGradient": "RECOMMENDED",
-      "LabelingPulseMaximumGradient": "RECOMMENDED",
-      "LabelingPulseAverageB1": "RECOMMENDED",
-      "LabelingPulseDuration": "RECOMMENDED",
-      "LabelingPulseFlipAngle": "RECOMMENDED",
-      "LabelingPulseInterval": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("asl.MRIASLPCASLSpecific") }}
 
 #### PASL-specific metadata fields
 
 These fields can only be used when `ArterialSpinLabelingType` is `PASL`. See [Appendix XII - ASL](../99-appendices/12-arterial-spin-labeling.md#pasl-sequence) for more information on the PASL sequence and the BolusCutOff fields.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "BolusCutOffFlag": "REQUIRED",
-      "PASLType": "RECOMMENDED",
-      "LabelingSlabThickness": "RECOMMENDED",
-      "BolusCutOffDelayTime": "OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`",
-      "BolusCutOffTechnique": "OPTIONAL, REQUIRED if `BolusCutOffFlag` is `true`",
-   }
-) }}
+{{ MACROS___make_sidecar_table("asl.MRIASLPASLSpecific") }}
 
 ### `m0scan` metadata fields
 
 Some common metadata fields are REQUIRED for the `*_m0scan.json`: `EchoTime`, `RepetitionTimePreparation`, and `FlipAngle` in case `LookLocker` is `true`.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "IntendedFor": (
-         "REQUIRED",
-         "This is used to refer to the ASL time series for which the `*_m0scan.nii[.gz]` is intended."
-      ),
-      "AcquisitionVoxelSize": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("asl.MRIASLM0Scan") }}
 
 The following table recapitulates the ASL field dependencies. If Source field (column 1) contains the Value specified in column 2, then the Requirements in column 4 are
 imposed on the Dependent fields in column 3. See [Appendix XII](../99-appendices/12-arterial-spin-labeling.md#flowchart-based-on-dependency-table) for this information in the
@@ -1120,20 +1060,14 @@ Fieldmap data MAY be linked to the specific scan(s) it was acquired for by
 filling the `IntendedFor` field in the corresponding JSON file.
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "IntendedFor": (
-         "OPTIONAL",
-         "This field is OPTIONAL, and in case the fieldmaps do not correspond "
-         "to any particular scans, it does not have to be filled.",
-      ),
-   }
-) }}
+{{ MACROS___make_sidecar_table("fmap.MRIFieldmapIntendedFor") }}
 
 For example:
 
@@ -1174,17 +1108,14 @@ the OPTIONAL `_magnitude2` image to the longer echo time.
 Required fields:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "EchoTime1": "REQUIRED",
-      "EchoTime2": "REQUIRED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("fmap.MRIFieldmapPhaseDifferencePhasediff") }}
 
 In this particular case, the sidecar JSON file
 `sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phasediff.json`
@@ -1218,16 +1149,14 @@ and a guide for using macros can be found at
 Required fields:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "EchoTime__fmap": "REQUIRED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("fmap.MRIFieldmapTwoPhase") }}
 
 Each phase map has a corresponding sidecar JSON file to specify its corresponding `EchoTime`.
 For example, `sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json` may read:
@@ -1255,20 +1184,14 @@ and a guide for using macros can be found at
 Required fields:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "Units": (
-         "REQUIRED",
-         'Fieldmaps must be in units of Hertz (`"Hz"`), '
-         'radians per second (`"rad/s"`), or Tesla (`"T"`).',
-      ),
-   }
-) }}
+{{ MACROS___make_sidecar_table("fmap.MRIFieldmapDirectFieldMapping") }}
 
 For example:
 
@@ -1316,17 +1239,14 @@ the REQUIRED `PhaseEncodingDirection` metadata field
 Required fields:
 
 <!-- This block generates a metadata table.
-The definitions of these fields can be found in
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
+A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "PhaseEncodingDirection": "REQUIRED",
-      "TotalReadoutTime": "REQUIRED",
-   }
-) }}
+{{ MACROS___make_sidecar_table("fmap.MRIFieldmapPepolar") }}
 
 For example:
 
