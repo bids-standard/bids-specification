@@ -35,15 +35,21 @@ BIDS_ERROR_SELECTION = [
 def get_gitrepo_fixture(url, whitelist):
     @pytest.fixture(scope="session")
     def fixture():
-        archive_name = url.rsplit("/",1)[-1]
-        testdata_archive = os.path.join(os.getcwd(),"testdata",archive_name)
+        archive_name = url.rsplit("/", 1)[-1]
+        testdata_archive = os.path.join(os.getcwd(), "testdata", archive_name)
         if os.path.isdir(testdata_archive):
-            lgr.info("Found static testdata archive under `%s`. "
-                "Not downloading latest data from version control.", testdata_archive)
+            lgr.info(
+                "Found static testdata archive under `%s`. "
+                "Not downloading latest data from version control.",
+                testdata_archive,
+            )
             yield testdata_archive
         else:
-            lgr.info("No static testdata available under `%s`. "
-                "Attempting to fetch live data from version control.", testdata_archive)
+            lgr.info(
+                "No static testdata available under `%s`. "
+                "Attempting to fetch live data from version control.",
+                testdata_archive,
+            )
             with tempfile.TemporaryDirectory() as path:
                 assert os.path.exists(path)
                 lgr.debug("Cloning %r into %r", url, path)
