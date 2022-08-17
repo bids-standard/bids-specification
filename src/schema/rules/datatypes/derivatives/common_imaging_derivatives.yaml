@@ -6,7 +6,7 @@ anat_parametric_volumetric:
     space: optional
     resolution: optional
     density: optional
-    desc: optional
+    description: optional
 
 anat_nonparametric_volumetric:
   $ref: rules.datatypes.anat.nonparametric
@@ -15,7 +15,7 @@ anat_nonparametric_volumetric:
     space: optional
     resolution: optional
     density: optional
-    desc: optional
+    description: optional
 
 dwi_volumetric:
   $ref: rules.datatypes.dwi.dwi
@@ -24,7 +24,7 @@ dwi_volumetric:
     space: optional
     resolution: optional
     density: optional
-    desc: optional
+    description: optional
 
 func_volumetric:
   $ref: rules.datatypes.func.func
@@ -33,7 +33,7 @@ func_volumetric:
     space: optional
     resolution: optional
     density: optional
-    desc: optional
+    description: optional
 
 anat_parametric_mask:
   $ref: rules.datatypes.anat.parametric
@@ -47,7 +47,7 @@ anat_parametric_mask:
     resolution: optional
     density: optional
     label: optional
-    desc: optional
+    description: optional
 
 anat_nonparametric_mask:
   $ref: rules.datatypes.anat.nonparametric
@@ -61,7 +61,7 @@ anat_nonparametric_mask:
     resolution: optional
     density: optional
     label: optional
-    desc: optional
+    description: optional
 
 dwi_mask:
   $ref: rules.datatypes.dwi.dwi
@@ -75,7 +75,7 @@ dwi_mask:
     resolution: optional
     density: optional
     label: optional
-    desc: optional
+    description: optional
 
 func_mask:
   $ref: rules.datatypes.func.func
@@ -89,7 +89,7 @@ func_mask:
     resolution: optional
     density: optional
     label: optional
-    desc: optional
+    description: optional
 
 anat_parametric_discrete_segmentation:
   $ref: rules.datatypes.anat.parametric
