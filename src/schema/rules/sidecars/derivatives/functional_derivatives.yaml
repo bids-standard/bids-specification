@@ -20,7 +20,7 @@ NeighborhoodOpt:
 NeighborhoodReq:
   selectors:
   - dataset.DatasetType == "derivative"
-  - '["reho"].includes(suffix)
+  - '["reho"].includes(suffix)'
   fields:
     Neighborhood: required
 ThresholdOpt:
