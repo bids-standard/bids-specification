@@ -214,7 +214,7 @@ anat_nonparametic_discrete_surface:
   - .dlabel.nii
   entities:
     $ref: rules.datatypes.anat.nonparametric.entities
-    hemisphere:: optional
+    hemisphere: optional
     space: optional
     resolution: optional
     density: optional
