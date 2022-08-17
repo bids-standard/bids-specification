@@ -5,11 +5,12 @@ import os
 import re
 from collections.abc import Mapping
 from copy import deepcopy
+from functools import lru_cache
 from pathlib import Path
 
 import yaml
 
-from . import utils
+from . import __bids_version__, __version__, utils
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
@@ -194,6 +195,7 @@ def dereference_mapping(schema, struct):
     return struct
 
 
+@lru_cache()
 def load_schema(schema_path=None):
     """Load the schema into a dictionary.
 
@@ -227,7 +229,10 @@ def load_schema(schema_path=None):
 
 
 def export_schema(schema):
-    return json.dumps(schema.to_dict())
+    schema_dict = schema.to_dict()
+    schema_dict["schema_version"] = __version__
+    schema_dict["bids_version"] = __bids_version__
+    return json.dumps(schema_dict)
 
 
 def filter_schema(schema, **kwargs):
