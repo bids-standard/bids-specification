@@ -36,6 +36,21 @@ def get_relpath(src_path):
     return posixpath.relpath(".", posixpath.dirname(src_path or ""))
 
 
+def normalize_requirements(text):
+    for level in ("optional", "recommended", "required", "deprecated"):
+        text = text.replace(level, level.upper())
+    return text
+
+
+def normalize_breaks(text):
+    # A backslash before a newline means continue a string
+    text = text.replace("\\\n", "")
+    # Two newlines should be respected
+    text = text.replace("\n\n", "<br>")
+    # Otherwise a newline corresponds to a space
+    return text.replace("\n", " ")
+
+
 def make_entity_definitions(schema, src_path=None):
     """Generate definitions and other relevant information for entities in the specification.
 
@@ -499,6 +514,7 @@ def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
         if isinstance(requirement_info, tuple):
             requirement_info, description_addendum = requirement_info
 
+        requirement_info = normalize_requirements(requirement_info)
         requirement_info = requirement_info.replace(
             "DEPRECATED",
             "[DEPRECATED](/02-common-principles.html#definitions)",
@@ -506,23 +522,22 @@ def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
 
         type_string = utils.resolve_metadata_type(subschema[field])
 
-        description = subschema[field]["description"] + " " + description_addendum
+        description = normalize_requirements(
+            subschema[field]["description"] + " " + description_addendum
+        )
 
         # Try to add info about valid values
         valid_values_str = utils.describe_valid_values(subschema[field])
         if valid_values_str:
             description += "\n\n\n\n" + valid_values_str
 
-        # A backslash before a newline means continue a string
-        description = description.replace("\\\n", "")
-        # Two newlines should be respected
-        description = description.replace("\n\n", "<br>")
-        # Otherwise a newline corresponds to a space
-        description = description.replace("\n", " ")
         # Spec internal links need to be replaced
         description = description.replace("SPEC_ROOT", get_relpath(src_path))
 
-        df.loc[field_name] = [requirement_info, type_string, description]
+        df.loc[field_name] = [
+            normalize_breaks(requirement_info),
+            type_string,
+            normalize_breaks(description)]
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
@@ -743,14 +758,10 @@ def make_columns_table(schema, column_info, src_path=None, tablefmt="github"):
         if valid_values_str:
             description += "\n\n\n\n" + valid_values_str
 
-        # A backslash before a newline means continue a string
-        description = description.replace("\\\n", "")
-        # Two newlines should be respected
-        description = description.replace("\n\n", "<br>")
-        # Otherwise a newline corresponds to a space
-        description = description.replace("\n", " ")
-
-        df.loc[field_name] = [requirement_info, type_string, description]
+        df.loc[field_name] = [
+            normalize_breaks(requirement_info),
+            type_string,
+            normalize_breaks(description)]
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
