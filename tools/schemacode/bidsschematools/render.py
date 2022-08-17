@@ -537,7 +537,8 @@ def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
         df.loc[field_name] = [
             normalize_breaks(requirement_info),
             type_string,
-            normalize_breaks(description)]
+            normalize_breaks(description),
+        ]
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
@@ -761,7 +762,8 @@ def make_columns_table(schema, column_info, src_path=None, tablefmt="github"):
         df.loc[field_name] = [
             normalize_breaks(requirement_info),
             type_string,
-            normalize_breaks(description)]
+            normalize_breaks(description),
+        ]
 
     # Print it as markdown
     table_str = tabulate(df, headers="keys", tablefmt=tablefmt)
