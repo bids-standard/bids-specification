@@ -195,7 +195,7 @@ def dereference_mapping(schema, struct):
     return struct
 
 
-@lru_cache
+@lru_cache()
 def load_schema(schema_path=None):
     """Load the schema into a dictionary.
 
