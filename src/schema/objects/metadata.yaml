@@ -2495,7 +2495,7 @@ RotationOrder:
   - YXZ
   - YZX
   - ZXY
-  - ZYX 
+  - ZYX
 RotationRule:
   name: RotationRule
   display_name: Rotation Rule
