@@ -178,7 +178,7 @@ def _add_entity(filename_template, entity_pattern, requirement_level):
     return filename_template
 
 
-def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
+def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs):
     """Create codeblocks containing example filename patterns for a given datatype.
 
     Parameters
@@ -189,6 +189,9 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
     n_dupes_to_combine : int
         The minimum number of suffixes/extensions to combine in the template as
         <suffix>/<extension>.
+    src_path : str | None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
     kwargs : dict
         Keyword arguments used to filter the schema.
         Example kwargs that may be used include: "suffixes", "datatypes",
@@ -205,11 +208,16 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
 
     paragraph = ""
     # Parent directories
-    paragraph += "{}-<{}>/\n\t[{}-<{}>/]\n".format(
-        schema["objects"]["entities"]["subject"]["name"],
-        schema["objects"]["entities"]["subject"]["format"],
-        schema["objects"]["entities"]["session"]["name"],
-        schema["objects"]["entities"]["session"]["format"],
+    paragraph += (
+        '<a href="SPEC_ROOT/99-appendices/09-entities.md#subject">'
+        f'{schema["objects"]["entities"]["subject"]["name"]}-&lt;'
+        f'{schema["objects"]["entities"]["subject"]["format"]}&gt;'
+        "</a>\n\t"
+        "["
+        '<a href="SPEC_ROOT/99-appendices/09-entities.md#session">'
+        f'{schema["objects"]["entities"]["session"]["name"]}-&lt;'
+        f'{schema["objects"]["entities"]["session"]["format"]}&gt;'
+        "</a>]\n"
     )
 
     datatypes = schema.rules.datatypes
@@ -226,22 +234,26 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
             for ent in entity_order:
                 if "enum" in schema["objects"]["entities"][ent].keys():
                     # Entity key-value pattern with specific allowed values
-                    ent_format = "{}-<{}>".format(
-                        schema["objects"]["entities"][ent]["name"],
-                        "|".join(schema["objects"]["entities"][ent]["enum"]),
+                    ent_format = (
+                        f'<a href="SPEC_ROOT/99-appendices/09-entities.md#{ent}">'
+                        f'{schema["objects"]["entities"][ent]["name"]}-&lt;'
+                        f'{"|".join(schema["objects"]["entities"][ent]["enum"])}&gt;'
+                        "</a>"
                     )
                 else:
                     # Standard entity key-value pattern with simple label/index
-                    ent_format = "{}-<{}>".format(
-                        schema["objects"]["entities"][ent]["name"],
-                        schema["objects"]["entities"][ent].get("format", "label"),
+                    ent_format = (
+                        f'<a href="SPEC_ROOT/99-appendices/09-entities.md#{ent}">'
+                        f'{schema["objects"]["entities"][ent]["name"]}-&lt;'
+                        f'{schema["objects"]["entities"][ent].get("format", "label")}&gt;'
+                        "</a>"
                     )
 
                 if ent in group["entities"]:
                     if isinstance(group["entities"][ent], dict):
                         if "enum" in group["entities"][ent].keys():
                             # Overwrite the filename pattern based on the valid values
-                            ent_format = "{}-<{}>".format(
+                            ent_format = "{}-&lt;{}&gt;".format(
                                 schema["objects"]["entities"][ent]["name"],
                                 "|".join(group["entities"][ent]["enum"]),
                             )
@@ -257,7 +269,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
             # In cases of large numbers of suffixes,
             # we use the "suffix" variable and expect a table later in the spec
             if len(group["suffixes"]) >= n_dupes_to_combine:
-                suffix = "_<suffix>"
+                suffix = "_&lt;suffix&gt;"
                 string += suffix
                 strings = [string]
             else:
@@ -266,14 +278,14 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
             # Add extensions
             full_strings = []
             extensions = group["extensions"]
-            extensions = [ext if ext != "*" else ".<extension>" for ext in extensions]
+            extensions = [ext if ext != "*" else ".&lt;extension&gt;" for ext in extensions]
             extensions = utils.combine_extensions(extensions)
             if len(extensions) >= n_dupes_to_combine:
                 # Combine exts when there are many, but keep JSON separate
                 if ".json" in extensions:
-                    extensions = [".<extension>", ".json"]
+                    extensions = [".&lt;extension&gt;", ".json"]
                 else:
-                    extensions = [".<extension>"]
+                    extensions = [".&lt;extension&gt;"]
 
             for extension in extensions:
                 for string in strings:
@@ -285,8 +297,9 @@ def make_filename_template(schema, n_dupes_to_combine=6, **kwargs):
                 paragraph += "\n".join(full_strings) + "\n"
 
     paragraph = paragraph.rstrip()
-    codeblock = "Template:\n```Text\n" + paragraph + "\n```"
+    codeblock = 'Template:\n<pre style="overflow-x:scroll;">\n' + paragraph + "\n</pre>"
     codeblock = codeblock.expandtabs(4)
+    codeblock = codeblock.replace("SPEC_ROOT", get_relpath(src_path))
     return codeblock
 
 
