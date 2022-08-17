@@ -1,14 +1,16 @@
 """Schema loading- and processing-related functions."""
+import json
 import logging
 import os
 import re
 from collections.abc import Mapping
 from copy import deepcopy
+from functools import lru_cache
 from pathlib import Path
 
 import yaml
 
-from . import utils
+from . import __bids_version__, __version__, utils
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
@@ -193,7 +195,8 @@ def dereference_mapping(schema, struct):
     return struct
 
 
-def load_schema(schema_path):
+@lru_cache()
+def load_schema(schema_path=None):
     """Load the schema into a dictionary.
 
     This function allows the schema, like BIDS itself, to be specified in
@@ -204,16 +207,18 @@ def load_schema(schema_path):
 
     Parameters
     ----------
-    schema_path : str
-        Directory containing yaml files or yaml file.
+    schema_path : str, optional
+        Directory containing yaml files or yaml file. If ``None``, use the
+        default schema packaged with ``bidsschematools``.
 
     Returns
     -------
     dict
         Schema in dictionary form.
     """
-    schema_path = Path(schema_path)
-    schema = Namespace.from_directory(schema_path)
+    if schema_path is None:
+        schema_path = utils.get_schema_path()
+    schema = Namespace.from_directory(Path(schema_path))
     if not schema.objects:
         raise ValueError(f"objects subdirectory path not found in {schema_path}")
     if not schema.rules:
@@ -221,6 +226,13 @@ def load_schema(schema_path):
 
     dereferenced = dereference_mapping(schema, schema)
     return Namespace.build(dereferenced)
+
+
+def export_schema(schema):
+    schema_dict = schema.to_dict()
+    schema_dict["schema_version"] = __version__
+    schema_dict["bids_version"] = __bids_version__
+    return json.dumps(schema_dict)
 
 
 def filter_schema(schema, **kwargs):

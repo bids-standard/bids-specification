@@ -1,15 +1,17 @@
 version: 2
 
-formats: all
-
 build:
-  image: latest
-
-python:
-  version: 3.8
-  install:
-    - requirements: requirements.txt
+  os: ubuntu-22.04
+  tools:
+    python: "3.10"
+  jobs:
+    pre_build:
+      - bst -v export --output src/schema.json
 
 mkdocs:
   configuration: mkdocs.yml
   fail_on_warning: true
+
+python:
+  install:
+    - requirements: requirements.txt
