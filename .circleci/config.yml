@@ -107,6 +107,7 @@ jobs:
             git status
             if (git log -1 --pretty=%s | grep Merge*) && (! git log -1 --pretty=%b | grep REL:) ; then
               github_changelog_generator \
+                --exclude-tags-regex "^(?!v).*?$" \
                 --user bids-standard \
                 --project bids-specification \
                 --token ${CHANGE_TOKEN} \

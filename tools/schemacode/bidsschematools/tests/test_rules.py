@@ -1,5 +1,8 @@
 """Simple validation tests on schema rules."""
+import warnings
 from collections.abc import Mapping
+
+import pytest
 
 
 def _dict_key_lookup(_dict, key, path=[]):
@@ -22,6 +25,7 @@ def _dict_key_lookup(_dict, key, path=[]):
     return results
 
 
+@pytest.mark.validate_schema
 def test_rule_objects(schema_obj):
     """Ensure that all objects referenced in the schema rules are defined in
     its object portion.
@@ -93,3 +97,40 @@ def test_rule_objects(schema_obj):
     if not_found:
         not_found_string = "\n".join([f"{'.'.join(path)} == {val}" for path, val in not_found])
         raise ValueError(not_found_string)
+
+
+@pytest.mark.validate_schema
+def test_entity_order(schema_obj):
+    """Check the order of the entities of the suffix group of each datatype
+    and lists those that are out of order.
+    """
+    status_ok = True
+
+    entities_order = schema_obj["rules"]["entities"]
+    datatypes_schema_obj = schema_obj["rules"]["datatypes"]
+
+    for datatype, datatype_schema_obj in datatypes_schema_obj.items():
+
+        print(f"Checking: {datatype}")
+        # Skip over derivatives folders nested in regular folders
+        if datatype == "derivatives":
+            continue
+
+        for suffix_group, suffix_group_obj in datatype_schema_obj.items():
+            entities = list(suffix_group_obj["entities"].keys())
+            correct_order = sorted(entities, key=lambda x: entities_order.index(x))
+
+            if entities != correct_order:
+                status_ok = False
+                warnings.warn(
+                    f"""
+                \nsuffix group {suffix_group} in {datatype} is out of order:
+                - got: {entities}
+                - should be: {correct_order}
+                """
+                )
+
+    if not status_ok:
+        raise RuntimeError(
+            "Some suffix groups have their entities out of order. See warnings above."
+        )
