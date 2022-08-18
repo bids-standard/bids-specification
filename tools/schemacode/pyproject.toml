@@ -29,3 +29,10 @@ multi_line_output = 3
 markers = [
   "validate_schema: tests that validate the schema itself",
 ]
+
+[tool.coverage.run]
+parallel = true
+omit = [
+  "*/*/tests/*",
+  "**/tests/*"
+]
