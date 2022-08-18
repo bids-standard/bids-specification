@@ -4,8 +4,8 @@ CommonDerivativeFields:
   - dataset.DatasetType == "derivative"
   fields:
     Description:
-        level: recommended
-        description_addendum: This describes the nature of the file.
+      level: recommended
+      description_addendum: This describes the nature of the file.
     Sources: optional
     RawSources: deprecated
 
@@ -15,8 +15,8 @@ SpatialReferenceEntity:
   - '"space" in entities'
   fields:
     SpatialReference:
-        level: recommended
-        level_addendum: |
+      level: recommended
+      level_addendum: |
             if the derivative is aligned to a standard template listed in
             [Standard template identifiers][templates]. Required otherwise.
 
@@ -50,8 +50,8 @@ MaskDerivativesAtlas:
   - '"label" in entities'
   fields:
     Atlas:
-        level: recommended
-        level_addendum: if `label` entity is defined
+      level: recommended
+      level_addendum: if `label` entity is defined
 
 SegmentationCommon:
   selectors:
@@ -67,8 +67,8 @@ SegmentationCommonAtlas:
   - '"atlas" in entities'
   fields:
     Atlas:
-        level: recommended
-        level_addendum: if `atlas` is present
+      level: recommended
+      level_addendum: if `atlas` is present
 
 # Derivatives -> Imaging data types
 ImageDerivatives:
@@ -86,8 +86,8 @@ ImageDerivativeResEntity:
   - '"res" in entities'
   fields:
     Resolution:
-        level: required
-        level_addendum: if `res` is present
+      level: required
+      level_addendum: if `res` is present
 
 ImageDerivativeDenEntity:
   selectors:
@@ -96,5 +96,5 @@ ImageDerivativeDenEntity:
   - '"den" in entities'
   fields:
     Density:
-        level: required
-        level_addendum: if `den` is present
+      level: required
+      level_addendum: if `den` is present
