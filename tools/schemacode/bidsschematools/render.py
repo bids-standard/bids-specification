@@ -59,24 +59,32 @@ def make_entity_definitions(schema, src_path=None):
     text = ""
     for entity in entity_order:
         entity_info = entity_definitions[entity]
-        entity_shorthand = entity_info["name"]
-        text += "\n"
-        text += "## {}".format(entity_shorthand)
-        text += "\n\n"
-        text += "Full name: {}".format(entity_info["display_name"])
-        text += "\n\n"
-        text += "Format: `{}-<{}>`".format(
-            entity_info["name"],
-            entity_info.get("format", "label"),
-        )
-        text += "\n\n"
-        if "enum" in entity_info.keys():
-            text += "Allowed values: `{}`".format("`, `".join(entity_info["enum"]))
-            text += "\n\n"
+        entity_text = _make_entity_definition(entity, entity_info, src_path)
+        text += "\n" + entity_text
 
-        description = entity_info["description"]
-        description = description.replace("SPEC_ROOT", get_relpath(src_path))
-        text += "Definition: {}".format(description)
+    return text
+
+
+def _make_entity_definition(entity, entity_info, src_path):
+    """Describe an entity."""
+    entity_shorthand = entity_info["name"]
+    text = ""
+    text += "## {}".format(entity_shorthand)
+    text += "\n\n"
+    text += "Full name: {}".format(entity_info["display_name"])
+    text += "\n\n"
+    text += "Format: `{}-<{}>`".format(
+        entity_info["name"],
+        entity_info.get("format", "label"),
+    )
+    text += "\n\n"
+    if "enum" in entity_info.keys():
+        text += "Allowed values: `{}`".format("`, `".join(entity_info["enum"]))
+        text += "\n\n"
+
+    description = entity_info["description"]
+    description = description.replace("SPEC_ROOT", get_relpath(src_path))
+    text += "Definition: {}".format(description)
     return text
 
 
