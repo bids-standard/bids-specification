@@ -39,7 +39,9 @@ def get_relpath(src_path):
 
 def normalize_requirements(text):
     for level in ("optional", "recommended", "required", "deprecated"):
+        # Replace both "optional" and "Optional" with "OPTIONAL"
         text = text.replace(level, level.upper())
+        text = text.replace(level[0].upper() + level[1:], level.upper())
     return text
 
 
