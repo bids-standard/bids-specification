@@ -214,7 +214,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
         f'{schema["objects"]["entities"]["subject"]["format"]}&gt;'
         "</a>\n\t"
         "["
-        '<a href="SPEC_ROOT/99-appendices/09-entities.md#session">'
+        '<a href="/99-appendices/09-entities.html#session">'
         f'{schema["objects"]["entities"]["session"]["name"]}-&lt;'
         f'{schema["objects"]["entities"]["session"]["format"]}&gt;'
         "</a>]\n"
@@ -235,7 +235,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
                 if "enum" in schema["objects"]["entities"][ent].keys():
                     # Entity key-value pattern with specific allowed values
                     ent_format = (
-                        f'<a href="SPEC_ROOT/99-appendices/09-entities.md#{ent}">'
+                        f'<a href="/99-appendices/09-entities.html#{ent}">'
                         f'{schema["objects"]["entities"][ent]["name"]}-&lt;'
                         f'{"|".join(schema["objects"]["entities"][ent]["enum"])}&gt;'
                         "</a>"
@@ -243,7 +243,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
                 else:
                     # Standard entity key-value pattern with simple label/index
                     ent_format = (
-                        f'<a href="SPEC_ROOT/99-appendices/09-entities.md#{ent}">'
+                        f'<a href="/99-appendices/09-entities.html#{ent}">'
                         f'{schema["objects"]["entities"][ent]["name"]}-&lt;'
                         f'{schema["objects"]["entities"][ent].get("format", "label")}&gt;'
                         "</a>"
