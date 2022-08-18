@@ -1119,6 +1119,26 @@ GeneratedBy:
           URI:
             type: string
             format: uri
+GeneticInfo:
+  name: GeneticInfo
+  display_name: Genetic Info
+  description: |
+    An document stored in /genetic_info.json
+  type: object
+  required_fields: [GeneticLevel, SampleOrigin]
+  properties:
+    GeneticLevel:
+      $ref: objects.metadata.GeneticLevel
+    AnalyticalApproach:
+      $ref: objects.metadata.AnalyticalApproach
+    SampleOrigin:
+      $ref: objects.metadata.SampleOrigin
+    TissueOrigin:
+      $ref: objects.metadata.TissueOrigin
+    BrainLocation:
+      $ref: objects.metadata.BrainLocation
+    CellType:
+      $ref: objects.metadata.CellType
 GeneticLevel:
   name: GeneticLevel
   display_name: Genetic Level
