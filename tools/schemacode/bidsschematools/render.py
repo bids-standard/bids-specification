@@ -6,6 +6,7 @@ import typing as ty
 from collections.abc import Mapping
 
 import pandas as pd
+import yaml
 from tabulate import tabulate
 
 from . import utils
@@ -183,6 +184,7 @@ def make_glossary(schema, src_path=None):
         temp_obj_def = {
             k: v for k, v in obj_def.items() if k not in ("description", "display_name", "name")
         }
+        temp_obj_def = yaml.dump(temp_obj_def)
 
         if temp_obj_def:
             text += f"**Schema Information**:\n```yaml\n{temp_obj_def}\n```"
