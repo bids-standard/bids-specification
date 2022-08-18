@@ -120,7 +120,7 @@ MRISpatialEncoding:
         PhaseEncodingDirection:
             level: recommended
             level_addendum: |
-                This parameter is required if corresponding fieldmap data is present
+                required if corresponding fieldmap data is present
                 or when using multiple runs with different phase encoding directions
                 (which can be later used for field inhomogeneity correction).
             issue:
@@ -129,9 +129,8 @@ MRISpatialEncoding:
                     You have to define 'PhaseEncodingDirection' for this file.
         EffectiveEchoSpacing:
             level: recommended
-            level_addendum: |
-                <sup>2</sup> This parameter is required if corresponding fieldmap data
-                is present.
+            level_addendum: required if corresponding fieldmap data is present
+            description_addendum: <sup>2</sup>
             issue:
                 name: EFFECTIVE_ECHO_SPACING_NOT_DEFINED
                 message: |
@@ -140,10 +139,11 @@ MRISpatialEncoding:
         TotalReadoutTime:
             level: recommended
             level_addendum: |
-                <sup>3</sup> This parameter is required if corresponding 'field/distortion' maps
+                required if corresponding 'field/distortion' maps
                 acquired with opposing phase encoding directions are present
                 (see [Case 4: Multiple phase encoded
-                directions](#case-4-multiple-phase-encoded-directions-pepolar)).
+                directions](#case-4-multiple-phase-encoded-directions-pepolar))
+            description_addendum: <sup>3</sup>
             issue:
                 name: TOTAL_READOUT_TIME_MUST_DEFINE
                 message: |
