@@ -103,7 +103,7 @@ iEEGCoordsystemGeneral:
     - datatype == "ieeg"
     - suffix == "coordsystem"
     fields:
-        IntendedFor:
+        IntendedFor__ds_relative:
             level: optional
             description_addendum: |
                 If only a surface reconstruction is available, this should point to
