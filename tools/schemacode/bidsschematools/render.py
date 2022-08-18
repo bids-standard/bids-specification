@@ -279,10 +279,17 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
                 string += suffix
                 strings = [string]
             else:
-                strings = [
-                    string + "_" + f'<a href="{glossary_path}#{suffix}-suffixes">{suffix}</a>'
-                    for suffix in group["suffixes"]
-                ]
+                strings = []
+                for suffix in group["suffixes"]:
+                    # The glossary indexes by the suffix identifier (TwoPE instead of 2PE),
+                    # but the rules reference the actual suffix string (2PE instead of TwoPE),
+                    # so we need to look it up.
+                    suffix_id = [
+                        k for k, v in schema["objects"]["suffixes"].items() if v["name"] == suffix
+                    ][0]
+                    strings.append(
+                        f'{string}_<a href="{glossary_path}#{suffix_id}-suffixes">{suffix}</a>'
+                    )
 
             # Add extensions
             full_strings = []
@@ -297,8 +304,20 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
                     extensions = [".&lt;extension&gt;"]
 
             for extension in extensions:
+                # The glossary indexes by the extension identifier (niigz instead of .nii.gz),
+                # but the rules reference the actual suffix string (.nii.gz instead of niigz),
+                # so we need to look it up.
+                ext_id = [
+                    k for k, v in schema["objects"]["extensions"].items() if v["name"] == extension
+                ]
+                if ext_id:
+                    ext_id = ext_id[0]
+                    ext_string = f'<a href="{glossary_path}#{ext_id}-extensions">{extension}</a>'
+                else:
+                    ext_string = extension
+
                 for string in strings:
-                    new_string = string + extension
+                    new_string = f"{string}{ext_string}"
                     full_strings.append(new_string)
 
             full_strings = sorted(full_strings)
