@@ -445,7 +445,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table(["eeg.EEGCoordsystemLandmark", "EEGCoordsystemLandmarkDescriptionRec"]) }}
+{{ MACROS___make_sidecar_table(["eeg.EEGCoordsystemLandmark", "eeg.EEGCoordsystemLandmarkDescriptionRec"]) }}
 
 If the position of anatomical landmarks is measured using the same system or
 device used to measure electrode positions, and if thereby the anatomical

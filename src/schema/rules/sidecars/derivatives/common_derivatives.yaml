@@ -43,11 +43,6 @@ MaskDerivatives:
   fields:
     RawSources: required
     Type: recommended
-    Atlas:
-      level: optional
-      level_addendum: recommended if `label` entity is defined
-    Resolution: optional
-    Density: optional
 
 MaskDerivativesAtlas:
   selectors:
@@ -57,6 +52,7 @@ MaskDerivativesAtlas:
   fields:
     Atlas:
       level: recommended
+      level_addendum: if `atlas` is present
 
 SegmentationCommon:
   selectors:
@@ -64,9 +60,6 @@ SegmentationCommon:
   - '["dseg", "probseg"].includes(suffix)'
   fields:
     Type: recommended
-    Resolution: optional
-    Density: optional
-    Manual: optional
 
 SegmentationCommonAtlas:
   selectors:
