@@ -113,25 +113,6 @@ MRISpatialEncoding:
         ParallelAcquisitionTechnique: recommended
         PartialFourier: recommended
         PartialFourierDirection: recommended
-        PhaseEncodingDirection:
-            level: recommended
-            level_addendum: |
-                required if corresponding fieldmap data is present
-                or when using multiple runs with different phase encoding directions
-                (which can be later used for field inhomogeneity correction).
-            issue:
-                name: PHASE_ENCODING_DIRECTION_MUST_DEFINE
-                issue: |
-                    You have to define 'PhaseEncodingDirection' for this file.
-        EffectiveEchoSpacing:
-            level: recommended
-            level_addendum: required if corresponding fieldmap data is present
-            description_addendum: <sup>2</sup>
-            issue:
-                name: EFFECTIVE_ECHO_SPACING_NOT_DEFINED
-                message: |
-                    You should define 'EffectiveEchoSpacing' for this file. If you don't
-                    provide this information field map correction will not be possible.
         MixingTime: recommended
 
 PhaseEncodingDirectionRec:
