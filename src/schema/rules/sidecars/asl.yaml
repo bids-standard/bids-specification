@@ -165,7 +165,9 @@ MRIASLCommonMetadataFieldsVascularCrushingOpt:
     - suffix == "asl"
     - sidecar.VascularCrushing == false
     fields:
-        VascularCrushingVENC: optional
+        VascularCrushingVENC:
+            level: optional
+            level_addendum: recommended if `VascularCrushing` is `true`
 
 MRIASLCommonMetadataFieldsVascularCrushingRec:
     selectors:
