@@ -25,7 +25,9 @@ MRIASLTextOnlySliceTimingRec:
     - suffix == "asl"
     - sidecar.MRAcquisitionType != "2D"
     fields:
-        SliceTiming: recommended
+        SliceTiming:
+            level: recommended
+            level_addendum: required if `MRAcquisitionType` is defined as `2D`
 
 MRIASLTextOnlySliceTimingReq:
     selectors:
@@ -60,7 +62,9 @@ MRIASLTextOnlyFlipAngleRec:
     - suffix == "asl"
     - '!(LookLocker in sidecar) || sidecar.LookLocker == false'
     fields:
-        FlipAngle: recommended
+        FlipAngle:
+            level: recommended
+            level_addendum: required if `LookLocker` is `true`
 
 MRIASLTextOnlyFlipAngleReq:
     selectors:
@@ -113,7 +117,9 @@ MRIASLCommonMetadataFieldsM0TypeRec:
     - suffix == "asl"
     - sidecar.M0Type != "Estimate"
     fields:
-        M0Estimate: optional
+        M0Estimate:
+            level: optional
+            level_addendum: required if `M0Type` is `Estimate`
 
 MRIASLCommonMetadataFieldsM0TypeReq:
     selectors:
@@ -139,8 +145,12 @@ MRIASLCommonMetadataFieldsBackgroundSuppressionOpt:
     - suffix == "asl"
     - sidecar.BackgroundSuppression == false
     fields:
-        BackgroundSuppressionNumberPulses: optional
-        BackgroundSuppressionPulseTime: optional
+        BackgroundSuppressionNumberPulses:
+            level: optional
+            level_addendum: recommended if `BackgroundSuppression` is `true`
+        BackgroundSuppressionPulseTime:
+            level: optional
+            level_addendum: recommended if `BackgroundSuppression` is `true`
 
 MRIASLCommonMetadataFieldsBackgroundSuppressionReq:
     selectors:
@@ -159,7 +169,9 @@ MRIASLCommonMetadataFieldsVascularCrushingOpt:
     - suffix == "asl"
     - sidecar.VascularCrushing == false
     fields:
-        VascularCrushingVENC: optional
+        VascularCrushingVENC:
+            level: optional
+            level_addendum: recommended if `VascularCrushing` is `true`
 
 MRIASLCommonMetadataFieldsVascularCrushingRec:
     selectors:
