@@ -23,7 +23,7 @@ MRIASLTextOnlySliceTimingRec:
     - modality == "MRI"
     - datatype == "perf"
     - suffix == "asl"
-    - sidecar.MRAcquisitionType == "2D"
+    - sidecar.MRAcquisitionType != "2D"
     fields:
         SliceTiming: recommended
 
@@ -60,7 +60,7 @@ MRIASLTextOnlyFlipAngleRec:
     - suffix == "asl"
     - '!(LookLocker in sidecar) || sidecar.LookLocker == false'
     fields:
-        FlipAngle: Recommended
+        FlipAngle: recommended
 
 MRIASLTextOnlyFlipAngleReq:
     selectors:
