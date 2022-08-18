@@ -2,6 +2,7 @@
 import logging
 import os
 import posixpath
+import typing as ty
 from collections.abc import Mapping
 
 import pandas as pd
@@ -545,14 +546,20 @@ def make_obj_table(subschema, field_info, src_path=None, tablefmt="github"):
     return table_str
 
 
-def make_sidecar_table(schema, table_name, src_path=None, tablefmt="github"):
+def make_sidecar_table(
+    schema: Namespace,
+    table_name: ty.Union[str, ty.List[str]],
+    src_path: ty.Optional[str] = None,
+    tablefmt: str = "github",
+):
     """Produce metadata table (markdown) based on requested fields.
 
     Parameters
     ----------
     schema : dict
         The BIDS schema.
-    table_name : qualified name in schema.rules.sidecars
+    table_name : str or list of str
+        Qualified name(s) in schema.rules.sidecars
     src_path : str | None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.

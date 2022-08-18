@@ -201,13 +201,8 @@ def make_sidecar_table(table_name, src_path=None):
 
     Parameters
     ----------
-    field_names : dict
-        A list of the field names.
-        Field names correspond to filenames in the "metadata" directory of the
-        schema.
-        Until requirement levels can be codified in the schema,
-        this argument will be dictionary, with the field names as keys and
-        the requirement levels as values.
+    table_name : str or list of str
+        Qualified name(s) in schema.rules.sidecars
     src_path : str | None
         The file where this macro is called, which may be explicitly provided
         by the "page.file.src_path" variable.
