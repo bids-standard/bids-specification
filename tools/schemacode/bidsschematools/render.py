@@ -209,7 +209,7 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
     paragraph = ""
     # Parent directories
     paragraph += (
-        '<a href="SPEC_ROOT/99-appendices/09-entities.md#subject">'
+        '<a href="/99-appendices/09-entities.html#subject">'
         f'{schema["objects"]["entities"]["subject"]["name"]}-&lt;'
         f'{schema["objects"]["entities"]["subject"]["format"]}&gt;'
         "</a>\n\t"
