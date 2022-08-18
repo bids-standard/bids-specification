@@ -72,7 +72,7 @@ def test_make_filename_template(schema_obj, schema_dir):
         * all files under the datatype rules subdirectory have corresponding entries.
         This may need to be updated for schema hierarchy changes.
     """
-    filename_template = render.make_filename_template(schema_obj)
+    filename_template = render.make_filename_template(schema_obj, pdf_format=True)
 
     # Test predefined substrings
     expected_template_part = """
