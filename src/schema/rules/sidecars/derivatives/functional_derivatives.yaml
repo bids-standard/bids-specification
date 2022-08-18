@@ -37,3 +37,18 @@ ThresholdReq:
   fields:
     Threshold: required
     Method: required
+
+TimeseriesMetadata:
+    selectors:
+    - dataset.DatasetType == "derivative"
+    - suffix == "timeseries"
+    fields:
+        SamplingFrequency: required
+        StartTime: optional
+
+DecompositionMetadata:
+    selectors:
+    - dataset.DatasetType == "derivative"
+    - suffix == "decomposition"
+    fields:
+        Method: required
