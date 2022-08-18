@@ -9,7 +9,7 @@ import pandas as pd
 from tabulate import tabulate
 
 from . import utils
-from .schema import Namespace, filter_schema
+from .schema import BIDSSchemaError, Namespace, filter_schema
 
 lgr = utils.get_logger()
 # Basic settings for output, for now just basic
@@ -575,7 +575,13 @@ def make_sidecar_table(
         table_name = [table_name]
     fields = {}
     for table in table_name:
-        fields.update(schema.rules.sidecars[table].fields)
+        new_fields = schema.rules.sidecars[table].fields
+        overlap = set(new_fields) & set(fields)
+        if overlap:
+            raise BIDSSchemaError(
+                f"Schema tables {table_name} share overlapping fields: {overlap}"
+            )
+        fields.update(new_fields)
     metadata = schema.objects.metadata
 
     retained_fields = [f for f in fields if f in metadata]
