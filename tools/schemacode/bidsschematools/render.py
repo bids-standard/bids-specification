@@ -307,7 +307,9 @@ def make_filename_template(schema, n_dupes_to_combine=6, src_path=None, **kwargs
                 # but the rules reference the actual suffix string (.nii.gz instead of niigz),
                 # so we need to look it up.
                 ext_id = [
-                    k for k, v in schema["objects"]["extensions"].items() if v["value"] == extension
+                    k
+                    for k, v in schema["objects"]["extensions"].items()
+                    if v["value"] == extension
                 ]
                 if ext_id:
                     ext_id = ext_id[0]
