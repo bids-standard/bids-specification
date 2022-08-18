@@ -32,7 +32,9 @@ markers = [
 
 [tool.coverage.run]
 parallel = true
-omit = [
+ignore = [
   "*/*/tests/*",
+]
+omit = [
   "*/*/tests/*",
 ]
