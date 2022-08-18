@@ -113,6 +113,9 @@ MRISpatialEncoding:
         ParallelAcquisitionTechnique: recommended
         PartialFourier: recommended
         PartialFourierDirection: recommended
+        EffectiveEchoSpacing:
+            level: recommended
+            level_addendum: required if corresponding fieldmap data present
         MixingTime: recommended
 
 PhaseEncodingDirectionRec:
